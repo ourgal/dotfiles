@@ -1,0 +1,8 @@
+{{ if eq .chezmoi.hostname "surface-void" -}}
+# startx automatically
+
+if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
+    . startx
+    logout
+fi
+{{ end -}}
