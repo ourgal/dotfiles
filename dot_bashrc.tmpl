@@ -126,3 +126,6 @@ eval "$(fzf --bash)"
 {{ if lookPath "starship" -}}
 eval "$(starship init bash)"
 {{ end -}}
+{{ if lookPath "eza" -}}
+alias ll='eza --git --icons auto --group --group-directories-first --time-style relative'
+{{ end -}}
