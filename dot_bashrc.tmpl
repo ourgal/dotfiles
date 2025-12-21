@@ -123,6 +123,6 @@ eval "$(zoxide init bash)"
 {{ if lookPath "fzf" -}}
 eval "$(fzf --bash)"
 {{ end -}}
-{{ if loopPath "starship" -}}
+{{ if lookPath "starship" -}}
 eval "$(starship init bash)"
 {{ end -}}
