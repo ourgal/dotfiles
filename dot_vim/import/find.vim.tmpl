@@ -7,7 +7,7 @@ vim9script
 set wildmode=noselect:lastused,full
 set wildmenu wildoptions=pum,fuzzy pumheight=12
 
-# nnoremap <space>f :<C-u>find<space>
+nnoremap <leader><space> :<C-u>find<space>
 
 var files_cache: list<string> = []
 augroup CmdComplete
