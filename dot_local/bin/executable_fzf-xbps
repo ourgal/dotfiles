@@ -1,0 +1,240 @@
+#!/usr/bin/env bash
+# https://gitlab.com/wef/dotfiles/-/blob/master/bin/fzf-xbps
+export TIME_STAMP="20260102.103219"
+# shellcheck disable=SC2034
+
+# Copyright (C) 2020-2025 Bob Hepple <bob dot hepple at gmail dot com>
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or (at
+# your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+PROG=$( basename "$0" )
+TEMP=$( getopt --options hvV --longoptions verbose,version,help -- "$@" ) || exit 1
+eval set -- "$TEMP"
+sudos="doas sudo" # others?
+
+for sudo in $sudos; do
+    type "$sudo" &> /dev/null && break
+    sudo=""
+done
+
+columns="$( tput cols )"
+blue=$( tput setaf 4 )
+norm=$( tput sgr0 )
+
+info_key="alt-i"
+files_key="alt-f"
+manual_key="alt-m"
+dep_key="alt-d"
+rev_key="alt-v"
+url_key="alt-u"
+template_key="alt-t"
+preview_key="alt-?"
+help_key="alt-h"
+toggle_key="ctrl-r"
+exit_key="ctrl-c"
+orphans_key="alt-o"
+extract_key="alt-e"
+REMOVE_ORPHANS_key="alt-O"
+REMOVE_key="alt-R"
+DELETE_key="alt-D"
+INSTALL_key="alt-I"
+CLEAN_key="alt-C"
+UPDATE_key="alt-U"
+
+help="\
+$info_key: info
+$files_key: list files in the package
+$manual_key: list top level packages (not dependencies)
+$dep_key: list dependencies of a package
+$rev_key: list packages depending on this package
+$url_key: open package url in browser
+$template_key: open package template in browser
+$orphans_key: list orphan packages
+$REMOVE_ORPHANS_key: remove orphan packages
+$REMOVE_key: delete package+dependencies
+$DELETE_key: delete package
+$INSTALL_key: install package
+$CLEAN_key: clean xbps cache
+$UPDATE_key: update system
+TAB: mark package for install/remove
+ENTER: install/delete marked packages
+$exit_key: exit"
+
+preview_size=$(( $( echo -e "\n$help" | column -c "$columns" | wc -l ) + 2 ))
+
+while [[ "$1" ]]; do
+    case "$1" in
+        -h|--help)
+            echo "Usage: $PROG OPTIONS"
+            echo
+            echo "Simple TUI/fzf package manager for xbps-based systems like voidlinux"
+            echo
+            echo "Commands are:"
+            echo -e "$help"
+            echo
+            echo "Note that commands that change the filesystem (and therefore need"
+            echo "sudo/doas) are in upper-case"
+            echo
+            echo "Use ' in a search to enable fuzzy finding (see man fzf)"
+            echo "Use [i as a search pattern to find all installed packages."
+            echo "Installed packages that have updates pending are marked with upper-case [I]."
+            echo
+            echo "The 'list files ($files_key) function has a sub-menu to allow you to select a"
+            echo "file (or mark a set of files) from the package and view or extract it to the cwd." 
+            echo
+            echo "OPTIONS"
+            echo "-h|--help                 this help"
+            echo "-v|--verbose              be verbose"
+            exit 0
+            ;;
+        -v|--verbose)
+            verbose="set"
+            shift
+            ;;
+        -V|--version)
+            echo "$PROG: Version $TIME_STAMP"
+            exit 0
+            ;;
+        --)
+            shift
+            ;;
+    esac
+done
+
+if [[ "$verbose" ]]; then
+    set -x
+fi
+
+continue="echo 'Press ENTER to continue'; read"
+
+lock="$( mktemp -d)"
+tempfile="$(mktemp)"
+updates="$(mktemp)"
+trap 'rm $tempfile $updates; rmdir $lock' EXIT
+
+{
+    # this takes a substantial amount of time (0.7s on my system), so do it in background:
+    xbps-install -Sun | awk '{print gensub("^(.*)-[^-]+$","\\1",1,$1)}' > "$updates"
+    rmdir "$lock"
+} &
+
+mapfile -t packages < <(
+    xbps-query -Rs - > "$tempfile" # takes about 0.4s
+
+    # wait for updates to be available:
+    while ! mkdir "$lock" &>/dev/null ; do
+        sleep .01
+    done
+    
+    # mark packages that have updates available with [I] instead of [i]
+    awk -v updates="$updates" '
+BEGIN {
+    while ((getline update < updates) > 0) updates_map[update] = 1
+}
+
+{
+    flag=$1
+    pkgver=$2
+    pkgname=gensub("^(.*)-[^-]+$","\\1",1,$2)
+    if (flag=="[*]") flag="[i]"
+    if (updates_map[pkgname]) flag="[I]"
+    $1=""
+    $2=""
+    printf("%s %-40s %s\n", flag, pkgver, $0)
+}' < "$tempfile" |
+    sort -i -k2 | 
+    fzf --exact --reverse --wrap \
+        --marker="M" \
+        --multi \
+        --prompt="[i]=installed; [I]=upgradable; SEARCH> " \
+        --bind "start:toggle-sort" \
+        --bind "$preview_key:change-preview-window(hidden|)" \
+        --bind "$help_key:execute($PROG --help|less)" \
+        --bind "$DELETE_key:execute($sudo xbps-remove {2}; $continue)+become($PROG)" \
+        --bind "$REMOVE_key:execute($sudo xbps-remove -R {2}; $continue)+become($PROG)" \
+        --bind "$info_key:execute(xbps-query -RS {2} | less)" \
+        --bind "home:first" --bind "end:last" \
+        --bind "$manual_key:execute(xbps-query -m | less)" \
+        --bind "$orphans_key:execute(xbps-query -O | less)" \
+        --bind "$REMOVE_ORPHANS_key:execute($sudo xbps-remove -o; $continue)+become($PROG)" \
+        --bind "$dep_key:execute(xbps-query -R -x {2} | less)" \
+        --bind "$rev_key:execute(xbps-query -R -X {2} | less)" \
+        --bind "$INSTALL_key:execute($sudo xbps-install {2}; $continue)+become($PROG)" \
+        --bind "$url_key:execute-silent[ xbps-query -p homepage -R '{2}' | xargs -Iurl xdg-open url & ]" \
+        --bind "$CLEAN_key:execute(echo 'Cleaning cache, please wait ...'; $sudo xbps-remove --clean-cache)" \
+        --bind "$template_key:execute-silent[ xbps-query -p pkgname -R '{2}' | xargs -I pkgname xdg-open https://github.com/void-linux/void-packages/tree/master/srcpkgs/pkgname & ]" \
+        --bind "${UPDATE_key}:execute($sudo xbps-install -Su; $continue)" \
+        --bind "$toggle_key:toggle-sort" \
+        --preview-label "$preview_key=toggle this; $help_key=help; uppercase keys require $sudo" \
+        --preview-window="down:wrap:${PREVIEW_BORDER:-border-sharp},$preview_size" \
+        --preview "xbps-query -R {2}|awk '/filename-size/ {f=\$2} /homepage/ {h=\$2} /installed_size/ {i=\$2} END { printf(\"%s/%s $blue%s$norm\\n\",f,i,h)}'; echo; echo -e '\n$help'|column" \
+        --bind "$files_key:execute(
+          xbps-query -R -f {2} \
+          | fzf \
+            ${SHOW_HEADER:+--header=\"${FHEADER}\"} \
+            --prompt '{2}: TAB=mark/unmark $files_key=toggle preview $extract_key=extract $exit_key=exit $help_key=help > ' \
+            --marker=\"E\" \
+            --multi \
+            --no-separator \
+            --border-label=\" Package Contents \" \
+            --bind pgup:preview-up,pgdn:preview-down \
+            --bind \"$help_key:execute($PROG --help|less)\" \
+            --preview \"xbps-query -R --cat \{1} {2}\" \
+            --preview-window=\"down:hidden:wrap:${PREVIEW_BORDER:-border-sharp}\" \
+            --preview-label=\" File Preview TAB=mark/unmark $files_key=toggle preview $extract_key=extract $exit_key=exit\" \
+            --bind \"${files_key}:toggle-preview\" \
+            --bind \"${extract_key}:execute(clear; \
+              while IFS= read -r line; do \
+                tree=\"\\\${line%/*}\" ;\
+                mkdir -p \"\\\${tree#*/}\" ;\
+                echo Extracting \\\${line} ;\
+                xbps-query -R --cat \"\\\${line}\" {2} > \"\\\${line#*/}\" ;\
+              done < \"\{+f}\"; $continue )\" )" \
+        )
+
+install_list=( )
+remove_list=( )
+for line in "${packages[@]}"; do
+    pkg="$( echo "$line" | awk '{print $2}' )"
+    ins="$( xbps-query -s "^$pkg\$" --regex )"
+    pkg="${pkg%-*}" # remove version number
+    if [[ "$ins" ]]; then
+        remove_list+=( "$pkg" )
+    else
+        install_list+=( "$pkg" )
+    fi
+done
+
+if [[ "${install_list[*]}" ]]; then
+    echo "Installing: ${install_list[*]}"
+    $sudo xbps-install "${install_list[@]}"
+fi
+
+if [[ "${remove_list[*]}" ]]; then
+    echo "Removing ${remove_list[*]}"
+    $sudo xbps-remove -R "${remove_list[@]}"
+fi
+
+if [[ "${install_list[*]}${remove_list[*]}" ]]; then
+    # restart to take account of any changes:
+    eval "$continue"
+    exec "$PROG"
+fi
+
+# Local Variables:
+# mode: shell-script
+# time-stamp-pattern: "4/TIME_STAMP=\"%:y%02m%02d.%02H%02M%02S\""
+# eval: (add-hook 'before-save-hook 'time-stamp)
+# End:
+
