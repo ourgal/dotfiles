@@ -159,6 +159,9 @@ nnoremap ^[. ;
 cnoremap <expr> <Up>   wildmenumode() ? "\<C-E>\<Up>"   : "\<Up>"
 cnoremap <expr> <Down> wildmenumode() ? "\<C-E>\<Down>" : "\<Down>"
 
+autocmd CmdlineEnter [\/\?] set pumheight=8
+autocmd CmdlineLeave [\/\?] set pumheight&
+
 " vim-bookmarks
 let g:bookmark_auto_save_file = $HOME . '/.local/share/vim/vim-bookmarks'
 
