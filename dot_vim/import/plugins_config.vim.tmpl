@@ -11,7 +11,9 @@ call plug#begin()
 Plug 'vim-scripts/align', { 'on': 'Align' }
 Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
 Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }
-Plug 'tommcdo/vim-lion', { 'on': [ '<Plug>(LionRight)', '<Plug>(VLionRight)', '<Plug>(LionLeft)', '<Plug>(VLionLeft)' ] }
+Plug '907th/vim-auto-save'
+Plug 'markonm/traces.vim'
+Plug 'tpope/vim-eunuch', { 'on': [ 'Remove', 'Delete', 'Move', 'Chmod', 'Mkdir', 'Cfind', 'Clocate', 'Lfind', 'Wall', 'SudoWrite', 'SudoEdit' ] }
 
 call plug#end()
 
