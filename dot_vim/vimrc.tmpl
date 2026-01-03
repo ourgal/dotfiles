@@ -115,6 +115,49 @@ set shortmess-=S " show she search count
 
 set gdefault
 
+let g:mapleader = ' '
+nnoremap <leader>bo <cmd>%bd\|e#\|bd#<CR>
+map <silent> \h :noh<cr>
+nnoremap ZZ <cmd>xa<cr>
+nnoremap ZQ <cmd>qa!<cr>
+noremap Q @@
+xnoremap / <Esc>/\%V
+nnoremap <c-n> <tab>
+nnoremap <tab> <cmd>tabnext<cr>
+nnoremap <s-tab> <cmd>tab split<cr>
+nnoremap ^[<tab> <cmd>tabclose<cr>
+
+function FoldWithH()
+    if col('.') == 1
+        return 'zc'
+    else
+        return 'h'
+    endif
+endfunction
+
+nnoremap <expr> h FoldWithH()
+cnoremap <expr> %% getcmdtype( ) == ":" ? expand("%:h") .. "/" : "%%"
+nnoremap & <cmd>&&<CR>
+xnoremap & <cmd>'<,'>&&<CR>
+nnoremap <silent> <esc> <cmd>nohlsearch<CR><esc>
+
+function OpenFileOrURL()
+  let cfile = expand('<cfile>')
+  if match(cfile, '^https\?://') >= 0
+    call system('xdg-open ' . cfile)
+  else
+    normal! gF
+  endif
+endfunction
+
+nnoremap <silent> gf <cmd>call OpenFileOrURL()<CR>
+
+nnoremap g* :%s/<c-r><c-w>/
+
+nnoremap ^[. ;
+
+cnoremap <expr> <Up>   wildmenumode() ? "\<C-E>\<Up>"   : "\<Up>"
+cnoremap <expr> <Down> wildmenumode() ? "\<C-E>\<Down>" : "\<Down>"
 
 " vim-bookmarks
 let g:bookmark_auto_save_file = $HOME . '/.local/share/vim/vim-bookmarks'
