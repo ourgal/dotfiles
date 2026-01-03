@@ -116,6 +116,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+source ~/.local/lib/ble-nightly/ble.sh
+
 {{ if lookPath "zoxide" -}}
 eval "$(zoxide init bash)"
 {{ end -}}
@@ -130,7 +132,7 @@ eval "$(starship init bash)"
 alias ll='eza --long --git --icons auto --group --group-directories-first --time-style relative'
 {{ end -}}
 
+
 {{ if lookPath "atuin" -}}
-source ~/.local/lib/ble-nightly/ble.sh
 eval "$(atuin init bash)"
 {{ end -}}
