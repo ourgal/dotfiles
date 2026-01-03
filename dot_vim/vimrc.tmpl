@@ -102,8 +102,10 @@ augroup settings
     autocmd FileType qf nnoremap <buffer><silent> q :cclose<bar>lclose<CR>
 augroup END
 
+{{ if lookPath "rg" -}}
 set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
 set grepformat=%f:%l:%c:%m
+{{ end -}}
 
 set signcolumn=auto
 set sessionoptions-=blank
