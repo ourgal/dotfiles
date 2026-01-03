@@ -118,10 +118,6 @@ fi
 
 source ~/.local/lib/ble-nightly/ble.sh
 
-{{ if lookPath "zoxide" -}}
-eval "$(zoxide init bash)"
-{{ end -}}
-
 {{ if lookPath "fzf" -}}
 eval "$(fzf --bash)"
 {{ end -}}
@@ -136,3 +132,9 @@ alias ll='eza --long --git --icons auto --group --group-directories-first --time
 {{ if lookPath "atuin" -}}
 eval "$(atuin init bash)"
 {{ end -}}
+
+{{ if lookPath "zoxide" -}}
+# zoxdie is needed be the end of bashrc
+eval "$(zoxide init bash)"
+{{ end -}}
+
