@@ -1,3 +1,4 @@
+{{ if and (lookPath "bash") (lookPath "fzf") (lookPath "xbps-install") -}}
 #!/usr/bin/env bash
 # https://gitlab.com/wef/dotfiles/-/blob/master/bin/fzf-xbps
 export TIME_STAMP="20260102.103219"
@@ -237,4 +238,4 @@ fi
 # time-stamp-pattern: "4/TIME_STAMP=\"%:y%02m%02d.%02H%02M%02S\""
 # eval: (add-hook 'before-save-hook 'time-stamp)
 # End:
-
+{{ end -}}
