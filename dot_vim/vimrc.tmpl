@@ -158,6 +158,13 @@ nnoremap g* :%s/<c-r><c-w>/
 
 nnoremap ^[. ;
 
+autocmd CmdlineChanged [:\/\?] call wildtrigger()
+set wildmode=noselect:lastused,full
+set wildoptions=pum
+
+autocmd CmdlineEnter [\/\?] set pumheight=8
+autocmd CmdlineLeave [\/\?] set pumheight&
+
 set findfunc=Find
 func Find(arg, _)
   if empty(s:filescache)
