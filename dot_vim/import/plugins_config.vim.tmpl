@@ -10,8 +10,13 @@ call plug#begin()
 
 Plug 'vim-scripts/align', { 'on': 'Align' }
 Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
+Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign'] }
 
 call plug#end()
+
+" vim-easy-align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 " vim-bookmarks
 let g:bookmark_auto_save_file = $HOME . '/.local/share/vim/vim-bookmarks'
