@@ -129,3 +129,8 @@ eval "$(starship init bash)"
 {{ if lookPath "eza" -}}
 alias ll='eza --long --git --icons auto --group --group-directories-first --time-style relative'
 {{ end -}}
+
+{{ if lookPath "atuin" -}}
+source ~/.local/lib/ble-nightly/ble.sh
+eval "$(atuin init bash)"
+{{ end -}}
