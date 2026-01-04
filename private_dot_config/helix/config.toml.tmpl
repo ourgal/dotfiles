@@ -1,0 +1,65 @@
+theme = "catppuccin_mocha"
+[editor]
+bufferline = "multiple"
+color-modes = true
+idle-timeout = 0
+line-number = "relative"
+popup-border = "none"
+true-color = true
+[editor.auto-save]
+focus-lost = true
+[editor.auto-save.after-delay]
+enable = true
+timeout = 1000
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.indent-guides]
+character = "⸽"
+render = true
+skip-levels = 1
+
+[editor.lsp]
+display-inlay-hints = true
+display-messages = true
+
+[editor.soft-wrap]
+enable = true
+
+[editor.statusline]
+center = ["file-name"]
+left = ["mode", "spinner"]
+right = [
+  "diagnostics",
+  "selections",
+  "position",
+  "file-encoding",
+  "file-line-ending",
+  "file-type",
+]
+separator = "│"
+
+[editor.statusline.mode]
+insert = "INSERT"
+normal = "NORMAL"
+select = "SELECT"
+
+[keys.normal.Z]
+Q = ":qa!"
+Z = ":xa"
+
+[keys.normal.g]
+z = ["split_selection_on_newline", ":sort", "keep_primary_selection"]
+
+[keys.normal.g.c]
+b = "toggle_block_comments"
+c = "toggle_comments"
+l = "toggle_line_comments"
+
+[keys.normal.space.l]
+f = ":fmt"
+
+[keys.select.g]
+c = "toggle_comments"
+z = ["split_selection_on_newline", ":sort", "keep_primary_selection"]
