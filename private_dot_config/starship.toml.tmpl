@@ -1,4 +1,4 @@
-{{ if eq .chezmoi.os "linux" -}}
+{{ if or ( eq .chezmoi.os "linux" ) ( eq .chezmoi.os "windows" ) -}}
 {{ if lookPath "starship" -}}
 add_newline = true
 format = "$directory$cmd_duration$hostname$localip$shlvl$shell$env_var$username$sudo$character"

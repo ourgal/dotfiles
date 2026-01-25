@@ -128,84 +128,84 @@
       ]
     },
     {
-      "gnx": "zxc.20260125144427.1",
-      "vh": "chezmoi ignore",
+      "gnx": "zxc.20260125194735.1",
+      "vh": "chezmoi",
       "children": [
         {
-          "gnx": "zxc.20260125144442.1",
-          "vh": "@clean .chezmoiignore.tmpl",
+          "gnx": "zxc.20260125144427.1",
+          "vh": "ignore",
           "children": [
             {
-              "gnx": "zxc.20260125144515.1",
-              "vh": "all"
-            },
-            {
-              "gnx": "zxc.20260125144547.1",
-              "vh": "linux"
-            },
-            {
-              "gnx": "zxc.20260125144606.1",
-              "vh": "windows",
+              "gnx": "zxc.20260125144442.1",
+              "vh": "@clean .chezmoiignore.tmpl",
               "children": [
                 {
-                  "gnx": "zxc.20260125144639.1",
-                  "vh": ".vim"
+                  "gnx": "zxc.20260125144515.1",
+                  "vh": "all"
                 },
                 {
-                  "gnx": "zxc.20260125144709.1",
-                  "vh": ".local"
+                  "gnx": "zxc.20260125144547.1",
+                  "vh": "linux"
                 },
                 {
-                  "gnx": "zxc.20260125144725.1",
-                  "vh": ".config",
+                  "gnx": "zxc.20260125144606.1",
+                  "vh": "windows",
                   "children": [
                     {
-                      "gnx": "zxc.20260125144732.1",
-                      "vh": "starship"
+                      "gnx": "zxc.20260125144639.1",
+                      "vh": ".vim"
+                    },
+                    {
+                      "gnx": "zxc.20260125144709.1",
+                      "vh": ".local"
+                    },
+                    {
+                      "gnx": "zxc.20260125144725.1",
+                      "vh": ".config"
+                    },
+                    {
+                      "gnx": "zxc.20260125144753.1",
+                      "vh": "bash"
+                    },
+                    {
+                      "gnx": "zxc.20260125144810.1",
+                      "vh": ".xinitrc"
                     }
                   ]
-                },
-                {
-                  "gnx": "zxc.20260125144753.1",
-                  "vh": "bash"
-                },
-                {
-                  "gnx": "zxc.20260125144810.1",
-                  "vh": ".xinitrc"
                 }
               ]
             }
           ]
-        }
-      ]
-    },
-    {
-      "gnx": "zxc.20260125172630.1",
-      "vh": "chezmoi templates",
-      "children": [
+        },
         {
-          "gnx": "zxc.20260125172646.1",
-          "vh": "@path .chezmoitemplates",
+          "gnx": "zxc.20260125172630.1",
+          "vh": "templates",
           "children": [
             {
-              "gnx": "zxc.20260125172659.1",
-              "vh": "@clean editor.tmpl"
+              "gnx": "zxc.20260125172646.1",
+              "vh": "@path .chezmoitemplates",
+              "children": [
+                {
+                  "gnx": "zxc.20260125172659.1",
+                  "vh": "@clean editor.tmpl"
+                }
+              ]
             }
           ]
-        }
-      ]
-    },
-    {
-      "gnx": "zxc.20260125172817.1",
-      "vh": "chezmoi externals",
-      "children": [
+        },
         {
-          "gnx": "zxc.20260125172835.1",
-          "vh": "@path .chezmoiexternals",
+          "gnx": "zxc.20260125172817.1",
+          "vh": "externals",
           "children": [
             {
-              "gnx": "zxc.20260125172839.1",
-              "vh": "@clean ble_sh.toml.tmpl"
+              "gnx": "zxc.20260125172835.1",
+              "vh": "@path .chezmoiexternals",
+              "children": [
+                {
+                  "gnx": "zxc.20260125172839.1",
+                  "vh": "@clean ble_sh.toml.tmpl"
+                }
+              ]
             }
           ]
         }
@@ -803,12 +803,11 @@
     "zxc.20260125144606.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}\n",
     "zxc.20260125144639.1": ".vim",
     "zxc.20260125144709.1": ".local\n",
-    "zxc.20260125144732.1": ".config/starship.toml",
     "zxc.20260125144753.1": ".bash_profile\n.bashrc\n",
     "zxc.20260125144810.1": ".xinitrc\n",
     "zxc.20260125172659.1": "{{ if lookPath \"hx\" -}}\nhx\n{{- else if lookPath \"vim\" -}}\nvim\n{{- else if lookPath \"vi\" -}}\nvi\n{{- else if lookPath \"nano\" -}}\nnano\n{{- end -}}",
     "zxc.20260125172839.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"bash\" -}}\n[\".local/lib/ble-nightly\"]\n    type = \"archive\"\n    url = \"https://github.com/akinomyoga/ble.sh/releases/download/nightly/ble-nightly.tar.xz\"\n    exact = true\n    stripComponents = 1\n    refreshPeriod = \"168h\"\n{{ end -}}\n{{ end -}}",
-    "zxc.20260125145051.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125145051.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125145640.1": "add_newline = true\nformat = \"$directory$cmd_duration$hostname$localip$shlvl$shell$env_var$username$sudo$character\"\npalette = \"base16\"\nright_format = \"$singularity$kubernetes$vcsh$fossil_branch$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$package$c$cmake$cobol$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$golang$guix_shell$haskell$haxe$helm$java$julia$kotlin$gradle$lua$nim$nodejs$ocaml$opa$perl$php$pulumi$purescript$python$raku$rlang$red$ruby$rust$scala$solidity$swift$terraform$vlang$vagrant$zig$buf$nix_shell$conda$meson$spack$memory_usage$aws$gcloud$openstack$azure$crystal$custom$jobs$status$os$container$battery$time\"\n\n[aws]\nformat = \" aws [$symbol $profile $region]($style)\"\nstyle = \"italic blue\"\nsymbol = \"▲ \"\n\n[battery]\ncharging_symbol = \"[↑](italic green)\"\ndischarging_symbol = \"[↓](italic)\"\nempty_symbol = \"[▃](italic red)\"\nformat = \"[ $percentage $symbol]($style)\"\nfull_symbol = \"[█](italic green)\"\nunknown_symbol = \"[░](italic)\"\n\n[[battery.display]]\nstyle = \"dimmed yellow\"\nthreshold = 40\n\n[[battery.display]]\nstyle = \"dimmed white\"\nthreshold = 70\n\n[buf]\nformat = \" buf [$symbol $version $buf_version]($style)\"\nsymbol = \"■ \"\n\n[c]\nformat = \" c [$symbol($version(-$name))]($style)\"\nsymbol = \"∁ \"\n\n[character]\nerror_symbol = \"[⊘](italic purple)\"\nformat = \"$symbol \"\nsuccess_symbol = \"[◉](bold italic bright-yellow)\"\n\n[cmd_duration]\nformat = \"[$duration ](italic bright-yellow)\"\nmin_time = 10000\n\n[conda]\nformat = \" conda [$symbol$environment]($style)\"\nsymbol = \"◯ \"\n\n[dart]\nformat = \" dart [$symbol($version )]($style)\"\nsymbol = \"◁◅ \"\n\n[deno]\nformat = \" deno [∫ $version](blue italic)\"\nversion_format = \"${major}.${minor}\"\n\n[directory]\nformat = \"[$path]($style)[$read_only]($read_only_style) \"\nhome_symbol = \"⌂\"\nread_only = \" ■\"\nstyle = \"italic blue\"\ntruncation_length = 2\ntruncation_symbol = \"▦ \"\n\n[docker_context]\nformat = \" docker [$symbol$context]($style)\"\nsymbol = \"◧ \"\n\n[elixir]\nformat = \" exs [$symbol $version OTP $otp_version ]($style)\"\nsymbol = \"△ \"\n\n[elm]\nformat = \" elm [$symbol($version )]($style)\"\nsymbol = \"◩ \"\n\n[env_var.VIMSHELL]\nformat = \"[$env_value]($style)\"\nstyle = \"green italic\"\n\n[git_branch]\nformat = \"[ $symbol $branch(:$remote_branch)]($style)\"\nstyle = \"bold italic bright-blue\"\nsymbol = \"[◬](bold bright-blue)\"\n\n[git_status]\nahead = \"[▲│[${count}](bold white)│](italic green)\"\nbehind = \"[▽│[${count}](bold white)│](italic red)\"\nconflicted = \"[◪◦](italic bright-magenta)\"\ndeleted = \"[✕](italic red)\"\ndiverged = \"[◇ ▲┤[${ahead_count}](regular white)│▽┤[${behind_count}](regular white)│](italic bright-magenta)\"\nformat = \"([⎪$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed⎥]($style))\"\nmodified = \"[●◦](italic yellow)\"\nrenamed = \"[◎◦](italic bright-blue)\"\nstaged = \"[■┤[$count](bold white)│](italic bright-cyan)\"\nstashed = \"[◦◫◦](italic white)\"\nstyle = \"italic bright-blue\"\nuntracked = \"[◌◦](italic bright-yellow)\"\n\n[golang]\nformat = \" go [$symbol($version )]($style)\"\nsymbol = \"∩ \"\n\n[haskell]\nformat = \" hs [$symbol($version )]($style)\"\nsymbol = \"❯λ \"\n\n[java]\nformat = \" java [${symbol}(${version} )]($style)\"\nsymbol = \"∪ \"\n\n[jobs]\nformat = \"[ $symbol$number]($style)\"\nstyle = \"white\"\nsymbol = \"[▶ ](blue italic)\"\n\n[julia]\nformat = \" jl [$symbol($version )]($style)\"\nsymbol = \"◎ \"\n\n[localip]\ndisabled = false\nformat = \"◯[$localipv4](bold magenta)\"\nssh_only = true\n\n[lua]\nformat = \" lua [${symbol}${version}]($style)\"\nstyle = \"italic bright-yellow\"\nsymbol = \"⨀ \"\n\n[memory_usage]\nformat = \" mem [${ram}( ${swap})]($style)\"\nsymbol = \"▪▫▪ \"\n\n[nim]\nformat = \" nim [$symbol($version )]($style)\"\nsymbol = \"▴▲▴ \"\n\n[nix_shell]\nformat = \" nix [$symbol$state $name]($style)\"\nsymbol = \"⊛ \"\n\n[nodejs]\ndetect_files = [\"package-lock.json\", \"yarn.lock\"]\nformat = \" node [◫ ($version)](italic bright-green)\"\nversion_format = \"${major}.${minor}\"\n\n[package]\nformat = \" pkg [$symbol$version]($style)\"\nstyle = \"bright-yellow italic\"\nsymbol = \"◫ \"\nversion_format = \"${major}.${minor}\"\n\n[palettes.base16]\nbase00 = \"#1d1f21\"\nbase01 = \"#282a2e\"\nbase02 = \"#373b41\"\nbase03 = \"#969896\"\nbase04 = \"#b4b7b4\"\nbase05 = \"#c5c8c6\"\nbase06 = \"#e0e0e0\"\nbase07 = \"#ffffff\"\nbase08 = \"#cc342b\"\nbase09 = \"#f96a38\"\nbase0A = \"#fba922\"\nbase0B = \"#198844\"\nbase0C = \"#3971ed\"\nbase0D = \"#3971ed\"\nbase0E = \"#a36ac7\"\nbase0F = \"#3971ed\"\nbase10 = \"#1d1f21\"\nbase11 = \"#1d1f21\"\nbase12 = \"#cc342b\"\nbase13 = \"#fba922\"\nbase14 = \"#198844\"\nbase15 = \"#3971ed\"\nbase16 = \"#3971ed\"\nbase17 = \"#a36ac7\"\nblack = \"#1d1f21\"\nblue = \"#3971ed\"\nbright-black = \"#969896\"\nbright-blue = \"#3971ed\"\nbright-cyan = \"#3971ed\"\nbright-green = \"#198844\"\nbright-magenta = \"#a36ac7\"\nbright-purple = \"#a36ac7\"\nbright-red = \"#cc342b\"\nbright-white = \"#ffffff\"\nbright-yellow = \"#fba922\"\nbrown = \"#3971ed\"\ncyan = \"#3971ed\"\ngreen = \"#198844\"\nmagenta = \"#a36ac7\"\norange = \"#f96a38\"\npurple = \"#a36ac7\"\nred = \"#cc342b\"\nwhite = \"#c5c8c6\"\nyellow = \"#fba922\"\n\n[palettes.catppuccin_macchiato]\nbase = \"#24273a\"\nblue = \"#8aadf4\"\ncrust = \"#181926\"\nflamingo = \"#f0c6c6\"\ngreen = \"#a6da95\"\nlavender = \"#b7bdf8\"\nmantle = \"#1e2030\"\nmaroon = \"#ee99a0\"\nmauve = \"#c6a0f6\"\noverlay0 = \"#6e738d\"\noverlay1 = \"#8087a2\"\noverlay2 = \"#939ab7\"\npeach = \"#f5a97f\"\npink = \"#f5bde6\"\nred = \"#ed8796\"\nrosewater = \"#f4dbd6\"\nsapphire = \"#7dc4e4\"\nsky = \"#91d7e3\"\nsubtext0 = \"#a5adcb\"\nsubtext1 = \"#b8c0e0\"\nsurface0 = \"#363a4f\"\nsurface1 = \"#494d64\"\nsurface2 = \"#5b6078\"\nteal = \"#8bd5ca\"\ntext = \"#cad3f5\"\nyellow = \"#eed49f\"\n\n[python]\nformat = \" py [${symbol}${version}]($style)\"\nstyle = \"italic bright-yellow\"\nsymbol = \"[⌉](italic bright-blue)⌊ \"\nversion_format = \"${major}.${minor}\"\n\n[ruby]\nformat = \" rb [${symbol}${version}]($style)\"\nstyle = \"italic red\"\nsymbol = \"◆ \"\nversion_format = \"${major}.${minor}\"\n\n[rust]\nformat = \" rs [$symbol$version]($style)\"\nstyle = \"italic red\"\nsymbol = \"⊃ \"\nversion_format = \"${major}.${minor}\"\n\n[spack]\nformat = \" spack [$symbol$environment]($style)\"\nsymbol = \"◇ \"\n\n[sudo]\ndisabled = false\nformat = \"[$symbol]($style)\"\nstyle = \"italic bright-purple\"\nsymbol = \"◇┈\"\n\n[swift]\nformat = \" sw [${symbol}${version}]($style)\"\nstyle = \"italic bright-red\"\nsymbol = \"◁ \"\nversion_format = \"${major}.${minor}\"\n\n[time]\ndisabled = false\nformat = \"[ $time]($style)\"\nstyle = \"dimmed white\"\ntime_format = \"%R\"\nutc_time_offset = \"local\"\n\n[username]\ndisabled = false\nformat = \" [$user]($style) ▻ \"\nstyle_root = \"purple bold italic\"\nstyle_user = \"yellow bold\"\n",
     "zxc.20260125152704.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260125152804.1": "enter_accept = true\nsync_address = \"https://api.atuin.sh\"\nsync_frequency = \"1h\"\n\n[dotfiles]\nenabled = true\n\n[sync]\nrecords = true",
@@ -921,7 +920,7 @@
       "_mod_time": 1769324133.177
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1769323758.564
+      "_mod_time": 1769346842.894
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1769322315.158
@@ -930,7 +929,7 @@
       "_mod_time": 1769333416.95
     },
     "zxc.20260125145051.1": {
-      "_mod_time": 1769325957.382
+      "_mod_time": 1769342517.127
     },
     "zxc.20260125152704.1": {
       "_mod_time": 1769326096.9
@@ -945,7 +944,7 @@
       "_mod_time": 1769327121.071
     },
     "zxc.20260125161631.1": {
-      "_mod_time": 1769329418.22
+      "_mod_time": 1769342489.193
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1769329761.66
