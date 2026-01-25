@@ -1,19 +1,12 @@
 Makefile
-
+main.leojs
 {{ if eq .chezmoi.os "linux" -}}
 {{ end -}}
-
 {{ if eq .chezmoi.os "windows" -}}
-
 .vim
-
 .local
-
 .config/starship.toml
-
 .bash_profile
 .bashrc
-
 .xinitrc
-
 {{ end -}}

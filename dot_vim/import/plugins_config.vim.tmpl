@@ -1,49 +1,29 @@
+{{ if eq .chezmoi.os "linux" -}}
 {{ if lookPath "vim" -}}
-
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-
 call plug#begin()
 
+Plug 'dense-analysis/ale'
 Plug 'vim-scripts/align', { 'on': 'Align' }
-Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
-Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }
-Plug '907th/vim-auto-save'
-Plug 'markonm/traces.vim'
-Plug 'tpope/vim-eunuch', { 'on': [ 'Remove', 'Delete', 'Move', 'Chmod', 'Mkdir', 'Cfind', 'Clocate', 'Lfind', 'Wall', 'SudoWrite', 'SudoEdit' ] }
-Plug 'pbrisbin/vim-mkdir'
-Plug 'lambdalisue/vim-suda'
 Plug 'tyru/caw.vim'
+Plug 'alker0/chezmoi.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
+Plug 'ghifarit53/tokyonight-vim'
+Plug 'markonm/traces.vim'
+Plug '907th/vim-auto-save'
+Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }
+Plug 'tpope/vim-eunuch', { 'on': [ 'Remove', 'Delete', 'Move', 'Chmod', 'Mkdir', 'Cfind', 'Clocate', 'Lfind', 'Wall', 'SudoWrite', 'SudoEdit' ] }
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'ghifarit53/tokyonight-vim'
-Plug 'alker0/chezmoi.vim'
-Plug 'dense-analysis/ale'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'pbrisbin/vim-mkdir'
+Plug 'lambdalisue/vim-suda'
 
 call plug#end()
-
-set termguicolors
-let g:tokyonight_style = 'night' " available: night, storm
-let g:tokyonight_enable_italic = 1
-colorscheme tokyonight
-
-" vim-easy-align
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
-
-" vim-bookmarks
-let g:bookmark_auto_save_file = $HOME . '/.local/share/vim/vim-bookmarks'
-
-" vim-auto-save
-let g:autO_save = v:true
-let g:auto_save_silent = v:true
-
-" vim-suda
-let g:suda_smart_edit = 1
 
 " coc.nvim
 " Use tab for trigger completion with characters ahead and navigate
@@ -182,5 +162,17 @@ set pumheight=10
 
 nmap <Leader>,t <Plug>(coc-translator-p)
 vmap <Leader>,t <Plug>(coc-translator-pv)
-
+set termguicolors
+let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_enable_italic = 1
+colorscheme tokyonight
+" vim-auto-save
+let g:autO_save = v:true
+let g:auto_save_silent = v:true
+" vim-easy-align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+" vim-suda
+let g:suda_smart_edit = 1
+{{ end -}}
 {{ end -}}

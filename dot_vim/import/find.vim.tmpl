@@ -1,3 +1,4 @@
+{{ if eq .chezmoi.os "linux" -}}
 {{ if lookPath "vim" -}}
 vim9script
 
@@ -52,4 +53,5 @@ def Find(cmd_arg: string, cmd_complete: bool): list<string>
 enddef
 
 set findfunc=Find
+{{ end -}}
 {{ end -}}
