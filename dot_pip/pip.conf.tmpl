@@ -1,4 +1,8 @@
+{{ if eq .chezmoi.os "linux" -}}
+{{ if lookPath "pip" -}}
 [global]
 index-url = https://mirrors.cernet.edu.cn/pypi/web/simple/
 [install]
 trusted-host = mirrors.cernet.edu.cn
+{{ end -}}
+{{ end -}}

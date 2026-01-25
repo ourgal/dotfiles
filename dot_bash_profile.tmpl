@@ -1,13 +1,12 @@
-# .bash_profile
-
+{{ if eq .chezmoi.os "linux" -}}
+{{ if lookPath "bash" -}}
 # Get the aliases and functions
 [ -f $HOME/.bashrc ] && . $HOME/.bashrc
-
 {{ if eq .chezmoi.hostname "surface-void" -}}
-# startx automatically
-
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
     . startx
     logout
 fi
+{{ end -}}
+{{ end -}}
 {{ end -}}

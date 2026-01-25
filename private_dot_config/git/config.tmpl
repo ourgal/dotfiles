@@ -1,37 +1,34 @@
+{{ if eq .chezmoi.os "linux" -}}
 {{ if lookPath "git" -}}
 [advice]
 	addEmptyPathspec = false
 	pushNonFastForward = false
 	statusHints = false
-
 [branch]
 	sort = "-committerdate"
-
-[color "branch"]
-	current = "magenta"
-	local = "default"
-	plain = "blue"
-	remote = "yellow"
-	upstream = "green"
-
 [color "decorate"]
 	HEAD = "red"
 	branch = "blue"
 	remoteBranch = "magenta"
 	tag = "yellow"
-
 [color "diff"]
 	context = "white"
 	frag = "magenta"
 	meta = "blue bold"
 	old = "red"
 	whitespace = "yellow reverse"
-
+[color "branch"]
+	current = "magenta"
+	local = "default"
+	plain = "blue"
+	remote = "yellow"
+	upstream = "green"
+[culumn]
+	ui = "auto"
 [commit]
 	template = "~/.config/git/template"
   gpgsign = true
 	verbose = true
-
 [core]
 	compression = 9
 	editor = "hx"
@@ -42,28 +39,18 @@
 	untrackedCache = true
 	whitespace = "error"
 	autocrlf = "input"
-
 [credential]
 	helper = "gopass"
-
 [credential "https://gist.github.com"]
 	helper = "gh auth git-credential"
-
 [credential "https://github.com"]
 	helper = "gh auth git-credential"
-
-[culumn]
-	ui = "auto"
-
-[delta "file-yellow"]
-	enable = true
-
-[delta "navigate"]
-	enable = true
-
 [delta "side-by-side"]
 	enable = true
-
+[delta "navigate"]
+	enable = true
+[delta "file-yellow"]
+	enable = true
 [diff]
 	algorithm = "histogram"
 	colorMoved = "plain"
@@ -71,37 +58,29 @@
 	interHunkContext = 10
 	mnemonicPrefix = true
 	renames = true
-
 [diff-so-fancy]
 	changeHunkIndicators = true
 	markEmptyLines = false
 	stripLeadingSymbols = true
 	useUnicodeRuler = true
-
 [fetch]
 	all = true
 	prune = true
 	pruneTags = true
-
 [filter "lfs"]
 	clean = "git-lfs clean -- %f"
 	process = "git-lfs filter-process"
 	required = true
 	smudge = "git-lfs smudge -- %f"
-
 [gpg]
 	format = "openpgp"
-
 [help]
 	autocorrect = "prompt"
-
 [init]
 	defaultBranch = "main"
-
 [interactive]
 	diffFilter = "diff-so-fancy --patch"
 	singlekey = true
-
 [interactive-rebase-tool]
 	inputMoveDown = "Down j"
 	inputMoveSelectionDown = "l"
@@ -109,56 +88,44 @@
 	inputMoveUp = "Up k"
 	inputRedo = "Control+r"
 	inputUndo = "u"
-
 [log]
 	abbrevCommit = true
 	graphColors = "blue,yellow,cyan,magenta,green,red"
-
 [merge "core"]
 	attributesfile = "~/.gitattributes"
-
 [pull]
 	default = "current"
 	rebase = true
-
 [push]
 	autoSetupRemote = true
 	default = "current"
 	followTags = true
 	useForceIfIncludes = true
-
 [rebase]
 	autoSquash = true
 	autoStash = true
 	missingCommitsCheck = "warn"
 	updateRefs = true
-
 [rerere]
 	autoupdate = true
 	enabled = true
-
 [sequence]
 	editor = "interactive-rebase-tool"
-
 [status]
 	branch = true
 	showStash = true
 	showUntrackedFiles = "all"
-
 [tag]
 	sort = "version:refname"
-
-[url "git@github.com:"]
-	insteadOf = "gh:"
-
-[url "git@github.com:ourgal/"]
-	insteadOf = "myg:"
-
 [url "ssh://192.168.123.206:23231/"]
 	insteadOf = "soft:"
-
+[url "git@github.com:ourgal/"]
+	insteadOf = "myg:"
+[url "git@github.com:"]
+	insteadOf = "gh:"
 [user]
 	email = "git@fairever.aleeas.com"
 	name = "ourgal"
-  signingkey = "ourgal"
+	signingkey = "ourgal"
+{{ end -}}
 {{ end -}}

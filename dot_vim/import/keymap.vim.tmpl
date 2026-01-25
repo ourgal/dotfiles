@@ -1,3 +1,4 @@
+{{ if eq .chezmoi.os "linux" -}}
 {{ if lookPath "vim" -}}
 let g:mapleader = ' '
 nnoremap <leader>bo <cmd>%bd\|e#\|bd#<CR>
@@ -41,4 +42,5 @@ nnoremap g* :%s/<c-r><c-w>/
 nnoremap <leader><space> :<C-u>find<space>
 
 nnoremap ^[. ;
+{{ end -}}
 {{ end -}}

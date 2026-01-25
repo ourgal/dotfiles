@@ -1,3 +1,5 @@
+{{ if eq .chezmoi.os "linux" -}}
+{{ if lookPath "bash" -}}
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -115,12 +117,9 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
 EDITOR={{ template "editor" }}
 PATH=~/.local/bin:$PATH
-
 source ~/.local/lib/ble-nightly/ble.sh
-
 {{ if lookPath "fzf" -}}
 eval "$(fzf --bash)"
 {{ end -}}
@@ -130,14 +129,12 @@ eval "$(starship init bash)"
 {{ if lookPath "eza" -}}
 alias ll='eza --long --git --icons auto --group --group-directories-first --time-style relative'
 {{ end -}}
-
-
 {{ if lookPath "atuin" -}}
 eval "$(atuin init bash)"
 {{ end -}}
-
 {{ if lookPath "zoxide" -}}
 # zoxdie is needed be the end of bashrc
 eval "$(zoxide init bash)"
 {{ end -}}
-
+{{ end -}}
+{{ end -}}

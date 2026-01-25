@@ -1,0 +1,972 @@
+{
+  "leoHeader": {
+    "fileFormat": 2
+  },
+  "vnodes": [
+    {
+      "gnx": "zxc.20260125142130.1",
+      "vh": "Makefile",
+      "children": [
+        {
+          "gnx": "zxc.20260125142149.1",
+          "vh": "@clean Makefile",
+          "children": [
+            {
+              "gnx": "zxc.20260125142255.1",
+              "vh": "upload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260125142700.1",
+      "vh": "xinitrc",
+      "children": [
+        {
+          "gnx": "zxc.20260125142829.1",
+          "vh": "@clean dot_xinitrc.tmpl",
+          "children": [
+            {
+              "gnx": "zxc.20260125142901.1",
+              "vh": "surface-void"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260125142955.1",
+      "vh": "bashrc",
+      "children": [
+        {
+          "gnx": "zxc.20260125143007.1",
+          "vh": "@clean dot_bashrc.tmpl",
+          "children": [
+            {
+              "gnx": "zxc.20260125143032.1",
+              "vh": "debian origin"
+            },
+            {
+              "gnx": "zxc.20260125143602.1",
+              "vh": "env",
+              "children": [
+                {
+                  "gnx": "zxc.20260125143522.1",
+                  "vh": "EDITOR"
+                },
+                {
+                  "gnx": "zxc.20260125143553.1",
+                  "vh": "PATH"
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260125143811.1",
+              "vh": "bash readline",
+              "children": [
+                {
+                  "gnx": "zxc.20260125143635.1",
+                  "vh": "ble"
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260125143833.1",
+              "vh": "config",
+              "children": [
+                {
+                  "gnx": "zxc.20260125143653.1",
+                  "vh": "fzf"
+                },
+                {
+                  "gnx": "zxc.20260125143706.1",
+                  "vh": "starship"
+                },
+                {
+                  "gnx": "zxc.20260125143716.1",
+                  "vh": "eza"
+                },
+                {
+                  "gnx": "zxc.20260125143728.1",
+                  "vh": "autin"
+                },
+                {
+                  "gnx": "zxc.20260125143738.1",
+                  "vh": "zoxdie"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260125143947.1",
+      "vh": "bash profile",
+      "children": [
+        {
+          "gnx": "zxc.20260125143959.1",
+          "vh": "@clean dot_bash_profile.tmpl",
+          "children": [
+            {
+              "gnx": "zxc.20260125144055.1",
+              "vh": "bashrc"
+            },
+            {
+              "gnx": "zxc.20260125144120.1",
+              "vh": "surface-void",
+              "children": [
+                {
+                  "gnx": "zxc.20260125144207.1",
+                  "vh": "startx"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260125144427.1",
+      "vh": "chezmoi ignore",
+      "children": [
+        {
+          "gnx": "zxc.20260125144442.1",
+          "vh": "@clean .chezmoiignore.tmpl",
+          "children": [
+            {
+              "gnx": "zxc.20260125144515.1",
+              "vh": "all"
+            },
+            {
+              "gnx": "zxc.20260125144547.1",
+              "vh": "linux"
+            },
+            {
+              "gnx": "zxc.20260125144606.1",
+              "vh": "windows",
+              "children": [
+                {
+                  "gnx": "zxc.20260125144639.1",
+                  "vh": ".vim"
+                },
+                {
+                  "gnx": "zxc.20260125144709.1",
+                  "vh": ".local"
+                },
+                {
+                  "gnx": "zxc.20260125144725.1",
+                  "vh": ".config",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125144732.1",
+                      "vh": "starship"
+                    }
+                  ]
+                },
+                {
+                  "gnx": "zxc.20260125144753.1",
+                  "vh": "bash"
+                },
+                {
+                  "gnx": "zxc.20260125144810.1",
+                  "vh": ".xinitrc"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260125172630.1",
+      "vh": "chezmoi templates",
+      "children": [
+        {
+          "gnx": "zxc.20260125172646.1",
+          "vh": "@path .chezmoitemplates",
+          "children": [
+            {
+              "gnx": "zxc.20260125172659.1",
+              "vh": "@clean editor.tmpl"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260125172817.1",
+      "vh": "chezmoi externals",
+      "children": [
+        {
+          "gnx": "zxc.20260125172835.1",
+          "vh": "@path .chezmoiexternals",
+          "children": [
+            {
+              "gnx": "zxc.20260125172839.1",
+              "vh": "@clean ble_sh.toml.tmpl"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260125152614.1",
+      "vh": "config",
+      "children": [
+        {
+          "gnx": "zxc.20260125152115.1",
+          "vh": "@path private_dot_config",
+          "children": [
+            {
+              "gnx": "zxc.20260125152627.1",
+              "vh": "starship",
+              "children": [
+                {
+                  "gnx": "zxc.20260125145051.1",
+                  "vh": "@clean starship.toml.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125145640.1",
+                      "vh": "main"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260125152649.1",
+              "vh": "atuin",
+              "children": [
+                {
+                  "gnx": "zxc.20260125152704.1",
+                  "vh": "@clean atuin/config.toml.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125152804.1",
+                      "vh": "main"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260125152851.1",
+              "vh": "tealdeer",
+              "children": [
+                {
+                  "gnx": "zxc.20260125152851.2",
+                  "vh": "@clean tealdeer/config.toml.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125152851.3",
+                      "vh": "main"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260125153012.1",
+              "vh": "git",
+              "children": [
+                {
+                  "gnx": "zxc.20260125153131.1",
+                  "vh": "@clean git/template.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125153131.2",
+                      "vh": "main"
+                    }
+                  ]
+                },
+                {
+                  "gnx": "zxc.20260125153012.2",
+                  "vh": "@clean git/config.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125153252.1",
+                      "vh": "advice"
+                    },
+                    {
+                      "gnx": "zxc.20260125153318.1",
+                      "vh": "branch"
+                    },
+                    {
+                      "gnx": "zxc.20260125153332.1",
+                      "vh": "color",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260125153946.1",
+                          "vh": "decorate"
+                        },
+                        {
+                          "gnx": "zxc.20260125153958.1",
+                          "vh": "diff"
+                        },
+                        {
+                          "gnx": "zxc.20260125153928.1",
+                          "vh": "branch"
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260125153436.1",
+                      "vh": "column"
+                    },
+                    {
+                      "gnx": "zxc.20260125153348.1",
+                      "vh": "commit"
+                    },
+                    {
+                      "gnx": "zxc.20260125153401.1",
+                      "vh": "core"
+                    },
+                    {
+                      "gnx": "zxc.20260125153421.1",
+                      "vh": "credential",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260125154038.1",
+                          "vh": "gist.github.com"
+                        },
+                        {
+                          "gnx": "zxc.20260125154056.1",
+                          "vh": "github.com"
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260125153456.1",
+                      "vh": "delta",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260125154233.1",
+                          "vh": "side by side"
+                        },
+                        {
+                          "gnx": "zxc.20260125154225.1",
+                          "vh": "navigate"
+                        },
+                        {
+                          "gnx": "zxc.20260125154220.1",
+                          "vh": "file-yellow"
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260125153507.1",
+                      "vh": "diff"
+                    },
+                    {
+                      "gnx": "zxc.20260125153521.1",
+                      "vh": "diff-so-fancy"
+                    },
+                    {
+                      "gnx": "zxc.20260125153531.1",
+                      "vh": "fetch"
+                    },
+                    {
+                      "gnx": "zxc.20260125153546.1",
+                      "vh": "filter"
+                    },
+                    {
+                      "gnx": "zxc.20260125153554.1",
+                      "vh": "gpg"
+                    },
+                    {
+                      "gnx": "zxc.20260125153601.1",
+                      "vh": "help"
+                    },
+                    {
+                      "gnx": "zxc.20260125153609.1",
+                      "vh": "init"
+                    },
+                    {
+                      "gnx": "zxc.20260125153617.1",
+                      "vh": "interactive"
+                    },
+                    {
+                      "gnx": "zxc.20260125153637.1",
+                      "vh": "interactive-rebase-tool"
+                    },
+                    {
+                      "gnx": "zxc.20260125153648.1",
+                      "vh": "log"
+                    },
+                    {
+                      "gnx": "zxc.20260125153702.1",
+                      "vh": "merge"
+                    },
+                    {
+                      "gnx": "zxc.20260125153708.1",
+                      "vh": "pull"
+                    },
+                    {
+                      "gnx": "zxc.20260125153715.1",
+                      "vh": "push"
+                    },
+                    {
+                      "gnx": "zxc.20260125153727.1",
+                      "vh": "rebase"
+                    },
+                    {
+                      "gnx": "zxc.20260125153745.1",
+                      "vh": "rerere"
+                    },
+                    {
+                      "gnx": "zxc.20260125153759.1",
+                      "vh": "sequence"
+                    },
+                    {
+                      "gnx": "zxc.20260125153816.1",
+                      "vh": "status"
+                    },
+                    {
+                      "gnx": "zxc.20260125153823.1",
+                      "vh": "tag"
+                    },
+                    {
+                      "gnx": "zxc.20260125153835.1",
+                      "vh": "url",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260125154343.1",
+                          "vh": "soft"
+                        },
+                        {
+                          "gnx": "zxc.20260125154332.1",
+                          "vh": "my github"
+                        },
+                        {
+                          "gnx": "zxc.20260125154321.1",
+                          "vh": "github"
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260125153842.1",
+                      "vh": "user"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260125161612.1",
+              "vh": "helix",
+              "children": [
+                {
+                  "gnx": "zxc.20260125161631.1",
+                  "vh": "@clean helix/config.toml.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125161740.1",
+                      "vh": "theme"
+                    },
+                    {
+                      "gnx": "zxc.20260125161845.1",
+                      "vh": "editor",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260125161912.1",
+                          "vh": "auto-save",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260125161937.1",
+                              "vh": "after delay"
+                            }
+                          ]
+                        },
+                        {
+                          "gnx": "zxc.20260125162004.1",
+                          "vh": "cursor shape"
+                        },
+                        {
+                          "gnx": "zxc.20260125162038.1",
+                          "vh": "indent guides"
+                        },
+                        {
+                          "gnx": "zxc.20260125162057.1",
+                          "vh": "lsp"
+                        },
+                        {
+                          "gnx": "zxc.20260125162111.1",
+                          "vh": "soft-wrap"
+                        },
+                        {
+                          "gnx": "zxc.20260125162130.1",
+                          "vh": "statusline",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260125162140.1",
+                              "vh": "mode"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260125162157.1",
+                      "vh": "keys",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260125162216.1",
+                          "vh": "normal",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260125162236.1",
+                              "vh": "g",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260125162248.1",
+                                  "vh": "c"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260125162220.1",
+                              "vh": "Z"
+                            },
+                            {
+                              "gnx": "zxc.20260125162300.1",
+                              "vh": "space",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260125162302.1",
+                                  "vh": "l"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "gnx": "zxc.20260125162320.1",
+                          "vh": "select",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260125162324.1",
+                              "vh": "g"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260125162733.1",
+      "vh": "pip",
+      "children": [
+        {
+          "gnx": "zxc.20260125162740.1",
+          "vh": "@clean dot_pip/pip.conf.tmpl",
+          "children": [
+            {
+              "gnx": "zxc.20260125162834.1",
+              "vh": "main"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260125163003.1",
+      "vh": ".local",
+      "children": [
+        {
+          "gnx": "zxc.20260125163018.1",
+          "vh": "@path dot_local",
+          "children": [
+            {
+              "gnx": "zxc.20260125163028.1",
+              "vh": "@path bin",
+              "children": [
+                {
+                  "gnx": "zxc.20260125163053.1",
+                  "vh": "fzf-xbps",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125163108.1",
+                      "vh": "@clean executable_fzf-xbps.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260125163227.1",
+                          "vh": "main"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260125163344.1",
+      "vh": ".vim",
+      "children": [
+        {
+          "gnx": "zxc.20260125163352.1",
+          "vh": "@path dot_vim",
+          "children": [
+            {
+              "gnx": "zxc.20260125163416.1",
+              "vh": "@clean vimrc.tmpl",
+              "children": [
+                {
+                  "gnx": "zxc.20260125163442.1",
+                  "vh": "main"
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260125163607.1",
+              "vh": "@path import",
+              "children": [
+                {
+                  "gnx": "zxc.20260125163703.1",
+                  "vh": "@clean keymap.vim.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125163752.1",
+                      "vh": "main"
+                    }
+                  ]
+                },
+                {
+                  "gnx": "zxc.20260125163901.1",
+                  "vh": "@clean options.vim.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125163927.1",
+                      "vh": "main"
+                    }
+                  ]
+                },
+                {
+                  "gnx": "zxc.20260125163958.1",
+                  "vh": "@clean plugins_config.vim.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125164707.1",
+                      "vh": "download plug.vim"
+                    },
+                    {
+                      "gnx": "zxc.20260125164028.1",
+                      "vh": "main",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260125164814.1",
+                          "vh": "<< plugins >>",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260125165641.1",
+                              "vh": "ale"
+                            },
+                            {
+                              "gnx": "zxc.20260125164939.1",
+                              "vh": "align"
+                            },
+                            {
+                              "gnx": "zxc.20260125165458.1",
+                              "vh": "caw.vim"
+                            },
+                            {
+                              "gnx": "zxc.20260125165633.1",
+                              "vh": "chezmoi.vim"
+                            },
+                            {
+                              "gnx": "zxc.20260125165652.1",
+                              "vh": "coc.nvim"
+                            },
+                            {
+                              "gnx": "zxc.20260125165309.1",
+                              "vh": "tabular"
+                            },
+                            {
+                              "gnx": "zxc.20260125165624.1",
+                              "vh": "tokyonight-vim"
+                            },
+                            {
+                              "gnx": "zxc.20260125165359.1",
+                              "vh": "traces.vim"
+                            },
+                            {
+                              "gnx": "zxc.20260125165335.1",
+                              "vh": "vim-auto-save"
+                            },
+                            {
+                              "gnx": "zxc.20260125165058.1",
+                              "vh": "vim-easy-align"
+                            },
+                            {
+                              "gnx": "zxc.20260125165421.1",
+                              "vh": "vim-eunuch"
+                            },
+                            {
+                              "gnx": "zxc.20260125165515.1",
+                              "vh": "vim-fugitive"
+                            },
+                            {
+                              "gnx": "zxc.20260125165614.1",
+                              "vh": "vim-gitgutter"
+                            },
+                            {
+                              "gnx": "zxc.20260125165435.1",
+                              "vh": "vim-mkdir"
+                            },
+                            {
+                              "gnx": "zxc.20260125165444.1",
+                              "vh": "vim-suda"
+                            }
+                          ]
+                        },
+                        {
+                          "gnx": "zxc.20260125165017.1",
+                          "vh": "<< plugin configs >>",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260125170010.1",
+                              "vh": "coc.nvim"
+                            },
+                            {
+                              "gnx": "zxc.20260125165744.1",
+                              "vh": "tokyonight.vim"
+                            },
+                            {
+                              "gnx": "zxc.20260125165912.1",
+                              "vh": "vim-auto-save"
+                            },
+                            {
+                              "gnx": "zxc.20260125165227.1",
+                              "vh": "vim-easy-align"
+                            },
+                            {
+                              "gnx": "zxc.20260125165924.1",
+                              "vh": "vim-suda"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "gnx": "zxc.20260125164142.1",
+                  "vh": "@clean find.vim.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125164204.1",
+                      "vh": "main"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tnodes": {
+    "zxc.20260125142149.1": "@tabwidth 4\nall:\n\t@others\n",
+    "zxc.20260125142255.1": "yes | git magic -ap\n",
+    "zxc.20260125142829.1": "{{ if eq .chezmoi.os \"linux\" -}}\n@others\n{{ end -}}",
+    "zxc.20260125142901.1": "{{ if eq .chezmoi.hostname \"surface-void\" -}}\nexec /usr/bin/xfce4-session\n{{ end -}}",
+    "zxc.20260125143007.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125143032.1": "# ~/.bashrc: executed by bash(1) for non-login shells.\n# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)\n# for examples\n\n# If not running interactively, don't do anything\ncase $- in\n    *i*) ;;\n      *) return;;\nesac\n\n# don't put duplicate lines or lines starting with space in the history.\n# See bash(1) for more options\nHISTCONTROL=ignoreboth\n\n# append to the history file, don't overwrite it\nshopt -s histappend\n\n# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)\nHISTSIZE=1000\nHISTFILESIZE=2000\n\n# check the window size after each command and, if necessary,\n# update the values of LINES and COLUMNS.\nshopt -s checkwinsize\n\n# If set, the pattern \"**\" used in a pathname expansion context will\n# match all files and zero or more directories and subdirectories.\n#shopt -s globstar\n\n# make less more friendly for non-text input files, see lesspipe(1)\n#[ -x /usr/bin/lesspipe ] && eval \"$(SHELL=/bin/sh lesspipe)\"\n\n{{ if and (eq .chezmoi.os \"linux\") (eq .chezmoi.osRelease.id \"debian\") -}}\n# set variable identifying the chroot you work in (used in the prompt below)\nif [ -z \"''\\${debian_chroot:-}\" ] && [ -r /etc/debian_chroot ]; then\n    debian_chroot=$(cat /etc/debian_chroot)\nfi\n{{ end -}}\n\n# set a fancy prompt (non-color, unless we know we \"want\" color)\ncase \"$TERM\" in\n    xterm-color|*-256color) color_prompt=yes;;\nesac\n\n# uncomment for a colored prompt, if the terminal has the capability; turned\n# off by default to not distract the user: the focus in a terminal window\n# should be on the output of commands, not on the prompt\n#force_color_prompt=yes\n\nif [ -n \"$force_color_prompt\" ]; then\n    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then\n        # We have color support; assume it's compliant with Ecma-48\n        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such\n        # a case would tend to support setf rather than setaf.)\n        color_prompt=yes\n    else\n        color_prompt=\n    fi\nfi\n\n{{ if and (eq .chezmoi.os \"linux\") (eq .chezmoi.osRelease.id \"debian\") -}}\nif [ \"$color_prompt\" = yes ]; then\n    PS1=''\\'''\\${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$ '\nelse\n    PS1=''\\'''\\${debian_chroot:+($debian_chroot)}\\u@\\h:\\w\\$ '\nfi\nunset color_prompt force_color_prompt\n\n# If this is an xterm set the title to user@host:dir\ncase \"$TERM\" in\nxterm*|rxvt*)\n    PS1=\"\\[\\e]0;''\\${debian_chroot:+($debian_chroot)}\\u@\\h: \\w\\a\\]$PS1\"\n    ;;\n*)\n    ;;\nesac\n{{ end -}}\n\n# enable color support of ls and also add handy aliases\nif [ -x /usr/bin/dircolors ]; then\n    test -r ~/.dircolors && eval \"$(dircolors -b ~/.dircolors)\" || eval \"$(dircolors -b)\"\n    alias ls='ls --color=auto'\n    #alias dir='dir --color=auto'\n    #alias vdir='vdir --color=auto'\n\n    #alias grep='grep --color=auto'\n    #alias fgrep='fgrep --color=auto'\n    #alias egrep='egrep --color=auto'\nfi\n\n# colored GCC warnings and errors\n#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'\n\n# some more ls aliases\n#alias ll='ls -l'\n#alias la='ls -A'\n#alias l='ls -CF'\n\n# Alias definitions.\n# You may want to put all your additions into a separate file like\n# ~/.bash_aliases, instead of adding them here directly.\n# See /usr/share/doc/bash-doc/examples in the bash-doc package.\n\nif [ -f ~/.bash_aliases ]; then\n    . ~/.bash_aliases\nfi\n\n# enable programmable completion features (you don't need to enable\n# this, if it's already enabled in /etc/bash.bashrc and /etc/profile\n# sources /etc/bash.bashrc).\nif ! shopt -oq posix; then\n  if [ -f /usr/share/bash-completion/bash_completion ]; then\n    . /usr/share/bash-completion/bash_completion\n  elif [ -f /etc/bash_completion ]; then\n    . /etc/bash_completion\n  fi\nfi",
+    "zxc.20260125143522.1": "EDITOR={{ template \"editor\" }}",
+    "zxc.20260125143553.1": "PATH=~/.local/bin:$PATH",
+    "zxc.20260125143635.1": "source ~/.local/lib/ble-nightly/ble.sh\n",
+    "zxc.20260125143653.1": "{{ if lookPath \"fzf\" -}}\neval \"$(fzf --bash)\"\n{{ end -}}\n",
+    "zxc.20260125143706.1": "{{ if lookPath \"starship\" -}}\neval \"$(starship init bash)\"\n{{ end -}}\n",
+    "zxc.20260125143716.1": "{{ if lookPath \"eza\" -}}\nalias ll='eza --long --git --icons auto --group --group-directories-first --time-style relative'\n{{ end -}}",
+    "zxc.20260125143728.1": "{{ if lookPath \"atuin\" -}}\neval \"$(atuin init bash)\"\n{{ end -}}\n",
+    "zxc.20260125143738.1": "{{ if lookPath \"zoxide\" -}}\n# zoxdie is needed be the end of bashrc\neval \"$(zoxide init bash)\"\n{{ end -}}\n",
+    "zxc.20260125143959.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125144055.1": "# Get the aliases and functions\n[ -f $HOME/.bashrc ] && . $HOME/.bashrc\n",
+    "zxc.20260125144120.1": "{{ if eq .chezmoi.hostname \"surface-void\" -}}\n@others\n{{ end -}}\n",
+    "zxc.20260125144207.1": "if [[ -z \"$DISPLAY\" ]] && [[ $(tty) = /dev/tty1 ]]; then\n    . startx\n    logout\nfi",
+    "zxc.20260125144442.1": "@others",
+    "zxc.20260125144515.1": "Makefile\nmain.leojs",
+    "zxc.20260125144547.1": "{{ if eq .chezmoi.os \"linux\" -}}\n@others\n{{ end -}}",
+    "zxc.20260125144606.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}\n",
+    "zxc.20260125144639.1": ".vim",
+    "zxc.20260125144709.1": ".local\n",
+    "zxc.20260125144732.1": ".config/starship.toml",
+    "zxc.20260125144753.1": ".bash_profile\n.bashrc\n",
+    "zxc.20260125144810.1": ".xinitrc\n",
+    "zxc.20260125172659.1": "{{ if lookPath \"hx\" -}}\nhx\n{{- else if lookPath \"vim\" -}}\nvim\n{{- else if lookPath \"vi\" -}}\nvi\n{{- else if lookPath \"nano\" -}}\nnano\n{{- end -}}",
+    "zxc.20260125172839.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"bash\" -}}\n[\".local/lib/ble-nightly\"]\n    type = \"archive\"\n    url = \"https://github.com/akinomyoga/ble.sh/releases/download/nightly/ble-nightly.tar.xz\"\n    exact = true\n    stripComponents = 1\n    refreshPeriod = \"168h\"\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125145051.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125145640.1": "add_newline = true\nformat = \"$directory$cmd_duration$hostname$localip$shlvl$shell$env_var$username$sudo$character\"\npalette = \"base16\"\nright_format = \"$singularity$kubernetes$vcsh$fossil_branch$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$package$c$cmake$cobol$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$golang$guix_shell$haskell$haxe$helm$java$julia$kotlin$gradle$lua$nim$nodejs$ocaml$opa$perl$php$pulumi$purescript$python$raku$rlang$red$ruby$rust$scala$solidity$swift$terraform$vlang$vagrant$zig$buf$nix_shell$conda$meson$spack$memory_usage$aws$gcloud$openstack$azure$crystal$custom$jobs$status$os$container$battery$time\"\n\n[aws]\nformat = \" aws [$symbol $profile $region]($style)\"\nstyle = \"italic blue\"\nsymbol = \"▲ \"\n\n[battery]\ncharging_symbol = \"[↑](italic green)\"\ndischarging_symbol = \"[↓](italic)\"\nempty_symbol = \"[▃](italic red)\"\nformat = \"[ $percentage $symbol]($style)\"\nfull_symbol = \"[█](italic green)\"\nunknown_symbol = \"[░](italic)\"\n\n[[battery.display]]\nstyle = \"dimmed yellow\"\nthreshold = 40\n\n[[battery.display]]\nstyle = \"dimmed white\"\nthreshold = 70\n\n[buf]\nformat = \" buf [$symbol $version $buf_version]($style)\"\nsymbol = \"■ \"\n\n[c]\nformat = \" c [$symbol($version(-$name))]($style)\"\nsymbol = \"∁ \"\n\n[character]\nerror_symbol = \"[⊘](italic purple)\"\nformat = \"$symbol \"\nsuccess_symbol = \"[◉](bold italic bright-yellow)\"\n\n[cmd_duration]\nformat = \"[$duration ](italic bright-yellow)\"\nmin_time = 10000\n\n[conda]\nformat = \" conda [$symbol$environment]($style)\"\nsymbol = \"◯ \"\n\n[dart]\nformat = \" dart [$symbol($version )]($style)\"\nsymbol = \"◁◅ \"\n\n[deno]\nformat = \" deno [∫ $version](blue italic)\"\nversion_format = \"${major}.${minor}\"\n\n[directory]\nformat = \"[$path]($style)[$read_only]($read_only_style) \"\nhome_symbol = \"⌂\"\nread_only = \" ■\"\nstyle = \"italic blue\"\ntruncation_length = 2\ntruncation_symbol = \"▦ \"\n\n[docker_context]\nformat = \" docker [$symbol$context]($style)\"\nsymbol = \"◧ \"\n\n[elixir]\nformat = \" exs [$symbol $version OTP $otp_version ]($style)\"\nsymbol = \"△ \"\n\n[elm]\nformat = \" elm [$symbol($version )]($style)\"\nsymbol = \"◩ \"\n\n[env_var.VIMSHELL]\nformat = \"[$env_value]($style)\"\nstyle = \"green italic\"\n\n[git_branch]\nformat = \"[ $symbol $branch(:$remote_branch)]($style)\"\nstyle = \"bold italic bright-blue\"\nsymbol = \"[◬](bold bright-blue)\"\n\n[git_status]\nahead = \"[▲│[${count}](bold white)│](italic green)\"\nbehind = \"[▽│[${count}](bold white)│](italic red)\"\nconflicted = \"[◪◦](italic bright-magenta)\"\ndeleted = \"[✕](italic red)\"\ndiverged = \"[◇ ▲┤[${ahead_count}](regular white)│▽┤[${behind_count}](regular white)│](italic bright-magenta)\"\nformat = \"([⎪$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed⎥]($style))\"\nmodified = \"[●◦](italic yellow)\"\nrenamed = \"[◎◦](italic bright-blue)\"\nstaged = \"[■┤[$count](bold white)│](italic bright-cyan)\"\nstashed = \"[◦◫◦](italic white)\"\nstyle = \"italic bright-blue\"\nuntracked = \"[◌◦](italic bright-yellow)\"\n\n[golang]\nformat = \" go [$symbol($version )]($style)\"\nsymbol = \"∩ \"\n\n[haskell]\nformat = \" hs [$symbol($version )]($style)\"\nsymbol = \"❯λ \"\n\n[java]\nformat = \" java [${symbol}(${version} )]($style)\"\nsymbol = \"∪ \"\n\n[jobs]\nformat = \"[ $symbol$number]($style)\"\nstyle = \"white\"\nsymbol = \"[▶ ](blue italic)\"\n\n[julia]\nformat = \" jl [$symbol($version )]($style)\"\nsymbol = \"◎ \"\n\n[localip]\ndisabled = false\nformat = \"◯[$localipv4](bold magenta)\"\nssh_only = true\n\n[lua]\nformat = \" lua [${symbol}${version}]($style)\"\nstyle = \"italic bright-yellow\"\nsymbol = \"⨀ \"\n\n[memory_usage]\nformat = \" mem [${ram}( ${swap})]($style)\"\nsymbol = \"▪▫▪ \"\n\n[nim]\nformat = \" nim [$symbol($version )]($style)\"\nsymbol = \"▴▲▴ \"\n\n[nix_shell]\nformat = \" nix [$symbol$state $name]($style)\"\nsymbol = \"⊛ \"\n\n[nodejs]\ndetect_files = [\"package-lock.json\", \"yarn.lock\"]\nformat = \" node [◫ ($version)](italic bright-green)\"\nversion_format = \"${major}.${minor}\"\n\n[package]\nformat = \" pkg [$symbol$version]($style)\"\nstyle = \"bright-yellow italic\"\nsymbol = \"◫ \"\nversion_format = \"${major}.${minor}\"\n\n[palettes.base16]\nbase00 = \"#1d1f21\"\nbase01 = \"#282a2e\"\nbase02 = \"#373b41\"\nbase03 = \"#969896\"\nbase04 = \"#b4b7b4\"\nbase05 = \"#c5c8c6\"\nbase06 = \"#e0e0e0\"\nbase07 = \"#ffffff\"\nbase08 = \"#cc342b\"\nbase09 = \"#f96a38\"\nbase0A = \"#fba922\"\nbase0B = \"#198844\"\nbase0C = \"#3971ed\"\nbase0D = \"#3971ed\"\nbase0E = \"#a36ac7\"\nbase0F = \"#3971ed\"\nbase10 = \"#1d1f21\"\nbase11 = \"#1d1f21\"\nbase12 = \"#cc342b\"\nbase13 = \"#fba922\"\nbase14 = \"#198844\"\nbase15 = \"#3971ed\"\nbase16 = \"#3971ed\"\nbase17 = \"#a36ac7\"\nblack = \"#1d1f21\"\nblue = \"#3971ed\"\nbright-black = \"#969896\"\nbright-blue = \"#3971ed\"\nbright-cyan = \"#3971ed\"\nbright-green = \"#198844\"\nbright-magenta = \"#a36ac7\"\nbright-purple = \"#a36ac7\"\nbright-red = \"#cc342b\"\nbright-white = \"#ffffff\"\nbright-yellow = \"#fba922\"\nbrown = \"#3971ed\"\ncyan = \"#3971ed\"\ngreen = \"#198844\"\nmagenta = \"#a36ac7\"\norange = \"#f96a38\"\npurple = \"#a36ac7\"\nred = \"#cc342b\"\nwhite = \"#c5c8c6\"\nyellow = \"#fba922\"\n\n[palettes.catppuccin_macchiato]\nbase = \"#24273a\"\nblue = \"#8aadf4\"\ncrust = \"#181926\"\nflamingo = \"#f0c6c6\"\ngreen = \"#a6da95\"\nlavender = \"#b7bdf8\"\nmantle = \"#1e2030\"\nmaroon = \"#ee99a0\"\nmauve = \"#c6a0f6\"\noverlay0 = \"#6e738d\"\noverlay1 = \"#8087a2\"\noverlay2 = \"#939ab7\"\npeach = \"#f5a97f\"\npink = \"#f5bde6\"\nred = \"#ed8796\"\nrosewater = \"#f4dbd6\"\nsapphire = \"#7dc4e4\"\nsky = \"#91d7e3\"\nsubtext0 = \"#a5adcb\"\nsubtext1 = \"#b8c0e0\"\nsurface0 = \"#363a4f\"\nsurface1 = \"#494d64\"\nsurface2 = \"#5b6078\"\nteal = \"#8bd5ca\"\ntext = \"#cad3f5\"\nyellow = \"#eed49f\"\n\n[python]\nformat = \" py [${symbol}${version}]($style)\"\nstyle = \"italic bright-yellow\"\nsymbol = \"[⌉](italic bright-blue)⌊ \"\nversion_format = \"${major}.${minor}\"\n\n[ruby]\nformat = \" rb [${symbol}${version}]($style)\"\nstyle = \"italic red\"\nsymbol = \"◆ \"\nversion_format = \"${major}.${minor}\"\n\n[rust]\nformat = \" rs [$symbol$version]($style)\"\nstyle = \"italic red\"\nsymbol = \"⊃ \"\nversion_format = \"${major}.${minor}\"\n\n[spack]\nformat = \" spack [$symbol$environment]($style)\"\nsymbol = \"◇ \"\n\n[sudo]\ndisabled = false\nformat = \"[$symbol]($style)\"\nstyle = \"italic bright-purple\"\nsymbol = \"◇┈\"\n\n[swift]\nformat = \" sw [${symbol}${version}]($style)\"\nstyle = \"italic bright-red\"\nsymbol = \"◁ \"\nversion_format = \"${major}.${minor}\"\n\n[time]\ndisabled = false\nformat = \"[ $time]($style)\"\nstyle = \"dimmed white\"\ntime_format = \"%R\"\nutc_time_offset = \"local\"\n\n[username]\ndisabled = false\nformat = \" [$user]($style) ▻ \"\nstyle_root = \"purple bold italic\"\nstyle_user = \"yellow bold\"\n",
+    "zxc.20260125152704.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260125152804.1": "enter_accept = true\nsync_address = \"https://api.atuin.sh\"\nsync_frequency = \"1h\"\n\n[dotfiles]\nenabled = true\n\n[sync]\nrecords = true",
+    "zxc.20260125152851.2": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"tldr\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260125152851.3": "[display]\ncompact = true\nuse_paper = true\n\n[updates]\nauto_update = true\nauto_update_interval_hours = 720",
+    "zxc.20260125153131.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260125153131.2": "# feat: ✨\n# feat: 🔍\n# feat: 🔗\n# feat: 🔒\n\n# fix: 🐛\n# fix: 🐞\n# fix: 🩹\n# fix: 🚑️\n\n# style: 💅\n# style: 🎨\n# style: 💄\n\n# ci: 🦊\n# ci: 📦\n\n# deploy: 🚀\n# deploy: 📦\n\n# chore: 🧹\n# chore: 🔧\n# chore: ⚙️\n# docs: 📜\n\n# refactor: 🔨\n# perf: 🚀\n\n# test: 🚦\n# debug: 🧪\n\n# BREAKING CHANGE: 🚨\n# BREAKING CHANGE: 💥\n# BREAKING CHANGE: 💣",
+    "zxc.20260125153012.2": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260125153252.1": "[advice]\n\taddEmptyPathspec = false\n\tpushNonFastForward = false\n\tstatusHints = false",
+    "zxc.20260125153318.1": "[branch]\n\tsort = \"-committerdate\"",
+    "zxc.20260125153946.1": "[color \"decorate\"]\n\tHEAD = \"red\"\n\tbranch = \"blue\"\n\tremoteBranch = \"magenta\"\n\ttag = \"yellow\"",
+    "zxc.20260125153958.1": "[color \"diff\"]\n\tcontext = \"white\"\n\tfrag = \"magenta\"\n\tmeta = \"blue bold\"\n\told = \"red\"\n\twhitespace = \"yellow reverse\"\n",
+    "zxc.20260125153928.1": "[color \"branch\"]\n\tcurrent = \"magenta\"\n\tlocal = \"default\"\n\tplain = \"blue\"\n\tremote = \"yellow\"\n\tupstream = \"green\"",
+    "zxc.20260125153436.1": "[culumn]\n\tui = \"auto\"",
+    "zxc.20260125153348.1": "[commit]\n\ttemplate = \"~/.config/git/template\"\n  gpgsign = true\n\tverbose = true",
+    "zxc.20260125153401.1": "[core]\n\tcompression = 9\n\teditor = \"hx\"\n\texcludesfile = \"~/.gitignore\"\n\tfsmonitor = true\n\tpager = \"diff-so-fancy | less '--tabs=4' -RFX\"\n\tpreloadindex = true\n\tuntrackedCache = true\n\twhitespace = \"error\"\n\tautocrlf = \"input\"",
+    "zxc.20260125153421.1": "[credential]\n\thelper = \"gopass\"\n",
+    "zxc.20260125154038.1": "[credential \"https://gist.github.com\"]\n\thelper = \"gh auth git-credential\"",
+    "zxc.20260125154056.1": "[credential \"https://github.com\"]\n\thelper = \"gh auth git-credential\"\n",
+    "zxc.20260125154233.1": "[delta \"side-by-side\"]\n\tenable = true\n",
+    "zxc.20260125154225.1": "[delta \"navigate\"]\n\tenable = true\n",
+    "zxc.20260125154220.1": "[delta \"file-yellow\"]\n\tenable = true\n",
+    "zxc.20260125153507.1": "[diff]\n\talgorithm = \"histogram\"\n\tcolorMoved = \"plain\"\n\tcontext = 3\n\tinterHunkContext = 10\n\tmnemonicPrefix = true\n\trenames = true",
+    "zxc.20260125153521.1": "[diff-so-fancy]\n\tchangeHunkIndicators = true\n\tmarkEmptyLines = false\n\tstripLeadingSymbols = true\n\tuseUnicodeRuler = true",
+    "zxc.20260125153531.1": "[fetch]\n\tall = true\n\tprune = true\n\tpruneTags = true",
+    "zxc.20260125153546.1": "[filter \"lfs\"]\n\tclean = \"git-lfs clean -- %f\"\n\tprocess = \"git-lfs filter-process\"\n\trequired = true\n\tsmudge = \"git-lfs smudge -- %f\"\n",
+    "zxc.20260125153554.1": "[gpg]\n\tformat = \"openpgp\"",
+    "zxc.20260125153601.1": "[help]\n\tautocorrect = \"prompt\"",
+    "zxc.20260125153609.1": "[init]\n\tdefaultBranch = \"main\"",
+    "zxc.20260125153617.1": "[interactive]\n\tdiffFilter = \"diff-so-fancy --patch\"\n\tsinglekey = true",
+    "zxc.20260125153637.1": "[interactive-rebase-tool]\n\tinputMoveDown = \"Down j\"\n\tinputMoveSelectionDown = \"l\"\n\tinputMoveSelectionUp = \"h\"\n\tinputMoveUp = \"Up k\"\n\tinputRedo = \"Control+r\"\n\tinputUndo = \"u\"",
+    "zxc.20260125153648.1": "[log]\n\tabbrevCommit = true\n\tgraphColors = \"blue,yellow,cyan,magenta,green,red\"",
+    "zxc.20260125153702.1": "[merge \"core\"]\n\tattributesfile = \"~/.gitattributes\"",
+    "zxc.20260125153708.1": "[pull]\n\tdefault = \"current\"\n\trebase = true",
+    "zxc.20260125153715.1": "[push]\n\tautoSetupRemote = true\n\tdefault = \"current\"\n\tfollowTags = true\n\tuseForceIfIncludes = true",
+    "zxc.20260125153727.1": "[rebase]\n\tautoSquash = true\n\tautoStash = true\n\tmissingCommitsCheck = \"warn\"\n\tupdateRefs = true",
+    "zxc.20260125153745.1": "[rerere]\n\tautoupdate = true\n\tenabled = true",
+    "zxc.20260125153759.1": "[sequence]\n\teditor = \"interactive-rebase-tool\"",
+    "zxc.20260125153816.1": "[status]\n\tbranch = true\n\tshowStash = true\n\tshowUntrackedFiles = \"all\"",
+    "zxc.20260125153823.1": "[tag]\n\tsort = \"version:refname\"",
+    "zxc.20260125154343.1": "[url \"ssh://192.168.123.206:23231/\"]\n\tinsteadOf = \"soft:\"\n",
+    "zxc.20260125154332.1": "[url \"git@github.com:ourgal/\"]\n\tinsteadOf = \"myg:\"\n",
+    "zxc.20260125154321.1": "[url \"git@github.com:\"]\n\tinsteadOf = \"gh:\"\n",
+    "zxc.20260125153842.1": "[user]\n\temail = \"git@fairever.aleeas.com\"\n\tname = \"ourgal\"\n\tsigningkey = \"ourgal\"\n",
+    "zxc.20260125161631.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"hx\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125161740.1": "theme = \"catppuccin_mocha\"\n",
+    "zxc.20260125161845.1": "[editor]\nbufferline = \"multiple\"\ncolor-modes = true\nidle-timeout = 0\nline-number = \"relative\"\npopup-border = \"none\"\ntrue-color = true\n",
+    "zxc.20260125161912.1": "[editor.auto-save]\nfocus-lost = true",
+    "zxc.20260125161937.1": "[editor.auto-save.after-delay]\nenable = true\ntimeout = 1000",
+    "zxc.20260125162004.1": "[editor.cursor-shape]\ninsert = \"bar\"",
+    "zxc.20260125162038.1": "[editor.indent-guides]\ncharacter = \"⸽\"\nrender = true\nskip-levels = 1",
+    "zxc.20260125162057.1": "[editor.lsp]\ndisplay-inlay-hints = true\ndisplay-messages = true",
+    "zxc.20260125162111.1": "[editor.soft-wrap]\nenable = true",
+    "zxc.20260125162130.1": "[editor.statusline]\ncenter = [\"file-name\"]\nleft = [\"mode\", \"spinner\"]\nright = [\n  \"diagnostics\",\n  \"selections\",\n  \"position\",\n  \"file-encoding\",\n  \"file-line-ending\",\n  \"file-type\",\n]\nseparator = \"│\"",
+    "zxc.20260125162140.1": "[editor.statusline.mode]\ninsert = \"INSERT\"\nnormal = \"NORMAL\"\nselect = \"SELECT\"",
+    "zxc.20260125162236.1": "[keys.normal.g]\nz = [\"split_selection_on_newline\", \":sort\", \"keep_primary_selection\"]",
+    "zxc.20260125162248.1": "[keys.normal.g.c]\nb = \"toggle_block_comments\"\nc = \"toggle_comments\"\nl = \"toggle_line_comments\"",
+    "zxc.20260125162220.1": "[keys.normal.Z]\nQ = \":qa!\"\nZ = \":xa\"",
+    "zxc.20260125162302.1": "[keys.normal.space.l]\nf = \":fmt\"",
+    "zxc.20260125162324.1": "[keys.select.g]\nc = \"toggle_comments\"\nz = [\"split_selection_on_newline\", \":sort\", \"keep_primary_selection\"]\n",
+    "zxc.20260125162740.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125162834.1": "[global]\nindex-url = https://mirrors.cernet.edu.cn/pypi/web/simple/\n[install]\ntrusted-host = mirrors.cernet.edu.cn",
+    "zxc.20260125163108.1": "{{ if and (lookPath \"bash\") (lookPath \"fzf\") (lookPath \"xbps-install\") -}}\n@others\n{{ end -}}",
+    "zxc.20260125163227.1": "#!/usr/bin/env bash\n# https://gitlab.com/wef/dotfiles/-/blob/master/bin/fzf-xbps\nexport TIME_STAMP=\"20260102.103219\"\n# shellcheck disable=SC2034\n\n# Copyright (C) 2020-2025 Bob Hepple <bob dot hepple at gmail dot com>\n\n# This program is free software: you can redistribute it and/or modify\n# it under the terms of the GNU General Public License as published by\n# the Free Software Foundation, either version 3 of the License, or (at\n# your option) any later version.\n# \n# This program is distributed in the hope that it will be useful, but\n# WITHOUT ANY WARRANTY; without even the implied warranty of\n# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU\n# General Public License for more details.\n# \n# You should have received a copy of the GNU General Public License\n# along with this program. If not, see <http://www.gnu.org/licenses/>.\n\nPROG=$( basename \"$0\" )\nTEMP=$( getopt --options hvV --longoptions verbose,version,help -- \"$@\" ) || exit 1\neval set -- \"$TEMP\"\nsudos=\"doas sudo\" # others?\n\nfor sudo in $sudos; do\n    type \"$sudo\" &> /dev/null && break\n    sudo=\"\"\ndone\n\ncolumns=\"$( tput cols )\"\nblue=$( tput setaf 4 )\nnorm=$( tput sgr0 )\n\ninfo_key=\"alt-i\"\nfiles_key=\"alt-f\"\nmanual_key=\"alt-m\"\ndep_key=\"alt-d\"\nrev_key=\"alt-v\"\nurl_key=\"alt-u\"\ntemplate_key=\"alt-t\"\npreview_key=\"alt-?\"\nhelp_key=\"alt-h\"\ntoggle_key=\"ctrl-r\"\nexit_key=\"ctrl-c\"\norphans_key=\"alt-o\"\nextract_key=\"alt-e\"\nREMOVE_ORPHANS_key=\"alt-O\"\nREMOVE_key=\"alt-R\"\nDELETE_key=\"alt-D\"\nINSTALL_key=\"alt-I\"\nCLEAN_key=\"alt-C\"\nUPDATE_key=\"alt-U\"\n\nhelp=\"\\\n$info_key: info\n$files_key: list files in the package\n$manual_key: list top level packages (not dependencies)\n$dep_key: list dependencies of a package\n$rev_key: list packages depending on this package\n$url_key: open package url in browser\n$template_key: open package template in browser\n$orphans_key: list orphan packages\n$REMOVE_ORPHANS_key: remove orphan packages\n$REMOVE_key: delete package+dependencies\n$DELETE_key: delete package\n$INSTALL_key: install package\n$CLEAN_key: clean xbps cache\n$UPDATE_key: update system\nTAB: mark package for install/remove\nENTER: install/delete marked packages\n$exit_key: exit\"\n\npreview_size=$(( $( echo -e \"\\n$help\" | column -c \"$columns\" | wc -l ) + 2 ))\n\nwhile [[ \"$1\" ]]; do\n    case \"$1\" in\n        -h|--help)\n            echo \"Usage: $PROG OPTIONS\"\n            echo\n            echo \"Simple TUI/fzf package manager for xbps-based systems like voidlinux\"\n            echo\n            echo \"Commands are:\"\n            echo -e \"$help\"\n            echo\n            echo \"Note that commands that change the filesystem (and therefore need\"\n            echo \"sudo/doas) are in upper-case\"\n            echo\n            echo \"Use ' in a search to enable fuzzy finding (see man fzf)\"\n            echo \"Use [i as a search pattern to find all installed packages.\"\n            echo \"Installed packages that have updates pending are marked with upper-case [I].\"\n            echo\n            echo \"The 'list files ($files_key) function has a sub-menu to allow you to select a\"\n            echo \"file (or mark a set of files) from the package and view or extract it to the cwd.\" \n            echo\n            echo \"OPTIONS\"\n            echo \"-h|--help                 this help\"\n            echo \"-v|--verbose              be verbose\"\n            exit 0\n            ;;\n        -v|--verbose)\n            verbose=\"set\"\n            shift\n            ;;\n        -V|--version)\n            echo \"$PROG: Version $TIME_STAMP\"\n            exit 0\n            ;;\n        --)\n            shift\n            ;;\n    esac\ndone\n\nif [[ \"$verbose\" ]]; then\n    set -x\nfi\n\ncontinue=\"echo 'Press ENTER to continue'; read\"\n\nlock=\"$( mktemp -d)\"\ntempfile=\"$(mktemp)\"\nupdates=\"$(mktemp)\"\ntrap 'rm $tempfile $updates; rmdir $lock' EXIT\n\n{\n    # this takes a substantial amount of time (0.7s on my system), so do it in background:\n    xbps-install -Sun | awk '{print gensub(\"^(.*)-[^-]+$\",\"\\\\1\",1,$1)}' > \"$updates\"\n    rmdir \"$lock\"\n} &\n\nmapfile -t packages < <(\n    xbps-query -Rs - > \"$tempfile\" # takes about 0.4s\n\n    # wait for updates to be available:\n    while ! mkdir \"$lock\" &>/dev/null ; do\n        sleep .01\n    done\n    \n    # mark packages that have updates available with [I] instead of [i]\n    awk -v updates=\"$updates\" '\nBEGIN {\n    while ((getline update < updates) > 0) updates_map[update] = 1\n}\n\n{\n    flag=$1\n    pkgver=$2\n    pkgname=gensub(\"^(.*)-[^-]+$\",\"\\\\1\",1,$2)\n    if (flag==\"[*]\") flag=\"[i]\"\n    if (updates_map[pkgname]) flag=\"[I]\"\n    $1=\"\"\n    $2=\"\"\n    printf(\"%s %-40s %s\\n\", flag, pkgver, $0)\n}' < \"$tempfile\" |\n    sort -i -k2 | \n    fzf --exact --reverse --wrap \\\n        --marker=\"M\" \\\n        --multi \\\n        --prompt=\"[i]=installed; [I]=upgradable; SEARCH> \" \\\n        --bind \"start:toggle-sort\" \\\n        --bind \"$preview_key:change-preview-window(hidden|)\" \\\n        --bind \"$help_key:execute($PROG --help|less)\" \\\n        --bind \"$DELETE_key:execute($sudo xbps-remove {2}; $continue)+become($PROG)\" \\\n        --bind \"$REMOVE_key:execute($sudo xbps-remove -R {2}; $continue)+become($PROG)\" \\\n        --bind \"$info_key:execute(xbps-query -RS {2} | less)\" \\\n        --bind \"home:first\" --bind \"end:last\" \\\n        --bind \"$manual_key:execute(xbps-query -m | less)\" \\\n        --bind \"$orphans_key:execute(xbps-query -O | less)\" \\\n        --bind \"$REMOVE_ORPHANS_key:execute($sudo xbps-remove -o; $continue)+become($PROG)\" \\\n        --bind \"$dep_key:execute(xbps-query -R -x {2} | less)\" \\\n        --bind \"$rev_key:execute(xbps-query -R -X {2} | less)\" \\\n        --bind \"$INSTALL_key:execute($sudo xbps-install {2}; $continue)+become($PROG)\" \\\n        --bind \"$url_key:execute-silent[ xbps-query -p homepage -R '{2}' | xargs -Iurl xdg-open url & ]\" \\\n        --bind \"$CLEAN_key:execute(echo 'Cleaning cache, please wait ...'; $sudo xbps-remove --clean-cache)\" \\\n        --bind \"$template_key:execute-silent[ xbps-query -p pkgname -R '{2}' | xargs -I pkgname xdg-open https://github.com/void-linux/void-packages/tree/master/srcpkgs/pkgname & ]\" \\\n        --bind \"${UPDATE_key}:execute($sudo xbps-install -Su; $continue)\" \\\n        --bind \"$toggle_key:toggle-sort\" \\\n        --preview-label \"$preview_key=toggle this; $help_key=help; uppercase keys require $sudo\" \\\n        --preview-window=\"down:wrap:${PREVIEW_BORDER:-border-sharp},$preview_size\" \\\n        --preview \"xbps-query -R {2}|awk '/filename-size/ {f=\\$2} /homepage/ {h=\\$2} /installed_size/ {i=\\$2} END { printf(\\\"%s/%s $blue%s$norm\\\\n\\\",f,i,h)}'; echo; echo -e '\\n$help'|column\" \\\n        --bind \"$files_key:execute(\n          xbps-query -R -f {2} \\\n          | fzf \\\n            ${SHOW_HEADER:+--header=\\\"${FHEADER}\\\"} \\\n            --prompt '{2}: TAB=mark/unmark $files_key=toggle preview $extract_key=extract $exit_key=exit $help_key=help > ' \\\n            --marker=\\\"E\\\" \\\n            --multi \\\n            --no-separator \\\n            --border-label=\\\" Package Contents \\\" \\\n            --bind pgup:preview-up,pgdn:preview-down \\\n            --bind \\\"$help_key:execute($PROG --help|less)\\\" \\\n            --preview \\\"xbps-query -R --cat \\{1} {2}\\\" \\\n            --preview-window=\\\"down:hidden:wrap:${PREVIEW_BORDER:-border-sharp}\\\" \\\n            --preview-label=\\\" File Preview TAB=mark/unmark $files_key=toggle preview $extract_key=extract $exit_key=exit\\\" \\\n            --bind \\\"${files_key}:toggle-preview\\\" \\\n            --bind \\\"${extract_key}:execute(clear; \\\n              while IFS= read -r line; do \\\n                tree=\\\"\\\\\\${line%/*}\\\" ;\\\n                mkdir -p \\\"\\\\\\${tree#*/}\\\" ;\\\n                echo Extracting \\\\\\${line} ;\\\n                xbps-query -R --cat \\\"\\\\\\${line}\\\" {2} > \\\"\\\\\\${line#*/}\\\" ;\\\n              done < \\\"\\{+f}\\\"; $continue )\\\" )\" \\\n        )\n\ninstall_list=( )\nremove_list=( )\nfor line in \"${packages[@]}\"; do\n    pkg=\"$( echo \"$line\" | awk '{print $2}' )\"\n    ins=\"$( xbps-query -s \"^$pkg\\$\" --regex )\"\n    pkg=\"${pkg%-*}\" # remove version number\n    if [[ \"$ins\" ]]; then\n        remove_list+=( \"$pkg\" )\n    else\n        install_list+=( \"$pkg\" )\n    fi\ndone\n\nif [[ \"${install_list[*]}\" ]]; then\n    echo \"Installing: ${install_list[*]}\"\n    $sudo xbps-install \"${install_list[@]}\"\nfi\n\nif [[ \"${remove_list[*]}\" ]]; then\n    echo \"Removing ${remove_list[*]}\"\n    $sudo xbps-remove -R \"${remove_list[@]}\"\nfi\n\nif [[ \"${install_list[*]}${remove_list[*]}\" ]]; then\n    # restart to take account of any changes:\n    eval \"$continue\"\n    exec \"$PROG\"\nfi\n\n# Local Variables:\n# mode: shell-script\n# time-stamp-pattern: \"4/TIME_STAMP=\\\"%:y%02m%02d.%02H%02M%02S\\\"\"\n# eval: (add-hook 'before-save-hook 'time-stamp)\n# End:",
+    "zxc.20260125163416.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125163442.1": "import 'options.vim'\nimport 'keymap.vim'\nimport 'plugins_config.vim'\nimport 'find.vim'\n",
+    "zxc.20260125163703.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125163752.1": "let g:mapleader = ' '\nnnoremap <leader>bo <cmd>%bd\\|e#\\|bd#<CR>\nmap <silent> \\h :noh<cr>\nnnoremap ZZ <cmd>xa<cr>\nnnoremap ZQ <cmd>qa!<cr>\nnoremap Q @@\nxnoremap / <Esc>/\\%V\nnnoremap <c-n> <tab>\nnnoremap <tab> <cmd>tabnext<cr>\nnnoremap <s-tab> <cmd>tab split<cr>\nnnoremap ^[<tab> <cmd>tabclose<cr>\n\nfunction FoldWithH()\n    if col('.') == 1\n        return 'zc'\n    else\n        return 'h'\n    endif\nendfunction\n\nnnoremap <expr> h FoldWithH()\ncnoremap <expr> %% getcmdtype( ) == \":\" ? expand(\"%:h\") .. \"/\" : \"%%\"\nnnoremap & <cmd>&&<CR>\nxnoremap & <cmd>'<,'>&&<CR>\nnnoremap <silent> <esc> <cmd>nohlsearch<CR><esc>\n\nfunction OpenFileOrURL()\n  let cfile = expand('<cfile>')\n  if match(cfile, '^https\\?://') >= 0\n    call system('xdg-open ' . cfile)\n  else\n    normal! gF\n  endif\nendfunction\n\nnnoremap <silent> gf <cmd>call OpenFileOrURL()<CR>\n\nnnoremap g* :%s/<c-r><c-w>/\n\nnnoremap <leader><space> :<C-u>find<space>\n\nnnoremap ^[. ;",
+    "zxc.20260125163901.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260125163927.1": "set laststatus=2\n\ntry\nset switchbuf=uselast\nset showtabline=2\ncatch\nendtry\n\nset expandtab\nset smarttab\n\nset shiftwidth=4\nset tabstop=4\n\nset cindent\nset wrap\nset clipboard=unnamed\n\nset undodir=~/.local/share/vim/undo\nset undofile\n\nset nobackup\nset nowritebackup\n\nset noswapfile\n\" set directory=$HOME/.local/share/vim/swap//\n\nif has('gui_running')\nset guioptions-=T\nset guioptions-=e\nset guioptions-=m\nset t_Co=256\nset guitablabel=%M\\ %t\nendif\n\nset encoding=utf8\nset fileformats=unix,dos,mac\nsyntax enable\n\nset regexpengine=0\n\nset backspace=eol,start,indent\nset whichwrap+=<,>,h,l\n\nset ignorecase\nset smartcase\nset hlsearch\nset incsearch\n\nset lazyredraw\nset magic\nset showmatch\n\nset matchtime=2\n\nset noerrorbells\nset novisualbell\nset t_vb=\nset timeoutlen=500\n\nset foldcolumn=0\n\nlet $LANG = 'en'\nset langmenu=en\n\nset wildmenu\n\nset wildignore=*.o,*~,*.pyc\nif has('win16') || has('win32')\nset wildignore+=.git\\*,.hg\\*,.svn\\*\nelse\nset wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store\nendif\n\nlet &t_SI = \"\\e[6 q\"\nlet &t_EI = \"\\e[2 q\"\n\nset ruler\nset cmdheight=1\nset hidden\nset history=500\nset number relativenumber\n\nfiletype plugin on\nfiletype indent on\n\nset autoread\n\nset updatetime=500\n\nset mouse=a\nset smoothscroll\n\nset showtabline=1\n\naugroup settings\n    autocmd!\n    autocmd FocusGained,BufEnter * checktime\n    autocmd FileType qf nnoremap <buffer><silent> q :cclose<bar>lclose<CR>\naugroup END\n\n{{ if lookPath \"rg\" -}}\nset grepprg=rg\\ --vimgrep\\ --smart-case\\ --hidden\nset grepformat=%f:%l:%c:%m\n{{ end -}}\n\nset signcolumn=auto\nset sessionoptions-=blank\nset foldmethod=marker\nset cursorline\nset scrolloff=5\n\nset shortmess-=S \" show she search count\n\nset gdefault\n\nset signcolumn=yes\n\nautocmd CmdlineChanged [:\\/\\?] call wildtrigger()\nset wildmode=noselect:lastused,full\nset wildoptions=pum\n\nautocmd CmdlineEnter [\\/\\?] set pumheight=8\nautocmd CmdlineLeave [\\/\\?] set pumheight&",
+    "zxc.20260125163958.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260125164707.1": "let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'\nif empty(glob(data_dir . '/autoload/plug.vim'))\n  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'\n  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC\nendif",
+    "zxc.20260125164028.1": "call plug#begin()\n\n<< plugins >>\n\ncall plug#end()\n\n<< plugin configs >>\n",
+    "zxc.20260125164814.1": "@others",
+    "zxc.20260125165641.1": "Plug 'dense-analysis/ale'\n",
+    "zxc.20260125164939.1": "Plug 'vim-scripts/align', { 'on': 'Align' }",
+    "zxc.20260125165458.1": "Plug 'tyru/caw.vim'\n",
+    "zxc.20260125165633.1": "Plug 'alker0/chezmoi.vim'\n",
+    "zxc.20260125165652.1": "Plug 'neoclide/coc.nvim', {'branch': 'release'}\n",
+    "zxc.20260125165309.1": "Plug 'godlygeek/tabular', { 'on': 'Tabularize' }\n",
+    "zxc.20260125165624.1": "Plug 'ghifarit53/tokyonight-vim'\n",
+    "zxc.20260125165359.1": "Plug 'markonm/traces.vim'\n",
+    "zxc.20260125165335.1": "Plug '907th/vim-auto-save'\n",
+    "zxc.20260125165058.1": "Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }",
+    "zxc.20260125165421.1": "Plug 'tpope/vim-eunuch', { 'on': [ 'Remove', 'Delete', 'Move', 'Chmod', 'Mkdir', 'Cfind', 'Clocate', 'Lfind', 'Wall', 'SudoWrite', 'SudoEdit' ] }\n",
+    "zxc.20260125165515.1": "Plug 'tpope/vim-fugitive'\n",
+    "zxc.20260125165614.1": "Plug 'airblade/vim-gitgutter'\n",
+    "zxc.20260125165435.1": "Plug 'pbrisbin/vim-mkdir'\n",
+    "zxc.20260125165444.1": "Plug 'lambdalisue/vim-suda'\n",
+    "zxc.20260125165017.1": "@others",
+    "zxc.20260125170010.1": "\" coc.nvim\n\" Use tab for trigger completion with characters ahead and navigate\n\" NOTE: There's always complete item selected by default, you may want to enable\n\" no select by `\"suggest.noselect\": true` in your configuration file\n\" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by\n\" other plugin before putting this into your config\ninoremap <silent><expr> <TAB>\n      \\ coc#pum#visible() ? coc#pum#next(1) :\n      \\ CheckBackspace() ? \"\\<Tab>\" :\n      \\ coc#refresh()\ninoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : \"\\<C-h>\"\n\n\" Make <CR> to accept selected completion item or notify coc.nvim to format\n\" <C-g>u breaks current undo, please make your own choice\ninoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : \"\\<C-g>u\\<CR>\\<c-r>=coc#on_enter()\\<CR>\"\n\nfunction! CheckBackspace() abort\n  let col = col('.') - 1\n  return !col || getline('.')[col - 1]  =~# '\\s'\nendfunction\n\n\" Use <c-space> to trigger completion\nif has('nvim')\n  inoremap <silent><expr> <c-space> coc#refresh()\nelse\n  inoremap <silent><expr> <c-@> coc#refresh()\nendif\n\n\" Use `[g` and `]g` to navigate diagnostics\n\" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list\nnmap <silent> [d <Plug>(coc-diagnostic-prev)\nnmap <silent> ]d <Plug>(coc-diagnostic-next)\n\n\" GoTo code navigation\nnmap <silent> gd <Plug>(coc-definition)\nnmap <silent> gy <Plug>(coc-type-definition)\nnmap <silent> gi <Plug>(coc-implementation)\nnmap <silent> gr <Plug>(coc-references)\n\nfunction! ShowDocumentation()\n  if CocAction('hasProvider', 'hover')\n    call CocActionAsync('doHover')\n  else\n    call feedkeys('K', 'in')\n  endif\nendfunction\n\n\" Use K to show documentation in preview window\nnnoremap <silent> K :call ShowDocumentation()<CR>\n\n\" Highlight the symbol and its references when holding the cursor\nautocmd CursorHold * silent call CocActionAsync('highlight')\n\n\" Symbol renaming\nnnoremap <leader>R <plug>(coc-rename)\n\n\" Formatting selected code\n\" xmap <leader>f  <Plug>(coc-format-selected)\n\" nmap <leader>f  <Plug>(coc-format-selected)\n\naugroup mygroup\n  autocmd!\n  \" Setup formatexpr specified filetype(s)\n  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')\n  \" Update signature help on jump placeholder\n  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')\naugroup end\n\n\" Applying code actions to the selected code block\n\" Example: `<leader>aap` for current paragraph\n\" xmap <leader>a  <Plug>(coc-codeaction-selected)\n\" nmap <leader>a  <Plug>(coc-codeaction-selected)\n\n\" Remap keys for applying code actions at the cursor position\n\" nmap <leader>ac  <Plug>(coc-codeaction-cursor)\n\" Remap keys for apply code actions affect whole buffer\n\" nmap <leader>as  <Plug>(coc-codeaction-source)\n\" Apply the most preferred quickfix action to fix diagnostic on the current line\n\" nmap <leader>qf  <Plug>(coc-fix-current)\n\n\" Remap keys for applying refactor code actions\n\" nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)\n\" xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)\n\" nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)\n\n\" Run the Code Lens action on the current line\n\" nmap <leader>cl  <Plug>(coc-codelens-action)\n\n\" Map function and class text objects\n\" NOTE: Requires 'textDocument.documentSymbol' support from the language server\nxmap if <Plug>(coc-funcobj-i)\nomap if <Plug>(coc-funcobj-i)\nxmap af <Plug>(coc-funcobj-a)\nomap af <Plug>(coc-funcobj-a)\nxmap ic <Plug>(coc-classobj-i)\nomap ic <Plug>(coc-classobj-i)\nxmap ac <Plug>(coc-classobj-a)\nomap ac <Plug>(coc-classobj-a)\n\n\" Remap <C-f> and <C-b> to scroll float windows/popups\nif has('nvim-0.4.0') || has('patch-8.2.0750')\n  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : \"\\<C-f>\"\n  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : \"\\<C-b>\"\n  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? \"\\<c-r>=coc#float#scroll(1)\\<cr>\" : \"\\<Right>\"\n  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? \"\\<c-r>=coc#float#scroll(0)\\<cr>\" : \"\\<Left>\"\n  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : \"\\<C-f>\"\n  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : \"\\<C-b>\"\nendif\n\n\" Use CTRL-S for selections ranges\n\" Requires 'textDocument/selectionRange' support of language server\nnmap <silent> <C-s> <Plug>(coc-range-select)\nxmap <silent> <C-s> <Plug>(coc-range-select)\n\n\" Add `:Format` command to format current buffer\ncommand! -nargs=0 Format :call CocActionAsync('format')\n\n\" Add `:Fold` command to fold current buffer\ncommand! -nargs=? Fold :call     CocAction('fold', <f-args>)\n\n\" Add `:OR` command for organize imports of the current buffer\ncommand! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')\n\n\" Add (Neo)Vim's native statusline support\n\" NOTE: Please see `:h coc-status` for integrations with external plugins that\n\" provide custom statusline: lightline.vim, vim-airline\nset statusline^=%{coc#status()}%{get(b:,'coc_current_function',''\\'''\\')}\n\nlet g:coc_global_extensions = ['coc-fish', '@yaegassy/coc-marksman', 'coc-emoji', 'coc-dash-complete', 'coc-just-complete', 'coc-translator', 'coc-perl', 'coc-go', 'coc-json', 'coc-prettier', 'coc-pyright', 'coc-r-lsp', 'coc-sh', 'coc-snippets', 'coc-sumneko-lua', 'coc-texlab', 'coc-toml', 'coc-vimlsp', 'coc-yaml' ]\n\" nnoremap <leader>e <Cmd>CocCommand explorer --quit-on-open<CR>\n\n\" limit completion item\nlet g:coc_filetype_map = { 'yaml.ansible': 'ansible', }\nset pumheight=10\n\nnmap <Leader>,t <Plug>(coc-translator-p)\nvmap <Leader>,t <Plug>(coc-translator-pv)",
+    "zxc.20260125165744.1": "set termguicolors\nlet g:tokyonight_style = 'night' \" available: night, storm\nlet g:tokyonight_enable_italic = 1\ncolorscheme tokyonight",
+    "zxc.20260125165912.1": "\" vim-auto-save\nlet g:autO_save = v:true\nlet g:auto_save_silent = v:true",
+    "zxc.20260125165227.1": "\" vim-easy-align\nxmap ga <Plug>(EasyAlign)\nnmap ga <Plug>(EasyAlign)\n",
+    "zxc.20260125165924.1": "\" vim-suda\nlet g:suda_smart_edit = 1",
+    "zxc.20260125164142.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125164204.1": "vim9script\n\n# simple fuzzy find finder\n# place into ~/.vim/plugin/fuzzyfind.vim\n\nset wildmode=noselect:lastused,full\nset wildmenu wildoptions=pum,fuzzy pumheight=12\n\n\nvar files_cache: list<string> = []\naugroup CmdComplete\n    au!\n    au CmdlineChanged : wildtrigger()\n    au CmdlineEnter : files_cache = []\naugroup END\n\ndef FindCmd(): string\n    var cmd = ''\n    if executable('fd')\n        cmd = 'fd . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('fdfind')\n        cmd = 'fdfind . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('ugrep')\n        cmd = 'ugrep \"\" -Rl -I --ignore-files'\n    elseif executable('rg')\n        cmd = 'rg --path-separator / --files --hidden --glob !.git'\n    elseif executable('find')\n        cmd = 'find \\! \\( -path \"*/.git\" -prune -o -name \"*.swp\" \\) -type f -follow'\n    endif\n    return cmd\nenddef\n\ndef Find(cmd_arg: string, cmd_complete: bool): list<string>\n    if empty(files_cache)\n        var cmd = FindCmd()\n        # fallback to built-in glob if no fd/rg/ug/find is available\n        # e.g. we are on Windows\n        if empty(cmd)\n            files_cache = globpath('.', '**', 1, 1)\n                ->filter((_, v) => !isdirectory(v))\n                ->mapnew((_, v) => v->substitute('^\\.[\\/]', \"\", \"\"))\n        else\n            files_cache = systemlist(cmd)\n        endif\n    endif\n    if empty(cmd_arg)\n        return files_cache\n    else\n        return files_cache->matchfuzzy(cmd_arg)\n    endif\nenddef\n\nset findfunc=Find"
+  },
+  "uas": {
+    "zxc.20260125142149.1": {
+      "_mod_time": 1769322255.104
+    },
+    "zxc.20260125142829.1": {
+      "_mod_time": 1769324281.754
+    },
+    "zxc.20260125143007.1": {
+      "_mod_time": 1769324264.456
+    },
+    "zxc.20260125143959.1": {
+      "_mod_time": 1769324133.177
+    },
+    "zxc.20260125144442.1": {
+      "_mod_time": 1769323758.564
+    },
+    "zxc.20260125172659.1": {
+      "_mod_time": 1769322315.158
+    },
+    "zxc.20260125172839.1": {
+      "_mod_time": 1769333416.95
+    },
+    "zxc.20260125145051.1": {
+      "_mod_time": 1769325957.382
+    },
+    "zxc.20260125152704.1": {
+      "_mod_time": 1769326096.9
+    },
+    "zxc.20260125152851.2": {
+      "_mod_time": 1769326176.835
+    },
+    "zxc.20260125153131.1": {
+      "_mod_time": 1769326330.555
+    },
+    "zxc.20260125153012.2": {
+      "_mod_time": 1769327121.071
+    },
+    "zxc.20260125161631.1": {
+      "_mod_time": 1769329418.22
+    },
+    "zxc.20260125162740.1": {
+      "_mod_time": 1769329761.66
+    },
+    "zxc.20260125163108.1": {
+      "_mod_time": 1767460199.633
+    },
+    "zxc.20260125163416.1": {
+      "_mod_time": 1769330126.106
+    },
+    "zxc.20260125163703.1": {
+      "_mod_time": 1769330536.784
+    },
+    "zxc.20260125163901.1": {
+      "_mod_time": 1769330536.792
+    },
+    "zxc.20260125163958.1": {
+      "_mod_time": 1769332282.232
+    },
+    "zxc.20260125164142.1": {
+      "_mod_time": 1769330536.802
+    }
+  }
+}
