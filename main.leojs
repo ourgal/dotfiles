@@ -776,6 +776,138 @@
           ]
         }
       ]
+    },
+    {
+      "gnx": "zxc.20260125211832.1",
+      "vh": "Documents",
+      "children": [
+        {
+          "gnx": "zxc.20260125211837.1",
+          "vh": "@path readonly_Documents",
+          "children": [
+            {
+              "gnx": "zxc.20260125211902.1",
+              "vh": "@path PowerShell",
+              "children": [
+                {
+                  "gnx": "zxc.20260125211930.1",
+                  "vh": "powershell config",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125211938.1",
+                      "vh": "@clean Microsoft.PowerShell_profile.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260125212003.1",
+                          "vh": "env"
+                        },
+                        {
+                          "gnx": "zxc.20260125212135.1",
+                          "vh": "sfsu"
+                        },
+                        {
+                          "gnx": "zxc.20260125212222.1",
+                          "vh": "alias"
+                        },
+                        {
+                          "gnx": "zxc.20260125212238.1",
+                          "vh": "PSReadline",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260125212355.1",
+                              "vh": "smart pair"
+                            },
+                            {
+                              "gnx": "zxc.20260125212447.1",
+                              "vh": "Alt+e"
+                            },
+                            {
+                              "gnx": "zxc.20260125212508.1",
+                              "vh": "lazygit keybinding"
+                            },
+                            {
+                              "gnx": "zxc.20260125213200.1",
+                              "vh": "option color"
+                            },
+                            {
+                              "gnx": "zxc.20260125213451.1",
+                              "vh": "Ctrl+d"
+                            }
+                          ]
+                        },
+                        {
+                          "gnx": "zxc.20260125212535.1",
+                          "vh": "functions",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260125212538.1",
+                              "vh": "ll"
+                            },
+                            {
+                              "gnx": "zxc.20260125212625.1",
+                              "vh": "lla"
+                            },
+                            {
+                              "gnx": "zxc.20260125212708.1",
+                              "vh": "bd"
+                            },
+                            {
+                              "gnx": "zxc.20260125212737.1",
+                              "vh": "git commit and push"
+                            },
+                            {
+                              "gnx": "zxc.20260125213232.1",
+                              "vh": "scroff"
+                            },
+                            {
+                              "gnx": "zxc.20260125213331.1",
+                              "vh": "yt"
+                            },
+                            {
+                              "gnx": "zxc.20260125213305.1",
+                              "vh": "scoop update"
+                            }
+                          ]
+                        },
+                        {
+                          "gnx": "zxc.20260125212857.1",
+                          "vh": "choco"
+                        },
+                        {
+                          "gnx": "zxc.20260125212930.1",
+                          "vh": "carapace"
+                        },
+                        {
+                          "gnx": "zxc.20260125213126.1",
+                          "vh": "starship"
+                        },
+                        {
+                          "gnx": "zxc.20260125213514.1",
+                          "vh": "zoxide"
+                        },
+                        {
+                          "gnx": "zxc.20260125213537.1",
+                          "vh": "mcfly"
+                        },
+                        {
+                          "gnx": "zxc.20260125213409.1",
+                          "vh": "PSFzf",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260125213432.1",
+                              "vh": "Ctrl+o"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "tnodes": {
@@ -904,7 +1036,31 @@
     "zxc.20260125165227.1": "\" vim-easy-align\nxmap ga <Plug>(EasyAlign)\nnmap ga <Plug>(EasyAlign)\n",
     "zxc.20260125165924.1": "\" vim-suda\nlet g:suda_smart_edit = 1",
     "zxc.20260125164142.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260125164204.1": "vim9script\n\n# simple fuzzy find finder\n# place into ~/.vim/plugin/fuzzyfind.vim\n\nset wildmode=noselect:lastused,full\nset wildmenu wildoptions=pum,fuzzy pumheight=12\n\n\nvar files_cache: list<string> = []\naugroup CmdComplete\n    au!\n    au CmdlineChanged : wildtrigger()\n    au CmdlineEnter : files_cache = []\naugroup END\n\ndef FindCmd(): string\n    var cmd = ''\n    if executable('fd')\n        cmd = 'fd . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('fdfind')\n        cmd = 'fdfind . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('ugrep')\n        cmd = 'ugrep \"\" -Rl -I --ignore-files'\n    elseif executable('rg')\n        cmd = 'rg --path-separator / --files --hidden --glob !.git'\n    elseif executable('find')\n        cmd = 'find \\! \\( -path \"*/.git\" -prune -o -name \"*.swp\" \\) -type f -follow'\n    endif\n    return cmd\nenddef\n\ndef Find(cmd_arg: string, cmd_complete: bool): list<string>\n    if empty(files_cache)\n        var cmd = FindCmd()\n        # fallback to built-in glob if no fd/rg/ug/find is available\n        # e.g. we are on Windows\n        if empty(cmd)\n            files_cache = globpath('.', '**', 1, 1)\n                ->filter((_, v) => !isdirectory(v))\n                ->mapnew((_, v) => v->substitute('^\\.[\\/]', \"\", \"\"))\n        else\n            files_cache = systemlist(cmd)\n        endif\n    endif\n    if empty(cmd_arg)\n        return files_cache\n    else\n        return files_cache->matchfuzzy(cmd_arg)\n    endif\nenddef\n\nset findfunc=Find"
+    "zxc.20260125164204.1": "vim9script\n\n# simple fuzzy find finder\n# place into ~/.vim/plugin/fuzzyfind.vim\n\nset wildmode=noselect:lastused,full\nset wildmenu wildoptions=pum,fuzzy pumheight=12\n\n\nvar files_cache: list<string> = []\naugroup CmdComplete\n    au!\n    au CmdlineChanged : wildtrigger()\n    au CmdlineEnter : files_cache = []\naugroup END\n\ndef FindCmd(): string\n    var cmd = ''\n    if executable('fd')\n        cmd = 'fd . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('fdfind')\n        cmd = 'fdfind . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('ugrep')\n        cmd = 'ugrep \"\" -Rl -I --ignore-files'\n    elseif executable('rg')\n        cmd = 'rg --path-separator / --files --hidden --glob !.git'\n    elseif executable('find')\n        cmd = 'find \\! \\( -path \"*/.git\" -prune -o -name \"*.swp\" \\) -type f -follow'\n    endif\n    return cmd\nenddef\n\ndef Find(cmd_arg: string, cmd_complete: bool): list<string>\n    if empty(files_cache)\n        var cmd = FindCmd()\n        # fallback to built-in glob if no fd/rg/ug/find is available\n        # e.g. we are on Windows\n        if empty(cmd)\n            files_cache = globpath('.', '**', 1, 1)\n                ->filter((_, v) => !isdirectory(v))\n                ->mapnew((_, v) => v->substitute('^\\.[\\/]', \"\", \"\"))\n        else\n            files_cache = systemlist(cmd)\n        endif\n    endif\n    if empty(cmd_arg)\n        return files_cache\n    else\n        return files_cache->matchfuzzy(cmd_arg)\n    endif\nenddef\n\nset findfunc=Find",
+    "zxc.20260125211938.1": "@others",
+    "zxc.20260125212003.1": "$env:EDITOR = \"hx\"\n$env:shell_startup = \"~\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\"",
+    "zxc.20260125212135.1": "{{ if lookPath \"sfsu\" -}}\nInvoke-Expression (&sfsu hook)\n{{ end -}}",
+    "zxc.20260125212222.1": "New-Alias reboot Restart-Computer\nNew-Alias poweroff Stop-Computer",
+    "zxc.20260125212238.1": "Import-Module PSReadLine\nSet-PSReadLineKeyHandler -Key Tab -Function Complete",
+    "zxc.20260125212355.1": "#region Smart Insert/Delete\n\n# The next four key handlers are designed to make entering matched quotes\n# parens, and braces a nicer experience.  I'd like to include functions\n# in the module that do this, but this implementation still isn't as smart\n# as ReSharper, so I'm just providing it as a sample.\n\nSet-PSReadLineKeyHandler -Chord '\"',\"'\" `\n                         -BriefDescription SmartInsertQuote `\n                         -LongDescription \"Insert paired quotes if not already on a quote\" `\n                         -ScriptBlock {\n    param($key, $arg)\n\n    $line = $null\n    $cursor = $null\n    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)\n\n    if ($line.Length -gt $cursor -and $line[$cursor] -eq $key.KeyChar) {\n        # Just move the cursor\n        [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($cursor + 1)\n    }\n    else {\n        # Insert matching quotes, move cursor to be in between the quotes\n        [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"$($key.KeyChar)\" * 2)\n        [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)\n        [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($cursor - 1)\n    }\n}\n\nSet-PSReadLineKeyHandler -Key '(','{','[' `\n                         -BriefDescription InsertPairedBraces `\n                         -LongDescription \"Insert matching braces\" `\n                         -ScriptBlock {\n    param($key, $arg)\n\n    $closeChar = switch ($key.KeyChar)\n    {\n        <#case#> '(' { [char]')'; break }\n        <#case#> '{' { [char]'}'; break }\n        <#case#> '[' { [char]']'; break }\n    }\n\n    $selectionStart = $null\n    $selectionLength = $null\n    [Microsoft.PowerShell.PSConsoleReadLine]::GetSelectionState([ref]$selectionStart, [ref]$selectionLength)\n\n    $line = $null\n    $cursor = $null\n    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)\n    \n    if ($selectionStart -ne -1)\n    {\n      # Text is selected, wrap it in brackets\n      [Microsoft.PowerShell.PSConsoleReadLine]::Replace($selectionStart, $selectionLength, $key.KeyChar + $line.SubString($selectionStart, $selectionLength) + $closeChar)\n      [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($selectionStart + $selectionLength + 2)\n    } else {\n      # No text is selected, insert a pair\n      [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"$($key.KeyChar)$closeChar\")\n      [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($cursor + 1)\n    }\n}\n\nSet-PSReadLineKeyHandler -Key ')',']','}' `\n                         -BriefDescription SmartCloseBraces `\n                         -LongDescription \"Insert closing brace or skip\" `\n                         -ScriptBlock {\n    param($key, $arg)\n\n    $line = $null\n    $cursor = $null\n    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)\n\n    if ($line[$cursor] -eq $key.KeyChar)\n    {\n        [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($cursor + 1)\n    }\n    else\n    {\n        [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"$($key.KeyChar)\")\n    }\n}\n\nSet-PSReadLineKeyHandler -Key Backspace `\n                         -BriefDescription SmartBackspace `\n                         -LongDescription \"Delete previous character or matching quotes/parens/braces\" `\n                         -ScriptBlock {\n    param($key, $arg)\n\n    $line = $null\n    $cursor = $null\n    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)\n\n    if ($cursor -gt 0)\n    {\n        $toMatch = $null\n        if ($cursor -lt $line.Length)\n        {\n            switch ($line[$cursor])\n            {\n                <#case#> '\"' { $toMatch = '\"'; break }\n                <#case#> \"'\" { $toMatch = \"'\"; break }\n                <#case#> ')' { $toMatch = '('; break }\n                <#case#> ']' { $toMatch = '['; break }\n                <#case#> '}' { $toMatch = '{'; break }\n            }\n        }\n\n        if ($toMatch -ne $null -and $line[$cursor-1] -eq $toMatch)\n        {\n            [Microsoft.PowerShell.PSConsoleReadLine]::Delete($cursor - 1, 2)\n        }\n        else\n        {\n            [Microsoft.PowerShell.PSConsoleReadLine]::BackwardDeleteChar($key, $arg)\n        }\n    }\n}\n\n#endregion Smart Insert/Delete",
+    "zxc.20260125212447.1": "Set-PSReadLineKeyHandler -Key Alt+e -Function ViEditVisually",
+    "zxc.20260125212508.1": "# This is an example of a macro that you might use to execute a command.\n# This will add the command to history.\nSet-PSReadLineKeyHandler -Key Ctrl+g `\n                         -BriefDescription Lazygit `\n                         -LongDescription \"Run lazygit\" `\n                         -ScriptBlock {\n    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()\n    [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"lazygit\")\n    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()\n}",
+    "zxc.20260125213200.1": "# parameter color\nSet-PSReadLineOption -Colors @{ \"parameter\"=\"Blue\"; \"operator\"=\"DarkMagenta\" }",
+    "zxc.20260125213451.1": "Set-PSReadlineKeyHandler -Key Ctrl+d -Function DeleteCharOrExit",
+    "zxc.20260125212538.1": "{{ if lookPath \"eza\" -}}\nfunction ll {\n  Param\n  (\n    [string] $path = \".\"\n  )\n\n  eza --long --icons=auto --group --group-directories-first --time-style relative $Path\n}\n{{ end -}}",
+    "zxc.20260125212625.1": "{{ if lookPath \"eza\" -}}\nfunction lla {\n  Param\n  (\n    [string] $path = \".\"\n  )\n\n  eza --long --all --icons=auto --group --group-directories-first --time-style relative $Path\n}\n{{ end -}}",
+    "zxc.20260125212708.1": "function bd {\n  cd ..\n}",
+    "zxc.20260125212737.1": "function _git_commit_and_push {\n  git add .\n  git commit\n  git push\n}\n\nSet-PSReadLineKeyHandler -Key Alt+x `\n                         -BriefDescription git_update `\n                         -LongDescription \"Git commit and push\" `\n                         -ScriptBlock {\n    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()\n    [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"_git_commit_and_push\")\n    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()\n}\n",
+    "zxc.20260125213232.1": "{{ if lookPath \"nircmd\" -}}\n# turn off monitor\nfunction scroff {\n  nircmd monitor off\n}\n{{ end -}}",
+    "zxc.20260125213331.1": "{{ if lookPath \"yt-dlp\" -}}\nfunction yt {\n    yt-dlp -f \"bestvideo[height<=1080]+bestaudio/best[height<=1080]\" (cb) && mpv (ls | sort LastWriteTime -Descending)[0].Name\n}\n{{ end -}}",
+    "zxc.20260125213305.1": "{{ if lookPath \"scoop\" -}}\nfunction scoop-update {\n    scoop update *\n    scoop cache rm *\n    scoop cleanup *\n}\n{{ end -}}",
+    "zxc.20260125212857.1": "{{ if lookPath \"choco\" -}}\n# Import the Chocolatey Profile that contains the necessary code to enable\n# tab-completions to function for `choco`.\n# Be aware that if you are missing these lines from your profile, tab completion\n# for `choco` will not function.\n# See https://ch0.co/tab-completion for details.\n\n$ChocolateyProfile = \"$env:ChocolateyInstall\\helpers\\chocolateyProfile.psm1\"\nif (Test-Path($ChocolateyProfile)) {\n  Import-Module \"$ChocolateyProfile\"\n}\n{{ end -}}",
+    "zxc.20260125212930.1": "{{ if lookPath \"carapace\" -}}\n# carapace\n$env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense,powershell' # optional\nSet-PSReadLineOption -Colors @{ \"Selection\" = \"`e[7m\" }\nSet-PSReadlineKeyHandler -Key Tab -Function MenuComplete\ncarapace _carapace | Out-String | Invoke-Expression\n{{ end -}}",
+    "zxc.20260125213126.1": "{{ if lookPath \"starship\" -}}\n# starship\nInvoke-Expression (&starship init powershell)\n{{ end -}}\n",
+    "zxc.20260125213514.1": "{{ if lookPath \"zoxide\" -}}\n# zoxide\nInvoke-Expression (& { (zoxide init powershell | Out-String) })\n{{ end -}}",
+    "zxc.20260125213537.1": "{{ if lookPath \"mcfly\" -}}\n# mcfly\nInvoke-Expression -Command $(mcfly init powershell | out-string)\n{{ end -}}",
+    "zxc.20260125213409.1": "# PSFzf\nImport-Module PSFzf\nSet-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r' -EnableAliasFuzzyKillProcess\n# Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }",
+    "zxc.20260125213432.1": "Set-PSReadLineKeyHandler -Key Ctrl+o `\n                         -BriefDescription FuzzyEdit `\n                         -LongDescription \"Fuzzy Edit\" `\n                         -ScriptBlock {\n    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()\n    [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"Invoke-FuzzyEdit\")\n    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()\n}"
   },
   "uas": {
     "zxc.20260125142149.1": {
@@ -966,6 +1122,9 @@
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1769330536.802
+    },
+    "zxc.20260125211938.1": {
+      "_mod_time": 1769348668.271
     }
   }
 }
