@@ -813,9 +813,9 @@
     "zxc.20260125152804.1": "enter_accept = true\nsync_address = \"https://api.atuin.sh\"\nsync_frequency = \"1h\"\n\n[dotfiles]\nenabled = true\n\n[sync]\nrecords = true",
     "zxc.20260125152851.2": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"tldr\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260125152851.3": "[display]\ncompact = true\nuse_paper = true\n\n[updates]\nauto_update = true\nauto_update_interval_hours = 720",
-    "zxc.20260125153131.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260125153131.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260125153131.2": "# feat: ✨\n# feat: 🔍\n# feat: 🔗\n# feat: 🔒\n\n# fix: 🐛\n# fix: 🐞\n# fix: 🩹\n# fix: 🚑️\n\n# style: 💅\n# style: 🎨\n# style: 💄\n\n# ci: 🦊\n# ci: 📦\n\n# deploy: 🚀\n# deploy: 📦\n\n# chore: 🧹\n# chore: 🔧\n# chore: ⚙️\n# docs: 📜\n\n# refactor: 🔨\n# perf: 🚀\n\n# test: 🚦\n# debug: 🧪\n\n# BREAKING CHANGE: 🚨\n# BREAKING CHANGE: 💥\n# BREAKING CHANGE: 💣",
-    "zxc.20260125153012.2": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260125153012.2": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260125153252.1": "[advice]\n\taddEmptyPathspec = false\n\tpushNonFastForward = false\n\tstatusHints = false",
     "zxc.20260125153318.1": "[branch]\n\tsort = \"-committerdate\"",
     "zxc.20260125153946.1": "[color \"decorate\"]\n\tHEAD = \"red\"\n\tbranch = \"blue\"\n\tremoteBranch = \"magenta\"\n\ttag = \"yellow\"",
@@ -938,10 +938,10 @@
       "_mod_time": 1769326176.835
     },
     "zxc.20260125153131.1": {
-      "_mod_time": 1769326330.555
+      "_mod_time": 1769347031.314
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1769327121.071
+      "_mod_time": 1769347031.322
     },
     "zxc.20260125161631.1": {
       "_mod_time": 1769342489.193
