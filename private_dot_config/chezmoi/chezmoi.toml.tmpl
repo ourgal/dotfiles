@@ -1,0 +1,14 @@
+{{ if lookPath "chezmoi" -}}
+[git]
+    autoCommit = true
+    autoPush = true
+{{ if eq .chezmoi.os "windows" -}}
+[interpreter.ps1]
+    command = "powershell"
+    args = []
+{{ if lookPath "pwsh" -}}
+[cd]
+    command = "pwsh"
+{{ end -}}
+{{ end -}}
+{{ end -}}
