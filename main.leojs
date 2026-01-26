@@ -160,6 +160,10 @@
                       "vh": ".local"
                     },
                     {
+                      "gnx": "zxc.20260126193455.1",
+                      "vh": "pip"
+                    },
+                    {
                       "gnx": "zxc.20260125144753.1",
                       "vh": "bash"
                     },
@@ -988,6 +992,7 @@
     "zxc.20260125144606.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}\n",
     "zxc.20260125144639.1": ".vim",
     "zxc.20260125144709.1": ".local\n",
+    "zxc.20260126193455.1": ".pip",
     "zxc.20260125144753.1": ".bash_profile\n.bashrc\n",
     "zxc.20260125144810.1": ".xinitrc\n",
     "zxc.20260125172659.1": "{{ if lookPath \"hx\" -}}\nhx\n{{- else if lookPath \"vim\" -}}\nvim\n{{- else if lookPath \"vi\" -}}\nvi\n{{- else if lookPath \"nano\" -}}\nnano\n{{- end -}}",
@@ -1138,7 +1143,7 @@
       "_mod_time": 1769413174.02
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1769413173.992
+      "_mod_time": 1769427299.357
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1769413174.004
