@@ -1,0 +1,7 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "emacs" -}}
+[".emacs.d"]
+    type = "git-repo"
+    url = "https://mirror.nju.edu.cn/git/doom-emacs.git/"
+{{ end -}}
+{{ end -}}
