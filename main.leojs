@@ -1099,7 +1099,7 @@
     "zxc.20260125165924.1": "\" vim-suda\nlet g:suda_smart_edit = 1",
     "zxc.20260125164142.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125164204.1": "vim9script\n\n# simple fuzzy find finder\n# place into ~/.vim/plugin/fuzzyfind.vim\n\nset wildmode=noselect:lastused,full\nset wildmenu wildoptions=pum,fuzzy pumheight=12\n\n\nvar files_cache: list<string> = []\naugroup CmdComplete\n    au!\n    au CmdlineChanged : wildtrigger()\n    au CmdlineEnter : files_cache = []\naugroup END\n\ndef FindCmd(): string\n    var cmd = ''\n    if executable('fd')\n        cmd = 'fd . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('fdfind')\n        cmd = 'fdfind . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('ugrep')\n        cmd = 'ugrep \"\" -Rl -I --ignore-files'\n    elseif executable('rg')\n        cmd = 'rg --path-separator / --files --hidden --glob !.git'\n    elseif executable('find')\n        cmd = 'find \\! \\( -path \"*/.git\" -prune -o -name \"*.swp\" \\) -type f -follow'\n    endif\n    return cmd\nenddef\n\ndef Find(cmd_arg: string, cmd_complete: bool): list<string>\n    if empty(files_cache)\n        var cmd = FindCmd()\n        # fallback to built-in glob if no fd/rg/ug/find is available\n        # e.g. we are on Windows\n        if empty(cmd)\n            files_cache = globpath('.', '**', 1, 1)\n                ->filter((_, v) => !isdirectory(v))\n                ->mapnew((_, v) => v->substitute('^\\.[\\/]', \"\", \"\"))\n        else\n            files_cache = systemlist(cmd)\n        endif\n    endif\n    if empty(cmd_arg)\n        return files_cache\n    else\n        return files_cache->matchfuzzy(cmd_arg)\n    endif\nenddef\n\nset findfunc=Find",
-    "zxc.20260125211938.1": "@others",
+    "zxc.20260125211938.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125212003.1": "$env:EDITOR = \"hx\"\n$env:shell_startup = \"~\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\"",
     "zxc.20260125212135.1": "{{ if lookPath \"sfsu\" -}}\nInvoke-Expression (&sfsu hook)\n{{ end -}}",
     "zxc.20260125212222.1": "New-Alias reboot Restart-Computer\nNew-Alias poweroff Stop-Computer",
@@ -1195,7 +1195,7 @@
       "_mod_time": 1769413174.052
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1769413174.128
+      "_mod_time": 1769425167.866
     }
   }
 }
