@@ -199,7 +199,23 @@
               "children": [
                 {
                   "gnx": "zxc.20260125172839.1",
-                  "vh": "@clean ble_sh.toml.tmpl"
+                  "vh": "@clean ble_sh.toml.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260126160624.1",
+                      "vh": "main"
+                    }
+                  ]
+                },
+                {
+                  "gnx": "zxc.20260126160530.1",
+                  "vh": "@clean doomemacs.toml.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260126160721.1",
+                      "vh": "main"
+                    }
+                  ]
                 }
               ]
             }
@@ -966,7 +982,10 @@
     "zxc.20260125144753.1": ".bash_profile\n.bashrc\n",
     "zxc.20260125144810.1": ".xinitrc\n",
     "zxc.20260125172659.1": "{{ if lookPath \"hx\" -}}\nhx\n{{- else if lookPath \"vim\" -}}\nvim\n{{- else if lookPath \"vi\" -}}\nvi\n{{- else if lookPath \"nano\" -}}\nnano\n{{- end -}}",
-    "zxc.20260125172839.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"bash\" -}}\n[\".local/lib/ble-nightly\"]\n    type = \"archive\"\n    url = \"https://github.com/akinomyoga/ble.sh/releases/download/nightly/ble-nightly.tar.xz\"\n    exact = true\n    stripComponents = 1\n    refreshPeriod = \"168h\"\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125172839.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260126160624.1": "[\".local/lib/ble-nightly\"]\n    type = \"archive\"\n    url = \"https://github.com/akinomyoga/ble.sh/releases/download/nightly/ble-nightly.tar.xz\"\n    exact = true\n    stripComponents = 1\n    refreshPeriod = \"168h\"\n",
+    "zxc.20260126160530.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"emacs\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260126160721.1": "[\".emacs.d\"]\n    type = \"git-repo\"\n    url = \"https://mirror.nju.edu.cn/git/doom-emacs.git/\"\n",
     "zxc.20260126154354.1": "{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}",
     "zxc.20260126154557.1": "[git]\n    autoCommit = true\n    autoPush = true",
     "zxc.20260126154722.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}\n",
@@ -1116,6 +1135,9 @@
     },
     "zxc.20260125172839.1": {
       "_mod_time": 1769413173.978
+    },
+    "zxc.20260126160530.1": {
+      "_mod_time": 1769414807.428
     },
     "zxc.20260126154354.1": {
       "_mod_time": 1769413897.411
