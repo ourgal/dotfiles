@@ -1,0 +1,9 @@
+{{ if lookPath "hx" -}}
+hx
+{{- else if lookPath "vim" -}}
+vim
+{{- else if lookPath "vi" -}}
+vi
+{{- else if lookPath "nano" -}}
+nano
+{{- end -}}
