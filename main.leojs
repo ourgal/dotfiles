@@ -145,7 +145,17 @@
                 },
                 {
                   "gnx": "zxc.20260125144547.1",
-                  "vh": "linux"
+                  "vh": "linux",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260127232118.1",
+                      "vh": "Documents"
+                    },
+                    {
+                      "gnx": "zxc.20260128003657.1",
+                      "vh": "AppData"
+                    }
+                  ]
                 },
                 {
                   "gnx": "zxc.20260125144606.1",
@@ -965,6 +975,83 @@
           ]
         }
       ]
+    },
+    {
+      "gnx": "zxc.20260128003055.1",
+      "vh": "windows startup",
+      "children": [
+        {
+          "gnx": "zxc.20260128003258.1",
+          "vh": "content",
+          "children": [
+            {
+              "gnx": "zxc.20260128002953.1",
+              "vh": "windows terminal"
+            },
+            {
+              "gnx": "zxc.20260128003533.1",
+              "vh": "firefox"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260128002516.1",
+      "vh": "AppData",
+      "children": [
+        {
+          "gnx": "zxc.20260128002526.1",
+          "vh": "@path AppData",
+          "children": [
+            {
+              "gnx": "zxc.20260128002541.1",
+              "vh": "@path Roaming",
+              "children": [
+                {
+                  "gnx": "zxc.20260128002605.1",
+                  "vh": "@path Microsoft",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260128002618.1",
+                      "vh": "@path Windows",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260128002649.1",
+                          "vh": "@path readonly_Start Menu",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260128002702.1",
+                              "vh": "@path readonly_Programs",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260128002719.1",
+                                  "vh": "@path readonly_Startup",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260128002742.1",
+                                      "vh": "@clean main.ahk.tmpl",
+                                      "children": [
+                                        {
+                                          "gnx": "zxc.20260128003258.1"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "tnodes": {
@@ -989,6 +1076,8 @@
     "zxc.20260125144442.1": "@others",
     "zxc.20260125144515.1": "Makefile\nmain.leojs",
     "zxc.20260125144547.1": "{{ if eq .chezmoi.os \"linux\" -}}\n@others\n{{ end -}}",
+    "zxc.20260127232118.1": "Documents",
+    "zxc.20260128003657.1": "AppData",
     "zxc.20260125144606.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}\n",
     "zxc.20260125144639.1": ".vim",
     "zxc.20260125144709.1": ".local\n",
@@ -1127,7 +1216,10 @@
     "zxc.20260125213514.1": "{{ if lookPath \"zoxide\" -}}\n# zoxide\nInvoke-Expression (& { (zoxide init powershell | Out-String) })\n{{ end -}}",
     "zxc.20260125213537.1": "{{ if lookPath \"mcfly\" -}}\n# mcfly\nInvoke-Expression -Command $(mcfly init powershell | out-string)\n{{ end -}}",
     "zxc.20260125213409.1": "# PSFzf\nImport-Module PSFzf\nSet-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r' -EnableAliasFuzzyKillProcess\n# Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }",
-    "zxc.20260125213432.1": "Set-PSReadLineKeyHandler -Key Ctrl+o `\n                         -BriefDescription FuzzyEdit `\n                         -LongDescription \"Fuzzy Edit\" `\n                         -ScriptBlock {\n    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()\n    [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"Invoke-FuzzyEdit\")\n    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()\n}"
+    "zxc.20260125213432.1": "Set-PSReadLineKeyHandler -Key Ctrl+o `\n                         -BriefDescription FuzzyEdit `\n                         -LongDescription \"Fuzzy Edit\" `\n                         -ScriptBlock {\n    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()\n    [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"Invoke-FuzzyEdit\")\n    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()\n}",
+    "zxc.20260128002953.1": "{{ if and (lookPath \"wt\") (lookPath \"pwsh\")}}\nRun(\"wt pwsh\", , \"Max\")\n{{ end -}}\n",
+    "zxc.20260128003533.1": "{{ if lookPath \"firefox\" -}}\nRun(\"firefox\", , \"Max\")\n{{ end -}}",
+    "zxc.20260128002742.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}"
   },
   "uas": {
     "zxc.20260125142149.1": {
@@ -1143,7 +1235,7 @@
       "_mod_time": 1769413174.02
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1769427299.357
+      "_mod_time": 1769531824.412
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1769413174.004
@@ -1201,6 +1293,9 @@
     },
     "zxc.20260125211938.1": {
       "_mod_time": 1769425167.866
+    },
+    "zxc.20260128002742.1": {
+      "_mod_time": 1769531770.899
     }
   }
 }
