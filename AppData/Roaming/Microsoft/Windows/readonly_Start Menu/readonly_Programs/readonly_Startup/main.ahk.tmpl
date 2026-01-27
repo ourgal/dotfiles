@@ -7,4 +7,7 @@ Run("firefox", , "Max")
 {{ else if lookPath "brave" -}}
 Run("brave", , "Max")
 {{ end -}}
+{{ if stat "C:/ProgramData/scoop/apps/deskflow/current/settings/Deskflow.conf" -}}
+Run("deskflow-core client", , "Hide")
+{{ end -}}
 {{ end -}}
