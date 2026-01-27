@@ -197,7 +197,7 @@
               "children": [
                 {
                   "gnx": "zxc.20260125172659.1",
-                  "vh": "@clean editor.tmpl"
+                  "vh": "@clean editor"
                 }
               ]
             }
@@ -1129,7 +1129,7 @@
     "zxc.20260125153928.1": "[color \"branch\"]\n\tcurrent = \"magenta\"\n\tlocal = \"default\"\n\tplain = \"blue\"\n\tremote = \"yellow\"\n\tupstream = \"green\"",
     "zxc.20260125153436.1": "[culumn]\n\tui = \"auto\"",
     "zxc.20260125153348.1": "[commit]\n\ttemplate = \"~/.config/git/template\"\n  gpgsign = true\n\tverbose = true",
-    "zxc.20260125153401.1": "[core]\n\tcompression = 9\n\teditor = \"hx\"\n\texcludesfile = \"~/.gitignore\"\n\tfsmonitor = true\n\tpager = \"diff-so-fancy | less '--tabs=4' -RFX\"\n\tpreloadindex = true\n\tuntrackedCache = true\n\twhitespace = \"error\"\n\tautocrlf = \"input\"",
+    "zxc.20260125153401.1": "[core]\n\tcompression = 9\n\teditor = \"{{ template \"editor\" }}\"\n\texcludesfile = \"~/.gitignore\"\n\tfsmonitor = true\n\tpager = \"diff-so-fancy | less '--tabs=4' -RFX\"\n\tpreloadindex = true\n\tuntrackedCache = true\n\twhitespace = \"error\"\n\tautocrlf = \"input\"",
     "zxc.20260125153421.1": "[credential]\n\thelper = \"gopass\"\n",
     "zxc.20260125154038.1": "[credential \"https://gist.github.com\"]\n\thelper = \"gh auth git-credential\"",
     "zxc.20260125154056.1": "[credential \"https://github.com\"]\n\thelper = \"gh auth git-credential\"\n",
@@ -1258,7 +1258,7 @@
       "_mod_time": 1769531824.412
     },
     "zxc.20260125172659.1": {
-      "_mod_time": 1769413174.004
+      "_mod_time": 1769535279.007
     },
     "zxc.20260125172839.1": {
       "_mod_time": 1769413173.978
@@ -1282,7 +1282,7 @@
       "_mod_time": 1769413174.097
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1769413174.093
+      "_mod_time": 1769535279.015
     },
     "zxc.20260125161631.1": {
       "_mod_time": 1769413174.104
