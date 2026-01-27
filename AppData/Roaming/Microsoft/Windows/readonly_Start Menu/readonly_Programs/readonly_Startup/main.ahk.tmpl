@@ -1,8 +1,10 @@
 {{ if eq .chezmoi.os "windows" -}}
-{{ if and (lookPath "wt") (lookPath "pwsh")}}
+{{ if and (lookPath "wt") (lookPath "pwsh") -}}
 Run("wt pwsh", , "Max")
 {{ end -}}
 {{ if lookPath "firefox" -}}
 Run("firefox", , "Max")
+{{ else if lookPath "brave" -}}
+Run("brave", , "Max")
 {{ end -}}
 {{ end -}}
