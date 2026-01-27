@@ -1,6 +1,6 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if and (lookPath "wt") (lookPath "pwsh") -}}
-Run("wt pwsh", , "Max")
+Run("wt pwsh", "{{ .chezmoi.homeDir }}", "Max")
 {{ end -}}
 {{ if lookPath "firefox" -}}
 Run("firefox", , "Max")
