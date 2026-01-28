@@ -3,7 +3,7 @@ function New-LayoutModificationXml {
     [CmdletBinding()]
     param (
         [string[]] $LnkPaths,
-        [string] $OutputPath = "C:\Users\Default\AppData\Local\Microsoft\Windows\Shell\LayoutModification.xml",
+        [string] $OutputPath = $env:USERPROFILE + "\AppData\Local\Microsoft\Windows\Shell\LayoutModification.xml",
         [ValidateSet("Append", "Replace")]
         [string] $PinListPlacement = "Replace"
     )
