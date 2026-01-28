@@ -7,8 +7,8 @@ RunScoop(app)
 {{ if and (lookPath "wt") (lookPath "pwsh") -}}
 RunScoop("Windows Terminal")
 {{ end -}}
-{{ if lookPath "firefox" -}}
-Run("firefox", , "Max")
+{{ if stat "D:/ProgramsFiles/Mozilla Firefox/firefox.exe" -}}
+Run("C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Firefox.lnk", , "Max")
 {{ else if lookPath "brave" -}}
 Run("D:/scoop/apps/brave/current/brave.exe", "c:/users/user" , "Max")
 {{ end -}}
