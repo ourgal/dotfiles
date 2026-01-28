@@ -1278,7 +1278,7 @@
     "zxc.20260125213432.1": "Set-PSReadLineKeyHandler -Key Ctrl+o `\n                         -BriefDescription FuzzyEdit `\n                         -LongDescription \"Fuzzy Edit\" `\n                         -ScriptBlock {\n    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()\n    [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"Invoke-FuzzyEdit\")\n    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()\n}",
     "zxc.20260128200402.1": "RunScoop(app)\n{\n    scoop_apps_dir := \"c:/programdata/Microsoft/Windows/Start Menu/Programs/Scoop Apps\"\n    Run(scoop_apps_dir \"/\" app \".lnk\", \"c:/users/user\", \"Max\")\n}",
     "zxc.20260128002953.1": "{{ if and (lookPath \"wt\") (lookPath \"pwsh\") -}}\nRunScoop(\"Windows Terminal\")\n{{ end -}}\n",
-    "zxc.20260128003533.1": "{{ if lookPath \"firefox\" -}}\nRun(\"firefox\", , \"Max\")\n{{ else if lookPath \"brave\" -}}\nRunScoop(\"Brave\")\n{{ end -}}",
+    "zxc.20260128003533.1": "{{ if lookPath \"firefox\" -}}\nRun(\"firefox\", , \"Max\")\n{{ else if lookPath \"brave\" -}}\nRun(\"D:/scoop/apps/brave/current/brave.exe\", \"c:/users/user\" , \"Max\")\n{{ end -}}",
     "zxc.20260128010842.1": "{{ if and ( stat \"C:/ProgramData/scoop/apps/deskflow/current/settings/Deskflow.conf\" ) (lookPath \"deskflow-core\") -}}\nRun(\"deskflow-core client\", , \"Hide\")\n{{ end -}}",
     "zxc.20260128002742.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
     "zxc.20260128194139.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
@@ -1360,7 +1360,7 @@
       "_mod_time": 1769425167.866
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1769602387.506
+      "_mod_time": 1769603597.624
     },
     "zxc.20260128194139.1": {
       "_mod_time": 1769602986.457
