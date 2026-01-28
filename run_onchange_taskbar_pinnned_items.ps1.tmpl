@@ -1,0 +1,48 @@
+{{ if eq .chezmoi.os "windows" -}}
+function New-LayoutModificationXml {
+    [CmdletBinding()]
+    param (
+        [string[]] $LnkPaths,
+        [string] $OutputPath = "C:\Users\Default\AppData\Local\Microsoft\Windows\Shell\LayoutModification.xml",
+        [ValidateSet("Append", "Replace")]
+        [string] $PinListPlacement = "Replace"
+    )
+
+    $xml = New-Object System.Xml.XmlDocument
+    $root = $xml.CreateElement("LayoutModificationTemplate", "http://schemas.microsoft.com/Start/2014/LayoutModification")
+    $xml.AppendChild($root) | Out-Null
+    $root.SetAttribute("xmlns:defaultlayout", "http://schemas.microsoft.com/Start/2014/FullDefaultLayout")
+    $root.SetAttribute("xmlns:taskbar", "http://schemas.microsoft.com/Start/2014/TaskbarLayout")
+    $root.SetAttribute("Version", "1")
+    $collection = $xml.CreateElement("CustomTaskbarLayoutCollection", $root.NamespaceURI)
+    $collection.SetAttribute("PinListPlacement", $PinListPlacement)
+    $root.AppendChild($collection) | Out-Null
+    $layout = $xml.CreateElement("defaultlayout:TaskbarLayout", $root.GetAttribute("xmlns:defaultlayout"))
+    $collection.AppendChild($layout) | Out-Null
+    $pinList = $xml.CreateElement("taskbar:TaskbarPinList", $root.GetAttribute("xmlns:taskbar"))
+    $layout.AppendChild($pinList) | Out-Null
+    foreach ($lnk in $LnkPaths) {
+        $desktopApp = $xml.CreateElement("taskbar:DesktopApp", $root.GetAttribute("xmlns:taskbar"))
+        $desktopApp.SetAttribute("DesktopApplicationLinkPath", $lnk)
+        $pinList.AppendChild($desktopApp) | Out-Null
+    }
+    $xml.Save($OutputPath)
+}
+function Reset-TaskbarLayout {
+    Get-Process explorer | Stop-Process -Force
+    Remove-Item "$Env:AppData\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\*" -Force -ErrorAction SilentlyContinue
+    Remove-Item "$Env:AppData\Microsoft\Windows\Shell\*.dat" -Force -ErrorAction SilentlyContinue
+    Remove-Item "$Env:AppData\Microsoft\Windows\Shell\LayoutModification.xml" -Force -ErrorAction SilentlyContinue
+    Remove-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband" -Recurse -ErrorAction SilentlyContinue
+    Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TrayNotify" -Name "IconStreams" -ErrorAction SilentlyContinue
+    Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TrayNotify" -Name "PastIconsStream" -ErrorAction SilentlyContinue
+}
+$LnkPaths = @(
+    "%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\Scoop Apps\Windows Terminal.lnk"
+    "%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\Scoop Apps\Brave.lnk"
+    "%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\Scoop Apps\Double Commander.lnk"
+    "%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\Scoop Apps\Telegram.lnk"
+)
+New-LayoutModificationXml -LnkPaths $LnkPaths -PinListPlacement "Replace"
+Reset-TaskbarLayout
+{{ end -}}
