@@ -10,7 +10,7 @@ RunScoop("Windows Terminal")
 {{ if lookPath "firefox" -}}
 Run("firefox", , "Max")
 {{ else if lookPath "brave" -}}
-RunScoop("Brave")
+Run("D:/scoop/apps/brave/current/brave.exe", "c:/users/user" , "Max")
 {{ end -}}
 {{ if and ( stat "C:/ProgramData/scoop/apps/deskflow/current/settings/Deskflow.conf" ) (lookPath "deskflow-core") -}}
 Run("deskflow-core client", , "Hide")
