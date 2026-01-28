@@ -1000,6 +1000,10 @@
           "vh": "content",
           "children": [
             {
+              "gnx": "zxc.20260128200402.1",
+              "vh": "pre"
+            },
+            {
               "gnx": "zxc.20260128002953.1",
               "vh": "windows terminal"
             },
@@ -1272,9 +1276,10 @@
     "zxc.20260125213537.1": "{{ if lookPath \"mcfly\" -}}\n# mcfly\nInvoke-Expression -Command $(mcfly init powershell | out-string)\n{{ end -}}",
     "zxc.20260125213409.1": "# PSFzf\nImport-Module PSFzf\nSet-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r' -EnableAliasFuzzyKillProcess\n# Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }",
     "zxc.20260125213432.1": "Set-PSReadLineKeyHandler -Key Ctrl+o `\n                         -BriefDescription FuzzyEdit `\n                         -LongDescription \"Fuzzy Edit\" `\n                         -ScriptBlock {\n    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()\n    [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"Invoke-FuzzyEdit\")\n    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()\n}",
-    "zxc.20260128002953.1": "{{ if and (lookPath \"wt\") (lookPath \"pwsh\") -}}\nRun(\"wt pwsh\", \"{{ .chezmoi.homeDir }}\", \"Max\")\n{{ end -}}\n",
-    "zxc.20260128003533.1": "{{ if lookPath \"firefox\" -}}\nRun(\"firefox\", , \"Max\")\n{{ else if lookPath \"brave\" -}}\nRun(\"brave\", , \"Max\")\n{{ end -}}",
-    "zxc.20260128010842.1": "{{ if stat \"C:/ProgramData/scoop/apps/deskflow/current/settings/Deskflow.conf\" -}}\nRun(\"deskflow-core client\", , \"Hide\")\n{{ end -}}",
+    "zxc.20260128200402.1": "RunScoop(app)\n{\n    scoop_apps_dir := \"c:/programdata/Microsoft/Windows/Start Menu/Programs/Scoop Apps\"\n    Run(scoop_apps_dir \"/\" app \".lnk\", \"c:/users/user\", \"Max\")\n}",
+    "zxc.20260128002953.1": "{{ if and (lookPath \"wt\") (lookPath \"pwsh\") -}}\nRunScoop(\"Windows Terminal\")\n{{ end -}}\n",
+    "zxc.20260128003533.1": "{{ if lookPath \"firefox\" -}}\nRun(\"firefox\", , \"Max\")\n{{ else if lookPath \"brave\" -}}\nRunScoop(\"Brave\")\n{{ end -}}",
+    "zxc.20260128010842.1": "{{ if and ( stat \"C:/ProgramData/scoop/apps/deskflow/current/settings/Deskflow.conf\" ) (lookPath \"deskflow-core\") -}}\nRun(\"deskflow-core client\", , \"Hide\")\n{{ end -}}",
     "zxc.20260128002742.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
     "zxc.20260128194139.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
     "zxc.20260128194842.1": "function New-LayoutModificationXml {\n    [CmdletBinding()]\n    param (\n        [string[]] $LnkPaths,\n        [string] $OutputPath = $env:USERPROFILE + \"\\AppData\\Local\\Microsoft\\Windows\\Shell\\LayoutModification.xml\",\n        [ValidateSet(\"Append\", \"Replace\")]\n        [string] $PinListPlacement = \"Replace\"\n    )\n\n    $xml = New-Object System.Xml.XmlDocument\n    $root = $xml.CreateElement(\"LayoutModificationTemplate\", \"http://schemas.microsoft.com/Start/2014/LayoutModification\")\n    $xml.AppendChild($root) | Out-Null\n    $root.SetAttribute(\"xmlns:defaultlayout\", \"http://schemas.microsoft.com/Start/2014/FullDefaultLayout\")\n    $root.SetAttribute(\"xmlns:taskbar\", \"http://schemas.microsoft.com/Start/2014/TaskbarLayout\")\n    $root.SetAttribute(\"Version\", \"1\")\n    $collection = $xml.CreateElement(\"CustomTaskbarLayoutCollection\", $root.NamespaceURI)\n    $collection.SetAttribute(\"PinListPlacement\", $PinListPlacement)\n    $root.AppendChild($collection) | Out-Null\n    $layout = $xml.CreateElement(\"defaultlayout:TaskbarLayout\", $root.GetAttribute(\"xmlns:defaultlayout\"))\n    $collection.AppendChild($layout) | Out-Null\n    $pinList = $xml.CreateElement(\"taskbar:TaskbarPinList\", $root.GetAttribute(\"xmlns:taskbar\"))\n    $layout.AppendChild($pinList) | Out-Null\n    foreach ($lnk in $LnkPaths) {\n        $desktopApp = $xml.CreateElement(\"taskbar:DesktopApp\", $root.GetAttribute(\"xmlns:taskbar\"))\n        $desktopApp.SetAttribute(\"DesktopApplicationLinkPath\", $lnk)\n        $pinList.AppendChild($desktopApp) | Out-Null\n    }\n    $xml.Save($OutputPath)\n}\n",
@@ -1355,7 +1360,7 @@
       "_mod_time": 1769425167.866
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1769534254.836
+      "_mod_time": 1769602387.506
     },
     "zxc.20260128194139.1": {
       "_mod_time": 1769601089.479
