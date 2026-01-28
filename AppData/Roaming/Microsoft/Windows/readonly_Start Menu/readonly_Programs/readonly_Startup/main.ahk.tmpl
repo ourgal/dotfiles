@@ -1,13 +1,18 @@
 {{ if eq .chezmoi.os "windows" -}}
+RunScoop(app)
+{
+    scoop_apps_dir := "c:/programdata/Microsoft/Windows/Start Menu/Programs/Scoop Apps"
+    Run(scoop_apps_dir "/" app ".lnk", "c:/users/user", "Max")
+}
 {{ if and (lookPath "wt") (lookPath "pwsh") -}}
-Run("wt pwsh", "{{ .chezmoi.homeDir }}", "Max")
+RunScoop("Windows Terminal")
 {{ end -}}
 {{ if lookPath "firefox" -}}
 Run("firefox", , "Max")
 {{ else if lookPath "brave" -}}
-Run("brave", , "Max")
+RunScoop("Brave")
 {{ end -}}
-{{ if stat "C:/ProgramData/scoop/apps/deskflow/current/settings/Deskflow.conf" -}}
+{{ if and ( stat "C:/ProgramData/scoop/apps/deskflow/current/settings/Deskflow.conf" ) (lookPath "deskflow-core") -}}
 Run("deskflow-core client", , "Hide")
 {{ end -}}
 {{ end -}}
