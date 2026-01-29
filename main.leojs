@@ -1081,6 +1081,22 @@
       "vh": "scripts",
       "children": [
         {
+          "gnx": "zxc.20260129232209.1",
+          "vh": "vscodium extensions",
+          "children": [
+            {
+              "gnx": "zxc.20260129232256.1",
+              "vh": "@clean run_onchange_vscodium_extensions.ps1.tmpl",
+              "children": [
+                {
+                  "gnx": "zxc.20260129232413.1",
+                  "vh": "content"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "gnx": "zxc.20260128194057.1",
           "vh": "taskbar pinned items",
           "children": [
@@ -1281,6 +1297,8 @@
     "zxc.20260128003533.1": "{{ if stat \"D:/ProgramsFiles/Mozilla Firefox/firefox.exe\" -}}\nRun(\"D:/ProgramsFiles/Mozilla Firefox/firefox.exe\", , \"Max\")\n{{ else if lookPath \"brave\" -}}\nRun(\"D:/scoop/apps/brave/current/brave.exe\", \"c:/users/user\" , \"Max\")\n{{ end -}}",
     "zxc.20260128010842.1": "{{ if and ( stat \"C:/ProgramData/scoop/apps/deskflow/current/settings/Deskflow.conf\" ) (lookPath \"deskflow-core\") -}}\nRun(\"deskflow-core client\", , \"Hide\")\n{{ end -}}",
     "zxc.20260128002742.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
+    "zxc.20260129232256.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260129232413.1": "codium --update-extensions\n$extensions = @(\n    \"redhat.ansible\"\n    \"kahole.magit\"\n    \"tamasfe.even-better-toml\"\n    \"boltex.leojs\"\n    \"carlos-algms.make-task-provider\"\n    \"PKief.material-icon-theme\"\n    \"jnoortheen.nix-ide\"\n    \"ms-python.python\"\n    \"vscodevim.vim\"\n    \"MattiasBaake.vscode-snippets-for-ansible\"\n    \"redhat.vscode-yaml\"\n    )\nforeach ($e in $extensions) {\n    Write-Host \"Install vscodium extension $e\"\n    codium --install-extension $e\n}",
     "zxc.20260128194139.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
     "zxc.20260128194842.1": "function New-LayoutModificationXml {\n    [CmdletBinding()]\n    param (\n        [string[]] $LnkPaths,\n        [string] $OutputPath = $env:USERPROFILE + \"\\AppData\\Local\\Microsoft\\Windows\\Shell\\LayoutModification.xml\",\n        [ValidateSet(\"Append\", \"Replace\")]\n        [string] $PinListPlacement = \"Replace\"\n    )\n\n    $xml = New-Object System.Xml.XmlDocument\n    $root = $xml.CreateElement(\"LayoutModificationTemplate\", \"http://schemas.microsoft.com/Start/2014/LayoutModification\")\n    $xml.AppendChild($root) | Out-Null\n    $root.SetAttribute(\"xmlns:defaultlayout\", \"http://schemas.microsoft.com/Start/2014/FullDefaultLayout\")\n    $root.SetAttribute(\"xmlns:taskbar\", \"http://schemas.microsoft.com/Start/2014/TaskbarLayout\")\n    $root.SetAttribute(\"Version\", \"1\")\n    $collection = $xml.CreateElement(\"CustomTaskbarLayoutCollection\", $root.NamespaceURI)\n    $collection.SetAttribute(\"PinListPlacement\", $PinListPlacement)\n    $root.AppendChild($collection) | Out-Null\n    $layout = $xml.CreateElement(\"defaultlayout:TaskbarLayout\", $root.GetAttribute(\"xmlns:defaultlayout\"))\n    $collection.AppendChild($layout) | Out-Null\n    $pinList = $xml.CreateElement(\"taskbar:TaskbarPinList\", $root.GetAttribute(\"xmlns:taskbar\"))\n    $layout.AppendChild($pinList) | Out-Null\n    foreach ($lnk in $LnkPaths) {\n        $desktopApp = $xml.CreateElement(\"taskbar:DesktopApp\", $root.GetAttribute(\"xmlns:taskbar\"))\n        $desktopApp.SetAttribute(\"DesktopApplicationLinkPath\", $lnk)\n        $pinList.AppendChild($desktopApp) | Out-Null\n    }\n    $xml.Save($OutputPath)\n}\n",
     "zxc.20260128194813.1": "function Reset-TaskbarLayout {\n    Get-Process explorer | Stop-Process -Force\n    Remove-Item \"$Env:AppData\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar\\*\" -Force -ErrorAction SilentlyContinue\n    Remove-Item \"$Env:AppData\\Microsoft\\Windows\\Shell\\*.dat\" -Force -ErrorAction SilentlyContinue\n    Remove-Item \"$Env:AppData\\Microsoft\\Windows\\Shell\\LayoutModification.xml\" -Force -ErrorAction SilentlyContinue\n    Remove-Item -Path \"HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Taskband\" -Recurse -ErrorAction SilentlyContinue\n    Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\TrayNotify\" -Name \"IconStreams\" -ErrorAction SilentlyContinue\n    Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\TrayNotify\" -Name \"PastIconsStream\" -ErrorAction SilentlyContinue\n}",
@@ -1361,6 +1379,9 @@
     },
     "zxc.20260128002742.1": {
       "_mod_time": 1769699710.787
+    },
+    "zxc.20260129232256.1": {
+      "_mod_time": 1769701223.452
     },
     "zxc.20260128194139.1": {
       "_mod_time": 1769698913.568
