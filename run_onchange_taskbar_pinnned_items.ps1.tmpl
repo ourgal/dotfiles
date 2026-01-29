@@ -38,10 +38,10 @@ function Reset-TaskbarLayout {
     Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TrayNotify" -Name "PastIconsStream" -ErrorAction SilentlyContinue
 }
 $LnkPaths = @(
-    "%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\Scoop Apps\Windows Terminal.lnk"
+    "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Scoop Apps\Windows Terminal.lnk"
     "%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\Firefox.lnk"
-    "%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\Scoop Apps\Double Commander.lnk"
-    "%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\Scoop Apps\Telegram.lnk"
+    "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Scoop Apps\Double Commander.lnk"
+    "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Scoop Apps\Telegram.lnk"
 )
 New-LayoutModificationXml -LnkPaths $LnkPaths -PinListPlacement "Replace"
 Reset-TaskbarLayout
