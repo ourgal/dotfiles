@@ -1,8 +1,10 @@
 {{ if eq .chezmoi.os "windows" -}}
 RunScoop(app)
 {
-    scoop_apps_dir := "c:/programdata/Microsoft/Windows/Start Menu/Programs/Scoop Apps"
-    Run(scoop_apps_dir "/" app ".lnk", "c:/users/user", "Max")
+    appdata_dir := EnvGet("AppData")
+    user_dir := EnvGet("userprofile")
+    scoop_apps_dir := appdata_dir . "/Microsoft/Windows/Start Menu/Programs/Scoop Apps"
+    Run(scoop_apps_dir . "/" . app . ".lnk", user_dir, "Max")
 }
 {{ if and (lookPath "wt") (lookPath "pwsh") -}}
 RunScoop("Windows Terminal")
