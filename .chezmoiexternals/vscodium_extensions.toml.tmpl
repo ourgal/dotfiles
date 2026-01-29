@@ -1,0 +1,7 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "codium" -}}
+[".cache/vscodium/extensions/vsnetrw.vsix"]
+    type = "file"
+    url = "https://github.com/danprince/vsnetrw/releases/download/v0.3.2/vsnetrw-0.3.2.vsix"
+{{ end -}}
+{{ end -}}
