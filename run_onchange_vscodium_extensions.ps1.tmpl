@@ -13,6 +13,10 @@ $extensions = @(
     "MattiasBaake.vscode-snippets-for-ansible"
     "kahole.magit"
     "PKief.material-icon-theme"
+    {{ $vsnetrw := (joinPath .chezmoi.homeDir ".cache/vscodium/extensions/vsnetrw.vsix") }}
+    {{ if stat $vsnetrw -}}
+    "{{ $vsnetrw }}"
+    {{ end -}}
     )
 foreach ($e in $extensions) {
     Write-Host "Install vscodium extension $e"
