@@ -2,17 +2,17 @@
 {{ if lookPath "codium" -}}
 codium --update-extensions
 $extensions = @(
-    "redhat.ansible"
-    "kahole.magit"
     "tamasfe.even-better-toml"
-    "boltex.leojs"
     "carlos-algms.make-task-provider"
-    "PKief.material-icon-theme"
-    "jnoortheen.nix-ide"
-    "ms-python.python"
     "vscodevim.vim"
-    "MattiasBaake.vscode-snippets-for-ansible"
+    "jnoortheen.nix-ide"
+    "boltex.leojs"
+    "redhat.ansible"
+    "ms-python.python"
     "redhat.vscode-yaml"
+    "MattiasBaake.vscode-snippets-for-ansible"
+    "kahole.magit"
+    "PKief.material-icon-theme"
     )
 foreach ($e in $extensions) {
     Write-Host "Install vscodium extension $e"
