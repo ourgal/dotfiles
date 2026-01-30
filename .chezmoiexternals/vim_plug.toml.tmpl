@@ -1,0 +1,20 @@
+{{ if eq .chezmoi.os "linux" -}}
+{{ if lookPath "vim" -}}
+{{ if eq .chezmoi.os "linux" -}}
+{{ if lookPath "vim" -}}
+[".vim/autoload/plug.vim"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    refreshPeriod = "168h"
+{{ end -}}
+{{ end -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "vim" -}}
+["vimfiles/autoload/plug.vim"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    refreshPeriod = "168h"
+{{ end -}}
+{{ end -}}
+{{ end -}}
+{{ end -}}

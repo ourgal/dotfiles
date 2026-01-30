@@ -222,6 +222,32 @@
                   ]
                 },
                 {
+                  "gnx": "zxc.20260130221131.1",
+                  "vh": "@clean vim_plug.toml.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260130221131.2",
+                      "vh": "linux",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260130221536.1",
+                          "vh": "toml"
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260130221550.1",
+                      "vh": "windows",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260130221550.2",
+                          "vh": "toml"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
                   "gnx": "zxc.20260130074346.1",
                   "vh": "@clean vscodium_extensions.toml.tmpl",
                   "children": [
@@ -1210,6 +1236,11 @@
     "zxc.20260125172659.1": "{{ if lookPath \"hx\" -}}\nhx\n{{- else if lookPath \"vim\" -}}\nvim\n{{- else if lookPath \"vi\" -}}\nvi\n{{- else if lookPath \"nano\" -}}\nnano\n{{- end -}}",
     "zxc.20260125172839.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260126160624.1": "[\".local/lib/ble-nightly\"]\n    type = \"archive\"\n    url = \"https://github.com/akinomyoga/ble.sh/releases/download/nightly/ble-nightly.tar.xz\"\n    exact = true\n    stripComponents = 1\n    refreshPeriod = \"168h\"\n",
+    "zxc.20260130221131.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260130221131.2": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260130221536.1": "[\".vim/autoload/plug.vim\"]\n    type = \"file\"\n    url = \"https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim\"\n    refreshPeriod = \"168h\"\n",
+    "zxc.20260130221550.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260130221550.2": "[\"vimfiles/autoload/plug.vim\"]\n    type = \"file\"\n    url = \"https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim\"\n    refreshPeriod = \"168h\"\n",
     "zxc.20260130074346.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260130074346.2": "[\".cache/vscodium/extensions/vsnetrw.vsix\"]\n    type = \"file\"\n    url = \"https://github.com/danprince/vsnetrw/releases/download/v0.3.2/vsnetrw-0.3.2.vsix\"\n",
     "zxc.20260126160530.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"emacs\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -1384,6 +1415,9 @@
     },
     "zxc.20260125172839.1": {
       "_mod_time": 1769413173.978
+    },
+    "zxc.20260130221131.1": {
+      "_mod_time": 1769782573.862
     },
     "zxc.20260130074346.1": {
       "_mod_time": 1769730301.983
