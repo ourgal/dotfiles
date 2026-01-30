@@ -1,0 +1,11 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "alacritty" -}}
+[window]
+opacity = 0.9
+[font]
+size = 12
+[font.normal]
+family = "Maple Mono NF CN"
+style = "Regular"
+{{ end -}}
+{{ end -}}
