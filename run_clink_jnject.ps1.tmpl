@@ -1,0 +1,7 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "clink" -}}
+if (-not (clink autorun show | rg inject)) {
+    clink autorun install
+}
+{{ end -}}
+{{ end -}}
