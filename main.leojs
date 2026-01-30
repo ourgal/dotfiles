@@ -1108,6 +1108,32 @@
               "vh": "@path Roaming",
               "children": [
                 {
+                  "gnx": "zxc.20260130233118.1",
+                  "vh": "@path alacritty",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260130233132.1",
+                      "vh": "@clean alacritty.toml.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260130233158.1",
+                          "vh": "window"
+                        },
+                        {
+                          "gnx": "zxc.20260130233313.1",
+                          "vh": "font",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260130233323.1",
+                              "vh": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
                   "gnx": "zxc.20260128002605.1",
                   "vh": "@path Microsoft",
                   "children": [
@@ -1419,6 +1445,10 @@
     "zxc.20260128002953.1": "{{ if and (lookPath \"wt\") (lookPath \"pwsh\") -}}\nRunScoop(\"Windows Terminal\")\n{{ end -}}\n",
     "zxc.20260128003533.1": "{{ if stat \"D:/ProgramsFiles/Mozilla Firefox/firefox.exe\" -}}\nRun(\"D:/ProgramsFiles/Mozilla Firefox/firefox.exe\", , \"Max\")\n{{ else if lookPath \"brave\" -}}\nRun(\"D:/scoop/apps/brave/current/brave.exe\", \"c:/users/user\" , \"Max\")\n{{ end -}}",
     "zxc.20260128010842.1": "{{ if and ( stat \"C:/ProgramData/scoop/apps/deskflow/current/settings/Deskflow.conf\" ) (lookPath \"deskflow-core\") -}}\nRun(\"deskflow-core client\", , \"Hide\")\n{{ end -}}",
+    "zxc.20260130233132.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"alacritty\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260130233158.1": "[window]\nopacity = 0.9",
+    "zxc.20260130233313.1": "[font]\nsize = 12",
+    "zxc.20260130233323.1": "[font.normal]\nfamily = \"Maple Mono NF CN\"\nstyle = \"Regular\"",
     "zxc.20260128002742.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
     "zxc.20260129232256.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260129232413.1": "codium --update-extensions\n$extensions = @(\n    @others\n    )\nforeach ($e in $extensions) {\n    Write-Host \"Install vscodium extension $e\"\n    codium --install-extension $e\n}",
@@ -1517,6 +1547,9 @@
     },
     "zxc.20260125211938.1": {
       "_mod_time": 1769425167.866
+    },
+    "zxc.20260130233132.1": {
+      "_mod_time": 1769787237.559
     },
     "zxc.20260128002742.1": {
       "_mod_time": 1769699710.787
