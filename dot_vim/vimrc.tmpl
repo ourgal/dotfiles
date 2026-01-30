@@ -1,5 +1,12 @@
 {{ if or ( eq .chezmoi.os "linux" ) ( eq .chezmoi.os "windows") -}}
 {{ if lookPath "vim" -}}
+{{ if eq .chezmoi.os "linux" -}}
+if empty(glob('~/.vim/plugged/'))
+{{ else if eq .chezmoi.os "windows" -}}
+if empty(glob('~/vimfiles/plugged/'))
+{{ end -}}
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 import 'options.vim'
 import 'keymap.vim'
 import 'plugins_config.vim'
