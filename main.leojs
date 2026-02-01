@@ -1370,6 +1370,10 @@
                           "gnx": "zxc.20260201203539.1"
                         }
                       ]
+                    },
+                    {
+                      "gnx": "zxc.20260201214114.1",
+                      "vh": "@clean sshcontrol.tmpl"
                     }
                   ]
                 },
@@ -1741,6 +1745,7 @@
     "zxc.20260125211938.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260201203241.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260201203515.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260201214114.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gpg\" -}}\nC92C2BCD646A0DE6A60E1C5397CA97FDBE330909\n{{ end -}}\n{{ end -}}",
     "zxc.20260201140523.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gitui\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260130233132.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"alacritty\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260128002742.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
@@ -1855,6 +1860,9 @@
     },
     "zxc.20260201203515.1": {
       "_mod_time": 1769949354.423
+    },
+    "zxc.20260201214114.1": {
+      "_mod_time": 1769953344.166
     },
     "zxc.20260201140523.1": {
       "_mod_time": 1769926033.493
