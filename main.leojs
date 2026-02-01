@@ -661,10 +661,6 @@
               "vh": "zoxide"
             },
             {
-              "gnx": "zxc.20260125213537.1",
-              "vh": "mcfly"
-            },
-            {
               "gnx": "zxc.20260125213409.1",
               "vh": "PSFzf",
               "children": [
@@ -673,6 +669,10 @@
                   "vh": "Ctrl+o"
                 }
               ]
+            },
+            {
+              "gnx": "zxc.20260125213537.1",
+              "vh": "mcfly"
             }
           ]
         }
@@ -1607,9 +1607,9 @@
     "zxc.20260125212930.1": "{{ if lookPath \"carapace\" -}}\n# carapace\n$env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense,powershell' # optional\nSet-PSReadLineOption -Colors @{ \"Selection\" = \"`e[7m\" }\nSet-PSReadlineKeyHandler -Key Tab -Function MenuComplete\ncarapace _carapace | Out-String | Invoke-Expression\n{{ end -}}",
     "zxc.20260125213126.1": "{{ if lookPath \"starship\" -}}\n# starship\nInvoke-Expression (&starship init powershell)\n{{ end -}}\n",
     "zxc.20260125213514.1": "{{ if lookPath \"zoxide\" -}}\n# zoxide\nInvoke-Expression (& { (zoxide init powershell | Out-String) })\n{{ end -}}",
-    "zxc.20260125213537.1": "{{ if lookPath \"mcfly\" -}}\n# mcfly\nInvoke-Expression -Command $(mcfly init powershell | out-string)\n{{ end -}}",
     "zxc.20260125213409.1": "# PSFzf\nImport-Module PSFzf\nSet-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r' -EnableAliasFuzzyKillProcess\n# Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }",
     "zxc.20260125213432.1": "Set-PSReadLineKeyHandler -Key Ctrl+o `\n                         -BriefDescription FuzzyEdit `\n                         -LongDescription \"Fuzzy Edit\" `\n                         -ScriptBlock {\n    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()\n    [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"Invoke-FuzzyEdit\")\n    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()\n}",
+    "zxc.20260125213537.1": "{{ if lookPath \"mcfly\" -}}\n# mcfly\nInvoke-Expression -Command $(mcfly init powershell | out-string)\n{{ end -}}",
     "zxc.20260128200402.1": "RunScoop(app)\n{\n    appdata_dir := EnvGet(\"AppData\")\n    user_dir := EnvGet(\"userprofile\")\n    scoop_apps_dir := appdata_dir . \"/Microsoft/Windows/Start Menu/Programs/Scoop Apps\"\n    Run(scoop_apps_dir . \"/\" . app . \".lnk\", user_dir, \"Max\")\n}",
     "zxc.20260128002953.1": "{{ if and (lookPath \"wt\") (lookPath \"pwsh\") -}}\nRunScoop(\"Windows Terminal\")\n{{ end -}}\n",
     "zxc.20260128003533.1": "{{ if stat \"C:/Program Files/Mozilla Firefox/firefox.exe\" -}}\nRun(\"C:/Program Files/Mozilla Firefox/firefox.exe\", , \"Max\")\n{{ else if lookPath \"brave\" -}}\nRun(\"D:/scoop/apps/brave/current/brave.exe\", \"c:/users/user\" , \"Max\")\n{{ end -}}",
@@ -1795,7 +1795,7 @@
       "_mod_time": 1769933807.296
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1769425167.866
+      "_mod_time": 1769941258.864
     },
     "zxc.20260201140523.1": {
       "_mod_time": 1769926033.493

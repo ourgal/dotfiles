@@ -224,10 +224,6 @@ Invoke-Expression (&starship init powershell)
 # zoxide
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 {{ end -}}
-{{ if lookPath "mcfly" -}}
-# mcfly
-Invoke-Expression -Command $(mcfly init powershell | out-string)
-{{ end -}}
 # PSFzf
 Import-Module PSFzf
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r' -EnableAliasFuzzyKillProcess
@@ -240,5 +236,9 @@ Set-PSReadLineKeyHandler -Key Ctrl+o `
     [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Invoke-FuzzyEdit")
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
+{{ if lookPath "mcfly" -}}
+# mcfly
+Invoke-Expression -Command $(mcfly init powershell | out-string)
+{{ end -}}
 {{ end -}}
 {{ end -}}
