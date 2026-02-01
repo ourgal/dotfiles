@@ -1,0 +1,6 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "gpg-agent" -}}
+enable-ssh-support
+grab
+{{ end -}}
+{{ end -}}
