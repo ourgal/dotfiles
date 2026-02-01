@@ -17,7 +17,7 @@ Run("D:/scoop/apps/brave/current/brave.exe", "c:/users/user" , "Max")
 {{ if and (lookPath "gpgconf") (lookPath "gpg-agent") -}}
 Run("gpgconf --launch gpg-agent", , "Hide")
 {{ end -}}
-{{ if and ( stat "C:/ProgramData/scoop/apps/deskflow/current/settings/Deskflow.conf" ) (lookPath "deskflow-core") -}}
+{{ if and (eq .chezmoi.hostname "nuc") (lookPath "deskflow-core") -}}
 Run("deskflow-core client", , "Hide")
 {{ end -}}
 {{ end -}}
