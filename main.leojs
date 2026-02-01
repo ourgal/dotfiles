@@ -1262,6 +1262,56 @@
               "vh": "@path persist",
               "children": [
                 {
+                  "gnx": "zxc.20260201225325.1",
+                  "vh": "@path deskflow",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260201225329.1",
+                      "vh": "@path settings",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260201225631.1",
+                          "vh": "@path tls",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260201225652.1",
+                              "vh": "@clean deskflow.pem.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260201225724.1",
+                                  "vh": "nuc",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260201225748.1",
+                                      "vh": "main"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "gnx": "zxc.20260201225344.1",
+                          "vh": "@clean Deskflow.conf.tmpl",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260201225427.1",
+                              "vh": "nuc",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260201225513.1",
+                                  "vh": "main"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
                   "gnx": "zxc.20260201034306.1",
                   "vh": "@path windows-terminal",
                   "children": [
@@ -1741,6 +1791,12 @@
     "zxc.20260125153131.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260125153012.2": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260125161631.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"hx\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260201225652.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
+    "zxc.20260201225724.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}",
+    "zxc.20260201225748.1": "{{ gopassRaw \"deskflow/tls/nuc.pem\" -}}",
+    "zxc.20260201225344.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
+    "zxc.20260201225427.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}",
+    "zxc.20260201225513.1": "[core]\nscreenName=nuc\nlastVersion=1.25.0.0\ncoreMode=1\nport=24800\ninterface=\npreventSleep=false\nlanguage=English\nwlClipboard=false\nprocessMode=1\nstartedBefore=true\n\n[internalConfig]\nnumColumns=5\nnumRows=3\nhasHeartbeat=false\nheartbeat=5000\nprotocol=1\nrelativeMouseMoves=false\nwin32KeepForeground=false\nhasSwitchDelay=false\nswitchDelay=250\nhasSwitchDoubleTap=false\nswitchDoubleTap=250\nswitchCornerSize=0\ndisableLockToScreen=false\nclipboardSharing=true\nclipboardSharingSize=3072\nswitchCornerArray\\1\\switchCorner=false\nswitchCornerArray\\2\\switchCorner=false\nswitchCornerArray\\3\\switchCorner=false\nswitchCornerArray\\4\\switchCorner=false\nswitchCornerArray\\size=4\nscreens\\1\\name=\nscreens\\2\\name=\nscreens\\3\\name=\nscreens\\4\\name=\nscreens\\5\\name=\nscreens\\6\\name=\nscreens\\7\\name=\nscreens\\8\\name=\nscreens\\9\\name=\nscreens\\10\\name=\nscreens\\11\\name=\nscreens\\12\\name=\nscreens\\13\\name=\nscreens\\14\\name=\nscreens\\15\\name=\nscreens\\size=15\nhotkeys\\size=0\n\n[gui]\nlogExpanded=true\nwindowGeometry=@Rect(674 293 572 493)\nenableUpdateCheck=false\nautoHide=true\ncloseToTray=true\nsymbolicTrayIcon=true\ncloseReminder=false\n\n[log]\nlevel=4\ntoFile=false\nfile=C:/Users/User/deskflow.log\nguiDebug=false\n\n[daemon]\nelevate=false\n\n[security]\ncertificate=C:/Users/User/scoop/apps/deskflow/current/settings/tls/deskflow.pem\nkeySize=2048\ntlsEnabled=true\ncheckPeerFingerprints=true\n\n[client]\nlanguageSync=true\ninvertScrollDirection=false\nyscroll=120\nremoteHost=home.local",
     "zxc.20260201034331.1": "@others",
     "zxc.20260125211938.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260201203241.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -1848,6 +1904,12 @@
     },
     "zxc.20260125161631.1": {
       "_mod_time": 1769342489.193
+    },
+    "zxc.20260201225652.1": {
+      "_mod_time": 1769958182.281
+    },
+    "zxc.20260201225344.1": {
+      "_mod_time": 1769957772.292
     },
     "zxc.20260201034331.1": {
       "_mod_time": 1769933807.296
