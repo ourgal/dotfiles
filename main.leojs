@@ -1115,6 +1115,26 @@
       ]
     },
     {
+      "gnx": "zxc.20260201203400.1",
+      "vh": "gnupg",
+      "children": [
+        {
+          "gnx": "zxc.20260201203315.1",
+          "vh": "main"
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260201203500.1",
+      "vh": "gpg-agent",
+      "children": [
+        {
+          "gnx": "zxc.20260201203539.1",
+          "vh": "main"
+        }
+      ]
+    },
+    {
       "gnx": "zxc.20260125152614.1",
       "vh": "config",
       "children": [
@@ -1325,6 +1345,30 @@
               "gnx": "zxc.20260128002541.1",
               "vh": "@path Roaming",
               "children": [
+                {
+                  "gnx": "zxc.20260201203219.1",
+                  "vh": "@path gnupg",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260201203241.1",
+                      "vh": "@clean gpg.conf.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260201203315.1"
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260201203515.1",
+                      "vh": "@clean gpg-agent.conf.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260201203539.1"
+                        }
+                      ]
+                    }
+                  ]
+                },
                 {
                   "gnx": "zxc.20260201140455.1",
                   "vh": "@path gitui",
@@ -1679,6 +1723,8 @@
     "zxc.20260125162220.1": "[keys.normal.Z]\nQ = \":qa!\"\nZ = \":xa\"",
     "zxc.20260125162302.1": "[keys.normal.space.l]\nf = \":fmt\"",
     "zxc.20260125162324.1": "[keys.select.g]\nc = \"toggle_comments\"\nz = [\"split_selection_on_newline\", \":sort\", \"keep_primary_selection\"]\n",
+    "zxc.20260201203315.1": "armor\ncert-digest-algo SHA512\ncharset utf-8\ndefault-preference-list SHA512 SHA384 SHA256 AES256 AES192 AES ZLIB BZIP2 ZIP Uncompressed\nfixed-list-mode\nkeyid-format 0xlong\nlist-options show-uid-validity\nno-comments\nno-emit-version\nno-greeting\nno-symkey-cache\npersonal-cipher-preferences AES256 AES192 AES\npersonal-compress-preferences ZLIB BZIP2 ZIP Uncompressed\npersonal-digest-preferences SHA512 SHA384 SHA256\nrequire-cross-certification\nrequire-secmem\ns2k-cipher-algo AES256\ns2k-digest-algo SHA512\nthrow-keyids\nuse-agent\nverify-options show-uid-validity\nwith-fingerprint",
+    "zxc.20260201203539.1": "enable-ssh-support\ngrab",
     "zxc.20260126154354.1": "{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}",
     "zxc.20260125145051.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125152704.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -1688,6 +1734,8 @@
     "zxc.20260125161631.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"hx\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260201034331.1": "@others",
     "zxc.20260125211938.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260201203241.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260201203515.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260201140523.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gitui\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260130233132.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"alacritty\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260128002742.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
@@ -1796,6 +1844,12 @@
     },
     "zxc.20260125211938.1": {
       "_mod_time": 1769941258.864
+    },
+    "zxc.20260201203241.1": {
+      "_mod_time": 1769949230.207
+    },
+    "zxc.20260201203515.1": {
+      "_mod_time": 1769949354.423
     },
     "zxc.20260201140523.1": {
       "_mod_time": 1769926033.493
