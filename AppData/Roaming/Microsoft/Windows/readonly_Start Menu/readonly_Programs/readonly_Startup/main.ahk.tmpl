@@ -14,6 +14,9 @@ Run("C:/Program Files/Mozilla Firefox/firefox.exe", , "Max")
 {{ else if lookPath "brave" -}}
 Run("D:/scoop/apps/brave/current/brave.exe", "c:/users/user" , "Max")
 {{ end -}}
+{{ if and (lookPath "gpgconf") (lookPath "gpg-agent") -}}
+Run("gpgconf --launch gpg-agent", , "Hide")
+{{ end -}}
 {{ if and ( stat "C:/ProgramData/scoop/apps/deskflow/current/settings/Deskflow.conf" ) (lookPath "deskflow-core") -}}
 Run("deskflow-core client", , "Hide")
 {{ end -}}
