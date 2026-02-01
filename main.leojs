@@ -1251,6 +1251,36 @@
       ]
     },
     {
+      "gnx": "zxc.20260201141015.1",
+      "vh": "ssh",
+      "children": [
+        {
+          "gnx": "zxc.20260201141021.1",
+          "vh": "@path dot_ssh",
+          "children": [
+            {
+              "gnx": "zxc.20260201141149.1",
+              "vh": "@clean config.tmpl",
+              "children": [
+                {
+                  "gnx": "zxc.20260201141201.1",
+                  "vh": "soft"
+                },
+                {
+                  "gnx": "zxc.20260201141231.1",
+                  "vh": "github"
+                },
+                {
+                  "gnx": "zxc.20260201141321.1",
+                  "vh": "termux"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "gnx": "zxc.20260128194040.1",
       "vh": "scripts",
       "children": [
@@ -1536,6 +1566,10 @@
     "zxc.20260130233313.1": "[font]\nsize = 12",
     "zxc.20260130233323.1": "[font.normal]\nfamily = \"Maple Mono NF CN\"\nstyle = \"Regular\"",
     "zxc.20260128002742.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
+    "zxc.20260201141149.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\") -}}\n{{ if lookPath \"ssh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260201141201.1": "Host soft\n  Port 23231\n  HostName brix.local",
+    "zxc.20260201141231.1": "Host github.com\n  HostName ssh.github.com\n  Port 443\n  User git",
+    "zxc.20260201141321.1": "Host termux\n  Port 8022\n  User u0_a661\n  HostName localhost\n",
     "zxc.20260129232256.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260129232413.1": "codium --update-extensions\n$extensions = @(\n    @others\n    )\nforeach ($e in $extensions) {\n    Write-Host \"Install vscodium extension $e\"\n    codium --install-extension $e\n}",
     "zxc.20260129234738.1": "\"tamasfe.even-better-toml\"\n",
@@ -1647,6 +1681,9 @@
     },
     "zxc.20260128002742.1": {
       "_mod_time": 1769887987.691
+    },
+    "zxc.20260201141149.1": {
+      "_mod_time": 1769926740.275
     },
     "zxc.20260129232256.1": {
       "_mod_time": 1769781758.889
