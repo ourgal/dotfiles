@@ -132,6 +132,32 @@
       "vh": "chezmoi",
       "children": [
         {
+          "gnx": "zxc.20260201142826.1",
+          "vh": "config",
+          "children": [
+            {
+              "gnx": "zxc.20260126154557.1",
+              "vh": "main",
+              "children": [
+                {
+                  "gnx": "zxc.20260126154722.1",
+                  "vh": "windows",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260126154908.1",
+                      "vh": "interpreter"
+                    },
+                    {
+                      "gnx": "zxc.20260126154820.1",
+                      "vh": "cd"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "gnx": "zxc.20260125144427.1",
           "vh": "ignore",
           "children": [
@@ -264,388 +290,6 @@
                     {
                       "gnx": "zxc.20260126160721.1",
                       "vh": "main"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "gnx": "zxc.20260125152614.1",
-      "vh": "config",
-      "children": [
-        {
-          "gnx": "zxc.20260125152115.1",
-          "vh": "@path private_dot_config",
-          "children": [
-            {
-              "gnx": "zxc.20260126154334.1",
-              "vh": "chezmoi",
-              "children": [
-                {
-                  "gnx": "zxc.20260126154354.1",
-                  "vh": "@clean chezmoi/chezmoi.toml.tmpl",
-                  "children": [
-                    {
-                      "gnx": "zxc.20260126154557.1",
-                      "vh": "main",
-                      "children": [
-                        {
-                          "gnx": "zxc.20260126154722.1",
-                          "vh": "windows",
-                          "children": [
-                            {
-                              "gnx": "zxc.20260126154908.1",
-                              "vh": "interpreter"
-                            },
-                            {
-                              "gnx": "zxc.20260126154820.1",
-                              "vh": "cd"
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "gnx": "zxc.20260125152627.1",
-              "vh": "starship",
-              "children": [
-                {
-                  "gnx": "zxc.20260125145051.1",
-                  "vh": "@clean starship.toml.tmpl",
-                  "children": [
-                    {
-                      "gnx": "zxc.20260125145640.1",
-                      "vh": "main"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "gnx": "zxc.20260125152649.1",
-              "vh": "atuin",
-              "children": [
-                {
-                  "gnx": "zxc.20260125152704.1",
-                  "vh": "@clean atuin/config.toml.tmpl",
-                  "children": [
-                    {
-                      "gnx": "zxc.20260125152804.1",
-                      "vh": "main"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "gnx": "zxc.20260125152851.1",
-              "vh": "tealdeer",
-              "children": [
-                {
-                  "gnx": "zxc.20260125152851.2",
-                  "vh": "@clean tealdeer/config.toml.tmpl",
-                  "children": [
-                    {
-                      "gnx": "zxc.20260125152851.3",
-                      "vh": "main"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "gnx": "zxc.20260125153012.1",
-              "vh": "git",
-              "children": [
-                {
-                  "gnx": "zxc.20260125153131.1",
-                  "vh": "@clean git/template.tmpl",
-                  "children": [
-                    {
-                      "gnx": "zxc.20260125153131.2",
-                      "vh": "main"
-                    }
-                  ]
-                },
-                {
-                  "gnx": "zxc.20260125153012.2",
-                  "vh": "@clean git/config.tmpl",
-                  "children": [
-                    {
-                      "gnx": "zxc.20260125153252.1",
-                      "vh": "advice"
-                    },
-                    {
-                      "gnx": "zxc.20260125153318.1",
-                      "vh": "branch"
-                    },
-                    {
-                      "gnx": "zxc.20260125153332.1",
-                      "vh": "color",
-                      "children": [
-                        {
-                          "gnx": "zxc.20260125153946.1",
-                          "vh": "decorate"
-                        },
-                        {
-                          "gnx": "zxc.20260125153958.1",
-                          "vh": "diff"
-                        },
-                        {
-                          "gnx": "zxc.20260125153928.1",
-                          "vh": "branch"
-                        }
-                      ]
-                    },
-                    {
-                      "gnx": "zxc.20260125153436.1",
-                      "vh": "column"
-                    },
-                    {
-                      "gnx": "zxc.20260125153348.1",
-                      "vh": "commit"
-                    },
-                    {
-                      "gnx": "zxc.20260125153401.1",
-                      "vh": "core"
-                    },
-                    {
-                      "gnx": "zxc.20260125153421.1",
-                      "vh": "credential",
-                      "children": [
-                        {
-                          "gnx": "zxc.20260125154038.1",
-                          "vh": "gist.github.com"
-                        },
-                        {
-                          "gnx": "zxc.20260125154056.1",
-                          "vh": "github.com"
-                        }
-                      ]
-                    },
-                    {
-                      "gnx": "zxc.20260125153456.1",
-                      "vh": "delta",
-                      "children": [
-                        {
-                          "gnx": "zxc.20260125154233.1",
-                          "vh": "side by side"
-                        },
-                        {
-                          "gnx": "zxc.20260125154225.1",
-                          "vh": "navigate"
-                        },
-                        {
-                          "gnx": "zxc.20260125154220.1",
-                          "vh": "file-yellow"
-                        }
-                      ]
-                    },
-                    {
-                      "gnx": "zxc.20260125153507.1",
-                      "vh": "diff"
-                    },
-                    {
-                      "gnx": "zxc.20260125153521.1",
-                      "vh": "diff-so-fancy"
-                    },
-                    {
-                      "gnx": "zxc.20260125153531.1",
-                      "vh": "fetch"
-                    },
-                    {
-                      "gnx": "zxc.20260125153546.1",
-                      "vh": "filter"
-                    },
-                    {
-                      "gnx": "zxc.20260125153554.1",
-                      "vh": "gpg"
-                    },
-                    {
-                      "gnx": "zxc.20260125153601.1",
-                      "vh": "help"
-                    },
-                    {
-                      "gnx": "zxc.20260125153609.1",
-                      "vh": "init"
-                    },
-                    {
-                      "gnx": "zxc.20260125153617.1",
-                      "vh": "interactive"
-                    },
-                    {
-                      "gnx": "zxc.20260125153637.1",
-                      "vh": "interactive-rebase-tool"
-                    },
-                    {
-                      "gnx": "zxc.20260125153648.1",
-                      "vh": "log"
-                    },
-                    {
-                      "gnx": "zxc.20260125153702.1",
-                      "vh": "merge"
-                    },
-                    {
-                      "gnx": "zxc.20260125153708.1",
-                      "vh": "pull"
-                    },
-                    {
-                      "gnx": "zxc.20260125153715.1",
-                      "vh": "push"
-                    },
-                    {
-                      "gnx": "zxc.20260125153727.1",
-                      "vh": "rebase"
-                    },
-                    {
-                      "gnx": "zxc.20260125153745.1",
-                      "vh": "rerere"
-                    },
-                    {
-                      "gnx": "zxc.20260125153759.1",
-                      "vh": "sequence"
-                    },
-                    {
-                      "gnx": "zxc.20260125153816.1",
-                      "vh": "status"
-                    },
-                    {
-                      "gnx": "zxc.20260125153823.1",
-                      "vh": "tag"
-                    },
-                    {
-                      "gnx": "zxc.20260125153835.1",
-                      "vh": "url",
-                      "children": [
-                        {
-                          "gnx": "zxc.20260125154343.1",
-                          "vh": "soft"
-                        },
-                        {
-                          "gnx": "zxc.20260125154332.1",
-                          "vh": "my github"
-                        },
-                        {
-                          "gnx": "zxc.20260125154321.1",
-                          "vh": "github"
-                        }
-                      ]
-                    },
-                    {
-                      "gnx": "zxc.20260125153842.1",
-                      "vh": "user"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "gnx": "zxc.20260125161612.1",
-              "vh": "helix",
-              "children": [
-                {
-                  "gnx": "zxc.20260125161631.1",
-                  "vh": "@clean helix/config.toml.tmpl",
-                  "children": [
-                    {
-                      "gnx": "zxc.20260125161740.1",
-                      "vh": "theme"
-                    },
-                    {
-                      "gnx": "zxc.20260125161845.1",
-                      "vh": "editor",
-                      "children": [
-                        {
-                          "gnx": "zxc.20260125161912.1",
-                          "vh": "auto-save",
-                          "children": [
-                            {
-                              "gnx": "zxc.20260125161937.1",
-                              "vh": "after delay"
-                            }
-                          ]
-                        },
-                        {
-                          "gnx": "zxc.20260125162004.1",
-                          "vh": "cursor shape"
-                        },
-                        {
-                          "gnx": "zxc.20260125162038.1",
-                          "vh": "indent guides"
-                        },
-                        {
-                          "gnx": "zxc.20260125162057.1",
-                          "vh": "lsp"
-                        },
-                        {
-                          "gnx": "zxc.20260125162111.1",
-                          "vh": "soft-wrap"
-                        },
-                        {
-                          "gnx": "zxc.20260125162130.1",
-                          "vh": "statusline",
-                          "children": [
-                            {
-                              "gnx": "zxc.20260125162140.1",
-                              "vh": "mode"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "gnx": "zxc.20260125162157.1",
-                      "vh": "keys",
-                      "children": [
-                        {
-                          "gnx": "zxc.20260125162216.1",
-                          "vh": "normal",
-                          "children": [
-                            {
-                              "gnx": "zxc.20260125162236.1",
-                              "vh": "g",
-                              "children": [
-                                {
-                                  "gnx": "zxc.20260125162248.1",
-                                  "vh": "c"
-                                }
-                              ]
-                            },
-                            {
-                              "gnx": "zxc.20260125162220.1",
-                              "vh": "Z"
-                            },
-                            {
-                              "gnx": "zxc.20260125162300.1",
-                              "vh": "space",
-                              "children": [
-                                {
-                                  "gnx": "zxc.20260125162302.1",
-                                  "vh": "l"
-                                }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          "gnx": "zxc.20260125162320.1",
-                          "vh": "select",
-                          "children": [
-                            {
-                              "gnx": "zxc.20260125162324.1",
-                              "vh": "g"
-                            }
-                          ]
-                        }
-                      ]
                     }
                   ]
                 }
@@ -921,149 +565,116 @@
       ]
     },
     {
-      "gnx": "zxc.20260125211832.1",
-      "vh": "Documents",
-      "children": [
-        {
-          "gnx": "zxc.20260125211837.1",
-          "vh": "@path readonly_Documents",
-          "children": [
-            {
-              "gnx": "zxc.20260125211902.1",
-              "vh": "@path PowerShell",
-              "children": [
-                {
-                  "gnx": "zxc.20260125211930.1",
-                  "vh": "powershell config",
-                  "children": [
-                    {
-                      "gnx": "zxc.20260125211938.1",
-                      "vh": "@clean Microsoft.PowerShell_profile.ps1.tmpl",
-                      "children": [
-                        {
-                          "gnx": "zxc.20260128004429.1",
-                          "vh": "content",
-                          "children": [
-                            {
-                              "gnx": "zxc.20260125212003.1",
-                              "vh": "env"
-                            },
-                            {
-                              "gnx": "zxc.20260125212135.1",
-                              "vh": "sfsu"
-                            },
-                            {
-                              "gnx": "zxc.20260125212222.1",
-                              "vh": "alias"
-                            },
-                            {
-                              "gnx": "zxc.20260125212238.1",
-                              "vh": "PSReadline",
-                              "children": [
-                                {
-                                  "gnx": "zxc.20260125212355.1",
-                                  "vh": "smart pair"
-                                },
-                                {
-                                  "gnx": "zxc.20260125212447.1",
-                                  "vh": "Alt+e"
-                                },
-                                {
-                                  "gnx": "zxc.20260125212508.1",
-                                  "vh": "lazygit keybinding"
-                                },
-                                {
-                                  "gnx": "zxc.20260125213200.1",
-                                  "vh": "option color"
-                                },
-                                {
-                                  "gnx": "zxc.20260125213451.1",
-                                  "vh": "Ctrl+d"
-                                }
-                              ]
-                            },
-                            {
-                              "gnx": "zxc.20260125212535.1",
-                              "vh": "functions",
-                              "children": [
-                                {
-                                  "gnx": "zxc.20260125212538.1",
-                                  "vh": "ll"
-                                },
-                                {
-                                  "gnx": "zxc.20260125212625.1",
-                                  "vh": "lla"
-                                },
-                                {
-                                  "gnx": "zxc.20260125212708.1",
-                                  "vh": "bd"
-                                },
-                                {
-                                  "gnx": "zxc.20260125212737.1",
-                                  "vh": "git commit and push"
-                                },
-                                {
-                                  "gnx": "zxc.20260125213232.1",
-                                  "vh": "scroff"
-                                },
-                                {
-                                  "gnx": "zxc.20260125213331.1",
-                                  "vh": "yt"
-                                },
-                                {
-                                  "gnx": "zxc.20260125213305.1",
-                                  "vh": "scoop update"
-                                }
-                              ]
-                            },
-                            {
-                              "gnx": "zxc.20260125212857.1",
-                              "vh": "choco"
-                            },
-                            {
-                              "gnx": "zxc.20260125212930.1",
-                              "vh": "carapace"
-                            },
-                            {
-                              "gnx": "zxc.20260125213126.1",
-                              "vh": "starship"
-                            },
-                            {
-                              "gnx": "zxc.20260125213514.1",
-                              "vh": "zoxide"
-                            },
-                            {
-                              "gnx": "zxc.20260125213537.1",
-                              "vh": "mcfly"
-                            },
-                            {
-                              "gnx": "zxc.20260125213409.1",
-                              "vh": "PSFzf",
-                              "children": [
-                                {
-                                  "gnx": "zxc.20260125213432.1",
-                                  "vh": "Ctrl+o"
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
       "gnx": "zxc.20260128004417.1",
       "vh": "pwsh config",
       "children": [
         {
-          "gnx": "zxc.20260128004429.1"
+          "gnx": "zxc.20260128004429.1",
+          "vh": "content",
+          "children": [
+            {
+              "gnx": "zxc.20260125212003.1",
+              "vh": "env"
+            },
+            {
+              "gnx": "zxc.20260125212135.1",
+              "vh": "sfsu"
+            },
+            {
+              "gnx": "zxc.20260125212222.1",
+              "vh": "alias"
+            },
+            {
+              "gnx": "zxc.20260125212238.1",
+              "vh": "PSReadline",
+              "children": [
+                {
+                  "gnx": "zxc.20260125212355.1",
+                  "vh": "smart pair"
+                },
+                {
+                  "gnx": "zxc.20260125212447.1",
+                  "vh": "Alt+e"
+                },
+                {
+                  "gnx": "zxc.20260125212508.1",
+                  "vh": "lazygit keybinding"
+                },
+                {
+                  "gnx": "zxc.20260125213200.1",
+                  "vh": "option color"
+                },
+                {
+                  "gnx": "zxc.20260125213451.1",
+                  "vh": "Ctrl+d"
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260125212535.1",
+              "vh": "functions",
+              "children": [
+                {
+                  "gnx": "zxc.20260125212538.1",
+                  "vh": "ll"
+                },
+                {
+                  "gnx": "zxc.20260125212625.1",
+                  "vh": "lla"
+                },
+                {
+                  "gnx": "zxc.20260125212708.1",
+                  "vh": "bd"
+                },
+                {
+                  "gnx": "zxc.20260125212737.1",
+                  "vh": "git commit and push"
+                },
+                {
+                  "gnx": "zxc.20260125213232.1",
+                  "vh": "scroff"
+                },
+                {
+                  "gnx": "zxc.20260125213331.1",
+                  "vh": "yt"
+                },
+                {
+                  "gnx": "zxc.20260125213305.1",
+                  "vh": "scoop update"
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260125212857.1",
+              "vh": "choco"
+            },
+            {
+              "gnx": "zxc.20260125212930.1",
+              "vh": "carapace"
+            },
+            {
+              "gnx": "zxc.20260125213126.1",
+              "vh": "starship"
+            },
+            {
+              "gnx": "zxc.20260125213514.1",
+              "vh": "zoxide"
+            },
+            {
+              "gnx": "zxc.20260125213537.1",
+              "vh": "mcfly"
+            },
+            {
+              "gnx": "zxc.20260125213409.1",
+              "vh": "PSFzf",
+              "children": [
+                {
+                  "gnx": "zxc.20260125213432.1",
+                  "vh": "Ctrl+o"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -1096,6 +707,525 @@
       ]
     },
     {
+      "gnx": "zxc.20260201142055.1",
+      "vh": "windows terminal",
+      "children": [
+        {
+          "gnx": "zxc.20260201142202.1",
+          "vh": "content",
+          "children": [
+            {
+              "gnx": "zxc.20260201034404.1",
+              "vh": "<< common >>"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260201142417.1",
+      "vh": "gitui",
+      "children": [
+        {
+          "gnx": "zxc.20260201140637.1",
+          "vh": "content"
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260201142531.1",
+      "vh": "alacritty",
+      "children": [
+        {
+          "gnx": "zxc.20260201142451.1",
+          "vh": "content",
+          "children": [
+            {
+              "gnx": "zxc.20260130233158.1",
+              "vh": "window"
+            },
+            {
+              "gnx": "zxc.20260130233313.1",
+              "vh": "font",
+              "children": [
+                {
+                  "gnx": "zxc.20260130233323.1",
+                  "vh": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260201141015.1",
+      "vh": "ssh",
+      "children": [
+        {
+          "gnx": "zxc.20260201141021.1",
+          "vh": "@path dot_ssh",
+          "children": [
+            {
+              "gnx": "zxc.20260201141149.1",
+              "vh": "@clean config.tmpl",
+              "children": [
+                {
+                  "gnx": "zxc.20260201141201.1",
+                  "vh": "soft"
+                },
+                {
+                  "gnx": "zxc.20260201141231.1",
+                  "vh": "github"
+                },
+                {
+                  "gnx": "zxc.20260201141321.1",
+                  "vh": "termux"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260201142902.1",
+      "vh": "starship",
+      "children": [
+        {
+          "gnx": "zxc.20260125145640.1",
+          "vh": "main"
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260201142928.1",
+      "vh": "atuin",
+      "children": [
+        {
+          "gnx": "zxc.20260125152804.1",
+          "vh": "main"
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260201142947.1",
+      "vh": "tealdeer",
+      "children": [
+        {
+          "gnx": "zxc.20260125152851.3",
+          "vh": "main"
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260201143014.1",
+      "vh": "git",
+      "children": [
+        {
+          "gnx": "zxc.20260201143215.1",
+          "vh": "config",
+          "children": [
+            {
+              "gnx": "zxc.20260201143049.1",
+              "vh": "main",
+              "children": [
+                {
+                  "gnx": "zxc.20260125153252.1",
+                  "vh": "advice"
+                },
+                {
+                  "gnx": "zxc.20260125153318.1",
+                  "vh": "branch"
+                },
+                {
+                  "gnx": "zxc.20260125153332.1",
+                  "vh": "color",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125153946.1",
+                      "vh": "decorate"
+                    },
+                    {
+                      "gnx": "zxc.20260125153958.1",
+                      "vh": "diff"
+                    },
+                    {
+                      "gnx": "zxc.20260125153928.1",
+                      "vh": "branch"
+                    }
+                  ]
+                },
+                {
+                  "gnx": "zxc.20260125153436.1",
+                  "vh": "column"
+                },
+                {
+                  "gnx": "zxc.20260125153348.1",
+                  "vh": "commit"
+                },
+                {
+                  "gnx": "zxc.20260125153401.1",
+                  "vh": "core"
+                },
+                {
+                  "gnx": "zxc.20260125153421.1",
+                  "vh": "credential",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125154038.1",
+                      "vh": "gist.github.com"
+                    },
+                    {
+                      "gnx": "zxc.20260125154056.1",
+                      "vh": "github.com"
+                    }
+                  ]
+                },
+                {
+                  "gnx": "zxc.20260125153456.1",
+                  "vh": "delta",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125154233.1",
+                      "vh": "side by side"
+                    },
+                    {
+                      "gnx": "zxc.20260125154225.1",
+                      "vh": "navigate"
+                    },
+                    {
+                      "gnx": "zxc.20260125154220.1",
+                      "vh": "file-yellow"
+                    }
+                  ]
+                },
+                {
+                  "gnx": "zxc.20260125153507.1",
+                  "vh": "diff"
+                },
+                {
+                  "gnx": "zxc.20260125153521.1",
+                  "vh": "diff-so-fancy"
+                },
+                {
+                  "gnx": "zxc.20260125153531.1",
+                  "vh": "fetch"
+                },
+                {
+                  "gnx": "zxc.20260125153546.1",
+                  "vh": "filter"
+                },
+                {
+                  "gnx": "zxc.20260125153554.1",
+                  "vh": "gpg"
+                },
+                {
+                  "gnx": "zxc.20260125153601.1",
+                  "vh": "help"
+                },
+                {
+                  "gnx": "zxc.20260125153609.1",
+                  "vh": "init"
+                },
+                {
+                  "gnx": "zxc.20260125153617.1",
+                  "vh": "interactive"
+                },
+                {
+                  "gnx": "zxc.20260125153637.1",
+                  "vh": "interactive-rebase-tool"
+                },
+                {
+                  "gnx": "zxc.20260125153648.1",
+                  "vh": "log"
+                },
+                {
+                  "gnx": "zxc.20260125153702.1",
+                  "vh": "merge"
+                },
+                {
+                  "gnx": "zxc.20260125153708.1",
+                  "vh": "pull"
+                },
+                {
+                  "gnx": "zxc.20260125153715.1",
+                  "vh": "push"
+                },
+                {
+                  "gnx": "zxc.20260125153727.1",
+                  "vh": "rebase"
+                },
+                {
+                  "gnx": "zxc.20260125153745.1",
+                  "vh": "rerere"
+                },
+                {
+                  "gnx": "zxc.20260125153759.1",
+                  "vh": "sequence"
+                },
+                {
+                  "gnx": "zxc.20260125153816.1",
+                  "vh": "status"
+                },
+                {
+                  "gnx": "zxc.20260125153823.1",
+                  "vh": "tag"
+                },
+                {
+                  "gnx": "zxc.20260125153835.1",
+                  "vh": "url",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125154343.1",
+                      "vh": "soft"
+                    },
+                    {
+                      "gnx": "zxc.20260125154332.1",
+                      "vh": "my github"
+                    },
+                    {
+                      "gnx": "zxc.20260125154321.1",
+                      "vh": "github"
+                    }
+                  ]
+                },
+                {
+                  "gnx": "zxc.20260125153842.1",
+                  "vh": "user"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gnx": "zxc.20260201143021.1",
+          "vh": "template",
+          "children": [
+            {
+              "gnx": "zxc.20260125153131.2",
+              "vh": "main"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260201143255.1",
+      "vh": "helix",
+      "children": [
+        {
+          "gnx": "zxc.20260201143237.1",
+          "vh": "main",
+          "children": [
+            {
+              "gnx": "zxc.20260125161740.1",
+              "vh": "theme"
+            },
+            {
+              "gnx": "zxc.20260125161845.1",
+              "vh": "editor",
+              "children": [
+                {
+                  "gnx": "zxc.20260125161912.1",
+                  "vh": "auto-save",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125161937.1",
+                      "vh": "after delay"
+                    }
+                  ]
+                },
+                {
+                  "gnx": "zxc.20260125162004.1",
+                  "vh": "cursor shape"
+                },
+                {
+                  "gnx": "zxc.20260125162038.1",
+                  "vh": "indent guides"
+                },
+                {
+                  "gnx": "zxc.20260125162057.1",
+                  "vh": "lsp"
+                },
+                {
+                  "gnx": "zxc.20260125162111.1",
+                  "vh": "soft-wrap"
+                },
+                {
+                  "gnx": "zxc.20260125162130.1",
+                  "vh": "statusline",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125162140.1",
+                      "vh": "mode"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260125162157.1",
+              "vh": "keys",
+              "children": [
+                {
+                  "gnx": "zxc.20260125162216.1",
+                  "vh": "normal",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125162236.1",
+                      "vh": "g",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260125162248.1",
+                          "vh": "c"
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260125162220.1",
+                      "vh": "Z"
+                    },
+                    {
+                      "gnx": "zxc.20260125162300.1",
+                      "vh": "space",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260125162302.1",
+                          "vh": "l"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "gnx": "zxc.20260125162320.1",
+                  "vh": "select",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125162324.1",
+                      "vh": "g"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260125152614.1",
+      "vh": "config",
+      "children": [
+        {
+          "gnx": "zxc.20260125152115.1",
+          "vh": "@path private_dot_config",
+          "children": [
+            {
+              "gnx": "zxc.20260126154334.1",
+              "vh": "chezmoi",
+              "children": [
+                {
+                  "gnx": "zxc.20260126154354.1",
+                  "vh": "@clean chezmoi/chezmoi.toml.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260126154557.1"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260125152627.1",
+              "vh": "starship",
+              "children": [
+                {
+                  "gnx": "zxc.20260125145051.1",
+                  "vh": "@clean starship.toml.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125145640.1"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260125152649.1",
+              "vh": "atuin",
+              "children": [
+                {
+                  "gnx": "zxc.20260125152704.1",
+                  "vh": "@clean atuin/config.toml.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125152804.1"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260125152851.1",
+              "vh": "tealdeer",
+              "children": [
+                {
+                  "gnx": "zxc.20260125152851.2",
+                  "vh": "@clean tealdeer/config.toml.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125152851.3"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260125153012.1",
+              "vh": "git",
+              "children": [
+                {
+                  "gnx": "zxc.20260125153131.1",
+                  "vh": "@clean git/template.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125153131.2"
+                    }
+                  ]
+                },
+                {
+                  "gnx": "zxc.20260125153012.2",
+                  "vh": "@clean git/config.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260201143049.1"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260125161612.1",
+              "vh": "helix",
+              "children": [
+                {
+                  "gnx": "zxc.20260125161631.1",
+                  "vh": "@clean helix/config.toml.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260201143237.1"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "gnx": "zxc.20260201034154.1",
       "vh": "scoop",
       "children": [
@@ -1120,10 +1250,42 @@
                           "vh": "@clean settings.json.tmpl",
                           "children": [
                             {
-                              "gnx": "zxc.20260201034404.1",
-                              "vh": "<< common >>"
+                              "gnx": "zxc.20260201142202.1"
                             }
                           ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260125211832.1",
+      "vh": "Documents",
+      "children": [
+        {
+          "gnx": "zxc.20260125211837.1",
+          "vh": "@path readonly_Documents",
+          "children": [
+            {
+              "gnx": "zxc.20260125211902.1",
+              "vh": "@path PowerShell",
+              "children": [
+                {
+                  "gnx": "zxc.20260125211930.1",
+                  "vh": "powershell config",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260125211938.1",
+                      "vh": "@clean Microsoft.PowerShell_profile.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260128004429.1"
                         }
                       ]
                     }
@@ -1172,8 +1334,7 @@
                       "vh": "@clean key_bindings.ron.tmpl",
                       "children": [
                         {
-                          "gnx": "zxc.20260201140637.1",
-                          "vh": "content"
+                          "gnx": "zxc.20260201140637.1"
                         }
                       ]
                     }
@@ -1188,18 +1349,7 @@
                       "vh": "@clean alacritty.toml.tmpl",
                       "children": [
                         {
-                          "gnx": "zxc.20260130233158.1",
-                          "vh": "window"
-                        },
-                        {
-                          "gnx": "zxc.20260130233313.1",
-                          "vh": "font",
-                          "children": [
-                            {
-                              "gnx": "zxc.20260130233323.1",
-                              "vh": "normal"
-                            }
-                          ]
+                          "gnx": "zxc.20260201142451.1"
                         }
                       ]
                     }
@@ -1243,36 +1393,6 @@
                       ]
                     }
                   ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "gnx": "zxc.20260201141015.1",
-      "vh": "ssh",
-      "children": [
-        {
-          "gnx": "zxc.20260201141021.1",
-          "vh": "@path dot_ssh",
-          "children": [
-            {
-              "gnx": "zxc.20260201141149.1",
-              "vh": "@clean config.tmpl",
-              "children": [
-                {
-                  "gnx": "zxc.20260201141201.1",
-                  "vh": "soft"
-                },
-                {
-                  "gnx": "zxc.20260201141231.1",
-                  "vh": "github"
-                },
-                {
-                  "gnx": "zxc.20260201141321.1",
-                  "vh": "termux"
                 }
               ]
             }
@@ -1400,6 +1520,10 @@
     "zxc.20260125144055.1": "# Get the aliases and functions\n[ -f $HOME/.bashrc ] && . $HOME/.bashrc\n",
     "zxc.20260125144120.1": "{{ if eq .chezmoi.hostname \"surface-void\" -}}\n@others\n{{ end -}}\n",
     "zxc.20260125144207.1": "if [[ -z \"$DISPLAY\" ]] && [[ $(tty) = /dev/tty1 ]]; then\n    . startx\n    logout\nfi",
+    "zxc.20260126154557.1": "[git]\n    autoCommit = true\n    autoPush = true",
+    "zxc.20260126154722.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}\n",
+    "zxc.20260126154908.1": "[interpreter.ps1]\n    command = \"powershell\"\n    args = []",
+    "zxc.20260126154820.1": "{{ if lookPath \"pwsh\" -}}\n[cd]\n    command = \"pwsh\"\n{{ end -}}",
     "zxc.20260125144442.1": "@others",
     "zxc.20260125144515.1": "Makefile\nmain.leojs",
     "zxc.20260125144547.1": "{{ if eq .chezmoi.os \"linux\" -}}\n@others\n{{ end -}}",
@@ -1423,72 +1547,6 @@
     "zxc.20260130074346.2": "[\".cache/vscodium/extensions/vsnetrw.vsix\"]\n    type = \"file\"\n    url = \"https://github.com/danprince/vsnetrw/releases/download/v0.3.2/vsnetrw-0.3.2.vsix\"\n",
     "zxc.20260126160530.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"emacs\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260126160721.1": "[\".emacs.d\"]\n    type = \"git-repo\"\n    url = \"https://mirror.nju.edu.cn/git/doom-emacs.git/\"\n",
-    "zxc.20260126154354.1": "{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}",
-    "zxc.20260126154557.1": "[git]\n    autoCommit = true\n    autoPush = true",
-    "zxc.20260126154722.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}\n",
-    "zxc.20260126154908.1": "[interpreter.ps1]\n    command = \"powershell\"\n    args = []",
-    "zxc.20260126154820.1": "{{ if lookPath \"pwsh\" -}}\n[cd]\n    command = \"pwsh\"\n{{ end -}}",
-    "zxc.20260125145051.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260125145640.1": "add_newline = true\nformat = \"$directory$cmd_duration$hostname$localip$shlvl$shell$env_var$username$sudo$character\"\npalette = \"base16\"\nright_format = \"$singularity$kubernetes$vcsh$fossil_branch$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$package$c$cmake$cobol$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$golang$guix_shell$haskell$haxe$helm$java$julia$kotlin$gradle$lua$nim$nodejs$ocaml$opa$perl$php$pulumi$purescript$python$raku$rlang$red$ruby$rust$scala$solidity$swift$terraform$vlang$vagrant$zig$buf$nix_shell$conda$meson$spack$memory_usage$aws$gcloud$openstack$azure$crystal$custom$jobs$status$os$container$battery$time\"\n\n[aws]\nformat = \" aws [$symbol $profile $region]($style)\"\nstyle = \"italic blue\"\nsymbol = \"▲ \"\n\n[battery]\ncharging_symbol = \"[↑](italic green)\"\ndischarging_symbol = \"[↓](italic)\"\nempty_symbol = \"[▃](italic red)\"\nformat = \"[ $percentage $symbol]($style)\"\nfull_symbol = \"[█](italic green)\"\nunknown_symbol = \"[░](italic)\"\n\n[[battery.display]]\nstyle = \"dimmed yellow\"\nthreshold = 40\n\n[[battery.display]]\nstyle = \"dimmed white\"\nthreshold = 70\n\n[buf]\nformat = \" buf [$symbol $version $buf_version]($style)\"\nsymbol = \"■ \"\n\n[c]\nformat = \" c [$symbol($version(-$name))]($style)\"\nsymbol = \"∁ \"\n\n[character]\nerror_symbol = \"[⊘](italic purple)\"\nformat = \"$symbol \"\nsuccess_symbol = \"[◉](bold italic bright-yellow)\"\n\n[cmd_duration]\nformat = \"[$duration ](italic bright-yellow)\"\nmin_time = 10000\n\n[conda]\nformat = \" conda [$symbol$environment]($style)\"\nsymbol = \"◯ \"\n\n[dart]\nformat = \" dart [$symbol($version )]($style)\"\nsymbol = \"◁◅ \"\n\n[deno]\nformat = \" deno [∫ $version](blue italic)\"\nversion_format = \"${major}.${minor}\"\n\n[directory]\nformat = \"[$path]($style)[$read_only]($read_only_style) \"\nhome_symbol = \"⌂\"\nread_only = \" ■\"\nstyle = \"italic blue\"\ntruncation_length = 2\ntruncation_symbol = \"▦ \"\n\n[docker_context]\nformat = \" docker [$symbol$context]($style)\"\nsymbol = \"◧ \"\n\n[elixir]\nformat = \" exs [$symbol $version OTP $otp_version ]($style)\"\nsymbol = \"△ \"\n\n[elm]\nformat = \" elm [$symbol($version )]($style)\"\nsymbol = \"◩ \"\n\n[env_var.VIMSHELL]\nformat = \"[$env_value]($style)\"\nstyle = \"green italic\"\n\n[git_branch]\nformat = \"[ $symbol $branch(:$remote_branch)]($style)\"\nstyle = \"bold italic bright-blue\"\nsymbol = \"[◬](bold bright-blue)\"\n\n[git_status]\nahead = \"[▲│[${count}](bold white)│](italic green)\"\nbehind = \"[▽│[${count}](bold white)│](italic red)\"\nconflicted = \"[◪◦](italic bright-magenta)\"\ndeleted = \"[✕](italic red)\"\ndiverged = \"[◇ ▲┤[${ahead_count}](regular white)│▽┤[${behind_count}](regular white)│](italic bright-magenta)\"\nformat = \"([⎪$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed⎥]($style))\"\nmodified = \"[●◦](italic yellow)\"\nrenamed = \"[◎◦](italic bright-blue)\"\nstaged = \"[■┤[$count](bold white)│](italic bright-cyan)\"\nstashed = \"[◦◫◦](italic white)\"\nstyle = \"italic bright-blue\"\nuntracked = \"[◌◦](italic bright-yellow)\"\n\n[golang]\nformat = \" go [$symbol($version )]($style)\"\nsymbol = \"∩ \"\n\n[haskell]\nformat = \" hs [$symbol($version )]($style)\"\nsymbol = \"❯λ \"\n\n[java]\nformat = \" java [${symbol}(${version} )]($style)\"\nsymbol = \"∪ \"\n\n[jobs]\nformat = \"[ $symbol$number]($style)\"\nstyle = \"white\"\nsymbol = \"[▶ ](blue italic)\"\n\n[julia]\nformat = \" jl [$symbol($version )]($style)\"\nsymbol = \"◎ \"\n\n[localip]\ndisabled = false\nformat = \"◯[$localipv4](bold magenta)\"\nssh_only = true\n\n[lua]\nformat = \" lua [${symbol}${version}]($style)\"\nstyle = \"italic bright-yellow\"\nsymbol = \"⨀ \"\n\n[memory_usage]\nformat = \" mem [${ram}( ${swap})]($style)\"\nsymbol = \"▪▫▪ \"\n\n[nim]\nformat = \" nim [$symbol($version )]($style)\"\nsymbol = \"▴▲▴ \"\n\n[nix_shell]\nformat = \" nix [$symbol$state $name]($style)\"\nsymbol = \"⊛ \"\n\n[nodejs]\ndetect_files = [\"package-lock.json\", \"yarn.lock\"]\nformat = \" node [◫ ($version)](italic bright-green)\"\nversion_format = \"${major}.${minor}\"\n\n[package]\nformat = \" pkg [$symbol$version]($style)\"\nstyle = \"bright-yellow italic\"\nsymbol = \"◫ \"\nversion_format = \"${major}.${minor}\"\n\n[palettes.base16]\nbase00 = \"#1d1f21\"\nbase01 = \"#282a2e\"\nbase02 = \"#373b41\"\nbase03 = \"#969896\"\nbase04 = \"#b4b7b4\"\nbase05 = \"#c5c8c6\"\nbase06 = \"#e0e0e0\"\nbase07 = \"#ffffff\"\nbase08 = \"#cc342b\"\nbase09 = \"#f96a38\"\nbase0A = \"#fba922\"\nbase0B = \"#198844\"\nbase0C = \"#3971ed\"\nbase0D = \"#3971ed\"\nbase0E = \"#a36ac7\"\nbase0F = \"#3971ed\"\nbase10 = \"#1d1f21\"\nbase11 = \"#1d1f21\"\nbase12 = \"#cc342b\"\nbase13 = \"#fba922\"\nbase14 = \"#198844\"\nbase15 = \"#3971ed\"\nbase16 = \"#3971ed\"\nbase17 = \"#a36ac7\"\nblack = \"#1d1f21\"\nblue = \"#3971ed\"\nbright-black = \"#969896\"\nbright-blue = \"#3971ed\"\nbright-cyan = \"#3971ed\"\nbright-green = \"#198844\"\nbright-magenta = \"#a36ac7\"\nbright-purple = \"#a36ac7\"\nbright-red = \"#cc342b\"\nbright-white = \"#ffffff\"\nbright-yellow = \"#fba922\"\nbrown = \"#3971ed\"\ncyan = \"#3971ed\"\ngreen = \"#198844\"\nmagenta = \"#a36ac7\"\norange = \"#f96a38\"\npurple = \"#a36ac7\"\nred = \"#cc342b\"\nwhite = \"#c5c8c6\"\nyellow = \"#fba922\"\n\n[palettes.catppuccin_macchiato]\nbase = \"#24273a\"\nblue = \"#8aadf4\"\ncrust = \"#181926\"\nflamingo = \"#f0c6c6\"\ngreen = \"#a6da95\"\nlavender = \"#b7bdf8\"\nmantle = \"#1e2030\"\nmaroon = \"#ee99a0\"\nmauve = \"#c6a0f6\"\noverlay0 = \"#6e738d\"\noverlay1 = \"#8087a2\"\noverlay2 = \"#939ab7\"\npeach = \"#f5a97f\"\npink = \"#f5bde6\"\nred = \"#ed8796\"\nrosewater = \"#f4dbd6\"\nsapphire = \"#7dc4e4\"\nsky = \"#91d7e3\"\nsubtext0 = \"#a5adcb\"\nsubtext1 = \"#b8c0e0\"\nsurface0 = \"#363a4f\"\nsurface1 = \"#494d64\"\nsurface2 = \"#5b6078\"\nteal = \"#8bd5ca\"\ntext = \"#cad3f5\"\nyellow = \"#eed49f\"\n\n[python]\nformat = \" py [${symbol}${version}]($style)\"\nstyle = \"italic bright-yellow\"\nsymbol = \"[⌉](italic bright-blue)⌊ \"\nversion_format = \"${major}.${minor}\"\n\n[ruby]\nformat = \" rb [${symbol}${version}]($style)\"\nstyle = \"italic red\"\nsymbol = \"◆ \"\nversion_format = \"${major}.${minor}\"\n\n[rust]\nformat = \" rs [$symbol$version]($style)\"\nstyle = \"italic red\"\nsymbol = \"⊃ \"\nversion_format = \"${major}.${minor}\"\n\n[spack]\nformat = \" spack [$symbol$environment]($style)\"\nsymbol = \"◇ \"\n\n[sudo]\ndisabled = false\nformat = \"[$symbol]($style)\"\nstyle = \"italic bright-purple\"\nsymbol = \"◇┈\"\n\n[swift]\nformat = \" sw [${symbol}${version}]($style)\"\nstyle = \"italic bright-red\"\nsymbol = \"◁ \"\nversion_format = \"${major}.${minor}\"\n\n[time]\ndisabled = false\nformat = \"[ $time]($style)\"\nstyle = \"dimmed white\"\ntime_format = \"%R\"\nutc_time_offset = \"local\"\n\n[username]\ndisabled = false\nformat = \" [$user]($style) ▻ \"\nstyle_root = \"purple bold italic\"\nstyle_user = \"yellow bold\"\n",
-    "zxc.20260125152704.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260125152804.1": "enter_accept = true\nsync_address = \"https://api.atuin.sh\"\nsync_frequency = \"1h\"\n\n[dotfiles]\nenabled = true\n\n[sync]\nrecords = true",
-    "zxc.20260125152851.2": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"tldr\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260125152851.3": "[display]\ncompact = true\nuse_paper = true\n\n[updates]\nauto_update = true\nauto_update_interval_hours = 720",
-    "zxc.20260125153131.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260125153131.2": "# feat: ✨\n# feat: 🔍\n# feat: 🔗\n# feat: 🔒\n\n# fix: 🐛\n# fix: 🐞\n# fix: 🩹\n# fix: 🚑️\n\n# style: 💅\n# style: 🎨\n# style: 💄\n\n# ci: 🦊\n# ci: 📦\n\n# deploy: 🚀\n# deploy: 📦\n\n# chore: 🧹\n# chore: 🔧\n# chore: ⚙️\n# docs: 📜\n\n# refactor: 🔨\n# perf: 🚀\n\n# test: 🚦\n# debug: 🧪\n\n# BREAKING CHANGE: 🚨\n# BREAKING CHANGE: 💥\n# BREAKING CHANGE: 💣",
-    "zxc.20260125153012.2": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260125153252.1": "[advice]\n\taddEmptyPathspec = false\n\tpushNonFastForward = false\n\tstatusHints = false",
-    "zxc.20260125153318.1": "[branch]\n\tsort = \"-committerdate\"",
-    "zxc.20260125153946.1": "[color \"decorate\"]\n\tHEAD = \"red\"\n\tbranch = \"blue\"\n\tremoteBranch = \"magenta\"\n\ttag = \"yellow\"",
-    "zxc.20260125153958.1": "[color \"diff\"]\n\tcontext = \"white\"\n\tfrag = \"magenta\"\n\tmeta = \"blue bold\"\n\told = \"red\"\n\twhitespace = \"yellow reverse\"\n",
-    "zxc.20260125153928.1": "[color \"branch\"]\n\tcurrent = \"magenta\"\n\tlocal = \"default\"\n\tplain = \"blue\"\n\tremote = \"yellow\"\n\tupstream = \"green\"",
-    "zxc.20260125153436.1": "[culumn]\n\tui = \"auto\"",
-    "zxc.20260125153348.1": "[commit]\n\ttemplate = \"~/.config/git/template\"\n  gpgsign = true\n\tverbose = true",
-    "zxc.20260125153401.1": "[core]\n\tcompression = 9\n\teditor = \"{{ template \"editor\" }}\"\n\texcludesfile = \"~/.gitignore\"\n\tfsmonitor = true\n\tpager = \"diff-so-fancy | less '--tabs=4' -RFX\"\n\tpreloadindex = true\n\tuntrackedCache = true\n\twhitespace = \"error\"\n\tautocrlf = \"input\"",
-    "zxc.20260125153421.1": "[credential]\n\thelper = \"gopass\"\n",
-    "zxc.20260125154038.1": "[credential \"https://gist.github.com\"]\n\thelper = \"gh auth git-credential\"",
-    "zxc.20260125154056.1": "[credential \"https://github.com\"]\n\thelper = \"gh auth git-credential\"\n",
-    "zxc.20260125154233.1": "[delta \"side-by-side\"]\n\tenable = true\n",
-    "zxc.20260125154225.1": "[delta \"navigate\"]\n\tenable = true\n",
-    "zxc.20260125154220.1": "[delta \"file-yellow\"]\n\tenable = true\n",
-    "zxc.20260125153507.1": "[diff]\n\talgorithm = \"histogram\"\n\tcolorMoved = \"plain\"\n\tcontext = 3\n\tinterHunkContext = 10\n\tmnemonicPrefix = true\n\trenames = true",
-    "zxc.20260125153521.1": "[diff-so-fancy]\n\tchangeHunkIndicators = true\n\tmarkEmptyLines = false\n\tstripLeadingSymbols = true\n\tuseUnicodeRuler = true",
-    "zxc.20260125153531.1": "[fetch]\n\tall = true\n\tprune = true\n\tpruneTags = true",
-    "zxc.20260125153546.1": "[filter \"lfs\"]\n\tclean = \"git-lfs clean -- %f\"\n\tprocess = \"git-lfs filter-process\"\n\trequired = true\n\tsmudge = \"git-lfs smudge -- %f\"\n",
-    "zxc.20260125153554.1": "[gpg]\n\tformat = \"openpgp\"",
-    "zxc.20260125153601.1": "[help]\n\tautocorrect = \"prompt\"",
-    "zxc.20260125153609.1": "[init]\n\tdefaultBranch = \"main\"",
-    "zxc.20260125153617.1": "[interactive]\n\tdiffFilter = \"diff-so-fancy --patch\"\n\tsinglekey = true",
-    "zxc.20260125153637.1": "[interactive-rebase-tool]\n\tinputMoveDown = \"Down j\"\n\tinputMoveSelectionDown = \"l\"\n\tinputMoveSelectionUp = \"h\"\n\tinputMoveUp = \"Up k\"\n\tinputRedo = \"Control+r\"\n\tinputUndo = \"u\"",
-    "zxc.20260125153648.1": "[log]\n\tabbrevCommit = true\n\tgraphColors = \"blue,yellow,cyan,magenta,green,red\"",
-    "zxc.20260125153702.1": "[merge \"core\"]\n\tattributesfile = \"~/.gitattributes\"",
-    "zxc.20260125153708.1": "[pull]\n\tdefault = \"current\"\n\trebase = true",
-    "zxc.20260125153715.1": "[push]\n\tautoSetupRemote = true\n\tdefault = \"current\"\n\tfollowTags = true\n\tuseForceIfIncludes = true",
-    "zxc.20260125153727.1": "[rebase]\n\tautoSquash = true\n\tautoStash = true\n\tmissingCommitsCheck = \"warn\"\n\tupdateRefs = true",
-    "zxc.20260125153745.1": "[rerere]\n\tautoupdate = true\n\tenabled = true",
-    "zxc.20260125153759.1": "[sequence]\n\teditor = \"interactive-rebase-tool\"",
-    "zxc.20260125153816.1": "[status]\n\tbranch = true\n\tshowStash = true\n\tshowUntrackedFiles = \"all\"",
-    "zxc.20260125153823.1": "[tag]\n\tsort = \"version:refname\"",
-    "zxc.20260125154343.1": "[url \"ssh://192.168.123.206:23231/\"]\n\tinsteadOf = \"soft:\"\n",
-    "zxc.20260125154332.1": "[url \"git@github.com:ourgal/\"]\n\tinsteadOf = \"myg:\"\n",
-    "zxc.20260125154321.1": "[url \"git@github.com:\"]\n\tinsteadOf = \"gh:\"\n",
-    "zxc.20260125153842.1": "[user]\n\temail = \"git@fairever.aleeas.com\"\n\tname = \"ourgal\"\n\tsigningkey = \"ourgal\"\n",
-    "zxc.20260125161631.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"hx\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260125161740.1": "theme = \"catppuccin_mocha\"\n",
-    "zxc.20260125161845.1": "[editor]\nbufferline = \"multiple\"\ncolor-modes = true\nidle-timeout = 0\nline-number = \"relative\"\npopup-border = \"none\"\ntrue-color = true\n",
-    "zxc.20260125161912.1": "[editor.auto-save]\nfocus-lost = true",
-    "zxc.20260125161937.1": "[editor.auto-save.after-delay]\nenable = true\ntimeout = 1000",
-    "zxc.20260125162004.1": "[editor.cursor-shape]\ninsert = \"bar\"",
-    "zxc.20260125162038.1": "[editor.indent-guides]\ncharacter = \"⸽\"\nrender = true\nskip-levels = 1",
-    "zxc.20260125162057.1": "[editor.lsp]\ndisplay-inlay-hints = true\ndisplay-messages = true",
-    "zxc.20260125162111.1": "[editor.soft-wrap]\nenable = true",
-    "zxc.20260125162130.1": "[editor.statusline]\ncenter = [\"file-name\"]\nleft = [\"mode\", \"spinner\"]\nright = [\n  \"diagnostics\",\n  \"selections\",\n  \"position\",\n  \"file-encoding\",\n  \"file-line-ending\",\n  \"file-type\",\n]\nseparator = \"│\"",
-    "zxc.20260125162140.1": "[editor.statusline.mode]\ninsert = \"INSERT\"\nnormal = \"NORMAL\"\nselect = \"SELECT\"",
-    "zxc.20260125162236.1": "[keys.normal.g]\nz = [\"split_selection_on_newline\", \":sort\", \"keep_primary_selection\"]",
-    "zxc.20260125162248.1": "[keys.normal.g.c]\nb = \"toggle_block_comments\"\nc = \"toggle_comments\"\nl = \"toggle_line_comments\"",
-    "zxc.20260125162220.1": "[keys.normal.Z]\nQ = \":qa!\"\nZ = \":xa\"",
-    "zxc.20260125162302.1": "[keys.normal.space.l]\nf = \":fmt\"",
-    "zxc.20260125162324.1": "[keys.select.g]\nc = \"toggle_comments\"\nz = [\"split_selection_on_newline\", \":sort\", \"keep_primary_selection\"]\n",
     "zxc.20260125162740.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125162834.1": "[global]\nindex-url = https://mirrors.cernet.edu.cn/pypi/web/simple/\n[install]\ntrusted-host = mirrors.cernet.edu.cn",
     "zxc.20260126185048.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -1529,7 +1587,6 @@
     "zxc.20260125164204.1": "vim9script\n\n# simple fuzzy find finder\n# place into ~/.vim/plugin/fuzzyfind.vim\n\nset wildmode=noselect:lastused,full\nset wildmenu wildoptions=pum,fuzzy pumheight=12\n\n\nvar files_cache: list<string> = []\naugroup CmdComplete\n    au!\n    au CmdlineChanged : wildtrigger()\n    au CmdlineEnter : files_cache = []\naugroup END\n\ndef FindCmd(): string\n    var cmd = ''\n    if executable('fd')\n        cmd = 'fd . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('fdfind')\n        cmd = 'fdfind . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('ugrep')\n        cmd = 'ugrep \"\" -Rl -I --ignore-files'\n    elseif executable('rg')\n        cmd = 'rg --path-separator / --files --hidden --glob !.git'\n    elseif executable('find')\n        cmd = 'find \\! \\( -path \"*/.git\" -prune -o -name \"*.swp\" \\) -type f -follow'\n    endif\n    return cmd\nenddef\n\ndef Find(cmd_arg: string, cmd_complete: bool): list<string>\n    if empty(files_cache)\n        var cmd = FindCmd()\n        # fallback to built-in glob if no fd/rg/ug/find is available\n        # e.g. we are on Windows\n        if empty(cmd)\n            files_cache = globpath('.', '**', 1, 1)\n                ->filter((_, v) => !isdirectory(v))\n                ->mapnew((_, v) => v->substitute('^\\.[\\/]', \"\", \"\"))\n        else\n            files_cache = systemlist(cmd)\n        endif\n    endif\n    if empty(cmd_arg)\n        return files_cache\n    else\n        return files_cache->matchfuzzy(cmd_arg)\n    endif\nenddef\n\nset findfunc=Find",
     "zxc.20260130225718.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\") -}}\n{{ if lookPath \"npm\"}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260130225733.1": "registry = https://registry.npmmirror.com\ncoc.nvim:registry=https://registry.npmmirror.com/",
-    "zxc.20260125211938.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125212003.1": "$env:EDITOR = \"hx\"\n$env:shell_startup = \"~\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\"",
     "zxc.20260125212135.1": "{{ if lookPath \"sfsu\" -}}\nInvoke-Expression (&sfsu hook)\n{{ end -}}",
     "zxc.20260125212222.1": "New-Alias reboot Restart-Computer\nNew-Alias poweroff Stop-Computer",
@@ -1557,19 +1614,83 @@
     "zxc.20260128002953.1": "{{ if and (lookPath \"wt\") (lookPath \"pwsh\") -}}\nRunScoop(\"Windows Terminal\")\n{{ end -}}\n",
     "zxc.20260128003533.1": "{{ if stat \"C:/Program Files/Mozilla Firefox/firefox.exe\" -}}\nRun(\"C:/Program Files/Mozilla Firefox/firefox.exe\", , \"Max\")\n{{ else if lookPath \"brave\" -}}\nRun(\"D:/scoop/apps/brave/current/brave.exe\", \"c:/users/user\" , \"Max\")\n{{ end -}}",
     "zxc.20260128010842.1": "{{ if and ( stat \"C:/ProgramData/scoop/apps/deskflow/current/settings/Deskflow.conf\" ) (lookPath \"deskflow-core\") -}}\nRun(\"deskflow-core client\", , \"Hide\")\n{{ end -}}",
-    "zxc.20260201034331.1": "{\n    \"$help\": \"https://aka.ms/terminal-documentation\",\n    \"$schema\": \"https://aka.ms/terminal-profiles-schema\",\n    \"actions\": [],\n    \"copyFormatting\": \"none\",\n    \"copyOnSelect\": false,\n    \"defaultProfile\": \"{574e775e-4f2a-5b96-ac1e-a2962a402336}\",\n    \"keybindings\": \n    [\n        {\n            \"id\": \"Terminal.CopyToClipboard\",\n            \"keys\": \"ctrl+c\"\n        },\n        {\n            \"id\": \"Terminal.PasteFromClipboard\",\n            \"keys\": \"ctrl+v\"\n        },\n        {\n            \"id\": \"Terminal.DuplicatePaneAuto\",\n            \"keys\": \"alt+shift+d\"\n        }\n    ],\n    \"newTabMenu\": \n    [\n        {\n            \"type\": \"remainingProfiles\"\n        }\n    ],\n    \"profiles\": \n    {\n        \"defaults\": {},\n        \"list\": \n        [\n            {\n                \"guid\": \"{574e775e-4f2a-5b96-ac1e-a2962a402336}\",\n                << common >>\n                \"name\": \"PowerShell\",\n                \"source\": \"Windows.Terminal.PowershellCore\"\n            },\n            {\n                \"commandline\": \"%SystemRoot%\\\\System32\\\\cmd.exe\",\n                << common >>\n                \"guid\": \"{0caa0dad-35be-5f56-a8ff-afceeeaa6101}\",\n                \"name\": \"Command Prompt\"\n            },\n            {\n                \"commandline\": \"%SystemRoot%\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\",\n                << common >>\n                \"guid\": \"{61c54bbd-c2c6-5271-96e7-009a87ff44bf}\",\n                \"name\": \"Windows PowerShell\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\.local\\\\bin\\\\xonsh.exe\",\n                << common >>\n                \"guid\": \"{1039824d-f5da-468d-856d-d7373d40325e}\",\n                \"name\": \"Xonsh\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\scoop\\\\apps\\\\git\\\\current\\\\bin\\\\bash.exe\",\n                << common >>\n                \"guid\": \"{8f5e00bb-5ac4-4e63-8538-5bcbbf827559}\",\n                \"name\": \"Git Bash\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\scoop\\\\shims\\\\msys2.cmd\",\n                << common >>\n                \"guid\": \"{f60ba69c-a957-410c-a1c6-8b7484ee591c}\",\n                \"name\": \"MSYS\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\scoop\\\\shims\\\\nu.exe\",\n                << common >>\n                \"guid\": \"{2a38cb46-e594-415f-9cce-1e3d1b313ee9}\",\n                \"name\": \"Nu shell\"\n            },\n            {\n                \"guid\": \"{b453ae62-4e3d-5e58-b989-0a998ec441b8}\",\n                << common >>\n                \"name\": \"Azure Cloud Shell\",\n                \"source\": \"Windows.Terminal.Azure\"\n            }\n        ]\n    },\n    \"schemes\": [],\n    \"themes\": []\n}\n\n",
+    "zxc.20260201142202.1": "{\n    \"$help\": \"https://aka.ms/terminal-documentation\",\n    \"$schema\": \"https://aka.ms/terminal-profiles-schema\",\n    \"actions\": [],\n    \"copyFormatting\": \"none\",\n    \"copyOnSelect\": false,\n    \"defaultProfile\": \"{574e775e-4f2a-5b96-ac1e-a2962a402336}\",\n    \"keybindings\": \n    [\n        {\n            \"id\": \"Terminal.CopyToClipboard\",\n            \"keys\": \"ctrl+c\"\n        },\n        {\n            \"id\": \"Terminal.PasteFromClipboard\",\n            \"keys\": \"ctrl+v\"\n        },\n        {\n            \"id\": \"Terminal.DuplicatePaneAuto\",\n            \"keys\": \"alt+shift+d\"\n        }\n    ],\n    \"newTabMenu\": \n    [\n        {\n            \"type\": \"remainingProfiles\"\n        }\n    ],\n    \"profiles\": \n    {\n        \"defaults\": {},\n        \"list\": \n        [\n            {\n                \"guid\": \"{574e775e-4f2a-5b96-ac1e-a2962a402336}\",\n                << common >>\n                \"name\": \"PowerShell\",\n                \"source\": \"Windows.Terminal.PowershellCore\"\n            },\n            {\n                \"commandline\": \"%SystemRoot%\\\\System32\\\\cmd.exe\",\n                << common >>\n                \"guid\": \"{0caa0dad-35be-5f56-a8ff-afceeeaa6101}\",\n                \"name\": \"Command Prompt\"\n            },\n            {\n                \"commandline\": \"%SystemRoot%\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\",\n                << common >>\n                \"guid\": \"{61c54bbd-c2c6-5271-96e7-009a87ff44bf}\",\n                \"name\": \"Windows PowerShell\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\.local\\\\bin\\\\xonsh.exe\",\n                << common >>\n                \"guid\": \"{1039824d-f5da-468d-856d-d7373d40325e}\",\n                \"name\": \"Xonsh\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\scoop\\\\apps\\\\git\\\\current\\\\bin\\\\bash.exe\",\n                << common >>\n                \"guid\": \"{8f5e00bb-5ac4-4e63-8538-5bcbbf827559}\",\n                \"name\": \"Git Bash\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\scoop\\\\shims\\\\msys2.cmd\",\n                << common >>\n                \"guid\": \"{f60ba69c-a957-410c-a1c6-8b7484ee591c}\",\n                \"name\": \"MSYS\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\scoop\\\\shims\\\\nu.exe\",\n                << common >>\n                \"guid\": \"{2a38cb46-e594-415f-9cce-1e3d1b313ee9}\",\n                \"name\": \"Nu shell\"\n            },\n            {\n                \"guid\": \"{b453ae62-4e3d-5e58-b989-0a998ec441b8}\",\n                << common >>\n                \"name\": \"Azure Cloud Shell\",\n                \"source\": \"Windows.Terminal.Azure\"\n            }\n        ]\n    },\n    \"schemes\": [],\n    \"themes\": []\n}\n\n",
     "zxc.20260201034404.1": "\"cursorShape\": \"filledBox\",\n\"font\": \n{\n    \"face\": \"Maple Mono NF CN\"\n},\n\"startingDirectory\": \"%USERPROFILE%\",\n\"opacity\": 90,\n\"hidden\": false,\n\"closeOnExit\": \"graceful\",",
-    "zxc.20260201140523.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gitui\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260201140637.1": "(\n    move_left: Some(( code: Char('h'), modifiers: \"\")),\n    move_right: Some(( code: Char('l'), modifiers: \"\")),\n    move_up: Some(( code: Char('k'), modifiers: \"\")),\n    move_down: Some(( code: Char('j'), modifiers: \"\")),\n    stage_unstage_item: Some(( code: Char(' '), modifiers: \"\")),\n\n    open_help: Some(( code: F(1), modifiers: \"\")),\n)",
-    "zxc.20260130233132.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"alacritty\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260130233158.1": "[window]\nopacity = 0.9",
     "zxc.20260130233313.1": "[font]\nsize = 12",
     "zxc.20260130233323.1": "[font.normal]\nfamily = \"Maple Mono NF CN\"\nstyle = \"Regular\"",
-    "zxc.20260128002742.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
     "zxc.20260201141149.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\") -}}\n{{ if lookPath \"ssh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260201141201.1": "Host soft\n  Port 23231\n  HostName brix.local",
     "zxc.20260201141231.1": "Host github.com\n  HostName ssh.github.com\n  Port 443\n  User git",
     "zxc.20260201141321.1": "Host termux\n  Port 8022\n  User u0_a661\n  HostName localhost\n",
+    "zxc.20260125145640.1": "add_newline = true\nformat = \"$directory$cmd_duration$hostname$localip$shlvl$shell$env_var$username$sudo$character\"\npalette = \"base16\"\nright_format = \"$singularity$kubernetes$vcsh$fossil_branch$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$package$c$cmake$cobol$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$golang$guix_shell$haskell$haxe$helm$java$julia$kotlin$gradle$lua$nim$nodejs$ocaml$opa$perl$php$pulumi$purescript$python$raku$rlang$red$ruby$rust$scala$solidity$swift$terraform$vlang$vagrant$zig$buf$nix_shell$conda$meson$spack$memory_usage$aws$gcloud$openstack$azure$crystal$custom$jobs$status$os$container$battery$time\"\n\n[aws]\nformat = \" aws [$symbol $profile $region]($style)\"\nstyle = \"italic blue\"\nsymbol = \"▲ \"\n\n[battery]\ncharging_symbol = \"[↑](italic green)\"\ndischarging_symbol = \"[↓](italic)\"\nempty_symbol = \"[▃](italic red)\"\nformat = \"[ $percentage $symbol]($style)\"\nfull_symbol = \"[█](italic green)\"\nunknown_symbol = \"[░](italic)\"\n\n[[battery.display]]\nstyle = \"dimmed yellow\"\nthreshold = 40\n\n[[battery.display]]\nstyle = \"dimmed white\"\nthreshold = 70\n\n[buf]\nformat = \" buf [$symbol $version $buf_version]($style)\"\nsymbol = \"■ \"\n\n[c]\nformat = \" c [$symbol($version(-$name))]($style)\"\nsymbol = \"∁ \"\n\n[character]\nerror_symbol = \"[⊘](italic purple)\"\nformat = \"$symbol \"\nsuccess_symbol = \"[◉](bold italic bright-yellow)\"\n\n[cmd_duration]\nformat = \"[$duration ](italic bright-yellow)\"\nmin_time = 10000\n\n[conda]\nformat = \" conda [$symbol$environment]($style)\"\nsymbol = \"◯ \"\n\n[dart]\nformat = \" dart [$symbol($version )]($style)\"\nsymbol = \"◁◅ \"\n\n[deno]\nformat = \" deno [∫ $version](blue italic)\"\nversion_format = \"${major}.${minor}\"\n\n[directory]\nformat = \"[$path]($style)[$read_only]($read_only_style) \"\nhome_symbol = \"⌂\"\nread_only = \" ■\"\nstyle = \"italic blue\"\ntruncation_length = 2\ntruncation_symbol = \"▦ \"\n\n[docker_context]\nformat = \" docker [$symbol$context]($style)\"\nsymbol = \"◧ \"\n\n[elixir]\nformat = \" exs [$symbol $version OTP $otp_version ]($style)\"\nsymbol = \"△ \"\n\n[elm]\nformat = \" elm [$symbol($version )]($style)\"\nsymbol = \"◩ \"\n\n[env_var.VIMSHELL]\nformat = \"[$env_value]($style)\"\nstyle = \"green italic\"\n\n[git_branch]\nformat = \"[ $symbol $branch(:$remote_branch)]($style)\"\nstyle = \"bold italic bright-blue\"\nsymbol = \"[◬](bold bright-blue)\"\n\n[git_status]\nahead = \"[▲│[${count}](bold white)│](italic green)\"\nbehind = \"[▽│[${count}](bold white)│](italic red)\"\nconflicted = \"[◪◦](italic bright-magenta)\"\ndeleted = \"[✕](italic red)\"\ndiverged = \"[◇ ▲┤[${ahead_count}](regular white)│▽┤[${behind_count}](regular white)│](italic bright-magenta)\"\nformat = \"([⎪$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed⎥]($style))\"\nmodified = \"[●◦](italic yellow)\"\nrenamed = \"[◎◦](italic bright-blue)\"\nstaged = \"[■┤[$count](bold white)│](italic bright-cyan)\"\nstashed = \"[◦◫◦](italic white)\"\nstyle = \"italic bright-blue\"\nuntracked = \"[◌◦](italic bright-yellow)\"\n\n[golang]\nformat = \" go [$symbol($version )]($style)\"\nsymbol = \"∩ \"\n\n[haskell]\nformat = \" hs [$symbol($version )]($style)\"\nsymbol = \"❯λ \"\n\n[java]\nformat = \" java [${symbol}(${version} )]($style)\"\nsymbol = \"∪ \"\n\n[jobs]\nformat = \"[ $symbol$number]($style)\"\nstyle = \"white\"\nsymbol = \"[▶ ](blue italic)\"\n\n[julia]\nformat = \" jl [$symbol($version )]($style)\"\nsymbol = \"◎ \"\n\n[localip]\ndisabled = false\nformat = \"◯[$localipv4](bold magenta)\"\nssh_only = true\n\n[lua]\nformat = \" lua [${symbol}${version}]($style)\"\nstyle = \"italic bright-yellow\"\nsymbol = \"⨀ \"\n\n[memory_usage]\nformat = \" mem [${ram}( ${swap})]($style)\"\nsymbol = \"▪▫▪ \"\n\n[nim]\nformat = \" nim [$symbol($version )]($style)\"\nsymbol = \"▴▲▴ \"\n\n[nix_shell]\nformat = \" nix [$symbol$state $name]($style)\"\nsymbol = \"⊛ \"\n\n[nodejs]\ndetect_files = [\"package-lock.json\", \"yarn.lock\"]\nformat = \" node [◫ ($version)](italic bright-green)\"\nversion_format = \"${major}.${minor}\"\n\n[package]\nformat = \" pkg [$symbol$version]($style)\"\nstyle = \"bright-yellow italic\"\nsymbol = \"◫ \"\nversion_format = \"${major}.${minor}\"\n\n[palettes.base16]\nbase00 = \"#1d1f21\"\nbase01 = \"#282a2e\"\nbase02 = \"#373b41\"\nbase03 = \"#969896\"\nbase04 = \"#b4b7b4\"\nbase05 = \"#c5c8c6\"\nbase06 = \"#e0e0e0\"\nbase07 = \"#ffffff\"\nbase08 = \"#cc342b\"\nbase09 = \"#f96a38\"\nbase0A = \"#fba922\"\nbase0B = \"#198844\"\nbase0C = \"#3971ed\"\nbase0D = \"#3971ed\"\nbase0E = \"#a36ac7\"\nbase0F = \"#3971ed\"\nbase10 = \"#1d1f21\"\nbase11 = \"#1d1f21\"\nbase12 = \"#cc342b\"\nbase13 = \"#fba922\"\nbase14 = \"#198844\"\nbase15 = \"#3971ed\"\nbase16 = \"#3971ed\"\nbase17 = \"#a36ac7\"\nblack = \"#1d1f21\"\nblue = \"#3971ed\"\nbright-black = \"#969896\"\nbright-blue = \"#3971ed\"\nbright-cyan = \"#3971ed\"\nbright-green = \"#198844\"\nbright-magenta = \"#a36ac7\"\nbright-purple = \"#a36ac7\"\nbright-red = \"#cc342b\"\nbright-white = \"#ffffff\"\nbright-yellow = \"#fba922\"\nbrown = \"#3971ed\"\ncyan = \"#3971ed\"\ngreen = \"#198844\"\nmagenta = \"#a36ac7\"\norange = \"#f96a38\"\npurple = \"#a36ac7\"\nred = \"#cc342b\"\nwhite = \"#c5c8c6\"\nyellow = \"#fba922\"\n\n[palettes.catppuccin_macchiato]\nbase = \"#24273a\"\nblue = \"#8aadf4\"\ncrust = \"#181926\"\nflamingo = \"#f0c6c6\"\ngreen = \"#a6da95\"\nlavender = \"#b7bdf8\"\nmantle = \"#1e2030\"\nmaroon = \"#ee99a0\"\nmauve = \"#c6a0f6\"\noverlay0 = \"#6e738d\"\noverlay1 = \"#8087a2\"\noverlay2 = \"#939ab7\"\npeach = \"#f5a97f\"\npink = \"#f5bde6\"\nred = \"#ed8796\"\nrosewater = \"#f4dbd6\"\nsapphire = \"#7dc4e4\"\nsky = \"#91d7e3\"\nsubtext0 = \"#a5adcb\"\nsubtext1 = \"#b8c0e0\"\nsurface0 = \"#363a4f\"\nsurface1 = \"#494d64\"\nsurface2 = \"#5b6078\"\nteal = \"#8bd5ca\"\ntext = \"#cad3f5\"\nyellow = \"#eed49f\"\n\n[python]\nformat = \" py [${symbol}${version}]($style)\"\nstyle = \"italic bright-yellow\"\nsymbol = \"[⌉](italic bright-blue)⌊ \"\nversion_format = \"${major}.${minor}\"\n\n[ruby]\nformat = \" rb [${symbol}${version}]($style)\"\nstyle = \"italic red\"\nsymbol = \"◆ \"\nversion_format = \"${major}.${minor}\"\n\n[rust]\nformat = \" rs [$symbol$version]($style)\"\nstyle = \"italic red\"\nsymbol = \"⊃ \"\nversion_format = \"${major}.${minor}\"\n\n[spack]\nformat = \" spack [$symbol$environment]($style)\"\nsymbol = \"◇ \"\n\n[sudo]\ndisabled = false\nformat = \"[$symbol]($style)\"\nstyle = \"italic bright-purple\"\nsymbol = \"◇┈\"\n\n[swift]\nformat = \" sw [${symbol}${version}]($style)\"\nstyle = \"italic bright-red\"\nsymbol = \"◁ \"\nversion_format = \"${major}.${minor}\"\n\n[time]\ndisabled = false\nformat = \"[ $time]($style)\"\nstyle = \"dimmed white\"\ntime_format = \"%R\"\nutc_time_offset = \"local\"\n\n[username]\ndisabled = false\nformat = \" [$user]($style) ▻ \"\nstyle_root = \"purple bold italic\"\nstyle_user = \"yellow bold\"\n",
+    "zxc.20260125152804.1": "enter_accept = true\nsync_address = \"https://api.atuin.sh\"\nsync_frequency = \"1h\"\n\n[dotfiles]\nenabled = true\n\n[sync]\nrecords = true",
+    "zxc.20260125152851.3": "[display]\ncompact = true\nuse_paper = true\n\n[updates]\nauto_update = true\nauto_update_interval_hours = 720",
+    "zxc.20260125153252.1": "[advice]\n\taddEmptyPathspec = false\n\tpushNonFastForward = false\n\tstatusHints = false",
+    "zxc.20260125153318.1": "[branch]\n\tsort = \"-committerdate\"",
+    "zxc.20260125153946.1": "[color \"decorate\"]\n\tHEAD = \"red\"\n\tbranch = \"blue\"\n\tremoteBranch = \"magenta\"\n\ttag = \"yellow\"",
+    "zxc.20260125153958.1": "[color \"diff\"]\n\tcontext = \"white\"\n\tfrag = \"magenta\"\n\tmeta = \"blue bold\"\n\told = \"red\"\n\twhitespace = \"yellow reverse\"\n",
+    "zxc.20260125153928.1": "[color \"branch\"]\n\tcurrent = \"magenta\"\n\tlocal = \"default\"\n\tplain = \"blue\"\n\tremote = \"yellow\"\n\tupstream = \"green\"",
+    "zxc.20260125153436.1": "[culumn]\n\tui = \"auto\"",
+    "zxc.20260125153348.1": "[commit]\n\ttemplate = \"~/.config/git/template\"\n  gpgsign = true\n\tverbose = true",
+    "zxc.20260125153401.1": "[core]\n\tcompression = 9\n\teditor = \"{{ template \"editor\" }}\"\n\texcludesfile = \"~/.gitignore\"\n\tfsmonitor = true\n\tpager = \"diff-so-fancy | less '--tabs=4' -RFX\"\n\tpreloadindex = true\n\tuntrackedCache = true\n\twhitespace = \"error\"\n\tautocrlf = \"input\"",
+    "zxc.20260125153421.1": "[credential]\n\thelper = \"gopass\"\n",
+    "zxc.20260125154038.1": "[credential \"https://gist.github.com\"]\n\thelper = \"gh auth git-credential\"",
+    "zxc.20260125154056.1": "[credential \"https://github.com\"]\n\thelper = \"gh auth git-credential\"\n",
+    "zxc.20260125154233.1": "[delta \"side-by-side\"]\n\tenable = true\n",
+    "zxc.20260125154225.1": "[delta \"navigate\"]\n\tenable = true\n",
+    "zxc.20260125154220.1": "[delta \"file-yellow\"]\n\tenable = true\n",
+    "zxc.20260125153507.1": "[diff]\n\talgorithm = \"histogram\"\n\tcolorMoved = \"plain\"\n\tcontext = 3\n\tinterHunkContext = 10\n\tmnemonicPrefix = true\n\trenames = true",
+    "zxc.20260125153521.1": "[diff-so-fancy]\n\tchangeHunkIndicators = true\n\tmarkEmptyLines = false\n\tstripLeadingSymbols = true\n\tuseUnicodeRuler = true",
+    "zxc.20260125153531.1": "[fetch]\n\tall = true\n\tprune = true\n\tpruneTags = true",
+    "zxc.20260125153546.1": "[filter \"lfs\"]\n\tclean = \"git-lfs clean -- %f\"\n\tprocess = \"git-lfs filter-process\"\n\trequired = true\n\tsmudge = \"git-lfs smudge -- %f\"\n",
+    "zxc.20260125153554.1": "[gpg]\n\tformat = \"openpgp\"",
+    "zxc.20260125153601.1": "[help]\n\tautocorrect = \"prompt\"",
+    "zxc.20260125153609.1": "[init]\n\tdefaultBranch = \"main\"",
+    "zxc.20260125153617.1": "[interactive]\n\tdiffFilter = \"diff-so-fancy --patch\"\n\tsinglekey = true",
+    "zxc.20260125153637.1": "[interactive-rebase-tool]\n\tinputMoveDown = \"Down j\"\n\tinputMoveSelectionDown = \"l\"\n\tinputMoveSelectionUp = \"h\"\n\tinputMoveUp = \"Up k\"\n\tinputRedo = \"Control+r\"\n\tinputUndo = \"u\"",
+    "zxc.20260125153648.1": "[log]\n\tabbrevCommit = true\n\tgraphColors = \"blue,yellow,cyan,magenta,green,red\"",
+    "zxc.20260125153702.1": "[merge \"core\"]\n\tattributesfile = \"~/.gitattributes\"",
+    "zxc.20260125153708.1": "[pull]\n\tdefault = \"current\"\n\trebase = true",
+    "zxc.20260125153715.1": "[push]\n\tautoSetupRemote = true\n\tdefault = \"current\"\n\tfollowTags = true\n\tuseForceIfIncludes = true",
+    "zxc.20260125153727.1": "[rebase]\n\tautoSquash = true\n\tautoStash = true\n\tmissingCommitsCheck = \"warn\"\n\tupdateRefs = true",
+    "zxc.20260125153745.1": "[rerere]\n\tautoupdate = true\n\tenabled = true",
+    "zxc.20260125153759.1": "[sequence]\n\teditor = \"interactive-rebase-tool\"",
+    "zxc.20260125153816.1": "[status]\n\tbranch = true\n\tshowStash = true\n\tshowUntrackedFiles = \"all\"",
+    "zxc.20260125153823.1": "[tag]\n\tsort = \"version:refname\"",
+    "zxc.20260125154343.1": "[url \"ssh://192.168.123.206:23231/\"]\n\tinsteadOf = \"soft:\"\n",
+    "zxc.20260125154332.1": "[url \"git@github.com:ourgal/\"]\n\tinsteadOf = \"myg:\"\n",
+    "zxc.20260125154321.1": "[url \"git@github.com:\"]\n\tinsteadOf = \"gh:\"\n",
+    "zxc.20260125153842.1": "[user]\n\temail = \"git@fairever.aleeas.com\"\n\tname = \"ourgal\"\n\tsigningkey = \"ourgal\"\n",
+    "zxc.20260125153131.2": "# feat: ✨\n# feat: 🔍\n# feat: 🔗\n# feat: 🔒\n\n# fix: 🐛\n# fix: 🐞\n# fix: 🩹\n# fix: 🚑️\n\n# style: 💅\n# style: 🎨\n# style: 💄\n\n# ci: 🦊\n# ci: 📦\n\n# deploy: 🚀\n# deploy: 📦\n\n# chore: 🧹\n# chore: 🔧\n# chore: ⚙️\n# docs: 📜\n\n# refactor: 🔨\n# perf: 🚀\n\n# test: 🚦\n# debug: 🧪\n\n# BREAKING CHANGE: 🚨\n# BREAKING CHANGE: 💥\n# BREAKING CHANGE: 💣",
+    "zxc.20260125161740.1": "theme = \"catppuccin_mocha\"\n",
+    "zxc.20260125161845.1": "[editor]\nbufferline = \"multiple\"\ncolor-modes = true\nidle-timeout = 0\nline-number = \"relative\"\npopup-border = \"none\"\ntrue-color = true\n",
+    "zxc.20260125161912.1": "[editor.auto-save]\nfocus-lost = true",
+    "zxc.20260125161937.1": "[editor.auto-save.after-delay]\nenable = true\ntimeout = 1000",
+    "zxc.20260125162004.1": "[editor.cursor-shape]\ninsert = \"bar\"",
+    "zxc.20260125162038.1": "[editor.indent-guides]\ncharacter = \"⸽\"\nrender = true\nskip-levels = 1",
+    "zxc.20260125162057.1": "[editor.lsp]\ndisplay-inlay-hints = true\ndisplay-messages = true",
+    "zxc.20260125162111.1": "[editor.soft-wrap]\nenable = true",
+    "zxc.20260125162130.1": "[editor.statusline]\ncenter = [\"file-name\"]\nleft = [\"mode\", \"spinner\"]\nright = [\n  \"diagnostics\",\n  \"selections\",\n  \"position\",\n  \"file-encoding\",\n  \"file-line-ending\",\n  \"file-type\",\n]\nseparator = \"│\"",
+    "zxc.20260125162140.1": "[editor.statusline.mode]\ninsert = \"INSERT\"\nnormal = \"NORMAL\"\nselect = \"SELECT\"",
+    "zxc.20260125162236.1": "[keys.normal.g]\nz = [\"split_selection_on_newline\", \":sort\", \"keep_primary_selection\"]",
+    "zxc.20260125162248.1": "[keys.normal.g.c]\nb = \"toggle_block_comments\"\nc = \"toggle_comments\"\nl = \"toggle_line_comments\"",
+    "zxc.20260125162220.1": "[keys.normal.Z]\nQ = \":qa!\"\nZ = \":xa\"",
+    "zxc.20260125162302.1": "[keys.normal.space.l]\nf = \":fmt\"",
+    "zxc.20260125162324.1": "[keys.select.g]\nc = \"toggle_comments\"\nz = [\"split_selection_on_newline\", \":sort\", \"keep_primary_selection\"]\n",
+    "zxc.20260126154354.1": "{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}",
+    "zxc.20260125145051.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125152704.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260125152851.2": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"tldr\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260125153131.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260125153012.2": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260125161631.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"hx\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260201034331.1": "@others",
+    "zxc.20260125211938.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260201140523.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gitui\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260130233132.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"alacritty\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260128002742.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
     "zxc.20260129232256.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260129232413.1": "codium --update-extensions\n$extensions = @(\n    @others\n    )\nforeach ($e in $extensions) {\n    Write-Host \"Install vscodium extension $e\"\n    codium --install-extension $e\n}",
     "zxc.20260129234738.1": "\"tamasfe.even-better-toml\"\n",
@@ -1619,27 +1740,6 @@
     "zxc.20260126160530.1": {
       "_mod_time": 1769423567.408
     },
-    "zxc.20260126154354.1": {
-      "_mod_time": 1769423567.409
-    },
-    "zxc.20260125145051.1": {
-      "_mod_time": 1769413174.113
-    },
-    "zxc.20260125152704.1": {
-      "_mod_time": 1769413174.084
-    },
-    "zxc.20260125152851.2": {
-      "_mod_time": 1769413174.117
-    },
-    "zxc.20260125153131.1": {
-      "_mod_time": 1769413174.097
-    },
-    "zxc.20260125153012.2": {
-      "_mod_time": 1769535279.015
-    },
-    "zxc.20260125161631.1": {
-      "_mod_time": 1769413174.104
-    },
     "zxc.20260125162740.1": {
       "_mod_time": 1769424731.742
     },
@@ -1667,11 +1767,35 @@
     "zxc.20260130225718.1": {
       "_mod_time": 1769785174.682
     },
-    "zxc.20260125211938.1": {
-      "_mod_time": 1769425167.866
+    "zxc.20260201141149.1": {
+      "_mod_time": 1769926740.275
+    },
+    "zxc.20260126154354.1": {
+      "_mod_time": 1769423567.409
+    },
+    "zxc.20260125145051.1": {
+      "_mod_time": 1769342517.127
+    },
+    "zxc.20260125152704.1": {
+      "_mod_time": 1769326096.9
+    },
+    "zxc.20260125152851.2": {
+      "_mod_time": 1769326176.835
+    },
+    "zxc.20260125153131.1": {
+      "_mod_time": 1769347031.314
+    },
+    "zxc.20260125153012.2": {
+      "_mod_time": 1769535279.015
+    },
+    "zxc.20260125161631.1": {
+      "_mod_time": 1769342489.193
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1769888675.398
+      "_mod_time": 1769927030.383
+    },
+    "zxc.20260125211938.1": {
+      "_mod_time": 1769425167.866
     },
     "zxc.20260201140523.1": {
       "_mod_time": 1769926033.493
@@ -1681,9 +1805,6 @@
     },
     "zxc.20260128002742.1": {
       "_mod_time": 1769887987.691
-    },
-    "zxc.20260201141149.1": {
-      "_mod_time": 1769926740.275
     },
     "zxc.20260129232256.1": {
       "_mod_time": 1769781758.889
