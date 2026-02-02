@@ -476,6 +476,22 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "gnx": "zxc.20260202220010.1",
+                  "vh": "pwsh register",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260202220030.1",
+                      "vh": "@clean run_onchange_pwsh_register.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260202220046.1",
+                          "vh": "main"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -1886,6 +1902,8 @@
     "zxc.20260202215044.1": "reg import \"$env:userprofile\\\\scoop\\\\apps\\\\7zip\\\\current\\\\install-context.reg\"",
     "zxc.20260202215408.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202215423.1": "reg import \"$env:userprofile\\\\scoop\\\\apps\\\\git\\\\current\\\\install-context.reg\"\nreg import \"$env:userprofile\\\\scoop\\\\apps\\\\git\\\\current\\\\install-associations.reg\"",
+    "zxc.20260202220030.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260202220046.1": "reg import \"$env:userprofile\\\\scoop\\\\apps\\\\pwsh\\\\current\\\\install-explorer-context.reg\"\nreg import \"$env:userprofile\\\\scoop\\\\apps\\\\pwsh\\\\current\\\\install-file-context.reg\"",
     "zxc.20260125162740.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125162834.1": "[global]\nindex-url = https://mirrors.cernet.edu.cn/pypi/web/simple/\n[install]\ntrusted-host = mirrors.cernet.edu.cn",
     "zxc.20260126185048.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -2104,6 +2122,9 @@
     },
     "zxc.20260202215408.1": {
       "_mod_time": 1770040518.717
+    },
+    "zxc.20260202220030.1": {
+      "_mod_time": 1770040889.754
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1769424731.742

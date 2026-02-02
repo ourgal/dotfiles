@@ -1,0 +1,6 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "pwsh" -}}
+reg import "$env:userprofile\\scoop\\apps\\pwsh\\current\\install-explorer-context.reg"
+reg import "$env:userprofile\\scoop\\apps\\pwsh\\current\\install-file-context.reg"
+{{ end -}}
+{{ end -}}
