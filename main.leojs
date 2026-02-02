@@ -1139,6 +1139,78 @@
       ]
     },
     {
+      "gnx": "zxc.20260202194830.1",
+      "vh": "deskflow",
+      "children": [
+        {
+          "gnx": "zxc.20260202194904.1",
+          "vh": "tls",
+          "children": [
+            {
+              "gnx": "zxc.20260202194906.1",
+              "vh": "nuc",
+              "children": [
+                {
+                  "gnx": "zxc.20260202195044.1",
+                  "vh": "main",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260201225724.1",
+                      "vh": "nuc",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260201225748.1",
+                          "vh": "main"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gnx": "zxc.20260202194839.1",
+          "vh": "settings",
+          "children": [
+            {
+              "gnx": "zxc.20260202195009.1",
+              "vh": "main",
+              "children": [
+                {
+                  "gnx": "zxc.20260201225427.1",
+                  "vh": "nuc",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260201225513.1",
+                      "vh": "main"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gnx": "zxc.20260202195443.1",
+      "vh": "mpv",
+      "children": [
+        {
+          "gnx": "zxc.20260202195452.1",
+          "vh": "mpv.conf",
+          "children": [
+            {
+              "gnx": "zxc.20260202195341.1",
+              "vh": "main"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "gnx": "zxc.20260125152614.1",
       "vh": "config",
       "children": [
@@ -1278,14 +1350,7 @@
                               "vh": "@clean deskflow.pem.tmpl",
                               "children": [
                                 {
-                                  "gnx": "zxc.20260201225724.1",
-                                  "vh": "nuc",
-                                  "children": [
-                                    {
-                                      "gnx": "zxc.20260201225748.1",
-                                      "vh": "main"
-                                    }
-                                  ]
+                                  "gnx": "zxc.20260202195044.1"
                                 }
                               ]
                             }
@@ -1296,14 +1361,7 @@
                           "vh": "@clean Deskflow.conf.tmpl",
                           "children": [
                             {
-                              "gnx": "zxc.20260201225427.1",
-                              "vh": "nuc",
-                              "children": [
-                                {
-                                  "gnx": "zxc.20260201225513.1",
-                                  "vh": "main"
-                                }
-                              ]
+                              "gnx": "zxc.20260202195009.1"
                             }
                           ]
                         }
@@ -1491,6 +1549,21 @@
                               ]
                             }
                           ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "gnx": "zxc.20260202195131.1",
+                  "vh": "@path mpv",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260202195207.1",
+                      "vh": "@clean mpv.conf.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260202195341.1"
                         }
                       ]
                     }
@@ -1784,6 +1857,11 @@
     "zxc.20260125162324.1": "[keys.select.g]\nc = \"toggle_comments\"\nz = [\"split_selection_on_newline\", \":sort\", \"keep_primary_selection\"]\n",
     "zxc.20260201203315.1": "armor\ncert-digest-algo SHA512\ncharset utf-8\ndefault-preference-list SHA512 SHA384 SHA256 AES256 AES192 AES ZLIB BZIP2 ZIP Uncompressed\nfixed-list-mode\nkeyid-format 0xlong\nlist-options show-uid-validity\nno-comments\nno-emit-version\nno-greeting\nno-symkey-cache\npersonal-cipher-preferences AES256 AES192 AES\npersonal-compress-preferences ZLIB BZIP2 ZIP Uncompressed\npersonal-digest-preferences SHA512 SHA384 SHA256\nrequire-cross-certification\nrequire-secmem\ns2k-cipher-algo AES256\ns2k-digest-algo SHA512\nthrow-keyids\nuse-agent\nverify-options show-uid-validity\nwith-fingerprint",
     "zxc.20260201203539.1": "enable-ssh-support\ngrab",
+    "zxc.20260201225724.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}",
+    "zxc.20260201225748.1": "{{ gopassRaw \"deskflow/tls/nuc.pem\" -}}",
+    "zxc.20260201225427.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}",
+    "zxc.20260201225513.1": "[core]\nscreenName=nuc\nlastVersion=1.25.0.0\ncoreMode=1\nport=24800\ninterface=\npreventSleep=false\nlanguage=English\nwlClipboard=false\nprocessMode=1\nstartedBefore=true\n\n[internalConfig]\nnumColumns=5\nnumRows=3\nhasHeartbeat=false\nheartbeat=5000\nprotocol=1\nrelativeMouseMoves=false\nwin32KeepForeground=false\nhasSwitchDelay=false\nswitchDelay=250\nhasSwitchDoubleTap=false\nswitchDoubleTap=250\nswitchCornerSize=0\ndisableLockToScreen=false\nclipboardSharing=true\nclipboardSharingSize=3072\nswitchCornerArray\\1\\switchCorner=false\nswitchCornerArray\\2\\switchCorner=false\nswitchCornerArray\\3\\switchCorner=false\nswitchCornerArray\\4\\switchCorner=false\nswitchCornerArray\\size=4\nscreens\\1\\name=\nscreens\\2\\name=\nscreens\\3\\name=\nscreens\\4\\name=\nscreens\\5\\name=\nscreens\\6\\name=\nscreens\\7\\name=\nscreens\\8\\name=\nscreens\\9\\name=\nscreens\\10\\name=\nscreens\\11\\name=\nscreens\\12\\name=\nscreens\\13\\name=\nscreens\\14\\name=\nscreens\\15\\name=\nscreens\\size=15\nhotkeys\\size=0\n\n[gui]\nlogExpanded=true\nwindowGeometry=@Rect(674 293 572 493)\nenableUpdateCheck=false\nautoHide=true\ncloseToTray=true\nsymbolicTrayIcon=true\ncloseReminder=false\n\n[log]\nlevel=4\ntoFile=false\nfile=C:/Users/User/deskflow.log\nguiDebug=false\n\n[daemon]\nelevate=false\n\n[security]\ncertificate=C:/Users/User/scoop/apps/deskflow/current/settings/tls/deskflow.pem\nkeySize=2048\ntlsEnabled=true\ncheckPeerFingerprints=true\n\n[client]\nlanguageSync=true\ninvertScrollDirection=false\nyscroll=120\nremoteHost=home.local",
+    "zxc.20260202195341.1": "af=%11%scaletempo2\nalang=%16%ja,jp,jpn,en,eng\naudio-file-auto=%5%fuzzy\naudio-pitch-correction=%3%yes\nbackground-color=%7%#000000\nblend-subtitles=%5%video\nforce-seekable=%3%yes\nfullscreen=%3%yes\nhwdec=%4%auto\nkeep-open=%6%always\nosd-back-color=%7%#282a2e\nosd-border-color=%7%#282a2e\nosd-color=%7%#c5c8c6\nosd-font=%11%DejaVu Sans\nosd-shadow-color=%7%#1d1f21\npause=%2%no\nsave-position-on-quit=%3%yes\nslang=%46%en,eng,chs,sc,zh,chi,zho,zh-Hant,zh-CN,zh-Hans\nsub-auto=%5%fuzzy\nsub-font=%11%DejaVu Sans\nvolume=%3%100\nvolume-max=%3%200",
     "zxc.20260126154354.1": "{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}",
     "zxc.20260125145051.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125152704.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -1792,11 +1870,7 @@
     "zxc.20260125153012.2": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260125161631.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"hx\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260201225652.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
-    "zxc.20260201225724.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}",
-    "zxc.20260201225748.1": "{{ gopassRaw \"deskflow/tls/nuc.pem\" -}}",
     "zxc.20260201225344.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
-    "zxc.20260201225427.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}",
-    "zxc.20260201225513.1": "[core]\nscreenName=nuc\nlastVersion=1.25.0.0\ncoreMode=1\nport=24800\ninterface=\npreventSleep=false\nlanguage=English\nwlClipboard=false\nprocessMode=1\nstartedBefore=true\n\n[internalConfig]\nnumColumns=5\nnumRows=3\nhasHeartbeat=false\nheartbeat=5000\nprotocol=1\nrelativeMouseMoves=false\nwin32KeepForeground=false\nhasSwitchDelay=false\nswitchDelay=250\nhasSwitchDoubleTap=false\nswitchDoubleTap=250\nswitchCornerSize=0\ndisableLockToScreen=false\nclipboardSharing=true\nclipboardSharingSize=3072\nswitchCornerArray\\1\\switchCorner=false\nswitchCornerArray\\2\\switchCorner=false\nswitchCornerArray\\3\\switchCorner=false\nswitchCornerArray\\4\\switchCorner=false\nswitchCornerArray\\size=4\nscreens\\1\\name=\nscreens\\2\\name=\nscreens\\3\\name=\nscreens\\4\\name=\nscreens\\5\\name=\nscreens\\6\\name=\nscreens\\7\\name=\nscreens\\8\\name=\nscreens\\9\\name=\nscreens\\10\\name=\nscreens\\11\\name=\nscreens\\12\\name=\nscreens\\13\\name=\nscreens\\14\\name=\nscreens\\15\\name=\nscreens\\size=15\nhotkeys\\size=0\n\n[gui]\nlogExpanded=true\nwindowGeometry=@Rect(674 293 572 493)\nenableUpdateCheck=false\nautoHide=true\ncloseToTray=true\nsymbolicTrayIcon=true\ncloseReminder=false\n\n[log]\nlevel=4\ntoFile=false\nfile=C:/Users/User/deskflow.log\nguiDebug=false\n\n[daemon]\nelevate=false\n\n[security]\ncertificate=C:/Users/User/scoop/apps/deskflow/current/settings/tls/deskflow.pem\nkeySize=2048\ntlsEnabled=true\ncheckPeerFingerprints=true\n\n[client]\nlanguageSync=true\ninvertScrollDirection=false\nyscroll=120\nremoteHost=home.local",
     "zxc.20260201034331.1": "@others",
     "zxc.20260125211938.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260201203241.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -1805,6 +1879,7 @@
     "zxc.20260201140523.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gitui\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260130233132.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"alacritty\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260128002742.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
+    "zxc.20260202195207.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260129232256.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260129232413.1": "codium --update-extensions\n$extensions = @(\n    @others\n    )\nforeach ($e in $extensions) {\n    Write-Host \"Install vscodium extension $e\"\n    codium --install-extension $e\n}",
     "zxc.20260129234738.1": "\"tamasfe.even-better-toml\"\n",
@@ -1934,6 +2009,9 @@
     },
     "zxc.20260128002742.1": {
       "_mod_time": 1769958337.714
+    },
+    "zxc.20260202195207.1": {
+      "_mod_time": 1770033324.222
     },
     "zxc.20260129232256.1": {
       "_mod_time": 1769781758.889

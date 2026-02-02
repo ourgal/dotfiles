@@ -1,0 +1,26 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "mpv" -}}
+af=%11%scaletempo2
+alang=%16%ja,jp,jpn,en,eng
+audio-file-auto=%5%fuzzy
+audio-pitch-correction=%3%yes
+background-color=%7%#000000
+blend-subtitles=%5%video
+force-seekable=%3%yes
+fullscreen=%3%yes
+hwdec=%4%auto
+keep-open=%6%always
+osd-back-color=%7%#282a2e
+osd-border-color=%7%#282a2e
+osd-color=%7%#c5c8c6
+osd-font=%11%DejaVu Sans
+osd-shadow-color=%7%#1d1f21
+pause=%2%no
+save-position-on-quit=%3%yes
+slang=%46%en,eng,chs,sc,zh,chi,zho,zh-Hant,zh-CN,zh-Hans
+sub-auto=%5%fuzzy
+sub-font=%11%DejaVu Sans
+volume=%3%100
+volume-max=%3%200
+{{ end -}}
+{{ end -}}
