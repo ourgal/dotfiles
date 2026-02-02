@@ -178,6 +178,10 @@
                       "vh": "Documents"
                     },
                     {
+                      "gnx": "zxc.20260202205814.1",
+                      "vh": "Music"
+                    },
+                    {
                       "gnx": "zxc.20260128003657.1",
                       "vh": "AppData"
                     }
@@ -1562,6 +1566,34 @@
       ]
     },
     {
+      "gnx": "zxc.20260202205533.1",
+      "vh": "Music",
+      "children": [
+        {
+          "gnx": "zxc.20260202205542.1",
+          "vh": "@path readonly_Music",
+          "children": [
+            {
+              "gnx": "zxc.20260202205554.1",
+              "vh": "@path playlists",
+              "children": [
+                {
+                  "gnx": "zxc.20260202205715.1",
+                  "vh": "@clean network.m3u8.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260202205901.1",
+                      "vh": "main"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "gnx": "zxc.20260128002516.1",
       "vh": "AppData",
       "children": [
@@ -1735,6 +1767,7 @@
     "zxc.20260125144515.1": "Makefile\nmain.leojs",
     "zxc.20260125144547.1": "{{ if eq .chezmoi.os \"linux\" -}}\n@others\n{{ end -}}",
     "zxc.20260127232118.1": "Documents",
+    "zxc.20260202205814.1": "Music",
     "zxc.20260128003657.1": "AppData",
     "zxc.20260125144606.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}\n",
     "zxc.20260125144639.1": ".vim",
@@ -1926,6 +1959,8 @@
     "zxc.20260201225344.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
     "zxc.20260201034331.1": "@others",
     "zxc.20260125211938.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260202205715.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
+    "zxc.20260202205901.1": "#EXTM3U\n#EXTINF:-1,Flower - とても深いグリーン\nhttps://www.bilibili.com/video/BV1EyHYeBEFr",
     "zxc.20260201203241.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260201203515.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260201214114.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gpg\" -}}\nC92C2BCD646A0DE6A60E1C5397CA97FDBE330909\n{{ end -}}\n{{ end -}}",
@@ -1948,7 +1983,7 @@
       "_mod_time": 1769413174.02
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1769531824.412
+      "_mod_time": 1770037100.525
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1769535279.007
@@ -2042,6 +2077,9 @@
     },
     "zxc.20260125211938.1": {
       "_mod_time": 1769941258.864
+    },
+    "zxc.20260202205715.1": {
+      "_mod_time": 1770037207.959
     },
     "zxc.20260201203241.1": {
       "_mod_time": 1769949230.207
