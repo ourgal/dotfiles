@@ -1,0 +1,6 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "git" -}}
+reg import "$env:userprofile\\scoop\\apps\\git\\current\\install-context.reg"
+reg import "$env:userprofile\\scoop\\apps\\git\\current\\install-associations.reg"
+{{ end -}}
+{{ end -}}
