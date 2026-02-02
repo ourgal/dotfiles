@@ -1,0 +1,7 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "mpv" -}}
+["Appdata/Roaming/mpv/scripts/thumbfast.lua"]
+    type = "file"
+    url = "https://github.com/po5/thumbfast/raw/refs/heads/master/thumbfast.lua"
+{{ end -}}
+{{ end -}}
