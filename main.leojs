@@ -306,6 +306,128 @@
               ]
             }
           ]
+        },
+        {
+          "gnx": "zxc.20260202203416.1",
+          "vh": "scripts",
+          "children": [
+            {
+              "gnx": "zxc.20260202203424.1",
+              "vh": "@path .chezmoiscripts",
+              "children": [
+                {
+                  "gnx": "zxc.20260202203521.16",
+                  "vh": "mpv uosc plugin",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260202203521.17",
+                      "vh": "@clean run_onchange_mpv_uosc.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260202203521.18",
+                          "vh": "main"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "gnx": "zxc.20260202203521.19",
+                  "vh": "taskbar pinned items",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260202203521.20",
+                      "vh": "@clean run_onchange_taskbar_pinnned_items.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260202203521.21",
+                          "vh": "function",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260202203521.22",
+                              "vh": "set"
+                            },
+                            {
+                              "gnx": "zxc.20260202203521.23",
+                              "vh": "refresh"
+                            }
+                          ]
+                        },
+                        {
+                          "gnx": "zxc.20260202203521.24",
+                          "vh": "items"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "gnx": "zxc.20260202203521.2",
+                  "vh": "vscodium extensions",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260202203521.3",
+                      "vh": "@clean run_onchange_vscodium_extensions.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260202203521.4",
+                          "vh": "content",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260202203521.5",
+                              "vh": "toml"
+                            },
+                            {
+                              "gnx": "zxc.20260202203521.6",
+                              "vh": "build"
+                            },
+                            {
+                              "gnx": "zxc.20260202203521.7",
+                              "vh": "vim"
+                            },
+                            {
+                              "gnx": "zxc.20260202203521.8",
+                              "vh": "nix"
+                            },
+                            {
+                              "gnx": "zxc.20260202203521.9",
+                              "vh": "leo"
+                            },
+                            {
+                              "gnx": "zxc.20260202203521.10",
+                              "vh": "ansible"
+                            },
+                            {
+                              "gnx": "zxc.20260202203521.11",
+                              "vh": "git"
+                            },
+                            {
+                              "gnx": "zxc.20260202203521.12",
+                              "vh": "icon"
+                            },
+                            {
+                              "gnx": "zxc.20260202203521.13",
+                              "vh": "file manager"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260202203521.14",
+                      "vh": "@clean run_clink_jnject.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260202203521.15",
+                          "vh": "content"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -1584,122 +1706,6 @@
           ]
         }
       ]
-    },
-    {
-      "gnx": "zxc.20260128194040.1",
-      "vh": "scripts",
-      "children": [
-        {
-          "gnx": "zxc.20260129232209.1",
-          "vh": "vscodium extensions",
-          "children": [
-            {
-              "gnx": "zxc.20260129232256.1",
-              "vh": "@clean run_onchange_vscodium_extensions.ps1.tmpl",
-              "children": [
-                {
-                  "gnx": "zxc.20260129232413.1",
-                  "vh": "content",
-                  "children": [
-                    {
-                      "gnx": "zxc.20260129234738.1",
-                      "vh": "toml"
-                    },
-                    {
-                      "gnx": "zxc.20260129234729.1",
-                      "vh": "build"
-                    },
-                    {
-                      "gnx": "zxc.20260129234719.1",
-                      "vh": "vim"
-                    },
-                    {
-                      "gnx": "zxc.20260129234705.1",
-                      "vh": "nix"
-                    },
-                    {
-                      "gnx": "zxc.20260129234653.1",
-                      "vh": "leo"
-                    },
-                    {
-                      "gnx": "zxc.20260129234525.1",
-                      "vh": "ansible"
-                    },
-                    {
-                      "gnx": "zxc.20260129234633.1",
-                      "vh": "git"
-                    },
-                    {
-                      "gnx": "zxc.20260129234608.1",
-                      "vh": "icon"
-                    },
-                    {
-                      "gnx": "zxc.20260130074539.1",
-                      "vh": "file manager"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "gnx": "zxc.20260131022719.1",
-              "vh": "@clean run_clink_jnject.ps1.tmpl",
-              "children": [
-                {
-                  "gnx": "zxc.20260131022750.1",
-                  "vh": "content"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "gnx": "zxc.20260202201141.1",
-          "vh": "mpv uosc plugin",
-          "children": [
-            {
-              "gnx": "zxc.20260202201244.1",
-              "vh": "@clean run_onchange_mpv_uosc.ps1.tmpl",
-              "children": [
-                {
-                  "gnx": "zxc.20260202201255.1",
-                  "vh": "main"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "gnx": "zxc.20260128194057.1",
-          "vh": "taskbar pinned items",
-          "children": [
-            {
-              "gnx": "zxc.20260128194139.1",
-              "vh": "@clean run_onchange_taskbar_pinnned_items.ps1.tmpl",
-              "children": [
-                {
-                  "gnx": "zxc.20260128194220.1",
-                  "vh": "function",
-                  "children": [
-                    {
-                      "gnx": "zxc.20260128194842.1",
-                      "vh": "set"
-                    },
-                    {
-                      "gnx": "zxc.20260128194813.1",
-                      "vh": "refresh"
-                    }
-                  ]
-                },
-                {
-                  "gnx": "zxc.20260128194405.1",
-                  "vh": "items"
-                }
-              ]
-            }
-          ]
-        }
-      ]
     }
   ],
   "tnodes": {
@@ -1750,6 +1756,25 @@
     "zxc.20260126160721.1": "[\".emacs.d\"]\n    type = \"git-repo\"\n    url = \"https://mirror.nju.edu.cn/git/doom-emacs.git/\"\n",
     "zxc.20260202201907.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202201936.1": "[\"Appdata/Roaming/mpv/scripts/thumbfast.lua\"]\n    type = \"file\"\n    url = \"https://github.com/po5/thumbfast/raw/refs/heads/master/thumbfast.lua\"\n\n[\"Appdata/Roaming/mpv/scripts/SmartSkip.lua\"]\n    type = \"file\"\n    url = \"https://github.com/Eisa01/mpv-scripts/raw/refs/heads/master/scripts/SmartSkip.lua\"\n",
+    "zxc.20260202203521.17": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260202203521.18": "# 5.12.0\nirm https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/windows.ps1 | iex",
+    "zxc.20260202203521.20": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
+    "zxc.20260202203521.22": "function New-LayoutModificationXml {\n    [CmdletBinding()]\n    param (\n        [string[]] $LnkPaths,\n        [string] $OutputPath = $env:USERPROFILE + \"\\AppData\\Local\\Microsoft\\Windows\\Shell\\LayoutModification.xml\",\n        [ValidateSet(\"Append\", \"Replace\")]\n        [string] $PinListPlacement = \"Replace\"\n    )\n\n    $xml = New-Object System.Xml.XmlDocument\n    $root = $xml.CreateElement(\"LayoutModificationTemplate\", \"http://schemas.microsoft.com/Start/2014/LayoutModification\")\n    $xml.AppendChild($root) | Out-Null\n    $root.SetAttribute(\"xmlns:defaultlayout\", \"http://schemas.microsoft.com/Start/2014/FullDefaultLayout\")\n    $root.SetAttribute(\"xmlns:taskbar\", \"http://schemas.microsoft.com/Start/2014/TaskbarLayout\")\n    $root.SetAttribute(\"Version\", \"1\")\n    $collection = $xml.CreateElement(\"CustomTaskbarLayoutCollection\", $root.NamespaceURI)\n    $collection.SetAttribute(\"PinListPlacement\", $PinListPlacement)\n    $root.AppendChild($collection) | Out-Null\n    $layout = $xml.CreateElement(\"defaultlayout:TaskbarLayout\", $root.GetAttribute(\"xmlns:defaultlayout\"))\n    $collection.AppendChild($layout) | Out-Null\n    $pinList = $xml.CreateElement(\"taskbar:TaskbarPinList\", $root.GetAttribute(\"xmlns:taskbar\"))\n    $layout.AppendChild($pinList) | Out-Null\n    foreach ($lnk in $LnkPaths) {\n        $desktopApp = $xml.CreateElement(\"taskbar:DesktopApp\", $root.GetAttribute(\"xmlns:taskbar\"))\n        $desktopApp.SetAttribute(\"DesktopApplicationLinkPath\", $lnk)\n        $pinList.AppendChild($desktopApp) | Out-Null\n    }\n    $xml.Save($OutputPath)\n}",
+    "zxc.20260202203521.23": "function Reset-TaskbarLayout {\n    Get-Process explorer | Stop-Process -Force\n    Remove-Item \"$Env:AppData\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar\\*\" -Force -ErrorAction SilentlyContinue\n    Remove-Item \"$Env:AppData\\Microsoft\\Windows\\Shell\\*.dat\" -Force -ErrorAction SilentlyContinue\n    Remove-Item \"$Env:AppData\\Microsoft\\Windows\\Shell\\LayoutModification.xml\" -Force -ErrorAction SilentlyContinue\n    Remove-Item -Path \"HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Taskband\" -Recurse -ErrorAction SilentlyContinue\n    Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\TrayNotify\" -Name \"IconStreams\" -ErrorAction SilentlyContinue\n    Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\TrayNotify\" -Name \"PastIconsStream\" -ErrorAction SilentlyContinue\n}",
+    "zxc.20260202203521.24": "$LnkPaths = @(\n    \"%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\Windows Terminal.lnk\"\n    \"%PROGRAMDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Firefox.lnk\"\n    \"%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\Double Commander.lnk\"\n    \"%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\Telegram.lnk\"\n)\nNew-LayoutModificationXml -LnkPaths $LnkPaths -PinListPlacement \"Replace\"\nReset-TaskbarLayout",
+    "zxc.20260202203521.3": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260202203521.4": "codium --update-extensions\n$extensions = @(\n    @others\n    )\nforeach ($e in $extensions) {\n    Write-Host \"Install vscodium extension $e\"\n    codium --install-extension $e\n}",
+    "zxc.20260202203521.5": "\"tamasfe.even-better-toml\"",
+    "zxc.20260202203521.6": "\"carlos-algms.make-task-provider\"\n",
+    "zxc.20260202203521.7": "\"vscodevim.vim\"\n",
+    "zxc.20260202203521.8": "\"jnoortheen.nix-ide\"\n",
+    "zxc.20260202203521.9": "\"boltex.leojs\"\n",
+    "zxc.20260202203521.10": "\"redhat.ansible\"\n\"ms-python.python\"\n\"redhat.vscode-yaml\"\n\"MattiasBaake.vscode-snippets-for-ansible\"",
+    "zxc.20260202203521.11": "\"kahole.magit\"\n",
+    "zxc.20260202203521.12": "\"PKief.material-icon-theme\"\n",
+    "zxc.20260202203521.13": "{{ $vsnetrw := (joinPath .chezmoi.homeDir \".cache/vscodium/extensions/vsnetrw.vsix\") }}\n{{ if stat $vsnetrw -}}\n\"{{ $vsnetrw }}\"\n{{ end -}}",
+    "zxc.20260202203521.14": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260202203521.15": "if (-not (clink autorun show | rg inject)) {\n    clink autorun install\n}",
     "zxc.20260125162740.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125162834.1": "[global]\nindex-url = https://mirrors.cernet.edu.cn/pypi/web/simple/\n[install]\ntrusted-host = mirrors.cernet.edu.cn",
     "zxc.20260126185048.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -1907,26 +1932,7 @@
     "zxc.20260201140523.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gitui\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260130233132.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"alacritty\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260128002742.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
-    "zxc.20260202195207.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260129232256.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260129232413.1": "codium --update-extensions\n$extensions = @(\n    @others\n    )\nforeach ($e in $extensions) {\n    Write-Host \"Install vscodium extension $e\"\n    codium --install-extension $e\n}",
-    "zxc.20260129234738.1": "\"tamasfe.even-better-toml\"\n",
-    "zxc.20260129234729.1": "\"carlos-algms.make-task-provider\"\n",
-    "zxc.20260129234719.1": "\"vscodevim.vim\"\n",
-    "zxc.20260129234705.1": "\"jnoortheen.nix-ide\"\n",
-    "zxc.20260129234653.1": "\"boltex.leojs\"\n",
-    "zxc.20260129234525.1": "\"redhat.ansible\"\n\"ms-python.python\"\n\"redhat.vscode-yaml\"\n\"MattiasBaake.vscode-snippets-for-ansible\"",
-    "zxc.20260129234633.1": "\"kahole.magit\"\n",
-    "zxc.20260129234608.1": "\"PKief.material-icon-theme\"\n",
-    "zxc.20260130074539.1": "{{ $vsnetrw := (joinPath .chezmoi.homeDir \".cache/vscodium/extensions/vsnetrw.vsix\") }}\n{{ if stat $vsnetrw -}}\n\"{{ $vsnetrw }}\"\n{{ end -}}",
-    "zxc.20260131022719.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260131022750.1": "if (-not (clink autorun show | rg inject)) {\n    clink autorun install\n}",
-    "zxc.20260202201244.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260202201255.1": "# 5.12.0\nirm https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/windows.ps1 | iex",
-    "zxc.20260128194139.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
-    "zxc.20260128194842.1": "function New-LayoutModificationXml {\n    [CmdletBinding()]\n    param (\n        [string[]] $LnkPaths,\n        [string] $OutputPath = $env:USERPROFILE + \"\\AppData\\Local\\Microsoft\\Windows\\Shell\\LayoutModification.xml\",\n        [ValidateSet(\"Append\", \"Replace\")]\n        [string] $PinListPlacement = \"Replace\"\n    )\n\n    $xml = New-Object System.Xml.XmlDocument\n    $root = $xml.CreateElement(\"LayoutModificationTemplate\", \"http://schemas.microsoft.com/Start/2014/LayoutModification\")\n    $xml.AppendChild($root) | Out-Null\n    $root.SetAttribute(\"xmlns:defaultlayout\", \"http://schemas.microsoft.com/Start/2014/FullDefaultLayout\")\n    $root.SetAttribute(\"xmlns:taskbar\", \"http://schemas.microsoft.com/Start/2014/TaskbarLayout\")\n    $root.SetAttribute(\"Version\", \"1\")\n    $collection = $xml.CreateElement(\"CustomTaskbarLayoutCollection\", $root.NamespaceURI)\n    $collection.SetAttribute(\"PinListPlacement\", $PinListPlacement)\n    $root.AppendChild($collection) | Out-Null\n    $layout = $xml.CreateElement(\"defaultlayout:TaskbarLayout\", $root.GetAttribute(\"xmlns:defaultlayout\"))\n    $collection.AppendChild($layout) | Out-Null\n    $pinList = $xml.CreateElement(\"taskbar:TaskbarPinList\", $root.GetAttribute(\"xmlns:taskbar\"))\n    $layout.AppendChild($pinList) | Out-Null\n    foreach ($lnk in $LnkPaths) {\n        $desktopApp = $xml.CreateElement(\"taskbar:DesktopApp\", $root.GetAttribute(\"xmlns:taskbar\"))\n        $desktopApp.SetAttribute(\"DesktopApplicationLinkPath\", $lnk)\n        $pinList.AppendChild($desktopApp) | Out-Null\n    }\n    $xml.Save($OutputPath)\n}\n",
-    "zxc.20260128194813.1": "function Reset-TaskbarLayout {\n    Get-Process explorer | Stop-Process -Force\n    Remove-Item \"$Env:AppData\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar\\*\" -Force -ErrorAction SilentlyContinue\n    Remove-Item \"$Env:AppData\\Microsoft\\Windows\\Shell\\*.dat\" -Force -ErrorAction SilentlyContinue\n    Remove-Item \"$Env:AppData\\Microsoft\\Windows\\Shell\\LayoutModification.xml\" -Force -ErrorAction SilentlyContinue\n    Remove-Item -Path \"HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Taskband\" -Recurse -ErrorAction SilentlyContinue\n    Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\TrayNotify\" -Name \"IconStreams\" -ErrorAction SilentlyContinue\n    Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\TrayNotify\" -Name \"PastIconsStream\" -ErrorAction SilentlyContinue\n}",
-    "zxc.20260128194405.1": "$LnkPaths = @(\n    \"%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\Windows Terminal.lnk\"\n    \"%PROGRAMDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Firefox.lnk\"\n    \"%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\Double Commander.lnk\"\n    \"%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\Telegram.lnk\"\n)\nNew-LayoutModificationXml -LnkPaths $LnkPaths -PinListPlacement \"Replace\"\nReset-TaskbarLayout"
+    "zxc.20260202195207.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}"
   },
   "uas": {
     "zxc.20260125142149.1": {
@@ -1961,6 +1967,18 @@
     },
     "zxc.20260202201907.1": {
       "_mod_time": 1770035453.362
+    },
+    "zxc.20260202203521.17": {
+      "_mod_time": 1770035790.353
+    },
+    "zxc.20260202203521.20": {
+      "_mod_time": 1770035802.016
+    },
+    "zxc.20260202203521.3": {
+      "_mod_time": 1770035808.432
+    },
+    "zxc.20260202203521.14": {
+      "_mod_time": 1770035814.384
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1769424731.742
@@ -2045,18 +2063,6 @@
     },
     "zxc.20260202195207.1": {
       "_mod_time": 1770033324.222
-    },
-    "zxc.20260129232256.1": {
-      "_mod_time": 1769781758.889
-    },
-    "zxc.20260131022719.1": {
-      "_mod_time": 1769797688.888
-    },
-    "zxc.20260202201244.1": {
-      "_mod_time": 1770034460.853
-    },
-    "zxc.20260128194139.1": {
-      "_mod_time": 1769698913.568
     }
   }
 }
