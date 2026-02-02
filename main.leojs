@@ -1644,6 +1644,22 @@
           ]
         },
         {
+          "gnx": "zxc.20260202201141.1",
+          "vh": "mpv uosc plugin",
+          "children": [
+            {
+              "gnx": "zxc.20260202201244.1",
+              "vh": "@clean run_onchange_mpv_uosc.ps1.tmpl",
+              "children": [
+                {
+                  "gnx": "zxc.20260202201255.1",
+                  "vh": "main"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "gnx": "zxc.20260128194057.1",
           "vh": "taskbar pinned items",
           "children": [
@@ -1893,6 +1909,8 @@
     "zxc.20260130074539.1": "{{ $vsnetrw := (joinPath .chezmoi.homeDir \".cache/vscodium/extensions/vsnetrw.vsix\") }}\n{{ if stat $vsnetrw -}}\n\"{{ $vsnetrw }}\"\n{{ end -}}",
     "zxc.20260131022719.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260131022750.1": "if (-not (clink autorun show | rg inject)) {\n    clink autorun install\n}",
+    "zxc.20260202201244.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260202201255.1": "# 5.12.0\nirm https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/windows.ps1 | iex",
     "zxc.20260128194139.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
     "zxc.20260128194842.1": "function New-LayoutModificationXml {\n    [CmdletBinding()]\n    param (\n        [string[]] $LnkPaths,\n        [string] $OutputPath = $env:USERPROFILE + \"\\AppData\\Local\\Microsoft\\Windows\\Shell\\LayoutModification.xml\",\n        [ValidateSet(\"Append\", \"Replace\")]\n        [string] $PinListPlacement = \"Replace\"\n    )\n\n    $xml = New-Object System.Xml.XmlDocument\n    $root = $xml.CreateElement(\"LayoutModificationTemplate\", \"http://schemas.microsoft.com/Start/2014/LayoutModification\")\n    $xml.AppendChild($root) | Out-Null\n    $root.SetAttribute(\"xmlns:defaultlayout\", \"http://schemas.microsoft.com/Start/2014/FullDefaultLayout\")\n    $root.SetAttribute(\"xmlns:taskbar\", \"http://schemas.microsoft.com/Start/2014/TaskbarLayout\")\n    $root.SetAttribute(\"Version\", \"1\")\n    $collection = $xml.CreateElement(\"CustomTaskbarLayoutCollection\", $root.NamespaceURI)\n    $collection.SetAttribute(\"PinListPlacement\", $PinListPlacement)\n    $root.AppendChild($collection) | Out-Null\n    $layout = $xml.CreateElement(\"defaultlayout:TaskbarLayout\", $root.GetAttribute(\"xmlns:defaultlayout\"))\n    $collection.AppendChild($layout) | Out-Null\n    $pinList = $xml.CreateElement(\"taskbar:TaskbarPinList\", $root.GetAttribute(\"xmlns:taskbar\"))\n    $layout.AppendChild($pinList) | Out-Null\n    foreach ($lnk in $LnkPaths) {\n        $desktopApp = $xml.CreateElement(\"taskbar:DesktopApp\", $root.GetAttribute(\"xmlns:taskbar\"))\n        $desktopApp.SetAttribute(\"DesktopApplicationLinkPath\", $lnk)\n        $pinList.AppendChild($desktopApp) | Out-Null\n    }\n    $xml.Save($OutputPath)\n}\n",
     "zxc.20260128194813.1": "function Reset-TaskbarLayout {\n    Get-Process explorer | Stop-Process -Force\n    Remove-Item \"$Env:AppData\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar\\*\" -Force -ErrorAction SilentlyContinue\n    Remove-Item \"$Env:AppData\\Microsoft\\Windows\\Shell\\*.dat\" -Force -ErrorAction SilentlyContinue\n    Remove-Item \"$Env:AppData\\Microsoft\\Windows\\Shell\\LayoutModification.xml\" -Force -ErrorAction SilentlyContinue\n    Remove-Item -Path \"HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Taskband\" -Recurse -ErrorAction SilentlyContinue\n    Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\TrayNotify\" -Name \"IconStreams\" -ErrorAction SilentlyContinue\n    Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\TrayNotify\" -Name \"PastIconsStream\" -ErrorAction SilentlyContinue\n}",
@@ -2018,6 +2036,9 @@
     },
     "zxc.20260131022719.1": {
       "_mod_time": 1769797688.888
+    },
+    "zxc.20260202201244.1": {
+      "_mod_time": 1770034460.853
     },
     "zxc.20260128194139.1": {
       "_mod_time": 1769698913.568
