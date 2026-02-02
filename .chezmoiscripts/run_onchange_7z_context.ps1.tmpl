@@ -1,0 +1,5 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "7z" -}}
+reg import "$env:userprofile\\scoop\\apps\\7zip\\current\\install-context.reg"
+{{ end -}}
+{{ end -}}
