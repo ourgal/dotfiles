@@ -1347,6 +1347,22 @@
       ]
     },
     {
+      "gnx": "zxc.20260202211649.1",
+      "vh": "editorconfig",
+      "children": [
+        {
+          "gnx": "zxc.20260202211707.1",
+          "vh": "@clean dot_editorconfig",
+          "children": [
+            {
+              "gnx": "zxc.20260202211948.1",
+              "vh": "main"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "gnx": "zxc.20260125152614.1",
       "vh": "config",
       "children": [
@@ -1948,6 +1964,8 @@
     "zxc.20260201225427.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}",
     "zxc.20260201225513.1": "[core]\nscreenName=nuc\nlastVersion=1.25.0.0\ncoreMode=1\nport=24800\ninterface=\npreventSleep=false\nlanguage=English\nwlClipboard=false\nprocessMode=1\nstartedBefore=true\n\n[internalConfig]\nnumColumns=5\nnumRows=3\nhasHeartbeat=false\nheartbeat=5000\nprotocol=1\nrelativeMouseMoves=false\nwin32KeepForeground=false\nhasSwitchDelay=false\nswitchDelay=250\nhasSwitchDoubleTap=false\nswitchDoubleTap=250\nswitchCornerSize=0\ndisableLockToScreen=false\nclipboardSharing=true\nclipboardSharingSize=3072\nswitchCornerArray\\1\\switchCorner=false\nswitchCornerArray\\2\\switchCorner=false\nswitchCornerArray\\3\\switchCorner=false\nswitchCornerArray\\4\\switchCorner=false\nswitchCornerArray\\size=4\nscreens\\1\\name=\nscreens\\2\\name=\nscreens\\3\\name=\nscreens\\4\\name=\nscreens\\5\\name=\nscreens\\6\\name=\nscreens\\7\\name=\nscreens\\8\\name=\nscreens\\9\\name=\nscreens\\10\\name=\nscreens\\11\\name=\nscreens\\12\\name=\nscreens\\13\\name=\nscreens\\14\\name=\nscreens\\15\\name=\nscreens\\size=15\nhotkeys\\size=0\n\n[gui]\nlogExpanded=true\nwindowGeometry=@Rect(674 293 572 493)\nenableUpdateCheck=false\nautoHide=true\ncloseToTray=true\nsymbolicTrayIcon=true\ncloseReminder=false\n\n[log]\nlevel=4\ntoFile=false\nfile=C:/Users/User/deskflow.log\nguiDebug=false\n\n[daemon]\nelevate=false\n\n[security]\ncertificate=C:/Users/User/scoop/apps/deskflow/current/settings/tls/deskflow.pem\nkeySize=2048\ntlsEnabled=true\ncheckPeerFingerprints=true\n\n[client]\nlanguageSync=true\ninvertScrollDirection=false\nyscroll=120\nremoteHost=home.local",
     "zxc.20260202195341.1": "af=%11%scaletempo2\nalang=%16%ja,jp,jpn,en,eng\naudio-file-auto=%5%fuzzy\naudio-pitch-correction=%3%yes\nbackground-color=%7%#000000\nblend-subtitles=%5%video\nforce-seekable=%3%yes\nfullscreen=%3%yes\nhwdec=%4%auto\nkeep-open=%6%always\nosd-back-color=%7%#282a2e\nosd-border-color=%7%#282a2e\nosd-color=%7%#c5c8c6\nosd-font=%11%DejaVu Sans\nosd-shadow-color=%7%#1d1f21\npause=%2%no\nsave-position-on-quit=%3%yes\nslang=%46%en,eng,chs,sc,zh,chi,zho,zh-Hant,zh-CN,zh-Hans\nsub-auto=%5%fuzzy\nsub-font=%11%DejaVu Sans\nvolume=%3%100\nvolume-max=%3%200",
+    "zxc.20260202211707.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"editorconfig\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260202211948.1": "root=true\n\n[*]\ncharset=utf-8\n{{ if eq .chezmoi.os \"linux\" -}}\nend_of_line=lf\n{{ else if eq .chezmoi.os \"windows\" -}}\nend_of_line=crlf\n{{ end -}}\nindent_size=2\nindent_style=space\ninsert_final_newline=true\ntrim_trailing_whitespace=true\n\n[*.py]\nindent_size=4\nindent_style=space\n\n[Makefile]\nindent_style=tab",
     "zxc.20260126154354.1": "{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}",
     "zxc.20260125145051.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125152704.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -2044,6 +2062,9 @@
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1770032501.747
+    },
+    "zxc.20260202211707.1": {
+      "_mod_time": 1770038471.078
     },
     "zxc.20260126154354.1": {
       "_mod_time": 1769423567.409
