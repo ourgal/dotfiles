@@ -492,6 +492,22 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "gnx": "zxc.20260202220532.1",
+                  "vh": "vim register",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260202220553.1",
+                      "vh": "@clean run_onchange_vim_context.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260202220615.1",
+                          "vh": "main"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -1904,6 +1920,8 @@
     "zxc.20260202215423.1": "reg import \"$env:userprofile\\\\scoop\\\\apps\\\\git\\\\current\\\\install-context.reg\"\nreg import \"$env:userprofile\\\\scoop\\\\apps\\\\git\\\\current\\\\install-associations.reg\"",
     "zxc.20260202220030.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202220046.1": "reg import \"$env:userprofile\\\\scoop\\\\apps\\\\pwsh\\\\current\\\\install-explorer-context.reg\"\nreg import \"$env:userprofile\\\\scoop\\\\apps\\\\pwsh\\\\current\\\\install-file-context.reg\"",
+    "zxc.20260202220553.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gvim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260202220615.1": "reg import \"$env:userprofile\\\\scoop\\\\apps\\\\vim\\\\current\\\\install-context.reg\"",
     "zxc.20260125162740.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125162834.1": "[global]\nindex-url = https://mirrors.cernet.edu.cn/pypi/web/simple/\n[install]\ntrusted-host = mirrors.cernet.edu.cn",
     "zxc.20260126185048.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -2125,6 +2143,9 @@
     },
     "zxc.20260202220030.1": {
       "_mod_time": 1770040889.754
+    },
+    "zxc.20260202220553.1": {
+      "_mod_time": 1770041195.609
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1769424731.742
