@@ -428,6 +428,22 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "gnx": "zxc.20260202213355.1",
+                  "vh": "vscodium register",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260202213444.1",
+                      "vh": "@clean run_onchange_vscodium_register.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260202213506.1",
+                          "vh": "main"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -1824,6 +1840,8 @@
     "zxc.20260202203521.13": "{{ $vsnetrw := (joinPath .chezmoi.homeDir \".cache/vscodium/extensions/vsnetrw.vsix\") }}\n{{ if stat $vsnetrw -}}\n\"{{ $vsnetrw }}\"\n{{ end -}}",
     "zxc.20260202203521.14": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260202203521.15": "if (-not (clink autorun show | rg inject)) {\n    clink autorun install\n}",
+    "zxc.20260202213444.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260202213506.1": "reg import \"$env:userprofile\\\\scoop\\\\apps\\\\vscodium\\\\current\\\\install-context.reg\"\nreg import \"$env:userprofile\\\\scoop\\\\apps\\\\vscodium\\\\current\\\\install-associations.reg\"",
     "zxc.20260125162740.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125162834.1": "[global]\nindex-url = https://mirrors.cernet.edu.cn/pypi/web/simple/\n[install]\ntrusted-host = mirrors.cernet.edu.cn",
     "zxc.20260126185048.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -2032,6 +2050,9 @@
     },
     "zxc.20260202203521.14": {
       "_mod_time": 1770035814.384
+    },
+    "zxc.20260202213444.1": {
+      "_mod_time": 1770039404.527
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1769424731.742

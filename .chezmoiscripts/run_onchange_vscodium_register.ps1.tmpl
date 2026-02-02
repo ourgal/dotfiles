@@ -1,0 +1,6 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "codium" -}}
+reg import "$env:userprofile\\scoop\\apps\\vscodium\\current\\install-context.reg"
+reg import "$env:userprofile\\scoop\\apps\\vscodium\\current\\install-associations.reg"
+{{ end -}}
+{{ end -}}
