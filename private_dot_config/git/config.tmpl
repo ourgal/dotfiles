@@ -39,8 +39,16 @@
 	untrackedCache = true
 	whitespace = "error"
 	autocrlf = "input"
+{{ if eq .chezmoi.os "windows" -}}
+[credential]
+	helper = "manager"
+{{ end -}}
+{{ if eq .chezmoi.os "linux" -}}
+{{ if lookPath "gopass" -}}
 [credential]
 	helper = "gopass"
+{{ end -}}
+{{ end -}}
 [credential "https://gist.github.com"]
 	helper = "gh auth git-credential"
 [credential "https://github.com"]
