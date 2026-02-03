@@ -4,6 +4,16 @@
   },
   "vnodes": [
     {
+      "gnx": "zxc.20260203193031.1",
+      "vh": "archive",
+      "children": [
+        {
+          "gnx": "zxc.20260203193056.1",
+          "vh": "mcfly"
+        }
+      ]
+    },
+    {
       "gnx": "zxc.20260125142130.1",
       "vh": "Makefile",
       "children": [
@@ -887,8 +897,8 @@
               ]
             },
             {
-              "gnx": "zxc.20260125213537.1",
-              "vh": "mcfly"
+              "gnx": "zxc.20260203193108.1",
+              "vh": "atuin"
             }
           ]
         }
@@ -1845,6 +1855,7 @@
     }
   ],
   "tnodes": {
+    "zxc.20260203193056.1": "{{ if lookPath \"mcfly\" -}}\n# mcfly\nInvoke-Expression -Command $(mcfly init powershell | out-string)\n{{ end -}}",
     "zxc.20260125142149.1": "@tabwidth 4\nall:\n\t@others\n",
     "zxc.20260125142255.1": "yes | git magic -ap\n",
     "zxc.20260125142829.1": "{{ if eq .chezmoi.os \"linux\" -}}\n@others\n{{ end -}}",
@@ -1984,7 +1995,7 @@
     "zxc.20260125213514.1": "{{ if lookPath \"zoxide\" -}}\n# zoxide\nInvoke-Expression (& { (zoxide init powershell | Out-String) })\n{{ end -}}",
     "zxc.20260125213409.1": "# PSFzf\nImport-Module PSFzf\nSet-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r' -EnableAliasFuzzyKillProcess\n# Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }",
     "zxc.20260125213432.1": "Set-PSReadLineKeyHandler -Key Ctrl+o `\n                         -BriefDescription FuzzyEdit `\n                         -LongDescription \"Fuzzy Edit\" `\n                         -ScriptBlock {\n    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()\n    [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"Invoke-FuzzyEdit\")\n    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()\n}",
-    "zxc.20260125213537.1": "{{ if lookPath \"mcfly\" -}}\n# mcfly\nInvoke-Expression -Command $(mcfly init powershell | out-string)\n{{ end -}}",
+    "zxc.20260203193108.1": "{{ if lookPath \"atuin\" -}}\n# atuin\nInvoke-Expression -Command $(atuin init powershell | out-string)\n{{ end -}}",
     "zxc.20260128200402.1": "RunScoop(app)\n{\n    appdata_dir := EnvGet(\"AppData\")\n    user_dir := EnvGet(\"userprofile\")\n    scoop_apps_dir := appdata_dir . \"/Microsoft/Windows/Start Menu/Programs/Scoop Apps\"\n    Run(scoop_apps_dir . \"/\" . app . \".lnk\", user_dir, \"Max\")\n}",
     "zxc.20260128002953.1": "{{ if and (lookPath \"wt\") (lookPath \"pwsh\") -}}\nRunScoop(\"Windows Terminal\")\n{{ end -}}\n",
     "zxc.20260128003533.1": "{{ if stat \"C:/Program Files/Mozilla Firefox/firefox.exe\" -}}\nRun(\"C:/Program Files/Mozilla Firefox/firefox.exe\", , \"Max\")\n{{ else if lookPath \"brave\" -}}\nRun(\"D:/scoop/apps/brave/current/brave.exe\", \"c:/users/user\" , \"Max\")\n{{ end -}}",
@@ -2211,7 +2222,7 @@
       "_mod_time": 1770115483.953
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1769941258.864
+      "_mod_time": 1770118308.225
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1770037430.233
