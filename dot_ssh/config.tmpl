@@ -1,5 +1,7 @@
 {{ if or ( eq .chezmoi.os "linux" ) ( eq .chezmoi.os "windows") -}}
 {{ if lookPath "ssh" -}}
+Host *
+  AddKeysToAgent yes
 Host soft
   Port 23231
   HostName brix.local
