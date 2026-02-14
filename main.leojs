@@ -1846,6 +1846,21 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "gnx": "zxc.20260214105457.1",
+                  "vh": "@path helix",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260214105528.1",
+                      "vh": "@clean config.toml.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260201143237.1"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -2095,7 +2110,8 @@
     "zxc.20260201140523.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gitui\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260130233132.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"alacritty\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260128002742.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
-    "zxc.20260202195207.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}"
+    "zxc.20260202195207.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260214105528.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"hx\" -}}\n@others\n{{ end -}}\n{{ end -}}"
   },
   "uas": {
     "zxc.20260125142149.1": {
@@ -2210,7 +2226,7 @@
       "_mod_time": 1770040659.884
     },
     "zxc.20260125161631.1": {
-      "_mod_time": 1771037536.066
+      "_mod_time": 1771037682.082
     },
     "zxc.20260201225652.1": {
       "_mod_time": 1769958182.281
@@ -2247,6 +2263,9 @@
     },
     "zxc.20260202195207.1": {
       "_mod_time": 1770033324.222
+    },
+    "zxc.20260214105528.1": {
+      "_mod_time": 1771037778.009
     }
   }
 }
