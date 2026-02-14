@@ -2076,8 +2076,8 @@
     "zxc.20260125153958.1": "[color \"diff\"]\n\tcontext = \"white\"\n\tfrag = \"magenta\"\n\tmeta = \"blue bold\"\n\told = \"red\"\n\twhitespace = \"yellow reverse\"\n",
     "zxc.20260125153928.1": "[color \"branch\"]\n\tcurrent = \"magenta\"\n\tlocal = \"default\"\n\tplain = \"blue\"\n\tremote = \"yellow\"\n\tupstream = \"green\"",
     "zxc.20260125153436.1": "[culumn]\n\tui = \"auto\"",
-    "zxc.20260125153348.1": "[commit]\n\ttemplate = \"~/.config/git/template\"\n  gpgsign = true\n\tverbose = true",
-    "zxc.20260125153401.1": "[core]\n\tcompression = 9\n\teditor = \"{{ template \"editor\" }}\"\n\texcludesfile = \"~/.gitignore\"\n\tfsmonitor = true\n\tpager = \"diff-so-fancy | less '--tabs=4' -RFX\"\n\tpreloadindex = true\n\tuntrackedCache = true\n\twhitespace = \"error\"\n\tautocrlf = \"input\"",
+    "zxc.20260125153348.1": "[commit]\n\ttemplate = \"~/.config/git/template\"\n\tgpgsign = true\n\tverbose = true",
+    "zxc.20260125153401.1": "[core]\n\tcompression = 9\n\teditor = \"{{ template \"editor\" }}\"\n\texcludesfile = \"~/.gitignore\"\n\tfsmonitor = true\n\tpager = \"diff-so-fancy | less '--tabs=4' -RFX\"\n\tpreloadindex = true\n\tuntrackedCache = true\n\twhitespace = \"error\"\n\tautocrlf = \"input\"\n{{ if eq .chezmoi.os \"windows\" }}\tsshCommand = 'C:\\\\Program Files\\\\OpenSSH-Win64\\\\ssh.EXE'\n{{ end -}}",
     "zxc.20260202215744.1": "{{ if eq .chezmoi.os \"windows\" -}}\n[credential]\n\thelper = \"manager\"\n{{ end -}}",
     "zxc.20260202215728.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"gopass\" -}}\n[credential]\n\thelper = \"gopass\"\n{{ end -}}\n{{ end -}}",
     "zxc.20260125154038.1": "[credential \"https://gist.github.com\"]\n\thelper = \"gh auth git-credential\"",
@@ -2089,7 +2089,7 @@
     "zxc.20260125153521.1": "[diff-so-fancy]\n\tchangeHunkIndicators = true\n\tmarkEmptyLines = false\n\tstripLeadingSymbols = true\n\tuseUnicodeRuler = true",
     "zxc.20260125153531.1": "[fetch]\n\tall = true\n\tprune = true\n\tpruneTags = true",
     "zxc.20260125153546.1": "[filter \"lfs\"]\n\tclean = \"git-lfs clean -- %f\"\n\tprocess = \"git-lfs filter-process\"\n\trequired = true\n\tsmudge = \"git-lfs smudge -- %f\"\n",
-    "zxc.20260125153554.1": "[gpg]\n\tformat = \"ssh\"",
+    "zxc.20260125153554.1": "[gpg]\n\tformat = \"ssh\"\n[gpg \"ssh\"]\n{{ if eq .chezmoi.os \"windows\" }}\tprogram = 'C:\\\\Program Files\\\\OpenSSH-Win64\\\\ssh-keygen.EXE'\n{{ end -}}",
     "zxc.20260125153601.1": "[help]\n\tautocorrect = \"prompt\"",
     "zxc.20260125153609.1": "[init]\n\tdefaultBranch = \"main\"",
     "zxc.20260125153617.1": "[interactive]\n\tdiffFilter = \"diff-so-fancy --patch\"\n\tsinglekey = true",
@@ -2266,7 +2266,7 @@
       "_mod_time": 1771037877.096
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1771077428.054
+      "_mod_time": 1771086930.018
     },
     "zxc.20260125161631.1": {
       "_mod_time": 1771037877.096

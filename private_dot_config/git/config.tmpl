@@ -27,7 +27,7 @@
 	ui = "auto"
 [commit]
 	template = "~/.config/git/template"
-  gpgsign = true
+	gpgsign = true
 	verbose = true
 [core]
 	compression = 9
@@ -39,6 +39,8 @@
 	untrackedCache = true
 	whitespace = "error"
 	autocrlf = "input"
+{{ if eq .chezmoi.os "windows" }}	sshCommand = 'C:\\Program Files\\OpenSSH-Win64\\ssh.EXE'
+{{ end -}}
 {{ if eq .chezmoi.os "windows" -}}
 [credential]
 	helper = "manager"
@@ -82,6 +84,9 @@
 	smudge = "git-lfs smudge -- %f"
 [gpg]
 	format = "ssh"
+[gpg "ssh"]
+{{ if eq .chezmoi.os "windows" }}	program = 'C:\\Program Files\\OpenSSH-Win64\\ssh-keygen.EXE'
+{{ end -}}
 [help]
 	autocorrect = "prompt"
 [init]
