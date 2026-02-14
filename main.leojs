@@ -1859,6 +1859,28 @@
                           "gnx": "zxc.20260201143237.1"
                         }
                       ]
+                    },
+                    {
+                      "gnx": "zxc.20260214142543.1",
+                      "vh": "@clean language.toml.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260214142549.1",
+                          "vh": "content",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260214142705.1",
+                              "vh": "language server",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260214142757.1",
+                                  "vh": "simple completion language server"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
                     }
                   ]
                 }
@@ -2111,7 +2133,9 @@
     "zxc.20260130233132.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"alacritty\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260128002742.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
     "zxc.20260202195207.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260214105528.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"hx\" -}}\n@others\n{{ end -}}\n{{ end -}}"
+    "zxc.20260214105528.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"hx\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260214142543.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"hx\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260214142757.1": "{{ if lookPath \"simple-completion-language-server\" -}}\n[language-server.scls]\ncommand = \"simple-completion-language-server\"\n\n[language-server.scls.config]\nfeature_paths = true\nfeature_snippets = true\nfeature_unicode_input = true\nfeature_words = true\nmax_completion_items = 20\nsnippets_first = true\n{{ end -}}"
   },
   "uas": {
     "zxc.20260125142149.1": {
@@ -2266,6 +2290,9 @@
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1771037778.009
+    },
+    "zxc.20260214142543.1": {
+      "_mod_time": 1771050884.802
     }
   }
 }
