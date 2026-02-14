@@ -1,7 +1,11 @@
 {{ if lookPath "chezmoi" -}}
+encryption = "age"
+[age]
+    identity = "~/.ssh/id_ed25519"
+    symmetric = true
 [git]
-    autoCommit = true
-    autoPush = true
+    autoCommit = false
+    autoPush = false
 {{ if eq .chezmoi.os "windows" -}}
 [interpreter.ps1]
     command = "powershell"

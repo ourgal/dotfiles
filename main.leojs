@@ -150,6 +150,14 @@
               "vh": "content",
               "children": [
                 {
+                  "gnx": "User.20260214200035.1",
+                  "vh": "encryption"
+                },
+                {
+                  "gnx": "User.20260214200002.1",
+                  "vh": "git"
+                },
+                {
                   "gnx": "zxc.20260126154722.1",
                   "vh": "windows",
                   "children": [
@@ -186,6 +194,10 @@
                     {
                       "gnx": "zxc.20260127232118.1",
                       "vh": "Documents"
+                    },
+                    {
+                      "gnx": "User.20260214200912.1",
+                      "vh": "scoop"
                     },
                     {
                       "gnx": "zxc.20260202205814.1",
@@ -1911,7 +1923,8 @@
     "zxc.20260125144055.1": "# Get the aliases and functions\n[ -f $HOME/.bashrc ] && . $HOME/.bashrc\n",
     "zxc.20260125144120.1": "{{ if eq .chezmoi.hostname \"surface-void\" -}}\n@others\n{{ end -}}\n",
     "zxc.20260125144207.1": "if [[ -z \"$DISPLAY\" ]] && [[ $(tty) = /dev/tty1 ]]; then\n    . startx\n    logout\nfi",
-    "zxc.20260126154557.1": "[git]\n    autoCommit = true\n    autoPush = true",
+    "User.20260214200035.1": "encryption = \"age\"\n[age]\n    identity = \"~/.ssh/id_ed25519\"\n    symmetric = true",
+    "User.20260214200002.1": "[git]\n    autoCommit = false\n    autoPush = false",
     "zxc.20260126154722.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}\n",
     "zxc.20260126154908.1": "[interpreter.ps1]\n    command = \"powershell\"\n    args = []",
     "zxc.20260126154820.1": "{{ if lookPath \"pwsh\" -}}\n[cd]\n    command = \"pwsh\"\n{{ end -}}",
@@ -1919,6 +1932,7 @@
     "zxc.20260125144515.1": "Makefile\nmain.leojs",
     "zxc.20260125144547.1": "{{ if eq .chezmoi.os \"linux\" -}}\n@others\n{{ end -}}",
     "zxc.20260127232118.1": "Documents",
+    "User.20260214200912.1": "scoop",
     "zxc.20260202205814.1": "Music",
     "zxc.20260128003657.1": "AppData",
     "zxc.20260125144606.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}\n",
@@ -2070,7 +2084,7 @@
     "zxc.20260125153521.1": "[diff-so-fancy]\n\tchangeHunkIndicators = true\n\tmarkEmptyLines = false\n\tstripLeadingSymbols = true\n\tuseUnicodeRuler = true",
     "zxc.20260125153531.1": "[fetch]\n\tall = true\n\tprune = true\n\tpruneTags = true",
     "zxc.20260125153546.1": "[filter \"lfs\"]\n\tclean = \"git-lfs clean -- %f\"\n\tprocess = \"git-lfs filter-process\"\n\trequired = true\n\tsmudge = \"git-lfs smudge -- %f\"\n",
-    "zxc.20260125153554.1": "[gpg]\n\tformat = \"openpgp\"",
+    "zxc.20260125153554.1": "[gpg]\n\tformat = \"ssh\"",
     "zxc.20260125153601.1": "[help]\n\tautocorrect = \"prompt\"",
     "zxc.20260125153609.1": "[init]\n\tdefaultBranch = \"main\"",
     "zxc.20260125153617.1": "[interactive]\n\tdiffFilter = \"diff-so-fancy --patch\"\n\tsinglekey = true",
@@ -2087,7 +2101,7 @@
     "zxc.20260125154343.1": "[url \"ssh://192.168.123.206:23231/\"]\n\tinsteadOf = \"soft:\"\n",
     "zxc.20260125154332.1": "[url \"git@github.com:ourgal/\"]\n\tinsteadOf = \"myg:\"\n",
     "zxc.20260125154321.1": "[url \"git@github.com:\"]\n\tinsteadOf = \"gh:\"\n",
-    "zxc.20260125153842.1": "[user]\n\temail = \"git@fairever.aleeas.com\"\n\tname = \"ourgal\"\n\tsigningkey = \"ourgal\"\n",
+    "zxc.20260125153842.1": "[user]\n\temail = \"git@fairever.aleeas.com\"\n\tname = \"ourgal\"\n\tsigningkey = \"~/.ssh/id_ed25519.pub\"\n",
     "zxc.20260125153131.2": "# feat: ✨\n# feat: 🔍\n# feat: 🔗\n# feat: 🔒\n\n# fix: 🐛\n# fix: 🐞\n# fix: 🩹\n# fix: 🚑️\n\n# style: 💅\n# style: 🎨\n# style: 💄\n\n# ci: 🦊\n# ci: 📦\n\n# deploy: 🚀\n# deploy: 📦\n\n# chore: 🧹\n# chore: 🔧\n# chore: ⚙️\n# docs: 📜\n\n# refactor: 🔨\n# perf: 🚀\n\n# test: 🚦\n# debug: 🧪\n\n# BREAKING CHANGE: 🚨\n# BREAKING CHANGE: 💥\n# BREAKING CHANGE: 💣",
     "zxc.20260125161740.1": "theme = \"catppuccin_mocha\"\n",
     "zxc.20260125161845.1": "[editor]\nbufferline = \"multiple\"\ncolor-modes = true\nidle-timeout = 0\nline-number = \"relative\"\npopup-border = \"none\"\ntrue-color = true\n",
@@ -2139,160 +2153,160 @@
   },
   "uas": {
     "zxc.20260125142149.1": {
-      "_mod_time": 1769413174.017
+      "_mod_time": 1771037877.08
     },
     "zxc.20260125142829.1": {
-      "_mod_time": 1769413174.079
+      "_mod_time": 1771037877.08
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1769413174.023
+      "_mod_time": 1771037877.08
     },
     "zxc.20260125143959.1": {
-      "_mod_time": 1769413174.02
+      "_mod_time": 1771037877.08
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1770037100.525
+      "_mod_time": 1771070956.36
     },
     "zxc.20260125172659.1": {
-      "_mod_time": 1769535279.007
+      "_mod_time": 1771037877.08
     },
     "zxc.20260125172839.1": {
-      "_mod_time": 1769333416.95
+      "_mod_time": 1771037877.065
     },
     "zxc.20260130221131.1": {
-      "_mod_time": 1769783774.147
+      "_mod_time": 1771037877.065
     },
     "zxc.20260130074346.1": {
-      "_mod_time": 1769730301.983
+      "_mod_time": 1771037877.065
     },
     "zxc.20260126160530.1": {
-      "_mod_time": 1769423567.408
+      "_mod_time": 1771037877.065
     },
     "zxc.20260202201907.1": {
-      "_mod_time": 1770035453.362
+      "_mod_time": 1771037877.065
     },
     "zxc.20260202203521.17": {
-      "_mod_time": 1770035790.353
+      "_mod_time": 1771037877.08
     },
     "zxc.20260202203521.20": {
-      "_mod_time": 1770035802.016
+      "_mod_time": 1771037877.08
     },
     "zxc.20260202203521.3": {
-      "_mod_time": 1770035808.432
+      "_mod_time": 1771037877.08
     },
     "zxc.20260202203521.14": {
-      "_mod_time": 1770035814.384
+      "_mod_time": 1771037877.065
     },
     "zxc.20260202213444.1": {
-      "_mod_time": 1770039404.527
+      "_mod_time": 1771037877.08
     },
     "zxc.20260202215023.1": {
-      "_mod_time": 1770040313.705
+      "_mod_time": 1771037877.065
     },
     "zxc.20260202215408.1": {
-      "_mod_time": 1770040518.717
+      "_mod_time": 1771037877.08
     },
     "zxc.20260202220030.1": {
-      "_mod_time": 1770040889.754
+      "_mod_time": 1771037877.08
     },
     "zxc.20260202220553.1": {
-      "_mod_time": 1770041195.609
+      "_mod_time": 1771037877.08
     },
     "zxc.20260125162740.1": {
-      "_mod_time": 1769424731.742
+      "_mod_time": 1771037877.08
     },
     "zxc.20260126185048.1": {
-      "_mod_time": 1769425334.495
+      "_mod_time": 1771037877.08
     },
     "zxc.20260125163108.1": {
-      "_mod_time": 1767460199.633
+      "_mod_time": 1771037877.08
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1769784444.67
+      "_mod_time": 1771037877.096
     },
     "zxc.20260125163703.1": {
-      "_mod_time": 1769783464.133
+      "_mod_time": 1771037877.096
     },
     "zxc.20260125163901.1": {
-      "_mod_time": 1769783475.516
+      "_mod_time": 1771037877.096
     },
     "zxc.20260125163958.1": {
-      "_mod_time": 1769783479.511
+      "_mod_time": 1771037877.096
     },
     "zxc.20260125164142.1": {
-      "_mod_time": 1769783485.199
+      "_mod_time": 1771037877.096
     },
     "zxc.20260130225718.1": {
-      "_mod_time": 1769785174.682
+      "_mod_time": 1771037877.08
     },
     "zxc.20260201141149.1": {
-      "_mod_time": 1770032501.747
+      "_mod_time": 1771037877.08
     },
     "zxc.20260202211707.1": {
-      "_mod_time": 1770038471.078
+      "_mod_time": 1771037877.08
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1769423567.409
+      "_mod_time": 1771071641.438
     },
     "zxc.20260125145051.1": {
-      "_mod_time": 1769342517.127
+      "_mod_time": 1771037877.096
     },
     "zxc.20260125152704.1": {
-      "_mod_time": 1769326096.9
+      "_mod_time": 1771037877.096
     },
     "zxc.20260125152851.2": {
-      "_mod_time": 1769326176.835
+      "_mod_time": 1771037877.096
     },
     "zxc.20260125153131.1": {
-      "_mod_time": 1769347031.314
+      "_mod_time": 1771037877.096
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1770040659.884
+      "_mod_time": 1771077428.054
     },
     "zxc.20260125161631.1": {
-      "_mod_time": 1771037682.082
+      "_mod_time": 1771037877.096
     },
     "zxc.20260201225652.1": {
-      "_mod_time": 1769958182.281
+      "_mod_time": 1771037877.096
     },
     "zxc.20260201225344.1": {
-      "_mod_time": 1769957772.292
+      "_mod_time": 1771037877.096
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1770115483.953
+      "_mod_time": 1771037877.096
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1770118308.225
+      "_mod_time": 1771037877.096
     },
     "zxc.20260202205715.1": {
-      "_mod_time": 1770037430.233
+      "_mod_time": 1771037877.096
     },
     "zxc.20260201203241.1": {
-      "_mod_time": 1769949230.207
+      "_mod_time": 1771037877.08
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1769949354.423
+      "_mod_time": 1771037877.08
     },
     "zxc.20260201214114.1": {
-      "_mod_time": 1769953344.166
+      "_mod_time": 1771037877.08
     },
     "zxc.20260201140523.1": {
-      "_mod_time": 1769926033.493
+      "_mod_time": 1771037877.08
     },
     "zxc.20260130233132.1": {
-      "_mod_time": 1769787237.559
+      "_mod_time": 1771037877.08
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1769958337.714
+      "_mod_time": 1771037877.08
     },
     "zxc.20260202195207.1": {
-      "_mod_time": 1770033324.222
+      "_mod_time": 1771037877.08
     },
     "zxc.20260214105528.1": {
-      "_mod_time": 1771037778.009
+      "_mod_time": 1771037877.08
     },
     "zxc.20260214142543.1": {
-      "_mod_time": 1771050884.802
+      "_mod_time": 1771050918.59
     }
   }
 }
