@@ -1488,6 +1488,10 @@
                   "vh": "material icon theme"
                 },
                 {
+                  "gnx": "User.20260215225846.1",
+                  "vh": "vspacecode"
+                },
+                {
                   "gnx": "User.20260215212006.1",
                   "vh": "vim",
                   "children": [
@@ -1579,6 +1583,10 @@
               "gnx": "User.20260215215005.1",
               "vh": "content",
               "children": [
+                {
+                  "gnx": "User.20260215230117.1",
+                  "vh": "vspacecode"
+                },
                 {
                   "gnx": "User.20260215210409.1",
                   "vh": "magit"
@@ -2141,7 +2149,7 @@
     "zxc.20260202203521.4": "codium --update-extensions\n$extensions = @(\n    @others\n    )\nforeach ($e in $extensions) {\n    Write-Host \"Install vscodium extension $e\"\n    codium --install-extension $e\n}",
     "zxc.20260202203521.5": "\"tamasfe.even-better-toml\"",
     "zxc.20260202203521.6": "\"carlos-algms.make-task-provider\"\n",
-    "zxc.20260202203521.7": "\"vscodevim.vim\"\n",
+    "zxc.20260202203521.7": "\"vscodevim.vim\"\n\"vspacecode.vspacecode\"",
     "zxc.20260202203521.8": "\"jnoortheen.nix-ide\"\n",
     "zxc.20260202203521.9": "\"boltex.leojs\"\n",
     "zxc.20260202203521.10": "\"redhat.ansible\"\n\"ms-python.python\"\n\"redhat.vscode-yaml\"\n\"MattiasBaake.vscode-snippets-for-ansible\"",
@@ -2306,6 +2314,7 @@
     "zxc.20260202211948.1": "root=true\n\n[*]\ncharset=utf-8\n{{ if eq .chezmoi.os \"linux\" -}}\nend_of_line=lf\n{{ else if eq .chezmoi.os \"windows\" -}}\nend_of_line=crlf\n{{ end -}}\nindent_size=2\nindent_style=space\ninsert_final_newline=true\ntrim_trailing_whitespace=true\n\n[*.py]\nindent_size=4\nindent_style=space\n\n[Makefile]\nindent_style=tab",
     "User.20260215210053.1": "\"[leojsbody.plain.wrap][leojsbody.julia.wrap][leojsbody.batch.wrap][leojsbody.shell.wrap][leojsbody.python.wrap][leojsbody.javascript.wrap][leojsbody.typescript.wrap][leojsbody.c.wrap][leojsbody.cpp.wrap][leojsbody.css.wrap][leojsbody.fortran.wrap][leojsbody.fortran90.wrap][leojsbody.html.wrap][leojsbody.java.wrap][leojsbody.json.wrap][leojsbody.markdown.wrap][leojsbody.php.wrap][leojsbody.restructuredtext.wrap][leojsbody.rust.wrap][leojsbody.xml.wrap]\": {\n    \"editor.wordWrap\": \"on\"\n},",
     "User.20260215220918.1": "\"workbench.iconTheme\": \"material-icon-theme\",",
+    "User.20260215225846.1": "\"vim.easymotion\": true,\n\"vim.useSystemClipboard\": true,\n\"vim.normalModeKeyBindingsNonRecursive\": [\n    {\n        \"before\": [\"<space>\"],\n        \"commands\": [\"vspacecode.space\"]\n    },\n    {\n        \"before\": [\",\"],\n        \"commands\": [\n            \"vspacecode.space\",\n            {\n                \"command\": \"whichkey.triggerKey\",\n                \"args\": \"m\"\n            }\n        ]\n    }\n],\n\"vim.visualModeKeyBindingsNonRecursive\": [\n    {\n        \"before\": [\"<space>\"],\n        \"commands\": [\"vspacecode.space\"]\n    },\n    {\n        \"before\": [\",\"],\n        \"commands\": [\n            \"vspacecode.space\",\n            {\n                \"command\": \"whichkey.triggerKey\",\n                \"args\": \"m\"\n            }\n        ]\n    },\n    {\n        \"before\": [\">\"],\n        \"commands\": [\"editor.action.indentLines\"]\n    },\n    {\n        \"before\": [\"<\"],\n        \"commands\": [\"editor.action.outdentLines\"]\n    }\n],",
     "User.20260215212735.1": "\"vim.leader\": \"<space>\",",
     "User.20260215212048.1": "\"vim.normalModeKeyBindings\": [\n    @others\n],",
     "User.20260215220238.1": "{\n    \"before\": [\n        \"<leader>\",\n        \"<space>\"\n    ],\n    \"commands\": [\n        \"workbench.action.quickOpen\"\n    ]\n},",
@@ -2321,6 +2330,7 @@
     "User.20260215221156.1": "\"update.mode\": \"none\",",
     "User.20260215222238.1": "\"explorer.confirmDelete\": false,\n\"explorer.confirmDragAndDrop\": false,",
     "User.20260215221142.1": "\"window.confirmBeforeClose\": \"never\"",
+    "User.20260215230117.1": "{\n    \"key\": \"space\",\n    \"command\": \"vspacecode.space\",\n    \"when\": \"activeEditorGroupEmpty && focusedView == '' && !whichkeyActive && !inputFocus\"\n},\n{\n    \"key\": \"space\",\n    \"command\": \"vspacecode.space\",\n    \"when\": \"sideBarFocus && !inputFocus && !whichkeyActive\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"extension.vim_tab\",\n    \"when\": \"editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && editorLangId != 'magit'\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"-extension.vim_tab\",\n    \"when\": \"editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert'\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"magit.discard-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"k\",\n    \"command\": \"-magit.discard-at-point\"\n},\n{\n    \"key\": \"-\",\n    \"command\": \"magit.reverse-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"v\",\n    \"command\": \"-magit.reverse-at-point\"\n},\n{\n    \"key\": \"shift+-\",\n    \"command\": \"magit.reverting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+v\",\n    \"command\": \"-magit.reverting\"\n},\n{\n    \"key\": \"shift+o\",\n    \"command\": \"magit.resetting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+x\",\n    \"command\": \"-magit.resetting\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"-magit.reset-mixed\"\n},\n{\n    \"key\": \"ctrl+u x\",\n    \"command\": \"-magit.reset-hard\"\n},\n{\n    \"key\": \"y\",\n    \"command\": \"-magit.show-refs\"\n},\n{\n    \"key\": \"y\",\n    \"command\": \"vspacecode.showMagitRefMenu\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode == 'Normal'\"\n},\n{\n    \"key\": \"g\",\n    \"command\": \"-magit.refresh\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"g\",\n    \"command\": \"vspacecode.showMagitRefreshMenu\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"ctrl+j\",\n    \"command\": \"workbench.action.quickOpenSelectNext\",\n    \"when\": \"inQuickOpen\"\n},\n{\n    \"key\": \"ctrl+k\",\n    \"command\": \"workbench.action.quickOpenSelectPrevious\",\n    \"when\": \"inQuickOpen\"\n},\n{\n    \"key\": \"ctrl+j\",\n    \"command\": \"selectNextSuggestion\",\n    \"when\": \"suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus\"\n},\n{\n    \"key\": \"ctrl+k\",\n    \"command\": \"selectPrevSuggestion\",\n    \"when\": \"suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus\"\n},\n{\n    \"key\": \"ctrl+l\",\n    \"command\": \"acceptSelectedSuggestion\",\n    \"when\": \"suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus\"\n},\n{\n    \"key\": \"ctrl+j\",\n    \"command\": \"showNextParameterHint\",\n    \"when\": \"editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible\"\n},\n{\n    \"key\": \"ctrl+k\",\n    \"command\": \"showPrevParameterHint\",\n    \"when\": \"editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible\"\n},\n{\n    \"key\": \"ctrl+j\",\n    \"command\": \"selectNextCodeAction\",\n    \"when\": \"codeActionMenuVisible\"\n},\n{\n    \"key\": \"ctrl+k\",\n    \"command\": \"selectPrevCodeAction\",\n    \"when\": \"codeActionMenuVisible\"\n},\n{\n    \"key\": \"ctrl+l\",\n    \"command\": \"acceptSelectedCodeAction\",\n    \"when\": \"codeActionMenuVisible\"\n},\n{\n    \"key\": \"ctrl+h\",\n    \"command\": \"file-browser.stepOut\",\n    \"when\": \"inFileBrowser\"\n},\n{\n    \"key\": \"ctrl+l\",\n    \"command\": \"file-browser.stepIn\",\n    \"when\": \"inFileBrowser\"\n},",
     "User.20260215210409.1": "{\n    \"key\": \"g g\",\n    \"command\": \"cursorTop\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"g r\",\n    \"command\": \"magit.refresh\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"extension.vim_tab\",\n    \"when\": \"editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && !inlineEditIsVisible && editorLangId != 'magit'\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"-extension.vim_tab\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"magit.discard-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"k\",\n    \"command\": \"-magit.discard-at-point\"\n},\n{\n    \"key\": \"-\",\n    \"command\": \"magit.reverse-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"v\",\n    \"command\": \"-magit.reverse-at-point\"\n},\n{\n    \"key\": \"shift+-\",\n    \"command\": \"magit.reverting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+v\",\n    \"command\": \"-magit.reverting\"\n},\n{\n    \"key\": \"shift+o\",\n    \"command\": \"magit.resetting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+x\",\n    \"command\": \"-magit.resetting\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"-magit.reset-mixed\"\n},\n{\n    \"key\": \"ctrl+u x\",\n    \"command\": \"-magit.reset-hard\"\n}",
     "zxc.20260126154354.1": "{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}",
     "zxc.20260125145051.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -2392,7 +2402,7 @@
       "_mod_time": 1771160025.478
     },
     "zxc.20260202203521.3": {
-      "_mod_time": 1771149661.604
+      "_mod_time": 1771167415.751
     },
     "zxc.20260202203521.14": {
       "_mod_time": 1771149661.604
@@ -2482,10 +2492,10 @@
       "_mod_time": 1771149661.619
     },
     "User.20260215205925.1": {
-      "_mod_time": 1771165414.187
+      "_mod_time": 1771167896.797
     },
     "User.20260215210400.1": {
-      "_mod_time": 1771163993.204
+      "_mod_time": 1771167737.022
     },
     "zxc.20260125211938.1": {
       "_mod_time": 1771149661.619
