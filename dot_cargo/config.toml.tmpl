@@ -1,0 +1,9 @@
+{{ if or ( eq .chezmoi.os "windows" ) ( eq .chezmoi.os "linux" ) -}}
+{{ if lookPath "cargo" -}}
+[source.crates-io]
+replace-with = 'mirror'
+
+[source.mirror]
+registry = "https://mirror.nju.edu.cn/git/crates.io-index.git"
+{{ end -}}
+{{ end -}}
