@@ -2090,7 +2090,7 @@
     "zxc.20260125153521.1": "[diff-so-fancy]\n\tchangeHunkIndicators = true\n\tmarkEmptyLines = false\n\tstripLeadingSymbols = true\n\tuseUnicodeRuler = true",
     "zxc.20260125153531.1": "[fetch]\n\tall = true\n\tprune = true\n\tpruneTags = true",
     "zxc.20260125153546.1": "[filter \"lfs\"]\n\tclean = \"git-lfs clean -- %f\"\n\tprocess = \"git-lfs filter-process\"\n\trequired = true\n\tsmudge = \"git-lfs smudge -- %f\"\n",
-    "zxc.20260125153554.1": "[gpg]\n\tformat = \"ssh\"\n[gpg \"ssh\"]\n{{ if eq .chezmoi.os \"windows\" }}\tprogram = 'C:\\\\Program Files\\\\OpenSSH-Win64\\\\ssh-keygen.EXE'\n{{ end -}}",
+    "zxc.20260125153554.1": "[gpg]\n\tformat = \"ssh\"\n[gpg \"ssh\"]\n{{ if eq .chezmoi.os \"windows\" }}\tprogram = \"s:\\\\Program Files\\\\OpenSSH-Win64\\\\ssh-keygen.EXE\"\n{{ end -}}",
     "zxc.20260125153601.1": "[help]\n\tautocorrect = \"prompt\"",
     "zxc.20260125153609.1": "[init]\n\tdefaultBranch = \"main\"",
     "zxc.20260125153617.1": "[interactive]\n\tdiffFilter = \"diff-so-fancy --patch\"\n\tsinglekey = true",
@@ -2271,7 +2271,7 @@
       "_mod_time": 1771149661.619
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1771149661.619
+      "_mod_time": 1771154214.952
     },
     "zxc.20260125161631.1": {
       "_mod_time": 1771149661.619
