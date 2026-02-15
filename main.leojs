@@ -1484,6 +1484,10 @@
                   "vh": "leojs"
                 },
                 {
+                  "gnx": "User.20260215220918.1",
+                  "vh": "material icon theme"
+                },
+                {
                   "gnx": "User.20260215212006.1",
                   "vh": "vim",
                   "children": [
@@ -2271,6 +2275,7 @@
     "zxc.20260202211707.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"editorconfig\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202211948.1": "root=true\n\n[*]\ncharset=utf-8\n{{ if eq .chezmoi.os \"linux\" -}}\nend_of_line=lf\n{{ else if eq .chezmoi.os \"windows\" -}}\nend_of_line=crlf\n{{ end -}}\nindent_size=2\nindent_style=space\ninsert_final_newline=true\ntrim_trailing_whitespace=true\n\n[*.py]\nindent_size=4\nindent_style=space\n\n[Makefile]\nindent_style=tab",
     "User.20260215210053.1": "\"[leojsbody.plain.wrap][leojsbody.julia.wrap][leojsbody.batch.wrap][leojsbody.shell.wrap][leojsbody.python.wrap][leojsbody.javascript.wrap][leojsbody.typescript.wrap][leojsbody.c.wrap][leojsbody.cpp.wrap][leojsbody.css.wrap][leojsbody.fortran.wrap][leojsbody.fortran90.wrap][leojsbody.html.wrap][leojsbody.java.wrap][leojsbody.json.wrap][leojsbody.markdown.wrap][leojsbody.php.wrap][leojsbody.restructuredtext.wrap][leojsbody.rust.wrap][leojsbody.xml.wrap]\": {\n    \"editor.wordWrap\": \"on\"\n},",
+    "User.20260215220918.1": "\"workbench.iconTheme\": \"material-icon-theme\",",
     "User.20260215212735.1": "\"vim.leader\": \"<space>\",",
     "User.20260215212048.1": "\"vim.normalModeKeyBindings\": [\n    @others\n],",
     "User.20260215220238.1": "{\n    \"before\": [\n        \"<leader>\",\n        \"<space>\"\n    ],\n    \"commands\": [\n        \"workbench.action.quickOpen\"\n    ]\n},",
@@ -2441,7 +2446,7 @@
       "_mod_time": 1771149661.619
     },
     "User.20260215205925.1": {
-      "_mod_time": 1771164441.298
+      "_mod_time": 1771164601.294
     },
     "User.20260215210400.1": {
       "_mod_time": 1771163993.204
