@@ -1598,6 +1598,22 @@
       ]
     },
     {
+      "gnx": "User.20260216000248.1",
+      "vh": "cargo",
+      "children": [
+        {
+          "gnx": "User.20260216000318.1",
+          "vh": "@clean dot_cargo/config.toml.tmpl",
+          "children": [
+            {
+              "gnx": "User.20260216000441.1",
+              "vh": "content"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "gnx": "zxc.20260125152614.1",
       "vh": "config",
       "children": [
@@ -2354,6 +2370,8 @@
     "User.20260215221142.1": "\"window.confirmBeforeClose\": \"never\"",
     "User.20260215230117.1": "{\n    \"key\": \"space\",\n    \"command\": \"vspacecode.space\",\n    \"when\": \"activeEditorGroupEmpty && focusedView == '' && !whichkeyActive && !inputFocus\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"extension.vim_tab\",\n    \"when\": \"editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && editorLangId != 'magit'\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"-extension.vim_tab\",\n    \"when\": \"editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert'\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"magit.discard-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"k\",\n    \"command\": \"-magit.discard-at-point\"\n},\n{\n    \"key\": \"-\",\n    \"command\": \"magit.reverse-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"v\",\n    \"command\": \"-magit.reverse-at-point\"\n},\n{\n    \"key\": \"shift+-\",\n    \"command\": \"magit.reverting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+v\",\n    \"command\": \"-magit.reverting\"\n},\n{\n    \"key\": \"shift+o\",\n    \"command\": \"magit.resetting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+x\",\n    \"command\": \"-magit.resetting\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"-magit.reset-mixed\"\n},\n{\n    \"key\": \"ctrl+u x\",\n    \"command\": \"-magit.reset-hard\"\n},\n{\n    \"key\": \"y\",\n    \"command\": \"-magit.show-refs\"\n},\n{\n    \"key\": \"y\",\n    \"command\": \"vspacecode.showMagitRefMenu\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode == 'Normal'\"\n},\n{\n    \"key\": \"g\",\n    \"command\": \"-magit.refresh\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"g\",\n    \"command\": \"vspacecode.showMagitRefreshMenu\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"ctrl+j\",\n    \"command\": \"workbench.action.quickOpenSelectNext\",\n    \"when\": \"inQuickOpen\"\n},\n{\n    \"key\": \"ctrl+k\",\n    \"command\": \"workbench.action.quickOpenSelectPrevious\",\n    \"when\": \"inQuickOpen\"\n},\n{\n    \"key\": \"ctrl+j\",\n    \"command\": \"selectNextSuggestion\",\n    \"when\": \"suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus\"\n},\n{\n    \"key\": \"ctrl+k\",\n    \"command\": \"selectPrevSuggestion\",\n    \"when\": \"suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus\"\n},\n{\n    \"key\": \"ctrl+l\",\n    \"command\": \"acceptSelectedSuggestion\",\n    \"when\": \"suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus\"\n},\n{\n    \"key\": \"ctrl+j\",\n    \"command\": \"showNextParameterHint\",\n    \"when\": \"editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible\"\n},\n{\n    \"key\": \"ctrl+k\",\n    \"command\": \"showPrevParameterHint\",\n    \"when\": \"editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible\"\n},\n{\n    \"key\": \"ctrl+j\",\n    \"command\": \"selectNextCodeAction\",\n    \"when\": \"codeActionMenuVisible\"\n},\n{\n    \"key\": \"ctrl+k\",\n    \"command\": \"selectPrevCodeAction\",\n    \"when\": \"codeActionMenuVisible\"\n},\n{\n    \"key\": \"ctrl+l\",\n    \"command\": \"acceptSelectedCodeAction\",\n    \"when\": \"codeActionMenuVisible\"\n},\n{\n    \"key\": \"ctrl+h\",\n    \"command\": \"file-browser.stepOut\",\n    \"when\": \"inFileBrowser\"\n},\n{\n    \"key\": \"ctrl+l\",\n    \"command\": \"file-browser.stepIn\",\n    \"when\": \"inFileBrowser\"\n},",
     "User.20260215210409.1": "{\n    \"key\": \"g g\",\n    \"command\": \"cursorTop\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"g r\",\n    \"command\": \"magit.refresh\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"extension.vim_tab\",\n    \"when\": \"editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && !inlineEditIsVisible && editorLangId != 'magit'\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"-extension.vim_tab\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"magit.discard-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"k\",\n    \"command\": \"-magit.discard-at-point\"\n},\n{\n    \"key\": \"-\",\n    \"command\": \"magit.reverse-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"v\",\n    \"command\": \"-magit.reverse-at-point\"\n},\n{\n    \"key\": \"shift+-\",\n    \"command\": \"magit.reverting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+v\",\n    \"command\": \"-magit.reverting\"\n},\n{\n    \"key\": \"shift+o\",\n    \"command\": \"magit.resetting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+x\",\n    \"command\": \"-magit.resetting\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"-magit.reset-mixed\"\n},\n{\n    \"key\": \"ctrl+u x\",\n    \"command\": \"-magit.reset-hard\"\n}",
+    "User.20260216000318.1": "{{ if or ( eq .chezmoi.os \"windows\" ) ( eq .chezmoi.os \"linux\" ) -}}\n{{ if lookPath \"cargo\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260216000441.1": "[source.crates-io]\nreplace-with = 'mirror'\n\n[source.mirror]\nregistry = \"https://mirror.nju.edu.cn/git/crates.io-index.git\"",
     "zxc.20260126154354.1": "{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}",
     "zxc.20260125145051.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125152704.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -2481,6 +2499,9 @@
     },
     "zxc.20260202211707.1": {
       "_mod_time": 1771149661.619
+    },
+    "User.20260216000318.1": {
+      "_mod_time": 1771171526.2
     },
     "zxc.20260126154354.1": {
       "_mod_time": 1771149661.619
