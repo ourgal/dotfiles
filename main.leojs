@@ -2310,7 +2310,7 @@
     "User.20260215221406.1": "\"editor.lineNumbers\": \"relative\",",
     "User.20260215221255.1": "\"workbench.editor.closeEmptyGroups\": true,",
     "User.20260215221156.1": "\"update.mode\": \"none\",",
-    "User.20260215221142.1": "\"window.confirmBeforeClose\": \"always\"",
+    "User.20260215221142.1": "\"window.confirmBeforeClose\": \"never\"",
     "User.20260215210409.1": "{\n    \"key\": \"g g\",\n    \"command\": \"cursorTop\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"g r\",\n    \"command\": \"magit.refresh\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"extension.vim_tab\",\n    \"when\": \"editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && !inlineEditIsVisible && editorLangId != 'magit'\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"-extension.vim_tab\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"magit.discard-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"k\",\n    \"command\": \"-magit.discard-at-point\"\n},\n{\n    \"key\": \"-\",\n    \"command\": \"magit.reverse-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"v\",\n    \"command\": \"-magit.reverse-at-point\"\n},\n{\n    \"key\": \"shift+-\",\n    \"command\": \"magit.reverting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+v\",\n    \"command\": \"-magit.reverting\"\n},\n{\n    \"key\": \"shift+o\",\n    \"command\": \"magit.resetting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+x\",\n    \"command\": \"-magit.resetting\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"-magit.reset-mixed\"\n},\n{\n    \"key\": \"ctrl+u x\",\n    \"command\": \"-magit.reset-hard\"\n}",
     "zxc.20260126154354.1": "{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}",
     "zxc.20260125145051.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -2472,7 +2472,7 @@
       "_mod_time": 1771149661.619
     },
     "User.20260215205925.1": {
-      "_mod_time": 1771165019.778
+      "_mod_time": 1771165145.833
     },
     "User.20260215210400.1": {
       "_mod_time": 1771163993.204
