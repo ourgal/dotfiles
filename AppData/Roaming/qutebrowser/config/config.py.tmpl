@@ -1,0 +1,54 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "qutebrowser" -}}
+config.load_autoconfig(False)
+config.set("auto_save.session", True)
+config.set("content.blocking.method", "both")
+config.set("downloads.location.suggestion", "both")
+config.set("hints.border", "1px solid #1d1f21")
+c.url.searchengines['DEFAULT'] = "https://www.google.com/search?hl=en&q={}"
+c.url.searchengines['aw'] = "https://wiki.archlinux.org/?search={}"
+c.url.searchengines['b'] = "https://cn.bing.com/search?q={}"
+c.url.searchengines['books'] = "https://search.books.com.tw/search/query/cat/all/sort/5/v/1/page/1/spell/3/ms2/ms2_1/key/{}"
+c.url.searchengines['bwtw'] = "https://www.bookwalker.com.tw/search?w={}&series_display=1"
+c.url.searchengines['ddg'] = "https://duckduckgo.com/?q={}"
+c.url.searchengines['dict'] = "https://cn.bing.com/dict?q={}"
+c.url.searchengines['docker'] = "https://hub.docker.com/search?q={}"
+c.url.searchengines['g'] = "https://www.google.com/search?hl=en&q={}"
+c.url.searchengines['gh'] = "https://github.com/search?q={}"
+c.url.searchengines['mangazip'] = "https://manga-zip.info/search/{}"
+c.url.searchengines['mynix'] = "https://mynixos.com/search?q={}"
+c.url.searchengines['nw'] = "https://nixos.wiki/index.php?search={}"
+c.url.searchengines['nyaa'] = "https://nyaa.si/?f=0&c=1_2&q={}"
+c.url.searchengines['twdict'] = "https://dict.revised.moe.edu.tw/search.jsp?md=1&word={}#searchL"
+c.url.searchengines['w'] = "https://en.wikipedia.org/wiki/Special:Search?search={}&amp;go=Go&amp;ns0=1"
+config.bind(",", "search-prev", mode="normal")
+config.bind(".", "search-next", mode="normal")
+config.bind("<", "tab-move -", mode="normal")
+config.bind("<Alt-m>", "tab-mute", mode="normal")
+config.bind("<Ctrl-o>", "session-save ;; cmd-set-text -s :session-load -c", mode="normal")
+config.bind(">", "tab-move +", mode="normal")
+config.bind("B", "cmd-set-text -s :open -t dict ", mode="normal")
+config.bind("M", "hint links spawn -d mpv {hint-url}", mode="normal")
+config.bind("S", "scroll-to-perc 100", mode="normal")
+config.bind("W", "scroll-to-perc 0", mode="normal")
+config.bind("X", "close", mode="normal")
+config.bind("\\r", "clear-messages ;; jseval document.querySelector(\"video, audio\").playbackRate = 2", mode="normal")
+config.bind("\\z", "clear-messages ;; jseval document.querySelector(\"video, audio\").playbackRate = 1", mode="normal")
+config.bind("a", "back", mode="normal")
+config.bind("b", "cmd-set-text -s :quickmark-load -t ", mode="normal")
+config.bind("c", "tab-prev", mode="normal")
+config.bind("d", "forward", mode="normal")
+config.bind("e", "cmd-set-text -s :open {url}", mode="normal")
+config.bind("g", "cmd-set-text -s :open -t", mode="normal")
+config.bind("o", "cmd-set-text -s :open", mode="normal")
+config.bind("p", "open -t {clipboard}", mode="normal")
+config.bind("r", "reload", mode="normal")
+config.bind("s", "scroll-page 0 1", mode="normal")
+config.bind("u", "navigate up", mode="normal")
+config.bind("v", "tab-next", mode="normal")
+config.bind("w", "scroll-page 0 -1", mode="normal")
+config.bind("x", "tab-close", mode="normal")
+config.bind("ya", "hint links yank", mode="normal")
+config.bind("z", "undo", mode="normal")
+{{ end -}}
+{{ end -}}
