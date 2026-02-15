@@ -1654,6 +1654,90 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "gnx": "User.20260215205651.1",
+                  "vh": "@path vscodium",
+                  "children": [
+                    {
+                      "gnx": "User.20260215205742.1",
+                      "vh": "@path data",
+                      "children": [
+                        {
+                          "gnx": "User.20260215205836.1",
+                          "vh": "@path user-data",
+                          "children": [
+                            {
+                              "gnx": "User.20260215205840.1",
+                              "vh": "@path User",
+                              "children": [
+                                {
+                                  "gnx": "User.20260215205925.1",
+                                  "vh": "@clean settings.json.tmpl",
+                                  "children": [
+                                    {
+                                      "gnx": "User.20260215210053.1",
+                                      "vh": "leojs"
+                                    },
+                                    {
+                                      "gnx": "User.20260215212006.1",
+                                      "vh": "vim",
+                                      "children": [
+                                        {
+                                          "gnx": "User.20260215212735.1",
+                                          "vh": "settings"
+                                        },
+                                        {
+                                          "gnx": "User.20260215212042.1",
+                                          "vh": "keybindings",
+                                          "children": [
+                                            {
+                                              "gnx": "User.20260215212048.1",
+                                              "vh": "normal",
+                                              "children": [
+                                                {
+                                                  "gnx": "User.20260215212143.1",
+                                                  "vh": "magit status"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "gnx": "User.20260215210123.1",
+                                      "vh": "magit"
+                                    },
+                                    {
+                                      "gnx": "User.20260215210006.1",
+                                      "vh": "others"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "User.20260215210400.1",
+                                  "vh": "@clean keybindings.json.tmpl",
+                                  "children": [
+                                    {
+                                      "gnx": "User.20260215215005.1",
+                                      "vh": "content",
+                                      "children": [
+                                        {
+                                          "gnx": "User.20260215210409.1",
+                                          "vh": "magit"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -2144,6 +2228,15 @@
     "User.20260215182823.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\nv2:sha256:545f553a4bf4638cadbe6d6e5a8a705008953379001ae9c087c38b485233751d\n{{ end -}}",
     "zxc.20260201225344.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
     "zxc.20260201034331.1": "@others",
+    "User.20260215205925.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"vscodium\" -}}\n{\n    @others\n}\n{{ end -}}\n{{ end -}}",
+    "User.20260215210053.1": "\"[leojsbody.plain.wrap][leojsbody.julia.wrap][leojsbody.batch.wrap][leojsbody.shell.wrap][leojsbody.python.wrap][leojsbody.javascript.wrap][leojsbody.typescript.wrap][leojsbody.c.wrap][leojsbody.cpp.wrap][leojsbody.css.wrap][leojsbody.fortran.wrap][leojsbody.fortran90.wrap][leojsbody.html.wrap][leojsbody.java.wrap][leojsbody.json.wrap][leojsbody.markdown.wrap][leojsbody.php.wrap][leojsbody.restructuredtext.wrap][leojsbody.rust.wrap][leojsbody.xml.wrap]\": {\n    \"editor.wordWrap\": \"on\"\n},",
+    "User.20260215212735.1": "\"vim.leader\": \"<space>\",",
+    "User.20260215212048.1": "\"vim.normalModeKeyBindings\": [\n    @others\n],",
+    "User.20260215212143.1": "{\n    \"before\": [\n        \"<leader>\",\n        \"g\",\n        \"g\"\n    ],\n    \"commands\": [\n        \"magit.status\"\n    ]\n}",
+    "User.20260215210123.1": "\"magit.display-buffer-function\": \"same-column\",\n\"magit.git-path\": \"C:\\\\Users\\\\User\\\\scoop\\\\apps\\\\git\\\\current\\\\cmd\\\\git.exe\",",
+    "User.20260215210006.1": "\"update.mode\": \"none\",\n\"workbench.editor.closeEmptyGroups\": false,\n\"window.confirmBeforeClose\": \"always\"",
+    "User.20260215210400.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"vscodium\" -}}\n[\n    @others\n]\n{{ end -}}\n{{ end -}}",
+    "User.20260215210409.1": "{\n    \"key\": \"g g\",\n    \"command\": \"cursorTop\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"g r\",\n    \"command\": \"magit.refresh\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"extension.vim_tab\",\n    \"when\": \"editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && !inlineEditIsVisible && editorLangId != 'magit'\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"-extension.vim_tab\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"magit.discard-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"k\",\n    \"command\": \"-magit.discard-at-point\"\n},\n{\n    \"key\": \"-\",\n    \"command\": \"magit.reverse-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"v\",\n    \"command\": \"-magit.reverse-at-point\"\n},\n{\n    \"key\": \"shift+-\",\n    \"command\": \"magit.reverting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+v\",\n    \"command\": \"-magit.reverting\"\n},\n{\n    \"key\": \"shift+o\",\n    \"command\": \"magit.resetting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+x\",\n    \"command\": \"-magit.resetting\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"-magit.reset-mixed\"\n},\n{\n    \"key\": \"ctrl+u x\",\n    \"command\": \"-magit.reset-hard\"\n}",
     "zxc.20260125211938.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202205715.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
     "zxc.20260202205901.1": "# Flower - とても深いグリーン\nhttps://www.bilibili.com/video/BV1EyHYeBEFr",
@@ -2287,6 +2380,12 @@
     },
     "zxc.20260201034331.1": {
       "_mod_time": 1771149661.619
+    },
+    "User.20260215205925.1": {
+      "_mod_time": 1771163314.643
+    },
+    "User.20260215210400.1": {
+      "_mod_time": 1771160703.607
     },
     "zxc.20260125211938.1": {
       "_mod_time": 1771149661.619
