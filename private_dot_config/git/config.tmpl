@@ -85,7 +85,7 @@
 [gpg]
 	format = "ssh"
 [gpg "ssh"]
-{{ if eq .chezmoi.os "windows" }}	program = "s:\\Program Files\\OpenSSH-Win64\\ssh-keygen.EXE"
+{{ if eq .chezmoi.os "windows" }}	program = "C:\\Program Files\\OpenSSH-Win64\\ssh-keygen.EXE"
 {{ end -}}
 [help]
 	autocorrect = "prompt"
