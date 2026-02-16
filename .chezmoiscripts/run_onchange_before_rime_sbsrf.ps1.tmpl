@@ -1,0 +1,63 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if stat "C:/Program Files/Rime" -}}
+# --- Configuration ---
+
+# 1. Define the source URL
+$DownloadUrl = "https://github.com/sbsrf/home/releases/download/20260101/sbsrf.zip"
+
+# 2. Define the target directory using the built-in environment variable $env:APPDATA
+# Note: $env:APPDATA resolves to C:\Users\<Username>\AppData\Roaming
+$TargetFolder = Join-Path -Path $env:APPDATA -ChildPath "rime"
+
+# 3. Define a temporary path for the downloaded file
+$TempZipPath = Join-Path -Path $env:TEMP -ChildPath "sbsrf_download.zip"
+
+# --- Execution ---
+
+Write-Host "Starting download and extraction process..."
+
+# 1. Ensure the target directory exists
+if (-not (Test-Path -Path $TargetFolder)) {
+    Write-Host "Creating target directory: $TargetFolder"
+    New-Item -Path $TargetFolder -ItemType Directory | Out-Null
+} else {
+    Write-Host "Target directory already exists: $TargetFolder"
+}
+
+# 2. Download the file
+Write-Host "Downloading file from $DownloadUrl to $TempZipPath..."
+try {
+    # Use Invoke-WebRequest (iwr) for downloading files
+    Invoke-WebRequest -Uri $DownloadUrl -OutFile $TempZipPath -UseBasicParsing
+    Write-Host "Download complete."
+}
+catch {
+    Write-Error "Failed to download the file. Error: $($_.Exception.Message)"
+    exit 1
+}
+
+# 3. Extract the contents of the ZIP file
+Write-Host "Extracting contents to $TargetFolder..."
+try {
+    # Load the necessary .NET assembly for ZIP operations (often loaded automatically, but good practice to ensure)
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+
+    # Use Expand-Archive (available in PS 5.0+)
+    # -Force overwrites existing files in the destination folder without prompting
+    Expand-Archive -Path $TempZipPath -DestinationPath $TargetFolder -Force
+    
+    Write-Host "Extraction complete. Files are now in: $TargetFolder"
+}
+catch {
+    Write-Error "Failed to extract the ZIP file. Error: $($_.Exception.Message)"
+    exit 1
+}
+finally {
+    # 4. Clean up the temporary ZIP file
+    if (Test-Path -Path $TempZipPath) {
+        Remove-Item -Path $TempZipPath -Force
+        Write-Host "Cleaned up temporary file: $TempZipPath"
+    }
+}
+{{ end -}}
+{{ end -}}

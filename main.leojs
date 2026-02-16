@@ -388,6 +388,22 @@
                   ]
                 },
                 {
+                  "gnx": "User.20260216114714.1",
+                  "vh": "rime sbsrf",
+                  "children": [
+                    {
+                      "gnx": "User.20260216114746.1",
+                      "vh": "@clean run_onchange_before_rime_sbsrf.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260216114815.1",
+                          "vh": "content"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
                   "gnx": "zxc.20260202203521.2",
                   "vh": "vscodium extensions",
                   "children": [
@@ -1614,6 +1630,32 @@
       ]
     },
     {
+      "gnx": "User.20260216130008.1",
+      "vh": "rime",
+      "children": [
+        {
+          "gnx": "User.20260216130104.1",
+          "vh": "default config",
+          "children": [
+            {
+              "gnx": "User.20260216125349.1",
+              "vh": "content"
+            }
+          ]
+        },
+        {
+          "gnx": "User.20260216130126.1",
+          "vh": "sbfm config",
+          "children": [
+            {
+              "gnx": "User.20260216125513.1",
+              "vh": "content"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "gnx": "zxc.20260125152614.1",
       "vh": "config",
       "children": [
@@ -2117,6 +2159,30 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "gnx": "User.20260216124137.1",
+                  "vh": "@path Rime",
+                  "children": [
+                    {
+                      "gnx": "User.20260216124226.1",
+                      "vh": "@clean default.custom.yaml.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260216125349.1"
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "User.20260216125422.1",
+                      "vh": "@clean sbfm.custom.yaml.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260216125513.1"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -2165,7 +2231,7 @@
     "zxc.20260125144810.1": ".xinitrc\n",
     "zxc.20260125172659.1": "{{ if lookPath \"hx\" -}}\nhx\n{{- else if lookPath \"vim\" -}}\nvim\n{{- else if lookPath \"vi\" -}}\nvi\n{{- else if lookPath \"nano\" -}}\nnano\n{{- end -}}",
     "zxc.20260125172839.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260126160624.1": "[\".local/lib/ble-nightly\"]\n    type = \"archive\"\n    url = \"https://github.com/akinomyoga/ble.sh/releases/download/nightly/ble-nightly.tar.xz\"\n    exact = true\n    stripComponents = 1\n    refreshPeriod = \"168h\"\n",
+    "zxc.20260126160624.1": "[\".local/lib/ble-nightly\"]\n    type = \"archive\"\n    url = \"https://github.com/akinomyoga/ble.sh/releases/download/nightly/ble-nightly.tar.xz\"\n    exact = true\n    stripComponents = 1\n    refreshPeriod = \"168h\"",
     "zxc.20260130221131.1": "@others",
     "zxc.20260130221131.2": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260130221536.1": "[\".vim/autoload/plug.vim\"]\n    type = \"file\"\n    url = \"https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim\"\n    refreshPeriod = \"168h\"\n",
@@ -2183,6 +2249,8 @@
     "zxc.20260202203521.22": "function New-LayoutModificationXml {\n    [CmdletBinding()]\n    param (\n        [string[]] $LnkPaths,\n        [string] $OutputPath = $env:USERPROFILE + \"\\AppData\\Local\\Microsoft\\Windows\\Shell\\LayoutModification.xml\",\n        [ValidateSet(\"Append\", \"Replace\")]\n        [string] $PinListPlacement = \"Replace\"\n    )\n\n    $xml = New-Object System.Xml.XmlDocument\n    $root = $xml.CreateElement(\"LayoutModificationTemplate\", \"http://schemas.microsoft.com/Start/2014/LayoutModification\")\n    $xml.AppendChild($root) | Out-Null\n    $root.SetAttribute(\"xmlns:defaultlayout\", \"http://schemas.microsoft.com/Start/2014/FullDefaultLayout\")\n    $root.SetAttribute(\"xmlns:taskbar\", \"http://schemas.microsoft.com/Start/2014/TaskbarLayout\")\n    $root.SetAttribute(\"Version\", \"1\")\n    $collection = $xml.CreateElement(\"CustomTaskbarLayoutCollection\", $root.NamespaceURI)\n    $collection.SetAttribute(\"PinListPlacement\", $PinListPlacement)\n    $root.AppendChild($collection) | Out-Null\n    $layout = $xml.CreateElement(\"defaultlayout:TaskbarLayout\", $root.GetAttribute(\"xmlns:defaultlayout\"))\n    $collection.AppendChild($layout) | Out-Null\n    $pinList = $xml.CreateElement(\"taskbar:TaskbarPinList\", $root.GetAttribute(\"xmlns:taskbar\"))\n    $layout.AppendChild($pinList) | Out-Null\n    foreach ($lnk in $LnkPaths) {\n        $desktopApp = $xml.CreateElement(\"taskbar:DesktopApp\", $root.GetAttribute(\"xmlns:taskbar\"))\n        $desktopApp.SetAttribute(\"DesktopApplicationLinkPath\", $lnk)\n        $pinList.AppendChild($desktopApp) | Out-Null\n    }\n    $xml.Save($OutputPath)\n}\n",
     "zxc.20260202203521.23": "function Reset-TaskbarLayout {\n    Get-Process explorer | Stop-Process -Force\n    Remove-Item \"$Env:AppData\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar\\*\" -Force -ErrorAction SilentlyContinue\n    Remove-Item \"$Env:AppData\\Microsoft\\Windows\\Shell\\*.dat\" -Force -ErrorAction SilentlyContinue\n    Remove-Item \"$Env:AppData\\Microsoft\\Windows\\Shell\\LayoutModification.xml\" -Force -ErrorAction SilentlyContinue\n    Remove-Item -Path \"HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Taskband\" -Recurse -ErrorAction SilentlyContinue\n    Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\TrayNotify\" -Name \"IconStreams\" -ErrorAction SilentlyContinue\n    Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\TrayNotify\" -Name \"PastIconsStream\" -ErrorAction SilentlyContinue\n}",
     "zxc.20260202203521.24": "$LnkPaths = @(\n    \"%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\Windows Terminal.lnk\"\n    \"%PROGRAMDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Firefox.lnk\"\n    \"%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\Double Commander.lnk\"\n)\nNew-LayoutModificationXml -LnkPaths $LnkPaths -PinListPlacement \"Replace\"\nReset-TaskbarLayout",
+    "User.20260216114746.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat \"C:/Program Files/Rime\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260216114815.1": "# --- Configuration ---\n\n# 1. Define the source URL\n$DownloadUrl = \"https://github.com/sbsrf/home/releases/download/20260101/sbsrf.zip\"\n\n# 2. Define the target directory using the built-in environment variable $env:APPDATA\n# Note: $env:APPDATA resolves to C:\\Users\\<Username>\\AppData\\Roaming\n$TargetFolder = Join-Path -Path $env:APPDATA -ChildPath \"rime\"\n\n# 3. Define a temporary path for the downloaded file\n$TempZipPath = Join-Path -Path $env:TEMP -ChildPath \"sbsrf_download.zip\"\n\n# --- Execution ---\n\nWrite-Host \"Starting download and extraction process...\"\n\n# 1. Ensure the target directory exists\nif (-not (Test-Path -Path $TargetFolder)) {\n    Write-Host \"Creating target directory: $TargetFolder\"\n    New-Item -Path $TargetFolder -ItemType Directory | Out-Null\n} else {\n    Write-Host \"Target directory already exists: $TargetFolder\"\n}\n\n# 2. Download the file\nWrite-Host \"Downloading file from $DownloadUrl to $TempZipPath...\"\ntry {\n    # Use Invoke-WebRequest (iwr) for downloading files\n    Invoke-WebRequest -Uri $DownloadUrl -OutFile $TempZipPath -UseBasicParsing\n    Write-Host \"Download complete.\"\n}\ncatch {\n    Write-Error \"Failed to download the file. Error: $($_.Exception.Message)\"\n    exit 1\n}\n\n# 3. Extract the contents of the ZIP file\nWrite-Host \"Extracting contents to $TargetFolder...\"\ntry {\n    # Load the necessary .NET assembly for ZIP operations (often loaded automatically, but good practice to ensure)\n    Add-Type -AssemblyName System.IO.Compression.FileSystem\n\n    # Use Expand-Archive (available in PS 5.0+)\n    # -Force overwrites existing files in the destination folder without prompting\n    Expand-Archive -Path $TempZipPath -DestinationPath $TargetFolder -Force\n    \n    Write-Host \"Extraction complete. Files are now in: $TargetFolder\"\n}\ncatch {\n    Write-Error \"Failed to extract the ZIP file. Error: $($_.Exception.Message)\"\n    exit 1\n}\nfinally {\n    # 4. Clean up the temporary ZIP file\n    if (Test-Path -Path $TempZipPath) {\n        Remove-Item -Path $TempZipPath -Force\n        Write-Host \"Cleaned up temporary file: $TempZipPath\"\n    }\n}",
     "zxc.20260202203521.3": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260202203521.4": "codium --update-extensions\n$extensions = @(\n    @others\n    )\nforeach ($e in $extensions) {\n    Write-Host \"Install vscodium extension $e\"\n    codium --install-extension $e\n}",
     "zxc.20260202203521.5": "\"tamasfe.even-better-toml\"",
@@ -2372,6 +2440,8 @@
     "User.20260215210409.1": "{\n    \"key\": \"g g\",\n    \"command\": \"cursorTop\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"g r\",\n    \"command\": \"magit.refresh\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"extension.vim_tab\",\n    \"when\": \"editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && !inlineEditIsVisible && editorLangId != 'magit'\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"-extension.vim_tab\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"magit.discard-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"k\",\n    \"command\": \"-magit.discard-at-point\"\n},\n{\n    \"key\": \"-\",\n    \"command\": \"magit.reverse-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"v\",\n    \"command\": \"-magit.reverse-at-point\"\n},\n{\n    \"key\": \"shift+-\",\n    \"command\": \"magit.reverting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+v\",\n    \"command\": \"-magit.reverting\"\n},\n{\n    \"key\": \"shift+o\",\n    \"command\": \"magit.resetting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+x\",\n    \"command\": \"-magit.resetting\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"-magit.reset-mixed\"\n},\n{\n    \"key\": \"ctrl+u x\",\n    \"command\": \"-magit.reset-hard\"\n}",
     "User.20260216000318.1": "{{ if or ( eq .chezmoi.os \"windows\" ) ( eq .chezmoi.os \"linux\" ) -}}\n{{ if lookPath \"cargo\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260216000441.1": "[source.crates-io]\nreplace-with = 'mirror'\n\n[source.mirror]\nregistry = \"https://mirror.nju.edu.cn/git/crates.io-index.git\"",
+    "User.20260216125349.1": "patch:\n  schema_list:\n    - schema: sbfm\n  \"switcher/hotkeys\":",
+    "User.20260216125513.1": "patch:\n  switches:\n    - name: ascii_mode\n      reset: 1\n      states: [中文, 西文]\n    - name: ascii_punct\n      reset: 0\n      states: [。，, ．，]\n    - name: zh_trad\n      reset: 0\n      states: [简体, 繁体]\n    - name: is_enhanced\n      reset: 0\n      states: [常规, 增强]\n    - options: [hide, rational, irrational, both]\n      reset: 1\n      states: [隐藏, 有理, 无理, 两者]\n    # 希望在同文里用下三角来隐藏键盘的可去掉下面两行的注释\n    #- options: [_key_Hide]\n    #  states: [\"▼\"]\n    # 为了避免拥挤，不显示下面的状态\n    - name: auto_inline\n      reset: 1\n    - name: is_buffered\n      reset: 0\n    - name: single_display\n      reset: 0\n    - options: [pro_word, pro_char, delayed_pop]\n      reset: 0\n    # states: [词组, 单字, 延顶]\n    - name: show_es\n      reset: 1\n    # 不要改变下面的状态，以免穿帮\n    - name: third_pop\n      reset: 0\n    - name: fast_pop\n      reset: 0\n  key_binder:\n    import_preset: sbxlm\n    bindings:\n      - accept: Shift+space\n        toggle: ascii_mode\n        when: always\n  ascii_composer:\n    good_old_caps_lock: false\n    switch_key:\n      Caps_Lock: noop\n      Control_L: noop\n      Control_R: noop\n      Eisu_toggle: noop\n      Shift_L: noop\n      Shift_R: noop",
     "zxc.20260126154354.1": "{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}",
     "zxc.20260125145051.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125152704.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -2401,7 +2471,9 @@
     "zxc.20260214142543.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"hx\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260214142757.1": "{{ if lookPath \"simple-completion-language-server\" -}}\n[language-server.scls]\ncommand = \"simple-completion-language-server\"\n\n[language-server.scls.config]\nfeature_paths = true\nfeature_snippets = true\nfeature_unicode_input = true\nfeature_words = true\nmax_completion_items = 20\nsnippets_first = true\n{{ end -}}",
     "User.20260215234634.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"qutebrowser\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260215234715.1": "config.load_autoconfig(False)\nconfig.set(\"auto_save.session\", True)\nconfig.set(\"content.blocking.method\", \"both\")\nconfig.set(\"downloads.location.suggestion\", \"both\")\nconfig.set(\"hints.border\", \"1px solid #1d1f21\")\nc.url.searchengines['DEFAULT'] = \"https://www.google.com/search?hl=en&q={}\"\nc.url.searchengines['aw'] = \"https://wiki.archlinux.org/?search={}\"\nc.url.searchengines['b'] = \"https://cn.bing.com/search?q={}\"\nc.url.searchengines['books'] = \"https://search.books.com.tw/search/query/cat/all/sort/5/v/1/page/1/spell/3/ms2/ms2_1/key/{}\"\nc.url.searchengines['bwtw'] = \"https://www.bookwalker.com.tw/search?w={}&series_display=1\"\nc.url.searchengines['ddg'] = \"https://duckduckgo.com/?q={}\"\nc.url.searchengines['dict'] = \"https://cn.bing.com/dict?q={}\"\nc.url.searchengines['docker'] = \"https://hub.docker.com/search?q={}\"\nc.url.searchengines['g'] = \"https://www.google.com/search?hl=en&q={}\"\nc.url.searchengines['gh'] = \"https://github.com/search?q={}\"\nc.url.searchengines['mangazip'] = \"https://manga-zip.info/search/{}\"\nc.url.searchengines['mynix'] = \"https://mynixos.com/search?q={}\"\nc.url.searchengines['nw'] = \"https://nixos.wiki/index.php?search={}\"\nc.url.searchengines['nyaa'] = \"https://nyaa.si/?f=0&c=1_2&q={}\"\nc.url.searchengines['twdict'] = \"https://dict.revised.moe.edu.tw/search.jsp?md=1&word={}#searchL\"\nc.url.searchengines['w'] = \"https://en.wikipedia.org/wiki/Special:Search?search={}&amp;go=Go&amp;ns0=1\"\nconfig.bind(\",\", \"search-prev\", mode=\"normal\")\nconfig.bind(\".\", \"search-next\", mode=\"normal\")\nconfig.bind(\"<\", \"tab-move -\", mode=\"normal\")\nconfig.bind(\"<Alt-m>\", \"tab-mute\", mode=\"normal\")\nconfig.bind(\"<Ctrl-o>\", \"session-save ;; cmd-set-text -s :session-load -c\", mode=\"normal\")\nconfig.bind(\">\", \"tab-move +\", mode=\"normal\")\nconfig.bind(\"B\", \"cmd-set-text -s :open -t dict \", mode=\"normal\")\nconfig.bind(\"M\", \"hint links spawn -d mpv {hint-url}\", mode=\"normal\")\nconfig.bind(\"S\", \"scroll-to-perc 100\", mode=\"normal\")\nconfig.bind(\"W\", \"scroll-to-perc 0\", mode=\"normal\")\nconfig.bind(\"X\", \"close\", mode=\"normal\")\nconfig.bind(\"\\\\r\", \"clear-messages ;; jseval document.querySelector(\\\"video, audio\\\").playbackRate = 2\", mode=\"normal\")\nconfig.bind(\"\\\\z\", \"clear-messages ;; jseval document.querySelector(\\\"video, audio\\\").playbackRate = 1\", mode=\"normal\")\nconfig.bind(\"a\", \"back\", mode=\"normal\")\nconfig.bind(\"b\", \"cmd-set-text -s :quickmark-load -t \", mode=\"normal\")\nconfig.bind(\"c\", \"tab-prev\", mode=\"normal\")\nconfig.bind(\"d\", \"forward\", mode=\"normal\")\nconfig.bind(\"e\", \"cmd-set-text -s :open {url}\", mode=\"normal\")\nconfig.bind(\"g\", \"cmd-set-text -s :open -t\", mode=\"normal\")\nconfig.bind(\"o\", \"cmd-set-text -s :open\", mode=\"normal\")\nconfig.bind(\"p\", \"open -t {clipboard}\", mode=\"normal\")\nconfig.bind(\"r\", \"reload\", mode=\"normal\")\nconfig.bind(\"s\", \"scroll-page 0 1\", mode=\"normal\")\nconfig.bind(\"u\", \"navigate up\", mode=\"normal\")\nconfig.bind(\"v\", \"tab-next\", mode=\"normal\")\nconfig.bind(\"w\", \"scroll-page 0 -1\", mode=\"normal\")\nconfig.bind(\"x\", \"tab-close\", mode=\"normal\")\nconfig.bind(\"ya\", \"hint links yank\", mode=\"normal\")\nconfig.bind(\"z\", \"undo\", mode=\"normal\")"
+    "User.20260215234715.1": "config.load_autoconfig(False)\nconfig.set(\"auto_save.session\", True)\nconfig.set(\"content.blocking.method\", \"both\")\nconfig.set(\"downloads.location.suggestion\", \"both\")\nconfig.set(\"hints.border\", \"1px solid #1d1f21\")\nc.url.searchengines['DEFAULT'] = \"https://www.google.com/search?hl=en&q={}\"\nc.url.searchengines['aw'] = \"https://wiki.archlinux.org/?search={}\"\nc.url.searchengines['b'] = \"https://cn.bing.com/search?q={}\"\nc.url.searchengines['books'] = \"https://search.books.com.tw/search/query/cat/all/sort/5/v/1/page/1/spell/3/ms2/ms2_1/key/{}\"\nc.url.searchengines['bwtw'] = \"https://www.bookwalker.com.tw/search?w={}&series_display=1\"\nc.url.searchengines['ddg'] = \"https://duckduckgo.com/?q={}\"\nc.url.searchengines['dict'] = \"https://cn.bing.com/dict?q={}\"\nc.url.searchengines['docker'] = \"https://hub.docker.com/search?q={}\"\nc.url.searchengines['g'] = \"https://www.google.com/search?hl=en&q={}\"\nc.url.searchengines['gh'] = \"https://github.com/search?q={}\"\nc.url.searchengines['mangazip'] = \"https://manga-zip.info/search/{}\"\nc.url.searchengines['mynix'] = \"https://mynixos.com/search?q={}\"\nc.url.searchengines['nw'] = \"https://nixos.wiki/index.php?search={}\"\nc.url.searchengines['nyaa'] = \"https://nyaa.si/?f=0&c=1_2&q={}\"\nc.url.searchengines['twdict'] = \"https://dict.revised.moe.edu.tw/search.jsp?md=1&word={}#searchL\"\nc.url.searchengines['w'] = \"https://en.wikipedia.org/wiki/Special:Search?search={}&amp;go=Go&amp;ns0=1\"\nconfig.bind(\",\", \"search-prev\", mode=\"normal\")\nconfig.bind(\".\", \"search-next\", mode=\"normal\")\nconfig.bind(\"<\", \"tab-move -\", mode=\"normal\")\nconfig.bind(\"<Alt-m>\", \"tab-mute\", mode=\"normal\")\nconfig.bind(\"<Ctrl-o>\", \"session-save ;; cmd-set-text -s :session-load -c\", mode=\"normal\")\nconfig.bind(\">\", \"tab-move +\", mode=\"normal\")\nconfig.bind(\"B\", \"cmd-set-text -s :open -t dict \", mode=\"normal\")\nconfig.bind(\"M\", \"hint links spawn -d mpv {hint-url}\", mode=\"normal\")\nconfig.bind(\"S\", \"scroll-to-perc 100\", mode=\"normal\")\nconfig.bind(\"W\", \"scroll-to-perc 0\", mode=\"normal\")\nconfig.bind(\"X\", \"close\", mode=\"normal\")\nconfig.bind(\"\\\\r\", \"clear-messages ;; jseval document.querySelector(\\\"video, audio\\\").playbackRate = 2\", mode=\"normal\")\nconfig.bind(\"\\\\z\", \"clear-messages ;; jseval document.querySelector(\\\"video, audio\\\").playbackRate = 1\", mode=\"normal\")\nconfig.bind(\"a\", \"back\", mode=\"normal\")\nconfig.bind(\"b\", \"cmd-set-text -s :quickmark-load -t \", mode=\"normal\")\nconfig.bind(\"c\", \"tab-prev\", mode=\"normal\")\nconfig.bind(\"d\", \"forward\", mode=\"normal\")\nconfig.bind(\"e\", \"cmd-set-text -s :open {url}\", mode=\"normal\")\nconfig.bind(\"g\", \"cmd-set-text -s :open -t\", mode=\"normal\")\nconfig.bind(\"o\", \"cmd-set-text -s :open\", mode=\"normal\")\nconfig.bind(\"p\", \"open -t {clipboard}\", mode=\"normal\")\nconfig.bind(\"r\", \"reload\", mode=\"normal\")\nconfig.bind(\"s\", \"scroll-page 0 1\", mode=\"normal\")\nconfig.bind(\"u\", \"navigate up\", mode=\"normal\")\nconfig.bind(\"v\", \"tab-next\", mode=\"normal\")\nconfig.bind(\"w\", \"scroll-page 0 -1\", mode=\"normal\")\nconfig.bind(\"x\", \"tab-close\", mode=\"normal\")\nconfig.bind(\"ya\", \"hint links yank\", mode=\"normal\")\nconfig.bind(\"z\", \"undo\", mode=\"normal\")",
+    "User.20260216124226.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat \"C:/Program Files/Rime\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260216125422.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat \"C:/Program Files/Rime\" -}}\n@others\n{{ end -}}\n{{ end -}}"
   },
   "uas": {
     "zxc.20260125142149.1": {
@@ -2442,6 +2514,9 @@
     },
     "zxc.20260202203521.20": {
       "_mod_time": 1771160025.478
+    },
+    "User.20260216114746.1": {
+      "_mod_time": 1771217583.031
     },
     "zxc.20260202203521.3": {
       "_mod_time": 1771167415.751
@@ -2577,6 +2652,12 @@
     },
     "User.20260215234634.1": {
       "_mod_time": 1771170461.018
+    },
+    "User.20260216124226.1": {
+      "_mod_time": 1771217691.265
+    },
+    "User.20260216125422.1": {
+      "_mod_time": 1771217757.522
     }
   }
 }
