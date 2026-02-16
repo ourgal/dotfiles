@@ -1,0 +1,8 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if stat "C:/Program Files/Rime" -}}
+patch:
+  schema_list:
+    - schema: sbfm
+  "switcher/hotkeys":
+{{ end -}}
+{{ end -}}
