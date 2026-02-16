@@ -17,4 +17,7 @@ Run("D:/scoop/apps/brave/current/brave.exe", "c:/users/user" , "Max")
 {{ if and (eq .chezmoi.hostname "nuc") (lookPath "deskflow-core") -}}
 Run("deskflow-core client", , "Hide")
 {{ end -}}
+{{ if and (eq .chezmoi.hostname "nuc") (lookPath "runemacs") -}}
+Run("runemacs --daemon", , "Hide")
+{{ end -}}
 {{ end -}}
