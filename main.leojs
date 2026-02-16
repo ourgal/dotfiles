@@ -1329,6 +1329,10 @@
                   "vh": "language",
                   "children": [
                     {
+                      "gnx": "User.20260216220339.1",
+                      "vh": "ansible"
+                    },
+                    {
                       "gnx": "User.20260216214259.1",
                       "vh": "python"
                     },
@@ -2488,6 +2492,7 @@
     "zxc.20260125154321.1": "[url \"git@github.com:\"]\n\tinsteadOf = \"gh:\"\n",
     "zxc.20260125153842.1": "[user]\n\temail = \"git@fairever.aleeas.com\"\n\tname = \"ourgal\"\n\tsigningkey = \"~/.ssh/id_ed25519.pub\"\n",
     "zxc.20260125153131.2": "# feat: ✨\n# feat: 🔍\n# feat: 🔗\n# feat: 🔒\n\n# fix: 🐛\n# fix: 🐞\n# fix: 🩹\n# fix: 🚑️\n\n# style: 💅\n# style: 🎨\n# style: 💄\n\n# ci: 🦊\n# ci: 📦\n\n# deploy: 🚀\n# deploy: 📦\n\n# chore: 🧹\n# chore: 🔧\n# chore: ⚙️\n# docs: 📜\n\n# refactor: 🔨\n# perf: 🚀\n\n# test: 🚦\n# debug: 🧪\n\n# BREAKING CHANGE: 🚨\n# BREAKING CHANGE: 💥\n# BREAKING CHANGE: 💣",
+    "User.20260216220339.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"ansible-language-server\" -}}\n{{ $lsp = append $lsp \"ansible-language-server\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\ncomment-token = \"#\"\ngrammar = \"yaml\"\ninjection-regex = \"ansible\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]\nname = \"ansible\"\nscope = \"source.yaml\"\nshebangs = [\"ansible-playbook\"]\n\n[[language.file-types]]\nglob = \"playbooks/*.yaml\"\n\n[[language.file-types]]\nglob = \"playbooks/*.yml\"\n\n[[language.file-types]]\nglob = \"group_vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"group_vars/*.yml\"\n\n[[language.file-types]]\nglob = \"host_vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"host_vars/*.yml\"\n\n[[language.file-types]]\nglob = \"vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"vars/*.yml\"\n\n[[language.file-types]]\nglob = \"defaults/*.yaml\"\n\n[[language.file-types]]\nglob = \"defaults/*.yml\"\n\n[[language.file-types]]\nglob = \"tasks/*.yaml\"\n\n[[language.file-types]]\nglob = \"tasks/*.yml\"\n\n[[language.file-types]]\nglob = \"handlers/*.yaml\"\n\n[[language.file-types]]\nglob = \"handlers/*.yml\"\n\n[[language.file-types]]\nglob = \"meta/*.yaml\"\n\n[[language.file-types]]\nglob = \"meta/*.yml\"",
     "User.20260216214259.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"ty\" -}}\n{{ $lsp = append $lsp \"ty\" -}}\n{{ end -}}\n{{ if lookPath \"jedi-language-server\" -}}\n{{ $lsp = append $lsp \"jedi\" -}}\n{{ end -}}\n{{ if lookPath \"pylsp\" -}}\n{{ $lsp = append $lsp \"pylsp\" -}}\n{{ end -}}\n{{ if lookPath \"ruff\" -}}\n{{ $lsp = append $lsp \"ruff\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"python\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]",
     "User.20260216215954.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"lua-language-server\" -}}\n{{ $lsp = append $lsp \"lua-language-server\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"lua\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]",
     "User.20260216220021.1": "{{ if lookPath \"stylua\" -}}\n[language.formatter]\ncommand = \"stylua\"\nargs = [\"-\"]\n{{ end -}}",
@@ -2705,7 +2710,7 @@
       "_mod_time": 1771149661.619
     },
     "User.20260216185314.1": {
-      "_mod_time": 1771250434.564
+      "_mod_time": 1771250705.518
     },
     "User.20260215182442.1": {
       "_mod_time": 1771151471.926
@@ -2756,7 +2761,7 @@
       "_mod_time": 1771149661.604
     },
     "zxc.20260214142543.1": {
-      "_mod_time": 1771250434.644
+      "_mod_time": 1771250705.599
     },
     "User.20260215234634.1": {
       "_mod_time": 1771170461.018
