@@ -1,3 +1,7 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if eq .chezmoi.hostname "nuc" -}}
 {{ if eq .chezmoi.hostname "nuc" -}}
 v2:sha256:f190ead5021be718ae1001570b620a363a3aa0c685fb15a276d8456d436944e5
+{{ end -}}
+{{ end -}}
 {{ end -}}
