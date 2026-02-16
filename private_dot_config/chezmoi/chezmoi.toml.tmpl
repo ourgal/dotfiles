@@ -6,6 +6,8 @@ encryption = "age"
 [git]
     autoCommit = false
     autoPush = false
+[gopass]
+    mode = "builtin"
 {{ if eq .chezmoi.os "windows" -}}
 [interpreter.ps1]
     command = "powershell"

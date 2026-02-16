@@ -158,6 +158,10 @@
                   "vh": "git"
                 },
                 {
+                  "gnx": "User.20260217023028.1",
+                  "vh": "gopass"
+                },
+                {
                   "gnx": "zxc.20260126154722.1",
                   "vh": "windows",
                   "children": [
@@ -1932,6 +1936,16 @@
                                   ]
                                 },
                                 {
+                                  "gnx": "User.20260217022114.1",
+                                  "vh": "@clean deskflow.pem.tmpl",
+                                  "children": [
+                                    {
+                                      "gnx": "User.20260217022247.1",
+                                      "vh": "content"
+                                    }
+                                  ]
+                                },
+                                {
                                   "gnx": "User.20260215182818.1",
                                   "vh": "@clean trusted-servers.tmpl",
                                   "children": [
@@ -2327,6 +2341,7 @@
     "zxc.20260125144207.1": "if [[ -z \"$DISPLAY\" ]] && [[ $(tty) = /dev/tty1 ]]; then\n    . startx\n    logout\nfi",
     "User.20260214200035.1": "encryption = \"age\"\n[age]\n    identity = \"~/.ssh/id_ed25519\"\n    symmetric = true",
     "User.20260214200002.1": "[git]\n    autoCommit = false\n    autoPush = false",
+    "User.20260217023028.1": "[gopass]\n    mode = \"builtin\"",
     "zxc.20260126154722.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}\n",
     "zxc.20260126154908.1": "[interpreter.ps1]\n    command = \"powershell\"\n    args = []",
     "zxc.20260126154820.1": "{{ if lookPath \"pwsh\" -}}\n[cd]\n    command = \"pwsh\"\n{{ end -}}",
@@ -2580,9 +2595,11 @@
     "zxc.20260125153012.2": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260125161631.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"hx\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260216185314.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"hx\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260215182442.1": "@others",
+    "User.20260215182442.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260215182554.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\nv2:sha256:f190ead5021be718ae1001570b620a363a3aa0c685fb15a276d8456d436944e5\n{{ end -}}",
-    "User.20260215182818.1": "@others",
+    "User.20260217022114.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260217022247.1": "{{ gopassRaw \"deskflow/nuc/cert\" -}}",
+    "User.20260215182818.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260215182823.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\nv2:sha256:545f553a4bf4638cadbe6d6e5a8a705008953379001ae9c087c38b485233751d\n{{ end -}}",
     "zxc.20260201225344.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
     "zxc.20260201034331.1": "@others",
@@ -2715,7 +2732,7 @@
       "_mod_time": 1771264504.559
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1771149661.619
+      "_mod_time": 1771266667.011
     },
     "zxc.20260125145051.1": {
       "_mod_time": 1771149661.619
@@ -2739,10 +2756,13 @@
       "_mod_time": 1771251729.04
     },
     "User.20260215182442.1": {
-      "_mod_time": 1771151471.926
+      "_mod_time": 1771266190.553
+    },
+    "User.20260217022114.1": {
+      "_mod_time": 1771266190.588
     },
     "User.20260215182818.1": {
-      "_mod_time": 1771151471.988
+      "_mod_time": 1771266190.622
     },
     "zxc.20260201225344.1": {
       "_mod_time": 1771149661.619
