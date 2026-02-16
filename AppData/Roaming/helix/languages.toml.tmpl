@@ -68,6 +68,20 @@ glob = "meta/*.yml"
 {{ if lookPath "simple-completion-language-server" -}}
 {{ $lsp = append $lsp "scls" -}}
 {{ end -}}
+{{ if lookPath "marksman" -}}
+{{ $lsp = append $lsp "marksman" -}}
+{{ end -}}
+{{ if lookPath "markdown-oxide" -}}
+{{ $lsp = append $lsp "markdown-oxide" -}}
+{{ end -}}
+[[language]]
+auto-format = true
+name = "markdown"
+language-servers = [{{- $lsp | quoteList | join ", " -}}]
+{{ $lsp := list -}}
+{{ if lookPath "simple-completion-language-server" -}}
+{{ $lsp = append $lsp "scls" -}}
+{{ end -}}
 {{ if lookPath "ty" -}}
 {{ $lsp = append $lsp "ty" -}}
 {{ end -}}
