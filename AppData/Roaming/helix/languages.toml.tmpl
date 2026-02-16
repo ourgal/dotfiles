@@ -4,6 +4,26 @@
 {{ if lookPath "simple-completion-language-server" -}}
 {{ $lsp = append $lsp "scls" -}}
 {{ end -}}
+{{ if lookPath "ty" -}}
+{{ $lsp = append $lsp "ty" -}}
+{{ end -}}
+{{ if lookPath "jedi-language-server" -}}
+{{ $lsp = append $lsp "jedi" -}}
+{{ end -}}
+{{ if lookPath "pylsp" -}}
+{{ $lsp = append $lsp "pylsp" -}}
+{{ end -}}
+{{ if lookPath "ruff" -}}
+{{ $lsp = append $lsp "ruff" -}}
+{{ end -}}
+[[language]]
+auto-format = true
+name = "python"
+language-servers = [{{- $lsp | quoteList | join ", " -}}]
+{{ $lsp := list -}}
+{{ if lookPath "simple-completion-language-server" -}}
+{{ $lsp = append $lsp "scls" -}}
+{{ end -}}
 {{ if lookPath "taplo" -}}
 {{ $lsp = append $lsp "taplo" -}}
 {{ end -}}
