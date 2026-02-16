@@ -1329,6 +1329,26 @@
                   "vh": "language",
                   "children": [
                     {
+                      "gnx": "User.20260216210216.1",
+                      "vh": "toml",
+                      "children": [
+                        {
+                          "gnx": "User.20260216212839.1",
+                          "vh": "taplo"
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "User.20260216204528.1",
+                      "vh": "yaml",
+                      "children": [
+                        {
+                          "gnx": "User.20260216205109.1",
+                          "vh": "yamlfmt"
+                        }
+                      ]
+                    },
+                    {
                       "gnx": "User.20260216190008.1",
                       "vh": "json",
                       "children": [
@@ -2454,7 +2474,11 @@
     "zxc.20260125154321.1": "[url \"git@github.com:\"]\n\tinsteadOf = \"gh:\"\n",
     "zxc.20260125153842.1": "[user]\n\temail = \"git@fairever.aleeas.com\"\n\tname = \"ourgal\"\n\tsigningkey = \"~/.ssh/id_ed25519.pub\"\n",
     "zxc.20260125153131.2": "# feat: ✨\n# feat: 🔍\n# feat: 🔗\n# feat: 🔒\n\n# fix: 🐛\n# fix: 🐞\n# fix: 🩹\n# fix: 🚑️\n\n# style: 💅\n# style: 🎨\n# style: 💄\n\n# ci: 🦊\n# ci: 📦\n\n# deploy: 🚀\n# deploy: 📦\n\n# chore: 🧹\n# chore: 🔧\n# chore: ⚙️\n# docs: 📜\n\n# refactor: 🔨\n# perf: 🚀\n\n# test: 🚦\n# debug: 🧪\n\n# BREAKING CHANGE: 🚨\n# BREAKING CHANGE: 💥\n# BREAKING CHANGE: 💣",
-    "User.20260216190008.1": "[[language]]\nauto-format = true\nname = \"json\"",
+    "User.20260216210216.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"taplo\" -}}\n{{ $lsp = append $lsp \"taplo\" -}}\n{{ end -}}\n{{ if lookPath \"tombi\" -}}\n{{ $lsp = append $lsp \"tombi\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"toml\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]",
+    "User.20260216212839.1": "{{ if lookPath \"taplo\" -}}\n[language.formatter]\ncommand = \"taplo\"\nargs = [\"fmt\", \"-\"]\n{{ end -}}",
+    "User.20260216204528.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"yaml-language-server\" -}}\n{{ $lsp = append $lsp \"yaml-language-server\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"yaml\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]",
+    "User.20260216205109.1": "{{ if lookPath \"yamlfmt\" -}}\n[language.formatter]\ncommand = \"yamlfmt\"\nargs = [\"-\"]\n{{ end -}}",
+    "User.20260216190008.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"vscode-json-language-server\" -}}\n{{ $lsp = append $lsp \"vscode-json-language-server\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"json\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]",
     "User.20260216190035.1": "{{ if lookPath \"prettier\" -}}\n[language.formatter]\ncommand = \"prettier\"\nargs = [\"--parser\", \"json\"]\n{{ end -}}",
     "zxc.20260214142757.1": "{{ if lookPath \"simple-completion-language-server\" -}}\n[language-server.scls]\ncommand = \"simple-completion-language-server\"\n\n[language-server.scls.config]\nfeature_paths = true\nfeature_snippets = true\nfeature_unicode_input = true\nfeature_words = true\nmax_completion_items = 20\nsnippets_first = true\n{{ end -}}",
     "zxc.20260125161740.1": "theme = \"catppuccin_mocha\"\n",
@@ -2664,7 +2688,7 @@
       "_mod_time": 1771149661.619
     },
     "User.20260216185314.1": {
-      "_mod_time": 1771240535.69
+      "_mod_time": 1771248549.581
     },
     "User.20260215182442.1": {
       "_mod_time": 1771151471.926
@@ -2715,7 +2739,7 @@
       "_mod_time": 1771149661.604
     },
     "zxc.20260214142543.1": {
-      "_mod_time": 1771240535.737
+      "_mod_time": 1771248549.664
     },
     "User.20260215234634.1": {
       "_mod_time": 1771170461.018
