@@ -1,0 +1,24 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "hx" -}}
+[[language]]
+auto-format = true
+name = "json"
+{{ if lookPath "prettier" -}}
+[language.formatter]
+command = "prettier"
+args = ["--parser", "json"]
+{{ end -}}
+{{ if lookPath "simple-completion-language-server" -}}
+[language-server.scls]
+command = "simple-completion-language-server"
+
+[language-server.scls.config]
+feature_paths = true
+feature_snippets = true
+feature_unicode_input = true
+feature_words = true
+max_completion_items = 20
+snippets_first = true
+{{ end -}}
+{{ end -}}
+{{ end -}}
