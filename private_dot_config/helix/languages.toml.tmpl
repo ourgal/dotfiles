@@ -4,6 +4,70 @@
 {{ if lookPath "simple-completion-language-server" -}}
 {{ $lsp = append $lsp "scls" -}}
 {{ end -}}
+{{ if lookPath "ansible-language-server" -}}
+{{ $lsp = append $lsp "ansible-language-server" -}}
+{{ end -}}
+[[language]]
+auto-format = true
+comment-token = "#"
+grammar = "yaml"
+injection-regex = "ansible"
+language-servers = [{{- $lsp | quoteList | join ", " -}}]
+name = "ansible"
+scope = "source.yaml"
+shebangs = ["ansible-playbook"]
+
+[[language.file-types]]
+glob = "playbooks/*.yaml"
+
+[[language.file-types]]
+glob = "playbooks/*.yml"
+
+[[language.file-types]]
+glob = "group_vars/*.yaml"
+
+[[language.file-types]]
+glob = "group_vars/*.yml"
+
+[[language.file-types]]
+glob = "host_vars/*.yaml"
+
+[[language.file-types]]
+glob = "host_vars/*.yml"
+
+[[language.file-types]]
+glob = "vars/*.yaml"
+
+[[language.file-types]]
+glob = "vars/*.yml"
+
+[[language.file-types]]
+glob = "defaults/*.yaml"
+
+[[language.file-types]]
+glob = "defaults/*.yml"
+
+[[language.file-types]]
+glob = "tasks/*.yaml"
+
+[[language.file-types]]
+glob = "tasks/*.yml"
+
+[[language.file-types]]
+glob = "handlers/*.yaml"
+
+[[language.file-types]]
+glob = "handlers/*.yml"
+
+[[language.file-types]]
+glob = "meta/*.yaml"
+
+[[language.file-types]]
+glob = "meta/*.yml"
+{{ $lsp := list -}}
+{{ if lookPath "simple-completion-language-server" -}}
+{{ $lsp = append $lsp "scls" -}}
+{{ end -}}
 {{ if lookPath "ty" -}}
 {{ $lsp = append $lsp "ty" -}}
 {{ end -}}
