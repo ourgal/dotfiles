@@ -552,6 +552,22 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "gnx": "User.20260216141335.1",
+                  "vh": "install doom emacs",
+                  "children": [
+                    {
+                      "gnx": "User.20260216141408.1",
+                      "vh": "@clean run_onchange_doom_emacs_install.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260216141436.1",
+                          "vh": "content"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -2274,6 +2290,8 @@
     "zxc.20260202220046.1": "reg import \"$env:userprofile\\\\scoop\\\\apps\\\\pwsh\\\\current\\\\install-explorer-context.reg\"\nreg import \"$env:userprofile\\\\scoop\\\\apps\\\\pwsh\\\\current\\\\install-file-context.reg\"",
     "zxc.20260202220553.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gvim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202220615.1": "reg import \"$env:userprofile\\\\scoop\\\\apps\\\\vim\\\\current\\\\install-context.reg\"",
+    "User.20260216141408.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"emacs\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260216141436.1": "$doom_bin = Join-Path -Path $env:USERPROFILE -ChildPath \".emacs.d\" \"bin\" \"doom.ps1\"\n& $doom_bin install --force",
     "zxc.20260125162740.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125162834.1": "[global]\nindex-url = https://mirrors.cernet.edu.cn/pypi/web/simple/\n[install]\ntrusted-host = mirrors.cernet.edu.cn",
     "zxc.20260126185048.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -2538,6 +2556,9 @@
     },
     "zxc.20260202220553.1": {
       "_mod_time": 1771149661.604
+    },
+    "User.20260216141408.1": {
+      "_mod_time": 1771229319.397
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1771149661.619
