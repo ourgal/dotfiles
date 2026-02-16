@@ -1,5 +1,13 @@
-{{ if eq .chezmoi.os "windows" -}}
+{{ if eq .chezmoi.os "linux" -}}
 {{ if lookPath "hx" -}}
+[[language]]
+auto-format = true
+name = "json"
+{{ if lookPath "prettier" -}}
+[language.formatter]
+command = "prettier"
+args = ["--parser", "json"]
+{{ end -}}
 {{ if lookPath "simple-completion-language-server" -}}
 [language-server.scls]
 command = "simple-completion-language-server"
