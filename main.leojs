@@ -1333,6 +1333,16 @@
                       "vh": "python"
                     },
                     {
+                      "gnx": "User.20260216215954.1",
+                      "vh": "lua",
+                      "children": [
+                        {
+                          "gnx": "User.20260216220021.1",
+                          "vh": "stylua"
+                        }
+                      ]
+                    },
+                    {
                       "gnx": "User.20260216210216.1",
                       "vh": "toml",
                       "children": [
@@ -2479,6 +2489,8 @@
     "zxc.20260125153842.1": "[user]\n\temail = \"git@fairever.aleeas.com\"\n\tname = \"ourgal\"\n\tsigningkey = \"~/.ssh/id_ed25519.pub\"\n",
     "zxc.20260125153131.2": "# feat: ✨\n# feat: 🔍\n# feat: 🔗\n# feat: 🔒\n\n# fix: 🐛\n# fix: 🐞\n# fix: 🩹\n# fix: 🚑️\n\n# style: 💅\n# style: 🎨\n# style: 💄\n\n# ci: 🦊\n# ci: 📦\n\n# deploy: 🚀\n# deploy: 📦\n\n# chore: 🧹\n# chore: 🔧\n# chore: ⚙️\n# docs: 📜\n\n# refactor: 🔨\n# perf: 🚀\n\n# test: 🚦\n# debug: 🧪\n\n# BREAKING CHANGE: 🚨\n# BREAKING CHANGE: 💥\n# BREAKING CHANGE: 💣",
     "User.20260216214259.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"ty\" -}}\n{{ $lsp = append $lsp \"ty\" -}}\n{{ end -}}\n{{ if lookPath \"jedi-language-server\" -}}\n{{ $lsp = append $lsp \"jedi\" -}}\n{{ end -}}\n{{ if lookPath \"pylsp\" -}}\n{{ $lsp = append $lsp \"pylsp\" -}}\n{{ end -}}\n{{ if lookPath \"ruff\" -}}\n{{ $lsp = append $lsp \"ruff\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"python\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]",
+    "User.20260216215954.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"lua-language-server\" -}}\n{{ $lsp = append $lsp \"lua-language-server\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"lua\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]",
+    "User.20260216220021.1": "{{ if lookPath \"stylua\" -}}\n[language.formatter]\ncommand = \"stylua\"\nargs = [\"-\"]\n{{ end -}}",
     "User.20260216210216.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"taplo\" -}}\n{{ $lsp = append $lsp \"taplo\" -}}\n{{ end -}}\n{{ if lookPath \"tombi\" -}}\n{{ $lsp = append $lsp \"tombi\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"toml\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]",
     "User.20260216212839.1": "{{ if lookPath \"taplo\" -}}\n[language.formatter]\ncommand = \"taplo\"\nargs = [\"fmt\", \"-\"]\n{{ end -}}",
     "User.20260216204528.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"yaml-language-server\" -}}\n{{ $lsp = append $lsp \"yaml-language-server\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"yaml\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]",
@@ -2693,7 +2705,7 @@
       "_mod_time": 1771149661.619
     },
     "User.20260216185314.1": {
-      "_mod_time": 1771249524.255
+      "_mod_time": 1771250434.564
     },
     "User.20260215182442.1": {
       "_mod_time": 1771151471.926
@@ -2744,7 +2756,7 @@
       "_mod_time": 1771149661.604
     },
     "zxc.20260214142543.1": {
-      "_mod_time": 1771249524.344
+      "_mod_time": 1771250434.644
     },
     "User.20260215234634.1": {
       "_mod_time": 1771170461.018

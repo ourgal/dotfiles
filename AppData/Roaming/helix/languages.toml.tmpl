@@ -24,6 +24,22 @@ language-servers = [{{- $lsp | quoteList | join ", " -}}]
 {{ if lookPath "simple-completion-language-server" -}}
 {{ $lsp = append $lsp "scls" -}}
 {{ end -}}
+{{ if lookPath "lua-language-server" -}}
+{{ $lsp = append $lsp "lua-language-server" -}}
+{{ end -}}
+[[language]]
+auto-format = true
+name = "lua"
+language-servers = [{{- $lsp | quoteList | join ", " -}}]
+{{ if lookPath "stylua" -}}
+[language.formatter]
+command = "stylua"
+args = ["-"]
+{{ end -}}
+{{ $lsp := list -}}
+{{ if lookPath "simple-completion-language-server" -}}
+{{ $lsp = append $lsp "scls" -}}
+{{ end -}}
 {{ if lookPath "taplo" -}}
 {{ $lsp = append $lsp "taplo" -}}
 {{ end -}}
