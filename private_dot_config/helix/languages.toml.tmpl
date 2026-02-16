@@ -1,8 +1,51 @@
 {{ if eq .chezmoi.os "linux" -}}
 {{ if lookPath "hx" -}}
+{{ $lsp := list -}}
+{{ if lookPath "simple-completion-language-server" -}}
+{{ $lsp = append $lsp "scls" -}}
+{{ end -}}
+{{ if lookPath "taplo" -}}
+{{ $lsp = append $lsp "taplo" -}}
+{{ end -}}
+{{ if lookPath "tombi" -}}
+{{ $lsp = append $lsp "tombi" -}}
+{{ end -}}
+[[language]]
+auto-format = true
+name = "toml"
+language-servers = [{{- $lsp | quoteList | join ", " -}}]
+{{ if lookPath "taplo" -}}
+[language.formatter]
+command = "taplo"
+args = ["fmt", "-"]
+{{ end -}}
+{{ $lsp := list -}}
+{{ if lookPath "simple-completion-language-server" -}}
+{{ $lsp = append $lsp "scls" -}}
+{{ end -}}
+{{ if lookPath "yaml-language-server" -}}
+{{ $lsp = append $lsp "yaml-language-server" -}}
+{{ end -}}
+[[language]]
+auto-format = true
+name = "yaml"
+language-servers = [{{- $lsp | quoteList | join ", " -}}]
+{{ if lookPath "yamlfmt" -}}
+[language.formatter]
+command = "yamlfmt"
+args = ["-"]
+{{ end -}}
+{{ $lsp := list -}}
+{{ if lookPath "simple-completion-language-server" -}}
+{{ $lsp = append $lsp "scls" -}}
+{{ end -}}
+{{ if lookPath "vscode-json-language-server" -}}
+{{ $lsp = append $lsp "vscode-json-language-server" -}}
+{{ end -}}
 [[language]]
 auto-format = true
 name = "json"
+language-servers = [{{- $lsp | quoteList | join ", " -}}]
 {{ if lookPath "prettier" -}}
 [language.formatter]
 command = "prettier"
