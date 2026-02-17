@@ -1011,6 +1011,10 @@
             {
               "gnx": "User.20260216163632.1",
               "vh": "doom emacs"
+            },
+            {
+              "gnx": "User.20260217132309.1",
+              "vh": "gpg agent"
             }
           ]
         }
@@ -2511,6 +2515,7 @@
     "zxc.20260128003533.1": "{{ if stat \"C:/Program Files/Mozilla Firefox/firefox.exe\" -}}\nRun(\"C:/Program Files/Mozilla Firefox/firefox.exe\", , \"Max\")\n{{ else if lookPath \"brave\" -}}\nRun(\"D:/scoop/apps/brave/current/brave.exe\", \"c:/users/user\" , \"Max\")\n{{ end -}}",
     "zxc.20260128010842.1": "{{ if and (eq .chezmoi.hostname \"nuc\") (lookPath \"deskflow-core\") -}}\nRun(\"deskflow-core client\", , \"Hide\")\n{{ end -}}",
     "User.20260216163632.1": "{{ if and (eq .chezmoi.hostname \"nuc\") (lookPath \"runemacs\") -}}\nRun(\"runemacs --daemon\", , \"Hide\")\n{{ end -}}",
+    "User.20260217132309.1": "{{ if and (eq .chezmoi.hostname \"nuc\") (lookPath \"gpg-connect-agent\") -}}\nRun(\"gpg-connect-agent /bye\", , \"Hide\")\n{{ end -}}",
     "zxc.20260201142202.1": "{\n    \"$help\": \"https://aka.ms/terminal-documentation\",\n    \"$schema\": \"https://aka.ms/terminal-profiles-schema\",\n    \"actions\": [],\n    \"copyFormatting\": \"none\",\n    \"copyOnSelect\": false,\n    \"defaultProfile\": \"{574e775e-4f2a-5b96-ac1e-a2962a402336}\",\n    \"keybindings\": \n    [\n        {\n            \"id\": \"Terminal.CopyToClipboard\",\n            \"keys\": \"ctrl+c\"\n        },\n        {\n            \"id\": \"Terminal.PasteFromClipboard\",\n            \"keys\": \"ctrl+v\"\n        },\n        {\n            \"id\": \"Terminal.DuplicatePaneAuto\",\n            \"keys\": \"alt+shift+d\"\n        }\n    ],\n    \"newTabMenu\": \n    [\n        {\n            \"type\": \"remainingProfiles\"\n        }\n    ],\n    \"profiles\": \n    {\n        \"defaults\": {},\n        \"list\": \n        [\n            {\n                \"guid\": \"{574e775e-4f2a-5b96-ac1e-a2962a402336}\",\n                << common >>\n                \"name\": \"PowerShell\",\n                \"source\": \"Windows.Terminal.PowershellCore\"\n            },\n            {\n                \"commandline\": \"%SystemRoot%\\\\System32\\\\cmd.exe\",\n                << common >>\n                \"guid\": \"{0caa0dad-35be-5f56-a8ff-afceeeaa6101}\",\n                \"name\": \"Command Prompt\"\n            },\n            {\n                \"commandline\": \"%SystemRoot%\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\",\n                << common >>\n                \"guid\": \"{61c54bbd-c2c6-5271-96e7-009a87ff44bf}\",\n                \"name\": \"Windows PowerShell\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\.local\\\\bin\\\\xonsh.exe\",\n                << common >>\n                \"guid\": \"{1039824d-f5da-468d-856d-d7373d40325e}\",\n                \"name\": \"Xonsh\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\scoop\\\\apps\\\\git\\\\current\\\\bin\\\\bash.exe -i -l\",\n                << common >>\n                \"guid\": \"{8f5e00bb-5ac4-4e63-8538-5bcbbf827559}\",\n                \"name\": \"Git Bash\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\scoop\\\\shims\\\\msys2.cmd\",\n                << common >>\n                \"guid\": \"{f60ba69c-a957-410c-a1c6-8b7484ee591c}\",\n                \"name\": \"MSYS\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\scoop\\\\shims\\\\nu.exe\",\n                << common >>\n                \"guid\": \"{2a38cb46-e594-415f-9cce-1e3d1b313ee9}\",\n                \"name\": \"Nu shell\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\scoop\\\\shims\\\\yori.exe\",\n                << common >>\n                \"guid\": \"{90a23420-d58c-4627-9e4d-6ab897661ef7}\",\n                \"name\": \"Yori\"\n            },\n            {\n                \"guid\": \"{b453ae62-4e3d-5e58-b989-0a998ec441b8}\",\n                << common >>\n                \"name\": \"Azure Cloud Shell\",\n                \"source\": \"Windows.Terminal.Azure\"\n            }\n        ]\n    },\n    \"schemes\": [],\n    \"themes\": []\n}\n\n",
     "zxc.20260201034404.1": "\"cursorShape\": \"filledBox\",\n\"font\": \n{\n    \"face\": \"Maple Mono NF CN\"\n},\n\"startingDirectory\": \"%USERPROFILE%\",\n\"opacity\": 90,\n\"hidden\": false,\n\"closeOnExit\": \"graceful\",",
     "zxc.20260201140637.1": "(\n    move_left: Some(( code: Char('h'), modifiers: \"\")),\n    move_right: Some(( code: Char('l'), modifiers: \"\")),\n    move_up: Some(( code: Char('k'), modifiers: \"\")),\n    move_down: Some(( code: Char('j'), modifiers: \"\")),\n    stage_unstage_item: Some(( code: Char(' '), modifiers: \"\")),\n\n    open_help: Some(( code: F(1), modifiers: \"\")),\n)",
@@ -2594,7 +2599,7 @@
     "zxc.20260125162302.1": "[keys.normal.space.l]\nf = \":fmt\"",
     "zxc.20260125162324.1": "[keys.select.g]\nc = \"toggle_comments\"\nz = [\"split_selection_on_newline\", \":sort\", \"keep_primary_selection\"]\n",
     "zxc.20260201203315.1": "armor\ncert-digest-algo SHA512\ncharset utf-8\ndefault-preference-list SHA512 SHA384 SHA256 AES256 AES192 AES ZLIB BZIP2 ZIP Uncompressed\nfixed-list-mode\nkeyid-format 0xlong\nlist-options show-uid-validity\nno-comments\nno-emit-version\nno-greeting\nno-symkey-cache\npersonal-cipher-preferences AES256 AES192 AES\npersonal-compress-preferences ZLIB BZIP2 ZIP Uncompressed\npersonal-digest-preferences SHA512 SHA384 SHA256\nrequire-cross-certification\nrequire-secmem\ns2k-cipher-algo AES256\ns2k-digest-algo SHA512\nthrow-keyids\nuse-agent\nverify-options show-uid-validity\nwith-fingerprint",
-    "zxc.20260201203539.1": "enable-ssh-support\ngrab",
+    "zxc.20260201203539.1": "enable-win32-openssh-support\nenable-ssh-support\ngrab",
     "zxc.20260201225427.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}",
     "zxc.20260201225513.1": "[core]\nscreenName=nuc\nlastVersion=1.25.0.0\ncoreMode=1\nport=24800\ninterface=\npreventSleep=false\nlanguage=English\nwlClipboard=false\nprocessMode=1\nstartedBefore=true\n\n[internalConfig]\nnumColumns=5\nnumRows=3\nhasHeartbeat=false\nheartbeat=5000\nprotocol=1\nrelativeMouseMoves=false\nwin32KeepForeground=false\nhasSwitchDelay=false\nswitchDelay=250\nhasSwitchDoubleTap=false\nswitchDoubleTap=250\nswitchCornerSize=0\ndisableLockToScreen=false\nclipboardSharing=true\nclipboardSharingSize=3072\nswitchCornerArray\\1\\switchCorner=false\nswitchCornerArray\\2\\switchCorner=false\nswitchCornerArray\\3\\switchCorner=false\nswitchCornerArray\\4\\switchCorner=false\nswitchCornerArray\\size=4\nscreens\\1\\name=\nscreens\\2\\name=\nscreens\\3\\name=\nscreens\\4\\name=\nscreens\\5\\name=\nscreens\\6\\name=\nscreens\\7\\name=\nscreens\\8\\name=\nscreens\\9\\name=\nscreens\\10\\name=\nscreens\\11\\name=\nscreens\\12\\name=\nscreens\\13\\name=\nscreens\\14\\name=\nscreens\\15\\name=\nscreens\\size=15\nhotkeys\\size=0\n\n[gui]\nlogExpanded=true\nwindowGeometry=@Rect(674 293 572 493)\nenableUpdateCheck=false\nautoHide=true\ncloseToTray=true\nsymbolicTrayIcon=true\ncloseReminder=false\n\n[log]\nlevel=4\ntoFile=false\nfile=C:/Users/User/deskflow.log\nguiDebug=false\n\n[daemon]\nelevate=false\n\n[security]\ncertificate=C:/Users/User/scoop/apps/deskflow/current/settings/tls/deskflow.pem\nkeySize=2048\ntlsEnabled=true\ncheckPeerFingerprints=true\n\n[client]\nlanguageSync=true\ninvertScrollDirection=false\nyscroll=120\nremoteHost=home.local",
     "zxc.20260202195341.1": "af=%11%scaletempo2\nalang=%16%ja,jp,jpn,en,eng\naudio-file-auto=%5%fuzzy\naudio-pitch-correction=%3%yes\nbackground-color=%7%#000000\nblend-subtitles=%5%video\nforce-seekable=%3%yes\nfullscreen=%3%yes\nhwdec=%4%auto\nkeep-open=%6%always\nosd-back-color=%7%#282a2e\nosd-border-color=%7%#282a2e\nosd-color=%7%#c5c8c6\nosd-font=%11%DejaVu Sans\nosd-shadow-color=%7%#1d1f21\npause=%2%no\nsave-position-on-quit=%3%yes\nslang=%46%en,eng,chs,sc,zh,chi,zho,zh-Hant,zh-CN,zh-Hans\nsub-auto=%5%fuzzy\nsub-font=%11%DejaVu Sans\nvolume=%3%100\nvolume-max=%3%200",
@@ -2828,7 +2833,7 @@
       "_mod_time": 1771149661.604
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1771149661.604
+      "_mod_time": 1771307000.277
     },
     "zxc.20260201214114.1": {
       "_mod_time": 1771149661.604
@@ -2840,7 +2845,7 @@
       "_mod_time": 1771149661.604
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1771231096.972
+      "_mod_time": 1771305830.631
     },
     "zxc.20260202195207.1": {
       "_mod_time": 1771149661.619
