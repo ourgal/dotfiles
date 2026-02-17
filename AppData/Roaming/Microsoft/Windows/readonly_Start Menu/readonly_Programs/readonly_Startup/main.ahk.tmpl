@@ -20,4 +20,7 @@ Run("deskflow-core client", , "Hide")
 {{ if and (eq .chezmoi.hostname "nuc") (lookPath "runemacs") -}}
 Run("runemacs --daemon", , "Hide")
 {{ end -}}
+{{ if and (eq .chezmoi.hostname "nuc") (lookPath "gpg-connect-agent") -}}
+Run("gpg-connect-agent /bye", , "Hide")
+{{ end -}}
 {{ end -}}
