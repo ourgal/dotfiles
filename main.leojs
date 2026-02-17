@@ -162,6 +162,10 @@
                   "vh": "gopass"
                 },
                 {
+                  "gnx": "User.20260217122736.1",
+                  "vh": "progress"
+                },
+                {
                   "gnx": "zxc.20260126154722.1",
                   "vh": "windows",
                   "children": [
@@ -570,6 +574,28 @@
                           "vh": "content"
                         }
                       ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gnx": "User.20260217125229.1",
+          "vh": "data",
+          "children": [
+            {
+              "gnx": "User.20260217125240.1",
+              "vh": "@path .chezmoidata",
+              "children": [
+                {
+                  "gnx": "User.20260217125259.1",
+                  "vh": "git",
+                  "children": [
+                    {
+                      "gnx": "User.20260217125336.1",
+                      "vh": "@clean git.toml"
                     }
                   ]
                 }
@@ -1224,7 +1250,17 @@
                 },
                 {
                   "gnx": "zxc.20260125153554.1",
-                  "vh": "gpg"
+                  "vh": "gpg",
+                  "children": [
+                    {
+                      "gnx": "User.20260217125649.1",
+                      "vh": "ssh"
+                    },
+                    {
+                      "gnx": "User.20260217130414.1",
+                      "vh": "gpg"
+                    }
+                  ]
                 },
                 {
                   "gnx": "zxc.20260125153601.1",
@@ -2342,6 +2378,7 @@
     "User.20260214200035.1": "encryption = \"age\"\n[age]\n    identity = \"~/.ssh/id_ed25519\"\n    symmetric = true",
     "User.20260214200002.1": "[git]\n    autoCommit = false\n    autoPush = false",
     "User.20260217023028.1": "[gopass]\n    mode = \"builtin\"",
+    "User.20260217122736.1": "progress = true",
     "zxc.20260126154722.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}\n",
     "zxc.20260126154908.1": "[interpreter.ps1]\n    command = \"powershell\"\n    args = []",
     "zxc.20260126154820.1": "{{ if lookPath \"pwsh\" -}}\n[cd]\n    command = \"pwsh\"\n{{ end -}}",
@@ -2405,6 +2442,7 @@
     "zxc.20260202220615.1": "reg import \"$env:userprofile\\\\scoop\\\\apps\\\\vim\\\\current\\\\install-context.reg\"",
     "User.20260216141408.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"emacs\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260216141436.1": "$doom_bin = Join-Path -Path $env:USERPROFILE -ChildPath \".emacs.d\" \"bin\" \"doom.ps1\"\n& $doom_bin install --force",
+    "User.20260217125336.1": "[my.git.sign]\nssh = false\ngpg = true",
     "zxc.20260125162740.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125162834.1": "[global]\nindex-url = https://mirrors.cernet.edu.cn/pypi/web/simple/\n[install]\ntrusted-host = mirrors.cernet.edu.cn",
     "zxc.20260126185048.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -2507,8 +2545,9 @@
     "zxc.20260125153507.1": "[diff]\n\talgorithm = \"histogram\"\n\tcolorMoved = \"plain\"\n\tcontext = 3\n\tinterHunkContext = 10\n\tmnemonicPrefix = true\n\trenames = true",
     "zxc.20260125153521.1": "[diff-so-fancy]\n\tchangeHunkIndicators = true\n\tmarkEmptyLines = false\n\tstripLeadingSymbols = true\n\tuseUnicodeRuler = true",
     "zxc.20260125153531.1": "[fetch]\n\tall = true\n\tprune = true\n\tpruneTags = true",
-    "zxc.20260125153546.1": "[filter \"lfs\"]\n\tclean = \"git-lfs clean -- %f\"\n\tprocess = \"git-lfs filter-process\"\n\trequired = true\n\tsmudge = \"git-lfs smudge -- %f\"\n",
-    "zxc.20260125153554.1": "[gpg]\n\tformat = \"ssh\"\n[gpg \"ssh\"]\n{{ if eq .chezmoi.os \"windows\" }}\tprogram = \"C:\\\\Program Files\\\\OpenSSH-Win64\\\\ssh-keygen.EXE\"\n{{ end -}}",
+    "zxc.20260125153546.1": "[filter \"lfs\"]\n\tclean = \"git-lfs clean -- %f\"\n\tprocess = \"git-lfs filter-process\"\n\trequired = true\n\tsmudge = \"git-lfs smudge -- %f\"",
+    "User.20260217125649.1": "{{ if .my.git.sign.ssh -}}\n[gpg]\n\tformat = \"ssh\"\n[gpg \"ssh\"]\n{{ if eq .chezmoi.os \"windows\" }}\tprogram = {{ lookPath \"ssh-keygen\" | replace \"\\\\\" \"\\\\\" | quote }}\n{{ end -}}\n{{ end -}}",
+    "User.20260217130414.1": "{{ if .my.git.sign.gpg -}}\n[gpg]\n\tprogram = {{ lookPath \"gpg\" | replace \"\\\\\" \"\\\\\" | quote }}\n{{ end -}}",
     "zxc.20260125153601.1": "[help]\n\tautocorrect = \"prompt\"",
     "zxc.20260125153609.1": "[init]\n\tdefaultBranch = \"main\"",
     "zxc.20260125153617.1": "[interactive]\n\tdiffFilter = \"diff-so-fancy --patch\"\n\tsinglekey = true",
@@ -2525,7 +2564,7 @@
     "zxc.20260125154343.1": "[url \"ssh://192.168.123.206:23231/\"]\n\tinsteadOf = \"soft:\"\n",
     "zxc.20260125154332.1": "[url \"git@github.com:ourgal/\"]\n\tinsteadOf = \"myg:\"\n",
     "zxc.20260125154321.1": "[url \"git@github.com:\"]\n\tinsteadOf = \"gh:\"\n",
-    "zxc.20260125153842.1": "[user]\n\temail = \"git@fairever.aleeas.com\"\n\tname = \"ourgal\"\n\tsigningkey = \"~/.ssh/id_ed25519.pub\"\n",
+    "zxc.20260125153842.1": "[user]\n\temail = \"git@fairever.aleeas.com\"\n\tname = \"ourgal\"\n{{ if .my.git.sign.ssh }}\tsigningkey = \"~/.ssh/id_ed25519.pub\"\n{{ else if .my.git.sign.gpg }}\tsigningkey = \"D0D31211E343897C\"\n{{ end -}}",
     "zxc.20260125153131.2": "# feat: ✨\n# feat: 🔍\n# feat: 🔗\n# feat: 🔒\n\n# fix: 🐛\n# fix: 🐞\n# fix: 🩹\n# fix: 🚑️\n\n# style: 💅\n# style: 🎨\n# style: 💄\n\n# ci: 🦊\n# ci: 📦\n\n# deploy: 🚀\n# deploy: 📦\n\n# chore: 🧹\n# chore: 🔧\n# chore: ⚙️\n# docs: 📜\n\n# refactor: 🔨\n# perf: 🚀\n\n# test: 🚦\n# debug: 🧪\n\n# BREAKING CHANGE: 🚨\n# BREAKING CHANGE: 💥\n# BREAKING CHANGE: 💣",
     "User.20260216220339.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"ansible-language-server\" -}}\n{{ $lsp = append $lsp \"ansible-language-server\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\ncomment-token = \"#\"\ngrammar = \"yaml\"\ninjection-regex = \"ansible\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]\nname = \"ansible\"\nscope = \"source.yaml\"\nshebangs = [\"ansible-playbook\"]\n\n[[language.file-types]]\nglob = \"playbooks/*.yaml\"\n\n[[language.file-types]]\nglob = \"playbooks/*.yml\"\n\n[[language.file-types]]\nglob = \"group_vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"group_vars/*.yml\"\n\n[[language.file-types]]\nglob = \"host_vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"host_vars/*.yml\"\n\n[[language.file-types]]\nglob = \"vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"vars/*.yml\"\n\n[[language.file-types]]\nglob = \"defaults/*.yaml\"\n\n[[language.file-types]]\nglob = \"defaults/*.yml\"\n\n[[language.file-types]]\nglob = \"tasks/*.yaml\"\n\n[[language.file-types]]\nglob = \"tasks/*.yml\"\n\n[[language.file-types]]\nglob = \"handlers/*.yaml\"\n\n[[language.file-types]]\nglob = \"handlers/*.yml\"\n\n[[language.file-types]]\nglob = \"meta/*.yaml\"\n\n[[language.file-types]]\nglob = \"meta/*.yml\"",
     "User.20260216222130.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"marksman\" -}}\n{{ $lsp = append $lsp \"marksman\" -}}\n{{ end -}}\n{{ if lookPath \"markdown-oxide\" -}}\n{{ $lsp = append $lsp \"markdown-oxide\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"markdown\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]\n",
@@ -2689,6 +2728,9 @@
     "User.20260216141408.1": {
       "_mod_time": 1771229319.397
     },
+    "User.20260217125336.1": {
+      "_mod_time": 1771304162.755
+    },
     "zxc.20260125162740.1": {
       "_mod_time": 1771149661.619
     },
@@ -2732,7 +2774,7 @@
       "_mod_time": 1771264504.559
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1771266667.011
+      "_mod_time": 1771302465.88
     },
     "zxc.20260125145051.1": {
       "_mod_time": 1771149661.619
@@ -2747,7 +2789,7 @@
       "_mod_time": 1771149661.619
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1771159853.795
+      "_mod_time": 1771305165.554
     },
     "zxc.20260125161631.1": {
       "_mod_time": 1771149661.619
