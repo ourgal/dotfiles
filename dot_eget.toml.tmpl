@@ -1,0 +1,7 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "eget" -}}
+[global]
+target = "~/.local/bin"
+github_token = {{ gopass "github/ourgal/token" | quote }}
+{{ end -}}
+{{ end -}}
