@@ -136,5 +136,8 @@
 (use-package! magit-todos
   :after magit
   :config (magit-todos-mode 1))
+(use-package! nov
+  :mode ("\\.epub$" . nov-mode)
+  :defer t)
 {{ end -}}
 {{ end -}}
