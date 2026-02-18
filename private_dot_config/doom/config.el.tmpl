@@ -142,5 +142,8 @@
   :defer t)
 (use-package! pangu-spacing
   :config (add-hook 'markdown-mode-hook 'pangu-spacing-mode))
+(use-package! zeal-at-point)
+(map! :leader
+      :desc "Zeal" "h z" #'zeal-at-point)
 {{ end -}}
 {{ end -}}
