@@ -56,5 +56,8 @@
 ;; (unpin! t)
 (package! ahk-mode)
 (package! chezmoi)
+{{ if ne .chezmoi.os "windows" -}}
+(package! fzf)
+{{ end -}}
 {{ end -}}
 {{ end -}}
