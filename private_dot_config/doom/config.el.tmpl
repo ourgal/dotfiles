@@ -94,5 +94,9 @@
   :mode "\\.ahk$"
   :defer t)
 (use-package! chezmoi)
+(after! dirvish
+  (dirvish-side-follow-mode))
+(map! :n "-" #'dirvish)
+(map! :map 'dirvish-mode-map :n "a" #'dired-create-empty-file)
 {{ end -}}
 {{ end -}}
