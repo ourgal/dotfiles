@@ -145,5 +145,8 @@
 (use-package! zeal-at-point)
 (map! :leader
       :desc "Zeal" "h z" #'zeal-at-point)
+(use-package! eglot-booster
+  :after eglot
+  :config (eglot-booster-mode))
 {{ end -}}
 {{ end -}}
