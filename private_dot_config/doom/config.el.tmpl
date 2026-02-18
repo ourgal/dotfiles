@@ -132,5 +132,9 @@
   (setq evil-snipe-scope 'whole-buffer))
 (use-package! magit-delta
   :hook (magit-mode . magit-delta-mode))
+(use-package! magit-stats)
+(use-package! magit-todos
+  :after magit
+  :config (magit-todos-mode 1))
 {{ end -}}
 {{ end -}}

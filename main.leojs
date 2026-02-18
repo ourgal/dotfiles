@@ -2070,6 +2070,14 @@
                     {
                       "gnx": "User.20260218174940.1",
                       "vh": "magit-delta"
+                    },
+                    {
+                      "gnx": "User.20260218175435.1",
+                      "vh": "magit-stats"
+                    },
+                    {
+                      "gnx": "User.20260218175815.1",
+                      "vh": "magit-todos"
                     }
                   ]
                 }
@@ -2100,6 +2108,14 @@
                 {
                   "gnx": "User.20260218174910.1",
                   "vh": "magit-delta"
+                },
+                {
+                  "gnx": "User.20260218175405.1",
+                  "vh": "magit-stats"
+                },
+                {
+                  "gnx": "User.20260218175756.1",
+                  "vh": "magit-todos"
                 }
               ]
             }
@@ -3038,11 +3054,15 @@
     "User.20260218172737.1": "{{ if ne .chezmoi.os \"windows\" -}}\n(use-package! fzf\n  :config\n  (setq fzf/args \"-x --print-query --margin=1,0 --no-hscroll\"\n        fzf/executable \"fzf\"\n        fzf/git-grep-args \"-i --line-number %s\"\n        ;; command used for `fzf-grep-*` functions\n        ;; example usage for ripgrep:\n        ;; fzf/grep-command \"rg --no-heading -nH\"\n        fzf/grep-command \"grep -nrH\"\n        ;; If nil, the fzf buffer will appear at the top of the window\n        fzf/position-bottom t\n        fzf/window-height 15))\n\n(map! :leader\n      :desc \"fzf\" \"f SPC\" #'fzf)\n{{ end -}}",
     "User.20260218173228.1": "(use-package! evil\n  :defer t\n  :custom\n  (evil-cross-lines t)\n  (evil-ex-search-persistent-highlight nil)\n  (+evil-want-o/O-to-continue-comments nil)\n  (evil-ex-substitute-global t))\n\n(map! :leader\n      :prefix \"b\"\n      \"q\" #'evil-quick-diff\n      \"Q\" #'evil-quick-diff-cancel)\n\n(after! evil-snipe\n  (setq evil-snipe-scope 'whole-buffer))\n",
     "User.20260218174940.1": "(use-package! magit-delta\n  :hook (magit-mode . magit-delta-mode))",
+    "User.20260218175435.1": "(use-package! magit-stats)",
+    "User.20260218175815.1": "(use-package! magit-todos\n  :after magit\n  :config (magit-todos-mode 1))",
     "User.20260217223035.2": ";; -*- no-byte-compile: t; -*-\n;;; $DOOMDIR/packages.el\n\n;; To install a package:\n;;\n;;   1. Declare them here in a `package!' statement,\n;;   2. Run 'doom sync' in the shell,\n;;   3. Restart Emacs.\n;;\n;; Use 'C-h f package\\!' to look up documentation for the `package!' macro.\n\n\n;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:\n;; (package! some-package)\n\n;; To install a package directly from a remote git repo, you must specify a\n;; `:recipe'. You'll find documentation on what `:recipe' accepts here:\n;; https://github.com/radian-software/straight.el#the-recipe-format\n;; (package! another-package\n;;   :recipe (:host github :repo \"username/repo\"))\n\n;; If the package you are trying to install does not contain a PACKAGENAME.el\n;; file, or is located in a subdirectory of the repo, you'll need to specify\n;; `:files' in the `:recipe':\n;; (package! this-package\n;;   :recipe (:host github :repo \"username/repo\"\n;;            :files (\"some-file.el\" \"src/lisp/*.el\")))\n\n;; If you'd like to disable a package included with Doom, you can do so here\n;; with the `:disable' property:\n;; (package! builtin-package :disable t)\n\n;; You can override the recipe of a built in package without having to specify\n;; all the properties for `:recipe'. These will inherit the rest of its recipe\n;; from Doom or MELPA/ELPA/Emacsmirror:\n;; (package! builtin-package :recipe (:nonrecursive t))\n;; (package! builtin-package-2 :recipe (:repo \"myfork/package\"))\n\n;; Specify a `:branch' to install a package from a particular branch or tag.\n;; This is required for some packages whose default branch isn't 'master' (which\n;; our package manager can't deal with; see radian-software/straight.el#279)\n;; (package! builtin-package :recipe (:branch \"develop\"))\n\n;; Use `:pin' to specify a particular commit to install.\n;; (package! builtin-package :pin \"1a2b3c4d5e\")\n\n\n;; Doom's packages are pinned to a specific commit and updated from release to\n;; release. The `unpin!' macro allows you to unpin single packages...\n;; (unpin! pinned-package)\n;; ...or multiple packages\n;; (unpin! pinned-package another-pinned-package)\n;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)\n;; (unpin! t)\n",
     "User.20260218000937.1": "(package! ahk-mode)\n",
     "User.20260218115156.1": "(package! chezmoi)\n",
     "User.20260218172755.1": "{{ if ne .chezmoi.os \"windows\" -}}\n(package! fzf)\n{{ end -}}",
     "User.20260218174910.1": "(package! magit-delta)",
+    "User.20260218175405.1": "(package! magit-stats)",
+    "User.20260218175756.1": "(package! magit-todos)",
     "zxc.20260126154354.1": "{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}",
     "zxc.20260125145051.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125152704.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -3254,10 +3274,10 @@
       "_mod_time": 1771350620.05
     },
     "User.20260217223030.1": {
-      "_mod_time": 1771408221.212
+      "_mod_time": 1771408729.438
     },
     "User.20260217223035.1": {
-      "_mod_time": 1771408221.259
+      "_mod_time": 1771408765.395
     },
     "User.20260215182442.1": {
       "_mod_time": 1771266190.553
