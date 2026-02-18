@@ -98,5 +98,37 @@
   (dirvish-side-follow-mode))
 (map! :n "-" #'dirvish)
 (map! :map 'dirvish-mode-map :n "a" #'dired-create-empty-file)
+{{ if ne .chezmoi.os "windows" -}}
+(use-package! fzf
+  :config
+  (setq fzf/args "-x --print-query --margin=1,0 --no-hscroll"
+        fzf/executable "fzf"
+        fzf/git-grep-args "-i --line-number %s"
+        ;; command used for `fzf-grep-*` functions
+        ;; example usage for ripgrep:
+        ;; fzf/grep-command "rg --no-heading -nH"
+        fzf/grep-command "grep -nrH"
+        ;; If nil, the fzf buffer will appear at the top of the window
+        fzf/position-bottom t
+        fzf/window-height 15))
+
+(map! :leader
+      :desc "fzf" "f SPC" #'fzf)
+{{ end -}}
+(use-package! evil
+  :defer t
+  :custom
+  (evil-cross-lines t)
+  (evil-ex-search-persistent-highlight nil)
+  (+evil-want-o/O-to-continue-comments nil)
+  (evil-ex-substitute-global t))
+
+(map! :leader
+      :prefix "b"
+      "q" #'evil-quick-diff
+      "Q" #'evil-quick-diff-cancel)
+
+(after! evil-snipe
+  (setq evil-snipe-scope 'whole-buffer))
 {{ end -}}
 {{ end -}}
