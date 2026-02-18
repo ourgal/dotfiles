@@ -18,7 +18,7 @@ Run("D:/scoop/apps/brave/current/brave.exe", "c:/users/user" , "Max")
 Run("deskflow-core client", , "Hide")
 {{ end -}}
 {{ if and (eq .chezmoi.hostname "nuc") (lookPath "runemacs") -}}
-Run("runemacs --daemon", , "Hide")
+Run("runemacs --daemon", EnvGet("userprofile"), "Hide")
 {{ end -}}
 {{ if and (eq .chezmoi.hostname "nuc") (lookPath "gpg-connect-agent") -}}
 Run("gpg-connect-agent /bye", , "Hide")

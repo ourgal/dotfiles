@@ -1,6 +1,0 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "emacs" -}}
-$doom_bin = Join-Path -Path $env:USERPROFILE -ChildPath ".emacs.d" "bin" "doom.ps1"
-& $doom_bin install --force
-{{ end -}}
-{{ end -}}
