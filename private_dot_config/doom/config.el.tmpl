@@ -93,7 +93,8 @@
 (use-package! ahk-mode
   :mode "\\.ahk$"
   :defer t)
-(use-package! chezmoi)
+(use-package! chezmoi
+  :mode ("\\.tmpl$" . chezmoi-mode))
 (after! dirvish
   (dirvish-side-follow-mode))
 (map! :n "-" #'dirvish)
@@ -139,5 +140,7 @@
 (use-package! nov
   :mode ("\\.epub$" . nov-mode)
   :defer t)
+(use-package! pangu-spacing
+  :config (add-hook 'markdown-mode-hook 'pangu-spacing-mode))
 {{ end -}}
 {{ end -}}
