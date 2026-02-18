@@ -1,0 +1,7 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "msys2" -}}
+msys2 -c "sed -i \"s#https\?://mirror.msys2.org/#https://mirror.nju.edu.cn/msys2/#g\" /etc/pacman.d/mirrorlist*" 
+msys2 -c "yes | pacman -Syu"
+msys2 -c "yes | pacman -S --needed {{ .my.msys2.packages | join " " }}"
+{{ end -}}
+{{ end -}}
