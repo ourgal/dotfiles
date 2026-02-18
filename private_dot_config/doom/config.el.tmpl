@@ -130,5 +130,7 @@
 
 (after! evil-snipe
   (setq evil-snipe-scope 'whole-buffer))
+(use-package! magit-delta
+  :hook (magit-mode . magit-delta-mode))
 {{ end -}}
 {{ end -}}
