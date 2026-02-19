@@ -42,8 +42,13 @@
 {{ if eq .chezmoi.os "windows" }}	sshCommand = 'C:\\Program Files\\OpenSSH-Win64\\ssh.EXE'
 {{ end -}}
 {{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "git-credential-gopass" -}}
+[credential]
+	helper = "gopass"
+{{ else -}}
 [credential]
 	helper = "manager"
+{{ end -}}
 {{ end -}}
 {{ if eq .chezmoi.os "linux" -}}
 {{ if lookPath "gopass" -}}
