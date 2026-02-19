@@ -1,0 +1,9 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if stat (joinPath (env "programdata") "Microsoft" "Windows" "Start Menu" "Programs" "Weasel" "Weasel Deploy.lnk") -}}
+{{ if lookPath "dirhash" -}}
+# {{ output "dirhash" (joinPath (env "Appdata") "Rime" "default.custom.yaml") "-nowait" "-quiet" | trim }}
+# {{ output "dirhash" (joinPath (env "Appdata") "Rime" "sbfm.custom.yaml") "-nowait" "-quiet" | trim }}
+& {{ joinPath (env "programdata") "Microsoft" "Windows" "Start Menu" "Programs" "Weasel" "Weasel Deploy.lnk" | quote }}
+{{ end -}}
+{{ end -}}
+{{ end -}}

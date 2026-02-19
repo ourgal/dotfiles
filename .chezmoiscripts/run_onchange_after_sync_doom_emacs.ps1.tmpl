@@ -2,7 +2,7 @@
 {{ if stat (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom") -}}
 {{ if lookPath "dirhash" -}}
 # {{ output "dirhash" (joinPath .chezmoi.homeDir ".config" "doom") "-nowait" "-quiet" | trim }}
-{{ end -}}
 {{ (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom.ps1" ) }} sync
+{{ end -}}
 {{ end -}}
 {{ end -}}
