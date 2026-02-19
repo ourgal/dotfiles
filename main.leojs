@@ -2999,10 +2999,10 @@
     "zxc.20260125153436.1": "[culumn]\n\tui = \"auto\"",
     "zxc.20260125153348.1": "[commit]\n\ttemplate = \"~/.config/git/template\"\n\tgpgsign = true\n\tverbose = true",
     "zxc.20260125153401.1": "[core]\n\tcompression = 9\n\teditor = \"{{ template \"editor\" }}\"\n\texcludesfile = \"~/.gitignore\"\n\tfsmonitor = true\n\tpager = \"diff-so-fancy | less '--tabs=4' -RFX\"\n\tpreloadindex = true\n\tuntrackedCache = true\n\twhitespace = \"error\"\n\tautocrlf = \"input\"\n{{ if eq .chezmoi.os \"windows\" }}\tsshCommand = 'C:\\\\Program Files\\\\OpenSSH-Win64\\\\ssh.EXE'\n{{ end -}}",
-    "zxc.20260202215744.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"git-credential-gopass\" -}}\n[credential]\n\thelper = \"gopass\"\n{{ else -}}\n[credential]\n\thelper = \"manager\"\n{{ end -}}\n{{ end -}}",
+    "zxc.20260202215744.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"git-credential-gopass\" -}}\n[credential]\n\thelper = \"gopass\"\n[credential \"helperselector\"]\n\tselected = gopass\n{{ else -}}\n[credential]\n\thelper = \"manager\"\n{{ end -}}\n{{ end -}}",
     "zxc.20260202215728.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"gopass\" -}}\n[credential]\n\thelper = \"gopass\"\n{{ end -}}\n{{ end -}}",
-    "zxc.20260125154038.1": "[credential \"https://gist.github.com\"]\n\thelper = \"gh auth git-credential\"",
-    "zxc.20260125154056.1": "[credential \"https://github.com\"]\n\thelper = \"gh auth git-credential\"\n",
+    "zxc.20260125154038.1": "[credential \"https://gist.github.com\"]\n\thelper = !{{ lookPath \"gh\" | replace \"\\\\\" \"\\\\\\\\\" | squote }} auth git-credential",
+    "zxc.20260125154056.1": "[credential \"https://github.com\"]\n\thelper = !{{ lookPath \"gh\" | replace \"\\\\\" \"\\\\\\\\\" | squote }} auth git-credential\n",
     "zxc.20260125154233.1": "[delta \"side-by-side\"]\n\tenable = true\n",
     "zxc.20260125154225.1": "[delta \"navigate\"]\n\tenable = true\n",
     "zxc.20260125154220.1": "[delta \"file-yellow\"]\n\tenable = true\n",
@@ -3011,7 +3011,7 @@
     "zxc.20260125153531.1": "[fetch]\n\tall = true\n\tprune = true\n\tpruneTags = true",
     "zxc.20260125153546.1": "[filter \"lfs\"]\n\tclean = \"git-lfs clean -- %f\"\n\tprocess = \"git-lfs filter-process\"\n\trequired = true\n\tsmudge = \"git-lfs smudge -- %f\"",
     "User.20260217125649.1": "{{ if .my.git.sign.ssh -}}\n[gpg]\n\tformat = \"ssh\"\n[gpg \"ssh\"]\n{{ if eq .chezmoi.os \"windows\" }}\tprogram = {{ lookPath \"ssh-keygen\" | replace \"\\\\\" \"\\\\\" | quote }}\n{{ end -}}\n{{ end -}}",
-    "User.20260217130414.1": "{{ if .my.git.sign.gpg -}}\n[gpg]\n\tprogram = {{ lookPath \"gpg\" | replace \"\\\\\" \"\\\\\" | quote }}\n{{ end -}}",
+    "User.20260217130414.1": "{{ if .my.git.sign.gpg -}}\n[gpg]\n\tprogram = {{ lookPath \"gpg\" | quote }}\n{{ end -}}",
     "zxc.20260125153601.1": "[help]\n\tautocorrect = \"prompt\"",
     "zxc.20260125153609.1": "[init]\n\tdefaultBranch = \"main\"",
     "zxc.20260125153617.1": "[interactive]\n\tdiffFilter = \"diff-so-fancy --patch\"\n\tsinglekey = true",
@@ -3327,7 +3327,7 @@
       "_mod_time": 1771507120.162
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1771521093.65
+      "_mod_time": 1771523338.133
     },
     "zxc.20260125161631.1": {
       "_mod_time": 1771507120.162
