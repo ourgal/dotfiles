@@ -2703,6 +2703,36 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "gnx": "User.20260219235635.1",
+                  "vh": "@path Zed",
+                  "children": [
+                    {
+                      "gnx": "User.20260219235648.1",
+                      "vh": "@clean settings.json.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260219235734.1",
+                          "vh": "content",
+                          "children": [
+                            {
+                              "gnx": "User.20260220000018.1",
+                              "vh": "theme"
+                            },
+                            {
+                              "gnx": "User.20260219235958.1",
+                              "vh": "font"
+                            },
+                            {
+                              "gnx": "User.20260219235853.1",
+                              "vh": "auto update"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -3071,7 +3101,11 @@
     "User.20260215234634.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"qutebrowser\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260215234715.1": "config.load_autoconfig(False)\nconfig.set(\"auto_save.session\", True)\nconfig.set(\"content.blocking.method\", \"both\")\nconfig.set(\"downloads.location.suggestion\", \"both\")\nconfig.set(\"hints.border\", \"1px solid #1d1f21\")\nc.url.searchengines['DEFAULT'] = \"https://www.google.com/search?hl=en&q={}\"\nc.url.searchengines['aw'] = \"https://wiki.archlinux.org/?search={}\"\nc.url.searchengines['b'] = \"https://cn.bing.com/search?q={}\"\nc.url.searchengines['books'] = \"https://search.books.com.tw/search/query/cat/all/sort/5/v/1/page/1/spell/3/ms2/ms2_1/key/{}\"\nc.url.searchengines['bwtw'] = \"https://www.bookwalker.com.tw/search?w={}&series_display=1\"\nc.url.searchengines['ddg'] = \"https://duckduckgo.com/?q={}\"\nc.url.searchengines['dict'] = \"https://cn.bing.com/dict?q={}\"\nc.url.searchengines['docker'] = \"https://hub.docker.com/search?q={}\"\nc.url.searchengines['g'] = \"https://www.google.com/search?hl=en&q={}\"\nc.url.searchengines['gh'] = \"https://github.com/search?q={}\"\nc.url.searchengines['mangazip'] = \"https://manga-zip.info/search/{}\"\nc.url.searchengines['mynix'] = \"https://mynixos.com/search?q={}\"\nc.url.searchengines['nw'] = \"https://nixos.wiki/index.php?search={}\"\nc.url.searchengines['nyaa'] = \"https://nyaa.si/?f=0&c=1_2&q={}\"\nc.url.searchengines['twdict'] = \"https://dict.revised.moe.edu.tw/search.jsp?md=1&word={}#searchL\"\nc.url.searchengines['w'] = \"https://en.wikipedia.org/wiki/Special:Search?search={}&amp;go=Go&amp;ns0=1\"\nconfig.bind(\",\", \"search-prev\", mode=\"normal\")\nconfig.bind(\".\", \"search-next\", mode=\"normal\")\nconfig.bind(\"<\", \"tab-move -\", mode=\"normal\")\nconfig.bind(\"<Alt-m>\", \"tab-mute\", mode=\"normal\")\nconfig.bind(\"<Ctrl-o>\", \"session-save ;; cmd-set-text -s :session-load -c\", mode=\"normal\")\nconfig.bind(\">\", \"tab-move +\", mode=\"normal\")\nconfig.bind(\"B\", \"cmd-set-text -s :open -t dict \", mode=\"normal\")\nconfig.bind(\"M\", \"hint links spawn -d mpv {hint-url}\", mode=\"normal\")\nconfig.bind(\"S\", \"scroll-to-perc 100\", mode=\"normal\")\nconfig.bind(\"W\", \"scroll-to-perc 0\", mode=\"normal\")\nconfig.bind(\"X\", \"close\", mode=\"normal\")\nconfig.bind(\"\\\\r\", \"clear-messages ;; jseval document.querySelector(\\\"video, audio\\\").playbackRate = 2\", mode=\"normal\")\nconfig.bind(\"\\\\z\", \"clear-messages ;; jseval document.querySelector(\\\"video, audio\\\").playbackRate = 1\", mode=\"normal\")\nconfig.bind(\"a\", \"back\", mode=\"normal\")\nconfig.bind(\"b\", \"cmd-set-text -s :quickmark-load -t \", mode=\"normal\")\nconfig.bind(\"c\", \"tab-prev\", mode=\"normal\")\nconfig.bind(\"d\", \"forward\", mode=\"normal\")\nconfig.bind(\"e\", \"cmd-set-text -s :open {url}\", mode=\"normal\")\nconfig.bind(\"g\", \"cmd-set-text -s :open -t\", mode=\"normal\")\nconfig.bind(\"o\", \"cmd-set-text -s :open\", mode=\"normal\")\nconfig.bind(\"p\", \"open -t {clipboard}\", mode=\"normal\")\nconfig.bind(\"r\", \"reload\", mode=\"normal\")\nconfig.bind(\"s\", \"scroll-page 0 1\", mode=\"normal\")\nconfig.bind(\"u\", \"navigate up\", mode=\"normal\")\nconfig.bind(\"v\", \"tab-next\", mode=\"normal\")\nconfig.bind(\"w\", \"scroll-page 0 -1\", mode=\"normal\")\nconfig.bind(\"x\", \"tab-close\", mode=\"normal\")\nconfig.bind(\"ya\", \"hint links yank\", mode=\"normal\")\nconfig.bind(\"z\", \"undo\", mode=\"normal\")",
     "User.20260216124226.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat \"C:/Program Files/Rime\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260216125422.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat \"C:/Program Files/Rime\" -}}\n@others\n{{ end -}}\n{{ end -}}"
+    "User.20260216125422.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat \"C:/Program Files/Rime\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260219235648.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"zed\" -}}\n// Zed settings\n//\n// For information on how to configure Zed, see the Zed\n// documentation: https://zed.dev/docs/configuring-zed\n//\n// To see all of Zed's default settings without changing your\n// custom settings, run `zed: open default settings` from the\n// command palette (cmd-shift-p / ctrl-shift-p)\n{\n  @others\n}\n{{ end -}}\n{{ end -}}",
+    "User.20260220000018.1": "\"theme\": {\n  \"mode\": \"system\",\n  \"light\": \"One Light\",\n  \"dark\": \"One Dark\",\n},",
+    "User.20260219235958.1": "\"ui_font_size\": 16,\n\"buffer_font_size\": 15,",
+    "User.20260219235853.1": "\"auto_update\": false\n"
   },
   "uas": {
     "zxc.20260125142149.1": {
@@ -3228,7 +3262,7 @@
       "_mod_time": 1771507120.162
     },
     "User.20260217223030.1": {
-      "_mod_time": 1771507120.162
+      "_mod_time": 1771516495.219
     },
     "User.20260217223035.1": {
       "_mod_time": 1771507120.162
@@ -3295,6 +3329,9 @@
     },
     "User.20260216125422.1": {
       "_mod_time": 1771507120.147
+    },
+    "User.20260219235648.1": {
+      "_mod_time": 1771516837.708
     }
   }
 }
