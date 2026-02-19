@@ -562,22 +562,6 @@
                   ]
                 },
                 {
-                  "gnx": "User.20260216141335.1",
-                  "vh": "install doom emacs",
-                  "children": [
-                    {
-                      "gnx": "User.20260216141408.1",
-                      "vh": "@clean run_onchange_after_doom_emacs_install.ps1.tmpl",
-                      "children": [
-                        {
-                          "gnx": "User.20260216141436.1",
-                          "vh": "content"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
                   "gnx": "User.20260217202336.1",
                   "vh": "sync doom emacs",
                   "children": [
@@ -1962,16 +1946,6 @@
       "vh": "doom emacs",
       "children": [
         {
-          "gnx": "User.20260218155900.1",
-          "vh": "init",
-          "children": [
-            {
-              "gnx": "User.20260217223023.2",
-              "vh": "content"
-            }
-          ]
-        },
-        {
           "gnx": "User.20260218155918.1",
           "vh": "config",
           "children": [
@@ -2280,52 +2254,12 @@
                   "vh": "@path doom",
                   "children": [
                     {
-                      "gnx": "User.20260217223144.1",
-                      "vh": "@path init",
-                      "children": [
-                        {
-                          "gnx": "User.20260217223209.1",
-                          "vh": "@clean init.el.tmpl",
-                          "children": [
-                            {
-                              "gnx": "User.20260217223221.1",
-                              "vh": "content"
-                            }
-                          ]
-                        },
-                        {
-                          "gnx": "User.20260217223415.1",
-                          "vh": "@clean config.el.tmpl",
-                          "children": [
-                            {
-                              "gnx": "User.20260217223420.1",
-                              "vh": "content",
-                              "children": [
-                                {
-                                  "gnx": "User.20260217223030.3"
-                                }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          "gnx": "User.20260217223537.1",
-                          "vh": "@clean packages.el.tmpl",
-                          "children": [
-                            {
-                              "gnx": "User.20260217223541.1",
-                              "vh": "content"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
                       "gnx": "User.20260217223023.1",
                       "vh": "@clean init.el.tmpl",
                       "children": [
                         {
-                          "gnx": "User.20260217223023.2"
+                          "gnx": "User.20260217223023.2",
+                          "vh": "content"
                         }
                       ]
                     },
@@ -2828,7 +2762,7 @@
     "zxc.20260130074346.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260130074346.2": "[\".cache/vscodium/extensions/vsnetrw.vsix\"]\n    type = \"file\"\n    url = \"https://github.com/danprince/vsnetrw/releases/download/v0.3.2/vsnetrw-0.3.2.vsix\"\n",
     "zxc.20260126160530.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"emacs\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260126160721.1": "[\".emacs.d\"]\n    type = \"git-repo\"\n    url = \"https://mirror.nju.edu.cn/git/doom-emacs.git/\"\n",
+    "zxc.20260126160721.1": "[\".emacs.d\"]\n    type = \"git-repo\"\n    url = \"https://mirror.nju.edu.cn/git/doom-emacs.git/\"",
     "zxc.20260202201907.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202201936.1": "[\"Appdata/Roaming/mpv/scripts/thumbfast.lua\"]\n    type = \"file\"\n    url = \"https://github.com/po5/thumbfast/raw/refs/heads/master/thumbfast.lua\"\n\n[\"Appdata/Roaming/mpv/scripts/SmartSkip.lua\"]\n    type = \"file\"\n    url = \"https://github.com/Eisa01/mpv-scripts/raw/refs/heads/master/scripts/SmartSkip.lua\"\n",
     "zxc.20260202203521.17": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -2862,8 +2796,6 @@
     "zxc.20260202220046.1": "reg import \"$env:userprofile\\\\scoop\\\\apps\\\\pwsh\\\\current\\\\install-explorer-context.reg\"\nreg import \"$env:userprofile\\\\scoop\\\\apps\\\\pwsh\\\\current\\\\install-file-context.reg\"",
     "zxc.20260202220553.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gvim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202220615.1": "reg import \"$env:userprofile\\\\scoop\\\\apps\\\\vim\\\\current\\\\install-context.reg\"",
-    "User.20260216141408.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if and ( lookPath \"emacs\" ) (stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom.ps1\")) -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260216141436.1": "$doom_bin = Join-Path -Path $env:USERPROFILE -ChildPath \".emacs.d\" \"bin\" \"doom.ps1\"\n& $doom_bin install --force\n\n$env:DOOMDIR={{ joinPath .chezmoi.homeDir \".config\" \"doom\" \"init\" | quote }}\n& $doom_bin sync",
     "User.20260217202401.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260217202404.1": "{{ if lookPath \"dirhash\" -}}\n# {{ output \"dirhash\" (joinPath .chezmoi.homeDir \".config\" \"doom\") \"-nowait\" \"-quiet\" | trim }}\n{{ end -}}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom.ps1\" ) }} sync",
     "User.20260217214851.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"msys2\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -3065,7 +2997,6 @@
     "User.20260216232938.1": "allow-overwrite=false\nallow-piece-length-change=true\nalways-resume=false\nauto-file-renaming=true\nauto-save-interval=20\nbt-detach-seed-only=true\nbt-enable-lpd=true\nbt-force-encryption=true\nbt-hash-check-seed=true\nbt-load-saved-metadata=true\nbt-max-peers=128\nbt-prioritize-piece=head=32M,tail=32M\nbt-remove-unselected-file=true\nbt-request-peer-speed-limit=10M\nbt-save-metadata=true\nbt-seed-unverified=false\nbt-tracker-connect-timeout=10\nbt-tracker-timeout=10\nconnect-timeout=10\nconsole-log-level=warn\ncontent-disposition-default-utf8=true\ncontinue=true\ndht-entry-point=dht.transmissionbt.com:6881\ndht-entry-point6=dht.transmissionbt.com:6881\ndht-file-path={{ env \"userprofile\" }}\\.aria2\\dht.dat\ndht-file-path6={{ env \"userprofile\" }}\\.aria2\\dht6.dat\ndisable-ipv6=true\ndisk-cache=64M\nenable-dht=true\nenable-dht6=false\nenable-http-pipelining=true\nenable-peer-exchange=true\nenable-rpc=false\nfile-allocation=none\nfollow-torrent=true\nforce-save=false\nhttp-accept-gzip=true\nlowest-speed-limit=0\nmax-concurrent-downloads=5\nmax-connection-per-server=16\nmax-download-limit=0\nmax-file-not-found=10\nmax-overall-download-limit=0\nmax-overall-upload-limit=2M\nmax-resume-failure-tries=0\nmax-tries=0\nmax-upload-limit=0\nmin-split-size=4M\nno-file-allocation-limit=64M\nno-netrc=true\npause-metadata=false\npeer-agent=Deluge 1.3.15\npeer-id-prefix=-DE13F0-\npiece-length=1M\nquiet=false\nremote-time=true\nretry-wait=10\nreuse-uri=false\nrpc-allow-origin-all=true\nrpc-listen-all=true\nrpc-listen-port=6800\nrpc-max-request-size=10M\nrpc-save-upload-metadata=true\nrpc-secret={{ gopass \"aria2/rpc\" }}\nsave-session-interval=1\nseed-ratio=1.000000\nseed-time=0\nsplit=64\nsummary-interval=0\ntimeout=10\nuser-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36 Edg/93.0.961.47",
     "User.20260217182613.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"eget\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260217182650.1": "[global]\ntarget = \"~/.local/bin\"\ngithub_token = {{ gopass \"github/ourgal/token\" | quote }}\n",
-    "User.20260217223023.2": ";;; init.el -*- lexical-binding: t; -*-\n\n;; This file controls what Doom modules are enabled and what order they load\n;; in. Remember to run 'doom sync' after modifying it!\n\n;; NOTE Press 'SPC h d h' (or 'C-h d h' for non-vim users) to access Doom's\n;;      documentation. There you'll find a link to Doom's Module Index where all\n;;      of our modules are listed, including what flags they support.\n\n;; NOTE Move your cursor over a module's name (or its flags) and press 'K' (or\n;;      'C-c c k' for non-vim users) to view its documentation. This works on\n;;      flags as well (those symbols that start with a plus).\n;;\n;;      Alternatively, press 'gd' (or 'C-c c d') on a module to browse its\n;;      directory (for easy access to its source code).\n\n(doom! :input\n       ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh\n       ;;chinese\n       ;;japanese\n       ;;layout            ; auie,ctsrnm is the superior home row\n\n       :completion\n       ;;company           ; the ultimate code completion backend\n       (corfu +orderless +icons)  ; complete with cap(f), cape and a flying feather!\n       ;;helm              ; the *other* search engine for love and life\n       ;;ido               ; the other *other* search engine...\n       ;;ivy               ; a search engine for love and life\n       (vertico +childframe +icons)           ; the search engine of the future\n\n       :ui\n       ;;deft              ; notational velocity for Emacs\n       doom              ; what makes DOOM look the way it does\n       doom-dashboard    ; a nifty splash screen for Emacs\n       ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs\n       (emoji +unicode)  ; 🙂\n       hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW\n       indent-guides     ; highlighted indent columns\n       ligatures         ; ligatures and symbols to make your code pretty again\n       ;;minimap           ; show a map of the code on the side\n       modeline          ; snazzy, Atom-inspired modeline, plus API\n       nav-flash         ; blink cursor line after big motions\n       ;;neotree           ; a project drawer, like NERDTree for vim\n       ophints           ; highlight the region an operation acts on\n       (popup +defaults)   ; tame sudden yet inevitable temporary windows\n       ;;smooth-scroll     ; So smooth you won't believe it's not butter\n       ;;tabs              ; a tab bar for Emacs\n       ;;treemacs          ; a project drawer, like neotree but cooler\n       ;;unicode           ; extended unicode support for various languages\n       (vc-gutter +pretty) ; vcs diff in the fringe\n       vi-tilde-fringe   ; fringe tildes to mark beyond EOB\n       (window-select +numbers)     ; visually switch windows\n       workspaces        ; tab emulation, persistence & separate workspaces\n       zen               ; distraction-free coding or writing\n\n       :editor\n       (evil +everywhere); come to the dark side, we have cookies\n       file-templates    ; auto-snippets for empty files\n       fold              ; (nigh) universal code folding\n       (format +onsave)  ; automated prettiness\n       ;;god               ; run Emacs commands without modifier keys\n       ;;lispy             ; vim for lisp, for people who don't like vim\n       multiple-cursors  ; editing in many places at once\n       ;;objed             ; text object editing for the innocent\n       parinfer          ; turn lisp into python, sort of\n       rotate-text       ; cycle region at point between text candidates\n       snippets          ; my elves. They type so I don't have to\n       (whitespace +guess +trim)  ; a butler for your whitespace\n       word-wrap         ; soft wrapping with language-aware indent\n\n       :emacs\n       (dired +icons +dirvish)             ; making dired pretty [functional]\n       electric          ; smarter, keyword-based electric-indent\n       eww               ; the internet is gross\n       (ibuffer +icons)           ; interactive buffer management\n       tramp             ; remote files at your arthritic fingertips\n       undo              ; persistent, smarter undo for your inevitable mistakes\n       vc                ; version-control and Emacs, sitting in a tree\n\n       :term\n       ;;eshell            ; the elisp shell that works everywhere\n       ;;shell             ; simple shell REPL for Emacs\n       ;;term              ; basic terminal emulator for Emacs\n       vterm             ; the best terminal emulation in Emacs\n\n       :checkers\n       (syntax +childframe)              ; tasing you for every semicolon you forget\n       (spell +aspell) ; tasing you for misspelling mispelling\n       grammar           ; tasing grammar mistake every you make\n\n       :tools\n       ansible\n       ;;biblio            ; Writes a PhD for you (citation needed)\n       ;;collab            ; buffers with friends\n       ;;debugger          ; FIXME stepping through code, to help you add bugs\n       direnv\n       (docker +lsp)\n       editorconfig      ; let someone else argue about tabs vs spaces\n       ;;ein               ; tame Jupyter notebooks with emacs\n       (eval +overlay)     ; run code, run (also, repls)\n       (lookup +dictionary +docsets +offine)              ; navigate your code and its documentation\n       ;;llm               ; when I said you needed friends, I didn't mean...\n       (lsp +eglot)      ; M-x vscode\n       magit             ; a git porcelain for Emacs\n       make              ; run make tasks from Emacs\n       pass              ; password manager for nerds\n       ;;pdf               ; pdf enhancements\n       ;;terraform         ; infrastructure as code\n       ;;tmux              ; an API for interacting with tmux\n       tree-sitter       ; syntax and parsing, sitting in a tree...\n       ;;upload            ; map local to remote projects via ssh/ftp\n\n       :os\n       (:if (featurep :system 'macos) macos)  ; improve compatibility with macOS\n       tty               ; improve the terminal Emacs experience\n\n       :lang\n       ;;ada               ; In strong typing we (blindly) trust\n       ;;agda              ; types of types of types of types...\n       ;;beancount         ; mind the GAAP\n       (cc +lsp)         ; C > C++ == 1\n       ;;clojure           ; java with a lisp\n       ;;common-lisp       ; if you've seen one lisp, you've seen them all\n       ;;coq               ; proofs-as-programs\n       ;;crystal           ; ruby at the speed of c\n       ;;csharp            ; unity, .NET, and mono shenanigans\n       ;;data              ; config/data formats\n       ;;(dart +flutter)   ; paint ui and not much else\n       ;;dhall\n       ;;elixir            ; erlang done right\n       ;;elm               ; care for a cup of TEA?\n       (emacs-lisp +checkers)        ; drown in parentheses\n       ;;erlang            ; an elegant language for a more civilized age\n       ;;ess               ; emacs speaks statistics\n       ;;factor\n       ;;faust             ; dsp, but you get to keep your soul\n       ;;fortran           ; in FORTRAN, GOD is REAL (unless declared INTEGER)\n       ;;fsharp            ; ML stands for Microsoft's Language\n       ;;fstar             ; (dependent) types and (monadic) effects and Z3\n       ;;gdscript          ; the language you waited for\n       ;;(go +lsp)         ; the hipster dialect\n       ;;(graphql +lsp)    ; Give queries a REST\n       (haskell +lsp)    ; a language that's lazier than I am\n       ;;hy                ; readability of scheme w/ speed of python\n       ;;idris             ; a language you can depend on\n       (json +lsp +tree-sitter)              ; At least it ain't XML\n       ;;janet             ; Fun fact: Janet is me!\n       ;;(java +lsp)       ; the poster child for carpal tunnel syndrome\n       ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))\n       ;;julia             ; a better, faster MATLAB\n       ;;kotlin            ; a better, slicker Java(Script)\n       (latex +lsp)             ; writing papers in Emacs has never been so fun\n       ;;lean              ; for folks with too much to prove\n       ;;ledger            ; be audit you can be\n       (lua +lsp +tree-sitter)               ; one-based indices? one-based indices\n       (markdown +grip)          ; writing docs for people to ignore\n       ;;nim               ; python + lisp at the speed of c\n       ;;nix               ; I hereby declare \"nix geht mehr!\"\n       ;;ocaml             ; an objective camel\n       (org +gnuplot +pandoc)               ; organize your plain life in plain text\n       ;;php               ; perl's insecure younger brother\n       ;;plantuml          ; diagrams for confusing people more\n       ;;graphviz          ; diagrams for confusing yourself even more\n       ;;purescript        ; javascript, but functional\n       (python +lsp +tree-sitter)            ; beautiful is better than ugly\n       ;;qt                ; the 'cutest' gui framework ever\n       ;;racket            ; a DSL for DSLs\n       ;;raku              ; the artist formerly known as perl6\n       ;;rest              ; Emacs as a REST client\n       ;;rst               ; ReST in peace\n       ;;(ruby +rails)     ; 1.step {|i| p \"Ruby is #{i.even? ? 'love' : 'life'}\"}\n       ;;(rust +lsp)       ; Fe2O3.unwrap().unwrap().unwrap().unwrap()\n       ;;scala             ; java, but good\n       ;;(scheme +guile)   ; a fully conniving family of lisps\n       (sh +powershell +lsp +tree-sitter)                ; she sells {ba,z,fi}sh shells on the C xor\n       ;;sml\n       ;;solidity          ; do you need a blockchain? No.\n       ;;swift             ; who asked for emoji variables?\n       ;;terra             ; Earth and Moon in alignment for performance.\n       ;;web               ; the tubes\n       (yaml +lsp +tree-sitter)              ; JSON, but readable\n       ;;zig               ; C, but simpler\n\n       :email\n       ;;(mu4e +org +gmail)\n       ;;notmuch\n       ;;(wanderlust +gmail)\n\n       :app\n       ;;calendar\n       ;;emms\n       ;;everywhere        ; *leave* Emacs!? You must be joking\n       ;;irc               ; how neckbeards socialize\n       (rss +org +youtube)        ; emacs as an RSS reader\n\n       :config\n       ;;literate\n       (default +bindings +smartparens))",
     "User.20260217223030.2": ";;; $DOOMDIR/config.el -*- lexical-binding: t; -*-\n\n;; Place your private configuration here! Remember, you do not need to run 'doom\n;; sync' after modifying this file!\n\n\n;; Some functionality uses this to identify you, e.g. GPG configuration, email\n;; clients, file templates and snippets. It is optional.\n;; (setq user-full-name \"John Doe\"\n;;       user-mail-address \"john@doe.com\")\n\n;; Doom exposes five (optional) variables for controlling fonts in Doom:\n;;\n;; - `doom-font' -- the primary font to use\n;; - `doom-variable-pitch-font' -- a non-monospace font (where applicable)\n;; - `doom-big-font' -- used for `doom-big-font-mode'; use this for\n;;   presentations or streaming.\n;; - `doom-symbol-font' -- for symbols\n;; - `doom-serif-font' -- for the `fixed-pitch-serif' face\n;;\n;; See 'C-h v doom-font' for documentation and more examples of what they\n;; accept. For example:\n;;\n;; If you or Emacs can't find your font, use 'M-x describe-font' to look them\n;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to\n;; refresh your font settings. If Emacs still can't find your font, it likely\n;; wasn't installed correctly. Font issues are rarely Doom issues!\n\n;; Whenever you reconfigure a package, make sure to wrap your config in an\n;; `with-eval-after-load' block, otherwise Doom's defaults may override your\n;; settings. E.g.\n;;\n;;   (with-eval-after-load 'PACKAGE\n;;     (setq x y))\n;;\n;; The exceptions to this rule:\n;;\n;;   - Setting file/directory variables (like `org-directory')\n;;   - Setting variables which explicitly tell you to set them before their\n;;     package is loaded (see 'C-h v VARIABLE' to look them up).\n;;   - Setting doom variables (which start with 'doom-' or '+').\n;;\n;; Here are some additional functions/macros that will help you configure Doom.\n;;\n;; - `load!' for loading external *.el files relative to this one\n;; - `add-load-path!' for adding directories to the `load-path', relative to\n;;   this file. Emacs searches the `load-path' when you load packages with\n;;   `require' or `use-package'.\n;; - `map!' for binding new keys\n;;\n;; To get information about any of these functions/macros, move the cursor over\n;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').\n;; This will open documentation for it, including demos of how they are used.\n;; Alternatively, use `C-h o' to look up a symbol (functions, variables, faces,\n;; etc).\n;;\n;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how\n;; they are implemented.\n",
     "User.20260217223030.3": "(setq package-archives '((\"gnu\"    . \"https://mirror.nju.edu.cn/elpa/gnu/\")\n                         (\"nongnu\" . \"https://mirror.nju.edu.cn/elpa/nongnu/\")\n                         (\"melpa\"  . \"https://mirror.nju.edu.cn/elpa/melpa/\")))\n",
     "User.20260217233138.1": ";; There are two ways to load a theme. Both assume the theme is installed and\n;; available. You can either set `doom-theme' or manually load a theme with the\n;; `load-theme' function. This is the default:\n(setq doom-theme 'doom-tokyo-night)\n",
@@ -3111,13 +3042,8 @@
     "zxc.20260125153012.2": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260125161631.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"hx\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260216185314.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"hx\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260217223209.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260217223221.1": ";;; init.el -*- lexical-binding: t; -*-\n\n;; This file controls what Doom modules are enabled and what order they load\n;; in. Remember to run 'doom sync' after modifying it!\n\n;; NOTE Press 'SPC h d h' (or 'C-h d h' for non-vim users) to access Doom's\n;;      documentation. There you'll find a link to Doom's Module Index where all\n;;      of our modules are listed, including what flags they support.\n\n;; NOTE Move your cursor over a module's name (or its flags) and press 'K' (or\n;;      'C-c c k' for non-vim users) to view its documentation. This works on\n;;      flags as well (those symbols that start with a plus).\n;;\n;;      Alternatively, press 'gd' (or 'C-c c d') on a module to browse its\n;;      directory (for easy access to its source code).\n\n(doom! :input\n       ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh\n       ;;chinese\n       ;;japanese\n       ;;layout            ; auie,ctsrnm is the superior home row\n\n       :completion\n       ;;company           ; the ultimate code completion backend\n       (corfu +orderless)  ; complete with cap(f), cape and a flying feather!\n       ;;helm              ; the *other* search engine for love and life\n       ;;ido               ; the other *other* search engine...\n       ;;ivy               ; a search engine for love and life\n       vertico           ; the search engine of the future\n\n       :ui\n       ;;deft              ; notational velocity for Emacs\n       doom              ; what makes DOOM look the way it does\n       doom-dashboard    ; a nifty splash screen for Emacs\n       ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs\n       ;;(emoji +unicode)  ; 🙂\n       hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW\n       ;;indent-guides     ; highlighted indent columns\n       ;;ligatures         ; ligatures and symbols to make your code pretty again\n       ;;minimap           ; show a map of the code on the side\n       modeline          ; snazzy, Atom-inspired modeline, plus API\n       ;;nav-flash         ; blink cursor line after big motions\n       ;;neotree           ; a project drawer, like NERDTree for vim\n       ophints           ; highlight the region an operation acts on\n       (popup +defaults)   ; tame sudden yet inevitable temporary windows\n       ;;smooth-scroll     ; So smooth you won't believe it's not butter\n       ;;tabs              ; a tab bar for Emacs\n       ;;treemacs          ; a project drawer, like neotree but cooler\n       ;;unicode           ; extended unicode support for various languages\n       (vc-gutter +pretty) ; vcs diff in the fringe\n       vi-tilde-fringe   ; fringe tildes to mark beyond EOB\n       ;;window-select     ; visually switch windows\n       workspaces        ; tab emulation, persistence & separate workspaces\n       ;;zen               ; distraction-free coding or writing\n\n       :editor\n       (evil +everywhere); come to the dark side, we have cookies\n       file-templates    ; auto-snippets for empty files\n       fold              ; (nigh) universal code folding\n       ;;(format +onsave)  ; automated prettiness\n       ;;god               ; run Emacs commands without modifier keys\n       ;;lispy             ; vim for lisp, for people who don't like vim\n       ;;multiple-cursors  ; editing in many places at once\n       ;;objed             ; text object editing for the innocent\n       ;;parinfer          ; turn lisp into python, sort of\n       ;;rotate-text       ; cycle region at point between text candidates\n       snippets          ; my elves. They type so I don't have to\n       (whitespace +guess +trim)  ; a butler for your whitespace\n       ;;word-wrap         ; soft wrapping with language-aware indent\n\n       :emacs\n       dired             ; making dired pretty [functional]\n       electric          ; smarter, keyword-based electric-indent\n       ;;eww               ; the internet is gross\n       ;;ibuffer           ; interactive buffer management\n       tramp             ; remote files at your arthritic fingertips\n       undo              ; persistent, smarter undo for your inevitable mistakes\n       vc                ; version-control and Emacs, sitting in a tree\n\n       :term\n       ;;eshell            ; the elisp shell that works everywhere\n       ;;shell             ; simple shell REPL for Emacs\n       ;;term              ; basic terminal emulator for Emacs\n       ;;vterm             ; the best terminal emulation in Emacs\n\n       :checkers\n       syntax              ; tasing you for every semicolon you forget\n       ;;(spell +flyspell) ; tasing you for misspelling mispelling\n       ;;grammar           ; tasing grammar mistake every you make\n\n       :tools\n       ;;ansible\n       ;;biblio            ; Writes a PhD for you (citation needed)\n       ;;collab            ; buffers with friends\n       ;;debugger          ; FIXME stepping through code, to help you add bugs\n       ;;direnv\n       ;;docker\n       ;;editorconfig      ; let someone else argue about tabs vs spaces\n       ;;ein               ; tame Jupyter notebooks with emacs\n       (eval +overlay)     ; run code, run (also, repls)\n       lookup              ; navigate your code and its documentation\n       ;;llm               ; when I said you needed friends, I didn't mean...\n       ;;(lsp +eglot)      ; M-x vscode\n       magit             ; a git porcelain for Emacs\n       ;;make              ; run make tasks from Emacs\n       ;;pass              ; password manager for nerds\n       ;;pdf               ; pdf enhancements\n       ;;terraform         ; infrastructure as code\n       ;;tmux              ; an API for interacting with tmux\n       ;;tree-sitter       ; syntax and parsing, sitting in a tree...\n       ;;upload            ; map local to remote projects via ssh/ftp\n\n       :os\n       (:if (featurep :system 'macos) macos)  ; improve compatibility with macOS\n       ;;tty               ; improve the terminal Emacs experience\n\n       :lang\n       ;;ada               ; In strong typing we (blindly) trust\n       ;;agda              ; types of types of types of types...\n       ;;beancount         ; mind the GAAP\n       ;;(cc +lsp)         ; C > C++ == 1\n       ;;clojure           ; java with a lisp\n       ;;common-lisp       ; if you've seen one lisp, you've seen them all\n       ;;coq               ; proofs-as-programs\n       ;;crystal           ; ruby at the speed of c\n       ;;csharp            ; unity, .NET, and mono shenanigans\n       ;;data              ; config/data formats\n       ;;(dart +flutter)   ; paint ui and not much else\n       ;;dhall\n       ;;elixir            ; erlang done right\n       ;;elm               ; care for a cup of TEA?\n       emacs-lisp        ; drown in parentheses\n       ;;erlang            ; an elegant language for a more civilized age\n       ;;ess               ; emacs speaks statistics\n       ;;factor\n       ;;faust             ; dsp, but you get to keep your soul\n       ;;fortran           ; in FORTRAN, GOD is REAL (unless declared INTEGER)\n       ;;fsharp            ; ML stands for Microsoft's Language\n       ;;fstar             ; (dependent) types and (monadic) effects and Z3\n       ;;gdscript          ; the language you waited for\n       ;;(go +lsp)         ; the hipster dialect\n       ;;(graphql +lsp)    ; Give queries a REST\n       ;;(haskell +lsp)    ; a language that's lazier than I am\n       ;;hy                ; readability of scheme w/ speed of python\n       ;;idris             ; a language you can depend on\n       ;;json              ; At least it ain't XML\n       ;;janet             ; Fun fact: Janet is me!\n       ;;(java +lsp)       ; the poster child for carpal tunnel syndrome\n       ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))\n       ;;julia             ; a better, faster MATLAB\n       ;;kotlin            ; a better, slicker Java(Script)\n       ;;latex             ; writing papers in Emacs has never been so fun\n       ;;lean              ; for folks with too much to prove\n       ;;ledger            ; be audit you can be\n       ;;lua               ; one-based indices? one-based indices\n       markdown          ; writing docs for people to ignore\n       ;;nim               ; python + lisp at the speed of c\n       ;;nix               ; I hereby declare \"nix geht mehr!\"\n       ;;ocaml             ; an objective camel\n       org               ; organize your plain life in plain text\n       ;;php               ; perl's insecure younger brother\n       ;;plantuml          ; diagrams for confusing people more\n       ;;graphviz          ; diagrams for confusing yourself even more\n       ;;purescript        ; javascript, but functional\n       ;;python            ; beautiful is better than ugly\n       ;;qt                ; the 'cutest' gui framework ever\n       ;;racket            ; a DSL for DSLs\n       ;;raku              ; the artist formerly known as perl6\n       ;;rest              ; Emacs as a REST client\n       ;;rst               ; ReST in peace\n       ;;(ruby +rails)     ; 1.step {|i| p \"Ruby is #{i.even? ? 'love' : 'life'}\"}\n       ;;(rust +lsp)       ; Fe2O3.unwrap().unwrap().unwrap().unwrap()\n       ;;scala             ; java, but good\n       ;;(scheme +guile)   ; a fully conniving family of lisps\n       sh                ; she sells {ba,z,fi}sh shells on the C xor\n       ;;sml\n       ;;solidity          ; do you need a blockchain? No.\n       ;;swift             ; who asked for emoji variables?\n       ;;terra             ; Earth and Moon in alignment for performance.\n       ;;web               ; the tubes\n       ;;yaml              ; JSON, but readable\n       ;;zig               ; C, but simpler\n\n       :email\n       ;;(mu4e +org +gmail)\n       ;;notmuch\n       ;;(wanderlust +gmail)\n\n       :app\n       ;;calendar\n       ;;emms\n       ;;everywhere        ; *leave* Emacs!? You must be joking\n       ;;irc               ; how neckbeards socialize\n       ;;(rss +org)        ; emacs as an RSS reader\n\n       :config\n       ;;literate\n       (default +bindings +smartparens))",
-    "User.20260217223415.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260217223420.1": ";;; $DOOMDIR/config.el -*- lexical-binding: t; -*-\n\n;; Place your private configuration here! Remember, you do not need to run 'doom\n;; sync' after modifying this file!\n\n\n;; Some functionality uses this to identify you, e.g. GPG configuration, email\n;; clients, file templates and snippets. It is optional.\n;; (setq user-full-name \"John Doe\"\n;;       user-mail-address \"john@doe.com\")\n\n;; Doom exposes five (optional) variables for controlling fonts in Doom:\n;;\n;; - `doom-font' -- the primary font to use\n;; - `doom-variable-pitch-font' -- a non-monospace font (where applicable)\n;; - `doom-big-font' -- used for `doom-big-font-mode'; use this for\n;;   presentations or streaming.\n;; - `doom-symbol-font' -- for symbols\n;; - `doom-serif-font' -- for the `fixed-pitch-serif' face\n;;\n;; See 'C-h v doom-font' for documentation and more examples of what they\n;; accept. For example:\n;;\n;;(setq doom-font (font-spec :family \"Fira Code\" :size 12 :weight 'semi-light)\n;;      doom-variable-pitch-font (font-spec :family \"Fira Sans\" :size 13))\n;;\n;; If you or Emacs can't find your font, use 'M-x describe-font' to look them\n;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to\n;; refresh your font settings. If Emacs still can't find your font, it likely\n;; wasn't installed correctly. Font issues are rarely Doom issues!\n\n;; There are two ways to load a theme. Both assume the theme is installed and\n;; available. You can either set `doom-theme' or manually load a theme with the\n;; `load-theme' function. This is the default:\n(setq doom-theme 'doom-one)\n\n;; This determines the style of line numbers in effect. If set to `nil', line\n;; numbers are disabled. For relative line numbers, set this to `relative'.\n(setq display-line-numbers-type t)\n\n;; If you use `org' and don't want your org files in the default location below,\n;; change `org-directory'. It must be set before org loads!\n(setq org-directory \"~/org/\")\n\n\n;; Whenever you reconfigure a package, make sure to wrap your config in an\n;; `with-eval-after-load' block, otherwise Doom's defaults may override your\n;; settings. E.g.\n;;\n;;   (with-eval-after-load 'PACKAGE\n;;     (setq x y))\n;;\n;; The exceptions to this rule:\n;;\n;;   - Setting file/directory variables (like `org-directory')\n;;   - Setting variables which explicitly tell you to set them before their\n;;     package is loaded (see 'C-h v VARIABLE' to look them up).\n;;   - Setting doom variables (which start with 'doom-' or '+').\n;;\n;; Here are some additional functions/macros that will help you configure Doom.\n;;\n;; - `load!' for loading external *.el files relative to this one\n;; - `add-load-path!' for adding directories to the `load-path', relative to\n;;   this file. Emacs searches the `load-path' when you load packages with\n;;   `require' or `use-package'.\n;; - `map!' for binding new keys\n;;\n;; To get information about any of these functions/macros, move the cursor over\n;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').\n;; This will open documentation for it, including demos of how they are used.\n;; Alternatively, use `C-h o' to look up a symbol (functions, variables, faces,\n;; etc).\n;;\n;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how\n;; they are implemented.",
-    "User.20260217223537.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260217223541.1": ";; -*- no-byte-compile: t; -*-\n;;; $DOOMDIR/packages.el\n\n;; To install a package:\n;;\n;;   1. Declare them here in a `package!' statement,\n;;   2. Run 'doom sync' in the shell,\n;;   3. Restart Emacs.\n;;\n;; Use 'C-h f package\\!' to look up documentation for the `package!' macro.\n\n\n;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:\n;; (package! some-package)\n\n;; To install a package directly from a remote git repo, you must specify a\n;; `:recipe'. You'll find documentation on what `:recipe' accepts here:\n;; https://github.com/radian-software/straight.el#the-recipe-format\n;; (package! another-package\n;;   :recipe (:host github :repo \"username/repo\"))\n\n;; If the package you are trying to install does not contain a PACKAGENAME.el\n;; file, or is located in a subdirectory of the repo, you'll need to specify\n;; `:files' in the `:recipe':\n;; (package! this-package\n;;   :recipe (:host github :repo \"username/repo\"\n;;            :files (\"some-file.el\" \"src/lisp/*.el\")))\n\n;; If you'd like to disable a package included with Doom, you can do so here\n;; with the `:disable' property:\n;; (package! builtin-package :disable t)\n\n;; You can override the recipe of a built in package without having to specify\n;; all the properties for `:recipe'. These will inherit the rest of its recipe\n;; from Doom or MELPA/ELPA/Emacsmirror:\n;; (package! builtin-package :recipe (:nonrecursive t))\n;; (package! builtin-package-2 :recipe (:repo \"myfork/package\"))\n\n;; Specify a `:branch' to install a package from a particular branch or tag.\n;; This is required for some packages whose default branch isn't 'master' (which\n;; our package manager can't deal with; see radian-software/straight.el#279)\n;; (package! builtin-package :recipe (:branch \"develop\"))\n\n;; Use `:pin' to specify a particular commit to install.\n;; (package! builtin-package :pin \"1a2b3c4d5e\")\n\n\n;; Doom's packages are pinned to a specific commit and updated from release to\n;; release. The `unpin!' macro allows you to unpin single packages...\n;; (unpin! pinned-package)\n;; ...or multiple packages\n;; (unpin! pinned-package another-pinned-package)\n;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)\n;; (unpin! t)",
     "User.20260217223023.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260217223023.2": ";;; init.el -*- lexical-binding: t; -*-\n\n;; This file controls what Doom modules are enabled and what order they load\n;; in. Remember to run 'doom sync' after modifying it!\n\n;; NOTE Press 'SPC h d h' (or 'C-h d h' for non-vim users) to access Doom's\n;;      documentation. There you'll find a link to Doom's Module Index where all\n;;      of our modules are listed, including what flags they support.\n\n;; NOTE Move your cursor over a module's name (or its flags) and press 'K' (or\n;;      'C-c c k' for non-vim users) to view its documentation. This works on\n;;      flags as well (those symbols that start with a plus).\n;;\n;;      Alternatively, press 'gd' (or 'C-c c d') on a module to browse its\n;;      directory (for easy access to its source code).\n\n(doom! :input\n       ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh\n       ;;chinese\n       ;;japanese\n       ;;layout            ; auie,ctsrnm is the superior home row\n\n       :completion\n       ;;company           ; the ultimate code completion backend\n       (corfu +orderless +icons)  ; complete with cap(f), cape and a flying feather!\n       ;;helm              ; the *other* search engine for love and life\n       ;;ido               ; the other *other* search engine...\n       ;;ivy               ; a search engine for love and life\n       (vertico +childframe +icons)           ; the search engine of the future\n\n       :ui\n       ;;deft              ; notational velocity for Emacs\n       doom              ; what makes DOOM look the way it does\n       doom-dashboard    ; a nifty splash screen for Emacs\n       ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs\n       (emoji +unicode)  ; 🙂\n       hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW\n       indent-guides     ; highlighted indent columns\n       ligatures         ; ligatures and symbols to make your code pretty again\n       ;;minimap           ; show a map of the code on the side\n       modeline          ; snazzy, Atom-inspired modeline, plus API\n       nav-flash         ; blink cursor line after big motions\n       ;;neotree           ; a project drawer, like NERDTree for vim\n       ophints           ; highlight the region an operation acts on\n       (popup +defaults)   ; tame sudden yet inevitable temporary windows\n       ;;smooth-scroll     ; So smooth you won't believe it's not butter\n       ;;tabs              ; a tab bar for Emacs\n       ;;treemacs          ; a project drawer, like neotree but cooler\n       ;;unicode           ; extended unicode support for various languages\n       (vc-gutter +pretty) ; vcs diff in the fringe\n       vi-tilde-fringe   ; fringe tildes to mark beyond EOB\n       (window-select +numbers)     ; visually switch windows\n       workspaces        ; tab emulation, persistence & separate workspaces\n       zen               ; distraction-free coding or writing\n\n       :editor\n       (evil +everywhere); come to the dark side, we have cookies\n       file-templates    ; auto-snippets for empty files\n       fold              ; (nigh) universal code folding\n       (format +onsave)  ; automated prettiness\n       ;;god               ; run Emacs commands without modifier keys\n       ;;lispy             ; vim for lisp, for people who don't like vim\n       multiple-cursors  ; editing in many places at once\n       ;;objed             ; text object editing for the innocent\n       parinfer          ; turn lisp into python, sort of\n       rotate-text       ; cycle region at point between text candidates\n       snippets          ; my elves. They type so I don't have to\n       (whitespace +guess +trim)  ; a butler for your whitespace\n       word-wrap         ; soft wrapping with language-aware indent\n\n       :emacs\n       (dired +icons +dirvish)             ; making dired pretty [functional]\n       electric          ; smarter, keyword-based electric-indent\n       eww               ; the internet is gross\n       (ibuffer +icons)           ; interactive buffer management\n       tramp             ; remote files at your arthritic fingertips\n       undo              ; persistent, smarter undo for your inevitable mistakes\n       vc                ; version-control and Emacs, sitting in a tree\n\n       :term\n       ;;eshell            ; the elisp shell that works everywhere\n       ;;shell             ; simple shell REPL for Emacs\n       ;;term              ; basic terminal emulator for Emacs\n       vterm             ; the best terminal emulation in Emacs\n\n       :checkers\n       (syntax +childframe)              ; tasing you for every semicolon you forget\n       (spell +aspell) ; tasing you for misspelling mispelling\n       grammar           ; tasing grammar mistake every you make\n\n       :tools\n       ansible\n       ;;biblio            ; Writes a PhD for you (citation needed)\n       ;;collab            ; buffers with friends\n       ;;debugger          ; FIXME stepping through code, to help you add bugs\n       direnv\n       (docker +lsp)\n       editorconfig      ; let someone else argue about tabs vs spaces\n       ;;ein               ; tame Jupyter notebooks with emacs\n       (eval +overlay)     ; run code, run (also, repls)\n       (lookup +dictionary +docsets +offine)              ; navigate your code and its documentation\n       ;;llm               ; when I said you needed friends, I didn't mean...\n       (lsp +eglot)      ; M-x vscode\n       magit             ; a git porcelain for Emacs\n       make              ; run make tasks from Emacs\n       pass              ; password manager for nerds\n       ;;pdf               ; pdf enhancements\n       ;;terraform         ; infrastructure as code\n       ;;tmux              ; an API for interacting with tmux\n       tree-sitter       ; syntax and parsing, sitting in a tree...\n       ;;upload            ; map local to remote projects via ssh/ftp\n\n       :os\n       (:if (featurep :system 'macos) macos)  ; improve compatibility with macOS\n       tty               ; improve the terminal Emacs experience\n\n       :lang\n       ;;ada               ; In strong typing we (blindly) trust\n       ;;agda              ; types of types of types of types...\n       ;;beancount         ; mind the GAAP\n       (cc +lsp)         ; C > C++ == 1\n       ;;clojure           ; java with a lisp\n       ;;common-lisp       ; if you've seen one lisp, you've seen them all\n       ;;coq               ; proofs-as-programs\n       ;;crystal           ; ruby at the speed of c\n       ;;csharp            ; unity, .NET, and mono shenanigans\n       ;;data              ; config/data formats\n       ;;(dart +flutter)   ; paint ui and not much else\n       ;;dhall\n       ;;elixir            ; erlang done right\n       ;;elm               ; care for a cup of TEA?\n       (emacs-lisp +checkers)        ; drown in parentheses\n       ;;erlang            ; an elegant language for a more civilized age\n       ;;ess               ; emacs speaks statistics\n       ;;factor\n       ;;faust             ; dsp, but you get to keep your soul\n       ;;fortran           ; in FORTRAN, GOD is REAL (unless declared INTEGER)\n       ;;fsharp            ; ML stands for Microsoft's Language\n       ;;fstar             ; (dependent) types and (monadic) effects and Z3\n       ;;gdscript          ; the language you waited for\n       ;;(go +lsp)         ; the hipster dialect\n       ;;(graphql +lsp)    ; Give queries a REST\n       (haskell +lsp)    ; a language that's lazier than I am\n       ;;hy                ; readability of scheme w/ speed of python\n       ;;idris             ; a language you can depend on\n       (json +lsp +tree-sitter)              ; At least it ain't XML\n       ;;janet             ; Fun fact: Janet is me!\n       ;;(java +lsp)       ; the poster child for carpal tunnel syndrome\n       ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))\n       ;;julia             ; a better, faster MATLAB\n       ;;kotlin            ; a better, slicker Java(Script)\n       (latex +lsp)             ; writing papers in Emacs has never been so fun\n       ;;lean              ; for folks with too much to prove\n       ;;ledger            ; be audit you can be\n       (lua +lsp +tree-sitter)               ; one-based indices? one-based indices\n       (markdown +grip)          ; writing docs for people to ignore\n       ;;nim               ; python + lisp at the speed of c\n       ;;nix               ; I hereby declare \"nix geht mehr!\"\n       ;;ocaml             ; an objective camel\n       (org +gnuplot +pandoc)               ; organize your plain life in plain text\n       ;;php               ; perl's insecure younger brother\n       ;;plantuml          ; diagrams for confusing people more\n       ;;graphviz          ; diagrams for confusing yourself even more\n       ;;purescript        ; javascript, but functional\n       (python +lsp +tree-sitter)            ; beautiful is better than ugly\n       ;;qt                ; the 'cutest' gui framework ever\n       ;;racket            ; a DSL for DSLs\n       ;;raku              ; the artist formerly known as perl6\n       ;;rest              ; Emacs as a REST client\n       ;;rst               ; ReST in peace\n       ;;(ruby +rails)     ; 1.step {|i| p \"Ruby is #{i.even? ? 'love' : 'life'}\"}\n       ;;(rust +lsp)       ; Fe2O3.unwrap().unwrap().unwrap().unwrap()\n       ;;scala             ; java, but good\n       ;;(scheme +guile)   ; a fully conniving family of lisps\n       (sh +powershell +lsp +tree-sitter)                ; she sells {ba,z,fi}sh shells on the C xor\n       ;;sml\n       ;;solidity          ; do you need a blockchain? No.\n       ;;swift             ; who asked for emoji variables?\n       ;;terra             ; Earth and Moon in alignment for performance.\n       ;;web               ; the tubes\n       (yaml +lsp +tree-sitter)              ; JSON, but readable\n       ;;zig               ; C, but simpler\n\n       :email\n       ;;(mu4e +org +gmail)\n       ;;notmuch\n       ;;(wanderlust +gmail)\n\n       :app\n       ;;calendar\n       ;;emms\n       ;;everywhere        ; *leave* Emacs!? You must be joking\n       ;;irc               ; how neckbeards socialize\n       (rss +org +youtube)        ; emacs as an RSS reader\n\n       :config\n       ;;literate\n       (default +bindings +smartparens))",
     "User.20260217223030.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260217223035.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260215182442.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -3149,238 +3075,226 @@
   },
   "uas": {
     "zxc.20260125142149.1": {
-      "_mod_time": 1771149661.619
+      "_mod_time": 1771507120.147
     },
     "zxc.20260125142829.1": {
-      "_mod_time": 1771149661.619
+      "_mod_time": 1771507120.162
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1771149661.619
+      "_mod_time": 1771507120.147
     },
     "zxc.20260125143959.1": {
-      "_mod_time": 1771149661.619
+      "_mod_time": 1771507120.147
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1771149661.604
+      "_mod_time": 1771507120.147
     },
     "zxc.20260125172659.1": {
-      "_mod_time": 1771149661.604
+      "_mod_time": 1771507120.147
     },
     "zxc.20260125172839.1": {
-      "_mod_time": 1771149661.604
+      "_mod_time": 1771507120.131
     },
     "zxc.20260130221131.1": {
-      "_mod_time": 1771149661.604
+      "_mod_time": 1771507120.147
     },
     "zxc.20260130074346.1": {
-      "_mod_time": 1771149661.604
+      "_mod_time": 1771507120.147
     },
     "zxc.20260126160530.1": {
-      "_mod_time": 1771149661.604
+      "_mod_time": 1771511359.743
     },
     "zxc.20260202201907.1": {
-      "_mod_time": 1771149661.604
+      "_mod_time": 1771507120.147
     },
     "zxc.20260202203521.17": {
-      "_mod_time": 1771149661.604
+      "_mod_time": 1771507120.147
     },
     "zxc.20260202203521.20": {
-      "_mod_time": 1771160025.478
+      "_mod_time": 1771507120.147
     },
     "User.20260216114746.1": {
-      "_mod_time": 1771217583.031
+      "_mod_time": 1771507120.147
     },
     "zxc.20260202203521.3": {
-      "_mod_time": 1771167415.751
+      "_mod_time": 1771507120.147
     },
     "zxc.20260202203521.14": {
-      "_mod_time": 1771149661.604
+      "_mod_time": 1771507120.147
     },
     "zxc.20260202213444.1": {
-      "_mod_time": 1771149661.604
+      "_mod_time": 1771507120.147
     },
     "zxc.20260202215023.1": {
-      "_mod_time": 1771149661.604
+      "_mod_time": 1771507120.147
     },
     "zxc.20260202215408.1": {
-      "_mod_time": 1771149661.604
+      "_mod_time": 1771507120.147
     },
     "zxc.20260202220030.1": {
-      "_mod_time": 1771149661.604
+      "_mod_time": 1771507120.147
     },
     "zxc.20260202220553.1": {
-      "_mod_time": 1771149661.604
-    },
-    "User.20260216141408.1": {
-      "_mod_time": 1771340539.137
+      "_mod_time": 1771507120.147
     },
     "User.20260217202401.1": {
-      "_mod_time": 1771342544.29
+      "_mod_time": 1771507120.147
     },
     "User.20260217214851.1": {
-      "_mod_time": 1771352040.502
+      "_mod_time": 1771507120.147
     },
     "User.20260218020042.1": {
-      "_mod_time": 1771405210.178
+      "_mod_time": 1771507120.131
     },
     "User.20260217234231.1": {
-      "_mod_time": 1771388797.135
+      "_mod_time": 1771507120.131
     },
     "User.20260217125336.1": {
-      "_mod_time": 1771304162.755
+      "_mod_time": 1771507120.131
     },
     "zxc.20260125162740.1": {
-      "_mod_time": 1771149661.619
+      "_mod_time": 1771507120.162
     },
     "zxc.20260126185048.1": {
-      "_mod_time": 1771149661.619
+      "_mod_time": 1771507120.147
     },
     "User.20260218144120.1": {
-      "_mod_time": 1771397061.784
+      "_mod_time": 1771507120.162
     },
     "User.20260218144232.1": {
-      "_mod_time": 1771397061.821
+      "_mod_time": 1771507120.162
     },
     "zxc.20260125163108.1": {
-      "_mod_time": 1771149661.619
+      "_mod_time": 1771507120.162
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1771398274.574
+      "_mod_time": 1771507120.162
     },
     "zxc.20260125164142.1": {
-      "_mod_time": 1771395625.474
+      "_mod_time": 1771507120.162
     },
     "User.20260218142211.1": {
-      "_mod_time": 1771398274.675
+      "_mod_time": 1771507120.178
     },
     "User.20260218142322.1": {
-      "_mod_time": 1771396063.445
+      "_mod_time": 1771507120.178
     },
     "zxc.20260130225718.1": {
-      "_mod_time": 1771149661.619
+      "_mod_time": 1771507120.162
     },
     "zxc.20260201141149.1": {
-      "_mod_time": 1771149661.619
+      "_mod_time": 1771507120.162
     },
     "User.20260215191351.1": {
-      "_mod_time": 1771321161.176
+      "_mod_time": 1771507120.162
     },
     "zxc.20260202211707.1": {
-      "_mod_time": 1771344402.044
+      "_mod_time": 1771507120.147
     },
     "User.20260216000318.1": {
-      "_mod_time": 1771171526.2
+      "_mod_time": 1771507120.147
     },
     "User.20260216232855.1": {
-      "_mod_time": 1771264504.559
+      "_mod_time": 1771507120.147
     },
     "User.20260217182613.1": {
-      "_mod_time": 1771324218.311
+      "_mod_time": 1771507120.147
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1771302465.88
+      "_mod_time": 1771507120.162
     },
     "zxc.20260125145051.1": {
-      "_mod_time": 1771149661.619
+      "_mod_time": 1771507120.162
     },
     "zxc.20260125152704.1": {
-      "_mod_time": 1771248747.344
+      "_mod_time": 1771507120.162
     },
     "zxc.20260125152851.2": {
-      "_mod_time": 1771149661.619
+      "_mod_time": 1771507120.162
     },
     "zxc.20260125153131.1": {
-      "_mod_time": 1771149661.619
+      "_mod_time": 1771507120.162
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1771305165.554
+      "_mod_time": 1771507120.162
     },
     "zxc.20260125161631.1": {
-      "_mod_time": 1771149661.619
+      "_mod_time": 1771507120.162
     },
     "User.20260216185314.1": {
-      "_mod_time": 1771251729.04
-    },
-    "User.20260217223209.1": {
-      "_mod_time": 1771338920.417
-    },
-    "User.20260217223415.1": {
-      "_mod_time": 1771339281.793
-    },
-    "User.20260217223537.1": {
-      "_mod_time": 1771338965.036
+      "_mod_time": 1771507120.162
     },
     "User.20260217223023.1": {
-      "_mod_time": 1771350620.05
+      "_mod_time": 1771507120.162
     },
     "User.20260217223030.1": {
-      "_mod_time": 1771420017.185
+      "_mod_time": 1771507120.162
     },
     "User.20260217223035.1": {
-      "_mod_time": 1771420305.076
+      "_mod_time": 1771507120.162
     },
     "User.20260215182442.1": {
-      "_mod_time": 1771266190.553
+      "_mod_time": 1771507120.178
     },
     "User.20260217022114.1": {
-      "_mod_time": 1771266190.588
+      "_mod_time": 1771507120.178
     },
     "User.20260215182818.1": {
-      "_mod_time": 1771266190.622
+      "_mod_time": 1771507120.178
     },
     "zxc.20260201225344.1": {
-      "_mod_time": 1771149661.619
+      "_mod_time": 1771507120.178
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1771149661.619
+      "_mod_time": 1771507120.178
     },
     "User.20260215205925.1": {
-      "_mod_time": 1771389715.91
+      "_mod_time": 1771507120.178
     },
     "User.20260215210400.1": {
-      "_mod_time": 1771170034.53
+      "_mod_time": 1771507120.178
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1771149661.619
+      "_mod_time": 1771507120.162
     },
     "zxc.20260202205715.1": {
-      "_mod_time": 1771149661.619
+      "_mod_time": 1771507120.178
     },
     "zxc.20260201203241.1": {
-      "_mod_time": 1771149661.604
+      "_mod_time": 1771507120.147
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1771307000.277
+      "_mod_time": 1771507120.147
     },
     "zxc.20260201214114.1": {
-      "_mod_time": 1771149661.604
+      "_mod_time": 1771507120.147
     },
     "zxc.20260201140523.1": {
-      "_mod_time": 1771149661.604
+      "_mod_time": 1771507120.147
     },
     "zxc.20260130233132.1": {
-      "_mod_time": 1771149661.604
+      "_mod_time": 1771507120.147
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1771405559.841
+      "_mod_time": 1771507120.147
     },
     "zxc.20260202195207.1": {
-      "_mod_time": 1771149661.619
+      "_mod_time": 1771507120.147
     },
     "zxc.20260214105528.1": {
-      "_mod_time": 1771149661.604
+      "_mod_time": 1771507120.147
     },
     "zxc.20260214142543.1": {
-      "_mod_time": 1771251729.157
+      "_mod_time": 1771507120.147
     },
     "User.20260215234634.1": {
-      "_mod_time": 1771170461.018
+      "_mod_time": 1771507120.147
     },
     "User.20260216124226.1": {
-      "_mod_time": 1771217691.265
+      "_mod_time": 1771507120.147
     },
     "User.20260216125422.1": {
-      "_mod_time": 1771217757.522
+      "_mod_time": 1771507120.147
     }
   }
 }
