@@ -45,6 +45,8 @@
 {{ if lookPath "git-credential-gopass" -}}
 [credential]
 	helper = "gopass"
+[credential "helperselector"]
+	selected = gopass
 {{ else -}}
 [credential]
 	helper = "manager"
@@ -57,9 +59,9 @@
 {{ end -}}
 {{ end -}}
 [credential "https://gist.github.com"]
-	helper = "gh auth git-credential"
+	helper = !{{ lookPath "gh" | replace "\\" "\\\\" | squote }} auth git-credential
 [credential "https://github.com"]
-	helper = "gh auth git-credential"
+	helper = !{{ lookPath "gh" | replace "\\" "\\\\" | squote }} auth git-credential
 [delta "side-by-side"]
 	enable = true
 [delta "navigate"]
@@ -96,7 +98,7 @@
 {{ end -}}
 {{ if .my.git.sign.gpg -}}
 [gpg]
-	program = {{ lookPath "gpg" | replace "\\" "\\" | quote }}
+	program = {{ lookPath "gpg" | quote }}
 {{ end -}}
 [help]
 	autocorrect = "prompt"
