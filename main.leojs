@@ -2885,7 +2885,7 @@
     "User.20260217202401.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260217202404.1": "{{ if lookPath \"dirhash\" -}}\n# {{ output \"dirhash\" (joinPath .chezmoi.homeDir \".config\" \"doom\") \"-nowait\" \"-quiet\" | trim }}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom.ps1\" ) }} sync\n{{ end -}}",
     "User.20260217214851.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"msys2\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "User.20260217214859.1": "msys2 -c \"sed -i \\\"s#https\\?://mirror.msys2.org/#https://mirror.nju.edu.cn/msys2/#g\\\" /etc/pacman.d/mirrorlist*\" \nmsys2 -c \"yes | pacman -Syu\"\nmsys2 -c \"yes | pacman -S --needed {{ .my.msys2.packages | join \" \" }}\"",
+    "User.20260217214859.1": "msys2 -c \"yes | pacman -Syu\"\nmsys2 -c \"yes | pacman -S --needed {{ .my.msys2.packages | join \" \" }}\"",
     "User.20260220000301.2": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat (joinPath (env \"programdata\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Weasel\" \"Weasel Deploy.lnk\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260220000301.3": "{{ if lookPath \"dirhash\" -}}\n# {{ output \"dirhash\" (joinPath (env \"Appdata\") \"Rime\" \"default.custom.yaml\") \"-nowait\" \"-quiet\" | trim }}\n# {{ output \"dirhash\" (joinPath (env \"Appdata\") \"Rime\" \"sbfm.custom.yaml\") \"-nowait\" \"-quiet\" | trim }}\n& {{ joinPath (env \"programdata\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Weasel\" \"Weasel Deploy.lnk\" | quote }}\n{{ end -}}",
     "User.20260220012738.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if and (lookPath \"gh\") (lookPath \"gopass\") -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -3240,7 +3240,7 @@
       "_mod_time": 1771517628.633
     },
     "User.20260217214851.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1771524800.056
     },
     "User.20260220000301.2": {
       "_mod_time": 1771517674.642
