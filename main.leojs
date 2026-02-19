@@ -592,6 +592,22 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "gnx": "User.20260220000301.1",
+                  "vh": "deploy rime",
+                  "children": [
+                    {
+                      "gnx": "User.20260220000301.2",
+                      "vh": "@clean run_onchange_after_rime_deploy.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260220000301.3",
+                          "vh": "content"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -2827,9 +2843,11 @@
     "zxc.20260202220553.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gvim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202220615.1": "reg import \"$env:userprofile\\\\scoop\\\\apps\\\\vim\\\\current\\\\install-context.reg\"",
     "User.20260217202401.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260217202404.1": "{{ if lookPath \"dirhash\" -}}\n# {{ output \"dirhash\" (joinPath .chezmoi.homeDir \".config\" \"doom\") \"-nowait\" \"-quiet\" | trim }}\n{{ end -}}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom.ps1\" ) }} sync",
+    "User.20260217202404.1": "{{ if lookPath \"dirhash\" -}}\n# {{ output \"dirhash\" (joinPath .chezmoi.homeDir \".config\" \"doom\") \"-nowait\" \"-quiet\" | trim }}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom.ps1\" ) }} sync\n{{ end -}}",
     "User.20260217214851.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"msys2\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260217214859.1": "msys2 -c \"sed -i \\\"s#https\\?://mirror.msys2.org/#https://mirror.nju.edu.cn/msys2/#g\\\" /etc/pacman.d/mirrorlist*\" \nmsys2 -c \"yes | pacman -Syu\"\nmsys2 -c \"yes | pacman -S --needed {{ .my.msys2.packages | join \" \" }}\"",
+    "User.20260220000301.2": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat (joinPath (env \"programdata\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Weasel\" \"Weasel Deploy.lnk\") -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260220000301.3": "{{ if lookPath \"dirhash\" -}}\n# {{ output \"dirhash\" (joinPath (env \"Appdata\") \"Rime\" \"default.custom.yaml\") \"-nowait\" \"-quiet\" | trim }}\n# {{ output \"dirhash\" (joinPath (env \"Appdata\") \"Rime\" \"sbfm.custom.yaml\") \"-nowait\" \"-quiet\" | trim }}\n& {{ joinPath (env \"programdata\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Weasel\" \"Weasel Deploy.lnk\" | quote }}\n{{ end -}}",
     "User.20260218020042.1": "[my.msys2]\npackages = [\"mingw-w64-x86_64-aspell\"]",
     "User.20260217234231.1": "[my.font]\nmonospace = \"FiraCode Nerd Font Mono\"\n",
     "User.20260217125336.1": "[my.git.sign]\nssh = false\ngpg = true",
@@ -3172,10 +3190,13 @@
       "_mod_time": 1771507120.147
     },
     "User.20260217202401.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1771517628.633
     },
     "User.20260217214851.1": {
       "_mod_time": 1771507120.147
+    },
+    "User.20260220000301.2": {
+      "_mod_time": 1771517674.642
     },
     "User.20260218020042.1": {
       "_mod_time": 1771507120.131
