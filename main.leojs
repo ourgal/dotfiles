@@ -3002,7 +3002,7 @@
     "zxc.20260130221550.2": "[\"vimfiles/autoload/plug.vim\"]\n    type = \"file\"\n    url = \"https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim\"\n    refreshPeriod = \"168h\"\n",
     "zxc.20260130074346.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260130074346.2": "[\".cache/vscodium/extensions/vsnetrw.vsix\"]\n    type = \"file\"\n    url = \"https://github.com/danprince/vsnetrw/releases/download/v0.3.2/vsnetrw-0.3.2.vsix\"\n",
-    "zxc.20260126160530.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"emacs\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260126160530.1": "{{ if or (eq .chezmoi.os \"windows\") (eq .chezmoi.os \"linux\") -}}\n{{ if lookPath \"emacs\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260126160721.1": "[\".emacs.d\"]\n    type = \"git-repo\"\n    url = \"https://mirror.nju.edu.cn/git/doom-emacs.git/\"",
     "zxc.20260202201907.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202201936.1": "[\"Appdata/Roaming/mpv/scripts/thumbfast.lua\"]\n    type = \"file\"\n    url = \"https://github.com/po5/thumbfast/raw/refs/heads/master/thumbfast.lua\"\n\n[\"Appdata/Roaming/mpv/scripts/SmartSkip.lua\"]\n    type = \"file\"\n    url = \"https://github.com/Eisa01/mpv-scripts/raw/refs/heads/master/scripts/SmartSkip.lua\"\n",
@@ -3351,13 +3351,13 @@
       "_mod_time": 1771507120.147
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1771586168.128
+      "_mod_time": 1771594366.077
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1771507120.147
     },
     "zxc.20260125172839.1": {
-      "_mod_time": 1771507120.131
+      "_mod_time": 1771594371.36
     },
     "zxc.20260130221131.1": {
       "_mod_time": 1771507120.147
@@ -3366,7 +3366,7 @@
       "_mod_time": 1771507120.147
     },
     "zxc.20260126160530.1": {
-      "_mod_time": 1771511359.743
+      "_mod_time": 1771594968.557
     },
     "zxc.20260202201907.1": {
       "_mod_time": 1771507120.147
