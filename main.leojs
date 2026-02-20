@@ -366,6 +366,16 @@
                           "vh": "content"
                         }
                       ]
+                    },
+                    {
+                      "gnx": "User.20260220233639.1",
+                      "vh": "@clean run_onchange_mpv_uosc.sh.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260220233712.1",
+                          "vh": "content"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -3039,6 +3049,8 @@
     "zxc.20260202201936.1": "[\"Appdata/Roaming/mpv/scripts/thumbfast.lua\"]\n    type = \"file\"\n    url = \"https://github.com/po5/thumbfast/raw/refs/heads/master/thumbfast.lua\"\n\n[\"Appdata/Roaming/mpv/scripts/SmartSkip.lua\"]\n    type = \"file\"\n    url = \"https://github.com/Eisa01/mpv-scripts/raw/refs/heads/master/scripts/SmartSkip.lua\"\n",
     "zxc.20260202203521.17": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202203521.18": "# 5.12.0\nirm https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/windows.ps1 | iex",
+    "User.20260220233639.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260220233712.1": "{{ if and (lookPath \"bash\") (lookPath \"curl\") -}}\n#!{{lookPath \"bash\"}}\n/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/unix.sh)\"\n{{ end -}}",
     "zxc.20260202203521.20": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}\n",
     "zxc.20260202203521.22": "function New-LayoutModificationXml {\n    [CmdletBinding()]\n    param (\n        [string[]] $LnkPaths,\n        [string] $OutputPath = $env:USERPROFILE + \"\\AppData\\Local\\Microsoft\\Windows\\Shell\\LayoutModification.xml\",\n        [ValidateSet(\"Append\", \"Replace\")]\n        [string] $PinListPlacement = \"Replace\"\n    )\n\n    $xml = New-Object System.Xml.XmlDocument\n    $root = $xml.CreateElement(\"LayoutModificationTemplate\", \"http://schemas.microsoft.com/Start/2014/LayoutModification\")\n    $xml.AppendChild($root) | Out-Null\n    $root.SetAttribute(\"xmlns:defaultlayout\", \"http://schemas.microsoft.com/Start/2014/FullDefaultLayout\")\n    $root.SetAttribute(\"xmlns:taskbar\", \"http://schemas.microsoft.com/Start/2014/TaskbarLayout\")\n    $root.SetAttribute(\"Version\", \"1\")\n    $collection = $xml.CreateElement(\"CustomTaskbarLayoutCollection\", $root.NamespaceURI)\n    $collection.SetAttribute(\"PinListPlacement\", $PinListPlacement)\n    $root.AppendChild($collection) | Out-Null\n    $layout = $xml.CreateElement(\"defaultlayout:TaskbarLayout\", $root.GetAttribute(\"xmlns:defaultlayout\"))\n    $collection.AppendChild($layout) | Out-Null\n    $pinList = $xml.CreateElement(\"taskbar:TaskbarPinList\", $root.GetAttribute(\"xmlns:taskbar\"))\n    $layout.AppendChild($pinList) | Out-Null\n    foreach ($lnk in $LnkPaths) {\n        $desktopApp = $xml.CreateElement(\"taskbar:DesktopApp\", $root.GetAttribute(\"xmlns:taskbar\"))\n        $desktopApp.SetAttribute(\"DesktopApplicationLinkPath\", $lnk)\n        $pinList.AppendChild($desktopApp) | Out-Null\n    }\n    $xml.Save($OutputPath)\n}\n",
     "zxc.20260202203521.23": "function Reset-TaskbarLayout {\n    Get-Process explorer | Stop-Process -Force\n    Remove-Item \"$Env:AppData\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar\\*\" -Force -ErrorAction SilentlyContinue\n    Remove-Item \"$Env:AppData\\Microsoft\\Windows\\Shell\\*.dat\" -Force -ErrorAction SilentlyContinue\n    Remove-Item \"$Env:AppData\\Microsoft\\Windows\\Shell\\LayoutModification.xml\" -Force -ErrorAction SilentlyContinue\n    Remove-Item -Path \"HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Taskband\" -Recurse -ErrorAction SilentlyContinue\n    Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\TrayNotify\" -Name \"IconStreams\" -ErrorAction SilentlyContinue\n    Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\TrayNotify\" -Name \"PastIconsStream\" -ErrorAction SilentlyContinue\n}",
@@ -3407,6 +3419,9 @@
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1771507120.147
+    },
+    "User.20260220233639.1": {
+      "_mod_time": 1771601927.734
     },
     "zxc.20260202203521.20": {
       "_mod_time": 1771574592.704

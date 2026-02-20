@@ -1,0 +1,8 @@
+{{ if eq .chezmoi.os "linux" -}}
+{{ if lookPath "mpv" -}}
+{{ if and (lookPath "bash") (lookPath "curl") -}}
+#!{{lookPath "bash"}}
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/unix.sh)"
+{{ end -}}
+{{ end -}}
+{{ end -}}
