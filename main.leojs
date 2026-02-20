@@ -641,6 +641,16 @@
                           "vh": "content"
                         }
                       ]
+                    },
+                    {
+                      "gnx": "User.20260220214558.1",
+                      "vh": "@clean run_onchange_after_sync_doom_emacs.sh.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260220214646.1",
+                          "vh": "content"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -3047,6 +3057,8 @@
     "zxc.20260202220615.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vim\" \"current\" \"install-context.reg\" | quote }}",
     "User.20260217202401.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260217202404.1": "{{ if lookPath \"dirhash\" -}}\n# {{ output \"dirhash\" (joinPath .chezmoi.homeDir \".config\" \"doom\") \"-nowait\" \"-quiet\" | trim }}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom.ps1\" ) }} sync\n{{ end -}}",
+    "User.20260220214558.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260220214646.1": "#!{{lookPath \"sh\"}}\n{{ if lookPath \"shasum\" -}}\n{{ $doom_files := list \"init\" \"config\" \"packages\" -}}\n{{ $doom_path := (joinPath .chezmoi.homeDir \".config\" \"doom\") -}}\n{{ range $doom_files -}}\n# {{ output \"shasum\" (joinPath $doom_path (printf \"%s.el\" .)) | trim }}\n{{ end -}}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\" ) }} sync\n{{ end -}}",
     "User.20260217214851.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"msys2\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260217214859.1": "msys2 -c \"yes | pacman -Syu\"\nmsys2 -c \"yes | pacman -S --needed {{ .my.msys2.packages | join \" \" }}\"",
     "User.20260220000301.2": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat (joinPath (env \"programdata\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Weasel\" \"Weasel Deploy.lnk\") -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -3409,6 +3421,9 @@
     },
     "User.20260217202401.1": {
       "_mod_time": 1771517628.633
+    },
+    "User.20260220214558.1": {
+      "_mod_time": 1771599894.929
     },
     "User.20260217214851.1": {
       "_mod_time": 1771524800.056
