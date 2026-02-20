@@ -262,6 +262,10 @@
                 {
                   "gnx": "zxc.20260125172659.1",
                   "vh": "@clean editor"
+                },
+                {
+                  "gnx": "User.20260221004652.1",
+                  "vh": "@clean checkPath"
                 }
               ]
             }
@@ -3044,6 +3048,7 @@
     "zxc.20260125144753.1": ".bash_profile\n.bashrc\n",
     "zxc.20260125144810.1": ".xinitrc\n",
     "zxc.20260125172659.1": "{{ if lookPath \"hx\" -}}\nhx\n{{- else if lookPath \"vim\" -}}\nvim\n{{- else if lookPath \"vi\" -}}\nvi\n{{- else if lookPath \"nano\" -}}\nnano\n{{- end -}}",
+    "User.20260221004652.1": "{{ range . -}}\n{{ if lookPath . }}\necho {{ printf \"%s founded: %s\" . (lookPath .) | quote }}\n{{ else -}}\necho {{ printf \"%s not found\" . | quote }}\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260125172839.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260126160624.1": "[\".local/lib/ble-nightly\"]\n    type = \"archive\"\n    url = \"https://github.com/akinomyoga/ble.sh/releases/download/nightly/ble-nightly.tar.xz\"\n    exact = true\n    stripComponents = 1\n    refreshPeriod = \"168h\"",
     "zxc.20260130221131.1": "@others",
@@ -3062,7 +3067,7 @@
     "zxc.20260202203521.17": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202203521.18": "# 5.12.0\nirm https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/windows.ps1 | iex",
     "User.20260220233639.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260220233712.1": "{{ if and (lookPath \"bash\") (lookPath \"curl\") (lookPath \"unzip\") -}}\n#!{{lookPath \"bash\"}}\n/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/unix.sh)\"\n{{ end -}}",
+    "User.20260220233712.1": "#!{{lookPath \"bash\"}}\n{{ template \"checkPath\" (list \"bash\" \"curl\" \"unzip\") -}}\n{{ if and (lookPath \"bash\") (lookPath \"curl\") (lookPath \"unzip\") -}}\n/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/unix.sh)\"\n{{ end -}}",
     "zxc.20260202203521.20": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}\n",
     "zxc.20260202203521.22": "function New-LayoutModificationXml {\n    [CmdletBinding()]\n    param (\n        [string[]] $LnkPaths,\n        [string] $OutputPath = $env:USERPROFILE + \"\\AppData\\Local\\Microsoft\\Windows\\Shell\\LayoutModification.xml\",\n        [ValidateSet(\"Append\", \"Replace\")]\n        [string] $PinListPlacement = \"Replace\"\n    )\n\n    $xml = New-Object System.Xml.XmlDocument\n    $root = $xml.CreateElement(\"LayoutModificationTemplate\", \"http://schemas.microsoft.com/Start/2014/LayoutModification\")\n    $xml.AppendChild($root) | Out-Null\n    $root.SetAttribute(\"xmlns:defaultlayout\", \"http://schemas.microsoft.com/Start/2014/FullDefaultLayout\")\n    $root.SetAttribute(\"xmlns:taskbar\", \"http://schemas.microsoft.com/Start/2014/TaskbarLayout\")\n    $root.SetAttribute(\"Version\", \"1\")\n    $collection = $xml.CreateElement(\"CustomTaskbarLayoutCollection\", $root.NamespaceURI)\n    $collection.SetAttribute(\"PinListPlacement\", $PinListPlacement)\n    $root.AppendChild($collection) | Out-Null\n    $layout = $xml.CreateElement(\"defaultlayout:TaskbarLayout\", $root.GetAttribute(\"xmlns:defaultlayout\"))\n    $collection.AppendChild($layout) | Out-Null\n    $pinList = $xml.CreateElement(\"taskbar:TaskbarPinList\", $root.GetAttribute(\"xmlns:taskbar\"))\n    $layout.AppendChild($pinList) | Out-Null\n    foreach ($lnk in $LnkPaths) {\n        $desktopApp = $xml.CreateElement(\"taskbar:DesktopApp\", $root.GetAttribute(\"xmlns:taskbar\"))\n        $desktopApp.SetAttribute(\"DesktopApplicationLinkPath\", $lnk)\n        $pinList.AppendChild($desktopApp) | Out-Null\n    }\n    $xml.Save($OutputPath)\n}\n",
     "zxc.20260202203521.23": "function Reset-TaskbarLayout {\n    Get-Process explorer | Stop-Process -Force\n    Remove-Item \"$Env:AppData\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar\\*\" -Force -ErrorAction SilentlyContinue\n    Remove-Item \"$Env:AppData\\Microsoft\\Windows\\Shell\\*.dat\" -Force -ErrorAction SilentlyContinue\n    Remove-Item \"$Env:AppData\\Microsoft\\Windows\\Shell\\LayoutModification.xml\" -Force -ErrorAction SilentlyContinue\n    Remove-Item -Path \"HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Taskband\" -Recurse -ErrorAction SilentlyContinue\n    Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\TrayNotify\" -Name \"IconStreams\" -ErrorAction SilentlyContinue\n    Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\TrayNotify\" -Name \"PastIconsStream\" -ErrorAction SilentlyContinue\n}",
@@ -3414,6 +3419,9 @@
     "zxc.20260125172659.1": {
       "_mod_time": 1771507120.147
     },
+    "User.20260221004652.1": {
+      "_mod_time": 1771606909.323
+    },
     "zxc.20260125172839.1": {
       "_mod_time": 1771594371.36
     },
@@ -3436,7 +3444,7 @@
       "_mod_time": 1771507120.147
     },
     "User.20260220233639.1": {
-      "_mod_time": 1771605928.93
+      "_mod_time": 1771607574.086
     },
     "zxc.20260202203521.20": {
       "_mod_time": 1771574592.704
