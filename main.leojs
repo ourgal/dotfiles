@@ -412,6 +412,22 @@
                   ]
                 },
                 {
+                  "gnx": "User.20260220151341.1",
+                  "vh": "clink inject",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260202203521.14",
+                      "vh": "@clean run_clink_jnject.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260202203521.15",
+                          "vh": "content"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
                   "gnx": "zxc.20260202203521.2",
                   "vh": "vscodium extensions",
                   "children": [
@@ -424,8 +440,18 @@
                           "vh": "content",
                           "children": [
                             {
+                              "gnx": "User.20260220152703.1",
+                              "vh": "<< vscodium >>",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260202203521.13",
+                                  "vh": "file manager"
+                                }
+                              ]
+                            },
+                            {
                               "gnx": "User.20260215215421.1",
-                              "vh": "extensions",
+                              "vh": "common",
                               "children": [
                                 {
                                   "gnx": "zxc.20260202203521.5",
@@ -458,24 +484,10 @@
                                 {
                                   "gnx": "zxc.20260202203521.12",
                                   "vh": "icon"
-                                },
-                                {
-                                  "gnx": "zxc.20260202203521.13",
-                                  "vh": "file manager"
                                 }
                               ]
                             }
                           ]
-                        }
-                      ]
-                    },
-                    {
-                      "gnx": "zxc.20260202203521.14",
-                      "vh": "@clean run_clink_jnject.ps1.tmpl",
-                      "children": [
-                        {
-                          "gnx": "zxc.20260202203521.15",
-                          "vh": "content"
                         }
                       ]
                     }
@@ -508,6 +520,41 @@
                         {
                           "gnx": "User.20260220142155.3",
                           "vh": "content"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "gnx": "User.20260220151435.1",
+                  "vh": "vscode extensions",
+                  "children": [
+                    {
+                      "gnx": "User.20260220151435.2",
+                      "vh": "@clean run_onchange_vscode_extensions.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260220151435.3",
+                          "vh": "content",
+                          "children": [
+                            {
+                              "gnx": "User.20260220153055.1",
+                              "vh": "<< vscode >>",
+                              "children": [
+                                {
+                                  "gnx": "User.20260220154010.1",
+                                  "vh": "wsl"
+                                },
+                                {
+                                  "gnx": "User.20260220153119.1",
+                                  "vh": "file manager"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "User.20260215215421.1"
+                            }
+                          ]
                         }
                       ]
                     }
@@ -1811,7 +1858,16 @@
       "vh": "vscodium",
       "children": [
         {
-          "gnx": "User.20260215215421.1"
+          "gnx": "User.20260220152938.1",
+          "vh": "extensions",
+          "children": [
+            {
+              "gnx": "User.20260215215421.1"
+            },
+            {
+              "gnx": "User.20260220152703.1"
+            }
+          ]
         },
         {
           "gnx": "User.20260215215057.1",
@@ -1934,6 +1990,42 @@
                   "vh": "magit"
                 }
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gnx": "User.20260220153243.1",
+      "vh": "vscode",
+      "children": [
+        {
+          "gnx": "User.20260220153248.1",
+          "vh": "extensions",
+          "children": [
+            {
+              "gnx": "User.20260220153055.1"
+            },
+            {
+              "gnx": "User.20260215215421.1"
+            }
+          ]
+        },
+        {
+          "gnx": "User.20260220153424.1",
+          "vh": "settings",
+          "children": [
+            {
+              "gnx": "User.20260215215016.1"
+            }
+          ]
+        },
+        {
+          "gnx": "User.20260220153435.1",
+          "vh": "keybindings",
+          "children": [
+            {
+              "gnx": "User.20260215215005.1"
             }
           ]
         }
@@ -2498,6 +2590,48 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "gnx": "User.20260220151031.1",
+                  "vh": "@path vscode",
+                  "children": [
+                    {
+                      "gnx": "User.20260220151031.2",
+                      "vh": "@path data",
+                      "children": [
+                        {
+                          "gnx": "User.20260220151031.3",
+                          "vh": "@path user-data",
+                          "children": [
+                            {
+                              "gnx": "User.20260220151031.4",
+                              "vh": "@path User",
+                              "children": [
+                                {
+                                  "gnx": "User.20260220151031.5",
+                                  "vh": "@clean settings.json.tmpl",
+                                  "children": [
+                                    {
+                                      "gnx": "User.20260215215016.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "User.20260220151031.28",
+                                  "vh": "@clean keybindings.json.tmpl",
+                                  "children": [
+                                    {
+                                      "gnx": "User.20260215215005.1"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -2875,8 +3009,12 @@
     "zxc.20260202203521.24": "$LnkPaths = @(\n    \"%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\Windows Terminal.lnk\"\n    \"%PROGRAMDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Firefox.lnk\"\n    \"%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\Double Commander.lnk\"\n)\nNew-LayoutModificationXml -LnkPaths $LnkPaths -PinListPlacement \"Replace\"\nReset-TaskbarLayout",
     "User.20260216114746.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat \"C:/Program Files/Rime\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260216114815.1": "# --- Configuration ---\n\n# 1. Define the source URL\n$DownloadUrl = \"https://github.com/sbsrf/home/releases/download/20260101/sbsrf.zip\"\n\n# 2. Define the target directory using the built-in environment variable $env:APPDATA\n# Note: $env:APPDATA resolves to C:\\Users\\<Username>\\AppData\\Roaming\n$TargetFolder = Join-Path -Path $env:APPDATA -ChildPath \"rime\"\n\n# 3. Define a temporary path for the downloaded file\n$TempZipPath = Join-Path -Path $env:TEMP -ChildPath \"sbsrf_download.zip\"\n\n# --- Execution ---\n\nWrite-Host \"Starting download and extraction process...\"\n\n# 1. Ensure the target directory exists\nif (-not (Test-Path -Path $TargetFolder)) {\n    Write-Host \"Creating target directory: $TargetFolder\"\n    New-Item -Path $TargetFolder -ItemType Directory | Out-Null\n} else {\n    Write-Host \"Target directory already exists: $TargetFolder\"\n}\n\n# 2. Download the file\nWrite-Host \"Downloading file from $DownloadUrl to $TempZipPath...\"\ntry {\n    # Use Invoke-WebRequest (iwr) for downloading files\n    Invoke-WebRequest -Uri $DownloadUrl -OutFile $TempZipPath -UseBasicParsing\n    Write-Host \"Download complete.\"\n}\ncatch {\n    Write-Error \"Failed to download the file. Error: $($_.Exception.Message)\"\n    exit 1\n}\n\n# 3. Extract the contents of the ZIP file\nWrite-Host \"Extracting contents to $TargetFolder...\"\ntry {\n    # Load the necessary .NET assembly for ZIP operations (often loaded automatically, but good practice to ensure)\n    Add-Type -AssemblyName System.IO.Compression.FileSystem\n\n    # Use Expand-Archive (available in PS 5.0+)\n    # -Force overwrites existing files in the destination folder without prompting\n    Expand-Archive -Path $TempZipPath -DestinationPath $TargetFolder -Force\n    \n    Write-Host \"Extraction complete. Files are now in: $TargetFolder\"\n}\ncatch {\n    Write-Error \"Failed to extract the ZIP file. Error: $($_.Exception.Message)\"\n    exit 1\n}\nfinally {\n    # 4. Clean up the temporary ZIP file\n    if (Test-Path -Path $TempZipPath) {\n        Remove-Item -Path $TempZipPath -Force\n        Write-Host \"Cleaned up temporary file: $TempZipPath\"\n    }\n}",
+    "zxc.20260202203521.14": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260202203521.15": "if (-not (clink autorun show | rg inject)) {\n    clink autorun install\n}",
     "zxc.20260202203521.3": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260202203521.4": "codium --update-extensions\n$extensions = @(\n    @others\n    )\nforeach ($e in $extensions) {\n    Write-Host \"Install vscodium extension $e\"\n    codium --install-extension $e\n}",
+    "zxc.20260202203521.4": "codium --update-extensions\n$extensions = @(\n    @others\n    << vscodium >>\n    )\nforeach ($e in $extensions) {\n    Write-Host \"Install vscodium extension $e\"\n    codium --install-extension $e\n}",
+    "User.20260220152703.1": "@others",
+    "zxc.20260202203521.13": "{{ $vsnetrw := (joinPath .chezmoi.homeDir \".cache/vscodium/extensions/vsnetrw.vsix\") }}\n{{ if stat $vsnetrw -}}\n\"{{ $vsnetrw }}\"\n{{ end -}}",
     "zxc.20260202203521.5": "\"tamasfe.even-better-toml\"",
     "zxc.20260202203521.6": "\"carlos-algms.make-task-provider\"\n",
     "zxc.20260202203521.7": "\"vscodevim.vim\"\n\"vspacecode.vspacecode\"",
@@ -2885,13 +3023,15 @@
     "zxc.20260202203521.10": "\"redhat.ansible\"\n\"ms-python.python\"\n\"redhat.vscode-yaml\"\n\"MattiasBaake.vscode-snippets-for-ansible\"",
     "zxc.20260202203521.11": "\"kahole.magit\"\n",
     "zxc.20260202203521.12": "\"PKief.material-icon-theme\"\n",
-    "zxc.20260202203521.13": "{{ $vsnetrw := (joinPath .chezmoi.homeDir \".cache/vscodium/extensions/vsnetrw.vsix\") }}\n{{ if stat $vsnetrw -}}\n\"{{ $vsnetrw }}\"\n{{ end -}}",
-    "zxc.20260202203521.14": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260202203521.15": "if (-not (clink autorun show | rg inject)) {\n    clink autorun install\n}",
     "zxc.20260202213444.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202213506.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vscodium\" \"current\" \"install-context.reg\" | quote }}\n{{ if not (lookPath \"code\") -}}\nreg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vscodium\" \"current\" \"install-associations.reg\" | quote }}\n{{ end -}}",
     "User.20260220142155.2": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"code\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260220142155.3": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vscode\" \"current\" \"install-context.reg\" | quote }}\nreg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vscode\" \"current\" \"install-associations.reg\" | quote }}",
+    "User.20260220151435.2": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "User.20260220151435.3": "codium --update-extensions\n$extensions = @(\n    @others\n    << vscode >>\n    )\nforeach ($e in $extensions) {\n    Write-Host \"Install vscodium extension $e\"\n    code --install-extension $e\n}",
+    "User.20260220153055.1": "@others",
+    "User.20260220154010.1": "\"ms-vscode-remote.remote-wsl\"",
+    "User.20260220153119.1": "\"danprince.vsnetrw\"",
     "zxc.20260202215023.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"7z\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202215044.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"7zip\" \"current\" \"install-context.reg\" | quote }}",
     "zxc.20260202215408.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -3169,6 +3309,8 @@
     "zxc.20260201034331.1": "@others",
     "User.20260215205925.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"vscodium\" -}}\n{\n    @others\n}\n{{ end -}}\n{{ end -}}\n",
     "User.20260215210400.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"vscodium\" -}}\n[\n    @others\n]\n{{ end -}}\n{{ end -}}",
+    "User.20260220151031.5": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"code\" -}}\n{\n    @others\n}\n{{ end -}}\n{{ end -}}\n",
+    "User.20260220151031.28": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"code\" -}}\n[\n    @others\n]\n{{ end -}}\n{{ end -}}",
     "zxc.20260125211938.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202205715.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
     "zxc.20260202205901.1": "# Flower - とても深いグリーン\nhttps://www.bilibili.com/video/BV1EyHYeBEFr",
@@ -3233,17 +3375,20 @@
     "User.20260216114746.1": {
       "_mod_time": 1771507120.147
     },
-    "zxc.20260202203521.3": {
-      "_mod_time": 1771507120.147
-    },
     "zxc.20260202203521.14": {
       "_mod_time": 1771507120.147
+    },
+    "zxc.20260202203521.3": {
+      "_mod_time": 1771571707.126
     },
     "zxc.20260202213444.1": {
       "_mod_time": 1771569080.908
     },
     "User.20260220142155.2": {
       "_mod_time": 1771568880.608
+    },
+    "User.20260220151435.2": {
+      "_mod_time": 1771573259.107
     },
     "zxc.20260202215023.1": {
       "_mod_time": 1771568704.936
@@ -3385,6 +3530,12 @@
     },
     "User.20260215210400.1": {
       "_mod_time": 1771507120.178
+    },
+    "User.20260220151031.5": {
+      "_mod_time": 1771571520.843
+    },
+    "User.20260220151031.28": {
+      "_mod_time": 1771571520.952
     },
     "zxc.20260125211938.1": {
       "_mod_time": 1771507120.162

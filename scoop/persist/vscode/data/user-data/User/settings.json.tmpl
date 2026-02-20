@@ -1,0 +1,146 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "code" -}}
+{
+    "[leojsbody.plain.wrap][leojsbody.julia.wrap][leojsbody.batch.wrap][leojsbody.shell.wrap][leojsbody.python.wrap][leojsbody.javascript.wrap][leojsbody.typescript.wrap][leojsbody.c.wrap][leojsbody.cpp.wrap][leojsbody.css.wrap][leojsbody.fortran.wrap][leojsbody.fortran90.wrap][leojsbody.html.wrap][leojsbody.java.wrap][leojsbody.json.wrap][leojsbody.markdown.wrap][leojsbody.php.wrap][leojsbody.restructuredtext.wrap][leojsbody.rust.wrap][leojsbody.xml.wrap]": {
+        "editor.wordWrap": "on"
+    },
+    "leojs.defaultReloadIgnore": "yes-all",
+    "workbench.iconTheme": "material-icon-theme",
+    "vim.easymotion": true,
+    "vim.useSystemClipboard": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<space>"],
+            "commands": ["vspacecode.space"]
+        },
+        {
+            "before": [","],
+            "commands": [
+                "vspacecode.space",
+                {
+                    "command": "whichkey.triggerKey",
+                    "args": "m"
+                }
+            ]
+        }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<space>"],
+            "commands": ["vspacecode.space"]
+        },
+        {
+            "before": [","],
+            "commands": [
+                "vspacecode.space",
+                {
+                    "command": "whichkey.triggerKey",
+                    "args": "m"
+                }
+            ]
+        },
+        {
+            "before": [">"],
+            "commands": ["editor.action.indentLines"]
+        },
+        {
+            "before": ["<"],
+            "commands": ["editor.action.outdentLines"]
+        }
+    ],
+    "vim.leader": "<space>",
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "<leader>",
+                "<space>"
+            ],
+            "commands": [
+                "workbench.action.quickOpen"
+            ]
+        },
+        {
+            "after": [
+                "<C-w>",
+                "j"
+            ],
+            "before": [
+                "<leader>",
+                "w",
+                "j"
+            ]
+        },
+        {
+            "after": [
+                "<C-w>",
+                "l"
+            ],
+            "before": [
+                "<leader>",
+                "w",
+                "l"
+            ]
+        },
+        {
+            "after": [
+                "<C-w>",
+                "h"
+            ],
+            "before": [
+                "<leader>",
+                "w",
+                "h"
+            ]
+        },
+        {
+            "after": [
+                "<C-w>",
+                "k"
+            ],
+            "before": [
+                "<leader>",
+                "w",
+                "k"
+            ]
+        },
+        {
+            "before": [
+                "K"
+            ],
+            "commands": [
+                "editor.action.showHover"
+            ]
+        },
+        {
+            "before": [
+                "-"
+            ],
+            "commands": [
+                "vsnetrw.open"
+            ],
+            "when": "editorLangId != vsnetrw"
+        },
+        {
+            "before": [
+                "<leader>",
+                "g",
+                "g"
+            ],
+            "commands": [
+                "magit.status"
+            ]
+        }
+    ],
+    "magit.display-buffer-function": "same-column",
+    "magit.git-path": "C:\\Users\\User\\scoop\\apps\\git\\current\\cmd\\git.exe",
+    "editor.wordWrap": "on",
+    "extensions.autoCheckUpdates": false,
+    "editor.lineNumbers": "relative",
+    "workbench.editor.closeEmptyGroups": true,
+    "update.mode": "none",
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "window.confirmBeforeClose": "never"
+}
+{{ end -}}
+{{ end -}}
