@@ -1,5 +1,6 @@
 {{ if eq .chezmoi.os "linux" -}}
-{{ if lookPath "hx" -}}
+{{ $arch_helix := and  (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "arch") (lookPath "helix") -}}
+{{ if or (lookPath "hx") $arch_helix -}}
 {{ $lsp := list -}}
 {{ if lookPath "simple-completion-language-server" -}}
 {{ $lsp = append $lsp "scls" -}}
