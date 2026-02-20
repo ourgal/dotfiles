@@ -1,0 +1,25 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "codium" -}}
+codium --update-extensions
+$extensions = @(
+    "tamasfe.even-better-toml"
+    "carlos-algms.make-task-provider"
+    "vscodevim.vim"
+    "vspacecode.vspacecode"
+    "jnoortheen.nix-ide"
+    "boltex.leojs"
+    "redhat.ansible"
+    "ms-python.python"
+    "redhat.vscode-yaml"
+    "MattiasBaake.vscode-snippets-for-ansible"
+    "kahole.magit"
+    "PKief.material-icon-theme"
+    "ms-vscode-remote.remote-wsl"
+    "danprince.vsnetrw"
+    )
+foreach ($e in $extensions) {
+    Write-Host "Install vscodium extension $e"
+    code --install-extension $e
+}
+{{ end -}}
+{{ end -}}
