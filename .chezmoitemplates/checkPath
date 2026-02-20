@@ -1,0 +1,7 @@
+{{ range . -}}
+{{ if lookPath . }}
+echo {{ printf "%s founded: %s" . (lookPath .) | quote }}
+{{ else -}}
+echo {{ printf "%s not found" . | quote }}
+{{ end -}}
+{{ end -}}
