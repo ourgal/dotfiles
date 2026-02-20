@@ -1,11 +1,19 @@
 {{ if eq .chezmoi.os "linux" -}}
 {{ if stat (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom") -}}
 #!{{lookPath "sh"}}
+{{ template "checkPath" (list "shasum") -}}
 {{ if lookPath "shasum" -}}
+
 {{ $doom_files := list "init" "config" "packages" -}}
 {{ $doom_path := (joinPath .chezmoi.homeDir ".config" "doom") -}}
+
+{{ $shasum := "shasum" -}}
+{{ if and (hasKey .chezmoi.kernel "osrelease") (mustRegexMatch ".*WSL.*" .chezmoi.kernel.osrelease) (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "arch") -}}
+{{ $shasum = joinPath "/usr" "bin" "core_perl" "shasum" -}}
+{{ end -}}
+
 {{ range $doom_files -}}
-# {{ output "shasum" (joinPath $doom_path (printf "%s.el" .)) | trim }}
+# {{ output $shasum (joinPath $doom_path (printf "%s.el" .)) | trim }}
 {{ end -}}
 {{ (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom" ) }} sync
 {{ end -}}
