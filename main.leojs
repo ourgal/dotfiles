@@ -340,6 +340,16 @@
                       "vh": "content"
                     }
                   ]
+                },
+                {
+                  "gnx": "User.20260220235431.1",
+                  "vh": "@clean nerd_symbols_font.toml.tmpl",
+                  "children": [
+                    {
+                      "gnx": "User.20260220235538.1",
+                      "vh": "content"
+                    }
+                  ]
                 }
               ]
             }
@@ -3047,6 +3057,8 @@
     "zxc.20260126160721.1": "[\".emacs.d\"]\n    type = \"git-repo\"\n    url = \"https://mirror.nju.edu.cn/git/doom-emacs.git/\"",
     "zxc.20260202201907.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202201936.1": "[\"Appdata/Roaming/mpv/scripts/thumbfast.lua\"]\n    type = \"file\"\n    url = \"https://github.com/po5/thumbfast/raw/refs/heads/master/thumbfast.lua\"\n\n[\"Appdata/Roaming/mpv/scripts/SmartSkip.lua\"]\n    type = \"file\"\n    url = \"https://github.com/Eisa01/mpv-scripts/raw/refs/heads/master/scripts/SmartSkip.lua\"\n",
+    "User.20260220235431.1": "{{ if eq .chezmoi.os \"linux\" -}}\n@others\n{{ end -}}",
+    "User.20260220235538.1": "[\".local/share/fonts/nerdsymbols\"]\n    type = \"archive\"\n    url = \"https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdFontsSymbolsOnly.tar.xz\"\n    exact = true\n    include = [ \"*.ttf\" ]\n",
     "zxc.20260202203521.17": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202203521.18": "# 5.12.0\nirm https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/windows.ps1 | iex",
     "User.20260220233639.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -3416,6 +3428,9 @@
     },
     "zxc.20260202201907.1": {
       "_mod_time": 1771507120.147
+    },
+    "User.20260220235431.1": {
+      "_mod_time": 1771603308.454
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1771507120.147
