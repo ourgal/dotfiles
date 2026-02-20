@@ -1,4 +1,4 @@
-{{ if eq .chezmoi.os "windows" -}}
+{{ if or (eq .chezmoi.os "windows") (eq .chezmoi.os "linux") -}}
 {{ if lookPath "emacs" -}}
 [".emacs.d"]
     type = "git-repo"
