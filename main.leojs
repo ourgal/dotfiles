@@ -498,6 +498,22 @@
                   ]
                 },
                 {
+                  "gnx": "User.20260220142155.1",
+                  "vh": "vscode register",
+                  "children": [
+                    {
+                      "gnx": "User.20260220142155.2",
+                      "vh": "@clean run_onchange_vscode_register.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260220142155.3",
+                          "vh": "content"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
                   "gnx": "zxc.20260202215001.1",
                   "vh": "7z register",
                   "children": [
@@ -2873,15 +2889,17 @@
     "zxc.20260202203521.14": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260202203521.15": "if (-not (clink autorun show | rg inject)) {\n    clink autorun install\n}",
     "zxc.20260202213444.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260202213506.1": "reg import \"$env:userprofile\\\\scoop\\\\apps\\\\vscodium\\\\current\\\\install-context.reg\"\nreg import \"$env:userprofile\\\\scoop\\\\apps\\\\vscodium\\\\current\\\\install-associations.reg\"",
+    "zxc.20260202213506.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vscodium\" \"current\" \"install-context.reg\" | quote }}\n{{ if not (lookPath \"code\") -}}\nreg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vscodium\" \"current\" \"install-associations.reg\" | quote }}\n{{ end -}}",
+    "User.20260220142155.2": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"code\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260220142155.3": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vscode\" \"current\" \"install-context.reg\" | quote }}\nreg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vscode\" \"current\" \"install-associations.reg\" | quote }}",
     "zxc.20260202215023.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"7z\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260202215044.1": "reg import \"$env:userprofile\\\\scoop\\\\apps\\\\7zip\\\\current\\\\install-context.reg\"",
+    "zxc.20260202215044.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"7zip\" \"current\" \"install-context.reg\" | quote }}",
     "zxc.20260202215408.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260202215423.1": "reg import \"$env:userprofile\\\\scoop\\\\apps\\\\git\\\\current\\\\install-context.reg\"\nreg import \"$env:userprofile\\\\scoop\\\\apps\\\\git\\\\current\\\\install-associations.reg\"",
+    "zxc.20260202215423.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"git\" \"current\" \"install-context.reg\" | quote }}\nreg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"git\" \"current\" \"install-associations.reg\" | quote }}",
     "zxc.20260202220030.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260202220046.1": "reg import \"$env:userprofile\\\\scoop\\\\apps\\\\pwsh\\\\current\\\\install-explorer-context.reg\"\nreg import \"$env:userprofile\\\\scoop\\\\apps\\\\pwsh\\\\current\\\\install-file-context.reg\"",
+    "zxc.20260202220046.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"pwsh\" \"current\" \"install-explorer-context.reg\" | quote }}\nreg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"pwsh\" \"current\" \"install-file-context.reg\" | quote }}",
     "zxc.20260202220553.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gvim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260202220615.1": "reg import \"$env:userprofile\\\\scoop\\\\apps\\\\vim\\\\current\\\\install-context.reg\"",
+    "zxc.20260202220615.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vim\" \"current\" \"install-context.reg\" | quote }}",
     "User.20260217202401.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260217202404.1": "{{ if lookPath \"dirhash\" -}}\n# {{ output \"dirhash\" (joinPath .chezmoi.homeDir \".config\" \"doom\") \"-nowait\" \"-quiet\" | trim }}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom.ps1\" ) }} sync\n{{ end -}}",
     "User.20260217214851.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"msys2\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -3222,19 +3240,22 @@
       "_mod_time": 1771507120.147
     },
     "zxc.20260202213444.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1771569080.908
+    },
+    "User.20260220142155.2": {
+      "_mod_time": 1771568880.608
     },
     "zxc.20260202215023.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1771568704.936
     },
     "zxc.20260202215408.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1771568734.183
     },
     "zxc.20260202220030.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1771568768.817
     },
     "zxc.20260202220553.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1771568791.589
     },
     "User.20260217202401.1": {
       "_mod_time": 1771517628.633
