@@ -4,6 +4,9 @@
 replace-with = 'mirror'
 
 [source.mirror]
-registry = "https://mirror.nju.edu.cn/git/crates.io-index.git"
+registry = "sparse+https://mirrors.cernet.edu.cn/crates.io-index/"
+
+[registries.mirror]
+index = "sparse+https://mirrors.cernet.edu.cn/crates.io-index/"
 {{ end -}}
 {{ end -}}
