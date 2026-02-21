@@ -3325,7 +3325,7 @@
     "User.20260215230117.1": "{\n    \"key\": \"space\",\n    \"command\": \"vspacecode.space\",\n    \"when\": \"activeEditorGroupEmpty && focusedView == '' && !whichkeyActive && !inputFocus\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"extension.vim_tab\",\n    \"when\": \"editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && editorLangId != 'magit'\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"-extension.vim_tab\",\n    \"when\": \"editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert'\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"magit.discard-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"k\",\n    \"command\": \"-magit.discard-at-point\"\n},\n{\n    \"key\": \"-\",\n    \"command\": \"magit.reverse-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"v\",\n    \"command\": \"-magit.reverse-at-point\"\n},\n{\n    \"key\": \"shift+-\",\n    \"command\": \"magit.reverting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+v\",\n    \"command\": \"-magit.reverting\"\n},\n{\n    \"key\": \"shift+o\",\n    \"command\": \"magit.resetting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+x\",\n    \"command\": \"-magit.resetting\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"-magit.reset-mixed\"\n},\n{\n    \"key\": \"ctrl+u x\",\n    \"command\": \"-magit.reset-hard\"\n},\n{\n    \"key\": \"y\",\n    \"command\": \"-magit.show-refs\"\n},\n{\n    \"key\": \"y\",\n    \"command\": \"vspacecode.showMagitRefMenu\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode == 'Normal'\"\n},\n{\n    \"key\": \"g\",\n    \"command\": \"-magit.refresh\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"g\",\n    \"command\": \"vspacecode.showMagitRefreshMenu\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"ctrl+j\",\n    \"command\": \"workbench.action.quickOpenSelectNext\",\n    \"when\": \"inQuickOpen\"\n},\n{\n    \"key\": \"ctrl+k\",\n    \"command\": \"workbench.action.quickOpenSelectPrevious\",\n    \"when\": \"inQuickOpen\"\n},\n{\n    \"key\": \"ctrl+j\",\n    \"command\": \"selectNextSuggestion\",\n    \"when\": \"suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus\"\n},\n{\n    \"key\": \"ctrl+k\",\n    \"command\": \"selectPrevSuggestion\",\n    \"when\": \"suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus\"\n},\n{\n    \"key\": \"ctrl+l\",\n    \"command\": \"acceptSelectedSuggestion\",\n    \"when\": \"suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus\"\n},\n{\n    \"key\": \"ctrl+j\",\n    \"command\": \"showNextParameterHint\",\n    \"when\": \"editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible\"\n},\n{\n    \"key\": \"ctrl+k\",\n    \"command\": \"showPrevParameterHint\",\n    \"when\": \"editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible\"\n},\n{\n    \"key\": \"ctrl+j\",\n    \"command\": \"selectNextCodeAction\",\n    \"when\": \"codeActionMenuVisible\"\n},\n{\n    \"key\": \"ctrl+k\",\n    \"command\": \"selectPrevCodeAction\",\n    \"when\": \"codeActionMenuVisible\"\n},\n{\n    \"key\": \"ctrl+l\",\n    \"command\": \"acceptSelectedCodeAction\",\n    \"when\": \"codeActionMenuVisible\"\n},\n{\n    \"key\": \"ctrl+h\",\n    \"command\": \"file-browser.stepOut\",\n    \"when\": \"inFileBrowser\"\n},\n{\n    \"key\": \"ctrl+l\",\n    \"command\": \"file-browser.stepIn\",\n    \"when\": \"inFileBrowser\"\n},",
     "User.20260215210409.1": "{\n    \"key\": \"g g\",\n    \"command\": \"cursorTop\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"g r\",\n    \"command\": \"magit.refresh\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"extension.vim_tab\",\n    \"when\": \"editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && !inlineEditIsVisible && editorLangId != 'magit'\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"-extension.vim_tab\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"magit.discard-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"k\",\n    \"command\": \"-magit.discard-at-point\"\n},\n{\n    \"key\": \"-\",\n    \"command\": \"magit.reverse-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"v\",\n    \"command\": \"-magit.reverse-at-point\"\n},\n{\n    \"key\": \"shift+-\",\n    \"command\": \"magit.reverting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+v\",\n    \"command\": \"-magit.reverting\"\n},\n{\n    \"key\": \"shift+o\",\n    \"command\": \"magit.resetting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+x\",\n    \"command\": \"-magit.resetting\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"-magit.reset-mixed\"\n},\n{\n    \"key\": \"ctrl+u x\",\n    \"command\": \"-magit.reset-hard\"\n}",
     "User.20260216000318.1": "{{ if or ( eq .chezmoi.os \"windows\" ) ( eq .chezmoi.os \"linux\" ) -}}\n{{ if lookPath \"cargo\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260216000441.1": "[source.crates-io]\nreplace-with = 'mirror'\n\n[source.mirror]\nregistry = \"https://mirror.nju.edu.cn/git/crates.io-index.git\"",
+    "User.20260216000441.1": "[source.crates-io]\nreplace-with = 'mirror'\n\n[source.mirror]\nregistry = \"sparse+https://mirrors.cernet.edu.cn/crates.io-index/\"\n\n[registries.mirror]\nindex = \"sparse+https://mirrors.cernet.edu.cn/crates.io-index/\"",
     "User.20260216125349.1": "patch:\n  schema_list:\n    - schema: sbfm\n  \"switcher/hotkeys\":",
     "User.20260216125513.1": "patch:\n  switches:\n    - name: ascii_mode\n      reset: 1\n      states: [中文, 西文]\n    - name: ascii_punct\n      reset: 0\n      states: [。，, ．，]\n    - name: zh_trad\n      reset: 0\n      states: [简体, 繁体]\n    - name: is_enhanced\n      reset: 0\n      states: [常规, 增强]\n    - options: [hide, rational, irrational, both]\n      reset: 1\n      states: [隐藏, 有理, 无理, 两者]\n    # 希望在同文里用下三角来隐藏键盘的可去掉下面两行的注释\n    #- options: [_key_Hide]\n    #  states: [\"▼\"]\n    # 为了避免拥挤，不显示下面的状态\n    - name: auto_inline\n      reset: 1\n    - name: is_buffered\n      reset: 0\n    - name: single_display\n      reset: 0\n    - options: [pro_word, pro_char, delayed_pop]\n      reset: 0\n    # states: [词组, 单字, 延顶]\n    - name: show_es\n      reset: 1\n    # 不要改变下面的状态，以免穿帮\n    - name: third_pop\n      reset: 0\n    - name: fast_pop\n      reset: 0\n  key_binder:\n    import_preset: sbxlm\n    bindings:\n      - accept: Shift+space\n        toggle: ascii_mode\n        when: always\n  ascii_composer:\n    good_old_caps_lock: false\n    switch_key:\n      Caps_Lock: noop\n      Control_L: noop\n      Control_R: noop\n      Eisu_toggle: noop\n      Shift_L: noop\n      Shift_R: noop",
     "User.20260216232855.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"aria2c\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -3423,22 +3423,22 @@
       "_mod_time": 1771507120.162
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1771593298.394
+      "_mod_time": 1771684793.908
     },
     "zxc.20260125143959.1": {
       "_mod_time": 1771507120.147
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1771594366.077
+      "_mod_time": 1771684793.907
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1771507120.147
     },
     "User.20260221004652.1": {
-      "_mod_time": 1771658450.972
+      "_mod_time": 1771684793.908
     },
     "User.20260221144015.1": {
-      "_mod_time": 1771658508.819
+      "_mod_time": 1771684793.908
     },
     "zxc.20260125172839.1": {
       "_mod_time": 1771594371.36
@@ -3450,19 +3450,19 @@
       "_mod_time": 1771507120.147
     },
     "zxc.20260126160530.1": {
-      "_mod_time": 1771594968.557
+      "_mod_time": 1771684793.907
     },
     "zxc.20260202201907.1": {
       "_mod_time": 1771507120.147
     },
     "User.20260220235431.1": {
-      "_mod_time": 1771603308.454
+      "_mod_time": 1771684793.907
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1771507120.147
     },
     "User.20260220233639.1": {
-      "_mod_time": 1771607574.086
+      "_mod_time": 1771684793.907
     },
     "zxc.20260202203521.20": {
       "_mod_time": 1771574592.704
@@ -3477,46 +3477,46 @@
       "_mod_time": 1771571707.126
     },
     "zxc.20260202213444.1": {
-      "_mod_time": 1771569080.908
+      "_mod_time": 1771684793.907
     },
     "User.20260220142155.2": {
-      "_mod_time": 1771568880.608
+      "_mod_time": 1771684793.907
     },
     "User.20260220151435.2": {
-      "_mod_time": 1771573259.107
+      "_mod_time": 1771684793.907
     },
     "zxc.20260202215023.1": {
-      "_mod_time": 1771568704.936
+      "_mod_time": 1771684793.907
     },
     "zxc.20260202215408.1": {
-      "_mod_time": 1771568734.183
+      "_mod_time": 1771684793.907
     },
     "zxc.20260202220030.1": {
-      "_mod_time": 1771568768.817
+      "_mod_time": 1771684793.907
     },
     "zxc.20260202220553.1": {
-      "_mod_time": 1771568791.589
+      "_mod_time": 1771684793.907
     },
     "User.20260217202401.1": {
-      "_mod_time": 1771517628.633
+      "_mod_time": 1771684793.907
     },
     "User.20260220214558.1": {
-      "_mod_time": 1771656190.538
+      "_mod_time": 1771684793.907
     },
     "User.20260217214851.1": {
-      "_mod_time": 1771524800.056
+      "_mod_time": 1771684793.907
     },
     "User.20260220000301.2": {
-      "_mod_time": 1771517674.642
+      "_mod_time": 1771684793.907
     },
     "User.20260220012738.1": {
-      "_mod_time": 1771522354.57
+      "_mod_time": 1771684793.907
     },
     "User.20260218020042.1": {
-      "_mod_time": 1771507120.131
+      "_mod_time": 1771684793.907
     },
     "User.20260217234231.1": {
-      "_mod_time": 1771507120.131
+      "_mod_time": 1771684793.907
     },
     "User.20260217125336.1": {
       "_mod_time": 1771507120.131
@@ -3528,25 +3528,25 @@
       "_mod_time": 1771507120.147
     },
     "User.20260218144120.1": {
-      "_mod_time": 1771507120.162
+      "_mod_time": 1771684793.908
     },
     "User.20260218144232.1": {
-      "_mod_time": 1771507120.162
+      "_mod_time": 1771684793.908
     },
     "zxc.20260125163108.1": {
       "_mod_time": 1771507120.162
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1771587351.79
+      "_mod_time": 1771684793.909
     },
     "zxc.20260125164142.1": {
-      "_mod_time": 1771507120.162
+      "_mod_time": 1771684793.908
     },
     "User.20260218142211.1": {
-      "_mod_time": 1771587351.823
+      "_mod_time": 1771684793.911
     },
     "User.20260218142322.1": {
-      "_mod_time": 1771507120.178
+      "_mod_time": 1771684793.911
     },
     "zxc.20260130225718.1": {
       "_mod_time": 1771507120.162
@@ -3555,25 +3555,25 @@
       "_mod_time": 1771507120.162
     },
     "User.20260215191351.1": {
-      "_mod_time": 1771523570.615
+      "_mod_time": 1771684793.908
     },
     "User.20260220010313.1": {
-      "_mod_time": 1771520669.177
+      "_mod_time": 1771684793.908
     },
     "User.20260220010448.1": {
-      "_mod_time": 1771520715.503
+      "_mod_time": 1771684793.908
     },
     "zxc.20260202211707.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1771684793.908
     },
     "User.20260216000318.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1771685216.948
     },
     "User.20260216232855.1": {
       "_mod_time": 1771507120.147
     },
     "User.20260217182613.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1771684793.908
     },
     "zxc.20260126154354.1": {
       "_mod_time": 1771507120.162
@@ -3591,25 +3591,25 @@
       "_mod_time": 1771507120.162
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1771523338.133
+      "_mod_time": 1771684793.91
     },
     "zxc.20260125161631.1": {
-      "_mod_time": 1771609430.612
+      "_mod_time": 1771684793.91
     },
     "User.20260216185314.1": {
-      "_mod_time": 1771609440.261
+      "_mod_time": 1771684793.91
     },
     "User.20260217223023.1": {
-      "_mod_time": 1771595089.074
+      "_mod_time": 1771684793.91
     },
     "User.20260217223030.1": {
-      "_mod_time": 1771595089.143
+      "_mod_time": 1771684793.91
     },
     "User.20260217223035.1": {
-      "_mod_time": 1771595089.176
+      "_mod_time": 1771684793.91
     },
     "User.20260220233323.1": {
-      "_mod_time": 1771601676.366
+      "_mod_time": 1771684793.91
     },
     "User.20260215182442.1": {
       "_mod_time": 1771507120.178
@@ -3624,19 +3624,19 @@
       "_mod_time": 1771507120.178
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1771571044.717
+      "_mod_time": 1771684793.911
     },
     "User.20260215205925.1": {
-      "_mod_time": 1771507120.178
+      "_mod_time": 1771684793.911
     },
     "User.20260215210400.1": {
       "_mod_time": 1771507120.178
     },
     "User.20260220151031.5": {
-      "_mod_time": 1771571520.843
+      "_mod_time": 1771684793.911
     },
     "User.20260220151031.28": {
-      "_mod_time": 1771571520.952
+      "_mod_time": 1771684793.911
     },
     "zxc.20260125211938.1": {
       "_mod_time": 1771507120.162
@@ -3660,7 +3660,7 @@
       "_mod_time": 1771507120.147
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1771684793.908
     },
     "zxc.20260202195207.1": {
       "_mod_time": 1771507120.147
@@ -3681,7 +3681,7 @@
       "_mod_time": 1771507120.147
     },
     "User.20260219235648.1": {
-      "_mod_time": 1771516837.708
+      "_mod_time": 1771684793.908
     }
   }
 }
