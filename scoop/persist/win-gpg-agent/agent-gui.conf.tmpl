@@ -1,0 +1,23 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ $win_gpg_agent := joinPath .chezmoi.homeDir "scoop" "apps" "win-gpg-agent" "current" "agent-gui.exe" }}
+{{ if stat $win_gpg_agent -}}
+{{ $gpg := joinPath .chezmoi.homeDir "scoop" "apps" "gpg" "current" -}}
+{{ $gpg_home := joinPath $gpg "home" -}}
+{{ $gpg_sock := joinPath $gpg "gnupg" -}}
+gpg:
+  install_path: {{ $gpg | quote }}
+  # Before gnupg 2.3.2 release home directory could be properly link-ed
+  #   homedir: {{ $gpg_home | quote }}
+  # With gnupg 2.3.3 release (due to the changes in T5537) use this instead
+  #   homedir: {{ $gpg_home | quote }}
+  #   socketdir: ""
+  # After gnupg 2.3.4 release we have to switch to
+  homedir: {{ $gpg_home | quote }}
+  socketdir: {{ $gpg_sock | quote }}
+gui:
+  debug: false
+  setenv: true
+  # Use line below to enable SSH_AUTH_SOCK to point to cygwin socket
+  #   openssh: cygwin
+{{ end -}}
+{{ end -}}
