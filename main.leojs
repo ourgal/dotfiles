@@ -266,6 +266,10 @@
                 {
                   "gnx": "User.20260221004652.1",
                   "vh": "@clean checkPath"
+                },
+                {
+                  "gnx": "User.20260221144015.1",
+                  "vh": "@clean _checkPath"
                 }
               ]
             }
@@ -3056,7 +3060,8 @@
     "zxc.20260125144753.1": ".bash_profile\n.bashrc\n",
     "zxc.20260125144810.1": ".xinitrc\n",
     "zxc.20260125172659.1": "{{ if lookPath \"hx\" -}}\nhx\n{{- else if lookPath \"vim\" -}}\nvim\n{{- else if lookPath \"vi\" -}}\nvi\n{{- else if lookPath \"nano\" -}}\nnano\n{{- end -}}",
-    "User.20260221004652.1": "{{ range . -}}\n{{ if lookPath . }}\necho {{ printf \"%s founded: %s\" . (lookPath .) | quote }}\n{{ else -}}\necho {{ printf \"%s not found\" . | quote }}\n{{ end -}}\n{{ end -}}\n",
+    "User.20260221004652.1": "{{ if kindIs \"slice\" . -}}\n    {{ range . -}}\n    {{ template \"_checkPath\" . -}}\n    {{ end -}}\n{{ else if kindIs \"string\" . -}}\n    {{ template \"_checkPath\" . -}}\n{{ else -}}\n    echo \"checkPath: unsupported type\"\n{{ end -}}\n",
+    "User.20260221144015.1": "{{ if lookPath . }}\necho {{ printf \"%s is founded: %s\" . (lookPath .) | quote }}\n{{ else -}}\necho {{ printf \"%s is not found\" . | quote }}\n{{ end -}}",
     "zxc.20260125172839.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260126160624.1": "[\".local/lib/ble-nightly\"]\n    type = \"archive\"\n    url = \"https://github.com/akinomyoga/ble.sh/releases/download/nightly/ble-nightly.tar.xz\"\n    exact = true\n    stripComponents = 1\n    refreshPeriod = \"168h\"",
     "zxc.20260130221131.1": "@others",
@@ -3117,7 +3122,7 @@
     "User.20260217202404.1": "{{ if lookPath \"dirhash\" -}}\n# {{ output \"dirhash\" (joinPath .chezmoi.homeDir \".config\" \"doom\") \"-nowait\" \"-quiet\" | trim }}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom.ps1\" ) }} sync\n{{ end -}}",
     "User.20260220214558.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260221011837.1": "#!{{lookPath \"sh\"}}\n",
-    "User.20260221011908.1": "{{ template \"checkPath\" (list \"shasum\") -}}",
+    "User.20260221011908.1": "{{ template \"checkPath\" \"shasum\" -}}",
     "User.20260220214646.1": "{{ if lookPath \"shasum\" -}}\n\n{{ $doom_files := list \"init\" \"config\" \"packages\" -}}\n{{ $doom_path := (joinPath .chezmoi.homeDir \".config\" \"doom\") -}}\n\n{{ $shasum := \"shasum\" -}}\n{{ if and (hasKey .chezmoi.kernel \"osrelease\") (mustRegexMatch \".*WSL.*\" .chezmoi.kernel.osrelease) (hasKey .chezmoi.osRelease \"id\") (eq .chezmoi.osRelease.id \"arch\") -}}\n{{ $shasum = joinPath \"/usr\" \"bin\" \"core_perl\" \"shasum\" -}}\n{{ end -}}\n\n{{ range $doom_files -}}\n# {{ output $shasum (joinPath $doom_path (printf \"%s.el\" .)) | trim }}\n{{ end -}}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\" ) }} sync\n{{ end -}}",
     "User.20260217214851.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"msys2\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260217214859.1": "msys2 -c \"yes | pacman -Syu\"\nmsys2 -c \"yes | pacman -S --needed {{ .my.msys2.packages | join \" \" }}\"",
@@ -3430,7 +3435,10 @@
       "_mod_time": 1771507120.147
     },
     "User.20260221004652.1": {
-      "_mod_time": 1771606909.323
+      "_mod_time": 1771658450.972
+    },
+    "User.20260221144015.1": {
+      "_mod_time": 1771658508.819
     },
     "zxc.20260125172839.1": {
       "_mod_time": 1771594371.36
@@ -3493,7 +3501,7 @@
       "_mod_time": 1771517628.633
     },
     "User.20260220214558.1": {
-      "_mod_time": 1771609204.92
+      "_mod_time": 1771656190.538
     },
     "User.20260217214851.1": {
       "_mod_time": 1771524800.056

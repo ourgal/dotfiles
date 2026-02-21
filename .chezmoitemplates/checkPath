@@ -1,7 +1,9 @@
-{{ range . -}}
-{{ if lookPath . }}
-echo {{ printf "%s founded: %s" . (lookPath .) | quote }}
+{{ if kindIs "slice" . -}}
+    {{ range . -}}
+    {{ template "_checkPath" . -}}
+    {{ end -}}
+{{ else if kindIs "string" . -}}
+    {{ template "_checkPath" . -}}
 {{ else -}}
-echo {{ printf "%s not found" . | quote }}
-{{ end -}}
+    echo "checkPath: unsupported type"
 {{ end -}}
