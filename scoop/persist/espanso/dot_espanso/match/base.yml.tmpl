@@ -1,0 +1,296 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "espanso" -}}
+matches:
+- replace: '{{ `{{` }}mydate{{ `}}` }}'
+  trigger: :date
+  vars:
+  - name: mydate
+    params:
+      format: '%m/%d/%Y'
+    type: date
+- replace: '{{ `{{` }}mydate{{ `}}` }}'
+  trigger: :time
+  vars:
+  - name: mydate
+    params:
+      format: '%H:%M'
+    type: date
+- replace: https://github.com/{{ `{{` }}clipboard{{ `}}` }}
+  trigger: :gh
+  vars:
+  - name: clipboard
+    type: clipboard
+- replace: 'git init '
+  trigger: giti.
+- replace: 'git clone '
+  trigger: gitcl.
+- replace: 'git clone --depth 1 '
+  trigger: gitcl1.
+- replace: git config --global core.autocrlf true
+  trigger: gitconfigline1.
+- replace: git config --global core.safecrlf warn
+  trigger: gitconfigline2.
+- replace: git config --global user.email "$|$"
+  trigger: gitemailg.
+- replace: git config --local user.email "$|$"
+  trigger: gitemaill.
+- replace: git config --global user.name "$|$"
+  trigger: gituserg.
+- replace: git config --local user.name "$|$"
+  trigger: gituserl.
+- replace: git status
+  trigger: gits.
+- replace: git add .
+  trigger: gita.
+- replace: git commit -m "$|$"
+  trigger: gitc.
+- replace: 'git add . && git commit -m "feat: $|$"'
+  trigger: gitcf.
+- replace: 'git add . && git commit -m "chore: $|$"'
+  trigger: gitcc.
+- replace: 'git add . && git commit -m "fix: $|$"'
+  trigger: gitcx.
+- replace: 'git add . && git commit -m "docs: $|$"'
+  trigger: gitcd.
+- replace: 'git add . && git commit -m "refactor: $|$"'
+  trigger: gitcr.
+- replace: 'git add . && git commit -m "style: $|$"'
+  trigger: gitcs.
+- replace: 'git add . && git commit -m "test: $|$"'
+  trigger: gitct.
+- replace: git commit --amend -m "$|$"
+  trigger: gitamc.
+- replace: git commit --amend -m "$|$"
+  trigger: gitcam.
+- replace: git commit --amend --no-edit
+  trigger: gitce.
+- replace: git commit --amend --author="$|$User Name <email@email.com>"
+  trigger: gitama.
+- replace: '#Examples: "2023-02-14T15:55:00" | "Wed Sep 9 22:00 2020 +0530"
+
+    git commit --amend --date=""'
+  trigger: gitamd.
+- replace: 'git push origin '
+  trigger: gitp.
+- replace: 'git push github '
+  trigger: gitpg.
+- replace: 'git push origin --force '
+  trigger: gitpf.
+- replace: git remote update
+  trigger: gitru.
+- replace: git fetch --all
+  trigger: gitfa.
+- replace: git push origin develop
+  trigger: gitpd.
+- replace: git push origin dev
+  trigger: gitpd1.
+- replace: git push origin develop
+  trigger: gitpd2.
+- replace: git push origin development
+  trigger: gitpd3.
+- replace: git push origin homolog
+  trigger: gitph.
+- replace: git push origin hml
+  trigger: gitph1.
+- replace: git push origin homolog
+  trigger: gitph2.
+- replace: git push origin homologation
+  trigger: gitph3.
+- replace: 'git pull origin '
+  trigger: gitu.
+- replace: git pull origin develop
+  trigger: gitud.
+- replace: git pull origin dev
+  trigger: gitud1.
+- replace: git pull origin develop
+  trigger: gitud2.
+- replace: git pull origin development
+  trigger: gitud3.
+- replace: git pull origin homolog
+  trigger: gituh.
+- replace: git pull origin hml
+  trigger: gituh1.
+- replace: git pull origin homolog
+  trigger: gituh2.
+- replace: git pull origin homologation
+  trigger: gituh3.
+- replace: git stash
+  trigger: gitst.
+- replace: git stash list
+  trigger: gitstl.
+- replace: git stash show
+  trigger: gitsts.
+- replace: git stash pop
+  trigger: gitstp.
+- replace: git stash drop
+  trigger: gitstd.
+- replace: git stash --include-untracked
+  trigger: gitstiu.
+- replace: 'git merge '
+  trigger: gitm.
+- replace: git branch -m main
+  trigger: gitbm.
+- replace: git merge develop
+  trigger: gitmd.
+- replace: git merge dev
+  trigger: gitmd1.
+- replace: git merge develop
+  trigger: gitmd2.
+- replace: git merge development
+  trigger: gitmd3.
+- replace: git merge homolog
+  trigger: gitmh.
+- replace: git merge hml
+  trigger: gitmh1.
+- replace: git merge homolog
+  trigger: gitmh2.
+- replace: git merge homologation
+  trigger: gitmh3.
+- replace: 'git checkout '
+  trigger: gitchk.
+- replace: git checkout develop
+  trigger: gitchkd.
+- replace: git checkout dev
+  trigger: gitchkd1.
+- replace: git checkout develop
+  trigger: gitchkd2.
+- replace: git checkout development
+  trigger: gitchkd3.
+- replace: git checkout homolog
+  trigger: gitchkh.
+- replace: git checkout hml
+  trigger: gitchkh1.
+- replace: git checkout homolog
+  trigger: gitchkh2.
+- replace: git checkout homologation
+  trigger: gitchkh3.
+- replace: 'git checkout -b '
+  trigger: gitchkb.
+- replace: 'git checkout -b '
+  trigger: gitnb.
+- replace: git branch
+  trigger: gitb.
+- replace: git branch -a
+  trigger: gitba.
+- replace: 'git branch -d '
+  trigger: gitbd.
+- replace: 'git branch -D '
+  trigger: gitbdf.
+- replace: 'git push origin --delete '
+  trigger: gitbdr.
+- replace: git log
+  trigger: gitl.
+- replace: git log --pretty=oneline
+  trigger: gitlp.
+- replace: git log --oneline
+  trigger: gitlo.
+- replace: git log --graph --oneline
+  trigger: gitlgo.
+- replace: git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short
+  trigger: gitlpf.
+- replace: git rebase main
+  trigger: gitrb.
+- replace: git rebase -i --autosquash main
+  trigger: gitrba.
+- replace: git reset
+  trigger: gitrs.
+- replace: 'git reset --hard '
+  trigger: gitrsh.
+- replace: git reset --hard HEAD
+  trigger: gitrshh.
+- replace: git reset --hard HEAD~1
+  trigger: gitrshh1.
+- replace: 'git reset --soft '
+  trigger: gitrss.
+- replace: git reset --soft HEAD
+  trigger: gitrssh.
+- replace: git reset --soft HEAD~1
+  trigger: gitrssh1.
+- replace: git revert HEAD
+  trigger: gitrv.
+- replace: git revert HEAD --no-edit
+  trigger: gitrvne.
+- replace: 'git tag '
+  trigger: gittg.
+- replace: 'git tag -d '
+  trigger: gittgd.
+- replace: git mv file.ext dir_name
+  trigger: gitmv.
+- replace: 'git cherry-pick '
+  trigger: gitcyp.
+- replace: git restore .
+  trigger: gitrt.
+- replace: git clean -f
+  trigger: gitcln.
+- replace: 'git switch '
+  trigger: gitsw.
+- replace: git switch main
+  trigger: gitswm.
+- force_clipboard: true
+  label: Markdown - Code block
+  replace: '```$|$
+
+    ```'
+  trigger: ':block:'
+- force_clipboard: false
+  label: Markdown - Inline code
+  replace: '`$|$`'
+  trigger: ':code:'
+- label: Markdown - Header1
+  replace: '#'
+  trigger: ':h1:'
+- label: Markdown - Header2
+  replace: '##'
+  trigger: ':h2:'
+- label: Markdown - Header3
+  replace: '###'
+  trigger: ':h3:'
+- label: Markdown - Header4
+  replace: '####'
+  trigger: ':h4:'
+- label: Markdown - Header5
+  replace: '#####'
+  trigger: ':h5:'
+- label: Markdown - Header6
+  replace: '######'
+  trigger: ':h6:'
+- label: Markdown - Bold
+  replace: '**$|$**'
+  trigger: ':bold:'
+- label: Markdown - Italic
+  replace: '*$|$*'
+  trigger: ':italic:'
+- label: Markdown - Strikethrough
+  replace: ~~$|$~~
+  trigger: ':strike:'
+- label: Markdown - URL
+  replace: '[$|$]()'
+  trigger: ':url:'
+- label: Markdown - Image
+  replace: '![]($|$)'
+  trigger: ':img:'
+- label: Markdown - Horizontal line
+  replace: ___
+  trigger: ':horizontal:'
+- label: Markdown - Task
+  replace: '- [ ] '
+  trigger: ':task:'
+- label: Markdown - Task completed
+  replace: '- [x] '
+  trigger: ':taskdone:'
+- force_clipboard: true
+  label: Markdown - Collapse block
+  replace: '<details>
+
+    <summary></summary>
+
+    $|$
+
+    </details>'
+  trigger: ':collapse:'
+- force_clipboard: true
+  label: Markdown - Comment
+  replace: <!--- $|$ -->
+  trigger: ':comment:'
+{{ end -}}
+{{ end -}}

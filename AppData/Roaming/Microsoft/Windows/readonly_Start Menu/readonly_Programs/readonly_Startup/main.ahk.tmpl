@@ -17,10 +17,14 @@ Run("D:/scoop/apps/brave/current/brave.exe", "c:/users/user" , "Max")
 {{ if and (eq .chezmoi.hostname "nuc") (lookPath "deskflow-core") -}}
 Run("deskflow-core client", , "Hide")
 {{ end -}}
-{{ if and (eq .chezmoi.hostname "nuc") (lookPath "runemacs") -}}
-; Run("runemacs --daemon", EnvGet("userprofile"), "Hide")
+{{ if lookPath "aria2c" -}}
+Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "aria2" "current" "aria2c.exe" }} --enable-rpc", {{ joinPath .chezmoi.homeDir "Downloads" | quote }}, "Hide")
 {{ end -}}
-{{ if and (eq .chezmoi.hostname "nuc") (lookPath "gpg-connect-agent") -}}
-Run("gpg-connect-agent /bye", , "Hide")
+{{ if lookPath "espansod" -}}
+Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "espanso" "current" "espansod.exe" }} start", {{ .chezmoi.homeDir | quote }}, "Hide")
+{{ end -}}
+{{ $win_gpg_agent := joinPath .chezmoi.homeDir "scoop" "apps" "win-gpg-agent" "current" "agent-gui.exe" }}
+{{ if stat $win_gpg_agent -}}
+Run({{ $win_gpg_agent | quote }}, , "Hide")
 {{ end -}}
 {{ end -}}
