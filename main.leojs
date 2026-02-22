@@ -1636,6 +1636,16 @@
                 {
                   "gnx": "zxc.20260125153842.1",
                   "vh": "user"
+                },
+                {
+                  "gnx": "User.20260222170916.1",
+                  "vh": "git annex",
+                  "children": [
+                    {
+                      "gnx": "User.20260222170925.1",
+                      "vh": "enable curl and yt-dlp"
+                    }
+                  ]
                 }
               ]
             }
@@ -3375,6 +3385,7 @@
     "zxc.20260125154332.1": "[url \"git@github.com:ourgal/\"]\n\tinsteadOf = \"myg:\"\n",
     "zxc.20260125154321.1": "[url \"git@github.com:\"]\n\tinsteadOf = \"gh:\"\n",
     "zxc.20260125153842.1": "[user]\n\temail = \"git@fairever.aleeas.com\"\n\tname = \"ourgal\"\n{{ if .my.git.sign.ssh }}\tsigningkey = \"~/.ssh/id_ed25519.pub\"\n{{ else if .my.git.sign.gpg }}\tsigningkey = \"D0D31211E343897C\"\n{{ end -}}",
+    "User.20260222170925.1": "[annex \"security\"]\nallowed-ip-addresses = \"all\"",
     "zxc.20260125153131.2": "# feat: ✨\n# feat: 🔍\n# feat: 🔗\n# feat: 🔒\n\n# fix: 🐛\n# fix: 🐞\n# fix: 🩹\n# fix: 🚑️\n\n# style: 💅\n# style: 🎨\n# style: 💄\n\n# ci: 🦊\n# ci: 📦\n\n# deploy: 🚀\n# deploy: 📦\n\n# chore: 🧹\n# chore: 🔧\n# chore: ⚙️\n# docs: 📜\n\n# refactor: 🔨\n# perf: 🚀\n\n# test: 🚦\n# debug: 🧪\n\n# BREAKING CHANGE: 🚨\n# BREAKING CHANGE: 💥\n# BREAKING CHANGE: 💣",
     "User.20260216220339.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"ansible-language-server\" -}}\n{{ $lsp = append $lsp \"ansible-language-server\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\ncomment-token = \"#\"\ngrammar = \"yaml\"\ninjection-regex = \"ansible\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]\nname = \"ansible\"\nscope = \"source.yaml\"\nshebangs = [\"ansible-playbook\"]\n\n[[language.file-types]]\nglob = \"playbooks/*.yaml\"\n\n[[language.file-types]]\nglob = \"playbooks/*.yml\"\n\n[[language.file-types]]\nglob = \"group_vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"group_vars/*.yml\"\n\n[[language.file-types]]\nglob = \"host_vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"host_vars/*.yml\"\n\n[[language.file-types]]\nglob = \"vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"vars/*.yml\"\n\n[[language.file-types]]\nglob = \"defaults/*.yaml\"\n\n[[language.file-types]]\nglob = \"defaults/*.yml\"\n\n[[language.file-types]]\nglob = \"tasks/*.yaml\"\n\n[[language.file-types]]\nglob = \"tasks/*.yml\"\n\n[[language.file-types]]\nglob = \"handlers/*.yaml\"\n\n[[language.file-types]]\nglob = \"handlers/*.yml\"\n\n[[language.file-types]]\nglob = \"meta/*.yaml\"\n\n[[language.file-types]]\nglob = \"meta/*.yml\"",
     "User.20260216222130.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"marksman\" -}}\n{{ $lsp = append $lsp \"marksman\" -}}\n{{ end -}}\n{{ if lookPath \"markdown-oxide\" -}}\n{{ $lsp = append $lsp \"markdown-oxide\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"markdown\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]\n",
@@ -3706,7 +3717,7 @@
       "_mod_time": 1771507120.162
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1771750692.847
+      "_mod_time": 1771751488.495
     },
     "zxc.20260125161631.1": {
       "_mod_time": 1771684793.91

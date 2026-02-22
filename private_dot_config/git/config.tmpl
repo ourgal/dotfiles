@@ -160,5 +160,7 @@
 {{ if .my.git.sign.ssh }}	signingkey = "~/.ssh/id_ed25519.pub"
 {{ else if .my.git.sign.gpg }}	signingkey = "D0D31211E343897C"
 {{ end -}}
+[annex "security"]
+allowed-ip-addresses = "all"
 {{ end -}}
 {{ end -}}
