@@ -1,0 +1,9 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "rclone" -}}
+[mega_a]
+{{ gopassRaw "rclone/mega_a" }}
+
+[alist]
+{{ gopassRaw "rclone/nuc/alist"}}
+{{ end -}}
+{{ end -}}

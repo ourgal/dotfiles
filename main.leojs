@@ -2412,6 +2412,16 @@
       ]
     },
     {
+      "gnx": "User.20260222230616.1",
+      "vh": "alist",
+      "children": [
+        {
+          "gnx": "User.20260222211658.2",
+          "vh": "content"
+        }
+      ]
+    },
+    {
       "gnx": "zxc.20260125152614.1",
       "vh": "config",
       "children": [
@@ -2600,6 +2610,22 @@
           "gnx": "zxc.20260201034159.1",
           "vh": "@path scoop",
           "children": [
+            {
+              "gnx": "User.20260222210911.1",
+              "vh": "@path apps",
+              "children": [
+                {
+                  "gnx": "User.20260222211011.1",
+                  "vh": "@path rclone",
+                  "children": [
+                    {
+                      "gnx": "User.20260222211015.1",
+                      "vh": "@path current"
+                    }
+                  ]
+                }
+              ]
+            },
             {
               "gnx": "zxc.20260201034216.1",
               "vh": "@path persist",
@@ -2810,6 +2836,21 @@
                         {
                           "gnx": "User.20260221194708.1",
                           "vh": "content"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "gnx": "User.20260222211551.1",
+                  "vh": "@path rclone",
+                  "children": [
+                    {
+                      "gnx": "User.20260222211658.1",
+                      "vh": "@clean rclone.conf.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260222211658.2"
                         }
                       ]
                     }
@@ -3492,6 +3533,7 @@
     "User.20260221175819.1": "- replace: 'git init '\n  trigger: giti.\n- replace: 'git clone '\n  trigger: gitcl.\n- replace: 'git clone --depth 1 '\n  trigger: gitcl1.\n- replace: git config --global core.autocrlf true\n  trigger: gitconfigline1.\n- replace: git config --global core.safecrlf warn\n  trigger: gitconfigline2.\n- replace: git config --global user.email \"$|$\"\n  trigger: gitemailg.\n- replace: git config --local user.email \"$|$\"\n  trigger: gitemaill.\n- replace: git config --global user.name \"$|$\"\n  trigger: gituserg.\n- replace: git config --local user.name \"$|$\"\n  trigger: gituserl.\n- replace: git status\n  trigger: gits.\n- replace: git add .\n  trigger: gita.\n- replace: git commit -m \"$|$\"\n  trigger: gitc.\n- replace: 'git add . && git commit -m \"feat: $|$\"'\n  trigger: gitcf.\n- replace: 'git add . && git commit -m \"chore: $|$\"'\n  trigger: gitcc.\n- replace: 'git add . && git commit -m \"fix: $|$\"'\n  trigger: gitcx.\n- replace: 'git add . && git commit -m \"docs: $|$\"'\n  trigger: gitcd.\n- replace: 'git add . && git commit -m \"refactor: $|$\"'\n  trigger: gitcr.\n- replace: 'git add . && git commit -m \"style: $|$\"'\n  trigger: gitcs.\n- replace: 'git add . && git commit -m \"test: $|$\"'\n  trigger: gitct.\n- replace: git commit --amend -m \"$|$\"\n  trigger: gitamc.\n- replace: git commit --amend -m \"$|$\"\n  trigger: gitcam.\n- replace: git commit --amend --no-edit\n  trigger: gitce.\n- replace: git commit --amend --author=\"$|$User Name <email@email.com>\"\n  trigger: gitama.\n- replace: '#Examples: \"2023-02-14T15:55:00\" | \"Wed Sep 9 22:00 2020 +0530\"\n\n    git commit --amend --date=\"\"'\n  trigger: gitamd.\n- replace: 'git push origin '\n  trigger: gitp.\n- replace: 'git push github '\n  trigger: gitpg.\n- replace: 'git push origin --force '\n  trigger: gitpf.\n- replace: git remote update\n  trigger: gitru.\n- replace: git fetch --all\n  trigger: gitfa.\n- replace: git push origin develop\n  trigger: gitpd.\n- replace: git push origin dev\n  trigger: gitpd1.\n- replace: git push origin develop\n  trigger: gitpd2.\n- replace: git push origin development\n  trigger: gitpd3.\n- replace: git push origin homolog\n  trigger: gitph.\n- replace: git push origin hml\n  trigger: gitph1.\n- replace: git push origin homolog\n  trigger: gitph2.\n- replace: git push origin homologation\n  trigger: gitph3.\n- replace: 'git pull origin '\n  trigger: gitu.\n- replace: git pull origin develop\n  trigger: gitud.\n- replace: git pull origin dev\n  trigger: gitud1.\n- replace: git pull origin develop\n  trigger: gitud2.\n- replace: git pull origin development\n  trigger: gitud3.\n- replace: git pull origin homolog\n  trigger: gituh.\n- replace: git pull origin hml\n  trigger: gituh1.\n- replace: git pull origin homolog\n  trigger: gituh2.\n- replace: git pull origin homologation\n  trigger: gituh3.\n- replace: git stash\n  trigger: gitst.\n- replace: git stash list\n  trigger: gitstl.\n- replace: git stash show\n  trigger: gitsts.\n- replace: git stash pop\n  trigger: gitstp.\n- replace: git stash drop\n  trigger: gitstd.\n- replace: git stash --include-untracked\n  trigger: gitstiu.\n- replace: 'git merge '\n  trigger: gitm.\n- replace: git branch -m main\n  trigger: gitbm.\n- replace: git merge develop\n  trigger: gitmd.\n- replace: git merge dev\n  trigger: gitmd1.\n- replace: git merge develop\n  trigger: gitmd2.\n- replace: git merge development\n  trigger: gitmd3.\n- replace: git merge homolog\n  trigger: gitmh.\n- replace: git merge hml\n  trigger: gitmh1.\n- replace: git merge homolog\n  trigger: gitmh2.\n- replace: git merge homologation\n  trigger: gitmh3.\n- replace: 'git checkout '\n  trigger: gitchk.\n- replace: git checkout develop\n  trigger: gitchkd.\n- replace: git checkout dev\n  trigger: gitchkd1.\n- replace: git checkout develop\n  trigger: gitchkd2.\n- replace: git checkout development\n  trigger: gitchkd3.\n- replace: git checkout homolog\n  trigger: gitchkh.\n- replace: git checkout hml\n  trigger: gitchkh1.\n- replace: git checkout homolog\n  trigger: gitchkh2.\n- replace: git checkout homologation\n  trigger: gitchkh3.\n- replace: 'git checkout -b '\n  trigger: gitchkb.\n- replace: 'git checkout -b '\n  trigger: gitnb.\n- replace: git branch\n  trigger: gitb.\n- replace: git branch -a\n  trigger: gitba.\n- replace: 'git branch -d '\n  trigger: gitbd.\n- replace: 'git branch -D '\n  trigger: gitbdf.\n- replace: 'git push origin --delete '\n  trigger: gitbdr.\n- replace: git log\n  trigger: gitl.\n- replace: git log --pretty=oneline\n  trigger: gitlp.\n- replace: git log --oneline\n  trigger: gitlo.\n- replace: git log --graph --oneline\n  trigger: gitlgo.\n- replace: git log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short\n  trigger: gitlpf.\n- replace: git rebase main\n  trigger: gitrb.\n- replace: git rebase -i --autosquash main\n  trigger: gitrba.\n- replace: git reset\n  trigger: gitrs.\n- replace: 'git reset --hard '\n  trigger: gitrsh.\n- replace: git reset --hard HEAD\n  trigger: gitrshh.\n- replace: git reset --hard HEAD~1\n  trigger: gitrshh1.\n- replace: 'git reset --soft '\n  trigger: gitrss.\n- replace: git reset --soft HEAD\n  trigger: gitrssh.\n- replace: git reset --soft HEAD~1\n  trigger: gitrssh1.\n- replace: git revert HEAD\n  trigger: gitrv.\n- replace: git revert HEAD --no-edit\n  trigger: gitrvne.\n- replace: 'git tag '\n  trigger: gittg.\n- replace: 'git tag -d '\n  trigger: gittgd.\n- replace: git mv file.ext dir_name\n  trigger: gitmv.\n- replace: 'git cherry-pick '\n  trigger: gitcyp.\n- replace: git restore .\n  trigger: gitrt.\n- replace: git clean -f\n  trigger: gitcln.\n- replace: 'git switch '\n  trigger: gitsw.\n- replace: git switch main\n  trigger: gitswm.",
     "User.20260222165839.1": "- replace: 'git annex sync --content '\n  trigger: gitas.",
     "User.20260221175941.1": "- force_clipboard: true\n  label: Markdown - Code block\n  replace: '```$|$\n\n    ```'\n  trigger: ':block:'\n- force_clipboard: false\n  label: Markdown - Inline code\n  replace: '`$|$`'\n  trigger: ':code:'\n- label: Markdown - Header1\n  replace: '#'\n  trigger: ':h1:'\n- label: Markdown - Header2\n  replace: '##'\n  trigger: ':h2:'\n- label: Markdown - Header3\n  replace: '###'\n  trigger: ':h3:'\n- label: Markdown - Header4\n  replace: '####'\n  trigger: ':h4:'\n- label: Markdown - Header5\n  replace: '#####'\n  trigger: ':h5:'\n- label: Markdown - Header6\n  replace: '######'\n  trigger: ':h6:'\n- label: Markdown - Bold\n  replace: '**$|$**'\n  trigger: ':bold:'\n- label: Markdown - Italic\n  replace: '*$|$*'\n  trigger: ':italic:'\n- label: Markdown - Strikethrough\n  replace: ~~$|$~~\n  trigger: ':strike:'\n- label: Markdown - URL\n  replace: '[$|$]()'\n  trigger: ':url:'\n- label: Markdown - Image\n  replace: '![]($|$)'\n  trigger: ':img:'\n- label: Markdown - Horizontal line\n  replace: ___\n  trigger: ':horizontal:'\n- label: Markdown - Task\n  replace: '- [ ] '\n  trigger: ':task:'\n- label: Markdown - Task completed\n  replace: '- [x] '\n  trigger: ':taskdone:'\n- force_clipboard: true\n  label: Markdown - Collapse block\n  replace: '<details>\n\n    <summary></summary>\n\n    $|$\n\n    </details>'\n  trigger: ':collapse:'\n- force_clipboard: true\n  label: Markdown - Comment\n  replace: <!--- $|$ -->\n  trigger: ':comment:'",
+    "User.20260222211658.2": "[mega_a]\n{{ gopassRaw \"rclone/mega_a\" }}\n\n[alist]\n{{ gopassRaw \"rclone/nuc/alist\"}}",
     "zxc.20260126154354.1": "{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}",
     "zxc.20260125145051.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125152704.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -3520,6 +3562,7 @@
     "User.20260221175549.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"espanso\" -}}\nmatches:\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260221194603.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ $win_gpg_agent := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"win-gpg-agent\" \"current\" \"agent-gui.exe\" }}\n{{ if stat $win_gpg_agent -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260221194708.1": "{{ $gpg := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"gpg\" \"current\" -}}\n{{ $gpg_home := joinPath $gpg \"home\" -}}\n{{ $gpg_sock := joinPath $gpg \"gnupg\" -}}\ngpg:\n  install_path: {{ $gpg | quote }}\n  # Before gnupg 2.3.2 release home directory could be properly link-ed\n  #   homedir: {{ $gpg_home | quote }}\n  # With gnupg 2.3.3 release (due to the changes in T5537) use this instead\n  #   homedir: {{ $gpg_home | quote }}\n  #   socketdir: \"\"\n  # After gnupg 2.3.4 release we have to switch to\n  homedir: {{ $gpg_home | quote }}\n  socketdir: {{ $gpg_sock | quote }}\ngui:\n  debug: false\n  setenv: true\n  # Use line below to enable SSH_AUTH_SOCK to point to cygwin socket\n  #   openssh: cygwin",
+    "User.20260222211658.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"rclone\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125211938.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202205715.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
     "zxc.20260202205901.1": "# Flower - とても深いグリーン\nhttps://www.bilibili.com/video/BV1EyHYeBEFr",
@@ -3769,6 +3812,9 @@
     },
     "User.20260221194603.1": {
       "_mod_time": 1771698861.303
+    },
+    "User.20260222211658.1": {
+      "_mod_time": 1771772442.947
     },
     "zxc.20260125211938.1": {
       "_mod_time": 1771507120.162
