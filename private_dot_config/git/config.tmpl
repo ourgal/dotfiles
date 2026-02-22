@@ -135,6 +135,11 @@
 [rerere]
 	autoupdate = true
 	enabled = true
+{{/* for usb drive */}}
+{{ if eq .chezmoi.os "windows" -}}
+[safe]
+	directory = *
+{{ end -}}
 [sequence]
 	editor = "interactive-rebase-tool"
 [status]
