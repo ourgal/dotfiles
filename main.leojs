@@ -1600,6 +1600,10 @@
                   "vh": "rerere"
                 },
                 {
+                  "gnx": "User.20260222130907.1",
+                  "vh": "safe"
+                },
+                {
                   "gnx": "zxc.20260125153759.1",
                   "vh": "sequence"
                 },
@@ -3357,6 +3361,7 @@
     "zxc.20260125153715.1": "[push]\n\tautoSetupRemote = true\n\tdefault = \"current\"\n\tfollowTags = true\n\tuseForceIfIncludes = true",
     "zxc.20260125153727.1": "[rebase]\n\tautoSquash = true\n\tautoStash = true\n\tmissingCommitsCheck = \"warn\"\n\tupdateRefs = true",
     "zxc.20260125153745.1": "[rerere]\n\tautoupdate = true\n\tenabled = true",
+    "User.20260222130907.1": "{{/* for usb drive */}}\n{{ if eq .chezmoi.os \"windows\" -}}\n[safe]\n\tdirectory = *\n{{ end -}}",
     "zxc.20260125153759.1": "[sequence]\n\teditor = \"interactive-rebase-tool\"",
     "zxc.20260125153816.1": "[status]\n\tbranch = true\n\tshowStash = true\n\tshowUntrackedFiles = \"all\"",
     "zxc.20260125153823.1": "[tag]\n\tsort = \"version:refname\"",
@@ -3670,7 +3675,7 @@
       "_mod_time": 1771684793.908
     },
     "User.20260216000318.1": {
-      "_mod_time": 1771685216.948
+      "_mod_time": 1771698861.239
     },
     "User.20260216232855.1": {
       "_mod_time": 1771507120.147
@@ -3694,7 +3699,7 @@
       "_mod_time": 1771507120.162
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1771684793.91
+      "_mod_time": 1771750692.847
     },
     "zxc.20260125161631.1": {
       "_mod_time": 1771684793.91
@@ -3742,10 +3747,10 @@
       "_mod_time": 1771684793.911
     },
     "User.20260221175549.1": {
-      "_mod_time": 1771668690.51
+      "_mod_time": 1771750671.904
     },
     "User.20260221194603.1": {
-      "_mod_time": 1771677367.518
+      "_mod_time": 1771698861.303
     },
     "zxc.20260125211938.1": {
       "_mod_time": 1771507120.162
@@ -3766,10 +3771,10 @@
       "_mod_time": 1771507120.147
     },
     "zxc.20260130233132.1": {
-      "_mod_time": 1771698661.972
+      "_mod_time": 1771698872.19
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1771675193.859
+      "_mod_time": 1771698861.299
     },
     "zxc.20260202195207.1": {
       "_mod_time": 1771507120.147
