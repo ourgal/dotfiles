@@ -27,4 +27,7 @@ Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "espanso" "current" "espansod.e
 {{ if stat $win_gpg_agent -}}
 Run({{ $win_gpg_agent | quote }}, , "Hide")
 {{ end -}}
+{{ if and (eq .chezmoi.hostname "nuc") (lookPath "alist") -}}
+Run("alist start", , "Hide")
+{{ end -}}
 {{ end -}}
