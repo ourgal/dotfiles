@@ -148,5 +148,46 @@
 (use-package! eglot-booster
   :after eglot
   :config (eglot-booster-mode))
+(setq message-send-mail-function 'smtpmail-send-it)
+(setq user-mail-address "ourgal@qq.com")
+(setq user-full-name "ourgal")
+
+(setq smtpmail-smtp-user "ourgal@qq.com"
+      smtpmail-smtp-server "smtp.qq.com"
+      smtpmail-smtp-service 465
+      smtpmail-stream-type 'ssl)
+
+(setq smtpmail-debug-info t)
+(setq smtpmail-debug-verb t)
+
+(setq auth-sources '({{ joinPath .chezmoi.homeDir ".config" "doom" ".authinfo" | quote }}))
+(setq user-mail-address "ourgal@qq.com"
+      user-full-name "ourgal")
+
+(setq gnus-select-method '(nnnil nil))
+(setq gnus-secondary-select-methods
+      '((nnimap "qq"
+               (nnimap-address "imap.qq.com")
+               (nnimap-index "nnimap+qq:INDEX")
+               (nnmail-expiry-target "nnimap+qq:Deleted Messages")
+               (nnimap-expunge t)
+               (nnimap-server-port 993)
+               (nnimap-stream ssl))
+      (nnimap "163"
+               (nnimap-address "imap.163.com")
+               (nnimap-index "nnimap+163:INDEX")
+               (nnmail-expiry-target "nnimap+163:已删除")
+               (nnimap-expunge t)
+               (nnimap-server-port 993)
+               (nnimap-stream ssl))
+      (nnimap "yandex"
+               (nnimap-address "imap.yandex.com")
+               (nnimap-index "nnimap+yandex:INDEX")
+               (nnmail-expiry-target "nnimap+yandex:Trash")
+               (nnimap-expunge t)
+               (nnimap-server-port 993)
+               (nnimap-stream ssl))))
+
+(setq gnus-thread-sort-functions '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date)))
 {{ end -}}
 {{ end -}}
