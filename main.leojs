@@ -3597,7 +3597,7 @@
     "User.20260223181103.1": "{{ template \"espanso_email.key\" }}",
     "User.20260222211658.2": "[mega_a]\n{{ gopassRaw \"rclone/mega_a\" }}\n\n[alist]\n{{ gopassRaw \"rclone/alist/nuc\"}}",
     "zxc.20260126154354.1": "{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}",
-    "zxc.20260125145051.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125145051.1": "{{ if or (eq .chezmoi.os \"linux\") (eq .chezmoi.os \"windows\") (eq .chezmoi.os \"android\") -}}\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125152704.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260125152851.2": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"tldr\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260125153131.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -3811,7 +3811,7 @@
       "_mod_time": 1771507120.162
     },
     "zxc.20260125145051.1": {
-      "_mod_time": 1771507120.162
+      "_mod_time": 1771863575.286
     },
     "zxc.20260125152704.1": {
       "_mod_time": 1771507120.162
