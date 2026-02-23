@@ -7,6 +7,13 @@ Music
 AppData
 vimfiles
 {{ end -}}
+{{ if eq .chezmoi.os "android" -}}
+Documents
+scoop
+Music
+AppData
+vimfiles
+{{ end -}}
 {{ if eq .chezmoi.os "windows" -}}
 .vim
 .local
