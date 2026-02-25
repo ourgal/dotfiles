@@ -1,4 +1,4 @@
-{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "windows") (eq .chezmoi.os "android") -}}
+{{ if or (eq .chezmoi.os "windows") (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
 {{ if lookPath "starship" -}}
 {{ $is_note20 := eq (output "whoami" | trim) .my.termux.note20.username -}}
 add_newline = true

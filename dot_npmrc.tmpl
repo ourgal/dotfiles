@@ -1,4 +1,4 @@
-{{ if or ( eq .chezmoi.os "linux" ) ( eq .chezmoi.os "windows") -}}
+{{ if or (eq .chezmoi.os "windows") (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
 {{ if lookPath "npm"}}
 registry = https://registry.npmmirror.com
 coc.nvim:registry=https://registry.npmmirror.com/

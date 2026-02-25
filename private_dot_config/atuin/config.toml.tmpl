@@ -1,4 +1,4 @@
-{{ if or ( eq .chezmoi.os "linux" ) ( eq .chezmoi.os "windows" ) -}}
+{{ if or (eq .chezmoi.os "windows") (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
 {{ if lookPath "atuin" -}}
 ## Base directory for Atuin data files (databases, keys, session, etc.)
 ## All data file paths default to being relative to this directory.
