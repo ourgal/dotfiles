@@ -886,6 +886,16 @@
               "vh": "@path .chezmoidata",
               "children": [
                 {
+                  "gnx": "User.20260225231846.1",
+                  "vh": "vim",
+                  "children": [
+                    {
+                      "gnx": "User.20260225231901.1",
+                      "vh": "@clean vim.toml"
+                    }
+                  ]
+                },
+                {
                   "gnx": "User.20260218020025.1",
                   "vh": "msys2",
                   "children": [
@@ -3589,9 +3599,9 @@
     "zxc.20260126160624.1": "[\".local/lib/ble-nightly\"]\n    type = \"archive\"\n    url = \"https://github.com/akinomyoga/ble.sh/releases/download/nightly/ble-nightly.tar.xz\"\n    exact = true\n    stripComponents = 1\n    refreshPeriod = \"168h\"",
     "zxc.20260130221131.1": "@others",
     "zxc.20260130221131.2": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260130221536.1": "[\".vim/autoload/plug.vim\"]\n    type = \"file\"\n    url = \"https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim\"\n    refreshPeriod = \"168h\"\n",
+    "zxc.20260130221536.1": "[\".vim/autoload/plug.vim\"]\n    type = \"file\"\n    url = {{ .my.vim.plugins.vim_plug.init | quote }}\n    refreshPeriod = \"168h\"\n",
     "zxc.20260130221550.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260130221550.2": "[\"vimfiles/autoload/plug.vim\"]\n    type = \"file\"\n    url = \"https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim\"\n    refreshPeriod = \"168h\"\n",
+    "zxc.20260130221550.2": "[\"vimfiles/autoload/plug.vim\"]\n    type = \"file\"\n    url = {{ .my.vim.plugins.vim_plug.init | quote }}\n    refreshPeriod = \"168h\"\n",
     "zxc.20260130074346.1": "<< dos >>\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260130074346.2": "[\".cache/vscodium/extensions/vsnetrw.vsix\"]\n    type = \"file\"\n    url = \"https://github.com/danprince/vsnetrw/releases/download/v0.3.2/vsnetrw-0.3.2.vsix\"\n",
     "zxc.20260126160530.1": "<< unix dos >>\n{{ if lookPath \"emacs\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -3655,6 +3665,7 @@
     "User.20260220000301.3": "{{ if lookPath \"dirhash\" -}}\n# {{ output \"dirhash\" (joinPath (env \"Appdata\") \"Rime\" \"default.custom.yaml\") \"-nowait\" \"-quiet\" | trim }}\n# {{ output \"dirhash\" (joinPath (env \"Appdata\") \"Rime\" \"sbfm.custom.yaml\") \"-nowait\" \"-quiet\" | trim }}\n& {{ joinPath (env \"programdata\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Weasel\" \"Weasel Deploy.lnk\" | quote }}\n{{ end -}}",
     "User.20260220012738.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if and (lookPath \"gh\") (lookPath \"gopass\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260220012907.1": "{{ if not (exec \"gh\" \"auth\" \"status\") -}}\n\"Starting to login in github cli\"\ngopass github/ourgal/token | gh auth login --hostname github.com --with-token\n\"Login in github successed\"\n{{ end -}}",
+    "User.20260225231901.1": "[my.vim.plugins.vim_plug]\ninit = \"https://gitee.com/lauhong/vim-plug/raw/master/plug.vim\"",
     "User.20260218020042.1": "[my.msys2]\npackages = [\"mingw-w64-x86_64-aspell\"]",
     "User.20260217234231.1": "[my.font]\nmonospace = \"FiraCode Nerd Font Mono\"\n",
     "User.20260217125336.1": "[my.git.sign]\nssh = false\ngpg = true",
@@ -3993,7 +4004,7 @@
       "_mod_time": 1772023618.94
     },
     "zxc.20260130221131.1": {
-      "_mod_time": 1772023638.059
+      "_mod_time": 1772032916.751
     },
     "zxc.20260130074346.1": {
       "_mod_time": 1771507120.147
@@ -4060,6 +4071,9 @@
     },
     "User.20260220012738.1": {
       "_mod_time": 1771684793.907
+    },
+    "User.20260225231901.1": {
+      "_mod_time": 1772032902.869
     },
     "User.20260218020042.1": {
       "_mod_time": 1771684793.907

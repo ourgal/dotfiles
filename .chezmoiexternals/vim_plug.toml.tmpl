@@ -2,7 +2,7 @@
 {{ if lookPath "vim" -}}
 [".vim/autoload/plug.vim"]
     type = "file"
-    url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    url = {{ .my.vim.plugins.vim_plug.init | quote }}
     refreshPeriod = "168h"
 {{ end -}}
 {{ end -}}
@@ -10,7 +10,7 @@
 {{ if lookPath "vim" -}}
 ["vimfiles/autoload/plug.vim"]
     type = "file"
-    url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    url = {{ .my.vim.plugins.vim_plug.init | quote }}
     refreshPeriod = "168h"
 {{ end -}}
 {{ end -}}
