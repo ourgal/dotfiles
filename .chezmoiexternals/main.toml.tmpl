@@ -1,0 +1,42 @@
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if lookPath "bash" -}}
+[".local/lib/ble-nightly"]
+    type = "archive"
+    url = "https://github.com/akinomyoga/ble.sh/releases/download/nightly/ble-nightly.tar.xz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+{{ end -}}
+{{ end -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "codium" -}}
+[".cache/vscodium/extensions/vsnetrw.vsix"]
+    type = "file"
+    url = "https://github.com/danprince/vsnetrw/releases/download/v0.3.2/vsnetrw-0.3.2.vsix"
+{{ end -}}
+{{ end -}}
+{{ if or (eq .chezmoi.os "windows") (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if lookPath "emacs" -}}
+[".emacs.d"]
+    type = "git-repo"
+    url = "https://mirror.nju.edu.cn/git/doom-emacs.git/"
+{{ end -}}
+{{ end -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "mpv" -}}
+["Appdata/Roaming/mpv/scripts/thumbfast.lua"]
+    type = "file"
+    url = "https://github.com/po5/thumbfast/raw/refs/heads/master/thumbfast.lua"
+
+["Appdata/Roaming/mpv/scripts/SmartSkip.lua"]
+    type = "file"
+    url = "https://github.com/Eisa01/mpv-scripts/raw/refs/heads/master/scripts/SmartSkip.lua"
+{{ end -}}
+{{ end -}}
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+[".local/share/fonts/nerdsymbols"]
+    type = "archive"
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdFontsSymbolsOnly.tar.xz"
+    exact = true
+    include = [ "*.ttf" ]
+{{ end -}}
