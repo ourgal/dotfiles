@@ -2,6 +2,11 @@
 {{ if lookPath "vscodium" -}}
 [
     {
+        "key": "ctrl+shift+alt+v",
+        "command": "leojs.pasteNodeAsCloneAtSelection",
+        "when": "leojsEditHeadline && leojsTreeOpened || leojsFindFocus && leojsTreeOpened || leojsTreeOpened && sideBarFocus && focusedView =~ /^leojs/"
+    },
+    {
         "key": "space",
         "command": "vspacecode.space",
         "when": "activeEditorGroupEmpty && focusedView == '' && !whichkeyActive && !inputFocus"
