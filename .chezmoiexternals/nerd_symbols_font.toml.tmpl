@@ -1,4 +1,4 @@
-{{ if eq .chezmoi.os "linux" -}}
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
 [".local/share/fonts/nerdsymbols"]
     type = "archive"
     url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdFontsSymbolsOnly.tar.xz"

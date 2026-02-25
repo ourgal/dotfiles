@@ -1,4 +1,4 @@
-{{ if or (eq .chezmoi.os "windows") (eq .chezmoi.os "linux") -}}
+{{ if or (eq .chezmoi.os "windows") (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
 {{ if stat (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom") -}}
 ;;; init.el -*- lexical-binding: t; -*-
 

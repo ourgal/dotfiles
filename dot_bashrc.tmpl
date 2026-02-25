@@ -112,10 +112,8 @@ if ! shopt -oq posix; then
 fi
 EDITOR={{ template "editor" }}
 PATH=~/.local/bin:$PATH
-{{ if hasKey .chezmoi.kernel "osrelease" -}}
-{{ if not (mustRegexMatch ".*WSL.*" .chezmoi.kernel.osrelease) -}}
+{{ if and (hasKey .chezmoi.kernel "osrelease") (not (mustRegexMatch ".*WSL.*" .chezmoi.kernel.osrelease)) -}}
 source ~/.local/lib/ble-nightly/ble.sh
-{{ end -}}
 {{ end -}}
 {{ if lookPath "fzf" -}}
 eval "$(fzf --bash)"
