@@ -62,6 +62,10 @@
           "vh": "@clean dot_bashrc.tmpl",
           "children": [
             {
+              "gnx": "User.20260225203941.1",
+              "vh": "<< unix >>"
+            },
+            {
               "gnx": "zxc.20260125143032.1",
               "vh": "debian origin"
             },
@@ -85,7 +89,13 @@
               "children": [
                 {
                   "gnx": "zxc.20260125143635.1",
-                  "vh": "ble"
+                  "vh": "ble",
+                  "children": [
+                    {
+                      "gnx": "User.20260225204031.1",
+                      "vh": "<< not WSL >>"
+                    }
+                  ]
                 }
               ]
             },
@@ -128,6 +138,9 @@
           "vh": "@clean dot_bash_profile.tmpl",
           "children": [
             {
+              "gnx": "User.20260225203941.1"
+            },
+            {
               "gnx": "zxc.20260125144055.1",
               "vh": "bashrc"
             },
@@ -135,6 +148,10 @@
               "gnx": "zxc.20260125144120.1",
               "vh": "surface-void",
               "children": [
+                {
+                  "gnx": "User.20260225204243.1",
+                  "vh": "<< surface-void >>"
+                },
                 {
                   "gnx": "zxc.20260125144207.1",
                   "vh": "startx"
@@ -178,6 +195,10 @@
                   "vh": "windows",
                   "children": [
                     {
+                      "gnx": "User.20260225204326.1",
+                      "vh": "<< dos >>"
+                    },
+                    {
                       "gnx": "zxc.20260126154908.1",
                       "vh": "interpreter"
                     },
@@ -207,6 +228,10 @@
                   "gnx": "zxc.20260125144547.1",
                   "vh": "linux",
                   "children": [
+                    {
+                      "gnx": "User.20260225204416.1",
+                      "vh": "<< linux >>"
+                    },
                     {
                       "gnx": "User.20260224001403.1",
                       "vh": "content",
@@ -240,6 +265,10 @@
                   "vh": "android",
                   "children": [
                     {
+                      "gnx": "User.20260225204449.1",
+                      "vh": "<< android >>"
+                    },
+                    {
                       "gnx": "User.20260224001403.1"
                     }
                   ]
@@ -248,6 +277,9 @@
                   "gnx": "zxc.20260125144606.1",
                   "vh": "windows",
                   "children": [
+                    {
+                      "gnx": "User.20260225204326.1"
+                    },
                     {
                       "gnx": "zxc.20260125144639.1",
                       "vh": ".vim"
@@ -311,6 +343,9 @@
                   "vh": "@clean ble_sh.toml.tmpl",
                   "children": [
                     {
+                      "gnx": "User.20260225203941.1"
+                    },
+                    {
                       "gnx": "zxc.20260126160624.1",
                       "vh": "content"
                     }
@@ -325,6 +360,9 @@
                       "vh": "linux",
                       "children": [
                         {
+                          "gnx": "User.20260225203941.1"
+                        },
+                        {
                           "gnx": "zxc.20260130221536.1",
                           "vh": "toml"
                         }
@@ -334,6 +372,9 @@
                       "gnx": "zxc.20260130221550.1",
                       "vh": "windows",
                       "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
                         {
                           "gnx": "zxc.20260130221550.2",
                           "vh": "toml"
@@ -347,6 +388,9 @@
                   "vh": "@clean vscodium_extensions.toml.tmpl",
                   "children": [
                     {
+                      "gnx": "User.20260225204326.1"
+                    },
+                    {
                       "gnx": "zxc.20260130074346.2",
                       "vh": "content"
                     }
@@ -356,6 +400,10 @@
                   "gnx": "zxc.20260126160530.1",
                   "vh": "@clean doomemacs.toml.tmpl",
                   "children": [
+                    {
+                      "gnx": "User.20260225204914.1",
+                      "vh": "<< unix dos >>"
+                    },
                     {
                       "gnx": "zxc.20260126160721.1",
                       "vh": "content"
@@ -367,6 +415,9 @@
                   "vh": "@clean mpv_plugins.toml.tmpl",
                   "children": [
                     {
+                      "gnx": "User.20260225204326.1"
+                    },
+                    {
                       "gnx": "zxc.20260202201936.1",
                       "vh": "content"
                     }
@@ -376,6 +427,9 @@
                   "gnx": "User.20260220235431.1",
                   "vh": "@clean nerd_symbols_font.toml.tmpl",
                   "children": [
+                    {
+                      "gnx": "User.20260225203941.1"
+                    },
                     {
                       "gnx": "User.20260220235538.1",
                       "vh": "content"
@@ -403,6 +457,9 @@
                       "vh": "@clean run_onchange_mpv_uosc.ps1.tmpl",
                       "children": [
                         {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
                           "gnx": "zxc.20260202203521.18",
                           "vh": "content"
                         }
@@ -412,6 +469,9 @@
                       "gnx": "User.20260220233639.1",
                       "vh": "@clean run_onchange_mpv_uosc.sh.tmpl",
                       "children": [
+                        {
+                          "gnx": "User.20260225203941.1"
+                        },
                         {
                           "gnx": "User.20260220233712.1",
                           "vh": "content"
@@ -428,6 +488,9 @@
                       "gnx": "zxc.20260202203521.20",
                       "vh": "@clean run_onchange_taskbar_pinnned_items.ps1.tmpl",
                       "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
                         {
                           "gnx": "zxc.20260202203521.21",
                           "vh": "function",
@@ -459,6 +522,9 @@
                       "vh": "@clean run_onchange_before_rime_sbsrf.ps1.tmpl",
                       "children": [
                         {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
                           "gnx": "User.20260216114815.1",
                           "vh": "content"
                         }
@@ -475,6 +541,9 @@
                       "vh": "@clean run_clink_jnject.ps1.tmpl",
                       "children": [
                         {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
                           "gnx": "zxc.20260202203521.15",
                           "vh": "content"
                         }
@@ -490,6 +559,9 @@
                       "gnx": "zxc.20260202203521.3",
                       "vh": "@clean run_onchange_vscodium_extensions.ps1.tmpl",
                       "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
                         {
                           "gnx": "zxc.20260202203521.4",
                           "vh": "content",
@@ -557,6 +629,9 @@
                       "vh": "@clean run_onchange_vscodium_register.ps1.tmpl",
                       "children": [
                         {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
                           "gnx": "zxc.20260202213506.1",
                           "vh": "content"
                         }
@@ -573,6 +648,9 @@
                       "vh": "@clean run_onchange_vscode_register.ps1.tmpl",
                       "children": [
                         {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
                           "gnx": "User.20260220142155.3",
                           "vh": "content"
                         }
@@ -588,6 +666,9 @@
                       "gnx": "User.20260220151435.2",
                       "vh": "@clean run_onchange_vscode_extensions.ps1.tmpl",
                       "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
                         {
                           "gnx": "User.20260220151435.3",
                           "vh": "content",
@@ -624,6 +705,9 @@
                       "vh": "@clean run_onchange_7z_context.ps1.tmpl",
                       "children": [
                         {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
                           "gnx": "zxc.20260202215044.1",
                           "vh": "content"
                         }
@@ -639,6 +723,9 @@
                       "gnx": "zxc.20260202215408.1",
                       "vh": "@clean run_onchange_git_register.ps1.tmpl",
                       "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
                         {
                           "gnx": "zxc.20260202215423.1",
                           "vh": "content"
@@ -656,6 +743,9 @@
                       "vh": "@clean run_onchange_pwsh_register.ps1.tmpl",
                       "children": [
                         {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
                           "gnx": "zxc.20260202220046.1",
                           "vh": "content"
                         }
@@ -671,6 +761,9 @@
                       "gnx": "zxc.20260202220553.1",
                       "vh": "@clean run_onchange_vim_context.ps1.tmpl",
                       "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
                         {
                           "gnx": "zxc.20260202220615.1",
                           "vh": "content"
@@ -688,6 +781,13 @@
                       "vh": "@clean run_onchange_after_sync_doom_emacs.ps1.tmpl",
                       "children": [
                         {
+                          "gnx": "User.20260225205841.1",
+                          "vh": "<< doomemacs >>"
+                        },
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
                           "gnx": "User.20260217202404.1",
                           "vh": "content"
                         }
@@ -697,6 +797,12 @@
                       "gnx": "User.20260220214558.1",
                       "vh": "@clean run_onchange_after_sync_doom_emacs.sh.tmpl",
                       "children": [
+                        {
+                          "gnx": "User.20260225203941.1"
+                        },
+                        {
+                          "gnx": "User.20260225205841.1"
+                        },
                         {
                           "gnx": "User.20260221011837.1",
                           "vh": "shebang"
@@ -722,6 +828,9 @@
                       "vh": "@clean run_onchange_msys2_install_packages.ps1.tmpl",
                       "children": [
                         {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
                           "gnx": "User.20260217214859.1",
                           "vh": "content"
                         }
@@ -737,6 +846,9 @@
                       "gnx": "User.20260220000301.2",
                       "vh": "@clean run_onchange_after_rime_deploy.ps1.tmpl",
                       "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
                         {
                           "gnx": "User.20260220000301.3",
                           "vh": "content"
@@ -828,6 +940,9 @@
           "vh": "@clean dot_pip/pip.conf.tmpl",
           "children": [
             {
+              "gnx": "User.20260225203941.1"
+            },
+            {
               "gnx": "zxc.20260125162834.1",
               "vh": "content"
             }
@@ -837,6 +952,9 @@
           "gnx": "zxc.20260126185048.1",
           "vh": "@clean AppData/Roaming/pip/pip.ini.tmpl",
           "children": [
+            {
+              "gnx": "User.20260225204326.1"
+            },
             {
               "gnx": "zxc.20260125162834.1"
             }
@@ -869,6 +987,9 @@
                           "vh": "@clean dot_keep.tmpl",
                           "children": [
                             {
+                              "gnx": "User.20260225204914.1"
+                            },
+                            {
                               "gnx": "User.20260218144149.1",
                               "vh": "content"
                             }
@@ -884,6 +1005,9 @@
                           "gnx": "User.20260218144232.1",
                           "vh": "@clean dot_keep.tmpl",
                           "children": [
+                            {
+                              "gnx": "User.20260225204914.1"
+                            },
                             {
                               "gnx": "User.20260218144232.2",
                               "vh": "content"
@@ -938,6 +1062,9 @@
                   "gnx": "zxc.20260125163416.1",
                   "vh": "@clean vimrc.tmpl",
                   "children": [
+                    {
+                      "gnx": "User.20260225203941.1"
+                    },
                     {
                       "gnx": "User.20260218142122.1",
                       "vh": "content",
@@ -1083,6 +1210,9 @@
                       "vh": "@clean find.vim.tmpl",
                       "children": [
                         {
+                          "gnx": "User.20260225203941.1"
+                        },
+                        {
                           "gnx": "zxc.20260125164204.1",
                           "vh": "content"
                         }
@@ -1107,6 +1237,9 @@
                   "vh": "@clean vimrc.tmpl",
                   "children": [
                     {
+                      "gnx": "User.20260225204326.1"
+                    },
+                    {
                       "gnx": "User.20260218142122.1"
                     }
                   ]
@@ -1119,6 +1252,9 @@
                       "gnx": "User.20260218142322.1",
                       "vh": "@clean find.vim.tmpl",
                       "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
                         {
                           "gnx": "zxc.20260125164204.1"
                         }
@@ -1140,6 +1276,9 @@
           "gnx": "zxc.20260130225718.1",
           "vh": "@clean dot_npmrc.tmpl",
           "children": [
+            {
+              "gnx": "User.20260225204914.1"
+            },
             {
               "gnx": "zxc.20260130225733.1",
               "vh": "content"
@@ -2149,6 +2288,9 @@
           "vh": "@clean dot_cargo/config.toml.tmpl",
           "children": [
             {
+              "gnx": "User.20260225204914.1"
+            },
+            {
               "gnx": "User.20260216000441.1",
               "vh": "content"
             }
@@ -2191,6 +2333,9 @@
           "vh": "@clean dot_aria2/aria2.conf.tmpl",
           "children": [
             {
+              "gnx": "User.20260225204326.1"
+            },
+            {
               "gnx": "User.20260216232938.1",
               "vh": "content"
             }
@@ -2206,6 +2351,9 @@
           "gnx": "User.20260217182613.1",
           "vh": "@clean dot_eget.toml.tmpl",
           "children": [
+            {
+              "gnx": "User.20260225204326.1"
+            },
             {
               "gnx": "User.20260217182650.1",
               "vh": "global"
@@ -2495,6 +2643,9 @@
                   "vh": "@clean chezmoi/chezmoi.toml.tmpl",
                   "children": [
                     {
+                      "gnx": "User.20260225204914.1"
+                    },
+                    {
                       "gnx": "zxc.20260126154557.1"
                     }
                   ]
@@ -2509,6 +2660,9 @@
                   "gnx": "zxc.20260125145051.1",
                   "vh": "@clean starship.toml.tmpl",
                   "children": [
+                    {
+                      "gnx": "User.20260225204914.1"
+                    },
                     {
                       "gnx": "zxc.20260125145640.1"
                     }
@@ -2525,6 +2679,9 @@
                   "vh": "@clean atuin/config.toml.tmpl",
                   "children": [
                     {
+                      "gnx": "User.20260225204914.1"
+                    },
+                    {
                       "gnx": "zxc.20260125152804.1"
                     }
                   ]
@@ -2539,6 +2696,9 @@
                   "gnx": "zxc.20260125152851.2",
                   "vh": "@clean tealdeer/config.toml.tmpl",
                   "children": [
+                    {
+                      "gnx": "User.20260225203941.1"
+                    },
                     {
                       "gnx": "zxc.20260125152851.3"
                     }
@@ -2555,6 +2715,9 @@
                   "vh": "@clean git/template.tmpl",
                   "children": [
                     {
+                      "gnx": "User.20260225204914.1"
+                    },
+                    {
                       "gnx": "zxc.20260125153131.2"
                     }
                   ]
@@ -2563,6 +2726,9 @@
                   "gnx": "zxc.20260125153012.2",
                   "vh": "@clean git/config.tmpl",
                   "children": [
+                    {
+                      "gnx": "User.20260225204914.1"
+                    },
                     {
                       "gnx": "zxc.20260201143049.1"
                     }
@@ -2579,6 +2745,9 @@
                   "vh": "@clean helix/config.toml.tmpl",
                   "children": [
                     {
+                      "gnx": "User.20260225203941.1"
+                    },
+                    {
                       "gnx": "zxc.20260201143237.1"
                     }
                   ]
@@ -2587,6 +2756,9 @@
                   "gnx": "User.20260216185314.1",
                   "vh": "@clean helix/languages.toml.tmpl",
                   "children": [
+                    {
+                      "gnx": "User.20260225203941.1"
+                    },
                     {
                       "gnx": "zxc.20260214142549.1"
                     }
@@ -2607,6 +2779,12 @@
                       "vh": "@clean init.el.tmpl",
                       "children": [
                         {
+                          "gnx": "User.20260225204914.1"
+                        },
+                        {
+                          "gnx": "User.20260225205841.1"
+                        },
+                        {
                           "gnx": "User.20260217223023.2"
                         }
                       ]
@@ -2615,6 +2793,12 @@
                       "gnx": "User.20260217223030.1",
                       "vh": "@clean config.el.tmpl",
                       "children": [
+                        {
+                          "gnx": "User.20260225204914.1"
+                        },
+                        {
+                          "gnx": "User.20260225205841.1"
+                        },
                         {
                           "gnx": "User.20260217223030.2"
                         }
@@ -2625,6 +2809,12 @@
                       "vh": "@clean packages.el.tmpl",
                       "children": [
                         {
+                          "gnx": "User.20260225204914.1"
+                        },
+                        {
+                          "gnx": "User.20260225205841.1"
+                        },
+                        {
                           "gnx": "User.20260217223035.2"
                         }
                       ]
@@ -2633,6 +2823,12 @@
                       "gnx": "User.20260223014430.1",
                       "vh": "@clean dot_authinfo.tmpl",
                       "children": [
+                        {
+                          "gnx": "User.20260225204914.1"
+                        },
+                        {
+                          "gnx": "User.20260225205841.1"
+                        },
                         {
                           "gnx": "User.20260223014458.1",
                           "vh": "content"
@@ -2655,6 +2851,9 @@
                       "gnx": "User.20260220233323.1",
                       "vh": "@clean mpv.conf.tmpl",
                       "children": [
+                        {
+                          "gnx": "User.20260225203941.1"
+                        },
                         {
                           "gnx": "zxc.20260202195341.1"
                         }
@@ -2717,6 +2916,9 @@
                                   "vh": "@clean local-fingerprint.tmpl",
                                   "children": [
                                     {
+                                      "gnx": "User.20260225204326.1"
+                                    },
+                                    {
                                       "gnx": "User.20260215182554.1",
                                       "vh": "nuc"
                                     }
@@ -2727,6 +2929,9 @@
                                   "vh": "@clean deskflow.pem.tmpl",
                                   "children": [
                                     {
+                                      "gnx": "User.20260225204326.1"
+                                    },
+                                    {
                                       "gnx": "User.20260217022247.1",
                                       "vh": "content"
                                     }
@@ -2736,6 +2941,9 @@
                                   "gnx": "User.20260215182818.1",
                                   "vh": "@clean trusted-servers.tmpl",
                                   "children": [
+                                    {
+                                      "gnx": "User.20260225204326.1"
+                                    },
                                     {
                                       "gnx": "User.20260215182823.1",
                                       "vh": "nuc"
@@ -2750,6 +2958,9 @@
                           "gnx": "zxc.20260201225344.1",
                           "vh": "@clean Deskflow.conf.tmpl",
                           "children": [
+                            {
+                              "gnx": "User.20260225204326.1"
+                            },
                             {
                               "gnx": "zxc.20260202195009.1"
                             }
@@ -2771,6 +2982,9 @@
                           "gnx": "zxc.20260201034331.1",
                           "vh": "@clean settings.json.tmpl",
                           "children": [
+                            {
+                              "gnx": "User.20260225204326.1"
+                            },
                             {
                               "gnx": "zxc.20260201142202.1"
                             }
@@ -2801,6 +3015,9 @@
                                   "vh": "@clean settings.json.tmpl",
                                   "children": [
                                     {
+                                      "gnx": "User.20260225204326.1"
+                                    },
+                                    {
                                       "gnx": "User.20260215215016.1"
                                     }
                                   ]
@@ -2809,6 +3026,9 @@
                                   "gnx": "User.20260215210400.1",
                                   "vh": "@clean keybindings.json.tmpl",
                                   "children": [
+                                    {
+                                      "gnx": "User.20260225204326.1"
+                                    },
                                     {
                                       "gnx": "User.20260215215005.1"
                                     }
@@ -2843,6 +3063,9 @@
                                   "vh": "@clean settings.json.tmpl",
                                   "children": [
                                     {
+                                      "gnx": "User.20260225204326.1"
+                                    },
+                                    {
                                       "gnx": "User.20260215215016.1"
                                     }
                                   ]
@@ -2851,6 +3074,9 @@
                                   "gnx": "User.20260220151031.28",
                                   "vh": "@clean keybindings.json.tmpl",
                                   "children": [
+                                    {
+                                      "gnx": "User.20260225204326.1"
+                                    },
                                     {
                                       "gnx": "User.20260215215005.1"
                                     }
@@ -2881,6 +3107,9 @@
                               "vh": "@clean base.yml.tmpl",
                               "children": [
                                 {
+                                  "gnx": "User.20260225204326.1"
+                                },
+                                {
                                   "gnx": "User.20260221194317.1"
                                 }
                               ]
@@ -2900,6 +3129,9 @@
                       "vh": "@clean agent-gui.conf.tmpl",
                       "children": [
                         {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
                           "gnx": "User.20260221194708.1",
                           "vh": "content"
                         }
@@ -2915,6 +3147,9 @@
                       "gnx": "User.20260222211658.1",
                       "vh": "@clean rclone.conf.tmpl",
                       "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
                         {
                           "gnx": "User.20260222211658.2"
                         }
@@ -2949,6 +3184,9 @@
                       "vh": "@clean Microsoft.PowerShell_profile.ps1.tmpl",
                       "children": [
                         {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
                           "gnx": "zxc.20260128004429.1"
                         }
                       ]
@@ -2977,6 +3215,9 @@
                   "gnx": "zxc.20260202205715.1",
                   "vh": "@clean network.m3u.tmpl",
                   "children": [
+                    {
+                      "gnx": "User.20260225204326.1"
+                    },
                     {
                       "gnx": "zxc.20260202205901.1",
                       "vh": "content"
@@ -3026,6 +3267,9 @@
                       "vh": "@clean gpg.conf.tmpl",
                       "children": [
                         {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
                           "gnx": "zxc.20260201203315.1"
                         }
                       ]
@@ -3035,13 +3279,21 @@
                       "vh": "@clean gpg-agent.conf.tmpl",
                       "children": [
                         {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
                           "gnx": "zxc.20260201203539.1"
                         }
                       ]
                     },
                     {
                       "gnx": "zxc.20260201214114.1",
-                      "vh": "@clean sshcontrol.tmpl"
+                      "vh": "@clean sshcontrol.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -3053,6 +3305,9 @@
                       "gnx": "zxc.20260201140523.1",
                       "vh": "@clean key_bindings.ron.tmpl",
                       "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
                         {
                           "gnx": "zxc.20260201140637.1"
                         }
@@ -3068,6 +3323,9 @@
                       "gnx": "zxc.20260130233132.1",
                       "vh": "@clean alacritty.toml.tmpl",
                       "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
                         {
                           "gnx": "zxc.20260201142451.1"
                         }
@@ -3100,6 +3358,9 @@
                                       "vh": "@clean main.ahk.tmpl",
                                       "children": [
                                         {
+                                          "gnx": "User.20260225204326.1"
+                                        },
+                                        {
                                           "gnx": "zxc.20260128003258.1"
                                         }
                                       ]
@@ -3123,6 +3384,9 @@
                       "vh": "@clean mpv.conf.tmpl",
                       "children": [
                         {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
                           "gnx": "zxc.20260202195341.1"
                         }
                       ]
@@ -3138,6 +3402,9 @@
                       "vh": "@clean config.toml.tmpl",
                       "children": [
                         {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
                           "gnx": "zxc.20260201143237.1"
                         }
                       ]
@@ -3146,6 +3413,9 @@
                       "gnx": "zxc.20260214142543.1",
                       "vh": "@clean languages.toml.tmpl",
                       "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
                         {
                           "gnx": "zxc.20260214142549.1"
                         }
@@ -3166,6 +3436,9 @@
                           "vh": "@clean config.py.tmpl",
                           "children": [
                             {
+                              "gnx": "User.20260225204326.1"
+                            },
+                            {
                               "gnx": "User.20260215234715.1",
                               "vh": "content"
                             }
@@ -3184,6 +3457,9 @@
                       "vh": "@clean default.custom.yaml.tmpl",
                       "children": [
                         {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
                           "gnx": "User.20260216125349.1"
                         }
                       ]
@@ -3192,6 +3468,9 @@
                       "gnx": "User.20260216125422.1",
                       "vh": "@clean sbfm.custom.yaml.tmpl",
                       "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
                         {
                           "gnx": "User.20260216125513.1"
                         }
@@ -3207,6 +3486,9 @@
                       "gnx": "User.20260219235648.1",
                       "vh": "@clean settings.json.tmpl",
                       "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
                         {
                           "gnx": "User.20260219235734.1",
                           "vh": "content",
@@ -3244,37 +3526,43 @@
     "zxc.20260125142255.1": "yes | git magic -ap\n",
     "zxc.20260125142829.1": "{{ if eq .chezmoi.os \"linux\" -}}\n@others\n{{ end -}}",
     "zxc.20260125142901.1": "{{ if eq .chezmoi.hostname \"surface-void\" -}}\nexec /usr/bin/xfce4-session\n{{ end -}}",
-    "zxc.20260125143007.1": "{{ if or (eq .chezmoi.os \"linux\") (eq .chezmoi.os \"android\") -}}\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125143007.1": "<< unix >>\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260225203941.1": "{{ if or (eq .chezmoi.os \"linux\") (eq .chezmoi.os \"android\") -}}",
     "zxc.20260125143032.1": "# ~/.bashrc: executed by bash(1) for non-login shells.\n# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)\n# for examples\n\n# If not running interactively, don't do anything\ncase $- in\n    *i*) ;;\n      *) return;;\nesac\n\n# don't put duplicate lines or lines starting with space in the history.\n# See bash(1) for more options\nHISTCONTROL=ignoreboth\n\n# append to the history file, don't overwrite it\nshopt -s histappend\n\n# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)\nHISTSIZE=1000\nHISTFILESIZE=2000\n\n# check the window size after each command and, if necessary,\n# update the values of LINES and COLUMNS.\nshopt -s checkwinsize\n\n# If set, the pattern \"**\" used in a pathname expansion context will\n# match all files and zero or more directories and subdirectories.\n#shopt -s globstar\n\n# make less more friendly for non-text input files, see lesspipe(1)\n#[ -x /usr/bin/lesspipe ] && eval \"$(SHELL=/bin/sh lesspipe)\"\n\n{{ if and (eq .chezmoi.os \"linux\") (eq .chezmoi.osRelease.id \"debian\") -}}\n# set variable identifying the chroot you work in (used in the prompt below)\nif [ -z \"''\\${debian_chroot:-}\" ] && [ -r /etc/debian_chroot ]; then\n    debian_chroot=$(cat /etc/debian_chroot)\nfi\n{{ end -}}\n\n# set a fancy prompt (non-color, unless we know we \"want\" color)\ncase \"$TERM\" in\n    xterm-color|*-256color) color_prompt=yes;;\nesac\n\n# uncomment for a colored prompt, if the terminal has the capability; turned\n# off by default to not distract the user: the focus in a terminal window\n# should be on the output of commands, not on the prompt\n#force_color_prompt=yes\n\nif [ -n \"$force_color_prompt\" ]; then\n    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then\n        # We have color support; assume it's compliant with Ecma-48\n        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such\n        # a case would tend to support setf rather than setaf.)\n        color_prompt=yes\n    else\n        color_prompt=\n    fi\nfi\n\n{{ if and (eq .chezmoi.os \"linux\") (eq .chezmoi.osRelease.id \"debian\") -}}\n# If this is an xterm set the title to user@host:dir\ncase \"$TERM\" in\nxterm*|rxvt*)\n    PS1=\"\\[\\e]0;''\\${debian_chroot:+($debian_chroot)}\\u@\\h: \\w\\a\\]$PS1\"\n    ;;\n*)\n    ;;\nesac\n{{ end -}}\n\n# enable color support of ls and also add handy aliases\nif [ -x /usr/bin/dircolors ]; then\n    test -r ~/.dircolors && eval \"$(dircolors -b ~/.dircolors)\" || eval \"$(dircolors -b)\"\n    alias ls='ls --color=auto'\n    #alias dir='dir --color=auto'\n    #alias vdir='vdir --color=auto'\n\n    #alias grep='grep --color=auto'\n    #alias fgrep='fgrep --color=auto'\n    #alias egrep='egrep --color=auto'\nfi\n\n# colored GCC warnings and errors\n#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'\n\n# some more ls aliases\n#alias ll='ls -l'\n#alias la='ls -A'\n#alias l='ls -CF'\n\n# Alias definitions.\n# You may want to put all your additions into a separate file like\n# ~/.bash_aliases, instead of adding them here directly.\n# See /usr/share/doc/bash-doc/examples in the bash-doc package.\n\nif [ -f ~/.bash_aliases ]; then\n    . ~/.bash_aliases\nfi\n\n# enable programmable completion features (you don't need to enable\n# this, if it's already enabled in /etc/bash.bashrc and /etc/profile\n# sources /etc/bash.bashrc).\nif ! shopt -oq posix; then\n  if [ -f /usr/share/bash-completion/bash_completion ]; then\n    . /usr/share/bash-completion/bash_completion\n  elif [ -f /etc/bash_completion ]; then\n    . /etc/bash_completion\n  fi\nfi",
     "zxc.20260125143522.1": "EDITOR={{ template \"editor\" }}",
     "zxc.20260125143553.1": "PATH=~/.local/bin:$PATH",
-    "zxc.20260125143635.1": "{{ if hasKey .chezmoi.kernel \"osrelease\" -}}\n{{ if not (mustRegexMatch \".*WSL.*\" .chezmoi.kernel.osrelease) -}}\nsource ~/.local/lib/ble-nightly/ble.sh\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260125143635.1": "<< not WSL >>\nsource ~/.local/lib/ble-nightly/ble.sh\n{{ end -}}\n",
+    "User.20260225204031.1": "{{ if and (hasKey .chezmoi.kernel \"osrelease\") (not (mustRegexMatch \".*WSL.*\" .chezmoi.kernel.osrelease)) -}}",
     "zxc.20260125143653.1": "{{ if lookPath \"fzf\" -}}\neval \"$(fzf --bash)\"\n{{ end -}}\n",
     "zxc.20260125143706.1": "{{ if lookPath \"starship\" -}}\neval \"$(starship init bash)\"\n{{ end -}}\n",
     "zxc.20260125143716.1": "{{ if lookPath \"eza\" -}}\nalias ll='eza --long --git --icons auto --group --group-directories-first --time-style relative'\n{{ end -}}",
     "zxc.20260125143728.1": "{{ if lookPath \"atuin\" -}}\neval \"$(atuin init bash)\"\n{{ end -}}\n",
     "zxc.20260125143738.1": "{{ if lookPath \"zoxide\" -}}\n# zoxdie is needed be the end of bashrc\neval \"$(zoxide init bash)\"\n{{ end -}}\n",
-    "zxc.20260125143959.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125143959.1": "<< unix >>\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125144055.1": "# Get the aliases and functions\n[ -f $HOME/.bashrc ] && . $HOME/.bashrc\n",
-    "zxc.20260125144120.1": "{{ if eq .chezmoi.hostname \"surface-void\" -}}\n@others\n{{ end -}}\n",
+    "zxc.20260125144120.1": "<< surface-void >>\n@others\n{{ end -}}",
+    "User.20260225204243.1": "{{ if eq .chezmoi.hostname \"surface-void\" -}}",
     "zxc.20260125144207.1": "if [[ -z \"$DISPLAY\" ]] && [[ $(tty) = /dev/tty1 ]]; then\n    . startx\n    logout\nfi",
     "User.20260214200035.1": "encryption = \"age\"\n[age]\n    identity = \"~/.ssh/id_ed25519\"\n    symmetric = true",
     "User.20260214200002.1": "[git]\n    autoCommit = false\n    autoPush = false",
     "User.20260217023028.1": "[gopass]\n    mode = \"builtin\"",
     "User.20260217122736.1": "progress = true",
-    "zxc.20260126154722.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}\n",
+    "zxc.20260126154722.1": "<< dos >>\n@others\n{{ end -}}\n",
+    "User.20260225204326.1": "{{ if eq .chezmoi.os \"windows\" -}}",
     "zxc.20260126154908.1": "[interpreter.ps1]\n    command = \"powershell\"\n    args = []",
     "zxc.20260126154820.1": "{{ if lookPath \"pwsh\" -}}\n[cd]\n    command = \"pwsh\"\n{{ end -}}",
     "zxc.20260125144442.1": "@others",
     "zxc.20260125144515.1": "Makefile\nmain.leojs",
-    "zxc.20260125144547.1": "{{ if eq .chezmoi.os \"linux\" -}}\n@others\n{{ end -}}",
+    "zxc.20260125144547.1": "<< linux >>\n@others\n{{ end -}}",
+    "User.20260225204416.1": "{{ if eq .chezmoi.os \"linux\" -}}\n",
     "zxc.20260127232118.1": "Documents",
     "User.20260214200912.1": "scoop",
     "zxc.20260202205814.1": "Music",
     "zxc.20260128003657.1": "AppData",
     "User.20260220191553.1": "vimfiles",
-    "User.20260224001419.1": "{{ if eq .chezmoi.os \"android\" -}}\n@others\n{{ end -}}",
-    "zxc.20260125144606.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}\n",
+    "User.20260224001419.1": "<< android >>\n@others\n{{ end -}}",
+    "User.20260225204449.1": "{{ if eq .chezmoi.os \"android\" -}}\n",
+    "zxc.20260125144606.1": "<< dos >>\n@others\n{{ end -}}\n",
     "zxc.20260125144639.1": ".vim",
     "zxc.20260125144709.1": ".local\n",
     "zxc.20260126193455.1": ".pip",
@@ -3283,34 +3571,35 @@
     "zxc.20260125172659.1": "{{ if lookPath \"hx\" -}}\nhx\n{{- else if lookPath \"vim\" -}}\nvim\n{{- else if lookPath \"vi\" -}}\nvi\n{{- else if lookPath \"nano\" -}}\nnano\n{{- end -}}",
     "User.20260221004652.1": "{{ if kindIs \"slice\" . -}}\n    {{ range . -}}\n    {{ template \"_checkPath\" . -}}\n    {{ end -}}\n{{ else if kindIs \"string\" . -}}\n    {{ template \"_checkPath\" . -}}\n{{ else -}}\n    echo \"checkPath: unsupported type\"\n{{ end -}}\n",
     "User.20260221144015.1": "{{ if lookPath . }}\necho {{ printf \"%s is founded: %s\" . (lookPath .) | quote }}\n{{ else -}}\necho {{ printf \"%s is not found\" . | quote }}\n{{ end -}}",
-    "zxc.20260125172839.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125172839.1": "<< unix >>\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260126160624.1": "[\".local/lib/ble-nightly\"]\n    type = \"archive\"\n    url = \"https://github.com/akinomyoga/ble.sh/releases/download/nightly/ble-nightly.tar.xz\"\n    exact = true\n    stripComponents = 1\n    refreshPeriod = \"168h\"",
     "zxc.20260130221131.1": "@others",
-    "zxc.20260130221131.2": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260130221131.2": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260130221536.1": "[\".vim/autoload/plug.vim\"]\n    type = \"file\"\n    url = \"https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim\"\n    refreshPeriod = \"168h\"\n",
-    "zxc.20260130221550.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260130221550.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260130221550.2": "[\"vimfiles/autoload/plug.vim\"]\n    type = \"file\"\n    url = \"https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim\"\n    refreshPeriod = \"168h\"\n",
-    "zxc.20260130074346.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260130074346.1": "<< dos >>\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260130074346.2": "[\".cache/vscodium/extensions/vsnetrw.vsix\"]\n    type = \"file\"\n    url = \"https://github.com/danprince/vsnetrw/releases/download/v0.3.2/vsnetrw-0.3.2.vsix\"\n",
-    "zxc.20260126160530.1": "{{ if or (eq .chezmoi.os \"windows\") (eq .chezmoi.os \"linux\") -}}\n{{ if lookPath \"emacs\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260126160530.1": "<< unix dos >>\n{{ if lookPath \"emacs\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260225204914.1": "{{ if or (eq .chezmoi.os \"windows\") (eq .chezmoi.os \"linux\") (eq .chezmoi.os \"android\") -}}\n",
     "zxc.20260126160721.1": "[\".emacs.d\"]\n    type = \"git-repo\"\n    url = \"https://mirror.nju.edu.cn/git/doom-emacs.git/\"",
-    "zxc.20260202201907.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260202201907.1": "<< dos >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202201936.1": "[\"Appdata/Roaming/mpv/scripts/thumbfast.lua\"]\n    type = \"file\"\n    url = \"https://github.com/po5/thumbfast/raw/refs/heads/master/thumbfast.lua\"\n\n[\"Appdata/Roaming/mpv/scripts/SmartSkip.lua\"]\n    type = \"file\"\n    url = \"https://github.com/Eisa01/mpv-scripts/raw/refs/heads/master/scripts/SmartSkip.lua\"\n",
-    "User.20260220235431.1": "{{ if eq .chezmoi.os \"linux\" -}}\n@others\n{{ end -}}",
+    "User.20260220235431.1": "<< unix >>\n@others\n{{ end -}}",
     "User.20260220235538.1": "[\".local/share/fonts/nerdsymbols\"]\n    type = \"archive\"\n    url = \"https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdFontsSymbolsOnly.tar.xz\"\n    exact = true\n    include = [ \"*.ttf\" ]\n",
-    "zxc.20260202203521.17": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260202203521.17": "<< dos >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202203521.18": "# 5.12.0\nirm https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/windows.ps1 | iex",
-    "User.20260220233639.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260220233639.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260220233712.1": "#!{{lookPath \"bash\"}}\n{{ template \"checkPath\" (list \"bash\" \"curl\" \"unzip\") -}}\n{{ if and (lookPath \"bash\") (lookPath \"curl\") (lookPath \"unzip\") -}}\n/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/unix.sh)\"\n{{ end -}}",
-    "zxc.20260202203521.20": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}\n",
+    "zxc.20260202203521.20": "<< dos >>\n@others\n{{ end -}}\n",
     "zxc.20260202203521.22": "function New-LayoutModificationXml {\n    [CmdletBinding()]\n    param (\n        [string[]] $LnkPaths,\n        [string] $OutputPath = $env:USERPROFILE + \"\\AppData\\Local\\Microsoft\\Windows\\Shell\\LayoutModification.xml\",\n        [ValidateSet(\"Append\", \"Replace\")]\n        [string] $PinListPlacement = \"Replace\"\n    )\n\n    $xml = New-Object System.Xml.XmlDocument\n    $root = $xml.CreateElement(\"LayoutModificationTemplate\", \"http://schemas.microsoft.com/Start/2014/LayoutModification\")\n    $xml.AppendChild($root) | Out-Null\n    $root.SetAttribute(\"xmlns:defaultlayout\", \"http://schemas.microsoft.com/Start/2014/FullDefaultLayout\")\n    $root.SetAttribute(\"xmlns:taskbar\", \"http://schemas.microsoft.com/Start/2014/TaskbarLayout\")\n    $root.SetAttribute(\"Version\", \"1\")\n    $collection = $xml.CreateElement(\"CustomTaskbarLayoutCollection\", $root.NamespaceURI)\n    $collection.SetAttribute(\"PinListPlacement\", $PinListPlacement)\n    $root.AppendChild($collection) | Out-Null\n    $layout = $xml.CreateElement(\"defaultlayout:TaskbarLayout\", $root.GetAttribute(\"xmlns:defaultlayout\"))\n    $collection.AppendChild($layout) | Out-Null\n    $pinList = $xml.CreateElement(\"taskbar:TaskbarPinList\", $root.GetAttribute(\"xmlns:taskbar\"))\n    $layout.AppendChild($pinList) | Out-Null\n    foreach ($lnk in $LnkPaths) {\n        $desktopApp = $xml.CreateElement(\"taskbar:DesktopApp\", $root.GetAttribute(\"xmlns:taskbar\"))\n        $desktopApp.SetAttribute(\"DesktopApplicationLinkPath\", $lnk)\n        $pinList.AppendChild($desktopApp) | Out-Null\n    }\n    $xml.Save($OutputPath)\n}\n",
     "zxc.20260202203521.23": "function Reset-TaskbarLayout {\n    Get-Process explorer | Stop-Process -Force\n    Remove-Item \"$Env:AppData\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar\\*\" -Force -ErrorAction SilentlyContinue\n    Remove-Item \"$Env:AppData\\Microsoft\\Windows\\Shell\\*.dat\" -Force -ErrorAction SilentlyContinue\n    Remove-Item \"$Env:AppData\\Microsoft\\Windows\\Shell\\LayoutModification.xml\" -Force -ErrorAction SilentlyContinue\n    Remove-Item -Path \"HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Taskband\" -Recurse -ErrorAction SilentlyContinue\n    Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\TrayNotify\" -Name \"IconStreams\" -ErrorAction SilentlyContinue\n    Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\TrayNotify\" -Name \"PastIconsStream\" -ErrorAction SilentlyContinue\n}",
     "zxc.20260202203521.24": "$LnkPaths = @(\n    \"%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\Windows Terminal.lnk\"\n    \"%PROGRAMDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Firefox.lnk\"\n    \"%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\Double Commander.lnk\"\n)\nNew-LayoutModificationXml -LnkPaths $LnkPaths -PinListPlacement \"Replace\"\nReset-TaskbarLayout",
-    "User.20260216114746.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat \"C:/Program Files/Rime\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260216114746.1": "<< dos >>\n{{ if stat \"C:/Program Files/Rime\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260216114815.1": "# --- Configuration ---\n\n# 1. Define the source URL\n$DownloadUrl = \"https://github.com/sbsrf/home/releases/download/20260101/sbsrf.zip\"\n\n# 2. Define the target directory using the built-in environment variable $env:APPDATA\n# Note: $env:APPDATA resolves to C:\\Users\\<Username>\\AppData\\Roaming\n$TargetFolder = Join-Path -Path $env:APPDATA -ChildPath \"rime\"\n\n# 3. Define a temporary path for the downloaded file\n$TempZipPath = Join-Path -Path $env:TEMP -ChildPath \"sbsrf_download.zip\"\n\n# --- Execution ---\n\nWrite-Host \"Starting download and extraction process...\"\n\n# 1. Ensure the target directory exists\nif (-not (Test-Path -Path $TargetFolder)) {\n    Write-Host \"Creating target directory: $TargetFolder\"\n    New-Item -Path $TargetFolder -ItemType Directory | Out-Null\n} else {\n    Write-Host \"Target directory already exists: $TargetFolder\"\n}\n\n# 2. Download the file\nWrite-Host \"Downloading file from $DownloadUrl to $TempZipPath...\"\ntry {\n    # Use Invoke-WebRequest (iwr) for downloading files\n    Invoke-WebRequest -Uri $DownloadUrl -OutFile $TempZipPath -UseBasicParsing\n    Write-Host \"Download complete.\"\n}\ncatch {\n    Write-Error \"Failed to download the file. Error: $($_.Exception.Message)\"\n    exit 1\n}\n\n# 3. Extract the contents of the ZIP file\nWrite-Host \"Extracting contents to $TargetFolder...\"\ntry {\n    # Load the necessary .NET assembly for ZIP operations (often loaded automatically, but good practice to ensure)\n    Add-Type -AssemblyName System.IO.Compression.FileSystem\n\n    # Use Expand-Archive (available in PS 5.0+)\n    # -Force overwrites existing files in the destination folder without prompting\n    Expand-Archive -Path $TempZipPath -DestinationPath $TargetFolder -Force\n    \n    Write-Host \"Extraction complete. Files are now in: $TargetFolder\"\n}\ncatch {\n    Write-Error \"Failed to extract the ZIP file. Error: $($_.Exception.Message)\"\n    exit 1\n}\nfinally {\n    # 4. Clean up the temporary ZIP file\n    if (Test-Path -Path $TempZipPath) {\n        Remove-Item -Path $TempZipPath -Force\n        Write-Host \"Cleaned up temporary file: $TempZipPath\"\n    }\n}",
-    "zxc.20260202203521.14": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260202203521.14": "<< dos >>\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260202203521.15": "if (-not (clink autorun show | rg inject)) {\n    clink autorun install\n}",
-    "zxc.20260202203521.3": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260202203521.3": "<< dos >>\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260202203521.4": "codium --update-extensions\n$extensions = @(\n    @others\n    << vscodium >>\n    )\nforeach ($e in $extensions) {\n    Write-Host \"Install vscodium extension $e\"\n    codium --install-extension $e\n}",
     "User.20260220152703.1": "@others",
     "zxc.20260202203521.13": "{{ $vsnetrw := (joinPath .chezmoi.homeDir \".cache/vscodium/extensions/vsnetrw.vsix\") }}\n{{ if stat $vsnetrw -}}\n\"{{ $vsnetrw }}\"\n{{ end -}}",
@@ -3322,32 +3611,33 @@
     "zxc.20260202203521.10": "\"redhat.ansible\"\n\"ms-python.python\"\n\"redhat.vscode-yaml\"\n\"MattiasBaake.vscode-snippets-for-ansible\"",
     "zxc.20260202203521.11": "\"kahole.magit\"\n",
     "zxc.20260202203521.12": "\"PKief.material-icon-theme\"\n",
-    "zxc.20260202213444.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260202213444.1": "<< dos >>\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202213506.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vscodium\" \"current\" \"install-context.reg\" | quote }}\n{{ if not (lookPath \"code\") -}}\nreg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vscodium\" \"current\" \"install-associations.reg\" | quote }}\n{{ end -}}",
-    "User.20260220142155.2": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"code\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260220142155.2": "<< dos >>\n{{ if lookPath \"code\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260220142155.3": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vscode\" \"current\" \"install-context.reg\" | quote }}\nreg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vscode\" \"current\" \"install-associations.reg\" | quote }}",
-    "User.20260220151435.2": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "User.20260220151435.2": "<< dos >>\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260220151435.3": "codium --update-extensions\n$extensions = @(\n    @others\n    << vscode >>\n    )\nforeach ($e in $extensions) {\n    Write-Host \"Install vscodium extension $e\"\n    code --install-extension $e\n}",
     "User.20260220153055.1": "@others",
     "User.20260220154010.1": "\"ms-vscode-remote.remote-wsl\"",
     "User.20260220153119.1": "\"danprince.vsnetrw\"",
-    "zxc.20260202215023.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"7z\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260202215023.1": "<< dos >>\n{{ if lookPath \"7z\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202215044.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"7zip\" \"current\" \"install-context.reg\" | quote }}",
-    "zxc.20260202215408.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260202215408.1": "<< dos >>\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202215423.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"git\" \"current\" \"install-context.reg\" | quote }}\nreg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"git\" \"current\" \"install-associations.reg\" | quote }}",
-    "zxc.20260202220030.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260202220030.1": "<< dos >>\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202220046.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"pwsh\" \"current\" \"install-explorer-context.reg\" | quote }}\nreg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"pwsh\" \"current\" \"install-file-context.reg\" | quote }}",
-    "zxc.20260202220553.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gvim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260202220553.1": "<< dos >>\n{{ if lookPath \"gvim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202220615.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vim\" \"current\" \"install-context.reg\" | quote }}",
-    "User.20260217202401.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260217202401.1": "<< dos >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260225205841.1": "{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n",
     "User.20260217202404.1": "{{ if lookPath \"dirhash\" -}}\n# {{ output \"dirhash\" (joinPath .chezmoi.homeDir \".config\" \"doom\") \"-nowait\" \"-quiet\" | trim }}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom.ps1\" ) }} sync\n{{ end -}}",
-    "User.20260220214558.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260220214558.1": "<< unix >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260221011837.1": "#!{{lookPath \"sh\"}}\n",
     "User.20260221011908.1": "{{ template \"checkPath\" \"shasum\" -}}",
     "User.20260220214646.1": "{{ if lookPath \"shasum\" -}}\n\n{{ $doom_files := list \"init\" \"config\" \"packages\" -}}\n{{ $doom_path := (joinPath .chezmoi.homeDir \".config\" \"doom\") -}}\n\n{{ $shasum := \"shasum\" -}}\n{{ if and (hasKey .chezmoi.kernel \"osrelease\") (mustRegexMatch \".*WSL.*\" .chezmoi.kernel.osrelease) (hasKey .chezmoi.osRelease \"id\") (eq .chezmoi.osRelease.id \"arch\") -}}\n{{ $shasum = joinPath \"/usr\" \"bin\" \"core_perl\" \"shasum\" -}}\n{{ end -}}\n\n{{ range $doom_files -}}\n# {{ output $shasum (joinPath $doom_path (printf \"%s.el\" .)) | trim }}\n{{ end -}}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\" ) }} sync\n{{ end -}}",
-    "User.20260217214851.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"msys2\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "User.20260217214851.1": "<< dos >>\n{{ if lookPath \"msys2\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260217214859.1": "msys2 -c \"yes | pacman -Syu\"\nmsys2 -c \"yes | pacman -S --needed {{ .my.msys2.packages | join \" \" }}\"",
-    "User.20260220000301.2": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat (joinPath (env \"programdata\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Weasel\" \"Weasel Deploy.lnk\") -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260220000301.2": "<< dos >>\n{{ if stat (joinPath (env \"programdata\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Weasel\" \"Weasel Deploy.lnk\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260220000301.3": "{{ if lookPath \"dirhash\" -}}\n# {{ output \"dirhash\" (joinPath (env \"Appdata\") \"Rime\" \"default.custom.yaml\") \"-nowait\" \"-quiet\" | trim }}\n# {{ output \"dirhash\" (joinPath (env \"Appdata\") \"Rime\" \"sbfm.custom.yaml\") \"-nowait\" \"-quiet\" | trim }}\n& {{ joinPath (env \"programdata\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Weasel\" \"Weasel Deploy.lnk\" | quote }}\n{{ end -}}",
     "User.20260220012738.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if and (lookPath \"gh\") (lookPath \"gopass\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260220012907.1": "{{ if not (exec \"gh\" \"auth\" \"status\") -}}\n\"Starting to login in github cli\"\ngopass github/ourgal/token | gh auth login --hostname github.com --with-token\n\"Login in github successed\"\n{{ end -}}",
@@ -3355,16 +3645,16 @@
     "User.20260217234231.1": "[my.font]\nmonospace = \"FiraCode Nerd Font Mono\"\n",
     "User.20260217125336.1": "[my.git.sign]\nssh = false\ngpg = true",
     "User.20260224002621.1": "[my.termux.note20]\nusername = \"u0_a644\"",
-    "zxc.20260125162740.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125162740.1": "<< unix >>\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125162834.1": "[global]\nindex-url = https://mirrors.cernet.edu.cn/pypi/web/simple/\n[install]\ntrusted-host = mirrors.cernet.edu.cn",
-    "zxc.20260126185048.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260218144120.1": "{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}",
+    "zxc.20260126185048.1": "<< dos >>\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260218144120.1": "<< unix dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260218144149.1": "vim workspace session folder",
-    "User.20260218144232.1": "{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}",
+    "User.20260218144232.1": "<< unix dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260218144232.2": "vim workspace  folder",
     "zxc.20260125163108.1": "{{ if and (lookPath \"bash\") (lookPath \"fzf\") (lookPath \"xbps-install\") -}}\n@others\n{{ end -}}",
     "zxc.20260125163227.1": "#!/usr/bin/env bash\n# https://gitlab.com/wef/dotfiles/-/blob/master/bin/fzf-xbps\nexport TIME_STAMP=\"20260102.103219\"\n# shellcheck disable=SC2034\n\n# Copyright (C) 2020-2025 Bob Hepple <bob dot hepple at gmail dot com>\n\n# This program is free software: you can redistribute it and/or modify\n# it under the terms of the GNU General Public License as published by\n# the Free Software Foundation, either version 3 of the License, or (at\n# your option) any later version.\n# \n# This program is distributed in the hope that it will be useful, but\n# WITHOUT ANY WARRANTY; without even the implied warranty of\n# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU\n# General Public License for more details.\n# \n# You should have received a copy of the GNU General Public License\n# along with this program. If not, see <http://www.gnu.org/licenses/>.\n\nPROG=$( basename \"$0\" )\nTEMP=$( getopt --options hvV --longoptions verbose,version,help -- \"$@\" ) || exit 1\neval set -- \"$TEMP\"\nsudos=\"doas sudo\" # others?\n\nfor sudo in $sudos; do\n    type \"$sudo\" &> /dev/null && break\n    sudo=\"\"\ndone\n\ncolumns=\"$( tput cols )\"\nblue=$( tput setaf 4 )\nnorm=$( tput sgr0 )\n\ninfo_key=\"alt-i\"\nfiles_key=\"alt-f\"\nmanual_key=\"alt-m\"\ndep_key=\"alt-d\"\nrev_key=\"alt-v\"\nurl_key=\"alt-u\"\ntemplate_key=\"alt-t\"\npreview_key=\"alt-?\"\nhelp_key=\"alt-h\"\ntoggle_key=\"ctrl-r\"\nexit_key=\"ctrl-c\"\norphans_key=\"alt-o\"\nextract_key=\"alt-e\"\nREMOVE_ORPHANS_key=\"alt-O\"\nREMOVE_key=\"alt-R\"\nDELETE_key=\"alt-D\"\nINSTALL_key=\"alt-I\"\nCLEAN_key=\"alt-C\"\nUPDATE_key=\"alt-U\"\n\nhelp=\"\\\n$info_key: info\n$files_key: list files in the package\n$manual_key: list top level packages (not dependencies)\n$dep_key: list dependencies of a package\n$rev_key: list packages depending on this package\n$url_key: open package url in browser\n$template_key: open package template in browser\n$orphans_key: list orphan packages\n$REMOVE_ORPHANS_key: remove orphan packages\n$REMOVE_key: delete package+dependencies\n$DELETE_key: delete package\n$INSTALL_key: install package\n$CLEAN_key: clean xbps cache\n$UPDATE_key: update system\nTAB: mark package for install/remove\nENTER: install/delete marked packages\n$exit_key: exit\"\n\npreview_size=$(( $( echo -e \"\\n$help\" | column -c \"$columns\" | wc -l ) + 2 ))\n\nwhile [[ \"$1\" ]]; do\n    case \"$1\" in\n        -h|--help)\n            echo \"Usage: $PROG OPTIONS\"\n            echo\n            echo \"Simple TUI/fzf package manager for xbps-based systems like voidlinux\"\n            echo\n            echo \"Commands are:\"\n            echo -e \"$help\"\n            echo\n            echo \"Note that commands that change the filesystem (and therefore need\"\n            echo \"sudo/doas) are in upper-case\"\n            echo\n            echo \"Use ' in a search to enable fuzzy finding (see man fzf)\"\n            echo \"Use [i as a search pattern to find all installed packages.\"\n            echo \"Installed packages that have updates pending are marked with upper-case [I].\"\n            echo\n            echo \"The 'list files ($files_key) function has a sub-menu to allow you to select a\"\n            echo \"file (or mark a set of files) from the package and view or extract it to the cwd.\" \n            echo\n            echo \"OPTIONS\"\n            echo \"-h|--help                 this help\"\n            echo \"-v|--verbose              be verbose\"\n            exit 0\n            ;;\n        -v|--verbose)\n            verbose=\"set\"\n            shift\n            ;;\n        -V|--version)\n            echo \"$PROG: Version $TIME_STAMP\"\n            exit 0\n            ;;\n        --)\n            shift\n            ;;\n    esac\ndone\n\nif [[ \"$verbose\" ]]; then\n    set -x\nfi\n\ncontinue=\"echo 'Press ENTER to continue'; read\"\n\nlock=\"$( mktemp -d)\"\ntempfile=\"$(mktemp)\"\nupdates=\"$(mktemp)\"\ntrap 'rm $tempfile $updates; rmdir $lock' EXIT\n\n{\n    # this takes a substantial amount of time (0.7s on my system), so do it in background:\n    xbps-install -Sun | awk '{print gensub(\"^(.*)-[^-]+$\",\"\\\\1\",1,$1)}' > \"$updates\"\n    rmdir \"$lock\"\n} &\n\nmapfile -t packages < <(\n    xbps-query -Rs - > \"$tempfile\" # takes about 0.4s\n\n    # wait for updates to be available:\n    while ! mkdir \"$lock\" &>/dev/null ; do\n        sleep .01\n    done\n    \n    # mark packages that have updates available with [I] instead of [i]\n    awk -v updates=\"$updates\" '\nBEGIN {\n    while ((getline update < updates) > 0) updates_map[update] = 1\n}\n\n{\n    flag=$1\n    pkgver=$2\n    pkgname=gensub(\"^(.*)-[^-]+$\",\"\\\\1\",1,$2)\n    if (flag==\"[*]\") flag=\"[i]\"\n    if (updates_map[pkgname]) flag=\"[I]\"\n    $1=\"\"\n    $2=\"\"\n    printf(\"%s %-40s %s\\n\", flag, pkgver, $0)\n}' < \"$tempfile\" |\n    sort -i -k2 | \n    fzf --exact --reverse --wrap \\\n        --marker=\"M\" \\\n        --multi \\\n        --prompt=\"[i]=installed; [I]=upgradable; SEARCH> \" \\\n        --bind \"start:toggle-sort\" \\\n        --bind \"$preview_key:change-preview-window(hidden|)\" \\\n        --bind \"$help_key:execute($PROG --help|less)\" \\\n        --bind \"$DELETE_key:execute($sudo xbps-remove {2}; $continue)+become($PROG)\" \\\n        --bind \"$REMOVE_key:execute($sudo xbps-remove -R {2}; $continue)+become($PROG)\" \\\n        --bind \"$info_key:execute(xbps-query -RS {2} | less)\" \\\n        --bind \"home:first\" --bind \"end:last\" \\\n        --bind \"$manual_key:execute(xbps-query -m | less)\" \\\n        --bind \"$orphans_key:execute(xbps-query -O | less)\" \\\n        --bind \"$REMOVE_ORPHANS_key:execute($sudo xbps-remove -o; $continue)+become($PROG)\" \\\n        --bind \"$dep_key:execute(xbps-query -R -x {2} | less)\" \\\n        --bind \"$rev_key:execute(xbps-query -R -X {2} | less)\" \\\n        --bind \"$INSTALL_key:execute($sudo xbps-install {2}; $continue)+become($PROG)\" \\\n        --bind \"$url_key:execute-silent[ xbps-query -p homepage -R '{2}' | xargs -Iurl xdg-open url & ]\" \\\n        --bind \"$CLEAN_key:execute(echo 'Cleaning cache, please wait ...'; $sudo xbps-remove --clean-cache)\" \\\n        --bind \"$template_key:execute-silent[ xbps-query -p pkgname -R '{2}' | xargs -I pkgname xdg-open https://github.com/void-linux/void-packages/tree/master/srcpkgs/pkgname & ]\" \\\n        --bind \"${UPDATE_key}:execute($sudo xbps-install -Su; $continue)\" \\\n        --bind \"$toggle_key:toggle-sort\" \\\n        --preview-label \"$preview_key=toggle this; $help_key=help; uppercase keys require $sudo\" \\\n        --preview-window=\"down:wrap:${PREVIEW_BORDER:-border-sharp},$preview_size\" \\\n        --preview \"xbps-query -R {2}|awk '/filename-size/ {f=\\$2} /homepage/ {h=\\$2} /installed_size/ {i=\\$2} END { printf(\\\"%s/%s $blue%s$norm\\\\n\\\",f,i,h)}'; echo; echo -e '\\n$help'|column\" \\\n        --bind \"$files_key:execute(\n          xbps-query -R -f {2} \\\n          | fzf \\\n            ${SHOW_HEADER:+--header=\\\"${FHEADER}\\\"} \\\n            --prompt '{2}: TAB=mark/unmark $files_key=toggle preview $extract_key=extract $exit_key=exit $help_key=help > ' \\\n            --marker=\\\"E\\\" \\\n            --multi \\\n            --no-separator \\\n            --border-label=\\\" Package Contents \\\" \\\n            --bind pgup:preview-up,pgdn:preview-down \\\n            --bind \\\"$help_key:execute($PROG --help|less)\\\" \\\n            --preview \\\"xbps-query -R --cat \\{1} {2}\\\" \\\n            --preview-window=\\\"down:hidden:wrap:${PREVIEW_BORDER:-border-sharp}\\\" \\\n            --preview-label=\\\" File Preview TAB=mark/unmark $files_key=toggle preview $extract_key=extract $exit_key=exit\\\" \\\n            --bind \\\"${files_key}:toggle-preview\\\" \\\n            --bind \\\"${extract_key}:execute(clear; \\\n              while IFS= read -r line; do \\\n                tree=\\\"\\\\\\${line%/*}\\\" ;\\\n                mkdir -p \\\"\\\\\\${tree#*/}\\\" ;\\\n                echo Extracting \\\\\\${line} ;\\\n                xbps-query -R --cat \\\"\\\\\\${line}\\\" {2} > \\\"\\\\\\${line#*/}\\\" ;\\\n              done < \\\"\\{+f}\\\"; $continue )\\\" )\" \\\n        )\n\ninstall_list=( )\nremove_list=( )\nfor line in \"${packages[@]}\"; do\n    pkg=\"$( echo \"$line\" | awk '{print $2}' )\"\n    ins=\"$( xbps-query -s \"^$pkg\\$\" --regex )\"\n    pkg=\"${pkg%-*}\" # remove version number\n    if [[ \"$ins\" ]]; then\n        remove_list+=( \"$pkg\" )\n    else\n        install_list+=( \"$pkg\" )\n    fi\ndone\n\nif [[ \"${install_list[*]}\" ]]; then\n    echo \"Installing: ${install_list[*]}\"\n    $sudo xbps-install \"${install_list[@]}\"\nfi\n\nif [[ \"${remove_list[*]}\" ]]; then\n    echo \"Removing ${remove_list[*]}\"\n    $sudo xbps-remove -R \"${remove_list[@]}\"\nfi\n\nif [[ \"${install_list[*]}${remove_list[*]}\" ]]; then\n    # restart to take account of any changes:\n    eval \"$continue\"\n    exec \"$PROG\"\nfi\n\n# Local Variables:\n# mode: shell-script\n# time-stamp-pattern: \"4/TIME_STAMP=\\\"%:y%02m%02d.%02H%02M%02S\\\"\"\n# eval: (add-hook 'before-save-hook 'time-stamp)\n# End:",
-    "zxc.20260125163416.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125163416.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260130224502.1": "{{ if eq .chezmoi.os \"linux\" -}}\nif empty(glob('~/.vim/plugged/'))\n{{ else if eq .chezmoi.os \"windows\" -}}\nif empty(glob('~/vimfiles/plugged/'))\n{{ end -}}\n  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC\nendif",
     "zxc.20260125163442.1": "import 'find.vim'",
     "User.20260218141820.1": "let g:mapleader = ' '\nnnoremap <leader>bo <cmd>%bd\\|e#\\|bd#<CR>\nmap <silent> \\h :noh<cr>\nnnoremap ZZ <cmd>xa<cr>\nnnoremap ZQ <cmd>qa!<cr>\nnoremap Q @@\nxnoremap / <Esc>/\\%V\nnnoremap <c-n> <tab>\nnnoremap <tab> <cmd>tabnext<cr>\nnnoremap <s-tab> <cmd>tab split<cr>\nnnoremap ^[<tab> <cmd>tabclose<cr>\n\nfunction FoldWithH()\n    if col('.') == 1\n        return 'zc'\n    else\n        return 'h'\n    endif\nendfunction\n\nnnoremap <expr> h FoldWithH()\ncnoremap <expr> %% getcmdtype( ) == \":\" ? expand(\"%:h\") .. \"/\" : \"%%\"\nnnoremap & <cmd>&&<CR>\nxnoremap & <cmd>'<,'>&&<CR>\nnnoremap <silent> <esc> <cmd>nohlsearch<CR><esc>\n\nfunction OpenFileOrURL()\n  let cfile = expand('<cfile>')\n  if match(cfile, '^https\\?://') >= 0\n    call system('xdg-open ' . cfile)\n  else\n    normal! gF\n  endif\nendfunction\n\nnnoremap <silent> gf <cmd>call OpenFileOrURL()<CR>\n\nnnoremap g* :%s/<c-r><c-w>/\n\nnnoremap <leader><space> :<C-u>find<space>\n\nnnoremap ^[. ;",
@@ -3395,11 +3685,11 @@
     "User.20260218141914.22": "\" vim-easy-align\nxmap ga <Plug>(EasyAlign)\nnmap ga <Plug>(EasyAlign)\n",
     "User.20260218141914.23": "\" vim-suda\nlet g:suda_smart_edit = 1",
     "User.20260218143021.1": "let g:lightline = {\n      \\ 'colorscheme': 'tokyonight',\n      \\ 'active': {\n      \\   'left': [ [ 'mode', 'paste' ],\n      \\             [ 'readonly', 'filename', 'modified' ] ],\n      \\   'right': [ [ 'lineinfo' ],\n      \\              [ 'percent' ],\n      \\              [ 'zoomed', 'fileformat', 'fileencoding', 'filetype' ] ]\n      \\ },\n      \\ 'inactive': {\n      \\   'left': [ [ 'mode', 'paste' ],\n      \\             [ 'readonly', 'filename', 'modified' ] ],\n      \\   'right': [ [ 'lineinfo' ],\n      \\              [ 'percent' ],\n      \\              [ 'fileformat', 'fileencoding', 'filetype' ] ]\n      \\ },\n      \\ 'component_function': {\n      \\   'filename': 'LightlineTruncatedFileName',\n      \\   'zoomed': 'zoom#statusline'\n      \\ }\n      \\ }\n\nfunction! LightlineTruncatedFileName()\nlet l:filePath = expand('%')\n    if winwidth(0) > 100\n        return l:filePath\n    else\n        return pathshorten(l:filePath)\n    endif\nendfunction",
-    "zxc.20260125164142.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125164142.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125164204.1": "vim9script\n\n# simple fuzzy find finder\n# place into ~/.vim/plugin/fuzzyfind.vim\n\nset wildmode=noselect:lastused,full\nset wildmenu wildoptions=pum,fuzzy pumheight=12\n\n\nvar files_cache: list<string> = []\naugroup CmdComplete\n    au!\n    au CmdlineChanged : wildtrigger()\n    au CmdlineEnter : files_cache = []\naugroup END\n\ndef FindCmd(): string\n    var cmd = ''\n    if executable('fd')\n        cmd = 'fd . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('fdfind')\n        cmd = 'fdfind . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('ugrep')\n        cmd = 'ugrep \"\" -Rl -I --ignore-files'\n    elseif executable('rg')\n        cmd = 'rg --path-separator / --files --hidden --glob !.git'\n    elseif executable('find')\n        cmd = 'find \\! \\( -path \"*/.git\" -prune -o -name \"*.swp\" \\) -type f -follow'\n    endif\n    return cmd\nenddef\n\ndef Find(cmd_arg: string, cmd_complete: bool): list<string>\n    if empty(files_cache)\n        var cmd = FindCmd()\n        # fallback to built-in glob if no fd/rg/ug/find is available\n        # e.g. we are on Windows\n        if empty(cmd)\n            files_cache = globpath('.', '**', 1, 1)\n                ->filter((_, v) => !isdirectory(v))\n                ->mapnew((_, v) => v->substitute('^\\.[\\/]', \"\", \"\"))\n        else\n            files_cache = systemlist(cmd)\n        endif\n    endif\n    if empty(cmd_arg)\n        return files_cache\n    else\n        return files_cache->matchfuzzy(cmd_arg)\n    endif\nenddef\n\nset findfunc=Find",
-    "User.20260218142211.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260218142322.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260130225718.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\") -}}\n{{ if lookPath \"npm\"}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260218142211.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260218142322.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260130225718.1": "<< unix dos >>\n{{ if lookPath \"npm\"}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260130225733.1": "registry = https://registry.npmmirror.com\ncoc.nvim:registry=https://registry.npmmirror.com/",
     "zxc.20260125212003.1": "$env:EDITOR = \"hx\"\n$env:shell_startup = \"~\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\"",
     "zxc.20260125212135.1": "{{ if lookPath \"sfsu\" -}}\nInvoke-Expression (&sfsu hook)\n{{ end -}}",
@@ -3551,13 +3841,13 @@
     "User.20260215221142.1": "\"window.confirmBeforeClose\": \"never\"\n",
     "User.20260215230117.1": "{\n    \"key\": \"space\",\n    \"command\": \"vspacecode.space\",\n    \"when\": \"activeEditorGroupEmpty && focusedView == '' && !whichkeyActive && !inputFocus\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"extension.vim_tab\",\n    \"when\": \"editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && editorLangId != 'magit'\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"-extension.vim_tab\",\n    \"when\": \"editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert'\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"magit.discard-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"k\",\n    \"command\": \"-magit.discard-at-point\"\n},\n{\n    \"key\": \"-\",\n    \"command\": \"magit.reverse-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"v\",\n    \"command\": \"-magit.reverse-at-point\"\n},\n{\n    \"key\": \"shift+-\",\n    \"command\": \"magit.reverting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+v\",\n    \"command\": \"-magit.reverting\"\n},\n{\n    \"key\": \"shift+o\",\n    \"command\": \"magit.resetting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+x\",\n    \"command\": \"-magit.resetting\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"-magit.reset-mixed\"\n},\n{\n    \"key\": \"ctrl+u x\",\n    \"command\": \"-magit.reset-hard\"\n},\n{\n    \"key\": \"y\",\n    \"command\": \"-magit.show-refs\"\n},\n{\n    \"key\": \"y\",\n    \"command\": \"vspacecode.showMagitRefMenu\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode == 'Normal'\"\n},\n{\n    \"key\": \"g\",\n    \"command\": \"-magit.refresh\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"g\",\n    \"command\": \"vspacecode.showMagitRefreshMenu\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"ctrl+j\",\n    \"command\": \"workbench.action.quickOpenSelectNext\",\n    \"when\": \"inQuickOpen\"\n},\n{\n    \"key\": \"ctrl+k\",\n    \"command\": \"workbench.action.quickOpenSelectPrevious\",\n    \"when\": \"inQuickOpen\"\n},\n{\n    \"key\": \"ctrl+j\",\n    \"command\": \"selectNextSuggestion\",\n    \"when\": \"suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus\"\n},\n{\n    \"key\": \"ctrl+k\",\n    \"command\": \"selectPrevSuggestion\",\n    \"when\": \"suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus\"\n},\n{\n    \"key\": \"ctrl+l\",\n    \"command\": \"acceptSelectedSuggestion\",\n    \"when\": \"suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus\"\n},\n{\n    \"key\": \"ctrl+j\",\n    \"command\": \"showNextParameterHint\",\n    \"when\": \"editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible\"\n},\n{\n    \"key\": \"ctrl+k\",\n    \"command\": \"showPrevParameterHint\",\n    \"when\": \"editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible\"\n},\n{\n    \"key\": \"ctrl+j\",\n    \"command\": \"selectNextCodeAction\",\n    \"when\": \"codeActionMenuVisible\"\n},\n{\n    \"key\": \"ctrl+k\",\n    \"command\": \"selectPrevCodeAction\",\n    \"when\": \"codeActionMenuVisible\"\n},\n{\n    \"key\": \"ctrl+l\",\n    \"command\": \"acceptSelectedCodeAction\",\n    \"when\": \"codeActionMenuVisible\"\n},\n{\n    \"key\": \"ctrl+h\",\n    \"command\": \"file-browser.stepOut\",\n    \"when\": \"inFileBrowser\"\n},\n{\n    \"key\": \"ctrl+l\",\n    \"command\": \"file-browser.stepIn\",\n    \"when\": \"inFileBrowser\"\n},",
     "User.20260215210409.1": "{\n    \"key\": \"g g\",\n    \"command\": \"cursorTop\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"g r\",\n    \"command\": \"magit.refresh\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"extension.vim_tab\",\n    \"when\": \"editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && !inlineEditIsVisible && editorLangId != 'magit'\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"-extension.vim_tab\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"magit.discard-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"k\",\n    \"command\": \"-magit.discard-at-point\"\n},\n{\n    \"key\": \"-\",\n    \"command\": \"magit.reverse-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"v\",\n    \"command\": \"-magit.reverse-at-point\"\n},\n{\n    \"key\": \"shift+-\",\n    \"command\": \"magit.reverting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+v\",\n    \"command\": \"-magit.reverting\"\n},\n{\n    \"key\": \"shift+o\",\n    \"command\": \"magit.resetting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+x\",\n    \"command\": \"-magit.resetting\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"-magit.reset-mixed\"\n},\n{\n    \"key\": \"ctrl+u x\",\n    \"command\": \"-magit.reset-hard\"\n}",
-    "User.20260216000318.1": "{{ if or ( eq .chezmoi.os \"windows\" ) ( eq .chezmoi.os \"linux\" ) -}}\n{{ if lookPath \"cargo\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260216000318.1": "<< unix dos >>\n{{ if lookPath \"cargo\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260216000441.1": "[source.crates-io]\nreplace-with = 'mirror'\n\n[source.mirror]\nregistry = \"sparse+https://mirrors.cernet.edu.cn/crates.io-index/\"\n\n[registries.mirror]\nindex = \"sparse+https://mirrors.cernet.edu.cn/crates.io-index/\"",
     "User.20260216125349.1": "patch:\n  schema_list:\n    - schema: sbfm\n  \"switcher/hotkeys\":",
     "User.20260216125513.1": "patch:\n  switches:\n    - name: ascii_mode\n      reset: 1\n      states: [中文, 西文]\n    - name: ascii_punct\n      reset: 0\n      states: [。，, ．，]\n    - name: zh_trad\n      reset: 0\n      states: [简体, 繁体]\n    - name: is_enhanced\n      reset: 0\n      states: [常规, 增强]\n    - options: [hide, rational, irrational, both]\n      reset: 1\n      states: [隐藏, 有理, 无理, 两者]\n    # 希望在同文里用下三角来隐藏键盘的可去掉下面两行的注释\n    #- options: [_key_Hide]\n    #  states: [\"▼\"]\n    # 为了避免拥挤，不显示下面的状态\n    - name: auto_inline\n      reset: 1\n    - name: is_buffered\n      reset: 0\n    - name: single_display\n      reset: 0\n    - options: [pro_word, pro_char, delayed_pop]\n      reset: 0\n    # states: [词组, 单字, 延顶]\n    - name: show_es\n      reset: 1\n    # 不要改变下面的状态，以免穿帮\n    - name: third_pop\n      reset: 0\n    - name: fast_pop\n      reset: 0\n  key_binder:\n    import_preset: sbxlm\n    bindings:\n      - accept: Shift+space\n        toggle: ascii_mode\n        when: always\n  ascii_composer:\n    good_old_caps_lock: false\n    switch_key:\n      Caps_Lock: noop\n      Control_L: noop\n      Control_R: noop\n      Eisu_toggle: noop\n      Shift_L: noop\n      Shift_R: noop",
-    "User.20260216232855.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"aria2c\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260216232855.1": "<< dos >>\n{{ if lookPath \"aria2c\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260216232938.1": "allow-overwrite=false\nallow-piece-length-change=true\nalways-resume=false\nauto-file-renaming=true\nauto-save-interval=20\nbt-detach-seed-only=true\nbt-enable-lpd=true\nbt-force-encryption=true\nbt-hash-check-seed=true\nbt-load-saved-metadata=true\nbt-max-peers=128\nbt-prioritize-piece=head=32M,tail=32M\nbt-remove-unselected-file=true\nbt-request-peer-speed-limit=10M\nbt-save-metadata=true\nbt-seed-unverified=false\nbt-tracker-connect-timeout=10\nbt-tracker-timeout=10\nconnect-timeout=10\nconsole-log-level=warn\ncontent-disposition-default-utf8=true\ncontinue=true\ndht-entry-point=dht.transmissionbt.com:6881\ndht-entry-point6=dht.transmissionbt.com:6881\ndht-file-path={{ env \"userprofile\" }}\\.aria2\\dht.dat\ndht-file-path6={{ env \"userprofile\" }}\\.aria2\\dht6.dat\ndisable-ipv6=true\ndisk-cache=64M\nenable-dht=true\nenable-dht6=false\nenable-http-pipelining=true\nenable-peer-exchange=true\nenable-rpc=false\nfile-allocation=none\nfollow-torrent=true\nforce-save=false\nhttp-accept-gzip=true\nlowest-speed-limit=0\nmax-concurrent-downloads=5\nmax-connection-per-server=16\nmax-download-limit=0\nmax-file-not-found=10\nmax-overall-download-limit=0\nmax-overall-upload-limit=2M\nmax-resume-failure-tries=0\nmax-tries=0\nmax-upload-limit=0\nmin-split-size=4M\nno-file-allocation-limit=64M\nno-netrc=true\npause-metadata=false\npeer-agent=Deluge 1.3.15\npeer-id-prefix=-DE13F0-\npiece-length=1M\nquiet=false\nremote-time=true\nretry-wait=10\nreuse-uri=false\nrpc-allow-origin-all=true\nrpc-listen-all=true\nrpc-listen-port=6800\nrpc-max-request-size=10M\nrpc-save-upload-metadata=true\nrpc-secret={{ gopass \"aria2/rpc\" }}\nsave-session-interval=1\nseed-ratio=1.000000\nseed-time=0\nsplit=64\nsummary-interval=0\ntimeout=10\nuser-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36 Edg/93.0.961.47",
-    "User.20260217182613.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"eget\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260217182613.1": "<< dos >>\n{{ if lookPath \"eget\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260217182650.1": "[global]\ntarget = \"~/.local/bin\"\ngithub_token = {{ gopass \"github/ourgal/token\" | quote }}\n",
     "User.20260217223023.2": ";;; init.el -*- lexical-binding: t; -*-\n\n;; This file controls what Doom modules are enabled and what order they load\n;; in. Remember to run 'doom sync' after modifying it!\n\n;; NOTE Press 'SPC h d h' (or 'C-h d h' for non-vim users) to access Doom's\n;;      documentation. There you'll find a link to Doom's Module Index where all\n;;      of our modules are listed, including what flags they support.\n\n;; NOTE Move your cursor over a module's name (or its flags) and press 'K' (or\n;;      'C-c c k' for non-vim users) to view its documentation. This works on\n;;      flags as well (those symbols that start with a plus).\n;;\n;;      Alternatively, press 'gd' (or 'C-c c d') on a module to browse its\n;;      directory (for easy access to its source code).\n\n(doom! :input\n       ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh\n       ;;chinese\n       ;;japanese\n       ;;layout            ; auie,ctsrnm is the superior home row\n\n       :completion\n       ;;company           ; the ultimate code completion backend\n       (corfu +orderless +icons)  ; complete with cap(f), cape and a flying feather!\n       ;;helm              ; the *other* search engine for love and life\n       ;;ido               ; the other *other* search engine...\n       ;;ivy               ; a search engine for love and life\n       (vertico +childframe +icons)           ; the search engine of the future\n\n       :ui\n       ;;deft              ; notational velocity for Emacs\n       doom              ; what makes DOOM look the way it does\n       doom-dashboard    ; a nifty splash screen for Emacs\n       ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs\n       (emoji +unicode)  ; 🙂\n       hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW\n       indent-guides     ; highlighted indent columns\n       ligatures         ; ligatures and symbols to make your code pretty again\n       ;;minimap           ; show a map of the code on the side\n       modeline          ; snazzy, Atom-inspired modeline, plus API\n       nav-flash         ; blink cursor line after big motions\n       ;;neotree           ; a project drawer, like NERDTree for vim\n       ophints           ; highlight the region an operation acts on\n       (popup +defaults)   ; tame sudden yet inevitable temporary windows\n       ;;smooth-scroll     ; So smooth you won't believe it's not butter\n       ;;tabs              ; a tab bar for Emacs\n       ;;treemacs          ; a project drawer, like neotree but cooler\n       ;;unicode           ; extended unicode support for various languages\n       (vc-gutter +pretty) ; vcs diff in the fringe\n       vi-tilde-fringe   ; fringe tildes to mark beyond EOB\n       (window-select +numbers)     ; visually switch windows\n       workspaces        ; tab emulation, persistence & separate workspaces\n       zen               ; distraction-free coding or writing\n\n       :editor\n       (evil +everywhere); come to the dark side, we have cookies\n       file-templates    ; auto-snippets for empty files\n       fold              ; (nigh) universal code folding\n       (format +onsave)  ; automated prettiness\n       ;;god               ; run Emacs commands without modifier keys\n       ;;lispy             ; vim for lisp, for people who don't like vim\n       multiple-cursors  ; editing in many places at once\n       ;;objed             ; text object editing for the innocent\n       parinfer          ; turn lisp into python, sort of\n       rotate-text       ; cycle region at point between text candidates\n       snippets          ; my elves. They type so I don't have to\n       (whitespace +guess +trim)  ; a butler for your whitespace\n       word-wrap         ; soft wrapping with language-aware indent\n\n       :emacs\n       (dired +icons +dirvish)             ; making dired pretty [functional]\n       electric          ; smarter, keyword-based electric-indent\n       eww               ; the internet is gross\n       (ibuffer +icons)           ; interactive buffer management\n       tramp             ; remote files at your arthritic fingertips\n       undo              ; persistent, smarter undo for your inevitable mistakes\n       vc                ; version-control and Emacs, sitting in a tree\n\n       :term\n       ;;eshell            ; the elisp shell that works everywhere\n       ;;shell             ; simple shell REPL for Emacs\n       ;;term              ; basic terminal emulator for Emacs\n       vterm             ; the best terminal emulation in Emacs\n\n       :checkers\n       (syntax +childframe)              ; tasing you for every semicolon you forget\n       (spell +aspell) ; tasing you for misspelling mispelling\n       grammar           ; tasing grammar mistake every you make\n\n       :tools\n       ansible\n       ;;biblio            ; Writes a PhD for you (citation needed)\n       ;;collab            ; buffers with friends\n       ;;debugger          ; FIXME stepping through code, to help you add bugs\n       direnv\n       (docker +lsp)\n       editorconfig      ; let someone else argue about tabs vs spaces\n       ;;ein               ; tame Jupyter notebooks with emacs\n       (eval +overlay)     ; run code, run (also, repls)\n       (lookup +dictionary +docsets +offine)              ; navigate your code and its documentation\n       ;;llm               ; when I said you needed friends, I didn't mean...\n       (lsp +eglot)      ; M-x vscode\n       magit             ; a git porcelain for Emacs\n       make              ; run make tasks from Emacs\n       pass              ; password manager for nerds\n       ;;pdf               ; pdf enhancements\n       ;;terraform         ; infrastructure as code\n       ;;tmux              ; an API for interacting with tmux\n       tree-sitter       ; syntax and parsing, sitting in a tree...\n       ;;upload            ; map local to remote projects via ssh/ftp\n\n       :os\n       (:if (featurep :system 'macos) macos)  ; improve compatibility with macOS\n       tty               ; improve the terminal Emacs experience\n\n       :lang\n       ;;ada               ; In strong typing we (blindly) trust\n       ;;agda              ; types of types of types of types...\n       ;;beancount         ; mind the GAAP\n       (cc +lsp)         ; C > C++ == 1\n       ;;clojure           ; java with a lisp\n       ;;common-lisp       ; if you've seen one lisp, you've seen them all\n       ;;coq               ; proofs-as-programs\n       ;;crystal           ; ruby at the speed of c\n       ;;csharp            ; unity, .NET, and mono shenanigans\n       ;;data              ; config/data formats\n       ;;(dart +flutter)   ; paint ui and not much else\n       ;;dhall\n       ;;elixir            ; erlang done right\n       ;;elm               ; care for a cup of TEA?\n       (emacs-lisp +checkers)        ; drown in parentheses\n       ;;erlang            ; an elegant language for a more civilized age\n       ;;ess               ; emacs speaks statistics\n       ;;factor\n       ;;faust             ; dsp, but you get to keep your soul\n       ;;fortran           ; in FORTRAN, GOD is REAL (unless declared INTEGER)\n       ;;fsharp            ; ML stands for Microsoft's Language\n       ;;fstar             ; (dependent) types and (monadic) effects and Z3\n       ;;gdscript          ; the language you waited for\n       ;;(go +lsp)         ; the hipster dialect\n       ;;(graphql +lsp)    ; Give queries a REST\n       (haskell +lsp)    ; a language that's lazier than I am\n       ;;hy                ; readability of scheme w/ speed of python\n       ;;idris             ; a language you can depend on\n       (json +lsp +tree-sitter)              ; At least it ain't XML\n       ;;janet             ; Fun fact: Janet is me!\n       ;;(java +lsp)       ; the poster child for carpal tunnel syndrome\n       ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))\n       ;;julia             ; a better, faster MATLAB\n       ;;kotlin            ; a better, slicker Java(Script)\n       (latex +lsp)             ; writing papers in Emacs has never been so fun\n       ;;lean              ; for folks with too much to prove\n       ;;ledger            ; be audit you can be\n       (lua +lsp +tree-sitter)               ; one-based indices? one-based indices\n       (markdown +grip)          ; writing docs for people to ignore\n       ;;nim               ; python + lisp at the speed of c\n       ;;nix               ; I hereby declare \"nix geht mehr!\"\n       ;;ocaml             ; an objective camel\n       (org +gnuplot +pandoc)               ; organize your plain life in plain text\n       ;;php               ; perl's insecure younger brother\n       ;;plantuml          ; diagrams for confusing people more\n       ;;graphviz          ; diagrams for confusing yourself even more\n       ;;purescript        ; javascript, but functional\n       (python +lsp +tree-sitter)            ; beautiful is better than ugly\n       ;;qt                ; the 'cutest' gui framework ever\n       ;;racket            ; a DSL for DSLs\n       ;;raku              ; the artist formerly known as perl6\n       ;;rest              ; Emacs as a REST client\n       ;;rst               ; ReST in peace\n       ;;(ruby +rails)     ; 1.step {|i| p \"Ruby is #{i.even? ? 'love' : 'life'}\"}\n       ;;(rust +lsp)       ; Fe2O3.unwrap().unwrap().unwrap().unwrap()\n       ;;scala             ; java, but good\n       ;;(scheme +guile)   ; a fully conniving family of lisps\n       (sh +powershell +lsp +tree-sitter)                ; she sells {ba,z,fi}sh shells on the C xor\n       ;;sml\n       ;;solidity          ; do you need a blockchain? No.\n       ;;swift             ; who asked for emoji variables?\n       ;;terra             ; Earth and Moon in alignment for performance.\n       ;;web               ; the tubes\n       (yaml +lsp +tree-sitter)              ; JSON, but readable\n       ;;zig               ; C, but simpler\n\n       :email\n       ;;(mu4e +org +gmail)\n       ;;notmuch\n       ;;(wanderlust +gmail)\n\n       :app\n       ;;calendar\n       ;;emms\n       ;;everywhere        ; *leave* Emacs!? You must be joking\n       ;;irc               ; how neckbeards socialize\n       (rss +org +youtube)        ; emacs as an RSS reader\n\n       :config\n       ;;literate\n       (default +bindings +smartparens))",
     "User.20260217223030.2": ";;; $DOOMDIR/config.el -*- lexical-binding: t; -*-\n\n;; Place your private configuration here! Remember, you do not need to run 'doom\n;; sync' after modifying this file!\n\n\n;; Some functionality uses this to identify you, e.g. GPG configuration, email\n;; clients, file templates and snippets. It is optional.\n;; (setq user-full-name \"John Doe\"\n;;       user-mail-address \"john@doe.com\")\n\n;; Doom exposes five (optional) variables for controlling fonts in Doom:\n;;\n;; - `doom-font' -- the primary font to use\n;; - `doom-variable-pitch-font' -- a non-monospace font (where applicable)\n;; - `doom-big-font' -- used for `doom-big-font-mode'; use this for\n;;   presentations or streaming.\n;; - `doom-symbol-font' -- for symbols\n;; - `doom-serif-font' -- for the `fixed-pitch-serif' face\n;;\n;; See 'C-h v doom-font' for documentation and more examples of what they\n;; accept. For example:\n;;\n;; If you or Emacs can't find your font, use 'M-x describe-font' to look them\n;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to\n;; refresh your font settings. If Emacs still can't find your font, it likely\n;; wasn't installed correctly. Font issues are rarely Doom issues!\n\n;; Whenever you reconfigure a package, make sure to wrap your config in an\n;; `with-eval-after-load' block, otherwise Doom's defaults may override your\n;; settings. E.g.\n;;\n;;   (with-eval-after-load 'PACKAGE\n;;     (setq x y))\n;;\n;; The exceptions to this rule:\n;;\n;;   - Setting file/directory variables (like `org-directory')\n;;   - Setting variables which explicitly tell you to set them before their\n;;     package is loaded (see 'C-h v VARIABLE' to look them up).\n;;   - Setting doom variables (which start with 'doom-' or '+').\n;;\n;; Here are some additional functions/macros that will help you configure Doom.\n;;\n;; - `load!' for loading external *.el files relative to this one\n;; - `add-load-path!' for adding directories to the `load-path', relative to\n;;   this file. Emacs searches the `load-path' when you load packages with\n;;   `require' or `use-package'.\n;; - `map!' for binding new keys\n;;\n;; To get information about any of these functions/macros, move the cursor over\n;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').\n;; This will open documentation for it, including demos of how they are used.\n;; Alternatively, use `C-h o' to look up a symbol (functions, variables, faces,\n;; etc).\n;;\n;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how\n;; they are implemented.\n",
@@ -3607,53 +3897,53 @@
     "User.20260221175941.1": "- force_clipboard: true\n  label: Markdown - Code block\n  replace: '```$|$\n\n    ```'\n  trigger: ':block:'\n- force_clipboard: false\n  label: Markdown - Inline code\n  replace: '`$|$`'\n  trigger: ':code:'\n- label: Markdown - Header1\n  replace: '#'\n  trigger: ':h1:'\n- label: Markdown - Header2\n  replace: '##'\n  trigger: ':h2:'\n- label: Markdown - Header3\n  replace: '###'\n  trigger: ':h3:'\n- label: Markdown - Header4\n  replace: '####'\n  trigger: ':h4:'\n- label: Markdown - Header5\n  replace: '#####'\n  trigger: ':h5:'\n- label: Markdown - Header6\n  replace: '######'\n  trigger: ':h6:'\n- label: Markdown - Bold\n  replace: '**$|$**'\n  trigger: ':bold:'\n- label: Markdown - Italic\n  replace: '*$|$*'\n  trigger: ':italic:'\n- label: Markdown - Strikethrough\n  replace: ~~$|$~~\n  trigger: ':strike:'\n- label: Markdown - URL\n  replace: '[$|$]()'\n  trigger: ':url:'\n- label: Markdown - Image\n  replace: '![]($|$)'\n  trigger: ':img:'\n- label: Markdown - Horizontal line\n  replace: ___\n  trigger: ':horizontal:'\n- label: Markdown - Task\n  replace: '- [ ] '\n  trigger: ':task:'\n- label: Markdown - Task completed\n  replace: '- [x] '\n  trigger: ':taskdone:'\n- force_clipboard: true\n  label: Markdown - Collapse block\n  replace: '<details>\n\n    <summary></summary>\n\n    $|$\n\n    </details>'\n  trigger: ':collapse:'\n- force_clipboard: true\n  label: Markdown - Comment\n  replace: <!--- $|$ -->\n  trigger: ':comment:'",
     "User.20260223181103.1": "{{ template \"espanso_email.key\" }}",
     "User.20260222211658.2": "[mega_a]\n{{ gopassRaw \"rclone/mega_a\" }}\n\n[alist]\n{{ gopassRaw \"rclone/alist/nuc\"}}",
-    "zxc.20260126154354.1": "{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}",
-    "zxc.20260125145051.1": "{{ if or (eq .chezmoi.os \"linux\") (eq .chezmoi.os \"windows\") (eq .chezmoi.os \"android\") -}}\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260125152704.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260125152851.2": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"tldr\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260125153131.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260125153012.2": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260125161631.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ $arch_helix := and  (hasKey .chezmoi.osRelease \"id\") (eq .chezmoi.osRelease.id \"arch\") (lookPath \"helix\") -}}\n{{ if or (lookPath \"hx\") $arch_helix -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260216185314.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ $arch_helix := and  (hasKey .chezmoi.osRelease \"id\") (eq .chezmoi.osRelease.id \"arch\") (lookPath \"helix\") -}}\n{{ if or (lookPath \"hx\") $arch_helix -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260217223023.1": "{{ if or (eq .chezmoi.os \"windows\") (eq .chezmoi.os \"linux\") -}}\n{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260217223030.1": "{{ if or (eq .chezmoi.os \"windows\") (eq .chezmoi.os \"linux\") -}}\n{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "User.20260217223035.1": "{{ if or (eq .chezmoi.os \"windows\") (eq .chezmoi.os \"linux\") -}}\n{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "User.20260223014430.1": "{{ if or (eq .chezmoi.os \"windows\") (eq .chezmoi.os \"linux\") -}}\n{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260126154354.1": "<< unix dos >>\n{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125145051.1": "<< unix dos >>\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125152704.1": "<< unix dos >>\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260125152851.2": "<< unix >>\n{{ if lookPath \"tldr\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125153131.1": "<< unix dos >>\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260125153012.2": "<< unix dos >>\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260125161631.1": "<< unix >>\n{{ $arch_helix := and  (hasKey .chezmoi.osRelease \"id\") (eq .chezmoi.osRelease.id \"arch\") (lookPath \"helix\") -}}\n{{ if or (lookPath \"hx\") $arch_helix -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260216185314.1": "<< unix >>\n{{ $arch_helix := and  (hasKey .chezmoi.osRelease \"id\") (eq .chezmoi.osRelease.id \"arch\") (lookPath \"helix\") -}}\n{{ if or (lookPath \"hx\") $arch_helix -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260217223023.1": "<< unix dos >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260217223030.1": "<< unix dos >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}\n",
+    "User.20260217223035.1": "<< unix dos >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260223014430.1": "<< unix dos >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260223014458.1": "machine smtp.qq.com port 465 login ourgal@qq.com password {{ gopass \"email/qq/main\" }}\nmachine imap.qq.com port 993 login ourgal@qq.com password {{ gopass \"email/qq/main\" }}\nmachine imap.163.com port 993 login fairever01@163.com password {{ gopass \"email/163/main\" }}\nmachine pop3.163.com port 995 login fairever01@163.com password {{ gopass \"email/163/main\" }}\nmachine imap.yandex.com port 993 login airever@yandex.com password {{ gopass \"email/yandex/main\" }}",
-    "User.20260220233323.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260215182442.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260220233323.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260215182442.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260215182554.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\nv2:sha256:f190ead5021be718ae1001570b620a363a3aa0c685fb15a276d8456d436944e5\n{{ end -}}",
-    "User.20260217022114.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260217022114.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260217022247.1": "{{ gopassRaw \"deskflow/nuc/cert\" -}}",
-    "User.20260215182818.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260215182818.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260215182823.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\nv2:sha256:545f553a4bf4638cadbe6d6e5a8a705008953379001ae9c087c38b485233751d\n{{ end -}}",
-    "zxc.20260201225344.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
-    "zxc.20260201034331.1": "@others",
-    "User.20260215205925.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"vscodium\" -}}\n{\n    @others\n}\n{{ end -}}\n{{ end -}}\n",
-    "User.20260215210400.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"vscodium\" -}}\n[\n    @others\n]\n{{ end -}}\n{{ end -}}",
-    "User.20260220151031.5": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"code\" -}}\n{\n    @others\n}\n{{ end -}}\n{{ end -}}\n",
-    "User.20260220151031.28": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"code\" -}}\n[\n    @others\n]\n{{ end -}}\n{{ end -}}",
-    "User.20260221175549.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"espanso\" -}}\nmatches:\n@others\n{{ end -}}\n{{ end -}}\n",
-    "User.20260221194603.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ $win_gpg_agent := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"win-gpg-agent\" \"current\" \"agent-gui.exe\" }}\n{{ if stat $win_gpg_agent -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260201225344.1": "<< dos >>\n@others\n{{ end -}}",
+    "zxc.20260201034331.1": "<< dos >>\n@others\n{{ end -}}",
+    "User.20260215205925.1": "<< dos >>\n{{ if lookPath \"vscodium\" -}}\n{\n    @others\n}\n{{ end -}}\n{{ end -}}\n",
+    "User.20260215210400.1": "<< dos >>\n{{ if lookPath \"vscodium\" -}}\n[\n    @others\n]\n{{ end -}}\n{{ end -}}",
+    "User.20260220151031.5": "<< dos >>\n{{ if lookPath \"code\" -}}\n{\n    @others\n}\n{{ end -}}\n{{ end -}}\n",
+    "User.20260220151031.28": "<< dos >>\n{{ if lookPath \"code\" -}}\n[\n    @others\n]\n{{ end -}}\n{{ end -}}",
+    "User.20260221175549.1": "<< dos >>\n{{ if lookPath \"espanso\" -}}\nmatches:\n@others\n{{ end -}}\n{{ end -}}\n",
+    "User.20260221194603.1": "<< dos >>\n{{ $win_gpg_agent := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"win-gpg-agent\" \"current\" \"agent-gui.exe\" }}\n{{ if stat $win_gpg_agent -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260221194708.1": "{{ $gpg := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"gpg\" \"current\" -}}\n{{ $gpg_home := joinPath $gpg \"home\" -}}\n{{ $gpg_sock := joinPath $gpg \"gnupg\" -}}\ngpg:\n  install_path: {{ $gpg | quote }}\n  # Before gnupg 2.3.2 release home directory could be properly link-ed\n  #   homedir: {{ $gpg_home | quote }}\n  # With gnupg 2.3.3 release (due to the changes in T5537) use this instead\n  #   homedir: {{ $gpg_home | quote }}\n  #   socketdir: \"\"\n  # After gnupg 2.3.4 release we have to switch to\n  homedir: {{ $gpg_home | quote }}\n  socketdir: {{ $gpg_sock | quote }}\ngui:\n  debug: false\n  setenv: true\n  # Use line below to enable SSH_AUTH_SOCK to point to cygwin socket\n  #   openssh: cygwin",
-    "User.20260222211658.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"rclone\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260125211938.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260202205715.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}",
+    "User.20260222211658.1": "<< dos >>\n{{ if lookPath \"rclone\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125211938.1": "<< dos >>\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260202205715.1": "<< dos >>\n@others\n{{ end -}}",
     "zxc.20260202205901.1": "# Flower - とても深いグリーン\nhttps://www.bilibili.com/video/BV1EyHYeBEFr",
-    "zxc.20260201203241.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260201203515.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260201214114.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gpg\" -}}\nC92C2BCD646A0DE6A60E1C5397CA97FDBE330909\n{{ end -}}\n{{ end -}}",
-    "zxc.20260201140523.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"gitui\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260130233132.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"alacritty\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260128002742.1": "{{ if eq .chezmoi.os \"windows\" -}}\n@others\n{{ end -}}\n",
-    "zxc.20260202195207.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260214105528.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"hx\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260214142543.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"hx\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260215234634.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"qutebrowser\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260201203241.1": "<< dos >>\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260201203515.1": "<< dos >>\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260201214114.1": "<< dos >>\n{{ if lookPath \"gpg\" -}}\nC92C2BCD646A0DE6A60E1C5397CA97FDBE330909\n{{ end -}}\n{{ end -}}",
+    "zxc.20260201140523.1": "<< dos >>\n{{ if lookPath \"gitui\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260130233132.1": "<< dos >>\n{{ if lookPath \"alacritty\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260128002742.1": "<< dos >>\n@others\n{{ end -}}\n",
+    "zxc.20260202195207.1": "<< dos >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260214105528.1": "<< dos >>\n{{ if lookPath \"hx\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260214142543.1": "<< dos >>\n{{ if lookPath \"hx\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260215234634.1": "<< dos >>\n{{ if lookPath \"qutebrowser\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260215234715.1": "config.load_autoconfig(False)\nconfig.set(\"auto_save.session\", True)\nconfig.set(\"content.blocking.method\", \"both\")\nconfig.set(\"downloads.location.suggestion\", \"both\")\nconfig.set(\"hints.border\", \"1px solid #1d1f21\")\nc.url.searchengines['DEFAULT'] = \"https://www.google.com/search?hl=en&q={}\"\nc.url.searchengines['aw'] = \"https://wiki.archlinux.org/?search={}\"\nc.url.searchengines['b'] = \"https://cn.bing.com/search?q={}\"\nc.url.searchengines['books'] = \"https://search.books.com.tw/search/query/cat/all/sort/5/v/1/page/1/spell/3/ms2/ms2_1/key/{}\"\nc.url.searchengines['bwtw'] = \"https://www.bookwalker.com.tw/search?w={}&series_display=1\"\nc.url.searchengines['ddg'] = \"https://duckduckgo.com/?q={}\"\nc.url.searchengines['dict'] = \"https://cn.bing.com/dict?q={}\"\nc.url.searchengines['docker'] = \"https://hub.docker.com/search?q={}\"\nc.url.searchengines['g'] = \"https://www.google.com/search?hl=en&q={}\"\nc.url.searchengines['gh'] = \"https://github.com/search?q={}\"\nc.url.searchengines['mangazip'] = \"https://manga-zip.info/search/{}\"\nc.url.searchengines['mynix'] = \"https://mynixos.com/search?q={}\"\nc.url.searchengines['nw'] = \"https://nixos.wiki/index.php?search={}\"\nc.url.searchengines['nyaa'] = \"https://nyaa.si/?f=0&c=1_2&q={}\"\nc.url.searchengines['twdict'] = \"https://dict.revised.moe.edu.tw/search.jsp?md=1&word={}#searchL\"\nc.url.searchengines['w'] = \"https://en.wikipedia.org/wiki/Special:Search?search={}&amp;go=Go&amp;ns0=1\"\nconfig.bind(\",\", \"search-prev\", mode=\"normal\")\nconfig.bind(\".\", \"search-next\", mode=\"normal\")\nconfig.bind(\"<\", \"tab-move -\", mode=\"normal\")\nconfig.bind(\"<Alt-m>\", \"tab-mute\", mode=\"normal\")\nconfig.bind(\"<Ctrl-o>\", \"session-save ;; cmd-set-text -s :session-load -c\", mode=\"normal\")\nconfig.bind(\">\", \"tab-move +\", mode=\"normal\")\nconfig.bind(\"B\", \"cmd-set-text -s :open -t dict \", mode=\"normal\")\nconfig.bind(\"M\", \"hint links spawn -d mpv {hint-url}\", mode=\"normal\")\nconfig.bind(\"S\", \"scroll-to-perc 100\", mode=\"normal\")\nconfig.bind(\"W\", \"scroll-to-perc 0\", mode=\"normal\")\nconfig.bind(\"X\", \"close\", mode=\"normal\")\nconfig.bind(\"\\\\r\", \"clear-messages ;; jseval document.querySelector(\\\"video, audio\\\").playbackRate = 2\", mode=\"normal\")\nconfig.bind(\"\\\\z\", \"clear-messages ;; jseval document.querySelector(\\\"video, audio\\\").playbackRate = 1\", mode=\"normal\")\nconfig.bind(\"a\", \"back\", mode=\"normal\")\nconfig.bind(\"b\", \"cmd-set-text -s :quickmark-load -t \", mode=\"normal\")\nconfig.bind(\"c\", \"tab-prev\", mode=\"normal\")\nconfig.bind(\"d\", \"forward\", mode=\"normal\")\nconfig.bind(\"e\", \"cmd-set-text -s :open {url}\", mode=\"normal\")\nconfig.bind(\"g\", \"cmd-set-text -s :open -t\", mode=\"normal\")\nconfig.bind(\"o\", \"cmd-set-text -s :open\", mode=\"normal\")\nconfig.bind(\"p\", \"open -t {clipboard}\", mode=\"normal\")\nconfig.bind(\"r\", \"reload\", mode=\"normal\")\nconfig.bind(\"s\", \"scroll-page 0 1\", mode=\"normal\")\nconfig.bind(\"u\", \"navigate up\", mode=\"normal\")\nconfig.bind(\"v\", \"tab-next\", mode=\"normal\")\nconfig.bind(\"w\", \"scroll-page 0 -1\", mode=\"normal\")\nconfig.bind(\"x\", \"tab-close\", mode=\"normal\")\nconfig.bind(\"ya\", \"hint links yank\", mode=\"normal\")\nconfig.bind(\"z\", \"undo\", mode=\"normal\")",
-    "User.20260216124226.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat \"C:/Program Files/Rime\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260216125422.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if stat \"C:/Program Files/Rime\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260219235648.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"zed\" -}}\n// Zed settings\n//\n// For information on how to configure Zed, see the Zed\n// documentation: https://zed.dev/docs/configuring-zed\n//\n// To see all of Zed's default settings without changing your\n// custom settings, run `zed: open default settings` from the\n// command palette (cmd-shift-p / ctrl-shift-p)\n{\n  @others\n}\n{{ end -}}\n{{ end -}}",
+    "User.20260216124226.1": "<< dos >>\n{{ if stat \"C:/Program Files/Rime\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260216125422.1": "<< dos >>\n{{ if stat \"C:/Program Files/Rime\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260219235648.1": "<< dos >>\n{{ if lookPath \"zed\" -}}\n// Zed settings\n//\n// For information on how to configure Zed, see the Zed\n// documentation: https://zed.dev/docs/configuring-zed\n//\n// To see all of Zed's default settings without changing your\n// custom settings, run `zed: open default settings` from the\n// command palette (cmd-shift-p / ctrl-shift-p)\n{\n  @others\n}\n{{ end -}}\n{{ end -}}",
     "User.20260220000018.1": "\"theme\": {\n  \"mode\": \"system\",\n  \"light\": \"One Light\",\n  \"dark\": \"One Dark\",\n},",
     "User.20260219235958.1": "\"ui_font_size\": 16,\n\"buffer_font_size\": 15,",
     "User.20260219235853.1": "\"auto_update\": false\n"
@@ -3666,10 +3956,10 @@
       "_mod_time": 1771507120.162
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1771863711.289
+      "_mod_time": 1772023297.338
     },
     "zxc.20260125143959.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1772023346.652
     },
     "zxc.20260125144442.1": {
       "_mod_time": 1771863306.172
@@ -3684,28 +3974,28 @@
       "_mod_time": 1771684793.908
     },
     "zxc.20260125172839.1": {
-      "_mod_time": 1771594371.36
+      "_mod_time": 1772023618.94
     },
     "zxc.20260130221131.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1772023638.059
     },
     "zxc.20260130074346.1": {
       "_mod_time": 1771507120.147
     },
     "zxc.20260126160530.1": {
-      "_mod_time": 1771684793.907
+      "_mod_time": 1772023779.001
     },
     "zxc.20260202201907.1": {
       "_mod_time": 1771507120.147
     },
     "User.20260220235431.1": {
-      "_mod_time": 1771684793.907
+      "_mod_time": 1772023849.432
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1771507120.147
     },
     "User.20260220233639.1": {
-      "_mod_time": 1771684793.907
+      "_mod_time": 1772023934.663
     },
     "zxc.20260202203521.20": {
       "_mod_time": 1771574592.704
@@ -3720,37 +4010,37 @@
       "_mod_time": 1771571707.126
     },
     "zxc.20260202213444.1": {
-      "_mod_time": 1771684793.907
+      "_mod_time": 1771569080.908
     },
     "User.20260220142155.2": {
-      "_mod_time": 1771684793.907
+      "_mod_time": 1771568880.608
     },
     "User.20260220151435.2": {
-      "_mod_time": 1771684793.907
+      "_mod_time": 1771573259.107
     },
     "zxc.20260202215023.1": {
-      "_mod_time": 1771684793.907
+      "_mod_time": 1771568704.936
     },
     "zxc.20260202215408.1": {
-      "_mod_time": 1771684793.907
+      "_mod_time": 1771568734.183
     },
     "zxc.20260202220030.1": {
-      "_mod_time": 1771684793.907
+      "_mod_time": 1771568768.817
     },
     "zxc.20260202220553.1": {
-      "_mod_time": 1771684793.907
+      "_mod_time": 1771568791.589
     },
     "User.20260217202401.1": {
-      "_mod_time": 1771684793.907
+      "_mod_time": 1771517628.633
     },
     "User.20260220214558.1": {
-      "_mod_time": 1771684793.907
+      "_mod_time": 1772024408.924
     },
     "User.20260217214851.1": {
-      "_mod_time": 1771684793.907
+      "_mod_time": 1771524800.056
     },
     "User.20260220000301.2": {
-      "_mod_time": 1771684793.907
+      "_mod_time": 1771517674.642
     },
     "User.20260220012738.1": {
       "_mod_time": 1771684793.907
@@ -3768,34 +4058,34 @@
       "_mod_time": 1771864021.281
     },
     "zxc.20260125162740.1": {
-      "_mod_time": 1771507120.162
+      "_mod_time": 1772024858.229
     },
     "zxc.20260126185048.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1772024858.322
     },
     "User.20260218144120.1": {
-      "_mod_time": 1771684793.908
+      "_mod_time": 1772024811.743
     },
     "User.20260218144232.1": {
-      "_mod_time": 1771684793.908
+      "_mod_time": 1772024901.449
     },
     "zxc.20260125163108.1": {
       "_mod_time": 1771507120.162
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1771684793.909
+      "_mod_time": 1772024974.983
     },
     "zxc.20260125164142.1": {
-      "_mod_time": 1771684793.908
+      "_mod_time": 1772024975.087
     },
     "User.20260218142211.1": {
-      "_mod_time": 1771684793.911
+      "_mod_time": 1771587351.823
     },
     "User.20260218142322.1": {
-      "_mod_time": 1771684793.911
+      "_mod_time": 1771507120.178
     },
     "zxc.20260130225718.1": {
-      "_mod_time": 1771507120.162
+      "_mod_time": 1772025344.523
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1771507120.162
@@ -3813,52 +4103,52 @@
       "_mod_time": 1771684793.908
     },
     "User.20260216000318.1": {
-      "_mod_time": 1771698861.239
+      "_mod_time": 1772025359.907
     },
     "User.20260216232855.1": {
       "_mod_time": 1771507120.147
     },
     "User.20260217182613.1": {
-      "_mod_time": 1771684793.908
+      "_mod_time": 1771507120.147
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1771507120.162
+      "_mod_time": 1772025560.415
     },
     "zxc.20260125145051.1": {
-      "_mod_time": 1771864417.659
+      "_mod_time": 1772025586.946
     },
     "zxc.20260125152704.1": {
-      "_mod_time": 1771507120.162
+      "_mod_time": 1772025659.427
     },
     "zxc.20260125152851.2": {
-      "_mod_time": 1771507120.162
+      "_mod_time": 1772025725.692
     },
     "zxc.20260125153131.1": {
-      "_mod_time": 1771507120.162
+      "_mod_time": 1772025743.454
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1771751488.495
+      "_mod_time": 1772025797.287
     },
     "zxc.20260125161631.1": {
-      "_mod_time": 1771684793.91
+      "_mod_time": 1772025859.311
     },
     "User.20260216185314.1": {
-      "_mod_time": 1771684793.91
+      "_mod_time": 1772025901.2
     },
     "User.20260217223023.1": {
-      "_mod_time": 1771595089.074
+      "_mod_time": 1772025958.583
     },
     "User.20260217223030.1": {
-      "_mod_time": 1771794369.597
+      "_mod_time": 1772026058.684
     },
     "User.20260217223035.1": {
-      "_mod_time": 1771684793.91
+      "_mod_time": 1772026558.006
     },
     "User.20260223014430.1": {
-      "_mod_time": 1771794369.649
+      "_mod_time": 1772026690.463
     },
     "User.20260220233323.1": {
-      "_mod_time": 1771684793.91
+      "_mod_time": 1772026690.554
     },
     "User.20260215182442.1": {
       "_mod_time": 1771507120.178
@@ -3873,19 +4163,19 @@
       "_mod_time": 1771507120.178
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1771684793.911
+      "_mod_time": 1772026886.539
     },
     "User.20260215205925.1": {
-      "_mod_time": 1771684793.911
+      "_mod_time": 1771507120.178
     },
     "User.20260215210400.1": {
       "_mod_time": 1771507120.178
     },
     "User.20260220151031.5": {
-      "_mod_time": 1771684793.911
+      "_mod_time": 1771571520.843
     },
     "User.20260220151031.28": {
-      "_mod_time": 1771684793.911
+      "_mod_time": 1771571520.952
     },
     "User.20260221175549.1": {
       "_mod_time": 1771841490.923
@@ -3939,7 +4229,7 @@
       "_mod_time": 1771507120.147
     },
     "User.20260219235648.1": {
-      "_mod_time": 1771684793.908
+      "_mod_time": 1771516837.708
     }
   }
 }

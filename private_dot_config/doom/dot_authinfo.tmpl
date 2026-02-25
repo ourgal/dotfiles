@@ -1,4 +1,4 @@
-{{ if or (eq .chezmoi.os "windows") (eq .chezmoi.os "linux") -}}
+{{ if or (eq .chezmoi.os "windows") (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
 {{ if stat (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom") -}}
 machine smtp.qq.com port 465 login ourgal@qq.com password {{ gopass "email/qq/main" }}
 machine imap.qq.com port 993 login ourgal@qq.com password {{ gopass "email/qq/main" }}
