@@ -1,7 +1,0 @@
-{{ if or (eq .chezmoi.os "windows") (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
-{{ if lookPath "emacs" -}}
-[".emacs.d"]
-    type = "git-repo"
-    url = "https://mirror.nju.edu.cn/git/doom-emacs.git/"
-{{ end -}}
-{{ end -}}
