@@ -8,6 +8,10 @@
       "vh": "archive",
       "children": [
         {
+          "gnx": "User.20260226221459.1",
+          "vh": "lazygit keybinding"
+        },
+        {
           "gnx": "User.20260221193859.1",
           "vh": "gpg agent"
         },
@@ -1311,10 +1315,6 @@
                 {
                   "gnx": "zxc.20260125212447.1",
                   "vh": "Alt+e"
-                },
-                {
-                  "gnx": "zxc.20260125212508.1",
-                  "vh": "lazygit keybinding"
                 },
                 {
                   "gnx": "zxc.20260125213200.1",
@@ -3526,6 +3526,7 @@
     }
   ],
   "tnodes": {
+    "User.20260226221459.1": "# This is an example of a macro that you might use to execute a command.\n# This will add the command to history.\nSet-PSReadLineKeyHandler -Key Ctrl+g `\n                         -BriefDescription Lazygit `\n                         -LongDescription \"Run lazygit\" `\n                         -ScriptBlock {\n    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()\n    [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"lazygit\")\n    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()\n}",
     "User.20260221193859.1": "{{ if lookPath \"gpg-connect-agent\" -}}\nRun(\"gpg-connect-agent /bye\", , \"Hide\")\n{{ end -}}\n",
     "User.20260221180517.1": "{{ if and (eq .chezmoi.hostname \"nuc\") (lookPath \"runemacs\") -}}\n; Run(\"runemacs --daemon\", EnvGet(\"userprofile\"), \"Hide\")\n{{ end -}}\n",
     "zxc.20260203193056.1": "{{ if lookPath \"mcfly\" -}}\n# mcfly\nInvoke-Expression -Command $(mcfly init powershell | out-string)\n{{ end -}}",
@@ -3704,7 +3705,6 @@
     "zxc.20260125212238.1": "Import-Module PSReadLine\nSet-PSReadLineKeyHandler -Key Tab -Function Complete",
     "zxc.20260125212355.1": "#region Smart Insert/Delete\n\n# The next four key handlers are designed to make entering matched quotes\n# parens, and braces a nicer experience.  I'd like to include functions\n# in the module that do this, but this implementation still isn't as smart\n# as ReSharper, so I'm just providing it as a sample.\n\nSet-PSReadLineKeyHandler -Chord '\"',\"'\" `\n                         -BriefDescription SmartInsertQuote `\n                         -LongDescription \"Insert paired quotes if not already on a quote\" `\n                         -ScriptBlock {\n    param($key, $arg)\n\n    $line = $null\n    $cursor = $null\n    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)\n\n    if ($line.Length -gt $cursor -and $line[$cursor] -eq $key.KeyChar) {\n        # Just move the cursor\n        [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($cursor + 1)\n    }\n    else {\n        # Insert matching quotes, move cursor to be in between the quotes\n        [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"$($key.KeyChar)\" * 2)\n        [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)\n        [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($cursor - 1)\n    }\n}\n\nSet-PSReadLineKeyHandler -Key '(','{','[' `\n                         -BriefDescription InsertPairedBraces `\n                         -LongDescription \"Insert matching braces\" `\n                         -ScriptBlock {\n    param($key, $arg)\n\n    $closeChar = switch ($key.KeyChar)\n    {\n        <#case#> '(' { [char]')'; break }\n        <#case#> '{' { [char]'}'; break }\n        <#case#> '[' { [char]']'; break }\n    }\n\n    $selectionStart = $null\n    $selectionLength = $null\n    [Microsoft.PowerShell.PSConsoleReadLine]::GetSelectionState([ref]$selectionStart, [ref]$selectionLength)\n\n    $line = $null\n    $cursor = $null\n    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)\n    \n    if ($selectionStart -ne -1)\n    {\n      # Text is selected, wrap it in brackets\n      [Microsoft.PowerShell.PSConsoleReadLine]::Replace($selectionStart, $selectionLength, $key.KeyChar + $line.SubString($selectionStart, $selectionLength) + $closeChar)\n      [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($selectionStart + $selectionLength + 2)\n    } else {\n      # No text is selected, insert a pair\n      [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"$($key.KeyChar)$closeChar\")\n      [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($cursor + 1)\n    }\n}\n\nSet-PSReadLineKeyHandler -Key ')',']','}' `\n                         -BriefDescription SmartCloseBraces `\n                         -LongDescription \"Insert closing brace or skip\" `\n                         -ScriptBlock {\n    param($key, $arg)\n\n    $line = $null\n    $cursor = $null\n    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)\n\n    if ($line[$cursor] -eq $key.KeyChar)\n    {\n        [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($cursor + 1)\n    }\n    else\n    {\n        [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"$($key.KeyChar)\")\n    }\n}\n\nSet-PSReadLineKeyHandler -Key Backspace `\n                         -BriefDescription SmartBackspace `\n                         -LongDescription \"Delete previous character or matching quotes/parens/braces\" `\n                         -ScriptBlock {\n    param($key, $arg)\n\n    $line = $null\n    $cursor = $null\n    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)\n\n    if ($cursor -gt 0)\n    {\n        $toMatch = $null\n        if ($cursor -lt $line.Length)\n        {\n            switch ($line[$cursor])\n            {\n                <#case#> '\"' { $toMatch = '\"'; break }\n                <#case#> \"'\" { $toMatch = \"'\"; break }\n                <#case#> ')' { $toMatch = '('; break }\n                <#case#> ']' { $toMatch = '['; break }\n                <#case#> '}' { $toMatch = '{'; break }\n            }\n        }\n\n        if ($toMatch -ne $null -and $line[$cursor-1] -eq $toMatch)\n        {\n            [Microsoft.PowerShell.PSConsoleReadLine]::Delete($cursor - 1, 2)\n        }\n        else\n        {\n            [Microsoft.PowerShell.PSConsoleReadLine]::BackwardDeleteChar($key, $arg)\n        }\n    }\n}\n\n#endregion Smart Insert/Delete",
     "zxc.20260125212447.1": "Set-PSReadLineKeyHandler -Key Alt+e -Function ViEditVisually",
-    "zxc.20260125212508.1": "# This is an example of a macro that you might use to execute a command.\n# This will add the command to history.\nSet-PSReadLineKeyHandler -Key Ctrl+g `\n                         -BriefDescription Lazygit `\n                         -LongDescription \"Run lazygit\" `\n                         -ScriptBlock {\n    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()\n    [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"lazygit\")\n    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()\n}",
     "zxc.20260125213200.1": "# parameter color\nSet-PSReadLineOption -Colors @{ \"parameter\"=\"Blue\"; \"operator\"=\"DarkMagenta\" }",
     "zxc.20260125213451.1": "Set-PSReadlineKeyHandler -Key Ctrl+d -Function DeleteCharOrExit",
     "zxc.20260125212538.1": "{{ if lookPath \"eza\" -}}\nfunction ll {\n  Param\n  (\n    [string] $path = \".\"\n  )\n\n  eza --long --icons=auto --group --group-directories-first --time-style relative $Path\n}\n{{ end -}}",
@@ -4178,7 +4178,7 @@
       "_mod_time": 1771773103.258
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1771507120.162
+      "_mod_time": 1772115447.537
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1771507120.178

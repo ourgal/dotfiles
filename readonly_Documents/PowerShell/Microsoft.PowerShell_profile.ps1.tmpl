@@ -129,16 +129,6 @@ Set-PSReadLineKeyHandler -Key Backspace `
 
 #endregion Smart Insert/Delete
 Set-PSReadLineKeyHandler -Key Alt+e -Function ViEditVisually
-# This is an example of a macro that you might use to execute a command.
-# This will add the command to history.
-Set-PSReadLineKeyHandler -Key Ctrl+g `
-                         -BriefDescription Lazygit `
-                         -LongDescription "Run lazygit" `
-                         -ScriptBlock {
-    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
-    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("lazygit")
-    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
-}
 # parameter color
 Set-PSReadLineOption -Colors @{ "parameter"="Blue"; "operator"="DarkMagenta" }
 Set-PSReadlineKeyHandler -Key Ctrl+d -Function DeleteCharOrExit
