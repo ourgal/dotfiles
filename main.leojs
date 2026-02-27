@@ -1122,6 +1122,10 @@
                                 {
                                   "gnx": "User.20260218142714.1",
                                   "vh": "lightline.vim"
+                                },
+                                {
+                                  "gnx": "User.20260227205427.1",
+                                  "vh": "vim-ghost"
                                 }
                               ]
                             },
@@ -1152,6 +1156,10 @@
                                 {
                                   "gnx": "User.20260218143021.1",
                                   "vh": "lightline.vim"
+                                },
+                                {
+                                  "gnx": "User.20260227211108.1",
+                                  "vh": "vim-ghost"
                                 }
                               ]
                             }
@@ -1186,7 +1194,7 @@
                   "children": [
                     {
                       "gnx": "User.20260225235711.1",
-                      "vh": "@clean plug.vim",
+                      "vh": "@clean plug.vim.tmpl",
                       "children": [
                         {
                           "gnx": "User.20260225203941.1"
@@ -1247,7 +1255,7 @@
                   "children": [
                     {
                       "gnx": "User.20260225235850.1",
-                      "vh": "@clean plug.vim",
+                      "vh": "@clean plug.vim.tmpl",
                       "children": [
                         {
                           "gnx": "User.20260225204326.1"
@@ -3684,9 +3692,10 @@
     "User.20260218141914.13": "Plug 'tpope/vim-eunuch', { 'on': [ 'Remove', 'Delete', 'Move', 'Chmod', 'Mkdir', 'Cfind', 'Clocate', 'Lfind', 'Wall', 'SudoWrite', 'SudoEdit' ] }\n",
     "User.20260218141914.14": "{{ if lookPath \"git\" -}}\nPlug 'tpope/vim-fugitive'\n{{ end -}}\n",
     "User.20260218141914.15": "Plug 'airblade/vim-gitgutter'\n",
-    "User.20260218141914.16": "Plug 'pbrisbin/vim-mkdir'\n",
+    "User.20260218141914.16": "Plug 'pbrisbin/vim-mkdir'",
     "User.20260218141914.17": "Plug 'lambdalisue/vim-suda'\n",
     "User.20260218142714.1": "Plug 'itchyny/lightline.vim'",
+    "User.20260227205427.1": "Plug 'raghur/vim-ghost'\nPlug 'roxma/nvim-yarp', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }\nPlug 'roxma/vim-hug-neovim-rpc', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }",
     "User.20260218141914.18": "@others",
     "User.20260218141914.19": "let g:coc_node_path = {{ lookPath \"node\" | squote }}\n\n\" coc.nvim\n\" Use tab for trigger completion with characters ahead and navigate\n\" NOTE: There's always complete item selected by default, you may want to enable\n\" no select by `\"suggest.noselect\": true` in your configuration file\n\" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by\n\" other plugin before putting this into your config\ninoremap <silent><expr> <TAB>\n      \\ coc#pum#visible() ? coc#pum#next(1) :\n      \\ CheckBackspace() ? \"\\<Tab>\" :\n      \\ coc#refresh()\ninoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : \"\\<C-h>\"\n\n\" Make <CR> to accept selected completion item or notify coc.nvim to format\n\" <C-g>u breaks current undo, please make your own choice\ninoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : \"\\<C-g>u\\<CR>\\<c-r>=coc#on_enter()\\<CR>\"\n\nfunction! CheckBackspace() abort\n  let col = col('.') - 1\n  return !col || getline('.')[col - 1]  =~# '\\s'\nendfunction\n\n\" Use <c-space> to trigger completion\nif has('nvim')\n  inoremap <silent><expr> <c-space> coc#refresh()\nelse\n  inoremap <silent><expr> <c-@> coc#refresh()\nendif\n\n\" Use `[g` and `]g` to navigate diagnostics\n\" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list\nnmap <silent> [d <Plug>(coc-diagnostic-prev)\nnmap <silent> ]d <Plug>(coc-diagnostic-next)\n\n\" GoTo code navigation\nnmap <silent> gd <Plug>(coc-definition)\nnmap <silent> gy <Plug>(coc-type-definition)\nnmap <silent> gi <Plug>(coc-implementation)\nnmap <silent> gr <Plug>(coc-references)\n\nfunction! ShowDocumentation()\n  if CocAction('hasProvider', 'hover')\n    call CocActionAsync('doHover')\n  else\n    call feedkeys('K', 'in')\n  endif\nendfunction\n\n\" Use K to show documentation in preview window\nnnoremap <silent> K :call ShowDocumentation()<CR>\n\n\" Highlight the symbol and its references when holding the cursor\nautocmd CursorHold * silent call CocActionAsync('highlight')\n\n\" Symbol renaming\nnnoremap <leader>R <plug>(coc-rename)\n\n\" Formatting selected code\n\" xmap <leader>f  <Plug>(coc-format-selected)\n\" nmap <leader>f  <Plug>(coc-format-selected)\n\naugroup mygroup\n  autocmd!\n  \" Setup formatexpr specified filetype(s)\n  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')\n  \" Update signature help on jump placeholder\n  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')\naugroup end\n\n\" Applying code actions to the selected code block\n\" Example: `<leader>aap` for current paragraph\n\" xmap <leader>a  <Plug>(coc-codeaction-selected)\n\" nmap <leader>a  <Plug>(coc-codeaction-selected)\n\n\" Remap keys for applying code actions at the cursor position\n\" nmap <leader>ac  <Plug>(coc-codeaction-cursor)\n\" Remap keys for apply code actions affect whole buffer\n\" nmap <leader>as  <Plug>(coc-codeaction-source)\n\" Apply the most preferred quickfix action to fix diagnostic on the current line\n\" nmap <leader>qf  <Plug>(coc-fix-current)\n\n\" Remap keys for applying refactor code actions\n\" nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)\n\" xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)\n\" nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)\n\n\" Run the Code Lens action on the current line\n\" nmap <leader>cl  <Plug>(coc-codelens-action)\n\n\" Map function and class text objects\n\" NOTE: Requires 'textDocument.documentSymbol' support from the language server\nxmap if <Plug>(coc-funcobj-i)\nomap if <Plug>(coc-funcobj-i)\nxmap af <Plug>(coc-funcobj-a)\nomap af <Plug>(coc-funcobj-a)\nxmap ic <Plug>(coc-classobj-i)\nomap ic <Plug>(coc-classobj-i)\nxmap ac <Plug>(coc-classobj-a)\nomap ac <Plug>(coc-classobj-a)\n\n\" Remap <C-f> and <C-b> to scroll float windows/popups\nif has('nvim-0.4.0') || has('patch-8.2.0750')\n  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : \"\\<C-f>\"\n  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : \"\\<C-b>\"\n  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? \"\\<c-r>=coc#float#scroll(1)\\<cr>\" : \"\\<Right>\"\n  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? \"\\<c-r>=coc#float#scroll(0)\\<cr>\" : \"\\<Left>\"\n  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : \"\\<C-f>\"\n  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : \"\\<C-b>\"\nendif\n\n\" Use CTRL-S for selections ranges\n\" Requires 'textDocument/selectionRange' support of language server\nnmap <silent> <C-s> <Plug>(coc-range-select)\nxmap <silent> <C-s> <Plug>(coc-range-select)\n\n\" Add `:Format` command to format current buffer\ncommand! -nargs=0 Format :call CocActionAsync('format')\n\n\" Add `:Fold` command to fold current buffer\ncommand! -nargs=? Fold :call     CocAction('fold', <f-args>)\n\n\" Add `:OR` command for organize imports of the current buffer\ncommand! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')\n\n\" Add (Neo)Vim's native statusline support\n\" NOTE: Please see `:h coc-status` for integrations with external plugins that\n\" provide custom statusline: lightline.vim, vim-airline\nset statusline^=%{coc#status()}%{get(b:,'coc_current_function',''\\'''\\')}\n\nlet g:coc_global_extensions = ['coc-fish', '@yaegassy/coc-marksman', 'coc-emoji', 'coc-dash-complete', 'coc-just-complete', 'coc-translator', 'coc-perl', 'coc-go', 'coc-json', 'coc-prettier', 'coc-basedpyright', 'coc-r-lsp', 'coc-sh', 'coc-snippets', 'coc-sumneko-lua', 'coc-texlab', 'coc-toml', 'coc-vimlsp', 'coc-yaml' ]\n\" nnoremap <leader>e <Cmd>CocCommand explorer --quit-on-open<CR>\n\n\" limit completion item\nlet g:coc_filetype_map = { 'yaml.ansible': 'ansible', }\nset pumheight=10\n\nnmap <Leader>,t <Plug>(coc-translator-p)\nvmap <Leader>,t <Plug>(coc-translator-pv)",
     "User.20260218141914.20": "set termguicolors\nlet g:tokyonight_style = 'night' \" available: night, storm\nlet g:tokyonight_enable_italic = 1\ncolorscheme tokyonight",
@@ -3694,6 +3703,7 @@
     "User.20260218141914.22": "\" vim-easy-align\nxmap ga <Plug>(EasyAlign)\nnmap ga <Plug>(EasyAlign)\n",
     "User.20260218141914.23": "\" vim-suda\nlet g:suda_smart_edit = 1",
     "User.20260218143021.1": "let g:lightline = {\n      \\ 'colorscheme': 'tokyonight',\n      \\ 'active': {\n      \\   'left': [ [ 'mode', 'paste' ],\n      \\             [ 'readonly', 'filename', 'modified' ] ],\n      \\   'right': [ [ 'lineinfo' ],\n      \\              [ 'percent' ],\n      \\              [ 'zoomed', 'fileformat', 'fileencoding', 'filetype' ] ]\n      \\ },\n      \\ 'inactive': {\n      \\   'left': [ [ 'mode', 'paste' ],\n      \\             [ 'readonly', 'filename', 'modified' ] ],\n      \\   'right': [ [ 'lineinfo' ],\n      \\              [ 'percent' ],\n      \\              [ 'fileformat', 'fileencoding', 'filetype' ] ]\n      \\ },\n      \\ 'component_function': {\n      \\   'filename': 'LightlineTruncatedFileName',\n      \\   'zoomed': 'zoom#statusline'\n      \\ }\n      \\ }\n\nfunction! LightlineTruncatedFileName()\nlet l:filePath = expand('%')\n    if winwidth(0) > 100\n        return l:filePath\n    else\n        return pathshorten(l:filePath)\n    endif\nendfunction",
+    "User.20260227211108.1": "let g:python3_host_prog = {{ lookPath \"python\" | squote }}",
     "zxc.20260125164142.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125164204.1": "vim9script\n\n# simple fuzzy find finder\n# place into ~/.vim/plugin/fuzzyfind.vim\n\nset wildmode=noselect:lastused,full\nset wildmenu wildoptions=pum,fuzzy pumheight=12\n\n\nvar files_cache: list<string> = []\naugroup CmdComplete\n    au!\n    au CmdlineChanged : wildtrigger()\n    au CmdlineEnter : files_cache = []\naugroup END\n\ndef FindCmd(): string\n    var cmd = ''\n    if executable('fd')\n        cmd = 'fd . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('fdfind')\n        cmd = 'fdfind . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('ugrep')\n        cmd = 'ugrep \"\" -Rl -I --ignore-files'\n    elseif executable('rg')\n        cmd = 'rg --path-separator / --files --hidden --glob !.git'\n    elseif executable('find')\n        cmd = 'find \\! \\( -path \"*/.git\" -prune -o -name \"*.swp\" \\) -type f -follow'\n    endif\n    return cmd\nenddef\n\ndef Find(cmd_arg: string, cmd_complete: bool): list<string>\n    if empty(files_cache)\n        var cmd = FindCmd()\n        # fallback to built-in glob if no fd/rg/ug/find is available\n        # e.g. we are on Windows\n        if empty(cmd)\n            files_cache = globpath('.', '**', 1, 1)\n                ->filter((_, v) => !isdirectory(v))\n                ->mapnew((_, v) => v->substitute('^\\.[\\/]', \"\", \"\"))\n        else\n            files_cache = systemlist(cmd)\n        endif\n    endif\n    if empty(cmd_arg)\n        return files_cache\n    else\n        return files_cache->matchfuzzy(cmd_arg)\n    endif\nenddef\n\nset findfunc=Find",
     "User.20260225235711.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -4063,22 +4073,22 @@
       "_mod_time": 1771507120.162
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1772024974.983
+      "_mod_time": 1772198288.472
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1772024975.087
     },
     "User.20260225235711.1": {
-      "_mod_time": 1772035118.375
+      "_mod_time": 1772197656.366
     },
     "User.20260218142211.1": {
-      "_mod_time": 1771587351.823
+      "_mod_time": 1772198288.54
     },
     "User.20260218142322.1": {
       "_mod_time": 1771507120.178
     },
     "User.20260225235850.1": {
-      "_mod_time": 1772035168.568
+      "_mod_time": 1772197656.473
     },
     "zxc.20260130225718.1": {
       "_mod_time": 1772025344.523
