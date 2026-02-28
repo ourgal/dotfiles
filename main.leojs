@@ -1414,6 +1414,10 @@
               "vh": "atuin"
             },
             {
+              "gnx": "User.20260228222116.1",
+              "vh": "mcfly"
+            },
+            {
               "gnx": "User.20260226225250.1",
               "vh": "navi"
             }
@@ -3568,7 +3572,7 @@
     "zxc.20260125143553.1": "PATH=~/.local/bin:$PATH",
     "zxc.20260125143635.1": "<< not WSL >>\nsource ~/.local/lib/ble-nightly/ble.sh\n{{ end -}}\n",
     "User.20260225204031.1": "{{ if and (hasKey .chezmoi.kernel \"osrelease\") (not (mustRegexMatch \".*WSL.*\" .chezmoi.kernel.osrelease)) -}}",
-    "zxc.20260125143653.1": "{{ if lookPath \"fzf\" -}}\n{{ if or (lookPath \"mcfly\") (lookPath \"atuin\") -}}\nFZF_CTRL_R_COMMAND= eval \"$(fzf --bash)\"\n{{ else -}}\neval \"$(fzf --bash)\"\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260125143653.1": "{{ if lookPath \"fzf\" -}}\n{{ if or (lookPath \"mcfly\") (lookPath \"atuin\") -}}\nFZF_CTRL_R_COMMAND= eval \"$(fzf --bash)\"\n{{ else -}}\neval \"$(fzf --bash)\"\n{{ end -}}\n{{ end -}}",
     "zxc.20260125143706.1": "{{ if lookPath \"starship\" -}}\neval \"$(starship init bash)\"\n{{ end -}}\n",
     "zxc.20260125143716.1": "{{ if lookPath \"eza\" -}}\nalias ll='eza --long --git --icons auto --group --group-directories-first --time-style relative'\n{{ end -}}",
     "zxc.20260125143728.1": "{{ if lookPath \"atuin\" -}}\n<< not android >>\neval \"$(atuin init bash)\"\n{{ end -}}\n{{ end -}}\n",
@@ -3751,7 +3755,8 @@
     "zxc.20260125213514.1": "{{ if lookPath \"zoxide\" -}}\n# zoxide\nInvoke-Expression (& { (zoxide init powershell | Out-String) })\n{{ end -}}",
     "zxc.20260125213409.1": "# PSFzf\nImport-Module PSFzf\nSet-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r' -EnableAliasFuzzyKillProcess\n# Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }",
     "zxc.20260125213432.1": "Set-PSReadLineKeyHandler -Key Ctrl+o `\n                         -BriefDescription FuzzyEdit `\n                         -LongDescription \"Fuzzy Edit\" `\n                         -ScriptBlock {\n    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()\n    [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"Invoke-FuzzyEdit\")\n    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()\n}",
-    "zxc.20260203193108.1": "{{ if lookPath \"atuin\" -}}\n# atuin\nInvoke-Expression -Command $(atuin init powershell | out-string)\n{{ end -}}",
+    "zxc.20260203193108.1": "{{ if and (lookPath \"atuin\") (not (lookPath \"mcfly\")) -}}\n# atuin\nInvoke-Expression -Command $(atuin init powershell | out-string)\n{{ end -}}",
+    "User.20260228222116.1": "{{ if lookPath \"mcfly\" -}}\nInvoke-Expression -Command $(mcfly init powershell | out-string)\n{{ end -}}",
     "User.20260226225250.1": "{{ if lookPath \"navi\" -}}\nfunction Invoke-Navi {\n    $startArgs = @{\n        FileName = \"navi\";\n        Arguments = $args;\n        RedirectStandardOutput = $true;\n        WorkingDirectory = $PWD;\n        UseShellExecute = $false;\n    }\n    $p = [System.Diagnostics.Process]@{StartInfo = $startArgs}\n\n    [void]$p.Start()\n    $result = $p.StandardOutput.ReadToEnd()\n    $p.WaitForExit()\n\n    $result\n}\n\n\n### Initial code from @lurebat (https://github.com/lurebat/)\n### See #570 (https://github.com/denisidoro/navi/issues/570) for its original contribution\nfunction Invoke-NaviWidget {\n    $ast = $tokens = $errors = $cursor = $null\n    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref] $ast, [ref] $tokens, [ref] $errors, [ref] $cursor)\n\n    $line = $ast.ToString().Trim()\n    $output = $null\n\n    if ([String]::IsNullOrEmpty($line)) {\n        $output = (Invoke-Navi \"--print\" | Out-String).Trim()\n    }\n    else {\n        $best_match = (Invoke-Navi \"--print --best-match --query `\"$line`\"\" | Out-String).Trim()\n        if ([String]::IsNullOrEmpty($best_match)) {\n            $output = (Invoke-Navi \"--print --query `\"$line`\"\" | Out-String).Trim()\n        }\n        else {\n            $output = $best_match\n        }\n    }\n\n    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()\n    [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt()\n\n    ### Handling the case when the user escapes without selecting any entry\n    if (-Not([String]::IsNullOrEmpty($output))) {\n        [Microsoft.PowerShell.PSConsoleReadLine]::Insert([String]$output)\n    }\n}\n\nSet-PSReadlineKeyHandler -BriefDescription \"A keybinding to open Navi Widget\" -Chord Ctrl+g -ScriptBlock { Invoke-NaviWidget }\n{{ end -}}",
     "zxc.20260128200402.1": "RunScoop(app)\n{\n    appdata_dir := EnvGet(\"AppData\")\n    user_dir := EnvGet(\"userprofile\")\n    scoop_apps_dir := appdata_dir . \"/Microsoft/Windows/Start Menu/Programs/Scoop Apps\"\n    Run(scoop_apps_dir . \"/\" . app . \".lnk\", user_dir, \"Max\")\n}\n",
     "zxc.20260128002953.1": "{{ if and (lookPath \"wt\") (lookPath \"pwsh\") -}}\nRunScoop(\"Windows Terminal\")\n{{ end -}}\n",
@@ -4210,7 +4215,7 @@
       "_mod_time": 1771773103.258
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1772117632.958
+      "_mod_time": 1772288551.402
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1771507120.178
