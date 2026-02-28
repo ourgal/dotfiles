@@ -1,0 +1,16 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "mpd" -}}
+music_directory {{ joinPath .chezmoi.homeDir "Music" | quote }}
+playlist_directory {{ joinPath (env "APPDATA") "mpd" "playlist" | quote }}
+db_file {{ joinPath (env "APPDATA") "mpd" "tag_cache" | quote }}
+state_file {{ joinPath (env "APPDATA") "mpd" "state" | quote }}
+sticker_file {{ joinPath (env "APPDATA") "mpd" "sticker.sql" | quote }}
+
+auto_update "yes"
+
+audio_output {
+    type "winmm"
+    name "Windows Speakers"
+}
+{{ end -}}
+{{ end -}}

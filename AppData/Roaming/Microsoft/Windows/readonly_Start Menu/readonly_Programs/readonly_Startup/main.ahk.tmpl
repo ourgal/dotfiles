@@ -30,4 +30,7 @@ Run({{ $win_gpg_agent | quote }}, , "Hide")
 {{ if and (eq .chezmoi.hostname "nuc") (lookPath "alist") -}}
 Run("alist start", , "Hide")
 {{ end -}}
+{{ if lookPath "mpd" -}}
+Run("mpd {{ joinPath (env "appdata") "mpd" "mpd.conf"}}", {{ .chezmoi.homeDir | quote }}, "Hide")
+{{ end -}}
 {{ end -}}
