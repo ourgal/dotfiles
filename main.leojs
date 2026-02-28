@@ -121,11 +121,27 @@
                 },
                 {
                   "gnx": "zxc.20260125143728.1",
-                  "vh": "autin"
+                  "vh": "autin",
+                  "children": [
+                    {
+                      "gnx": "User.20260228215737.1",
+                      "vh": "<< not android >>"
+                    }
+                  ]
                 },
                 {
                   "gnx": "zxc.20260125143738.1",
                   "vh": "zoxdie"
+                },
+                {
+                  "gnx": "User.20260228215107.1",
+                  "vh": "mcfly",
+                  "children": [
+                    {
+                      "gnx": "User.20260225204449.1",
+                      "vh": "<< android >>"
+                    }
+                  ]
                 }
               ]
             }
@@ -269,8 +285,7 @@
                   "vh": "android",
                   "children": [
                     {
-                      "gnx": "User.20260225204449.1",
-                      "vh": "<< android >>"
+                      "gnx": "User.20260225204449.1"
                     },
                     {
                       "gnx": "User.20260224001403.1"
@@ -3553,11 +3568,14 @@
     "zxc.20260125143553.1": "PATH=~/.local/bin:$PATH",
     "zxc.20260125143635.1": "<< not WSL >>\nsource ~/.local/lib/ble-nightly/ble.sh\n{{ end -}}\n",
     "User.20260225204031.1": "{{ if and (hasKey .chezmoi.kernel \"osrelease\") (not (mustRegexMatch \".*WSL.*\" .chezmoi.kernel.osrelease)) -}}",
-    "zxc.20260125143653.1": "{{ if lookPath \"fzf\" -}}\neval \"$(fzf --bash)\"\n{{ end -}}\n",
+    "zxc.20260125143653.1": "{{ if lookPath \"fzf\" -}}\n{{ if or (lookPath \"mcfly\") (lookPath \"atuin\") -}}\nFZF_CTRL_R_COMMAND= eval \"$(fzf --bash)\"\n{{ else -}}\neval \"$(fzf --bash)\"\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260125143706.1": "{{ if lookPath \"starship\" -}}\neval \"$(starship init bash)\"\n{{ end -}}\n",
     "zxc.20260125143716.1": "{{ if lookPath \"eza\" -}}\nalias ll='eza --long --git --icons auto --group --group-directories-first --time-style relative'\n{{ end -}}",
-    "zxc.20260125143728.1": "{{ if lookPath \"atuin\" -}}\neval \"$(atuin init bash)\"\n{{ end -}}\n",
+    "zxc.20260125143728.1": "{{ if lookPath \"atuin\" -}}\n<< not android >>\neval \"$(atuin init bash)\"\n{{ end -}}\n{{ end -}}\n",
+    "User.20260228215737.1": "{{ if ne .chezmoi.os \"android\" -}}\n",
     "zxc.20260125143738.1": "{{ if lookPath \"zoxide\" -}}\n# zoxdie is needed be the end of bashrc\neval \"$(zoxide init bash)\"\n{{ end -}}\n",
+    "User.20260228215107.1": "{{ if lookPath \"mcfly\" -}}\n<< android >>\neval \"$(mcfly init bash)\"\n{{ end -}}\n{{ end -}}",
+    "User.20260225204449.1": "{{ if eq .chezmoi.os \"android\" -}}\n",
     "zxc.20260125143959.1": "<< unix >>\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125144055.1": "# Get the aliases and functions\n[ -f $HOME/.bashrc ] && . $HOME/.bashrc\n",
     "zxc.20260125144120.1": "<< surface-void >>\n@others\n{{ end -}}",
@@ -3581,7 +3599,6 @@
     "zxc.20260128003657.1": "AppData",
     "User.20260220191553.1": "vimfiles",
     "User.20260224001419.1": "<< android >>\n@others\n{{ end -}}",
-    "User.20260225204449.1": "{{ if eq .chezmoi.os \"android\" -}}\n",
     "zxc.20260125144606.1": "<< dos >>\n@others\n{{ end -}}\n",
     "zxc.20260125144639.1": ".vim",
     "zxc.20260125144709.1": ".local\n",
@@ -3980,7 +3997,7 @@
       "_mod_time": 1771507120.162
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1772023297.338
+      "_mod_time": 1772287429.496
     },
     "zxc.20260125143959.1": {
       "_mod_time": 1772023346.652

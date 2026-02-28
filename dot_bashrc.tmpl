@@ -116,7 +116,11 @@ PATH=~/.local/bin:$PATH
 source ~/.local/lib/ble-nightly/ble.sh
 {{ end -}}
 {{ if lookPath "fzf" -}}
+{{ if or (lookPath "mcfly") (lookPath "atuin") -}}
+FZF_CTRL_R_COMMAND= eval "$(fzf --bash)"
+{{ else -}}
 eval "$(fzf --bash)"
+{{ end -}}
 {{ end -}}
 {{ if lookPath "starship" -}}
 eval "$(starship init bash)"
@@ -125,11 +129,18 @@ eval "$(starship init bash)"
 alias ll='eza --long --git --icons auto --group --group-directories-first --time-style relative'
 {{ end -}}
 {{ if lookPath "atuin" -}}
+{{ if ne .chezmoi.os "android" -}}
 eval "$(atuin init bash)"
+{{ end -}}
 {{ end -}}
 {{ if lookPath "zoxide" -}}
 # zoxdie is needed be the end of bashrc
 eval "$(zoxide init bash)"
+{{ end -}}
+{{ if lookPath "mcfly" -}}
+{{ if eq .chezmoi.os "android" -}}
+eval "$(mcfly init bash)"
+{{ end -}}
 {{ end -}}
 {{ end -}}
 {{ end -}}
