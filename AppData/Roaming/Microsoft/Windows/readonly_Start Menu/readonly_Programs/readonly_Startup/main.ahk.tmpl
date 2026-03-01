@@ -33,4 +33,7 @@ Run("alist start", , "Hide")
 {{ if lookPath "mpd" -}}
 Run("mpd {{ joinPath (env "appdata") "mpd" "mpd.conf"}}", {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
+{{ if lookPath "kdeconnect-cli" -}}
+Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "kdeconnect" "current" "bin" "kdeconnectd.exe" }}", {{ .chezmoi.homeDir | quote }}, "Hide")
+{{ end -}}
 {{ end -}}
