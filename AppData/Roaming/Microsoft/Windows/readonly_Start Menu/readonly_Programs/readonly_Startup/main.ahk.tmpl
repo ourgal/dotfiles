@@ -47,4 +47,7 @@ Run("glazewm", {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ if stat $flow -}}
 Run("{{ $flow }}", {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
+{{ if lookPath "code" -}}
+Run("code", {{ .chezmoi.homeDir | quote }})
+{{ end -}}
 {{ end -}}
