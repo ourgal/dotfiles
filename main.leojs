@@ -8,6 +8,26 @@
       "vh": "archive",
       "children": [
         {
+          "gnx": "User.20260301195342.1",
+          "vh": "powertoys register",
+          "children": [
+            {
+              "gnx": "User.20260301195342.2",
+              "vh": "@clean run_onchange_powertoys_register.ps1.tmpl",
+              "children": [
+                {
+                  "gnx": "User.20260301195342.3",
+                  "vh": "<< dos >>"
+                },
+                {
+                  "gnx": "User.20260301195342.4",
+                  "vh": "content"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "gnx": "User.20260226221459.1",
           "vh": "lazygit keybinding"
         },
@@ -275,6 +295,10 @@
                         {
                           "gnx": "User.20260220191553.1",
                           "vh": "vim"
+                        },
+                        {
+                          "gnx": "User.20260301202425.1",
+                          "vh": "glzr"
                         }
                       ]
                     }
@@ -1472,6 +1496,18 @@
             {
               "gnx": "User.20260301185900.1",
               "vh": "kde connect"
+            },
+            {
+              "gnx": "User.20260301205338.1",
+              "vh": "powertoys"
+            },
+            {
+              "gnx": "User.20260301205532.1",
+              "vh": "glazewm"
+            },
+            {
+              "gnx": "User.20260301214925.1",
+              "vh": "flow launcher"
             }
           ]
         }
@@ -2689,6 +2725,73 @@
       ]
     },
     {
+      "gnx": "User.20260301202218.1",
+      "vh": "glazewm",
+      "children": [
+        {
+          "gnx": "User.20260301202336.1",
+          "vh": "@clean dot_glzr/glazewm/config.yaml.tmpl",
+          "children": [
+            {
+              "gnx": "User.20260225204326.1"
+            },
+            {
+              "gnx": "User.20260301202550.1",
+              "vh": "content",
+              "children": [
+                {
+                  "gnx": "User.20260301203034.1",
+                  "vh": "general"
+                },
+                {
+                  "gnx": "User.20260301203056.1",
+                  "vh": "gaps"
+                },
+                {
+                  "gnx": "User.20260301203247.1",
+                  "vh": "window effects"
+                },
+                {
+                  "gnx": "User.20260301203431.1",
+                  "vh": "window behavior"
+                },
+                {
+                  "gnx": "User.20260301203458.1",
+                  "vh": "workspaces"
+                },
+                {
+                  "gnx": "User.20260301203526.1",
+                  "vh": "window rules",
+                  "children": [
+                    {
+                      "gnx": "User.20260301211002.1",
+                      "vh": "workspace"
+                    },
+                    {
+                      "gnx": "User.20260301210952.1",
+                      "vh": "ignore"
+                    },
+                    {
+                      "gnx": "User.20260301222626.1",
+                      "vh": "float"
+                    }
+                  ]
+                },
+                {
+                  "gnx": "User.20260301203613.1",
+                  "vh": "binding modes"
+                },
+                {
+                  "gnx": "User.20260301203644.1",
+                  "vh": "keybindings"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "gnx": "zxc.20260125152614.1",
       "vh": "config",
       "children": [
@@ -3599,6 +3702,9 @@
     }
   ],
   "tnodes": {
+    "User.20260301195342.2": "<< dos >>\n{{ if stat (joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"powertoys\" \"current\" \"install-context.ps1\") -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260301195342.3": "{{ if eq .chezmoi.os \"windows\" -}}",
+    "User.20260301195342.4": "Invoke-Expression -Command \"& `\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"powertoys\" \"current\" \"install-context.ps1\" }}`\"\"",
     "User.20260226221459.1": "# This is an example of a macro that you might use to execute a command.\n# This will add the command to history.\nSet-PSReadLineKeyHandler -Key Ctrl+g `\n                         -BriefDescription Lazygit `\n                         -LongDescription \"Run lazygit\" `\n                         -ScriptBlock {\n    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()\n    [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"lazygit\")\n    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()\n}",
     "User.20260221193859.1": "{{ if lookPath \"gpg-connect-agent\" -}}\nRun(\"gpg-connect-agent /bye\", , \"Hide\")\n{{ end -}}\n",
     "User.20260221180517.1": "{{ if and (eq .chezmoi.hostname \"nuc\") (lookPath \"runemacs\") -}}\n; Run(\"runemacs --daemon\", EnvGet(\"userprofile\"), \"Hide\")\n{{ end -}}\n",
@@ -3632,7 +3738,7 @@
     "User.20260217023028.1": "[gopass]\n    mode = \"builtin\"",
     "User.20260217122736.1": "progress = true",
     "zxc.20260126154722.1": "<< dos >>\n@others\n{{ end -}}\n",
-    "User.20260225204326.1": "{{ if eq .chezmoi.os \"windows\" -}}",
+    "User.20260225204326.1": "{{ if eq .chezmoi.os \"windows\" -}}\n",
     "zxc.20260126154908.1": "[interpreter.ps1]\n    command = \"powershell\"\n    args = []",
     "zxc.20260126154820.1": "{{ if lookPath \"pwsh\" -}}\n[cd]\n    command = \"pwsh\"\n{{ end -}}",
     "zxc.20260125144442.1": "@others",
@@ -3644,6 +3750,7 @@
     "zxc.20260202205814.1": "Music",
     "zxc.20260128003657.1": "AppData",
     "User.20260220191553.1": "vimfiles",
+    "User.20260301202425.1": ".glzr",
     "User.20260224001419.1": "<< android >>\n@others\n{{ end -}}",
     "zxc.20260125144606.1": "<< dos >>\n@others\n{{ end -}}\n",
     "zxc.20260125144639.1": ".vim",
@@ -3810,6 +3917,9 @@
     "User.20260222230813.1": "{{ if and (eq .chezmoi.hostname \"nuc\") (lookPath \"alist\") -}}\nRun(\"alist start\", , \"Hide\")\n{{ end -}}",
     "User.20260301000205.1": "{{ if lookPath \"mpd\" -}}\nRun(\"mpd {{ joinPath (env \"appdata\") \"mpd\" \"mpd.conf\"}}\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}\n",
     "User.20260301185900.1": "{{ if lookPath \"kdeconnect-cli\" -}}\nRun(\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"kdeconnect\" \"current\" \"bin\" \"kdeconnectd.exe\" }}\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
+    "User.20260301205338.1": "{{ $powertoys := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"powertoys\" \"current\" \"powertoys.exe\" -}}\n{{ if stat $powertoys -}}\nRun(\"{{ $powertoys }}\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
+    "User.20260301205532.1": "{{ if lookPath \"glazewm\" -}}\nRun(\"glazewm\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
+    "User.20260301214925.1": "{{ $flow := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"flow-launcher\" \"current\" \"Flow.Launcher.exe\" -}}\n{{ if stat $flow -}}\nRun(\"{{ $flow }}\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
     "zxc.20260201142202.1": "{\n    \"$help\": \"https://aka.ms/terminal-documentation\",\n    \"$schema\": \"https://aka.ms/terminal-profiles-schema\",\n    \"actions\": [],\n    \"copyFormatting\": \"none\",\n    \"copyOnSelect\": false,\n    \"defaultProfile\": \"{574e775e-4f2a-5b96-ac1e-a2962a402336}\",\n    \"keybindings\": \n    [\n        {\n            \"id\": \"Terminal.CopyToClipboard\",\n            \"keys\": \"ctrl+c\"\n        },\n        {\n            \"id\": \"Terminal.PasteFromClipboard\",\n            \"keys\": \"ctrl+v\"\n        },\n        {\n            \"id\": \"Terminal.DuplicatePaneAuto\",\n            \"keys\": \"alt+shift+d\"\n        }\n    ],\n    \"newTabMenu\": \n    [\n        {\n            \"type\": \"remainingProfiles\"\n        }\n    ],\n    \"profiles\": \n    {\n        \"defaults\": {},\n        \"list\": \n        [\n            {\n                \"guid\": \"{574e775e-4f2a-5b96-ac1e-a2962a402336}\",\n                << common >>\n                \"name\": \"PowerShell\",\n                \"source\": \"Windows.Terminal.PowershellCore\"\n            },\n            {\n                \"commandline\": \"%SystemRoot%\\\\System32\\\\cmd.exe\",\n                << common >>\n                \"guid\": \"{0caa0dad-35be-5f56-a8ff-afceeeaa6101}\",\n                \"name\": \"Command Prompt\"\n            },\n            {\n                \"commandline\": \"%SystemRoot%\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\",\n                << common >>\n                \"guid\": \"{61c54bbd-c2c6-5271-96e7-009a87ff44bf}\",\n                \"name\": \"Windows PowerShell\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\.local\\\\bin\\\\xonsh.exe\",\n                << common >>\n                \"guid\": \"{1039824d-f5da-468d-856d-d7373d40325e}\",\n                \"name\": \"Xonsh\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\scoop\\\\apps\\\\git\\\\current\\\\bin\\\\bash.exe -i -l\",\n                << common >>\n                \"guid\": \"{8f5e00bb-5ac4-4e63-8538-5bcbbf827559}\",\n                \"name\": \"Git Bash\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\scoop\\\\shims\\\\msys2.cmd\",\n                << common >>\n                \"guid\": \"{f60ba69c-a957-410c-a1c6-8b7484ee591c}\",\n                \"name\": \"MSYS\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\scoop\\\\shims\\\\nu.exe\",\n                << common >>\n                \"guid\": \"{2a38cb46-e594-415f-9cce-1e3d1b313ee9}\",\n                \"name\": \"Nu shell\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\scoop\\\\shims\\\\yori.exe\",\n                << common >>\n                \"guid\": \"{90a23420-d58c-4627-9e4d-6ab897661ef7}\",\n                \"name\": \"Yori\"\n            },\n            {\n                << common >>\n                \"guid\": \"{c0d3ee5c-ec30-5776-a372-7005244e2d95}\",\n                \"name\": \"Debian\",\n                \"source\": \"Microsoft.WSL\"\n            },\n            {\n                \"guid\": \"{b453ae62-4e3d-5e58-b989-0a998ec441b8}\",\n                << common >>\n                \"name\": \"Azure Cloud Shell\",\n                \"source\": \"Windows.Terminal.Azure\"\n            }\n        ]\n    },\n    \"schemes\": [],\n    \"themes\": []\n}\n\n",
     "zxc.20260201034404.1": "\"cursorShape\": \"filledBox\",\n\"font\": \n{\n    \"face\": \"Maple Mono NF CN\"\n},\n\"startingDirectory\": \"%USERPROFILE%\",\n\"opacity\": 90,\n\"hidden\": false,\n\"closeOnExit\": \"graceful\",",
     "zxc.20260201140637.1": "(\n    move_left: Some(( code: Char('h'), modifiers: \"\")),\n    move_right: Some(( code: Char('l'), modifiers: \"\")),\n    move_up: Some(( code: Char('k'), modifiers: \"\")),\n    move_down: Some(( code: Char('j'), modifiers: \"\")),\n    stage_unstage_item: Some(( code: Char(' '), modifiers: \"\")),\n\n    open_help: Some(( code: F(1), modifiers: \"\")),\n)",
@@ -3988,6 +4098,18 @@
     "User.20260223181103.1": "{{ template \"espanso_email.key\" }}",
     "User.20260222211658.2": "[mega_a]\n{{ gopassRaw \"rclone/mega_a\" }}\n\n[alist]\n{{ gopassRaw \"rclone/alist/nuc\"}}",
     "User.20260228232118.1": "music_directory {{ joinPath .chezmoi.homeDir \"Music\" | quote }}\nplaylist_directory {{ joinPath (env \"APPDATA\") \"mpd\" \"playlist\" | quote }}\ndb_file {{ joinPath (env \"APPDATA\") \"mpd\" \"tag_cache\" | quote }}\nstate_file {{ joinPath (env \"APPDATA\") \"mpd\" \"state\" | quote }}\nsticker_file {{ joinPath (env \"APPDATA\") \"mpd\" \"sticker.sql\" | quote }}\n\nauto_update \"yes\"\n\naudio_output {\n    type \"winmm\"\n    name \"Windows Speakers\"\n}",
+    "User.20260301202336.1": "<< dos >>\n{{ if lookPath \"glazewm\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "User.20260301203034.1": "general:\n  # Commands to run when the WM has started. This is useful for running a\n  # script or launching another application.\n  # Example: The below command launches Zebar.\n  startup_commands: []\n  # Commands to run just before the WM is shutdown.\n  # Example: The below command kills Zebar.\n  shutdown_commands: []\n  # Commands to run after the WM config is reloaded.\n  config_reload_commands: []\n  # Whether to automatically focus windows underneath the cursor.\n  focus_follows_cursor: false\n  # Whether to switch back and forth between the previously focused\n  # workspace when focusing the current workspace.\n  toggle_workspace_on_refocus: false\n  cursor_jump:\n    # Whether to automatically move the cursor on the specified trigger.\n    enabled: true\n    # Trigger for cursor jump:\n    # - 'monitor_focus': Jump when focus changes between monitors.\n    # - 'window_focus': Jump when focus changes between windows.\n    trigger: 'monitor_focus'\n  # How windows should be hidden when switching workspaces.\n  # - 'cloak': Recommended. Hides windows with no animation.\n  # - 'hide': Legacy method (v3.5 and earlier) that has a brief animation,\n  # but has stability issues with some apps.\n  hide_method: 'cloak'\n  # Affects which windows get shown in the native Windows taskbar. Has no\n  # effect if `hide_method: 'hide'`.\n  # - 'true': Show all windows (regardless of workspace).\n  # - 'false': Only show windows from the currently shown workspaces.\n  show_all_in_taskbar: false\n",
+    "User.20260301203056.1": "gaps:\n  # Whether to scale the gaps with the DPI of the monitor.\n  scale_with_dpi: true\n  # Gap between adjacent windows.\n  inner_gap: '0px'\n  # Gap between windows and the screen edge.\n  outer_gap:\n    top: '2px'\n    right: '2px'\n    bottom: '2px'\n    left: '2px'\n",
+    "User.20260301203247.1": "window_effects:\n  # Visual effects to apply to the focused window.\n  focused_window:\n    # Highlight the window with a colored border.\n    # ** Exclusive to Windows 11 due to API limitations.\n    border:\n      enabled: true\n      color: '#8dbcff'\n    # Remove the title bar from the window's frame. Note that this can\n    # cause rendering issues for some applications.\n    hide_title_bar:\n      enabled: false\n    # Change the corner style of the window's frame.\n    # ** Exclusive to Windows 11 due to API limitations.\n    corner_style:\n      enabled: false\n      # Allowed values: 'square', 'rounded', 'small_rounded'.\n\n      style: 'square'\n    # Change the transparency of the window.\n    transparency:\n      enabled: false\n      # Can be something like '95%' or '0.95' for slightly transparent windows.\n\n      # '0' or '0%' is fully transparent (and, by consequence, unfocusable).\n      opacity: '95%'\n  # Visual effects to apply to non-focused windows.\n  other_windows:\n    border:\n      enabled: true\n      color: '#a1a1a1'\n    hide_title_bar:\n      enabled: false\n    corner_style:\n      enabled: false\n      style: 'square'\n    transparency:\n      enabled: false\n      opacity: '0%'\n",
+    "User.20260301203431.1": "window_behavior:\n  # New windows are created in this state whenever possible.\n  # Allowed values: 'tiling', 'floating'.\n  initial_state: 'tiling'\n  # Sets the default options for when a new window is created. This also\n  # changes the defaults for when the state change commands, like\n  # `set-floating`, are used without any flags.\n  state_defaults:\n    floating:\n      # Whether to center floating windows by default.\n      centered: true\n      # Whether to show floating windows as always on top.\n      shown_on_top: false\n    fullscreen:\n      # Maximize the window if possible. If the window doesn't have a\n      # maximize button, then it'll be fullscreen'ed normally instead.\n      maximized: false\n      # Whether to show fullscreen windows as always on top.\n      shown_on_top: false\n",
+    "User.20260301203458.1": "workspaces:\n  - name: '1'\n  - name: '2'\n  - name: '3'\n  - name: '4'\n  - name: '5'\n  - name: '6'\n  - name: '7'\n  - name: '8'\n  - name: '9'\n",
+    "User.20260301203526.1": "window_rules:\n  @others",
+    "User.20260301211002.1": "- commands: [\"move --workspace 2\"]\n  match:\n    - window_process: { regex: \"firefox\" }\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"code\" }",
+    "User.20260301210952.1": "- commands: ['ignore']\n  match:\n    # Ignores any Zebar windows.\n    - window_process: {equals: 'zebar'}\n    # Ignores picture-in-picture windows for browsers.\n    - window_title: {regex: '[Pp]icture.in.[Pp]icture'}\n      window_class: {regex: 'Chrome_WidgetWin_1|MozillaDialogClass'}\n    # Ignore rules for various 3rd-party apps.\n    - window_process: {equals: 'PowerToys'}\n      window_class: {regex: 'HwndWrapper\\[PowerToys\\.PowerAccent.*?\\]'}\n    - window_process: {equals: 'PowerToys'}\n      window_title: {regex: '.*? - Peek'}\n    - window_process: {equals: 'Lively'}\n      window_class: {regex: 'HwndWrapper'}\n    - window_process: {equals: 'EXCEL'}\n      window_class: {not_regex: 'XLMAIN'}\n    - window_process: {equals: 'WINWORD'}\n      window_class: {not_regex: 'OpusApp'}\n    - window_process: {equals: 'POWERPNT'}\n      window_class: {not_regex: 'PPTFrameClass'}\n",
+    "User.20260301222626.1": "- commands: [\"set-floating\"]\n  match:\n    - window_process: { equals: \"Flow.Launcher\" }\n      window_title: { equals: \"Settings\" }",
+    "User.20260301203613.1": "binding_modes:\n  # When enabled, the focused window can be resized via arrow keys or HJKL.\n  - name: 'resize'\n    keybindings:\n      - commands: ['resize --width -2%']\n        bindings: ['h', 'left']\n      - commands: ['resize --width +2%']\n        bindings: ['l', 'right']\n      - commands: ['resize --height +2%']\n        bindings: ['k', 'up']\n      - commands: ['resize --height -2%']\n        bindings: ['j', 'down']\n      - commands: ['wm-disable-binding-mode --name resize']\n        # Press enter/escape to return to default keybindings.\n        bindings: ['escape', 'enter']\n",
+    "User.20260301203644.1": "keybindings:\n  # Shift focus in a given direction.\n  - commands: ['focus --direction left']\n    bindings: ['f24+h', 'f24+left']\n  - commands: ['focus --direction right']\n    bindings: ['f24+l', 'f24+right']\n  - commands: ['focus --direction up']\n    bindings: ['f24+k', 'f24+up']\n  - commands: ['focus --direction down']\n    bindings: ['f24+j', 'f24+down']\n  # Move focused window in a given direction.\n  - commands: ['move --direction left']\n    bindings: ['f24+shift+h', 'f24+shift+left']\n  - commands: ['move --direction right']\n    bindings: ['f24+shift+l', 'f24+shift+right']\n  - commands: ['move --direction up']\n    bindings: ['f24+shift+k', 'f24+shift+up']\n  - commands: ['move --direction down']\n    bindings: ['f24+shift+j', 'f24+shift+down']\n  # Resize focused window by a percentage or pixel amount.\n  - commands: ['resize --width -2%']\n    bindings: ['f24+u']\n  - commands: ['resize --width +2%']\n    bindings: ['f24+p']\n  - commands: ['resize --height +2%']\n    bindings: ['f24+o']\n  - commands: ['resize --height -2%']\n    bindings: ['f24+i']\n  # As an f24ernative to the resize keybindings above, resize mode enables\n  # resizing via arrow keys or HJKL. The binding mode is defined above with\n  # the name 'resize'.\n  - commands: ['wm-enable-binding-mode --name resize']\n    bindings: ['f24+r']\n  # Disables window management and all other keybindings until f24+shift+p\n  # is pressed again.\n  - commands: ['wm-toggle-pause']\n    bindings: ['f24+shift+p']\n  # Change tiling direction. This determines where new tiling windows will\n  # be inserted.\n  - commands: ['toggle-tiling-direction']\n    bindings: ['f24+v']\n  # Change focus from tiling windows -> floating -> fullscreen.\n  - commands: ['wm-cycle-focus']\n    bindings: ['f24+space']\n  # Change the focused window to be floating.\n  - commands: ['toggle-floating --centered']\n    bindings: ['f24+shift+space']\n  # Change the focused window to be tiling.\n  - commands: ['toggle-tiling']\n    bindings: ['f24+t']\n  # Change the focused window to be fullscreen.\n  - commands: ['toggle-fullscreen']\n    bindings: ['f24+f']\n  # Minimize focused window.\n  - commands: ['toggle-minimized']\n    bindings: ['f24+m']\n  # Close focused window.\n  - commands: ['close']\n    bindings: ['f24+shift+c']\n  # Kill GlazeWM process safely.\n  - commands: ['wm-exit']\n    bindings: ['f24+shift+e']\n  # Re-evaluate configuration file.\n  - commands: ['wm-reload-config']\n    bindings: ['f24+shift+r']\n  # Redraw all windows.\n  - commands: ['wm-redraw']\n    bindings: ['f24+shift+w']\n  # Launch CMD terminal. f24ernatively, use `shell-exec wt` or\n  # `shell-exec %ProgramFiles%/Git/git-bash.exe` to start Windows\n  # Terminal and Git Bash respectively.\n  - commands: ['shell-exec wt']\n    bindings: ['f24+enter']\n  # Focus the next/previous active workspace defined in `workspaces` config.\n  - commands: ['focus --next-active-workspace']\n    bindings: ['f24+s']\n  - commands: ['focus --prev-active-workspace']\n    bindings: ['f24+a']\n  # Focus the workspace that last had focus.\n  - commands: ['shell-exec {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"flow-launcher\" \"current\" \"Flow.launcher.exe\" }}']\n    bindings: ['f24+d']\n  # Change focus to a workspace defined in `workspaces` config.\n  - commands: ['focus --workspace 1']\n    bindings: ['f24+1']\n  - commands: ['focus --workspace 2']\n    bindings: ['f24+2']\n  - commands: ['focus --workspace 3']\n    bindings: ['f24+3']\n  - commands: ['focus --workspace 4']\n    bindings: ['f24+4']\n  - commands: ['focus --workspace 5']\n    bindings: ['f24+5']\n  - commands: ['focus --workspace 6']\n    bindings: ['f24+6']\n  - commands: ['focus --workspace 7']\n    bindings: ['f24+7']\n  - commands: ['focus --workspace 8']\n    bindings: ['f24+8']\n  - commands: ['focus --workspace 9']\n    bindings: ['f24+9']\n  # Move the focused window's parent workspace to a monitor in a given\n  # direction.\n  - commands: ['move-workspace --direction left']\n    bindings: ['f24+shift+a']\n  - commands: ['move-workspace --direction right']\n    bindings: ['f24+shift+f']\n  - commands: ['move-workspace --direction up']\n    bindings: ['f24+shift+d']\n  - commands: ['move-workspace --direction down']\n    bindings: ['f24+shift+s']\n  # Move focused window to a workspace defined in `workspaces` config.\n  - commands: ['move --workspace 1', 'focus --workspace 1']\n    bindings: ['f24+shift+1']\n  - commands: ['move --workspace 2', 'focus --workspace 2']\n    bindings: ['f24+shift+2']\n  - commands: ['move --workspace 3', 'focus --workspace 3']\n    bindings: ['f24+shift+3']\n  - commands: ['move --workspace 4', 'focus --workspace 4']\n    bindings: ['f24+shift+4']\n  - commands: ['move --workspace 5', 'focus --workspace 5']\n    bindings: ['f24+shift+5']\n  - commands: ['move --workspace 6', 'focus --workspace 6']\n    bindings: ['f24+shift+6']\n  - commands: ['move --workspace 7', 'focus --workspace 7']\n    bindings: ['f24+shift+7']\n  - commands: ['move --workspace 8', 'focus --workspace 8']\n    bindings: ['f24+shift+8']\n  - commands: ['move --workspace 9', 'focus --workspace 9']\n    bindings: ['f24+shift+9']\n",
     "zxc.20260126154354.1": "<< unix dos >>\n{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125145051.1": "<< unix dos >>\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125152704.1": "<< unix dos >>\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -4041,6 +4163,9 @@
     "User.20260228231944.1": "<< dos >>\n{{ if lookPath \"mpd\" -}}\n@others\n{{ end -}}\n{{ end -}}"
   },
   "uas": {
+    "User.20260301195342.2": {
+      "_mod_time": 1772365962.692
+    },
     "zxc.20260125142149.1": {
       "_mod_time": 1771507120.147
     },
@@ -4054,7 +4179,7 @@
       "_mod_time": 1772023346.652
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1771863306.172
+      "_mod_time": 1772367990.444
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1771507120.147
@@ -4185,6 +4310,9 @@
     "User.20260217182613.1": {
       "_mod_time": 1771507120.147
     },
+    "User.20260301202336.1": {
+      "_mod_time": 1772375196.82
+    },
     "zxc.20260126154354.1": {
       "_mod_time": 1772025560.415
     },
@@ -4282,7 +4410,7 @@
       "_mod_time": 1771698872.19
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1772362780.344
+      "_mod_time": 1772373020.07
     },
     "zxc.20260202195207.1": {
       "_mod_time": 1771507120.147
