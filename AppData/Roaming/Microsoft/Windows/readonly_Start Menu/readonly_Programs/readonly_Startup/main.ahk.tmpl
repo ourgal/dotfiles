@@ -36,4 +36,15 @@ Run("mpd {{ joinPath (env "appdata") "mpd" "mpd.conf"}}", {{ .chezmoi.homeDir | 
 {{ if lookPath "kdeconnect-cli" -}}
 Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "kdeconnect" "current" "bin" "kdeconnectd.exe" }}", {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
+{{ $powertoys := joinPath .chezmoi.homeDir "scoop" "apps" "powertoys" "current" "powertoys.exe" -}}
+{{ if stat $powertoys -}}
+Run("{{ $powertoys }}", {{ .chezmoi.homeDir | quote }}, "Hide")
+{{ end -}}
+{{ if lookPath "glazewm" -}}
+Run("glazewm", {{ .chezmoi.homeDir | quote }}, "Hide")
+{{ end -}}
+{{ $flow := joinPath .chezmoi.homeDir "scoop" "apps" "flow-launcher" "current" "Flow.Launcher.exe" -}}
+{{ if stat $flow -}}
+Run("{{ $flow }}", {{ .chezmoi.homeDir | quote }}, "Hide")
+{{ end -}}
 {{ end -}}
