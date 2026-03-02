@@ -2796,6 +2796,31 @@
       ]
     },
     {
+      "gnx": "User.20260302151107.1",
+      "vh": "clink",
+      "children": [
+        {
+          "gnx": "User.20260302151118.1",
+          "vh": "@clean dot_inputrc.tmpl",
+          "children": [
+            {
+              "gnx": "User.20260225204326.1"
+            },
+            {
+              "gnx": "User.20260302151141.1",
+              "vh": "content",
+              "children": [
+                {
+                  "gnx": "User.20260302151244.1",
+                  "vh": "color"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "gnx": "zxc.20260125152614.1",
       "vh": "config",
       "children": [
@@ -3411,6 +3436,25 @@
               "gnx": "zxc.20260131012538.1",
               "vh": "@path Local",
               "children": [
+                {
+                  "gnx": "User.20260302151928.1",
+                  "vh": "@path clink",
+                  "children": [
+                    {
+                      "gnx": "User.20260302151947.1",
+                      "vh": "@clean starship.lua.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
+                          "gnx": "User.20260302152044.1",
+                          "vh": "content"
+                        }
+                      ]
+                    }
+                  ]
+                },
                 {
                   "gnx": "zxc.20260131012845.1",
                   "vh": "@path Microsoft",
@@ -4115,6 +4159,8 @@
     "User.20260301222626.1": "- commands: [\"set-floating\"]\n  match:\n    - window_process: { equals: \"Flow.Launcher\" }\n      window_title: { equals: \"Settings\" }",
     "User.20260301203613.1": "binding_modes:\n  # When enabled, the focused window can be resized via arrow keys or HJKL.\n  - name: 'resize'\n    keybindings:\n      - commands: ['resize --width -2%']\n        bindings: ['h', 'left']\n      - commands: ['resize --width +2%']\n        bindings: ['l', 'right']\n      - commands: ['resize --height +2%']\n        bindings: ['k', 'up']\n      - commands: ['resize --height -2%']\n        bindings: ['j', 'down']\n      - commands: ['wm-disable-binding-mode --name resize']\n        # Press enter/escape to return to default keybindings.\n        bindings: ['escape', 'enter']\n",
     "User.20260301203644.1": "keybindings:\n  # Shift focus in a given direction.\n  - commands: ['focus --direction left']\n    bindings: ['f24+h', 'f24+left']\n  - commands: ['focus --direction right']\n    bindings: ['f24+l', 'f24+right']\n  - commands: ['focus --direction up']\n    bindings: ['f24+k', 'f24+up']\n  - commands: ['focus --direction down']\n    bindings: ['f24+j', 'f24+down']\n  # Move focused window in a given direction.\n  - commands: ['move --direction left']\n    bindings: ['f24+shift+h', 'f24+shift+left']\n  - commands: ['move --direction right']\n    bindings: ['f24+shift+l', 'f24+shift+right']\n  - commands: ['move --direction up']\n    bindings: ['f24+shift+k', 'f24+shift+up']\n  - commands: ['move --direction down']\n    bindings: ['f24+shift+j', 'f24+shift+down']\n  # Resize focused window by a percentage or pixel amount.\n  - commands: ['resize --width -2%']\n    bindings: ['f24+u']\n  - commands: ['resize --width +2%']\n    bindings: ['f24+p']\n  - commands: ['resize --height +2%']\n    bindings: ['f24+o']\n  - commands: ['resize --height -2%']\n    bindings: ['f24+i']\n  # As an f24ernative to the resize keybindings above, resize mode enables\n  # resizing via arrow keys or HJKL. The binding mode is defined above with\n  # the name 'resize'.\n  - commands: ['wm-enable-binding-mode --name resize']\n    bindings: ['f24+r']\n  # Disables window management and all other keybindings until f24+shift+p\n  # is pressed again.\n  - commands: ['wm-toggle-pause']\n    bindings: ['f24+shift+p']\n  # Change tiling direction. This determines where new tiling windows will\n  # be inserted.\n  - commands: ['toggle-tiling-direction']\n    bindings: ['f24+v']\n  # Change focus from tiling windows -> floating -> fullscreen.\n  - commands: ['wm-cycle-focus']\n    bindings: ['f24+space']\n  # Change the focused window to be floating.\n  - commands: ['toggle-floating --centered']\n    bindings: ['f24+shift+space']\n  # Change the focused window to be tiling.\n  - commands: ['toggle-tiling']\n    bindings: ['f24+t']\n  # Change the focused window to be fullscreen.\n  - commands: ['toggle-fullscreen']\n    bindings: ['f24+f']\n  # Minimize focused window.\n  - commands: ['toggle-minimized']\n    bindings: ['f24+m']\n  # Close focused window.\n  - commands: ['close']\n    bindings: ['f24+shift+c']\n  # Kill GlazeWM process safely.\n  - commands: ['wm-exit']\n    bindings: ['f24+shift+e']\n  # Re-evaluate configuration file.\n  - commands: ['wm-reload-config']\n    bindings: ['f24+shift+r']\n  # Redraw all windows.\n  - commands: ['wm-redraw']\n    bindings: ['f24+shift+w']\n  # Launch CMD terminal. f24ernatively, use `shell-exec wt` or\n  # `shell-exec %ProgramFiles%/Git/git-bash.exe` to start Windows\n  # Terminal and Git Bash respectively.\n  - commands: ['shell-exec wt']\n    bindings: ['f24+enter']\n  # Focus the next/previous active workspace defined in `workspaces` config.\n  - commands: ['focus --next-active-workspace']\n    bindings: ['f24+s']\n  - commands: ['focus --prev-active-workspace']\n    bindings: ['f24+a']\n  # Focus the workspace that last had focus.\n  - commands: ['shell-exec {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"flow-launcher\" \"current\" \"Flow.launcher.exe\" }}']\n    bindings: ['f24+d']\n  # Change focus to a workspace defined in `workspaces` config.\n  - commands: ['focus --workspace 1']\n    bindings: ['f24+1']\n  - commands: ['focus --workspace 2']\n    bindings: ['f24+2']\n  - commands: ['focus --workspace 3']\n    bindings: ['f24+3']\n  - commands: ['focus --workspace 4']\n    bindings: ['f24+4']\n  - commands: ['focus --workspace 5']\n    bindings: ['f24+5']\n  - commands: ['focus --workspace 6']\n    bindings: ['f24+6']\n  - commands: ['focus --workspace 7']\n    bindings: ['f24+7']\n  - commands: ['focus --workspace 8']\n    bindings: ['f24+8']\n  - commands: ['focus --workspace 9']\n    bindings: ['f24+9']\n  # Move the focused window's parent workspace to a monitor in a given\n  # direction.\n  - commands: ['move-workspace --direction left']\n    bindings: ['f24+shift+a']\n  - commands: ['move-workspace --direction right']\n    bindings: ['f24+shift+f']\n  - commands: ['move-workspace --direction up']\n    bindings: ['f24+shift+d']\n  - commands: ['move-workspace --direction down']\n    bindings: ['f24+shift+s']\n  # Move focused window to a workspace defined in `workspaces` config.\n  - commands: ['move --workspace 1', 'focus --workspace 1']\n    bindings: ['f24+shift+1']\n  - commands: ['move --workspace 2', 'focus --workspace 2']\n    bindings: ['f24+shift+2']\n  - commands: ['move --workspace 3', 'focus --workspace 3']\n    bindings: ['f24+shift+3']\n  - commands: ['move --workspace 4', 'focus --workspace 4']\n    bindings: ['f24+shift+4']\n  - commands: ['move --workspace 5', 'focus --workspace 5']\n    bindings: ['f24+shift+5']\n  - commands: ['move --workspace 6', 'focus --workspace 6']\n    bindings: ['f24+shift+6']\n  - commands: ['move --workspace 7', 'focus --workspace 7']\n    bindings: ['f24+shift+7']\n  - commands: ['move --workspace 8', 'focus --workspace 8']\n    bindings: ['f24+shift+8']\n  - commands: ['move --workspace 9', 'focus --workspace 9']\n    bindings: ['f24+shift+9']\n",
+    "User.20260302151118.1": "<< dos >>\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260302151244.1": "set colored-stats                 on   # Turn on completion colors.\nset colored-completion-prefix     on   # Color the typed completion prefix.",
     "zxc.20260126154354.1": "<< unix dos >>\n{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125145051.1": "<< unix dos >>\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125152704.1": "<< unix dos >>\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -4148,6 +4194,8 @@
     "zxc.20260125211938.1": "<< dos >>\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202205715.1": "<< dos >>\n@others\n{{ end -}}",
     "zxc.20260202205901.1": "# Flower - とても深いグリーン\nhttps://www.bilibili.com/video/BV1EyHYeBEFr",
+    "User.20260302151947.1": "<< dos >>\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260302152044.1": "load(io.popen('starship init cmd'):read(\"*a\"))()",
     "zxc.20260201203241.1": "<< dos >>\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260201203515.1": "<< dos >>\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260201214114.1": "<< dos >>\n{{ if lookPath \"gpg\" -}}\nC92C2BCD646A0DE6A60E1C5397CA97FDBE330909\n{{ end -}}\n{{ end -}}",
@@ -4184,7 +4232,7 @@
       "_mod_time": 1772023346.652
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1772367990.444
+      "_mod_time": 1772410718.366
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1771507120.147
@@ -4196,58 +4244,58 @@
       "_mod_time": 1771684793.908
     },
     "User.20260226000855.1": {
-      "_mod_time": 1772036010.445
+      "_mod_time": 1772265118.504
     },
     "zxc.20260202203521.17": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1772265118.504
     },
     "User.20260220233639.1": {
       "_mod_time": 1772023934.663
     },
     "zxc.20260202203521.20": {
-      "_mod_time": 1771574592.704
+      "_mod_time": 1772265118.504
     },
     "User.20260216114746.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1772265118.504
     },
     "zxc.20260202203521.14": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1772265118.504
     },
     "zxc.20260202203521.3": {
-      "_mod_time": 1771571707.126
+      "_mod_time": 1772265118.504
     },
     "zxc.20260202213444.1": {
-      "_mod_time": 1771569080.908
+      "_mod_time": 1772265118.504
     },
     "User.20260220142155.2": {
-      "_mod_time": 1771568880.608
+      "_mod_time": 1772265118.504
     },
     "User.20260220151435.2": {
-      "_mod_time": 1771573259.107
+      "_mod_time": 1772265118.504
     },
     "zxc.20260202215023.1": {
-      "_mod_time": 1771568704.936
+      "_mod_time": 1772265118.504
     },
     "zxc.20260202215408.1": {
-      "_mod_time": 1771568734.183
+      "_mod_time": 1772265118.504
     },
     "zxc.20260202220030.1": {
-      "_mod_time": 1771568768.817
+      "_mod_time": 1772265118.504
     },
     "zxc.20260202220553.1": {
-      "_mod_time": 1771568791.589
+      "_mod_time": 1772265118.504
     },
     "User.20260217202401.1": {
-      "_mod_time": 1771517628.633
+      "_mod_time": 1772265118.504
     },
     "User.20260220214558.1": {
       "_mod_time": 1772024408.924
     },
     "User.20260217214851.1": {
-      "_mod_time": 1771524800.056
+      "_mod_time": 1772265118.504
     },
     "User.20260220000301.2": {
-      "_mod_time": 1771517674.642
+      "_mod_time": 1772265118.504
     },
     "User.20260220012738.1": {
       "_mod_time": 1771684793.907
@@ -4259,7 +4307,7 @@
       "_mod_time": 1772024858.229
     },
     "zxc.20260126185048.1": {
-      "_mod_time": 1772024858.322
+      "_mod_time": 1772265118.519
     },
     "User.20260218144120.1": {
       "_mod_time": 1772024811.743
@@ -4280,13 +4328,13 @@
       "_mod_time": 1772197656.366
     },
     "User.20260218142211.1": {
-      "_mod_time": 1772198288.54
+      "_mod_time": 1772265118.551
     },
     "User.20260218142322.1": {
-      "_mod_time": 1771507120.178
+      "_mod_time": 1772265118.551
     },
     "User.20260225235850.1": {
-      "_mod_time": 1772197656.473
+      "_mod_time": 1772265118.551
     },
     "zxc.20260130225718.1": {
       "_mod_time": 1772025344.523
@@ -4310,16 +4358,19 @@
       "_mod_time": 1772025359.907
     },
     "User.20260216232855.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1772265118.519
     },
     "User.20260217182613.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1772265118.519
     },
     "User.20260301202336.1": {
-      "_mod_time": 1772375196.82
+      "_mod_time": 1772410718.397
+    },
+    "User.20260302151118.1": {
+      "_mod_time": 1772435568.344
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1772025560.415
+      "_mod_time": 1772265118.535
     },
     "zxc.20260125145051.1": {
       "_mod_time": 1772025586.946
@@ -4358,88 +4409,91 @@
       "_mod_time": 1772026690.554
     },
     "User.20260215182442.1": {
-      "_mod_time": 1771507120.178
+      "_mod_time": 1772265118.535
     },
     "User.20260217022114.1": {
-      "_mod_time": 1771507120.178
+      "_mod_time": 1772265118.535
     },
     "User.20260215182818.1": {
-      "_mod_time": 1771507120.178
+      "_mod_time": 1772265118.535
     },
     "zxc.20260201225344.1": {
-      "_mod_time": 1772434816.519
+      "_mod_time": 1772435215.51
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1772026886.539
+      "_mod_time": 1772265118.551
     },
     "User.20260215205925.1": {
-      "_mod_time": 1772434894.198
+      "_mod_time": 1772435218.436
     },
     "User.20260215210400.1": {
-      "_mod_time": 1772030616.178
+      "_mod_time": 1772265118.551
     },
     "User.20260220151031.5": {
-      "_mod_time": 1772434894.219
+      "_mod_time": 1772435218.436
     },
     "User.20260220151031.28": {
-      "_mod_time": 1772030616.208
+      "_mod_time": 1772265118.551
     },
     "User.20260221175549.1": {
-      "_mod_time": 1771841490.923
+      "_mod_time": 1772265118.551
     },
     "User.20260221194603.1": {
-      "_mod_time": 1771698861.303
+      "_mod_time": 1772265118.551
     },
     "User.20260222211658.1": {
-      "_mod_time": 1771773103.258
+      "_mod_time": 1772265118.551
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1772288551.402
+      "_mod_time": 1772410718.435
     },
     "zxc.20260202205715.1": {
-      "_mod_time": 1771507120.178
+      "_mod_time": 1772265118.535
+    },
+    "User.20260302151947.1": {
+      "_mod_time": 1772436080.556
     },
     "zxc.20260201203241.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1772265118.519
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1772265118.519
     },
     "zxc.20260201214114.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1772265118.519
     },
     "zxc.20260201140523.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1772265118.519
     },
     "zxc.20260130233132.1": {
-      "_mod_time": 1771698872.19
+      "_mod_time": 1772265118.519
     },
     "zxc.20260128002742.1": {
       "_mod_time": 1772431190.264
     },
     "zxc.20260202195207.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1772265118.519
     },
     "zxc.20260214105528.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1772265118.519
     },
     "zxc.20260214142543.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1772265118.519
     },
     "User.20260215234634.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1772265118.519
     },
     "User.20260216124226.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1772265118.519
     },
     "User.20260216125422.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1772265118.519
     },
     "User.20260219235648.1": {
-      "_mod_time": 1771516837.708
+      "_mod_time": 1772265118.519
     },
     "User.20260228231944.1": {
-      "_mod_time": 1772292877.898
+      "_mod_time": 1772410718.381
     }
   }
 }
