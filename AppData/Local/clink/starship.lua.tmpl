@@ -1,0 +1,5 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "starship" -}}
+load(io.popen('starship init cmd'):read("*a"))()
+{{ end -}}
+{{ end -}}
