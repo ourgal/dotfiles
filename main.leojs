@@ -2821,6 +2821,62 @@
       ]
     },
     {
+      "gnx": "User.20260302211210.1",
+      "vh": "mc",
+      "children": [
+        {
+          "gnx": "User.20260302212735.1",
+          "vh": "hostlist",
+          "children": [
+            {
+              "gnx": "User.20260302211627.1",
+              "vh": "content"
+            }
+          ]
+        },
+        {
+          "gnx": "User.20260302212800.1",
+          "vh": "ini",
+          "children": [
+            {
+              "gnx": "User.20260302211750.1",
+              "vh": "content"
+            }
+          ]
+        },
+        {
+          "gnx": "User.20260302212819.1",
+          "vh": "menu",
+          "children": [
+            {
+              "gnx": "User.20260302212011.1",
+              "vh": "content"
+            }
+          ]
+        },
+        {
+          "gnx": "User.20260302212845.1",
+          "vh": "panels.ini",
+          "children": [
+            {
+              "gnx": "User.20260302212456.1",
+              "vh": "content"
+            }
+          ]
+        },
+        {
+          "gnx": "User.20260302212906.1",
+          "vh": "mc.ext.ini",
+          "children": [
+            {
+              "gnx": "User.20260302212656.1",
+              "vh": "content"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "gnx": "zxc.20260125152614.1",
       "vh": "config",
       "children": [
@@ -3741,6 +3797,72 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "gnx": "User.20260302211312.1",
+                  "vh": "@path Midnight Commander",
+                  "children": [
+                    {
+                      "gnx": "User.20260302211536.1",
+                      "vh": "@clean hotlist.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
+                          "gnx": "User.20260302211627.1"
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "User.20260302211740.1",
+                      "vh": "@clean ini.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
+                          "gnx": "User.20260302211750.1"
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "User.20260302211946.1",
+                      "vh": "@clean menu.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
+                          "gnx": "User.20260302212011.1"
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "User.20260302212424.1",
+                      "vh": "@clean panels.ini.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
+                          "gnx": "User.20260302212456.1"
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "User.20260302212645.1",
+                      "vh": "@clean mc.ext.ini.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
+                          "gnx": "User.20260302212656.1"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -4161,6 +4283,11 @@
     "User.20260301203644.1": "keybindings:\n  # Shift focus in a given direction.\n  - commands: ['focus --direction left']\n    bindings: ['f24+h', 'f24+left']\n  - commands: ['focus --direction right']\n    bindings: ['f24+l', 'f24+right']\n  - commands: ['focus --direction up']\n    bindings: ['f24+k', 'f24+up']\n  - commands: ['focus --direction down']\n    bindings: ['f24+j', 'f24+down']\n  # Move focused window in a given direction.\n  - commands: ['move --direction left']\n    bindings: ['f24+shift+h', 'f24+shift+left']\n  - commands: ['move --direction right']\n    bindings: ['f24+shift+l', 'f24+shift+right']\n  - commands: ['move --direction up']\n    bindings: ['f24+shift+k', 'f24+shift+up']\n  - commands: ['move --direction down']\n    bindings: ['f24+shift+j', 'f24+shift+down']\n  # Resize focused window by a percentage or pixel amount.\n  - commands: ['resize --width -2%']\n    bindings: ['f24+u']\n  - commands: ['resize --width +2%']\n    bindings: ['f24+p']\n  - commands: ['resize --height +2%']\n    bindings: ['f24+o']\n  - commands: ['resize --height -2%']\n    bindings: ['f24+i']\n  # As an f24ernative to the resize keybindings above, resize mode enables\n  # resizing via arrow keys or HJKL. The binding mode is defined above with\n  # the name 'resize'.\n  - commands: ['wm-enable-binding-mode --name resize']\n    bindings: ['f24+r']\n  # Disables window management and all other keybindings until f24+shift+p\n  # is pressed again.\n  - commands: ['wm-toggle-pause']\n    bindings: ['f24+shift+p']\n  # Change tiling direction. This determines where new tiling windows will\n  # be inserted.\n  - commands: ['toggle-tiling-direction']\n    bindings: ['f24+v']\n  # Change focus from tiling windows -> floating -> fullscreen.\n  - commands: ['wm-cycle-focus']\n    bindings: ['f24+space']\n  # Change the focused window to be floating.\n  - commands: ['toggle-floating --centered']\n    bindings: ['f24+shift+space']\n  # Change the focused window to be tiling.\n  - commands: ['toggle-tiling']\n    bindings: ['f24+t']\n  # Change the focused window to be fullscreen.\n  - commands: ['toggle-fullscreen']\n    bindings: ['f24+f']\n  # Minimize focused window.\n  - commands: ['toggle-minimized']\n    bindings: ['f24+m']\n  # Close focused window.\n  - commands: ['close']\n    bindings: ['f24+shift+c']\n  # Kill GlazeWM process safely.\n  - commands: ['wm-exit']\n    bindings: ['f24+shift+e']\n  # Re-evaluate configuration file.\n  - commands: ['wm-reload-config']\n    bindings: ['f24+shift+r']\n  # Redraw all windows.\n  - commands: ['wm-redraw']\n    bindings: ['f24+shift+w']\n  # Launch CMD terminal. f24ernatively, use `shell-exec wt` or\n  # `shell-exec %ProgramFiles%/Git/git-bash.exe` to start Windows\n  # Terminal and Git Bash respectively.\n  - commands: ['shell-exec wt']\n    bindings: ['f24+enter']\n  # Focus the next/previous active workspace defined in `workspaces` config.\n  - commands: ['focus --next-active-workspace']\n    bindings: ['f24+s']\n  - commands: ['focus --prev-active-workspace']\n    bindings: ['f24+a']\n  # Focus the workspace that last had focus.\n  - commands: ['shell-exec {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"flow-launcher\" \"current\" \"Flow.launcher.exe\" }}']\n    bindings: ['f24+d']\n  # Change focus to a workspace defined in `workspaces` config.\n  - commands: ['focus --workspace 1']\n    bindings: ['f24+1']\n  - commands: ['focus --workspace 2']\n    bindings: ['f24+2']\n  - commands: ['focus --workspace 3']\n    bindings: ['f24+3']\n  - commands: ['focus --workspace 4']\n    bindings: ['f24+4']\n  - commands: ['focus --workspace 5']\n    bindings: ['f24+5']\n  - commands: ['focus --workspace 6']\n    bindings: ['f24+6']\n  - commands: ['focus --workspace 7']\n    bindings: ['f24+7']\n  - commands: ['focus --workspace 8']\n    bindings: ['f24+8']\n  - commands: ['focus --workspace 9']\n    bindings: ['f24+9']\n  # Move the focused window's parent workspace to a monitor in a given\n  # direction.\n  - commands: ['move-workspace --direction left']\n    bindings: ['f24+shift+a']\n  - commands: ['move-workspace --direction right']\n    bindings: ['f24+shift+f']\n  - commands: ['move-workspace --direction up']\n    bindings: ['f24+shift+d']\n  - commands: ['move-workspace --direction down']\n    bindings: ['f24+shift+s']\n  # Move focused window to a workspace defined in `workspaces` config.\n  - commands: ['move --workspace 1', 'focus --workspace 1']\n    bindings: ['f24+shift+1']\n  - commands: ['move --workspace 2', 'focus --workspace 2']\n    bindings: ['f24+shift+2']\n  - commands: ['move --workspace 3', 'focus --workspace 3']\n    bindings: ['f24+shift+3']\n  - commands: ['move --workspace 4', 'focus --workspace 4']\n    bindings: ['f24+shift+4']\n  - commands: ['move --workspace 5', 'focus --workspace 5']\n    bindings: ['f24+shift+5']\n  - commands: ['move --workspace 6', 'focus --workspace 6']\n    bindings: ['f24+shift+6']\n  - commands: ['move --workspace 7', 'focus --workspace 7']\n    bindings: ['f24+shift+7']\n  - commands: ['move --workspace 8', 'focus --workspace 8']\n    bindings: ['f24+shift+8']\n  - commands: ['move --workspace 9', 'focus --workspace 9']\n    bindings: ['f24+shift+9']\n",
     "User.20260302151118.1": "<< dos >>\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260302151244.1": "set colored-stats                 on   # Turn on completion colors.\nset colored-completion-prefix     on   # Color the typed completion prefix.",
+    "User.20260302211627.1": "ENTRY \"AppData\" URL \"{{ .chezmoi.homeDir }}/AppData/Roaming\"",
+    "User.20260302211750.1": "[Midnight-Commander]\nverbose=true\nshell_patterns=true\nauto_save_setup=false\npreallocate_space=false\nauto_menu=false\nuse_internal_view=false\nuse_internal_edit=false\nuse_internal_busybox=false\nclear_before_exec=true\nconfirm_delete=true\nconfirm_overwrite=true\nconfirm_execute=false\nconfirm_history_cleanup=true\nconfirm_exit=false\nconfirm_directory_hotlist_delete=false\nconfirm_view_dir=false\nsafe_delete=false\nsafe_overwrite=false\nuse_8th_bit_as_meta=true\nmouse_move_pages_viewer=true\nmouse_close_dialog=false\nfast_refresh=false\ndrop_menus=false\nwrap_mode=true\nold_esc_mode=false\ncd_symlinks=true\nshow_all_if_ambiguous=false\nuse_file_to_guess_type=true\nalternate_plus_minus=false\nonly_leading_plus_minus=true\nshow_output_starts_shell=false\nxtree_mode=false\nfile_op_compute_totals=true\nclassic_progressbar=true\nuse_netrc=true\nftpfs_always_use_proxy=false\nftpfs_use_passive_connections=true\nftpfs_use_passive_connections_over_proxy=false\nftpfs_use_unix_list_options=true\nftpfs_first_cd_then_ls=true\nignore_ftp_chattr_errors=true\neditor_fill_tabs_with_spaces=false\neditor_return_does_auto_indent=true\neditor_backspace_through_tabs=false\neditor_fake_half_tabs=true\neditor_option_save_position=true\neditor_option_auto_para_formatting=false\neditor_option_typewriter_wrap=false\neditor_edit_confirm_save=true\neditor_syntax_highlighting=true\neditor_persistent_selections=true\neditor_drop_selection_on_copy=true\neditor_cursor_beyond_eol=false\neditor_cursor_after_inserted_block=false\neditor_visible_tabs=true\neditor_visible_spaces=true\neditor_line_state=false\neditor_simple_statusbar=false\neditor_check_new_line=false\neditor_show_right_margin=false\neditor_group_undo=false\neditor_state_full_filename=false\neditor_ask_filename_before_edit=false\nnice_rotating_dash=true\nshadows=false\nmcview_remember_file_position=false\nauto_fill_mkdir_name=true\ncopymove_persistent_attr=true\npause_after_run=1\nmouse_repeat_rate=100\ndouble_click_speed=250\nold_esc_mode_timeout=1000000\nconsole_alert_mode=1\nmax_dirt_limit=10\nnum_history_items_recorded=60\nvfs_timeout=60\nftpfs_directory_timeout=900\nftpfs_retry_seconds=30\nshell_directory_timeout=900\neditor_tab_spacing=8\neditor_word_wrap_line_length=72\neditor_option_save_mode=0\neditor_backup_extension=~\neditor_filesize_threshold=64M\neditor_stop_format_chars=-+*\\\\,.;:&>\nmcview_eof=\nskin=dark\nfilepos_max_saved_entries=1024\n\n[Layout]\noutput_lines=0\nleft_panel_size=94\ntop_panel_size=0\nmessage_visible=false\nkeybar_visible=true\nxterm_title=true\ncommand_prompt=false\nmenubar_visible=true\nfree_space=true\nhorizontal_split=false\nvertical_equal=true\nhorizontal_equal=true\ncommand_view=true\n\n[Misc]\ntimeformat_recent=%b %e %H:%M\ntimeformat_old=%b %e  %Y\nftp_proxy_host=gate\nftpfs_password=anonymous@\ndisplay_codepage=UTF-8\nsource_codepage=Other_8_bit\nautodetect_codeset=\nspell_language=en\nclipboard_store=\nclipboard_paste=\naltgr_enabled=\n\n[Colors]\nbase_color=\ndos-console=\ncolor_terminals=\n\n[FindFile]\nfile_case_sens=true\nfile_shell_pattern=true\nfile_find_recurs=true\nfollow_symlinks=false\nfile_skip_hidden=false\nfile_all_charsets=false\ncontent_case_sens=true\ncontent_regexp=false\ncontent_first_hit=false\ncontent_whole_words=false\ncontent_all_charsets=false\nignore_dirs_enable=true\nignore_dirs=\n\n[Panels]\nshow_mini_info=true\nkilobyte_si=false\nmix_all_files=false\nshow_backups=true\nshow_dot_files=true\nfast_reload=false\nfast_reload_msg_shown=false\nmark_moves_down=true\nreverse_files_only=true\nauto_save_setup_panels=false\nnavigate_with_arrows=true\npanel_scroll_pages=true\npanel_scroll_center=false\nmouse_move_pages=true\nfiletype_mode=true\npermission_mode=false\ntorben_fj_mode=false\nquick_search_mode=0\nselect_flags=6\n\nsimple_swap=false\n\n[Panelize]\nModified git files=git ls-files --modified\nFind *.orig after patching=find . -name \\\\*.orig -print\nFind SUID and SGID programs=find . \\\\( \\\\( -perm -04000 -a -perm /011 \\\\) -o \\\\( -perm -02000 -a -perm /01 \\\\) \\\\) -print\nFind rejects after patching=find . -name \\\\*.rej -print",
+    "User.20260302212011.1": "shell_patterns=0\n\n##############################################################################\n#   %%  The % character\n#   %f  The current file (if non-local vfs, file will be copied locally and\n#                         %f will be full path to it)\n#   %p  The current file\n#   %d  The current working directory\n#   %s  \"Selected files\"; the tagged files if any, otherwise the current file\n#   %t  Tagged files\n#   %u  Tagged files (and they are untagged on return from expand_format)\n#   %view Runs the commands and pipes standard output to the view command\n#   If %view is immediately followed by '{', recognize keywords\n#   ascii, hex, mcmandoc -T utf8 and unform\n#\n#   If the format letter is in uppercase, it refers to the other panel\n#\n#   With a number followed the % character you can turn quoting on (default)\n#   and off. For example:\n#   %f    quote expanded macro\n#   %1f   ditto\n#   %0f   don't quote expanded macro\n##############################################################################\n\n+ ! t t\n%       Do something on the current file\n        CMD=%{Enter command}\n        $CMD %f\n\n+ t t\n%       Do something on the tagged files\n        CMD=%{Enter command}\n        for i in %t ; do\n            $CMD \"$i\"\n        done\n\n0       Edit a bug report and send it to root\n        I=`mktemp \"${MC_TMPDIR:-/tmp}/mail.XXXXXX\"` || exit 1\n        ${EDITOR-vi} \"$I\"\n        test -r \"$I\" && mail root < \"$I\"\n        rm -f \"$I\"\n\n=+ f \\.1$ | f \\.3$ | f \\.4$ | f \\.5$ | f \\.6$ | f \\.7$ | f \\.8$ | f \\.man$ & t r\n1       Display the file with mcmandoc -T utf8 -man\n        %view{ascii,nroff} mcmandoc -T utf8 %f\n\n2       Call the info hypertext browser\n        info\n\n= t d\n3       Compress the current subdirectory (tar.gz)\n        Pwd=`basename %d /`\n        echo -n \"Name of the compressed file (without extension) [$Pwd]: \"\n        read tar\n        [ \"$tar\"x = x ] && tar=\"$Pwd\"\n        cd .. && \\\n        tar cf - \"$Pwd\" | gzip -f9 > \"$tar.tar.gz\" && \\\n        echo \"../$tar.tar.gz created.\"\n\n4       Compress the current subdirectory (tar.bz2)\n        Pwd=`basename %d /`\n        echo -n \"Name of the compressed file (without extension) [$Pwd]: \"\n        read tar\n        [ \"$tar\"x = x ] && tar=\"$Pwd\"\n        cd .. && \\\n        tar cf - \"$Pwd\" | bzip2 -f > \"$tar.tar.bz2\" && \\\n        echo \"../$tar.tar.bz2 created.\"\n\n5       Compress the current subdirectory (tar.7z)\n        Pwd=`basename %d /`\n        echo -n \"Name of the compressed file (without extension) [$Pwd]: \"\n        read tar\n        [ \"$tar\"x = x ] && tar=\"$Pwd\"\n        cd .. && \\\n        tar cf - \"$Pwd\" | 7za a -si \"$tar.tar.7z\" && \\\n        echo \"../$tar.tar.7z created.\"\n\n6       Compress the current subdirectory (tar.xz)\n        Pwd=`basename %d /`\n        echo -n \"Name of the compressed file (without extension) [$Pwd]: \"\n        read tar\n        [ \"$tar\"x = x ] && tar=\"$Pwd\"\n        cd .. && \\\n        tar cf - \"$Pwd\" | xz -f > \"$tar.tar.xz\" && \\\n        echo \"../$tar.tar.xz created.\"\n\n7       Compress the current subdirectory (tar.zst)\n        Pwd=`basename %d /`\n        echo -n \"Name of the compressed file (without extension) [$Pwd]: \"\n        read tar\n        [ \"$tar\"x = x ] && tar=\"$Pwd\"\n        cd .. && \\\n        tar cf - \"$Pwd\" | zstd -f > \"$tar.tar.zst\" && \\\n        echo \"../$tar.tar.zst created.\"\n\n8       Compress the current subdirectory (tar.lzo)\n        Pwd=`basename %d /`\n        echo -n \"Name of the compressed file (without extension) [$Pwd]: \"\n        read tar\n        [ \"$tar\"x = x ] && tar=\"$Pwd\"\n        cd .. && \\\n        tar cf - \"$Pwd\" | lzop -f > \"$tar.tar.lzo\" && \\\n        echo \"../$tar.tar.lzo created.\"\n\n9       Compress the current subdirectory (zip)\n        Pwd=`basename %d /`\n        echo -n \"Name of the compressed file (without extension) [$Pwd]: \"\n        read zip\n        [ \"$zip\"x = x ] && zip=\"$Pwd\"\n        cd .. && \\\n        zip $zip.zip \"$Pwd\"/*  && \\\n        echo \"../$zip.zip created.\"\n\n= f \\.c$ & t r\n+ f \\.c$ & t r & ! t t\nc       Compile and link current .c file\n        make \"`basename %f .c`\" 2>/dev/null || cc -O -o \"`basename %f .c`\" %f\n\n+ t r & ! t t\na       Append file to opposite\n        cat %f >> %D/%f\n\n+ t t\nA       Append files to opposite files\n        for i in %t ; do\n            cat \"$i\" >> %D/\"$i\"\n        done\n\n+ t r & ! t t\nd       Delete file if a copy exists in the other directory.\n        if [ %d = %D ]; then\n            echo \"The two directories must be different.\"\n            exit 1\n        fi\n        if [ -f %D/%f ]; then        # if two of them, then\n            if cmp -s %D/%f %f; then\n                rm %f && echo %f\": DELETED.\"\n            else\n                echo %f\" and \"%D/%f\" differ: NOT deleted.\"\n                echo -n \"Press RETURN \"\n                read key\n            fi\n        else\n            echo %f\": No copy in \"%D/%f\": NOT deleted.\"\n        fi\n\n+ t t\nD       Delete tagged files if a copy exists in the other directory.\n        if [ %d = %D ]; then\n            echo \"The two directories must be different.\"\n            exit 1\n        fi\n        for i in %t ; do\n            if [ -f %D/\"$i\" ]; then\n                SUM1=`sum \"$i\"`\n                SUM2=`sum %D/\"$i\"`\n                if [ \"$SUM1\" = \"$SUM2\" ]; then\n                    rm \"$i\" && echo \"${i}: DELETED.\"\n                else\n                    echo \"$i and \"%D\"/$i differ: NOT deleted.\"\n                fi\n            else\n                echo \"$i has no copy in \"%D\": NOT deleted.\"\n            fi\n        done\n\nm       View manual page\n        MAN=%{Enter manual name}\n        %view{ascii,nroff} MANROFFOPT='' MAN_KEEP_FORMATTING=1 mcmandoc -T utf8 \"$MAN\"\n\n= f \\.gz$ & t r\n+ ! t t\nn       Inspect gzip'ed newsbatch file\n        dd if=%f bs=1 skip=12 | zcat | ${PAGER-more}\n        # assuming the cunbatch header is 12 bytes long.\n\n= t r &\n+ ! t t\nh       Strip headers from current newsarticle\n        CHECK=`awk '{print $1 ; exit}' %f` 2>/dev/null\n        case \"$CHECK\" in\n            Newsgroups:|Path:)\n                I=`mktemp \"${MC_TMPDIR:-/tmp}/news.XXXXXX\"` || exit 1\n                cp %f \"$I\" && sed '/^'\"$CHECK\"' /,/^$/d' \"$I\" > %f\n                [ \"$?\" = \"0\" ] && rm \"$I\"\n                echo %f\": header removed.\"\n                ;;\n            *)\n                echo %f\" is not a news article.\"\n                ;;\n        esac\n\n+ t t\nH       Strip headers from the marked newsarticles\n        for i in %t ; do\n            CHECK=`awk '{print $1 ; exit}' \"$i\"` 2>/dev/null\n            WFILE=`mktemp \"${MC_TMPDIR:-/tmp}/news.XXXXXX\"` || exit 1\n            case \"$CHECK\" in\n                Newsgroups:|Path:)\n                    cp \"$i\" \"$WFILE\" && sed '/^'\"$CHECK\"' /,/^$/d' \"$WFILE\" > \"$i\"\n                    if [ \"$?\" = \"0\" ]; then\n                        rm \"$WFILE\"; echo \"$i header removed. OK.\"\n                    else\n                        echo \"Oops! Please check $i against $WFILE.\"\n                    fi\n                    ;;\n                *)\n                    echo \"$i skipped: Not a news article.\"\n                    ;;\n            esac\n        done\n\n= t r\n+ ! t t\nr       Copy file to remote host\n        echo -n \"To which host?: \"\n        read Host\n        echo -n \"To which directory on $Host?: \"\n        read Dir\n        rcp -p %f \"${Host}:${Dir}\"\n\n+ t t\nR       Copy files to remote host (no error checking)\n        echo -n \"Copy files to which host?: \"\n        read Host\n        echo -n \"To which directory on $Host? :\"\n        read Dir\n        rcp -pr %u \"${Host}:${Dir}\"\n\n= f \\.tex$ & t r\n+ f \\.tex$ & t r & ! t t\nt       Run latex on file and show it with xdvi\n        latex %f && xdvi \"`basename %f .tex`\".dvi\n\n=+ f ^part | f ^Part | f uue & t r\n+ t t\nU       Uudecode marked news articles (needs work)\n        (\n            for i in %t ; do # strip headers\n                FIRST=`awk '{print $1 ; exit}' \"$i\"`\n                cat \"$i\" | sed '/^'\"$FIRST\"' /,/^$/d'\n            done\n        ) | sed '/^$/d' | sed -n '/^begin 6/,/^end$/p' | uudecode\n        if [ \"$?\" != \"0\" ]; then\n            echo \"Cannot decode \"%t\".\"\n        fi\n        echo \"Please test the output file before deleting anything.\"\n\n=+ f \\.tar\\.gz$ | f \\.tar\\.z$ | f \\.tgz$ | f \\.tpz$ | f \\.tar\\.lz$ | f \\.tar\\.lz4$ | f \\.tar\\.lzma$ | f \\.tar\\.lzo$ | f \\.tar\\.7z$ | f \\.tar\\.xz$ | f \\.tar\\.zst | f \\.tar\\.Z$ | f \\.tar\\.bz2$ & t rl\nx       Extract the contents of a compressed tar file\n        unset PRG\n        case %f in\n            *.tar.7z)   PRG=\"7za e -so\";;\n            *.tar.bz2)  PRG=\"bunzip2 -c\";;\n            *.tar.gz|*.tar.z|*.tgz|*.tpz|*.tar.Z) PRG=\"gzip -dc\";;\n            *.tar.lz)   PRG=\"lzip -dc\";;\n            *.tar.lz4)  PRG=\"lz4 -dc\";;\n            *.tar.lzma) PRG=\"lzma -dc\";;\n            *.tar.lzo)  PRG=\"lzop -dc\";;\n            *.tar.xz)   PRG=\"xz -dc\";;\n            *.tar.zst)  PRG=\"zstd -dc\";;\n            *)          exit 1;;\n        esac\n        $PRG %f | tar xvf -\n\n= t r\n+ ! t t\ny       Gzip or gunzip current file\n        unset DECOMP\n        case %f in\n            *.gz|*.[zZ]) DECOMP=-d;;\n        esac\n        # Do *not* add quotes around $DECOMP!\n        gzip $DECOMP -v %f\n\n+ t t\nY       Gzip or gunzip tagged files\n        for i in %t ; do\n            unset DECOMP\n            case \"$i\" in\n                *.gz|*.[zZ]) DECOMP=-d;;\n            esac\n            gzip $DECOMP -v \"$i\"\n        done\n\n+ ! t t\nb       Bzip2 or bunzip2 current file\n        unset DECOMP\n        case %f in\n            *.bz2) DECOMP=-d;;\n        esac\n        bzip2 $DECOMP -v %f\n\n+ t t\nB       Bzip2 or bunzip2 tagged files\n        for i in %t ; do\n            unset DECOMP\n            case \"$i\" in\n                *.bz2) DECOMP=-d;;\n            esac\n            bzip2 $DECOMP -v \"$i\"\n        done\n\n+ f \\.tar.gz$ | f \\.tgz$ | f \\.tpz$ | f \\.tar.Z$ | f \\.tar.z$ | f \\.tar.bz2$ | f \\.tar.F$ & t r & ! t t\nz       Extract compressed tar file to subdirectory\n        unset D\n        set gzip -cd\n        case %f in\n            *.tar.F)   D=`basename %f .tar.F`; set freeze -dc;;\n            *.tar.Z)   D=`basename %f .tar.Z`;;\n            *.tar.bz2) D=`basename %f .tar.bz2`; set bunzip2 -c;;\n            *.tar.gz)  D=`basename %f .tar.gz`;;\n            *.tar.z)   D=`basename %f .tar.z`;;\n            *.tgz)     D=`basename %f .tgz`;;\n            *.tpz)     D=`basename %f .tpz`;;\n        esac\n        mkdir \"$D\"; cd \"$D\" && (\"$1\" \"$2\" ../%f | tar xvf -)\n\n+ t t\nZ       Extract compressed tar files to subdirectories\n        for i in %t ; do\n            set gzip -dc\n            unset D\n            case \"$i\" in\n                *.tar.F)   D=`basename \"$i\" .tar.F`; set freeze -dc;;\n                *.tar.Z)   D=`basename \"$i\" .tar.Z`;;\n                *.tar.bz2) D=`basename \"$i\" .tar.bz2`; set bunzip2 -c;;\n                *.tar.gz)  D=`basename \"$i\" .tar.gz`;;\n                *.tar.z)   D=`basename \"$i\" .tar.z`;;\n                *.tgz)     D=`basename \"$i\" .tgz`;;\n                *.tpz)     D=`basename \"$i\" .tpz`;;\n          esac\n          mkdir \"$D\"; (cd \"$D\" && \"$1\" \"$2\" \"../$i\" | tar xvf -)\n        done\n\n+ f \\.gz$ | f \\.tgz$ | f \\.tpz$ | f \\.Z$ | f \\.z$ | f \\.bz2$ & t r & ! t t\nc       Convert gz<->bz2, tar.gz<->tar.bz2 & tgz->tar.bz2\n        unset D\n        unset EXT\n        case %f in\n            *.Z)   EXT=Z;;\n            *.bz2) EXT=bz2;;\n            *.gz)  EXT=gz;;\n            *.tgz) EXT=tgz;;\n            *.tpz) EXT=tpz;;\n            *.z)   EXT=z;;\n        esac\n        case \"$EXT\" in\n            bz2|Z|gz|z) D=`basename %f .\"$EXT\"`;;\n            tgz|tpz)    D=`basename %f .\"$EXT\"`.tar;;\n        esac\n        if [ \"$EXT\" = \"bz2\" ]; then\n            bunzip2 -v %f\n            gzip -f9 -v \"$D\"\n        else\n            gunzip -v %f\n            bzip2 -v \"$D\"\n        fi\n\n+ t t\nC       Convert gz<->bz2, tar.gz<->tar.bz2 & tgz->tar.bz2\n        for i in %t ; do\n            unset D\n            unset EXT\n            case \"$i\" in\n                *.Z)   EXT=Z;;\n                *.bz2) EXT=bz2;;\n                *.gz)  EXT=gz;;\n                *.tgz) EXT=tgz;;\n                *.tpz) EXT=tpz;;\n                *.z)   EXT=z;;\n            esac\n            case \"$EXT\" in\n                bz2|Z|gz|z) D=`basename \"$i\" .\"$EXT\"`;;\n                tgz|tpz)    D=`basename \"$i\" .\"$EXT\"`.tar;;\n            esac\n            if [ \"$EXT\" = \"bz2\" ]; then\n                bunzip2 -v \"$i\"\n                gzip -f9 -v \"$D\"\n            else\n                gunzip -v \"$i\"\n                bzip2 -v \"$D\"\n            fi\n        done\n\n+ x /usr/bin/open | x /usr/local/bin/open & x /bin/sh\no       Open next a free console\n        open -s -- sh",
+    "User.20260302212456.1": "[New Left Panel]\ndisplay=listing\nreverse=false\ncase_sensitive=true\nexec_first=false\nsort_order=name\nlist_mode=full\nbrief_cols=2\nuser_mini_status=false\nfilter_flags=7\nlist_format=full\n\n[New Right Panel]\ndisplay=listing\nreverse=false\ncase_sensitive=true\nexec_first=false\nsort_order=name\nlist_mode=full\nbrief_cols=2\nuser_mini_status=false\nfilter_flags=7\nlist_format=full\n\n[Dirs]\ncurrent_is_left=false\nother_dir={{ .chezmoi.homeDir }}",
+    "User.20260302212656.1": "# Midnight Commander 4.0 extension file\n#\n# Warning: The structure of this file has been completely changed with the version 4.0!\n#\n# All lines starting with # or empty lines are ignored.\n#\n# IMPORTANT: mc scans this file only upon first use or after editing it using the\n# mc \"Edit extension file\" command (F9-c-e). If you edit this file in any other way\n# while mc is running, you will need to press F9-c-e and exit the editor for your\n# changes to take effect, or exit mc and start it again.\n#\n# Section name can be anything with following exceptions:\n#    there are two reserved section names:\n#        mc.ext.ini\n#        Default\n#    special name pattern:\n#        Include/xxxxx\n# See below for more details.\n#\n# Section [mc.ext.ini] is mandatory. It contains file metadata.\n# \"Version\" parameter is mandatory. It contains the file format version.\n#\n# Section [Default] is optional. It is applied only if no other match was found.\n#\n# Sections like [Include/xxxx] can be referenced as \"Include=xxxx\" from other sections.\n# Section [Include/xxxx] can be located before or after sections that point to it.\n#\n# Sections are processed from top to bottom, thus the order is important.\n# Multiple sections with the same name are allowed, they are merged together.\n# Sections may contain the same key multiple times; the last entry wins.\n#\n# [Default] should be a catch-all action and come last.\n#\n# A section describing a file can contain following keys:\n#\n#    File descriptions:\n#\n#        Directory\n#            Matches any directory matching regular expression.\n#            Always case sensitive.\n#            This key has the highest priority over other keys. If this key is present,\n#            other keys are ignored.\n#\n#        Type\n#            Matches files if `file %f` matches regular expression\n#            (the \"filename:\" part is removed from `file %f` output).\n#            Ignored if the \"file\" utility isn't used (not found during the configure step\n#            or disabled in the ini-file).\n#\n#        TypeIgnoreCase [true|false]\n#            Defines whether the Type value is case sensitive or not.\n#            If absent, Type is case sensitive.\n#\n#        Regex\n#            An extended regular expression\n#            Please note that we are using the PCRE library and thus \\\\| matches\n#            the literal | and | has a special meaning (or), and () have a special meaning\n#            and \\\\( \\\\) stand for literal ( ).\n#\n#            An unescaped backslash \\ is handled as invalid escape sequences in glib = 2.77.3 and\n#            glib >= 2.79 (https://gitlab.gnome.org/GNOME/glib/-/issues/3094), therefore backslash\n#            must be escaped.\n#\n#            Example:\n#                Regex=\\\\.t(ar\\\\.lzma|lz)$\n#            matches *.tar.lzma or *.tlz.\n#\n#        RegexIgnoreCase [true|false]\n#            Defines whether the Regex value is case sensitive or not.\n#            If absent, Regex is case sensitive.\n#\n#        Shell\n#            Describes an extension when starting with a dot (no wildcards).\n#\n#            Example:\n#                Shell=.tar\n#            matches *.tar.\n#\n#            If it doesn't start with a dot, it matches only a file of that name.\n#\n#            If both keys Regex and Shell are in the same section, Regex is used\n#            and Shell is ignored.\n#\n#        ShellIgnoreCase [true|false]\n#            Defines whether the Shell value is case sensitive or not.\n#            If absent, Shell is case sensitive.\n#\n#        Include\n#            Reference to another section.\n#\n#            Example:\n#                Include=video\n#            points to the [Include/video] section.\n#\n#    Commands:\n#\n#        Open\n#            Execute the command if the user presses Enter or doubleclicks it.\n#\n#        View\n#            Execute the command if the user presses F3.\n#\n#        Edit\n#            Execute the command if the user presses F4.\n#\n#    All commands are ignored if the section contains the Include key.\n#\n#    Command is any one-line shell command, with the following substitutions:\n#\n#        %%\n#            The % character\n#\n#        %p\n#            Name of the current file without the path.\n#            Also provided to the external application as MC_EXT_BASENAME environment variable.\n#\n#        %f\n#            Name of the current file. Unlike %p, if the file is located on a non-local\n#            virtual filesystem, that is either tarfs or ftpfs, then the file will be\n#            temporarily copied into a local directory and %f will be the full path\n#            to this local temporary file.\n#            If you don't want to get a local copy and want to get the virtual fs path\n#            (like /ftp://ftp.cvut.cz/pub/hungry/xword), then use %d/%p instead of %f.\n#            Also provided to the external application as MC_EXT_FILENAME environment variable.\n#\n#        %d\n#            Name of the current directory without the trailing slash (`pwd`).\n#            Also provided to the external application as MC_EXT_CURRENTDIR environment variable.\n#\n#        %s\n#            \"Selected files\", that is space separated list of tagged files if any or the name\n#            of the current file.\n#            Also provided to the external application as MC_EXT_SELECTED environment variable.\n#\n#        %t\n#            List of the tagged files.\n#            Also provided to the external application as MC_EXT_ONLYTAGGED environment variable.\n#\n#        %u\n#            List of the tagged files (they will be untaged after the command is executed).\n#\n#        (If the letter following the % is uppercase, then it refers to the opposite panel.\n#        But you shouldn't have to use it in this file.)\n#\n#        %cd\n#            The rest is a path mc should change into (cd won't work, since it's a child process).\n#            %cd handles even vfs names.\n#\n#        %view\n#            The command output will be piped into mc's internal file viewer. If you use\n#            only %view and no command, the viewer will load %f file instead (that is no piping,\n#            which is the difference to %view cat %f).\n#\n#            %view may be directly followed by {} with one or more of the following\n#            separated by commas:\n#                ascii (ascii mode)\n#                hex (hex mode),\n#                nroff (color highlighting for text using escape sequences),\n#                unform (no highlighting for nroff sequences)\n#\n#        %var{VAR:default}\n#            This macro will expand to the value of the VAR variable in the environment if it's\n#            set, otherwise the default value will be used. This is similar to the Bourne shell\n#            ${VAR-default} construct.\n#\n#    Section can contain both Type and Regex or Type and Shell keys. In this case\n#    they are handled as an AND condition.\n#\n#    Example:\n#        Shell=.3gp\n#        Type=^ISO Media.*3GPP\n#\n#    matches *.3gp files for which `file` output is a line starting with \"ISO Media\"\n#    and containing \"3GPP\".\n#\n#    If there are more than one keys with the same name in a section, the last key will be used.\n#\n#\n# Any new entries you want to add are always welcome if they are useful on more than one\n# system. You can post your modifications as tickets at www.midnight-commander.org.\n\n\n### Changes ###\n#\n# Reorganization: 2012-03-07 Slava Zanko <slavazanko@gmail.com>\n#                 2021-03-28 Andrew Borodin <aborodin@vmail.ru>\n#                 2021-08-24 Tomas Szepe <szepe@pinerecords.com>\n#                 2022-09-11 Andrew Borodin <aborodin@vmail.ru>: port to INI format.\n\n[mc.ext.ini]\nVersion=4.0\n\n### GIT Repo ###\n[gitfs changeset]\nRegex=^\\\\[git\\\\]\nOpen=%cd %p/changesetfs://\nView=%cd %p/patchsetfs://\n\n### Archives ###\n# Since we use \"file -z\", we should use Regex and Shell first, then Type.\n\n\n######### Files by name (Regex and Shell) #########\n\n# .tgz, .tpz, .tar.gz, .tar.z, .tar.Z\n[tar.gzip]\nRegex=\\\\.t([gp]?z|ar\\\\.g?[zZ])$\nInclude=tar.gz\n\n[gem]\nShell=.gem\nInclude=tar.gz\n\n[crate]\nShell=.crate\nInclude=tar.gz\n\n[tar.bzip]\nShell=.tar.bz\n# Open=%cd %p/utar://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view tar.bzip\n\n[tar.bzip2]\nRegex=\\\\.t(ar\\\\.bz2|bz2?|b2)$\nOpen=%cd %p/utar://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view tar.bzip2\n\n# .tar.lzma, .tlz\n[tar.lzma]\nRegex=\\\\.t(ar\\\\.lzma|lz)$\nOpen=%cd %p/utar://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view tar.lzma\n\n[tar.lz]\nShell=.tar.lz\nOpen=%cd %p/utar://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view tar.lz\n\n# .tar.lz4, .tlz4\n[tar.lz4]\nRegex=\\\\.t(ar\\\\.lz4|lz4)$\nOpen=%cd %p/utar://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view tar.lz4\n\n# .tar.lzo, .tzo\n[tar.lzo]\nRegex=\\\\.t(ar\\\\.lzo|zo)$\nOpen=%cd %p/utar://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view tar.lzo\n\n# .tar.xz, .txz\n[tar.xz]\nRegex=\\\\.t(ar\\\\.xz|xz)$\nOpen=%cd %p/utar://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view tar.xz\n\n# .tar.zst, .tzst\n[tar.zst]\nRegex=\\\\.t(ar\\\\.zst|zst)$\nOpen=%cd %p/utar://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view tar.zst\n\n# .tar.F - used on QNX\n[tar.F]\nShell=.tar.F\n# Open=%cd %p/utar://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view tar.F\n\n# .qpr/.qpk - QNX Neutrino package installer files\n[tar.qpr]\nRegex=\\\\.qp[rk]$\nOpen=%cd %p/utar://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view tar.qpr\n\n[tar]\nShell=.tar\nShellIgnoreCase=true\nOpen=%cd %p/utar://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view tar\n\n[arj]\nRegex=\\\\.a(rj|[0-9][0-9])$\nRegexIgnoreCase=true\nOpen=%cd %p/uarj://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view arj\n\n[cab]\nShell=.cab\nShellIgnoreCase=true\nOpen=%cd %p/ucab://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view cab\n\n[ha]\nShell=.ha\nShellIgnoreCase=true\nOpen=%cd %p/uha://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view ha\n\n[rar]\nRegex=\\\\.r(ar|[0-9][0-9])$\nRegexIgnoreCase=true\nOpen=%cd %p/urar://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view rar\n\n# ALZip\n[alz]\nShell=.alz\nShellIgnoreCase=true\nOpen=%cd %p/ualz://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view alz\n\n[cpio.Z]\nShell=.cpio.Z\nOpen=%cd %p/ucpio://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view cpio.z\n\n[cpio.lz]\nShell=.cpio.lz\nOpen=%cd %p/ucpio://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view cpio.lz\n\n[cpio.lz4]\nShell=.cpio.lz4\nOpen=%cd %p/ucpio://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view cpio.lz4\n\n[cpio.lzo]\nShell=.cpio.lzo\nOpen=%cd %p/ucpio://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view cpio.lzo\n\n[cpio.xz]\nShell=.cpio.xz\nOpen=%cd %p/ucpio://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view cpio.xz\n\n[cpio.zst]\nShell=.cpio.zst\nOpen=%cd %p/ucpio://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view cpio.zst\n\n[cpio.gz]\nShell=.cpio.gz\nOpen=%cd %p/ucpio://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view cpio.gz\n\n[cpio]\nShell=.cpio\nShellIgnoreCase=true\nInclude=cpio\n\n[initrd]\nRegex=^(initramfs.*\\\\.img|initrd(-.+)?\\\\.img(-.+)?)$\nInclude=cpio\n\n[7zip]\nShell=.7z\nShellIgnoreCase=true\nOpen=%cd %p/u7z://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view 7z\n\n[patch]\nRegex=\\\\.(diff|patch)$\nOpen=%cd %p/patchfs://\nView=%view{ascii} @EXTHELPERSDIR@/misc.sh view cat\n\n[patch.gz]\nRegex=\\\\.(diff|patch)\\\\.(gz|Z)$\nOpen=%cd %p/patchfs://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view gz\n\n[patch.bz2]\nRegex=\\\\.(diff|patch)\\\\.bz2$\nOpen=%cd %p/patchfs://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view bz2\n\n[patch.xz]\nRegex=\\\\.(diff|patch)\\\\.xz$\nOpen=%cd %p/patchfs://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view xz\n\n[patch.zst]\nRegex=\\\\.(diff|patch)\\\\.zst$\nOpen=%cd %p/patchfs://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view zst\n\n[ls-lR]\nRegex=(^|\\\\.)ls-?lR(\\\\.gz|Z|bz2)$\nOpen=%cd %p/lslR://\n\n[trpm]\nShell=.trpm\nOpen=%cd %p/trpm://\nView=%view{ascii} @EXTHELPERSDIR@/package.sh view trpm\n\n# RPM packages (SuSE uses *.spm for source packages)\n[src.rpm]\nRegex=\\\\.(src\\\\.rpm|spm)$\nOpen=%cd %p/rpm://\nView=%view{ascii} @EXTHELPERSDIR@/package.sh view src.rpm\n\n[rpm]\nShell=.rpm\nOpen=%cd %p/rpm://\nView=%view{ascii} @EXTHELPERSDIR@/package.sh view rpm\n\n[deb]\nRegex=\\\\.u?deb$\nOpen=%cd %p/deb://\nView=%view{ascii} @EXTHELPERSDIR@/package.sh view deb\n\n[dpkg]\nShell=.debd\nOpen=%cd %p/debd://\nView=%view{ascii} @EXTHELPERSDIR@/package.sh view debd\n\n[apt]\nShell=.deba\nOpen=%cd %p/deba://\nView=%view{ascii} @EXTHELPERSDIR@/package.sh view deba\n\n[ISO9660]\nShell=.iso\nShellIgnoreCase=true\nOpen=%cd %p/iso9660://\nView=%view{ascii} @EXTHELPERSDIR@/misc.sh view iso9660\n\n[ar]\nRegex=\\\\.s?a$\nOpen=%cd %p/uar://\n#Open=%view{ascii} ar tv %f\nView=%view{ascii} @EXTHELPERSDIR@/misc.sh view ar\n\n[gplib]\nShell=.lib\nShellIgnoreCase=true\nOpen=%cd %p/ulib://\nView=%view{ascii} @EXTHELPERSDIR@/misc.sh view lib\n\n### Sources ###\n\n[C/C++]\nRegex=\\\\.(c|cc|cpp|cxx|c\\\\+\\\\+)$\nRegexIgnoreCase=true\nInclude=editor\n\n[C/C++ header]\nRegex=\\\\.(h|hh|hpp|hxx|h\\\\+\\\\+)$\nRegexIgnoreCase=true\nInclude=editor\n\n[Fortran]\nShell=.f\nShellIgnoreCase=true\nInclude=editor\n\n[Assembler]\nRegex=\\\\.(s|asm)$\nRegexIgnoreCase=true\nInclude=editor\n\n[Typescript]\nShell=.ts\nShellIgnoreCase=true\nType=^Java source\nInclude=editor\n\n# .so libraries\n[so]\nRegex=\\\\.(so|so\\\\.[0-9\\\\.]*)$\nView=%view{ascii} @EXTHELPERSDIR@/misc.sh view so\n\n# .dylib libraries\n[dylib]\nRegex=\\\\.(dylib|dylib\\\\.[0-9\\\\.]*)$\nView=%view{ascii} @EXTHELPERSDIR@/misc.sh view dylib\n\n\n### Documentation ###\n\n#[Texinfo]\n#Regex=\\\\.(te?xi|texinfo)$\n\n[info-by-shell]\nShell=.info\nOpen=@EXTHELPERSDIR@/text.sh open info\n\n# Exception: .3gp are video files, not manual pages\n[3gp]\nShell=.3gp\nShellIgnoreCase=true\nType=^ISO Media.*3GPP\nInclude=video\n\n# Troff with me macros.\n# Exception - \"read.me\" is not a nroff file.\n[read.me]\nShell=read.me\nOpen=\nView=\n\n[troff]\nShell=.me\nOpen=@EXTHELPERSDIR@/text.sh open nroff.me %var{PAGER:more}\nView=%view{ascii,nroff} @EXTHELPERSDIR@/text.sh view nroff.me %var{PAGER:more}\n\n[roff with ms macros]\nShell=.ms\nOpen=@EXTHELPERSDIR@/text.sh open nroff.ms %var{PAGER:more}\nView=%view{ascii,nroff} @EXTHELPERSDIR@/text.sh view nroff.ms %var{PAGER:more}\n\n# Manual page\n\n[man.lz]\nRegex=([^0-9]|^[^\\\\.]*)\\\\.([1-9][A-Za-z]*|[ln])\\\\.lz$\nOpen=@EXTHELPERSDIR@/text.sh open man.lz %var{PAGER:more}\nView=%view{ascii,nroff} @EXTHELPERSDIR@/text.sh view man.lz %var{PAGER:more}\n\n[man.lz4]\nRegex=([^0-9]|^[^\\\\.]*)\\\\.([1-9][A-Za-z]*|[ln])\\\\.lz4$\nOpen=@EXTHELPERSDIR@/text.sh open man.lz4 %var{PAGER:more}\nView=%view{ascii,nroff} @EXTHELPERSDIR@/text.sh view man.lz4 %var{PAGER:more}\n\n[man.lzma]\nRegex=([^0-9]|^[^\\\\.]*)\\\\.([1-9][A-Za-z]*|[ln])\\\\.lzma$\nOpen=@EXTHELPERSDIR@/text.sh open man.lzma %var{PAGER:more}\nView=%view{ascii,nroff} @EXTHELPERSDIR@/text.sh view man.lzma %var{PAGER:more}\n\n[man.lzo]\nRegex=([^0-9]|^[^\\\\.]*)\\\\.([1-9][A-Za-z]*|[ln])\\\\.lzo$\nOpen=@EXTHELPERSDIR@/text.sh open man.lzo %var{PAGER:more}\nView=%view{ascii,nroff} @EXTHELPERSDIR@/text.sh view man.lzo %var{PAGER:more}\n\n[man.xz]\nRegex=([^0-9]|^[^\\\\.]*)\\\\.([1-9][A-Za-z]*|[ln])\\\\.xz$\nOpen=@EXTHELPERSDIR@/text.sh open man.xz %var{PAGER:more}\nView=%view{ascii,nroff} @EXTHELPERSDIR@/text.sh view man.xz %var{PAGER:more}\n\n[man.zst]\nRegex=([^0-9]|^[^\\\\.]*)\\\\.([1-9][A-Za-z]*|[ln])\\\\.zst$\nOpen=@EXTHELPERSDIR@/text.sh open man.zst %var{PAGER:more}\nView=%view{ascii,nroff} @EXTHELPERSDIR@/text.sh view man.zst %var{PAGER:more}\n\n# Perl pod page\n[pod]\nShell=.pod\nOpen=@EXTHELPERSDIR@/text.sh open pod %var{PAGER:more}\nView=%view{ascii,nroff} @EXTHELPERSDIR@/text.sh view pod %var{PAGER:more}\n\n[chm]\nShell=.chm\nShellIgnoreCase=true\nOpen=@EXTHELPERSDIR@/text.sh open chm\n\n### Images ###\n\n[xcf]\nShell=.xcf\nOpen=@EXTHELPERSDIR@/image.sh open xcf\n\n[xbm]\nShell=.xbm\nOpen=@EXTHELPERSDIR@/image.sh open xbm\n\n[xpm]\nShell=.xpm\nInclude=image\n\n[ico]\nShell=.ico\nInclude=image\n\n[svg]\nShell=.svg\nShellIgnoreCase=true\nView=%view{ascii} @EXTHELPERSDIR@/image.sh view svg\nOpen=@EXTHELPERSDIR@/image.sh open svg\n\n[webp]\nShell=.webp\nView=%view{ascii} @EXTHELPERSDIR@/image.sh view webp\nOpen=@EXTHELPERSDIR@/image.sh open webp\n\n[avif]\nShell=.avif\nView=%view{ascii} @EXTHELPERSDIR@/image.sh view avif\nOpen=@EXTHELPERSDIR@/image.sh open avif\n\n### Sound files ###\n\n[sound]\nRegex=\\\\.(wav|snd|voc|au|smp|aiff|snd|m4a|ape|aac|wv|spx|flac)$\nRegexIgnoreCase=true\nOpen=@EXTHELPERSDIR@/sound.sh open common\nView=%view{ascii} @EXTHELPERSDIR@/sound.sh view common\n\n[mod]\nRegex=\\\\.(mod|s3m|xm|it|mtm|669|stm|ult|far)$\nRegexIgnoreCase=true\nOpen=@EXTHELPERSDIR@/sound.sh open mod\n\n[wav22]\nShell=.waw22\nShellIgnoreCase=true\nOpen=@EXTHELPERSDIR@/sound.sh open wav22\n\n[mp3]\nShell=.mp3\nShellIgnoreCase=true\nOpen=@EXTHELPERSDIR@/sound.sh open mp3\nView=%view{ascii} @EXTHELPERSDIR@/sound.sh view mp3\n\n[ogg]\nRegex=\\\\.og[gax]$\nRegexIgnoreCase=true\nOpen=@EXTHELPERSDIR@/sound.sh open ogg\nView=%view{ascii} @EXTHELPERSDIR@/sound.sh view ogg\n\n[opus]\nShell=.opus\nShellIgnoreCase=true\nOpen=@EXTHELPERSDIR@/sound.sh open opus\nView=%view{ascii} @EXTHELPERSDIR@/sound.sh view opus\n\n[midi]\nRegex=\\\\.(midi?|rmid?)$\nRegexIgnoreCase=true\nOpen=@EXTHELPERSDIR@/sound.sh open midi\n\n[wma]\nShell=.wma\nShellIgnoreCase=true\nOpen=@EXTHELPERSDIR@/sound.sh open wma\nView=%view{ascii} @EXTHELPERSDIR@/sound.sh view wma\n\n# Play list\n[playlist]\nRegex=\\\\.(m3u|pls)$\nRegexIgnoreCase=true\nOpen=@EXTHELPERSDIR@/sound.sh open playlist\n\n\n### Video ###\n\n[avi]\nShell=.avi\nShellIgnoreCase=true\nInclude=video\n\n[asf]\nRegex=\\\\.as[fx]$\nRegexIgnoreCase=true\nInclude=video\n\n[divx]\nShell=.divx\nShellIgnoreCase=true\nInclude=video\n\n[mkv]\nShell=.mkv\nShellIgnoreCase=true\nInclude=video\n\n[mov]\nRegex=\\\\.(mov|qt)$\nRegexIgnoreCase=true\nInclude=video\n\n[mp4]\nRegex=\\\\.(mp4|m4v|mpe?g)$\nRegexIgnoreCase=true\nInclude=video\n\n# MPEG-2 TS container + H.264 codec\n[mts]\nShell=.mts\nShellIgnoreCase=true\nInclude=video\n\n[ts]\nShell=.ts\nShellIgnoreCase=true\nInclude=video\n\n[bob]\nShell=.vob\nShellIgnoreCase=true\nInclude=video\n\n[wmv]\nShell=.wmv\nShellIgnoreCase=true\nInclude=video\n\n[fli]\nRegex=\\\\.fl[icv]$\nRegexIgnoreCase=true\nInclude=video\n\n[ogv]\nShell=.ogv\nShellIgnoreCase=true\nInclude=video\n\n[realaudio]\nRegex=\\\\.ra?m$\nRegexIgnoreCase=true\nOpen=@EXTHELPERSDIR@/video.sh open ram\n\n[webm-by-shell]\nShell=.webm\nShellIgnoreCase=true\nInclude=video\n\n\n### Documents ###\n\n[html]\nRegex=\\\\.s?html?$\nRegexIgnoreCase=true\nOpen=@EXTHELPERSDIR@/web.sh open html\nView=%view{ascii} @EXTHELPERSDIR@/web.sh view html\n\n[StarOffice-5.2]\nShell=.sdw\nShellIgnoreCase=true\nOpen=@EXTHELPERSDIR@/doc.sh open ooffice\n\n# StarOffice 6 and OpenOffice.org formats\n[OpenOffice.org]\nRegex=\\\\.(odt|fodt|ott|sxw|stw|ods|fods|ots|sxc|stc|odp|fodp|otp|sxi|sti|odg|fodg|otg|sxd|std|odb|odf|sxm|odm|sxg)$\nRegexIgnoreCase=true\nOpen=@EXTHELPERSDIR@/doc.sh open ooffice\nView=%view{ascii} @EXTHELPERSDIR@/doc.sh view odt\n\n[AbiWord]\nShell=.abw\nShellIgnoreCase=true\nOpen=@EXTHELPERSDIR@/doc.sh open abw\n\n[Gnumeric]\nShell=.gnumeric\nShellIgnoreCase=true\nOpen=@EXTHELPERSDIR@/doc.sh open gnumeric\n\n[rtf]\nShell=.rtf\nShellIgnoreCase=true\nOpen=@EXTHELPERSDIR@/doc.sh open msdoc\n\n# Microsoft Word Document\n[msdoc-by-shell]\nRegex=\\\\.(do[ct]|wri|docx)$\nRegexIgnoreCase=true\nOpen=@EXTHELPERSDIR@/doc.sh open msdoc\nView=%view{ascii} @EXTHELPERSDIR@/doc.sh view msdoc\n\n# Microsoft Excel Worksheet\n[msxls-by-shell]\nRegex=\\\\.(xl[sw]|xlsx)$\nRegexIgnoreCase=true\nOpen=@EXTHELPERSDIR@/doc.sh open msxls\nView=%view{ascii} @EXTHELPERSDIR@/doc.sh view msxls\n\n# Microsoft PowerPoint Presentation\n[msppt]\nRegex=\\\\.(pp[ts]|pptx)$\nRegexIgnoreCase=true\nOpen=@EXTHELPERSDIR@/doc.sh open msppt\nView=%view{ascii} @EXTHELPERSDIR@/doc.sh view msppt\n\n[dvi]\nShell=.dvi\nShellIgnoreCase=true\nOpen=@EXTHELPERSDIR@/doc.sh open dvi\nView=%view{ascii} @EXTHELPERSDIR@/doc.sh view dvi\n\n[tex]\nShell=.tex\nShellIgnoreCase=true\nInclude=editor\n\n[markdown]\nRegex=\\\\.mk?d$\nRegexIgnoreCase=true\nInclude=editor\n\n[djvu]\nRegex=\\\\.djvu?$\nRegexIgnoreCase=true\nOpen=@EXTHELPERSDIR@/doc.sh open djvu\nView=%view{ascii} @EXTHELPERSDIR@/doc.sh view djvu\n\n# Comic Books\n[cbr]\nRegex=\\\\.cb[zr]$\nRegexIgnoreCase=true\nOpen=@EXTHELPERSDIR@/doc.sh open comic\n\n# Epup, mobi, fb2\n[ebook]\nRegex=\\\\.(epub|mobi|fb2)$\nRegexIgnoreCase=true\nOpen=@EXTHELPERSDIR@/doc.sh open ebook\nView=%view{ascii} @EXTHELPERSDIR@/doc.sh view ebook\n\n\n### Miscellaneous ###\n\n# Compiled Java classes\n[javaclass]\nShell=.class\nView=%view{ascii} @EXTHELPERSDIR@/misc.sh view javaclass\n\n[Imakefile]\nShell=Imakefile\nOpen=xmkmf -a\n\n# Makefile.PL (MakeMaker)\n[Makefile.pl]\nRegex=^Makefile\\\\.(PL|pl)$\nOpen=%var{PERL:perl} %f\n\n[Makefile]\nRegex=^[Mm]akefile$\nOpen=make -f %f %{Enter parameters}\n\n[dbf]\nShell=.dbf\nShellIgnoreCase=true\nOpen=@EXTHELPERSDIR@/misc.sh open dbf\nView=%view{ascii} @EXTHELPERSDIR@/misc.sh view dbf\n\n# REXX script\n[rexx]\nRegex=\\\\.(rexx?|cmd)$\nOpen=rexx %f %{Enter parameters};echo \"Press ENTER\";read y\n\n# Disk images for Commodore computers (VIC20, C64, C128)\n[d64]\nShell=.d64\nShellIgnoreCase=true\nOpen=%cd %p/uc1541://\nView=%view{ascii} c1541 %f -list\n\n# Glade, a user interface designer for GTK+ and GNOME\n[glade]\nShell=.glade\nShellIgnoreCase=true\nOpen=@EXTHELPERSDIR@/misc.sh open glade\n\n# Gettext Catalogs\n[mo]\nRegex=\\\\.g?mo$\nView=%view{ascii} @EXTHELPERSDIR@/misc.sh view mo\n\n[po]\nShell=.po\nOpen=@EXTHELPERSDIR@/misc.sh open po\n\n[lyx]\nShell=.lyx\nShellIgnoreCase=true\nOpen=@EXTHELPERSDIR@/misc.sh open lyx\nView=%view{ascii} @EXTHELPERSDIR@/misc.sh view lyx\n\n[torrent]\nShell=.torrent\nShellIgnoreCase=true\nOpen=%cd %p/torrent://\nView=%view{ascii} @EXTHELPERSDIR@/misc.sh view torrent\n\n\n### Plain compressed files ###\n\n[ace]\nShell=.ace\nShellIgnoreCase=true\nOpen=%cd %p/uace://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view ace\n\n[arc]\nShell=.arc\nShellIgnoreCase=true\nOpen=%cd %p/uarc://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view arc\n\n[zip-by-shell]\nShell=.zip\nShellIgnoreCase=true\nOpen=%cd %p/uzip://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view zip\n\n[zoo]\nShell=.zoo\nShellIgnoreCase=true\nOpen=%cd %p/uzoo://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view zoo\n\n[lz4]\nShell=.lz4\nShellIgnoreCase=true\nOpen=@EXTHELPERSDIR@/archive.sh view lz4 %var{PAGER:more}\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view lz4\n\n[lzo]\nShell=.lzo\nShellIgnoreCase=true\nOpen=@EXTHELPERSDIR@/archive.sh view lzo %var{PAGER:more}\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view lzo\n\n[wim]\nShell=.wim\nShellIgnoreCase=true\nOpen=%cd %p/uwim://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view wim\n\n\n######### Files by Type #########\n\n### Archives ###\n\n[mailbox]\nType=^ASCII mail text\nOpen=%cd %p/mailfs://\n\n[ipk-deb]\nShell=.ipk\nType=^Debian binary package\nOpen=%cd %p/deb://\nView=%view{ascii} @EXTHELPERSDIR@/package.sh view deb\n\n[ipk-openwrt]\nShell=.ipk\nType=\\\\(gzip compressed\nInclude=tar.gz\n\n\n### Sources ###\n\n# Object\n[elf]\nType=^ELF\n#Open=%var{PAGER:more} %f\nView=%view{ascii} @EXTHELPERSDIR@/misc.sh view elf\n\n[Mach-O]\nType=^Mach-O\n#Open=%var{PAGER:more} %f\nView=%view{ascii} @EXTHELPERSDIR@/misc.sh view dylib\n\n### Documentation ###\n\n# GNU Info page\n[info-by-type]\nType=^Info text\nOpen=@EXTHELPERSDIR@/text.sh open info\n\n# Manual page - compressed\n[troff.gz]\nType=troff.*gzip compressed\nOpen=@EXTHELPERSDIR@/text.sh open man.gz %var{PAGER:more}\nView=%view{ascii,nroff} @EXTHELPERSDIR@/text.sh view man.gz %var{PAGER:more}\n\n[troff.bzip]\nType=troff.*bzip compressed\nOpen=@EXTHELPERSDIR@/text.sh open man.bz %var{PAGER:more}\nView=%view{ascii,nroff} @EXTHELPERSDIR@/text.sh view man.bz %var{PAGER:more}\n\n[troff.bzip2]\nType=troff.*bzip2 compressed\nOpen=@EXTHELPERSDIR@/text.sh open man.bz2 %var{PAGER:more}\nView=%view{ascii,nroff} @EXTHELPERSDIR@/text.sh view man.bz2 %var{PAGER:more}\n\n# Manual page\n[man]\nType=troff or preprocessor input\nOpen=@EXTHELPERSDIR@/text.sh open man %var{PAGER:more}\nView=%view{ascii,nroff} @EXTHELPERSDIR@/text.sh view man %var{PAGER:more}\n\n\n### Images ###\n\n[gif]\nType=^GIF\nInclude=image\n\n[jpeg]\nType=^JPEG\nInclude=image\n\n[bitmap]\nType=^PC bitmap\nInclude=image\n\n[png]\nType=^PNG\nInclude=image\n\n[jng]\nType=^JNG\nInclude=image\n\n[mng]\nType=^MNG\nInclude=image\n\n[tiff]\nType=^TIFF\nInclude=image\n\n[rbm]\nType=^PBM\nInclude=image\n\n[pgm]\nType=^PGM\nInclude=image\n\n[ppm]\nType=^PPM\nInclude=image\n\n[netpbm]\nType=^Netpbm\nInclude=image\n\n\n### Video ###\n\n[webm-by-type]\nType=WebM\nInclude=video\n\n\n### Documents ###\n\n[postscript]\nType=^PostScript\nOpen=@EXTHELPERSDIR@/doc.sh open ps\nView=%view{ascii} @EXTHELPERSDIR@/doc.sh view ps\n\n[pdf]\nType=^PDF\nOpen=@EXTHELPERSDIR@/doc.sh open pdf\nView=%view{ascii} @EXTHELPERSDIR@/doc.sh view pdf\n\n# Microsoft Word Document\n[msdoc-by-type]\nType=^Microsoft Word\nOpen=@EXTHELPERSDIR@/doc.sh open msdoc\nView=%view{ascii} @EXTHELPERSDIR@/doc.sh view msdoc\n\n# Microsoft Excel Worksheet\n[msxls-by-type]\nType=^Microsoft Excel\nOpen=@EXTHELPERSDIR@/doc.sh open msxls\nView=%view{ascii} @EXTHELPERSDIR@/doc.sh view msxls\n\n# Use OpenOffice.org/LibreOffice to open any MS Office documents\n[mso-doc-1]\nType=^Microsoft Office Document\nOpen=@EXTHELPERSDIR@/doc.sh open ooffice\n\n[mso-doc-2]\nType=^Microsoft OOXML\nOpen=@EXTHELPERSDIR@/doc.sh open ooffice\n\n[framemaker]\nType=^FrameMaker\nOpen=@EXTHELPERSDIR@/doc.sh open framemaker\n\n\n### Miscellaneous ###\n\n[sqlite3.db]\nType=^SQLite 3.x database\nOpen=@EXTHELPERSDIR@/misc.sh open sqlite\nView=%view{ascii} @EXTHELPERSDIR@/misc.sh view sqlite\n\n\n### Plain compressed files ###\n\n[gzip]\nType=\\\\(gzip compressed\nOpen=@EXTHELPERSDIR@/archive.sh view gz %var{PAGER:more}\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view gz\n\n[bzip]\nType=\\\\(bzip compressed\nOpen=@EXTHELPERSDIR@/archive.sh view bzip %var{PAGER:more}\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view bzip\n\n[bzip2]\nType=\\\\(bzip2 compressed\nOpen=@EXTHELPERSDIR@/archive.sh view bzip2 %var{PAGER:more}\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view bz2\n\n[compress]\nType=\\\\(compress'd\nOpen=@EXTHELPERSDIR@/archive.sh view gz %var{PAGER:more}\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view gz\n\n[lz]\nType=\\\\(lzip compressed\nOpen=@EXTHELPERSDIR@/archive.sh view lz %var{PAGER:more}\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view lz\n\n[lzma]\nType=\\\\(LZMA compressed\nOpen=@EXTHELPERSDIR@/archive.sh view lzma %var{PAGER:more}\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view lzma\n\n[xz]\nType=\\\\(XZ compressed\nOpen=@EXTHELPERSDIR@/archive.sh view xz %var{PAGER:more}\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view xz\n\n[zstd]\nType=\\\\(Zstandard compressed\nOpen=@EXTHELPERSDIR@/archive.sh view zst %var{PAGER:more}\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view zst\n\n[zip-by-type]\nType=\\\\(Zip archive\nOpen=%cd %p/uzip://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view zip\n\n[jar]\nType=\\\\(Java (Jar file|archive) data \\\\((zip|JAR)\\\\)\\\\)\nTypeIgnoreCase=true\nOpen=%cd %p/uzip://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view zip\n\n[lha]\nType=^LHa .*archive\nOpen=%cd %p/ulha://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view lha\n\n[pak]\nType=^PAK .*archive\nOpen=%cd %p/unar://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view pak\n\n# Parity Archive\n[par2]\nType=^Parity Archive Volume Set\nOpen=@EXTHELPERSDIR@/archive.sh open par2\n\n\n######### Includes #########\n# Includes should be at end of the bindings\n\n[Include/tar.gz]\nOpen=%cd %p/utar://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view tar.gz\n\n[Include/cpio]\nOpen=%cd %p/ucpio://\nView=%view{ascii} @EXTHELPERSDIR@/archive.sh view cpio\n\n[Include/editor]\nOpen=%var{EDITOR:vi} %f\n\n[Include/image]\nOpen=@EXTHELPERSDIR@/image.sh open ALL_FORMATS\nView=%view{ascii} @EXTHELPERSDIR@/image.sh view ALL_FORMATS\n\n[Include/video]\nOpen=@EXTHELPERSDIR@/video.sh open ALL_FORMATS\nView=%view{ascii} @EXTHELPERSDIR@/video.sh view ALL_FORMATS\n\n\n######### Default #########\n\n# Default target for anything not described above\n[Default]\nOpen=\nView=\n\n### EOF ###",
     "zxc.20260126154354.1": "<< unix dos >>\n{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125145051.1": "<< unix dos >>\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125152704.1": "<< unix dos >>\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -4213,7 +4340,12 @@
     "User.20260220000018.1": "\"theme\": {\n  \"mode\": \"system\",\n  \"light\": \"One Light\",\n  \"dark\": \"One Dark\",\n},",
     "User.20260219235958.1": "\"ui_font_size\": 16,\n\"buffer_font_size\": 15,",
     "User.20260219235853.1": "\"auto_update\": false\n",
-    "User.20260228231944.1": "<< dos >>\n{{ if lookPath \"mpd\" -}}\n@others\n{{ end -}}\n{{ end -}}"
+    "User.20260228231944.1": "<< dos >>\n{{ if lookPath \"mpd\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260302211536.1": "<< dos >>\n{{ if lookPath \"mc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260302211740.1": "<< dos >>\n{{ if lookPath \"mc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260302211946.1": "<< dos >>\n{{ if lookPath \"mc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260302212424.1": "<< dos >>\n{{ if lookPath \"mc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260302212645.1": "<< dos >>\n{{ if lookPath \"mc\" -}}\n@others\n{{ end -}}\n{{ end -}}"
   },
   "uas": {
     "User.20260301195342.2": {
@@ -4232,7 +4364,7 @@
       "_mod_time": 1772023346.652
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1772410718.366
+      "_mod_time": 1772367990.444
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1771507120.147
@@ -4244,58 +4376,58 @@
       "_mod_time": 1771684793.908
     },
     "User.20260226000855.1": {
-      "_mod_time": 1772265118.504
+      "_mod_time": 1772036010.445
     },
     "zxc.20260202203521.17": {
-      "_mod_time": 1772265118.504
+      "_mod_time": 1771507120.147
     },
     "User.20260220233639.1": {
       "_mod_time": 1772023934.663
     },
     "zxc.20260202203521.20": {
-      "_mod_time": 1772265118.504
+      "_mod_time": 1771574592.704
     },
     "User.20260216114746.1": {
-      "_mod_time": 1772265118.504
+      "_mod_time": 1771507120.147
     },
     "zxc.20260202203521.14": {
-      "_mod_time": 1772265118.504
+      "_mod_time": 1771507120.147
     },
     "zxc.20260202203521.3": {
-      "_mod_time": 1772265118.504
+      "_mod_time": 1771571707.126
     },
     "zxc.20260202213444.1": {
-      "_mod_time": 1772265118.504
+      "_mod_time": 1771569080.908
     },
     "User.20260220142155.2": {
-      "_mod_time": 1772265118.504
+      "_mod_time": 1771568880.608
     },
     "User.20260220151435.2": {
-      "_mod_time": 1772265118.504
+      "_mod_time": 1771573259.107
     },
     "zxc.20260202215023.1": {
-      "_mod_time": 1772265118.504
+      "_mod_time": 1771568704.936
     },
     "zxc.20260202215408.1": {
-      "_mod_time": 1772265118.504
+      "_mod_time": 1771568734.183
     },
     "zxc.20260202220030.1": {
-      "_mod_time": 1772265118.504
+      "_mod_time": 1771568768.817
     },
     "zxc.20260202220553.1": {
-      "_mod_time": 1772265118.504
+      "_mod_time": 1771568791.589
     },
     "User.20260217202401.1": {
-      "_mod_time": 1772265118.504
+      "_mod_time": 1771517628.633
     },
     "User.20260220214558.1": {
       "_mod_time": 1772024408.924
     },
     "User.20260217214851.1": {
-      "_mod_time": 1772265118.504
+      "_mod_time": 1771524800.056
     },
     "User.20260220000301.2": {
-      "_mod_time": 1772265118.504
+      "_mod_time": 1771517674.642
     },
     "User.20260220012738.1": {
       "_mod_time": 1771684793.907
@@ -4307,7 +4439,7 @@
       "_mod_time": 1772024858.229
     },
     "zxc.20260126185048.1": {
-      "_mod_time": 1772265118.519
+      "_mod_time": 1772024858.322
     },
     "User.20260218144120.1": {
       "_mod_time": 1772024811.743
@@ -4328,13 +4460,13 @@
       "_mod_time": 1772197656.366
     },
     "User.20260218142211.1": {
-      "_mod_time": 1772265118.551
+      "_mod_time": 1772198288.54
     },
     "User.20260218142322.1": {
-      "_mod_time": 1772265118.551
+      "_mod_time": 1771507120.178
     },
     "User.20260225235850.1": {
-      "_mod_time": 1772265118.551
+      "_mod_time": 1772197656.473
     },
     "zxc.20260130225718.1": {
       "_mod_time": 1772025344.523
@@ -4358,19 +4490,19 @@
       "_mod_time": 1772025359.907
     },
     "User.20260216232855.1": {
-      "_mod_time": 1772265118.519
+      "_mod_time": 1771507120.147
     },
     "User.20260217182613.1": {
-      "_mod_time": 1772265118.519
+      "_mod_time": 1771507120.147
     },
     "User.20260301202336.1": {
-      "_mod_time": 1772410718.397
+      "_mod_time": 1772452886.128
     },
     "User.20260302151118.1": {
-      "_mod_time": 1772435568.344
+      "_mod_time": 1772453431.225
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1772265118.535
+      "_mod_time": 1772025560.415
     },
     "zxc.20260125145051.1": {
       "_mod_time": 1772025586.946
@@ -4409,91 +4541,106 @@
       "_mod_time": 1772026690.554
     },
     "User.20260215182442.1": {
-      "_mod_time": 1772265118.535
+      "_mod_time": 1771507120.178
     },
     "User.20260217022114.1": {
-      "_mod_time": 1772265118.535
+      "_mod_time": 1771507120.178
     },
     "User.20260215182818.1": {
-      "_mod_time": 1772265118.535
+      "_mod_time": 1771507120.178
     },
     "zxc.20260201225344.1": {
-      "_mod_time": 1772435215.51
+      "_mod_time": 1772453431.26
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1772265118.551
+      "_mod_time": 1772026886.539
     },
     "User.20260215205925.1": {
-      "_mod_time": 1772435218.436
+      "_mod_time": 1772453431.272
     },
     "User.20260215210400.1": {
-      "_mod_time": 1772265118.551
+      "_mod_time": 1772030616.178
     },
     "User.20260220151031.5": {
-      "_mod_time": 1772435218.436
+      "_mod_time": 1772453431.266
     },
     "User.20260220151031.28": {
-      "_mod_time": 1772265118.551
+      "_mod_time": 1772030616.208
     },
     "User.20260221175549.1": {
-      "_mod_time": 1772265118.551
+      "_mod_time": 1771841490.923
     },
     "User.20260221194603.1": {
-      "_mod_time": 1772265118.551
+      "_mod_time": 1771698861.303
     },
     "User.20260222211658.1": {
-      "_mod_time": 1772265118.551
+      "_mod_time": 1771773103.258
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1772410718.435
+      "_mod_time": 1772288551.402
     },
     "zxc.20260202205715.1": {
-      "_mod_time": 1772265118.535
+      "_mod_time": 1771507120.178
     },
     "User.20260302151947.1": {
-      "_mod_time": 1772436080.556
+      "_mod_time": 1772453431.214
     },
     "zxc.20260201203241.1": {
-      "_mod_time": 1772265118.519
+      "_mod_time": 1771507120.147
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1772265118.519
+      "_mod_time": 1771507120.147
     },
     "zxc.20260201214114.1": {
-      "_mod_time": 1772265118.519
+      "_mod_time": 1771507120.147
     },
     "zxc.20260201140523.1": {
-      "_mod_time": 1772265118.519
+      "_mod_time": 1771507120.147
     },
     "zxc.20260130233132.1": {
-      "_mod_time": 1772265118.519
+      "_mod_time": 1771698872.19
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1772431190.264
+      "_mod_time": 1772453431.22
     },
     "zxc.20260202195207.1": {
-      "_mod_time": 1772265118.519
+      "_mod_time": 1771507120.147
     },
     "zxc.20260214105528.1": {
-      "_mod_time": 1772265118.519
+      "_mod_time": 1771507120.147
     },
     "zxc.20260214142543.1": {
-      "_mod_time": 1772265118.519
+      "_mod_time": 1771507120.147
     },
     "User.20260215234634.1": {
-      "_mod_time": 1772265118.519
+      "_mod_time": 1771507120.147
     },
     "User.20260216124226.1": {
-      "_mod_time": 1772265118.519
+      "_mod_time": 1771507120.147
     },
     "User.20260216125422.1": {
-      "_mod_time": 1772265118.519
+      "_mod_time": 1771507120.147
     },
     "User.20260219235648.1": {
-      "_mod_time": 1772265118.519
+      "_mod_time": 1771516837.708
     },
     "User.20260228231944.1": {
-      "_mod_time": 1772410718.381
+      "_mod_time": 1772292877.898
+    },
+    "User.20260302211536.1": {
+      "_mod_time": 1772457424.871
+    },
+    "User.20260302211740.1": {
+      "_mod_time": 1772462309.792
+    },
+    "User.20260302211946.1": {
+      "_mod_time": 1772460649.654
+    },
+    "User.20260302212424.1": {
+      "_mod_time": 1772457946.98
+    },
+    "User.20260302212645.1": {
+      "_mod_time": 1772458039.594
     }
   }
 }
