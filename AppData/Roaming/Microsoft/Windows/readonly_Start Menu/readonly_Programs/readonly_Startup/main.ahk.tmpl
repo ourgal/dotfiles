@@ -6,13 +6,8 @@ RunScoop(app)
     scoop_apps_dir := appdata_dir . "/Microsoft/Windows/Start Menu/Programs/Scoop Apps"
     Run(scoop_apps_dir . "/" . app . ".lnk", user_dir, "Max")
 }
-{{ if and (lookPath "wt") (lookPath "pwsh") -}}
-RunScoop("Windows Terminal")
-{{ end -}}
-{{ if stat "C:/Program Files/Mozilla Firefox/firefox.exe" -}}
-Run("C:/Program Files/Mozilla Firefox/firefox.exe", , "Max")
-{{ else if lookPath "brave" -}}
-Run("D:/scoop/apps/brave/current/brave.exe", "c:/users/user" , "Max")
+{{ if lookPath "glazewm" -}}
+Run("glazewm", {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
 {{ if and (eq .chezmoi.hostname "nuc") (lookPath "deskflow-core") -}}
 Run("deskflow-core client", , "Hide")
@@ -40,12 +35,17 @@ Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "kdeconnect" "current" "bin" "k
 {{ if stat $powertoys -}}
 Run("{{ $powertoys }}", {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
-{{ if lookPath "glazewm" -}}
-Run("glazewm", {{ .chezmoi.homeDir | quote }}, "Hide")
-{{ end -}}
 {{ $flow := joinPath .chezmoi.homeDir "scoop" "apps" "flow-launcher" "current" "Flow.Launcher.exe" -}}
 {{ if stat $flow -}}
 Run("{{ $flow }}", {{ .chezmoi.homeDir | quote }}, "Hide")
+{{ end -}}
+{{ if and (lookPath "wt") (lookPath "pwsh") -}}
+RunScoop("Windows Terminal")
+{{ end -}}
+{{ if stat "C:/Program Files/Mozilla Firefox/firefox.exe" -}}
+Run("C:/Program Files/Mozilla Firefox/firefox.exe", , "Max")
+{{ else if lookPath "brave" -}}
+Run("D:/scoop/apps/brave/current/brave.exe", "c:/users/user" , "Max")
 {{ end -}}
 {{ if lookPath "code" -}}
 Run("code", {{ .chezmoi.homeDir | quote }})
