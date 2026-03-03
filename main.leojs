@@ -921,6 +921,10 @@
                     {
                       "gnx": "User.20260226001451.1",
                       "vh": "termux"
+                    },
+                    {
+                      "gnx": "User.20260303224633.1",
+                      "vh": "pip"
                     }
                   ]
                 }
@@ -3863,6 +3867,25 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "gnx": "User.20260303213323.1",
+                  "vh": "@path uv",
+                  "children": [
+                    {
+                      "gnx": "User.20260303213330.1",
+                      "vh": "@clean uv.toml.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
+                          "gnx": "User.20260303213403.1",
+                          "vh": "content"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -4002,8 +4025,9 @@
     "User.20260226001424.1": "[my.font]\nmonospace = \"FiraCode Nerd Font Mono\"",
     "User.20260226001439.1": "[my.git.sign]\nssh = false\ngpg = true\n",
     "User.20260226001451.1": "[my.termux.note20]\nusername = \"u0_a644\"",
+    "User.20260303224633.1": "[my.pip]\nmirror = \"https://mirrors.cernet.edu.cn/pypi/web/simple/\"\n",
     "zxc.20260125162740.1": "<< unix >>\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260125162834.1": "[global]\nindex-url = https://mirrors.cernet.edu.cn/pypi/web/simple/\n[install]\ntrusted-host = mirrors.cernet.edu.cn",
+    "zxc.20260125162834.1": "[global]\nindex-url = {{ .my.pip.mirror }}\n[install]\ntrusted-host = mirrors.cernet.edu.cn",
     "zxc.20260126185048.1": "<< dos >>\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260218144120.1": "<< unix dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260218144149.1": "vim workspace session folder",
@@ -4345,7 +4369,9 @@
     "User.20260302211740.1": "<< dos >>\n{{ if lookPath \"mc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260302211946.1": "<< dos >>\n{{ if lookPath \"mc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260302212424.1": "<< dos >>\n{{ if lookPath \"mc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260302212645.1": "<< dos >>\n{{ if lookPath \"mc\" -}}\n@others\n{{ end -}}\n{{ end -}}"
+    "User.20260302212645.1": "<< dos >>\n{{ if lookPath \"mc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260303213330.1": "<< dos >>\n{{ if lookPath \"uv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260303213403.1": "[[index]]\nurl = {{ .my.pip.mirror | quote }}\ndefault = true"
   },
   "uas": {
     "User.20260301195342.2": {
@@ -4433,13 +4459,13 @@
       "_mod_time": 1771684793.907
     },
     "User.20260226001402.1": {
-      "_mod_time": 1772036109.264
+      "_mod_time": 1772549269.641
     },
     "zxc.20260125162740.1": {
-      "_mod_time": 1772024858.229
+      "_mod_time": 1772549269.699
     },
     "zxc.20260126185048.1": {
-      "_mod_time": 1772024858.322
+      "_mod_time": 1772549269.74
     },
     "User.20260218144120.1": {
       "_mod_time": 1772024811.743
@@ -4641,6 +4667,9 @@
     },
     "User.20260302212645.1": {
       "_mod_time": 1772458039.594
+    },
+    "User.20260303213330.1": {
+      "_mod_time": 1772549305.09
     }
   }
 }
