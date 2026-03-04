@@ -112,6 +112,9 @@ workspaces:
   - name: '8'
   - name: '9'
 window_rules:
+  - commands: ["move --workspace 1"]
+    match:
+      - window_process: { regex: "WindowsTerminal" }
   - commands: ["move --workspace 2"]
     match:
       - window_process: { regex: "firefox" }
