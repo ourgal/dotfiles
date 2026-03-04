@@ -33,11 +33,11 @@ Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "kdeconnect" "current" "bin" "k
 {{ end -}}
 {{ $powertoys := joinPath .chezmoi.homeDir "scoop" "apps" "powertoys" "current" "powertoys.exe" -}}
 {{ if stat $powertoys -}}
-Run("{{ $powertoys }}", {{ .chezmoi.homeDir | quote }}, "Hide")
+Run({{ $powertoys | quote }}, {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
 {{ $flow := joinPath .chezmoi.homeDir "scoop" "apps" "flow-launcher" "current" "Flow.Launcher.exe" -}}
 {{ if stat $flow -}}
-Run("{{ $flow }}", {{ .chezmoi.homeDir | quote }}, "Hide")
+Run({{ $flow | quote }}, {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
 {{ if and (lookPath "wt") (lookPath "pwsh") -}}
 RunScoop("Windows Terminal")
@@ -47,7 +47,8 @@ Run("C:/Program Files/Mozilla Firefox/firefox.exe", , "Max")
 {{ else if lookPath "brave" -}}
 Run("D:/scoop/apps/brave/current/brave.exe", "c:/users/user" , "Max")
 {{ end -}}
-{{ if lookPath "code" -}}
-Run("code", {{ .chezmoi.homeDir | quote }})
+{{ $vscode := joinPath .chezmoi.homeDir "scoop" "apps" "vscode" "current" "Code.exe" -}}
+{{ if stat $vscode -}}
+Run({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
 {{ end -}}
 {{ end -}}
