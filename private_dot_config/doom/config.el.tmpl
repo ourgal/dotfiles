@@ -189,5 +189,13 @@
                (nnimap-stream ssl))))
 
 (setq gnus-thread-sort-functions '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date)))
+(add-hook 'elfeed-search-mode-hook #'elfeed-update)
+;; Update hourly
+(run-at-time nil (* 60 60) #'elfeed-update)
+(map! :leader
+      :desc "Elfeed" "o e" #'elfeed)
+(map! :after elfeed
+      :map elfeed-show-mode-map
+      :n "y" #'elfeed-show-yank)
 {{ end -}}
 {{ end -}}
