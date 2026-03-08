@@ -1,0 +1,57 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "chromium" -}}
+{{ $app := "chromium" -}}
+{{ $name := printf "%s (Scoop)" ($app | title) -}}
+{{ $reg_name := printf "Scoop%sHTM" ($app | title) -}}
+{{ $user := "User" -}}
+{{ $bin_path := lookPath $app -}}
+{{ $icon := print (joinPath .chezmoi.homeDir "scoop" "apps" "ungoogled-chromium" "current" "chrome.exe") ",0" | quote }}
+New-Item {{ $app }}.reg -type file
+$contentToAdd = @"
+Windows Registry Editor Version 5.00
+
+
+[HKEY_CURRENT_USER\SOFTWARE\RegisteredApplications]
+{{ $name | quote }}="Software\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities"
+
+[HKEY_CURRENT_USER\SOFTWARE\Clients\StartMenuInternet\{{ $name }}\shell\open\command]
+""={{ $bin_path | quote | quote }}
+
+[HKEY_CURRENT_USER\SOFTWARE\Clients\StartMenuInternet\{{ $name }}\DefaultIcon]
+""={{ $icon }}
+
+[HKEY_CURRENT_USER\SOFTWARE\Clients\StartMenuInternet\{{ $name }}\Capabilities\FileAssociations]
+".html"={{ $reg_name | quote }}
+".htm"={{ $reg_name | quote }}
+
+[HKEY_CURRENT_USER\SOFTWARE\Clients\StartMenuInternet\{{ $name }}\Capabilities\URLAssociations]
+"https"={{ $reg_name | quote }}
+"http"={{ $reg_name | quote }}
+
+[HKEY_CURRENT_USER\SOFTWARE\Clients\StartMenuInternet\{{ $name }}\Capabilities]
+"ApplicationName"={{ $name | quote }}
+"ApplicationIcon"={{ $icon }}
+"ApplicationDescription"={{ $app | title | quote }}
+
+[HKEY_CURRENT_USER\SOFTWARE\Clients\StartMenuInternet\{{ $name }}]
+""={{ $name | quote }}
+
+[HKEY_CURRENT_USER\SOFTWARE\Classes\{{ $reg_name }}\shell\open\command]
+""={{ print ($bin_path | quote) " %1" | quote }}
+
+[HKEY_CURRENT_USER\SOFTWARE\Classes\{{ $reg_name }}\Application]
+; Name in Dialog
+"ApplicationName"={{ $name | quote }}
+"ApplicationDescription"="It's {{ $app | title }}."
+"ApplicationIcon"={{ $icon }}
+
+[HKEY_CURRENT_USER\SOFTWARE\Classes\{{ $reg_name }}]
+""={{ $name | quote }}
+"@
+
+ Add-Content {{ $app }}.reg $contentToAdd
+
+reg import .\{{ $app }}.reg
+rm .\{{ $app }}.reg
+{{ end -}}
+{{ end -}}

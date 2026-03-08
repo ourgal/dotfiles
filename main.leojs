@@ -893,6 +893,101 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "gnx": "User.20260308171341.1",
+                  "vh": "firefox register",
+                  "children": [
+                    {
+                      "gnx": "User.20260308173318.1",
+                      "vh": "@clean run_onchange_after_firefox_register.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
+                          "gnx": "User.20260308171508.1",
+                          "vh": "content"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "gnx": "User.20260308184128.1",
+                  "vh": "brave register",
+                  "children": [
+                    {
+                      "gnx": "User.20260308184128.2",
+                      "vh": "@clean run_onchange_after_brave_register.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
+                          "gnx": "User.20260308184128.4",
+                          "vh": "content"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "gnx": "User.20260308184713.1",
+                  "vh": "qutebrowser register",
+                  "children": [
+                    {
+                      "gnx": "User.20260308184713.2",
+                      "vh": "@clean run_onchange_after_qutebrowser_register.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
+                          "gnx": "User.20260308184713.4",
+                          "vh": "content"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "gnx": "User.20260308214701.1",
+                  "vh": "chromium register",
+                  "children": [
+                    {
+                      "gnx": "User.20260308214701.2",
+                      "vh": "@clean run_onchange_after_chromium_register.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
+                          "gnx": "User.20260308214701.4",
+                          "vh": "content"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "gnx": "User.20260308215626.1",
+                  "vh": "librewolf register",
+                  "children": [
+                    {
+                      "gnx": "User.20260308215626.2",
+                      "vh": "@clean run_onchange_after_librewolf_register.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
+                          "gnx": "User.20260308215626.4",
+                          "vh": "content"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -4085,6 +4180,16 @@
     "User.20260220000301.3": "{{ if lookPath \"dirhash\" -}}\n# {{ output \"dirhash\" (joinPath (env \"Appdata\") \"Rime\" \"default.custom.yaml\") \"-nowait\" \"-quiet\" | trim }}\n# {{ output \"dirhash\" (joinPath (env \"Appdata\") \"Rime\" \"sbfm.custom.yaml\") \"-nowait\" \"-quiet\" | trim }}\n& {{ joinPath (env \"programdata\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Weasel\" \"Weasel Deploy.lnk\" | quote }}\n{{ end -}}",
     "User.20260220012738.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if and (lookPath \"gh\") (lookPath \"gopass\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260220012907.1": "{{ if not (exec \"gh\" \"auth\" \"status\") -}}\n\"Starting to login in github cli\"\ngopass github/ourgal/token | gh auth login --hostname github.com --with-token\n\"Login in github successed\"\n{{ end -}}",
+    "User.20260308173318.1": "<< dos >>\n{{ if lookPath \"firefox\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260308171508.1": "{{ $app := \"firefox\" -}}\n{{ $name := printf \"%s (Scoop)\" ($app | title) -}}\n{{ $reg_name := printf \"Scoop%sHTM\" ($app | title) -}}\n{{ $user := \"User\" -}}\n{{ $bin_path := lookPath $app -}}\n{{ $icon := print (joinPath .chezmoi.homeDir \"scoop\" \"apps\" $app \"current\" (print $app \".exe\")) \",0\" | quote }}\nNew-Item {{ $app }}.reg -type file\n$contentToAdd = @\"\nWindows Registry Editor Version 5.00\n\n\n[HKEY_CURRENT_USER\\SOFTWARE\\RegisteredApplications]\n{{ $name | quote }}=\"Software\\\\Clients\\\\StartMenuInternet\\\\{{ $name }}\\\\Capabilities\"\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\shell\\open\\command]\n\"\"={{ $bin_path | quote | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\DefaultIcon]\n\"\"={{ $icon }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities\\FileAssociations]\n\".html\"={{ $reg_name | quote }}\n\".htm\"={{ $reg_name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities\\URLAssociations]\n\"https\"={{ $reg_name | quote }}\n\"http\"={{ $reg_name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities]\n\"ApplicationName\"={{ $name | quote }}\n\"ApplicationIcon\"={{ $icon }}\n\"ApplicationDescription\"={{ $app | title | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}]\n\"\"={{ $name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}\\shell\\open\\command]\n\"\"={{ print ($bin_path | quote) \" %1\" | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}\\Application]\n; Name in Dialog\n\"ApplicationName\"={{ $name | quote }}\n\"ApplicationDescription\"=\"It's {{ $app | title }}.\"\n\"ApplicationIcon\"={{ $icon }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}]\n\"\"={{ $name | quote }}\n\"@\n\n Add-Content {{ $app }}.reg $contentToAdd\n\nreg import .\\{{ $app }}.reg\nrm .\\{{ $app }}.reg\n",
+    "User.20260308184128.2": "<< dos >>\n{{ if lookPath \"brave\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260308184128.4": "{{ $app := \"brave\" -}}\n{{ $name := printf \"%s (Scoop)\" ($app | title) -}}\n{{ $reg_name := printf \"Scoop%sHTM\" ($app | title) -}}\n{{ $user := \"User\" -}}\n{{ $bin_path := lookPath $app -}}\n{{ $icon := print (joinPath .chezmoi.homeDir \"scoop\" \"apps\" $app \"current\" (print $app \".exe\")) \",0\" | quote }}\nNew-Item {{ $app }}.reg -type file\n$contentToAdd = @\"\nWindows Registry Editor Version 5.00\n\n\n[HKEY_CURRENT_USER\\SOFTWARE\\RegisteredApplications]\n{{ $name | quote }}=\"Software\\\\Clients\\\\StartMenuInternet\\\\{{ $name }}\\\\Capabilities\"\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\shell\\open\\command]\n\"\"={{ $bin_path | quote | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\DefaultIcon]\n\"\"={{ $icon }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities\\FileAssociations]\n\".html\"={{ $reg_name | quote }}\n\".htm\"={{ $reg_name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities\\URLAssociations]\n\"https\"={{ $reg_name | quote }}\n\"http\"={{ $reg_name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities]\n\"ApplicationName\"={{ $name | quote }}\n\"ApplicationIcon\"={{ $icon }}\n\"ApplicationDescription\"={{ $app | title | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}]\n\"\"={{ $name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}\\shell\\open\\command]\n\"\"={{ print ($bin_path | quote) \" %1\" | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}\\Application]\n; Name in Dialog\n\"ApplicationName\"={{ $name | quote }}\n\"ApplicationDescription\"=\"It's {{ $app | title }}.\"\n\"ApplicationIcon\"={{ $icon }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}]\n\"\"={{ $name | quote }}\n\"@\n\n Add-Content {{ $app }}.reg $contentToAdd\n\nreg import .\\{{ $app }}.reg\nrm .\\{{ $app }}.reg\n",
+    "User.20260308184713.2": "<< dos >>\n{{ if lookPath \"brave\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260308184713.4": "{{ $app := \"qutebrowser\" -}}\n{{ $name := printf \"%s (Scoop)\" ($app | title) -}}\n{{ $reg_name := printf \"Scoop%sHTM\" ($app | title) -}}\n{{ $user := \"User\" -}}\n{{ $bin_path := lookPath $app -}}\n{{ $icon := print (joinPath .chezmoi.homeDir \"scoop\" \"apps\" $app \"current\" (print $app \".exe\")) \",0\" | quote }}\nNew-Item {{ $app }}.reg -type file\n$contentToAdd = @\"\nWindows Registry Editor Version 5.00\n\n\n[HKEY_CURRENT_USER\\SOFTWARE\\RegisteredApplications]\n{{ $name | quote }}=\"Software\\\\Clients\\\\StartMenuInternet\\\\{{ $name }}\\\\Capabilities\"\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\shell\\open\\command]\n\"\"={{ $bin_path | quote | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\DefaultIcon]\n\"\"={{ $icon }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities\\FileAssociations]\n\".html\"={{ $reg_name | quote }}\n\".htm\"={{ $reg_name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities\\URLAssociations]\n\"https\"={{ $reg_name | quote }}\n\"http\"={{ $reg_name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities]\n\"ApplicationName\"={{ $name | quote }}\n\"ApplicationIcon\"={{ $icon }}\n\"ApplicationDescription\"={{ $app | title | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}]\n\"\"={{ $name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}\\shell\\open\\command]\n\"\"={{ print ($bin_path | quote) \" %1\" | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}\\Application]\n; Name in Dialog\n\"ApplicationName\"={{ $name | quote }}\n\"ApplicationDescription\"=\"It's {{ $app | title }}.\"\n\"ApplicationIcon\"={{ $icon }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}]\n\"\"={{ $name | quote }}\n\"@\n\n Add-Content {{ $app }}.reg $contentToAdd\n\nreg import .\\{{ $app }}.reg\nrm .\\{{ $app }}.reg\n",
+    "User.20260308214701.2": "<< dos >>\n{{ if lookPath \"chromium\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260308214701.4": "{{ $app := \"chromium\" -}}\n{{ $name := printf \"%s (Scoop)\" ($app | title) -}}\n{{ $reg_name := printf \"Scoop%sHTM\" ($app | title) -}}\n{{ $user := \"User\" -}}\n{{ $bin_path := lookPath $app -}}\n{{ $icon := print (joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"ungoogled-chromium\" \"current\" \"chrome.exe\") \",0\" | quote }}\nNew-Item {{ $app }}.reg -type file\n$contentToAdd = @\"\nWindows Registry Editor Version 5.00\n\n\n[HKEY_CURRENT_USER\\SOFTWARE\\RegisteredApplications]\n{{ $name | quote }}=\"Software\\\\Clients\\\\StartMenuInternet\\\\{{ $name }}\\\\Capabilities\"\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\shell\\open\\command]\n\"\"={{ $bin_path | quote | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\DefaultIcon]\n\"\"={{ $icon }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities\\FileAssociations]\n\".html\"={{ $reg_name | quote }}\n\".htm\"={{ $reg_name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities\\URLAssociations]\n\"https\"={{ $reg_name | quote }}\n\"http\"={{ $reg_name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities]\n\"ApplicationName\"={{ $name | quote }}\n\"ApplicationIcon\"={{ $icon }}\n\"ApplicationDescription\"={{ $app | title | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}]\n\"\"={{ $name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}\\shell\\open\\command]\n\"\"={{ print ($bin_path | quote) \" %1\" | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}\\Application]\n; Name in Dialog\n\"ApplicationName\"={{ $name | quote }}\n\"ApplicationDescription\"=\"It's {{ $app | title }}.\"\n\"ApplicationIcon\"={{ $icon }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}]\n\"\"={{ $name | quote }}\n\"@\n\n Add-Content {{ $app }}.reg $contentToAdd\n\nreg import .\\{{ $app }}.reg\nrm .\\{{ $app }}.reg\n",
+    "User.20260308215626.2": "<< dos >>\n{{ if lookPath \"chromium\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260308215626.4": "{{ $app := \"librewolf\" -}}\n{{ $name := printf \"%s (Scoop)\" ($app | title) -}}\n{{ $reg_name := printf \"Scoop%sHTM\" ($app | title) -}}\n{{ $user := \"User\" -}}\n{{ $bin_path := lookPath $app -}}\n{{ $icon := print (joinPath .chezmoi.homeDir \"scoop\" \"apps\" $app \"current\" \"librewolf-portable.exe\") \",0\" | quote }}\nNew-Item {{ $app }}.reg -type file\n$contentToAdd = @\"\nWindows Registry Editor Version 5.00\n\n\n[HKEY_CURRENT_USER\\SOFTWARE\\RegisteredApplications]\n{{ $name | quote }}=\"Software\\\\Clients\\\\StartMenuInternet\\\\{{ $name }}\\\\Capabilities\"\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\shell\\open\\command]\n\"\"={{ $bin_path | quote | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\DefaultIcon]\n\"\"={{ $icon }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities\\FileAssociations]\n\".html\"={{ $reg_name | quote }}\n\".htm\"={{ $reg_name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities\\URLAssociations]\n\"https\"={{ $reg_name | quote }}\n\"http\"={{ $reg_name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities]\n\"ApplicationName\"={{ $name | quote }}\n\"ApplicationIcon\"={{ $icon }}\n\"ApplicationDescription\"={{ $app | title | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}]\n\"\"={{ $name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}\\shell\\open\\command]\n\"\"={{ print ($bin_path | quote) \" %1\" | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}\\Application]\n; Name in Dialog\n\"ApplicationName\"={{ $name | quote }}\n\"ApplicationDescription\"=\"It's {{ $app | title }}.\"\n\"ApplicationIcon\"={{ $icon }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}]\n\"\"={{ $name | quote }}\n\"@\n\n Add-Content {{ $app }}.reg $contentToAdd\n\nreg import .\\{{ $app }}.reg\nrm .\\{{ $app }}.reg\n",
     "User.20260226001402.1": "@others",
     "User.20260226001414.1": "[my.msys2]\npackages = [\"mingw-w64-x86_64-aspell\"]\n",
     "User.20260226001424.1": "[my.font]\nmonospace = \"FiraCode Nerd Font Mono\"",
@@ -4532,6 +4637,21 @@
     "User.20260220012738.1": {
       "_mod_time": 1771684793.907
     },
+    "User.20260308173318.1": {
+      "_mod_time": 1772977772.055
+    },
+    "User.20260308184128.2": {
+      "_mod_time": 1772977772.103
+    },
+    "User.20260308184713.2": {
+      "_mod_time": 1772977772.149
+    },
+    "User.20260308214701.2": {
+      "_mod_time": 1772977816.598
+    },
+    "User.20260308215626.2": {
+      "_mod_time": 1772978251.494
+    },
     "User.20260226001402.1": {
       "_mod_time": 1772549269.641
     },
@@ -4596,7 +4716,7 @@
       "_mod_time": 1771507120.147
     },
     "User.20260301202336.1": {
-      "_mod_time": 1772631967.264
+      "_mod_time": 1772897070.035
     },
     "User.20260302151118.1": {
       "_mod_time": 1772453431.225
@@ -4701,7 +4821,7 @@
       "_mod_time": 1771698872.19
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1772632687.743
+      "_mod_time": 1772897069.151
     },
     "zxc.20260202195207.1": {
       "_mod_time": 1771507120.147
