@@ -3,6 +3,6 @@
 [global]
 index-url = {{ .my.pip.mirror }}
 [install]
-trusted-host = mirrors.cernet.edu.cn
+trusted-host = {{ get (urlParse .my.pip.mirror) "host" }}
 {{ end -}}
 {{ end -}}
