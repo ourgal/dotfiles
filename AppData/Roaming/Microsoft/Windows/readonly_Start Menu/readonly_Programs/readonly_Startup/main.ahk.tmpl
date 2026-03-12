@@ -42,10 +42,10 @@ Run({{ $flow | quote }}, {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ if and (lookPath "wt") (lookPath "pwsh") -}}
 RunScoop("Windows Terminal")
 {{ end -}}
-{{ if stat "C:/Program Files/Mozilla Firefox/firefox.exe" -}}
-Run("C:/Program Files/Mozilla Firefox/firefox.exe", , "Max")
+{{ if lookPath "firefox" -}}
+Run("firefox", , "Max")
 {{ else if lookPath "brave" -}}
-Run("D:/scoop/apps/brave/current/brave.exe", "c:/users/user" , "Max")
+Run("brave", , "Max")
 {{ end -}}
 {{ $vscode := joinPath .chezmoi.homeDir "scoop" "apps" "vscode" "current" "Code.exe" -}}
 {{ if stat $vscode -}}
