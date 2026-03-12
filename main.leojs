@@ -2849,7 +2849,7 @@
     },
     {
       "gnx": "User.20260222230616.1",
-      "vh": "alist",
+      "vh": "rclone",
       "children": [
         {
           "gnx": "User.20260222211658.2",
@@ -4197,7 +4197,7 @@
     "User.20260226001451.1": "[my.termux.note20]\nusername = \"u0_a644\"",
     "User.20260303224633.1": "[my.pip]\nmirror = \"https://mirrors.cernet.edu.cn/pypi/web/simple/\"\n",
     "zxc.20260125162740.1": "<< unix >>\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260125162834.1": "[global]\nindex-url = {{ .my.pip.mirror }}\n[install]\ntrusted-host = mirrors.cernet.edu.cn",
+    "zxc.20260125162834.1": "[global]\nindex-url = {{ .my.pip.mirror }}\n[install]\ntrusted-host = {{ get (urlParse .my.pip.mirror) \"host\" }}",
     "zxc.20260126185048.1": "<< dos >>\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260218144120.1": "<< unix dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260218144149.1": "vim workspace session folder",
@@ -4467,7 +4467,7 @@
     "User.20260222165839.1": "- replace: 'git annex sync --content '\n  trigger: gitas.",
     "User.20260221175941.1": "- force_clipboard: true\n  label: Markdown - Code block\n  replace: '```$|$\n\n    ```'\n  trigger: ':block:'\n- force_clipboard: false\n  label: Markdown - Inline code\n  replace: '`$|$`'\n  trigger: ':code:'\n- label: Markdown - Header1\n  replace: '#'\n  trigger: ':h1:'\n- label: Markdown - Header2\n  replace: '##'\n  trigger: ':h2:'\n- label: Markdown - Header3\n  replace: '###'\n  trigger: ':h3:'\n- label: Markdown - Header4\n  replace: '####'\n  trigger: ':h4:'\n- label: Markdown - Header5\n  replace: '#####'\n  trigger: ':h5:'\n- label: Markdown - Header6\n  replace: '######'\n  trigger: ':h6:'\n- label: Markdown - Bold\n  replace: '**$|$**'\n  trigger: ':bold:'\n- label: Markdown - Italic\n  replace: '*$|$*'\n  trigger: ':italic:'\n- label: Markdown - Strikethrough\n  replace: ~~$|$~~\n  trigger: ':strike:'\n- label: Markdown - URL\n  replace: '[$|$]()'\n  trigger: ':url:'\n- label: Markdown - Image\n  replace: '![]($|$)'\n  trigger: ':img:'\n- label: Markdown - Horizontal line\n  replace: ___\n  trigger: ':horizontal:'\n- label: Markdown - Task\n  replace: '- [ ] '\n  trigger: ':task:'\n- label: Markdown - Task completed\n  replace: '- [x] '\n  trigger: ':taskdone:'\n- force_clipboard: true\n  label: Markdown - Collapse block\n  replace: '<details>\n\n    <summary></summary>\n\n    $|$\n\n    </details>'\n  trigger: ':collapse:'\n- force_clipboard: true\n  label: Markdown - Comment\n  replace: <!--- $|$ -->\n  trigger: ':comment:'",
     "User.20260223181103.1": "{{ template \"espanso_email.key\" }}",
-    "User.20260222211658.2": "[mega_a]\n{{ gopassRaw \"rclone/mega_a\" }}\n\n[alist]\n{{ gopassRaw \"rclone/alist/nuc\"}}",
+    "User.20260222211658.2": "[mega_a]\n{{ gopassRaw \"rclone/mega_a\" }}\n[alist]\n{{ gopassRaw \"rclone/alist/nuc\"}}",
     "User.20260228232118.1": "music_directory {{ joinPath .chezmoi.homeDir \"Music\" | quote }}\nplaylist_directory {{ joinPath (env \"APPDATA\") \"mpd\" \"playlist\" | quote }}\ndb_file {{ joinPath (env \"APPDATA\") \"mpd\" \"tag_cache\" | quote }}\nstate_file {{ joinPath (env \"APPDATA\") \"mpd\" \"state\" | quote }}\nsticker_file {{ joinPath (env \"APPDATA\") \"mpd\" \"sticker.sql\" | quote }}\n\nauto_update \"yes\"\n\naudio_output {\n    type \"winmm\"\n    name \"Windows Speakers\"\n}",
     "User.20260301202336.1": "<< dos >>\n{{ if lookPath \"glazewm\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260301203034.1": "general:\n  # Commands to run when the WM has started. This is useful for running a\n  # script or launching another application.\n  # Example: The below command launches Zebar.\n  startup_commands: []\n  # Commands to run just before the WM is shutdown.\n  # Example: The below command kills Zebar.\n  shutdown_commands: []\n  # Commands to run after the WM config is reloaded.\n  config_reload_commands: []\n  # Whether to automatically focus windows underneath the cursor.\n  focus_follows_cursor: false\n  # Whether to switch back and forth between the previously focused\n  # workspace when focusing the current workspace.\n  toggle_workspace_on_refocus: false\n  cursor_jump:\n    # Whether to automatically move the cursor on the specified trigger.\n    enabled: true\n    # Trigger for cursor jump:\n    # - 'monitor_focus': Jump when focus changes between monitors.\n    # - 'window_focus': Jump when focus changes between windows.\n    trigger: 'monitor_focus'\n  # How windows should be hidden when switching workspaces.\n  # - 'cloak': Recommended. Hides windows with no animation.\n  # - 'hide': Legacy method (v3.5 and earlier) that has a brief animation,\n  # but has stability issues with some apps.\n  hide_method: 'cloak'\n  # Affects which windows get shown in the native Windows taskbar. Has no\n  # effect if `hide_method: 'hide'`.\n  # - 'true': Show all windows (regardless of workspace).\n  # - 'false': Only show windows from the currently shown workspaces.\n  show_all_in_taskbar: false\n",
@@ -4656,10 +4656,10 @@
       "_mod_time": 1772549269.641
     },
     "zxc.20260125162740.1": {
-      "_mod_time": 1772549269.699
+      "_mod_time": 1773319129.392
     },
     "zxc.20260126185048.1": {
-      "_mod_time": 1772549269.74
+      "_mod_time": 1773319129.514
     },
     "User.20260218144120.1": {
       "_mod_time": 1772024811.743
@@ -4794,7 +4794,7 @@
       "_mod_time": 1771698861.303
     },
     "User.20260222211658.1": {
-      "_mod_time": 1771773103.258
+      "_mod_time": 1773319486.252
     },
     "zxc.20260125211938.1": {
       "_mod_time": 1772288551.402
