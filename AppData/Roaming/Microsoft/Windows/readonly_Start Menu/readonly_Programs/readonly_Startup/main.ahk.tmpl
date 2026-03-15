@@ -51,4 +51,7 @@ Run("brave", , "Max")
 {{ if stat $vscode -}}
 Run({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
 {{ end -}}
+{{ if lookPath "everything" -}}
+Run("everything", , "Hide")
+{{ end -}}
 {{ end -}}
