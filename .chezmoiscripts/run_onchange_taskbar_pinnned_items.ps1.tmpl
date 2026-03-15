@@ -37,11 +37,7 @@ function Reset-TaskbarLayout {
     Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TrayNotify" -Name "IconStreams" -ErrorAction SilentlyContinue
     Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TrayNotify" -Name "PastIconsStream" -ErrorAction SilentlyContinue
 }
-$LnkPaths = @(
-    "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Scoop Apps\Windows Terminal.lnk"
-    "%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\Firefox.lnk"
-    "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Scoop Apps\Double Commander.lnk"
-)
+$LnkPaths = @()
 New-LayoutModificationXml -LnkPaths $LnkPaths -PinListPlacement "Replace"
 Reset-TaskbarLayout
 {{ end -}}
