@@ -1006,6 +1006,10 @@
                   "vh": "@clean main.toml",
                   "children": [
                     {
+                      "gnx": "zxc.20260315140948.1",
+                      "vh": "name"
+                    },
+                    {
                       "gnx": "User.20260226001414.1",
                       "vh": "msys"
                     },
@@ -3056,6 +3060,31 @@
       ]
     },
     {
+      "gnx": "zxc.20260315140631.1",
+      "vh": "leo",
+      "children": [
+        {
+          "gnx": "zxc.20260315140634.1",
+          "vh": "@path dot_leo",
+          "children": [
+            {
+              "gnx": "zxc.20260315140713.1",
+              "vh": "@clean dot_leoID.txt.tmpl",
+              "children": [
+                {
+                  "gnx": "User.20260225204914.1"
+                },
+                {
+                  "gnx": "zxc.20260315140919.1",
+                  "vh": "content"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "gnx": "zxc.20260125152614.1",
       "vh": "config",
       "children": [
@@ -4113,7 +4142,7 @@
     "zxc.20260125172659.1": "{{ if lookPath \"hx\" -}}\nhx\n{{- else if lookPath \"vim\" -}}\nvim\n{{- else if lookPath \"vi\" -}}\nvi\n{{- else if lookPath \"nano\" -}}\nnano\n{{- end -}}",
     "User.20260221004652.1": "{{ if kindIs \"slice\" . -}}\n    {{ range . -}}\n    {{ template \"_checkPath\" . -}}\n    {{ end -}}\n{{ else if kindIs \"string\" . -}}\n    {{ template \"_checkPath\" . -}}\n{{ else -}}\n    echo \"checkPath: unsupported type\"\n{{ end -}}\n",
     "User.20260221144015.1": "{{ if lookPath . }}\necho {{ printf \"%s is founded: %s\" . (lookPath .) | quote }}\n{{ else -}}\necho {{ printf \"%s is not found\" . | quote }}\n{{ end -}}",
-    "User.20260307193715.1": "886822.xyz",
+    "User.20260307193715.1": "\u0000GITCRYPT\u0000S\ufffd\ufffd\ufffdI\ufffd\ufffdL\ufffdK\ufffdZE~\ufffd\u001e\n\ufffd\ufffdm\ufffdCw\n",
     "User.20260226000855.1": "@others",
     "User.20260226000910.1": "<< unix >>\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260126160624.1": "[\".local/lib/ble-nightly\"]\n    type = \"archive\"\n    url = \"https://github.com/akinomyoga/ble.sh/releases/download/nightly/ble-nightly.tar.xz\"\n    exact = true\n    stripComponents = 1\n    refreshPeriod = \"168h\"",
@@ -4191,6 +4220,7 @@
     "User.20260308215626.2": "<< dos >>\n{{ if lookPath \"chromium\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260308215626.4": "{{ $app := \"librewolf\" -}}\n{{ $name := printf \"%s (Scoop)\" ($app | title) -}}\n{{ $reg_name := printf \"Scoop%sHTM\" ($app | title) -}}\n{{ $user := \"User\" -}}\n{{ $bin_path := lookPath $app -}}\n{{ $icon := print (joinPath .chezmoi.homeDir \"scoop\" \"apps\" $app \"current\" \"librewolf-portable.exe\") \",0\" | quote }}\nNew-Item {{ $app }}.reg -type file\n$contentToAdd = @\"\nWindows Registry Editor Version 5.00\n\n\n[HKEY_CURRENT_USER\\SOFTWARE\\RegisteredApplications]\n{{ $name | quote }}=\"Software\\\\Clients\\\\StartMenuInternet\\\\{{ $name }}\\\\Capabilities\"\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\shell\\open\\command]\n\"\"={{ $bin_path | quote | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\DefaultIcon]\n\"\"={{ $icon }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities\\FileAssociations]\n\".html\"={{ $reg_name | quote }}\n\".htm\"={{ $reg_name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities\\URLAssociations]\n\"https\"={{ $reg_name | quote }}\n\"http\"={{ $reg_name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities]\n\"ApplicationName\"={{ $name | quote }}\n\"ApplicationIcon\"={{ $icon }}\n\"ApplicationDescription\"={{ $app | title | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}]\n\"\"={{ $name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}\\shell\\open\\command]\n\"\"={{ print ($bin_path | quote) \" %1\" | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}\\Application]\n; Name in Dialog\n\"ApplicationName\"={{ $name | quote }}\n\"ApplicationDescription\"=\"It's {{ $app | title }}.\"\n\"ApplicationIcon\"={{ $icon }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}]\n\"\"={{ $name | quote }}\n\"@\n\n Add-Content {{ $app }}.reg $contentToAdd\n\nreg import .\\{{ $app }}.reg\nrm .\\{{ $app }}.reg\n",
     "User.20260226001402.1": "@others",
+    "zxc.20260315140948.1": "[my]\nname = \"zxc\"",
     "User.20260226001414.1": "[my.msys2]\npackages = [\"mingw-w64-x86_64-aspell\"]\n",
     "User.20260226001424.1": "[my.font]\nmonospace = \"FiraCode Nerd Font Mono\"",
     "User.20260226001439.1": "[my.git.sign]\nssh = false\ngpg = true\n",
@@ -4306,7 +4336,7 @@
     "User.20260220010353.1": "{{ gopass \"ssh/home/ed25519/public\" -}}",
     "User.20260220010448.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"ssh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260220010452.1": "{{ gopassRaw \"ssh/home/ed25519/private\" -}}",
-    "zxc.20260125145640.1": "{{ $is_note20 := eq (output \"whoami\" | trim) .my.termux.note20.username -}}\nadd_newline = true\nformat = \"$directory$cmd_duration$hostname$localip$shlvl$shell$env_var$username$sudo$character\"\npalette = \"base16\"\nright_format = \"$singularity$kubernetes$vcsh$fossil_branch$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$package$c$cmake$cobol$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$golang$guix_shell$haskell$haxe$helm$java$julia$kotlin$gradle$lua$nim$nodejs$ocaml$opa$perl$php$pulumi$purescript$python$raku$rlang$red$ruby$rust$scala$solidity$swift$terraform$vlang$vagrant$zig$buf$nix_shell$conda$meson$spack$memory_usage$aws$gcloud$openstack$azure$crystal$custom$jobs$status$os$container{{ if not $is_note20 }}$battery{{ end }}$time\"\n\n[aws]\nformat = \" aws [$symbol $profile $region]($style)\"\nstyle = \"italic blue\"\nsymbol = \"▲ \"\n\n{{ if not $is_note20 -}}\n[battery]\ncharging_symbol = \"[↑](italic green)\"\ndischarging_symbol = \"[↓](italic)\"\nempty_symbol = \"[▃](italic red)\"\nformat = \"[ $percentage $symbol]($style)\"\nfull_symbol = \"[█](italic green)\"\nunknown_symbol = \"[░](italic)\"\n\n[[battery.display]]\nstyle = \"dimmed yellow\"\nthreshold = 40\n\n[[battery.display]]\nstyle = \"dimmed white\"\nthreshold = 70\n{{ end -}}\n\n[buf]\nformat = \" buf [$symbol $version $buf_version]($style)\"\nsymbol = \"■ \"\n\n[c]\nformat = \" c [$symbol($version(-$name))]($style)\"\nsymbol = \"∁ \"\n\n[character]\nerror_symbol = \"[⊘](italic purple)\"\nformat = \"$symbol \"\nsuccess_symbol = \"[◉](bold italic bright-yellow)\"\n\n[cmd_duration]\nformat = \"[$duration ](italic bright-yellow)\"\nmin_time = 10000\n\n[conda]\nformat = \" conda [$symbol$environment]($style)\"\nsymbol = \"◯ \"\n\n[dart]\nformat = \" dart [$symbol($version )]($style)\"\nsymbol = \"◁◅ \"\n\n[deno]\nformat = \" deno [∫ $version](blue italic)\"\nversion_format = \"${major}.${minor}\"\n\n[directory]\nformat = \"[$path]($style)[$read_only]($read_only_style) \"\nhome_symbol = \"⌂\"\nread_only = \" ■\"\nstyle = \"italic blue\"\ntruncation_length = 2\ntruncation_symbol = \"▦ \"\n\n[docker_context]\nformat = \" docker [$symbol$context]($style)\"\nsymbol = \"◧ \"\n\n[elixir]\nformat = \" exs [$symbol $version OTP $otp_version ]($style)\"\nsymbol = \"△ \"\n\n[elm]\nformat = \" elm [$symbol($version )]($style)\"\nsymbol = \"◩ \"\n\n[env_var.VIMSHELL]\nformat = \"[$env_value]($style)\"\nstyle = \"green italic\"\n\n[git_branch]\nformat = \"[ $symbol $branch(:$remote_branch)]($style)\"\nstyle = \"bold italic bright-blue\"\nsymbol = \"[◬](bold bright-blue)\"\n\n[git_status]\nahead = \"[▲│[${count}](bold white)│](italic green)\"\nbehind = \"[▽│[${count}](bold white)│](italic red)\"\nconflicted = \"[◪◦](italic bright-magenta)\"\ndeleted = \"[✕](italic red)\"\ndiverged = \"[◇ ▲┤[${ahead_count}](regular white)│▽┤[${behind_count}](regular white)│](italic bright-magenta)\"\nformat = \"([⎪$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed⎥]($style))\"\nmodified = \"[●◦](italic yellow)\"\nrenamed = \"[◎◦](italic bright-blue)\"\nstaged = \"[■┤[$count](bold white)│](italic bright-cyan)\"\nstashed = \"[◦◫◦](italic white)\"\nstyle = \"italic bright-blue\"\nuntracked = \"[◌◦](italic bright-yellow)\"\n\n[golang]\nformat = \" go [$symbol($version )]($style)\"\nsymbol = \"∩ \"\n\n[haskell]\nformat = \" hs [$symbol($version )]($style)\"\nsymbol = \"❯λ \"\n\n[java]\nformat = \" java [${symbol}(${version} )]($style)\"\nsymbol = \"∪ \"\n\n[jobs]\nformat = \"[ $symbol$number]($style)\"\nstyle = \"white\"\nsymbol = \"[▶ ](blue italic)\"\n\n[julia]\nformat = \" jl [$symbol($version )]($style)\"\nsymbol = \"◎ \"\n\n[localip]\ndisabled = false\nformat = \"◯[$localipv4](bold magenta)\"\nssh_only = true\n\n[lua]\nformat = \" lua [${symbol}${version}]($style)\"\nstyle = \"italic bright-yellow\"\nsymbol = \"⨀ \"\n\n[memory_usage]\nformat = \" mem [${ram}( ${swap})]($style)\"\nsymbol = \"▪▫▪ \"\n\n[nim]\nformat = \" nim [$symbol($version )]($style)\"\nsymbol = \"▴▲▴ \"\n\n[nix_shell]\nformat = \" nix [$symbol$state $name]($style)\"\nsymbol = \"⊛ \"\n\n[nodejs]\ndetect_files = [\"package-lock.json\", \"yarn.lock\"]\nformat = \" node [◫ ($version)](italic bright-green)\"\nversion_format = \"${major}.${minor}\"\n\n[package]\nformat = \" pkg [$symbol$version]($style)\"\nstyle = \"bright-yellow italic\"\nsymbol = \"◫ \"\nversion_format = \"${major}.${minor}\"\n\n[palettes.base16]\nbase00 = \"#1d1f21\"\nbase01 = \"#282a2e\"\nbase02 = \"#373b41\"\nbase03 = \"#969896\"\nbase04 = \"#b4b7b4\"\nbase05 = \"#c5c8c6\"\nbase06 = \"#e0e0e0\"\nbase07 = \"#ffffff\"\nbase08 = \"#cc342b\"\nbase09 = \"#f96a38\"\nbase0A = \"#fba922\"\nbase0B = \"#198844\"\nbase0C = \"#3971ed\"\nbase0D = \"#3971ed\"\nbase0E = \"#a36ac7\"\nbase0F = \"#3971ed\"\nbase10 = \"#1d1f21\"\nbase11 = \"#1d1f21\"\nbase12 = \"#cc342b\"\nbase13 = \"#fba922\"\nbase14 = \"#198844\"\nbase15 = \"#3971ed\"\nbase16 = \"#3971ed\"\nbase17 = \"#a36ac7\"\nblack = \"#1d1f21\"\nblue = \"#3971ed\"\nbright-black = \"#969896\"\nbright-blue = \"#3971ed\"\nbright-cyan = \"#3971ed\"\nbright-green = \"#198844\"\nbright-magenta = \"#a36ac7\"\nbright-purple = \"#a36ac7\"\nbright-red = \"#cc342b\"\nbright-white = \"#ffffff\"\nbright-yellow = \"#fba922\"\nbrown = \"#3971ed\"\ncyan = \"#3971ed\"\ngreen = \"#198844\"\nmagenta = \"#a36ac7\"\norange = \"#f96a38\"\npurple = \"#a36ac7\"\nred = \"#cc342b\"\nwhite = \"#c5c8c6\"\nyellow = \"#fba922\"\n\n[palettes.catppuccin_macchiato]\nbase = \"#24273a\"\nblue = \"#8aadf4\"\ncrust = \"#181926\"\nflamingo = \"#f0c6c6\"\ngreen = \"#a6da95\"\nlavender = \"#b7bdf8\"\nmantle = \"#1e2030\"\nmaroon = \"#ee99a0\"\nmauve = \"#c6a0f6\"\noverlay0 = \"#6e738d\"\noverlay1 = \"#8087a2\"\noverlay2 = \"#939ab7\"\npeach = \"#f5a97f\"\npink = \"#f5bde6\"\nred = \"#ed8796\"\nrosewater = \"#f4dbd6\"\nsapphire = \"#7dc4e4\"\nsky = \"#91d7e3\"\nsubtext0 = \"#a5adcb\"\nsubtext1 = \"#b8c0e0\"\nsurface0 = \"#363a4f\"\nsurface1 = \"#494d64\"\nsurface2 = \"#5b6078\"\nteal = \"#8bd5ca\"\ntext = \"#cad3f5\"\nyellow = \"#eed49f\"\n\n[python]\nformat = \" py [${symbol}${version}]($style)\"\nstyle = \"italic bright-yellow\"\nsymbol = \"[⌉](italic bright-blue)⌊ \"\nversion_format = \"${major}.${minor}\"\n\n[ruby]\nformat = \" rb [${symbol}${version}]($style)\"\nstyle = \"italic red\"\nsymbol = \"◆ \"\nversion_format = \"${major}.${minor}\"\n\n[rust]\nformat = \" rs [$symbol$version]($style)\"\nstyle = \"italic red\"\nsymbol = \"⊃ \"\nversion_format = \"${major}.${minor}\"\n\n[spack]\nformat = \" spack [$symbol$environment]($style)\"\nsymbol = \"◇ \"\n\n[sudo]\ndisabled = false\nformat = \"[$symbol]($style)\"\nstyle = \"italic bright-purple\"\nsymbol = \"◇┈\"\n\n[swift]\nformat = \" sw [${symbol}${version}]($style)\"\nstyle = \"italic bright-red\"\nsymbol = \"◁ \"\nversion_format = \"${major}.${minor}\"\n\n[time]\ndisabled = false\nformat = \"[ $time]($style)\"\nstyle = \"dimmed white\"\ntime_format = \"%R\"\nutc_time_offset = \"local\"\n\n[username]\ndisabled = false\nformat = \" [$user]($style) ▻ \"\nstyle_root = \"purple bold italic\"\nstyle_user = \"yellow bold\"\n",
+    "zxc.20260125145640.1": "{{ $is_note20 := eq (output \"whoami\" | trim) .my.termux.note20.username -}}\nadd_newline = true\nformat = \"$directory$cmd_duration$hostname$localip$shlvl$shell$env_var$username$sudo$character\"\npalette = \"base16\"\nright_format = \"$singularity$kubernetes$vcsh$fossil_branch$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$package$c$cmake$cobol$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$golang$guix_shell$haskell$haxe$helm$java$julia$kotlin$gradle$lua$nim$nodejs$ocaml$opa$perl$php$pulumi$purescript$python$raku$rlang$red$ruby$rust$scala$solidity$swift$terraform$vlang$vagrant$zig$buf$nix_shell$conda$meson$spack$memory_usage$aws$gcloud$openstack$azure$crystal$custom$jobs$status$os$container{{ if not $is_note20 }}$battery{{ end }}$time\"\n\n[aws]\nformat = \" aws [$symbol $profile $region]($style)\"\nstyle = \"italic blue\"\nsymbol = \"\u25b2 \"\n\n{{ if not $is_note20 -}}\n[battery]\ncharging_symbol = \"[\u2191](italic green)\"\ndischarging_symbol = \"[\u2193](italic)\"\nempty_symbol = \"[\u2583](italic red)\"\nformat = \"[ $percentage $symbol]($style)\"\nfull_symbol = \"[\u2588](italic green)\"\nunknown_symbol = \"[\u2591](italic)\"\n\n[[battery.display]]\nstyle = \"dimmed yellow\"\nthreshold = 40\n\n[[battery.display]]\nstyle = \"dimmed white\"\nthreshold = 70\n{{ end -}}\n\n[buf]\nformat = \" buf [$symbol $version $buf_version]($style)\"\nsymbol = \"\u25a0 \"\n\n[c]\nformat = \" c [$symbol($version(-$name))]($style)\"\nsymbol = \"\u2201 \"\n\n[character]\nerror_symbol = \"[\u2298](italic purple)\"\nformat = \"$symbol \"\nsuccess_symbol = \"[\u25c9](bold italic bright-yellow)\"\n\n[cmd_duration]\nformat = \"[$duration ](italic bright-yellow)\"\nmin_time = 10000\n\n[conda]\nformat = \" conda [$symbol$environment]($style)\"\nsymbol = \"\u25ef \"\n\n[dart]\nformat = \" dart [$symbol($version )]($style)\"\nsymbol = \"\u25c1\u25c5 \"\n\n[deno]\nformat = \" deno [\u222b $version](blue italic)\"\nversion_format = \"${major}.${minor}\"\n\n[directory]\nformat = \"[$path]($style)[$read_only]($read_only_style) \"\nhome_symbol = \"\u2302\"\nread_only = \" \u25a0\"\nstyle = \"italic blue\"\ntruncation_length = 2\ntruncation_symbol = \"\u25a6 \"\n\n[docker_context]\nformat = \" docker [$symbol$context]($style)\"\nsymbol = \"\u25e7 \"\n\n[elixir]\nformat = \" exs [$symbol $version OTP $otp_version ]($style)\"\nsymbol = \"\u25b3 \"\n\n[elm]\nformat = \" elm [$symbol($version )]($style)\"\nsymbol = \"\u25e9 \"\n\n[env_var.VIMSHELL]\nformat = \"[$env_value]($style)\"\nstyle = \"green italic\"\n\n[git_branch]\nformat = \"[ $symbol $branch(:$remote_branch)]($style)\"\nstyle = \"bold italic bright-blue\"\nsymbol = \"[\u25ec](bold bright-blue)\"\n\n[git_status]\nahead = \"[\u25b2\u2502[${count}](bold white)\u2502](italic green)\"\nbehind = \"[\u25bd\u2502[${count}](bold white)\u2502](italic red)\"\nconflicted = \"[\u25ea\u25e6](italic bright-magenta)\"\ndeleted = \"[\u2715](italic red)\"\ndiverged = \"[\u25c7 \u25b2\u2524[${ahead_count}](regular white)\u2502\u25bd\u2524[${behind_count}](regular white)\u2502](italic bright-magenta)\"\nformat = \"([\u23aa$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed\u23a5]($style))\"\nmodified = \"[\u25cf\u25e6](italic yellow)\"\nrenamed = \"[\u25ce\u25e6](italic bright-blue)\"\nstaged = \"[\u25a0\u2524[$count](bold white)\u2502](italic bright-cyan)\"\nstashed = \"[\u25e6\u25eb\u25e6](italic white)\"\nstyle = \"italic bright-blue\"\nuntracked = \"[\u25cc\u25e6](italic bright-yellow)\"\n\n[golang]\nformat = \" go [$symbol($version )]($style)\"\nsymbol = \"\u2229 \"\n\n[haskell]\nformat = \" hs [$symbol($version )]($style)\"\nsymbol = \"\u276f\u03bb \"\n\n[java]\nformat = \" java [${symbol}(${version} )]($style)\"\nsymbol = \"\u222a \"\n\n[jobs]\nformat = \"[ $symbol$number]($style)\"\nstyle = \"white\"\nsymbol = \"[\u25b6 ](blue italic)\"\n\n[julia]\nformat = \" jl [$symbol($version )]($style)\"\nsymbol = \"\u25ce \"\n\n[localip]\ndisabled = false\nformat = \"\u25ef[$localipv4](bold magenta)\"\nssh_only = true\n\n[lua]\nformat = \" lua [${symbol}${version}]($style)\"\nstyle = \"italic bright-yellow\"\nsymbol = \"\u2a00 \"\n\n[memory_usage]\nformat = \" mem [${ram}( ${swap})]($style)\"\nsymbol = \"\u25aa\u25ab\u25aa \"\n\n[nim]\nformat = \" nim [$symbol($version )]($style)\"\nsymbol = \"\u25b4\u25b2\u25b4 \"\n\n[nix_shell]\nformat = \" nix [$symbol$state $name]($style)\"\nsymbol = \"\u229b \"\n\n[nodejs]\ndetect_files = [\"package-lock.json\", \"yarn.lock\"]\nformat = \" node [\u25eb ($version)](italic bright-green)\"\nversion_format = \"${major}.${minor}\"\n\n[package]\nformat = \" pkg [$symbol$version]($style)\"\nstyle = \"bright-yellow italic\"\nsymbol = \"\u25eb \"\nversion_format = \"${major}.${minor}\"\n\n[palettes.base16]\nbase00 = \"#1d1f21\"\nbase01 = \"#282a2e\"\nbase02 = \"#373b41\"\nbase03 = \"#969896\"\nbase04 = \"#b4b7b4\"\nbase05 = \"#c5c8c6\"\nbase06 = \"#e0e0e0\"\nbase07 = \"#ffffff\"\nbase08 = \"#cc342b\"\nbase09 = \"#f96a38\"\nbase0A = \"#fba922\"\nbase0B = \"#198844\"\nbase0C = \"#3971ed\"\nbase0D = \"#3971ed\"\nbase0E = \"#a36ac7\"\nbase0F = \"#3971ed\"\nbase10 = \"#1d1f21\"\nbase11 = \"#1d1f21\"\nbase12 = \"#cc342b\"\nbase13 = \"#fba922\"\nbase14 = \"#198844\"\nbase15 = \"#3971ed\"\nbase16 = \"#3971ed\"\nbase17 = \"#a36ac7\"\nblack = \"#1d1f21\"\nblue = \"#3971ed\"\nbright-black = \"#969896\"\nbright-blue = \"#3971ed\"\nbright-cyan = \"#3971ed\"\nbright-green = \"#198844\"\nbright-magenta = \"#a36ac7\"\nbright-purple = \"#a36ac7\"\nbright-red = \"#cc342b\"\nbright-white = \"#ffffff\"\nbright-yellow = \"#fba922\"\nbrown = \"#3971ed\"\ncyan = \"#3971ed\"\ngreen = \"#198844\"\nmagenta = \"#a36ac7\"\norange = \"#f96a38\"\npurple = \"#a36ac7\"\nred = \"#cc342b\"\nwhite = \"#c5c8c6\"\nyellow = \"#fba922\"\n\n[palettes.catppuccin_macchiato]\nbase = \"#24273a\"\nblue = \"#8aadf4\"\ncrust = \"#181926\"\nflamingo = \"#f0c6c6\"\ngreen = \"#a6da95\"\nlavender = \"#b7bdf8\"\nmantle = \"#1e2030\"\nmaroon = \"#ee99a0\"\nmauve = \"#c6a0f6\"\noverlay0 = \"#6e738d\"\noverlay1 = \"#8087a2\"\noverlay2 = \"#939ab7\"\npeach = \"#f5a97f\"\npink = \"#f5bde6\"\nred = \"#ed8796\"\nrosewater = \"#f4dbd6\"\nsapphire = \"#7dc4e4\"\nsky = \"#91d7e3\"\nsubtext0 = \"#a5adcb\"\nsubtext1 = \"#b8c0e0\"\nsurface0 = \"#363a4f\"\nsurface1 = \"#494d64\"\nsurface2 = \"#5b6078\"\nteal = \"#8bd5ca\"\ntext = \"#cad3f5\"\nyellow = \"#eed49f\"\n\n[python]\nformat = \" py [${symbol}${version}]($style)\"\nstyle = \"italic bright-yellow\"\nsymbol = \"[\u2309](italic bright-blue)\u230a \"\nversion_format = \"${major}.${minor}\"\n\n[ruby]\nformat = \" rb [${symbol}${version}]($style)\"\nstyle = \"italic red\"\nsymbol = \"\u25c6 \"\nversion_format = \"${major}.${minor}\"\n\n[rust]\nformat = \" rs [$symbol$version]($style)\"\nstyle = \"italic red\"\nsymbol = \"\u2283 \"\nversion_format = \"${major}.${minor}\"\n\n[spack]\nformat = \" spack [$symbol$environment]($style)\"\nsymbol = \"\u25c7 \"\n\n[sudo]\ndisabled = false\nformat = \"[$symbol]($style)\"\nstyle = \"italic bright-purple\"\nsymbol = \"\u25c7\u2508\"\n\n[swift]\nformat = \" sw [${symbol}${version}]($style)\"\nstyle = \"italic bright-red\"\nsymbol = \"\u25c1 \"\nversion_format = \"${major}.${minor}\"\n\n[time]\ndisabled = false\nformat = \"[ $time]($style)\"\nstyle = \"dimmed white\"\ntime_format = \"%R\"\nutc_time_offset = \"local\"\n\n[username]\ndisabled = false\nformat = \" [$user]($style) \u25bb \"\nstyle_root = \"purple bold italic\"\nstyle_user = \"yellow bold\"\n",
     "zxc.20260125152804.1": "## Base directory for Atuin data files (databases, keys, session, etc.)\n## All data file paths default to being relative to this directory.\n## linux/mac: ~/.local/share/atuin (or XDG_DATA_HOME/atuin)\n## windows: %USERPROFILE%/.local/share/atuin\n# data_dir = \"~/.local/share/atuin\"\n\n## where to store your database, default is your system data directory\n## linux/mac: ~/.local/share/atuin/history.db\n## windows: %USERPROFILE%/.local/share/atuin/history.db\n# db_path = \"~/.history.db\"\n\n## where to store your encryption key, default is your system data directory\n## linux/mac: ~/.local/share/atuin/key\n## windows: %USERPROFILE%/.local/share/atuin/key\n# key_path = \"~/.key\"\n\n## where to store your auth session token, default is your system data directory\n## linux/mac: ~/.local/share/atuin/session\n## windows: %USERPROFILE%/.local/share/atuin/session\n# session_path = \"~/.session\"\n\n## date format used, either \"us\" or \"uk\"\n# dialect = \"us\"\n\n## default timezone to use when displaying time\n## either \"l\", \"local\" to use the system's current local timezone, or an offset\n## from UTC in the format of \"<+|->H[H][:M[M][:S[S]]]\"\n## for example: \"+9\", \"-05\", \"+03:30\", \"-01:23:45\", etc.\n# timezone = \"local\"\n\n## enable or disable automatic sync\nauto_sync = true\n\n## enable or disable automatic update checks\nupdate_check = false\n\n## address of the sync server\nsync_address = \"https://api.atuin.sh\"\n\n## how often to sync history. note that this is only triggered when a command\n## is ran, so sync intervals may well be longer\n## set it to 0 to sync after every command\nsync_frequency = \"1h\"\n\n## which search mode to use\n## possible values: prefix, fulltext, fuzzy, skim\n# search_mode = \"fuzzy\"\n\n## which filter mode to use by default\n## possible values: \"global\", \"host\", \"session\", \"session-preload\", \"directory\", \"workspace\"\n## consider using search.filters to customize the enablement and order of filter modes\nfilter_mode = \"global\"\n\n## With workspace filtering enabled, Atuin will filter for commands executed\n## in any directory within a git repository tree (default: false).\n##\n## To use workspace mode by default when available, set this to true and\n## set filter_mode to \"workspace\" or leave it unspecified and\n## set search.filters to include \"workspace\" before other filter modes.\n# workspaces = false\n\n## which filter mode to use when atuin is invoked from a shell up-key binding\n## the accepted values are identical to those of \"filter_mode\"\n## leave unspecified to use same mode set in \"filter_mode\"\n# filter_mode_shell_up_key_binding = \"global\"\n\n## which search mode to use when atuin is invoked from a shell up-key binding\n## the accepted values are identical to those of \"search_mode\"\n## leave unspecified to use same mode set in \"search_mode\"\n# search_mode_shell_up_key_binding = \"fuzzy\"\n\n## which style to use\n## possible values: auto, full, compact\n# style = \"auto\"\n\n## the maximum number of lines the interface should take up\n## set it to 0 to always go full screen\n# inline_height = 0\n\n## the maximum number of lines the interface should take up\n## when atuin is invoked from a shell up-key binding\n## the accepted values are identical to those of \"inline_height\"\n# inline_height_shell_up_key_binding = 0\n\n## Invert the UI - put the search bar at the top , Default to `false`\n# invert = false\n\n## enable or disable showing a preview of the selected command\n## useful when the command is longer than the terminal width and is cut off\n# show_preview = true\n\n## what to do when the escape key is pressed when searching\n## possible values: return-original, return-query\n# exit_mode = \"return-original\"\n\n## possible values: emacs, subl\n# word_jump_mode = \"emacs\"\n\n## characters that count as a part of a word\n# word_chars = \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\"\n\n## number of context lines to show when scrolling by pages\n# scroll_context_lines = 1\n\n## use ctrl instead of alt as the shortcut modifier key for numerical UI shortcuts\n## alt-0 .. alt-9\n# ctrl_n_shortcuts = false\n\n## Show numeric shortcuts (1..9) beside list items in the TUI\n## set to false to hide the moving numbers if you find them distracting\n# show_numeric_shortcuts = true\n\n## default history list format - can also be specified with the --format arg\n# history_format = \"{time}\\t{command}\\t{duration}\"\n\n## prevent commands matching any of these regexes from being written to history.\n## Note that these regular expressions are unanchored, i.e. if they don't start\n## with ^ or end with $, they'll match anywhere in the command.\n## For details on the supported regular expression syntax, see\n## https://docs.rs/regex/latest/regex/#syntax\n# history_filter = [\n#   \"^secret-cmd\",\n#   \"^innocuous-cmd .*--secret=.+\",\n# ]\n\n## prevent commands run with cwd matching any of these regexes from being written\n## to history. Note that these regular expressions are unanchored, i.e. if they don't\n## start with ^ or end with $, they'll match anywhere in CWD.\n## For details on the supported regular expression syntax, see\n## https://docs.rs/regex/latest/regex/#syntax\n# cwd_filter = [\n#   \"^/very/secret/area\",\n# ]\n\n## Configure the maximum height of the preview to show.\n## Useful when you have long scripts in your history that you want to distinguish\n## by more than the first few lines.\n# max_preview_height = 4\n\n## Configure whether or not to show the help row, which includes the current Atuin\n## version (and whether an update is available), a keymap hint, and the total\n## amount of commands in your history.\n# show_help = true\n\n## Configure whether or not to show tabs for search and inspect\n# show_tabs = true\n\n## Configure whether or not the tabs row may be auto-hidden, which includes the current Atuin\n## tab, such as Search or Inspector, and other tabs you may wish to see. This will\n## only be hidden if there are fewer than this count of lines available, and does not affect the use\n## of keyboard shortcuts to switch tab. 0 to never auto-hide, default is 8 (lines).\n## This is ignored except in `compact` mode.\n# auto_hide_height = 8\n\n## Defaults to true. This matches history against a set of default regex, and will not save it if we get a match. Defaults include\n## 1. AWS key id\n## 2. Github pat (old and new)\n## 3. Slack oauth tokens (bot, user)\n## 4. Slack webhooks\n## 5. Stripe live/test keys\n# secrets_filter = true\n\n## Defaults to true. If enabled, upon hitting enter Atuin will immediately execute the command,\n## whereas tab will put the command in the prompt for editing.\n## If set to false, both enter and tab will place the command in the prompt for editing.\n## This applies for new installs. Old installs will keep the old behaviour unless configured otherwise.\nenter_accept = true\n\n## Defaults to false. If enabled, when triggered after &&, || or |, Atuin will complete commands to chain rather than replace the current line.\n# command_chaining = false\n\n## Defaults to \"emacs\".  This specifies the keymap on the startup of `atuin\n## search`.  If this is set to \"auto\", the startup keymap mode in the Atuin\n## search is automatically selected based on the shell's keymap where the\n## keybinding is defined.  If this is set to \"emacs\", \"vim-insert\", or\n## \"vim-normal\", the startup keymap mode in the Atuin search is forced to be\n## the specified one.\n# keymap_mode = \"auto\"\n\n## Cursor style in each keymap mode.  If specified, the cursor style is changed\n## in entering the cursor shape.  Available values are \"default\" and\n## \"{blink,steady}-{block,underline,bar}\".\n# keymap_cursor = { emacs = \"blink-block\", vim_insert = \"blink-block\", vim_normal = \"steady-block\" }\n\n# network_connect_timeout = 5\n# network_timeout = 5\n\n## Timeout (in seconds) for acquiring a local database connection (sqlite)\n# local_timeout = 5\n\n## Set this to true and Atuin will minimize motion in the UI - timers will not update live, etc.\n## Alternatively, set env NO_MOTION=true\n# prefers_reduced_motion = false\n\n[stats]\n## Set commands where we should consider the subcommand for statistics. Eg, kubectl get vs just kubectl\n# common_subcommands = [\n#   \"apt\",\n#   \"cargo\",\n#   \"composer\",\n#   \"dnf\",\n#   \"docker\",\n#   \"dotnet\",\n#   \"git\",\n#   \"go\",\n#   \"ip\",\n#   \"jj\",\n#   \"kubectl\",\n#   \"nix\",\n#   \"nmcli\",\n#   \"npm\",\n#   \"pecl\",\n#   \"pnpm\",\n#   \"podman\",\n#   \"port\",\n#   \"systemctl\",\n#   \"tmux\",\n#   \"yarn\",\n# ]\n\n## Set commands that should be totally stripped and ignored from stats\n# common_prefix = [\"sudo\"]\n\n## Set commands that will be completely ignored from stats\n# ignored_commands = [\n#   \"cd\",\n#   \"ls\",\n#   \"vi\"\n# ]\n\n[keys]\n# Defaults to true. If disabled, using the up/down key won't exit the TUI when scrolled past the first/last entry.\n# scroll_exits = true\n\n# Defaults to true. The left arrow key will exit the TUI when scrolling before the first character\n# exit_past_line_start = true\n\n# Defaults to true. The right arrow key performs the same functionality as Tab and copies the selected line to the command line to be modified.\n# accept_past_line_end = true\n\n# Defaults to false. The left arrow key performs the same functionality as Tab and copies the selected line to the command line to be modified.\n# accept_past_line_start = false\n\n# Defaults to false. The backspace key performs the same functionality as Tab and copies the selected line to the command line to be modified when at the start of the line.\n# accept_with_backspace = false\n\n[sync]\n# Enable sync v2 by default\n# This ensures that sync v2 is enabled for new installs only\n# In a later release it will become the default across the board\nrecords = true\n\n[preview]\n## which preview strategy to use to calculate the preview height (respects max_preview_height).\n## possible values: auto, static\n## auto: length of the selected command.\n## static: length of the longest command stored in the history.\n## fixed: use max_preview_height as fixed height.\n# strategy = \"auto\"\n\n[daemon]\n## Enables using the daemon to sync. Requires the daemon to be running in the background. Start it with `atuin daemon`\n# enabled = false\n\n## How often the daemon should sync in seconds\n# sync_frequency = 300\n\n## The path to the unix socket used by the daemon (on unix systems)\n## linux/mac: ~/.local/share/atuin/atuin.sock\n## windows: Not Supported\n# socket_path = \"~/.local/share/atuin/atuin.sock\"\n\n## Use systemd socket activation rather than opening the given path (the path must still be correct for the client)\n## linux: false\n## mac/windows: Not Supported\n# systemd_socket = false\n\n## The port that should be used for TCP on non unix systems\n# tcp_port = 8889\n\n# [theme]\n## Color theme to use for rendering in the terminal.\n## There are some built-in themes, including the base theme (\"default\"),\n## \"autumn\" and \"marine\". You can add your own themes to the \"./themes\" subdirectory of your\n## Atuin config (or ATUIN_THEME_DIR, if provided) as TOML files whose keys should be one or\n## more of AlertInfo, AlertWarn, AlertError, Annotation, Base, Guidance, Important, and\n## the string values as lowercase entries from this list:\n##    https://ogeon.github.io/docs/palette/master/palette/named/index.html\n## If you provide a custom theme file, it should be  called \"NAME.toml\" and the theme below\n## should be the stem, i.e. `theme = \"NAME\"` for your chosen NAME.\n# name = \"autumn\"\n\n## Whether the theme manager should output normal or extra information to help fix themes.\n## Boolean, true or false. If unset, left up to the theme manager.\n# debug = true\n\n[search]\n## The list of enabled filter modes, in order of priority.\n## The \"workspace\" mode is skipped when not in a workspace or workspaces = false.\n## Default filter mode can be overridden with the filter_mode setting.\n# filters = [ \"global\", \"host\", \"session\", \"session-preload\", \"workspace\", \"directory\" ]\n\n[tmux]\n## Enable using atuin with tmux popup (requires tmux >= 3.2)\n## When enabled and running inside tmux, Atuin will use a popup window for interactive search.\n## Set to false to disable the popup.\n## This can also be controlled with the ATUIN_TMUX_POPUP environment variable.\n## Note: The tmux popup is currently supported in zsh, bash, and fish shells. This currently doesn't work with iTerm native tmux integration.\n# enabled = false\n\n## Width of the tmux popup window\n## Can be a percentage, or integer (e.g. \"100\" means 100 characters wide)\n# width = \"80%\"\n\n## Height of the tmux popup window\n## Can be a percentage, or integer (e.g. \"100\" means 100 lines tall)\n# height = \"60%\"\n\n[ui]\n## Columns to display in the interactive search, from left to right.\n## The selection indicator (\" > \") is always shown first implicitly.\n##\n## Each column can be specified as a simple string (uses default width)\n## or as an object with type, width, and expand:\n##   { type = \"directory\", width = 30, expand = true }\n##\n## Available column types (with default widths):\n##   duration  (5)  - Command execution duration (e.g., \"123ms\")\n##   time      (8)  - Relative time since execution (e.g., \"59m ago\")\n##   datetime  (16) - Absolute timestamp (e.g., \"2025-01-22 14:35\")\n##   directory (20) - Working directory (truncated if too long)\n##   host      (15) - Hostname where command was run\n##   user      (10) - Username\n##   exit      (3)  - Exit code (colored by success/failure)\n##   command   (*)  - The command itself (expands by default)\n##\n## The \"expand\" option (default: true for command, false for others) makes a\n## column fill remaining space. Only one column should have expand = true.\n##\n## Default:\n# columns = [\"duration\", \"time\", \"command\"]\n##\n## Examples:\n##\n## Minimal - more space for commands:\n# columns = [\"duration\", \"command\"]\n##\n## With wider directory column:\n# columns = [\"duration\", { type = \"directory\", width = 30 }, \"command\"]\n##\n## Show host for multi-machine sync users:\n# columns = [\"duration\", \"time\", \"host\", \"command\"]\n##\n## Show exit codes prominently:\n# columns = [\"exit\", \"duration\", \"command\"]\n##\n## Make directory expand instead of command:\n# columns = [\"duration\", \"time\", { type = \"directory\", expand = true }, { type = \"command\", expand = false }]",
     "zxc.20260125152851.3": "[display]\ncompact = true\nuse_paper = true\n\n[updates]\nauto_update = true\nauto_update_interval_hours = 720",
     "zxc.20260125153252.1": "[advice]\n\taddEmptyPathspec = false\n\tpushNonFastForward = false\n\tstatusHints = false",
@@ -4349,7 +4379,7 @@
     "zxc.20260125154321.1": "[url \"git@github.com:\"]\n\tinsteadOf = \"gh:\"\n",
     "zxc.20260125153842.1": "[user]\n\temail = \"git@fairever.aleeas.com\"\n\tname = \"ourgal\"\n{{ if .my.git.sign.ssh }}\tsigningkey = \"~/.ssh/id_ed25519.pub\"\n{{ else if .my.git.sign.gpg }}\tsigningkey = \"D0D31211E343897C\"\n{{ end -}}",
     "User.20260222170925.1": "[annex \"security\"]\nallowed-ip-addresses = \"all\"",
-    "zxc.20260125153131.2": "# feat: ✨\n# feat: 🔍\n# feat: 🔗\n# feat: 🔒\n\n# fix: 🐛\n# fix: 🐞\n# fix: 🩹\n# fix: 🚑️\n\n# style: 💅\n# style: 🎨\n# style: 💄\n\n# ci: 🦊\n# ci: 📦\n\n# deploy: 🚀\n# deploy: 📦\n\n# chore: 🧹\n# chore: 🔧\n# chore: ⚙️\n# docs: 📜\n\n# refactor: 🔨\n# perf: 🚀\n\n# test: 🚦\n# debug: 🧪\n\n# BREAKING CHANGE: 🚨\n# BREAKING CHANGE: 💥\n# BREAKING CHANGE: 💣",
+    "zxc.20260125153131.2": "# feat: \u2728\n# feat: \ud83d\udd0d\n# feat: \ud83d\udd17\n# feat: \ud83d\udd12\n\n# fix: \ud83d\udc1b\n# fix: \ud83d\udc1e\n# fix: \ud83e\ude79\n# fix: \ud83d\ude91\ufe0f\n\n# style: \ud83d\udc85\n# style: \ud83c\udfa8\n# style: \ud83d\udc84\n\n# ci: \ud83e\udd8a\n# ci: \ud83d\udce6\n\n# deploy: \ud83d\ude80\n# deploy: \ud83d\udce6\n\n# chore: \ud83e\uddf9\n# chore: \ud83d\udd27\n# chore: \u2699\ufe0f\n# docs: \ud83d\udcdc\n\n# refactor: \ud83d\udd28\n# perf: \ud83d\ude80\n\n# test: \ud83d\udea6\n# debug: \ud83e\uddea\n\n# BREAKING CHANGE: \ud83d\udea8\n# BREAKING CHANGE: \ud83d\udca5\n# BREAKING CHANGE: \ud83d\udca3",
     "User.20260216220339.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"ansible-language-server\" -}}\n{{ $lsp = append $lsp \"ansible-language-server\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\ncomment-token = \"#\"\ngrammar = \"yaml\"\ninjection-regex = \"ansible\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]\nname = \"ansible\"\nscope = \"source.yaml\"\nshebangs = [\"ansible-playbook\"]\n\n[[language.file-types]]\nglob = \"playbooks/*.yaml\"\n\n[[language.file-types]]\nglob = \"playbooks/*.yml\"\n\n[[language.file-types]]\nglob = \"group_vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"group_vars/*.yml\"\n\n[[language.file-types]]\nglob = \"host_vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"host_vars/*.yml\"\n\n[[language.file-types]]\nglob = \"vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"vars/*.yml\"\n\n[[language.file-types]]\nglob = \"defaults/*.yaml\"\n\n[[language.file-types]]\nglob = \"defaults/*.yml\"\n\n[[language.file-types]]\nglob = \"tasks/*.yaml\"\n\n[[language.file-types]]\nglob = \"tasks/*.yml\"\n\n[[language.file-types]]\nglob = \"handlers/*.yaml\"\n\n[[language.file-types]]\nglob = \"handlers/*.yml\"\n\n[[language.file-types]]\nglob = \"meta/*.yaml\"\n\n[[language.file-types]]\nglob = \"meta/*.yml\"",
     "User.20260216222130.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"marksman\" -}}\n{{ $lsp = append $lsp \"marksman\" -}}\n{{ end -}}\n{{ if lookPath \"markdown-oxide\" -}}\n{{ $lsp = append $lsp \"markdown-oxide\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"markdown\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]\n",
     "User.20260216214259.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"ty\" -}}\n{{ $lsp = append $lsp \"ty\" -}}\n{{ end -}}\n{{ if lookPath \"jedi-language-server\" -}}\n{{ $lsp = append $lsp \"jedi\" -}}\n{{ end -}}\n{{ if lookPath \"pylsp\" -}}\n{{ $lsp = append $lsp \"pylsp\" -}}\n{{ end -}}\n{{ if lookPath \"ruff\" -}}\n{{ $lsp = append $lsp \"ruff\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"python\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]",
@@ -4367,10 +4397,10 @@
     "zxc.20260125161912.1": "[editor.auto-save]\nfocus-lost = false",
     "zxc.20260125161937.1": "[editor.auto-save.after-delay]\nenable = false\ntimeout = 1000",
     "zxc.20260125162004.1": "[editor.cursor-shape]\ninsert = \"bar\"",
-    "zxc.20260125162038.1": "[editor.indent-guides]\ncharacter = \"⸽\"\nrender = true\nskip-levels = 1",
+    "zxc.20260125162038.1": "[editor.indent-guides]\ncharacter = \"\u2e3d\"\nrender = true\nskip-levels = 1",
     "zxc.20260125162057.1": "[editor.lsp]\ndisplay-inlay-hints = true\ndisplay-messages = true",
     "zxc.20260125162111.1": "[editor.soft-wrap]\nenable = true",
-    "zxc.20260125162130.1": "[editor.statusline]\ncenter = [\"file-name\"]\nleft = [\"mode\", \"spinner\"]\nright = [\n  \"diagnostics\",\n  \"selections\",\n  \"position\",\n  \"file-encoding\",\n  \"file-line-ending\",\n  \"file-type\",\n]\nseparator = \"│\"",
+    "zxc.20260125162130.1": "[editor.statusline]\ncenter = [\"file-name\"]\nleft = [\"mode\", \"spinner\"]\nright = [\n  \"diagnostics\",\n  \"selections\",\n  \"position\",\n  \"file-encoding\",\n  \"file-line-ending\",\n  \"file-type\",\n]\nseparator = \"\u2502\"",
     "zxc.20260125162140.1": "[editor.statusline.mode]\ninsert = \"INSERT\"\nnormal = \"NORMAL\"\nselect = \"SELECT\"",
     "zxc.20260125162236.1": "[keys.normal.g]\nz = [\"split_selection_on_newline\", \":sort\", \"keep_primary_selection\"]",
     "zxc.20260125162248.1": "[keys.normal.g.c]\nb = \"toggle_block_comments\"\nc = \"toggle_comments\"\nl = \"toggle_line_comments\"",
@@ -4409,12 +4439,12 @@
     "User.20260216000318.1": "<< unix dos >>\n{{ if lookPath \"cargo\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260216000441.1": "[source.crates-io]\nreplace-with = 'mirror'\n\n[source.mirror]\nregistry = \"sparse+https://mirrors.cernet.edu.cn/crates.io-index/\"\n\n[registries.mirror]\nindex = \"sparse+https://mirrors.cernet.edu.cn/crates.io-index/\"",
     "User.20260216125349.1": "patch:\n  schema_list:\n    - schema: sbfm\n  \"switcher/hotkeys\":",
-    "User.20260216125513.1": "patch:\n  switches:\n    - name: ascii_mode\n      reset: 1\n      states: [中文, 西文]\n    - name: ascii_punct\n      reset: 0\n      states: [。，, ．，]\n    - name: zh_trad\n      reset: 0\n      states: [简体, 繁体]\n    - name: is_enhanced\n      reset: 0\n      states: [常规, 增强]\n    - options: [hide, rational, irrational, both]\n      reset: 1\n      states: [隐藏, 有理, 无理, 两者]\n    # 希望在同文里用下三角来隐藏键盘的可去掉下面两行的注释\n    #- options: [_key_Hide]\n    #  states: [\"▼\"]\n    # 为了避免拥挤，不显示下面的状态\n    - name: auto_inline\n      reset: 1\n    - name: is_buffered\n      reset: 0\n    - name: single_display\n      reset: 0\n    - options: [pro_word, pro_char, delayed_pop]\n      reset: 0\n    # states: [词组, 单字, 延顶]\n    - name: show_es\n      reset: 1\n    # 不要改变下面的状态，以免穿帮\n    - name: third_pop\n      reset: 0\n    - name: fast_pop\n      reset: 0\n  key_binder:\n    import_preset: sbxlm\n    bindings:\n      - accept: Shift+space\n        toggle: ascii_mode\n        when: always\n  ascii_composer:\n    good_old_caps_lock: false\n    switch_key:\n      Caps_Lock: noop\n      Control_L: noop\n      Control_R: noop\n      Eisu_toggle: noop\n      Shift_L: noop\n      Shift_R: noop",
+    "User.20260216125513.1": "patch:\n  switches:\n    - name: ascii_mode\n      reset: 1\n      states: [\u4e2d\u6587, \u897f\u6587]\n    - name: ascii_punct\n      reset: 0\n      states: [\u3002\uff0c, \uff0e\uff0c]\n    - name: zh_trad\n      reset: 0\n      states: [\u7b80\u4f53, \u7e41\u4f53]\n    - name: is_enhanced\n      reset: 0\n      states: [\u5e38\u89c4, \u589e\u5f3a]\n    - options: [hide, rational, irrational, both]\n      reset: 1\n      states: [\u9690\u85cf, \u6709\u7406, \u65e0\u7406, \u4e24\u8005]\n    # \u5e0c\u671b\u5728\u540c\u6587\u91cc\u7528\u4e0b\u4e09\u89d2\u6765\u9690\u85cf\u952e\u76d8\u7684\u53ef\u53bb\u6389\u4e0b\u9762\u4e24\u884c\u7684\u6ce8\u91ca\n    #- options: [_key_Hide]\n    #  states: [\"\u25bc\"]\n    # \u4e3a\u4e86\u907f\u514d\u62e5\u6324\uff0c\u4e0d\u663e\u793a\u4e0b\u9762\u7684\u72b6\u6001\n    - name: auto_inline\n      reset: 1\n    - name: is_buffered\n      reset: 0\n    - name: single_display\n      reset: 0\n    - options: [pro_word, pro_char, delayed_pop]\n      reset: 0\n    # states: [\u8bcd\u7ec4, \u5355\u5b57, \u5ef6\u9876]\n    - name: show_es\n      reset: 1\n    # \u4e0d\u8981\u6539\u53d8\u4e0b\u9762\u7684\u72b6\u6001\uff0c\u4ee5\u514d\u7a7f\u5e2e\n    - name: third_pop\n      reset: 0\n    - name: fast_pop\n      reset: 0\n  key_binder:\n    import_preset: sbxlm\n    bindings:\n      - accept: Shift+space\n        toggle: ascii_mode\n        when: always\n  ascii_composer:\n    good_old_caps_lock: false\n    switch_key:\n      Caps_Lock: noop\n      Control_L: noop\n      Control_R: noop\n      Eisu_toggle: noop\n      Shift_L: noop\n      Shift_R: noop",
     "User.20260216232855.1": "<< dos >>\n{{ if lookPath \"aria2c\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260216232938.1": "allow-overwrite=false\nallow-piece-length-change=true\nalways-resume=false\nauto-file-renaming=true\nauto-save-interval=20\nbt-detach-seed-only=true\nbt-enable-lpd=true\nbt-force-encryption=true\nbt-hash-check-seed=true\nbt-load-saved-metadata=true\nbt-max-peers=128\nbt-prioritize-piece=head=32M,tail=32M\nbt-remove-unselected-file=true\nbt-request-peer-speed-limit=10M\nbt-save-metadata=true\nbt-seed-unverified=false\nbt-tracker-connect-timeout=10\nbt-tracker-timeout=10\nconnect-timeout=10\nconsole-log-level=warn\ncontent-disposition-default-utf8=true\ncontinue=true\ndht-entry-point=dht.transmissionbt.com:6881\ndht-entry-point6=dht.transmissionbt.com:6881\ndht-file-path={{ env \"userprofile\" }}\\.aria2\\dht.dat\ndht-file-path6={{ env \"userprofile\" }}\\.aria2\\dht6.dat\ndisable-ipv6=true\ndisk-cache=64M\nenable-dht=true\nenable-dht6=false\nenable-http-pipelining=true\nenable-peer-exchange=true\nenable-rpc=false\nfile-allocation=none\nfollow-torrent=true\nforce-save=false\nhttp-accept-gzip=true\nlowest-speed-limit=0\nmax-concurrent-downloads=5\nmax-connection-per-server=16\nmax-download-limit=0\nmax-file-not-found=10\nmax-overall-download-limit=0\nmax-overall-upload-limit=2M\nmax-resume-failure-tries=0\nmax-tries=0\nmax-upload-limit=0\nmin-split-size=4M\nno-file-allocation-limit=64M\nno-netrc=true\npause-metadata=false\npeer-agent=Deluge 1.3.15\npeer-id-prefix=-DE13F0-\npiece-length=1M\nquiet=false\nremote-time=true\nretry-wait=10\nreuse-uri=false\nrpc-allow-origin-all=true\nrpc-listen-all=true\nrpc-listen-port=6800\nrpc-max-request-size=10M\nrpc-save-upload-metadata=true\nrpc-secret={{ gopass \"aria2/rpc\" }}\nsave-session-interval=1\nseed-ratio=1.000000\nseed-time=0\nsplit=64\nsummary-interval=0\ntimeout=10\nuser-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36 Edg/93.0.961.47",
     "User.20260217182613.1": "<< dos >>\n{{ if lookPath \"eget\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260217182650.1": "[global]\ntarget = \"~/.local/bin\"\ngithub_token = {{ gopass \"github/ourgal/token\" | quote }}\n",
-    "User.20260217223023.2": ";;; init.el -*- lexical-binding: t; -*-\n\n;; This file controls what Doom modules are enabled and what order they load\n;; in. Remember to run 'doom sync' after modifying it!\n\n;; NOTE Press 'SPC h d h' (or 'C-h d h' for non-vim users) to access Doom's\n;;      documentation. There you'll find a link to Doom's Module Index where all\n;;      of our modules are listed, including what flags they support.\n\n;; NOTE Move your cursor over a module's name (or its flags) and press 'K' (or\n;;      'C-c c k' for non-vim users) to view its documentation. This works on\n;;      flags as well (those symbols that start with a plus).\n;;\n;;      Alternatively, press 'gd' (or 'C-c c d') on a module to browse its\n;;      directory (for easy access to its source code).\n\n(doom! :input\n       ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh\n       ;;chinese\n       ;;japanese\n       ;;layout            ; auie,ctsrnm is the superior home row\n\n       :completion\n       ;;company           ; the ultimate code completion backend\n       (corfu +orderless +icons)  ; complete with cap(f), cape and a flying feather!\n       ;;helm              ; the *other* search engine for love and life\n       ;;ido               ; the other *other* search engine...\n       ;;ivy               ; a search engine for love and life\n       (vertico +childframe +icons)           ; the search engine of the future\n\n       :ui\n       ;;deft              ; notational velocity for Emacs\n       doom              ; what makes DOOM look the way it does\n       doom-dashboard    ; a nifty splash screen for Emacs\n       ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs\n       (emoji +unicode)  ; 🙂\n       hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW\n       indent-guides     ; highlighted indent columns\n       ligatures         ; ligatures and symbols to make your code pretty again\n       ;;minimap           ; show a map of the code on the side\n       modeline          ; snazzy, Atom-inspired modeline, plus API\n       nav-flash         ; blink cursor line after big motions\n       ;;neotree           ; a project drawer, like NERDTree for vim\n       ophints           ; highlight the region an operation acts on\n       (popup +defaults)   ; tame sudden yet inevitable temporary windows\n       ;;smooth-scroll     ; So smooth you won't believe it's not butter\n       ;;tabs              ; a tab bar for Emacs\n       ;;treemacs          ; a project drawer, like neotree but cooler\n       ;;unicode           ; extended unicode support for various languages\n       (vc-gutter +pretty) ; vcs diff in the fringe\n       vi-tilde-fringe   ; fringe tildes to mark beyond EOB\n       (window-select +numbers)     ; visually switch windows\n       workspaces        ; tab emulation, persistence & separate workspaces\n       zen               ; distraction-free coding or writing\n\n       :editor\n       (evil +everywhere); come to the dark side, we have cookies\n       file-templates    ; auto-snippets for empty files\n       fold              ; (nigh) universal code folding\n       (format +onsave)  ; automated prettiness\n       ;;god               ; run Emacs commands without modifier keys\n       ;;lispy             ; vim for lisp, for people who don't like vim\n       multiple-cursors  ; editing in many places at once\n       ;;objed             ; text object editing for the innocent\n       parinfer          ; turn lisp into python, sort of\n       rotate-text       ; cycle region at point between text candidates\n       snippets          ; my elves. They type so I don't have to\n       (whitespace +guess +trim)  ; a butler for your whitespace\n       word-wrap         ; soft wrapping with language-aware indent\n\n       :emacs\n       (dired +icons +dirvish)             ; making dired pretty [functional]\n       electric          ; smarter, keyword-based electric-indent\n       eww               ; the internet is gross\n       (ibuffer +icons)           ; interactive buffer management\n       tramp             ; remote files at your arthritic fingertips\n       undo              ; persistent, smarter undo for your inevitable mistakes\n       vc                ; version-control and Emacs, sitting in a tree\n\n       :term\n       ;;eshell            ; the elisp shell that works everywhere\n       ;;shell             ; simple shell REPL for Emacs\n       ;;term              ; basic terminal emulator for Emacs\n       vterm             ; the best terminal emulation in Emacs\n\n       :checkers\n       (syntax +childframe)              ; tasing you for every semicolon you forget\n       (spell +aspell) ; tasing you for misspelling mispelling\n       grammar           ; tasing grammar mistake every you make\n\n       :tools\n       ansible\n       ;;biblio            ; Writes a PhD for you (citation needed)\n       ;;collab            ; buffers with friends\n       ;;debugger          ; FIXME stepping through code, to help you add bugs\n       direnv\n       (docker +lsp)\n       editorconfig      ; let someone else argue about tabs vs spaces\n       ;;ein               ; tame Jupyter notebooks with emacs\n       (eval +overlay)     ; run code, run (also, repls)\n       (lookup +dictionary +docsets +offine)              ; navigate your code and its documentation\n       ;;llm               ; when I said you needed friends, I didn't mean...\n       (lsp +eglot)      ; M-x vscode\n       magit             ; a git porcelain for Emacs\n       make              ; run make tasks from Emacs\n       pass              ; password manager for nerds\n       ;;pdf               ; pdf enhancements\n       ;;terraform         ; infrastructure as code\n       ;;tmux              ; an API for interacting with tmux\n       tree-sitter       ; syntax and parsing, sitting in a tree...\n       ;;upload            ; map local to remote projects via ssh/ftp\n\n       :os\n       (:if (featurep :system 'macos) macos)  ; improve compatibility with macOS\n       tty               ; improve the terminal Emacs experience\n\n       :lang\n       ;;ada               ; In strong typing we (blindly) trust\n       ;;agda              ; types of types of types of types...\n       ;;beancount         ; mind the GAAP\n       (cc +lsp)         ; C > C++ == 1\n       ;;clojure           ; java with a lisp\n       ;;common-lisp       ; if you've seen one lisp, you've seen them all\n       ;;coq               ; proofs-as-programs\n       ;;crystal           ; ruby at the speed of c\n       ;;csharp            ; unity, .NET, and mono shenanigans\n       ;;data              ; config/data formats\n       ;;(dart +flutter)   ; paint ui and not much else\n       ;;dhall\n       ;;elixir            ; erlang done right\n       ;;elm               ; care for a cup of TEA?\n       (emacs-lisp +checkers)        ; drown in parentheses\n       ;;erlang            ; an elegant language for a more civilized age\n       ;;ess               ; emacs speaks statistics\n       ;;factor\n       ;;faust             ; dsp, but you get to keep your soul\n       ;;fortran           ; in FORTRAN, GOD is REAL (unless declared INTEGER)\n       ;;fsharp            ; ML stands for Microsoft's Language\n       ;;fstar             ; (dependent) types and (monadic) effects and Z3\n       ;;gdscript          ; the language you waited for\n       ;;(go +lsp)         ; the hipster dialect\n       ;;(graphql +lsp)    ; Give queries a REST\n       (haskell +lsp)    ; a language that's lazier than I am\n       ;;hy                ; readability of scheme w/ speed of python\n       ;;idris             ; a language you can depend on\n       (json +lsp +tree-sitter)              ; At least it ain't XML\n       ;;janet             ; Fun fact: Janet is me!\n       ;;(java +lsp)       ; the poster child for carpal tunnel syndrome\n       ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))\n       ;;julia             ; a better, faster MATLAB\n       ;;kotlin            ; a better, slicker Java(Script)\n       (latex +lsp)             ; writing papers in Emacs has never been so fun\n       ;;lean              ; for folks with too much to prove\n       ;;ledger            ; be audit you can be\n       (lua +lsp +tree-sitter)               ; one-based indices? one-based indices\n       (markdown +grip)          ; writing docs for people to ignore\n       ;;nim               ; python + lisp at the speed of c\n       ;;nix               ; I hereby declare \"nix geht mehr!\"\n       ;;ocaml             ; an objective camel\n       (org +gnuplot +pandoc)               ; organize your plain life in plain text\n       ;;php               ; perl's insecure younger brother\n       ;;plantuml          ; diagrams for confusing people more\n       ;;graphviz          ; diagrams for confusing yourself even more\n       ;;purescript        ; javascript, but functional\n       (python +lsp +tree-sitter)            ; beautiful is better than ugly\n       ;;qt                ; the 'cutest' gui framework ever\n       ;;racket            ; a DSL for DSLs\n       ;;raku              ; the artist formerly known as perl6\n       ;;rest              ; Emacs as a REST client\n       ;;rst               ; ReST in peace\n       ;;(ruby +rails)     ; 1.step {|i| p \"Ruby is #{i.even? ? 'love' : 'life'}\"}\n       ;;(rust +lsp)       ; Fe2O3.unwrap().unwrap().unwrap().unwrap()\n       ;;scala             ; java, but good\n       ;;(scheme +guile)   ; a fully conniving family of lisps\n       (sh +powershell +lsp +tree-sitter)                ; she sells {ba,z,fi}sh shells on the C xor\n       ;;sml\n       ;;solidity          ; do you need a blockchain? No.\n       ;;swift             ; who asked for emoji variables?\n       ;;terra             ; Earth and Moon in alignment for performance.\n       ;;web               ; the tubes\n       (yaml +lsp +tree-sitter)              ; JSON, but readable\n       ;;zig               ; C, but simpler\n\n       :email\n       ;;(mu4e +org +gmail)\n       ;;notmuch\n       ;;(wanderlust +gmail)\n\n       :app\n       ;;calendar\n       ;;emms\n       ;;everywhere        ; *leave* Emacs!? You must be joking\n       ;;irc               ; how neckbeards socialize\n       (rss)        ; emacs as an RSS reader\n\n       :config\n       ;;literate\n       (default +bindings +smartparens))",
+    "User.20260217223023.2": ";;; init.el -*- lexical-binding: t; -*-\n\n;; This file controls what Doom modules are enabled and what order they load\n;; in. Remember to run 'doom sync' after modifying it!\n\n;; NOTE Press 'SPC h d h' (or 'C-h d h' for non-vim users) to access Doom's\n;;      documentation. There you'll find a link to Doom's Module Index where all\n;;      of our modules are listed, including what flags they support.\n\n;; NOTE Move your cursor over a module's name (or its flags) and press 'K' (or\n;;      'C-c c k' for non-vim users) to view its documentation. This works on\n;;      flags as well (those symbols that start with a plus).\n;;\n;;      Alternatively, press 'gd' (or 'C-c c d') on a module to browse its\n;;      directory (for easy access to its source code).\n\n(doom! :input\n       ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh\n       ;;chinese\n       ;;japanese\n       ;;layout            ; auie,ctsrnm is the superior home row\n\n       :completion\n       ;;company           ; the ultimate code completion backend\n       (corfu +orderless +icons)  ; complete with cap(f), cape and a flying feather!\n       ;;helm              ; the *other* search engine for love and life\n       ;;ido               ; the other *other* search engine...\n       ;;ivy               ; a search engine for love and life\n       (vertico +childframe +icons)           ; the search engine of the future\n\n       :ui\n       ;;deft              ; notational velocity for Emacs\n       doom              ; what makes DOOM look the way it does\n       doom-dashboard    ; a nifty splash screen for Emacs\n       ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs\n       (emoji +unicode)  ; \ud83d\ude42\n       hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW\n       indent-guides     ; highlighted indent columns\n       ligatures         ; ligatures and symbols to make your code pretty again\n       ;;minimap           ; show a map of the code on the side\n       modeline          ; snazzy, Atom-inspired modeline, plus API\n       nav-flash         ; blink cursor line after big motions\n       ;;neotree           ; a project drawer, like NERDTree for vim\n       ophints           ; highlight the region an operation acts on\n       (popup +defaults)   ; tame sudden yet inevitable temporary windows\n       ;;smooth-scroll     ; So smooth you won't believe it's not butter\n       ;;tabs              ; a tab bar for Emacs\n       ;;treemacs          ; a project drawer, like neotree but cooler\n       ;;unicode           ; extended unicode support for various languages\n       (vc-gutter +pretty) ; vcs diff in the fringe\n       vi-tilde-fringe   ; fringe tildes to mark beyond EOB\n       (window-select +numbers)     ; visually switch windows\n       workspaces        ; tab emulation, persistence & separate workspaces\n       zen               ; distraction-free coding or writing\n\n       :editor\n       (evil +everywhere); come to the dark side, we have cookies\n       file-templates    ; auto-snippets for empty files\n       fold              ; (nigh) universal code folding\n       (format +onsave)  ; automated prettiness\n       ;;god               ; run Emacs commands without modifier keys\n       ;;lispy             ; vim for lisp, for people who don't like vim\n       multiple-cursors  ; editing in many places at once\n       ;;objed             ; text object editing for the innocent\n       parinfer          ; turn lisp into python, sort of\n       rotate-text       ; cycle region at point between text candidates\n       snippets          ; my elves. They type so I don't have to\n       (whitespace +guess +trim)  ; a butler for your whitespace\n       word-wrap         ; soft wrapping with language-aware indent\n\n       :emacs\n       (dired +icons +dirvish)             ; making dired pretty [functional]\n       electric          ; smarter, keyword-based electric-indent\n       eww               ; the internet is gross\n       (ibuffer +icons)           ; interactive buffer management\n       tramp             ; remote files at your arthritic fingertips\n       undo              ; persistent, smarter undo for your inevitable mistakes\n       vc                ; version-control and Emacs, sitting in a tree\n\n       :term\n       ;;eshell            ; the elisp shell that works everywhere\n       ;;shell             ; simple shell REPL for Emacs\n       ;;term              ; basic terminal emulator for Emacs\n       vterm             ; the best terminal emulation in Emacs\n\n       :checkers\n       (syntax +childframe)              ; tasing you for every semicolon you forget\n       (spell +aspell) ; tasing you for misspelling mispelling\n       grammar           ; tasing grammar mistake every you make\n\n       :tools\n       ansible\n       ;;biblio            ; Writes a PhD for you (citation needed)\n       ;;collab            ; buffers with friends\n       ;;debugger          ; FIXME stepping through code, to help you add bugs\n       direnv\n       (docker +lsp)\n       editorconfig      ; let someone else argue about tabs vs spaces\n       ;;ein               ; tame Jupyter notebooks with emacs\n       (eval +overlay)     ; run code, run (also, repls)\n       (lookup +dictionary +docsets +offine)              ; navigate your code and its documentation\n       ;;llm               ; when I said you needed friends, I didn't mean...\n       (lsp +eglot)      ; M-x vscode\n       magit             ; a git porcelain for Emacs\n       make              ; run make tasks from Emacs\n       pass              ; password manager for nerds\n       ;;pdf               ; pdf enhancements\n       ;;terraform         ; infrastructure as code\n       ;;tmux              ; an API for interacting with tmux\n       tree-sitter       ; syntax and parsing, sitting in a tree...\n       ;;upload            ; map local to remote projects via ssh/ftp\n\n       :os\n       (:if (featurep :system 'macos) macos)  ; improve compatibility with macOS\n       tty               ; improve the terminal Emacs experience\n\n       :lang\n       ;;ada               ; In strong typing we (blindly) trust\n       ;;agda              ; types of types of types of types...\n       ;;beancount         ; mind the GAAP\n       (cc +lsp)         ; C > C++ == 1\n       ;;clojure           ; java with a lisp\n       ;;common-lisp       ; if you've seen one lisp, you've seen them all\n       ;;coq               ; proofs-as-programs\n       ;;crystal           ; ruby at the speed of c\n       ;;csharp            ; unity, .NET, and mono shenanigans\n       ;;data              ; config/data formats\n       ;;(dart +flutter)   ; paint ui and not much else\n       ;;dhall\n       ;;elixir            ; erlang done right\n       ;;elm               ; care for a cup of TEA?\n       (emacs-lisp +checkers)        ; drown in parentheses\n       ;;erlang            ; an elegant language for a more civilized age\n       ;;ess               ; emacs speaks statistics\n       ;;factor\n       ;;faust             ; dsp, but you get to keep your soul\n       ;;fortran           ; in FORTRAN, GOD is REAL (unless declared INTEGER)\n       ;;fsharp            ; ML stands for Microsoft's Language\n       ;;fstar             ; (dependent) types and (monadic) effects and Z3\n       ;;gdscript          ; the language you waited for\n       ;;(go +lsp)         ; the hipster dialect\n       ;;(graphql +lsp)    ; Give queries a REST\n       (haskell +lsp)    ; a language that's lazier than I am\n       ;;hy                ; readability of scheme w/ speed of python\n       ;;idris             ; a language you can depend on\n       (json +lsp +tree-sitter)              ; At least it ain't XML\n       ;;janet             ; Fun fact: Janet is me!\n       ;;(java +lsp)       ; the poster child for carpal tunnel syndrome\n       ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))\n       ;;julia             ; a better, faster MATLAB\n       ;;kotlin            ; a better, slicker Java(Script)\n       (latex +lsp)             ; writing papers in Emacs has never been so fun\n       ;;lean              ; for folks with too much to prove\n       ;;ledger            ; be audit you can be\n       (lua +lsp +tree-sitter)               ; one-based indices? one-based indices\n       (markdown +grip)          ; writing docs for people to ignore\n       ;;nim               ; python + lisp at the speed of c\n       ;;nix               ; I hereby declare \"nix geht mehr!\"\n       ;;ocaml             ; an objective camel\n       (org +gnuplot +pandoc)               ; organize your plain life in plain text\n       ;;php               ; perl's insecure younger brother\n       ;;plantuml          ; diagrams for confusing people more\n       ;;graphviz          ; diagrams for confusing yourself even more\n       ;;purescript        ; javascript, but functional\n       (python +lsp +tree-sitter)            ; beautiful is better than ugly\n       ;;qt                ; the 'cutest' gui framework ever\n       ;;racket            ; a DSL for DSLs\n       ;;raku              ; the artist formerly known as perl6\n       ;;rest              ; Emacs as a REST client\n       ;;rst               ; ReST in peace\n       ;;(ruby +rails)     ; 1.step {|i| p \"Ruby is #{i.even? ? 'love' : 'life'}\"}\n       ;;(rust +lsp)       ; Fe2O3.unwrap().unwrap().unwrap().unwrap()\n       ;;scala             ; java, but good\n       ;;(scheme +guile)   ; a fully conniving family of lisps\n       (sh +powershell +lsp +tree-sitter)                ; she sells {ba,z,fi}sh shells on the C xor\n       ;;sml\n       ;;solidity          ; do you need a blockchain? No.\n       ;;swift             ; who asked for emoji variables?\n       ;;terra             ; Earth and Moon in alignment for performance.\n       ;;web               ; the tubes\n       (yaml +lsp +tree-sitter)              ; JSON, but readable\n       ;;zig               ; C, but simpler\n\n       :email\n       ;;(mu4e +org +gmail)\n       ;;notmuch\n       ;;(wanderlust +gmail)\n\n       :app\n       ;;calendar\n       ;;emms\n       ;;everywhere        ; *leave* Emacs!? You must be joking\n       ;;irc               ; how neckbeards socialize\n       (rss)        ; emacs as an RSS reader\n\n       :config\n       ;;literate\n       (default +bindings +smartparens))",
     "User.20260217223030.2": ";;; $DOOMDIR/config.el -*- lexical-binding: t; -*-\n\n;; Place your private configuration here! Remember, you do not need to run 'doom\n;; sync' after modifying this file!\n\n\n;; Some functionality uses this to identify you, e.g. GPG configuration, email\n;; clients, file templates and snippets. It is optional.\n;; (setq user-full-name \"John Doe\"\n;;       user-mail-address \"john@doe.com\")\n\n;; Doom exposes five (optional) variables for controlling fonts in Doom:\n;;\n;; - `doom-font' -- the primary font to use\n;; - `doom-variable-pitch-font' -- a non-monospace font (where applicable)\n;; - `doom-big-font' -- used for `doom-big-font-mode'; use this for\n;;   presentations or streaming.\n;; - `doom-symbol-font' -- for symbols\n;; - `doom-serif-font' -- for the `fixed-pitch-serif' face\n;;\n;; See 'C-h v doom-font' for documentation and more examples of what they\n;; accept. For example:\n;;\n;; If you or Emacs can't find your font, use 'M-x describe-font' to look them\n;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to\n;; refresh your font settings. If Emacs still can't find your font, it likely\n;; wasn't installed correctly. Font issues are rarely Doom issues!\n\n;; Whenever you reconfigure a package, make sure to wrap your config in an\n;; `with-eval-after-load' block, otherwise Doom's defaults may override your\n;; settings. E.g.\n;;\n;;   (with-eval-after-load 'PACKAGE\n;;     (setq x y))\n;;\n;; The exceptions to this rule:\n;;\n;;   - Setting file/directory variables (like `org-directory')\n;;   - Setting variables which explicitly tell you to set them before their\n;;     package is loaded (see 'C-h v VARIABLE' to look them up).\n;;   - Setting doom variables (which start with 'doom-' or '+').\n;;\n;; Here are some additional functions/macros that will help you configure Doom.\n;;\n;; - `load!' for loading external *.el files relative to this one\n;; - `add-load-path!' for adding directories to the `load-path', relative to\n;;   this file. Emacs searches the `load-path' when you load packages with\n;;   `require' or `use-package'.\n;; - `map!' for binding new keys\n;;\n;; To get information about any of these functions/macros, move the cursor over\n;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').\n;; This will open documentation for it, including demos of how they are used.\n;; Alternatively, use `C-h o' to look up a symbol (functions, variables, faces,\n;; etc).\n;;\n;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how\n;; they are implemented.\n",
     "User.20260217223030.3": "(setq package-archives '((\"gnu\"    . \"https://mirror.nju.edu.cn/elpa/gnu/\")\n                         (\"nongnu\" . \"https://mirror.nju.edu.cn/elpa/nongnu/\")\n                         (\"melpa\"  . \"https://mirror.nju.edu.cn/elpa/melpa/\")))\n",
     "User.20260217233138.1": ";; There are two ways to load a theme. Both assume the theme is installed and\n;; available. You can either set `doom-theme' or manually load a theme with the\n;; `load-theme' function. This is the default:\n(setq doom-theme 'doom-tokyo-night)\n",
@@ -4442,12 +4472,12 @@
     "User.20260218205354.1": "(use-package! zeal-at-point)\n(map! :leader\n      :desc \"Zeal\" \"h z\" #'zeal-at-point)",
     "User.20260218210651.1": "(use-package! eglot-booster\n  :after eglot\n  :config (eglot-booster-mode))",
     "User.20260223013727.1": "(setq message-send-mail-function 'smtpmail-send-it)\n(setq user-mail-address \"ourgal@qq.com\")\n(setq user-full-name \"ourgal\")\n\n(setq smtpmail-smtp-user \"ourgal@qq.com\"\n      smtpmail-smtp-server \"smtp.qq.com\"\n      smtpmail-smtp-service 465\n      smtpmail-stream-type 'ssl)\n\n(setq smtpmail-debug-info t)\n(setq smtpmail-debug-verb t)\n\n(setq auth-sources '({{ joinPath .chezmoi.homeDir \".config\" \"doom\" \".authinfo\" | quote }}))",
-    "User.20260223021647.1": "(setq user-mail-address \"ourgal@qq.com\"\n      user-full-name \"ourgal\")\n\n(setq gnus-select-method '(nnnil nil))\n(setq gnus-secondary-select-methods\n      '((nnimap \"qq\"\n               (nnimap-address \"imap.qq.com\")\n               (nnimap-index \"nnimap+qq:INDEX\")\n               (nnmail-expiry-target \"nnimap+qq:Deleted Messages\")\n               (nnimap-expunge t)\n               (nnimap-server-port 993)\n               (nnimap-stream ssl))\n      (nnimap \"163\"\n               (nnimap-address \"imap.163.com\")\n               (nnimap-index \"nnimap+163:INDEX\")\n               (nnmail-expiry-target \"nnimap+163:已删除\")\n               (nnimap-expunge t)\n               (nnimap-server-port 993)\n               (nnimap-stream ssl))\n      (nnimap \"yandex\"\n               (nnimap-address \"imap.yandex.com\")\n               (nnimap-index \"nnimap+yandex:INDEX\")\n               (nnmail-expiry-target \"nnimap+yandex:Trash\")\n               (nnimap-expunge t)\n               (nnimap-server-port 993)\n               (nnimap-stream ssl))))\n\n(setq gnus-thread-sort-functions '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date)))",
+    "User.20260223021647.1": "(setq user-mail-address \"ourgal@qq.com\"\n      user-full-name \"ourgal\")\n\n(setq gnus-select-method '(nnnil nil))\n(setq gnus-secondary-select-methods\n      '((nnimap \"qq\"\n               (nnimap-address \"imap.qq.com\")\n               (nnimap-index \"nnimap+qq:INDEX\")\n               (nnmail-expiry-target \"nnimap+qq:Deleted Messages\")\n               (nnimap-expunge t)\n               (nnimap-server-port 993)\n               (nnimap-stream ssl))\n      (nnimap \"163\"\n               (nnimap-address \"imap.163.com\")\n               (nnimap-index \"nnimap+163:INDEX\")\n               (nnmail-expiry-target \"nnimap+163:\u5df2\u5220\u9664\")\n               (nnimap-expunge t)\n               (nnimap-server-port 993)\n               (nnimap-stream ssl))\n      (nnimap \"yandex\"\n               (nnimap-address \"imap.yandex.com\")\n               (nnimap-index \"nnimap+yandex:INDEX\")\n               (nnmail-expiry-target \"nnimap+yandex:Trash\")\n               (nnimap-expunge t)\n               (nnimap-server-port 993)\n               (nnimap-stream ssl))))\n\n(setq gnus-thread-sort-functions '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date)))",
     "User.20260305235255.1": "(add-hook 'elfeed-search-mode-hook #'elfeed-update)\n;; Update hourly\n(run-at-time nil (* 60 60) #'elfeed-update)",
     "User.20260305235234.1": "(map! :leader\n      :desc \"Elfeed\" \"o e\" #'elfeed)\n(map! :after elfeed\n      :map elfeed-show-mode-map\n      :n \"y\" #'elfeed-show-yank)",
     "User.20260307200154.1": "{{ $domain := \"miniflux.zxc.cn\" -}}\n{{ if eq .chezmoi.hostname \"work\" -}}\n{{ $domain = print \"miniflux.\" ((includeTemplate \"my_domain.key\") | trim ) -}}\n{{ end -}}",
     "User.20260307200144.1": "(use-package! elfeed-protocol\n  :custom\n  (elfeed-use-curl t)\n  (elfeed-protocol-enabled-protocols '(fever))\n  (elfeed-protocol-fever-update-unread-only nil)\n  (elfeed-protocol-fever-fetch-category-as-tag t)\n  (elfeed-protocol-feeds '((\"fever+http://miniflux@{{ $domain }}\"\n                                 :api-url \"http://{{ $domain }}/fever/\"\n                                 :password \"{{ gopass \"miniflux/fever\" | trim }}\")))\n  :config\n  (elfeed-set-timeout 36000)\n  (elfeed-protocol-enable))\n",
-    "User.20260307184451.1": "(require 'url)\n(require 'json)\n\n(defun insert-github-package-snippet ()\n  \"从系统剪贴板读取 GitHub 仓库 URL，\n抓取它的 repo 名和 description，在光标处插入类似：\n[\\\"repo\\\", \\\"desc\\\", \\\"https://…\\\", Categories.SYSTEM, \\\"MM/DD/YYYY\\\", None, Waiting_Status.WAITING, Types.PACKAGE],\"\n  (interactive)\n  ;; 1. 取剪贴板内容\n  (let* ((clip (if (fboundp 'gui-get-selection)\n                   (gui-get-selection 'CLIPBOARD)\n                 (current-kill 0)))\n         (url  (and clip (string-trim clip)))\n         ;; 2. 提取 repo 全路径 user/repo 及 repo 名\n         (m    (and url (string-match \"github\\\\.com/\\\\([^/]+/[^/]+\\\\)\" url)))\n         (full (and m (match-string 1 url)))\n         (repo (and full (file-name-nondirectory full))))\n    (unless (and url full repo)\n      (user-error \"剪贴板中没有有效的 GitHub 仓库 URL\"))\n    ;; 3. 通过 GitHub API 拉 description\n    (let* ((api    (format \"https://api.github.com/repos/%s\" full))\n           ;; 设置一个简单的 User-Agent 以防被拒\n           (url-request-extra-headers\n            '((\"User-Agent\" . \"emacs-insert-github-package-snippet\")))\n           (buf    (url-retrieve-synchronously api))\n           description)\n      (unless buf (user-error \"无法访问 GitHub API\"))\n      (with-current-buffer buf\n        (goto-char (point-min))\n        (re-search-forward \"^$\" nil 'move)  ; 跳过 header\n        (let ((json-object-type 'alist)\n              (json (json-read)))\n          (setq description (or (alist-get 'description json) \"\"))))\n      (kill-buffer buf)\n      ;; 4. 插入结果\n      (insert\n       (format \"[\\\"%s\\\", \\\"%s\\\", \\\"%s\\\", Categories.SYSTEM, \\\"%s\\\", None, Waiting_Status.WAITING, Types.PACKAGE],\"\n               repo\n               ;; 转义双引号\n               (replace-regexp-in-string \"\\\"\" \"\\\\\\\\\\\"\" description)\n               url\n               ;; 用今天的日期\n               (format-time-string \"%m/%d/%Y\"))))))",
+    "User.20260307184451.1": "(require 'url)\n(require 'json)\n\n(defun insert-github-package-snippet ()\n  \"\u4ece\u7cfb\u7edf\u526a\u8d34\u677f\u8bfb\u53d6 GitHub \u4ed3\u5e93 URL\uff0c\n\u6293\u53d6\u5b83\u7684 repo \u540d\u548c description\uff0c\u5728\u5149\u6807\u5904\u63d2\u5165\u7c7b\u4f3c\uff1a\n[\\\"repo\\\", \\\"desc\\\", \\\"https://\u2026\\\", Categories.SYSTEM, \\\"MM/DD/YYYY\\\", None, Waiting_Status.WAITING, Types.PACKAGE],\"\n  (interactive)\n  ;; 1. \u53d6\u526a\u8d34\u677f\u5185\u5bb9\n  (let* ((clip (if (fboundp 'gui-get-selection)\n                   (gui-get-selection 'CLIPBOARD)\n                 (current-kill 0)))\n         (url  (and clip (string-trim clip)))\n         ;; 2. \u63d0\u53d6 repo \u5168\u8def\u5f84 user/repo \u53ca repo \u540d\n         (m    (and url (string-match \"github\\\\.com/\\\\([^/]+/[^/]+\\\\)\" url)))\n         (full (and m (match-string 1 url)))\n         (repo (and full (file-name-nondirectory full))))\n    (unless (and url full repo)\n      (user-error \"\u526a\u8d34\u677f\u4e2d\u6ca1\u6709\u6709\u6548\u7684 GitHub \u4ed3\u5e93 URL\"))\n    ;; 3. \u901a\u8fc7 GitHub API \u62c9 description\n    (let* ((api    (format \"https://api.github.com/repos/%s\" full))\n           ;; \u8bbe\u7f6e\u4e00\u4e2a\u7b80\u5355\u7684 User-Agent \u4ee5\u9632\u88ab\u62d2\n           (url-request-extra-headers\n            '((\"User-Agent\" . \"emacs-insert-github-package-snippet\")))\n           (buf    (url-retrieve-synchronously api))\n           description)\n      (unless buf (user-error \"\u65e0\u6cd5\u8bbf\u95ee GitHub API\"))\n      (with-current-buffer buf\n        (goto-char (point-min))\n        (re-search-forward \"^$\" nil 'move)  ; \u8df3\u8fc7 header\n        (let ((json-object-type 'alist)\n              (json (json-read)))\n          (setq description (or (alist-get 'description json) \"\"))))\n      (kill-buffer buf)\n      ;; 4. \u63d2\u5165\u7ed3\u679c\n      (insert\n       (format \"[\\\"%s\\\", \\\"%s\\\", \\\"%s\\\", Categories.SYSTEM, \\\"%s\\\", None, Waiting_Status.WAITING, Types.PACKAGE],\"\n               repo\n               ;; \u8f6c\u4e49\u53cc\u5f15\u53f7\n               (replace-regexp-in-string \"\\\"\" \"\\\\\\\\\\\"\" description)\n               url\n               ;; \u7528\u4eca\u5929\u7684\u65e5\u671f\n               (format-time-string \"%m/%d/%Y\"))))))",
     "User.20260217223035.2": ";; -*- no-byte-compile: t; -*-\n;;; $DOOMDIR/packages.el\n\n;; To install a package:\n;;\n;;   1. Declare them here in a `package!' statement,\n;;   2. Run 'doom sync' in the shell,\n;;   3. Restart Emacs.\n;;\n;; Use 'C-h f package\\!' to look up documentation for the `package!' macro.\n\n\n;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:\n;; (package! some-package)\n\n;; To install a package directly from a remote git repo, you must specify a\n;; `:recipe'. You'll find documentation on what `:recipe' accepts here:\n;; https://github.com/radian-software/straight.el#the-recipe-format\n;; (package! another-package\n;;   :recipe (:host github :repo \"username/repo\"))\n\n;; If the package you are trying to install does not contain a PACKAGENAME.el\n;; file, or is located in a subdirectory of the repo, you'll need to specify\n;; `:files' in the `:recipe':\n;; (package! this-package\n;;   :recipe (:host github :repo \"username/repo\"\n;;            :files (\"some-file.el\" \"src/lisp/*.el\")))\n\n;; If you'd like to disable a package included with Doom, you can do so here\n;; with the `:disable' property:\n;; (package! builtin-package :disable t)\n\n;; You can override the recipe of a built in package without having to specify\n;; all the properties for `:recipe'. These will inherit the rest of its recipe\n;; from Doom or MELPA/ELPA/Emacsmirror:\n;; (package! builtin-package :recipe (:nonrecursive t))\n;; (package! builtin-package-2 :recipe (:repo \"myfork/package\"))\n\n;; Specify a `:branch' to install a package from a particular branch or tag.\n;; This is required for some packages whose default branch isn't 'master' (which\n;; our package manager can't deal with; see radian-software/straight.el#279)\n;; (package! builtin-package :recipe (:branch \"develop\"))\n\n;; Use `:pin' to specify a particular commit to install.\n;; (package! builtin-package :pin \"1a2b3c4d5e\")\n\n\n;; Doom's packages are pinned to a specific commit and updated from release to\n;; release. The `unpin!' macro allows you to unpin single packages...\n;; (unpin! pinned-package)\n;; ...or multiple packages\n;; (unpin! pinned-package another-pinned-package)\n;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)\n;; (unpin! t)\n",
     "User.20260218000937.1": "(package! ahk-mode)\n",
     "User.20260218115156.1": "(package! chezmoi)\n",
@@ -4492,6 +4522,8 @@
     "User.20260220000018.1": "\"theme\": {\n  \"mode\": \"system\",\n  \"light\": \"One Light\",\n  \"dark\": \"One Dark\",\n},",
     "User.20260219235958.1": "\"ui_font_size\": 16,\n\"buffer_font_size\": 15,",
     "User.20260219235853.1": "\"auto_update\": false\n",
+    "zxc.20260315140713.1": "<< unix dos >>\n{{ if lookPath \"leo\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260315140919.1": "{{ .my.name }}",
     "zxc.20260126154354.1": "<< unix dos >>\n{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125145051.1": "<< unix dos >>\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125152704.1": "<< unix dos >>\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -4524,7 +4556,7 @@
     "User.20260222211658.1": "<< dos >>\n{{ if lookPath \"rclone\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125211938.1": "<< dos >>\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202205715.1": "<< dos >>\n@others\n{{ end -}}",
-    "zxc.20260202205901.1": "# Flower - とても深いグリーン\nhttps://www.bilibili.com/video/BV1EyHYeBEFr",
+    "zxc.20260202205901.1": "# Flower - \u3068\u3066\u3082\u6df1\u3044\u30b0\u30ea\u30fc\u30f3\nhttps://www.bilibili.com/video/BV1EyHYeBEFr",
     "User.20260302151947.1": "<< dos >>\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260302152044.1": "load(io.popen('starship init cmd'):read(\"*a\"))()",
     "zxc.20260201203241.1": "<< dos >>\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -4560,34 +4592,34 @@
       "_mod_time": 1771507120.162
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1772287429.496
+      "_mod_time": 1773465640.5740716
     },
     "zxc.20260125143959.1": {
-      "_mod_time": 1772023346.652
+      "_mod_time": 1773465640.5740716
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1772367990.444
+      "_mod_time": 1773465640.5710716
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1771507120.147
     },
     "User.20260221004652.1": {
-      "_mod_time": 1771684793.908
+      "_mod_time": 1771684793.9083438
     },
     "User.20260221144015.1": {
-      "_mod_time": 1771684793.908
+      "_mod_time": 1771684793.9083438
     },
     "User.20260307193715.1": {
-      "_mod_time": 1772883448.726
+      "_mod_time": 1773465640.5710716
     },
     "User.20260226000855.1": {
-      "_mod_time": 1772036010.445
+      "_mod_time": 1773465640.5710716
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1771507120.147
     },
     "User.20260220233639.1": {
-      "_mod_time": 1772023934.663
+      "_mod_time": 1773465640.5710716
     },
     "zxc.20260202203521.20": {
       "_mod_time": 1771574592.704
@@ -4602,163 +4634,166 @@
       "_mod_time": 1771571707.126
     },
     "zxc.20260202213444.1": {
-      "_mod_time": 1771569080.908
+      "_mod_time": 1771684793.9073439
     },
     "User.20260220142155.2": {
-      "_mod_time": 1771568880.608
+      "_mod_time": 1771684793.9073439
     },
     "User.20260220151435.2": {
-      "_mod_time": 1771573259.107
+      "_mod_time": 1771684793.9073439
     },
     "zxc.20260202215023.1": {
-      "_mod_time": 1771568704.936
+      "_mod_time": 1771684793.9073439
     },
     "zxc.20260202215408.1": {
-      "_mod_time": 1771568734.183
+      "_mod_time": 1771684793.9073439
     },
     "zxc.20260202220030.1": {
-      "_mod_time": 1771568768.817
+      "_mod_time": 1771684793.9073439
     },
     "zxc.20260202220553.1": {
-      "_mod_time": 1771568791.589
+      "_mod_time": 1771684793.9073439
     },
     "User.20260217202401.1": {
-      "_mod_time": 1771517628.633
+      "_mod_time": 1771684793.9073439
     },
     "User.20260220214558.1": {
-      "_mod_time": 1772024408.924
+      "_mod_time": 1773465640.5710716
     },
     "User.20260217214851.1": {
-      "_mod_time": 1771524800.056
+      "_mod_time": 1771684793.9073439
     },
     "User.20260220000301.2": {
-      "_mod_time": 1771517674.642
+      "_mod_time": 1771684793.9073439
     },
     "User.20260220012738.1": {
-      "_mod_time": 1771684793.907
+      "_mod_time": 1771684793.9073439
     },
     "User.20260308173318.1": {
-      "_mod_time": 1772977772.055
+      "_mod_time": 1773465640.5710716
     },
     "User.20260308184128.2": {
-      "_mod_time": 1772977772.103
+      "_mod_time": 1773465640.5710716
     },
     "User.20260308184713.2": {
-      "_mod_time": 1772977772.149
+      "_mod_time": 1773465640.5710716
     },
     "User.20260308214701.2": {
-      "_mod_time": 1772977816.598
+      "_mod_time": 1773465640.5710716
     },
     "User.20260308215626.2": {
-      "_mod_time": 1772978251.494
+      "_mod_time": 1773465640.5710716
     },
     "User.20260226001402.1": {
-      "_mod_time": 1772549269.641
+      "_mod_time": 1773555003.6862504
     },
     "zxc.20260125162740.1": {
-      "_mod_time": 1773319129.392
+      "_mod_time": 1773465640.5740716
     },
     "zxc.20260126185048.1": {
-      "_mod_time": 1773319129.514
+      "_mod_time": 1773465640.5740716
     },
     "User.20260218144120.1": {
-      "_mod_time": 1772024811.743
+      "_mod_time": 1773465640.5740716
     },
     "User.20260218144232.1": {
-      "_mod_time": 1772024901.449
+      "_mod_time": 1773465640.5740716
     },
     "zxc.20260125163108.1": {
       "_mod_time": 1771507120.162
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1772198288.472
+      "_mod_time": 1773465640.5750716
     },
     "zxc.20260125164142.1": {
-      "_mod_time": 1772024975.087
+      "_mod_time": 1773465640.5750716
     },
     "User.20260225235711.1": {
-      "_mod_time": 1772197656.366
+      "_mod_time": 1773465640.5750716
     },
     "User.20260218142211.1": {
-      "_mod_time": 1772198288.54
+      "_mod_time": 1773465640.5770717
     },
     "User.20260218142322.1": {
-      "_mod_time": 1771507120.178
+      "_mod_time": 1771684793.9113438
     },
     "User.20260225235850.1": {
-      "_mod_time": 1772197656.473
+      "_mod_time": 1773465640.5770717
     },
     "zxc.20260130225718.1": {
-      "_mod_time": 1772025344.523
+      "_mod_time": 1773465640.5740716
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1771507120.162
     },
     "User.20260215191351.1": {
-      "_mod_time": 1771684793.908
+      "_mod_time": 1771684793.9083438
     },
     "User.20260220010313.1": {
-      "_mod_time": 1771684793.908
+      "_mod_time": 1771684793.9083438
     },
     "User.20260220010448.1": {
-      "_mod_time": 1771684793.908
+      "_mod_time": 1771684793.9083438
     },
     "zxc.20260202211707.1": {
-      "_mod_time": 1771684793.908
+      "_mod_time": 1771684793.9083438
     },
     "User.20260216000318.1": {
-      "_mod_time": 1772025359.907
+      "_mod_time": 1773465640.5740716
     },
     "User.20260216232855.1": {
       "_mod_time": 1771507120.147
     },
     "User.20260217182613.1": {
-      "_mod_time": 1771507120.147
+      "_mod_time": 1771684793.9083438
     },
     "User.20260301202336.1": {
-      "_mod_time": 1772897070.035
+      "_mod_time": 1773465640.5740716
     },
     "User.20260302151118.1": {
-      "_mod_time": 1772453431.225
+      "_mod_time": 1773465640.5740716
+    },
+    "zxc.20260315140713.1": {
+      "_mod_time": 1773554972.507371
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1772025560.415
+      "_mod_time": 1773465640.5760715
     },
     "zxc.20260125145051.1": {
-      "_mod_time": 1772025586.946
+      "_mod_time": 1773465640.5760715
     },
     "zxc.20260125152704.1": {
-      "_mod_time": 1772025659.427
+      "_mod_time": 1773465640.5760715
     },
     "zxc.20260125152851.2": {
-      "_mod_time": 1772025725.692
+      "_mod_time": 1773465640.5760715
     },
     "zxc.20260125153131.1": {
-      "_mod_time": 1772025743.454
+      "_mod_time": 1773465640.5760715
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1772435189.366
+      "_mod_time": 1773465640.5760715
     },
     "zxc.20260125161631.1": {
-      "_mod_time": 1772025859.311
+      "_mod_time": 1773465640.5760715
     },
     "User.20260216185314.1": {
-      "_mod_time": 1772025901.2
+      "_mod_time": 1773465640.5760715
     },
     "User.20260217223023.1": {
-      "_mod_time": 1772873454.319
+      "_mod_time": 1773465640.5760715
     },
     "User.20260217223030.1": {
-      "_mod_time": 1772885415.778
+      "_mod_time": 1773465640.5760715
     },
     "User.20260217223035.1": {
-      "_mod_time": 1772873482.963
+      "_mod_time": 1773465640.5760715
     },
     "User.20260223014430.1": {
-      "_mod_time": 1772026690.463
+      "_mod_time": 1773465640.5760715
     },
     "User.20260220233323.1": {
-      "_mod_time": 1772026690.554
+      "_mod_time": 1773465640.5760715
     },
     "User.20260215182442.1": {
       "_mod_time": 1771507120.178
@@ -4770,40 +4805,40 @@
       "_mod_time": 1771507120.178
     },
     "zxc.20260201225344.1": {
-      "_mod_time": 1772453431.26
+      "_mod_time": 1773465640.5770717
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1772026886.539
+      "_mod_time": 1773465640.5770717
     },
     "User.20260215205925.1": {
-      "_mod_time": 1772453431.272
+      "_mod_time": 1773465640.5770717
     },
     "User.20260215210400.1": {
-      "_mod_time": 1772030616.178
+      "_mod_time": 1773465640.5770717
     },
     "User.20260220151031.5": {
-      "_mod_time": 1772453431.266
+      "_mod_time": 1773465640.5770717
     },
     "User.20260220151031.28": {
-      "_mod_time": 1772030616.208
+      "_mod_time": 1773465640.5770717
     },
     "User.20260221175549.1": {
-      "_mod_time": 1771841490.923
+      "_mod_time": 1773465640.5770717
     },
     "User.20260221194603.1": {
-      "_mod_time": 1771698861.303
+      "_mod_time": 1771698918.1718292
     },
     "User.20260222211658.1": {
-      "_mod_time": 1773319486.252
+      "_mod_time": 1773465640.5770717
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1772288551.402
+      "_mod_time": 1773465640.5760715
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1771507120.178
     },
     "User.20260302151947.1": {
-      "_mod_time": 1772453431.214
+      "_mod_time": 1773465640.5720716
     },
     "zxc.20260201203241.1": {
       "_mod_time": 1771507120.147
@@ -4818,10 +4853,10 @@
       "_mod_time": 1771507120.147
     },
     "zxc.20260130233132.1": {
-      "_mod_time": 1771698872.19
+      "_mod_time": 1771698918.1718292
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1773324321.719
+      "_mod_time": 1773465640.5720716
     },
     "zxc.20260202195207.1": {
       "_mod_time": 1771507120.147
@@ -4842,28 +4877,28 @@
       "_mod_time": 1771507120.147
     },
     "User.20260219235648.1": {
-      "_mod_time": 1771516837.708
+      "_mod_time": 1771684793.9083438
     },
     "User.20260228231944.1": {
-      "_mod_time": 1772292877.898
+      "_mod_time": 1773465640.5730717
     },
     "User.20260302211536.1": {
-      "_mod_time": 1772457424.871
+      "_mod_time": 1773465640.5720716
     },
     "User.20260302211740.1": {
-      "_mod_time": 1772462309.792
+      "_mod_time": 1773465640.5720716
     },
     "User.20260302211946.1": {
-      "_mod_time": 1772460649.654
+      "_mod_time": 1773465640.5730717
     },
     "User.20260302212424.1": {
-      "_mod_time": 1772457946.98
+      "_mod_time": 1773465640.5730717
     },
     "User.20260302212645.1": {
-      "_mod_time": 1772458039.594
+      "_mod_time": 1773465640.5730717
     },
     "User.20260303213330.1": {
-      "_mod_time": 1772549305.09
+      "_mod_time": 1773465640.5740716
     }
   }
 }
