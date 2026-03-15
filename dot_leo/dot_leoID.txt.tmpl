@@ -1,0 +1,5 @@
+{{ if or (eq .chezmoi.os "windows") (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if lookPath "leo" -}}
+{{ .my.name }}
+{{ end -}}
+{{ end -}}
