@@ -40,3 +40,10 @@
     exact = true
     include = [ "*.ttf" ]
 {{ end -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "psmux" -}}
+[".psmux/plugins"]
+    type = "git-repo"
+    url = "https://github.com/psmux/psmux-plugins"
+{{ end -}}
+{{ end -}}

@@ -1,0 +1,84 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "psmux" -}}
+# ─────────────────────────────────────────────────────────────
+# PSMux Configuration — Factory Defaults
+# ─────────────────────────────────────────────────────────────
+# Reset to defaults by tmuxpanel — Tmux Plugin Panel
+# For more info: https://github.com/marlocarlo/psmux
+#
+# PSMux built-in defaults are applied automatically.
+# Uncomment and change any line below to override a default.
+# To restore a setting to default, comment it out or delete it.
+# ─────────────────────────────────────────────────────────────
+
+# ── General ──────────────────────────────────────────────────
+# Prefix key (PSMux default: C-b)
+# set -g prefix C-b
+
+# Escape key delay in milliseconds (PSMux default: 500)
+# set -g escape-time 500
+
+# Repeat time for prefix keys in ms (PSMux default: 500)
+# set -g repeat-time 500
+
+# Scrollback history limit (PSMux default: 2000)
+# set -g history-limit 2000
+
+# Window/pane base index (PSMux default: 0)
+# set -g base-index 0
+# setw -g pane-base-index 0
+
+# ── Mouse ────────────────────────────────────────────────────
+# Mouse support (PSMux default: on — PSMux enables mouse by default)
+# set -g mouse on
+
+# ── Display ──────────────────────────────────────────────────
+# Allow window auto-rename (PSMux default: on)
+# setw -g automatic-rename on
+
+# Renumber windows when one is closed (PSMux default: off)
+# set -g renumber-windows off
+
+# Message display time in ms (PSMux default: 750)
+# set -g display-time 750
+
+# Pane number display time in ms (PSMux default: 1000)
+# set -g display-panes-time 1000
+
+# ── Status Bar ───────────────────────────────────────────────
+# Show status bar (PSMux default: on)
+# set -g status on
+
+# Status bar position (PSMux default: bottom)
+# set -g status-position bottom
+
+# Status refresh interval in seconds (PSMux default: 15)
+# set -g status-interval 15
+
+# Status bar style (PSMux default: bg=green,fg=black)
+# set -g status-style 'bg=green,fg=black'
+
+# Status bar justify (PSMux default: left)
+# set -g status-justify left
+
+# ── Key Bindings ─────────────────────────────────────────────
+# Copy mode keys (PSMux default: emacs)
+# setw -g mode-keys emacs
+
+# Focus events (PSMux default: off)
+# set -g focus-events off
+
+# Clipboard integration (PSMux default: on)
+# set -g set-clipboard on
+
+
+# ── Plugins (managed by tmuxpanel) ──────────────────────
+set -g @plugin 'psmux-plugins/psmux-theme-tokyonight'
+source-file 'C:\Users\User\.psmux\plugins\psmux-theme-tokyonight\plugin.conf'
+set -g @plugin 'psmux-plugins/psmux-sensible'
+source-file 'C:\Users\User\.psmux\plugins\psmux-sensible\plugin.conf'
+set -g @plugin 'psmux-plugins/psmux-prefix-highlight'
+source-file 'C:\Users\User\.psmux\plugins\psmux-prefix-highlight\plugin.conf'
+# ── End plugins ──────────────────────────────────────
+{{ end -}}
+{{ end -}}
