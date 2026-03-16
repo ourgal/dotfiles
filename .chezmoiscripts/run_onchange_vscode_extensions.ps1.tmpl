@@ -1,6 +1,6 @@
 {{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "codium" -}}
-codium --update-extensions
+{{ if lookPath "code" -}}
+code --update-extensions
 $extensions = @(
     "tamasfe.even-better-toml"
     "carlos-algms.make-task-provider"

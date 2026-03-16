@@ -4203,8 +4203,8 @@
     "zxc.20260202213506.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vscodium\" \"current\" \"install-context.reg\" | quote }}\n{{ if not (lookPath \"code\") -}}\nreg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vscodium\" \"current\" \"install-associations.reg\" | quote }}\n{{ end -}}",
     "User.20260220142155.2": "<< dos >>\n{{ if lookPath \"code\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260220142155.3": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vscode\" \"current\" \"install-context.reg\" | quote }}\nreg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vscode\" \"current\" \"install-associations.reg\" | quote }}",
-    "User.20260220151435.2": "<< dos >>\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "User.20260220151435.3": "codium --update-extensions\n$extensions = @(\n    @others\n    << vscode >>\n    )\nforeach ($e in $extensions) {\n    Write-Host \"Install vscodium extension $e\"\n    code --install-extension $e\n}",
+    "User.20260220151435.2": "<< dos >>\n{{ if lookPath \"code\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "User.20260220151435.3": "code --update-extensions\n$extensions = @(\n    @others\n    << vscode >>\n    )\nforeach ($e in $extensions) {\n    Write-Host \"Install vscodium extension $e\"\n    code --install-extension $e\n}",
     "User.20260220153055.1": "@others",
     "User.20260220154010.1": "\"ms-vscode-remote.remote-wsl\"",
     "User.20260220153119.1": "\"danprince.vsnetrw\"",
@@ -4661,7 +4661,7 @@
       "_mod_time": 1773571522.623799
     },
     "User.20260220151435.2": {
-      "_mod_time": 1773571522.623799
+      "_mod_time": 1773675559.085
     },
     "zxc.20260202215023.1": {
       "_mod_time": 1773571522.5609202
