@@ -462,6 +462,19 @@
                           "vh": "content"
                         }
                       ]
+                    },
+                    {
+                      "gnx": "zxc.20260317000523.1",
+                      "vh": "psmux plugin",
+                      "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
+                          "gnx": "zxc.20260317000523.3",
+                          "vh": "content"
+                        }
+                      ]
                     }
                   ]
                 }
@@ -3093,6 +3106,25 @@
       ]
     },
     {
+      "gnx": "zxc.20260317002543.1",
+      "vh": "psmux",
+      "children": [
+        {
+          "gnx": "zxc.20260317002829.1",
+          "vh": "@clean dot_psmux.conf.tmpl",
+          "children": [
+            {
+              "gnx": "User.20260225204326.1"
+            },
+            {
+              "gnx": "zxc.20260317003033.1",
+              "vh": "content"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "gnx": "zxc.20260125152614.1",
       "vh": "config",
       "children": [
@@ -4175,6 +4207,8 @@
     "zxc.20260202201936.1": "[\"Appdata/Roaming/mpv/scripts/thumbfast.lua\"]\n    type = \"file\"\n    url = \"https://github.com/po5/thumbfast/raw/refs/heads/master/thumbfast.lua\"\n\n[\"Appdata/Roaming/mpv/scripts/SmartSkip.lua\"]\n    type = \"file\"\n    url = \"https://github.com/Eisa01/mpv-scripts/raw/refs/heads/master/scripts/SmartSkip.lua\"\n",
     "User.20260226001211.1": "<< unix >>\n@others\n{{ end -}}\n",
     "User.20260220235538.1": "[\".local/share/fonts/nerdsymbols\"]\n    type = \"archive\"\n    url = \"https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdFontsSymbolsOnly.tar.xz\"\n    exact = true\n    include = [ \"*.ttf\" ]\n",
+    "zxc.20260317000523.1": "<< dos >>\n{{ if lookPath \"psmux\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260317000523.3": "[\".psmux/plugins\"]\n    type = \"git-repo\"\n    url = \"https://github.com/psmux/psmux-plugins\"",
     "zxc.20260202203521.17": "<< dos >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202203521.18": "# 5.12.0\nirm https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/windows.ps1 | iex",
     "User.20260220233639.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -4544,6 +4578,8 @@
     "User.20260219235853.1": "\"auto_update\": false\n",
     "zxc.20260315140713.1": "<< unix dos >>\n{{ if lookPath \"leo\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260315140919.1": "{{ .my.name }}",
+    "zxc.20260317002829.1": "<< dos >>\n{{ if lookPath \"psmux\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260317003033.1": "# ─────────────────────────────────────────────────────────────\n# PSMux Configuration — Factory Defaults\n# ─────────────────────────────────────────────────────────────\n# Reset to defaults by tmuxpanel — Tmux Plugin Panel\n# For more info: https://github.com/marlocarlo/psmux\n#\n# PSMux built-in defaults are applied automatically.\n# Uncomment and change any line below to override a default.\n# To restore a setting to default, comment it out or delete it.\n# ─────────────────────────────────────────────────────────────\n\n# ── General ──────────────────────────────────────────────────\n# Prefix key (PSMux default: C-b)\n# set -g prefix C-b\n\n# Escape key delay in milliseconds (PSMux default: 500)\n# set -g escape-time 500\n\n# Repeat time for prefix keys in ms (PSMux default: 500)\n# set -g repeat-time 500\n\n# Scrollback history limit (PSMux default: 2000)\n# set -g history-limit 2000\n\n# Window/pane base index (PSMux default: 0)\n# set -g base-index 0\n# setw -g pane-base-index 0\n\n# ── Mouse ────────────────────────────────────────────────────\n# Mouse support (PSMux default: on — PSMux enables mouse by default)\n# set -g mouse on\n\n# ── Display ──────────────────────────────────────────────────\n# Allow window auto-rename (PSMux default: on)\n# setw -g automatic-rename on\n\n# Renumber windows when one is closed (PSMux default: off)\n# set -g renumber-windows off\n\n# Message display time in ms (PSMux default: 750)\n# set -g display-time 750\n\n# Pane number display time in ms (PSMux default: 1000)\n# set -g display-panes-time 1000\n\n# ── Status Bar ───────────────────────────────────────────────\n# Show status bar (PSMux default: on)\n# set -g status on\n\n# Status bar position (PSMux default: bottom)\n# set -g status-position bottom\n\n# Status refresh interval in seconds (PSMux default: 15)\n# set -g status-interval 15\n\n# Status bar style (PSMux default: bg=green,fg=black)\n# set -g status-style 'bg=green,fg=black'\n\n# Status bar justify (PSMux default: left)\n# set -g status-justify left\n\n# ── Key Bindings ─────────────────────────────────────────────\n# Copy mode keys (PSMux default: emacs)\n# setw -g mode-keys emacs\n\n# Focus events (PSMux default: off)\n# set -g focus-events off\n\n# Clipboard integration (PSMux default: on)\n# set -g set-clipboard on\n\n\n# ── Plugins (managed by tmuxpanel) ──────────────────────\nset -g @plugin 'psmux-plugins/psmux-theme-tokyonight'\nsource-file 'C:\\Users\\User\\.psmux\\plugins\\psmux-theme-tokyonight\\plugin.conf'\nset -g @plugin 'psmux-plugins/psmux-sensible'\nsource-file 'C:\\Users\\User\\.psmux\\plugins\\psmux-sensible\\plugin.conf'\nset -g @plugin 'psmux-plugins/psmux-prefix-highlight'\nsource-file 'C:\\Users\\User\\.psmux\\plugins\\psmux-prefix-highlight\\plugin.conf'\n# ── End plugins ──────────────────────────────────────",
     "zxc.20260126154354.1": "<< unix dos >>\n{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125145051.1": "<< unix dos >>\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125152704.1": "<< unix dos >>\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -4619,7 +4655,7 @@
       "_mod_time": 1773571522.654681
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1773571522.5609202
+      "_mod_time": 1773554567.436
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1773571522.6390562
@@ -4634,76 +4670,76 @@
       "_mod_time": 1773630580.1590984
     },
     "User.20260226000855.1": {
-      "_mod_time": 1773571522.544897
+      "_mod_time": 1773678249.716
     },
     "zxc.20260202203521.17": {
-      "_mod_time": 1773571522.623799
+      "_mod_time": 1773554567.451
     },
     "User.20260220233639.1": {
       "_mod_time": 1773571522.623799
     },
     "zxc.20260202203521.20": {
-      "_mod_time": 1773642704.0680594
+      "_mod_time": 1773558347.276
     },
     "User.20260216114746.1": {
-      "_mod_time": 1773571522.623799
+      "_mod_time": 1773554567.436
     },
     "zxc.20260202203521.14": {
-      "_mod_time": 1773571522.5609202
+      "_mod_time": 1773554567.436
     },
     "zxc.20260202203521.3": {
-      "_mod_time": 1773571522.623799
+      "_mod_time": 1773554567.451
     },
     "zxc.20260202213444.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1773554567.451
     },
     "User.20260220142155.2": {
-      "_mod_time": 1773571522.623799
+      "_mod_time": 1773554567.451
     },
     "User.20260220151435.2": {
       "_mod_time": 1773675559.085
     },
     "zxc.20260202215023.1": {
-      "_mod_time": 1773571522.5609202
+      "_mod_time": 1773554567.436
     },
     "zxc.20260202215408.1": {
-      "_mod_time": 1773571522.623799
+      "_mod_time": 1773554567.451
     },
     "zxc.20260202220030.1": {
-      "_mod_time": 1773571522.623799
+      "_mod_time": 1773554567.451
     },
     "zxc.20260202220553.1": {
-      "_mod_time": 1773571522.623799
+      "_mod_time": 1773554567.451
     },
     "User.20260217202401.1": {
-      "_mod_time": 1773571522.623799
+      "_mod_time": 1773554567.436
     },
     "User.20260220214558.1": {
       "_mod_time": 1773571522.623799
     },
     "User.20260217214851.1": {
-      "_mod_time": 1773571522.623799
+      "_mod_time": 1773554567.451
     },
     "User.20260220000301.2": {
-      "_mod_time": 1773571522.623799
+      "_mod_time": 1773554567.436
     },
     "User.20260220012738.1": {
       "_mod_time": 1773571522.623799
     },
     "User.20260308173318.1": {
-      "_mod_time": 1773571522.623799
+      "_mod_time": 1773554567.436
     },
     "User.20260308184128.2": {
-      "_mod_time": 1773571522.623799
+      "_mod_time": 1773554567.436
     },
     "User.20260308184713.2": {
-      "_mod_time": 1773571522.623799
+      "_mod_time": 1773554567.436
     },
     "User.20260308214701.2": {
-      "_mod_time": 1773571522.623799
+      "_mod_time": 1773554567.436
     },
     "User.20260308215626.2": {
-      "_mod_time": 1773571522.623799
+      "_mod_time": 1773554567.436
     },
     "User.20260226001402.1": {
       "_mod_time": 1773642704.0680594
@@ -4712,7 +4748,7 @@
       "_mod_time": 1773571522.654681
     },
     "zxc.20260126185048.1": {
-      "_mod_time": 1773571522.654681
+      "_mod_time": 1773554567.467
     },
     "User.20260218144120.1": {
       "_mod_time": 1773571522.654681
@@ -4733,13 +4769,13 @@
       "_mod_time": 1773571522.654681
     },
     "User.20260218142211.1": {
-      "_mod_time": 1773571522.6859305
+      "_mod_time": 1773554567.518
     },
     "User.20260218142322.1": {
-      "_mod_time": 1773571522.6859305
+      "_mod_time": 1773554567.518
     },
     "User.20260225235850.1": {
-      "_mod_time": 1773571522.6859305
+      "_mod_time": 1773554567.503
     },
     "zxc.20260130225718.1": {
       "_mod_time": 1773571522.654681
@@ -4763,22 +4799,25 @@
       "_mod_time": 1773571522.654681
     },
     "User.20260216232855.1": {
-      "_mod_time": 1773571522.654681
+      "_mod_time": 1773554567.467
     },
     "User.20260217182613.1": {
-      "_mod_time": 1773571522.654681
+      "_mod_time": 1773554567.467
     },
     "User.20260301202336.1": {
-      "_mod_time": 1773642704.0837219
+      "_mod_time": 1773578931.18
     },
     "User.20260302151118.1": {
-      "_mod_time": 1773571522.654681
+      "_mod_time": 1773554567.467
     },
     "zxc.20260315140713.1": {
       "_mod_time": 1773642704.0837219
     },
+    "zxc.20260317002829.1": {
+      "_mod_time": 1773680555.469
+    },
     "zxc.20260126154354.1": {
-      "_mod_time": 1773571522.6703062
+      "_mod_time": 1773554567.482
     },
     "zxc.20260125145051.1": {
       "_mod_time": 1773571522.6703062
@@ -4817,112 +4856,112 @@
       "_mod_time": 1773571522.6703062
     },
     "User.20260215182442.1": {
-      "_mod_time": 1773571522.6703062
+      "_mod_time": 1773554567.503
     },
     "User.20260217022114.1": {
-      "_mod_time": 1773571522.6703062
+      "_mod_time": 1773554567.503
     },
     "User.20260215182818.1": {
-      "_mod_time": 1773571522.6703062
+      "_mod_time": 1773554567.503
     },
     "zxc.20260201225344.1": {
-      "_mod_time": 1773571522.6703062
+      "_mod_time": 1773554567.503
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1773571522.6859305
+      "_mod_time": 1773554567.503
     },
     "User.20260215205925.1": {
-      "_mod_time": 1773571522.6859305
+      "_mod_time": 1773554567.503
     },
     "User.20260215210400.1": {
-      "_mod_time": 1773571522.6859305
+      "_mod_time": 1773554567.503
     },
     "User.20260220151031.5": {
-      "_mod_time": 1773571522.6703062
+      "_mod_time": 1773554567.503
     },
     "User.20260220151031.28": {
-      "_mod_time": 1773571522.6703062
+      "_mod_time": 1773554567.503
     },
     "User.20260221175549.1": {
-      "_mod_time": 1773571522.6703062
+      "_mod_time": 1773554567.503
     },
     "User.20260221194603.1": {
-      "_mod_time": 1773571522.6859305
+      "_mod_time": 1773554567.503
     },
     "User.20260222211658.1": {
-      "_mod_time": 1773571522.6703062
+      "_mod_time": 1773554567.503
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1773571522.6703062
+      "_mod_time": 1773554567.503
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1773650352.341
     },
     "zxc.20260202205715.1": {
-      "_mod_time": 1773571522.6703062
+      "_mod_time": 1773554567.503
     },
     "User.20260302151947.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1773554567.451
     },
     "zxc.20260201203241.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1773554567.467
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1773554567.467
     },
     "zxc.20260201214114.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1773554567.467
     },
     "zxc.20260201140523.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1773554567.467
     },
     "zxc.20260130233132.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1773554567.467
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1773649849.5007834
+      "_mod_time": 1773655313.469
     },
     "zxc.20260202195207.1": {
-      "_mod_time": 1773571522.654681
+      "_mod_time": 1773554567.467
     },
     "zxc.20260214105528.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1773554567.467
     },
     "zxc.20260214142543.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1773554567.467
     },
     "User.20260215234634.1": {
-      "_mod_time": 1773571522.654681
+      "_mod_time": 1773554567.467
     },
     "User.20260216124226.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1773554567.467
     },
     "User.20260216125422.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1773554567.467
     },
     "User.20260219235648.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1773554567.467
     },
     "User.20260228231944.1": {
-      "_mod_time": 1773571522.654681
+      "_mod_time": 1773554567.467
     },
     "User.20260302211536.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1773554567.451
     },
     "User.20260302211740.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1773554567.451
     },
     "User.20260302211946.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1773554567.467
     },
     "User.20260302212424.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1773554567.467
     },
     "User.20260302212645.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1773554567.467
     },
     "User.20260303213330.1": {
-      "_mod_time": 1773571522.654681
+      "_mod_time": 1773554567.467
     }
   }
 }
