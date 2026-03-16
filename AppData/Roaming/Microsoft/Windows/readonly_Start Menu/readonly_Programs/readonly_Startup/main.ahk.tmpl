@@ -31,14 +31,6 @@ Run("mpd {{ joinPath (env "appdata") "mpd" "mpd.conf"}}", {{ .chezmoi.homeDir | 
 {{ if lookPath "kdeconnect-cli" -}}
 Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "kdeconnect" "current" "bin" "kdeconnectd.exe" }}", {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
-{{ $powertoys := joinPath .chezmoi.homeDir "scoop" "apps" "powertoys" "current" "powertoys.exe" -}}
-{{ if stat $powertoys -}}
-Run({{ $powertoys | quote }}, {{ .chezmoi.homeDir | quote }}, "Hide")
-{{ end -}}
-{{ $flow := joinPath .chezmoi.homeDir "scoop" "apps" "flow-launcher" "current" "Flow.Launcher.exe" -}}
-{{ if stat $flow -}}
-Run({{ $flow | quote }}, {{ .chezmoi.homeDir | quote }}, "Hide")
-{{ end -}}
 {{ if and (lookPath "wt") (lookPath "pwsh") -}}
 RunScoop("Windows Terminal")
 {{ end -}}
@@ -53,5 +45,8 @@ Run({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
 {{ end -}}
 {{ if lookPath "everything" -}}
 Run("everything", , "Hide")
+{{ end -}}
+{{ if lookPath "autohotkey" -}}
+Run({{ joinPath .chezmoi.homeDir "Documents" "autohotkey" "keybindings.ahk" | quote }}, , "Hide")
 {{ end -}}
 {{ end -}}
