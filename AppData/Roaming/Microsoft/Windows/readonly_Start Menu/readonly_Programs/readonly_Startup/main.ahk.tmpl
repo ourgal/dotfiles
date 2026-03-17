@@ -43,7 +43,10 @@ Run("firefox", , "Max")
 Run("brave", , "Max")
 {{ end -}}
 {{ $vscode := joinPath .chezmoi.homeDir "scoop" "apps" "vscode" "current" "Code.exe" -}}
-{{ if stat $vscode -}}
+{{ $vscodium := joinPath .chezmoi.homeDir "scoop" "apps" "vscodium" "current" "VSCodium.exe" -}}
+{{ if stat $vscodium -}}
+Run({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
+{{ else if stat $vscode -}}
 Run({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
 {{ end -}}
 {{ if lookPath "everything" -}}
