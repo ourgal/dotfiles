@@ -12,6 +12,9 @@ Run("glazewm", {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ if and (eq .chezmoi.hostname "nuc") (lookPath "deskflow-core") -}}
 Run("deskflow-core client", , "Hide")
 {{ end -}}
+{{ if and (eq .chezmoi.hostname "work") (lookPath "deskflow-core") -}}
+Run("deskflow-core server", , "Hide")
+{{ end -}}
 {{ if lookPath "aria2c" -}}
 Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "aria2" "current" "aria2c.exe" }} --enable-rpc", {{ joinPath .chezmoi.homeDir "Downloads" | quote }}, "Hide")
 {{ end -}}
