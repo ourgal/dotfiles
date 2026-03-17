@@ -55,4 +55,7 @@ Run("everything", , "Hide")
 {{ if lookPath "autohotkey" -}}
 Run({{ joinPath .chezmoi.homeDir "Documents" "autohotkey" "keybindings.ahk" | quote }}, , "Hide")
 {{ end -}}
+{{ if lookPath "dufs" -}}
+Run("dufs", {{ joinPath .chezmoi.homeDir "Documents" "dufs" | quote }}, "Hide")
+{{ end -}}
 {{ end -}}
