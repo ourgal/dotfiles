@@ -121,6 +121,7 @@ window_rules:
   - commands: ["move --workspace 3"]
     match:
       - window_process: { regex: "Code" }
+      - window_process: { regex: "VSCodium" }
   - commands: ['ignore']
     match:
       # Ignores any Zebar windows.
