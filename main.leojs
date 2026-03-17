@@ -1009,6 +1009,29 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "gnx": "zxc.20260317084931.1",
+                  "vh": "copy deskflow server config",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260317085009.1",
+                      "vh": "@clean run_onchange_after_deskflow_server_config.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
+                          "gnx": "zxc.20260317085037.1",
+                          "vh": "check"
+                        },
+                        {
+                          "gnx": "zxc.20260317085321.1",
+                          "vh": "content"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -1595,7 +1618,11 @@
             },
             {
               "gnx": "zxc.20260128010842.1",
-              "vh": "deskflow"
+              "vh": "deskflow client"
+            },
+            {
+              "gnx": "zxc.20260317082237.1",
+              "vh": "deskflow server"
             },
             {
               "gnx": "User.20260221160445.1",
@@ -2250,18 +2277,22 @@
           "vh": "settings",
           "children": [
             {
-              "gnx": "zxc.20260202195009.1",
-              "vh": "content",
+              "gnx": "zxc.20260201225427.1",
+              "vh": "nuc",
               "children": [
                 {
-                  "gnx": "zxc.20260201225427.1",
-                  "vh": "nuc",
-                  "children": [
-                    {
-                      "gnx": "zxc.20260201225513.1",
-                      "vh": "content"
-                    }
-                  ]
+                  "gnx": "zxc.20260201225513.1",
+                  "vh": "content"
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260317083115.1",
+              "vh": "work",
+              "children": [
+                {
+                  "gnx": "zxc.20260317082956.1",
+                  "vh": "content"
                 }
               ]
             }
@@ -3431,7 +3462,11 @@
                                     },
                                     {
                                       "gnx": "User.20260217022247.1",
-                                      "vh": "content"
+                                      "vh": "<< nuc >>"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260317083654.1",
+                                      "vh": "<< work >>"
                                     }
                                   ]
                                 },
@@ -3447,6 +3482,19 @@
                                       "vh": "nuc"
                                     }
                                   ]
+                                },
+                                {
+                                  "gnx": "zxc.20260317084145.1",
+                                  "vh": "@clean trusted-client.tmpl",
+                                  "children": [
+                                    {
+                                      "gnx": "User.20260225204326.1"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260317084212.1",
+                                      "vh": "work"
+                                    }
+                                  ]
                                 }
                               ]
                             }
@@ -3460,7 +3508,19 @@
                               "gnx": "User.20260225204326.1"
                             },
                             {
-                              "gnx": "zxc.20260202195009.1"
+                              "gnx": "zxc.20260201225427.1"
+                            }
+                          ]
+                        },
+                        {
+                          "gnx": "zxc.20260317082914.1",
+                          "vh": "@clean deskflow-server.conf.tmpl",
+                          "children": [
+                            {
+                              "gnx": "User.20260225204326.1"
+                            },
+                            {
+                              "gnx": "zxc.20260317083115.1"
                             }
                           ]
                         }
@@ -4273,6 +4333,9 @@
     "User.20260308214701.4": "{{ $app := \"chromium\" -}}\n{{ $name := printf \"%s (Scoop)\" ($app | title) -}}\n{{ $reg_name := printf \"Scoop%sHTM\" ($app | title) -}}\n{{ $user := \"User\" -}}\n{{ $bin_path := lookPath $app -}}\n{{ $icon := print (joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"ungoogled-chromium\" \"current\" \"chrome.exe\") \",0\" | quote }}\nNew-Item {{ $app }}.reg -type file\n$contentToAdd = @\"\nWindows Registry Editor Version 5.00\n\n\n[HKEY_CURRENT_USER\\SOFTWARE\\RegisteredApplications]\n{{ $name | quote }}=\"Software\\\\Clients\\\\StartMenuInternet\\\\{{ $name }}\\\\Capabilities\"\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\shell\\open\\command]\n\"\"={{ $bin_path | quote | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\DefaultIcon]\n\"\"={{ $icon }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities\\FileAssociations]\n\".html\"={{ $reg_name | quote }}\n\".htm\"={{ $reg_name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities\\URLAssociations]\n\"https\"={{ $reg_name | quote }}\n\"http\"={{ $reg_name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities]\n\"ApplicationName\"={{ $name | quote }}\n\"ApplicationIcon\"={{ $icon }}\n\"ApplicationDescription\"={{ $app | title | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}]\n\"\"={{ $name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}\\shell\\open\\command]\n\"\"={{ print ($bin_path | quote) \" %1\" | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}\\Application]\n; Name in Dialog\n\"ApplicationName\"={{ $name | quote }}\n\"ApplicationDescription\"=\"It's {{ $app | title }}.\"\n\"ApplicationIcon\"={{ $icon }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}]\n\"\"={{ $name | quote }}\n\"@\n\n Add-Content {{ $app }}.reg $contentToAdd\n\nreg import .\\{{ $app }}.reg\nrm .\\{{ $app }}.reg\n",
     "User.20260308215626.2": "<< dos >>\n{{ if lookPath \"chromium\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260308215626.4": "{{ $app := \"librewolf\" -}}\n{{ $name := printf \"%s (Scoop)\" ($app | title) -}}\n{{ $reg_name := printf \"Scoop%sHTM\" ($app | title) -}}\n{{ $user := \"User\" -}}\n{{ $bin_path := lookPath $app -}}\n{{ $icon := print (joinPath .chezmoi.homeDir \"scoop\" \"apps\" $app \"current\" \"librewolf-portable.exe\") \",0\" | quote }}\nNew-Item {{ $app }}.reg -type file\n$contentToAdd = @\"\nWindows Registry Editor Version 5.00\n\n\n[HKEY_CURRENT_USER\\SOFTWARE\\RegisteredApplications]\n{{ $name | quote }}=\"Software\\\\Clients\\\\StartMenuInternet\\\\{{ $name }}\\\\Capabilities\"\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\shell\\open\\command]\n\"\"={{ $bin_path | quote | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\DefaultIcon]\n\"\"={{ $icon }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities\\FileAssociations]\n\".html\"={{ $reg_name | quote }}\n\".htm\"={{ $reg_name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities\\URLAssociations]\n\"https\"={{ $reg_name | quote }}\n\"http\"={{ $reg_name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities]\n\"ApplicationName\"={{ $name | quote }}\n\"ApplicationIcon\"={{ $icon }}\n\"ApplicationDescription\"={{ $app | title | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}]\n\"\"={{ $name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}\\shell\\open\\command]\n\"\"={{ print ($bin_path | quote) \" %1\" | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}\\Application]\n; Name in Dialog\n\"ApplicationName\"={{ $name | quote }}\n\"ApplicationDescription\"=\"It's {{ $app | title }}.\"\n\"ApplicationIcon\"={{ $icon }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}]\n\"\"={{ $name | quote }}\n\"@\n\n Add-Content {{ $app }}.reg $contentToAdd\n\nreg import .\\{{ $app }}.reg\nrm .\\{{ $app }}.reg\n",
+    "zxc.20260317085009.1": "<< dos >>\n{{ if and (lookPath \"chromium\") (eq .chezmoi.hostname \"work\") -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260317085037.1": "{{ template \"checkPath\" \"shasum\" -}}\n",
+    "zxc.20260317085321.1": "{{ if lookPath \"shasum\" -}}\n{{ $scoop_persist := joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"deskflow\" -}}\n{{ $conf := joinPath $scoop_persist \"settings\" \"deskflow-server.conf\" -}}\n{{ $cert := joinPath $scoop_persist \"settings\" \"tls\" \"deskflow.pem\" -}}\n{{ $trusted := joinPath $scoop_persist \"settings\" \"tls\" \"trusted-client\" -}}\n\n# {{ output \"shasum\" $conf | trim }}\n# {{ output \"shasum\" $cert | trim }}\n# {{ output \"shasum\" $trusted | trim }}\n\nmkdir \"C:/ProgramData/Deskflow/tls\" -ErrorAction SilentlyContinue\ncp {{ $conf }} \"C:/ProgramData/Deskflow/\"\ncp {{ $cert }} \"C:/ProgramData/Deskflow/tls/\"\ncp {{ $trusted }} \"C:/ProgramData/Deskflow/tls/\"\n{{ end -}}",
     "User.20260226001402.1": "@others",
     "zxc.20260315140948.1": "[my]\nname = \"zxc\"",
     "User.20260226001414.1": "[my.msys2]\npackages = [\"mingw-w64-x86_64-aspell\"]\n",
@@ -4358,6 +4421,7 @@
     "zxc.20260128200402.1": "RunScoop(app)\n{\n    appdata_dir := EnvGet(\"AppData\")\n    user_dir := EnvGet(\"userprofile\")\n    scoop_apps_dir := appdata_dir . \"/Microsoft/Windows/Start Menu/Programs/Scoop Apps\"\n    Run(scoop_apps_dir . \"/\" . app . \".lnk\", user_dir, \"Max\")\n}\n",
     "User.20260302135922.1": "{{ if lookPath \"glazewm\" -}}\nRun(\"glazewm\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
     "zxc.20260128010842.1": "{{ if and (eq .chezmoi.hostname \"nuc\") (lookPath \"deskflow-core\") -}}\nRun(\"deskflow-core client\", , \"Hide\")\n{{ end -}}\n",
+    "zxc.20260317082237.1": "{{ if and (eq .chezmoi.hostname \"work\") (lookPath \"deskflow-core\") -}}\nRun(\"deskflow-core server\", , \"Hide\")\n{{ end -}}\n",
     "User.20260221160445.1": "{{ if lookPath \"aria2c\" -}}\nRun(\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"aria2\" \"current\" \"aria2c.exe\" }} --enable-rpc\", {{ joinPath .chezmoi.homeDir \"Downloads\" | quote }}, \"Hide\")\n{{ end -}}",
     "User.20260221180424.1": "{{ if lookPath \"espansod\" -}}\nRun(\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"espanso\" \"current\" \"espansod.exe\" }} start\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
     "User.20260221193906.1": "{{ $win_gpg_agent := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"win-gpg-agent\" \"current\" \"agent-gui.exe\" }}\n{{ if stat $win_gpg_agent -}}\nRun({{ $win_gpg_agent | quote }}, , \"Hide\")\n{{ end -}}",
@@ -4465,6 +4529,8 @@
     "zxc.20260201203539.1": "enable-win32-openssh-support\nenable-ssh-support\ngrab",
     "zxc.20260201225427.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}",
     "zxc.20260201225513.1": "[core]\nscreenName=nuc\nlastVersion=1.25.0.0\ncoreMode=1\nport=24800\npreventSleep=false\nlanguage=English\nwlClipboard=false\nprocessMode=1\ncomputerName=nuc\n\n[internalConfig]\nnumColumns=5\nnumRows=3\nhasHeartbeat=false\nheartbeat=5000\nprotocol=1\nrelativeMouseMoves=false\nwin32KeepForeground=false\nhasSwitchDelay=false\nswitchDelay=250\nhasSwitchDoubleTap=false\nswitchDoubleTap=250\nswitchCornerSize=0\ndisableLockToScreen=false\nclipboardSharing=true\nclipboardSharingSize=3072\nswitchCornerArray\\1\\switchCorner=false\nswitchCornerArray\\2\\switchCorner=false\nswitchCornerArray\\3\\switchCorner=false\nswitchCornerArray\\4\\switchCorner=false\nswitchCornerArray\\size=4\nscreens\\1\\name=\nscreens\\2\\name=\nscreens\\3\\name=\nscreens\\4\\name=\nscreens\\5\\name=\nscreens\\6\\name=\nscreens\\7\\name=\nscreens\\8\\name=\nscreens\\9\\name=\nscreens\\10\\name=\nscreens\\11\\name=\nscreens\\12\\name=\nscreens\\13\\name=\nscreens\\14\\name=\nscreens\\15\\name=\nscreens\\size=15\nhotkeys\\size=0\n\n[gui]\nlogExpanded=true\nenableUpdateCheck=false\nautoHide=true\ncloseToTray=true\nsymbolicTrayIcon=true\ncloseReminder=false\n\n[log]\nlevel=4\ntoFile=false\nfile=C:/Users/User/deskflow.log\nguiDebug=false\n\n[daemon]\nelevate=false\n\n[security]\ncertificate=C:/Users/User/scoop/apps/deskflow/current/settings/tls/deskflow.pem\nkeySize=2048\ntlsEnabled=true\ncheckPeerFingerprints=true\n\n[client]\nlanguageSync=true\nremoteHost=home.local",
+    "zxc.20260317083115.1": "{{ if eq .chezmoi.hostname \"work\" -}}\n@others\n{{ end -}}\n",
+    "zxc.20260317082956.1": "section: screens\n\toffice2043:\n\t\thalfDuplexCapsLock = false\n\t\thalfDuplexNumLock = false\n\t\thalfDuplexScrollLock = false\n\t\txtestIsXineramaUnaware = false\n\t\tswitchCorners = none\n\t\tswitchCornerSize = 0\n\twork:\n\t\thalfDuplexCapsLock = false\n\t\thalfDuplexNumLock = false\n\t\thalfDuplexScrollLock = false\n\t\txtestIsXineramaUnaware = false\n\t\tswitchCorners = none\n\t\tswitchCornerSize = 0\nend\n\nsection: aliases\nend\n\nsection: links\n\toffice2043:\n\t\tright = work\n\twork:\n\t\tleft = office2043\nend\n\nsection: options\n\tprotocol = barrier\n\trelativeMouseMoves = false\n\twin32KeepForeground = false\n\tdefaultLockToScreenState = false\n\tdisableLockToScreen = false\n\tclipboardSharing = true\n\tclipboardSharingSize = 3072\n\tswitchCorners = none \n\tswitchCornerSize = 0\nend\n",
     "zxc.20260202195341.1": "af=%11%scaletempo2\nalang=%16%ja,jp,jpn,en,eng\naudio-file-auto=%5%fuzzy\naudio-pitch-correction=%3%yes\nbackground-color=%7%#000000\nblend-subtitles=%5%video\nforce-seekable=%3%yes\nfullscreen=%3%yes\nhwdec=%4%auto\nkeep-open=%6%always\nosd-back-color=%7%#282a2e\nosd-border-color=%7%#282a2e\nosd-color=%7%#c5c8c6\nosd-font=%11%DejaVu Sans\nosd-shadow-color=%7%#1d1f21\npause=%2%no\nsave-position-on-quit=%3%yes\nslang=%46%en,eng,chs,sc,zh,chi,zho,zh-Hant,zh-CN,zh-Hans\nsub-auto=%5%fuzzy\nsub-font=%11%DejaVu Sans\nvolume=%3%100\nvolume-max=%3%200",
     "zxc.20260202211707.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"editorconfig\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202211948.1": "root=true\n\n[*]\ncharset=utf-8\n{{ if eq .chezmoi.os \"linux\" -}}\nend_of_line=lf\n{{ else if eq .chezmoi.os \"windows\" -}}\nend_of_line=crlf\n{{ end -}}\nindent_size=2\nindent_style=space\ninsert_final_newline=true\ntrim_trailing_whitespace=true\n\n[*.py]\nindent_size=4\nindent_style=space\n\n[Makefile]\nindent_style=tab",
@@ -4596,11 +4662,15 @@
     "User.20260220233323.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260215182442.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260215182554.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\nv2:sha256:f190ead5021be718ae1001570b620a363a3aa0c685fb15a276d8456d436944e5\n{{ end -}}",
-    "User.20260217022114.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260217022114.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n<< nuc >>\n{{ else if eq .chezmoi.hostname \"work\" -}}\n<< work >>\n{{ end -}}\n{{ end -}}",
     "User.20260217022247.1": "{{ gopassRaw \"deskflow/nuc/cert\" -}}",
+    "zxc.20260317083654.1": "{{ gopassRaw \"deskflow/work/cert\" -}}",
     "User.20260215182818.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260215182823.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\nv2:sha256:545f553a4bf4638cadbe6d6e5a8a705008953379001ae9c087c38b485233751d\n{{ end -}}",
+    "zxc.20260317084145.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"work\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260317084212.1": "v2:sha256:f124e93adc7573f8ad2a5c90331f813025e8dd8cf7c8d982a91f271413b32239",
     "zxc.20260201225344.1": "<< dos >>\n@others\n{{ end -}}",
+    "zxc.20260317082914.1": "<< dos >>\n@others\n{{ end -}}",
     "zxc.20260201034331.1": "<< dos >>\n@others\n{{ end -}}",
     "User.20260215205925.1": "<< dos >>\n{{ if lookPath \"vscodium\" -}}\n{\n    @others\n}\n{{ end -}}\n{{ end -}}\n",
     "User.20260215210400.1": "<< dos >>\n{{ if lookPath \"vscodium\" -}}\n[\n    @others\n]\n{{ end -}}\n{{ end -}}",
@@ -4655,7 +4725,7 @@
       "_mod_time": 1773571522.654681
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1773554567.436
+      "_mod_time": 1773571522.561
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1773571522.6390562
@@ -4670,76 +4740,79 @@
       "_mod_time": 1773630580.1590984
     },
     "User.20260226000855.1": {
-      "_mod_time": 1773678249.716
+      "_mod_time": 1773706150.813
     },
     "zxc.20260202203521.17": {
-      "_mod_time": 1773554567.451
+      "_mod_time": 1773571522.624
     },
     "User.20260220233639.1": {
       "_mod_time": 1773571522.623799
     },
     "zxc.20260202203521.20": {
-      "_mod_time": 1773558347.276
+      "_mod_time": 1773642704.068
     },
     "User.20260216114746.1": {
-      "_mod_time": 1773554567.436
+      "_mod_time": 1773571522.624
     },
     "zxc.20260202203521.14": {
-      "_mod_time": 1773554567.436
+      "_mod_time": 1773571522.561
     },
     "zxc.20260202203521.3": {
-      "_mod_time": 1773554567.451
+      "_mod_time": 1773571522.624
     },
     "zxc.20260202213444.1": {
-      "_mod_time": 1773554567.451
+      "_mod_time": 1773571522.639
     },
     "User.20260220142155.2": {
-      "_mod_time": 1773554567.451
+      "_mod_time": 1773571522.624
     },
     "User.20260220151435.2": {
-      "_mod_time": 1773675559.085
+      "_mod_time": 1773706150.818
     },
     "zxc.20260202215023.1": {
-      "_mod_time": 1773554567.436
+      "_mod_time": 1773571522.561
     },
     "zxc.20260202215408.1": {
-      "_mod_time": 1773554567.451
+      "_mod_time": 1773571522.624
     },
     "zxc.20260202220030.1": {
-      "_mod_time": 1773554567.451
+      "_mod_time": 1773571522.624
     },
     "zxc.20260202220553.1": {
-      "_mod_time": 1773554567.451
+      "_mod_time": 1773571522.624
     },
     "User.20260217202401.1": {
-      "_mod_time": 1773554567.436
+      "_mod_time": 1773571522.624
     },
     "User.20260220214558.1": {
       "_mod_time": 1773571522.623799
     },
     "User.20260217214851.1": {
-      "_mod_time": 1773554567.451
+      "_mod_time": 1773571522.624
     },
     "User.20260220000301.2": {
-      "_mod_time": 1773554567.436
+      "_mod_time": 1773571522.624
     },
     "User.20260220012738.1": {
       "_mod_time": 1773571522.623799
     },
     "User.20260308173318.1": {
-      "_mod_time": 1773554567.436
+      "_mod_time": 1773571522.624
     },
     "User.20260308184128.2": {
-      "_mod_time": 1773554567.436
+      "_mod_time": 1773571522.624
     },
     "User.20260308184713.2": {
-      "_mod_time": 1773554567.436
+      "_mod_time": 1773571522.624
     },
     "User.20260308214701.2": {
-      "_mod_time": 1773554567.436
+      "_mod_time": 1773571522.624
     },
     "User.20260308215626.2": {
-      "_mod_time": 1773554567.436
+      "_mod_time": 1773571522.624
+    },
+    "zxc.20260317085009.1": {
+      "_mod_time": 1773709716.646
     },
     "User.20260226001402.1": {
       "_mod_time": 1773642704.0680594
@@ -4748,7 +4821,7 @@
       "_mod_time": 1773571522.654681
     },
     "zxc.20260126185048.1": {
-      "_mod_time": 1773554567.467
+      "_mod_time": 1773571522.655
     },
     "User.20260218144120.1": {
       "_mod_time": 1773571522.654681
@@ -4769,13 +4842,13 @@
       "_mod_time": 1773571522.654681
     },
     "User.20260218142211.1": {
-      "_mod_time": 1773554567.518
+      "_mod_time": 1773571522.686
     },
     "User.20260218142322.1": {
-      "_mod_time": 1773554567.518
+      "_mod_time": 1773571522.686
     },
     "User.20260225235850.1": {
-      "_mod_time": 1773554567.503
+      "_mod_time": 1773571522.686
     },
     "zxc.20260130225718.1": {
       "_mod_time": 1773571522.654681
@@ -4799,25 +4872,25 @@
       "_mod_time": 1773571522.654681
     },
     "User.20260216232855.1": {
-      "_mod_time": 1773554567.467
+      "_mod_time": 1773571522.655
     },
     "User.20260217182613.1": {
-      "_mod_time": 1773554567.467
+      "_mod_time": 1773571522.655
     },
     "User.20260301202336.1": {
-      "_mod_time": 1773578931.18
+      "_mod_time": 1773642704.084
     },
     "User.20260302151118.1": {
-      "_mod_time": 1773554567.467
+      "_mod_time": 1773571522.655
     },
     "zxc.20260315140713.1": {
       "_mod_time": 1773642704.0837219
     },
     "zxc.20260317002829.1": {
-      "_mod_time": 1773680555.469
+      "_mod_time": 1773706150.822
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1773554567.482
+      "_mod_time": 1773571522.67
     },
     "zxc.20260125145051.1": {
       "_mod_time": 1773571522.6703062
@@ -4856,112 +4929,118 @@
       "_mod_time": 1773571522.6703062
     },
     "User.20260215182442.1": {
-      "_mod_time": 1773554567.503
+      "_mod_time": 1773571522.67
     },
     "User.20260217022114.1": {
-      "_mod_time": 1773554567.503
+      "_mod_time": 1773709522.909
     },
     "User.20260215182818.1": {
-      "_mod_time": 1773554567.503
+      "_mod_time": 1773571522.67
+    },
+    "zxc.20260317084145.1": {
+      "_mod_time": 1773708150.86
     },
     "zxc.20260201225344.1": {
-      "_mod_time": 1773554567.503
+      "_mod_time": 1773571522.67
+    },
+    "zxc.20260317082914.1": {
+      "_mod_time": 1773707532.885
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1773554567.503
+      "_mod_time": 1773571522.686
     },
     "User.20260215205925.1": {
-      "_mod_time": 1773554567.503
+      "_mod_time": 1773571522.686
     },
     "User.20260215210400.1": {
-      "_mod_time": 1773554567.503
+      "_mod_time": 1773571522.686
     },
     "User.20260220151031.5": {
-      "_mod_time": 1773554567.503
+      "_mod_time": 1773571522.67
     },
     "User.20260220151031.28": {
-      "_mod_time": 1773554567.503
+      "_mod_time": 1773571522.67
     },
     "User.20260221175549.1": {
-      "_mod_time": 1773554567.503
+      "_mod_time": 1773571522.67
     },
     "User.20260221194603.1": {
-      "_mod_time": 1773554567.503
+      "_mod_time": 1773571522.686
     },
     "User.20260222211658.1": {
-      "_mod_time": 1773554567.503
+      "_mod_time": 1773571522.67
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1773554567.503
+      "_mod_time": 1773571522.67
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1773650352.341
     },
     "zxc.20260202205715.1": {
-      "_mod_time": 1773554567.503
+      "_mod_time": 1773571522.67
     },
     "User.20260302151947.1": {
-      "_mod_time": 1773554567.451
+      "_mod_time": 1773571522.639
     },
     "zxc.20260201203241.1": {
-      "_mod_time": 1773554567.467
+      "_mod_time": 1773571522.639
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1773554567.467
+      "_mod_time": 1773571522.639
     },
     "zxc.20260201214114.1": {
-      "_mod_time": 1773554567.467
+      "_mod_time": 1773571522.639
     },
     "zxc.20260201140523.1": {
-      "_mod_time": 1773554567.467
+      "_mod_time": 1773571522.639
     },
     "zxc.20260130233132.1": {
-      "_mod_time": 1773554567.467
+      "_mod_time": 1773571522.639
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1773655313.469
+      "_mod_time": 1773706972.729
     },
     "zxc.20260202195207.1": {
-      "_mod_time": 1773554567.467
+      "_mod_time": 1773571522.655
     },
     "zxc.20260214105528.1": {
-      "_mod_time": 1773554567.467
+      "_mod_time": 1773571522.639
     },
     "zxc.20260214142543.1": {
-      "_mod_time": 1773554567.467
+      "_mod_time": 1773571522.639
     },
     "User.20260215234634.1": {
-      "_mod_time": 1773554567.467
+      "_mod_time": 1773571522.655
     },
     "User.20260216124226.1": {
-      "_mod_time": 1773554567.467
+      "_mod_time": 1773571522.639
     },
     "User.20260216125422.1": {
-      "_mod_time": 1773554567.467
+      "_mod_time": 1773571522.639
     },
     "User.20260219235648.1": {
-      "_mod_time": 1773554567.467
+      "_mod_time": 1773571522.639
     },
     "User.20260228231944.1": {
-      "_mod_time": 1773554567.467
+      "_mod_time": 1773571522.655
     },
     "User.20260302211536.1": {
-      "_mod_time": 1773554567.451
+      "_mod_time": 1773571522.639
     },
     "User.20260302211740.1": {
-      "_mod_time": 1773554567.451
+      "_mod_time": 1773571522.639
     },
     "User.20260302211946.1": {
-      "_mod_time": 1773554567.467
+      "_mod_time": 1773571522.639
     },
     "User.20260302212424.1": {
-      "_mod_time": 1773554567.467
+      "_mod_time": 1773571522.639
     },
     "User.20260302212645.1": {
-      "_mod_time": 1773554567.467
+      "_mod_time": 1773571522.639
     },
     "User.20260303213330.1": {
-      "_mod_time": 1773554567.467
+      "_mod_time": 1773571522.655
     }
   }
 }

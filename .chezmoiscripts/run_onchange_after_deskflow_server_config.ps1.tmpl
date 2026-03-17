@@ -1,0 +1,20 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if and (lookPath "chromium") (eq .chezmoi.hostname "work") -}}
+{{ template "checkPath" "shasum" -}}
+{{ if lookPath "shasum" -}}
+{{ $scoop_persist := joinPath .chezmoi.homeDir "scoop" "persist" "deskflow" -}}
+{{ $conf := joinPath $scoop_persist "settings" "deskflow-server.conf" -}}
+{{ $cert := joinPath $scoop_persist "settings" "tls" "deskflow.pem" -}}
+{{ $trusted := joinPath $scoop_persist "settings" "tls" "trusted-client" -}}
+
+# {{ output "shasum" $conf | trim }}
+# {{ output "shasum" $cert | trim }}
+# {{ output "shasum" $trusted | trim }}
+
+mkdir "C:/ProgramData/Deskflow/tls" -ErrorAction SilentlyContinue
+cp {{ $conf }} "C:/ProgramData/Deskflow/"
+cp {{ $cert }} "C:/ProgramData/Deskflow/tls/"
+cp {{ $trusted }} "C:/ProgramData/Deskflow/tls/"
+{{ end -}}
+{{ end -}}
+{{ end -}}

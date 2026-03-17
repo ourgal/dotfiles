@@ -1,0 +1,42 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if eq .chezmoi.hostname "work" -}}
+section: screens
+	office2043:
+		halfDuplexCapsLock = false
+		halfDuplexNumLock = false
+		halfDuplexScrollLock = false
+		xtestIsXineramaUnaware = false
+		switchCorners = none
+		switchCornerSize = 0
+	work:
+		halfDuplexCapsLock = false
+		halfDuplexNumLock = false
+		halfDuplexScrollLock = false
+		xtestIsXineramaUnaware = false
+		switchCorners = none
+		switchCornerSize = 0
+end
+
+section: aliases
+end
+
+section: links
+	office2043:
+		right = work
+	work:
+		left = office2043
+end
+
+section: options
+	protocol = barrier
+	relativeMouseMoves = false
+	win32KeepForeground = false
+	defaultLockToScreenState = false
+	disableLockToScreen = false
+	clipboardSharing = true
+	clipboardSharingSize = 3072
+	switchCorners = none 
+	switchCornerSize = 0
+end
+{{ end -}}
+{{ end -}}
