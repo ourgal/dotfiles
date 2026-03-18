@@ -1,5 +1,3 @@
-{{ if lookPath . }}
-echo {{ printf "%s is founded: %s" . (lookPath .) | quote }}
-{{ else -}}
-echo {{ printf "%s is not found" . | quote }}
+{{ if not (lookPath .) }}
+{{ fail (printf "%s is not found" .) -}}
 {{ end -}}

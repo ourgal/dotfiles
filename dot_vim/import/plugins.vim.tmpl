@@ -1,0 +1,32 @@
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if lookPath "vim" -}}
+call plug#begin()
+
+Plug 'tyru/caw.vim'
+Plug 'alker0/chezmoi.vim'
+{{ if lookPath "node" -}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+{{ end -}}
+Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
+Plug 'ghifarit53/tokyonight-vim'
+Plug 'markonm/traces.vim'
+Plug '907th/vim-auto-save'
+Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }
+Plug 'tpope/vim-eunuch', { 'on': [ 'Remove', 'Delete', 'Move', 'Chmod', 'Mkdir', 'Cfind', 'Clocate', 'Lfind', 'Wall', 'SudoWrite', 'SudoEdit' ] }
+{{ if lookPath "git" -}}
+Plug 'tpope/vim-fugitive'
+{{ end -}}
+Plug 'airblade/vim-gitgutter'
+Plug 'pbrisbin/vim-mkdir'
+Plug 'lambdalisue/vim-suda'
+Plug 'itchyny/lightline.vim'
+Plug 'raghur/vim-ghost'
+Plug 'roxma/nvim-yarp', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }
+Plug 'roxma/vim-hug-neovim-rpc', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }
+Plug 'lervag/vimtex', { 'for': 'tex' }
+Plug 'vim-scripts/align', { 'on': 'Align' }
+Plug 'dense-analysis/ale'
+
+call plug#end()
+{{ end -}}
+{{ end -}}
