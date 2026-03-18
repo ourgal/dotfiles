@@ -61,4 +61,7 @@ Run("dufs --allow-upload --allow-search --allow-symlink --allow-archive -p 6500"
 {{ if lookPath "copyparty" -}}
 Run("copyparty --no-del -p 6080,6443", {{ joinPath .chezmoi.homeDir "Documents" "share" | quote }}, "Hide")
 {{ end -}}
+{{ if lookPath "altrun" -}}
+Run("altrun -StartMenu", , "Hide")
+{{ end -}}
 {{ end -}}
