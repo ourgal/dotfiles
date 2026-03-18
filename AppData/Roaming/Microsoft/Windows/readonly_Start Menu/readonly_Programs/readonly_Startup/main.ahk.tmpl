@@ -56,7 +56,7 @@ Run("everything", , "Hide")
 Run({{ joinPath .chezmoi.homeDir "Documents" "autohotkey" "keybindings.ahk" | quote }}, , "Hide")
 {{ end -}}
 {{ if lookPath "dufs" -}}
-Run("dufs --allow-upload --allow-search --allow-symlink --allow-archive", {{ joinPath .chezmoi.homeDir "Documents" "share" | quote }}, "Hide")
+Run("dufs --allow-upload --allow-search --allow-symlink --allow-archive -p 6500", {{ joinPath .chezmoi.homeDir "Documents" "share" | quote }}, "Hide")
 {{ end -}}
 {{ if lookPath "copyparty" -}}
 Run("copyparty --no-del -p 6080,6443", {{ joinPath .chezmoi.homeDir "Documents" "share" | quote }}, "Hide")
