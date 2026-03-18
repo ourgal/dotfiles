@@ -1,0 +1,32 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "vim" -}}
+{{ template "checkPath" "cat" -}}
+{{ $line_num := output "cat" (joinPath .chezmoi.homeDir "vimfiles" "import" "plugins.vim") | splitList "\r\n" | len | add -1 -}}
+
+$cache_dir = Join-Path $env:LOCALAPPDATA "cache" 
+if (-Not (Test-Path -Path $cache_dir)) {
+    New-Item -Path $cache_dir -ItemType Directory
+} 
+
+$cache_file = Join-Path $cache_dir "vim_plugin_conf_line_num"
+if (-Not (Test-Path -Path $cache_file)) {
+    New-Item -Path $cache_file -ItemType File
+    Set-Content -Path $cache_file -Value {{ $line_num | quote }}
+    vim -c "PlugInstall|qa!"
+    exit
+}
+
+[int]$cur_line_num = {{ $line_num }}
+[int]$prev_linu_num = (Get-Content $cache_file)[0].Trim()
+
+if ($cur_line_num -gt $prev_linu_num) {
+    vim -c "PlugUpdate|qa!"
+    exit
+} elseif ($cur_line_num -lt $prev_linu_num) {
+    vim -c "PlugClean|qa!"
+    exit
+} else {
+    exit
+}
+{{ end -}}
+{{ end -}}
