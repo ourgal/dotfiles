@@ -56,6 +56,9 @@ Run("everything", , "Hide")
 Run({{ joinPath .chezmoi.homeDir "Documents" "autohotkey" "keybindings.ahk" | quote }}, , "Hide")
 {{ end -}}
 {{ if lookPath "dufs" -}}
-Run("dufs", {{ joinPath .chezmoi.homeDir "Documents" "dufs" | quote }}, "Hide")
+Run("dufs", {{ joinPath .chezmoi.homeDir "Documents" "share" | quote }}, "Hide")
+{{ end -}}
+{{ if lookPath "copyparty" -}}
+Run("copyparty", {{ joinPath .chezmoi.homeDir "Documents" "share" | quote }}, "Hide")
 {{ end -}}
 {{ end -}}
