@@ -1,21 +1,12 @@
 {{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
 {{ if stat (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom") -}}
 #!{{lookPath "sh"}}
-{{ template "checkPath" "shasum" -}}
-{{ if lookPath "shasum" -}}
-
-{{ $doom_files := list "init" "config" "packages" -}}
-{{ $doom_path := (joinPath .chezmoi.homeDir ".config" "doom") -}}
-
-{{ $shasum := "shasum" -}}
-{{ if and (hasKey .chezmoi.kernel "osrelease") (mustRegexMatch ".*WSL.*" .chezmoi.kernel.osrelease) (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "arch") -}}
-{{ $shasum = joinPath "/usr" "bin" "core_perl" "shasum" -}}
+{{ $sum := list }}
+{{ $homeDir := .chezmoi.homeDir -}}
+{{ range (list "config" "packages" "init") -}}
+{{ $sum = include (joinPath $homeDir ".config" "doom" (print . ".el")) | append $sum -}}
 {{ end -}}
-
-{{ range $doom_files -}}
-# {{ output $shasum (joinPath $doom_path (printf "%s.el" .)) | trim }}
-{{ end -}}
+# {{ $sum | join "" | sha256sum }}
 {{ (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom" ) }} sync
-{{ end -}}
 {{ end -}}
 {{ end -}}

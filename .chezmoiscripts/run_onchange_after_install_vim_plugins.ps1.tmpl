@@ -1,7 +1,6 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "vim" -}}
-{{ template "checkPath" "cat" -}}
-{{ $file_content := output "cat" (joinPath .chezmoi.homeDir "vimfiles" "import" "plugins.vim") | splitList "\n" -}}
+{{ $file_content := include (joinPath .chezmoi.homeDir "vimfiles" "import" "plugins.vim") | splitList "\n" -}}
 {{ $sum := list -}}
 {{ range $file_content -}}
 {{ if hasPrefix "Plug" . -}}

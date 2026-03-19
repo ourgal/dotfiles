@@ -1,3 +1,6 @@
+{{ if eq . nil -}}
+{{ fail "pass pathes to checkPath template" -}}
+{{ end -}}
 {{ if kindIs "slice" . -}}
     {{ range . -}}
     {{ template "_checkPath" . -}}

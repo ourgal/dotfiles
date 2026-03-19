@@ -1,8 +1,11 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if stat (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom") -}}
-{{ if lookPath "dirhash" -}}
-# {{ output "dirhash" (joinPath .chezmoi.homeDir ".config" "doom") "-nowait" "-quiet" | trim }}
-{{ (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom.ps1" ) }} sync
+{{ $sum := list }}
+{{ $homeDir := .chezmoi.homeDir -}}
+{{ range (list "config" "packages" "init") -}}
+{{ $sum = include (joinPath $homeDir ".config" "doom" (print . ".el")) | append $sum -}}
 {{ end -}}
+# {{ $sum | join "" | sha256sum }}
+{{ (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom.ps1" ) }} sync
 {{ end -}}
 {{ end -}}
