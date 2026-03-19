@@ -858,10 +858,6 @@
                           "vh": "shebang"
                         },
                         {
-                          "gnx": "User.20260221011908.1",
-                          "vh": "check path"
-                        },
-                        {
                           "gnx": "User.20260220214646.1",
                           "vh": "content"
                         }
@@ -1030,10 +1026,6 @@
                           "gnx": "User.20260225204326.1"
                         },
                         {
-                          "gnx": "zxc.20260317085037.1",
-                          "vh": "check"
-                        },
-                        {
                           "gnx": "zxc.20260317085321.1",
                           "vh": "content"
                         }
@@ -1051,10 +1043,6 @@
                       "children": [
                         {
                           "gnx": "User.20260225204326.1"
-                        },
-                        {
-                          "gnx": "zxc.20260318203459.1",
-                          "vh": "check"
                         },
                         {
                           "gnx": "zxc.20260318203506.1",
@@ -4340,7 +4328,7 @@
     "zxc.20260125144810.1": ".xinitrc\n",
     "zxc.20260125172659.1": "{{ if lookPath \"hx\" -}}\nhx\n{{- else if lookPath \"vim\" -}}\nvim\n{{- else if lookPath \"vi\" -}}\nvi\n{{- else if lookPath \"nano\" -}}\nnano\n{{- end -}}",
     "zxc.20260319091259.1": "{{ if eq . nil -}}\n{{ fail \"pass hostname to ip_m6 template\" -}}\n{{ end -}}\n{{ if eq . \"work\" -}}\n192.168.1.103\n{{- else if eq . \"nuc\" -}}\n192.168.123.191\n{{- end -}}",
-    "User.20260221004652.1": "{{ if kindIs \"slice\" . -}}\n    {{ range . -}}\n    {{ template \"_checkPath\" . -}}\n    {{ end -}}\n{{ else if kindIs \"string\" . -}}\n    {{ template \"_checkPath\" . -}}\n{{ else -}}\n    echo \"checkPath: unsupported type\"\n{{ end -}}\n",
+    "User.20260221004652.1": "{{ if eq . nil -}}\n{{ fail \"pass pathes to checkPath template\" -}}\n{{ end -}}\n{{ if kindIs \"slice\" . -}}\n    {{ range . -}}\n    {{ template \"_checkPath\" . -}}\n    {{ end -}}\n{{ else if kindIs \"string\" . -}}\n    {{ template \"_checkPath\" . -}}\n{{ else -}}\n    echo \"checkPath: unsupported type\"\n{{ end -}}\n",
     "User.20260221144015.1": "{{ if not (lookPath .) }}\n{{ fail (printf \"%s is not found\" .) -}}\n{{ end -}}",
     "User.20260307193715.1": "886822.xyz\n",
     "User.20260226000855.1": "@others",
@@ -4400,15 +4388,14 @@
     "zxc.20260202220615.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vim\" \"current\" \"install-context.reg\" | quote }}",
     "User.20260217202401.1": "<< dos >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260225205841.1": "{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n",
-    "User.20260217202404.1": "{{ if lookPath \"dirhash\" -}}\n# {{ output \"dirhash\" (joinPath .chezmoi.homeDir \".config\" \"doom\") \"-nowait\" \"-quiet\" | trim }}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom.ps1\" ) }} sync\n{{ end -}}",
+    "User.20260217202404.1": "{{ $sum := list }}\n{{ $homeDir := .chezmoi.homeDir -}}\n{{ range (list \"config\" \"packages\" \"init\") -}}\n{{ $sum = include (joinPath $homeDir \".config\" \"doom\" (print . \".el\")) | append $sum -}}\n{{ end -}}\n# {{ $sum | join \"\" | sha256sum }}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom.ps1\" ) }} sync",
     "User.20260220214558.1": "<< unix >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260221011837.1": "#!{{lookPath \"sh\"}}\n",
-    "User.20260221011908.1": "{{ template \"checkPath\" \"shasum\" -}}",
-    "User.20260220214646.1": "{{ if lookPath \"shasum\" -}}\n\n{{ $doom_files := list \"init\" \"config\" \"packages\" -}}\n{{ $doom_path := (joinPath .chezmoi.homeDir \".config\" \"doom\") -}}\n\n{{ $shasum := \"shasum\" -}}\n{{ if and (hasKey .chezmoi.kernel \"osrelease\") (mustRegexMatch \".*WSL.*\" .chezmoi.kernel.osrelease) (hasKey .chezmoi.osRelease \"id\") (eq .chezmoi.osRelease.id \"arch\") -}}\n{{ $shasum = joinPath \"/usr\" \"bin\" \"core_perl\" \"shasum\" -}}\n{{ end -}}\n\n{{ range $doom_files -}}\n# {{ output $shasum (joinPath $doom_path (printf \"%s.el\" .)) | trim }}\n{{ end -}}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\" ) }} sync\n{{ end -}}",
+    "User.20260220214646.1": "{{ $sum := list }}\n{{ $homeDir := .chezmoi.homeDir -}}\n{{ range (list \"config\" \"packages\" \"init\") -}}\n{{ $sum = include (joinPath $homeDir \".config\" \"doom\" (print . \".el\")) | append $sum -}}\n{{ end -}}\n# {{ $sum | join \"\" | sha256sum }}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\" ) }} sync",
     "User.20260217214851.1": "<< dos >>\n{{ if lookPath \"msys2\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260217214859.1": "msys2 -c \"yes | pacman -Syu\"\nmsys2 -c \"yes | pacman -S --needed {{ .my.msys2.packages | join \" \" }}\"",
     "User.20260220000301.2": "<< dos >>\n{{ if stat (joinPath (env \"programdata\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Weasel\" \"Weasel Deploy.lnk\") -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260220000301.3": "{{ if lookPath \"dirhash\" -}}\n# {{ output \"dirhash\" (joinPath (env \"Appdata\") \"Rime\" \"default.custom.yaml\") \"-nowait\" \"-quiet\" | trim }}\n# {{ output \"dirhash\" (joinPath (env \"Appdata\") \"Rime\" \"sbfm.custom.yaml\") \"-nowait\" \"-quiet\" | trim }}\n& {{ joinPath (env \"programdata\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Weasel\" \"Weasel Deploy.lnk\" | quote }}\n{{ end -}}",
+    "User.20260220000301.3": "# {{ include (joinPath (env \"Appdata\") \"Rime\" \"default.custom.yaml\") | sha256sum }}\n# {{ include (joinPath (env \"Appdata\") \"Rime\" \"sbfm.custom.yaml\") | sha256sum }}\n& {{ joinPath (env \"programdata\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Weasel\" \"Weasel Deploy.lnk\" | quote }}",
     "User.20260220012738.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if and (lookPath \"gh\") (lookPath \"gopass\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260220012907.1": "{{ if not (exec \"gh\" \"auth\" \"status\") -}}\n\"Starting to login in github cli\"\ngopass github/ourgal/token | gh auth login --hostname github.com --with-token\n\"Login in github successed\"\n{{ end -}}",
     "User.20260308173318.1": "<< dos >>\n{{ if lookPath \"firefox\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -4421,12 +4408,10 @@
     "User.20260308214701.4": "{{ $app := \"chromium\" -}}\n{{ $name := printf \"%s (Scoop)\" ($app | title) -}}\n{{ $reg_name := printf \"Scoop%sHTM\" ($app | title) -}}\n{{ $user := \"User\" -}}\n{{ $bin_path := lookPath $app -}}\n{{ $icon := print (joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"ungoogled-chromium\" \"current\" \"chrome.exe\") \",0\" | quote }}\nNew-Item {{ $app }}.reg -type file\n$contentToAdd = @\"\nWindows Registry Editor Version 5.00\n\n\n[HKEY_CURRENT_USER\\SOFTWARE\\RegisteredApplications]\n{{ $name | quote }}=\"Software\\\\Clients\\\\StartMenuInternet\\\\{{ $name }}\\\\Capabilities\"\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\shell\\open\\command]\n\"\"={{ $bin_path | quote | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\DefaultIcon]\n\"\"={{ $icon }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities\\FileAssociations]\n\".html\"={{ $reg_name | quote }}\n\".htm\"={{ $reg_name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities\\URLAssociations]\n\"https\"={{ $reg_name | quote }}\n\"http\"={{ $reg_name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities]\n\"ApplicationName\"={{ $name | quote }}\n\"ApplicationIcon\"={{ $icon }}\n\"ApplicationDescription\"={{ $app | title | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}]\n\"\"={{ $name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}\\shell\\open\\command]\n\"\"={{ print ($bin_path | quote) \" %1\" | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}\\Application]\n; Name in Dialog\n\"ApplicationName\"={{ $name | quote }}\n\"ApplicationDescription\"=\"It's {{ $app | title }}.\"\n\"ApplicationIcon\"={{ $icon }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}]\n\"\"={{ $name | quote }}\n\"@\n\n Add-Content {{ $app }}.reg $contentToAdd\n\nreg import .\\{{ $app }}.reg\nrm .\\{{ $app }}.reg\n",
     "User.20260308215626.2": "<< dos >>\n{{ if lookPath \"chromium\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260308215626.4": "{{ $app := \"librewolf\" -}}\n{{ $name := printf \"%s (Scoop)\" ($app | title) -}}\n{{ $reg_name := printf \"Scoop%sHTM\" ($app | title) -}}\n{{ $user := \"User\" -}}\n{{ $bin_path := lookPath $app -}}\n{{ $icon := print (joinPath .chezmoi.homeDir \"scoop\" \"apps\" $app \"current\" \"librewolf-portable.exe\") \",0\" | quote }}\nNew-Item {{ $app }}.reg -type file\n$contentToAdd = @\"\nWindows Registry Editor Version 5.00\n\n\n[HKEY_CURRENT_USER\\SOFTWARE\\RegisteredApplications]\n{{ $name | quote }}=\"Software\\\\Clients\\\\StartMenuInternet\\\\{{ $name }}\\\\Capabilities\"\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\shell\\open\\command]\n\"\"={{ $bin_path | quote | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\DefaultIcon]\n\"\"={{ $icon }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities\\FileAssociations]\n\".html\"={{ $reg_name | quote }}\n\".htm\"={{ $reg_name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities\\URLAssociations]\n\"https\"={{ $reg_name | quote }}\n\"http\"={{ $reg_name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities]\n\"ApplicationName\"={{ $name | quote }}\n\"ApplicationIcon\"={{ $icon }}\n\"ApplicationDescription\"={{ $app | title | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}]\n\"\"={{ $name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}\\shell\\open\\command]\n\"\"={{ print ($bin_path | quote) \" %1\" | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}\\Application]\n; Name in Dialog\n\"ApplicationName\"={{ $name | quote }}\n\"ApplicationDescription\"=\"It's {{ $app | title }}.\"\n\"ApplicationIcon\"={{ $icon }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}]\n\"\"={{ $name | quote }}\n\"@\n\n Add-Content {{ $app }}.reg $contentToAdd\n\nreg import .\\{{ $app }}.reg\nrm .\\{{ $app }}.reg\n",
-    "zxc.20260317085009.1": "<< dos >>\n{{ if and (lookPath \"chromium\") (eq .chezmoi.hostname \"work\") -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260317085037.1": "{{ template \"checkPath\" \"shasum\" -}}\n",
-    "zxc.20260317085321.1": "{{ if lookPath \"shasum\" -}}\n{{ $scoop_persist := joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"deskflow\" -}}\n{{ $conf := joinPath $scoop_persist \"settings\" \"deskflow-server.conf\" -}}\n{{ $cert := joinPath $scoop_persist \"settings\" \"tls\" \"deskflow.pem\" -}}\n{{ $trusted := joinPath $scoop_persist \"settings\" \"tls\" \"trusted-client\" -}}\n\n# {{ output \"shasum\" $conf | trim }}\n# {{ output \"shasum\" $cert | trim }}\n# {{ output \"shasum\" $trusted | trim }}\n\nmkdir \"C:/ProgramData/Deskflow/tls\" -ErrorAction SilentlyContinue\ncp {{ $conf }} \"C:/ProgramData/Deskflow/\"\ncp {{ $cert }} \"C:/ProgramData/Deskflow/tls/\"\ncp {{ $trusted }} \"C:/ProgramData/Deskflow/tls/\"\n{{ end -}}",
+    "zxc.20260317085009.1": "<< dos >>\n{{ if and (lookPath \"chromium\") (eq .chezmoi.hostname \"work\") -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260317085321.1": "{{ $scoop_persist := joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"deskflow\" -}}\n{{ $conf := joinPath $scoop_persist \"settings\" \"deskflow-server.conf\" -}}\n{{ $cert := joinPath $scoop_persist \"settings\" \"tls\" \"deskflow.pem\" -}}\n{{ $trusted := joinPath $scoop_persist \"settings\" \"tls\" \"trusted-client\" -}}\n\n# {{ include $conf | sha256sum }}\n# {{ include $cert | sha256sum }}\n# {{ include $trusted | sha256sum }}\n\nmkdir \"C:/ProgramData/Deskflow/tls\" -ErrorAction SilentlyContinue\ncp {{ $conf }} \"C:/ProgramData/Deskflow/\"\ncp {{ $cert }} \"C:/ProgramData/Deskflow/tls/\"\ncp {{ $trusted }} \"C:/ProgramData/Deskflow/tls/\"\n",
     "zxc.20260318203351.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260318203459.1": "{{ template \"checkPath\" \"cat\" -}}\n",
-    "zxc.20260318203506.1": "{{ $file_content := output \"cat\" (joinPath .chezmoi.homeDir \"vimfiles\" \"import\" \"plugins.vim\") | splitList \"\\n\" -}}\n{{ $sum := list -}}\n{{ range $file_content -}}\n{{ if hasPrefix \"Plug\" . -}}\n{{ $sum = (. | split \"'\")._1 | append $sum -}}\n{{ end -}}\n{{ end -}}\n# {{ $sum | join \"\" | sha256sum }}\nvim -c \"PlugClean|PlugUpdate|qa!\"",
+    "zxc.20260318203506.1": "{{ $file_content := include (joinPath .chezmoi.homeDir \"vimfiles\" \"import\" \"plugins.vim\") | splitList \"\\n\" -}}\n{{ $sum := list -}}\n{{ range $file_content -}}\n{{ if hasPrefix \"Plug\" . -}}\n{{ $sum = (. | split \"'\")._1 | append $sum -}}\n{{ end -}}\n{{ end -}}\n# {{ $sum | join \"\" | sha256sum }}\nvim -c \"PlugClean|PlugUpdate|qa!\"",
     "User.20260226001402.1": "@others",
     "zxc.20260315140948.1": "[my]\nname = \"zxc\"",
     "User.20260226001414.1": "[my.msys2]\npackages = [\"mingw-w64-x86_64-aspell\"]\n",
@@ -4834,7 +4819,7 @@
       "_mod_time": 1773921642.744
     },
     "User.20260221004652.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1773944084.442
     },
     "User.20260221144015.1": {
       "_mod_time": 1773839158.266
@@ -4885,16 +4870,16 @@
       "_mod_time": 1773554567.451
     },
     "User.20260217202401.1": {
-      "_mod_time": 1773554567.436
+      "_mod_time": 1773943873.113
     },
     "User.20260220214558.1": {
-      "_mod_time": 1773554567.436
+      "_mod_time": 1773943827.315
     },
     "User.20260217214851.1": {
       "_mod_time": 1773554567.451
     },
     "User.20260220000301.2": {
-      "_mod_time": 1773554567.436
+      "_mod_time": 1773944706.643
     },
     "User.20260220012738.1": {
       "_mod_time": 1773571522.623799
@@ -4915,10 +4900,10 @@
       "_mod_time": 1773554567.436
     },
     "zxc.20260317085009.1": {
-      "_mod_time": 1773762729.363
+      "_mod_time": 1773944946.713
     },
     "zxc.20260318203351.1": {
-      "_mod_time": 1773935513.349
+      "_mod_time": 1773943756.581
     },
     "User.20260226001402.1": {
       "_mod_time": 1773882978.196
