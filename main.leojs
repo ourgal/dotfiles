@@ -255,6 +255,10 @@
                       "vh": "cd"
                     }
                   ]
+                },
+                {
+                  "gnx": "zxc.20260320003721.1",
+                  "vh": "edit"
                 }
               ]
             }
@@ -1261,6 +1265,10 @@
                             {
                               "gnx": "User.20260218145141.1",
                               "vh": "sessions"
+                            },
+                            {
+                              "gnx": "zxc.20260320003625.1",
+                              "vh": "chezmoi"
                             }
                           ]
                         },
@@ -4316,6 +4324,7 @@
     "User.20260225204326.1": "{{ if eq .chezmoi.os \"windows\" -}}\n",
     "zxc.20260126154908.1": "[interpreter.ps1]\n    command = \"powershell\"\n    args = []",
     "zxc.20260126154820.1": "{{ if lookPath \"pwsh\" -}}\n[cd]\n    command = \"pwsh\"\n{{ end -}}",
+    "zxc.20260320003721.1": "[edit]\n    hardlink = false",
     "zxc.20260125144442.1": "@others",
     "zxc.20260125144515.1": "Makefile\nmain.leojs",
     "zxc.20260125144547.1": "<< linux >>\n@others\n{{ end -}}",
@@ -4443,6 +4452,7 @@
     "User.20260218141820.1": "let g:mapleader = ' '\nnnoremap <leader>bo <cmd>%bd\\|e#\\|bd#<CR>\nmap <silent> \\h :noh<cr>\nnnoremap ZZ <cmd>xa<cr>\nnnoremap ZQ <cmd>qa!<cr>\nnoremap Q @@\nxnoremap / <Esc>/\\%V\nnnoremap <c-n> <tab>\nnnoremap <tab> <cmd>tabnext<cr>\nnnoremap <s-tab> <cmd>tab split<cr>\nnnoremap ^[<tab> <cmd>tabclose<cr>\n\nfunction FoldWithH()\n    if col('.') == 1\n        return 'zc'\n    else\n        return 'h'\n    endif\nendfunction\n\nnnoremap <expr> h FoldWithH()\ncnoremap <expr> %% getcmdtype( ) == \":\" ? expand(\"%:h\") .. \"/\" : \"%%\"\nnnoremap & <cmd>&&<CR>\nxnoremap & <cmd>'<,'>&&<CR>\nnnoremap <silent> <esc> <cmd>nohlsearch<CR><esc>\n\nfunction OpenFileOrURL()\n  let cfile = expand('<cfile>')\n  if match(cfile, '^https\\?://') >= 0\n    call system('xdg-open ' . cfile)\n  else\n    normal! gF\n  endif\nendfunction\n\nnnoremap <silent> gf <cmd>call OpenFileOrURL()<CR>\n\nnnoremap g* :%s/<c-r><c-w>/\n\nnnoremap <leader><space> :<C-u>find<space>\n\nnnoremap ^[. ;\n",
     "User.20260218141831.1": "set laststatus=2\n\ntry\nset switchbuf=uselast\nset showtabline=2\ncatch\nendtry\n\nset expandtab\nset smarttab\n\nset shiftwidth=4\nset tabstop=4\n\nset cindent\nset wrap\nset clipboard=unnamed\n\nset undodir={{ joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"undo\" }}\nset undofile\n\nset nobackup\nset nowritebackup\n\nset noswapfile\n\" set directory=$HOME/.local/share/vim/swap//\n\nif has('gui_running')\nset guioptions-=T\nset guioptions-=e\nset guioptions-=m\nset t_Co=256\nset guitablabel=%M\\ %t\nendif\n\nset encoding=utf8\nset fileformats=unix,dos,mac\nsyntax enable\n\nset regexpengine=0\n\nset backspace=eol,start,indent\nset whichwrap+=<,>,h,l\n\nset ignorecase\nset smartcase\nset hlsearch\nset incsearch\n\nset lazyredraw\nset magic\nset showmatch\n\nset matchtime=2\n\nset noerrorbells\nset novisualbell\nset t_vb=\nset timeoutlen=500\n\nset foldcolumn=0\n\nlet $LANG = 'en'\nset langmenu=en\n\nset wildmenu\n\nset wildignore=*.o,*~,*.pyc\nif has('win16') || has('win32')\nset wildignore+=.git\\*,.hg\\*,.svn\\*\nelse\nset wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store\nendif\n\nlet &t_SI = \"\\e[6 q\"\nlet &t_EI = \"\\e[2 q\"\n\nset ruler\nset cmdheight=1\nset hidden\nset history=500\nset number relativenumber\n\nfiletype plugin on\nfiletype indent on\n\nset autoread\n\nset updatetime=500\n\nset mouse=a\nset smoothscroll\n\nset showtabline=1\n\naugroup settings\n    autocmd!\n    autocmd FocusGained,BufEnter * checktime\n    autocmd FileType qf nnoremap <buffer><silent> q :cclose<bar>lclose<CR>\naugroup END\n\n{{ if lookPath \"rg\" -}}\nset grepprg=rg\\ --vimgrep\\ --smart-case\\ --hidden\nset grepformat=%f:%l:%c:%m\n{{ end -}}\n\nset signcolumn=auto\nset sessionoptions-=blank\nset foldmethod=marker\nset cursorline\nset scrolloff=5\n\nset shortmess-=S \" show she search count\n\nset gdefault\n\nset signcolumn=yes\n\nautocmd CmdlineChanged [:\\/\\?] call wildtrigger()\nset wildmode=noselect:lastused,full\nset wildoptions=pum\n\nautocmd CmdlineEnter [\\/\\?] set pumheight=8\nautocmd CmdlineLeave [\\/\\?] set pumheight&\n",
     "User.20260218145141.1": "@\n\" Autosession\nau VimEnter * nested if (len(v:argv) == 1) | silent! source Session.vim | endif\nau VimLeave * if (len(v:argv) == 1) | mksession! | endif\n@c\n",
+    "zxc.20260320003625.1": "autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path \"%\"\n",
     "User.20260218141914.1": "import 'plugins.vim'\n\n<< plugin configs >>\n",
     "User.20260218141914.18": "@others\n",
     "User.20260218141914.19": "let g:coc_node_path = {{ lookPath \"node\" | squote }}\n\n\" coc.nvim\n\" Use tab for trigger completion with characters ahead and navigate\n\" NOTE: There's always complete item selected by default, you may want to enable\n\" no select by `\"suggest.noselect\": true` in your configuration file\n\" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by\n\" other plugin before putting this into your config\ninoremap <silent><expr> <TAB>\n      \\ coc#pum#visible() ? coc#pum#next(1) :\n      \\ CheckBackspace() ? \"\\<Tab>\" :\n      \\ coc#refresh()\ninoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : \"\\<C-h>\"\n\n\" Make <CR> to accept selected completion item or notify coc.nvim to format\n\" <C-g>u breaks current undo, please make your own choice\ninoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : \"\\<C-g>u\\<CR>\\<c-r>=coc#on_enter()\\<CR>\"\n\nfunction! CheckBackspace() abort\n  let col = col('.') - 1\n  return !col || getline('.')[col - 1]  =~# '\\s'\nendfunction\n\n\" Use <c-space> to trigger completion\nif has('nvim')\n  inoremap <silent><expr> <c-space> coc#refresh()\nelse\n  inoremap <silent><expr> <c-@> coc#refresh()\nendif\n\n\" Use `[g` and `]g` to navigate diagnostics\n\" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list\nnmap <silent> [d <Plug>(coc-diagnostic-prev)\nnmap <silent> ]d <Plug>(coc-diagnostic-next)\n\n\" GoTo code navigation\nnmap <silent> gd <Plug>(coc-definition)\nnmap <silent> gy <Plug>(coc-type-definition)\nnmap <silent> gi <Plug>(coc-implementation)\nnmap <silent> gr <Plug>(coc-references)\n\nfunction! ShowDocumentation()\n  if CocAction('hasProvider', 'hover')\n    call CocActionAsync('doHover')\n  else\n    call feedkeys('K', 'in')\n  endif\nendfunction\n\n\" Use K to show documentation in preview window\nnnoremap <silent> K :call ShowDocumentation()<CR>\n\n\" Highlight the symbol and its references when holding the cursor\nautocmd CursorHold * silent call CocActionAsync('highlight')\n\n\" Symbol renaming\nnnoremap <leader>R <plug>(coc-rename)\n\n\" Formatting selected code\n\" xmap <leader>f  <Plug>(coc-format-selected)\n\" nmap <leader>f  <Plug>(coc-format-selected)\n\naugroup mygroup\n  autocmd!\n  \" Setup formatexpr specified filetype(s)\n  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')\n  \" Update signature help on jump placeholder\n  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')\naugroup end\n\n\" Applying code actions to the selected code block\n\" Example: `<leader>aap` for current paragraph\n\" xmap <leader>a  <Plug>(coc-codeaction-selected)\n\" nmap <leader>a  <Plug>(coc-codeaction-selected)\n\n\" Remap keys for applying code actions at the cursor position\n\" nmap <leader>ac  <Plug>(coc-codeaction-cursor)\n\" Remap keys for apply code actions affect whole buffer\n\" nmap <leader>as  <Plug>(coc-codeaction-source)\n\" Apply the most preferred quickfix action to fix diagnostic on the current line\n\" nmap <leader>qf  <Plug>(coc-fix-current)\n\n\" Remap keys for applying refactor code actions\n\" nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)\n\" xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)\n\" nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)\n\n\" Run the Code Lens action on the current line\n\" nmap <leader>cl  <Plug>(coc-codelens-action)\n\n\" Map function and class text objects\n\" NOTE: Requires 'textDocument.documentSymbol' support from the language server\nxmap if <Plug>(coc-funcobj-i)\nomap if <Plug>(coc-funcobj-i)\nxmap af <Plug>(coc-funcobj-a)\nomap af <Plug>(coc-funcobj-a)\nxmap ic <Plug>(coc-classobj-i)\nomap ic <Plug>(coc-classobj-i)\nxmap ac <Plug>(coc-classobj-a)\nomap ac <Plug>(coc-classobj-a)\n\n\" Remap <C-f> and <C-b> to scroll float windows/popups\nif has('nvim-0.4.0') || has('patch-8.2.0750')\n  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : \"\\<C-f>\"\n  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : \"\\<C-b>\"\n  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? \"\\<c-r>=coc#float#scroll(1)\\<cr>\" : \"\\<Right>\"\n  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? \"\\<c-r>=coc#float#scroll(0)\\<cr>\" : \"\\<Left>\"\n  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : \"\\<C-f>\"\n  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : \"\\<C-b>\"\nendif\n\n\" Use CTRL-S for selections ranges\n\" Requires 'textDocument/selectionRange' support of language server\nnmap <silent> <C-s> <Plug>(coc-range-select)\nxmap <silent> <C-s> <Plug>(coc-range-select)\n\n\" Add `:Format` command to format current buffer\ncommand! -nargs=0 Format :call CocActionAsync('format')\n\n\" Add `:Fold` command to fold current buffer\ncommand! -nargs=? Fold :call     CocAction('fold', <f-args>)\n\n\" Add `:OR` command for organize imports of the current buffer\ncommand! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')\n\n\" Add (Neo)Vim's native statusline support\n\" NOTE: Please see `:h coc-status` for integrations with external plugins that\n\" provide custom statusline: lightline.vim, vim-airline\nset statusline^=%{coc#status()}%{get(b:,'coc_current_function',''\\'''\\')}\n\nlet g:coc_global_extensions = ['coc-fish', '@yaegassy/coc-marksman', 'coc-emoji', 'coc-dash-complete', 'coc-just-complete', 'coc-translator', 'coc-perl', 'coc-go', 'coc-json', 'coc-prettier', 'coc-basedpyright', 'coc-r-lsp', 'coc-sh', 'coc-snippets', 'coc-sumneko-lua', 'coc-texlab', 'coc-toml', 'coc-vimlsp', 'coc-yaml' ]\n\" nnoremap <leader>e <Cmd>CocCommand explorer --quit-on-open<CR>\n\n\" limit completion item\nlet g:coc_filetype_map = { 'yaml.ansible': 'ansible', }\nset pumheight=10\n\nnmap <Leader>,t <Plug>(coc-translator-p)\nvmap <Leader>,t <Plug>(coc-translator-pv)\n",
@@ -4452,10 +4462,10 @@
     "User.20260218141914.23": "\" vim-suda\nlet g:suda_smart_edit = 1\n",
     "User.20260218143021.1": "let g:lightline = {\n      \\ 'colorscheme': 'tokyonight',\n      \\ 'active': {\n      \\   'left': [ [ 'mode', 'paste' ],\n      \\             [ 'readonly', 'filename', 'modified' ] ],\n      \\   'right': [ [ 'lineinfo' ],\n      \\              [ 'percent' ],\n      \\              [ 'zoomed', 'fileformat', 'fileencoding', 'filetype' ] ]\n      \\ },\n      \\ 'inactive': {\n      \\   'left': [ [ 'mode', 'paste' ],\n      \\             [ 'readonly', 'filename', 'modified' ] ],\n      \\   'right': [ [ 'lineinfo' ],\n      \\              [ 'percent' ],\n      \\              [ 'fileformat', 'fileencoding', 'filetype' ] ]\n      \\ },\n      \\ 'component_function': {\n      \\   'filename': 'LightlineTruncatedFileName',\n      \\   'zoomed': 'zoom#statusline'\n      \\ }\n      \\ }\n\nfunction! LightlineTruncatedFileName()\nlet l:filePath = expand('%')\n    if winwidth(0) > 100\n        return l:filePath\n    else\n        return pathshorten(l:filePath)\n    endif\nendfunction\n",
     "User.20260227211108.1": "let g:python3_host_prog = {{ lookPath \"python\" | squote }}\n",
-    "zxc.20260319224134.1": "let g:workspace_autocreate = 1\nlet g:workspace_session_disable_on_args = 1\nlet g:workspace_session_directory = {{ print (joinPath (env \"LOCALAPPDATA\") \"vim\" \"workspace\" ) \"\\\\\" | squote }}",
+    "zxc.20260319224134.1": "let g:workspace_autocreate = 1\nlet g:workspace_session_disable_on_args = 1\nlet g:workspace_session_directory = {{ print (joinPath (env \"LOCALAPPDATA\") \"vim\" \"sessions\" ) \"\\\\\" | squote }}\nlet g:workspace_autosave = 0\nlet g:workspace_undodir = {{ print (joinPath (env \"LOCALAPPDATA\") \"vim\" \"undo\" ) \"\\\\\" | squote }}",
     "zxc.20260125164142.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125164204.1": "vim9script\n\n# simple fuzzy find finder\n# place into ~/.vim/plugin/fuzzyfind.vim\n\nset wildmode=noselect:lastused,full\nset wildmenu wildoptions=pum,fuzzy pumheight=12\n\n\nvar files_cache: list<string> = []\naugroup CmdComplete\n    au!\n    au CmdlineChanged : wildtrigger()\n    au CmdlineEnter : files_cache = []\naugroup END\n\ndef FindCmd(): string\n    var cmd = ''\n    if executable('fd')\n        cmd = 'fd . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('fdfind')\n        cmd = 'fdfind . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('ugrep')\n        cmd = 'ugrep \"\" -Rl -I --ignore-files'\n    elseif executable('rg')\n        cmd = 'rg --path-separator / --files --hidden --glob !.git'\n    elseif executable('find')\n        cmd = 'find \\! \\( -path \"*/.git\" -prune -o -name \"*.swp\" \\) -type f -follow'\n    endif\n    return cmd\nenddef\n\ndef Find(cmd_arg: string, cmd_complete: bool): list<string>\n    if empty(files_cache)\n        var cmd = FindCmd()\n        # fallback to built-in glob if no fd/rg/ug/find is available\n        # e.g. we are on Windows\n        if empty(cmd)\n            files_cache = globpath('.', '**', 1, 1)\n                ->filter((_, v) => !isdirectory(v))\n                ->mapnew((_, v) => v->substitute('^\\.[\\/]', \"\", \"\"))\n        else\n            files_cache = systemlist(cmd)\n        endif\n    endif\n    if empty(cmd_arg)\n        return files_cache\n    else\n        return files_cache->matchfuzzy(cmd_arg)\n    endif\nenddef\n\nset findfunc=Find",
-    "zxc.20260318214950.1": "{{ if or (eq .chezmoi.os \"linux\") (eq .chezmoi.os \"android\") -}}{{ if lookPath \"vim\" -}}\ncall plug#begin()\n\nPlug 'tyru/caw.vim'\nPlug 'alker0/chezmoi.vim'\n{{ if lookPath \"node\" -}}\nPlug 'neoclide/coc.nvim', {'branch': 'release'}\n{{ end -}}\nPlug 'godlygeek/tabular', { 'on': 'Tabularize' }\nPlug 'ghifarit53/tokyonight-vim'\nPlug 'markonm/traces.vim'\nPlug '907th/vim-auto-save'\nPlug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }Plug 'tpope/vim-eunuch', { 'on': [ 'Remove', 'Delete', 'Move', 'Chmod', 'Mkdir', 'Cfind', 'Clocate', 'Lfind', 'Wall', 'SudoWrite', 'SudoEdit' ] }\n{{ if lookPath \"git\" -}}\nPlug 'tpope/vim-fugitive'\n{{ end -}}\nPlug 'airblade/vim-gitgutter'\nPlug 'pbrisbin/vim-mkdir'Plug 'lambdalisue/vim-suda'\nPlug 'itchyny/lightline.vim'Plug 'raghur/vim-ghost'\nPlug 'roxma/nvim-yarp', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }\nPlug 'roxma/vim-hug-neovim-rpc', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }Plug 'lervag/vimtex', { 'for': 'tex' }Plug 'vim-scripts/align', { 'on': 'Align' }Plug 'dense-analysis/ale'\nPlug 'ourgal/vim-workspace'\ncall plug#end(){{ end -}}\n{{ end -}}",
+    "zxc.20260318214950.1": "call plug#begin()\n\n@others\n\ncall plug#end()",
     "zxc.20260318212719.1": "call plug#begin()\n\n@others\n\ncall plug#end()",
     "zxc.20260318212806.4": "Plug 'tyru/caw.vim'\n",
     "zxc.20260318212806.5": "Plug 'alker0/chezmoi.vim'\n",
@@ -4934,7 +4944,7 @@
       "_mod_time": 1773571522.654681
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1773937070.712
+      "_mod_time": 1773938707.519
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1773554567.482
@@ -4946,13 +4956,13 @@
       "_mod_time": 1773554567.482
     },
     "User.20260218142211.1": {
-      "_mod_time": 1773937070.789
+      "_mod_time": 1773938707.608
     },
     "User.20260218142322.1": {
       "_mod_time": 1773554567.518
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1773936764.654
+      "_mod_time": 1773938129.921
     },
     "User.20260225235850.1": {
       "_mod_time": 1773554567.503
@@ -4997,7 +5007,7 @@
       "_mod_time": 1773680555.469
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1773554567.482
+      "_mod_time": 1773938261.459
     },
     "zxc.20260125145051.1": {
       "_mod_time": 1773571522.6703062

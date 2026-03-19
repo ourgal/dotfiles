@@ -170,6 +170,7 @@ autocmd CmdlineLeave [\/\?] set pumheight&
 " " Autosession
 " au VimEnter * nested if (len(v:argv) == 1) | silent! source Session.vim | endif
 " au VimLeave * if (len(v:argv) == 1) | mksession! | endif
+autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
 import 'plugins.vim'
 
 let g:coc_node_path = {{ lookPath "node" | squote }}
@@ -356,6 +357,8 @@ endfunction
 let g:python3_host_prog = {{ lookPath "python" | squote }}
 let g:workspace_autocreate = 1
 let g:workspace_session_disable_on_args = 1
-let g:workspace_session_directory = {{ print (joinPath (env "LOCALAPPDATA") "vim" "workspace" ) "\\" | squote }}
+let g:workspace_session_directory = {{ print (joinPath (env "LOCALAPPDATA") "vim" "sessions" ) "\\" | squote }}
+let g:workspace_autosave = 0
+let g:workspace_undodir = {{ print (joinPath (env "LOCALAPPDATA") "vim" "undo" ) "\\" | squote }}
 {{ end -}}
 {{ end -}}
