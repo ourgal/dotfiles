@@ -11,6 +11,10 @@ Host termux
   Port 8022
   User u0_a661
   HostName localhost
+Host gogs-m6
+  Port 23231
+  User {{ .my.termux.m6.username }}
+  HostName {{ template "ip_m6" }}
 Host *
   AddKeysToAgent yes
 {{ end -}}
