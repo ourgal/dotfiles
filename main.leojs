@@ -370,6 +370,10 @@
                   "vh": "@clean editor"
                 },
                 {
+                  "gnx": "zxc.20260319091259.1",
+                  "vh": "@clean ip_m6"
+                },
+                {
                   "gnx": "User.20260221004652.1",
                   "vh": "@clean checkPath"
                 },
@@ -1809,6 +1813,10 @@
                   "vh": "termux"
                 },
                 {
+                  "gnx": "zxc.20260319090429.1",
+                  "vh": "gogs-m6"
+                },
+                {
                   "gnx": "User.20260214222054.1",
                   "vh": "*"
                 }
@@ -1833,6 +1841,16 @@
                 {
                   "gnx": "User.20260220005908.1",
                   "vh": "soft"
+                },
+                {
+                  "gnx": "zxc.20260319090149.1",
+                  "vh": "termux",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260319090157.1",
+                      "vh": "m6"
+                    }
+                  ]
                 }
               ]
             },
@@ -4308,6 +4326,7 @@
     "zxc.20260125144753.1": ".bash_profile\n.bashrc\n",
     "zxc.20260125144810.1": ".xinitrc\n",
     "zxc.20260125172659.1": "{{ if lookPath \"hx\" -}}\nhx\n{{- else if lookPath \"vim\" -}}\nvim\n{{- else if lookPath \"vi\" -}}\nvi\n{{- else if lookPath \"nano\" -}}\nnano\n{{- end -}}",
+    "zxc.20260319091259.1": "{{ if eq .chezmoi.hostname \"work\" -}}\n192.168.1.103\n{{- else if eq .chezmoi.hostname \"nuc\" -}}\n192.168.123.191\n{{- end -}}",
     "User.20260221004652.1": "{{ if kindIs \"slice\" . -}}\n    {{ range . -}}\n    {{ template \"_checkPath\" . -}}\n    {{ end -}}\n{{ else if kindIs \"string\" . -}}\n    {{ template \"_checkPath\" . -}}\n{{ else -}}\n    echo \"checkPath: unsupported type\"\n{{ end -}}\n",
     "User.20260221144015.1": "{{ if not (lookPath .) }}\n{{ fail (printf \"%s is not found\" .) -}}\n{{ end -}}",
     "User.20260307193715.1": "886822.xyz\n",
@@ -4400,7 +4419,7 @@
     "User.20260226001414.1": "[my.msys2]\npackages = [\"mingw-w64-x86_64-aspell\"]\n",
     "User.20260226001424.1": "[my.font]\nmonospace = \"FiraCode Nerd Font Mono\"",
     "User.20260226001439.1": "[my.git.sign]\nssh = false\ngpg = true\n",
-    "User.20260226001451.1": "[my.termux.note20]\nusername = \"u0_a644\"",
+    "User.20260226001451.1": "[my.termux.note20]\nusername = \"u0_a644\"\n[my.termux.m6]\nusername = \"u0_a455\"",
     "User.20260303224633.1": "[my.pip]\nmirror = \"https://mirrors.cernet.edu.cn/pypi/web/simple/\"\n",
     "zxc.20260125162740.1": "<< unix >>\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125162834.1": "[global]\nindex-url = {{ .my.pip.mirror }}\n[install]\ntrusted-host = {{ get (urlParse .my.pip.mirror) \"host\" }}",
@@ -4508,12 +4527,14 @@
     "zxc.20260201141201.1": "Host soft\n  Port 23231\n  HostName brix.local",
     "zxc.20260201141231.1": "Host github.com\n  HostName ssh.github.com\n  Port 443\n  User git",
     "zxc.20260201141321.1": "Host termux\n  Port 8022\n  User u0_a661\n  HostName localhost\n",
+    "zxc.20260319090429.1": "Host gogs-m6\n  Port 23231\n  User {{ .my.termux.m6.username }}\n  HostName {{ template \"ip_m6\" }}",
     "User.20260214222054.1": "Host *\n  AddKeysToAgent yes",
     "User.20260215191351.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\") -}}\n{{ if lookPath \"ssh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260215191426.1": "[ssh.github.com]:443 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl\n[ssh.github.com]:443 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=\n[ssh.github.com]:443 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=",
     "User.20260217173901.1": "brix.local,2409:8a28:26d4:8b92:e2d5:5eff:fec6:60b5 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJADK7A2hbOUUfvCxe2xNhkVpEHIy3CKK0+bkTE5Uqur\n192.168.123.206 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJADK7A2hbOUUfvCxe2xNhkVpEHIy3CKK0+bkTE5Uqur",
     "User.20260217173917.1": "home.local,2409:8a28:26d4:8b92:dd8c:893b:e5cf:1d53 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOKREEGtjhZmTsIruPjBmBp0fPHKxfUSbUilpIzVMoBF",
     "User.20260220005908.1": "[brix.local]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqhuTozhEUlnOCkH1LXw55IUaZHzcO4IKmr1uPOT41u\n[192.168.123.206]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqhuTozhEUlnOCkH1LXw55IUaZHzcO4IKmr1uPOT41u",
+    "zxc.20260319090157.1": "[{{ template \"ip_m6\" }}]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn",
     "User.20260220010313.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"ssh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260220010353.1": "{{ gopass \"ssh/home/ed25519/public\" -}}",
     "User.20260220010448.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"ssh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -4794,6 +4815,9 @@
     "zxc.20260125172659.1": {
       "_mod_time": 1773571522.6390562
     },
+    "zxc.20260319091259.1": {
+      "_mod_time": 1773882914.517
+    },
     "User.20260221004652.1": {
       "_mod_time": 1773571522.6390562
     },
@@ -4882,7 +4906,7 @@
       "_mod_time": 1773841682.063
     },
     "User.20260226001402.1": {
-      "_mod_time": 1773642704.0680594
+      "_mod_time": 1773882978.196
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1773554567.467
@@ -4927,10 +4951,10 @@
       "_mod_time": 1773571522.654681
     },
     "zxc.20260201141149.1": {
-      "_mod_time": 1773571522.654681
+      "_mod_time": 1773883011.23
     },
     "User.20260215191351.1": {
-      "_mod_time": 1773571522.654681
+      "_mod_time": 1773883026.207
     },
     "User.20260220010313.1": {
       "_mod_time": 1773571522.654681
