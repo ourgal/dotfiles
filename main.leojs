@@ -1373,10 +1373,6 @@
                               "vh": "traces.vim"
                             },
                             {
-                              "gnx": "zxc.20260318212806.10",
-                              "vh": "vim-auto-save"
-                            },
-                            {
                               "gnx": "zxc.20260318212806.11",
                               "vh": "vim-easy-align"
                             },
@@ -4462,10 +4458,10 @@
     "User.20260218141914.23": "\" vim-suda\nlet g:suda_smart_edit = 1\n",
     "User.20260218143021.1": "let g:lightline = {\n      \\ 'colorscheme': 'tokyonight',\n      \\ 'active': {\n      \\   'left': [ [ 'mode', 'paste' ],\n      \\             [ 'readonly', 'filename', 'modified' ] ],\n      \\   'right': [ [ 'lineinfo' ],\n      \\              [ 'percent' ],\n      \\              [ 'zoomed', 'fileformat', 'fileencoding', 'filetype' ] ]\n      \\ },\n      \\ 'inactive': {\n      \\   'left': [ [ 'mode', 'paste' ],\n      \\             [ 'readonly', 'filename', 'modified' ] ],\n      \\   'right': [ [ 'lineinfo' ],\n      \\              [ 'percent' ],\n      \\              [ 'fileformat', 'fileencoding', 'filetype' ] ]\n      \\ },\n      \\ 'component_function': {\n      \\   'filename': 'LightlineTruncatedFileName',\n      \\   'zoomed': 'zoom#statusline'\n      \\ }\n      \\ }\n\nfunction! LightlineTruncatedFileName()\nlet l:filePath = expand('%')\n    if winwidth(0) > 100\n        return l:filePath\n    else\n        return pathshorten(l:filePath)\n    endif\nendfunction\n",
     "User.20260227211108.1": "let g:python3_host_prog = {{ lookPath \"python\" | squote }}\n",
-    "zxc.20260319224134.1": "let g:workspace_autocreate = 1\nlet g:workspace_session_disable_on_args = 1\nlet g:workspace_session_directory = {{ print (joinPath (env \"LOCALAPPDATA\") \"vim\" \"sessions\" ) \"\\\\\" | squote }}\nlet g:workspace_autosave = 0\nlet g:workspace_undodir = {{ print (joinPath (env \"LOCALAPPDATA\") \"vim\" \"undo\" ) \"\\\\\" | squote }}",
+    "zxc.20260319224134.1": "let g:workspace_autocreate = 1\nlet g:workspace_session_disable_on_args = 1\nlet g:workspace_session_directory = {{ print (joinPath (env \"LOCALAPPDATA\") \"vim\" \"sessions\" ) \"\\\\\" | squote }}\nlet g:workspace_autosave = 0\nlet g:workspace_undodir = {{ print (joinPath (env \"LOCALAPPDATA\") \"vim\" \"undo\" ) \"\\\\\" | squote }}\n",
     "zxc.20260125164142.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125164204.1": "vim9script\n\n# simple fuzzy find finder\n# place into ~/.vim/plugin/fuzzyfind.vim\n\nset wildmode=noselect:lastused,full\nset wildmenu wildoptions=pum,fuzzy pumheight=12\n\n\nvar files_cache: list<string> = []\naugroup CmdComplete\n    au!\n    au CmdlineChanged : wildtrigger()\n    au CmdlineEnter : files_cache = []\naugroup END\n\ndef FindCmd(): string\n    var cmd = ''\n    if executable('fd')\n        cmd = 'fd . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('fdfind')\n        cmd = 'fdfind . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('ugrep')\n        cmd = 'ugrep \"\" -Rl -I --ignore-files'\n    elseif executable('rg')\n        cmd = 'rg --path-separator / --files --hidden --glob !.git'\n    elseif executable('find')\n        cmd = 'find \\! \\( -path \"*/.git\" -prune -o -name \"*.swp\" \\) -type f -follow'\n    endif\n    return cmd\nenddef\n\ndef Find(cmd_arg: string, cmd_complete: bool): list<string>\n    if empty(files_cache)\n        var cmd = FindCmd()\n        # fallback to built-in glob if no fd/rg/ug/find is available\n        # e.g. we are on Windows\n        if empty(cmd)\n            files_cache = globpath('.', '**', 1, 1)\n                ->filter((_, v) => !isdirectory(v))\n                ->mapnew((_, v) => v->substitute('^\\.[\\/]', \"\", \"\"))\n        else\n            files_cache = systemlist(cmd)\n        endif\n    endif\n    if empty(cmd_arg)\n        return files_cache\n    else\n        return files_cache->matchfuzzy(cmd_arg)\n    endif\nenddef\n\nset findfunc=Find",
-    "zxc.20260318214950.1": "call plug#begin()\n\n@others\n\ncall plug#end()",
+    "zxc.20260318214950.1": "@language vim\n<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260318212719.1": "call plug#begin()\n\n@others\n\ncall plug#end()",
     "zxc.20260318212806.4": "Plug 'tyru/caw.vim'\n",
     "zxc.20260318212806.5": "Plug 'alker0/chezmoi.vim'\n",
@@ -4473,7 +4469,6 @@
     "zxc.20260318212806.7": "Plug 'godlygeek/tabular', { 'on': 'Tabularize' }\n",
     "zxc.20260318212806.8": "Plug 'ghifarit53/tokyonight-vim'\n",
     "zxc.20260318212806.9": "Plug 'markonm/traces.vim'\n",
-    "zxc.20260318212806.10": "Plug '907th/vim-auto-save'\n",
     "zxc.20260318212806.11": "Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }",
     "zxc.20260318212806.12": "Plug 'tpope/vim-eunuch', { 'on': [ 'Remove', 'Delete', 'Move', 'Chmod', 'Mkdir', 'Cfind', 'Clocate', 'Lfind', 'Wall', 'SudoWrite', 'SudoEdit' ] }\n",
     "zxc.20260318212806.13": "{{ if lookPath \"git\" -}}\nPlug 'tpope/vim-fugitive'\n{{ end -}}\n",
@@ -4950,19 +4945,19 @@
       "_mod_time": 1773554567.482
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1773936764.531
+      "_mod_time": 1773940499.537
     },
     "User.20260225235711.1": {
       "_mod_time": 1773554567.482
     },
     "User.20260218142211.1": {
-      "_mod_time": 1773938707.608
+      "_mod_time": 1773940122.622
     },
     "User.20260218142322.1": {
       "_mod_time": 1773554567.518
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1773938129.921
+      "_mod_time": 1773940356.349
     },
     "User.20260225235850.1": {
       "_mod_time": 1773554567.503
