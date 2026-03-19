@@ -1,5 +1,8 @@
-{{ if eq .chezmoi.hostname "work" -}}
+{{ if eq . nil -}}
+{{ fail "pass hostname to ip_m6 template" -}}
+{{ end -}}
+{{ if eq . "work" -}}
 192.168.1.103
-{{- else if eq .chezmoi.hostname "nuc" -}}
+{{- else if eq . "nuc" -}}
 192.168.123.191
 {{- end -}}
