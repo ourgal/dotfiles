@@ -206,7 +206,7 @@ Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 carapace _carapace | Out-String | Invoke-Expression
 {{ end -}}
-{{ if lookPath "starship" -}}
+{{ if and ( lookPath "starship" ) ( .my.modules.starship ) -}}
 # starship
 Invoke-Expression (&starship init powershell)
 {{ end -}}
