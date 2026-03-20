@@ -1681,8 +1681,8 @@
               "vh": "espanso"
             },
             {
-              "gnx": "User.20260221193906.1",
-              "vh": "win-gag-agent"
+              "gnx": "zxc.20260320223458.1",
+              "vh": "gpg agent"
             },
             {
               "gnx": "User.20260222230813.1",
@@ -4510,7 +4510,7 @@
     "zxc.20260317082237.1": "{{ if and (eq .chezmoi.hostname \"work\") (lookPath \"deskflow-core\") -}}\nRun(\"deskflow-core server\", , \"Hide\")\n{{ end -}}\n",
     "User.20260221160445.1": "{{ if lookPath \"aria2c\" -}}\nRun(\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"aria2\" \"current\" \"aria2c.exe\" }} --enable-rpc\", {{ joinPath .chezmoi.homeDir \"Downloads\" | quote }}, \"Hide\")\n{{ end -}}",
     "User.20260221180424.1": "{{ if lookPath \"espansod\" -}}\nRun(\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"espanso\" \"current\" \"espansod.exe\" }} start\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
-    "User.20260221193906.1": "{{ $win_gpg_agent := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"win-gpg-agent\" \"current\" \"agent-gui.exe\" }}\n{{ if stat $win_gpg_agent -}}\nRun({{ $win_gpg_agent | quote }}, , \"Hide\")\n{{ end -}}",
+    "zxc.20260320223458.1": "{{ if lookPath \"gpg-connect-agent\" -}}\nRun(\"gpg-connect-agent /bye\", , \"Hide\")\n{{ end -}}",
     "User.20260222230813.1": "{{ if and (eq .chezmoi.hostname \"nuc\") (lookPath \"alist\") -}}\nRun(\"alist start\", , \"Hide\")\n{{ end -}}",
     "User.20260301000205.1": "{{ if lookPath \"mpd\" -}}\nRun(\"mpd {{ joinPath (env \"appdata\") \"mpd\" \"mpd.conf\"}}\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}\n",
     "User.20260301185900.1": "{{ if lookPath \"kdeconnect-cli\" -}}\nRun(\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"kdeconnect\" \"current\" \"bin\" \"kdeconnectd.exe\" }}\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
@@ -5101,7 +5101,7 @@
       "_mod_time": 1773554567.467
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1773851167.05
+      "_mod_time": 1774017353.986
     },
     "zxc.20260202195207.1": {
       "_mod_time": 1773554567.467
