@@ -233,7 +233,7 @@ Invoke-Expression -Command $(atuin init powershell | out-string)
 {{ if and ( lookPath "mcfly" ) ( .my.modules.mcfly ) -}}
 Invoke-Expression -Command $(mcfly init powershell | out-string)
 {{ end -}}
-{{ if lookPath "navi" -}}
+{{ if and ( lookPath "navi" ) ( .my.modules.navi ) -}}
 function Invoke-Navi {
     $startArgs = @{
         FileName = "navi";
