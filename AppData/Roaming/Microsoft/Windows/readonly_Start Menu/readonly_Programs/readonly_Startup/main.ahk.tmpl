@@ -6,6 +6,8 @@ RunScoop(app)
     scoop_apps_dir := appdata_dir . "/Microsoft/Windows/Start Menu/Programs/Scoop Apps"
     Run(scoop_apps_dir . "/" . app . ".lnk", user_dir, "Max")
 }
+
+SetTitleMatchMode(2)
 {{ if lookPath "glazewm" -}}
 Run("glazewm", {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
@@ -35,9 +37,11 @@ Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "kdeconnect" "current" "bin" "k
 {{ end -}}
 {{ if and (lookPath "wt") (lookPath "pwsh") -}}
 RunScoop("Windows Terminal")
+WinWaitActive("ahk_class CASCADIA_HOSTING_WINDOW_CLASS")
 {{ end -}}
 {{ if lookPath "firefox" -}}
 Run("firefox", , "Max")
+WinWaitActive("ahk_class MozillaWindowClass")
 {{ else if lookPath "brave" -}}
 Run("brave", , "Max")
 {{ end -}}
@@ -45,6 +49,7 @@ Run("brave", , "Max")
 {{ $vscodium := joinPath .chezmoi.homeDir "scoop" "apps" "vscodium" "current" "VSCodium.exe" -}}
 {{ if stat $vscodium -}}
 Run({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
+WinWaitActive("VSCodium")
 {{ else if stat $vscode -}}
 Run({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
 {{ end -}}
