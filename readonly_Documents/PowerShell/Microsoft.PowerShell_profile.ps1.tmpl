@@ -207,8 +207,10 @@ Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 carapace _carapace | Out-String | Invoke-Expression
 {{ end -}}
 {{ if and ( lookPath "starship" ) ( .my.modules.starship ) -}}
-# starship
 Invoke-Expression (&starship init powershell)
+{{ end -}}
+{{ if and ( lookPath "oh-my-posh" ) ( .my.modules.oh_my_posh ) -}}
+oh-my-posh init pwsh | Invoke-Expression
 {{ end -}}
 {{ if and ( lookPath "zoxide" ) ( .my.modules.zoxide ) -}}
 # zoxide
