@@ -226,11 +226,11 @@ Set-PSReadLineKeyHandler -Key Ctrl+o `
     [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Invoke-FuzzyEdit")
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
-{{ if and (lookPath "atuin") (not (lookPath "mcfly")) -}}
+{{ if and (lookPath "atuin") ( .my.modules.atuin ) -}}
 # atuin
 Invoke-Expression -Command $(atuin init powershell | out-string)
 {{ end -}}
-{{ if lookPath "mcfly" -}}
+{{ if and ( lookPath "mcfly" ) ( .my.modules.mcfly ) -}}
 Invoke-Expression -Command $(mcfly init powershell | out-string)
 {{ end -}}
 {{ if lookPath "navi" -}}
