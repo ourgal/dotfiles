@@ -210,7 +210,7 @@ carapace _carapace | Out-String | Invoke-Expression
 # starship
 Invoke-Expression (&starship init powershell)
 {{ end -}}
-{{ if lookPath "zoxide" -}}
+{{ if and ( lookPath "zoxide" ) ( .my.modules.zoxide ) -}}
 # zoxide
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 {{ end -}}
