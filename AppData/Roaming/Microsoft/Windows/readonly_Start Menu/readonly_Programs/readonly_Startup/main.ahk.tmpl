@@ -21,9 +21,8 @@ Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "aria2" "current" "aria2c.exe" 
 {{ if lookPath "espansod" -}}
 Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "espanso" "current" "espansod.exe" }} start", {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
-{{ $win_gpg_agent := joinPath .chezmoi.homeDir "scoop" "apps" "win-gpg-agent" "current" "agent-gui.exe" }}
-{{ if stat $win_gpg_agent -}}
-Run({{ $win_gpg_agent | quote }}, , "Hide")
+{{ if lookPath "gpg-connect-agent" -}}
+Run("gpg-connect-agent /bye", , "Hide")
 {{ end -}}
 {{ if and (eq .chezmoi.hostname "nuc") (lookPath "alist") -}}
 Run("alist start", , "Hide")
