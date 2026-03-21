@@ -69,6 +69,6 @@ Run("copyparty --no-del -p 6080,6443", {{ joinPath .chezmoi.homeDir "Documents" 
 Run("altrun -StartMenu", , "Hide")
 {{ end -}}
 {{ if and ( lookPath "navidrome" ) ( .my.modules.navidrome ) -}}
-Run({{ print "navidrome --datafolder " (joinPath (env "LOCALAPPDATA") "navidrome") " --musicfolder " (joinPath .chezmoi.homeDir "Muisc") | quote }}, , "Hide")
+Run({{ print "navidrome --datafolder " (joinPath (env "LOCALAPPDATA") "navidrome") " --musicfolder " (joinPath .chezmoi.homeDir "Muisc" | squote) | quote }}, , "Hide")
 {{ end -}}
 {{ end -}}
