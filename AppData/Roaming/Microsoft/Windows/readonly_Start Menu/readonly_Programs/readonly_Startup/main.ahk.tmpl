@@ -26,10 +26,10 @@ Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "espanso" "current" "espansod.e
 {{ if lookPath "gpg-connect-agent" -}}
 Run("gpg-connect-agent /bye", , "Hide")
 {{ end -}}
-{{ if and (eq .chezmoi.hostname "nuc") (lookPath "alist") -}}
+{{ if lookPath "alist" -}}
 Run("alist start", , "Hide")
 {{ end -}}
-{{ if and ( lookPath "mpd" ) ( .my.modules.mpd ) -}}
+{{ if and ( lookPath "mpd" ) .my.modules.mpd -}}
 Run("mpd {{ joinPath (env "appdata") "mpd" "mpd.conf"}}", {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
 {{ if lookPath "kdeconnect-cli" -}}
@@ -68,7 +68,7 @@ Run("copyparty --no-del -p 6080,6443", {{ joinPath .chezmoi.homeDir "Documents" 
 {{ if lookPath "altrun" -}}
 Run("altrun -StartMenu", , "Hide")
 {{ end -}}
-{{ if and ( lookPath "navidrome" ) ( .my.modules.navidrome ) -}}
+{{ if and ( lookPath "navidrome" ) .my.modules.navidrome -}}
 Run({{ print "navidrome --datafolder " (joinPath (env "LOCALAPPDATA") "navidrome") | quote }}, {{ joinPath .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
 {{ end -}}
