@@ -3951,14 +3951,24 @@
                   "children": [
                     {
                       "gnx": "User.20260302151947.1",
-                      "vh": "@clean starship.lua.tmpl",
+                      "vh": "@clean main.lua.tmpl",
                       "children": [
                         {
                           "gnx": "User.20260225204326.1"
                         },
                         {
                           "gnx": "User.20260302152044.1",
-                          "vh": "content"
+                          "vh": "content",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260321161520.1",
+                              "vh": "starship"
+                            },
+                            {
+                              "gnx": "zxc.20260321161705.1",
+                              "vh": "oh my posh"
+                            }
+                          ]
                         }
                       ]
                     }
@@ -4798,8 +4808,10 @@
     "zxc.20260316162600.1": "#Requires AutoHotkey v2.0\n#SingleInstance Force\n\nLWin::F24\nRWin::F24",
     "zxc.20260202205715.1": "<< dos >>\n@others\n{{ end -}}",
     "zxc.20260202205901.1": "# Flower - とても深いグリーン\nhttps://www.bilibili.com/video/BV1EyHYeBEFr",
-    "User.20260302151947.1": "<< dos >>\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260302151947.1": "<< dos >>\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260302152044.1": "load(io.popen('starship init cmd'):read(\"*a\"))()",
+    "zxc.20260321161520.1": "{{ if and ( lookPath \"starship\" ) .my.modules.starship -}}\nload(io.popen('starship init cmd'):read(\"*a\"))()\n{{ end -}}",
+    "zxc.20260321161705.1": "{{ if and ( lookPath \"oh-my-posh\" ) .my.modules.oh_my_posh -}}\nload(io.popen('oh-my-posh init cmd'):read(\"*a\"))()\n{{ end -}}",
     "zxc.20260201140523.1": "<< dos >>\n{{ if lookPath \"gitui\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260130233132.1": "<< dos >>\n{{ if lookPath \"alacritty\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260128002742.1": "<< dos >>\n@others\n{{ end -}}\n",
@@ -5112,7 +5124,7 @@
       "_mod_time": 1773554567.503
     },
     "User.20260302151947.1": {
-      "_mod_time": 1773554567.451
+      "_mod_time": 1774081053.373
     },
     "zxc.20260201140523.1": {
       "_mod_time": 1773554567.467
