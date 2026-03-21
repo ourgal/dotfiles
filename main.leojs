@@ -4532,9 +4532,9 @@
     "User.20260222230813.1": "{{ if and (eq .chezmoi.hostname \"nuc\") (lookPath \"alist\") -}}\nRun(\"alist start\", , \"Hide\")\n{{ end -}}",
     "User.20260301000205.1": "{{ if and ( lookPath \"mpd\" ) ( .my.modules.mpd ) -}}\nRun(\"mpd {{ joinPath (env \"appdata\") \"mpd\" \"mpd.conf\"}}\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}\n",
     "User.20260301185900.1": "{{ if lookPath \"kdeconnect-cli\" -}}\nRun(\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"kdeconnect\" \"current\" \"bin\" \"kdeconnectd.exe\" }}\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
-    "User.20260302135935.1": "{{ if and (lookPath \"wt\") (lookPath \"pwsh\") -}}\nRunScoop(\"Windows Terminal\")\nWinWaitActive(\"ahk_class CASCADIA_HOSTING_WINDOW_CLASS\")\n{{ end -}}\n",
-    "User.20260302135941.1": "{{ if lookPath \"firefox\" -}}\nRun(\"firefox\", , \"Max\")\nWinWaitActive(\"ahk_class MozillaWindowClass\")\n{{ else if lookPath \"brave\" -}}\nRun(\"brave\", , \"Max\")\n{{ end -}}\n",
-    "User.20260302135946.1": "{{ $vscode := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscode\" \"current\" \"Code.exe\" -}}\n{{ $vscodium := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscodium\" \"current\" \"VSCodium.exe\" -}}\n{{ if stat $vscodium -}}\nRun({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWaitActive(\"VSCodium\")\n{{ else if stat $vscode -}}\nRun({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\n{{ end -}}",
+    "User.20260302135935.1": "{{ if and (lookPath \"wt\") (lookPath \"pwsh\") -}}\nRunScoop(\"Windows Terminal\")\nWinWait(\"ahk_class CASCADIA_HOSTING_WINDOW_CLASS\")\n{{ end -}}\n",
+    "User.20260302135941.1": "{{ if lookPath \"firefox\" -}}\nRun(\"firefox\", , \"Max\")\nWinWait(\"ahk_class MozillaWindowClass\")\n{{ else if lookPath \"brave\" -}}\nRun(\"brave\", , \"Max\")\n{{ end -}}\n",
+    "User.20260302135946.1": "{{ $vscode := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscode\" \"current\" \"Code.exe\" -}}\n{{ $vscodium := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscodium\" \"current\" \"VSCodium.exe\" -}}\n{{ if stat $vscodium -}}\nRun({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait(\"VSCodium\")\n{{ else if stat $vscode -}}\nRun({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\n{{ end -}}",
     "zxc.20260315173154.1": "{{ if lookPath \"everything\" -}}\nRun(\"everything\", , \"Hide\")\n{{ end -}}",
     "zxc.20260316162805.1": "{{ if lookPath \"autohotkey\" -}}\nRun({{ joinPath .chezmoi.homeDir \"Documents\" \"autohotkey\" \"keybindings.ahk\" | quote }}, , \"Hide\")\n{{ end -}}",
     "zxc.20260317104807.1": "{{ if lookPath \"dufs\" -}}\nRun(\"dufs --allow-upload --allow-search --allow-symlink --allow-archive -p 6500\", {{ joinPath .chezmoi.homeDir \"Documents\" \"share\" | quote }}, \"Hide\")\n{{ end -}}",
@@ -5121,7 +5121,7 @@
       "_mod_time": 1773554567.467
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1774075974.579
+      "_mod_time": 1774076078.179
     },
     "zxc.20260202195207.1": {
       "_mod_time": 1773554567.467
