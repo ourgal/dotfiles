@@ -4391,7 +4391,7 @@
     "zxc.20260125144753.1": ".bash_profile\n.bashrc\n",
     "zxc.20260125144810.1": ".xinitrc\n",
     "zxc.20260125172659.1": "{{ if lookPath \"hx\" -}}\nhx\n{{- else if lookPath \"vim\" -}}\nvim\n{{- else if lookPath \"vi\" -}}\nvi\n{{- else if lookPath \"nano\" -}}\nnano\n{{- end -}}",
-    "zxc.20260319091259.1": "{{ if eq . nil -}}\n{{ fail \"pass hostname to ip_m6 template\" -}}\n{{ end -}}\n{{ if eq . \"work\" -}}\n192.168.1.103\n{{- else if eq . \"nuc\" -}}\n192.168.123.191\n{{- end -}}",
+    "zxc.20260319091259.1": "{{ if eq . nil -}}\n{{ fail \"pass hostname to ip_m6 template\" -}}\n{{ end -}}\n{{ if eq . \"work\" -}}\n192.168.1.103\n{{- else if or ( eq . \"nuc\" ) ( eq . \"bed\" ) -}}\n192.168.123.191\n{{- else -}}\n{{ fail \"unknown hostname for ip_m6 template\" -}}\n{{- end -}}",
     "User.20260221004652.1": "{{ if eq . nil -}}\n{{ fail \"pass pathes to checkPath template\" -}}\n{{ end -}}\n{{ if kindIs \"slice\" . -}}\n    {{ range . -}}\n    {{ template \"_checkPath\" . -}}\n    {{ end -}}\n{{ else if kindIs \"string\" . -}}\n    {{ template \"_checkPath\" . -}}\n{{ else -}}\n    echo \"checkPath: unsupported type\"\n{{ end -}}\n",
     "User.20260221144015.1": "{{ if not (lookPath .) }}\n{{ fail (printf \"%s is not found\" .) -}}\n{{ end -}}",
     "User.20260307193715.1": "886822.xyz\n",
@@ -4889,7 +4889,7 @@
       "_mod_time": 1773571522.6390562
     },
     "zxc.20260319091259.1": {
-      "_mod_time": 1773921642.744
+      "_mod_time": 1774180513.344
     },
     "User.20260221004652.1": {
       "_mod_time": 1773944084.442
