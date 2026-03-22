@@ -3,6 +3,8 @@
 {{ end -}}
 {{ if eq . "work" -}}
 192.168.1.103
-{{- else if eq . "nuc" -}}
+{{- else if or ( eq . "nuc" ) ( eq . "bed" ) -}}
 192.168.123.191
+{{- else -}}
+{{ fail "unknown hostname for ip_m6 template" -}}
 {{- end -}}
