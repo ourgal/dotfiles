@@ -4450,7 +4450,7 @@
     "zxc.20260202220553.1": "<< dos >>\n{{ if lookPath \"gvim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202220615.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vim\" \"current\" \"install-context.reg\" | quote }}",
     "User.20260217202401.1": "<< dos >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260225205841.1": "{{ if and ( stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") ) (stat (joinPath $homeDir \".config\" \"doom\" \"config.el\")) -}}\n",
+    "User.20260225205841.1": "{{ if and ( stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") ) (stat (joinPath .chezmoi.homeDir \".config\" \"doom\" \"config.el\")) -}}\n",
     "User.20260217202404.1": "{{ $sum := list }}\n{{ $homeDir := .chezmoi.homeDir -}}\n{{ range (list \"config\" \"packages\" \"init\") -}}\n{{ $sum = include (joinPath $homeDir \".config\" \"doom\" (print . \".el\")) | append $sum -}}\n{{ end -}}\n# {{ $sum | join \"\" | sha256sum }}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom.ps1\" ) }} sync",
     "User.20260220214558.1": "<< unix >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260221011837.1": "#!{{lookPath \"sh\"}}\n",
@@ -4943,10 +4943,10 @@
       "_mod_time": 1771684793.907
     },
     "User.20260217202401.1": {
-      "_mod_time": 1774177232.33
+      "_mod_time": 1774179012.53
     },
     "User.20260220214558.1": {
-      "_mod_time": 1774177232.335
+      "_mod_time": 1774179012.538
     },
     "User.20260217214851.1": {
       "_mod_time": 1771684793.907
@@ -5084,16 +5084,16 @@
       "_mod_time": 1773554567.503
     },
     "User.20260217223023.1": {
-      "_mod_time": 1774177232.341
+      "_mod_time": 1774179012.543
     },
     "User.20260217223030.1": {
-      "_mod_time": 1774177232.347
+      "_mod_time": 1774179012.549
     },
     "User.20260217223035.1": {
-      "_mod_time": 1774177232.352
+      "_mod_time": 1774179012.554
     },
     "User.20260223014430.1": {
-      "_mod_time": 1774177232.357
+      "_mod_time": 1774179012.559
     },
     "User.20260220233323.1": {
       "_mod_time": 1773554567.503
