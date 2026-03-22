@@ -1,5 +1,5 @@
 {{ if or (eq .chezmoi.os "windows") (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
-{{ if stat (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom") -}}
+{{ if and ( stat (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom") ) (stat (joinPath $homeDir ".config" "doom" "config.el")) -}}
 ;;; init.el -*- lexical-binding: t; -*-
 
 ;; This file controls what Doom modules are enabled and what order they load

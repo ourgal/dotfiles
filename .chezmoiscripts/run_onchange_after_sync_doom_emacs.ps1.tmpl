@@ -1,5 +1,5 @@
 {{ if eq .chezmoi.os "windows" -}}
-{{ if stat (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom") -}}
+{{ if and ( stat (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom") ) (stat (joinPath $homeDir ".config" "doom" "config.el")) -}}
 {{ $sum := list }}
 {{ $homeDir := .chezmoi.homeDir -}}
 {{ range (list "config" "packages" "init") -}}
