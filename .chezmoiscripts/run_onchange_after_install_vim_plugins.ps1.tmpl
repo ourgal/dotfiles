@@ -1,5 +1,5 @@
 {{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "vim" -}}
+{{ if and ( lookPath "vim" ) (stat (joinPath .chezmoi.homeDir ".config" "git" "config")) -}}
 {{ $file_content := include (joinPath .chezmoi.homeDir "vimfiles" "import" "plugins.vim") | splitList "\n" -}}
 {{ $sum := list -}}
 {{ range $file_content -}}
