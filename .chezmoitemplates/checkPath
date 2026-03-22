@@ -8,5 +8,5 @@
 {{ else if kindIs "string" . -}}
     {{ template "_checkPath" . -}}
 {{ else -}}
-    echo "checkPath: unsupported type"
+{{ fail "checkPath: unsupported type" -}}
 {{ end -}}
