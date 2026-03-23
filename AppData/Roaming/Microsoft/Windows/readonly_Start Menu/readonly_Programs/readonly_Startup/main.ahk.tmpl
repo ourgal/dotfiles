@@ -59,6 +59,9 @@ Run("everything", , "Hide")
 {{ if lookPath "autohotkey" -}}
 Run({{ joinPath .chezmoi.homeDir "Documents" "autohotkey" "keybindings.ahk" | quote }}, , "Hide")
 {{ end -}}
+{{ if lookPath "autohotkey" -}}
+Run({{ joinPath .chezmoi.homeDir "Documents" "autohotkey" "hide_cursor.ahk" | quote }}, , "Hide")
+{{ end -}}
 {{ if lookPath "dufs" -}}
 Run("dufs --allow-upload --allow-search --allow-symlink --allow-archive -p 6500", {{ joinPath .chezmoi.homeDir "Documents" "share" | quote }}, "Hide")
 {{ end -}}
