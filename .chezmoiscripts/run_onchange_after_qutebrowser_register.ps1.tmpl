@@ -1,5 +1,8 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "brave" -}}
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
 {{ $app := "qutebrowser" -}}
 {{ $name := printf "%s (Scoop)" ($app | title) -}}
 {{ $reg_name := printf "Scoop%sHTM" ($app | title) -}}

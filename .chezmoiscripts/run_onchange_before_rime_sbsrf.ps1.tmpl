@@ -1,5 +1,8 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if stat "C:/Program Files/Rime" -}}
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
 # --- Configuration ---
 
 # 1. Define the source URL

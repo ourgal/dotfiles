@@ -1,5 +1,8 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "clink" -}}
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
 if (-not (clink autorun show | rg inject)) {
     clink autorun install
 }

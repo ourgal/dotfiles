@@ -1,5 +1,8 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "gvim" -}}
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
 reg import {{ joinPath (env "userprofile") "scoop" "apps" "vim" "current" "install-context.reg" | quote }}
 {{ end -}}
 {{ end -}}

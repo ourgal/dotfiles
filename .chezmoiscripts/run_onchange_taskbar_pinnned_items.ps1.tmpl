@@ -1,4 +1,7 @@
 {{ if eq .chezmoi.os "windows" -}}
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
 function New-LayoutModificationXml {
     [CmdletBinding()]
     param (

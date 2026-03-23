@@ -1,5 +1,8 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if stat (joinPath (env "programdata") "Microsoft" "Windows" "Start Menu" "Programs" "Weasel" "Weasel Deploy.lnk") -}}
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
 # {{ include (joinPath (env "Appdata") "Rime" "default.custom.yaml") | sha256sum }}
 # {{ include (joinPath (env "Appdata") "Rime" "sbfm.custom.yaml") | sha256sum }}
 & {{ joinPath (env "programdata") "Microsoft" "Windows" "Start Menu" "Programs" "Weasel" "Weasel Deploy.lnk" | quote }}
