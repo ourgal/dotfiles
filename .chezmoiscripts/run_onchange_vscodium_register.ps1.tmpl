@@ -1,5 +1,8 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "codium" -}}
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
 reg import {{ joinPath (env "userprofile") "scoop" "apps" "vscodium" "current" "install-context.reg" | quote }}
 {{ if not (lookPath "code") -}}
 reg import {{ joinPath (env "userprofile") "scoop" "apps" "vscodium" "current" "install-associations.reg" | quote }}

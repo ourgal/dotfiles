@@ -1,5 +1,8 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "git" -}}
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
 reg import {{ joinPath (env "userprofile") "scoop" "apps" "git" "current" "install-context.reg" | quote }}
 reg import {{ joinPath (env "userprofile") "scoop" "apps" "git" "current" "install-associations.reg" | quote }}
 {{ end -}}

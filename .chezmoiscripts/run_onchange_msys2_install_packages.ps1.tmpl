@@ -1,5 +1,8 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "msys2" -}}
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
 msys2 -c "yes | pacman -Syu"
 msys2 -c "yes | pacman -S --needed {{ .my.msys2.packages | join " " }}"
 {{ end -}}

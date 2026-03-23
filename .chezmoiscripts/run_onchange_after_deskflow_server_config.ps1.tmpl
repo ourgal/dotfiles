@@ -1,5 +1,8 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if and (lookPath "chromium") (eq .chezmoi.hostname "work") -}}
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
 {{ $scoop_persist := joinPath .chezmoi.homeDir "scoop" "persist" "deskflow" -}}
 {{ $conf := joinPath $scoop_persist "settings" "deskflow-server.conf" -}}
 {{ $cert := joinPath $scoop_persist "settings" "tls" "deskflow.pem" -}}
