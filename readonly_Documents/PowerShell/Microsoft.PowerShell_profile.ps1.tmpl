@@ -187,6 +187,11 @@ function scoop-update {
     scoop cleanup *
 }
 {{ end -}}
+{{ if and ( lookPath "scoop" ) (lookPath "KeePassXc") -}}
+function unlock-keepassxc {
+    gopass show -o keepassxc/main | & keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir "main.kdbx" | quote }}
+}
+{{ end -}}
 {{ if lookPath "choco" -}}
 # Import the Chocolatey Profile that contains the necessary code to enable
 # tab-completions to function for `choco`.
