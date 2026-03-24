@@ -122,6 +122,9 @@ window_rules:
     match:
       - window_process: { regex: "Code" }
       - window_process: { regex: "VSCodium" }
+  - commands: ["move --workspace 9"]
+    match:
+      - window_process: { regex: "KeePassXC" }
   - commands: ['ignore']
     match:
       # Ignores any Zebar windows.
