@@ -183,7 +183,7 @@ function yt {
 {{ if lookPath "scoop" -}}
 function scoop-update {
     scoop update *
-    scoop cache rm *
+    scoop cache remove
     scoop cleanup *
 }
 {{ end -}}
