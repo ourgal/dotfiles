@@ -4672,7 +4672,7 @@
     "zxc.20260125213232.1": "{{ if lookPath \"nircmd\" -}}\n# turn off monitor\nfunction scroff {\n  nircmd monitor off\n}\n{{ end -}}",
     "zxc.20260125213331.1": "{{ if lookPath \"yt-dlp\" -}}\nfunction yt {\n    yt-dlp -f \"bestvideo[height<=1080]+bestaudio/best[height<=1080]\" (cb) && mpv (ls | sort LastWriteTime -Descending)[0].Name\n}\n{{ end -}}",
     "zxc.20260125213305.1": "{{ if lookPath \"scoop\" -}}\nfunction scoop-update {\n    scoop update *\n    scoop cache remove\n    scoop cleanup *\n}\n{{ end -}}",
-    "zxc.20260325003330.1": "{{ if and ( lookPath \"scoop\" ) (lookPath \"KeePassXc\") -}}\nfunction unlock-keepassxc {\n    gopass show -o keepassxc/main | & keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir \"main.kdbx\" | quote }}\n}\n{{ end -}}",
+    "zxc.20260325003330.1": "{{ if and ( lookPath \"scoop\" ) (lookPath \"KeePassXc\") -}}\nfunction unlock-keepassxc {\n    gopass show -o keepassxc/main | & keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir \"syncthing\" \"keepassxc\" \"main.kdbx\" | quote }}\n}\n{{ end -}}",
     "zxc.20260125212857.1": "{{ if lookPath \"choco\" -}}\n# Import the Chocolatey Profile that contains the necessary code to enable\n# tab-completions to function for `choco`.\n# Be aware that if you are missing these lines from your profile, tab completion\n# for `choco` will not function.\n# See https://ch0.co/tab-completion for details.\n\n$ChocolateyProfile = \"$env:ChocolateyInstall\\helpers\\chocolateyProfile.psm1\"\nif (Test-Path($ChocolateyProfile)) {\n  Import-Module \"$ChocolateyProfile\"\n}\n{{ end -}}",
     "zxc.20260125212930.1": "{{ if lookPath \"carapace\" -}}\n# carapace\n$env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense,powershell' # optional\nSet-PSReadLineOption -Colors @{ \"Selection\" = \"`e[7m\" }\nSet-PSReadlineKeyHandler -Key Tab -Function MenuComplete\ncarapace _carapace | Out-String | Invoke-Expression\n{{ end -}}",
     "zxc.20260125213126.1": "{{ if and ( lookPath \"starship\" ) ( .my.modules.starship ) -}}\nInvoke-Expression (&starship init powershell)\n{{ end -}}\n",
@@ -5284,7 +5284,7 @@
       "_mod_time": 1774181606.731
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1774370151.643
+      "_mod_time": 1774447140.897
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1773650352.341
