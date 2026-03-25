@@ -4075,7 +4075,17 @@
                                 },
                                 {
                                   "gnx": "zxc.20260325224622.1",
-                                  "vh": "<< options >>"
+                                  "vh": "<< options >>",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260325235134.1",
+                                      "vh": "common"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260325235518.1",
+                                      "vh": "urUniqueID"
+                                    }
+                                  ]
                                 },
                                 {
                                   "gnx": "zxc.20260325224811.1",
@@ -4088,6 +4098,46 @@
                                 {
                                   "gnx": "zxc.20260325224437.1",
                                   "vh": "<< device nuc >>"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260325234738.1",
+                              "vh": "<< nuc >>",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260325234738.2",
+                                  "vh": "<< folders >>",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260325225003.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260325225138.1"
+                                },
+                                {
+                                  "gnx": "zxc.20260325234738.7",
+                                  "vh": "<< options >>",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260325235134.1"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260325235302.1",
+                                      "vh": "urUniqueID"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260325224811.1"
+                                },
+                                {
+                                  "gnx": "zxc.20260325224348.1"
+                                },
+                                {
+                                  "gnx": "zxc.20260325224437.1"
                                 }
                               ]
                             },
@@ -5058,17 +5108,23 @@
     "zxc.20260325223149.1": "{{ gopassRaw (printf \"syncthing/%s/cert\" .chezmoi.hostname) -}}",
     "zxc.20260325223610.1": "<< dos >>\n{{ if lookPath \"syncthing\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260325223610.2": "{{ gopassRaw (printf \"syncthing/%s/key\" .chezmoi.hostname) -}}",
-    "zxc.20260325223805.1": "<< dos >>\n{{ if lookPath \"syncthing\" -}}\n{{ if eq .chezmoi.hostname \"bed\" -}}\n<< bed >>\n{{ end -}}\n{{ end -}}\n{{ end -}}",
+    "zxc.20260325223805.1": "<< dos >>\n{{ if lookPath \"syncthing\" -}}\n{{ if eq .chezmoi.hostname \"bed\" -}}\n<< bed >>\n{{ end -}}\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n<< nuc >>\n{{ end -}}\n{{ end -}}\n{{ end -}}",
     "zxc.20260325223849.1": "<configuration version=\"51\">\n    << folders >>\n    << device nuc >>\n    << device bed >>\n    << gui >>\n    <ldap></ldap>\n    << options >>\n    << defaults >>\n</configuration>",
     "zxc.20260325224910.1": "@others",
     "zxc.20260325225003.1": "<folder id=\"gsqw5-i57xh\" label=\"keepassxc\" path=\"~\\Syncthing\\keepassxc\" type=\"sendreceive\" rescanIntervalS=\"3600\" fsWatcherEnabled=\"true\" fsWatcherDelayS=\"10\" fsWatcherTimeoutS=\"0\" ignorePerms=\"false\" autoNormalize=\"true\">\n    <filesystemType>basic</filesystemType>\n    @others\n    <minDiskFree unit=\"%\">1</minDiskFree>\n    <versioning>\n        <cleanupIntervalS>3600</cleanupIntervalS>\n        <fsPath></fsPath>\n        <fsType>basic</fsType>\n    </versioning>\n    <copiers>0</copiers>\n    <pullerMaxPendingKiB>0</pullerMaxPendingKiB>\n    <hashers>0</hashers>\n    <order>random</order>\n    <ignoreDelete>false</ignoreDelete>\n    <scanProgressIntervalS>0</scanProgressIntervalS>\n    <pullerPauseS>0</pullerPauseS>\n    <pullerDelayS>1</pullerDelayS>\n    <maxConflicts>10</maxConflicts>\n    <disableSparseFiles>false</disableSparseFiles>\n    <paused>false</paused>\n    <markerName>.stfolder</markerName>\n    <copyOwnershipFromParent>false</copyOwnershipFromParent>\n    <modTimeWindowS>0</modTimeWindowS>\n    <maxConcurrentWrites>16</maxConcurrentWrites>\n    <disableFsync>false</disableFsync>\n    <blockPullOrder>standard</blockPullOrder>\n    <copyRangeMethod>standard</copyRangeMethod>\n    <caseSensitiveFS>false</caseSensitiveFS>\n    <junctionsAsDirs>false</junctionsAsDirs>\n    <syncOwnership>false</syncOwnership>\n    <sendOwnership>false</sendOwnership>\n    <syncXattrs>false</syncXattrs>\n    <sendXattrs>false</sendXattrs>\n    <xattrFilter>\n        <maxSingleEntrySize>1024</maxSingleEntrySize>\n        <maxTotalSize>4096</maxTotalSize>\n    </xattrFilter>\n</folder>",
     "zxc.20260325225449.1": "<device id=\"{{ gopass (printf \"syncthing/%s/id\" \"bed\") }}\" introducedBy=\"\">\n    <encryptionPassword></encryptionPassword>\n</device>\n",
     "zxc.20260325225522.1": "<device id=\"{{ gopass (printf \"syncthing/%s/id\" \"nuc\") }}\" introducedBy=\"\">\n    <encryptionPassword></encryptionPassword>\n</device>\n",
     "zxc.20260325225138.1": "<gui enabled=\"true\" tls=\"false\" sendBasicAuthPrompt=\"false\">\n    <address>127.0.0.1:8384</address>\n    <metricsWithoutAuth>false</metricsWithoutAuth>\n    <apikey>{{ gopass (printf \"syncthing/%s/api\" .chezmoi.hostname ) }}</apikey>\n    <theme>default</theme>\n</gui>\n",
-    "zxc.20260325224622.1": "<options>\n    <listenAddress>default</listenAddress>\n    <globalAnnounceServer>default</globalAnnounceServer>\n    <globalAnnounceEnabled>true</globalAnnounceEnabled>\n    <localAnnounceEnabled>true</localAnnounceEnabled>\n    <localAnnouncePort>21027</localAnnouncePort>\n    <localAnnounceMCAddr>[ff12::8384]:21027</localAnnounceMCAddr>\n    <maxSendKbps>0</maxSendKbps>\n    <maxRecvKbps>0</maxRecvKbps>\n    <reconnectionIntervalS>60</reconnectionIntervalS>\n    <relaysEnabled>true</relaysEnabled>\n    <relayReconnectIntervalM>10</relayReconnectIntervalM>\n    <startBrowser>false</startBrowser>\n    <natEnabled>true</natEnabled>\n    <natLeaseMinutes>60</natLeaseMinutes>\n    <natRenewalMinutes>30</natRenewalMinutes>\n    <natTimeoutSeconds>10</natTimeoutSeconds>\n    <urAccepted>3</urAccepted>\n    <urSeen>3</urSeen>\n    <urUniqueID>zKw6d9Pv</urUniqueID>\n    <urURL>https://data.syncthing.net/newdata</urURL>\n    <urPostInsecurely>false</urPostInsecurely>\n    <urInitialDelayS>1800</urInitialDelayS>\n    <autoUpgradeIntervalH>12</autoUpgradeIntervalH>\n    <upgradeToPreReleases>false</upgradeToPreReleases>\n    <keepTemporariesH>24</keepTemporariesH>\n    <cacheIgnoredFiles>false</cacheIgnoredFiles>\n    <progressUpdateIntervalS>5</progressUpdateIntervalS>\n    <limitBandwidthInLan>false</limitBandwidthInLan>\n    <minHomeDiskFree unit=\"%\">1</minHomeDiskFree>\n    <releasesURL>https://upgrades.syncthing.net/meta.json</releasesURL>\n    <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>\n    <tempIndexMinBlocks>10</tempIndexMinBlocks>\n    <unackedNotificationID>authenticationUserAndPassword</unackedNotificationID>\n    <trafficClass>0</trafficClass>\n    <setLowPriority>true</setLowPriority>\n    <maxFolderConcurrency>0</maxFolderConcurrency>\n    <crashReportingURL>https://crash.syncthing.net/newcrash</crashReportingURL>\n    <crashReportingEnabled>true</crashReportingEnabled>\n    <stunKeepaliveStartS>180</stunKeepaliveStartS>\n    <stunKeepaliveMinS>20</stunKeepaliveMinS>\n    <stunServer>default</stunServer>\n    <maxConcurrentIncomingRequestKiB>0</maxConcurrentIncomingRequestKiB>\n    <announceLANAddresses>true</announceLANAddresses>\n    <sendFullIndexOnUpgrade>false</sendFullIndexOnUpgrade>\n    <auditEnabled>false</auditEnabled>\n    <auditFile></auditFile>\n    <connectionLimitEnough>0</connectionLimitEnough>\n    <connectionLimitMax>0</connectionLimitMax>\n    <connectionPriorityTcpLan>10</connectionPriorityTcpLan>\n    <connectionPriorityQuicLan>20</connectionPriorityQuicLan>\n    <connectionPriorityTcpWan>30</connectionPriorityTcpWan>\n    <connectionPriorityQuicWan>40</connectionPriorityQuicWan>\n    <connectionPriorityRelay>50</connectionPriorityRelay>\n    <connectionPriorityUpgradeThreshold>0</connectionPriorityUpgradeThreshold>\n</options>\n",
+    "zxc.20260325224622.1": "<options>\n    @others\n</options>\n",
+    "zxc.20260325235134.1": "<listenAddress>default</listenAddress>\n<globalAnnounceServer>default</globalAnnounceServer>\n<globalAnnounceEnabled>true</globalAnnounceEnabled>\n<localAnnounceEnabled>true</localAnnounceEnabled>\n<localAnnouncePort>21027</localAnnouncePort>\n<localAnnounceMCAddr>[ff12::8384]:21027</localAnnounceMCAddr>\n<maxSendKbps>0</maxSendKbps>\n<maxRecvKbps>0</maxRecvKbps>\n<reconnectionIntervalS>60</reconnectionIntervalS>\n<relaysEnabled>true</relaysEnabled>\n<relayReconnectIntervalM>10</relayReconnectIntervalM>\n<startBrowser>false</startBrowser>\n<natEnabled>true</natEnabled>\n<natLeaseMinutes>60</natLeaseMinutes>\n<natRenewalMinutes>30</natRenewalMinutes>\n<natTimeoutSeconds>10</natTimeoutSeconds>\n<urAccepted>3</urAccepted>\n<urSeen>3</urSeen>\n<urURL>https://data.syncthing.net/newdata</urURL>\n<urPostInsecurely>false</urPostInsecurely>\n<urInitialDelayS>1800</urInitialDelayS>\n<autoUpgradeIntervalH>12</autoUpgradeIntervalH>\n<upgradeToPreReleases>false</upgradeToPreReleases>\n<keepTemporariesH>24</keepTemporariesH>\n<cacheIgnoredFiles>false</cacheIgnoredFiles>\n<progressUpdateIntervalS>5</progressUpdateIntervalS>\n<limitBandwidthInLan>false</limitBandwidthInLan>\n<minHomeDiskFree unit=\"%\">1</minHomeDiskFree>\n<releasesURL>https://upgrades.syncthing.net/meta.json</releasesURL>\n<overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>\n<tempIndexMinBlocks>10</tempIndexMinBlocks>\n<unackedNotificationID>authenticationUserAndPassword</unackedNotificationID>\n<trafficClass>0</trafficClass>\n<setLowPriority>true</setLowPriority>\n<maxFolderConcurrency>0</maxFolderConcurrency>\n<crashReportingURL>https://crash.syncthing.net/newcrash</crashReportingURL>\n<crashReportingEnabled>true</crashReportingEnabled>\n<stunKeepaliveStartS>180</stunKeepaliveStartS>\n<stunKeepaliveMinS>20</stunKeepaliveMinS>\n<stunServer>default</stunServer>\n<maxConcurrentIncomingRequestKiB>0</maxConcurrentIncomingRequestKiB>\n<announceLANAddresses>true</announceLANAddresses>\n<sendFullIndexOnUpgrade>false</sendFullIndexOnUpgrade>\n<auditEnabled>false</auditEnabled>\n<auditFile></auditFile>\n<connectionLimitEnough>0</connectionLimitEnough>\n<connectionLimitMax>0</connectionLimitMax>\n<connectionPriorityTcpLan>10</connectionPriorityTcpLan>\n<connectionPriorityQuicLan>20</connectionPriorityQuicLan>\n<connectionPriorityTcpWan>30</connectionPriorityTcpWan>\n<connectionPriorityQuicWan>40</connectionPriorityQuicWan>\n<connectionPriorityRelay>50</connectionPriorityRelay>\n<connectionPriorityUpgradeThreshold>0</connectionPriorityUpgradeThreshold>\n",
+    "zxc.20260325235518.1": "<urUniqueID>zKw6d9Pv</urUniqueID>\n",
     "zxc.20260325224811.1": "<defaults>\n    <folder id=\"\" label=\"\" path=\"~\\Syncthing\" type=\"sendreceive\" rescanIntervalS=\"3600\" fsWatcherEnabled=\"true\" fsWatcherDelayS=\"10\" fsWatcherTimeoutS=\"0\" ignorePerms=\"false\" autoNormalize=\"true\">\n        <filesystemType>basic</filesystemType>\n        <device id=\"{{ gopass (printf \"syncthing/%s/id\" .chezmoi.hostname) }}\" introducedBy=\"\">\n            <encryptionPassword></encryptionPassword>\n        </device>\n        <minDiskFree unit=\"%\">1</minDiskFree>\n        <versioning>\n            <cleanupIntervalS>3600</cleanupIntervalS>\n            <fsPath></fsPath>\n            <fsType>basic</fsType>\n        </versioning>\n        <copiers>0</copiers>\n        <pullerMaxPendingKiB>0</pullerMaxPendingKiB>\n        <hashers>0</hashers>\n        <order>random</order>\n        <ignoreDelete>false</ignoreDelete>\n        <scanProgressIntervalS>0</scanProgressIntervalS>\n        <pullerPauseS>0</pullerPauseS>\n        <pullerDelayS>1</pullerDelayS>\n        <maxConflicts>10</maxConflicts>\n        <disableSparseFiles>false</disableSparseFiles>\n        <paused>false</paused>\n        <markerName>.stfolder</markerName>\n        <copyOwnershipFromParent>false</copyOwnershipFromParent>\n        <modTimeWindowS>0</modTimeWindowS>\n        <maxConcurrentWrites>16</maxConcurrentWrites>\n        <disableFsync>false</disableFsync>\n        <blockPullOrder>standard</blockPullOrder>\n        <copyRangeMethod>standard</copyRangeMethod>\n        <caseSensitiveFS>false</caseSensitiveFS>\n        <junctionsAsDirs>false</junctionsAsDirs>\n        <syncOwnership>false</syncOwnership>\n        <sendOwnership>false</sendOwnership>\n        <syncXattrs>false</syncXattrs>\n        <sendXattrs>false</sendXattrs>\n        <xattrFilter>\n            <maxSingleEntrySize>1024</maxSingleEntrySize>\n            <maxTotalSize>4096</maxTotalSize>\n        </xattrFilter>\n    </folder>\n    <device id=\"\" compression=\"metadata\" introducer=\"false\" skipIntroductionRemovals=\"false\" introducedBy=\"\">\n        <address>dynamic</address>\n        <paused>false</paused>\n        <autoAcceptFolders>false</autoAcceptFolders>\n        <maxSendKbps>0</maxSendKbps>\n        <maxRecvKbps>0</maxRecvKbps>\n        <maxRequestKiB>0</maxRequestKiB>\n        <untrusted>false</untrusted>\n        <remoteGUIPort>0</remoteGUIPort>\n        <numConnections>0</numConnections>\n    </device>\n    <ignores></ignores>\n</defaults>\n",
     "zxc.20260325224348.1": "<device id=\"{{ gopass (printf \"syncthing/%s/id\" \"bed\") }}\" name=\"bed\" compression=\"metadata\" introducer=\"false\" skipIntroductionRemovals=\"false\" introducedBy=\"\">\n    <address>dynamic</address>\n    <paused>false</paused>\n    <autoAcceptFolders>false</autoAcceptFolders>\n    <maxSendKbps>0</maxSendKbps>\n    <maxRecvKbps>0</maxRecvKbps>\n    <maxRequestKiB>0</maxRequestKiB>\n    <untrusted>false</untrusted>\n    <remoteGUIPort>0</remoteGUIPort>\n    <numConnections>0</numConnections>\n</device>\n",
     "zxc.20260325224437.1": "<device id=\"{{ gopass (printf \"syncthing/%s/id\" \"nuc\") }}\" name=\"nuc\" compression=\"metadata\" introducer=\"false\" skipIntroductionRemovals=\"false\" introducedBy=\"\">\n    <address>dynamic</address>\n    <paused>false</paused>\n    <autoAcceptFolders>false</autoAcceptFolders>\n    <maxSendKbps>0</maxSendKbps>\n    <maxRecvKbps>0</maxRecvKbps>\n    <maxRequestKiB>0</maxRequestKiB>\n    <untrusted>false</untrusted>\n    <remoteGUIPort>0</remoteGUIPort>\n    <numConnections>0</numConnections>\n</device>",
+    "zxc.20260325234738.1": "<configuration version=\"51\">\n    << folders >>\n    << device nuc >>\n    << device bed >>\n    << gui >>\n    <ldap></ldap>\n    << options >>\n    << defaults >>\n</configuration>",
+    "zxc.20260325234738.2": "@others",
+    "zxc.20260325234738.7": "<options>\n    @others\n</options>\n",
+    "zxc.20260325235302.1": "<urUniqueID>pS2Qscaz</urUniqueID>",
     "zxc.20260125211938.1": "<< dos >>\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260316162600.1": "#Requires AutoHotkey v2.0\n#SingleInstance Force\n\nLWin::F24\nRWin::F24",
     "zxc.20260323180608.1": "InstallKeybdHook\nInstallMouseHook\nCoordMode(\"mouse\", \"screen\")\n\nOnExit (*) => SystemCursor(\"Show\")  ; Ensure the cursor is made visible when the script exits\n\nSetTimer(Main, 10)\n\nMain() {\n\n   if(A_TimeIdleKeyboard < 25)\n      ;A keyboard key has been pressed, hide cursor\n      SystemCursor(\"Hide\")\n\n   else if(A_TimeIdleMouse < 25)\n      ;Mouse have been used, show cursor\n      SystemCursor(\"Show\")\n}\n\nSystemCursor(cmd) { ; cmd = \"Show|Hide|Toggle|Reload\"\n\n   static visible := true, c := Map()\n   static sys_cursors := [32512, 32513, 32514, 32515, 32516, 32642, 32643, 32644, 32645, 32646, 32648, 32649, 32650]\n\n   if (cmd = \"Reload\" or !c.Count) { ; Reload when requested or at first call.\n\n      for i, id in sys_cursors {\n         h_cursor := DllCall(\"LoadCursor\", \"Ptr\", 0, \"Ptr\", id)\n         h_default := DllCall(\"CopyImage\", \"Ptr\", h_cursor, \"UInt\", 2, \"Int\", 0, \"Int\", 0, \"UInt\", 0)\n         h_blank := DllCall(\"CreateCursor\", \"Ptr\", 0, \"Int\", 0, \"Int\", 0, \"Int\", 32, \"Int\", 32, \"Ptr\", Buffer(32 * 4, 0xFF), \"Ptr\", Buffer(32 * 4, 0))\n         c[id] := { default: h_default, blank: h_blank }\n      }\n   }\n\n   switch cmd {\n      case \"Show\":\n         if (!visible)\n            visible := true\n         else\n            return\n      case \"Hide\":\n         if (visible)\n            visible := false\n         else\n            return\n      case \"Toggle\":\n         visible := !visible\n      default: return\n   }\n\n   for id, handles in c {\n      h_cursor := DllCall(\"CopyImage\", \"Ptr\", visible ? handles.default : handles.blank, \"UInt\", 2, \"Int\", 0, \"Int\", 0, \"UInt\", 0)\n      DllCall(\"SetSystemCursor\", \"Ptr\", h_cursor, \"UInt\", id)\n   }\n}",
@@ -5398,7 +5454,7 @@
       "_mod_time": 1774449393.61
     },
     "zxc.20260325223805.1": {
-      "_mod_time": 1774450531.268
+      "_mod_time": 1774454273.329
     },
     "zxc.20260125211938.1": {
       "_mod_time": 1774448093.593
