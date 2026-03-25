@@ -189,7 +189,7 @@ function scoop-update {
 {{ end -}}
 {{ if and ( lookPath "scoop" ) (lookPath "KeePassXc") -}}
 function unlock-keepassxc {
-    gopass show -o keepassxc/main | & keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir "main.kdbx" | quote }}
+    gopass show -o keepassxc/main | & keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir "syncthing" "keepassxc" "main.kdbx" | quote }}
 }
 {{ end -}}
 {{ if lookPath "choco" -}}
