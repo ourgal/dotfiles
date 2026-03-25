@@ -74,4 +74,7 @@ Run("altrun -StartMenu", , "Hide")
 {{ if and ( lookPath "navidrome" ) .my.modules.navidrome -}}
 Run({{ print "navidrome --datafolder " (joinPath (env "LOCALAPPDATA") "navidrome") | quote }}, {{ joinPath .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
+{{ if lookPath "syncthing" -}}
+Run("syncthing serve --no-console --no-browser", , "Hide")
+{{ end -}}
 {{ end -}}
