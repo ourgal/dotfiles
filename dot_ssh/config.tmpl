@@ -14,7 +14,7 @@ Host termux
 Host gogs-m6
   Port 23231
   User {{ .my.termux.m6.username }}
-  HostName {{ template "ip_m6" .chezmoi.hostname }}
+  HostName {{ template "ipM6" .chezmoi.hostname }}
 Host *
   AddKeysToAgent yes
 {{ end -}}
