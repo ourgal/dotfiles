@@ -375,7 +375,7 @@
                 },
                 {
                   "gnx": "zxc.20260319091259.1",
-                  "vh": "@clean ip_m6"
+                  "vh": "@clean ipM6"
                 },
                 {
                   "gnx": "User.20260221004652.1",
@@ -4055,17 +4055,7 @@
                                   "children": [
                                     {
                                       "gnx": "zxc.20260325225003.1",
-                                      "vh": "keepass",
-                                      "children": [
-                                        {
-                                          "gnx": "zxc.20260325225449.1",
-                                          "vh": "bed"
-                                        },
-                                        {
-                                          "gnx": "zxc.20260325225522.1",
-                                          "vh": "nuc"
-                                        }
-                                      ]
+                                      "vh": "keepass"
                                     }
                                   ]
                                 },
@@ -4092,12 +4082,8 @@
                                   "vh": "<< defaults >>"
                                 },
                                 {
-                                  "gnx": "zxc.20260325224348.1",
-                                  "vh": "<< device bed >>"
-                                },
-                                {
-                                  "gnx": "zxc.20260325224437.1",
-                                  "vh": "<< device nuc >>"
+                                  "gnx": "zxc.20260326102634.1",
+                                  "vh": "<< devices >>"
                                 }
                               ]
                             },
@@ -4134,10 +4120,44 @@
                                   "gnx": "zxc.20260325224811.1"
                                 },
                                 {
-                                  "gnx": "zxc.20260325224348.1"
+                                  "gnx": "zxc.20260326102634.1"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260326100033.1",
+                              "vh": "<< work >>",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260326100033.2",
+                                  "vh": "<< folders >>",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260325225003.1"
+                                    }
+                                  ]
                                 },
                                 {
-                                  "gnx": "zxc.20260325224437.1"
+                                  "gnx": "zxc.20260325225138.1"
+                                },
+                                {
+                                  "gnx": "zxc.20260326100033.7",
+                                  "vh": "<< options >>",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260325235134.1"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260326100033.9",
+                                      "vh": "urUniqueID"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260325224811.1"
+                                },
+                                {
+                                  "gnx": "zxc.20260326102634.1"
                                 }
                               ]
                             },
@@ -4649,8 +4669,8 @@
     "zxc.20260125144753.1": ".bash_profile\n.bashrc\n",
     "zxc.20260125144810.1": ".xinitrc\n",
     "zxc.20260125172659.1": "{{ if lookPath \"hx\" -}}\nhx\n{{- else if lookPath \"vim\" -}}\nvim\n{{- else if lookPath \"vi\" -}}\nvi\n{{- else if lookPath \"nano\" -}}\nnano\n{{- end -}}",
-    "zxc.20260319091259.1": "{{ if eq . nil -}}\n{{ fail \"pass hostname to ip_m6 template\" -}}\n{{ end -}}\n{{ if eq . \"work\" -}}\n192.168.1.103\n{{- else if or ( eq . \"nuc\" ) ( eq . \"bed\" ) -}}\n192.168.123.191\n{{- else -}}\n{{ fail \"unknown hostname for ip_m6 template\" -}}\n{{- end -}}",
-    "User.20260221004652.1": "{{ if eq . nil -}}\n{{ fail \"pass pathes to checkPath template\" -}}\n{{ end -}}\n{{ if kindIs \"slice\" . -}}\n    {{ range . -}}\n    {{ template \"_checkPath\" . -}}\n    {{ end -}}\n{{ else if kindIs \"string\" . -}}\n    {{ template \"_checkPath\" . -}}\n{{ else -}}\n{{ fail \"checkPath: unsupported type\" -}}\n{{ end -}}\n",
+    "zxc.20260319091259.1": "{{ if eq . nil -}}\n{{ fail \"pass hostname to ipM6 template\" -}}\n{{ end -}}\n{{ if eq . \"work\" -}}\n192.168.1.103\n{{- else if  eq . \"nuc\" \"bed\" -}}\n192.168.123.191\n{{- else -}}\n{{ fail \"unknown hostname for ipM6 template\" -}}\n{{- end -}}",
+    "User.20260221004652.1": "{{ if eq . nil -}}\n{{ fail \"pass pathes to checkPath template\" -}}\n{{ end -}}\n{{ if kindIs \"slice\" . -}}\n    {{ range . -}}\n    {{ template \"_checkPath\" . -}}\n    {{ end -}}\n{{ else if kindIs \"string\" . -}}\n    {{ template \"_checkPath\" . -}}\n{{ else -}}\n    {{ fail \"checkPath: unsupported type\" -}}\n{{ end -}}\n",
     "User.20260221144015.1": "{{ if not (lookPath .) }}\n{{ fail (printf \"%s is not found\" .) -}}\n{{ end -}}",
     "User.20260307193715.1": "886822.xyz\n",
     "User.20260226000855.1": "@others",
@@ -4857,14 +4877,14 @@
     "zxc.20260201141201.1": "Host soft\n  Port 23231\n  HostName brix.local",
     "zxc.20260201141231.1": "Host github.com\n  HostName ssh.github.com\n  Port 443\n  User git",
     "zxc.20260201141321.1": "Host termux\n  Port 8022\n  User u0_a661\n  HostName localhost\n",
-    "zxc.20260319090429.1": "Host gogs-m6\n  Port 23231\n  User {{ .my.termux.m6.username }}\n  HostName {{ template \"ip_m6\" .chezmoi.hostname }}",
+    "zxc.20260319090429.1": "Host gogs-m6\n  Port 23231\n  User {{ .my.termux.m6.username }}\n  HostName {{ template \"ipM6\" .chezmoi.hostname }}",
     "User.20260214222054.1": "Host *\n  AddKeysToAgent yes",
     "User.20260215191351.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\") -}}\n{{ if lookPath \"ssh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260215191426.1": "[ssh.github.com]:443 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl\n[ssh.github.com]:443 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=\n[ssh.github.com]:443 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=",
     "User.20260217173901.1": "brix.local,2409:8a28:26d4:8b92:e2d5:5eff:fec6:60b5 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJADK7A2hbOUUfvCxe2xNhkVpEHIy3CKK0+bkTE5Uqur\n192.168.123.206 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJADK7A2hbOUUfvCxe2xNhkVpEHIy3CKK0+bkTE5Uqur",
     "User.20260217173917.1": "home.local,2409:8a28:26d4:8b92:dd8c:893b:e5cf:1d53 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOKREEGtjhZmTsIruPjBmBp0fPHKxfUSbUilpIzVMoBF",
     "User.20260220005908.1": "[brix.local]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqhuTozhEUlnOCkH1LXw55IUaZHzcO4IKmr1uPOT41u\n[192.168.123.206]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqhuTozhEUlnOCkH1LXw55IUaZHzcO4IKmr1uPOT41u",
-    "zxc.20260319090157.1": "[{{ template \"ip_m6\" .chezmoi.hostname }}]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn",
+    "zxc.20260319090157.1": "[{{ template \"ipM6\" .chezmoi.hostname }}]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn",
     "User.20260220010313.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"ssh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260220010353.1": "{{ gopass \"ssh/home/ed25519/public\" -}}",
     "User.20260220010448.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"ssh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -5108,23 +5128,24 @@
     "zxc.20260325223149.1": "{{ gopassRaw (printf \"syncthing/%s/cert\" .chezmoi.hostname) -}}",
     "zxc.20260325223610.1": "<< dos >>\n{{ if lookPath \"syncthing\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260325223610.2": "{{ gopassRaw (printf \"syncthing/%s/key\" .chezmoi.hostname) -}}",
-    "zxc.20260325223805.1": "<< dos >>\n{{ if lookPath \"syncthing\" -}}\n{{ if eq .chezmoi.hostname \"bed\" -}}\n<< bed >>\n{{ end -}}\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n<< nuc >>\n{{ end -}}\n{{ end -}}\n{{ end -}}",
-    "zxc.20260325223849.1": "<configuration version=\"51\">\n    << folders >>\n    << device nuc >>\n    << device bed >>\n    << gui >>\n    <ldap></ldap>\n    << options >>\n    << defaults >>\n</configuration>",
+    "zxc.20260325223805.1": "<< dos >>\n{{ if lookPath \"syncthing\" -}}\n{{ if eq .chezmoi.hostname \"bed\" -}}\n<< bed >>\n{{ end -}}\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n<< nuc >>\n{{ end -}}\n{{ if eq .chezmoi.hostname \"work\" -}}\n<< work >>\n{{ end -}}\n{{ end -}}\n{{ end -}}",
+    "zxc.20260325223849.1": "<configuration version=\"51\">\n    << folders >>\n    << devices >>\n    << gui >>\n    <ldap></ldap>\n    << options >>\n    << defaults >>\n</configuration>",
     "zxc.20260325224910.1": "@others",
-    "zxc.20260325225003.1": "<folder id=\"gsqw5-i57xh\" label=\"keepassxc\" path=\"~\\Syncthing\\keepassxc\" type=\"sendreceive\" rescanIntervalS=\"3600\" fsWatcherEnabled=\"true\" fsWatcherDelayS=\"10\" fsWatcherTimeoutS=\"0\" ignorePerms=\"false\" autoNormalize=\"true\">\n    <filesystemType>basic</filesystemType>\n    @others\n    <minDiskFree unit=\"%\">1</minDiskFree>\n    <versioning>\n        <cleanupIntervalS>3600</cleanupIntervalS>\n        <fsPath></fsPath>\n        <fsType>basic</fsType>\n    </versioning>\n    <copiers>0</copiers>\n    <pullerMaxPendingKiB>0</pullerMaxPendingKiB>\n    <hashers>0</hashers>\n    <order>random</order>\n    <ignoreDelete>false</ignoreDelete>\n    <scanProgressIntervalS>0</scanProgressIntervalS>\n    <pullerPauseS>0</pullerPauseS>\n    <pullerDelayS>1</pullerDelayS>\n    <maxConflicts>10</maxConflicts>\n    <disableSparseFiles>false</disableSparseFiles>\n    <paused>false</paused>\n    <markerName>.stfolder</markerName>\n    <copyOwnershipFromParent>false</copyOwnershipFromParent>\n    <modTimeWindowS>0</modTimeWindowS>\n    <maxConcurrentWrites>16</maxConcurrentWrites>\n    <disableFsync>false</disableFsync>\n    <blockPullOrder>standard</blockPullOrder>\n    <copyRangeMethod>standard</copyRangeMethod>\n    <caseSensitiveFS>false</caseSensitiveFS>\n    <junctionsAsDirs>false</junctionsAsDirs>\n    <syncOwnership>false</syncOwnership>\n    <sendOwnership>false</sendOwnership>\n    <syncXattrs>false</syncXattrs>\n    <sendXattrs>false</sendXattrs>\n    <xattrFilter>\n        <maxSingleEntrySize>1024</maxSingleEntrySize>\n        <maxTotalSize>4096</maxTotalSize>\n    </xattrFilter>\n</folder>",
-    "zxc.20260325225449.1": "<device id=\"{{ gopass (printf \"syncthing/%s/id\" \"bed\") }}\" introducedBy=\"\">\n    <encryptionPassword></encryptionPassword>\n</device>\n",
-    "zxc.20260325225522.1": "<device id=\"{{ gopass (printf \"syncthing/%s/id\" \"nuc\") }}\" introducedBy=\"\">\n    <encryptionPassword></encryptionPassword>\n</device>\n",
+    "zxc.20260325225003.1": "<folder id=\"gsqw5-i57xh\" label=\"keepassxc\" path=\"~\\Syncthing\\keepassxc\" type=\"sendreceive\" rescanIntervalS=\"3600\" fsWatcherEnabled=\"true\" fsWatcherDelayS=\"10\" fsWatcherTimeoutS=\"0\" ignorePerms=\"false\" autoNormalize=\"true\">\n    <filesystemType>basic</filesystemType>\n    <device id=\"{{ gopass \"syncthing/nuc/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/bed/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/work/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <minDiskFree unit=\"%\">1</minDiskFree>\n    <versioning>\n        <cleanupIntervalS>3600</cleanupIntervalS>\n        <fsPath></fsPath>\n        <fsType>basic</fsType>\n    </versioning>\n    <copiers>0</copiers>\n    <pullerMaxPendingKiB>0</pullerMaxPendingKiB>\n    <hashers>0</hashers>\n    <order>random</order>\n    <ignoreDelete>false</ignoreDelete>\n    <scanProgressIntervalS>0</scanProgressIntervalS>\n    <pullerPauseS>0</pullerPauseS>\n    <pullerDelayS>1</pullerDelayS>\n    <maxConflicts>10</maxConflicts>\n    <disableSparseFiles>false</disableSparseFiles>\n    <paused>false</paused>\n    <markerName>.stfolder</markerName>\n    <copyOwnershipFromParent>false</copyOwnershipFromParent>\n    <modTimeWindowS>0</modTimeWindowS>\n    <maxConcurrentWrites>16</maxConcurrentWrites>\n    <disableFsync>false</disableFsync>\n    <blockPullOrder>standard</blockPullOrder>\n    <copyRangeMethod>standard</copyRangeMethod>\n    <caseSensitiveFS>false</caseSensitiveFS>\n    <junctionsAsDirs>false</junctionsAsDirs>\n    <syncOwnership>false</syncOwnership>\n    <sendOwnership>false</sendOwnership>\n    <syncXattrs>false</syncXattrs>\n    <sendXattrs>false</sendXattrs>\n    <xattrFilter>\n        <maxSingleEntrySize>1024</maxSingleEntrySize>\n        <maxTotalSize>4096</maxTotalSize>\n    </xattrFilter>\n</folder>",
     "zxc.20260325225138.1": "<gui enabled=\"true\" tls=\"false\" sendBasicAuthPrompt=\"false\">\n    <address>127.0.0.1:8384</address>\n    <metricsWithoutAuth>false</metricsWithoutAuth>\n    <apikey>{{ gopass (printf \"syncthing/%s/api\" .chezmoi.hostname ) }}</apikey>\n    <theme>default</theme>\n</gui>\n",
     "zxc.20260325224622.1": "<options>\n    @others\n</options>\n",
     "zxc.20260325235134.1": "<listenAddress>default</listenAddress>\n<globalAnnounceServer>default</globalAnnounceServer>\n<globalAnnounceEnabled>true</globalAnnounceEnabled>\n<localAnnounceEnabled>true</localAnnounceEnabled>\n<localAnnouncePort>21027</localAnnouncePort>\n<localAnnounceMCAddr>[ff12::8384]:21027</localAnnounceMCAddr>\n<maxSendKbps>0</maxSendKbps>\n<maxRecvKbps>0</maxRecvKbps>\n<reconnectionIntervalS>60</reconnectionIntervalS>\n<relaysEnabled>true</relaysEnabled>\n<relayReconnectIntervalM>10</relayReconnectIntervalM>\n<startBrowser>false</startBrowser>\n<natEnabled>true</natEnabled>\n<natLeaseMinutes>60</natLeaseMinutes>\n<natRenewalMinutes>30</natRenewalMinutes>\n<natTimeoutSeconds>10</natTimeoutSeconds>\n<urAccepted>3</urAccepted>\n<urSeen>3</urSeen>\n<urURL>https://data.syncthing.net/newdata</urURL>\n<urPostInsecurely>false</urPostInsecurely>\n<urInitialDelayS>1800</urInitialDelayS>\n<autoUpgradeIntervalH>12</autoUpgradeIntervalH>\n<upgradeToPreReleases>false</upgradeToPreReleases>\n<keepTemporariesH>24</keepTemporariesH>\n<cacheIgnoredFiles>false</cacheIgnoredFiles>\n<progressUpdateIntervalS>5</progressUpdateIntervalS>\n<limitBandwidthInLan>false</limitBandwidthInLan>\n<minHomeDiskFree unit=\"%\">1</minHomeDiskFree>\n<releasesURL>https://upgrades.syncthing.net/meta.json</releasesURL>\n<overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>\n<tempIndexMinBlocks>10</tempIndexMinBlocks>\n<unackedNotificationID>authenticationUserAndPassword</unackedNotificationID>\n<trafficClass>0</trafficClass>\n<setLowPriority>true</setLowPriority>\n<maxFolderConcurrency>0</maxFolderConcurrency>\n<crashReportingURL>https://crash.syncthing.net/newcrash</crashReportingURL>\n<crashReportingEnabled>true</crashReportingEnabled>\n<stunKeepaliveStartS>180</stunKeepaliveStartS>\n<stunKeepaliveMinS>20</stunKeepaliveMinS>\n<stunServer>default</stunServer>\n<maxConcurrentIncomingRequestKiB>0</maxConcurrentIncomingRequestKiB>\n<announceLANAddresses>true</announceLANAddresses>\n<sendFullIndexOnUpgrade>false</sendFullIndexOnUpgrade>\n<auditEnabled>false</auditEnabled>\n<auditFile></auditFile>\n<connectionLimitEnough>0</connectionLimitEnough>\n<connectionLimitMax>0</connectionLimitMax>\n<connectionPriorityTcpLan>10</connectionPriorityTcpLan>\n<connectionPriorityQuicLan>20</connectionPriorityQuicLan>\n<connectionPriorityTcpWan>30</connectionPriorityTcpWan>\n<connectionPriorityQuicWan>40</connectionPriorityQuicWan>\n<connectionPriorityRelay>50</connectionPriorityRelay>\n<connectionPriorityUpgradeThreshold>0</connectionPriorityUpgradeThreshold>\n",
     "zxc.20260325235518.1": "<urUniqueID>zKw6d9Pv</urUniqueID>\n",
     "zxc.20260325224811.1": "<defaults>\n    <folder id=\"\" label=\"\" path=\"~\\Syncthing\" type=\"sendreceive\" rescanIntervalS=\"3600\" fsWatcherEnabled=\"true\" fsWatcherDelayS=\"10\" fsWatcherTimeoutS=\"0\" ignorePerms=\"false\" autoNormalize=\"true\">\n        <filesystemType>basic</filesystemType>\n        <device id=\"{{ gopass (printf \"syncthing/%s/id\" .chezmoi.hostname) }}\" introducedBy=\"\">\n            <encryptionPassword></encryptionPassword>\n        </device>\n        <minDiskFree unit=\"%\">1</minDiskFree>\n        <versioning>\n            <cleanupIntervalS>3600</cleanupIntervalS>\n            <fsPath></fsPath>\n            <fsType>basic</fsType>\n        </versioning>\n        <copiers>0</copiers>\n        <pullerMaxPendingKiB>0</pullerMaxPendingKiB>\n        <hashers>0</hashers>\n        <order>random</order>\n        <ignoreDelete>false</ignoreDelete>\n        <scanProgressIntervalS>0</scanProgressIntervalS>\n        <pullerPauseS>0</pullerPauseS>\n        <pullerDelayS>1</pullerDelayS>\n        <maxConflicts>10</maxConflicts>\n        <disableSparseFiles>false</disableSparseFiles>\n        <paused>false</paused>\n        <markerName>.stfolder</markerName>\n        <copyOwnershipFromParent>false</copyOwnershipFromParent>\n        <modTimeWindowS>0</modTimeWindowS>\n        <maxConcurrentWrites>16</maxConcurrentWrites>\n        <disableFsync>false</disableFsync>\n        <blockPullOrder>standard</blockPullOrder>\n        <copyRangeMethod>standard</copyRangeMethod>\n        <caseSensitiveFS>false</caseSensitiveFS>\n        <junctionsAsDirs>false</junctionsAsDirs>\n        <syncOwnership>false</syncOwnership>\n        <sendOwnership>false</sendOwnership>\n        <syncXattrs>false</syncXattrs>\n        <sendXattrs>false</sendXattrs>\n        <xattrFilter>\n            <maxSingleEntrySize>1024</maxSingleEntrySize>\n            <maxTotalSize>4096</maxTotalSize>\n        </xattrFilter>\n    </folder>\n    <device id=\"\" compression=\"metadata\" introducer=\"false\" skipIntroductionRemovals=\"false\" introducedBy=\"\">\n        <address>dynamic</address>\n        <paused>false</paused>\n        <autoAcceptFolders>false</autoAcceptFolders>\n        <maxSendKbps>0</maxSendKbps>\n        <maxRecvKbps>0</maxRecvKbps>\n        <maxRequestKiB>0</maxRequestKiB>\n        <untrusted>false</untrusted>\n        <remoteGUIPort>0</remoteGUIPort>\n        <numConnections>0</numConnections>\n    </device>\n    <ignores></ignores>\n</defaults>\n",
-    "zxc.20260325224348.1": "<device id=\"{{ gopass (printf \"syncthing/%s/id\" \"bed\") }}\" name=\"bed\" compression=\"metadata\" introducer=\"false\" skipIntroductionRemovals=\"false\" introducedBy=\"\">\n    <address>dynamic</address>\n    <paused>false</paused>\n    <autoAcceptFolders>false</autoAcceptFolders>\n    <maxSendKbps>0</maxSendKbps>\n    <maxRecvKbps>0</maxRecvKbps>\n    <maxRequestKiB>0</maxRequestKiB>\n    <untrusted>false</untrusted>\n    <remoteGUIPort>0</remoteGUIPort>\n    <numConnections>0</numConnections>\n</device>\n",
-    "zxc.20260325224437.1": "<device id=\"{{ gopass (printf \"syncthing/%s/id\" \"nuc\") }}\" name=\"nuc\" compression=\"metadata\" introducer=\"false\" skipIntroductionRemovals=\"false\" introducedBy=\"\">\n    <address>dynamic</address>\n    <paused>false</paused>\n    <autoAcceptFolders>false</autoAcceptFolders>\n    <maxSendKbps>0</maxSendKbps>\n    <maxRecvKbps>0</maxRecvKbps>\n    <maxRequestKiB>0</maxRequestKiB>\n    <untrusted>false</untrusted>\n    <remoteGUIPort>0</remoteGUIPort>\n    <numConnections>0</numConnections>\n</device>",
-    "zxc.20260325234738.1": "<configuration version=\"51\">\n    << folders >>\n    << device nuc >>\n    << device bed >>\n    << gui >>\n    <ldap></ldap>\n    << options >>\n    << defaults >>\n</configuration>",
+    "zxc.20260326102634.1": "<device id=\"{{ gopass \"syncthing/bed/id\" }}\" name=\"bed\" compression=\"metadata\" introducer=\"false\" skipIntroductionRemovals=\"false\" introducedBy=\"\">\n    <address>dynamic</address>\n    <paused>false</paused>\n    <autoAcceptFolders>false</autoAcceptFolders>\n    <maxSendKbps>0</maxSendKbps>\n    <maxRecvKbps>0</maxRecvKbps>\n    <maxRequestKiB>0</maxRequestKiB>\n    <untrusted>false</untrusted>\n    <remoteGUIPort>0</remoteGUIPort>\n    <numConnections>0</numConnections>\n</device>\n<device id=\"{{ gopass \"syncthing/nuc/id\" }}\" name=\"nuc\" compression=\"metadata\" introducer=\"false\" skipIntroductionRemovals=\"false\" introducedBy=\"\">\n    <address>dynamic</address>\n    <paused>false</paused>\n    <autoAcceptFolders>false</autoAcceptFolders>\n    <maxSendKbps>0</maxSendKbps>\n    <maxRecvKbps>0</maxRecvKbps>\n    <maxRequestKiB>0</maxRequestKiB>\n    <untrusted>false</untrusted>\n    <remoteGUIPort>0</remoteGUIPort>\n    <numConnections>0</numConnections>\n</device>\n<device id=\"{{ gopass \"syncthing/work/id\" }}\" name=\"work\" compression=\"metadata\" introducer=\"false\" skipIntroductionRemovals=\"false\" introducedBy=\"\">\n    <address>dynamic</address>\n    <paused>false</paused>\n    <autoAcceptFolders>false</autoAcceptFolders>\n    <maxSendKbps>0</maxSendKbps>\n    <maxRecvKbps>0</maxRecvKbps>\n    <maxRequestKiB>0</maxRequestKiB>\n    <untrusted>false</untrusted>\n    <remoteGUIPort>0</remoteGUIPort>\n    <numConnections>0</numConnections>\n</device>\n",
+    "zxc.20260325234738.1": "<configuration version=\"51\">\n    << folders >>\n    << devices >>\n    << gui >>\n    <ldap></ldap>\n    << options >>\n    << defaults >>\n</configuration>",
     "zxc.20260325234738.2": "@others",
     "zxc.20260325234738.7": "<options>\n    @others\n</options>\n",
     "zxc.20260325235302.1": "<urUniqueID>pS2Qscaz</urUniqueID>",
+    "zxc.20260326100033.1": "<configuration version=\"51\">\n    << folders >>\n    << devices >>\n    << gui >>\n    <ldap></ldap>\n    << options >>\n    << defaults >>\n</configuration>",
+    "zxc.20260326100033.2": "@others",
+    "zxc.20260326100033.7": "<options>\n    @others\n</options>\n",
+    "zxc.20260326100033.9": "<urUniqueID>KCCpjZMF</urUniqueID>",
     "zxc.20260125211938.1": "<< dos >>\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260316162600.1": "#Requires AutoHotkey v2.0\n#SingleInstance Force\n\nLWin::F24\nRWin::F24",
     "zxc.20260323180608.1": "InstallKeybdHook\nInstallMouseHook\nCoordMode(\"mouse\", \"screen\")\n\nOnExit (*) => SystemCursor(\"Show\")  ; Ensure the cursor is made visible when the script exits\n\nSetTimer(Main, 10)\n\nMain() {\n\n   if(A_TimeIdleKeyboard < 25)\n      ;A keyboard key has been pressed, hide cursor\n      SystemCursor(\"Hide\")\n\n   else if(A_TimeIdleMouse < 25)\n      ;Mouse have been used, show cursor\n      SystemCursor(\"Show\")\n}\n\nSystemCursor(cmd) { ; cmd = \"Show|Hide|Toggle|Reload\"\n\n   static visible := true, c := Map()\n   static sys_cursors := [32512, 32513, 32514, 32515, 32516, 32642, 32643, 32644, 32645, 32646, 32648, 32649, 32650]\n\n   if (cmd = \"Reload\" or !c.Count) { ; Reload when requested or at first call.\n\n      for i, id in sys_cursors {\n         h_cursor := DllCall(\"LoadCursor\", \"Ptr\", 0, \"Ptr\", id)\n         h_default := DllCall(\"CopyImage\", \"Ptr\", h_cursor, \"UInt\", 2, \"Int\", 0, \"Int\", 0, \"UInt\", 0)\n         h_blank := DllCall(\"CreateCursor\", \"Ptr\", 0, \"Int\", 0, \"Int\", 0, \"Int\", 32, \"Int\", 32, \"Ptr\", Buffer(32 * 4, 0xFF), \"Ptr\", Buffer(32 * 4, 0))\n         c[id] := { default: h_default, blank: h_blank }\n      }\n   }\n\n   switch cmd {\n      case \"Show\":\n         if (!visible)\n            visible := true\n         else\n            return\n      case \"Hide\":\n         if (visible)\n            visible := false\n         else\n            return\n      case \"Toggle\":\n         visible := !visible\n      default: return\n   }\n\n   for id, handles in c {\n      h_cursor := DllCall(\"CopyImage\", \"Ptr\", visible ? handles.default : handles.blank, \"UInt\", 2, \"Int\", 0, \"Int\", 0, \"UInt\", 0)\n      DllCall(\"SetSystemCursor\", \"Ptr\", h_cursor, \"UInt\", id)\n   }\n}",
@@ -5175,10 +5196,10 @@
       "_mod_time": 1773571522.6390562
     },
     "zxc.20260319091259.1": {
-      "_mod_time": 1774180513.344
+      "_mod_time": 1774491626.259
     },
     "User.20260221004652.1": {
-      "_mod_time": 1774180834.493
+      "_mod_time": 1774491835.868
     },
     "User.20260221144015.1": {
       "_mod_time": 1773839158.266
@@ -5313,10 +5334,10 @@
       "_mod_time": 1773571522.654681
     },
     "zxc.20260201141149.1": {
-      "_mod_time": 1773921700.268
+      "_mod_time": 1774491829.948
     },
     "User.20260215191351.1": {
-      "_mod_time": 1773920875.263
+      "_mod_time": 1774491830.023
     },
     "User.20260220010313.1": {
       "_mod_time": 1773571522.654681
@@ -5454,7 +5475,7 @@
       "_mod_time": 1774449393.61
     },
     "zxc.20260325223805.1": {
-      "_mod_time": 1774454273.329
+      "_mod_time": 1774514741.59
     },
     "zxc.20260125211938.1": {
       "_mod_time": 1774448093.593
