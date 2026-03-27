@@ -1,0 +1,9 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "mani" -}}
+projects:
+  playbooks:
+    path: Documents/my_repos/playbooks
+    url: soft:playbooks
+    desc: Ansible playbooks
+{{ end -}}
+{{ end -}}
