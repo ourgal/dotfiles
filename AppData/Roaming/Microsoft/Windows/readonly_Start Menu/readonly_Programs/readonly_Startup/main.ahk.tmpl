@@ -23,14 +23,14 @@ Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "aria2" "current" "aria2c.exe" 
 {{ if lookPath "espansod" -}}
 Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "espanso" "current" "espansod.exe" }} start", {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
-{{ if lookPath "gpg-connect-agent" -}}
-Run("gpg-connect-agent /bye", , "Hide")
-{{ end -}}
 {{ if lookPath "alist" -}}
 Run("alist start", , "Hide")
 {{ end -}}
 {{ if and ( lookPath "mpd" ) .my.modules.mpd -}}
 Run("mpd {{ joinPath (env "appdata") "mpd" "mpd.conf"}}", {{ .chezmoi.homeDir | quote }}, "Hide")
+{{ end -}}
+{{ if lookPath "gpg-connect-agent" -}}
+Run("gpg-connect-agent /bye", , "Hide")
 {{ end -}}
 {{ if lookPath "kdeconnect-cli" -}}
 Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "kdeconnect" "current" "bin" "kdeconnectd.exe" }}", {{ .chezmoi.homeDir | quote }}, "Hide")
