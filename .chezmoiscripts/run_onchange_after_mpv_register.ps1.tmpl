@@ -1,0 +1,8 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "mpv" -}}
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
+& mpv --register
+{{ end -}}
+{{ end -}}

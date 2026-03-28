@@ -1,5 +1,5 @@
 {{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "brave" -}}
+{{ if lookPath "qutebrowser" -}}
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 $PSNativeCommandUseErrorActionPreference = $true
