@@ -1,7 +1,9 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "gpg-agent" -}}
+{{ if .my.git.sign.gpg -}}
 enable-win32-openssh-support
 enable-ssh-support
+{{ end -}}
 grab
 {{ end -}}
 {{ end -}}
