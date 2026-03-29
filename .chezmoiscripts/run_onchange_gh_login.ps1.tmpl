@@ -4,9 +4,9 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 $PSNativeCommandUseErrorActionPreference = $true
 {{ if not (exec "gh" "auth" "status") -}}
-{{ println "Starting to login in github cli" -}}
+"Starting to login in github cli"
 gopass github/ourgal/token | gh auth login --hostname github.com --with-token
-{{ println "Login in github successed" -}}
+"Login in github successed"
 {{ end -}}
 {{ end -}}
 {{ end -}}
