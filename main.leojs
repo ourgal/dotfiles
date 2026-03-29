@@ -1166,6 +1166,28 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "gnx": "zxc.20260329102052.1",
+                  "vh": "uuid based on BIOS serial number",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260329102210.1",
+                      "vh": "@clean run_onchange_uuid_based_bios_serial_number.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
+                          "gnx": "zxc.20260323201237.1"
+                        },
+                        {
+                          "gnx": "zxc.20260329102250.1",
+                          "vh": "content"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -4931,6 +4953,8 @@
     "zxc.20260318203506.1": "{{ $file_content := include (joinPath .chezmoi.homeDir \"vimfiles\" \"import\" \"plugins.vim\") | splitList \"\\n\" -}}\n{{ $sum := list -}}\n{{ range $file_content -}}\n{{ if hasPrefix \"Plug\" . -}}\n{{ $sum = (. | split \"'\")._1 | append $sum -}}\n{{ end -}}\n{{ end -}}\n# {{ $sum | join \"\" | sha256sum }}\nvim -c \"PlugClean|PlugUpdate|qa!\"",
     "zxc.20260323195318.1": "<< dos >>\n<< strict >>\n@others\n{{ end -}}",
     "zxc.20260323195340.1": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\VisualEffects' -Name 'VisualFXSetting' -Value 1",
+    "zxc.20260329102210.1": "<< dos >>\n<< strict >>\n@others\n{{ end -}}",
+    "zxc.20260329102250.1": "# Gather System Serial Number\n$computerSpec = (Get-CimInstance -ClassName Win32_BIOS).SerialNumber\n\n# Generate a Hash (MD5)\n$md5 = [System.Security.Cryptography.MD5]::Create()\n$hash = $md5.ComputeHash([System.Text.Encoding]::UTF8.GetBytes($computerSpec))\n\n# Convert Hash to GUID\n$guid = [System.Guid]$hash\n$guid.Guid | Tee-Object -FilePath {{ joinPath (env \"LOCALAPPDATA\") \"uuid\" }}",
     "User.20260226001402.1": "@others",
     "zxc.20260315140948.1": "[my]\nname = \"zxc\"",
     "User.20260226001414.1": "[my.msys2]\npackages = [\"mingw-w64-x86_64-aspell\"]\n",
@@ -5400,7 +5424,7 @@
       "_mod_time": 1773630580.1590984
     },
     "User.20260226000855.1": {
-      "_mod_time": 1774725064.962
+      "_mod_time": 1774727086.735
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1774366592.966
@@ -5454,7 +5478,7 @@
       "_mod_time": 1774366592.96
     },
     "User.20260220012738.1": {
-      "_mod_time": 1774268638.151
+      "_mod_time": 1774366592.966
     },
     "User.20260308173318.1": {
       "_mod_time": 1774366592.944
@@ -5482,6 +5506,9 @@
     },
     "zxc.20260323195318.1": {
       "_mod_time": 1774366592.966
+    },
+    "zxc.20260329102210.1": {
+      "_mod_time": 1774751339.752
     },
     "User.20260226001402.1": {
       "_mod_time": 1774725451.4
@@ -5526,13 +5553,13 @@
       "_mod_time": 1774175138.537
     },
     "zxc.20260130225718.1": {
-      "_mod_time": 1774725064.984
+      "_mod_time": 1774727086.758
     },
     "zxc.20260201141149.1": {
-      "_mod_time": 1774725064.995
+      "_mod_time": 1774727086.764
     },
     "User.20260215191351.1": {
-      "_mod_time": 1774725065.014
+      "_mod_time": 1774727086.764
     },
     "User.20260220010313.1": {
       "_mod_time": 1774175138.499
@@ -5544,7 +5571,7 @@
       "_mod_time": 1773571522.654681
     },
     "User.20260216000318.1": {
-      "_mod_time": 1774725065.028
+      "_mod_time": 1774727086.78
     },
     "User.20260216232855.1": {
       "_mod_time": 1774175138.483
@@ -5559,7 +5586,7 @@
       "_mod_time": 1774175138.499
     },
     "zxc.20260315140713.1": {
-      "_mod_time": 1774725065.044
+      "_mod_time": 1774727086.781
     },
     "zxc.20260317002829.1": {
       "_mod_time": 1774175138.499
@@ -5568,22 +5595,22 @@
       "_mod_time": 1774608961.141
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1774725065.057
+      "_mod_time": 1774727086.798
     },
     "zxc.20260125145051.1": {
-      "_mod_time": 1774725065.072
+      "_mod_time": 1774727086.798
     },
     "zxc.20260125152704.1": {
-      "_mod_time": 1774725065.086
+      "_mod_time": 1774727086.816
     },
     "zxc.20260125152851.2": {
       "_mod_time": 1773554567.503
     },
     "zxc.20260125153131.1": {
-      "_mod_time": 1774725065.09
+      "_mod_time": 1774727086.831
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1774725065.105
+      "_mod_time": 1774727086.831
     },
     "zxc.20260125161631.1": {
       "_mod_time": 1773554567.503
@@ -5592,16 +5619,16 @@
       "_mod_time": 1773554567.503
     },
     "User.20260217223023.1": {
-      "_mod_time": 1774725065.121
+      "_mod_time": 1774727086.848
     },
     "User.20260217223030.1": {
-      "_mod_time": 1774725065.137
+      "_mod_time": 1774727086.865
     },
     "User.20260217223035.1": {
-      "_mod_time": 1774725065.168
+      "_mod_time": 1774727086.898
     },
     "User.20260223014430.1": {
-      "_mod_time": 1774725065.184
+      "_mod_time": 1774727086.898
     },
     "User.20260220233323.1": {
       "_mod_time": 1773554567.503
