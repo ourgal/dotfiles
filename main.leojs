@@ -5113,7 +5113,7 @@
     "zxc.20260319090429.1": "Host gogs-m6\n  Port 23231\n  User {{ .my.termux.m6.username }}\n  HostName {{ template \"ipM6\" .chezmoi.hostname }}",
     "User.20260214222054.1": "Host *\n  AddKeysToAgent yes",
     "User.20260215191351.1": "<< unix dos >>\n{{ if lookPath \"ssh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260329195706.1": "{{- /* chezmoi:modify-template */ -}}\n{{ $origin := .chezmoi.stdin | splitList \"\\n\" -}}\n{{ range .my.ssh.known_hosts -}}\n    {{ if not (has . $origin) -}}\n    {{ $origin = append $origin .}}\n    {{ end -}}\n{{ end -}}\n{{ $origin | compact | join \"\\n\" -}}",
+    "zxc.20260329195706.1": "{{- /* chezmoi:modify-template */ -}}\n{{ $origin := .chezmoi.stdin | trim | splitList \"\\n\" -}}\n{{ range .my.ssh.known_hosts -}}\n    {{ if not (has . $origin) -}}\n    {{ $origin = append $origin . -}}\n    {{ end -}}\n{{ end -}}\n{{ $origin | compact | join \"\\n\" -}}",
     "User.20260220010313.1": "<< dos >>\n{{ if lookPath \"ssh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260220010353.1": "{{ gopass \"ssh/home/ed25519/public\" -}}",
     "User.20260220010448.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"ssh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -5591,7 +5591,7 @@
       "_mod_time": 1774727086.764
     },
     "User.20260215191351.1": {
-      "_mod_time": 1774785993.903
+      "_mod_time": 1774798143.338
     },
     "User.20260220010313.1": {
       "_mod_time": 1774175138.499
