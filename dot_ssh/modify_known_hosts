@@ -1,10 +1,10 @@
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
 {{ if lookPath "ssh" -}}
 {{- /* chezmoi:modify-template */ -}}
-{{ $origin := .chezmoi.stdin | splitList "\n" -}}
+{{ $origin := .chezmoi.stdin | trim | splitList "\n" -}}
 {{ range .my.ssh.known_hosts -}}
     {{ if not (has . $origin) -}}
-    {{ $origin = append $origin .}}
+    {{ $origin = append $origin . -}}
     {{ end -}}
 {{ end -}}
 {{ $origin | compact | join "\n" -}}
