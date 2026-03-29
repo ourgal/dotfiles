@@ -77,4 +77,7 @@ Run({{ print "navidrome --datafolder " (joinPath (env "LOCALAPPDATA") "navidrome
 {{ if lookPath "syncthing" -}}
 Run("syncthing serve --no-console --no-browser", , "Hide")
 {{ end -}}
+{{ if and (lookPath "keepassxc") (lookPath "gopass") -}}
+Run({{ joinPath .chezmoi.homeDir "Documents" "autohotkey" "keepassxc.ahk" | quote }}, , "Hide")
+{{ end -}}
 {{ end -}}
