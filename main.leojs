@@ -1230,6 +1230,32 @@
                       "vh": "pip"
                     },
                     {
+                      "gnx": "zxc.20260329193242.1",
+                      "vh": "ssh",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260329194301.1",
+                          "vh": "home"
+                        },
+                        {
+                          "gnx": "zxc.20260329194332.1",
+                          "vh": "soft"
+                        },
+                        {
+                          "gnx": "zxc.20260329193635.1",
+                          "vh": "brix"
+                        },
+                        {
+                          "gnx": "zxc.20260329194446.1",
+                          "vh": "m6"
+                        },
+                        {
+                          "gnx": "zxc.20260329193440.1",
+                          "vh": "github"
+                        }
+                      ]
+                    },
+                    {
                       "gnx": "zxc.20260321000242.1",
                       "vh": "modules"
                     }
@@ -1996,36 +2022,14 @@
             },
             {
               "gnx": "User.20260215191351.1",
-              "vh": "@clean known_hosts.tmpl",
+              "vh": "@clean modify_known_hosts",
               "children": [
                 {
                   "gnx": "User.20260225204914.1"
                 },
                 {
-                  "gnx": "User.20260215191426.1",
-                  "vh": "github"
-                },
-                {
-                  "gnx": "User.20260217173901.1",
-                  "vh": "brix"
-                },
-                {
-                  "gnx": "User.20260217173917.1",
-                  "vh": "home"
-                },
-                {
-                  "gnx": "User.20260220005908.1",
-                  "vh": "soft"
-                },
-                {
-                  "gnx": "zxc.20260319090149.1",
-                  "vh": "termux",
-                  "children": [
-                    {
-                      "gnx": "zxc.20260319090157.1",
-                      "vh": "m6"
-                    }
-                  ]
+                  "gnx": "zxc.20260329195706.1",
+                  "vh": "content"
                 }
               ]
             },
@@ -4978,6 +4982,12 @@
     "User.20260226001439.1": "[my.git.sign]\nssh = true\ngpg = false\n",
     "User.20260226001451.1": "[my.termux.note20]\nusername = \"u0_a644\"\n[my.termux.m6]\nusername = \"u0_a455\"",
     "User.20260303224633.1": "[my.pip]\nmirror = \"https://mirrors.cernet.edu.cn/pypi/web/simple/\"\n",
+    "zxc.20260329193242.1": "[my.ssh]\nknown_hosts = [\n    @others\n]",
+    "zxc.20260329194301.1": "\"home.local,192.168.123.100 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOKREEGtjhZmTsIruPjBmBp0fPHKxfUSbUilpIzVMoBF\",",
+    "zxc.20260329194332.1": "\"[brix.local]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqhuTozhEUlnOCkH1LXw55IUaZHzcO4IKmr1uPOT41u\",\n\"[192.168.123.206]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqhuTozhEUlnOCkH1LXw55IUaZHzcO4IKmr1uPOT41u\",",
+    "zxc.20260329193635.1": "\"brix.local,192.168.123.206 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJADK7A2hbOUUfvCxe2xNhkVpEHIy3CKK0+bkTE5Uqur\",",
+    "zxc.20260329194446.1": "\"[192.168.1.103]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n\"[192.168.123.191]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",",
+    "zxc.20260329193440.1": "\"[ssh.github.com]:443 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl\",\n\"[ssh.github.com]:443 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=\",\n\"[ssh.github.com]:443 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=\"\n",
     "zxc.20260321000242.1": "[my.modules]\nmpd = false\nnavidrome = true\n\nmcfly = true\natuin = false\n\nnavi = true\n\nstarship = false\noh_my_posh = true\n\nzoxide = true",
     "zxc.20260125162740.1": "<< unix >>\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125162834.1": "[global]\nindex-url = {{ .my.pip.mirror }}\n[install]\ntrusted-host = {{ get (urlParse .my.pip.mirror) \"host\" }}",
@@ -5097,11 +5107,7 @@
     "zxc.20260319090429.1": "Host gogs-m6\n  Port 23231\n  User {{ .my.termux.m6.username }}\n  HostName {{ template \"ipM6\" .chezmoi.hostname }}",
     "User.20260214222054.1": "Host *\n  AddKeysToAgent yes",
     "User.20260215191351.1": "<< unix dos >>\n{{ if lookPath \"ssh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260215191426.1": "[ssh.github.com]:443 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl\n[ssh.github.com]:443 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=\n[ssh.github.com]:443 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=",
-    "User.20260217173901.1": "brix.local,2409:8a28:26d4:8b92:e2d5:5eff:fec6:60b5 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJADK7A2hbOUUfvCxe2xNhkVpEHIy3CKK0+bkTE5Uqur\n192.168.123.206 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJADK7A2hbOUUfvCxe2xNhkVpEHIy3CKK0+bkTE5Uqur",
-    "User.20260217173917.1": "home.local,2409:8a28:26d4:8b92:dd8c:893b:e5cf:1d53 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOKREEGtjhZmTsIruPjBmBp0fPHKxfUSbUilpIzVMoBF",
-    "User.20260220005908.1": "[brix.local]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqhuTozhEUlnOCkH1LXw55IUaZHzcO4IKmr1uPOT41u\n[192.168.123.206]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqhuTozhEUlnOCkH1LXw55IUaZHzcO4IKmr1uPOT41u",
-    "zxc.20260319090157.1": "[{{ template \"ipM6\" .chezmoi.hostname }}]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn",
+    "zxc.20260329195706.1": "{{- /* chezmoi:modify-template */ -}}\n{{ $origin := .chezmoi.stdin | splitList \"\\n\" -}}\n{{ range .my.ssh.known_hosts -}}\n    {{ if not (has . $origin) -}}\n    {{ $origin = append $origin .}}\n    {{ end -}}\n{{ end -}}\n{{ $origin | compact | join \"\\n\" -}}",
     "User.20260220010313.1": "<< dos >>\n{{ if lookPath \"ssh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260220010353.1": "{{ gopass \"ssh/home/ed25519/public\" -}}",
     "User.20260220010448.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"ssh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -5531,7 +5537,7 @@
       "_mod_time": 1774751339.752
     },
     "User.20260226001402.1": {
-      "_mod_time": 1774725451.4
+      "_mod_time": 1774785824.671
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1773554567.467
@@ -5579,7 +5585,7 @@
       "_mod_time": 1774727086.764
     },
     "User.20260215191351.1": {
-      "_mod_time": 1774727086.764
+      "_mod_time": 1774785993.903
     },
     "User.20260220010313.1": {
       "_mod_time": 1774175138.499
