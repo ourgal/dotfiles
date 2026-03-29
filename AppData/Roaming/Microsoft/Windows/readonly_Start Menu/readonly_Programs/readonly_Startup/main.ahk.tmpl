@@ -80,4 +80,7 @@ Run("syncthing serve --no-console --no-browser", , "Hide")
 {{ if and (lookPath "keepassxc") (lookPath "gopass") -}}
 Run({{ joinPath .chezmoi.homeDir "Documents" "autohotkey" "keepassxc.ahk" | quote }}, , "Hide")
 {{ end -}}
+{{ if and (stat (joinPath .chezmoi.homeDir "scoop" "apps" "jellyfin-mpv-shim")) (eq .chezmoi.hostname "bed") -}}
+Run({{ joinPath .chezmoi.homeDir "scoop" "apps" "jellyfin-mpv-shim" "current" "run.exe" | quote }}, , "Hide")
+{{ end -}}
 {{ end -}}
