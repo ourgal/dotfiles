@@ -1,0 +1,8 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "espanso" -}}
+{{- /* chezmoi:modify-template */ -}}
+{{ $origin := fromYaml .chezmoi.stdin -}}
+{{ $origin = $origin | setValueAtPath "show_notifications" false -}}
+{{ $origin | toYaml -}}
+{{ end -}}
+{{ end -}}
