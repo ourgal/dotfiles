@@ -46,10 +46,6 @@
         {
           "gnx": "zxc.20260316152403.1",
           "vh": "flow launcher"
-        },
-        {
-          "gnx": "zxc.20260316162735.1",
-          "vh": "powertoys"
         }
       ]
     },
@@ -1257,7 +1253,13 @@
                     },
                     {
                       "gnx": "zxc.20260321000242.1",
-                      "vh": "modules"
+                      "vh": "modules",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260330234020.1",
+                          "vh": "keybindings"
+                        }
+                      ]
                     }
                   ]
                 }
@@ -1890,6 +1892,10 @@
             {
               "gnx": "zxc.20260316162805.1",
               "vh": "keybindings"
+            },
+            {
+              "gnx": "zxc.20260316162735.1",
+              "vh": "powertoys"
             },
             {
               "gnx": "zxc.20260323180658.1",
@@ -4837,7 +4843,6 @@
     "User.20260221180517.1": "{{ if and (eq .chezmoi.hostname \"nuc\") (lookPath \"runemacs\") -}}\n; Run(\"runemacs --daemon\", EnvGet(\"userprofile\"), \"Hide\")\n{{ end -}}\n",
     "zxc.20260203193056.1": "{{ if lookPath \"mcfly\" -}}\n# mcfly\nInvoke-Expression -Command $(mcfly init powershell | out-string)\n{{ end -}}",
     "zxc.20260316152403.1": "{{ $flow := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"flow-launcher\" \"current\" \"Flow.Launcher.exe\" -}}\n{{ if stat $flow -}}\nRun({{ $flow | quote }}, {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
-    "zxc.20260316162735.1": "{{ $powertoys := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"powertoys\" \"current\" \"powertoys.exe\" -}}\n{{ if stat $powertoys -}}\nRun({{ $powertoys | quote }}, {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
     "zxc.20260125142149.1": "@tabwidth 4\nall:\n\t@others\n",
     "zxc.20260125142255.1": "yes | git magic -ap\n",
     "zxc.20260125142829.1": "{{ if eq .chezmoi.os \"linux\" -}}\n@others\n{{ end -}}",
@@ -4995,6 +5000,7 @@
     "zxc.20260329194446.1": "\"[192.168.1.103]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n\"[192.168.123.191]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",",
     "zxc.20260329193440.1": "\"[ssh.github.com]:443 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl\",\n\"[ssh.github.com]:443 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=\",\n\"[ssh.github.com]:443 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=\"\n",
     "zxc.20260321000242.1": "[my.modules]\nmpd = false\nnavidrome = true\n\nmcfly = true\natuin = false\n\nnavi = true\n\nstarship = false\noh_my_posh = true\n\nzoxide = true",
+    "zxc.20260330234020.1": "[my.modules.keybindings]\npowertoys = true\nautohotkey = false",
     "zxc.20260125162740.1": "<< unix >>\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125162834.1": "[global]\nindex-url = {{ .my.pip.mirror }}\n[install]\ntrusted-host = {{ get (urlParse .my.pip.mirror) \"host\" }}",
     "zxc.20260126185048.1": "<< dos >>\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -5090,7 +5096,8 @@
     "User.20260302135941.1": "{{ if lookPath \"firefox\" -}}\nRun(\"firefox\", , \"Max\")\nWinWait(\"ahk_class MozillaWindowClass\")\n{{ else if lookPath \"brave\" -}}\nRun(\"brave\", , \"Max\")\n{{ end -}}\n",
     "User.20260302135946.1": "{{ $vscode := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscode\" \"current\" \"Code.exe\" -}}\n{{ $vscodium := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscodium\" \"current\" \"VSCodium.exe\" -}}\n{{ if stat $vscodium -}}\nRun({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait(\"VSCodium\")\n{{ else if stat $vscode -}}\nRun({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\n{{ end -}}",
     "zxc.20260315173154.1": "{{ if lookPath \"everything\" -}}\nRun(\"everything\", , \"Hide\")\n{{ end -}}",
-    "zxc.20260316162805.1": "{{ if lookPath \"autohotkey\" -}}\nRun({{ joinPath .chezmoi.homeDir \"Documents\" \"autohotkey\" \"keybindings.ahk\" | quote }}, , \"Hide\")\n{{ end -}}",
+    "zxc.20260316162805.1": "{{ if and ( lookPath \"autohotkey\" ) .my.modules.keybindings.autohotkey -}}\nRun({{ joinPath .chezmoi.homeDir \"Documents\" \"autohotkey\" \"keybindings.ahk\" | quote }}, , \"Hide\")\n{{ end -}}",
+    "zxc.20260316162735.1": "{{ $powertoys := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"powertoys\" \"current\" \"powertoys.exe\" -}}\n{{ if and ( stat $powertoys ) .my.modules.keybindings.powertoys -}}\nRun({{ $powertoys | quote }}, {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
     "zxc.20260323180658.1": "{{ if lookPath \"autohotkey\" -}}\nRun({{ joinPath .chezmoi.homeDir \"Documents\" \"autohotkey\" \"hide_cursor.ahk\" | quote }}, , \"Hide\")\n{{ end -}}",
     "zxc.20260317104807.1": "{{ if lookPath \"dufs\" -}}\nRun(\"dufs --allow-upload --allow-search --allow-symlink --allow-archive -p 6500\", {{ joinPath .chezmoi.homeDir \"Documents\" \"share\" | quote }}, \"Hide\")\n{{ end -}}",
     "zxc.20260318093951.1": "{{ if lookPath \"copyparty\" -}}\nRun(\"copyparty --no-del -p 6080,6443\", {{ joinPath .chezmoi.homeDir \"Documents\" \"share\" | quote }}, \"Hide\")\n{{ end -}}",
@@ -5543,7 +5550,7 @@
       "_mod_time": 1774751339.752
     },
     "User.20260226001402.1": {
-      "_mod_time": 1774785824.671
+      "_mod_time": 1774885304.868
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1773554567.467
@@ -5591,7 +5598,7 @@
       "_mod_time": 1774727086.764
     },
     "User.20260215191351.1": {
-      "_mod_time": 1774798143.338
+      "_mod_time": 1774885067.894
     },
     "User.20260220010313.1": {
       "_mod_time": 1774175138.499
@@ -5732,7 +5739,7 @@
       "_mod_time": 1774453625.549
     },
     "zxc.20260325223805.1": {
-      "_mod_time": 1774775457.738
+      "_mod_time": 1774885067.915
     },
     "zxc.20260329012003.1": {
       "_mod_time": 1774771121.831
@@ -5762,7 +5769,7 @@
       "_mod_time": 1774175138.483
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1774782022.339
+      "_mod_time": 1774885202.304
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1774175138.483

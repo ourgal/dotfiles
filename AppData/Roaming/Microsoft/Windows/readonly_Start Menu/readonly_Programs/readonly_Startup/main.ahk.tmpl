@@ -56,8 +56,12 @@ Run({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
 {{ if lookPath "everything" -}}
 Run("everything", , "Hide")
 {{ end -}}
-{{ if lookPath "autohotkey" -}}
+{{ if and ( lookPath "autohotkey" ) .my.modules.keybindings.autohotkey -}}
 Run({{ joinPath .chezmoi.homeDir "Documents" "autohotkey" "keybindings.ahk" | quote }}, , "Hide")
+{{ end -}}
+{{ $powertoys := joinPath .chezmoi.homeDir "scoop" "apps" "powertoys" "current" "powertoys.exe" -}}
+{{ if and ( stat $powertoys ) .my.modules.keybindings.powertoys -}}
+Run({{ $powertoys | quote }}, {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
 {{ if lookPath "autohotkey" -}}
 Run({{ joinPath .chezmoi.homeDir "Documents" "autohotkey" "hide_cursor.ahk" | quote }}, , "Hide")
