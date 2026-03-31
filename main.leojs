@@ -255,6 +255,10 @@
                 {
                   "gnx": "zxc.20260320003721.1",
                   "vh": "edit"
+                },
+                {
+                  "gnx": "zxc.20260331222155.1",
+                  "vh": "diff"
                 }
               ]
             }
@@ -4911,6 +4915,7 @@
     "zxc.20260126154908.1": "[interpreter.ps1]\n    command = \"powershell\"\n    args = []",
     "zxc.20260126154820.1": "{{ if lookPath \"pwsh\" -}}\n[cd]\n    command = \"pwsh\"\n{{ end -}}",
     "zxc.20260320003721.1": "[edit]\n    hardlink = false",
+    "zxc.20260331222155.1": "{{ if lookPath \"difft\" -}}\n[diff]\n    command = \"difft\"\n    args = [\"{{ \"{{\" }} .Destination {{ \"}}\" }}\", \"{{ \"{{\" }} .Target {{ \"}}\" }}\"]\n{{ else if lookPath \"meld\" -}}\n[diff]\n    command = \"meld\"\n    args = [\"--diff\", \"{{ \"{{\" }} .Destination {{ \"}}\" }}\", \"{{ \"{{\" }} .Target {{ \"}}\" }}\"]\n{{ else if lookPath \"delta\" -}}\n[diff]\n    pager = \"delta\"\n{{ end -}}",
     "zxc.20260125144442.1": "@others",
     "zxc.20260125144515.1": "Makefile\nmain.leojs",
     "zxc.20260125144547.1": "<< linux >>\n@others\n{{ end -}}",
@@ -5672,7 +5677,7 @@
       "_mod_time": 1774960054.003
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1774781644.083
+      "_mod_time": 1774967713.394
     },
     "zxc.20260125145051.1": {
       "_mod_time": 1774727086.798
