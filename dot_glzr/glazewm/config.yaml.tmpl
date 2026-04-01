@@ -236,7 +236,7 @@ keybindings:
     bindings: ['f24+enter']
   # Focus the next/previous active workspace defined in `workspaces` config.
   # - commands: ['focus --next-active-workspace']
-  - commands: ['shell-exec explorer ms-screenclip:']
+  - commands: ['shell-exec {{ if lookPath "flameshot" }}flameshot gui{{ else }}explorer ms-screenclip:{{ end }}']
     bindings: ['f24+s']
   - commands: ['focus --prev-active-workspace']
     bindings: ['f24+a']
