@@ -1,0 +1,8 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "gopass" -}}
+[mounts]
+	path = {{ env "LOCALAPPDATA" }}\gopass\stores\root
+[core]
+	autosync = false
+{{ end -}}
+{{ end -}}
