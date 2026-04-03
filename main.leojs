@@ -1226,6 +1226,10 @@
                       "vh": "termux"
                     },
                     {
+                      "gnx": "zxc.20260403084957.1",
+                      "vh": "ip"
+                    },
+                    {
                       "gnx": "User.20260303224633.1",
                       "vh": "pip"
                     },
@@ -5123,6 +5127,7 @@
     "User.20260226001424.1": "[my.font]\nmonospace = \"FiraCode Nerd Font Mono\"",
     "User.20260226001439.1": "[my.git.sign]\nssh = true\ngpg = false\n",
     "User.20260226001451.1": "[my.termux.note20]\nusername = \"u0_a644\"\n[my.termux.m6]\nusername = \"u0_a455\"",
+    "zxc.20260403084957.1": "[my.ip]\nbrix = \"192.168.123.206\"",
     "User.20260303224633.1": "[my.pip]\nmirror = \"https://mirrors.cernet.edu.cn/pypi/web/simple/\"\n",
     "zxc.20260329193242.1": "[my.ssh]\nknown_hosts = [\n    @others\n]",
     "zxc.20260329194301.1": "\"home.local,192.168.123.100 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOKREEGtjhZmTsIruPjBmBp0fPHKxfUSbUilpIzVMoBF\",",
@@ -5245,7 +5250,7 @@
     "zxc.20260130233313.1": "[font]\nsize = 12",
     "zxc.20260130233323.1": "[font.normal]\nfamily = {{ .my.font.monospace | quote }}\nstyle = \"Regular\"",
     "zxc.20260201141149.1": "<< unix dos >>\n{{ if lookPath \"ssh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260201141201.1": "Host soft\n  Port 23231\n  HostName brix.local",
+    "zxc.20260201141201.1": "Host soft\n  Port 23231\n  HostName {{ .my.ip.brix }}",
     "zxc.20260201141231.1": "Host github.com\n  HostName ssh.github.com\n  Port 443\n  User git",
     "zxc.20260201141321.1": "Host termux\n  Port 8022\n  User u0_a661\n  HostName localhost\n",
     "zxc.20260319090429.1": "Host gogs-m6\n  Port 23231\n  User {{ .my.termux.m6.username }}\n  HostName {{ template \"ipM6\" .chezmoi.hostname }}",
@@ -5693,7 +5698,7 @@
       "_mod_time": 1774781644.031
     },
     "User.20260226001402.1": {
-      "_mod_time": 1774885304.868
+      "_mod_time": 1775177419.327
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1773554567.467
@@ -5738,7 +5743,7 @@
       "_mod_time": 1774727086.758
     },
     "zxc.20260201141149.1": {
-      "_mod_time": 1774727086.764
+      "_mod_time": 1775177440.778
     },
     "User.20260215191351.1": {
       "_mod_time": 1774885067.894
