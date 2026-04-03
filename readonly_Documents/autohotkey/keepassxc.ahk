@@ -5,6 +5,7 @@
 Run "gopass show -c keepassxc/main", ,"Hide"
 WinWait "Message from User"
 
+Run "glazewm command focus --workspace 9"
 Run "keepassxc"
 WinWaitActive " - KeePassXC"
 WinActive " - KeePassXC"
