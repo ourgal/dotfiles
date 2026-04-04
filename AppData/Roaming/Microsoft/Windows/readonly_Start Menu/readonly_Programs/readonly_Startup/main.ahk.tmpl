@@ -87,4 +87,7 @@ Run({{ joinPath .chezmoi.homeDir "Documents" "autohotkey" "keepassxc.ahk" | quot
 {{ if and (stat (joinPath .chezmoi.homeDir "scoop" "apps" "jellyfin-mpv-shim")) (eq .chezmoi.hostname "bed") -}}
 Run({{ joinPath .chezmoi.homeDir "scoop" "apps" "jellyfin-mpv-shim" "current" "run.exe" | quote }}, , "Hide")
 {{ end -}}
+{{ if stat (joinPath .chezmoi.homeDir "scoop" "apps" "copyq" "current" "copyq.exe") -}}
+Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "copyq" "current" "copyq.exe" }}", {{ .chezmoi.homeDir | quote }}, "Hide")
+{{ end -}}
 {{ end -}}
