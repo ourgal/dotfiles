@@ -1,0 +1,9 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "rclone" -}}
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
+# {{ include (joinPath .chezmoi.homeDir "scoop" "persist" "rclone" "rclone.conf") | sha256sum -}}
+cp {{ joinPath .chezmoi.homeDir "scoop" "persist" "rclone" "rclone.conf" | quote }} {{ joinPath .chezmoi.homeDir "scoop" "apps" "rclone" "current" "rclone.conf" | quote }}
+{{ end -}}
+{{ end -}}

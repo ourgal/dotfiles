@@ -1188,6 +1188,28 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "gnx": "zxc.20260404153333.1",
+                  "vh": "update rclone conf",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260404153353.1",
+                      "vh": "@clean run_onchange_update_rclone_conf.ps1.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        },
+                        {
+                          "gnx": "zxc.20260323201237.1"
+                        },
+                        {
+                          "gnx": "zxc.20260404153505.1",
+                          "vh": "content"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -3182,16 +3204,6 @@
       ]
     },
     {
-      "gnx": "User.20260222230616.1",
-      "vh": "rclone",
-      "children": [
-        {
-          "gnx": "User.20260222211658.2",
-          "vh": "content"
-        }
-      ]
-    },
-    {
       "gnx": "User.20260228232642.1",
       "vh": "mpd",
       "children": [
@@ -4030,13 +4042,14 @@
                   "children": [
                     {
                       "gnx": "User.20260222211658.1",
-                      "vh": "@clean rclone.conf.tmpl",
+                      "vh": "@clean modify_rclone.conf",
                       "children": [
                         {
                           "gnx": "User.20260225204326.1"
                         },
                         {
-                          "gnx": "User.20260222211658.2"
+                          "gnx": "User.20260222211658.2",
+                          "vh": "content"
                         }
                       ]
                     }
@@ -5135,6 +5148,8 @@
     "zxc.20260323195340.1": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\VisualEffects' -Name 'VisualFXSetting' -Value 1",
     "zxc.20260329102210.1": "<< dos >>\n<< strict >>\n@others\n{{ end -}}",
     "zxc.20260329102250.1": "# Gather System Serial Number\n$computerSpec = (Get-CimInstance -ClassName Win32_BIOS).SerialNumber\n\n# Generate a Hash (MD5)\n$md5 = [System.Security.Cryptography.MD5]::Create()\n$hash = $md5.ComputeHash([System.Text.Encoding]::UTF8.GetBytes($computerSpec))\n\n# Convert Hash to GUID\n$guid = [System.Guid]$hash\n$guid.Guid | Tee-Object -FilePath {{ joinPath (env \"LOCALAPPDATA\") \"uuid\" }}",
+    "zxc.20260404153353.1": "<< dos >>\n{{ if lookPath \"rclone\" -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260404153505.1": "# {{ include (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"rclone\" \"rclone.conf\") | sha256sum -}}\ncp {{ joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"rclone\" \"rclone.conf\" | quote }} {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"rclone\" \"current\" \"rclone.conf\" | quote }}",
     "User.20260226001402.1": "@others\n",
     "zxc.20260315140948.1": "[my]\nname = \"zxc\"\n",
     "User.20260226001414.1": "[my.msys2]\npackages = [\"mingw-w64-x86_64-aspell\"]\n",
@@ -5430,7 +5445,6 @@
     "User.20260222165839.1": "- replace: 'git annex sync --content '\n  trigger: gitas.",
     "User.20260221175941.1": "- force_clipboard: true\n  label: Markdown - Code block\n  replace: '```$|$\n\n    ```'\n  trigger: ':block:'\n- force_clipboard: false\n  label: Markdown - Inline code\n  replace: '`$|$`'\n  trigger: ':code:'\n- label: Markdown - Header1\n  replace: '#'\n  trigger: ':h1:'\n- label: Markdown - Header2\n  replace: '##'\n  trigger: ':h2:'\n- label: Markdown - Header3\n  replace: '###'\n  trigger: ':h3:'\n- label: Markdown - Header4\n  replace: '####'\n  trigger: ':h4:'\n- label: Markdown - Header5\n  replace: '#####'\n  trigger: ':h5:'\n- label: Markdown - Header6\n  replace: '######'\n  trigger: ':h6:'\n- label: Markdown - Bold\n  replace: '**$|$**'\n  trigger: ':bold:'\n- label: Markdown - Italic\n  replace: '*$|$*'\n  trigger: ':italic:'\n- label: Markdown - Strikethrough\n  replace: ~~$|$~~\n  trigger: ':strike:'\n- label: Markdown - URL\n  replace: '[$|$]()'\n  trigger: ':url:'\n- label: Markdown - Image\n  replace: '![]($|$)'\n  trigger: ':img:'\n- label: Markdown - Horizontal line\n  replace: ___\n  trigger: ':horizontal:'\n- label: Markdown - Task\n  replace: '- [ ] '\n  trigger: ':task:'\n- label: Markdown - Task completed\n  replace: '- [x] '\n  trigger: ':taskdone:'\n- force_clipboard: true\n  label: Markdown - Collapse block\n  replace: '<details>\n\n    <summary></summary>\n\n    $|$\n\n    </details>'\n  trigger: ':collapse:'\n- force_clipboard: true\n  label: Markdown - Comment\n  replace: <!--- $|$ -->\n  trigger: ':comment:'",
     "User.20260223181103.1": "{{ template \"espanso_email.key\" }}",
-    "User.20260222211658.2": "[mega_a]\n{{ gopassRaw \"rclone/mega_a\" }}\n[alist]\n{{ gopassRaw \"rclone/alist/nuc\"}}",
     "User.20260228232118.1": "music_directory {{ joinPath .chezmoi.homeDir \"Music\" | quote }}\nplaylist_directory {{ joinPath (env \"APPDATA\") \"mpd\" \"playlist\" | quote }}\ndb_file {{ joinPath (env \"APPDATA\") \"mpd\" \"tag_cache\" | quote }}\nstate_file {{ joinPath (env \"APPDATA\") \"mpd\" \"state\" | quote }}\nsticker_file {{ joinPath (env \"APPDATA\") \"mpd\" \"sticker.sql\" | quote }}\n\nauto_update \"yes\"\n\naudio_output {\n    type \"winmm\"\n    name \"Windows Speakers\"\n}",
     "User.20260301202336.1": "<< dos >>\n{{ if lookPath \"glazewm\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260301203034.1": "general:\n  # Commands to run when the WM has started. This is useful for running a\n  # script or launching another application.\n  # Example: The below command launches Zebar.\n  startup_commands: []\n  # Commands to run just before the WM is shutdown.\n  # Example: The below command kills Zebar.\n  shutdown_commands: []\n  # Commands to run after the WM config is reloaded.\n  config_reload_commands: []\n  # Whether to automatically focus windows underneath the cursor.\n  focus_follows_cursor: false\n  # Whether to switch back and forth between the previously focused\n  # workspace when focusing the current workspace.\n  toggle_workspace_on_refocus: false\n  cursor_jump:\n    # Whether to automatically move the cursor on the specified trigger.\n    enabled: true\n    # Trigger for cursor jump:\n    # - 'monitor_focus': Jump when focus changes between monitors.\n    # - 'window_focus': Jump when focus changes between windows.\n    trigger: 'monitor_focus'\n  # How windows should be hidden when switching workspaces.\n  # - 'cloak': Recommended. Hides windows with no animation.\n  # - 'hide': Legacy method (v3.5 and earlier) that has a brief animation,\n  # but has stability issues with some apps.\n  hide_method: 'cloak'\n  # Affects which windows get shown in the native Windows taskbar. Has no\n  # effect if `hide_method: 'hide'`.\n  # - 'true': Show all windows (regardless of workspace).\n  # - 'false': Only show windows from the currently shown workspaces.\n  show_all_in_taskbar: false\n",
@@ -5499,6 +5513,7 @@
     "User.20260221194603.1": "<< dos >>\n{{ $win_gpg_agent := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"win-gpg-agent\" \"current\" \"agent-gui.exe\" }}\n{{ if stat $win_gpg_agent -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260221194708.1": "{{ $gpg := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"gpg\" \"current\" -}}\n{{ $gpg_home := joinPath $gpg \"home\" -}}\n{{ $gpg_sock := joinPath $gpg \"gnupg\" -}}\ngpg:\n  install_path: {{ $gpg | quote }}\n  # Before gnupg 2.3.2 release home directory could be properly link-ed\n  #   homedir: {{ $gpg_home | quote }}\n  # With gnupg 2.3.3 release (due to the changes in T5537) use this instead\n  #   homedir: {{ $gpg_home | quote }}\n  #   socketdir: \"\"\n  # After gnupg 2.3.4 release we have to switch to\n  homedir: {{ $gpg_home | quote }}\n  socketdir: {{ $gpg_sock | quote }}\ngui:\n  debug: false\n  setenv: true\n  # Use line below to enable SSH_AUTH_SOCK to point to cygwin socket\n  #   openssh: cygwin",
     "User.20260222211658.1": "<< dos >>\n{{ if lookPath \"rclone\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260222211658.2": "{{- /* chezmoi:modify-template */ -}}\n{{ $origin := fromIni .chezmoi.stdin -}}\n{{ $origin = $origin | setValueAtPath \"mega_a.type\" \"mega\" -}}\n{{ $origin = $origin | setValueAtPath \"mega_a.user\" (gopass \"rclone/mega_a/user\") -}}\n{{ $origin = $origin | setValueAtPath \"mega_a.pass\" (gopass \"rclone/mega_a/pass\") -}}\n{{ $origin = $origin | setValueAtPath \"mega_a.session_id\" (gopass \"rclone/mega_a/session_id\") -}}\n{{ $origin = $origin | setValueAtPath \"mega_a.master_key\" (gopass \"rclone/mega_a/master_key\") -}}\n{{ $origin = $origin | setValueAtPath \"alist.type\" \"webdav\" -}}\n{{ $origin = $origin | setValueAtPath \"alist.url\" \"http://localhost:5244/dav/\" -}}\n{{ $origin = $origin | setValueAtPath \"alist.vendor\" \"other\" -}}\n{{ $origin = $origin | setValueAtPath \"alist.user\" \"admin\" -}}\n{{ $origin = $origin | setValueAtPath \"alist.pass\" (gopass \"rclone/alist/local\" | output \"rclone\" \"obscure\" | trim ) -}}\n{{ $origin | toIni -}}",
     "zxc.20260201203241.1": "<< dos >>\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260201203515.1": "<< dos >>\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260201214114.1": "<< dos >>\n{{ if lookPath \"gpg\" -}}\n{{ if .my.git.sign.gpg -}}\nC92C2BCD646A0DE6A60E1C5397CA97FDBE330909\n{{ end -}}\n{{ end -}}\n{{ end -}}\n",
@@ -5599,7 +5614,7 @@
       "_mod_time": 1773554567.467
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1774175825.288
+      "_mod_time": 1774175138.452
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1773571522.6390562
@@ -5617,91 +5632,94 @@
       "_mod_time": 1775182193.753
     },
     "User.20260226000855.1": {
-      "_mod_time": 1774781644.018
+      "_mod_time": 1774727086.735
     },
     "zxc.20260202203521.17": {
-      "_mod_time": 1774267974.069
+      "_mod_time": 1774366592.966
     },
     "User.20260220233639.1": {
       "_mod_time": 1773554567.451
     },
     "zxc.20260202203521.20": {
-      "_mod_time": 1774268008.896
+      "_mod_time": 1774366592.982
     },
     "User.20260216114746.1": {
-      "_mod_time": 1774268031.47
+      "_mod_time": 1774366592.966
     },
     "zxc.20260202203521.14": {
-      "_mod_time": 1774268058.468
+      "_mod_time": 1774366592.929
     },
     "zxc.20260202203521.3": {
-      "_mod_time": 1774268081.198
+      "_mod_time": 1774366592.998
     },
     "zxc.20260202213444.1": {
-      "_mod_time": 1774268097.31
+      "_mod_time": 1774366592.998
     },
     "User.20260220142155.2": {
-      "_mod_time": 1774268115.471
+      "_mod_time": 1774366592.982
     },
     "User.20260220151435.2": {
-      "_mod_time": 1774268128.317
+      "_mod_time": 1774366592.982
     },
     "zxc.20260202215023.1": {
-      "_mod_time": 1774268147.173
+      "_mod_time": 1774366592.929
     },
     "zxc.20260202215408.1": {
-      "_mod_time": 1774268163.29
+      "_mod_time": 1774366592.966
     },
     "zxc.20260202220030.1": {
-      "_mod_time": 1774268176.544
+      "_mod_time": 1774366592.982
     },
     "zxc.20260202220553.1": {
-      "_mod_time": 1774268191.484
+      "_mod_time": 1774366592.982
     },
     "User.20260217202401.1": {
-      "_mod_time": 1774269403.492
+      "_mod_time": 1774179029.032
     },
     "User.20260220214558.1": {
       "_mod_time": 1774179012.538
     },
     "User.20260217214851.1": {
-      "_mod_time": 1774268228.705
+      "_mod_time": 1774366592.982
     },
     "User.20260220000301.2": {
-      "_mod_time": 1774268243.262
+      "_mod_time": 1774366592.96
     },
     "User.20260220012738.1": {
       "_mod_time": 1774761861.232
     },
     "User.20260308173318.1": {
-      "_mod_time": 1774268670.184
+      "_mod_time": 1774366592.944
     },
     "User.20260308184128.2": {
-      "_mod_time": 1774268684.364
+      "_mod_time": 1774366592.944
     },
     "User.20260308184713.2": {
-      "_mod_time": 1774705186.663
+      "_mod_time": 1774708458.994
     },
     "User.20260308214701.2": {
-      "_mod_time": 1774268715.402
+      "_mod_time": 1774366592.944
     },
     "zxc.20260328213746.1": {
-      "_mod_time": 1774705186.692
+      "_mod_time": 1774708458.994
     },
     "User.20260308215626.2": {
-      "_mod_time": 1774705112
+      "_mod_time": 1774708458.978
     },
     "zxc.20260317085009.1": {
-      "_mod_time": 1774268744.227
+      "_mod_time": 1774366592.944
     },
     "zxc.20260318203351.1": {
-      "_mod_time": 1774268757.828
+      "_mod_time": 1774366592.944
     },
     "zxc.20260323195318.1": {
-      "_mod_time": 1774268770.071
+      "_mod_time": 1774366592.966
     },
     "zxc.20260329102210.1": {
-      "_mod_time": 1774781644.031
+      "_mod_time": 1774751339.752
+    },
+    "zxc.20260404153353.1": {
+      "_mod_time": 1775288352.329
     },
     "User.20260226001402.1": {
       "_mod_time": 1775182193.662
@@ -5710,7 +5728,7 @@
       "_mod_time": 1773554567.467
     },
     "zxc.20260126185048.1": {
-      "_mod_time": 1774175825.323
+      "_mod_time": 1774175138.483
     },
     "User.20260218144120.1": {
       "_mod_time": 1773571522.654681
@@ -5734,16 +5752,16 @@
       "_mod_time": 1773554567.482
     },
     "User.20260218142211.1": {
-      "_mod_time": 1774175825.383
+      "_mod_time": 1774175138.537
     },
     "User.20260218142322.1": {
-      "_mod_time": 1774175825.382
+      "_mod_time": 1774175138.537
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1774175825.382
+      "_mod_time": 1774175138.537
     },
     "User.20260225235850.1": {
-      "_mod_time": 1774175825.381
+      "_mod_time": 1774175138.537
     },
     "zxc.20260130225718.1": {
       "_mod_time": 1774727086.758
@@ -5755,7 +5773,7 @@
       "_mod_time": 1774885067.894
     },
     "User.20260220010313.1": {
-      "_mod_time": 1774175825.334
+      "_mod_time": 1774175138.499
     },
     "User.20260220010448.1": {
       "_mod_time": 1773571522.654681
@@ -5767,28 +5785,28 @@
       "_mod_time": 1774727086.78
     },
     "User.20260216232855.1": {
-      "_mod_time": 1774175825.326
+      "_mod_time": 1774175138.483
     },
     "User.20260217182613.1": {
-      "_mod_time": 1774175825.328
+      "_mod_time": 1774175138.499
     },
     "User.20260301202336.1": {
       "_mod_time": 1775227594.611
     },
     "User.20260302151118.1": {
-      "_mod_time": 1774175825.329
+      "_mod_time": 1774175138.499
     },
     "zxc.20260315140713.1": {
       "_mod_time": 1774727086.781
     },
     "zxc.20260317002829.1": {
-      "_mod_time": 1774175825.333
+      "_mod_time": 1774175138.499
     },
     "zxc.20260327184129.1": {
-      "_mod_time": 1774960054.003
+      "_mod_time": 1774966480.84
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1775142270.215
+      "_mod_time": 1774967713.394
     },
     "zxc.20260125145051.1": {
       "_mod_time": 1774727086.798
@@ -5827,82 +5845,82 @@
       "_mod_time": 1773554567.503
     },
     "User.20260215182442.1": {
-      "_mod_time": 1774175825.372
+      "_mod_time": 1774175138.521
     },
     "User.20260217022114.1": {
-      "_mod_time": 1774175825.371
+      "_mod_time": 1774175138.521
     },
     "User.20260215182818.1": {
-      "_mod_time": 1774175825.373
+      "_mod_time": 1774175138.521
     },
     "zxc.20260317084145.1": {
-      "_mod_time": 1774175825.372
+      "_mod_time": 1774175138.521
     },
     "zxc.20260201225344.1": {
-      "_mod_time": 1774175825.37
+      "_mod_time": 1774175138.521
     },
     "zxc.20260317082914.1": {
-      "_mod_time": 1774175825.371
+      "_mod_time": 1774175138.521
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1774175825.38
+      "_mod_time": 1774175138.521
     },
     "User.20260215205925.1": {
-      "_mod_time": 1774700739.955
+      "_mod_time": 1774708459.02
     },
     "User.20260215210400.1": {
-      "_mod_time": 1774175825.378
+      "_mod_time": 1774175138.521
     },
     "User.20260220151031.5": {
-      "_mod_time": 1774700740.017
+      "_mod_time": 1774708459.02
     },
     "User.20260220151031.28": {
-      "_mod_time": 1774175825.377
+      "_mod_time": 1774175138.521
     },
     "User.20260221175549.1": {
-      "_mod_time": 1774175825.374
+      "_mod_time": 1774175138.521
     },
     "User.20260221194603.1": {
-      "_mod_time": 1774175825.379
+      "_mod_time": 1774175138.521
     },
     "User.20260222211658.1": {
-      "_mod_time": 1774175825.376
+      "_mod_time": 1775287875.29
     },
     "zxc.20260201203241.1": {
-      "_mod_time": 1774175825.375
+      "_mod_time": 1774175138.521
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1774781644.149
+      "_mod_time": 1774725764.496
     },
     "zxc.20260201214114.1": {
-      "_mod_time": 1774781644.155
+      "_mod_time": 1774725764.516
     },
     "zxc.20260202195207.1": {
-      "_mod_time": 1774267468.439
+      "_mod_time": 1774181456.309
     },
     "zxc.20260322192157.1": {
-      "_mod_time": 1774267468.44
+      "_mod_time": 1774181598.086
     },
     "zxc.20260322192357.1": {
-      "_mod_time": 1774267468.441
+      "_mod_time": 1774181606.731
     },
     "zxc.20260325223009.1": {
-      "_mod_time": 1774449208.002
+      "_mod_time": 1774453625.533
     },
     "zxc.20260325223610.1": {
-      "_mod_time": 1774449393.61
+      "_mod_time": 1774453625.549
     },
     "zxc.20260325223805.1": {
-      "_mod_time": 1775182616.335
+      "_mod_time": 1775215268.562
     },
     "zxc.20260329012003.1": {
       "_mod_time": 1775282577.879
     },
     "zxc.20260330235722.1": {
-      "_mod_time": 1774886490.349
+      "_mod_time": 1774966480.847
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1774448093.593
+      "_mod_time": 1774447140.897
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1774765933.012
@@ -5914,64 +5932,64 @@
       "_mod_time": 1774260635.349
     },
     "zxc.20260202205715.1": {
-      "_mod_time": 1774175825.369
+      "_mod_time": 1774175138.521
     },
     "User.20260302151947.1": {
-      "_mod_time": 1774175825.307
+      "_mod_time": 1774175138.468
     },
     "zxc.20260201140523.1": {
-      "_mod_time": 1774175825.32
+      "_mod_time": 1774175138.483
     },
     "zxc.20260130233132.1": {
-      "_mod_time": 1774175825.319
+      "_mod_time": 1774175138.483
     },
     "zxc.20260128002742.1": {
       "_mod_time": 1775283983.02
     },
     "zxc.20260214105528.1": {
-      "_mod_time": 1774175825.32
+      "_mod_time": 1774175138.483
     },
     "zxc.20260214142543.1": {
-      "_mod_time": 1774175825.321
+      "_mod_time": 1774175138.483
     },
     "User.20260215234634.1": {
-      "_mod_time": 1774175825.324
+      "_mod_time": 1774175138.483
     },
     "User.20260216124226.1": {
-      "_mod_time": 1774175825.317
+      "_mod_time": 1774175138.483
     },
     "User.20260216125422.1": {
-      "_mod_time": 1774175825.317
+      "_mod_time": 1774175138.483
     },
     "User.20260219235648.1": {
-      "_mod_time": 1774175825.318
+      "_mod_time": 1774175138.483
     },
     "User.20260228231944.1": {
-      "_mod_time": 1774175825.321
+      "_mod_time": 1774175138.483
     },
     "User.20260302211536.1": {
-      "_mod_time": 1774175825.309
+      "_mod_time": 1774175138.468
     },
     "User.20260302211740.1": {
-      "_mod_time": 1774175825.31
+      "_mod_time": 1774175138.468
     },
     "User.20260302211946.1": {
-      "_mod_time": 1774175825.314
+      "_mod_time": 1774175138.483
     },
     "User.20260302212424.1": {
-      "_mod_time": 1774175825.316
+      "_mod_time": 1774175138.483
     },
     "User.20260302212645.1": {
-      "_mod_time": 1774175825.314
+      "_mod_time": 1774175138.483
     },
     "User.20260303213330.1": {
-      "_mod_time": 1774175825.325
+      "_mod_time": 1774175138.483
     },
     "zxc.20260401221312.1": {
-      "_mod_time": 1775142270.195
+      "_mod_time": 1775052895.863
     },
     "zxc.20260402230727.1": {
-      "_mod_time": 1775142610.098
+      "_mod_time": 1775215268.557
     }
   }
 }
