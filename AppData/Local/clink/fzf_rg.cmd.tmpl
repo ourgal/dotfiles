@@ -1,0 +1,7 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "clink" -}}
+@echo off
+setlocal
+clink lua -- "%~dp0fzf_rg.lua" --fromcmdline %2*
+{{ end -}}
+{{ end -}}
