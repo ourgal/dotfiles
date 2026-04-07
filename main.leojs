@@ -297,10 +297,6 @@
                           "vh": "scoop"
                         },
                         {
-                          "gnx": "zxc.20260202205814.1",
-                          "vh": "Music"
-                        },
-                        {
                           "gnx": "zxc.20260128003657.1",
                           "vh": "AppData"
                         },
@@ -5042,19 +5038,18 @@
     "zxc.20260125144515.1": "Makefile\nmain.leojs",
     "zxc.20260125144547.1": "<< linux >>\n@others\n{{ end -}}",
     "User.20260225204416.1": "{{ if eq .chezmoi.os \"linux\" -}}\n",
-    "zxc.20260127232118.1": "Documents",
-    "User.20260214200912.1": "scoop",
-    "zxc.20260202205814.1": "Music",
-    "zxc.20260128003657.1": "AppData",
-    "User.20260220191553.1": "vimfiles",
-    "User.20260301202425.1": ".glzr",
+    "zxc.20260127232118.1": "Documents/autohotkey/\nDocuments/autohotkey/**\nDocuments/PowerToys/\nDocuments/PowerToys/**\nDocuments/PowerShell/\nDocuments/PowerShell/**",
+    "User.20260214200912.1": "scoop/\nscoop/**",
+    "zxc.20260128003657.1": "AppData/\nAppData/**",
+    "User.20260220191553.1": "vimfiles/\nvimfiles/**",
+    "User.20260301202425.1": ".glzr/\n.glzr/**",
     "User.20260224001419.1": "<< android >>\n@others\n{{ end -}}",
     "zxc.20260125144606.1": "<< dos >>\n@others\n{{ end -}}\n",
-    "zxc.20260125144639.1": ".vim",
-    "zxc.20260125144709.1": ".local\n",
-    "zxc.20260126193455.1": ".pip",
-    "zxc.20260125144753.1": ".bash_profile\n.bashrc\n",
-    "zxc.20260125144810.1": ".xinitrc\n",
+    "zxc.20260125144639.1": ".vim/\n.vim/**",
+    "zxc.20260125144709.1": ".local/\n.local/**",
+    "zxc.20260126193455.1": ".pip/\n.pip/**",
+    "zxc.20260125144753.1": ".bash_profile\n.bashrc",
+    "zxc.20260125144810.1": ".xinitrc",
     "zxc.20260125172659.1": "{{ if lookPath \"hx\" -}}\nhx\n{{- else if lookPath \"vim\" -}}\nvim\n{{- else if lookPath \"vi\" -}}\nvi\n{{- else if lookPath \"nano\" -}}\nnano\n{{- end -}}",
     "zxc.20260319091259.1": "{{ if eq . nil -}}\n{{ fail \"pass hostname to ipM6 template\" -}}\n{{ end -}}\n{{ if eq . \"work\" -}}\n192.168.1.103\n{{- else if  eq . \"nuc\" \"bed\" -}}\n192.168.123.191\n{{- else -}}\n{{ fail \"unknown hostname for ipM6 template\" -}}\n{{- end -}}",
     "User.20260221004652.1": "{{ if eq . nil -}}\n{{ fail \"pass pathes to checkPath template\" -}}\n{{ end -}}\n{{ if kindIs \"slice\" . -}}\n    {{ range . -}}\n    {{ template \"_checkPath\" . -}}\n    {{ end -}}\n{{ else if kindIs \"string\" . -}}\n    {{ template \"_checkPath\" . -}}\n{{ else -}}\n    {{ fail \"checkPath: unsupported type\" -}}\n{{ end -}}\n",
@@ -5614,7 +5609,7 @@
       "_mod_time": 1773554567.467
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1774175138.452
+      "_mod_time": 1775576727.565
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1773571522.6390562
