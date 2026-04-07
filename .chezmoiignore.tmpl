@@ -1,25 +1,44 @@
 Makefile
 main.leojs
 {{ if eq .chezmoi.os "linux" -}}
-Documents
-scoop
-Music
-AppData
-vimfiles
-.glzr
+Documents/autohotkey/
+Documents/autohotkey/**
+Documents/PowerToys/
+Documents/PowerToys/**
+Documents/PowerShell/
+Documents/PowerShell/**
+scoop/
+scoop/**
+AppData/
+AppData/**
+vimfiles/
+vimfiles/**
+.glzr/
+.glzr/**
 {{ end -}}
 {{ if eq .chezmoi.os "android" -}}
-Documents
-scoop
-Music
-AppData
-vimfiles
-.glzr
+Documents/autohotkey/
+Documents/autohotkey/**
+Documents/PowerToys/
+Documents/PowerToys/**
+Documents/PowerShell/
+Documents/PowerShell/**
+scoop/
+scoop/**
+AppData/
+AppData/**
+vimfiles/
+vimfiles/**
+.glzr/
+.glzr/**
 {{ end -}}
 {{ if eq .chezmoi.os "windows" -}}
-.vim
-.local
-.pip
+.vim/
+.vim/**
+.local/
+.local/**
+.pip/
+.pip/**
 .bash_profile
 .bashrc
 .xinitrc
