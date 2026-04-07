@@ -1,0 +1,6 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "clink" -}}
+ll=eza --long --icons=auto --group --group-directories-first --time-style relative $*
+ls=eza --icons=auto $*
+{{ end -}}
+{{ end -}}

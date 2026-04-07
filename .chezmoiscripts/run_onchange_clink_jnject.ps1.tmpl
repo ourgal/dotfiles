@@ -1,0 +1,34 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "clink" -}}
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
+# 定义要设置的注册表路径和键名
+$RegistryPath = "HKCU:\Software\Microsoft\Command Processor"
+$RegistryValueName = "AutoRun"
+
+# 定义您想要设置的命令字符串
+# 注意：这里使用了字符串拼接，以确保路径和命令的正确性。
+# 对于包含空格的路径，最好用引号括起来。
+# PowerShell 会自动处理 %LOCALAPPDATA% 等环境变量。
+$CommandToRun = "`"{{ joinPath .chezmoi.homeDir "scoop" "apps" "clink" "current" "clink.bat" }}`" inject --autorun --profile `"$env:LOCALAPPDATA\clink`" && doskey.exe /macrofile=`"$env:LOCALAPPDATA\clink\aliases`""
+
+# 检查注册表路径是否存在，如果不存在则创建
+if (-not (Test-Path $RegistryPath)) {
+    New-Item -Path $RegistryPath -Force | Out-Null
+    Write-Host "已创建注册表路径: $RegistryPath"
+}
+
+# 设置 AutoRun 注册表值
+try {
+    Set-ItemProperty -Path $RegistryPath -Name $RegistryValueName -Value $CommandToRun -Force
+    Write-Host "成功设置 '$RegistryValueName' 的值为: $CommandToRun"
+    Write-Host "下次启动命令提示符 (cmd.exe) 时，Clink 应该会自动加载。"
+} catch {
+    Write-Error "设置注册表值时发生错误: $($_.Exception.Message)"
+}
+
+# 您也可以选择性地显示当前设置的值来验证
+# Get-ItemProperty -Path $RegistryPath -Name $RegistryValueName
+{{ end -}}
+{{ end -}}

@@ -1,5 +1,12 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "clink" -}}
+# name: Use default key bindings
+# type: boolean
 fzf.default_bindings = True
+
+# name: Changes the prefix of the aliases
+# type: string
+zoxide.cmd = z
+
 {{ end -}}
 {{ end -}}
