@@ -1,12 +1,551 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "clink" -}}
+# name: Show input hints from argmatchers
+# type: boolean
+argmatcher.show_hints = True
+
+# name: Enable asynchronous suggestions
+# type: boolean
+autosuggest.async = True
+
+# name: Enable automatic suggestions
+# type: boolean
+autosuggest.enable = True
+
+# name: Show usage hint for automatic suggestions
+# type: boolean
+autosuggest.hint = True
+
+# name: Accept original capitalization
+# type: boolean
+autosuggest.original_case = True
+
+# name: Controls how suggestions are chosen
+# type: string
+autosuggest.strategy = match_prev_cmd history completion
+
+# name: Command to run when injected
+# type: string
+clink.autostart = 
+
+# name: Auto-update the Clink program files
+# type: enum
+# options: off,check,prompt,auto
+clink.autoupdate = check
+
+# name: Colorize the input text
+# type: boolean
+clink.colorize_input = True
+
+# name: A .clinkprompt file to use for the prompt
+# type: string
+clink.customprompt = 
+
+# name: Selects default key bindings
+# type: enum
+# options: bash,windows
+clink.default_bindings = bash
+
+# name: Controls what startup logo to show
+# type: enum
+# options: none,full,short
+clink.logo = none
+
+# name: Maximum rows for the input line
+# type: integer
+clink.max_input_rows = 0
+
+# name: Strips CR and LF chars on paste
+# type: enum
+# options: delete,space,ampersand,crlf
+clink.paste_crlf = crlf
+
+# name: Paths to load Lua scripts from
+# type: string
+clink.path = 
+
+# name: Direction for repeated deletion in popup lists
+# type: enum
+# options: down,up
+clink.popup_delete_direction = down
+
+# name: Default search mode in popup lists
+# type: enum
+# options: find,filter
+clink.popup_search_mode = find
+
+# name: Enable prompt filtering by Lua scripts
+# type: boolean
+clink.promptfilter = True
+
+# name: Scroll offset above/below selected item in list
+# type: integer
+clink.scroll_offset = 3
+
+# name: Days between update checks
+# type: integer
+clink.update_interval = 5
+
+# name: Replaces the console title prefix when elevated
+# type: string
+cmd.admin_title_prefix = 
+
+# name: Pressing Alt-F4 exits session
+# type: boolean
+cmd.altf4_exits = True
+
+# name: Auto-answer terminate prompt
+# type: enum
+# options: off,answer_yes,answer_no
+cmd.auto_answer = off
+
+# name: Pressing Ctrl-D exits session
+# type: boolean
+cmd.ctrld_exits = True
+
+# name: Retrieve last exit code
+# type: boolean
+cmd.get_errorlevel = True
+
+# name: Argmatcher color
+# type: color
+color.argmatcher = 
+
+# name: Common prefix of completions
+# type: color
+color.common_match_prefix = 
+
+# name: Color for executable command word
+# type: color
+color.executable = 
+
+# name: Hidden file completions
+# type: color
+color.hidden = 
+
+# name: History expansion color
+# type: color
+color.histexpand = 
+
+# name: Horizontal scroll marker color
+# type: color
+color.horizscroll = 
+
+# name: Input text color
+# type: color
+color.input = 
+
+# name: Modified history line mark color
+# type: color
+color.modmark = 
+
+# name: Color for popup lists and messages
+# type: color
+color.popup = 
+
+# name: Color for popup border
+# type: color
+color.popup_border = 
+
+# name: Color for popup description column(s)
+# type: color
+color.popup_desc = 
+
+# name: Color for popup footer message
+# type: color
+color.popup_footer = 
+
+# name: Color for popup title text
+# type: color
+color.popup_header = 
+
+# name: Color for selected item in popup list
+# type: color
+color.popup_select = 
+
+# name: Color for selected item in popup list
+# type: color
+color.popup_selectdesc = 
+
+# name: Prompt color
+# type: color
+color.prompt = 
+
+# name: Readonly file completions
+# type: color
+color.readonly = 
+
+# name: Selected completion color
+# type: color
+color.selected_completion = 
+
+# name: Selection color
+# type: color
+color.selection = 
+
+# name: Color for suggestion text
+# type: color
+color.suggestion = 
+
+# name: Color for suggestions in the suggestion list
+# type: color
+color.suggestionlist = 
+
+# name: Color for unrecognized command word
+# type: color
+color.unrecognized = 
+
+# name: Delay before showing input hints
+# type: integer
+comment_row.hint_delay = 500
+
+# name: Allow showing input hints in the comment row
+# type: boolean
+comment_row.show_hints = False
+
+# name: Include callstack when logging output
+# type: boolean
+debug.log_output_callstacks = False
+
+# name: Log the prompt string
+# type: boolean
+debug.log_prompt = False
+
+# name: Log terminal input and output
+# type: boolean
+debug.log_terminal = False
+
+# name: Controls duplicates in directory history
+# type: enum
+# options: add,erase_prev
+directories.dupe_mode = add
+
+# name: Add enhancements to Doskey
+# type: boolean
+doskey.enhanced = True
+
+# name: Include aliases
+# type: boolean
+exec.aliases = True
+
+# name: Include launchable documents
+# type: boolean
+exec.associations = False
+
+# name: Include CMD commands
+# type: boolean
+exec.commands = True
+
+# name: Match executables in current directory
+# type: boolean
+exec.cwd = True
+
+# name: Include directories
+# type: boolean
+exec.dirs = True
+
+# name: Enable executable completions
+# type: boolean
+exec.enable = True
+
+# name: Include files
+# type: boolean
+exec.files = False
+
+# name: Match executables in PATH
+# type: boolean
+exec.path = True
+
+# name: Whitespace prefix matches files
+# type: boolean
+exec.space_prefix = True
+
+# name: Include hidden files
+# type: boolean
+files.hidden = True
+
+# name: Include system files
+# type: boolean
+files.system = False
+
+# name: Allow fzf.exe_location to not be an EXE file
+# type: boolean
+fzf.allow_unsafe_query = False
+
+# name: Apply color to match descriptions when shown
+# type: boolean
+fzf.color_descriptions = False
+
 # name: Use default key bindings
 # type: boolean
 fzf.default_bindings = True
 
+# name: Location of fzf.exe if not on the PATH
+# type: string
+fzf.exe_location = 
+
+# name: Height to use for the --height flag
+# type: string
+fzf.height = 40%
+
+# name: Show match descriptions when available
+# type: boolean
+fzf.show_descriptions = True
+
+# name: Use default key bindings for fzf_git integration
+# type: boolean
+fzf_git.default_bindings = True
+
+# name: Height to use for the --height flag
+# type: string
+fzf_git.height = 50%
+
+# name: Configures how to invoke the editor
+# type: string
+fzf_rg.editor = 
+
+# name: Height to use for the --height flag
+# type: string
+fzf_rg.height = 75%
+
+# name: Show preview window by default in fzf
+# type: enum
+# options: right,bottom,off
+fzf_rg.show_preview = right
+
+# name: Perform history expansion automatically
+# type: boolean
+history.auto_expand = True
+
+# name: Commands not automatically added to the history
+# type: string
+history.dont_add_to_history_cmds = exit history
+
+# name: Controls how duplicate entries are handled
+# type: enum
+# options: add,ignore,erase_prev
+history.dupe_mode = erase_prev
+
+# name: Sets how command history expansion is applied
+# type: enum
+# options: off,on,not_squoted,not_dquoted,not_quoted
+history.expand_mode = not_quoted
+
+# name: Skip adding lines prefixed with whitespace
+# type: boolean
+history.ignore_space = True
+
+# name: The number of history lines to save
+# type: integer
+history.max_lines = 10000
+
+# name: Save history between sessions
+# type: boolean
+history.save = True
+
+# name: Share history between instances
+# type: boolean
+history.shared = False
+
+# name: Show preview of history expansion at cursor
+# type: boolean
+history.show_preview = True
+
+# name: Makes it easy to replay a series of commands
+# type: boolean
+history.sticky_search = False
+
+# name: Format for showing history times
+# type: string
+history.time_format = %F %T  
+
+# name: History item timestamps
+# type: enum
+# options: off,save,show
+history.time_stamp = off
+
+# name: Breaks into Lua debugger on Lua errors
+# type: boolean
+lua.break_on_error = False
+
+# name: Breaks into Lua debugger on traceback
+# type: boolean
+lua.break_on_traceback = False
+
+# name: Enables Lua debugging
+# type: boolean
+lua.debug = False
+
+# name: 'require' search path
+# type: string
+lua.path = 
+
+# name: Fail on argument errors
+# type: boolean
+lua.strict = True
+
+# name: Restricts coroutine execution
+# type: integer
+lua.throttle_interval = 0
+
+# name: Prints stack trace on Lua errors
+# type: boolean
+lua.traceback_on_error = False
+
+# name: Coloring rules for completions
+# type: string
+match.coloring_rules = 
+
+# name: Expand abbreviated paths when completing
+# type: boolean
+match.expand_abbrev = True
+
+# name: Expand envvars when completing
+# type: boolean
+match.expand_envvars = False
+
+# name: Fits match columns to screen width
+# type: boolean
+match.fit_columns = True
+
+# name: Accent insensitive matching
+# type: boolean
+match.ignore_accent = True
+
+# name: Case insensitive matching
+# type: enum
+# options: off,on,relaxed
+match.ignore_case = relaxed
+
+# name: Limits fitted columns by number of matches
+# type: integer
+match.max_fitted_matches = 0
+
+# name: Max rows in clink-select-complete
+# type: integer
+match.max_rows = 0
+
+# name: Preview rows
+# type: integer
+match.preview_rows = 5
+
+# name: Where to sort matching directories
+# type: enum
+# options: before,with,after
+match.sort_dirs = with
+
+# name: Try substring if no prefix matches
+# type: boolean
+match.substring = False
+
+# name: Translate slashes and backslashes
+# type: enum
+# options: off,system,slash,backslash,auto
+match.translate_slashes = auto
+
+# name: Match ? and * wildcards when completing
+# type: boolean
+match.wild = True
+
+# name: Enables asynchronous prompt refresh
+# type: boolean
+prompt.async = True
+
+# name: Controls spacing before prompt
+# type: enum
+# options: normal,compact,sparse
+prompt.spacing = normal
+
+# name: Controls when past prompts are collapsed
+# type: enum
+# options: off,always,same_dir
+prompt.transient = off
+
+# name: Suppress stderr from the Readline library
+# type: boolean
+readline.hide_stderr = False
+
+# name: Start with the suggestion list enabled
+# type: boolean
+suggestionlist.default = False
+
+# name: Hide input hints in the suggestion list
+# type: boolean
+suggestionlist.hide_hints = True
+
+# name: History items to show at the top
+# type: integer
+suggestionlist.num_history = 3
+
+# name: Adjusts the cursor visibility and shape
+# type: boolean
+terminal.adjust_cursor_style = True
+
+# name: Color emoji support in terminal
+# type: enum
+# options: off,on,auto
+terminal.color_emoji = auto
+
+# name: Use special sequences for Ctrl-H, -I, -M, -[
+# type: boolean
+terminal.differentiate_keys = False
+
+# name: East Asian Ambiguous character widths
+# type: enum
+# options: font,one,two,auto
+terminal.east_asian_ambiguous = auto
+
+# name: Controls VT emulation
+# type: enum
+# options: native,emulate,auto
+terminal.emulation = auto
+
+# name: Clink mouse input
+# type: enum
+# options: off,on,auto
+terminal.mouse_input = auto
+
+# name: Modifier keys for mouse input
+# type: string
+terminal.mouse_modifier = 
+
+# name: Esc sends a literal escape character
+# type: boolean
+terminal.raw_esc = False
+
+# name: Show scrollbars in lists
+# type: boolean
+terminal.scrollbars = True
+
+# name: Send terminal shell integration codes
+# type: enum
+# options: off,on,auto
+terminal.shell_integration = auto
+
+# name: Support Windows' Ctrl-Alt substitute for AltGr
+# type: boolean
+terminal.use_altgr_substitute = False
+
 # name: Changes the prefix of the aliases
 # type: string
 zoxide.cmd = z
+
+# name: Changes when directory scores are incremented
+# type: enum
+# options: pwd,prompt,none
+zoxide.hook = pwd
+
+# name: Don't define aliases
+# type: boolean
+zoxide.no_aliases = False
+
+# name: Changes the priority of the promptfilter hook (o
+# type: integer
+zoxide.promptfilter_prio = -50
+
+# name: Use clink promptfilter to hook even if onbegined
+# type: boolean
+zoxide.usepromptfilter = False
 
 {{ end -}}
 {{ end -}}
