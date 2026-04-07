@@ -3495,6 +3495,25 @@
       ]
     },
     {
+      "gnx": "zxc.20260408012424.1",
+      "vh": "wezterm",
+      "children": [
+        {
+          "gnx": "zxc.20260408012432.1",
+          "vh": "@clean dot_wezterm.lua.tmpl",
+          "children": [
+            {
+              "gnx": "User.20260225204326.1"
+            },
+            {
+              "gnx": "zxc.20260408012435.1",
+              "vh": "content"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "gnx": "zxc.20260125152614.1",
       "vh": "config",
       "children": [
@@ -5605,6 +5624,8 @@
     "zxc.20260331200728.1": "snowfall:\n  path: Documents/my_repos/snowfall\n  url: soft:snowfall\n  desc: nixos config",
     "zxc.20260401221341.1": "[General]\ncheckForUpdates=false",
     "zxc.20260402230749.1": "[mounts]\n\tpath = {{ env \"LOCALAPPDATA\" }}\\gopass\\stores\\root\n[core]\n\tautosync = false",
+    "zxc.20260408012432.1": "<< dos >>\n{{ if and (lookPath \"wezterm\") .my.modules.wezterm -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260408012435.1": "-- Pull in the wezterm API\nlocal wezterm = require(\"wezterm\")\n\n-- This will hold the configuration.\nlocal config = wezterm.config_builder()\n\n-- This is where you actually apply your config choices.\n\n-- For example, changing the initial geometry for new windows:\nconfig.initial_cols = 120\nconfig.initial_rows = 28\n\n-- or, changing the font size and color scheme.\nconfig.font_size = 12\nconfig.color_scheme = \"{{ .my.font.monospace }}\"\n\nlocal launch_menu = {}\n\nif wezterm.target_triple == \"x86_64-pc-windows-msvc\" then\n  table.insert(launch_menu, {\n    label = \"PowerShell\",\n    args = { \"powershell.exe\", \"-NoLogo\" },\n  })\n  table.insert(launch_menu, {\n    label = \"Powershell Core\",\n    args = { \"pwsh.exe\" },\n  })\nend\n\nconfig.launch_menu = launch_menu\n\nconfig.window_background_opacity = 0.9\n\nconfig.window_decorations = \"RESIZE\"\n\nreturn config",
     "zxc.20260126154354.1": "<< unix dos >>\n{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125145051.1": "<< unix dos >>\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125152704.1": "<< unix dos >>\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -5952,6 +5973,9 @@
     },
     "zxc.20260327184129.1": {
       "_mod_time": 1774966480.84
+    },
+    "zxc.20260408012432.1": {
+      "_mod_time": 1775582801.608
     },
     "zxc.20260126154354.1": {
       "_mod_time": 1774967713.394
