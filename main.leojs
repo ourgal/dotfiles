@@ -5745,7 +5745,7 @@
     "zxc.20260407233702.1": "<< dos >>\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260407233702.2": "@echo off\nsetlocal\nclink lua -- \"%~dp0fzf_rg.lua\" --fromcmdline %2*",
     "zxc.20260408005117.1": "<< dos >>\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260408005117.2": "ll=eza --long --icons=auto --group --group-directories-first --time-style relative $*\nls=eza --icons=auto $*",
+    "zxc.20260408005117.2": "ll=eza --long --icons=auto --group --group-directories-first --time-style relative $*\nls=eza --icons=auto $*\nreboot=shutdown /t 0 /r\npoweroff=shutdown /t 0 /s",
     "zxc.20260201140523.1": "<< dos >>\n{{ if lookPath \"gitui\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260130233132.1": "<< dos >>\n{{ if lookPath \"alacritty\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260128002742.1": "<< dos >>\n@others\n{{ end -}}\n",
@@ -6131,7 +6131,7 @@
       "_mod_time": 1775576262.732
     },
     "zxc.20260408005117.1": {
-      "_mod_time": 1775580914.118
+      "_mod_time": 1775583545.755
     },
     "zxc.20260201140523.1": {
       "_mod_time": 1774175138.483
