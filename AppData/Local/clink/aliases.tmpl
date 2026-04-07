@@ -2,5 +2,7 @@
 {{ if lookPath "clink" -}}
 ll=eza --long --icons=auto --group --group-directories-first --time-style relative $*
 ls=eza --icons=auto $*
+reboot=shutdown /t 0 /r
+poweroff=shutdown /t 0 /s
 {{ end -}}
 {{ end -}}
