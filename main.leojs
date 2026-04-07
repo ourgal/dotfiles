@@ -5170,7 +5170,7 @@
     "zxc.20260126154722.1": "<< dos >>\n@others\n{{ end -}}\n",
     "User.20260225204326.1": "{{ if eq .chezmoi.os \"windows\" -}}",
     "zxc.20260126154908.1": "[interpreter.ps1]\n    command = \"powershell\"\n    args = []",
-    "zxc.20260126154820.1": "{{ if lookPath \"pwsh\" -}}\n[cd]\n    command = \"pwsh\"\n{{ end -}}",
+    "zxc.20260126154820.1": "{{ if and (lookPath \"pwsh\") .my.modules.wt -}}\n[cd]\n    command = \"pwsh\"\n{{ else }}\n[cd]\n    command = \"cmd\"\n{{ end -}}",
     "zxc.20260320003721.1": "[edit]\n    hardlink = false",
     "zxc.20260331222155.1": "{{ if lookPath \"difft\" -}}\n[diff]\n    command = \"difft\"\n    args = [\"{{ \"{{\" }} .Destination {{ \"}}\" }}\", \"{{ \"{{\" }} .Target {{ \"}}\" }}\"]\n{{ else if lookPath \"meld\" -}}\n[diff]\n    command = \"meld\"\n    args = [\"--diff\", \"{{ \"{{\" }} .Destination {{ \"}}\" }}\", \"{{ \"{{\" }} .Target {{ \"}}\" }}\"]\n{{ else if lookPath \"delta\" -}}\n[diff]\n    pager = \"delta\"\n{{ end -}}",
     "zxc.20260125144442.1": "@others",
@@ -5978,7 +5978,7 @@
       "_mod_time": 1775582801.608
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1774967713.394
+      "_mod_time": 1775583110.714
     },
     "zxc.20260125145051.1": {
       "_mod_time": 1774727086.798

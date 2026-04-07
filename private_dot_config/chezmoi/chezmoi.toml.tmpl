@@ -14,9 +14,12 @@ progress = true
 [interpreter.ps1]
     command = "powershell"
     args = []
-{{ if lookPath "pwsh" -}}
+{{ if and (lookPath "pwsh") .my.modules.wt -}}
 [cd]
     command = "pwsh"
+{{ else }}
+[cd]
+    command = "cmd"
 {{ end -}}
 {{ end -}}
 [edit]
