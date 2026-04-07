@@ -1,0 +1,5 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "clink" -}}
+fzf.default_bindings = True
+{{ end -}}
+{{ end -}}
