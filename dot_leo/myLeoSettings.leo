@@ -50,7 +50,7 @@ vim.py</t>
 <t tx="zxc.20260315205826.6"># You can define keyboard shortcuts here of the form:
 #
 #    some-command Shift-F5
-vim-open-node=Ctrl-X
+vim-open-node=F12
 </t>
 <t tx="zxc.20260315205956.1"></t>
 <t tx="zxc.20260315210026.1"></t>
