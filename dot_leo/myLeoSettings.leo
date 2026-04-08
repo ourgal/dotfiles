@@ -44,11 +44,13 @@ nodetags.py
 quicksearch.py      # Nav pane.
 todo.py             # Task pane.
 viewrendered.py     # (Or viewrendered3.py) Plugins menu support.
-leo_to_html_outline_viewer.py  # Self-contained HTML Outline Viewer</t>
+leo_to_html_outline_viewer.py  # Self-contained HTML Outline Viewer
+vim.py</t>
 <t tx="zxc.20260315205826.5"></t>
 <t tx="zxc.20260315205826.6"># You can define keyboard shortcuts here of the form:
 #
 #    some-command Shift-F5
+vim-open-node=Ctrl-X
 </t>
 <t tx="zxc.20260315205956.1"></t>
 <t tx="zxc.20260315210026.1"></t>
