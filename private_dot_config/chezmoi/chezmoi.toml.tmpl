@@ -24,7 +24,11 @@ progress = true
 {{ end -}}
 [edit]
     hardlink = false
-{{ if lookPath "difft" -}}
+{{ if lookPath "delta" -}}
+[diff]
+    command = "delta"
+    args = ["-s", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]
+{{ else if lookPath "difft" -}}
 [diff]
     command = "difft"
     args = ["{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]
@@ -32,9 +36,6 @@ progress = true
 [diff]
     command = "meld"
     args = ["--diff", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]
-{{ else if lookPath "delta" -}}
-[diff]
-    pager = "delta"
 {{ end -}}
 {{ end -}}
 {{ end -}}
