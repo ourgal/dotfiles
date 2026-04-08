@@ -2,7 +2,11 @@
 {{ if lookPath "clink" -}}
 ll=eza --long --icons=auto --group --group-directories-first --time-style relative $*
 ls=eza --icons=auto $*
-reboot=shutdown /t 0 /r
-poweroff=shutdown /t 0 /s
+reboot=shutdown /t 0 /r $*
+poweroff=shutdown /t 0 /s $*
+{{ if lookPath "nircmd" -}}
+scroff=nircmd monitor off $*
+{{ end -}}
+scoop-update=scoop update * && scoop cache remove * && scoop cleanup *
 {{ end -}}
 {{ end -}}
