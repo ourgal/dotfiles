@@ -4629,6 +4629,10 @@
                   "vh": "@clean hide_cursor.ahk"
                 }
               ]
+            },
+            {
+              "gnx": "zxc.20260409214651.1",
+              "vh": "@clean merge_pdf.ps1"
             }
           ]
         }
@@ -5765,6 +5769,7 @@
     "zxc.20260316162600.1": "#Requires AutoHotkey v2.0\n#SingleInstance Force\n\nLWin::F24\nRWin::F24",
     "zxc.20260329143202.1": "#Requires AutoHotkey v2.0\n#SingleInstance Force\n\n\nRun \"gopass show -c keepassxc/main\", ,\"Hide\"\nWinWait \"Message from User\"\n\n{{ if .my.modules.glazewm -}}\nRun \"glazewm command focus --workspace 9\"\n{{ end -}}\nRun \"keepassxc\"\nWinWaitActive \" - KeePassXC\"\nWinActive \" - KeePassXC\"\n\nSend \"^v\"\nSend \"{Enter}\"\nreturn\n",
     "zxc.20260323180608.1": "InstallKeybdHook\nInstallMouseHook\nCoordMode(\"mouse\", \"screen\")\n\nOnExit (*) => SystemCursor(\"Show\")  ; Ensure the cursor is made visible when the script exits\n\nSetTimer(Main, 10)\n\nMain() {\n\n   if(A_TimeIdleKeyboard < 25)\n      ;A keyboard key has been pressed, hide cursor\n      SystemCursor(\"Hide\")\n\n   else if(A_TimeIdleMouse < 25)\n      ;Mouse have been used, show cursor\n      SystemCursor(\"Show\")\n}\n\nSystemCursor(cmd) { ; cmd = \"Show|Hide|Toggle|Reload\"\n\n   static visible := true, c := Map()\n   static sys_cursors := [32512, 32513, 32514, 32515, 32516, 32642, 32643, 32644, 32645, 32646, 32648, 32649, 32650]\n\n   if (cmd = \"Reload\" or !c.Count) { ; Reload when requested or at first call.\n\n      for i, id in sys_cursors {\n         h_cursor := DllCall(\"LoadCursor\", \"Ptr\", 0, \"Ptr\", id)\n         h_default := DllCall(\"CopyImage\", \"Ptr\", h_cursor, \"UInt\", 2, \"Int\", 0, \"Int\", 0, \"UInt\", 0)\n         h_blank := DllCall(\"CreateCursor\", \"Ptr\", 0, \"Int\", 0, \"Int\", 0, \"Int\", 32, \"Int\", 32, \"Ptr\", Buffer(32 * 4, 0xFF), \"Ptr\", Buffer(32 * 4, 0))\n         c[id] := { default: h_default, blank: h_blank }\n      }\n   }\n\n   switch cmd {\n      case \"Show\":\n         if (!visible)\n            visible := true\n         else\n            return\n      case \"Hide\":\n         if (visible)\n            visible := false\n         else\n            return\n      case \"Toggle\":\n         visible := !visible\n      default: return\n   }\n\n   for id, handles in c {\n      h_cursor := DllCall(\"CopyImage\", \"Ptr\", visible ? handles.default : handles.blank, \"UInt\", 2, \"Int\", 0, \"Int\", 0, \"UInt\", 0)\n      DllCall(\"SetSystemCursor\", \"Ptr\", h_cursor, \"UInt\", id)\n   }\n}",
+    "zxc.20260409214651.1": "# --- Configuration ---\n\n# Set the path to pdftk.exe if it's not in your system's PATH\n# Example: $pdftkPath = \"C:\\Program Files (x86)\\PDFtk\\bin\\pdftk.exe\"\n$pdftkPath = \"pdftk\" # Assumes pdftk is in your PATH\n\n# Define the output filename for the merged PDF\n$outputPdfName = \"output.pdf\"\n\n# --- Script Logic ---\n\n# Get today's date in YYYYMMDD format\n$today = Get-Date -Format \"yyyyMMdd\"\n\n# Define the file pattern to search for\n# This pattern looks for files like IMG_20260409_0001.pdf\n$filePattern = \"IMG_${today}_*.pdf\"\n\n# Get all PDF files matching the pattern in the current directory\n$pdfFiles = Get-ChildItem -Path . -Filter $filePattern -File\n\n# Check if any files were found\nif ($pdfFiles.Count -eq 0) {\n    Write-Host \"No PDF files found matching the pattern 'IMG_${today}_*.pdf' in the current directory.\"\n    exit\n}\n\n# Sort the files by name to ensure correct order\n# The default sorting of Get-ChildItem should be alphabetical, which works for IMG_..._0001.pdf, IMG_..._0002.pdf etc.\n$sortedPdfFiles = $pdfFiles | Sort-Object Name\n\n# Construct the list of files for pdftk\n$pdftkInputFiles = $sortedPdfFiles | ForEach-Object { $_.FullName }\n\n# Construct the pdftk command\n# The 'cat' operation merges the files. 'output' specifies the output file.\n$pdftkCommand = \"$pdftkPath $($pdftkInputFiles -join ' ') cat output $outputPdfName\"\n\nWrite-Host \"Merging the following files:\"\n$sortedPdfFiles | ForEach-Object { Write-Host \"- $($_.Name)\" }\nWrite-Host \"Output file: $outputPdfName\"\n\n# Execute the pdftk command\ntry {\n    # Use Invoke-Expression to execute the command string\n    Invoke-Expression $pdftkCommand\n    Write-Host \"Successfully merged PDF files.\"\n\n    # Delete the original files after successful merge\n    Write-Host \"Deleting original PDF files...\"\n    $sortedPdfFiles | ForEach-Object {\n        $fileName = $_.Name\n        $filePath = $_.FullName\n        try {\n            Remove-Item -Path $filePath -Force -ErrorAction Stop\n            Write-Host \"Deleted: $fileName\"\n        } catch {\n            Write-Error \"Failed to delete '$fileName': $($_.Exception.Message)\"\n        }\n    }\n    Write-Host \"All original PDF files have been deleted.\"\n\n} catch {\n    Write-Error \"An error occurred during PDF merging: $($_.Exception.Message)\"\n    Write-Error \"Please ensure pdftk is installed and in your PATH, or update the `$pdftkPath` variable.\"\n}\n",
     "zxc.20260202205715.1": "<< dos >>\n@others\n{{ end -}}",
     "zxc.20260202205901.1": "# Flower - とても深いグリーン\nhttps://www.bilibili.com/video/BV1EyHYeBEFr",
     "User.20260302151947.1": "<< dos >>\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -6149,6 +6154,9 @@
     },
     "zxc.20260323180608.1": {
       "_mod_time": 1774398532.8025122
+    },
+    "zxc.20260409214651.1": {
+      "_mod_time": 1775742456.705
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1774175138.521
