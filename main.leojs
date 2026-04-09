@@ -1240,6 +1240,14 @@
                       "vh": "git"
                     },
                     {
+                      "gnx": "zxc.20260409142917.1",
+                      "vh": "shell"
+                    },
+                    {
+                      "gnx": "zxc.20260409143158.1",
+                      "vh": "terminal"
+                    },
+                    {
                       "gnx": "User.20260226001451.1",
                       "vh": "termux"
                     },
@@ -3530,6 +3538,10 @@
                   "vh": "hide title bar"
                 },
                 {
+                  "gnx": "zxc.20260409142718.1",
+                  "vh": "default programs"
+                },
+                {
                   "gnx": "zxc.20260408102617.1",
                   "vh": "end"
                 }
@@ -5196,7 +5208,7 @@
     "zxc.20260126154722.1": "<< dos >>\n@others\n{{ end -}}\n",
     "User.20260225204326.1": "{{ if eq .chezmoi.os \"windows\" -}}\n",
     "zxc.20260126154908.1": "[interpreter.ps1]\n    command = \"powershell\"\n    args = []",
-    "zxc.20260126154820.1": "{{ if and (lookPath \"pwsh\") .my.modules.wt -}}\n[cd]\n    command = \"pwsh\"\n{{ else }}\n[cd]\n    command = \"cmd\"\n{{ end -}}",
+    "zxc.20260126154820.1": "[cd]\n    command = \"{{ .my.shell.windows }}\"",
     "zxc.20260320003721.1": "[edit]\n    hardlink = false",
     "zxc.20260331222155.1": "{{ if lookPath \"delta\" -}}\n[diff]\n    command = \"delta\"\n    args = [\"-s\", \"{{ \"{{\" }} .Destination {{ \"}}\" }}\", \"{{ \"{{\" }} .Target {{ \"}}\" }}\"]\n{{ else if lookPath \"difft\" -}}\n[diff]\n    command = \"difft\"\n    args = [\"{{ \"{{\" }} .Destination {{ \"}}\" }}\", \"{{ \"{{\" }} .Target {{ \"}}\" }}\"]\n{{ else if lookPath \"meld\" -}}\n[diff]\n    command = \"meld\"\n    args = [\"--diff\", \"{{ \"{{\" }} .Destination {{ \"}}\" }}\", \"{{ \"{{\" }} .Target {{ \"}}\" }}\"]\n{{ end -}}",
     "zxc.20260125144442.1": "@others",
@@ -5315,6 +5327,8 @@
     "User.20260226001414.1": "[my.msys2]\npackages = [\"mingw-w64-x86_64-aspell\"]\n",
     "User.20260226001424.1": "[my.font]\nmonospace = \"FiraCode Nerd Font Mono\"\n",
     "User.20260226001439.1": "[my.git.sign]\nssh = true\ngpg = false",
+    "zxc.20260409142917.1": "[my.shell]\nwindows = \"pwsh\"",
+    "zxc.20260409143158.1": "[my.terminal]\nwindows = \"wezterm\"",
     "User.20260226001451.1": "[my.termux.note20]\nusername = \"u0_a644\"\n[my.termux.m6]\nusername = \"u0_a455\"",
     "zxc.20260403084957.1": "[my.ip]\nbrix = \"192.168.123.206\"",
     "User.20260303224633.1": "[my.pip]\nmirror = \"https://mirrors.cernet.edu.cn/pypi/web/simple/\"\n",
@@ -5628,7 +5642,7 @@
     "User.20260301210952.1": "- commands: ['ignore']\n  match:\n    # Ignores any Zebar windows.\n    - window_process: {equals: 'zebar'}\n    # Ignores picture-in-picture windows for browsers.\n    - window_title: {regex: '[Pp]icture.in.[Pp]icture'}\n      window_class: {regex: 'Chrome_WidgetWin_1|MozillaDialogClass'}\n    # Ignore rules for various 3rd-party apps.\n    - window_process: {equals: 'PowerToys'}\n      window_class: {regex: 'HwndWrapper\\[PowerToys\\.PowerAccent.*?\\]'}\n    - window_process: {equals: 'PowerToys'}\n      window_title: {regex: '.*? - Peek'}\n    - window_process: {equals: 'Lively'}\n      window_class: {regex: 'HwndWrapper'}\n    - window_process: {equals: 'EXCEL'}\n      window_class: {not_regex: 'XLMAIN'}\n    - window_process: {equals: 'WINWORD'}\n      window_class: {not_regex: 'OpusApp'}\n    - window_process: {equals: 'POWERPNT'}\n      window_class: {not_regex: 'PPTFrameClass'}\n",
     "User.20260301222626.1": "- commands: [\"set-floating\"]\n  match:\n    - window_process: { equals: \"Flow.Launcher\" }\n      window_title: { equals: \"Settings\" }",
     "User.20260301203613.1": "binding_modes:\n  # When enabled, the focused window can be resized via arrow keys or HJKL.\n  - name: 'resize'\n    keybindings:\n      - commands: ['resize --width -2%']\n        bindings: ['h', 'left']\n      - commands: ['resize --width +2%']\n        bindings: ['l', 'right']\n      - commands: ['resize --height +2%']\n        bindings: ['k', 'up']\n      - commands: ['resize --height -2%']\n        bindings: ['j', 'down']\n      - commands: ['wm-disable-binding-mode --name resize']\n        # Press enter/escape to return to default keybindings.\n        bindings: ['escape', 'enter']\n",
-    "User.20260301203644.1": "keybindings:\n  # Shift focus in a given direction.\n  - commands: ['focus --direction left']\n    bindings: ['f24+h', 'f24+left']\n  - commands: ['focus --direction right']\n    bindings: ['f24+l', 'f24+right']\n  - commands: ['focus --direction up']\n    bindings: ['f24+k', 'f24+up']\n  - commands: ['focus --direction down']\n    bindings: ['f24+j', 'f24+down']\n  # Move focused window in a given direction.\n  - commands: ['move --direction left']\n    bindings: ['f24+shift+h', 'f24+shift+left']\n  - commands: ['move --direction right']\n    bindings: ['f24+shift+l', 'f24+shift+right']\n  - commands: ['move --direction up']\n    bindings: ['f24+shift+k', 'f24+shift+up']\n  - commands: ['move --direction down']\n    bindings: ['f24+shift+j', 'f24+shift+down']\n  # Resize focused window by a percentage or pixel amount.\n  - commands: ['resize --width -2%']\n    bindings: ['f24+u']\n  - commands: ['resize --width +2%']\n    bindings: ['f24+p']\n  - commands: ['resize --height +2%']\n    bindings: ['f24+o']\n  - commands: ['resize --height -2%']\n    bindings: ['f24+i']\n  # As an f24ernative to the resize keybindings above, resize mode enables\n  # resizing via arrow keys or HJKL. The binding mode is defined above with\n  # the name 'resize'.\n  - commands: ['wm-enable-binding-mode --name resize']\n    bindings: ['f24+r']\n  # Disables window management and all other keybindings until f24+shift+p\n  # is pressed again.\n  - commands: ['wm-toggle-pause']\n    bindings: ['f24+shift+p']\n  # Change tiling direction. This determines where new tiling windows will\n  # be inserted.\n  - commands: ['toggle-tiling-direction']\n    bindings: ['f24+v']\n  # Change focus from tiling windows -> floating -> fullscreen.\n  - commands: ['wm-cycle-focus']\n    bindings: ['f24+space']\n  # Change the focused window to be floating.\n  - commands: ['toggle-floating --centered']\n    bindings: ['f24+shift+space']\n  # Change the focused window to be tiling.\n  - commands: ['toggle-tiling']\n    bindings: ['f24+t']\n  # Change the focused window to be fullscreen.\n  - commands: ['toggle-fullscreen']\n    bindings: ['f24+f']\n  # Minimize focused window.\n  - commands: ['toggle-minimized']\n    bindings: ['f24+m']\n  # Close focused window.\n  - commands: ['close']\n    bindings: ['f24+shift+c']\n  # Kill GlazeWM process safely.\n  - commands: ['wm-exit']\n    bindings: ['f24+shift+e']\n  # Re-evaluate configuration file.\n  - commands: ['wm-reload-config']\n    bindings: ['f24+shift+r']\n  # Redraw all windows.\n  - commands: ['wm-redraw']\n    bindings: ['f24+shift+w']\n  # Launch CMD terminal. f24ernatively, use `shell-exec wt` or\n  # `shell-exec %ProgramFiles%/Git/git-bash.exe` to start Windows\n  # Terminal and Git Bash respectively.\n  - commands: ['shell-exec wt']\n    bindings: ['f24+enter']\n  # Focus the next/previous active workspace defined in `workspaces` config.\n  # - commands: ['focus --next-active-workspace']\n  - commands: ['shell-exec {{ if lookPath \"flameshot\" }}flameshot gui{{ else }}explorer ms-screenclip:{{ end }}']\n    bindings: ['f24+s']\n  - commands: ['focus --prev-active-workspace']\n    bindings: ['f24+a']\n  # Focus the workspace that last had focus.\n  - commands: ['shell-exec {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"altrun\" \"current\" \"altrun.exe\" }}']\n    bindings: ['f24+d']\n  # Change focus to a workspace defined in `workspaces` config.\n  - commands: ['focus --workspace 1']\n    bindings: ['f24+1']\n  - commands: ['focus --workspace 2']\n    bindings: ['f24+2']\n  - commands: ['focus --workspace 3']\n    bindings: ['f24+3']\n  - commands: ['focus --workspace 4']\n    bindings: ['f24+4']\n  - commands: ['focus --workspace 5']\n    bindings: ['f24+5']\n  - commands: ['focus --workspace 6']\n    bindings: ['f24+6']\n  - commands: ['focus --workspace 7']\n    bindings: ['f24+7']\n  - commands: ['focus --workspace 8']\n    bindings: ['f24+8']\n  - commands: ['focus --workspace 9']\n    bindings: ['f24+9']\n  # Move the focused window's parent workspace to a monitor in a given\n  # direction.\n  - commands: ['move-workspace --direction left']\n    bindings: ['f24+shift+a']\n  - commands: ['move-workspace --direction right']\n    bindings: ['f24+shift+f']\n  - commands: ['move-workspace --direction up']\n    bindings: ['f24+shift+d']\n  - commands: ['move-workspace --direction down']\n    bindings: ['f24+shift+s']\n  # Move focused window to a workspace defined in `workspaces` config.\n  - commands: ['move --workspace 1', 'focus --workspace 1']\n    bindings: ['f24+shift+1']\n  - commands: ['move --workspace 2', 'focus --workspace 2']\n    bindings: ['f24+shift+2']\n  - commands: ['move --workspace 3', 'focus --workspace 3']\n    bindings: ['f24+shift+3']\n  - commands: ['move --workspace 4', 'focus --workspace 4']\n    bindings: ['f24+shift+4']\n  - commands: ['move --workspace 5', 'focus --workspace 5']\n    bindings: ['f24+shift+5']\n  - commands: ['move --workspace 6', 'focus --workspace 6']\n    bindings: ['f24+shift+6']\n  - commands: ['move --workspace 7', 'focus --workspace 7']\n    bindings: ['f24+shift+7']\n  - commands: ['move --workspace 8', 'focus --workspace 8']\n    bindings: ['f24+shift+8']\n  - commands: ['move --workspace 9', 'focus --workspace 9']\n    bindings: ['f24+shift+9']\n",
+    "User.20260301203644.1": "keybindings:\n  # Shift focus in a given direction.\n  - commands: ['focus --direction left']\n    bindings: ['f24+h', 'f24+left']\n  - commands: ['focus --direction right']\n    bindings: ['f24+l', 'f24+right']\n  - commands: ['focus --direction up']\n    bindings: ['f24+k', 'f24+up']\n  - commands: ['focus --direction down']\n    bindings: ['f24+j', 'f24+down']\n  # Move focused window in a given direction.\n  - commands: ['move --direction left']\n    bindings: ['f24+shift+h', 'f24+shift+left']\n  - commands: ['move --direction right']\n    bindings: ['f24+shift+l', 'f24+shift+right']\n  - commands: ['move --direction up']\n    bindings: ['f24+shift+k', 'f24+shift+up']\n  - commands: ['move --direction down']\n    bindings: ['f24+shift+j', 'f24+shift+down']\n  # Resize focused window by a percentage or pixel amount.\n  - commands: ['resize --width -2%']\n    bindings: ['f24+u']\n  - commands: ['resize --width +2%']\n    bindings: ['f24+p']\n  - commands: ['resize --height +2%']\n    bindings: ['f24+o']\n  - commands: ['resize --height -2%']\n    bindings: ['f24+i']\n  # As an f24ernative to the resize keybindings above, resize mode enables\n  # resizing via arrow keys or HJKL. The binding mode is defined above with\n  # the name 'resize'.\n  - commands: ['wm-enable-binding-mode --name resize']\n    bindings: ['f24+r']\n  # Disables window management and all other keybindings until f24+shift+p\n  # is pressed again.\n  - commands: ['wm-toggle-pause']\n    bindings: ['f24+shift+p']\n  # Change tiling direction. This determines where new tiling windows will\n  # be inserted.\n  - commands: ['toggle-tiling-direction']\n    bindings: ['f24+v']\n  # Change focus from tiling windows -> floating -> fullscreen.\n  - commands: ['wm-cycle-focus']\n    bindings: ['f24+space']\n  # Change the focused window to be floating.\n  - commands: ['toggle-floating --centered']\n    bindings: ['f24+shift+space']\n  # Change the focused window to be tiling.\n  - commands: ['toggle-tiling']\n    bindings: ['f24+t']\n  # Change the focused window to be fullscreen.\n  - commands: ['toggle-fullscreen']\n    bindings: ['f24+f']\n  # Minimize focused window.\n  - commands: ['toggle-minimized']\n    bindings: ['f24+m']\n  # Close focused window.\n  - commands: ['close']\n    bindings: ['f24+shift+c']\n  # Kill GlazeWM process safely.\n  - commands: ['wm-exit']\n    bindings: ['f24+shift+e']\n  # Re-evaluate configuration file.\n  - commands: ['wm-reload-config']\n    bindings: ['f24+shift+r']\n  # Redraw all windows.\n  - commands: ['wm-redraw']\n    bindings: ['f24+shift+w']\n  # Launch CMD terminal. natively, use `shell-exec wt` or\n  # `shell-exec %ProgramFiles%/Git/git-bash.exe` to start Windows\n  # Terminal and Git Bash respectively.\n  - commands: ['shell-exec {{ .my.terminal.windows }}']\n    bindings: ['f24+enter']\n  # Focus the next/previous active workspace defined in `workspaces` config.\n  # - commands: ['focus --next-active-workspace']\n  - commands: ['shell-exec {{ if lookPath \"flameshot\" }}flameshot gui{{ else }}explorer ms-screenclip:{{ end }}']\n    bindings: ['f24+s']\n  - commands: ['focus --prev-active-workspace']\n    bindings: ['f24+a']\n  # Focus the workspace that last had focus.\n  - commands: ['shell-exec {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"altrun\" \"current\" \"altrun.exe\" }}']\n    bindings: ['f24+d']\n  # Change focus to a workspace defined in `workspaces` config.\n  - commands: ['focus --workspace 1']\n    bindings: ['f24+1']\n  - commands: ['focus --workspace 2']\n    bindings: ['f24+2']\n  - commands: ['focus --workspace 3']\n    bindings: ['f24+3']\n  - commands: ['focus --workspace 4']\n    bindings: ['f24+4']\n  - commands: ['focus --workspace 5']\n    bindings: ['f24+5']\n  - commands: ['focus --workspace 6']\n    bindings: ['f24+6']\n  - commands: ['focus --workspace 7']\n    bindings: ['f24+7']\n  - commands: ['focus --workspace 8']\n    bindings: ['f24+8']\n  - commands: ['focus --workspace 9']\n    bindings: ['f24+9']\n  # Move the focused window's parent workspace to a monitor in a given\n  # direction.\n  - commands: ['move-workspace --direction left']\n    bindings: ['f24+shift+a']\n  - commands: ['move-workspace --direction right']\n    bindings: ['f24+shift+f']\n  - commands: ['move-workspace --direction up']\n    bindings: ['f24+shift+d']\n  - commands: ['move-workspace --direction down']\n    bindings: ['f24+shift+s']\n  # Move focused window to a workspace defined in `workspaces` config.\n  - commands: ['move --workspace 1', 'focus --workspace 1']\n    bindings: ['f24+shift+1']\n  - commands: ['move --workspace 2', 'focus --workspace 2']\n    bindings: ['f24+shift+2']\n  - commands: ['move --workspace 3', 'focus --workspace 3']\n    bindings: ['f24+shift+3']\n  - commands: ['move --workspace 4', 'focus --workspace 4']\n    bindings: ['f24+shift+4']\n  - commands: ['move --workspace 5', 'focus --workspace 5']\n    bindings: ['f24+shift+5']\n  - commands: ['move --workspace 6', 'focus --workspace 6']\n    bindings: ['f24+shift+6']\n  - commands: ['move --workspace 7', 'focus --workspace 7']\n    bindings: ['f24+shift+7']\n  - commands: ['move --workspace 8', 'focus --workspace 8']\n    bindings: ['f24+shift+8']\n  - commands: ['move --workspace 9', 'focus --workspace 9']\n    bindings: ['f24+shift+9']\n",
     "User.20260302151118.1": "<< dos >>\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260302151244.1": "set colored-stats                 on   # Turn on completion colors.\nset colored-completion-prefix     on   # Color the typed completion prefix.",
     "User.20260302211627.1": "ENTRY \"AppData\" URL \"{{ .chezmoi.homeDir }}/AppData/Roaming\"",
@@ -5657,6 +5671,7 @@
     "zxc.20260408102354.1": "local launch_menu = {}\r\n\r\nif wezterm.target_triple == \"x86_64-pc-windows-msvc\" then\r\n  table.insert(launch_menu, {\r\n    label = \"PowerShell\",\r\n    args = { \"powershell.exe\", \"-NoLogo\" },\r\n  })\r\n  table.insert(launch_menu, {\r\n    label = \"Powershell Core\",\r\n    args = { \"pwsh.exe\" },\r\n  })\r\nend\r\n\r\nconfig.launch_menu = launch_menu\r\n",
     "zxc.20260408102438.1": "config.window_background_opacity = 0.9\r\n",
     "zxc.20260408102453.1": "config.window_decorations = \"RESIZE\"\r\n",
+    "zxc.20260409142718.1": "config.default_prog = { '{{ .my.shell.windows }}' }",
     "zxc.20260408102617.1": "return config",
     "zxc.20260126154354.1": "<< unix dos >>\n{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125145051.1": "<< unix dos >>\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -5923,7 +5938,7 @@
       "_mod_time": 1775529044.6953375
     },
     "User.20260226001402.1": {
-      "_mod_time": 1775607497.131664
+      "_mod_time": 1775716337.121
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1773571522.654681
@@ -5992,7 +6007,7 @@
       "_mod_time": 1774175138.499
     },
     "User.20260301202336.1": {
-      "_mod_time": 1775607497.2122726
+      "_mod_time": 1775716419.718
     },
     "User.20260302151118.1": {
       "_mod_time": 1775579937.985
@@ -6007,10 +6022,10 @@
       "_mod_time": 1775105070.8368435
     },
     "zxc.20260408012432.1": {
-      "_mod_time": 1775615221.9127777
+      "_mod_time": 1775716221.839
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1775637323.414
+      "_mod_time": 1775716267.163
     },
     "zxc.20260125145051.1": {
       "_mod_time": 1774833042.663151
