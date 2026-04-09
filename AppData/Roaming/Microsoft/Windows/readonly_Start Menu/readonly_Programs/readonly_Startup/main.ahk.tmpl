@@ -11,9 +11,6 @@ SetTitleMatchMode(2)
 {{ if and (lookPath "glazewm") .my.modules.glazewm -}}
 Run("glazewm", {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
-{{ if and (lookPath "dwm-win32") .my.modules.dwm_win32 -}}
-Run("dwm-win32", {{ .chezmoi.homeDir | quote }}, "Hide")
-{{ end -}}
 {{ if and (eq .chezmoi.hostname "nuc") (lookPath "deskflow-core") -}}
 Run("deskflow-core client", , "Hide")
 {{ end -}}
