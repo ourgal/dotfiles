@@ -5,7 +5,9 @@
 Run "gopass show -c keepassxc/main", ,"Hide"
 WinWait "Message from User"
 
+{{ if .my.modules.glazewm -}}
 Run "glazewm command focus --workspace 9"
+{{ end -}}
 Run "keepassxc"
 WinWaitActive " - KeePassXC"
 WinActive " - KeePassXC"
