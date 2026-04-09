@@ -8,8 +8,11 @@ RunScoop(app)
 }
 
 SetTitleMatchMode(2)
-{{ if lookPath "glazewm" -}}
+{{ if and (lookPath "glazewm") .my.modules.glazewm -}}
 Run("glazewm", {{ .chezmoi.homeDir | quote }}, "Hide")
+{{ end -}}
+{{ if and (lookPath "dwm-win32") .my.modules.dwm_win32 -}}
+Run("dwm-win32", {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
 {{ if and (eq .chezmoi.hostname "nuc") (lookPath "deskflow-core") -}}
 Run("deskflow-core client", , "Hide")
@@ -60,11 +63,11 @@ Run({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
 {{ if lookPath "everything" -}}
 Run("everything", , "Hide")
 {{ end -}}
-{{ if and ( lookPath "autohotkey" ) .my.modules.keybindings.autohotkey -}}
+{{ if and ( lookPath "autohotkey" ) .my.modules.keybindings.autohotkey .my.modules.glazewm -}}
 Run({{ joinPath .chezmoi.homeDir "Documents" "autohotkey" "keybindings.ahk" | quote }}, , "Hide")
 {{ end -}}
 {{ $powertoys := joinPath .chezmoi.homeDir "scoop" "apps" "powertoys" "current" "powertoys.exe" -}}
-{{ if and ( stat $powertoys ) .my.modules.keybindings.powertoys -}}
+{{ if and ( stat $powertoys ) .my.modules.keybindings.powertoys .my.modules.glazewm -}}
 Run({{ $powertoys | quote }}, {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
 {{ if lookPath "autohotkey" -}}
