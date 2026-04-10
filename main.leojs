@@ -5671,7 +5671,7 @@
     "zxc.20260408012432.1": "<< dos >>\n{{ if and (lookPath \"wezterm\") .my.modules.wezterm -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260408012435.1": "-- Pull in the wezterm API\nlocal wezterm = require(\"wezterm\")\n\n-- This will hold the configuration.\nlocal config = wezterm.config_builder()\n\n-- This is where you actually apply your config choices.\n\n",
     "zxc.20260408102229.1": "-- For example, changing the initial geometry for new windows:\r\nconfig.initial_cols = 120\r\nconfig.initial_rows = 28\r\n",
-    "zxc.20260408102316.1": "-- or, changing the font size and color scheme.\r\nconfig.font_size = 12\r\nconfig.color_scheme = \"{{ .my.font.monospace }}\"\r\n",
+    "zxc.20260408102316.1": "-- or, changing the font size and color scheme.\nconfig.font_size = 12\nconfig.font = wezterm.font '{{ .my.font.monospace }}'\n",
     "zxc.20260408102354.1": "local launch_menu = {}\r\n\r\nif wezterm.target_triple == \"x86_64-pc-windows-msvc\" then\r\n  table.insert(launch_menu, {\r\n    label = \"PowerShell\",\r\n    args = { \"powershell.exe\", \"-NoLogo\" },\r\n  })\r\n  table.insert(launch_menu, {\r\n    label = \"Powershell Core\",\r\n    args = { \"pwsh.exe\" },\r\n  })\r\nend\r\n\r\nconfig.launch_menu = launch_menu\r\n",
     "zxc.20260408102438.1": "config.window_background_opacity = 0.9\r\n",
     "zxc.20260408102453.1": "config.window_decorations = \"RESIZE\"\r\n",
@@ -6027,7 +6027,7 @@
       "_mod_time": 1775105070.8368435
     },
     "zxc.20260408012432.1": {
-      "_mod_time": 1775716221.839
+      "_mod_time": 1775780484.269
     },
     "zxc.20260126154354.1": {
       "_mod_time": 1775716267.163

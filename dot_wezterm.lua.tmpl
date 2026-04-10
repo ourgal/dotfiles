@@ -13,7 +13,7 @@ config.initial_cols = 120
 config.initial_rows = 28
 -- or, changing the font size and color scheme.
 config.font_size = 12
-config.color_scheme = "{{ .my.font.monospace }}"
+config.font = wezterm.font '{{ .my.font.monospace }}'
 local launch_menu = {}
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
