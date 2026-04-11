@@ -2439,6 +2439,10 @@
                     {
                       "gnx": "zxc.20260214142757.1",
                       "vh": "simple completion language server"
+                    },
+                    {
+                      "gnx": "zxc.20260411190320.1",
+                      "vh": "ruff lsp"
                     }
                   ]
                 }
@@ -5524,7 +5528,7 @@
     "zxc.20260125153131.2": "# feat: ✨\n# feat: 🔍\n# feat: 🔗\n# feat: 🔒\n\n# fix: 🐛\n# fix: 🐞\n# fix: 🩹\n# fix: 🚑️\n\n# style: 💅\n# style: 🎨\n# style: 💄\n\n# ci: 🦊\n# ci: 📦\n\n# deploy: 🚀\n# deploy: 📦\n\n# chore: 🧹\n# chore: 🔧\n# chore: ⚙️\n# docs: 📜\n\n# refactor: 🔨\n# perf: 🚀\n\n# test: 🚦\n# debug: 🧪\n\n# BREAKING CHANGE: 🚨\n# BREAKING CHANGE: 💥\n# BREAKING CHANGE: 💣",
     "User.20260216220339.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"ansible-language-server\" -}}\n{{ $lsp = append $lsp \"ansible-language-server\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\ncomment-token = \"#\"\ngrammar = \"yaml\"\ninjection-regex = \"ansible\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]\nname = \"ansible\"\nscope = \"source.yaml\"\nshebangs = [\"ansible-playbook\"]\n\n[[language.file-types]]\nglob = \"playbooks/*.yaml\"\n\n[[language.file-types]]\nglob = \"playbooks/*.yml\"\n\n[[language.file-types]]\nglob = \"group_vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"group_vars/*.yml\"\n\n[[language.file-types]]\nglob = \"host_vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"host_vars/*.yml\"\n\n[[language.file-types]]\nglob = \"vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"vars/*.yml\"\n\n[[language.file-types]]\nglob = \"defaults/*.yaml\"\n\n[[language.file-types]]\nglob = \"defaults/*.yml\"\n\n[[language.file-types]]\nglob = \"tasks/*.yaml\"\n\n[[language.file-types]]\nglob = \"tasks/*.yml\"\n\n[[language.file-types]]\nglob = \"handlers/*.yaml\"\n\n[[language.file-types]]\nglob = \"handlers/*.yml\"\n\n[[language.file-types]]\nglob = \"meta/*.yaml\"\n\n[[language.file-types]]\nglob = \"meta/*.yml\"",
     "User.20260216222130.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"marksman\" -}}\n{{ $lsp = append $lsp \"marksman\" -}}\n{{ end -}}\n{{ if lookPath \"markdown-oxide\" -}}\n{{ $lsp = append $lsp \"markdown-oxide\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"markdown\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]\n",
-    "User.20260216214259.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"ty\" -}}\n{{ $lsp = append $lsp \"ty\" -}}\n{{ end -}}\n{{ if lookPath \"jedi-language-server\" -}}\n{{ $lsp = append $lsp \"jedi\" -}}\n{{ end -}}\n{{ if lookPath \"pylsp\" -}}\n{{ $lsp = append $lsp \"pylsp\" -}}\n{{ end -}}\n{{ if lookPath \"ruff\" -}}\n{{ $lsp = append $lsp \"ruff\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"python\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]",
+    "User.20260216214259.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"ty\" -}}\n{{ $lsp = append $lsp \"ty\" -}}\n{{ end -}}\n{{ if lookPath \"jedi-language-server\" -}}\n{{ $lsp = append $lsp \"jedi\" -}}\n{{ end -}}\n{{ if lookPath \"pylsp\" -}}\n{{ $lsp = append $lsp \"pylsp\" -}}\n{{ end -}}\n{{ if lookPath \"ruff\" -}}\n{{ $lsp = append $lsp \"ruff\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"python\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]\n\n{{ if lookPath \"ruff\" -}}\nformatter = { command = \"sh\", args = [\"-c\", \"ruff check --fix - | ruff format -\"] }\n{{ end -}}",
     "User.20260216215954.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"lua-language-server\" -}}\n{{ $lsp = append $lsp \"lua-language-server\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"lua\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]",
     "User.20260216220021.1": "{{ if lookPath \"stylua\" -}}\n[language.formatter]\ncommand = \"stylua\"\nargs = [\"-\"]\n{{ end -}}",
     "User.20260216210216.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"taplo\" -}}\n{{ $lsp = append $lsp \"taplo\" -}}\n{{ end -}}\n{{ if lookPath \"tombi\" -}}\n{{ $lsp = append $lsp \"tombi\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"toml\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]",
@@ -5534,6 +5538,7 @@
     "User.20260216190008.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"vscode-json-language-server\" -}}\n{{ $lsp = append $lsp \"vscode-json-language-server\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"json\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]",
     "User.20260216190035.1": "{{ if lookPath \"prettier\" -}}\n[language.formatter]\ncommand = \"prettier\"\nargs = [\"--parser\", \"json\"]\n{{ end -}}",
     "zxc.20260214142757.1": "{{ if lookPath \"simple-completion-language-server\" -}}\n[language-server.scls]\ncommand = \"simple-completion-language-server\"\n\n[language-server.scls.config]\nfeature_paths = true\nfeature_snippets = true\nfeature_unicode_input = true\nfeature_words = true\nmax_completion_items = 20\nsnippets_first = true\n{{ end -}}",
+    "zxc.20260411190320.1": "{{ if lookPath \"ruff\" -}}\n[language-server.ruff]\ncommand = \"ruff\"\nargs = [\"server\", \"--preview\"]\nenvironment = { \"RUFF_TRACE\" = \"messages\" }\n\n[language-server.ruff.config.settings]\nlineLength = 100\nlogLevel = \"debug\"\n\n[language-server.ruff.config.settings.lint]\nselect = [\"E\", \"F\", \"W\", \"B\", \"I\", \"RUF\", \"N\", \"LOG\", \"ERA\", \"W\", \"D\", \"UP\", \"ANN\", \"ASYNC\", \"S\", \"RET\", \"TCH\", \"ARG\", \"PTH\", \"DOC\"]\npreview = true\n\n[language-server.ruff.config.settings.format]\npreview = true\nquote-style = \"double\"\ndocstring-code-format = true\nindent-style = \"space\"\n{{ end -}}",
     "zxc.20260125161740.1": "theme = \"catppuccin_mocha\"\n",
     "zxc.20260125161845.1": "[editor]\nbufferline = \"multiple\"\ncolor-modes = true\nidle-timeout = 0\nline-number = \"relative\"\npopup-border = \"none\"\ntrue-color = true\n",
     "zxc.20260125161912.1": "[editor.auto-save]\nfocus-lost = false",
@@ -6061,7 +6066,7 @@
       "_mod_time": 1773571522.6703062
     },
     "User.20260216185314.1": {
-      "_mod_time": 1773571522.6703062
+      "_mod_time": 1775906282.69
     },
     "User.20260217223023.1": {
       "_mod_time": 1774833042.66063
@@ -6211,7 +6216,7 @@
       "_mod_time": 1774175138.483
     },
     "zxc.20260214142543.1": {
-      "_mod_time": 1774175138.483
+      "_mod_time": 1775906282.716
     },
     "User.20260215234634.1": {
       "_mod_time": 1774175138.483

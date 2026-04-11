@@ -99,6 +99,10 @@ language-servers = [{{- $lsp | quoteList | join ", " -}}]
 auto-format = true
 name = "python"
 language-servers = [{{- $lsp | quoteList | join ", " -}}]
+
+{{ if lookPath "ruff" -}}
+formatter = { command = "sh", args = ["-c", "ruff check --fix - | ruff format -"] }
+{{ end -}}
 {{ $lsp := list -}}
 {{ if lookPath "simple-completion-language-server" -}}
 {{ $lsp = append $lsp "scls" -}}
@@ -177,6 +181,26 @@ feature_unicode_input = true
 feature_words = true
 max_completion_items = 20
 snippets_first = true
+{{ end -}}
+{{ if lookPath "ruff" -}}
+[language-server.ruff]
+command = "ruff"
+args = ["server", "--preview"]
+environment = { "RUFF_TRACE" = "messages" }
+
+[language-server.ruff.config.settings]
+lineLength = 100
+logLevel = "debug"
+
+[language-server.ruff.config.settings.lint]
+select = ["E", "F", "W", "B", "I", "RUF", "N", "LOG", "ERA", "W", "D", "UP", "ANN", "ASYNC", "S", "RET", "TCH", "ARG", "PTH", "DOC"]
+preview = true
+
+[language-server.ruff.config.settings.format]
+preview = true
+quote-style = "double"
+docstring-code-format = true
+indent-style = "space"
 {{ end -}}
 {{ end -}}
 {{ end -}}
