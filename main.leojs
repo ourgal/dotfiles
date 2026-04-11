@@ -3054,6 +3054,10 @@
                       "vh": "eglot-booster"
                     },
                     {
+                      "gnx": "zxc.20260411161108.1",
+                      "vh": "elsqlite"
+                    },
+                    {
                       "gnx": "User.20260223013717.1",
                       "vh": "email",
                       "children": [
@@ -3162,6 +3166,10 @@
                 {
                   "gnx": "User.20260307165110.1",
                   "vh": "elfeed-protocol"
+                },
+                {
+                  "gnx": "zxc.20260411161045.1",
+                  "vh": "elsqlite"
                 }
               ]
             }
@@ -5608,6 +5616,7 @@
     "User.20260218185154.1": "(use-package! pangu-spacing\n  :config (add-hook 'markdown-mode-hook 'pangu-spacing-mode))\n",
     "User.20260218205354.1": "(use-package! zeal-at-point)\n(map! :leader\n      :desc \"Zeal\" \"h z\" #'zeal-at-point)",
     "User.20260218210651.1": "(use-package! eglot-booster\n  :after eglot\n  :config (eglot-booster-mode))",
+    "zxc.20260411161108.1": "(use-package! elsqlite\n  :commands (elsqlite elsqlite-browser)\n  :config\n  ;; Optional: Auto-open .db files in ELSQLite\n  (elsqlite-enable-auto-open)\n  ;; Optional: Evil mode keybindings\n  (elsqlite-evil-setup)\n  )",
     "User.20260223013727.1": "(setq message-send-mail-function 'smtpmail-send-it)\n(setq user-mail-address \"ourgal@qq.com\")\n(setq user-full-name \"ourgal\")\n\n(setq smtpmail-smtp-user \"ourgal@qq.com\"\n      smtpmail-smtp-server \"smtp.qq.com\"\n      smtpmail-smtp-service 465\n      smtpmail-stream-type 'ssl)\n\n(setq smtpmail-debug-info t)\n(setq smtpmail-debug-verb t)\n\n(setq auth-sources '({{ joinPath .chezmoi.homeDir \".config\" \"doom\" \".authinfo\" | quote }}))",
     "User.20260223021647.1": "(setq user-mail-address \"ourgal@qq.com\"\n      user-full-name \"ourgal\")\n\n(setq gnus-select-method '(nnnil nil))\n(setq gnus-secondary-select-methods\n      '((nnimap \"qq\"\n               (nnimap-address \"imap.qq.com\")\n               (nnimap-index \"nnimap+qq:INDEX\")\n               (nnmail-expiry-target \"nnimap+qq:Deleted Messages\")\n               (nnimap-expunge t)\n               (nnimap-server-port 993)\n               (nnimap-stream ssl))\n      (nnimap \"163\"\n               (nnimap-address \"imap.163.com\")\n               (nnimap-index \"nnimap+163:INDEX\")\n               (nnmail-expiry-target \"nnimap+163:已删除\")\n               (nnimap-expunge t)\n               (nnimap-server-port 993)\n               (nnimap-stream ssl))\n      (nnimap \"yandex\"\n               (nnimap-address \"imap.yandex.com\")\n               (nnimap-index \"nnimap+yandex:INDEX\")\n               (nnmail-expiry-target \"nnimap+yandex:Trash\")\n               (nnimap-expunge t)\n               (nnimap-server-port 993)\n               (nnimap-stream ssl))))\n\n(setq gnus-thread-sort-functions '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date)))",
     "User.20260305235255.1": "(add-hook 'elfeed-search-mode-hook #'elfeed-update)\n;; Update hourly\n(run-at-time nil (* 60 60) #'elfeed-update)",
@@ -5627,6 +5636,7 @@
     "User.20260218205206.1": "(package! zeal-at-point)\n",
     "User.20260218210513.1": "(package! eglot-booster\n  :recipe (:host github :repo \"jdtsmith/eglot-booster\"))",
     "User.20260307165110.1": "(package! elfeed-protocol)",
+    "zxc.20260411161045.1": "(package! elsqlite)",
     "User.20260221175721.1": "- replace: '{{ `{{` }}mydate{{ `}}` }}'\n  trigger: :date\n  vars:\n  - name: mydate\n    params:\n      format: '%m/%d/%Y'\n    type: date",
     "User.20260221175729.1": "- replace: '{{ `{{` }}mydate{{ `}}` }}'\n  trigger: :time\n  vars:\n  - name: mydate\n    params:\n      format: '%H:%M'\n    type: date",
     "User.20260221175844.1": "- replace: https://github.com/{{ `{{` }}clipboard{{ `}}` }}\n  trigger: :gh\n  vars:\n  - name: clipboard\n    type: clipboard\n",
@@ -6057,10 +6067,10 @@
       "_mod_time": 1774833042.66063
     },
     "User.20260217223030.1": {
-      "_mod_time": 1774833042.6586103
+      "_mod_time": 1775895090.069
     },
     "User.20260217223035.1": {
-      "_mod_time": 1774833042.66063
+      "_mod_time": 1775895049.436
     },
     "User.20260223014430.1": {
       "_mod_time": 1774833042.66063

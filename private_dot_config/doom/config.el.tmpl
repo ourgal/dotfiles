@@ -148,6 +148,14 @@
 (use-package! eglot-booster
   :after eglot
   :config (eglot-booster-mode))
+(use-package! elsqlite
+  :commands (elsqlite elsqlite-browser)
+  :config
+  ;; Optional: Auto-open .db files in ELSQLite
+  (elsqlite-enable-auto-open)
+  ;; Optional: Evil mode keybindings
+  (elsqlite-evil-setup)
+  )
 (setq message-send-mail-function 'smtpmail-send-it)
 (setq user-mail-address "ourgal@qq.com")
 (setq user-full-name "ourgal")
