@@ -5385,7 +5385,7 @@
     "zxc.20260329193635.1": "\"brix.local,192.168.123.206 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJADK7A2hbOUUfvCxe2xNhkVpEHIy3CKK0+bkTE5Uqur\",\n",
     "zxc.20260329194446.1": "\"[192.168.1.103]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n\"[192.168.123.191]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n",
     "zxc.20260329193440.1": "\"[ssh.github.com]:443 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl\",\n\"[ssh.github.com]:443 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=\",\n\"[ssh.github.com]:443 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=\"\n",
-    "zxc.20260321000242.1": "[my.modules]\nmpd = false\nnavidrome = true\n\nmcfly = true\natuin = false\n\nnavi = true\n\nstarship = false\noh_my_posh = true\n\nzoxide = true\n\nwt = false\nwezterm = true\n\nglazewm = true",
+    "zxc.20260321000242.1": "[my.modules]\nmpd = false\nnavidrome = true\n\nmcfly = true\natuin = false\n\nnavi = true\n\nstarship = false\noh_my_posh = true\n\nzoxide = true\n\nwt = false\nwezterm = true\n\nglazewm = true\n\naltrun = false",
     "zxc.20260330234020.1": "[my.modules.keybindings]\npowertoys = true\nautohotkey = false",
     "zxc.20260125162740.1": "<< unix >>\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125162834.1": "[global]\nindex-url = {{ .my.pip.mirror }}\n[install]\ntrusted-host = {{ get (urlParse .my.pip.mirror) \"host\" }}",
@@ -5488,7 +5488,7 @@
     "zxc.20260323180658.1": "{{ if lookPath \"autohotkey\" -}}\nRun({{ joinPath .chezmoi.homeDir \"Documents\" \"autohotkey\" \"hide_cursor.ahk\" | quote }}, , \"Hide\")\n{{ end -}}",
     "zxc.20260317104807.1": "{{ if lookPath \"dufs\" -}}\nRun(\"dufs --allow-upload --allow-search --allow-symlink --allow-archive -p 6500\", {{ joinPath .chezmoi.homeDir \"Documents\" \"share\" | quote }}, \"Hide\")\n{{ end -}}",
     "zxc.20260318093951.1": "{{ if lookPath \"copyparty\" -}}\nRun(\"copyparty --no-del -p 6080,6443\", {{ joinPath .chezmoi.homeDir \"Documents\" \"share\" | quote }}, \"Hide\")\n{{ end -}}",
-    "zxc.20260319002537.1": "{{ if lookPath \"altrun\" -}}\nRun(\"altrun -StartMenu\", , \"Hide\")\n{{ end -}}",
+    "zxc.20260319002537.1": "{{ if and (lookPath \"altrun\") .my.modules.altrun -}}\nRun(\"altrun -StartMenu\", , \"Hide\")\n{{ end -}}",
     "zxc.20260320230804.1": "{{ if and ( lookPath \"navidrome\" ) .my.modules.navidrome -}}\nRun({{ print \"navidrome --datafolder \" (joinPath (env \"LOCALAPPDATA\") \"navidrome\") | quote }}, {{ joinPath .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
     "zxc.20260326000727.1": "{{ if lookPath \"syncthing\" -}}\nRun(\"syncthing serve --no-console --no-browser\", , \"Hide\")\n{{ end -}}",
     "zxc.20260329185904.1": "{{ if and (stat (joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"jellyfin-mpv-shim\")) (eq .chezmoi.hostname \"bed\") -}}\nRun({{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"jellyfin-mpv-shim\" \"current\" \"run.exe\" | quote }}, , \"Hide\")\n{{ end -}}",
@@ -5991,7 +5991,7 @@
       "_mod_time": 1775288352.329
     },
     "User.20260226001402.1": {
-      "_mod_time": 1775780877.926
+      "_mod_time": 1775908174.149
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1773571522.654681
@@ -6246,7 +6246,7 @@
       "_mod_time": 1774175138.483
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1775735755.666
+      "_mod_time": 1775908208.18
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1774175138.483
