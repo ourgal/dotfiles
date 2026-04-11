@@ -101,7 +101,7 @@ name = "python"
 language-servers = [{{- $lsp | quoteList | join ", " -}}]
 
 {{ if lookPath "ruff" -}}
-formatter = { command = "sh", args = ["-c", "ruff check --fix - | ruff format -"] }
+formatter = { command = "sh", args = ["-c", "ruff check --fix --select I - | ruff format -"] }
 {{ end -}}
 {{ $lsp := list -}}
 {{ if lookPath "simple-completion-language-server" -}}
