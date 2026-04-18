@@ -51,10 +51,10 @@ Run("brave", , "Max")
 {{ end -}}
 {{ $vscode := joinPath .chezmoi.homeDir "scoop" "apps" "vscode" "current" "Code.exe" -}}
 {{ $vscodium := joinPath .chezmoi.homeDir "scoop" "apps" "vscodium" "current" "VSCodium.exe" -}}
-{{ if stat $vscodium -}}
+{{ if and (stat $vscodium) .my.modules.vscodium -}}
 Run({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
 WinWait("ahk_exe VSCodium.exe")
-{{ else if stat $vscode -}}
+{{ else if and (stat $vscode) .my.modules.vscode -}}
 Run({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
 {{ end -}}
 {{ if lookPath "everything" -}}
