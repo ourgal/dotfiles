@@ -755,6 +755,10 @@
                                 {
                                   "gnx": "User.20260220153119.1",
                                   "vh": "file manager"
+                                },
+                                {
+                                  "gnx": "zxc.20260418190413.1",
+                                  "vh": "playwright"
                                 }
                               ]
                             },
@@ -5363,6 +5367,7 @@
     "User.20260220153055.1": "@others",
     "User.20260220154010.1": "\"ms-vscode-remote.remote-wsl\"",
     "User.20260220153119.1": "\"danprince.vsnetrw\"",
+    "zxc.20260418190413.1": "\"ms-playwright.playwright\"",
     "zxc.20260202215023.1": "<< dos >>\n{{ if lookPath \"7z\" -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202215044.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"7zip\" \"current\" \"install-context.reg\" | quote }}",
     "zxc.20260202215408.1": "<< dos >>\n{{ if lookPath \"git\" -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}",
@@ -5422,7 +5427,7 @@
     "zxc.20260329193635.1": "\"brix.local,192.168.123.206 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJADK7A2hbOUUfvCxe2xNhkVpEHIy3CKK0+bkTE5Uqur\",\n",
     "zxc.20260329194446.1": "\"[192.168.1.103]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n\"[192.168.123.191]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n",
     "zxc.20260329193440.1": "\"[ssh.github.com]:443 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl\",\n\"[ssh.github.com]:443 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=\",\n\"[ssh.github.com]:443 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=\"\n",
-    "zxc.20260321000242.1": "[my.modules]\nmpd = false\nnavidrome = true\n\nmcfly = true\natuin = false\n\nnavi = true\n\nstarship = false\noh_my_posh = true\n\nzoxide = true\n\nwt = false\nwezterm = true\n\nglazewm = true\n\naltrun = false",
+    "zxc.20260321000242.1": "[my.modules]\nmpd = false\nnavidrome = true\n\nmcfly = true\natuin = false\n\nnavi = true\n\nstarship = false\noh_my_posh = true\n\nzoxide = true\n\nwt = false\nwezterm = true\n\nglazewm = true\n\naltrun = false\n\nvscode = true\nvscodium = false",
     "zxc.20260330234020.1": "[my.modules.keybindings]\npowertoys = true\nautohotkey = false",
     "zxc.20260125162740.1": "<< unix >>\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125162834.1": "[global]\nindex-url = {{ .my.pip.mirror }}\n[install]\ntrusted-host = {{ get (urlParse .my.pip.mirror) \"host\" }}",
@@ -5518,7 +5523,7 @@
     "User.20260302135935.1": "{{ if and (lookPath \"wt\") (lookPath \"pwsh\") .my.modules.wt -}}\nRunScoop(\"Windows Terminal\")\nWinWait(\"ahk_exe WindowsTerminal.exe\")\n{{ end -}}\n",
     "zxc.20260408010815.1": "{{ if and (lookPath \"wezterm\") .my.modules.wezterm -}}\nRun \"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"wezterm\" \"current\" \"wezterm-gui.exe\" }}\"\nWinWait(\"ahk_exe wezterm-gui.exe\")\n{{ end -}}\n",
     "User.20260302135941.1": "{{ if lookPath \"firefox\" -}}\nRun(\"firefox\", , \"Max\")\nWinWait(\"ahk_exe firefox.exe\")\n{{ else if lookPath \"brave\" -}}\nRun(\"brave\", , \"Max\")\n{{ end -}}\n",
-    "User.20260302135946.1": "{{ $vscode := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscode\" \"current\" \"Code.exe\" -}}\n{{ $vscodium := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscodium\" \"current\" \"VSCodium.exe\" -}}\n{{ if stat $vscodium -}}\nRun({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait(\"ahk_exe VSCodium.exe\")\n{{ else if stat $vscode -}}\nRun({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\n{{ end -}}",
+    "User.20260302135946.1": "{{ $vscode := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscode\" \"current\" \"Code.exe\" -}}\n{{ $vscodium := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscodium\" \"current\" \"VSCodium.exe\" -}}\n{{ if and (stat $vscodium) .my.modules.vscodium -}}\nRun({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait(\"ahk_exe VSCodium.exe\")\n{{ else if and (stat $vscode) .my.modules.vscode -}}\nRun({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\n{{ end -}}",
     "zxc.20260315173154.1": "{{ if lookPath \"everything\" -}}\nRun(\"everything\", , \"Hide\")\n{{ end -}}",
     "zxc.20260316162805.1": "{{ if and ( lookPath \"autohotkey\" ) .my.modules.keybindings.autohotkey .my.modules.glazewm -}}\nRun({{ joinPath .chezmoi.homeDir \"Documents\" \"autohotkey\" \"keybindings.ahk\" | quote }}, , \"Hide\")\n{{ end -}}",
     "zxc.20260316162735.1": "{{ $powertoys := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"powertoys\" \"current\" \"powertoys.exe\" -}}\n{{ if and ( stat $powertoys ) .my.modules.keybindings.powertoys .my.modules.glazewm -}}\nRun({{ $powertoys | quote }}, {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
@@ -5971,7 +5976,7 @@
       "_mod_time": 1776434513.084
     },
     "User.20260220151435.2": {
-      "_mod_time": 1776434513.084
+      "_mod_time": 1776510272.603
     },
     "zxc.20260202215023.1": {
       "_mod_time": 1776434513.068
@@ -6034,7 +6039,7 @@
       "_mod_time": 1776434513.068
     },
     "User.20260226001402.1": {
-      "_mod_time": 1776434729.36
+      "_mod_time": 1776503122.382
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1773571522.654681
@@ -6289,7 +6294,7 @@
       "_mod_time": 1776434513.09
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1776434513.09
+      "_mod_time": 1776503241.768
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1776434513.09
