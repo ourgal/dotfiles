@@ -80,8 +80,11 @@ source-file 'C:\Users\User\.psmux\plugins\psmux-sensible\plugin.conf'
 set -g @plugin 'psmux-plugins/psmux-prefix-highlight'
 source-file 'C:\Users\User\.psmux\plugins\psmux-prefix-highlight\plugin.conf'
 # ── End plugins ──────────────────────────────────────
-set -g allow-predictions on
-set -g prediction-dimming on
 set -g default-shell cmd
+bind -n M-j select-pane -D
+bind -n M-k select-pane -U
+
+bind -n M-l if -F "#{pane_at_right}" "next-window" "select-pane -R"
+bind -n M-h if -F "#{pane_at_left}" "previous-window" "select-pane -L"
 {{ end -}}
 {{ end -}}
