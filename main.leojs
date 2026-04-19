@@ -5783,7 +5783,7 @@
     "zxc.20260409142718.1": "config.default_prog = { '{{ .my.shell.windows }}' }",
     "zxc.20260408102617.1": "return config",
     "zxc.20260329012020.1": "{{- /* chezmoi:modify-template */ -}}\n{{ $origin := fromIni .chezmoi.stdin -}}\n{{ $origin = $origin | setValueAtPath \"GUI.CheckForUpdates\" false -}}\n{{ $origin = $origin | setValueAtPath \"GUI.MinimizeOnStartup\" false -}}\n{{ $origin = $origin | setValueAtPath \"GUI.ShowTrayIcon\" false -}}\n{{ $origin = $origin | setValueAtPath \"GUI.MinimizeToTray\" false -}}\n{{ $origin = $origin | setValueAtPath \"GUI.MinimizeOnClose\" false -}}\n{{ $origin = $origin | setValueAtPath \"GUI.TrayIconAppearance\" \"monochrome\" -}}\n{{ $origin = $origin | setValueAtPath \"Browser.Enabled\" true -}}\n{{ $origin = $origin | setValueAtPath \"General.MinimizeAfterUnlock\" false -}}\n{{ $origin = $origin | setValueAtPath \"General.AutoGeneratePasswordForNewEntries\" true -}}\n{{ $origin = $origin | setValueAtPath \"General.GlobalAutoTypeKey\" \"65\" -}}\n{{ $origin = $origin | setValueAtPath \"General.GlobalAutoTypeModifiers\" \"234881024\" -}}\n{{ $origin = $origin | setValueAtPath \"SSHAgent.Enabled\" false -}}\n{{ $origin = $origin | setValueAtPath \"SSHAgent.UseOpenSSH\" true -}}\n{{ $origin = $origin | setValueAtPath \"SSHAgent.UsePageant\" false -}}\n{{ $origin = $origin | setValueAtPath \"Security.AutotypeAsk\" false -}}\n{{ $origin | toIni -}}",
-    "zxc.20260411192514.3": "{{- /* chezmoi:modify-template */ -}}\n{{ $origin := fromIni .chezmoi.stdin -}}\n{{ $origin = $origin | setValueAtPath \"Security.QuickUnlock\" true -}}\n{{ $origin = $origin | setValueAtPath \"General.LastActiveDatabase\" (joinPath .chezmoi.homeDir \"syncthing\" \"keepassxc\" \"main.kdbx\") -}}\n{{ $origin = $origin | setValueAtPath \"General.LastDatabases\" (joinPath .chezmoi.homeDir \"syncthing\" \"keepassxc\" \"main.kdbx\") -}}\n{{ $origin = $origin | setValueAtPath \"General.LastOpenedDatabases\" (joinPath .chezmoi.homeDir \"syncthing\" \"keepassxc\" \"main.kdbx\") -}}\n{{ $origin | toIni -}}",
+    "zxc.20260411192514.3": "{{- /* chezmoi:modify-template */ -}}\n{{ $origin := fromIni .chezmoi.stdin -}}\n{{ $origin = $origin | setValueAtPath \"Security.QuickUnlock\" true -}}\n{{ $origin = $origin | setValueAtPath \"General.LastActiveDatabase\" (joinPath .chezmoi.homeDir \"syncthing\" \"keepassxc\" \"main.kdbx\") -}}\n{{ $origin = $origin | setValueAtPath \"General.LastDatabases\" (joinPath .chezmoi.homeDir \"syncthing\" \"keepassxc\" \"main.kdbx\") -}}\n{{ $origin = $origin | setValueAtPath \"General.LastOpenedDatabases\" (joinPath .chezmoi.homeDir \"syncthing\" \"keepassxc\" \"main.kdbx\") -}}\n{{ $origin = $origin | setValueAtPath \"GUI.ListViewState\" \"\" -}}\n{{ $origin = $origin | setValueAtPath \"GUI.MainWindowGeometry\" \"\" -}}\n{{ $origin = $origin | setValueAtPath \"GUI.MainWindowState\" \"\" -}}\n{{ $origin | toIni -}}",
     "zxc.20260126154354.1": "<< unix dos >>\n{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125145051.1": "<< unix dos >>\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125152704.1": "<< unix dos >>\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -6254,7 +6254,7 @@
       "_mod_time": 1776434513.121
     },
     "zxc.20260411192514.1": {
-      "_mod_time": 1776434513.121
+      "_mod_time": 1776597625.523
     },
     "zxc.20260330235722.1": {
       "_mod_time": 1776434513.121
