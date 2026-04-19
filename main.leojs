@@ -1929,10 +1929,6 @@
               "vh": "kde connect"
             },
             {
-              "gnx": "User.20260302135935.1",
-              "vh": "windows terminal"
-            },
-            {
               "gnx": "zxc.20260408010815.1",
               "vh": "wezterm"
             },
@@ -1947,6 +1943,10 @@
             {
               "gnx": "zxc.20260315173154.1",
               "vh": "everything"
+            },
+            {
+              "gnx": "User.20260302135935.1",
+              "vh": "windows terminal"
             },
             {
               "gnx": "zxc.20260316162805.1",
@@ -5463,7 +5463,7 @@
     "User.20260228222116.1": "{{ if and ( lookPath \"mcfly\" ) ( .my.modules.mcfly ) -}}\nInvoke-Expression -Command $(mcfly init powershell | out-string)\n{{ end -}}\n",
     "User.20260226225250.1": "{{ if and ( lookPath \"navi\" ) ( .my.modules.navi ) -}}\nfunction Invoke-Navi {\n    $startArgs = @{\n        FileName = \"navi\";\n        Arguments = $args;\n        RedirectStandardOutput = $true;\n        WorkingDirectory = $PWD;\n        UseShellExecute = $false;\n    }\n    $p = [System.Diagnostics.Process]@{StartInfo = $startArgs}\n\n    [void]$p.Start()\n    $result = $p.StandardOutput.ReadToEnd()\n    $p.WaitForExit()\n\n    $result\n}\n\n\n### Initial code from @lurebat (https://github.com/lurebat/)\n### See #570 (https://github.com/denisidoro/navi/issues/570) for its original contribution\nfunction Invoke-NaviWidget {\n    $ast = $tokens = $errors = $cursor = $null\n    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref] $ast, [ref] $tokens, [ref] $errors, [ref] $cursor)\n\n    $line = $ast.ToString().Trim()\n    $output = $null\n\n    if ([String]::IsNullOrEmpty($line)) {\n        $output = (Invoke-Navi \"--print\" | Out-String).Trim()\n    }\n    else {\n        $best_match = (Invoke-Navi \"--print --best-match --query `\"$line`\"\" | Out-String).Trim()\n        if ([String]::IsNullOrEmpty($best_match)) {\n            $output = (Invoke-Navi \"--print --query `\"$line`\"\" | Out-String).Trim()\n        }\n        else {\n            $output = $best_match\n        }\n    }\n\n    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()\n    [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt()\n\n    ### Handling the case when the user escapes without selecting any entry\n    if (-Not([String]::IsNullOrEmpty($output))) {\n        [Microsoft.PowerShell.PSConsoleReadLine]::Insert([String]$output)\n    }\n}\n\nSet-PSReadlineKeyHandler -BriefDescription \"A keybinding to open Navi Widget\" -Chord Ctrl+g -ScriptBlock { Invoke-NaviWidget }\n{{ end -}}\n",
     "zxc.20260128200402.1": "RunScoop(app)\n{\n    appdata_dir := EnvGet(\"AppData\")\n    user_dir := EnvGet(\"userprofile\")\n    scoop_apps_dir := appdata_dir . \"/Microsoft/Windows/Start Menu/Programs/Scoop Apps\"\n    Run(scoop_apps_dir . \"/\" . app . \".lnk\", user_dir, \"Max\")\n}\n\nSetTitleMatchMode(2)",
-    "User.20260302135922.1": "{{ if and (lookPath \"glazewm\") .my.modules.glazewm -}}\nRun(\"glazewm\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
+    "User.20260302135922.1": "{{ if and (lookPath \"glazewm\") .my.modules.glazewm -}}\nRun(\"glazewm\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\nSleep 5000\n{{ end -}}",
     "zxc.20260128010842.1": "{{ if and (eq .chezmoi.hostname \"nuc\") (lookPath \"deskflow-core\") -}}\nRun(\"deskflow-core client\", , \"Hide\")\n{{ end -}}\n",
     "zxc.20260317082237.1": "{{ if and (eq .chezmoi.hostname \"work\") (lookPath \"deskflow-core\") -}}\nRun(\"deskflow-core server\", , \"Hide\")\n{{ end -}}\n",
     "User.20260221160445.1": "{{ if lookPath \"aria2c\" -}}\nRun(\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"aria2\" \"current\" \"aria2c.exe\" }} --enable-rpc\", {{ joinPath .chezmoi.homeDir \"Downloads\" | quote }}, \"Hide\")\n{{ end -}}",
@@ -5472,11 +5472,11 @@
     "User.20260301000205.1": "{{ if and ( lookPath \"mpd\" ) .my.modules.mpd -}}\nRun(\"mpd {{ joinPath (env \"appdata\") \"mpd\" \"mpd.conf\"}}\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}\n",
     "zxc.20260329023750.1": "{{ if lookPath \"gpg-connect-agent\" -}}\nRun(\"gpg-connect-agent /bye\", , \"Hide\")\n{{ end -}}\n",
     "User.20260301185900.1": "{{ if lookPath \"kdeconnect-cli\" -}}\nRun(\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"kdeconnect\" \"current\" \"bin\" \"kdeconnectd.exe\" }}\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
-    "User.20260302135935.1": "{{ if and (lookPath \"wt\") (lookPath \"pwsh\") (eq .my.terminal.windows \"wt\") -}}\nRun {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"windows-terminal\" \"current\" \"wt.exe\" | quote }}\nWinWait(\"ahk_exe WindowsTerminal.exe\")\n{{ end -}}\n",
     "zxc.20260408010815.1": "{{ if and (lookPath \"wezterm\") (eq .my.terminal.windows \"wezterm\") -}}\nRun \"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"wezterm\" \"current\" \"wezterm-gui.exe\" }}\"\nWinWait(\"ahk_exe wezterm-gui.exe\")\n{{ end -}}\n",
     "User.20260302135941.1": "{{ if lookPath \"firefox\" -}}\nRun(\"firefox\", , \"Max\")\nWinWait(\"ahk_exe firefox.exe\")\n{{ else if lookPath \"brave\" -}}\nRun(\"brave\", , \"Max\")\n{{ end -}}\n",
     "User.20260302135946.1": "{{ $vscode := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscode\" \"current\" \"Code.exe\" -}}\n{{ $vscodium := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscodium\" \"current\" \"VSCodium.exe\" -}}\n{{ if and (stat $vscodium) .my.modules.vscodium -}}\nRun({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait(\"ahk_exe VSCodium.exe\")\n{{ else if and (stat $vscode) .my.modules.vscode -}}\nRun({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\n{{ end -}}",
     "zxc.20260315173154.1": "{{ if lookPath \"everything\" -}}\nRun(\"everything\", , \"Hide\")\n{{ end -}}",
+    "User.20260302135935.1": "{{ if and (lookPath \"wt\") (lookPath \"pwsh\") (eq .my.terminal.windows \"wt\") -}}\nRun {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"windows-terminal\" \"current\" \"wt.exe\" | quote }}\nWinWait(\"ahk_exe WindowsTerminal.exe\")\n{{ end -}}\n",
     "zxc.20260316162805.1": "{{ if and ( lookPath \"autohotkey\" ) .my.modules.keybindings.autohotkey .my.modules.glazewm -}}\nRun({{ joinPath .chezmoi.homeDir \"Documents\" \"autohotkey\" \"keybindings.ahk\" | quote }}, , \"Hide\")\n{{ end -}}",
     "zxc.20260316162735.1": "{{ $powertoys := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"powertoys\" \"current\" \"powertoys.exe\" -}}\n{{ if and ( stat $powertoys ) .my.modules.keybindings.powertoys .my.modules.glazewm -}}\nRun({{ $powertoys | quote }}, {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
     "zxc.20260323180658.1": "{{ if lookPath \"autohotkey\" -}}\nRun({{ joinPath .chezmoi.homeDir \"Documents\" \"autohotkey\" \"hide_cursor.ahk\" | quote }}, , \"Hide\")\n{{ end -}}",
@@ -6215,7 +6215,7 @@
       "_mod_time": 1776434513.09
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1776609162.989
+      "_mod_time": 1776614687.565
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1776434513.09
