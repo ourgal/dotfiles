@@ -1,5 +1,5 @@
 {{ if eq .chezmoi.os "windows" -}}
-{{ if and (lookPath "wezterm") .my.modules.wezterm -}}
+{{ if lookPath "wezterm" -}}
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
 
