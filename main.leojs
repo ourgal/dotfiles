@@ -3467,7 +3467,19 @@
             },
             {
               "gnx": "zxc.20260317003033.1",
-              "vh": "content"
+              "vh": "content",
+              "children": [
+                {
+                  "gnx": "zxc.20260419161428.1",
+                  "vh": "autocompletion",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260419162202.1",
+                      "vh": "default shell"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -5432,7 +5444,7 @@
     "zxc.20260329193635.1": "\"brix.local,192.168.123.206 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJADK7A2hbOUUfvCxe2xNhkVpEHIy3CKK0+bkTE5Uqur\",\n",
     "zxc.20260329194446.1": "\"[192.168.1.103]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n\"[192.168.123.191]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n",
     "zxc.20260329193440.1": "\"[ssh.github.com]:443 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl\",\n\"[ssh.github.com]:443 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=\",\n\"[ssh.github.com]:443 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=\"\n",
-    "zxc.20260321000242.1": "[my.modules]\nmpd = false\nnavidrome = true\n\nmcfly = true\natuin = false\n\nnavi = true\n\nstarship = false\noh_my_posh = true\n\nzoxide = true\n\nwt = false\nwezterm = true\n\nglazewm = true\n\naltrun = false\n\nvscode = true\nvscodium = false",
+    "zxc.20260321000242.1": "[my.modules]\nmpd = false\nnavidrome = true\n\nmcfly = true\natuin = false\n\nnavi = true\n\nstarship = false\noh_my_posh = true\n\nzoxide = true\n\nwt = true\nwezterm = false\n\nglazewm = true\n\naltrun = false\n\nvscode = true\nvscodium = false",
     "zxc.20260330234020.1": "[my.modules.keybindings]\npowertoys = true\nautohotkey = false",
     "zxc.20260125162740.1": "<< unix >>\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125162834.1": "[global]\nindex-url = {{ .my.pip.mirror }}\n[install]\ntrusted-host = {{ get (urlParse .my.pip.mirror) \"host\" }}",
@@ -5755,6 +5767,8 @@
     "zxc.20260315140919.1": "{{ .my.name }}",
     "zxc.20260317002829.1": "<< dos >>\n{{ if lookPath \"psmux\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260317003033.1": "# ─────────────────────────────────────────────────────────────\n# PSMux Configuration — Factory Defaults\n# ─────────────────────────────────────────────────────────────\n# Reset to defaults by tmuxpanel — Tmux Plugin Panel\n# For more info: https://github.com/marlocarlo/psmux\n#\n# PSMux built-in defaults are applied automatically.\n# Uncomment and change any line below to override a default.\n# To restore a setting to default, comment it out or delete it.\n# ─────────────────────────────────────────────────────────────\n\n# ── General ──────────────────────────────────────────────────\n# Prefix key (PSMux default: C-b)\n# set -g prefix C-b\n\n# Escape key delay in milliseconds (PSMux default: 500)\n# set -g escape-time 500\n\n# Repeat time for prefix keys in ms (PSMux default: 500)\n# set -g repeat-time 500\n\n# Scrollback history limit (PSMux default: 2000)\n# set -g history-limit 2000\n\n# Window/pane base index (PSMux default: 0)\n# set -g base-index 0\n# setw -g pane-base-index 0\n\n# ── Mouse ────────────────────────────────────────────────────\n# Mouse support (PSMux default: on — PSMux enables mouse by default)\n# set -g mouse on\n\n# ── Display ──────────────────────────────────────────────────\n# Allow window auto-rename (PSMux default: on)\n# setw -g automatic-rename on\n\n# Renumber windows when one is closed (PSMux default: off)\n# set -g renumber-windows off\n\n# Message display time in ms (PSMux default: 750)\n# set -g display-time 750\n\n# Pane number display time in ms (PSMux default: 1000)\n# set -g display-panes-time 1000\n\n# ── Status Bar ───────────────────────────────────────────────\n# Show status bar (PSMux default: on)\n# set -g status on\n\n# Status bar position (PSMux default: bottom)\n# set -g status-position bottom\n\n# Status refresh interval in seconds (PSMux default: 15)\n# set -g status-interval 15\n\n# Status bar style (PSMux default: bg=green,fg=black)\n# set -g status-style 'bg=green,fg=black'\n\n# Status bar justify (PSMux default: left)\n# set -g status-justify left\n\n# ── Key Bindings ─────────────────────────────────────────────\n# Copy mode keys (PSMux default: emacs)\n# setw -g mode-keys emacs\n\n# Focus events (PSMux default: off)\n# set -g focus-events off\n\n# Clipboard integration (PSMux default: on)\n# set -g set-clipboard on\n\n\n# ── Plugins (managed by tmuxpanel) ──────────────────────\nset -g @plugin 'psmux-plugins/psmux-theme-tokyonight'\nsource-file 'C:\\Users\\User\\.psmux\\plugins\\psmux-theme-tokyonight\\plugin.conf'\nset -g @plugin 'psmux-plugins/psmux-sensible'\nsource-file 'C:\\Users\\User\\.psmux\\plugins\\psmux-sensible\\plugin.conf'\nset -g @plugin 'psmux-plugins/psmux-prefix-highlight'\nsource-file 'C:\\Users\\User\\.psmux\\plugins\\psmux-prefix-highlight\\plugin.conf'\n# ── End plugins ──────────────────────────────────────",
+    "zxc.20260419161428.1": "set -g allow-predictions on\nset -g prediction-dimming on",
+    "zxc.20260419162202.1": "set -g default-shell cmd",
     "zxc.20260327184129.1": "<< dos >>\n{{ if lookPath \"mani\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260327184144.1": "projects:\n  @others",
     "zxc.20260327184509.1": "playbooks:\n  path: Documents/my_repos/playbooks\n  url: soft:playbooks\n  desc: Ansible playbooks",
@@ -6044,7 +6058,7 @@
       "_mod_time": 1776434513.068
     },
     "User.20260226001402.1": {
-      "_mod_time": 1776503122.382
+      "_mod_time": 1776585280.37
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1773571522.654681
@@ -6122,7 +6136,7 @@
       "_mod_time": 1774833042.6536043
     },
     "zxc.20260317002829.1": {
-      "_mod_time": 1776434513.106
+      "_mod_time": 1776586930.795
     },
     "zxc.20260327184129.1": {
       "_mod_time": 1776434513.106
