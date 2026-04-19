@@ -30,5 +30,9 @@ try {
 
 # 您也可以选择性地显示当前设置的值来验证
 # Get-ItemProperty -Path $RegistryPath -Name $RegistryValueName
+
+{{ if stat (joinPath (env "appdata") "clink" "clink-gizmos") -}}
+clink installscripts {{ joinPath (env "appdata") "clink" "clink-gizmos" | quote }}
+{{ end -}}
 {{ end -}}
 {{ end -}}
