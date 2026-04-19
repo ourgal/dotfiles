@@ -10,6 +10,7 @@ RunScoop(app)
 SetTitleMatchMode(2)
 {{ if and (lookPath "glazewm") .my.modules.glazewm -}}
 Run("glazewm", {{ .chezmoi.homeDir | quote }}, "Hide")
+Sleep 5000
 {{ end -}}
 {{ if and (eq .chezmoi.hostname "nuc") (lookPath "deskflow-core") -}}
 Run("deskflow-core client", , "Hide")
@@ -35,10 +36,6 @@ Run("gpg-connect-agent /bye", , "Hide")
 {{ if lookPath "kdeconnect-cli" -}}
 Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "kdeconnect" "current" "bin" "kdeconnectd.exe" }}", {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
-{{ if and (lookPath "wt") (lookPath "pwsh") (eq .my.terminal.windows "wt") -}}
-Run {{ joinPath .chezmoi.homeDir "scoop" "apps" "windows-terminal" "current" "wt.exe" | quote }}
-WinWait("ahk_exe WindowsTerminal.exe")
-{{ end -}}
 {{ if and (lookPath "wezterm") (eq .my.terminal.windows "wezterm") -}}
 Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "wezterm" "current" "wezterm-gui.exe" }}"
 WinWait("ahk_exe wezterm-gui.exe")
@@ -59,6 +56,10 @@ Run({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
 {{ end -}}
 {{ if lookPath "everything" -}}
 Run("everything", , "Hide")
+{{ end -}}
+{{ if and (lookPath "wt") (lookPath "pwsh") (eq .my.terminal.windows "wt") -}}
+Run {{ joinPath .chezmoi.homeDir "scoop" "apps" "windows-terminal" "current" "wt.exe" | quote }}
+WinWait("ahk_exe WindowsTerminal.exe")
 {{ end -}}
 {{ if and ( lookPath "autohotkey" ) .my.modules.keybindings.autohotkey .my.modules.glazewm -}}
 Run({{ joinPath .chezmoi.homeDir "Documents" "autohotkey" "keybindings.ahk" | quote }}, , "Hide")
