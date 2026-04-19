@@ -79,6 +79,10 @@ set -g @plugin 'psmux-plugins/psmux-sensible'
 source-file 'C:\Users\User\.psmux\plugins\psmux-sensible\plugin.conf'
 set -g @plugin 'psmux-plugins/psmux-prefix-highlight'
 source-file 'C:\Users\User\.psmux\plugins\psmux-prefix-highlight\plugin.conf'
+set -g @plugin 'psmux-plugins/psmux-resurrect'
+source-file 'C:\Users\User\.psmux\plugins\psmux-resurrect\plugin.conf'
+set -g @plugin 'psmux-plugins/psmux-continuum'
+source-file 'C:\Users\User\.psmux\plugins\psmux-continuum\plugin.conf'
 # ── End plugins ──────────────────────────────────────
 set -g default-shell cmd
 bind -n M-j if -F "#{pane_at_bottom}" "switch-client -n" "select-pane -D"
