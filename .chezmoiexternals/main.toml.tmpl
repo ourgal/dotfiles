@@ -40,7 +40,16 @@
     url = "https://github.com/psmux/psmux-plugins"
 {{ end -}}
 {{ end -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "clink" -}}
 ["AppData/Local/clink/clink-gizmos"]
     type = "git-repo"
     url = "https://github.com/chrisant996/clink-gizmos"
     refreshPeriod = "168h"
+
+["AppData/Local/clink/clink-completions"]
+    type = "git-repo"
+    url = "https://github.com/vladimir-kotikov/clink-completions"
+    refreshPeriod = "168h"
+{{ end -}}
+{{ end -}}

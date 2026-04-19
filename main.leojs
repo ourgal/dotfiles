@@ -482,11 +482,14 @@
                     },
                     {
                       "gnx": "zxc.20260419193731.1",
-                      "vh": "clink gizmos",
+                      "vh": "clink",
                       "children": [
                         {
                           "gnx": "zxc.20260419193742.1",
                           "vh": "content"
+                        },
+                        {
+                          "gnx": "User.20260225204326.1"
                         }
                       ]
                     }
@@ -5279,7 +5282,8 @@
     "User.20260220235538.1": "[\".local/share/fonts/nerdsymbols\"]\n    type = \"archive\"\n    url = \"https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdFontsSymbolsOnly.tar.xz\"\n    exact = true\n    include = [ \"*.ttf\" ]\n",
     "zxc.20260317000523.1": "<< dos >>\n{{ if lookPath \"psmux\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260317000523.3": "[\".psmux/plugins\"]\n    type = \"git-repo\"\n    url = \"https://github.com/psmux/psmux-plugins\"",
-    "zxc.20260419193742.1": "[\"AppData/Local/clink/clink-gizmos\"]\n    type = \"git-repo\"\n    url = \"https://github.com/chrisant996/clink-gizmos\"\n    refreshPeriod = \"168h\"",
+    "zxc.20260419193731.1": "<< dos >>\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260419193742.1": "[\"AppData/Local/clink/clink-gizmos\"]\n    type = \"git-repo\"\n    url = \"https://github.com/chrisant996/clink-gizmos\"\n    refreshPeriod = \"168h\"\n\n[\"AppData/Local/clink/clink-completions\"]\n    type = \"git-repo\"\n    url = \"https://github.com/vladimir-kotikov/clink-completions\"\n    refreshPeriod = \"168h\"",
     "zxc.20260202203521.17": "<< dos >>\n{{ if lookPath \"mpv\" -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260323201237.1": "Set-StrictMode -Version Latest\n$ErrorActionPreference = \"Stop\"\n$PSNativeCommandUseErrorActionPreference = $true",
     "zxc.20260202203521.18": "# 5.12.0\ncd {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"mpv\" \"current\" | quote }}\nirm https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/windows.ps1 | iex",
@@ -5292,7 +5296,7 @@
     "User.20260216114746.1": "<< dos >>\n{{ if stat \"C:/Program Files/Rime\" -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260216114815.1": "# --- Configuration ---\n\n# 1. Define the source URL\n$DownloadUrl = \"https://github.com/sbsrf/home/releases/download/20260101/sbsrf.zip\"\n\n# 2. Define the target directory using the built-in environment variable $env:APPDATA\n# Note: $env:APPDATA resolves to C:\\Users\\<Username>\\AppData\\Roaming\n$TargetFolder = Join-Path -Path $env:APPDATA -ChildPath \"rime\"\n\n# 3. Define a temporary path for the downloaded file\n$TempZipPath = Join-Path -Path $env:TEMP -ChildPath \"sbsrf_download.zip\"\n\n# --- Execution ---\n\nWrite-Host \"Starting download and extraction process...\"\n\n# 1. Ensure the target directory exists\nif (-not (Test-Path -Path $TargetFolder)) {\n    Write-Host \"Creating target directory: $TargetFolder\"\n    New-Item -Path $TargetFolder -ItemType Directory | Out-Null\n} else {\n    Write-Host \"Target directory already exists: $TargetFolder\"\n}\n\n# 2. Download the file\nWrite-Host \"Downloading file from $DownloadUrl to $TempZipPath...\"\ntry {\n    # Use Invoke-WebRequest (iwr) for downloading files\n    Invoke-WebRequest -Uri $DownloadUrl -OutFile $TempZipPath -UseBasicParsing\n    Write-Host \"Download complete.\"\n}\ncatch {\n    Write-Error \"Failed to download the file. Error: $($_.Exception.Message)\"\n    exit 1\n}\n\n# 3. Extract the contents of the ZIP file\nWrite-Host \"Extracting contents to $TargetFolder...\"\ntry {\n    # Load the necessary .NET assembly for ZIP operations (often loaded automatically, but good practice to ensure)\n    Add-Type -AssemblyName System.IO.Compression.FileSystem\n\n    # Use Expand-Archive (available in PS 5.0+)\n    # -Force overwrites existing files in the destination folder without prompting\n    Expand-Archive -Path $TempZipPath -DestinationPath $TargetFolder -Force\n    \n    Write-Host \"Extraction complete. Files are now in: $TargetFolder\"\n}\ncatch {\n    Write-Error \"Failed to extract the ZIP file. Error: $($_.Exception.Message)\"\n    exit 1\n}\nfinally {\n    # 4. Clean up the temporary ZIP file\n    if (Test-Path -Path $TempZipPath) {\n        Remove-Item -Path $TempZipPath -Force\n        Write-Host \"Cleaned up temporary file: $TempZipPath\"\n    }\n}",
     "zxc.20260202203521.14": "<< dos >>\n{{ if lookPath \"clink\" -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260202203521.15": "# 定义要设置的注册表路径和键名\n$RegistryPath = \"HKCU:\\Software\\Microsoft\\Command Processor\"\n$RegistryValueName = \"AutoRun\"\n\n# 定义您想要设置的命令字符串\n# 注意：这里使用了字符串拼接，以确保路径和命令的正确性。\n# 对于包含空格的路径，最好用引号括起来。\n# PowerShell 会自动处理 %LOCALAPPDATA% 等环境变量。\n$CommandToRun = \"`\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"clink\" \"current\" \"clink.bat\" }}`\" inject --autorun --profile `\"$env:LOCALAPPDATA\\clink`\" && doskey.exe /macrofile=`\"$env:LOCALAPPDATA\\clink\\aliases`\"\"\n\n# 检查注册表路径是否存在，如果不存在则创建\nif (-not (Test-Path $RegistryPath)) {\n    New-Item -Path $RegistryPath -Force | Out-Null\n    Write-Host \"已创建注册表路径: $RegistryPath\"\n}\n\n# 设置 AutoRun 注册表值\ntry {\n    Set-ItemProperty -Path $RegistryPath -Name $RegistryValueName -Value $CommandToRun -Force\n    Write-Host \"成功设置 '$RegistryValueName' 的值为: $CommandToRun\"\n    Write-Host \"下次启动命令提示符 (cmd.exe) 时，Clink 应该会自动加载。\"\n} catch {\n    Write-Error \"设置注册表值时发生错误: $($_.Exception.Message)\"\n}\n\n# 您也可以选择性地显示当前设置的值来验证\n# Get-ItemProperty -Path $RegistryPath -Name $RegistryValueName\n\n{{ if stat (joinPath (env \"appdata\") \"clink\" \"clink-gizmos\") -}}\nclink installscripts {{ joinPath (env \"appdata\") \"clink\" \"clink-gizmos\" | quote }}\n{{ end -}}",
+    "zxc.20260202203521.15": "# 定义要设置的注册表路径和键名\n$RegistryPath = \"HKCU:\\Software\\Microsoft\\Command Processor\"\n$RegistryValueName = \"AutoRun\"\n\n# 定义您想要设置的命令字符串\n# 注意：这里使用了字符串拼接，以确保路径和命令的正确性。\n# 对于包含空格的路径，最好用引号括起来。\n# PowerShell 会自动处理 %LOCALAPPDATA% 等环境变量。\n$CommandToRun = \"`\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"clink\" \"current\" \"clink.bat\" }}`\" inject --autorun --profile `\"$env:LOCALAPPDATA\\clink`\" && doskey.exe /macrofile=`\"$env:LOCALAPPDATA\\clink\\aliases`\"\"\n\n# 检查注册表路径是否存在，如果不存在则创建\nif (-not (Test-Path $RegistryPath)) {\n    New-Item -Path $RegistryPath -Force | Out-Null\n    Write-Host \"已创建注册表路径: $RegistryPath\"\n}\n\n# 设置 AutoRun 注册表值\ntry {\n    Set-ItemProperty -Path $RegistryPath -Name $RegistryValueName -Value $CommandToRun -Force\n    Write-Host \"成功设置 '$RegistryValueName' 的值为: $CommandToRun\"\n    Write-Host \"下次启动命令提示符 (cmd.exe) 时，Clink 应该会自动加载。\"\n} catch {\n    Write-Error \"设置注册表值时发生错误: $($_.Exception.Message)\"\n}\n\n# 您也可以选择性地显示当前设置的值来验证\n# Get-ItemProperty -Path $RegistryPath -Name $RegistryValueName\n\n{{ if stat (joinPath (env \"appdata\") \"clink\" \"clink-gizmos\") -}}\nclink installscripts {{ joinPath (env \"appdata\") \"clink\" \"clink-gizmos\" | quote }}\n{{ end -}}\n\n{{ if stat (joinPath (env \"appdata\") \"clink\" \"clink-completions\") -}}\nclink installscripts {{ joinPath (env \"appdata\") \"clink\" \"clink-completions\" | quote }}\n{{ end -}}",
     "zxc.20260202203521.3": "<< dos >>\n{{ if lookPath \"codium\" -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260202203521.4": "codium --update-extensions\n$extensions = @(\n    @others\n    << vscodium >>\n    )\nforeach ($e in $extensions) {\n    Write-Host \"Install vscodium extension $e\"\n    codium --install-extension $e\n}",
     "User.20260220152703.1": "@others",
@@ -5884,7 +5888,7 @@
       "_mod_time": 1775182193.7532992
     },
     "User.20260226000855.1": {
-      "_mod_time": 1776598797.193
+      "_mod_time": 1776614137.332
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1776434513.068
@@ -5899,7 +5903,7 @@
       "_mod_time": 1776434513.068
     },
     "zxc.20260202203521.14": {
-      "_mod_time": 1776599127.586
+      "_mod_time": 1776614192.458
     },
     "zxc.20260202203521.3": {
       "_mod_time": 1776540590.207
@@ -6046,7 +6050,7 @@
       "_mod_time": 1776613756.656
     },
     "User.20260302151118.1": {
-      "_mod_time": 1776434513.106
+      "_mod_time": 1776596138.241
     },
     "zxc.20260315140713.1": {
       "_mod_time": 1774833042.6536043
@@ -6199,7 +6203,7 @@
       "_mod_time": 1776599572.315
     },
     "zxc.20260407232538.1": {
-      "_mod_time": 1776434513.084
+      "_mod_time": 1776599262.95
     },
     "zxc.20260408005117.1": {
       "_mod_time": 1776434513.084
@@ -6259,7 +6263,7 @@
       "_mod_time": 1776434513.09
     },
     "zxc.20260417220340.1": {
-      "_mod_time": 1776434886.353
+      "_mod_time": 1776434996.083
     }
   }
 }
