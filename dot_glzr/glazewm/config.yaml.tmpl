@@ -115,6 +115,7 @@ window_rules:
   - commands: ["move --workspace 1"]
     match:
       - window_process: { regex: "WindowsTerminal" }
+      - window_process: { regex: "wt" }
       - window_process: { regex: "wezterm-gui" }
   - commands: ["move --workspace 2"]
     match:
