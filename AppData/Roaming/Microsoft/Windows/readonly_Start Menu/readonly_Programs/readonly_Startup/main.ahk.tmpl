@@ -36,7 +36,7 @@ Run("gpg-connect-agent /bye", , "Hide")
 Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "kdeconnect" "current" "bin" "kdeconnectd.exe" }}", {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
 {{ if and (lookPath "wt") (lookPath "pwsh") (eq .my.terminal.windows "wt") -}}
-RunScoop("Windows Terminal")
+Run {{ joinPath .chezmoi.homeDir "scoop" "apps" "windows-terminal" "current" "wt.exe" | quote }}
 WinWait("ahk_exe WindowsTerminal.exe")
 {{ end -}}
 {{ if and (lookPath "wezterm") (eq .my.terminal.windows "wezterm") -}}
