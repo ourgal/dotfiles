@@ -8,5 +8,6 @@ poweroff=shutdown /t 0 /s $*
 scroff=nircmd monitor off $*
 {{ end -}}
 scoop-update=scoop update * && scoop cache remove * && scoop cleanup *
+unlock-keepassxc=sh -c "gopass show -o keepassxc/main | keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir "syncthing" "keepassxc" "main.kdbx" | replace "\\" "/" }} &"
 {{ end -}}
 {{ end -}}
