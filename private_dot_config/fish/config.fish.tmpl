@@ -19,6 +19,16 @@ navi widget fish | source
 {{ if lookPath "carapace" -}}
 carapace _carapace | source
 {{ end -}}
+{{ if lookPath "eza" -}}
+{{ $opts := "--git --icons auto --group --group-directories-first --time-style relative"}}
+function ls
+    eza {{ $opts }} $argv
+end
+
+function ll
+    eza -l {{ $opts }} $argv
+end
+{{ end -}}
 end
 {{ end -}}
 {{ end -}}
