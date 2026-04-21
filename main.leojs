@@ -5463,7 +5463,7 @@
     "zxc.20260404153505.1": "# {{ include (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"rclone\" \"rclone.conf\") | sha256sum -}}\ncp {{ joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"rclone\" \"rclone.conf\" | quote }} {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"rclone\" \"current\" \"rclone.conf\" | quote }}",
     "User.20260226001402.1": "@others\n",
     "zxc.20260315140948.1": "[my]\nname = \"zxc\"\n",
-    "User.20260226001414.1": "[my.msys2]\npackages = [\"fish\", \"nnn\", \"atool\", \"libarchive\", \"tmux\"]",
+    "User.20260226001414.1": "[my.msys2]\npackages = [\"fish\", \"nnn\", \"atool\", \"libarchive\", \"tmux\", \"zsh\"]",
     "User.20260226001424.1": "[my.font]\nmonospace = \"Maple Mono NF CN\"\n",
     "User.20260226001439.1": "[my.git.sign]\nssh = false\ngpg = true\n\n[my.git.user]\nname = \"ourgal\"\nemail = \"git@fairever.aleeas.com\"",
     "zxc.20260409142917.1": "[my.shell]\nwindows = \"pwsh\"",
@@ -5841,8 +5841,8 @@
     "User.20260223014430.1": "<< unix dos >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260223014458.1": "machine smtp.qq.com port 465 login ourgal@qq.com password {{ gopass \"email/qq/main\" }}\nmachine imap.qq.com port 993 login ourgal@qq.com password {{ gopass \"email/qq/main\" }}\nmachine imap.163.com port 993 login fairever01@163.com password {{ gopass \"email/163/main\" }}\nmachine pop3.163.com port 995 login fairever01@163.com password {{ gopass \"email/163/main\" }}\nmachine imap.yandex.com port 993 login airever@yandex.com password {{ gopass \"email/yandex/main\" }}",
     "User.20260220233323.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260421145655.1": "<< unix dos >>\n{{ if or (lookPath \"msys2\") (lookPath \"fish\") }}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260421231645.1": "<< unix dos >>\n{{ if or (lookPath \"msys2\") (lookPath \"fish\") }}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260421145655.1": "<< unix dos >>\n{{ if or (lookPath \"msys2\") (lookPath \"fish\") -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260421231645.1": "<< unix dos >>\n{{ if or (lookPath \"msys2\") (lookPath \"fish\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260215182442.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260215182554.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\nv2:sha256:f190ead5021be718ae1001570b620a363a3aa0c685fb15a276d8456d436944e5\n{{ end -}}",
     "User.20260217022114.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n<< nuc >>\n{{ else if eq .chezmoi.hostname \"work\" -}}\n<< work >>\n{{ end -}}\n{{ end -}}",
@@ -6085,7 +6085,7 @@
       "_mod_time": 1776434513.068
     },
     "User.20260226001402.1": {
-      "_mod_time": 1776754013.319
+      "_mod_time": 1776786016.137
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1773571522.654681
@@ -6211,10 +6211,10 @@
       "_mod_time": 1773571522.6703062
     },
     "zxc.20260421145655.1": {
-      "_mod_time": 1776784660.967
+      "_mod_time": 1776786097.116
     },
     "zxc.20260421231645.1": {
-      "_mod_time": 1776785698.584
+      "_mod_time": 1776786097.13
     },
     "User.20260215182442.1": {
       "_mod_time": 1776434513.121
