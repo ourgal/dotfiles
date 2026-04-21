@@ -3625,6 +3625,48 @@
       ]
     },
     {
+      "gnx": "zxc.20260421150650.1",
+      "vh": "fish",
+      "children": [
+        {
+          "gnx": "zxc.20260421150653.1",
+          "vh": "config",
+          "children": [
+            {
+              "gnx": "zxc.20260421145759.1",
+              "vh": "content",
+              "children": [
+                {
+                  "gnx": "zxc.20260421150607.1",
+                  "vh": "oh-my-posh"
+                },
+                {
+                  "gnx": "zxc.20260421150721.1",
+                  "vh": "zoxide"
+                },
+                {
+                  "gnx": "zxc.20260421151056.1",
+                  "vh": "fzf"
+                },
+                {
+                  "gnx": "zxc.20260421151309.1",
+                  "vh": "mcfly"
+                },
+                {
+                  "gnx": "zxc.20260421151656.1",
+                  "vh": "navi"
+                },
+                {
+                  "gnx": "zxc.20260421152125.1",
+                  "vh": "carapace"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "gnx": "zxc.20260125152614.1",
       "vh": "config",
       "children": [
@@ -3854,6 +3896,30 @@
                         },
                         {
                           "gnx": "zxc.20260202195341.1"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260421145620.1",
+              "vh": "fish",
+              "children": [
+                {
+                  "gnx": "zxc.20260421145631.1",
+                  "vh": "@path fish",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260421145655.1",
+                      "vh": "@clean config.fish.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260421145759.1"
+                        },
+                        {
+                          "gnx": "User.20260225204914.1"
                         }
                       ]
                     }
@@ -5731,6 +5797,13 @@
     "zxc.20260408102617.1": "return config",
     "zxc.20260329012020.1": "{{- /* chezmoi:modify-template */ -}}\n{{ $origin := fromIni .chezmoi.stdin -}}\n{{ $origin = $origin | setValueAtPath \"GUI.CheckForUpdates\" false -}}\n{{ $origin = $origin | setValueAtPath \"GUI.MinimizeOnStartup\" false -}}\n{{ $origin = $origin | setValueAtPath \"GUI.ShowTrayIcon\" false -}}\n{{ $origin = $origin | setValueAtPath \"GUI.MinimizeToTray\" false -}}\n{{ $origin = $origin | setValueAtPath \"GUI.MinimizeOnClose\" false -}}\n{{ $origin = $origin | setValueAtPath \"GUI.TrayIconAppearance\" \"monochrome\" -}}\n{{ $origin = $origin | setValueAtPath \"Browser.Enabled\" true -}}\n{{ $origin = $origin | setValueAtPath \"General.MinimizeAfterUnlock\" false -}}\n{{ $origin = $origin | setValueAtPath \"General.AutoGeneratePasswordForNewEntries\" true -}}\n{{ $origin = $origin | setValueAtPath \"General.GlobalAutoTypeKey\" \"65\" -}}\n{{ $origin = $origin | setValueAtPath \"General.GlobalAutoTypeModifiers\" \"234881024\" -}}\n{{ $origin = $origin | setValueAtPath \"SSHAgent.Enabled\" false -}}\n{{ $origin = $origin | setValueAtPath \"SSHAgent.UseOpenSSH\" true -}}\n{{ $origin = $origin | setValueAtPath \"SSHAgent.UsePageant\" false -}}\n{{ $origin = $origin | setValueAtPath \"Security.AutotypeAsk\" false -}}\n{{ $origin | toIni -}}",
     "zxc.20260411192514.3": "{{- /* chezmoi:modify-template */ -}}\n{{ $origin := fromIni .chezmoi.stdin -}}\n{{ $origin = $origin | setValueAtPath \"Security.QuickUnlock\" true -}}\n{{ $origin = $origin | setValueAtPath \"General.LastActiveDatabase\" (joinPath .chezmoi.homeDir \"syncthing\" \"keepassxc\" \"main.kdbx\") -}}\n{{ $origin = $origin | setValueAtPath \"General.LastDatabases\" (joinPath .chezmoi.homeDir \"syncthing\" \"keepassxc\" \"main.kdbx\") -}}\n{{ $origin = $origin | setValueAtPath \"General.LastOpenedDatabases\" (joinPath .chezmoi.homeDir \"syncthing\" \"keepassxc\" \"main.kdbx\") -}}\n{{ $origin = $origin | setValueAtPath \"GUI.ListViewState\" \"\" -}}\n{{ $origin = $origin | setValueAtPath \"GUI.MainWindowGeometry\" \"\" -}}\n{{ $origin = $origin | setValueAtPath \"GUI.MainWindowState\" \"\" -}}\n{{ $origin | toIni -}}",
+    "zxc.20260421145759.1": "if status is-interactive\n@others\nend",
+    "zxc.20260421150607.1": "{{ if lookPath \"oh-my-posh\" -}}\noh-my-posh init fish | source\n{{ end -}}",
+    "zxc.20260421150721.1": "{{ if lookPath \"zoxide\" -}}\nzoxide init fish | source\n{{ end -}}",
+    "zxc.20260421151056.1": "{{ if lookPath \"fzf\" -}}\nfzf --fish | source\n{{ end -}}",
+    "zxc.20260421151309.1": "{{ if lookPath \"mcfly\" -}}\nmcfly init fish | source\n{{ end -}}",
+    "zxc.20260421151656.1": "{{ if lookPath \"navi\" -}}\nnavi widget fish | source\n{{ end -}}",
+    "zxc.20260421152125.1": "{{ if lookPath \"carapace\" -}}\ncarapace _carapace | source\n{{ end -}}",
     "zxc.20260126154354.1": "<< unix dos >>\n{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125145051.1": "<< unix dos >>\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125152704.1": "<< unix dos >>\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -5745,6 +5818,7 @@
     "User.20260223014430.1": "<< unix dos >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260223014458.1": "machine smtp.qq.com port 465 login ourgal@qq.com password {{ gopass \"email/qq/main\" }}\nmachine imap.qq.com port 993 login ourgal@qq.com password {{ gopass \"email/qq/main\" }}\nmachine imap.163.com port 993 login fairever01@163.com password {{ gopass \"email/163/main\" }}\nmachine pop3.163.com port 995 login fairever01@163.com password {{ gopass \"email/163/main\" }}\nmachine imap.yandex.com port 993 login airever@yandex.com password {{ gopass \"email/yandex/main\" }}",
     "User.20260220233323.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260421145655.1": "<< unix dos >>\n{{ if lookPath \"msys2\" }}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260215182442.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260215182554.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\nv2:sha256:f190ead5021be718ae1001570b620a363a3aa0c685fb15a276d8456d436944e5\n{{ end -}}",
     "User.20260217022114.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n<< nuc >>\n{{ else if eq .chezmoi.hostname \"work\" -}}\n<< work >>\n{{ end -}}\n{{ end -}}",
@@ -5897,7 +5971,7 @@
       "_mod_time": 1775182193.7532992
     },
     "User.20260226000855.1": {
-      "_mod_time": 1776614137.332
+      "_mod_time": 1776644732.236
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1776434513.068
@@ -6029,13 +6103,13 @@
       "_mod_time": 1776434513.137
     },
     "zxc.20260130225718.1": {
-      "_mod_time": 1774833042.6536043
+      "_mod_time": 1774833042.654
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1775177440.778
     },
     "User.20260215191351.1": {
-      "_mod_time": 1774885067.894
+      "_mod_time": 1774833042.654
     },
     "User.20260220010313.1": {
       "_mod_time": 1776434513.106
@@ -6047,7 +6121,7 @@
       "_mod_time": 1773571522.654681
     },
     "User.20260216000318.1": {
-      "_mod_time": 1774833042.6445813
+      "_mod_time": 1774833042.645
     },
     "User.20260216232855.1": {
       "_mod_time": 1776434513.106
@@ -6062,7 +6136,7 @@
       "_mod_time": 1776596138.241
     },
     "zxc.20260315140713.1": {
-      "_mod_time": 1774833042.6536043
+      "_mod_time": 1774833042.654
     },
     "zxc.20260317002829.1": {
       "_mod_time": 1776753962.31
@@ -6074,22 +6148,22 @@
       "_mod_time": 1776596916.084
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1776434513.106
+      "_mod_time": 1776044662.614
     },
     "zxc.20260125145051.1": {
-      "_mod_time": 1774833042.663151
+      "_mod_time": 1774833042.663
     },
     "zxc.20260125152704.1": {
-      "_mod_time": 1774833042.6586103
+      "_mod_time": 1774833042.659
     },
     "zxc.20260125152851.2": {
       "_mod_time": 1773571522.6703062
     },
     "zxc.20260125153131.1": {
-      "_mod_time": 1774833042.66063
+      "_mod_time": 1774833042.661
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1776434772.134
+      "_mod_time": 1776644732.265
     },
     "zxc.20260125161631.1": {
       "_mod_time": 1773571522.6703062
@@ -6098,19 +6172,22 @@
       "_mod_time": 1775910738.381
     },
     "User.20260217223023.1": {
-      "_mod_time": 1774833042.66063
+      "_mod_time": 1774833042.661
     },
     "User.20260217223030.1": {
-      "_mod_time": 1775895090.069
+      "_mod_time": 1776044662.631
     },
     "User.20260217223035.1": {
-      "_mod_time": 1775895049.436
+      "_mod_time": 1776044662.647
     },
     "User.20260223014430.1": {
-      "_mod_time": 1774833042.66063
+      "_mod_time": 1774833042.661
     },
     "User.20260220233323.1": {
       "_mod_time": 1773571522.6703062
+    },
+    "zxc.20260421145655.1": {
+      "_mod_time": 1776756101.462
     },
     "User.20260215182442.1": {
       "_mod_time": 1776434513.121
