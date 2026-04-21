@@ -3659,6 +3659,10 @@
                 {
                   "gnx": "zxc.20260421224340.1",
                   "vh": "eza"
+                },
+                {
+                  "gnx": "zxc.20260421234758.1",
+                  "vh": "nnn"
                 }
               ]
             }
@@ -5826,6 +5830,7 @@
     "zxc.20260421151656.1": "{{ if lookPath \"navi\" -}}\nnavi widget fish | source\n{{ end -}}",
     "zxc.20260421152125.1": "{{ if lookPath \"carapace\" -}}\ncarapace _carapace | source\n{{ end -}}",
     "zxc.20260421224340.1": "{{ if lookPath \"eza\" -}}\n{{ $opts := \"--git --icons auto --group --group-directories-first --time-style relative\"}}\nfunction ls\n    eza {{ $opts }} $argv\nend\n\nfunction ll\n    eza -l {{ $opts }} $argv\nend\n{{ end -}}",
+    "zxc.20260421234758.1": "# Rename this file to match the name of the function\n# e.g. ~/.config/fish/functions/n.fish\n# or, add the lines to the 'config.fish' file.\n\nfunction n --wraps nnn --description 'support nnn quit and change directory'\n    # Block nesting of nnn in subshells\n    if test -n \"$NNNLVL\" -a \"$NNNLVL\" -ge 1\n        echo \"nnn is already running\"\n        return\n    end\n\n    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)\n    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to\n    # see. To cd on quit only on ^G, remove the \"-x\" from both lines below,\n    # without changing the paths.\n    if test -n \"$XDG_CONFIG_HOME\"\n        set -x NNN_TMPFILE \"$XDG_CONFIG_HOME/nnn/.lastd\"\n    else\n        set -x NNN_TMPFILE \"$HOME/.config/nnn/.lastd\"\n    end\n\n    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn\n    # stty start undef\n    # stty stop undef\n    # stty lwrap undef\n    # stty lnext undef\n\n    # The command function allows one to alias this function to `nnn` without\n    # making an infinitely recursive alias\n    command nnn $argv\n\n    if test -e $NNN_TMPFILE\n        source $NNN_TMPFILE\n        rm -- $NNN_TMPFILE\n    end\nend",
     "zxc.20260421231755.1": "jorgebucaran/fisher\njorgebucaran/autopair.fish\nnickeb96/puffer-fish\nmeaningful-ooo/sponge",
     "zxc.20260126154354.1": "<< unix dos >>\n{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125145051.1": "<< unix dos >>\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -6211,7 +6216,7 @@
       "_mod_time": 1773571522.6703062
     },
     "zxc.20260421145655.1": {
-      "_mod_time": 1776786097.116
+      "_mod_time": 1776786495.897
     },
     "zxc.20260421231645.1": {
       "_mod_time": 1776786097.13
