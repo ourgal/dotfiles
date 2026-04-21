@@ -32,10 +32,6 @@
           "vh": "lazygit keybinding"
         },
         {
-          "gnx": "User.20260221193859.1",
-          "vh": "gpg agent"
-        },
-        {
           "gnx": "User.20260221180517.1",
           "vh": "doom emacs"
         },
@@ -46,6 +42,14 @@
         {
           "gnx": "zxc.20260316152403.1",
           "vh": "flow launcher"
+        },
+        {
+          "gnx": "zxc.20260421204007.1",
+          "vh": "copyq"
+        },
+        {
+          "gnx": "zxc.20260421204018.1",
+          "vh": "keepassxc"
         }
       ]
     },
@@ -1983,14 +1987,6 @@
             {
               "gnx": "zxc.20260329185904.1",
               "vh": "jellyfin mpv shim"
-            },
-            {
-              "gnx": "zxc.20260413210356.1",
-              "vh": "keepassxc"
-            },
-            {
-              "gnx": "zxc.20260404123758.1",
-              "vh": "copyq"
             }
           ]
         }
@@ -5285,10 +5281,11 @@
     "User.20260301195342.3": "{{ if eq .chezmoi.os \"windows\" -}}",
     "User.20260301195342.4": "Invoke-Expression -Command \"& `\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"powertoys\" \"current\" \"install-context.ps1\" }}`\"\"",
     "User.20260226221459.1": "# This is an example of a macro that you might use to execute a command.\n# This will add the command to history.\nSet-PSReadLineKeyHandler -Key Ctrl+g `\n                         -BriefDescription Lazygit `\n                         -LongDescription \"Run lazygit\" `\n                         -ScriptBlock {\n    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()\n    [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"lazygit\")\n    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()\n}",
-    "User.20260221193859.1": "{{ if lookPath \"gpg-connect-agent\" -}}\nRun(\"gpg-connect-agent /bye\", , \"Hide\")\n{{ end -}}\n",
     "User.20260221180517.1": "{{ if and (eq .chezmoi.hostname \"nuc\") (lookPath \"runemacs\") -}}\n; Run(\"runemacs --daemon\", EnvGet(\"userprofile\"), \"Hide\")\n{{ end -}}\n",
     "zxc.20260203193056.1": "{{ if lookPath \"mcfly\" -}}\n# mcfly\nInvoke-Expression -Command $(mcfly init powershell | out-string)\n{{ end -}}",
     "zxc.20260316152403.1": "{{ $flow := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"flow-launcher\" \"current\" \"Flow.Launcher.exe\" -}}\n{{ if stat $flow -}}\nRun({{ $flow | quote }}, {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
+    "zxc.20260421204007.1": "{{ if stat (joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"copyq\" \"current\" \"copyq.exe\") -}}\nSleep 45*1000\nRun(\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"copyq\" \"current\" \"copyq.exe\" }}\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
+    "zxc.20260421204018.1": "{{ if lookPath \"keepassxc\" -}}\nRun({{ joinPath .chezmoi.homeDir \"Documents\" \"autohotkey\" \"keepassxc.ahk\" | quote }}, , \"Hide\")\n{{ end -}}",
     "zxc.20260125142149.1": "@tabwidth 4\nall:\n\t@others\n",
     "zxc.20260125142255.1": "yes | git magic -ap\n",
     "zxc.20260125142829.1": "{{ if eq .chezmoi.os \"linux\" -}}\n@others\n{{ end -}}",
@@ -5561,8 +5558,6 @@
     "zxc.20260320230804.1": "{{ if and ( lookPath \"navidrome\" ) .my.modules.navidrome -}}\nRun({{ print \"navidrome --datafolder \" (joinPath (env \"LOCALAPPDATA\") \"navidrome\") | quote }}, {{ joinPath .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
     "zxc.20260326000727.1": "{{ if lookPath \"syncthing\" -}}\nRun(\"syncthing serve --no-console --no-browser\", , \"Hide\")\n{{ end -}}",
     "zxc.20260329185904.1": "{{ if and (stat (joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"jellyfin-mpv-shim\")) (eq .chezmoi.hostname \"bed\") -}}\nRun({{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"jellyfin-mpv-shim\" \"current\" \"run.exe\" | quote }}, , \"Hide\")\n{{ end -}}",
-    "zxc.20260413210356.1": "{{ if lookPath \"keepassxc\" -}}\nRun({{ joinPath .chezmoi.homeDir \"Documents\" \"autohotkey\" \"keepassxc.ahk\" | quote }}, , \"Hide\")\n{{ end -}}",
-    "zxc.20260404123758.1": "{{ if stat (joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"copyq\" \"current\" \"copyq.exe\") -}}\nSleep 45*1000\nRun(\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"copyq\" \"current\" \"copyq.exe\" }}\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
     "zxc.20260201142202.1": "{\n    \"$help\": \"https://aka.ms/terminal-documentation\",\n    \"$schema\": \"https://aka.ms/terminal-profiles-schema\",\n    \"actions\": [],\n    \"copyFormatting\": \"none\",\n    \"copyOnSelect\": false,\n    \"defaultProfile\": \"{f60ba69c-a957-410c-a1c6-8b7484ee591c}\",\n    \"keybindings\": \n    [\n        {\n            \"id\": \"Terminal.CopyToClipboard\",\n            \"keys\": \"ctrl+c\"\n        },\n        {\n            \"id\": \"Terminal.PasteFromClipboard\",\n            \"keys\": \"ctrl+v\"\n        },\n        {\n            \"id\": \"Terminal.DuplicatePaneAuto\",\n            \"keys\": \"alt+shift+d\"\n        }\n    ],\n    \"newTabMenu\": \n    [\n        {\n            \"type\": \"remainingProfiles\"\n        }\n    ],\n    \"profiles\": \n    {\n        \"defaults\": {},\n        \"list\": \n        [\n            {\n                \"guid\": \"{574e775e-4f2a-5b96-ac1e-a2962a402336}\",\n                << common >>\n                \"name\": \"PowerShell\",\n                \"source\": \"Windows.Terminal.PowershellCore\"\n            },\n            {\n                \"commandline\": \"%SystemRoot%\\\\System32\\\\cmd.exe\",\n                << common >>\n                \"guid\": \"{0caa0dad-35be-5f56-a8ff-afceeeaa6101}\",\n                \"name\": \"Command Prompt\"\n            },\n            {\n                \"commandline\": \"%SystemRoot%\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\",\n                << common >>\n                \"guid\": \"{61c54bbd-c2c6-5271-96e7-009a87ff44bf}\",\n                \"name\": \"Windows PowerShell\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\.local\\\\bin\\\\xonsh.exe\",\n                << common >>\n                \"guid\": \"{1039824d-f5da-468d-856d-d7373d40325e}\",\n                \"name\": \"Xonsh\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\scoop\\\\apps\\\\git\\\\current\\\\bin\\\\bash.exe -i -l\",\n                << common >>\n                \"guid\": \"{8f5e00bb-5ac4-4e63-8538-5bcbbf827559}\",\n                \"name\": \"Git Bash\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\scoop\\\\shims\\\\msys2.cmd -use-full-path -shell fish\",\n                << common >>\n                \"guid\": \"{f60ba69c-a957-410c-a1c6-8b7484ee591c}\",\n                \"name\": \"MSYS\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\scoop\\\\shims\\\\nu.exe\",\n                << common >>\n                \"guid\": \"{2a38cb46-e594-415f-9cce-1e3d1b313ee9}\",\n                \"name\": \"Nu shell\"\n            },\n            {\n                \"commandline\": \"%USERPROFILE%\\\\scoop\\\\shims\\\\yori.exe\",\n                << common >>\n                \"guid\": \"{90a23420-d58c-4627-9e4d-6ab897661ef7}\",\n                \"name\": \"Yori\"\n            },\n            {\n                << common >>\n                \"guid\": \"{c0d3ee5c-ec30-5776-a372-7005244e2d95}\",\n                \"name\": \"Debian\",\n                \"source\": \"Microsoft.WSL\"\n            },\n            {\n                \"guid\": \"{b453ae62-4e3d-5e58-b989-0a998ec441b8}\",\n                << common >>\n                \"name\": \"Azure Cloud Shell\",\n                \"source\": \"Windows.Terminal.Azure\"\n            }\n        ]\n    },\n    \"schemes\": [],\n    \"themes\": []\n}\n\n",
     "zxc.20260201034404.1": "\"cursorShape\": \"filledBox\",\n\"font\": \n{\n    \"face\": \"{{ .my.font.monospace }}\"\n},\n\"startingDirectory\": \"%USERPROFILE%\",\n\"opacity\": 90,\n\"hidden\": false,\n\"closeOnExit\": \"graceful\",",
     "zxc.20260201140637.1": "(\n    move_left: Some(( code: Char('h'), modifiers: \"\")),\n    move_right: Some(( code: Char('l'), modifiers: \"\")),\n    move_up: Some(( code: Char('k'), modifiers: \"\")),\n    move_down: Some(( code: Char('j'), modifiers: \"\")),\n    stage_unstage_item: Some(( code: Char(' '), modifiers: \"\")),\n\n    open_help: Some(( code: F(1), modifiers: \"\")),\n)",
@@ -6301,7 +6296,7 @@
       "_mod_time": 1776434513.09
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1776614687.565
+      "_mod_time": 1776775222.073
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1776434513.09
