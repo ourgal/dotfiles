@@ -1,0 +1,24 @@
+{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+{{ if lookPath "msys2" }}
+if status is-interactive
+{{ if lookPath "oh-my-posh" -}}
+oh-my-posh init fish | source
+{{ end -}}
+{{ if lookPath "zoxide" -}}
+zoxide init fish | source
+{{ end -}}
+{{ if lookPath "fzf" -}}
+fzf --fish | source
+{{ end -}}
+{{ if lookPath "mcfly" -}}
+mcfly init fish | source
+{{ end -}}
+{{ if lookPath "navi" -}}
+navi widget fish | source
+{{ end -}}
+{{ if lookPath "carapace" -}}
+carapace _carapace | source
+{{ end -}}
+end
+{{ end -}}
+{{ end -}}
