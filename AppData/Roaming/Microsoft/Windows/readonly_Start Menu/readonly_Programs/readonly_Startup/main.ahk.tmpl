@@ -89,11 +89,4 @@ Run("syncthing serve --no-console --no-browser", , "Hide")
 {{ if and (stat (joinPath .chezmoi.homeDir "scoop" "apps" "jellyfin-mpv-shim")) (eq .chezmoi.hostname "bed") -}}
 Run({{ joinPath .chezmoi.homeDir "scoop" "apps" "jellyfin-mpv-shim" "current" "run.exe" | quote }}, , "Hide")
 {{ end -}}
-{{ if lookPath "keepassxc" -}}
-Run({{ joinPath .chezmoi.homeDir "Documents" "autohotkey" "keepassxc.ahk" | quote }}, , "Hide")
-{{ end -}}
-{{ if stat (joinPath .chezmoi.homeDir "scoop" "apps" "copyq" "current" "copyq.exe") -}}
-Sleep 45*1000
-Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "copyq" "current" "copyq.exe" }}", {{ .chezmoi.homeDir | quote }}, "Hide")
-{{ end -}}
 {{ end -}}
