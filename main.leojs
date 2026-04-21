@@ -3663,6 +3663,16 @@
               ]
             }
           ]
+        },
+        {
+          "gnx": "zxc.20260421231819.1",
+          "vh": "plugins",
+          "children": [
+            {
+              "gnx": "zxc.20260421231755.1",
+              "vh": "content"
+            }
+          ]
         }
       ]
     },
@@ -3917,6 +3927,18 @@
                       "children": [
                         {
                           "gnx": "zxc.20260421145759.1"
+                        },
+                        {
+                          "gnx": "User.20260225204914.1"
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260421231645.1",
+                      "vh": "@clean fish_plugins.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260421231755.1"
                         },
                         {
                           "gnx": "User.20260225204914.1"
@@ -5411,7 +5433,7 @@
     "User.20260221011837.1": "#!{{lookPath \"sh\"}}\n",
     "User.20260220214646.1": "{{ $sum := list }}\n{{ $homeDir := .chezmoi.homeDir -}}\n{{ range (list \"config\" \"packages\" \"init\") -}}\n{{ $sum = include (joinPath $homeDir \".config\" \"doom\" (print . \".el\")) | append $sum -}}\n{{ end -}}\n# {{ $sum | join \"\" | sha256sum }}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\" ) }} sync",
     "User.20260217214851.1": "<< dos >>\n{{ if lookPath \"msys2\" -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}\n",
-    "User.20260217214859.1": "# (Get-Item {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"msys2\" \"current\" }}).CreationTime\nmsys2 -c \"sed -i 's#https\\?://mirror.msys2.org/#https://mirror.nju.edu.cn/msys2/#g' /etc/pacman.d/mirrorlist*\"\nmsys2 -c \"yes | pacman -Syu\"\nmsys2 -c \"yes | pacman -S --needed {{ .my.msys2.packages | join \" \" }}\"",
+    "User.20260217214859.1": "# (Get-Item {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"msys2\" \"current\" }}).CreationTime\nmsys2 -c \"sed -i 's#https\\?://mirror.msys2.org/#https://mirror.nju.edu.cn/msys2/#g' /etc/pacman.d/mirrorlist*\"\nmsys2 -c \"yes | pacman -Syu\"\nmsys2 -c \"yes | pacman -S --needed {{ .my.msys2.packages | join \" \" }}\"\nmsys2 -shell fish -c \"curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher\"\n# {{ include (joinPath .chezmoi.homeDir \".config\" \"fish\" \"fish_plugins\") | sha256sum }}\nmsys2 -shell fish -c \"fisher update\"\n",
     "User.20260220000301.2": "<< dos >>\n{{ if stat (joinPath (env \"programdata\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Weasel\" \"Weasel Deploy.lnk\") -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260220000301.3": "# {{ include (joinPath (env \"Appdata\") \"Rime\" \"default.custom.yaml\") | sha256sum }}\n# {{ include (joinPath (env \"Appdata\") \"Rime\" \"sbfm.custom.yaml\") | sha256sum }}\n& {{ joinPath (env \"programdata\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Weasel\" \"Weasel Deploy.lnk\" | quote }}",
     "User.20260220012738.1": "<< dos >>\n{{ if and (lookPath \"gh\") (lookPath \"gopass\") -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}",
@@ -5804,6 +5826,7 @@
     "zxc.20260421151656.1": "{{ if lookPath \"navi\" -}}\nnavi widget fish | source\n{{ end -}}",
     "zxc.20260421152125.1": "{{ if lookPath \"carapace\" -}}\ncarapace _carapace | source\n{{ end -}}",
     "zxc.20260421224340.1": "{{ if lookPath \"eza\" -}}\n{{ $opts := \"--git --icons auto --group --group-directories-first --time-style relative\"}}\nfunction ls\n    eza {{ $opts }} $argv\nend\n\nfunction ll\n    eza -l {{ $opts }} $argv\nend\n{{ end -}}",
+    "zxc.20260421231755.1": "jorgebucaran/fisher\njorgebucaran/autopair.fish\nnickeb96/puffer-fish\nmeaningful-ooo/sponge",
     "zxc.20260126154354.1": "<< unix dos >>\n{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125145051.1": "<< unix dos >>\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125152704.1": "<< unix dos >>\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -5818,7 +5841,8 @@
     "User.20260223014430.1": "<< unix dos >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260223014458.1": "machine smtp.qq.com port 465 login ourgal@qq.com password {{ gopass \"email/qq/main\" }}\nmachine imap.qq.com port 993 login ourgal@qq.com password {{ gopass \"email/qq/main\" }}\nmachine imap.163.com port 993 login fairever01@163.com password {{ gopass \"email/163/main\" }}\nmachine pop3.163.com port 995 login fairever01@163.com password {{ gopass \"email/163/main\" }}\nmachine imap.yandex.com port 993 login airever@yandex.com password {{ gopass \"email/yandex/main\" }}",
     "User.20260220233323.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260421145655.1": "<< unix dos >>\n{{ if lookPath \"msys2\" }}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260421145655.1": "<< unix dos >>\n{{ if or (lookPath \"msys2\") (lookPath \"fish\") }}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260421231645.1": "<< unix dos >>\n{{ if or (lookPath \"msys2\") (lookPath \"fish\") }}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260215182442.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260215182554.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\nv2:sha256:f190ead5021be718ae1001570b620a363a3aa0c685fb15a276d8456d436944e5\n{{ end -}}",
     "User.20260217022114.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n<< nuc >>\n{{ else if eq .chezmoi.hostname \"work\" -}}\n<< work >>\n{{ end -}}\n{{ end -}}",
@@ -5971,7 +5995,7 @@
       "_mod_time": 1775182193.7532992
     },
     "User.20260226000855.1": {
-      "_mod_time": 1776644732.236
+      "_mod_time": 1776614137.332
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1776434513.068
@@ -6019,7 +6043,7 @@
       "_mod_time": 1774225085.2758553
     },
     "User.20260217214851.1": {
-      "_mod_time": 1776783868.031
+      "_mod_time": 1776785870.73
     },
     "User.20260220000301.2": {
       "_mod_time": 1776434513.068
@@ -6103,13 +6127,13 @@
       "_mod_time": 1776434513.137
     },
     "zxc.20260130225718.1": {
-      "_mod_time": 1774833042.654
+      "_mod_time": 1776434513.106
     },
     "zxc.20260201141149.1": {
-      "_mod_time": 1775177440.778
+      "_mod_time": 1776434513.106
     },
     "User.20260215191351.1": {
-      "_mod_time": 1774833042.654
+      "_mod_time": 1776434513.106
     },
     "User.20260220010313.1": {
       "_mod_time": 1776434513.106
@@ -6121,7 +6145,7 @@
       "_mod_time": 1773571522.654681
     },
     "User.20260216000318.1": {
-      "_mod_time": 1774833042.645
+      "_mod_time": 1776434513.106
     },
     "User.20260216232855.1": {
       "_mod_time": 1776434513.106
@@ -6136,7 +6160,7 @@
       "_mod_time": 1776596138.241
     },
     "zxc.20260315140713.1": {
-      "_mod_time": 1774833042.654
+      "_mod_time": 1776434513.106
     },
     "zxc.20260317002829.1": {
       "_mod_time": 1776753962.31
@@ -6148,22 +6172,22 @@
       "_mod_time": 1776596916.084
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1776044662.614
+      "_mod_time": 1776434513.106
     },
     "zxc.20260125145051.1": {
-      "_mod_time": 1774833042.663
+      "_mod_time": 1776434513.121
     },
     "zxc.20260125152704.1": {
-      "_mod_time": 1774833042.659
+      "_mod_time": 1776434513.106
     },
     "zxc.20260125152851.2": {
       "_mod_time": 1773571522.6703062
     },
     "zxc.20260125153131.1": {
-      "_mod_time": 1774833042.661
+      "_mod_time": 1776434513.121
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1776644732.265
+      "_mod_time": 1776434996.083
     },
     "zxc.20260125161631.1": {
       "_mod_time": 1773571522.6703062
@@ -6172,22 +6196,25 @@
       "_mod_time": 1775910738.381
     },
     "User.20260217223023.1": {
-      "_mod_time": 1774833042.661
+      "_mod_time": 1776434513.121
     },
     "User.20260217223030.1": {
-      "_mod_time": 1776044662.631
+      "_mod_time": 1776434513.106
     },
     "User.20260217223035.1": {
-      "_mod_time": 1776044662.647
+      "_mod_time": 1776434513.121
     },
     "User.20260223014430.1": {
-      "_mod_time": 1774833042.661
+      "_mod_time": 1776434513.121
     },
     "User.20260220233323.1": {
       "_mod_time": 1773571522.6703062
     },
     "zxc.20260421145655.1": {
-      "_mod_time": 1776782910.017
+      "_mod_time": 1776784660.967
+    },
+    "zxc.20260421231645.1": {
+      "_mod_time": 1776785698.584
     },
     "User.20260215182442.1": {
       "_mod_time": 1776434513.121
