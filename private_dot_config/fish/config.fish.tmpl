@@ -4,9 +4,6 @@ if status is-interactive
 {{ if lookPath "oh-my-posh" -}}
 oh-my-posh init fish | source
 {{ end -}}
-{{ if lookPath "zoxide" -}}
-zoxide init fish | source
-{{ end -}}
 {{ if lookPath "fzf" -}}
 fzf --fish | source
 {{ end -}}
