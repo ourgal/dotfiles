@@ -8,7 +8,5 @@ msys2 -c "sed -i 's#https\?://mirror.msys2.org/#https://mirror.nju.edu.cn/msys2/
 msys2 -c "yes | pacman -Syu"
 msys2 -c "yes | pacman -S --needed {{ .my.msys2.packages | join " " }}"
 msys2 -shell fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
-# {{ include (joinPath .chezmoi.homeDir ".config" "fish" "fish_plugins") | sha256sum }}
-msys2 -shell fish -c "fisher update"
 {{ end -}}
 {{ end -}}
