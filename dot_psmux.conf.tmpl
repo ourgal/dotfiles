@@ -88,5 +88,6 @@ bind -n M-k if -F "#{pane_at_top}" "switch-client -p" "select-pane -U"
 
 bind -n M-l if -F "#{pane_at_right}" "next-window" "select-pane -R"
 bind -n M-h if -F "#{pane_at_left}" "previous-window" "select-pane -L"
+set -g status-position top
 {{ end -}}
 {{ end -}}
