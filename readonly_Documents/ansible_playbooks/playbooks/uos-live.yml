@@ -1,0 +1,122 @@
+---
+# disable power saving
+# enable password ssh login and start ssh
+# change uos password, current password is emtpy
+# ssh-copy-id
+- name: Install uos
+  hosts: uos
+  vars:
+    user: uos
+    dufs_url: http://192.168.1.110:6500
+  tasks:
+    - name: Debug variables
+      ansible.builtin.debug:
+        var: ansible_facts
+    - name: Enable developer mode
+      become: true
+      block:
+        - name: Create folder
+          ansible.builtin.file:
+            path: /target/var/lib/deepin/developer-mode
+            state: directory
+            mode: "0755"
+        - name: Create enabled file
+          ansible.builtin.copy:
+            dest: /target/var/lib/deepin/developer-mode/enabled
+            content: 1
+            mode: "0644"
+    - name: Copy resolv.conf
+      become: true
+      ansible.builtin.copy:
+        src: /etc/resolv.conf
+        dest: /target/etc/resolv.conf
+        remote_src: true
+    - name: Copy apt auth file
+      become: true
+      ansible.builtin.copy:
+        src: /etc/apt/auth.conf.d/uos.conf
+        dest: /target/etc/apt/auth.conf.d/uos.conf
+        remote_src: true
+    - name: Add linglong repo
+      become: true
+      ansible.builtin.copy:
+        dest: /target/etc/apt/sources.list.d/linglong.list
+        content: deb [trusted=yes] https://ci.deepin.com/repo/obs/linglong:/CI:/release/uos_1070/ ./ 
+    - name: Download wps 365
+      become: true
+      ansible.builtin.get_url:
+        url: https://pubwps-wps365-obs.wpscdn.cn/download/Linux/24730/wps-office_12.1.2.24730.AK.preread.sw_644358_arm64.deb
+        dest: /target/tmp/wps.deb
+        mode: "0644"
+    - name: Download windows fonts
+      become: true
+      ansible.builtin.unarchive:
+        src: "{{ dufs_url }}/fonts/windows.zip"
+        dest: /target/usr/share/fonts/
+        remote_src: yes
+    - name: Copy apt auth file
+      become: true
+      block:
+        - name: Create .ssh folder
+          ansible.builtin.file:
+            path: "/target/home/{{ user }}/.ssh"
+            state: directory
+            mode: "0755"
+        - name: Copy authorized_keys
+          ansible.builtin.copy:
+            src: /home/uos/.ssh/authorized_keys
+            dest: "/target/home/{{ user }}/.ssh/authorized_keys"
+            mode: "0644"
+            remote_src: true
+    - name: Chroot
+      tags: chroot
+      become: true
+      block:
+        - name: Create chroot script
+          ansible.builtin.copy:
+            dest: /target/script
+            content: |
+              set -euo pipefail
+              apt update
+              apt install -y com.zjd.gov
+              apt install -y com.tencent.wechat
+              apt install -y com.360.browser-stable
+              apt install -y linglong-bin linglong-installer
+              apt install -y /tmp/wps.deb
+              systemctl enable ssh
+              chown -R {{ user }}:{{ user }} /home/{{ user }}/.ssh
+            mode: "0644"
+        - name: Run chroot script
+          environment:
+            LANG: C.UTF-8
+          ansible.builtin.shell:
+            cmd: |
+              fail() {
+                      printf '%s\n' "$1" >&2
+                      exit 1
+              }
+
+              CHROOT=/target
+
+              [ -d "$CHROOT" ] || fail 'not a directory'
+              [ -d "$CHROOT/dev" ] || fail 'no /dev in chroot'
+              [ -d "$CHROOT/proc" ] || fail 'no /proc in chroot'
+              [ -d "$CHROOT/sys" ] || fail 'no /sys in chroot'
+
+              for _fs in dev proc sys; do
+                      mount --rbind "/$_fs" "$CHROOT/$_fs"
+                      mount --make-rslave "$CHROOT/$_fs"
+              done
+
+              cleanup() {
+                      umount -R "$CHROOT/dev" "$CHROOT/proc" "$CHROOT/sys"
+              }
+
+              trap cleanup EXIT INT
+
+              chroot "$CHROOT" /bin/bash /script
+          changed_when: true
+        - name: Remove script
+          ansible.builtin.file:
+            path: /target/script
+            state: absent

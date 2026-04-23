@@ -1,0 +1,53 @@
+---
+- name: Configure wsl debian
+  hosts: nuc-windows-wsl-debian
+  tasks:
+    - name: Debug variables
+      ansible.builtin.debug:
+        var: ansible_facts
+    - name: Set mirror
+      block:
+        - name: First mirror url
+          ansible.builtin.replace:
+            path: /etc/apt/sources.list
+            regexp: http://deb.debian.org/
+            replace: https://mirrors.aliyun.com/
+        - name: Second mirror url
+          ansible.builtin.replace:
+            path: /etc/apt/sources.list
+            regexp: http://security.debian.org/
+            replace: https://mirrors.aliyun.com/
+    - name: Update apt
+      ansible.builtin.apt:
+        update_cache: true
+    - name: Install apt packages
+      ansible.builtin.apt:
+        name: "{{ item }}"
+      loop:
+        - git
+        - lazygit
+        - emacs
+        - vim-gtk3
+        - hx
+        - mpv
+        - curl
+        - wget
+        - fish
+        - starship
+        - xclip
+        - dos2unix
+        - fzf
+        - eza
+        - zoxide
+        - bat
+        - btop
+        - gnupg
+        - scdaemon
+        - pcscd
+        - nodejs
+    - name: Install xz-utils
+      ansible.builtin.apt:
+        name: xz-utils
+    - name: Install chezmoi
+      ansible.builtin.apt:
+        deb: https://github.com/twpayne/chezmoi/releases/download/v2.69.4/chezmoi_2.69.4_linux_amd64.deb

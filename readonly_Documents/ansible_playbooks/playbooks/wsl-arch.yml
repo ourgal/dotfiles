@@ -1,0 +1,47 @@
+---
+- name: Configure wsl arch
+  hosts: wsl-arch
+  ignore_unreachable: true
+  tasks:
+    - name: Debug variables
+      ansible.builtin.debug:
+        var: ansible_facts
+    - name: Set mirror
+      ansible.builtin.copy:
+        content: |
+          Server = https://mirror.nju.edu.cn/archlinux/$repo/os/$arch
+          Server = https://mirrors.cernet.edu.cn/archlinux/$repo/os/$arch
+        dest: /etc/pacman.d/mirrorlist
+        mode: "0644"
+    - name: Update system
+      community.general.pacman:
+        update_cache: true
+        upgrade: true
+    - name: Install pacman packages
+      community.general.pacman:
+        name: "{{ item }}"
+      loop:
+        - git
+        - lazygit
+        - emacs
+        - helix
+        - gvim
+        - curl
+        - wget
+        - chezmoi
+        - pipewire
+        - mpv
+        - fish
+        - starship
+        - xclip
+        - openssh
+        - dos2unix
+        - unzip
+        - fzf
+        - eza
+        - zoxide
+        - bat
+        - btop
+        - fastfetch
+        - uv
+        - nodejs
