@@ -1,0 +1,72 @@
+---
+all:
+  hosts:
+    chromebit:
+      ansible_user: user
+      ansible_host: chromebit.local
+      ansible_become_method: doas
+      ansible_become_pass: "{{ gopass "password/linux/user" }}"
+    void-live:
+      ansible_user: anon
+      ansible_ssh_pass: voidlinux
+      ansible_host: 192.168.123.181
+      ansible_become_pass: "{{ gopass "password/linux/user" }}"
+    surface-void:
+      ansible_user: zxc
+      ansible_host: surface-void.local
+      ansible_become_pass: "{{ gopass "password/linux/user" }}"
+windows:
+  vars:
+    ansible_connection: ssh
+    ansible_shell_type: powershell
+  hosts:
+    nuc:
+      ansible_host: nuc.local
+      my_hostname: nuc
+    bed:
+      ansible_host: bed.local
+      my_hostname: bed
+    work:
+      ansible_host: 192.168.1.110
+      my_hostname: work
+wsl-debian:
+  vars:
+    ansible_connection: community.general.wsl
+    ansible_user: user
+  hosts:
+    nuc-windows-wsl-debian:
+      ansible_host: nuc.local
+      wsl_distribution: debian
+      wsl_user: root
+wsl-arch:
+  vars:
+    ansible_connection: community.general.wsl
+    ansible_user: user
+  hosts:
+    nuc-wsl-arch:
+      ansible_host: nuc.local
+      wsl_distribution: archlinux
+      wsl_user: root
+    work-wsl-arch:
+      ansible_host: 192.168.1.110
+      wsl_distribution: archlinux
+      wsl_user: root
+termux:
+  vars:
+    ansible_ssh_port: 8022
+  hosts:
+    note20:
+      ansible_host: 192.168.123.232
+      ansible_user: u0_a644
+uos:
+  hosts:
+    test:
+      ansible_host: 192.168.1.107
+      ansible_user: uos
+      ansible_become_pass: uos
+macos:
+  hosts:
+    macmini:
+      ansible_host: 192.168.123.117
+      ansible_become_pass: "{{ gopass "password/linux/user" }}"
+

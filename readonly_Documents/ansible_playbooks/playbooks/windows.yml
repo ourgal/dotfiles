@@ -1,0 +1,1515 @@
+---
+- name: Configure windows admin
+  hosts: windows
+  remote_user: admin
+  ignore_unreachable: true
+  tags: admin
+  tasks:
+    - name: Gather facts
+      ansible.builtin.gather_facts:
+    - name: Debug variables
+      ansible.builtin.debug:
+        var: ansible_facts
+    - name: Install choco pacakges
+      tags: choco-install
+      chocolatey.chocolatey.win_chocolatey:
+        name: "{{ item }}"
+        state: latest
+      loop:
+        - visualstudio2026-workload-vctools
+        - weasel
+        - winfsp # rclone
+        - steam
+        - epicgameslauncher
+        - calibre
+        - "{{ 'tailscale' if ansible_facts.nodename == 'work' else omit }}"
+    - name: Uninstall choco pacakges
+      tags: choco-uninstall
+      chocolatey.chocolatey.win_chocolatey:
+        name: "{{ item }}"
+        state: absent
+      loop:
+        - gimp
+        - gpg4win
+        - firefox
+        - mpvio
+    - name: Install init packages via scoop
+      tags: admin-scoop-init
+      community.windows.win_scoop:
+        name: "{{ item }}"
+        global: false
+        no_cache: true
+      register: result
+      retries: 3
+      delay: 5
+      until: result is not failed
+      loop:
+        - git
+    - name: Add bucket
+      community.windows.win_scoop_bucket:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - extras
+        - nerd-fonts
+        - nonportable
+    - name: Install nonportable packages via scoop
+      tags: admin-scoop-nonportable
+      community.windows.win_scoop:
+        name: "{{ item }}"
+        global: true
+        no_cache: true
+      register: result
+      retries: 3
+      delay: 5
+      until: result is not failed
+      loop:
+        - files-np
+        - virtualbox-with-extension-pack-np
+    - name: WSL
+      tags: wsl
+      block:
+        - name: Enable Virtual Machine Platform
+          ansible.windows.win_optional_feature:
+            name: VirtualMachinePlatform
+            state: present
+          register: vmp_status
+        - name: Enable hyper-v
+          ansible.windows.win_shell: bcdedit /set hypersivoralaunchtype auto
+          when: vmp_status is failed
+        - name: Reboot for hyper-v
+          ansible.windows.win_reboot:
+          when: vmp_status is failed
+        - name: Enable Virtual Machine Platform again
+          ansible.windows.win_optional_feature:
+            name: VirtualMachinePlatform
+            state: present
+          register: vmp_again_status
+          when: vmp_status is failed
+        - name: Install Microsoft Subsystem for Linux
+          ansible.windows.win_optional_feature:
+            name: Microsoft-Windows-Subsystem-Linux
+            state: present
+          register: wsl_status
+        - name: Reboot if installing Linux Subsytem as feature requires it
+          ansible.windows.win_reboot:
+          when: >
+            (wsl_status.reboot_required is defined and wsl_status.reboot_required) or
+            (vmp_status.reboot_required is defined and vmp_status.reboot_required) or
+            (vmp_again_status.reboot_required is defined and vmp_again_status.reboot_required)
+    - name: Hide admin account
+      tags: hide-admin
+      ansible.windows.win_regedit:
+        path: HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\SpecialAccounts\UserList
+        type: dword
+        name: Admin
+        data: 0
+    - name: Set user groups
+      tags: user-admin
+      ansible.windows.win_user:
+        name: User
+        state: present
+        groups:
+          - Users
+    - name: Start ssh-agent service
+      tags: ssh-agent
+      ansible.windows.win_service:
+        name: ssh-agent
+        state: started
+        start_mode: auto
+    - name: Update openssh
+      tags: openssh
+      chocolatey.chocolatey.win_chocolatey:
+        name: openssh
+        state: latest
+        allow_prerelease: true
+        package_params: /SSHServerFeature
+    - name: Optimize powershell
+      tags: optimize-powershell
+      ansible.windows.win_shell: |
+        function Optimize-Assemblies {
+            param (
+                [string]$assemblyFilter = "Microsoft.PowerShell.",
+                [string]$activity = "Native Image Installation"
+            )
+
+            try {
+                # Get the path to the ngen executable dynamically
+                $ngenPath = [System.IO.Path]::Combine([Runtime.InteropServices.RuntimeEnvironment]::GetRuntimeDirectory(), "ngen.exe")
+
+                # Check if ngen.exe exists
+                if (-Not (Test-Path $ngenPath)) {
+                    Write-Host "Ngen.exe not found at $ngenPath. Make sure .NET Framework is installed."
+                    return
+                }
+
+                # Get a list of loaded assemblies
+                $assemblies = [AppDomain]::CurrentDomain.GetAssemblies()
+
+                # Filter assemblies based on the provided filter
+                $filteredAssemblies = $assemblies | Where-Object { $_.FullName -ilike "$assemblyFilter*" }
+
+                if ($filteredAssemblies.Count -eq 0) {
+                    Write-Host "No matching assemblies found for optimization."
+                    return
+                }
+
+                foreach ($assembly in $filteredAssemblies) {
+                    # Get the name of the assembly
+                    $name = [System.IO.Path]::GetFileName($assembly.Location)
+
+                    # Display progress
+                    Write-Progress -Activity $activity -Status "Optimizing $name"
+
+                    # Use Ngen to install the assembly
+                    Start-Process -FilePath $ngenPath -ArgumentList "install `"$($assembly.Location)`"" -Wait -WindowStyle Hidden
+                }
+
+                Write-Host "Optimization complete."
+            } catch {
+                Write-Host "An error occurred: $_"
+            }
+        }
+
+        # Optimize PowerShell assemblies:
+        Optimize-Assemblies -assemblyFilter "Microsoft.PowerShell."
+    - name: Add game user
+      tags: game-user
+      ansible.windows.win_user:
+        name: Game
+        password_expired: false
+        password_never_expires: true
+        state: present
+        groups:
+          - Users
+          - Administrators
+    - name: Install scream pre
+      when: ansible_facts.nodename in ['bed', 'nuc']
+      tags: scream-pre
+      block:
+        - name: Check scream driver file
+          ansible.windows.win_stat:
+            path: C:\windows\system32\drivers\scream.sys
+          register: scream_driver
+        - name: Scream pre
+          when: scream_driver.stat.exists is false
+          block:
+            - name: Enable testing mode
+              ansible.windows.win_command: Bcdedit.exe -set TESTSIGNING ON
+            - name: Reboot
+              ansible.windows.win_reboot:
+            - name: Download file
+              ansible.windows.win_get_url:
+                url: https://github.com/duncanthrax/scream/releases/download/4.0/Scream4.0.zip
+                dest: C:\Scream.zip
+            - name: Unzip file
+              community.windows.win_unzip:
+                src: C:\Scream.zip
+                dest: C:\Scream
+                force: true
+            - name: Run installer
+              ansible.windows.win_command: C:\Scream\Install\Install-x64.bat
+  handlers:
+    - name: Reboot
+      ansible.windows.win_reboot:
+- name: Configure windows user
+  hosts: windows
+  remote_user: user
+  ignore_unreachable: true
+  tags: user
+  tasks:
+    - name: Gather facts
+      ansible.builtin.gather_facts:
+    - name: Debug variables
+      ansible.builtin.debug:
+        var: ansible_facts
+    - name: Install aria2 and lessmsi via scoop
+      community.windows.win_scoop:
+        name: "{{ item }}"
+        global: false
+        no_cache: true
+      register: result
+      retries: 3
+      delay: 5
+      until: result is not failed
+      loop:
+        - lessmsi
+        - aria2
+    - name: Update scoop config
+      tags: scoop-config
+      block:
+        - name: Facts
+          ansible.builtin.gather_facts:
+          when: ansible_facts is not defined
+        - name: Check scoop config file
+          ansible.windows.win_stat:
+            path: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+          register: scoop_config_stat
+        - name: Get scoop config content
+          ansible.windows.slurp:
+            src: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+          register: scoop_config_content
+          when: scoop_config_stat.stat.exists is true
+        - name: Set scoop config
+          vars:
+            config:
+              use_lessmsi: true
+              aria2-enabled: true
+              aria2-warning-enabled: false
+              use_sqlite_cache: true
+              force_update: true
+              use_external_7zip: false
+              gh_token: "{{ lookup('gopass', 'github/ourgal/token') | trim }}"
+          ansible.windows.win_copy:
+            dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+            content: "{{ scoop_config_content.content | b64decode | from_json | combine(config) | to_json }}"
+          when: scoop_config_stat.stat.exists is true
+        - name: Set scoop config
+          vars:
+            config:
+              use_lessmsi: true
+              aria2-enabled: true
+              aria2-warning-enabled: false
+              use_sqlite_cache: true
+              force_update: true
+              use_external_7zip: false
+              gh_token: "{{ lookup('gopass', 'github/ourgal/token') | trim }}"
+          ansible.windows.win_copy:
+            dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+            content: "{{ config | to_json }}"
+          when: scoop_config_stat.stat.exists is false
+    - name: Install 7zip and git via scoop
+      community.windows.win_scoop:
+        name: "{{ item }}"
+        global: false
+        no_cache: true
+      register: result
+      retries: 3
+      delay: 5
+      until: result is not failed
+      loop:
+        - 7zip
+        - git
+    - name: Using external 7zip
+      tags: scoop-config
+      block:
+        - name: Facts
+          ansible.builtin.gather_facts:
+          when: ansible_facts is not defined
+        - name: Check scoop config file
+          ansible.windows.win_stat:
+            path: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+          register: scoop_config_stat
+        - name: Get scoop config content
+          ansible.windows.slurp:
+            src: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+          register: scoop_config_content
+          when: scoop_config_stat.stat.exists is true
+        - name: Set scoop config
+          vars:
+            config:
+              use_external_7zip: true
+          ansible.windows.win_copy:
+            dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+            content: "{{ scoop_config_content.content | b64decode | from_json | combine(config) | to_json }}"
+          when: scoop_config_stat.stat.exists is true
+        - name: Set scoop config
+          vars:
+            config:
+              use_external_7zip: true
+          ansible.windows.win_copy:
+            dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+            content: "{{ config | to_json }}"
+          when: scoop_config_stat.stat.exists is false
+    - name: Add bucket
+      community.windows.win_scoop_bucket:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - extras
+        - nerd-fonts
+        - nonportable
+    - name: Update scoop
+      tags: scoop-update
+      block:
+        - name: Facts
+          ansible.builtin.gather_facts:
+          when: ansible_facts is not defined
+        - name: Update scoop
+          ansible.windows.win_shell: "{{ ansible_facts.user_dir }}/scoop/apps/scoop/current/bin/scoop.ps1 update"
+        - name: Update scoop packages
+          ansible.windows.win_shell: "{{ ansible_facts.user_dir }}/scoop/apps/scoop/current/bin/scoop.ps1 update --all"
+        - name: Remove scoop cache
+          ansible.windows.win_shell: "{{ ansible_facts.user_dir }}/scoop/apps/scoop/current/bin/scoop.ps1 cache remove *"
+        - name: Clean up scoop packages
+          ansible.windows.win_shell: "{{ ansible_facts.user_dir }}/scoop/apps/scoop/current/bin/scoop.ps1 cleanup --all"
+    - name: Install main packages via scoop
+      tags: scoop-main
+      community.windows.win_scoop:
+        name: "{{ item }}"
+        state: present
+        global: false
+        no_cache: true
+      register: result
+      retries: 3
+      delay: 5
+      until: result is not failed
+      loop:
+        - main/aichat
+        - main/adb
+        - main/scrcpy
+        - main/mpd
+        - main/navidrome
+        - main/cacert
+        - main/hugo
+        - main/chsrc
+        - main/editorconfig
+        - main/dprint
+        - main/aspell
+        - main/shellcheck
+        - main/shfmt
+        - main/binutils
+        - main/clangd
+        - main/make
+        - main/task
+        - main/cmake
+        - main/msys2
+        - main/direnv
+        - main/tree-sitter
+        - main/dirhash
+        - main/haskell
+        - main/haskell-cabal
+        - main/haskell-language-server
+        - main/stack
+        - main/texlab
+        - main/tectonic
+        - main/lua-language-server
+        - main/stylua
+        - main/autocorrect
+        - main/marksman
+        - main/yarn
+        - main/pnpm
+        - main/perl
+        - main/ruff
+        - main/ty
+        - main/uv
+        - main/rust
+        - main/cargo-binstall
+        - main/sqlite
+        - main/taplo
+        - main/tombi
+        - main/static-web-server
+        - main/yamlfmt
+        - main/smartmontools
+        - main/pandoc
+        - main/chezmoi
+        - main/gallery-dl
+        - main/yt-dlp
+        - main/pget
+        - main/wget2
+        - main/wget
+        - main/aria2
+        - main/vim
+        - main/helix
+        - main/neovim
+        - main/fresh
+        - main/mailsend
+        - main/gpg
+        - main/openssl
+        - main/gopass
+        - main/gopass-jsonapi
+        - main/sops
+        - main/lf
+        - main/yazi
+        - main/superfile
+        - main/broot
+        - main/fzf
+        - main/jj
+        - main/gitomatic
+        - main/git-bug
+        - main/gh
+        - main/mob
+        - main/git-lfs
+        - main/git-absorb
+        - main/diff-so-fancy
+        - main/delta
+        - main/difftastic
+        - main/git-crypt
+        - main/gitui
+        - extras/git-cola
+        - main/gogs
+        - main/gitql
+        - main/lefthook
+        - main/gnuplot
+        - main/exiftool
+        - main/imagemagick
+        - main/dog
+        - main/nali
+        - main/nmap
+        - main/q-dns
+        - main/tcping
+        - main/scoop-search
+        - main/everything-cli
+        - main/croc
+        - main/cwrsync
+        - main/dufs
+        - main/miniserve
+        - main/portal
+        - main/rclone
+        - main/syncthing
+        - main/alist
+        - main/serve
+        - main/simple-http-server
+        # hash check filed
+        # - main/ffsend
+        - main/git-annex
+        - main/clink
+        - main/clink-completions
+        - main/cmder-full
+        - main/pwsh
+        - main/nu
+        - main/yori
+        - main/fastfetch
+        - main/ntop
+        - main/btop
+        - main/bottom
+        - main/which
+        - main/ttyper
+        - main/fd
+        - main/bat
+        - main/less
+        - main/rnr
+        - main/shasum
+        - main/zoxide
+        - main/coreutils
+        - main/nircmd
+        - main/grep
+        - main/ripgrep
+        - main/gawk
+        - main/dua
+        - main/dust
+        - main/tealdeer
+        - main/sd
+        - main/eza
+        - main/duf
+        - main/navi
+        - extras/pet
+        - main/unrar
+        - main/unzip
+        - main/mcfly
+        - main/atuin
+        - main/starship
+        - main/oh-my-posh
+        - main/psmux
+        - main/dos2unix
+        - main/goodbyedpi
+        - main/file
+        - main/zip
+        - main/innounp
+        - main/gzip
+        - main/gsudo
+        - main/nssm
+        - main/pipx
+        - main/winget
+        - main/topgrade
+        - main/clipboard@0.9.0.1
+        - main/noti
+        - main/espanso
+        - main/ffmpeg
+    - name: Install nodejs and vscode
+      community.windows.win_scoop:
+        name:
+          - nodejs-lts
+          - vscode
+        state: present
+        global: false
+        no_cache: true
+      register: result
+      retries: 3
+      delay: 5
+      until: result is not failed
+      notify: Reboot
+    - name: Install extras packages via scoop
+      tags: scoop-extras
+      community.windows.win_scoop:
+        name: "{{ item }}"
+        global: false
+        no_cache: true
+      register: result
+      retries: 3
+      delay: 5
+      until: result is not failed
+      loop:
+        - extras/kdeconnect
+        - extras/apkeep
+        - extras/filebot
+        - extras/ab-av1
+        - extras/mpc
+        - extras/ncmpc
+        - extras/autohotkey
+        - extras/autoclicker
+        - restic
+        - resticprofile
+        - rdiff-backup
+        - extras/firefox
+        - extras/brave
+        - extras/qutebrowser
+        - extras/ungoogled-chromium
+        - extras/librewolf
+        - extras/kavita
+        - extras/telegram
+        - extras/sioyek
+        - extras/sumatrapdf
+        - extras/zeal
+        - extras/libreoffice
+        - extras/wpsoffice
+        - extras/aria-ng-gui
+        - extras/eget
+        - extras/transmission
+        - extras/transgui
+        - extras/notepadplusplus
+        - extras/vscodium
+        - extras/emacs
+        - extras/zed
+        - extras/lunarvim
+        - main/gcc
+        - extras/anki
+        - extras/cfssl
+        - extras/age
+        - extras/keepassxc
+        - extras/win-gpg-agent
+        - extras/mc
+        - extras/vifm
+        - extras/doublecmd
+        - extras/totalcommander
+        - extras/locale-emulator
+        - extras/ludusavi
+        - extras/playnite
+        - extras/sunshine
+        - extras/lazygit
+        - extras/gitu
+        - extras/meld
+        - extras/nomacs
+        - extras/qview
+        - extras/oculante
+        - extras/gimp
+        - extras/photodemon
+        - extras/photoflare
+        - extras/qmk-toolbox
+        - extras/vial
+        - extras/kanata
+        - extras/komokana
+        - extras/qalculate
+        - extras/fiddler
+        - extras/siyuan-note
+        - extras/qrscan
+        - extras/rustdesk
+        - extras/tightvnc
+        - extras/flameshot
+        - extras/television
+        - extras/carapace-bin
+        - extras/ttdl
+        - extras/sfsu
+        - extras/psfzf
+        - extras/psreadline
+        - extras/moor
+        - extras/winspy
+        - extras/windhawk
+        - extras/powertoys
+        - extras/glazewm
+        - extras/zebar
+        - extras/komorebi
+        - extras/yasb
+        - extras/whkd
+        - extras/flclash
+        - extras/diskgenius
+        - extras/crystaldiskinfo
+        - extras/wiztree
+        - extras/windirstat
+        - extras/flow-launcher
+        - extras/unigetui
+        - extras/dhcp-server
+        - extras/hourglass
+        - extras/copyq
+        - extras/bleachbit
+        - extras/everything
+        - extras/deskflow
+        - extras/coretemp
+        - extras/bulk-crap-uninstaller
+        - extras/windows-terminal
+        - extras/alacritty
+        - extras/wezterm
+        - extras/copytranslator
+        - extras/rufus
+        - extras/ventoy
+        - extras/ani-cli
+        - extras/jellyfin-mpv-shim
+        - extras/vlc
+        # install failed
+        # - miru
+        - extras/mpv
+        - extras/fladder
+        - extras/handbrake
+        - extras/openboard
+    - name: Install nerd fonts packages via scoop
+      tags: scoop-fonts
+      community.windows.win_scoop:
+        name: "{{ item }}"
+        global: false
+        no_cache: true
+      register: result
+      retries: 3
+      delay: 5
+      until: result is not failed
+      loop:
+        - nerd-fonts/Maple-Mono-NF-CN
+        - nerd-fonts/NerdFontsSymbolsOnly
+        - nerd-fonts/FiraCode-NF-Mono
+        - nerd-fonts/Noto-CJK-Mega-OTC
+    - name: Other packages
+      tags: scoop-other
+      block:
+        - name: Add main-plus bucket
+          community.windows.win_scoop_bucket:
+            name: main-plus
+            repo: https://github.com/Scoopforge/Main-Plus
+            state: present
+        - name: Install other packages via scoop
+          community.windows.win_scoop:
+            name: "{{ item }}"
+            global: false
+            no_cache: true
+          register: result
+          retries: 3
+          delay: 5
+          until: result is not failed
+          loop:
+            - main-plus/cargo-update
+        - name: Add chawyehsu_dorado bucket
+          community.windows.win_scoop_bucket:
+            name: chawyehsu_dorado
+            repo: https://github.com/chawyehsu/dorado
+            state: present
+        - name: Install other packages via scoop
+          community.windows.win_scoop:
+            name: "{{ item }}"
+            global: false
+            no_cache: true
+          register: result
+          retries: 3
+          delay: 5
+          until: result is not failed
+          loop:
+            - chawyehsu_dorado/runany
+            - chawyehsu_dorado/git-credential-gopass
+            - chawyehsu_dorado/aliyundrive
+        - name: Add extras-plus bucket
+          community.windows.win_scoop_bucket:
+            name: extras-plus
+            repo: https://github.com/Scoopforge/Extras-Plus
+            state: present
+        - name: Add extras-cn bucket
+          community.windows.win_scoop_bucket:
+            name: extras-cn
+            repo: https://github.com/Scoopforge/Extras-CN
+            state: present
+        - name: Install packages from extras-cn
+          community.windows.win_scoop:
+            name: "{{ item }}"
+            global: false
+            no_cache: true
+          register: result
+          retries: 3
+          delay: 5
+          until: result is not failed
+          loop:
+            - extras-cn/neteasemusic
+
+        - name: Add anderlli0053_DEV-tools bucket
+          community.windows.win_scoop_bucket:
+            name: anderlli0053_DEV-tools
+            repo: https://github.com/anderlli0053/DEV-tools
+            state: present
+        - name: Install other packages via scoop
+          community.windows.win_scoop:
+            name: "{{ item }}"
+            global: false
+            no_cache: true
+          register: result
+          retries: 3
+          delay: 5
+          until: result is not failed
+          loop:
+            - anderlli0053_DEV-tools/mani
+            - anderlli0053_DEV-tools/ydict
+            - anderlli0053_DEV-tools/kpcli
+        - name: Add NSPC911_le-bucket bucket
+          community.windows.win_scoop_bucket:
+            name: NSPC911_le-bucket
+            repo: https://github.com/NSPC911/le-bucket
+            state: present
+        - name: Install other packages via scoop
+          community.windows.win_scoop:
+            name: "{{ item }}"
+            global: false
+            no_cache: true
+          register: result
+          retries: 3
+          delay: 5
+          until: result is not failed
+          loop:
+            - NSPC911_le-bucket/helix-ghost
+        - name: Add ShuguangSun_sgs-scoop-bucket bucket
+          community.windows.win_scoop_bucket:
+            name: ShuguangSun_sgs-scoop-bucket
+            repo: https://github.com/ShuguangSun/sgs-scoop-bucket
+            state: present
+        - name: Install other packages via scoop
+          community.windows.win_scoop:
+            name: "{{ item }}"
+            global: false
+            no_cache: true
+          register: result
+          retries: 3
+          delay: 5
+          until: result is not failed
+          loop:
+            - ShuguangSun_sgs-scoop-bucket/emacs-lsp-booster
+        - name: Add hoilc_scoop-lemon bucket
+          community.windows.win_scoop_bucket:
+            name: hoilc_scoop-lemon
+            repo: https://github.com/hoilc/scoop-lemon
+            state: present
+        - name: Install other packages via scoop
+          community.windows.win_scoop:
+            name: "{{ item }}"
+            global: false
+            no_cache: true
+          register: result
+          retries: 3
+          delay: 5
+          until: result is not failed
+          loop:
+            - hoilc_scoop-lemon/keep-sorted
+        - name: Add Befod_Xeno bucket
+          community.windows.win_scoop_bucket:
+            name: Befod_Xeno
+            repo: https://github.com/Befod/Xeno
+            state: present
+        - name: Install other packages via scoop
+          community.windows.win_scoop:
+            name: "{{ item }}"
+            global: false
+            no_cache: true
+          register: result
+          retries: 3
+          delay: 5
+          until: result is not failed
+          loop:
+            - Befod_Xeno/gesturesign
+        - name: Add maqibg_MQBucket bucket
+          community.windows.win_scoop_bucket:
+            name: maqibg_MQBucket
+            repo: https://github.com/maqibg/MQBucket
+            state: present
+        - name: Install other packages via scoop
+          community.windows.win_scoop:
+            name: "{{ item }}"
+            global: false
+            no_cache: true
+          register: result
+          retries: 3
+          delay: 5
+          until: result is not failed
+          loop:
+            - maqibg_MQBucket/Github-Store
+        - name: Add ourgal_scoop-bucket bucket
+          community.windows.win_scoop_bucket:
+            name: ourgal_scoop-bucket
+            repo: https://github.com/ourgal/scoop-bucket
+            state: present
+        - name: Install other packages via scoop
+          community.windows.win_scoop:
+            name: "{{ item }}"
+            global: false
+            no_cache: true
+          register: result
+          retries: 3
+          delay: 5
+          until: result is not failed
+          loop:
+            - ourgal_scoop-bucket/dockfmt
+            - ourgal_scoop-bucket/mtranserver
+            - ourgal_scoop-bucket/altrun
+    - name: Pipx
+      tags: pipx
+      block:
+        - name: Add pipx bin path to PATH
+          ansible.windows.win_path:
+            state: present
+            scope: user
+            elements: '%userprofile%\.local\bin'
+        - name: Create .pip folder
+          ansible.windows.win_file:
+            dest: "{{ ansible_facts.env.APPDATA }}\\.pip"
+            state: directory
+        - name: Set pip config
+          ansible.windows.win_copy:
+            dest: "{{ ansible_facts.env.APPDATA }}\\.pip\\pip.ini"
+            content: |
+              [global]
+              index-url = https://mirrors.cernet.edu.cn/pypi/web/simple/
+              [install]
+              trusted-host = mirrors.cernet.edu.cn
+        - name: Install pipx packages
+          tags: pipx-install
+          ansible.windows.win_shell: "pipx install {{ item }}"
+          loop:
+            - advance-touch
+            - xonsh[full]
+            - mutagen
+            - jedi-language-server
+            - python-lsp-server
+            - basedpyright
+            - grip
+            - names
+            - leo
+            - copyparty
+            - ffmpeg-progress-yield
+        - name: Remove pip config
+          ansible.windows.win_file:
+            path: "{{ ansible_facts.env.APPDATA }}\\.pip\\pip.ini"
+            state: absent
+    - name: Add cargo bin path to PATH
+      tags: path
+      ansible.windows.win_path:
+        state: present
+        scope: user
+        elements: '%userprofile%\.cargo\bin'
+    - name: Create .cargo folder
+      ansible.windows.win_file:
+        dest: "{{ ansible_facts.user_dir }}\\.cargo"
+        state: directory
+    - name: Set cargo config
+      ansible.windows.win_copy:
+        dest: "{{ ansible_facts.user_dir }}\\.cargo\\config.toml"
+        content: |
+          [source.crates-io]
+          replace-with = 'mirror'
+
+          [source.mirror]
+          registry = "sparse+https://mirrors.cernet.edu.cn/crates.io-index/"
+
+          [registries.mirror]
+          index = "sparse+https://mirrors.cernet.edu.cn/crates.io-index/"
+    - name: Install cargo packages
+      tags: cargo-install
+      ansible.windows.win_shell: "cargo install --locked --git {{ item }}"
+      loop:
+        - https://github.com/estin/simple-completion-language-server.git
+    - name: Remove cargo config
+      ansible.windows.win_file:
+        path: "{{ ansible_facts.user_dir }}\\.cargo\\config.toml"
+        state: absent
+    - name: Npm
+      tags: npm
+      block:
+        - name: Set npm config
+          ansible.windows.win_copy:
+            dest: "{{ ansible_facts.user_dir }}\\.npmrc"
+            content: |
+              registry = https://registry.npmmirror.com
+        - name: Install npm packages
+          ansible.windows.win_shell: npm install -g "{{ item }}"
+          loop:
+            - prettier
+            - vscode-langservers-extracted
+            - yaml-language-server
+            - "@ansible/ansible-language-server"
+        - name: Remove npm config
+          ansible.windows.win_file:
+            path: "{{ ansible_facts.user_dir }}\\.npmrc"
+            state: absent
+    - name: Facts
+      tags: user-env
+      ansible.builtin.gather_facts:
+      when: ansible_facts.user_dir is not defined
+    - name: Set home environment variable
+      tags: user-env
+      ansible.windows.win_environment:
+        state: present
+        name: HOME
+        value: "{{ ansible_facts.user_dir }}"
+        level: user
+    - name: Add doom bin path to PATH
+      tags: path
+      ansible.windows.win_path:
+        state: present
+        scope: user
+        elements: '%userprofile%\.emacs.d\bin'
+    - name: Set rime as default input method
+      ansible.windows.win_regedit:
+        path: HKCU:\Keyboard Layout\Preload
+        name: 1
+        data: 00000804
+    - name: Set en as second input method
+      ansible.windows.win_regedit:
+        path: HKCU:\Keyboard Layout\Preload
+        name: 2
+        data: 00000409
+    - name: Add msys bin path to PATH
+      tags: path
+      ansible.windows.win_path:
+        state: present
+        scope: user
+        elements: '%userprofile%\scoop\apps\msys2\current\mingw64\bin'
+    - name: Pip
+      tags: pip
+      block:
+        - name: Create .pip folder
+          ansible.windows.win_file:
+            dest: "{{ ansible_facts.env.APPDATA }}\\.pip"
+            state: directory
+        - name: Set pip config
+          ansible.windows.win_copy:
+            dest: "{{ ansible_facts.env.APPDATA }}\\.pip\\pip.ini"
+            content: |
+              [global]
+              index-url = https://mirrors.cernet.edu.cn/pypi/web/simple/
+              [install]
+              trusted-host = mirrors.cernet.edu.cn
+        - name: Install pip packages
+          tags: pip-install
+          ansible.windows.win_shell: "pip install --user {{ item }}"
+          loop:
+            - pynvim
+            - SimpleWebSocketServer
+            - python-slugify
+            - pywinauto
+        - name: Remove pip config
+          ansible.windows.win_file:
+            path: "{{ ansible_facts.env.APPDATA }}\\.pip\\pip.ini"
+            state: absent
+
+    - name: WSL
+      tags: wsl
+      when: ansible_facts.nodename == 'work'
+      block:
+        - name: Update wsl
+          ansible.windows.win_command: wsl --update
+        - name: Set WSL default version to 2
+          ansible.windows.win_command: wsl --set-default-version 2
+        - name: Install arch linux
+          ansible.windows.win_command: wsl --install archlinux --no-launch
+  handlers:
+    - name: Reboot
+      ansible.windows.win_reboot:
+- name: Configure windows game user
+  hosts: windows
+  remote_user: game
+  ignore_unreachable: true
+  tags: game
+  tasks:
+    - name: Gather facts
+      ansible.builtin.gather_facts:
+    - name: Debug variables
+      ansible.builtin.debug:
+        var: ansible_facts
+    - name: Install aria2 and lessmsi via scoop
+      community.windows.win_scoop:
+        name: "{{ item }}"
+        global: false
+        no_cache: true
+      register: result
+      retries: 3
+      delay: 5
+      until: result is not failed
+      loop:
+        - lessmsi
+        - aria2
+    - name: Update scoop config
+      tags: scoop-config
+      block:
+        - name: Facts
+          ansible.builtin.gather_facts:
+          when: ansible_facts is not defined
+        - name: Check scoop config file
+          ansible.windows.win_stat:
+            path: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+          register: scoop_config_stat
+        - name: Get scoop config content
+          ansible.windows.slurp:
+            src: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+          register: scoop_config_content
+          when: scoop_config_stat.stat.exists is true
+        - name: Set scoop config
+          vars:
+            config:
+              use_lessmsi: true
+              aria2-enabled: true
+              aria2-warning-enabled: false
+              use_sqlite_cache: true
+              force_update: true
+              use_external_7zip: false
+              gh_token: "{{ lookup('gopass', 'github/ourgal/token') | trim }}"
+          ansible.windows.win_copy:
+            dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+            content: "{{ scoop_config_content.content | b64decode | from_json | combine(config) | to_json }}"
+          when: scoop_config_stat.stat.exists is true
+        - name: Set scoop config
+          vars:
+            config:
+              use_lessmsi: true
+              aria2-enabled: true
+              aria2-warning-enabled: false
+              use_sqlite_cache: true
+              force_update: true
+              use_external_7zip: false
+              gh_token: "{{ lookup('gopass', 'github/ourgal/token') | trim }}"
+          ansible.windows.win_copy:
+            dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+            content: "{{ config | to_json }}"
+          when: scoop_config_stat.stat.exists is false
+    - name: Install 7zip and git via scoop
+      community.windows.win_scoop:
+        name: "{{ item }}"
+        global: false
+        no_cache: true
+      register: result
+      retries: 3
+      delay: 5
+      until: result is not failed
+      loop:
+        - 7zip
+        - git
+    - name: Using external 7zip
+      tags: scoop-config
+      block:
+        - name: Facts
+          ansible.builtin.gather_facts:
+          when: ansible_facts is not defined
+        - name: Check scoop config file
+          ansible.windows.win_stat:
+            path: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+          register: scoop_config_stat
+        - name: Get scoop config content
+          ansible.windows.slurp:
+            src: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+          register: scoop_config_content
+          when: scoop_config_stat.stat.exists is true
+        - name: Set scoop config
+          vars:
+            config:
+              use_external_7zip: true
+          ansible.windows.win_copy:
+            dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+            content: "{{ scoop_config_content.content | b64decode | from_json | combine(config) | to_json }}"
+          when: scoop_config_stat.stat.exists is true
+        - name: Set scoop config
+          vars:
+            config:
+              use_external_7zip: true
+          ansible.windows.win_copy:
+            dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+            content: "{{ config | to_json }}"
+          when: scoop_config_stat.stat.exists is false
+    - name: Add bucket
+      community.windows.win_scoop_bucket:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - extras
+        - nerd-fonts
+        - nonportable
+    - name: Add aki bucket
+      community.windows.win_scoop_bucket:
+        name: aki
+        repo: https://github.com/akirco/aki-apps
+        state: present
+    - name: Install wegame
+      tags: wegame
+      community.windows.win_scoop:
+        name: wegame
+        state: present
+        global: false
+        no_cache: true
+      register: result
+      retries: 3
+      delay: 5
+      until: result is not failed
+    - name: Remove aki bucket
+      community.windows.win_scoop_bucket:
+        name: aki
+        repo: https://github.com/akirco/aki-apps
+        state: absent
+  handlers:
+    - name: Reboot
+      ansible.windows.win_reboot:
+- name: Configure windows admin
+  hosts: windows
+  remote_user: admin
+  ignore_unreachable: true
+  tags: admin
+  tasks:
+    - name: Gather facts
+      ansible.builtin.gather_facts:
+    - name: Debug variables
+      ansible.builtin.debug:
+        var: ansible_facts
+    - name: Windows firewall rules
+      tags: firewall
+      block:
+        - name: Facts
+          ansible.builtin.gather_facts:
+          when: ansible_facts.user_dir is not defined
+        - name: Enable firewall for Domain, Public and Private profiles
+          ansible.windows.win_firewall:
+            state: enabled
+            profiles:
+              - Domain
+              - Private
+              - Public
+        - name: Check current source folder
+          ansible.windows.win_stat:
+            path: C:\Users\User\scoop\apps\croc\current
+          register: path
+        - name: Croc firewall rule
+          community.windows.win_firewall_rule:
+            name: croc.exe
+            localport: 9009-9013
+            action: allow
+            direction: in
+            protocol: tcp
+            state: "{{ 'present' if path.stat.exists is true else 'absent' }}"
+            enabled: true
+        - name: Croc firewall rule
+          community.windows.win_firewall_rule:
+            name: croc.exe udp
+            localport: 9009-9013
+            action: allow
+            direction: in
+            protocol: udp
+            state: "{{ 'present' if path.stat.exists is true else 'absent' }}"
+            enabled: true
+        - name: Check current source folder
+          ansible.windows.win_stat:
+            path: C:\Users\User\scoop\apps\deskflow\current
+          register: path
+        - name: Deskflow firewall rule
+          community.windows.win_firewall_rule:
+            name: deskflow-core.exe
+            localport: 24800-24801
+            action: allow
+            protocol: tcp
+            direction: in
+            state: "{{ 'present' if path.stat.exists is true else 'absent' }}"
+            enabled: true
+        - name: Deskflow firewall rule
+          community.windows.win_firewall_rule:
+            name: deskflow-core.exe udp
+            localport: 24800-24801
+            action: allow
+            protocol: udp
+            direction: in
+            state: "{{ 'present' if path.stat.exists is true else 'absent' }}"
+            enabled: true
+        - name: Check current source folder
+          ansible.windows.win_stat:
+            path: C:\Users\User\scoop\apps\aria2\current
+          register: path
+        - name: Aria2 firewall rule
+          community.windows.win_firewall_rule:
+            name: aria2c.exe
+            localport: any
+            program: "{{ path.stat.lnk_source }}\\aria2c.exe"
+            action: allow
+            protocol: tcp
+            direction: in
+            state: "{{ 'present' if path.stat.exists is true else 'absent' }}"
+            enabled: true
+        - name: Aria2 firewall rule
+          community.windows.win_firewall_rule:
+            name: aria2c.exe udp
+            localport: any
+            program: "{{ path.stat.lnk_source }}\\aria2c.exe"
+            action: allow
+            protocol: udp
+            direction: in
+            state: "{{ 'present' if path.stat.exists is true else 'absent' }}"
+            enabled: true
+        - name: Check current source folder
+          ansible.windows.win_stat:
+            path: C:\Users\User\scoop\apps\dufs\current
+          register: path
+        - name: Dufs firewall rule
+          community.windows.win_firewall_rule:
+            name: dufs.exe
+            program: "{{ path.stat.lnk_source }}\\dufs.exe"
+            action: allow
+            protocol: tcp
+            direction: in
+            state: "{{ 'present' if path.stat.exists is true else 'absent' }}"
+            enabled: true
+        - name: Dufs firewall rule
+          community.windows.win_firewall_rule:
+            name: dufs.exe udp
+            program: "{{ path.stat.lnk_source }}\\dufs.exe"
+            action: allow
+            protocol: udp
+            direction: in
+            state: "{{ 'present' if path.stat.exists is true else 'absent' }}"
+            enabled: true
+        - name: Check current source folder
+          ansible.windows.win_stat:
+            path: C:\Users\User\scoop\apps\alist\current
+          register: path
+        - name: Alist firewall rule
+          community.windows.win_firewall_rule:
+            name: alist.exe
+            localport: 5244
+            action: allow
+            protocol: tcp
+            direction: in
+            state: "{{ 'present' if path.stat.exists is true else 'absent' }}"
+            enabled: true
+        - name: Alist firewall rule
+          community.windows.win_firewall_rule:
+            name: alist.exe udp
+            localport: 5244
+            action: allow
+            protocol: udp
+            direction: in
+            state: "{{ 'present' if path.stat.exists is true else 'absent' }}"
+            enabled: true
+        - name: Check current source folder
+          ansible.windows.win_stat:
+            path: C:\Users\User\scoop\apps\navidrome\current
+          register: path
+        - name: Navidrome firewall rule
+          community.windows.win_firewall_rule:
+            name: navidrome.exe
+            localport: 4533
+            action: allow
+            protocol: tcp
+            direction: in
+            state: "{{ 'present' if path.stat.exists is true else 'absent' }}"
+            enabled: true
+        - name: Navidrome firewall rule
+          community.windows.win_firewall_rule:
+            name: navidrome.exe udp
+            localport: 4533
+            action: allow
+            protocol: udp
+            direction: in
+            state: "{{ 'present' if path.stat.exists is true else 'absent' }}"
+            enabled: true
+        - name: Check current source folder
+          ansible.windows.win_stat:
+            path: C:\Users\User\scoop\apps\helix-ghost\current
+          register: path
+        - name: Alist firewall rule
+          community.windows.win_firewall_rule:
+            name: helix-ghost.exe
+            program: "{{ path.stat.lnk_source if path.stat.exists }}\\helix-ghost.exe"
+            action: allow
+            protocol: tcp
+            direction: in
+            state: absent
+            enabled: true
+        - name: Alist firewall rule
+          community.windows.win_firewall_rule:
+            name: helix-ghost.exe udp
+            program: "{{ path.stat.lnk_source if path.stat.exists }}\\helix-ghost.exe"
+            action: allow
+            protocol: udp
+            direction: in
+            state: absent
+            enabled: true
+        - name: Check python binary file
+          ansible.windows.win_stat:
+            path: C:\Python314\python.exe
+          register: path
+        - name: Helix-ghost firewall rule
+          community.windows.win_firewall_rule:
+            name: python.exe
+            program: "{{ path.stat.path if path.stat.exists else '' }}"
+            action: allow
+            protocol: tcp
+            direction: in
+            state: "{{ 'present' if path.stat.exists else 'absent' }}"
+            enabled: true
+        - name: Helix-ghost firewall rule
+          community.windows.win_firewall_rule:
+            name: python.exe udp
+            program: "{{ path.stat.path if path.stat.exists else '' }}"
+            action: allow
+            protocol: udp
+            direction: in
+            state: "{{ 'present' if path.stat.exists else 'absent' }}"
+            enabled: true
+        - name: Check mtranserver binary file
+          ansible.windows.win_stat:
+            path: C:\Users\User\.local\bin\mtranserver.exe
+          register: path
+        - name: MTranServer firewall rule
+          community.windows.win_firewall_rule:
+            name: mtranserver.exe
+            program: "{{ path.stat.path if path.stat.exists else '' }}"
+            action: allow
+            protocol: tcp
+            direction: in
+            state: absent
+            enabled: true
+        - name: MTranServer firewall rule
+          community.windows.win_firewall_rule:
+            name: mtranserver.exe udp
+            program: "{{ path.stat.path if path.stat.exists else '' }}"
+            action: allow
+            protocol: udp
+            direction: in
+            state: absent
+            enabled: true
+        - name: Check current source folder
+          ansible.windows.win_stat:
+            path: C:\Users\User\scoop\apps\mpd\current
+          register: path
+        - name: Mpd firewall rule
+          community.windows.win_firewall_rule:
+            name: mpd.exe
+            program: "{{ path.stat.lnk_source if path.stat.exists }}\\mpd.exe"
+            action: allow
+            protocol: tcp
+            direction: in
+            state: absent
+            enabled: true
+        - name: Mpd firewall rule
+          community.windows.win_firewall_rule:
+            name: mpd.exe udp
+            program: "{{ path.stat.lnk_source if path.stat.exists }}\\mpd.exe"
+            action: allow
+            protocol: udp
+            direction: in
+            state: absent
+            enabled: true
+        - name: Check current source folder
+          ansible.windows.win_stat:
+            path: C:\Users\User\scoop\apps\kdeconnect\current
+          register: path
+        - name: Kdeconnect firewall rule
+          community.windows.win_firewall_rule:
+            name: kdeconnectd.exe
+            program: "{{ path.stat.lnk_source if path.stat.exists }}\\bin\\kdeconnectd.exe"
+            action: allow
+            protocol: tcp
+            direction: in
+            state: "{{ 'present' if path.stat.exists is true else 'absent' }}"
+            enabled: true
+        - name: Kdeconnect firewall rule
+          community.windows.win_firewall_rule:
+            name: kdeconnectd.exe udp
+            program: "{{ path.stat.lnk_source if path.stat.exists }}\\bin\\kdeconnectd.exe"
+            action: allow
+            protocol: udp
+            direction: in
+            state: "{{ 'present' if path.stat.exists is true else 'absent' }}"
+            enabled: true
+        - name: Check current source folder
+          ansible.windows.win_stat:
+            path: C:\Users\User\scoop\apps\syncthing\current
+          register: path
+        - name: Syncthing firewall rule
+          community.windows.win_firewall_rule:
+            name: "syncthing.exe {{ item }}"
+            localport: "{{ item }}"
+            action: allow
+            protocol: tcp
+            direction: in
+            state: "{{ 'present' if path.stat.exists is true else 'absent' }}"
+            enabled: true
+          loop:
+            - 22000
+            - 8384
+            - 21027
+        - name: Syncthing firewall rule
+          community.windows.win_firewall_rule:
+            name: "syncthing.exe udp {{ item }}"
+            localport: "{{ item }}"
+            action: allow
+            protocol: udp
+            direction: in
+            state: "{{ 'present' if path.stat.exists is true else 'absent' }}"
+            enabled: true
+          loop:
+            - 22000
+            - 8384
+            - 21027
+    - name: Set hostname
+      tags: hostname
+      block:
+        - name: Set hostname
+          ansible.windows.win_hostname:
+            name: "{{ my_hostname if my_hostname is defined else 'nuc' }}"
+          register: res
+        - name: Reboot
+          ansible.windows.win_reboot:
+          when: res.reboot_required
+    - name: Services
+      tags: service
+      block:
+        - name: Check everything exists
+          ansible.windows.win_stat:
+            path: C:\Users\User\scoop\apps\everything\current\everything.exe
+          register: everything_bin
+        - name: Create everything service
+          ansible.windows.win_service:
+            name: Everything
+            state: started
+            path: C:\Users\User\scoop\apps\everything\current\everything.exe -svc
+          when: everything_bin.stat.exists is true
+        - name: Check goodbyedpi exists
+          ansible.windows.win_stat:
+            path: C:\Users\User\scoop\apps\goodbyedpi\current\goodbyedpi.exe
+          register: goodbyedpi_bin
+        - name: Create goodbyedpi service
+          ansible.windows.win_service:
+            name: Goodbyedpi
+            state: started
+            path: C:\Users\User\scoop\apps\goodbyedpi\current\goodbyedpi.exe
+          when:
+            - goodbyedpi_bin.stat.exists is true
+            - ansible_facts.nodename == 'work'
+    - name: Install scream post
+      when: ansible_facts.nodename in ['bed', 'nuc']
+      tags: scream-post
+      block:
+        - name: Delete files
+          ansible.windows.win_file:
+            path: "{{ item }}"
+            state: absent
+          loop:
+            - C:\Scream.zip
+            - C:\Scream
+        - name: Disable testing mode
+          ansible.windows.win_command: Bcdedit.exe -set TESTSIGNING OFF
+        - name: Reboot
+          ansible.windows.win_reboot:
+        - name: Unicast options
+          ansible.windows.win_regedit:
+            path: HKLM:\SYSTEM\CurrentControlSet\Services\Scream\Options
+            name: UnicastIPv4
+            data: 192.168.123.100
+        - name: Unicast options
+          ansible.windows.win_regedit:
+            path: HKLM:\SYSTEM\CurrentControlSet\Services\Scream\Options
+            name: UnicastPort
+            data: 4011
+            type: dword
+    - name: Allow remote logon
+      ansible.windows.win_user_right:
+        name: SeRemoteInteractiveLogonRight
+        users:
+          - User
+        action: add
+  handlers:
+    - name: Reboot
+      ansible.windows.win_reboot:

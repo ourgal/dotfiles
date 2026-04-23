@@ -1,0 +1,7 @@
+---
+- name: Install uos via nixos live cd
+  hosts: nixos-live
+  tasks:
+    - name: Ansible facts
+      ansible.builtin.debug:
+        var: ansible_facts
