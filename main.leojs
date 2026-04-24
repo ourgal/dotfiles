@@ -318,6 +318,10 @@
                               "vh": "starship"
                             },
                             {
+                              "gnx": "zxc.20260424103249.1",
+                              "vh": "oh my posh"
+                            },
+                            {
                               "gnx": "zxc.20260125143716.1",
                               "vh": "eza"
                             },
@@ -7790,7 +7794,8 @@
     "zxc.20260125143635.1": "<< not WSL >>\nsource ~/.local/lib/ble-nightly/ble.sh\n{{ end -}}\n",
     "User.20260225204031.1": "{{ if and (hasKey .chezmoi.kernel \"osrelease\") (not (mustRegexMatch \".*WSL.*\" .chezmoi.kernel.osrelease)) -}}",
     "zxc.20260125143653.1": "{{ if lookPath \"fzf\" -}}\n{{ if or (lookPath \"mcfly\") (lookPath \"atuin\") -}}\nFZF_CTRL_R_COMMAND= eval \"$(fzf --bash)\"\n{{ else -}}\neval \"$(fzf --bash)\"\n{{ end -}}\n{{ end -}}",
-    "zxc.20260125143706.1": "{{ if lookPath \"starship\" -}}\neval \"$(starship init bash)\"\n{{ end -}}\n",
+    "zxc.20260125143706.1": "{{ if and (lookPath \"starship\") .my.modules.starship -}}\neval \"$(starship init bash)\"\n{{ end -}}\n",
+    "zxc.20260424103249.1": "{{ if and (lookPath \"oh-my-posh\") .my.modules.oh_my_posh -}}\neval \"$(oh-my-posh init bash)\"\n{{ end -}}",
     "zxc.20260125143716.1": "{{ if lookPath \"eza\" -}}\nalias ll='eza --long --git --icons auto --group --group-directories-first --time-style relative'\n{{ end -}}",
     "zxc.20260125143728.1": "{{ if lookPath \"atuin\" -}}\n<< not android >>\neval \"$(atuin init bash)\"\n{{ end -}}\n{{ end -}}\n",
     "User.20260228215737.1": "{{ if ne .chezmoi.os \"android\" -}}\n",
@@ -8746,7 +8751,7 @@
     "zxc.20260423143729.389": "- tmux\n- zellij",
     "zxc.20260423143729.390": "- zoxide",
     "zxc.20260423143729.391": "- tealdeer",
-    "zxc.20260423143729.392": "- starship",
+    "zxc.20260423143729.392": "- starship\n- oh-my-posh",
     "zxc.20260423143729.393": "- rsync",
     "zxc.20260423143729.394": "- rnr",
     "zxc.20260423143729.395": "- navi",
@@ -8891,7 +8896,7 @@
       "_mod_time": 1773571522.655
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1773571522.654681
+      "_mod_time": 1776998041.329
     },
     "zxc.20260125143959.1": {
       "_mod_time": 1773571522.654681
@@ -9245,7 +9250,7 @@
       "_mod_time": 1776926756.78
     },
     "zxc.20260423143729.353": {
-      "_mod_time": 1776926768.07
+      "_mod_time": 1776997843.781
     },
     "zxc.20260423143729.426": {
       "_mod_time": 1776926777.901
