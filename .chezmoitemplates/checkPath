@@ -8,5 +8,5 @@
 {{ else if kindIs "string" . -}}
     {{ template "_checkPath" . -}}
 {{ else -}}
-    {{ fail "checkPath: unsupported type" -}}
+    {{ fail (printf "checkPath: %s unsupported type %s" . (kindOf .)) -}}
 {{ end -}}
