@@ -11,10 +11,12 @@ Host termux
   Port 8022
   User u0_a661
   HostName localhost
+{{ if ne .chezmoi.hostname "localhost" -}}
 Host gogs-m6
   Port 23231
   User {{ .my.termux.m6.username }}
   HostName {{ template "ipM6" .chezmoi.hostname }}
+{{ end -}}
 Host *
   AddKeysToAgent yes
 {{ end -}}

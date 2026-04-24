@@ -8045,7 +8045,7 @@
     "zxc.20260201141201.1": "Host soft\n  Port 23231\n  HostName {{ .my.ip.brix }}",
     "zxc.20260201141231.1": "Host github.com\n  HostName ssh.github.com\n  Port 443\n  User git",
     "zxc.20260201141321.1": "Host termux\n  Port 8022\n  User u0_a661\n  HostName localhost\n",
-    "zxc.20260319090429.1": "Host gogs-m6\n  Port 23231\n  User {{ .my.termux.m6.username }}\n  HostName {{ template \"ipM6\" .chezmoi.hostname }}",
+    "zxc.20260319090429.1": "{{ if ne .chezmoi.hostname \"localhost\" -}}\nHost gogs-m6\n  Port 23231\n  User {{ .my.termux.m6.username }}\n  HostName {{ template \"ipM6\" .chezmoi.hostname }}\n{{ end -}}",
     "User.20260214222054.1": "Host *\n  AddKeysToAgent yes",
     "User.20260215191351.1": "<< unix dos >>\n{{ if lookPath \"ssh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260329195706.1": "{{- /* chezmoi:modify-template */ -}}\n{{ $origin := .chezmoi.stdin | trim | splitList \"\\n\" -}}\n{{ range .my.ssh.known_hosts -}}\n    {{ if not (has . $origin) -}}\n    {{ $origin = append $origin . -}}\n    {{ end -}}\n{{ end -}}\n{{ $origin | compact | join \"\\n\" -}}",
@@ -9035,7 +9035,7 @@
       "_mod_time": 1776786016.137
     },
     "zxc.20260201141149.1": {
-      "_mod_time": 1776434513.106
+      "_mod_time": 1776997751.054
     },
     "User.20260215191351.1": {
       "_mod_time": 1776434513.106
