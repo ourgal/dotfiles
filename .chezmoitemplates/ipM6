@@ -6,5 +6,5 @@
 {{- else if  eq . "nuc" "bed" -}}
 192.168.123.191
 {{- else -}}
-{{ fail "unknown hostname for ipM6 template" -}}
+{{ fail (printf "unknown hostname %s for ipM6 template" .) -}}
 {{- end -}}
