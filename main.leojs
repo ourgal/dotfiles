@@ -612,6 +612,10 @@
                                         {
                                           "gnx": "zxc.20260427003349.1",
                                           "vh": "vim-dir"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260427005833.1",
+                                          "vh": "vim-catppuccin"
                                         }
                                       ]
                                     }
@@ -738,6 +742,10 @@
                                         {
                                           "gnx": "zxc.20260318212806.8",
                                           "vh": "tokyonight-vim"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260427005654.1",
+                                          "vh": "vim-catppuccin"
                                         }
                                       ]
                                     },
@@ -7979,11 +7987,11 @@
     "User.20260218141914.1": "import 'plugins.vim'\n\n<< plugin configs >>\n",
     "User.20260218141914.18": "@others\n",
     "User.20260218141914.19": "let g:coc_node_path = {{ lookPath \"node\" | squote }}\n\n\" coc.nvim\n\" Use tab for trigger completion with characters ahead and navigate\n\" NOTE: There's always complete item selected by default, you may want to enable\n\" no select by `\"suggest.noselect\": true` in your configuration file\n\" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by\n\" other plugin before putting this into your config\ninoremap <silent><expr> <TAB>\n      \\ coc#pum#visible() ? coc#pum#next(1) :\n      \\ CheckBackspace() ? \"\\<Tab>\" :\n      \\ coc#refresh()\ninoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : \"\\<C-h>\"\n\n\" Make <CR> to accept selected completion item or notify coc.nvim to format\n\" <C-g>u breaks current undo, please make your own choice\ninoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : \"\\<C-g>u\\<CR>\\<c-r>=coc#on_enter()\\<CR>\"\n\nfunction! CheckBackspace() abort\n  let col = col('.') - 1\n  return !col || getline('.')[col - 1]  =~# '\\s'\nendfunction\n\n\" Use <c-space> to trigger completion\nif has('nvim')\n  inoremap <silent><expr> <c-space> coc#refresh()\nelse\n  inoremap <silent><expr> <c-@> coc#refresh()\nendif\n\n\" Use `[g` and `]g` to navigate diagnostics\n\" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list\nnmap <silent> [d <Plug>(coc-diagnostic-prev)\nnmap <silent> ]d <Plug>(coc-diagnostic-next)\n\n\" GoTo code navigation\nnmap <silent> gd <Plug>(coc-definition)\nnmap <silent> gy <Plug>(coc-type-definition)\nnmap <silent> gi <Plug>(coc-implementation)\nnmap <silent> gr <Plug>(coc-references)\n\nfunction! ShowDocumentation()\n  if CocAction('hasProvider', 'hover')\n    call CocActionAsync('doHover')\n  else\n    call feedkeys('K', 'in')\n  endif\nendfunction\n\n\" Use K to show documentation in preview window\nnnoremap <silent> K :call ShowDocumentation()<CR>\n\n\" Highlight the symbol and its references when holding the cursor\nautocmd CursorHold * silent call CocActionAsync('highlight')\n\n\" Symbol renaming\nnnoremap <leader>R <plug>(coc-rename)\n\n\" Formatting selected code\n\" xmap <leader>f  <Plug>(coc-format-selected)\n\" nmap <leader>f  <Plug>(coc-format-selected)\n\naugroup mygroup\n  autocmd!\n  \" Setup formatexpr specified filetype(s)\n  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')\n  \" Update signature help on jump placeholder\n  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')\naugroup end\n\n\" Applying code actions to the selected code block\n\" Example: `<leader>aap` for current paragraph\n\" xmap <leader>a  <Plug>(coc-codeaction-selected)\n\" nmap <leader>a  <Plug>(coc-codeaction-selected)\n\n\" Remap keys for applying code actions at the cursor position\n\" nmap <leader>ac  <Plug>(coc-codeaction-cursor)\n\" Remap keys for apply code actions affect whole buffer\n\" nmap <leader>as  <Plug>(coc-codeaction-source)\n\" Apply the most preferred quickfix action to fix diagnostic on the current line\n\" nmap <leader>qf  <Plug>(coc-fix-current)\n\n\" Remap keys for applying refactor code actions\n\" nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)\n\" xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)\n\" nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)\n\n\" Run the Code Lens action on the current line\n\" nmap <leader>cl  <Plug>(coc-codelens-action)\n\n\" Map function and class text objects\n\" NOTE: Requires 'textDocument.documentSymbol' support from the language server\nxmap if <Plug>(coc-funcobj-i)\nomap if <Plug>(coc-funcobj-i)\nxmap af <Plug>(coc-funcobj-a)\nomap af <Plug>(coc-funcobj-a)\nxmap ic <Plug>(coc-classobj-i)\nomap ic <Plug>(coc-classobj-i)\nxmap ac <Plug>(coc-classobj-a)\nomap ac <Plug>(coc-classobj-a)\n\n\" Remap <C-f> and <C-b> to scroll float windows/popups\nif has('nvim-0.4.0') || has('patch-8.2.0750')\n  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : \"\\<C-f>\"\n  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : \"\\<C-b>\"\n  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? \"\\<c-r>=coc#float#scroll(1)\\<cr>\" : \"\\<Right>\"\n  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? \"\\<c-r>=coc#float#scroll(0)\\<cr>\" : \"\\<Left>\"\n  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : \"\\<C-f>\"\n  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : \"\\<C-b>\"\nendif\n\n\" Use CTRL-S for selections ranges\n\" Requires 'textDocument/selectionRange' support of language server\nnmap <silent> <C-s> <Plug>(coc-range-select)\nxmap <silent> <C-s> <Plug>(coc-range-select)\n\n\" Add `:Format` command to format current buffer\ncommand! -nargs=0 Format :call CocActionAsync('format')\n\n\" Add `:Fold` command to fold current buffer\ncommand! -nargs=? Fold :call     CocAction('fold', <f-args>)\n\n\" Add `:OR` command for organize imports of the current buffer\ncommand! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')\n\n\" Add (Neo)Vim's native statusline support\n\" NOTE: Please see `:h coc-status` for integrations with external plugins that\n\" provide custom statusline: lightline.vim, vim-airline\nset statusline^=%{coc#status()}%{get(b:,'coc_current_function',''\\'''\\')}\n\nlet g:coc_global_extensions = ['coc-fish', '@yaegassy/coc-marksman', 'coc-emoji', 'coc-dash-complete', 'coc-just-complete', 'coc-translator', 'coc-perl', 'coc-go', 'coc-json', 'coc-prettier', 'coc-basedpyright', 'coc-r-lsp', 'coc-sh', 'coc-snippets', 'coc-sumneko-lua', 'coc-texlab', 'coc-toml', 'coc-vimlsp', 'coc-yaml' ]\n\" nnoremap <leader>e <Cmd>CocCommand explorer --quit-on-open<CR>\n\n\" limit completion item\nlet g:coc_filetype_map = { 'yaml.ansible': 'ansible', }\nset pumheight=10\n\nnmap <Leader>,t <Plug>(coc-translator-p)\nvmap <Leader>,t <Plug>(coc-translator-pv)\n",
-    "User.20260218141914.20": "set termguicolors\nlet g:tokyonight_style = 'night' \" available: night, storm\nlet g:tokyonight_enable_italic = 1\ncolorscheme tokyonight\n",
-    "User.20260218141914.22": "\" vim-easy-align\n@\nxmap ga <Plug>(EasyAlign)\nnmap ga <Plug>(EasyAlign)\n@c\n",
-    "User.20260218141914.23": "\" vim-suda\n@\nlet g:suda_smart_edit = 1\n@c\n",
-    "User.20260218143021.1": "let g:lightline = {\n      \\ 'colorscheme': 'tokyonight',\n      \\ 'active': {\n      \\   'left': [ [ 'mode', 'paste' ],\n      \\             [ 'readonly', 'filename', 'modified' ] ],\n      \\   'right': [ [ 'lineinfo' ],\n      \\              [ 'percent' ],\n      \\              [ 'zoomed', 'fileformat', 'fileencoding', 'filetype' ] ]\n      \\ },\n      \\ 'inactive': {\n      \\   'left': [ [ 'mode', 'paste' ],\n      \\             [ 'readonly', 'filename', 'modified' ] ],\n      \\   'right': [ [ 'lineinfo' ],\n      \\              [ 'percent' ],\n      \\              [ 'fileformat', 'fileencoding', 'filetype' ] ]\n      \\ },\n      \\ 'component_function': {\n      \\   'filename': 'LightlineTruncatedFileName',\n      \\   'zoomed': 'zoom#statusline'\n      \\ }\n      \\ }\n\nfunction! LightlineTruncatedFileName()\nlet l:filePath = expand('%')\n    if winwidth(0) > 100\n        return l:filePath\n    else\n        return pathshorten(l:filePath)\n    endif\nendfunction\n",
-    "User.20260227211108.1": "@\nlet g:python3_host_prog = {{ lookPath \"python\" | squote }}\n@c\n",
+    "User.20260218141914.20": "\" set termguicolors\n\" let g:tokyonight_style = 'night' \" available: night, storm\n\" let g:tokyonight_enable_italic = 1\n\" colorscheme tokyonight\n",
+    "User.20260218141914.22": "\" vim-easy-align\n\" xmap ga <Plug>(EasyAlign)\n\" nmap ga <Plug>(EasyAlign)\n",
+    "User.20260218141914.23": "\" vim-suda\n\" let g:suda_smart_edit = 1\n",
+    "User.20260218143021.1": "let g:lightline = {\n      \\ 'colorscheme': 'catppuccin_mocha',\n      \\ 'active': {\n      \\   'left': [ [ 'mode', 'paste' ],\n      \\             [ 'readonly', 'filename', 'modified' ] ],\n      \\   'right': [ [ 'lineinfo' ],\n      \\              [ 'percent' ],\n      \\              [ 'zoomed', 'fileformat', 'fileencoding', 'filetype' ] ]\n      \\ },\n      \\ 'inactive': {\n      \\   'left': [ [ 'mode', 'paste' ],\n      \\             [ 'readonly', 'filename', 'modified' ] ],\n      \\   'right': [ [ 'lineinfo' ],\n      \\              [ 'percent' ],\n      \\              [ 'fileformat', 'fileencoding', 'filetype' ] ]\n      \\ },\n      \\ 'component_function': {\n      \\   'filename': 'LightlineTruncatedFileName',\n      \\   'zoomed': 'zoom#statusline'\n      \\ }\n      \\ }\n\nfunction! LightlineTruncatedFileName()\nlet l:filePath = expand('%')\n    if winwidth(0) > 100\n        return l:filePath\n    else\n        return pathshorten(l:filePath)\n    endif\nendfunction\n",
+    "User.20260227211108.1": "\" let g:python3_host_prog = {{ lookPath \"python\" | squote }}\n",
     "zxc.20260319224134.1": "let g:workspace_autocreate = 1\nlet g:workspace_session_disable_on_args = 1\nlet g:workspace_session_directory = {{ print (joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"sessions\" ) \"\\\\\" | squote }}\nlet g:workspace_autosave = 1\nlet g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"undo\" ) \"\\\\\" | squote }}\n",
     "zxc.20260426141132.1": "nnoremap <silent> <leader> <cmd>WhichKey '<Space>'<CR>",
     "zxc.20260426141355.1": "let g:which_key_map = {}\n\n@others\n\ncall which_key#register('<Space>', \"g:which_key_map\")",
@@ -7991,6 +7999,7 @@
     "zxc.20260426141405.1": "let g:which_key_map['w'] = {\n      \\ 'name': 'windows',\n      \\ 'w'   : ['<C-W>w'     , 'other-window'],\n      \\ 'd'   : ['<C-W>c'     , 'delete-window'],\n      \\ '-'   : ['<C-W>s'     , 'split-window-below'],\n      \\ '|'   : ['<C-W>v'     , 'split-window-right'],\n      \\ '2'   : ['<C-W>v'     , 'layout-double-columns'],\n      \\ 'h'   : ['<C-W>h'     , 'window-left'],\n      \\ 'j'   : ['<C-W>j'     , 'window-below'],\n      \\ 'l'   : ['<C-W>l'     , 'window-right'],\n      \\ 'k'   : ['<C-W>k'     , 'window-up'],\n      \\ 'H'   : ['<C-W>5<'    , 'expand-window-left'],\n      \\ 'J'   : [':resize +5' , 'expand-window-below'],\n      \\ 'L'   : ['<C-W>5>'    , 'expand-window-right'],\n      \\ 'K'   : [':resize -5' , 'expand-window-up'],\n      \\ '='   : ['<C-W>='     , 'balance-window'],\n      \\ 's'   : ['<C-W>s'     , 'split-window-below'],\n      \\ 'v'   : ['<C-W>v'     , 'split-window-below'],\n      \\ '?'   : ['Windows'    , 'fzf-window'],\n      \\ }",
     "zxc.20260427001349.1": "let g:org_export_emacs = \"~/scoop/apps/emacs/current/bin/emacs.exe\"",
     "zxc.20260427003349.1": "nnoremap <bs> <cmd>Dir<cr>",
+    "zxc.20260427005833.1": "set termguicolors\ncolorscheme catppuccin_mocha\n",
     "zxc.20260125164142.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125164204.1": "vim9script\n\n# simple fuzzy find finder\n# place into ~/.vim/plugin/fuzzyfind.vim\n\nset wildmode=noselect:lastused,full\nset wildmenu wildoptions=pum,fuzzy pumheight=12\n\n\nvar files_cache: list<string> = []\naugroup CmdComplete\n    au!\n    au CmdlineChanged : wildtrigger()\n    au CmdlineEnter : files_cache = []\naugroup END\n\ndef FindCmd(): string\n    var cmd = ''\n    if executable('fd')\n        cmd = 'fd . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('fdfind')\n        cmd = 'fdfind . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('ugrep')\n        cmd = 'ugrep \"\" -Rl -I --ignore-files'\n    elseif executable('rg')\n        cmd = 'rg --path-separator / --files --hidden --glob !.git'\n    elseif executable('find')\n        cmd = 'find \\! \\( -path \"*/.git\" -prune -o -name \"*.swp\" \\) -type f -follow'\n    endif\n    return cmd\nenddef\n\ndef Find(cmd_arg: string, cmd_complete: bool): list<string>\n    if empty(files_cache)\n        var cmd = FindCmd()\n        # fallback to built-in glob if no fd/rg/ug/find is available\n        # e.g. we are on Windows\n        if empty(cmd)\n            files_cache = globpath('.', '**', 1, 1)\n                ->filter((_, v) => !isdirectory(v))\n                ->mapnew((_, v) => v->substitute('^\\.[\\/]', \"\", \"\"))\n        else\n            files_cache = systemlist(cmd)\n        endif\n    endif\n    if empty(cmd_arg)\n        return files_cache\n    else\n        return files_cache->matchfuzzy(cmd_arg)\n    endif\nenddef\n\nset findfunc=Find",
     "zxc.20260318214950.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -8005,7 +8014,8 @@
     "zxc.20260318212806.7": "\" Plug 'godlygeek/tabular', { 'on': 'Tabularize' }\n",
     "zxc.20260318212806.11": "\" Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }\n",
     "zxc.20260318212806.3": "\" Plug 'vim-scripts/align', { 'on': 'Align' }\n",
-    "zxc.20260318212806.8": "Plug 'ghifarit53/tokyonight-vim'\n",
+    "zxc.20260318212806.8": "\" Plug 'ghifarit53/tokyonight-vim'",
+    "zxc.20260427005654.1": "Plug 'https://codeberg.org/mao-yining/vim-catppuccin'",
     "zxc.20260318212806.9": "\" This plugin highlights patterns and ranges for Ex commands in Command-line mode. It also provides live preview for :substitute.\nPlug 'markonm/traces.vim'\n",
     "zxc.20260318212806.12": "\" Plug 'tpope/vim-eunuch', { 'on': [ 'Remove', 'Delete', 'Move', 'Chmod', 'Mkdir', 'Cfind', 'Clocate', 'Lfind', 'Wall', 'SudoWrite', 'SudoEdit' ] }\n",
     "zxc.20260318212806.15": "\" create non-exist dir when saving file\n\" Plug 'pbrisbin/vim-mkdir'\n",
@@ -9064,25 +9074,25 @@
       "_mod_time": 1777179946.854
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1777221240.415
+      "_mod_time": 1777222982.156
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1777179946.869
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1777222473.183
+      "_mod_time": 1777222738.23
     },
     "zxc.20260427000037.1": {
       "_mod_time": 1777219283.718
     },
     "User.20260218142211.1": {
-      "_mod_time": 1777221240.439
+      "_mod_time": 1777222982.186
     },
     "User.20260218142322.1": {
       "_mod_time": 1777179946.906
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1777222473.195
+      "_mod_time": 1777222738.325
     },
     "zxc.20260426235942.1": {
       "_mod_time": 1777219283.757
