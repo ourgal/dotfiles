@@ -1,0 +1,5 @@
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if lookPath "vim" -}}
+let maplocalleader = "\\"
+{{ end -}}
+{{ end -}}
