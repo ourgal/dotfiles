@@ -608,6 +608,10 @@
                                         {
                                           "gnx": "zxc.20260427001349.1",
                                           "vh": "vim-orgmode"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260427003349.1",
+                                          "vh": "vim-dir"
                                         }
                                       ]
                                     }
@@ -762,6 +766,10 @@
                                         {
                                           "gnx": "zxc.20260318212806.16",
                                           "vh": "vim-suda"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260427003116.1",
+                                          "vh": "vim-dir"
                                         }
                                       ]
                                     },
@@ -7929,7 +7937,7 @@
     "zxc.20260423154131.5": "set colored-stats                 on   # Turn on completion colors.\nset colored-completion-prefix     on   # Color the typed completion prefix.",
     "zxc.20260423154131.7": "ll=eza --long --icons=auto --group --group-directories-first --time-style relative $*\nls=eza --icons=auto $*\nreboot=shutdown /t 0 /r $*\npoweroff=shutdown /t 0 /s $*\n{{ if lookPath \"nircmd\" -}}\nscroff=nircmd monitor off $*\n{{ end -}}\nscoop-update=scoop update * && scoop cache remove * && scoop cleanup *\nunlock-keepassxc=sh -c \"gopass show -o keepassxc/main | keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir \"syncthing\" \"keepassxc\" \"main.kdbx\" | replace \"\\\\\" \"/\" }} &\"",
     "zxc.20260125143007.1": "<< unix >>\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260225203941.1": "{{ if or (eq .chezmoi.os \"linux\") (eq .chezmoi.os \"android\") -}}",
+    "User.20260225203941.1": "{{ if or (eq .chezmoi.os \"linux\") (eq .chezmoi.os \"android\") -}}\n",
     "zxc.20260125143032.1": "# ~/.bashrc: executed by bash(1) for non-login shells.\n# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)\n# for examples\n\n# If not running interactively, don't do anything\ncase $- in\n    *i*) ;;\n      *) return;;\nesac\n\n# don't put duplicate lines or lines starting with space in the history.\n# See bash(1) for more options\nHISTCONTROL=ignoreboth\n\n# append to the history file, don't overwrite it\nshopt -s histappend\n\n# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)\nHISTSIZE=1000\nHISTFILESIZE=2000\n\n# check the window size after each command and, if necessary,\n# update the values of LINES and COLUMNS.\nshopt -s checkwinsize\n\n# If set, the pattern \"**\" used in a pathname expansion context will\n# match all files and zero or more directories and subdirectories.\n#shopt -s globstar\n\n# make less more friendly for non-text input files, see lesspipe(1)\n#[ -x /usr/bin/lesspipe ] && eval \"$(SHELL=/bin/sh lesspipe)\"\n\n{{ if and (eq .chezmoi.os \"linux\") (eq .chezmoi.osRelease.id \"debian\") -}}\n# set variable identifying the chroot you work in (used in the prompt below)\nif [ -z \"''\\${debian_chroot:-}\" ] && [ -r /etc/debian_chroot ]; then\n    debian_chroot=$(cat /etc/debian_chroot)\nfi\n{{ end -}}\n\n# set a fancy prompt (non-color, unless we know we \"want\" color)\ncase \"$TERM\" in\n    xterm-color|*-256color) color_prompt=yes;;\nesac\n\n# uncomment for a colored prompt, if the terminal has the capability; turned\n# off by default to not distract the user: the focus in a terminal window\n# should be on the output of commands, not on the prompt\n#force_color_prompt=yes\n\nif [ -n \"$force_color_prompt\" ]; then\n    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then\n        # We have color support; assume it's compliant with Ecma-48\n        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such\n        # a case would tend to support setf rather than setaf.)\n        color_prompt=yes\n    else\n        color_prompt=\n    fi\nfi\n\n{{ if and (eq .chezmoi.os \"linux\") (eq .chezmoi.osRelease.id \"debian\") -}}\n# If this is an xterm set the title to user@host:dir\ncase \"$TERM\" in\nxterm*|rxvt*)\n    PS1=\"\\[\\e]0;''\\${debian_chroot:+($debian_chroot)}\\u@\\h: \\w\\a\\]$PS1\"\n    ;;\n*)\n    ;;\nesac\n{{ end -}}\n\n# enable color support of ls and also add handy aliases\nif [ -x /usr/bin/dircolors ]; then\n    test -r ~/.dircolors && eval \"$(dircolors -b ~/.dircolors)\" || eval \"$(dircolors -b)\"\n    alias ls='ls --color=auto'\n    #alias dir='dir --color=auto'\n    #alias vdir='vdir --color=auto'\n\n    #alias grep='grep --color=auto'\n    #alias fgrep='fgrep --color=auto'\n    #alias egrep='egrep --color=auto'\nfi\n\n# colored GCC warnings and errors\n#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'\n\n# some more ls aliases\n#alias ll='ls -l'\n#alias la='ls -A'\n#alias l='ls -CF'\n\n# Alias definitions.\n# You may want to put all your additions into a separate file like\n# ~/.bash_aliases, instead of adding them here directly.\n# See /usr/share/doc/bash-doc/examples in the bash-doc package.\n\nif [ -f ~/.bash_aliases ]; then\n    . ~/.bash_aliases\nfi\n\n# enable programmable completion features (you don't need to enable\n# this, if it's already enabled in /etc/bash.bashrc and /etc/profile\n# sources /etc/bash.bashrc).\nif ! shopt -oq posix; then\n  if [ -f /usr/share/bash-completion/bash_completion ]; then\n    . /usr/share/bash-completion/bash_completion\n  elif [ -f /etc/bash_completion ]; then\n    . /etc/bash_completion\n  fi\nfi",
     "zxc.20260125143522.1": "EDITOR={{ template \"editor\" }}",
     "zxc.20260125143553.1": "PATH=~/.local/bin:$PATH",
@@ -7982,31 +7990,33 @@
     "zxc.20260426142134.1": "let g:which_key_map['f'] = {\n      \\ 'name': 'files',\n      \\ 'f'   : [':Files', 'Files'],\n      \\ ' '   : [':GFiles', 'Git Files'],\n      \\ }",
     "zxc.20260426141405.1": "let g:which_key_map['w'] = {\n      \\ 'name': 'windows',\n      \\ 'w'   : ['<C-W>w'     , 'other-window'],\n      \\ 'd'   : ['<C-W>c'     , 'delete-window'],\n      \\ '-'   : ['<C-W>s'     , 'split-window-below'],\n      \\ '|'   : ['<C-W>v'     , 'split-window-right'],\n      \\ '2'   : ['<C-W>v'     , 'layout-double-columns'],\n      \\ 'h'   : ['<C-W>h'     , 'window-left'],\n      \\ 'j'   : ['<C-W>j'     , 'window-below'],\n      \\ 'l'   : ['<C-W>l'     , 'window-right'],\n      \\ 'k'   : ['<C-W>k'     , 'window-up'],\n      \\ 'H'   : ['<C-W>5<'    , 'expand-window-left'],\n      \\ 'J'   : [':resize +5' , 'expand-window-below'],\n      \\ 'L'   : ['<C-W>5>'    , 'expand-window-right'],\n      \\ 'K'   : [':resize -5' , 'expand-window-up'],\n      \\ '='   : ['<C-W>='     , 'balance-window'],\n      \\ 's'   : ['<C-W>s'     , 'split-window-below'],\n      \\ 'v'   : ['<C-W>v'     , 'split-window-below'],\n      \\ '?'   : ['Windows'    , 'fzf-window'],\n      \\ }",
     "zxc.20260427001349.1": "let g:org_export_emacs = \"~/scoop/apps/emacs/current/bin/emacs.exe\"",
+    "zxc.20260427003349.1": "nnoremap <bs> <cmd>Dir<cr>",
     "zxc.20260125164142.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125164204.1": "vim9script\n\n# simple fuzzy find finder\n# place into ~/.vim/plugin/fuzzyfind.vim\n\nset wildmode=noselect:lastused,full\nset wildmenu wildoptions=pum,fuzzy pumheight=12\n\n\nvar files_cache: list<string> = []\naugroup CmdComplete\n    au!\n    au CmdlineChanged : wildtrigger()\n    au CmdlineEnter : files_cache = []\naugroup END\n\ndef FindCmd(): string\n    var cmd = ''\n    if executable('fd')\n        cmd = 'fd . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('fdfind')\n        cmd = 'fdfind . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('ugrep')\n        cmd = 'ugrep \"\" -Rl -I --ignore-files'\n    elseif executable('rg')\n        cmd = 'rg --path-separator / --files --hidden --glob !.git'\n    elseif executable('find')\n        cmd = 'find \\! \\( -path \"*/.git\" -prune -o -name \"*.swp\" \\) -type f -follow'\n    endif\n    return cmd\nenddef\n\ndef Find(cmd_arg: string, cmd_complete: bool): list<string>\n    if empty(files_cache)\n        var cmd = FindCmd()\n        # fallback to built-in glob if no fd/rg/ug/find is available\n        # e.g. we are on Windows\n        if empty(cmd)\n            files_cache = globpath('.', '**', 1, 1)\n                ->filter((_, v) => !isdirectory(v))\n                ->mapnew((_, v) => v->substitute('^\\.[\\/]', \"\", \"\"))\n        else\n            files_cache = systemlist(cmd)\n        endif\n    endif\n    if empty(cmd_arg)\n        return files_cache\n    else\n        return files_cache->matchfuzzy(cmd_arg)\n    endif\nenddef\n\nset findfunc=Find",
-    "zxc.20260318214950.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260318212719.1": "call plug#begin()\n\n@others\n\ncall plug#end()",
-    "zxc.20260426142100.1": "Plug 'junegunn/fzf'\nPlug 'junegunn/fzf.vim'",
+    "zxc.20260318214950.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260318212719.1": "call plug#begin()\n\n@others\n\ncall plug#end()\n",
+    "zxc.20260426142100.1": "Plug 'junegunn/fzf'\nPlug 'junegunn/fzf.vim'\n",
     "zxc.20260426140715.1": "Plug 'liuchengxu/vim-which-key'",
-    "zxc.20260318212806.4": "\" Plug 'tyru/caw.vim'",
+    "zxc.20260318212806.4": "\" Plug 'tyru/caw.vim'\n",
     "zxc.20260318212806.5": "Plug 'alker0/chezmoi.vim'\n",
-    "zxc.20260318212806.18": "\" Plug 'raghur/vim-ghost'\n\" Plug 'roxma/nvim-yarp', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }\n\" Plug 'roxma/vim-hug-neovim-rpc', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }",
+    "zxc.20260318212806.18": "\" Plug 'raghur/vim-ghost'\n\" Plug 'roxma/nvim-yarp', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }\n\" Plug 'roxma/vim-hug-neovim-rpc', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }\n",
     "zxc.20260318212806.6": "{{ if lookPath \"node\" -}}\nPlug 'neoclide/coc.nvim', {'branch': 'release'}\n{{ end -}}\n",
     "zxc.20260318212806.2": "Plug 'dense-analysis/ale'\n",
-    "zxc.20260318212806.7": "\" Plug 'godlygeek/tabular', { 'on': 'Tabularize' }",
-    "zxc.20260318212806.11": "\" Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }",
-    "zxc.20260318212806.3": "\" Plug 'vim-scripts/align', { 'on': 'Align' }",
+    "zxc.20260318212806.7": "\" Plug 'godlygeek/tabular', { 'on': 'Tabularize' }\n",
+    "zxc.20260318212806.11": "\" Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }\n",
+    "zxc.20260318212806.3": "\" Plug 'vim-scripts/align', { 'on': 'Align' }\n",
     "zxc.20260318212806.8": "Plug 'ghifarit53/tokyonight-vim'\n",
-    "zxc.20260318212806.9": "\" This plugin highlights patterns and ranges for Ex commands in Command-line mode. It also provides live preview for :substitute.\nPlug 'markonm/traces.vim'",
+    "zxc.20260318212806.9": "\" This plugin highlights patterns and ranges for Ex commands in Command-line mode. It also provides live preview for :substitute.\nPlug 'markonm/traces.vim'\n",
     "zxc.20260318212806.12": "\" Plug 'tpope/vim-eunuch', { 'on': [ 'Remove', 'Delete', 'Move', 'Chmod', 'Mkdir', 'Cfind', 'Clocate', 'Lfind', 'Wall', 'SudoWrite', 'SudoEdit' ] }\n",
-    "zxc.20260318212806.15": "\" create non-exist dir when saving file\n\" Plug 'pbrisbin/vim-mkdir'",
+    "zxc.20260318212806.15": "\" create non-exist dir when saving file\n\" Plug 'pbrisbin/vim-mkdir'\n",
     "zxc.20260318212806.16": "\" auto sudo when saving\n\" Plug 'lambdalisue/vim-suda'\n",
+    "zxc.20260427003116.1": "Plug 'habamax/vim-dir'\n",
     "zxc.20260318212806.13": "{{ if lookPath \"git\" -}}\nPlug 'tpope/vim-fugitive'\n{{ end -}}\n",
-    "zxc.20260318212806.14": "{{ if lookPath \"git\" -}}\nPlug 'airblade/vim-gitgutter'\n{{ end -}}",
-    "zxc.20260318212806.17": "Plug 'itchyny/lightline.vim'",
-    "zxc.20260318212806.19": "Plug 'lervag/vimtex', { 'for': 'tex' }",
-    "zxc.20260319220325.1": "Plug 'ourgal/vim-workspace'",
-    "zxc.20260426235048.1": "Plug 'jceb/vim-orgmode'\nPlug 'tpope/vim-speeddating'",
+    "zxc.20260318212806.14": "{{ if lookPath \"git\" -}}\nPlug 'airblade/vim-gitgutter'\n{{ end -}}\n",
+    "zxc.20260318212806.17": "Plug 'itchyny/lightline.vim'\n",
+    "zxc.20260318212806.19": "Plug 'lervag/vimtex', { 'for': 'tex' }\n",
+    "zxc.20260319220325.1": "Plug 'ourgal/vim-workspace'\n",
+    "zxc.20260426235048.1": "Plug 'jceb/vim-orgmode'\nPlug 'tpope/vim-speeddating'\n",
     "zxc.20260427000037.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260427000057.1": "let maplocalleader = \"\\\\\"",
     "User.20260218142211.1": "@language vim\n<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -9054,25 +9064,25 @@
       "_mod_time": 1777179946.854
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1777220190.428
+      "_mod_time": 1777221240.415
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1777179946.869
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1777219646.103
+      "_mod_time": 1777222473.183
     },
     "zxc.20260427000037.1": {
       "_mod_time": 1777219283.718
     },
     "User.20260218142211.1": {
-      "_mod_time": 1777220190.455
+      "_mod_time": 1777221240.439
     },
     "User.20260218142322.1": {
       "_mod_time": 1777179946.906
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1777219646.121
+      "_mod_time": 1777222473.195
     },
     "zxc.20260426235942.1": {
       "_mod_time": 1777219283.757
