@@ -1,0 +1,5 @@
+{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+{{ if lookPath "vim" -}}
+vim workspace  folder
+{{ end -}}
+{{ end -}}
