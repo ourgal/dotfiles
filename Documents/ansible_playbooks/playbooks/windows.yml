@@ -111,12 +111,12 @@
         state: present
         groups:
           - Users
-    - name: Start ssh-agent service
+    - name: Disable ssh-agent service
       tags: ssh-agent
       ansible.windows.win_service:
         name: ssh-agent
-        state: started
-        start_mode: auto
+        state: stopped
+        start_mode: disabled
     - name: Update openssh
       tags: openssh
       chocolatey.chocolatey.win_chocolatey:
