@@ -292,17 +292,17 @@ set pumheight=10
 
 nmap <Leader>,t <Plug>(coc-translator-p)
 vmap <Leader>,t <Plug>(coc-translator-pv)
-set termguicolors
-let g:tokyonight_style = 'night' " available: night, storm
-let g:tokyonight_enable_italic = 1
-colorscheme tokyonight
+" set termguicolors
+" let g:tokyonight_style = 'night' " available: night, storm
+" let g:tokyonight_enable_italic = 1
+" colorscheme tokyonight
 " vim-easy-align
 " xmap ga <Plug>(EasyAlign)
 " nmap ga <Plug>(EasyAlign)
 " vim-suda
 " let g:suda_smart_edit = 1
 let g:lightline = {
-      \ 'colorscheme': 'tokyonight',
+      \ 'colorscheme': 'catppuccin_mocha',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'filename', 'modified' ] ],
@@ -369,5 +369,7 @@ let g:which_key_map['w'] = {
 call which_key#register('<Space>', "g:which_key_map")
 let g:org_export_emacs = "~/scoop/apps/emacs/current/bin/emacs.exe"
 nnoremap <bs> <cmd>Dir<cr>
+set termguicolors
+colorscheme catppuccin_mocha
 {{ end -}}
 {{ end -}}
