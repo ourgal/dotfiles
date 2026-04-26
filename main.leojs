@@ -587,19 +587,21 @@
                                         },
                                         {
                                           "gnx": "zxc.20260426141132.1",
-                                          "vh": "vim-which-key"
-                                        },
-                                        {
-                                          "gnx": "zxc.20260426141355.1",
-                                          "vh": "keybindings",
+                                          "vh": "vim-which-key",
                                           "children": [
                                             {
-                                              "gnx": "zxc.20260426141405.1",
-                                              "vh": "w"
-                                            },
-                                            {
-                                              "gnx": "zxc.20260426142134.1",
-                                              "vh": "f"
+                                              "gnx": "zxc.20260426141355.1",
+                                              "vh": "keybindings",
+                                              "children": [
+                                                {
+                                                  "gnx": "zxc.20260426142134.1",
+                                                  "vh": "f"
+                                                },
+                                                {
+                                                  "gnx": "zxc.20260426141405.1",
+                                                  "vh": "w"
+                                                }
+                                              ]
                                             }
                                           ]
                                         }
@@ -1666,6 +1668,10 @@
                                         {
                                           "gnx": "zxc.20260419032943.1",
                                           "vh": "ahk"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260426155141.1",
+                                          "vh": "align"
                                         }
                                       ]
                                     }
@@ -7943,11 +7949,11 @@
     "zxc.20260319224134.1": "let g:workspace_autocreate = 1\nlet g:workspace_session_disable_on_args = 1\nlet g:workspace_session_directory = {{ print (joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"sessions\" ) \"\\\\\" | squote }}\nlet g:workspace_autosave = 1\nlet g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"undo\" ) \"\\\\\" | squote }}\n",
     "zxc.20260426141132.1": "nnoremap <silent> <leader> <cmd>WhichKey '<Space>'<CR>",
     "zxc.20260426141355.1": "let g:which_key_map = {}\n\n@others\n\ncall which_key#register('<Space>', \"g:which_key_map\")",
-    "zxc.20260426141405.1": "let g:which_key_map['w'] = {\n      \\ 'name' : 'windows' ,\n      \\ 'w' : ['<C-W>w'     , 'other-window']          ,\n      \\ 'd' : ['<C-W>c'     , 'delete-window']         ,\n      \\ '-' : ['<C-W>s'     , 'split-window-below']    ,\n      \\ '|' : ['<C-W>v'     , 'split-window-right']    ,\n      \\ '2' : ['<C-W>v'     , 'layout-double-columns'] ,\n      \\ 'h' : ['<C-W>h'     , 'window-left']           ,\n      \\ 'j' : ['<C-W>j'     , 'window-below']          ,\n      \\ 'l' : ['<C-W>l'     , 'window-right']          ,\n      \\ 'k' : ['<C-W>k'     , 'window-up']             ,\n      \\ 'H' : ['<C-W>5<'    , 'expand-window-left']    ,\n      \\ 'J' : [':resize +5'  , 'expand-window-below']   ,\n      \\ 'L' : ['<C-W>5>'    , 'expand-window-right']   ,\n      \\ 'K' : [':resize -5'  , 'expand-window-up']      ,\n      \\ '=' : ['<C-W>='     , 'balance-window']        ,\n      \\ 's' : ['<C-W>s'     , 'split-window-below']    ,\n      \\ 'v' : ['<C-W>v'     , 'split-window-below']    ,\n      \\ '?' : ['Windows'    , 'fzf-window']            ,\n      \\ }",
-    "zxc.20260426142134.1": "let g:which_key_map['f'] = {\n      \\ 'name' : 'files' ,\n      \\ 'f' : [':Files', 'Files'],\n      \\ ' ' : [':GFiles', 'Git Files'],\n      \\ }",
+    "zxc.20260426142134.1": "let g:which_key_map['f'] = {\n      \\ 'name': 'files',\n      \\ 'f'   : [':Files', 'Files'],\n      \\ ' '   : [':GFiles', 'Git Files'],\n      \\ }",
+    "zxc.20260426141405.1": "let g:which_key_map['w'] = {\n      \\ 'name': 'windows',\n      \\ 'w'   : ['<C-W>w'     , 'other-window'],\n      \\ 'd'   : ['<C-W>c'     , 'delete-window'],\n      \\ '-'   : ['<C-W>s'     , 'split-window-below'],\n      \\ '|'   : ['<C-W>v'     , 'split-window-right'],\n      \\ '2'   : ['<C-W>v'     , 'layout-double-columns'],\n      \\ 'h'   : ['<C-W>h'     , 'window-left'],\n      \\ 'j'   : ['<C-W>j'     , 'window-below'],\n      \\ 'l'   : ['<C-W>l'     , 'window-right'],\n      \\ 'k'   : ['<C-W>k'     , 'window-up'],\n      \\ 'H'   : ['<C-W>5<'    , 'expand-window-left'],\n      \\ 'J'   : [':resize +5' , 'expand-window-below'],\n      \\ 'L'   : ['<C-W>5>'    , 'expand-window-right'],\n      \\ 'K'   : [':resize -5' , 'expand-window-up'],\n      \\ '='   : ['<C-W>='     , 'balance-window'],\n      \\ 's'   : ['<C-W>s'     , 'split-window-below'],\n      \\ 'v'   : ['<C-W>v'     , 'split-window-below'],\n      \\ '?'   : ['Windows'    , 'fzf-window'],\n      \\ }",
     "zxc.20260125164142.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125164204.1": "vim9script\n\n# simple fuzzy find finder\n# place into ~/.vim/plugin/fuzzyfind.vim\n\nset wildmode=noselect:lastused,full\nset wildmenu wildoptions=pum,fuzzy pumheight=12\n\n\nvar files_cache: list<string> = []\naugroup CmdComplete\n    au!\n    au CmdlineChanged : wildtrigger()\n    au CmdlineEnter : files_cache = []\naugroup END\n\ndef FindCmd(): string\n    var cmd = ''\n    if executable('fd')\n        cmd = 'fd . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('fdfind')\n        cmd = 'fdfind . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('ugrep')\n        cmd = 'ugrep \"\" -Rl -I --ignore-files'\n    elseif executable('rg')\n        cmd = 'rg --path-separator / --files --hidden --glob !.git'\n    elseif executable('find')\n        cmd = 'find \\! \\( -path \"*/.git\" -prune -o -name \"*.swp\" \\) -type f -follow'\n    endif\n    return cmd\nenddef\n\ndef Find(cmd_arg: string, cmd_complete: bool): list<string>\n    if empty(files_cache)\n        var cmd = FindCmd()\n        # fallback to built-in glob if no fd/rg/ug/find is available\n        # e.g. we are on Windows\n        if empty(cmd)\n            files_cache = globpath('.', '**', 1, 1)\n                ->filter((_, v) => !isdirectory(v))\n                ->mapnew((_, v) => v->substitute('^\\.[\\/]', \"\", \"\"))\n        else\n            files_cache = systemlist(cmd)\n        endif\n    endif\n    if empty(cmd_arg)\n        return files_cache\n    else\n        return files_cache->matchfuzzy(cmd_arg)\n    endif\nenddef\n\nset findfunc=Find",
-    "zxc.20260318214950.1": "@language vim\n<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260318214950.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260318212719.1": "call plug#begin()\n\n@others\n\ncall plug#end()",
     "zxc.20260426142100.1": "Plug 'junegunn/fzf'\nPlug 'junegunn/fzf.vim'",
     "zxc.20260426140715.1": "Plug 'liuchengxu/vim-which-key'",
@@ -8079,6 +8085,7 @@
     "zxc.20260202203521.11": "\"kahole.magit\"\n",
     "zxc.20260202203521.12": "\"PKief.material-icon-theme\"\n",
     "zxc.20260419032943.1": "\"mark-wiemer.vscode-autohotkey-plus-plus\"",
+    "zxc.20260426155141.1": "\"Chouzz.vscode-better-align\"",
     "zxc.20260202213444.1": "<< dos >>\n{{ if lookPath \"codium\" -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202213506.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vscodium\" \"current\" \"install-context.reg\" | quote }}\n{{ if not (lookPath \"code\") -}}\nreg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vscodium\" \"current\" \"install-associations.reg\" | quote }}\n{{ end -}}",
     "User.20260220142155.2": "<< dos >>\n{{ if lookPath \"code\" -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}",
@@ -9013,19 +9020,19 @@
       "_mod_time": 1773571522.654681
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1777187726.396
+      "_mod_time": 1777190155.174
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1773571522.654681
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1777187653.551
+      "_mod_time": 1777188872.649
     },
     "User.20260225235711.1": {
       "_mod_time": 1773571522.654681
     },
     "User.20260218142211.1": {
-      "_mod_time": 1777187726.422
+      "_mod_time": 1777190155.205
     },
     "User.20260218142322.1": {
       "_mod_time": 1773571522.686
@@ -9073,7 +9080,7 @@
       "_mod_time": 1776644732.237
     },
     "zxc.20260202203521.3": {
-      "_mod_time": 1776644732.238
+      "_mod_time": 1777189908.131
     },
     "zxc.20260202213444.1": {
       "_mod_time": 1774398532.779
@@ -9082,7 +9089,7 @@
       "_mod_time": 1774398532.778
     },
     "User.20260220151435.2": {
-      "_mod_time": 1776644732.237
+      "_mod_time": 1777189908.148
     },
     "zxc.20260202215023.1": {
       "_mod_time": 1774398532.686
