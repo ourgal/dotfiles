@@ -1,31 +1,13 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "vim" -}}
+packadd! comment
+packadd! hlyank
 import 'find.vim'
 let g:mapleader = ' '
 nnoremap <leader>bo <cmd>%bd\|e#\|bd#<CR>
-map <silent> \h :noh<cr>
 nnoremap ZZ <cmd>xa<cr>
 nnoremap ZQ <cmd>qa!<cr>
 noremap Q @@
-xnoremap / <Esc>/\%V
-nnoremap <c-n> <tab>
-nnoremap <tab> <cmd>tabnext<cr>
-nnoremap <s-tab> <cmd>tab split<cr>
-nnoremap ^[<tab> <cmd>tabclose<cr>
-
-function FoldWithH()
-    if col('.') == 1
-        return 'zc'
-    else
-        return 'h'
-    endif
-endfunction
-
-nnoremap <expr> h FoldWithH()
-cnoremap <expr> %% getcmdtype( ) == ":" ? expand("%:h") .. "/" : "%%"
-nnoremap & <cmd>&&<CR>
-xnoremap & <cmd>'<,'>&&<CR>
-nnoremap <silent> <esc> <cmd>nohlsearch<CR><esc>
 
 function OpenFileOrURL()
   let cfile = expand('<cfile>')
@@ -39,8 +21,6 @@ endfunction
 nnoremap <silent> gf <cmd>call OpenFileOrURL()<CR>
 
 nnoremap g* :%s/<c-r><c-w>/
-
-nnoremap <leader><space> :<C-u>find<space>
 
 nnoremap ^[. ;
 set laststatus=2
@@ -316,14 +296,11 @@ set termguicolors
 let g:tokyonight_style = 'night' " available: night, storm
 let g:tokyonight_enable_italic = 1
 colorscheme tokyonight
-" vim-auto-save
-let g:autO_save = v:true
-let g:auto_save_silent = v:true
 " vim-easy-align
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
+" xmap ga <Plug>(EasyAlign)
+" nmap ga <Plug>(EasyAlign)
 " vim-suda
-let g:suda_smart_edit = 1
+" let g:suda_smart_edit = 1
 let g:lightline = {
       \ 'colorscheme': 'tokyonight',
       \ 'active': {
@@ -354,11 +331,41 @@ let l:filePath = expand('%')
         return pathshorten(l:filePath)
     endif
 endfunction
-let g:python3_host_prog = {{ lookPath "python" | squote }}
+" let g:python3_host_prog = {{ lookPath "python" | squote }}
 let g:workspace_autocreate = 1
 let g:workspace_session_disable_on_args = 1
-let g:workspace_session_directory = {{ print (joinPath (env "LOCALAPPDATA") "vim" "sessions" ) "\\" | squote }}
-let g:workspace_autosave = 0
-let g:workspace_undodir = {{ print (joinPath (env "LOCALAPPDATA") "vim" "undo" ) "\\" | squote }}
+let g:workspace_session_directory = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "sessions" ) "\\" | squote }}
+let g:workspace_autosave = 1
+let g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "undo" ) "\\" | squote }}
+nnoremap <silent> <leader> <cmd>WhichKey '<Space>'<CR>
+let g:which_key_map = {}
+
+let g:which_key_map['w'] = {
+      \ 'name' : 'windows' ,
+      \ 'w' : ['<C-W>w'     , 'other-window']          ,
+      \ 'd' : ['<C-W>c'     , 'delete-window']         ,
+      \ '-' : ['<C-W>s'     , 'split-window-below']    ,
+      \ '|' : ['<C-W>v'     , 'split-window-right']    ,
+      \ '2' : ['<C-W>v'     , 'layout-double-columns'] ,
+      \ 'h' : ['<C-W>h'     , 'window-left']           ,
+      \ 'j' : ['<C-W>j'     , 'window-below']          ,
+      \ 'l' : ['<C-W>l'     , 'window-right']          ,
+      \ 'k' : ['<C-W>k'     , 'window-up']             ,
+      \ 'H' : ['<C-W>5<'    , 'expand-window-left']    ,
+      \ 'J' : [':resize +5'  , 'expand-window-below']   ,
+      \ 'L' : ['<C-W>5>'    , 'expand-window-right']   ,
+      \ 'K' : [':resize -5'  , 'expand-window-up']      ,
+      \ '=' : ['<C-W>='     , 'balance-window']        ,
+      \ 's' : ['<C-W>s'     , 'split-window-below']    ,
+      \ 'v' : ['<C-W>v'     , 'split-window-below']    ,
+      \ '?' : ['Windows'    , 'fzf-window']            ,
+      \ }
+let g:which_key_map['f'] = {
+      \ 'name' : 'files' ,
+      \ 'f' : [':Files', 'Files'],
+      \ ' ' : [':GFiles', 'Git Files'],
+      \ }
+
+call which_key#register('<Space>', "g:which_key_map")
 {{ end -}}
 {{ end -}}
