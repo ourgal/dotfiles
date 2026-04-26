@@ -1,559 +1,557 @@
 {{ if and (lookPath "yt-dlp") (lookPath "ffmpeg") (lookPath "mid3v2") -}}
 {{ $data := list -}}
-{{ $data = append $data dict "artist" "Outlaw (feat. Miss Mary)" "title" "it's different" "album" "NCS" "url" "https://www.bilibili.com/video/BV1nx411m7Rd" -}}
-{{ $data = append dict "artist" "Outlaw (feat. Miss Mary)" "title" "it's different" "album" "NCS" "url" "https://www.bilibili.com/video/BV1nx411m7Rd" -}}
-{{ $data = append dict "artist" "山口リサ" "title" "明日へと…" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1654y1n7UT" -}}
-{{ $data = append dict "artist" "fripSide" "title" "Sky" "album" "2nd fragment of fripSide" "url" "https://www.bilibili.com/video/BV1ts41187a6" -}}
-{{ $data = append dict "artist" "Dream" "title" "こんなにも" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV19t4y1H7SY" -}}
-{{ $data = append dict "artist" "Flower" "title" "Blue Sky Blue" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV13r4y1j7Fe" -}}
-{{ $data = append dict "artist" "WITCH NUMBER 4" "title" "SAKURA" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV19F411N7kF" -}}
-{{ $data = append dict "artist" "Flower" "title" "太陽と向日葵" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1HZ4y1Y7Fb" -}}
-{{ $data = append dict "artist" "Ayumi Hamasaki" "title" "My All" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV11Xphe7ESz" -}}
-{{ $data = append dict "artist" "TWICE" "title" "Wonderful Day" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV18m4y197DT" -}}
-{{ $data = append dict "artist" "HIROKO_WISE" "title" "I loved you" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1yS4y1n7EU" -}}
-{{ $data = append dict "artist" "沢井美空" "title" "卒業メモリーズ~サヨナラ、あなた。~" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1jU4y1D7iH" -}}
-{{ $data = append dict "artist" "Lily_μ" "title" "SPECIAL DAY" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1fo4y1v7dY" -}}
-{{ $data = append dict "artist" "安田レイ" "title" "アシンメトリー" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1544y1G7qQ" -}}
-{{ $data = append dict "artist" "Himawari" "title" "shake it!" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1GW411x7yB" -}}
-{{ $data = append dict "artist" "Flower" "title" "秋風のアンサー" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1ZY41177GT" -}}
-{{ $data = append dict "artist" "Yuna Ito" "title" "Pureyes" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV14x411B73a" -}}
-{{ $data = append dict "artist" "Flower" "title" "白雪姫" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1q5411u71A" -}}
-{{ $data = append dict "artist" "Flower" "title" "人魚姫" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1p54y1L7zb" -}}
-{{ $data = append dict "artist" "Flower" "title" "カラフル" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1Ro4y117ip" -}}
-{{ $data = append dict "artist" "Flower" "title" "恋におちたら" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1Jv411p78z" -}}
-{{ $data = append dict "artist" "Flower" "title" "BRIGHT" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1Qa411z7Hj" -}}
-{{ $data = append dict "artist" "Flower" "title" "他の誰かより悲しい恋をしただけ" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1dV41137vD" -}}
-{{ $data = append dict "artist" "Flower" "title" "七色キャンドル" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1dy42187wL" -}}
-{{ $data = append dict "artist" "Flower" "title" "Clover" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV14m411X7S6" -}}
-{{ $data = append dict "artist" "Flower" "title" "瞳の奥の銀河" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV12DXuY5EzV" -}}
-{{ $data = append dict "artist" "花たん" "title" "Ray of Light" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1rUWMe1EQn" -}}
-{{ $data = append dict "artist" "西野カナ" "title" "ONE WAY LOVE" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1LG4y1Q7Pt" -}}
-{{ $data = append dict "artist" "西野カナ" "title" "Love you, Miss you" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1b14y1n7yt" -}}
-{{ $data = append dict "artist" "CHIHIRO" "title" "永遠" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1jd4y1t7wN" -}}
-{{ $data = append dict "artist" "Airots" "title" "桃幻浪漫" "album" "桃幻浪漫 ～千の刃濤、桃花染の皇姫 花あかり～" "url" "https://music.163.com/#/song?id=1395939524" -}}
-{{ $data = append dict "artist" "Thelma Aoyama" "title" "二人の約束の日" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1js411r7QH" -}}
-{{ $data = append dict "artist" "日之内エミ" "title" "卒業" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1PD421K74g" -}}
-{{ $data = append dict "artist" "果山サキ" "title" "さよなら、愛してた。" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1Ks411h7jp" -}}
-{{ $data = append dict "artist" "Juliet" "title" "もっともっとキミを教えてよ" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV17W411D7WX" -}}
-{{ $data = append dict "artist" "Ayuse Kozue" "title" "Cry for You" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1SW411x7fs" -}}
-{{ $data = append dict "artist" "ClariS" "title" "ココロの引力" "album" "irony" "url" "https://music.163.com/#/song?id=705379" -}}
-{{ $data = append dict "artist" "花鋏キョウ" "title" "Behavior" "album" "Myosøtis" "url" "https://music.163.com/#/song?id=1447563289" -}}
-{{ $data = append dict "artist" "花鋏キョウ" "title" "paradøx" "album" "Myosøtis" "url" "https://music.163.com/#/song?id=1447562427" -}}
-{{ $data = append dict "artist" "花たん" "title" "Dear" "album" "Flower" "url" "https://music.163.com/#/song?id=27548279" -}}
-{{ $data = append dict "artist" "mineko" "title" "miscalc" "album" "PARTICLE" "url" "https://music.163.com/#/song?id=1395758737" -}}
-{{ $data = append dict "artist" "96猫" "title" "流れ星" "album" "月と星の虚構空間" "url" "https://music.163.com/#/song?id=25931854" -}}
-{{ $data = append dict "artist" "BENI" "title" "Our Sky" "album" "Our Sky" "url" "https://music.163.com/#/song?id=26544404" -}}
-{{ $data = append dict "artist" "鈴木このみ" "title" "My Days" "album" "My Days" "url" "https://music.163.com/#/song?id=521417493" -}}
-{{ $data = append dict "artist" "ときのそら" "title" "コトバカゼ" "album" "Dreaming!" "url" "https://music.163.com/#/song?id=1354616291" -}}
-{{ $data = append dict "artist" "YuNi" "title" "Winter Berry" "album" "Winter Berry" "url" "https://music.163.com/#/song?id=1335650210" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "束縛アネモネーション" "album" "束縛アネモネーション" "url" "https://music.163.com/#/song?id=28814941" -}}
-{{ $data = append dict "artist" "うさ" "title" "Reflect" "album" "デジウィ IMPACT" "url" "https://music.163.com/#/song?id=34916709" -}}
-{{ $data = append dict "artist" "西沢幸奏" "title" "吹雪" "album" "吹雪" "url" "https://music.163.com/#/song?id=30621776" -}}
-{{ $data = append dict "artist" "仲村芽衣子" "title" "reverb" "album" "DIVINE FORTUNE" "url" "https://music.163.com/#/song?id=26388031" -}}
-{{ $data = append dict "artist" "花たん" "title" "エアーマンが倒せない" "album" "最新热歌慢摇82" "url" "https://music.163.com/#/song?id=29544924" -}}
-{{ $data = append dict "artist" "光岡昌美" "title" "ダメよ♡" "album" "ダメよ" "url" "https://music.163.com/#/song?id=611653" -}}
-{{ $data = append dict "artist" "天宮みや" "title" "果てなき風の軌跡さえ" "album" "果てなき風の軌跡さえ" "url" "https://music.163.com/#/song?id=412951928" -}}
-{{ $data = append dict "artist" "桃梨" "title" "tod und feuer" "album" "HEART CHAIN" "url" "https://music.163.com/#/song?id=4950627" -}}
-{{ $data = append dict "artist" "瑶山百霊" "title" "星夜万華鏡" "album" "Lunatic Heavens" "url" "https://music.163.com/#/song?id=26134301" -}}
-{{ $data = append dict "artist" "井上純一" "title" "それぞれの12ヶ月" "album" "てさぐれ! 歌もの あんこーる" "url" "https://music.163.com/#/song?id=31587061" -}}
-{{ $data = append dict "artist" "yukina & みぃ" "title" "雪琥珀 -snow amber- Remix" "album" "Another World2" "url" "https://music.163.com/#/song?id=27644670" -}}
-{{ $data = append dict "artist" "sajou no hana" "title" "メモセピア" "album" "メモセピア" "url" "https://music.163.com/#/song?id=1339922587" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "零れずの願いゴト" "album" "零れずの願いゴト" "url" "https://music.163.com/#/song?id=528272202" -}}
-{{ $data = append dict "artist" "鹿乃" "title" "今をかける少女" "album" "nowhere" "url" "https://music.163.com/#/song?id=412327101" -}}
-{{ $data = append dict "artist" "Nanaka" "title" "今をかける少女" "album" "Singing" "url" "https://music.163.com/#/song?id=456312718" -}}
-{{ $data = append dict "artist" "鹿乃" "title" "缲り返し一粒 リンver" "album" "暧昧ばんび~な" "url" "https://music.163.com/#/song?id=22705493" -}}
-{{ $data = append dict "artist" "DJ.Lars" "title" "Masayume Chasing (Vocal Version) (DJ.Lars Trance Remix)" "album" "Masayume Chasing(DJ.Lars Trance Remix)" "url" "https://music.163.com/#/song?id=434070608" -}}
-{{ $data = append dict "artist" "隣人 & t+pazolite & 高桥菜菜" "title" "Missing Opus feat. cold kiss(Nana Takahashi) - t+pazolite Remix" "album" "Double Key" "url" "https://music.163.com/#/song?id=28576329" -}}
-{{ $data = append dict "artist" "舞花" "title" "New World" "album" "World Trick" "url" "https://music.163.com/#/song?id=33955442" -}}
-{{ $data = append dict "artist" "仲村芽衣子" "title" "Scarlet Faith" "album" "Scarlet Faith" "url" "https://music.163.com/#/song?id=28812025" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "灼熱のユートピア" "album" "灼熱のユートピア" "url" "https://music.163.com/#/song?id=34509382" -}}
-{{ $data = append dict "artist" "舞花" "title" "crescent moon" "album" "Rebirth Story Ⅲ" "url" "https://music.163.com/#/song?id=413077069" -}}
-{{ $data = append dict "artist" "榊原ゆい" "title" "Miss.Brand-new day" "album" "絶対★魔王ORIGINAL SOUND TRACK ~ボクの耳キュン音楽祭~" "url" "https://music.163.com/#/song?id=723916" -}}
-{{ $data = append dict "artist" "亜咲花" "title" "SHINY DAYS" "album" "SHINY DAYS" "url" "https://music.163.com/#/song?id=530995169" -}}
-{{ $data = append dict "artist" "鈴木みのり" "title" "GIRAFFE BLUES ~Freyja Solo~" "album" "絶対零度θノヴァティック/破滅の純情" "url" "https://music.163.com/#/song?id=424264951" -}}
-{{ $data = append dict "artist" "livetune & halca" "title" "Resonator" "album" "BEATLESS Special Soundtrack" "url" "https://music.163.com/#/song?id=534064135" -}}
-{{ $data = append dict "artist" "アイドルカレッジ" "title" "トゥルーエンド プレイヤー" "album" "トゥルーエンド プレイヤー" "url" "https://music.163.com/#/song?id=29787857" -}}
-{{ $data = append dict "artist" "ClariS" "title" "PRIMALove" "album" "PRIMALove" "url" "https://music.163.com/#/song?id=531051596" -}}
-{{ $data = append dict "artist" "南條愛乃" "title" "空種" "album" "穢翼のユースティア -Original CharacterSong Series- EUSTIA" "url" "https://music.163.com/#/song?id=630884" -}}
-{{ $data = append dict "artist" "山田タマル" "title" "Scarborough Fair" "album" "青い記憶" "url" "https://music.163.com/#/song?id=489970551" -}}
-{{ $data = append dict "artist" "さゆり" "title" "天空の狂詩曲" "album" "月光乱舞" "url" "https://music.163.com/#/song?id=822495" -}}
-{{ $data = append dict "artist" "Tamame" "title" "Ebb and Flow (5 years after remix)" "album" "Ebb and Flow (5 years after remix)" "url" "https://music.163.com/#/song?id=29819851" -}}
-{{ $data = append dict "artist" "ChouCho" "title" "Sleeping Butterfly" "album" "カワルミライ" "url" "https://music.163.com/#/song?id=559908" -}}
-{{ $data = append dict "artist" "TrySail" "title" "High Free Spirits" "album" "High Free Spirits" "url" "https://music.163.com/#/song?id=412327886" -}}
-{{ $data = append dict "artist" "3L" "title" "Gods Garden" "album" "FORLANE | REI" "url" "https://music.163.com/#/song?id=22728023" -}}
-{{ $data = append dict "artist" "marble" "title" "水彩キャンディー" "album" "水彩キャンディー" "url" "https://music.163.com/#/song?id=781130" -}}
-{{ $data = append dict "artist" "美郷あき" "title" "Glitter" "album" "月に寄りそう乙女の作法2 COMPLETE SOUNDTRACK" "url" "https://music.163.com/#/song?id=32235534" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "華鳥風月(with senya)" "album" "華鳥風月" "url" "https://music.163.com/#/song?id=869119" -}}
-{{ $data = append dict "artist" "坂上なち" "title" "last station feat. 坂上なち" "album" "Dancing Dollz" "url" "https://music.163.com/#/song?id=27624985" -}}
-{{ $data = append dict "artist" "ayame" "title" "Doll of Misery feat. ayame" "album" "POP CULTURE 3" "url" "https://music.163.com/#/song?id=32737683" -}}
-{{ $data = append dict "artist" "savage genius" "title" "Forever..." "album" "Forever..." "url" "https://music.163.com/#/song?id=646024" -}}
-{{ $data = append dict "artist" "savage genius" "title" "いつか溶ける涙" "album" "想いを奏でて/いつか溶ける涙" "url" "https://music.163.com/#/song?id=646047" -}}
-{{ $data = append dict "artist" "EastNewSound" "title" "demarcation line" "album" "Blaze Out" "url" "https://music.163.com/#/song?id=22785073" -}}
-{{ $data = append dict "artist" "i.o.sound" "title" "今日よりずっと、明日もきっと" "album" "ドコドナボーカルコレクション" "url" "https://music.163.com/#/song?id=28387662" -}}
-{{ $data = append dict "artist" "LiSA" "title" "Catch the Moment" "album" "LiTTLE DEViL PARADE" "url" "https://music.163.com/#/song?id=479938456" -}}
-{{ $data = append dict "artist" "fripSide" "title" "keep your promise" "album" "keep your promise" "url" "https://music.163.com/#/song?id=31191255" -}}
-{{ $data = append dict "artist" "花たん" "title" "ハジメテノオト" "album" "Flower" "url" "https://music.163.com/#/song?id=27548253" -}}
-{{ $data = append dict "artist" "宮崎歩" "title" "brave heart" "album" "brave heart" "url" "https://music.163.com/#/song?id=29816860" -}}
-{{ $data = append dict "artist" "nayuta" "title" "幽音絶花、缭乱ノ彩" "album" "Alternative Outside 2010 Summer" "url" "https://music.163.com/#/song?id=721891" -}}
-{{ $data = append dict "artist" "はな" "title" "櫻ノ詩" "album" "サクラノ詩 ヴォーカルCD" "url" "https://music.163.com/#/song?id=399367387" -}}
-{{ $data = append dict "artist" "花たん" "title" "Brand New Voice" "album" "すきま桜とうその都会 初回特典 オリジナルサウンドトラック“Sakurano”" "url" "https://music.163.com/#/song?id=4925707" -}}
-{{ $data = append dict "artist" "777☆SISTERS" "title" "H-A-J-I-M-A-R-I-U-T-A-!!" "album" "H-A-J-I-M-A-L-B-U-M-!!" "url" "https://music.163.com/#/song?id=32192774" -}}
-{{ $data = append dict "artist" "下地紫野" "title" "God Save The Girls" "album" "God Save The Girls" "url" "https://music.163.com/#/song?id=437292501" -}}
-{{ $data = append dict "artist" "中村舞子" "title" "Endless Tears" "album" "Best Of Love" "url" "https://music.163.com/#/song?id=22722555" -}}
-{{ $data = append dict "artist" "花たん" "title" "Knots Way" "album" "ERiCa" "url" "https://music.163.com/#/song?id=443070766" -}}
-{{ $data = append dict "artist" "南條愛乃" "title" "Asphodelus" "album" "穢翼のユースティア -Original CharacterSong Series- EUSTIA" "url" "https://music.163.com/#/song?id=630887" -}}
-{{ $data = append dict "artist" "茶太" "title" "詠奏妖華～明鏡止水～" "album" "Auxiliary Brightness" "url" "https://music.163.com/#/song?id=26127127" -}}
-{{ $data = append dict "artist" "Machico" "title" "Magical Happy Show !" "album" "Magical Happy Show !" "url" "https://music.163.com/#/song?id=623450" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "夜桜に君を隠して" "album" "夜桜に君を隠して" "url" "https://music.163.com/#/song?id=28167582" -}}
-{{ $data = append dict "artist" "美郷あき" "title" "DESIRE" "album" "月に寄りそう乙女の作法 COMPLETE SOUNDTRACK" "url" "https://music.163.com/#/song?id=28568035" -}}
-{{ $data = append dict "artist" "doriko" "title" "Mermaid" "album" "の、バラード祭り." "url" "https://music.163.com/#/song?id=860619" -}}
-{{ $data = append dict "artist" "茶太" "title" "Sound of Carnation" "album" "Definite Energy" "url" "https://music.163.com/#/song?id=22785149" -}}
-{{ $data = append dict "artist" "めらみぽっぷ" "title" "靴の音を、響かせて、その手を" "album" "彩" "url" "https://music.163.com/#/song?id=850502" -}}
-{{ $data = append dict "artist" "なつみ" "title" "萃梦想歌" "album" "Vermillion Summer" "url" "https://music.163.com/#/song?id=22730793" -}}
-{{ $data = append dict "artist" "アフィリア・サーガ" "title" "Embrace Blade" "album" "Embrace Blade" "url" "https://music.163.com/#/song?id=36841167" -}}
-{{ $data = append dict "artist" "紫咲ほたる" "title" "You're the love of my life..." "album" "Perpetual Devotion" "url" "https://music.163.com/#/song?id=28953266" -}}
-{{ $data = append dict "artist" "めらみぽっぷ" "title" "Zillion Lights" "album" "Poptrick" "url" "https://music.163.com/#/song?id=833011" -}}
-{{ $data = append dict "artist" "市松椿" "title" "Resolution" "album" "Poptrick" "url" "https://music.163.com/#/song?id=833016" -}}
-{{ $data = append dict "artist" "ルルティア" "title" "ロスト・バタフライ" "album" "LOST BUTTERFLY" "url" "https://music.163.com/#/song?id=640514" -}}
-{{ $data = append dict "artist" "長尾ちえみ" "title" "Kiss & Crazy (feat. 長尾ちえみ)" "album" "864" "url" "https://music.163.com/#/song?id=32405984" -}}
-{{ $data = append dict "artist" "水瀬ましろ" "title" "まっしろな雪" "album" "東方幻奏響UROBOROS弐 ～fAIRYtAILoVERdRIVE～" "url" "https://music.163.com/#/song?id=30841657" -}}
-{{ $data = append dict "artist" "Stack" "title" "カゲロウ" "album" "NO SIGNAL" "url" "https://music.163.com/#/song?id=27746534" -}}
-{{ $data = append dict "artist" "闇音レンリ" "title" "暧昧さ回避" "album" "最新热歌慢摇114" "url" "https://music.163.com/#/song?id=402070756" -}}
-{{ $data = append dict "artist" "闇音レンリ" "title" "Cynic" "album" "Cynic" "url" "https://music.163.com/#/song?id=419596411" -}}
-{{ $data = append dict "artist" "CHIHIRO" "title" "恋時雨" "album" "恋時雨" "url" "https://music.163.com/#/song?id=27853415" -}}
-{{ $data = append dict "artist" "Goose house" "title" "この指とまれ" "album" "Goose house Phrase #05 この指とまれ" "url" "https://music.163.com/#/song?id=26380612" -}}
-{{ $data = append dict "artist" "水樹奈々" "title" "SOUND OF DESTINY" "album" "WHITE ALBUM ～綴られる冬の想い出～ ORIGINAL SOUNDTRACK" "url" "https://music.163.com/#/song?id=32303029" -}}
-{{ $data = append dict "artist" "霜月はるか" "title" "羽ノ亡キ蝶" "album" "羽ノ亡キ蝶" "url" "https://music.163.com/#/song?id=691351" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "アンロジカル" "album" "レプリカの恋" "url" "https://music.163.com/#/song?id=28581729" -}}
-{{ $data = append dict "artist" "市松椿" "title" "Rapture - Taishi Remix" "album" "Poptrick" "url" "https://music.163.com/#/song?id=833020" -}}
-{{ $data = append dict "artist" "のみこ" "title" "Alice Maestera feat. nomico" "album" "Harmony" "url" "https://music.163.com/#/song?id=22645181" -}}
-{{ $data = append dict "artist" "幽閉サテライト" "title" "ひねくれ少女(with senya)" "album" "ミゼラブルの雫" "url" "https://music.163.com/#/song?id=869355" -}}
-{{ $data = append dict "artist" "坂本真綾" "title" "Waiting for the rain" "album" "FOLLOW ME UP" "url" "https://music.163.com/#/song?id=35040542" -}}
-{{ $data = append dict "artist" "I've" "title" "Isolation" "album" "つよきすFull Edition 初回版特典 オリジナルサウンドトラック 复刻版" "url" "https://music.163.com/#/song?id=751380" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "残響は鳴り止まず" "album" "残響は鳴り止まず" "url" "https://music.163.com/#/song?id=28953086" -}}
-{{ $data = append dict "artist" "沙紗飛鳥" "title" "散りゆく時-FINAL-" "album" "記憶～MAIKAZE music works～" "url" "https://music.163.com/#/song?id=784983" -}}
-{{ $data = append dict "artist" "黒石ひとみ" "title" "Continued Story" "album" "Angel Feather Voice 2" "url" "https://music.163.com/#/song?id=22805088" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "FriendShip" "album" "瞳に隠された想ヒ" "url" "https://music.163.com/#/song?id=40729936" -}}
-{{ $data = append dict "artist" "Lia" "title" "Light colors" "album" "智代アフター Original SoundTrack" "url" "https://music.163.com/#/song?id=4977944" -}}
-{{ $data = append dict "artist" "愛原圭織" "title" "Road to Departure" "album" "CLAUDIA" "url" "https://music.163.com/#/song?id=830515" -}}
-{{ $data = append dict "artist" "渕上舞 & 山村響" "title" "Hello, hello" "album" "BLUE" "url" "https://music.163.com/#/song?id=41666870" -}}
-{{ $data = append dict "artist" "nao" "title" "entrance to you" "album" "entrance to you" "url" "https://music.163.com/#/song?id=629877" -}}
-{{ $data = append dict "artist" "末柄里恵" "title" "bitter sweet" "album" "THE IDOLM@STER LIVE THE@TER HARMONY 04" "url" "https://music.163.com/#/song?id=29418355" -}}
-{{ $data = append dict "artist" "紫咲ほたる" "title" "Urahara ff" "album" "Mindless Act" "url" "https://music.163.com/#/song?id=26449171" -}}
-{{ $data = append dict "artist" "藤田麻衣子" "title" "蛍" "album" "瞬间" "url" "https://music.163.com/#/song?id=571213" -}}
-{{ $data = append dict "artist" "美里" "title" "Necro Fantasia feat. 美里" "album" "For Your Pieces" "url" "https://music.163.com/#/song?id=687463" -}}
-{{ $data = append dict "artist" "めらみぽっぷ" "title" "シャングリラ" "album" "パライソ" "url" "https://music.163.com/#/song?id=26454931" -}}
-{{ $data = append dict "artist" "幽閉サテライト" "title" "ミゼラブルの雫(with senya)" "album" "ミゼラブルの雫" "url" "https://music.163.com/#/song?id=869351" -}}
-{{ $data = append dict "artist" "彩音" "title" "いつもこの場所で" "album" "いつもこの場所で" "url" "https://music.163.com/#/song?id=26259014" -}}
-{{ $data = append dict "artist" "下川みくに & Nakagami & Ishikawa" "title" "White Album" "album" "Leaf Vocal Collection Volume 1" "url" "https://music.163.com/#/song?id=27622999" -}}
-{{ $data = append dict "artist" "つじあやの" "title" "風になる" "album" "猫の恩返し サウンドトラック" "url" "https://music.163.com/#/song?id=482172" -}}
-{{ $data = append dict "artist" "Rie fu" "title" "Life Is Like A Boat" "album" "Life Is Like A Boat" "url" "https://music.163.com/#/song?id=640565" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "色は匂へど散りぬるを(with senya)" "album" "さぁ、こごう。" "url" "https://music.163.com/#/song?id=28547521" -}}
-{{ $data = append dict "artist" "Ceui" "title" "今、歩き出す君へ。" "album" "PCゲーム「いますぐお兄ちゃんに妹だっていいたい!」ボーカルアルバム" "url" "https://music.163.com/#/song?id=26209670" -}}
-{{ $data = append dict "artist" "幽閉サテライト" "title" "大地に咲く旋律" "album" "濡れた髪に触れられた时" "url" "https://music.163.com/#/song?id=26107913" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "溺愛エクリプス" "album" "三千世界" "url" "https://music.163.com/#/song?id=27571852" -}}
-{{ $data = append dict "artist" "fripSide" "title" "an evening calm (kai Re:product RMX)" "album" "Re:product mixes ver.0.1" "url" "https://music.163.com/#/song?id=22660898" -}}
-{{ $data = append dict "artist" "左右田左" "title" "永遠の花が降る" "album" "秘密蜜封箋" "url" "https://music.163.com/#/song?id=27610163" -}}
-{{ $data = append dict "artist" "れるりり" "title" "Mr.Music(歌姫Ver)" "album" "Mr.Music" "url" "https://music.163.com/#/song?id=26550694" -}}
-{{ $data = append dict "artist" "彩音" "title" "Lunatic Tears…" "album" "Lunatic Tears…" "url" "https://music.163.com/#/song?id=552075" -}}
-{{ $data = append dict "artist" "3L" "title" "桜华月想" "album" "Overture l SUWA" "url" "https://music.163.com/song?id=686361" -}}
-{{ $data = append dict "artist" "綾倉盟" "title" "melt in the sky" "album" "Replica" "url" "https://music.163.com/#/song?id=833438" -}}
-{{ $data = append dict "artist" "幽閉サテライト" "title" "アイリミテッド" "album" "濡れた髪に触れられた时" "url" "https://music.163.com/#/song?id=26107909" -}}
-{{ $data = append dict "artist" "中村舞子" "title" "言えない気持ち" "album" "言えない気持ち" "url" "https://music.163.com/#/song?id=409830542" -}}
-{{ $data = append dict "artist" "紫咲ほたる" "title" "Relate" "album" "Definite Energy" "url" "https://music.163.com/#/song?id=22785150" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "コノ葉隠レ(with senya)" "album" "コノ葉隠レ" "url" "https://music.163.com/#/song?id=33020436" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "泡沫、哀のまほろば" "album" "幻-MABOROSHI- Singles Best Vol.2" "url" "https://music.163.com/#/song?id=28547527" -}}
-{{ $data = append dict "artist" "幽閉サテライト" "title" "ヒトリシズカ" "album" "幻想万華鏡～紅霧異変の章～ オリジナルサウンドトラック Vol.1" "url" "https://music.163.com/#/song?id=32235274" -}}
-{{ $data = append dict "artist" "幽閉サテライト" "title" "夕立、君と隠れ処" "album" "SOUND VOLTEX ULTIMATE TRACKS - 東方紅魔郷REMIX" "url" "https://music.163.com/#/song?id=28866582" -}}
-{{ $data = append dict "artist" "ゆいこんぬ" "title" "ルートスフィア" "album" "EXIT TUNES PRESENTS Cinderella" "url" "https://music.163.com/#/song?id=28566460" -}}
-{{ $data = append dict "artist" "日南結里 & 小澤亜李" "title" "ミライプリズム" "album" "ミライプリズム" "url" "https://music.163.com/#/song?id=29932153" -}}
-{{ $data = append dict "artist" "茶太" "title" "Secret" "album" "eclipse改" "url" "https://music.163.com/#/song?id=640866" -}}
-{{ $data = append dict "artist" "愛原圭織" "title" "Place" "album" "MA CHERIE" "url" "https://music.163.com/#/song?id=29050075" -}}
-{{ $data = append dict "artist" "花たん" "title" "恋ノ蟲" "album" "デジウィ LEGEND" "url" "https://music.163.com/#/song?id=28524863" -}}
-{{ $data = append dict "artist" "野村香菜子" "title" "恋の音色ライン" "album" "THE IDOLM@STER LIVE THE@TER HARMONY 09" "url" "https://music.163.com/#/song?id=31165257" -}}
-{{ $data = append dict "artist" "ナノ" "title" "DREAMCATCHER" "album" "DREAMCATCHER (アニメver.)" "url" "https://music.163.com/#/song?id=438456473" -}}
-{{ $data = append dict "artist" "沼倉愛美" "title" "叫べ" "album" "叫べ" "url" "https://music.163.com/#/song?id=438466359" -}}
-{{ $data = append dict "artist" "KOTOKO" "title" "Face of Fact" "album" "Starlight Symphony-KOTOKO LIVE 2006-IN YOKOHAMA ARENA" "url" "https://music.163.com/#/song?id=590097" -}}
-{{ $data = append dict "artist" "Halozy" "title" "Paranoid Lost (feat. 美里)" "album" "Tonic Triangle" "url" "https://music.163.com/#/song?id=22808847" -}}
-{{ $data = append dict "artist" "KOTOKO" "title" "Face Of Fact-Resolution Ver.-" "album" "Face Of Fact-Resolution Ver.-" "url" "https://music.163.com/#/song?id=753805" -}}
-{{ $data = append dict "artist" "渡辺麻友" "title" "トライアングラー" "album" "REQUEST" "url" "https://music.163.com/#/song?id=31545006" -}}
-{{ $data = append dict "artist" "KOTOKO" "title" "jihad" "album" "jihad" "url" "https://music.163.com/#/song?id=589672" -}}
-{{ $data = append dict "artist" "上原れな" "title" "届かない恋" "album" "l'espoir" "url" "https://music.163.com/song?id=22809257" -}}
-{{ $data = append dict "artist" "奥井雅美" "title" "宝箱-TREASURE BOX-" "album" "宝箱 -TREASURE BOX- / プラチナジェット" "url" "https://music.163.com/#/song?id=30706884" -}}
-{{ $data = append dict "artist" "Illusion Sonic" "title" "夢の空、約束の場所" "album" "SOUND VOLTEX ULTIMATE TRACKS - 東方紅魔郷REMIX" "url" "https://music.163.com/#/song?id=28866602" -}}
-{{ $data = append dict "artist" "NI+CORA" "title" "オ・モ・イ アプローチ" "album" "t7s Longing for summer" "url" "https://music.163.com/#/song?id=30039364" -}}
-{{ $data = append dict "artist" "NJK Record" "title" "Endless night (梦消失 〜 Lost Dream)" "album" "TOHO EURO FLASH Vol.2" "url" "https://music.163.com/#/song?id=793740" -}}
-{{ $data = append dict "artist" "発熱巫女~ず" "title" "桜花之恋冢 ~ Flower of Life" "album" "Re:Starlights&An Umbrella" "url" "https://music.163.com/#/song?id=745206" -}}
-{{ $data = append dict "artist" "佐藤康夫" "title" "夜明" "album" "陰陽師" "url" "https://music.163.com/#/song?id=29047169" -}}
-{{ $data = append dict "artist" "新谷良子" "title" "ふわふわロンド" "album" "ふわふわロンド" "url" "https://music.163.com/#/song?id=646481" -}}
-{{ $data = append dict "artist" "茶太" "title" "夢笑顔" "album" "茶太 Works Best II" "url" "https://music.163.com/#/song?id=640295" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "幾星霜の物語 ～The Story of Eternity～" "album" "幾星霜の物語 ～The Story of Eternity～" "url" "https://music.163.com/#/song?id=29769746" -}}
-{{ $data = append dict "artist" "花たん" "title" "Little Traveler" "album" "Frozen Traveler" "url" "https://music.163.com/#/song?id=29267629" -}}
-{{ $data = append dict "artist" "坂上なち" "title" "Ephemeral" "album" "Frozen Traveler" "url" "https://music.163.com/#/song?id=29267631" -}}
-{{ $data = append dict "artist" "うさ" "title" "【Diary】" "album" "デジハロ PRIDE" "url" "https://music.163.com/#/song?id=28178185" -}}
-{{ $data = append dict "artist" "Halozy" "title" "midnight cookie (feat. 夕月椿)" "album" "864" "url" "https://music.163.com/#/song?id=32405990" -}}
-{{ $data = append dict "artist" "KOTOKO" "title" "Fatally" "album" "I've MANIA Tracks Vol.II" "url" "https://music.163.com/#/song?id=22743257" -}}
-{{ $data = append dict "artist" "新谷良子" "title" "きらきらセレナーデ" "album" "クロスワールド キャラクターコレクション(4)" "url" "https://music.163.com/#/song?id=646465" -}}
-{{ $data = append dict "artist" "川田まみ" "title" "Lythrum" "album" "犠母姉妹 SLG 特典サウンドトラック" "url" "https://music.163.com/#/song?id=754693" -}}
-{{ $data = append dict "artist" "南條愛乃" "title" "メッセンジャー(FULL)" "album" "朧小町予約特典サウンドトラック" "url" "https://music.163.com/#/song?id=4929493" -}}
-{{ $data = append dict "artist" "佳村はるか & 千菅春香 & 木村珠莉 & 大和田仁美 & 髙野麻美" "title" "プラチナジェット" "album" "宝箱 -TREASURE BOX- / プラチナジェット" "url" "https://music.163.com/#/song?id=30706885" -}}
-{{ $data = append dict "artist" "川田まみ" "title" "Timeless time" "album" "七つのふしぎの終わるとき VOCAL COLLECTION「Timeless time」" "url" "https://music.163.com/#/song?id=592232" -}}
-{{ $data = append dict "artist" "霜月はるか" "title" "Re:Call" "album" "できない私が、くり返す。 初回特典サウンドトラック「憧憬」" "url" "https://music.163.com/#/song?id=29129677" -}}
-{{ $data = append dict "artist" "西明日香 & 明坂聡美 & 大橋彩香 & 三上枝織 & 大久保瑠美 & 小松未可子 & 高森奈津美 & 上坂すみれ & 荻野可鈴" "title" "色彩crossroad" "album" "やっぱりStand Up!!!!!/色彩crossroad" "url" "https://music.163.com/#/song?id=32235723" -}}
-{{ $data = append dict "artist" "明坂聡美 & 大橋彩香 & 西明日香 & 荻野可鈴" "title" "12ヶ月" "album" "てさぐれ! 歌もの" "url" "https://music.163.com/#/song?id=29011487" -}}
-{{ $data = append dict "artist" "上田麗奈 & 田中美海 & 奥野香耶 & 大坪由佳 & 沼倉愛美" "title" "花雪 チーム ハナヤマタ ver." "album" "ハナヤマタ 第6巻 特典CD" "url" "https://music.163.com/#/song?id=31381033" -}}
-{{ $data = append dict "artist" "牧野由依" "title" "アムリタ" "album" "天球の音楽" "url" "https://music.163.com/#/song?id=610128" -}}
-{{ $data = append dict "artist" "詩月カオリ" "title" "A STARRY NIGHT 〜僕らをつなぐ光〜" "album" "A STARRY NIGHT 〜僕らをつなぐ光〜" "url" "https://music.163.com/#/song?id=34072026" -}}
-{{ $data = append dict "artist" "詩月カオリ" "title" "Hold on me ~恋の魔法~" "album" "ラブライド イヴ ~love-bride eve~ 特典OST" "url" "https://music.163.com/#/song?id=666138" -}}
-{{ $data = append dict "artist" "mican*" "title" "Spring Comes Along" "album" "Double Counterpoint" "url" "https://music.163.com/#/song?id=687111" -}}
-{{ $data = append dict "artist" "暁Records" "title" "描いた夏をもう一度" "album" "ENDLESS FANTASY" "url" "https://music.163.com/#/song?id=692420" -}}
-{{ $data = append dict "artist" "nao" "title" "colorless fate -ver. Luna 2011-" "album" "fripSide PC game compilation vol. 1" "url" "https://music.163.com/#/song?id=22660771" -}}
-{{ $data = append dict "artist" "BENI" "title" "ユラユラ" "album" "ユラユラ／ギミギミ" "url" "https://music.163.com/#/song?id=561190" -}}
-{{ $data = append dict "artist" "Dreamy crown" "title" "eternal promise" "album" "eternal promise、終わりなき夏 永遠なる音律" "url" "https://music.163.com/#/song?id=33761102" -}}
-{{ $data = append dict "artist" "Halozy" "title" "まっしろな雪 (feat. 水瀬ましろ)" "album" "Bayside Beat" "url" "https://music.163.com/#/song?id=40729947" -}}
-{{ $data = append dict "artist" "スフィア" "title" "明日への帰り道" "album" "夏色キセキ Complete Songs ～あの夏のカケラ～" "url" "https://music.163.com/#/song?id=29966711" -}}
-{{ $data = append dict "artist" "fripSide" "title" "miracle luminous" "album" "fripSide PC game compilation vol. 1" "url" "https://music.163.com/#/song?id=22660764" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "アマノジャック" "album" "残響は鳴り止まず" "url" "https://music.163.com/#/song?id=28953087" -}}
-{{ $data = append dict "artist" "明坂聡美 & 大久保瑠美" "title" "青と黄色のあまのじゃく" "album" "てさプル! 歌もの" "url" "https://music.163.com/#/song?id=32235695" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "炸裂アイロニー" "album" "炸裂アイロニー" "url" "https://music.163.com/#/song?id=29528357" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "手のひらピアニッシモ" "album" "手のひらピアニッシモ" "url" "https://music.163.com/#/song?id=22780426" -}}
-{{ $data = append dict "artist" "茶太" "title" "Important Lie feat. 茶太" "album" "Radical Destruction" "url" "https://music.163.com/#/song?id=29247552" -}}
-{{ $data = append dict "artist" "花たん" "title" "RED Signal" "album" "Colorful✿Flower" "url" "https://music.163.com/#/song?id=22782491" -}}
-{{ $data = append dict "artist" "仲村芽衣子" "title" "Fixed." "album" "DIVINE FORTUNE" "url" "https://music.163.com/#/song?id=26388028" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "ヒトリシズカ(with senya)" "album" "アノ華咲クヤ" "url" "https://music.163.com/#/song?id=26457750" -}}
-{{ $data = append dict "artist" "CHIHIRO" "title" "ずるいよ…" "album" "NAMIDA CARATS" "url" "https://music.163.com/#/song?id=31352739" -}}
-{{ $data = append dict "artist" "野宮あゆみ" "title" "Sleeping Beauty" "album" "COLORS" "url" "https://music.163.com/#/song?id=22728089" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "指先チョコレイト(with senya)" "album" "アノ華咲クヤ" "url" "https://music.163.com/#/song?id=26457751" -}}
-{{ $data = append dict "artist" "みぃ" "title" "Samsara（輪迴）" "album" "AQ -永久-" "url" "https://music.163.com/#/song?id=737966" -}}
-{{ $data = append dict "artist" "TЁЯRA" "title" "華爛漫 -Flowers-" "album" "ЁVOLUTIФN" "url" "https://music.163.com/#/song?id=22740182" -}}
-{{ $data = append dict "artist" "清水達也" "title" "蛍火 feat.月子" "album" "FAR EAST OF EAST" "url" "https://music.163.com/#/song?id=532922" -}}
-{{ $data = append dict "artist" "鹿乃" "title" "decide" "album" "グッドハロー" "url" "https://music.163.com/#/song?id=29848622" -}}
-{{ $data = append dict "artist" "ねじ式" "title" "紫陽花の夜" "album" "Hydrangean Diva" "url" "https://music.163.com/#/song?id=31341428" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "シンデレラアバター" "album" "シンデレラアバター!" "url" "https://music.163.com/#/song?id=869220" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "名残鸟" "album" "シンデレラアバター!" "url" "https://music.163.com/#/song?id=869224" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "幽閉サテライトメドレーType：Iceon" "album" "千華繚乱" "url" "https://music.163.com/#/song?id=22780378" -}}
-{{ $data = append dict "artist" "nao" "title" "scarlet leap" "album" "entrance to you" "url" "https://music.163.com/#/song?id=629880" -}}
-{{ $data = append dict "artist" "花たん" "title" "サリシノハラ" "album" "Flower" "url" "https://music.163.com/#/song?id=27548260" -}}
-{{ $data = append dict "artist" "山本美禰子" "title" "雪のエルフィンリー ～Never ending love song～" "album" "ASTRAL ARIA" "url" "https://music.163.com/#/song?id=28850849" -}}
-{{ $data = append dict "artist" "茶太" "title" "雪の羽 時の風" "album" "G線上の魔王 オリジナルサウンドコレクション" "url" "https://music.163.com/#/song?id=26450054" -}}
-{{ $data = append dict "artist" "Chris Medina" "title" "What Are Words" "album" "What Are Words" "url" "https://music.163.com/#/song?id=1210496" -}}
-{{ $data = append dict "artist" "Chen-U" "title" "Libertus" "album" "BOUQUET -Grand Finale-" "url" "https://music.163.com/#/song?id=27580521" -}}
-{{ $data = append dict "artist" "Reol" "title" "Echo" "album" "No title-" "url" "https://music.163.com/#/song?id=28941714" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "三千世界" "album" "三千世界" "url" "https://music.163.com/#/song?id=27571849" -}}
-{{ $data = append dict "artist" "坂上なち" "title" "サクラ・ホライズン feat.nachi (BEATLESS)" "album" "POP CULTURE 3" "url" "https://music.163.com/#/song?id=32737684" -}}
-{{ $data = append dict "artist" "DiGiTAL WiNG" "title" "Abracadabra" "album" "HANA TOHOBEST" "url" "https://music.163.com/#/song?id=28996103" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "深読みレゾナンス" "album" "レプリカの恋" "url" "https://music.163.com/#/song?id=28581726" -}}
-{{ $data = append dict "artist" "Rena" "title" "穢れなき薔薇十字" "album" "瑠璃色のローゼンクロイツ" "url" "https://music.163.com/#/song?id=34248930" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "小悪魔りんご" "album" "手のひらピアニッシモ" "url" "https://music.163.com/#/song?id=22780427" -}}
-{{ $data = append dict "artist" "EastNewSound" "title" "Steady night" "album" "Dione Aggregation" "url" "https://music.163.com/#/song?id=22785109" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "零れ桜" "album" "色は匂へど 散りぬるを" "url" "https://music.163.com/#/song?id=869457" -}}
-{{ $data = append dict "artist" "鹿乃" "title" "paranoia" "album" "或る街の白昼夢" "url" "https://music.163.com/#/song?id=28181958" -}}
-{{ $data = append dict "artist" "幽閉サテライト" "title" "濡れた髪に触れられた時" "album" "濡れた髪に触れられた时" "url" "https://music.163.com/#/song?id=26107908" -}}
-{{ $data = append dict "artist" "伊藤かな恵" "title" "Happy Sunshine" "album" "Happy Sunshine" "url" "https://music.163.com/#/song?id=569038" -}}
-{{ $data = append dict "artist" "vaguedge" "title" "次発 ワタシ37号" "album" "東方夢叶幻想日記" "url" "https://music.163.com/#/song?id=860203" -}}
-{{ $data = append dict "artist" "3L" "title" "マクロフィラパラソル" "album" "東方夢叶幻想日記" "url" "https://music.163.com/#/song?id=744608" -}}
-{{ $data = append dict "artist" "3L" "title" "破月" "album" "RADIATA" "url" "https://music.163.com/#/song?id=22728057" -}}
-{{ $data = append dict "artist" "日之内エミ" "title" "卒业 -Congratulations- feat. Lotus Juice" "album" "VOICE" "url" "https://music.163.com/#/song?id=22821586" -}}
-{{ $data = append dict "artist" "めらみぽっぷ" "title" "竹ノ花" "album" "薦" "url" "https://music.163.com/#/song?id=28234319" -}}
-{{ $data = append dict "artist" "やなぎなぎ" "title" "Fall in the Dark" "album" "マジコカタストロフィ - Digital Edition" "url" "https://music.163.com/#/song?id=26107975" -}}
-{{ $data = append dict "artist" "Irony & ℃iel" "title" "藍 Second Love♥ふたりの唇" "album" "虹色キャンバス" "url" "https://music.163.com/#/song?id=30569527" -}}
-{{ $data = append dict "artist" "K2 SOUND" "title" "fairy stage" "album" "天津星-Amatsu Hoshi" "url" "https://music.163.com/#/song?id=766287" -}}
-{{ $data = append dict "artist" "聆玖" "title" "孟姜女" "album" "孟姜女" "url" "https://music.163.com/#/song?id=32958397" -}}
-{{ $data = append dict "artist" "荒木毬菜" "title" "春夏秋冬" "album" "爱情转移日文版" "url" "https://music.163.com/#/song?id=34187525" -}}
-{{ $data = append dict "artist" "茶太" "title" "変わり行く世界のために" "album" "Dragon Valley - Misterio" "url" "https://music.163.com/#/song?id=698168" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "カフカなる群青へ" "album" "纏-MATOI- Singles Best Vol.1" "url" "https://music.163.com/#/song?id=28547518" -}}
-{{ $data = append dict "artist" "ENE" "title" "パズル" "album" "voices in a bottle ～海を越え届いた歌声～" "url" "https://music.163.com/#/song?id=857606" -}}
-{{ $data = append dict "artist" "坂上なち" "title" "Against, Perfect Cherry Blossom." "album" "Double Counterpoint" "url" "https://music.163.com/#/song?id=687077" -}}
-{{ $data = append dict "artist" "ONE OK ROCK" "title" "Deeper Deeper" "album" "人生×僕=" "url" "https://music.163.com/#/song?id=27090435" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "孤独月" "album" "色は匂へど 散りぬるを" "url" "https://music.163.com/#/song?id=869461" -}}
-{{ $data = append dict "artist" "鹿乃" "title" "Stella-rium" "album" "Stella-rium" "url" "https://music.163.com/#/song?id=32098832" -}}
-{{ $data = append dict "artist" "森英治" "title" "百鬼夜行抄" "album" "〜the most relaxing〜feel presents New ASIA III" "url" "https://music.163.com/#/song?id=4904996" -}}
-{{ $data = append dict "artist" "松本晃彦" "title" "Sakae In Action" "album" "Summer Wars (Original Motion Picture Soundtrack)" "url" "https://music.163.com/#/song?id=22710767" -}}
-{{ $data = append dict "artist" "MANYO" "title" "Lilac" "album" "殻ノ少女 オリジナルサウンドトラック「Azure」" "url" "https://music.163.com/#/song?id=28466087" -}}
-{{ $data = append dict "artist" "折戸伸治" "title" "風を待った日" "album" "Kanon Original SoundTrack" "url" "https://music.163.com/#/song?id=26134235" -}}
-{{ $data = append dict "artist" "Sensitive Heart" "title" "予感" "album" "二胡陽炎 ～ 千秋恋歌" "url" "https://music.163.com/#/song?id=836406" -}}
-{{ $data = append dict "artist" "M.Graveyard" "title" "you" "album" "Thanks You" "url" "https://music.163.com/#/song?id=786262" -}}
-{{ $data = append dict "artist" "ANANT-GARDE EYES" "title" "theme of SSS" "album" "Angel Beats! Original SoundTrack" "url" "https://music.163.com/#/song?id=471799" -}}
-{{ $data = append dict "artist" "オムニバス" "title" "Yotsuba no Clover" "album" "Honey and Clover Soundtrack" "url" "https://music.163.com/#/song?id=26133554" -}}
-{{ $data = append dict "artist" "久石譲" "title" "東から来た少年" "album" "もののけ姫 サウンドトラック" "url" "https://music.163.com/#/song?id=444761" -}}
-{{ $data = append dict "artist" "ANANT-GARDE EYES" "title" "unjust life" "album" "Angel Beats! Original SoundTrack" "url" "https://music.163.com/#/song?id=471942" -}}
-{{ $data = append dict "artist" "井上昌己" "title" "纯心" "album" "“怪盗セイント・テール”BEST OF BEST" "url" "https://music.163.com/#/song?id=474485" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "月に叢雲華に風" "album" "月に叢雲華に風" "url" "https://music.163.com/#/song?id=869190" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "Opposite World" "album" "小悪魔りんご" "url" "https://music.163.com/#/song?id=869438" -}}
-{{ $data = append dict "artist" "美里" "title" "Rondo of fantasy" "album" "ソラとトキと二色のチョウ" "url" "https://music.163.com/#/song?id=830958" -}}
-{{ $data = append dict "artist" "ケーキ姫☆優海 & JUMA" "title" "永夜のパレード" "album" "幻想遊園郷 ～Fantastic Park～" "url" "https://music.163.com/#/song?id=692193" -}}
-{{ $data = append dict "artist" "花たん" "title" "会いたい" "album" "Colorful✿Flower" "url" "https://music.163.com/#/song?id=22782484" -}}
-{{ $data = append dict "artist" "BoA" "title" "Only One (Japanese Ver.)" "album" "Only One(Japanese Ver.)" "url" "https://music.163.com/#/song?id=26343056" -}}
-{{ $data = append dict "artist" "花たん" "title" "ねこみみスイッチ" "album" "Chers petits chats～親愛なる愛猫たちへ～" "url" "https://music.163.com/#/song?id=29897804" -}}
-{{ $data = append dict "artist" "花たん" "title" "オレンジ" "album" "Flower" "url" "https://music.163.com/#/song?id=27548280" -}}
-{{ $data = append dict "artist" "花たん" "title" "ロミオとシンデレラ" "album" "Flower" "url" "https://music.163.com/#/song?id=27548282" -}}
-{{ $data = append dict "artist" "花たん" "title" "歌に形はないけれど" "album" "Flower" "url" "https://music.163.com/#/song?id=27548281" -}}
-{{ $data = append dict "artist" "我々楽" "title" "東山花灯路" "album" "Dulcet Series Winter Special Collection - Fantastic Winter Journey" "url" "https://music.163.com/#/song?id=28302615" -}}
-{{ $data = append dict "artist" "神乃木製作所" "title" "三年幻想郷" "album" "三年幻想郷" "url" "https://music.163.com/#/song?id=767452" -}}
-{{ $data = append dict "artist" "Otokaze" "title" "夏恋" "album" "夏恋" "url" "https://music.163.com/#/song?id=493911" -}}
-{{ $data = append dict "artist" "市松椿" "title" "童祭 ~ Innocent Treasures" "album" "palette ~人々が爱した幻想郷~" "url" "https://music.163.com/#/song?id=766014" -}}
-{{ $data = append dict "artist" "沙紗飛鳥" "title" "夜桜街道" "album" "東方幽靜響" "url" "https://music.163.com/#/song?id=26085473" -}}
-{{ $data = append dict "artist" "石田燿子" "title" "COLORFUL BOX" "album" "COLORFUL BOX / Animetic Love Letter" "url" "https://music.163.com/#/song?id=29753399" -}}
-{{ $data = append dict "artist" "松本文紀" "title" "夜の向日葵" "album" "素晴らしき日々 サウンドトラックCD" "url" "https://music.163.com/#/song?id=4937357" -}}
-{{ $data = append dict "artist" "seven oops" "title" "ReReハロ〜終われそうにない夏〜" "album" "ReReハロ〜終われそうにない夏〜" "url" "https://music.163.com/#/song?id=27580227" -}}
-{{ $data = append dict "artist" "Sound Horizon" "title" "美しきもの" "album" "Roman" "url" "https://music.163.com/#/song?id=22782025" -}}
-{{ $data = append dict "artist" "Sora" "title" "1秒でも…" "album" "1秒でも…" "url" "https://music.163.com/#/song?id=5357641" -}}
-{{ $data = append dict "artist" "jyA-Me" "title" "Dear my friend with CHiE" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1Yt411r7BM" -}}
-{{ $data = append dict "artist" "南條愛乃" "title" "fortuna on the Sixteenth night" "album" "十六夜のフォルトゥーナ オリジナルサウンドトラック" "url" "https://music.163.com/#/song?id=28152340" -}}
-{{ $data = append dict "artist" "西野カナ" "title" "Sakura I Love You" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1qY4y1o7Cz" -}}
-{{ $data = append dict "artist" "坂上なち" "title" "サクラ・ホライズン" "album" "Fortune Music selection of nachi" "url" "https://music.163.com/#/song?id=32803111" -}}
-{{ $data = append dict "artist" "So'Fly" "title" "i BELIEVE～星に願いを" "album" "ⅰ BELIEVE ～星に願いを" "url" "https://music.163.com/#/song?id=831459" -}}
-{{ $data = append dict "artist" "KOKIA" "title" "Spirits" "album" "アルカディアの蒼き巫女 オリジナル・サウンドトラック" "url" "https://music.163.com/#/song?id=32069326" -}}
-{{ $data = append dict "artist" "一咲美葵" "title" "紅に染まる恋の花(with Marcia)" "album" "紅に染まる恋の花" "url" "https://music.163.com/#/song?id=1438545192" -}}
-{{ $data = append dict "artist" "諫山実生" "title" "あやとり" "album" "ハナコトバ～花心詩～" "url" "https://music.163.com/#/song?id=22707944" -}}
-{{ $data = append dict "artist" "LiSA" "title" "crossing field" "album" "ソードアート・オンライン ソングコレクション" "url" "https://music.163.com/#/song?id=29027453" -}}
-{{ $data = append dict "artist" "ClariS" "title" "コネクト" "album" "コネクト" "url" "https://music.163.com/#/song?id=536622994" -}}
-{{ $data = append dict "artist" "紫咲ほたる" "title" "ことのは" "album" "Limited Dimension" "url" "https://music.163.com/#/song?id=721401" -}}
-{{ $data = append dict "artist" "F9 & lapix" "title" "A.S.H" "album" "Nature" "url" "https://music.163.com/#/song?id=28587958" -}}
-{{ $data = append dict "artist" "牧野由依" "title" "ジャスミン" "album" "アムリタ" "url" "https://music.163.com/#/song?id=610212" -}}
-{{ $data = append dict "artist" "鎖那" "title" "彼女は旅に出る" "album" "Hush a by little girl" "url" "https://music.163.com/#/song?id=509106775" -}}
-{{ $data = append dict "artist" "発熱巫女~ず" "title" "Flower of Life" "album" "アンチェインドメロディ" "url" "https://music.163.com/#/song?id=745239" -}}
-{{ $data = append dict "artist" "めらみぽっぷ" "title" "童遊" "album" "望" "url" "https://music.163.com/#/song?id=28732503" -}}
-{{ $data = append dict "artist" "C-CLAYS" "title" "月明かりの夜、永遠の色" "album" "YES！" "url" "https://music.163.com/#/song?id=28921683" -}}
-{{ $data = append dict "artist" "仲村芽衣子" "title" "プロセス" "album" "DIVINE FORTUNE" "url" "https://music.163.com/#/song?id=26388032" -}}
-{{ $data = append dict "artist" "3L" "title" "Three Magic" "album" "BEST OF WiNG" "url" "https://music.163.com/#/song?id=26565985" -}}
-{{ $data = append dict "artist" "Masayoshi Minoshima & 坂上なち " "title" "of memories" "album" "of memories" "url" "https://music.163.com/#/song?id=22645087" -}}
-{{ $data = append dict "artist" "やなぎなぎ & 麻枝准" "title" "終わりの世界から" "album" "終わりの惑星のLove Song" "url" "https://music.163.com/#/song?id=676508" -}}
-{{ $data = append dict "artist" "minimum electric design" "title" "グーテンベルクの科学世紀" "album" "Two-Tone" "url" "https://music.163.com/#/song?id=412785540" -}}
-{{ $data = append dict "artist" "EastNewSound" "title" "Replay & Review" "album" "Auxiliary Brightness" "url" "https://music.163.com/#/song?id=26127123" -}}
-{{ $data = append dict "artist" "桃鈴ねね" "title" "Lunch with me" "album" "Lunch with me" "url" "https://music.163.com/#/song?id=1930806302" -}}
-{{ $data = append dict "artist" "Juliet" "title" "サクラブ -桜、咲く-" "album" "サクラブ" "url" "https://music.163.com/#/song?id=753225" -}}
-{{ $data = append dict "artist" "Ms.OOJA" "title" "baby don't know why" "album" "VOICE" "url" "https://music.163.com/#/song?id=22778302" -}}
-{{ $data = append dict "artist" "Aimer & EGOIST" "title" "ninelie" "album" "ninelie" "url" "https://music.163.com/#/song?id=409872504" -}}
-{{ $data = append dict "artist" "山崎あおい" "title" "鯖鯖" "album" "鯖鯖" "url" "https://music.163.com/#/song?id=1316563576" -}}
-{{ $data = append dict "artist" "WHITE JAM" "title" "AMAZING ME" "album" "TIK TOK" "url" "https://music.163.com/#/song?id=28563383" -}}
-{{ $data = append dict "artist" "ROOKiEZ is PUNK'D" "title" "コンプリケイション" "album" "コンプリケイション デュラララ!!盘" "url" "https://music.163.com/#/song?id=811995" -}}
-{{ $data = append dict "artist" "HoneyWorks & かぴ" "title" "可愛くてごめん (feat. かぴ)" "album" "告白実行委員会 -FLYING SONGS- 恋してる" "url" "https://music.163.com/#/song?id=1969519579" -}}
-{{ $data = append dict "artist" "和田光司" "title" "Butter-Fly" "album" "DIGIMON HISTORY 1999-2006 All The Best" "url" "https://music.163.com/#/song?id=4940920" -}}
-{{ $data = append dict "artist" "三浦サリー" "title" "セツナイのは…" "album" "セツナイのは…" "url" "https://music.163.com/#/song?id=26142483" -}}
-{{ $data = append dict "artist" "MY FIRST STORY" "title" "不可逆リプレイス - Fukagyaku Replace" "album" "不可逆リプレイス - Fukagyaku Replace" "url" "https://music.163.com/#/song?id=29436956" -}}
-{{ $data = append dict "artist" "T-ara" "title" "DAY BY DAY (Japanese Ver.)" "album" "Sexy Love (Japanese ver.)" "url" "https://music.163.com/#/song?id=26089233" -}}
-{{ $data = append dict "artist" "ワカバ" "title" "明日、僕は君に会いに行く。" "album" "明日、僕は君に会いに行く。" "url" "https://music.163.com/#/song?id=863974" -}}
-{{ $data = append dict "artist" "Reol & Giga" "title" "No title" "album" "No title-" "url" "https://music.163.com/#/song?id=28941713" -}}
-{{ $data = append dict "artist" "Trident" "title" "ブルー・フィールド" "album" "ブルー・フィールド" "url" "https://music.163.com/#/song?id=27901850" -}}
-{{ $data = append dict "artist" "SPYAIR" "title" "サムライハート(Some Like It Hot!!)" "album" "银魂BEST3" "url" "https://music.163.com/#/song?id=28018217" -}}
-{{ $data = append dict "artist" "一咲美葵" "title" "明日散る運命なら[with Marcia]" "album" "明日散る運命なら" "url" "https://music.163.com/#/song?id=1833392131" -}}
-{{ $data = append dict "artist" "CHiCO with HoneyWorks" "title" "世界は恋に落ちている" "album" "世界は恋に落ちている" "url" "https://music.163.com/#/song?id=28891491" -}}
-{{ $data = append dict "artist" "高野健一" "title" "さくら" "album" "さくら" "url" "https://music.163.com/#/song?id=28283665" -}}
-{{ $data = append dict "artist" "中島みゆき" "title" "銀の龍の背に乗って" "album" "銀の龍の背に乗って" "url" "https://music.163.com/#/song?id=624751" -}}
-{{ $data = append dict "artist" "Field Of View" "title" "DAN DAN 心魅かれてく(Cinema Version)" "album" "ドラゴンボール~最強への道~オリジナルサウンドトラック" "url" "https://music.163.com/#/song?id=493735159" -}}
-{{ $data = append dict "artist" "福原美穂" "title" "LET IT OUT" "album" "LET IT OUT" "url" "https://music.163.com/#/song?id=571330" -}}
-{{ $data = append dict "artist" "Ayase" "title" "夜撫でるメノウ (Ayase ver.)" "album" "幽霊東京" "url" "https://music.163.com/#/song?id=1466019532" -}}
-{{ $data = append dict "artist" "宇多田ヒカル" "title" "Beautiful World 2021 Remastered" "album" "Beautiful World -2021 Remastered-" "url" "https://music.163.com/#/song?id=1825842042" -}}
-{{ $data = append dict "artist" "Spontania & AZU" "title" "同じ空みつめてるあなたに" "album" "同じ空みつめてるあなたに" "url" "https://music.163.com/#/song?id=820340" -}}
-{{ $data = append dict "artist" "高橋洋子" "title" "残酷な天使のテーゼ (Director's Edit.Version)" "album" "残酷な天使のテーゼ FLY ME TO THE MOON" "url" "https://music.163.com/#/song?id=657680" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "レプリカの恋" "album" "レプリカの恋" "url" "https://music.163.com/#/song?id=28581725" -}}
-{{ $data = append dict "artist" "WANDS" "title" "世界が終るまでは···" "album" "SLAM DUNK BEST COLLECTION" "url" "https://music.163.com/#/song?id=26508150" -}}
-{{ $data = append dict "artist" "花たん" "title" "Wave" "album" "Flower" "url" "https://music.163.com/#/song?id=27548257" -}}
-{{ $data = append dict "artist" "シド" "title" "嘘" "album" "鋼の錬金術師 THE BEST" "url" "https://music.163.com/#/song?id=28272047" -}}
-{{ $data = append dict "artist" "SoulJa & 中村舞子 & 壇蜜" "title" "What’s your name? (collaboration with 壇蜜)" "album" "雨のち晴れ What's your name?" "url" "https://music.163.com/#/song?id=26902203" -}}
-{{ $data = append dict "artist" "放課後ティータイム" "title" "Don't say lazy [5人Ver.]" "album" "けいおん!はいれぞ!「Come with Me!!」セット" "url" "https://music.163.com/#/song?id=514765042" -}}
-{{ $data = append dict "artist" "平原綾香" "title" "はじまりの風" "album" "4つのL" "url" "https://music.163.com/#/song?id=22811178" -}}
-{{ $data = append dict "artist" "MARiA" "title" "Girls" "album" "aMazing MusiQue PaRK" "url" "https://music.163.com/#/song?id=22793308" -}}
-{{ $data = append dict "artist" "SPICY CHOCOLATE & JASMINE & SKY-HI & 寿君" "title" "それでも君が好き" "album" "渋谷純愛物語" "url" "https://music.163.com/#/song?id=29567155" -}}
-{{ $data = append dict "artist" "FictionJunction & 南里侑香" "title" "暁の車" "album" "暁の車" "url" "https://music.163.com/#/song?id=724495" -}}
-{{ $data = append dict "artist" "ClariS" "title" "pastel" "album" "アネモネ" "url" "https://music.163.com/#/song?id=33469881" -}}
-{{ $data = append dict "artist" "Lia" "title" "鳥の詩" "album" "Ornithopter -AIR Original Compilation-" "url" "https://music.163.com/#/song?id=761594" -}}
-{{ $data = append dict "artist" "童子-T & YU-A" "title" "願い" "album" "12love Stories" "url" "https://music.163.com/#/song?id=524184" -}}
-{{ $data = append dict "artist" "ナナツカゼ & PIKASONIC & なこたんまる" "title" "朧月夜" "album" "朧月夜" "url" "https://music.163.com/#/song?id=2059807644" -}}
-{{ $data = append dict "artist" "Lezel" "title" "未完成ランデヴー" "album" "未完成ランデヴー" "url" "https://music.163.com/#/song?id=2604586574" -}}
-{{ $data = append dict "artist" "のみこ" "title" "Bad Apple!! feat. nomico" "album" "EXSERENS" "url" "https://music.163.com/#/song?id=687506" -}}
-{{ $data = append dict "artist" "Islet & 倚水" "title" "星になる (feat. 倚水)" "album" "星になる (feat. 倚水)" "url" "https://music.163.com/#/song?id=2002970862" -}}
-{{ $data = append dict "artist" "T-ara" "title" "T.T.L ～Time to Love～ (Japanese ver.)" "album" "Queen of Pops" "url" "https://music.163.com/#/song?id=28828606" -}}
-{{ $data = append dict "artist" "A-One" "title" "How to Love" "album" "NECRO PHANTASISTA" "url" "https://music.163.com/#/song?id=33211167" -}}
-{{ $data = append dict "artist" "ギギ・アンダルシア" "title" "夢で逢いましょう" "album" "TVアニメ『名探偵コナン』EDテーマ「夢で逢いましょう」" "url" "https://music.163.com/#/song?id=2621421177" -}}
-{{ $data = append dict "artist" "島みやえい子" "title" "宇宙の花" "album" "ULYSSES" "url" "https://music.163.com/#/song?id=22789069" -}}
-{{ $data = append dict "artist" "ういにゃす & おっちょこバニー" "title" "嗚呼 絢爛の泡沫が如く" "album" "『千の刃濤、桃花染の皇姫』OPテーマ" "url" "https://music.163.com/#/song?id=424995301" -}}
-{{ $data = append dict "artist" "少女フラクタル" "title" "悠久の月に照らされて" "album" "悠久の月に照らされて" "url" "https://music.163.com/#/song?id=434732450" -}}
-{{ $data = append dict "artist" "大事MANブラザーズバンド" "title" "それが大事" "album" "それが大事" "url" "https://music.163.com/#/song?id=848332" -}}
-{{ $data = append dict "artist" "松澤由美" "title" "地球ぎ" "album" "聖闘士星矢 冥王ハーデス十二宮編 主題歌" "url" "https://music.163.com/#/song?id=614150" -}}
-{{ $data = append dict "artist" "瑶山百霊" "title" "奏穹のラプソディア" "album" "奏穹のラプソディア" "url" "https://music.163.com/#/song?id=469699517" -}}
-{{ $data = append dict "artist" "Risa Yuzuki" "title" "偽りの私" "album" "聖人の調律" "url" "https://music.163.com/#/song?id=40915854" -}}
-{{ $data = append dict "artist" "AKINO" "title" "創聖のアクエリオン" "album" "創聖のアクエリオン" "url" "https://music.163.com/#/song?id=558173" -}}
-{{ $data = append dict "artist" "May'n & 中島愛" "title" "ライオン" "album" "マクロスF VOCAL COLLECTION「娘たま♀」" "url" "https://music.163.com/#/song?id=22766925" -}}
-{{ $data = append dict "artist" "ワルキューレ" "title" "ワルキューレがとまらない ～without Freyja～" "album" "ワルキューレは裏切らない" "url" "https://music.163.com/#/song?id=536623413" -}}
-{{ $data = append dict "artist" "う～み" "title" "星の在り処" "album" "空を見上げて ～英雄伝説 空の軌跡 ボーカルバージョン～" "url" "https://music.163.com/#/song?id=730669" -}}
-{{ $data = append dict "artist" "riya" "title" "小さなてのひら" "album" "CLANNAD ORIGINAL SOUNDTRACK" "url" "https://music.163.com/#/song?id=22707009" -}}
-{{ $data = append dict "artist" "Kiroro" "title" "長い間" "album" "Nagai Aida ～Kiroro no Mori～" "url" "https://music.163.com/#/song?id=22746142" -}}
-{{ $data = append dict "artist" "兎明" "title" "創造の地平線を見つめて" "album" "創造の地平線を見つめて" "url" "https://music.163.com/#/song?id=1316563399" -}}
-{{ $data = append dict "artist" "小清水亜美" "title" "玻璃の空" "album" "玻璃の空" "url" "https://music.163.com/#/song?id=687747" -}}
-{{ $data = append dict "artist" "eufonius" "title" "メグメル (cuckool Mix 2007)" "album" "メグメル/だんご大家族" "url" "https://music.163.com/#/song?id=760528" -}}
-{{ $data = append dict "artist" "See-Saw" "title" "あんなに一绪だったのに" "album" "「機動戦士ガンダムSEED」エンディングテーマ あんなに一緒だったのに" "url" "https://music.163.com/#/song?id=819663" -}}
-{{ $data = append dict "artist" "KG & 滴草由実" "title" "叶わない恋でも… duet with 滴草由実" "album" "DUET WITH BEST" "url" "https://music.163.com/#/song?id=26115245" -}}
-{{ $data = append dict "artist" "シド" "title" "レイン" "album" "鋼の錬金術師 THE BEST" "url" "https://music.163.com/#/song?id=28272061" -}}
-{{ $data = append dict "artist" "nayuta" "title" "死奏憐音、玲瓏ノ終" "album" "Scattered Destiny" "url" "https://music.163.com/#/song?id=22785270" -}}
-{{ $data = append dict "artist" "ClariS" "title" "irony" "album" "irony" "url" "https://music.163.com/#/song?id=705376" -}}
-{{ $data = append dict "artist" "ヲタみん" "title" "Letter Song" "album" "Letter Song" "url" "https://music.163.com/#/song?id=27571001" -}}
-{{ $data = append dict "artist" "YUI" "title" "Rolling star" "album" "BLEACH BEST TUNES" "url" "https://music.163.com/#/song?id=4952978" -}}
-{{ $data = append dict "artist" "Angel Note & 真里歌" "title" "quantum jump" "album" "フレラバ ミニファンディスク＆フルサウンドトラック" "url" "https://music.163.com/#/song?id=29307295" -}}
-{{ $data = append dict "artist" "Risa Yuzuki" "title" "彷徨いの冥" "album" "彷徨いの冥" "url" "https://music.163.com/#/song?id=32098510" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "月輪に巡らされた記憶" "album" "月輪に巡らされた記憶" "url" "https://music.163.com/#/song?id=1387399056" -}}
-{{ $data = append dict "artist" "ういにゃす" "title" "月夜に舞う恋の花" "album" "『千の刃濤、桃花染の皇姫』EDテーママキシシングル" "url" "https://music.163.com/#/song?id=434981395" -}}
-{{ $data = append dict "artist" "あやぽんず* & あよ" "title" "幻想コネクト-森羅万象ver.-" "album" "幻想コネクト / 貴方と繋ぐ想い" "url" "https://music.163.com/#/song?id=1453415397" -}}
-{{ $data = append dict "artist" "平原綾香" "title" "はじまりの风(On Air Ver.)" "album" "彩云国物语 オリジナルサウンドトラック 1" "url" "https://music.163.com/#/song?id=1871420" -}}
-{{ $data = append dict "artist" "坂本昌一郎" "title" "My Sweet Home" "album" "Liber_7 オリジナルサウンドトラック" "url" "https://music.163.com/#/song?id=509512638" -}}
-{{ $data = append dict "artist" "一咲美葵" "title" "瞳を閉じて、映す夢幻" "album" "瞳を閉じて、映す夢幻" "url" "https://music.163.com/#/song?id=1972604900" -}}
-{{ $data = append dict "artist" "結城アイラ" "title" "colorless wind" "album" "colorless wind" "url" "https://music.163.com/#/song?id=28642378" -}}
-{{ $data = append dict "artist" "折戸伸治" "title" "潮鳴り" "album" "CLANNAD ORIGINAL SOUNDTRACK" "url" "https://music.163.com/#/song?id=22707008" -}}
-{{ $data = append dict "artist" "山崎もえ" "title" "コトダマ紬ぐ未来" "album" "アマツツミ 予約特典 主題歌マキシシングルCD" "url" "https://music.163.com/#/song?id=427419615" -}}
-{{ $data = append dict "artist" "himmel & 瑶山百霊" "title" "千之缘" "album" "千之缘" "url" "https://music.163.com/#/song?id=436667894" -}}
-{{ $data = append dict "artist" "幽閉サテライト & sroa" "title" "唯我独尊の果て" "album" "唯我独尊の果て" "url" "https://music.163.com/#/song?id=2618701284" -}}
-{{ $data = append dict "artist" "fripSide" "title" "HesitationSnow" "album" "はつゆきさくら COMPLETE SOUNDTRACK" "url" "https://music.163.com/#/song?id=622956" -}}
-{{ $data = append dict "artist" "真優" "title" "風に吹かれて(vocal song)" "album" "こいらぼ ヴォーカルソング+" "url" "https://music.163.com/#/song?id=717921" -}}
-{{ $data = append dict "artist" "ClariS" "title" "桜咲く" "album" "STEP" "url" "https://music.163.com/#/song?id=28406557" -}}
-{{ $data = append dict "artist" "SoulJa & 青山テルマ" "title" "ここにいるよ" "album" "Spirits" "url" "https://music.163.com/#/song?id=22664256" -}}
-{{ $data = append dict "artist" "ワルキューレ" "title" "僕らの戦場" "album" "Walküre Attack!" "url" "https://music.163.com/#/song?id=419238089" -}}
-{{ $data = append dict "artist" "Vivian or Kazuma" "title" "moment" "album" "moment" "url" "https://music.163.com/#/song?id=858277" -}}
-{{ $data = append dict "artist" "Ceui" "title" "Stigmata" "album" "イメージアルバム 穢翼のユースティア 夢想曲(トロイメライ) ~Seeking Asphodelus~" "url" "https://music.163.com/#/song?id=26141649" -}}
-{{ $data = append dict "artist" "RSP" "title" "さくら 〜あなたに出会えてよかった〜" "album" "さくら 〜あなたに出会えてよかった〜" "url" "https://music.163.com/#/song?id=805197" -}}
-{{ $data = append dict "artist" "Kotoha" "title" "雪は何色" "album" "ましろ色シンフォニー SANA EDITION Maxi Single" "url" "https://music.163.com/#/song?id=2075565121" -}}
-{{ $data = append dict "artist" "仲村芽衣子" "title" "ギプソフィラを花束に" "album" "ギプソフィラを花束に" "url" "https://music.163.com/#/song?id=2042187545" -}}
-{{ $data = append dict "artist" "Kirara Magic & Xomu & nayuta" "title" "Night of Bloom (feat. nayuta)" "album" "Night of Bloom" "url" "https://music.163.com/#/song?id=1963634342" -}}
-{{ $data = append dict "artist" "GFRIEND" "title" "Glass Bead -JP ver.-" "album" "今日から私たちは ～GFRIEND 1st BEST～" "url" "https://music.163.com/#/song?id=568207106" -}}
-{{ $data = append dict "artist" "幽閉サテライト & 森永真由美" "title" "共鳴しない愛のカタチ" "album" "魔法が生まれた日" "url" "https://music.163.com/#/song?id=436016269" -}}
-{{ $data = append dict "artist" "綾瀬理恵" "title" "形のない花" "album" "Infect Paranoia" "url" "https://music.163.com/#/song?id=29027527" -}}
-{{ $data = append dict "artist" "Himeka" "title" "PRECIOUS" "album" "PRECIOUS" "url" "https://music.163.com/#/song?id=440411449" -}}
-{{ $data = append dict "artist" "千歳サラ" "title" "アルカディア" "album" "11月のアルカディア Complete Songs" "url" "https://music.163.com/#/song?id=35470874" -}}
-{{ $data = append dict "artist" "花たん & プリコ & ヲタみん & ChouCho & 転少女" "title" "リリリリ★バーニングナイト" "album" "DANCEROID Official Sound Track" "url" "https://music.163.com/#/song?id=22780159" -}}
-{{ $data = append dict "artist" "东京塔子" "title" "雪之泪 雨之音" "album" "雪之泪 雨之音" "url" "https://music.163.com/#/song?id=460839654" -}}
-{{ $data = append dict "artist" "みぃ" "title" "ROLLING MY LIFE" "album" "Agony" "url" "https://music.163.com/#/song?id=40915753" -}}
-{{ $data = append dict "artist" "ALTIMA" "title" "Burst the Gravity" "album" "Burst the Gravity" "url" "https://music.163.com/#/song?id=26390039" -}}
-{{ $data = append dict "artist" "ワルキューレ" "title" "Absolute 5" "album" "Walküre Trap!" "url" "https://music.163.com/#/song?id=431853288" -}}
-{{ $data = append dict "artist" "紫咲ほたる" "title" "Re:TrymenT" "album" "Re:LieF~親愛なるあなたへ~ OriginaL SounD TracK" "url" "https://music.163.com/#/song?id=451520657" -}}
-{{ $data = append dict "artist" "KyoKa" "title" "桜爛ロマンシア" "album" "さくらの雲＊スカアレットの恋 コンプリートサウンドアルバム" "url" "https://music.163.com/#/song?id=1490122495" -}}
-{{ $data = append dict "artist" "幽閉サテライト & 森永真由美" "title" "魂の語りに導かれて" "album" "魂の語りに導かれて" "url" "https://music.163.com/#/song?id=34338787" -}}
-{{ $data = append dict "artist" "CLIFF EDGE & 中村舞子" "title" "The Distance" "album" "HEART" "url" "https://music.163.com/#/song?id=22672228" -}}
-{{ $data = append dict "artist" "一咲美葵" "title" "語り継ぐ魂は[with Marcia]" "album" "語り継ぐ魂は" "url" "https://music.163.com/#/song?id=1927596918" -}}
-{{ $data = append dict "artist" "志田サマー新井サマー" "title" "あんなに好きだったサマー" "album" "あんなに好きだったサマー/ GO GO ｻﾏｰ!" "url" "https://music.163.com/#/song?id=461581874" -}}
-{{ $data = append dict "artist" "KOTOKO" "title" "→unfinished→" "album" "→unfinished→" "url" "https://music.163.com/#/song?id=589296" -}}
-{{ $data = append dict "artist" "川田まみ" "title" "INITIATIVE" "album" "Love, Election & Chocolate × I've Maxi Single CD" "url" "https://music.163.com/#/song?id=751607" -}}
-{{ $data = append dict "artist" "花たん" "title" "笹舟" "album" "FLOWER DROPS" "url" "https://music.163.com/#/song?id=31191351" -}}
-{{ $data = append dict "artist" "PIKASONIC & なこたんまる" "title" "追憶 (feat. nakotanmaru)" "album" "追憶 (feat. nakotanmaru)" "url" "https://music.163.com/#/song?id=1869161372" -}}
-{{ $data = append dict "artist" "和田光司" "title" "ターゲット~赤い冲撃~" "album" "DIGIMON HISTORY 1999-2006 All The Best" "url" "https://music.163.com/#/song?id=4940921" -}}
-{{ $data = append dict "artist" "YU-A" "title" "忘れられない恋" "album" "忘れられない恋" "url" "https://music.163.com/#/song?id=26284054" -}}
-{{ $data = append dict "artist" "GFRIEND" "title" "NAVILLERA -JP ver.-" "album" "今日から私たちは ～GFRIEND 1st BEST～" "url" "https://music.163.com/#/song?id=568207109" -}}
-{{ $data = append dict "artist" "fripSide" "title" "closest love" "album" "closest love" "url" "https://music.163.com/#/song?id=725429" -}}
-{{ $data = append dict "artist" "ピコ" "title" "桜音" "album" "银魂BEST2" "url" "https://music.163.com/#/song?id=4925822" -}}
-{{ $data = append dict "artist" "山口リサ" "title" "Rainy Love ~届かない想い~" "album" "Eternal Color" "url" "https://music.163.com/#/song?id=22699147" -}}
-{{ $data = append dict "artist" "Suara" "title" "恋夢" "album" "声" "url" "https://music.163.com/#/song?id=35447088" -}}
-{{ $data = append dict "artist" "茉ひる & RINZO" "title" "フレグランス (Sped Up Version)" "album" "フレグランス" "url" "https://music.163.com/#/song?id=2106836589" -}}
-{{ $data = append dict "artist" "一咲美葵" "title" "陽だまり探して[with Marcia]" "album" "陽だまりを探して" "url" "https://music.163.com/#/song?id=1901070033" -}}
-{{ $data = append dict "artist" "坂上なち" "title" "追忆サマーナイト" "album" "Crimson Tempest" "url" "https://music.163.com/#/song?id=685908" -}}
-{{ $data = append dict "artist" "sroa" "title" "硝子の鍵に似ていた" "album" "硝子の鍵に似ていた" "url" "https://music.163.com/#/song?id=2743418869" -}}
-{{ $data = append dict "artist" "川田まみ" "title" "Wings of Courage -空を超えて-" "album" "蒼の彼方のフォーリズム主題歌MAXI SINGLE CD" "url" "https://music.163.com/#/song?id=29771058" -}}
-{{ $data = append dict "artist" "GET IN THE RING" "title" "祭炎" "album" "東方PARTYBOX2" "url" "https://music.163.com/#/song?id=434974954" -}}
-{{ $data = append dict "artist" "Fivesta" "title" "今でもI Love You" "album" "Fivesta" "url" "https://music.163.com/#/song?id=22810614" -}}
-{{ $data = append dict "artist" "nonoc" "title" "Memento" "album" "Memento" "url" "https://music.163.com/#/song?id=1964102917" -}}
-{{ $data = append dict "artist" "NegNasu & Xomu" "title" "Hound of Aubergine (feat. Xomu)" "album" "Hound of Aubergine (feat. Xomu)" "url" "https://music.163.com/#/song?id=2009721409" -}}
-{{ $data = append dict "artist" "鈴木このみ" "title" "真理の鏡、剣乃ように" "album" "真理の鏡、剣乃ように" "url" "https://music.163.com/#/song?id=1375880110" -}}
-{{ $data = append dict "artist" "Tiara" "title" "My best friend" "album" "Message for You" "url" "https://music.163.com/#/song?id=22845966" -}}
-{{ $data = append dict "artist" "25時、ナイトコードで。" "title" "Bad Apple!! feat.SEKAI" "album" "25時、ナイトコードで。 SEKAI ALBUM vol.3" "url" "https://music.163.com/#/song?id=2702706005" -}}
-{{ $data = append dict "artist" "RSP" "title" "優しい詩。" "album" "優しい詩。" "url" "https://music.163.com/#/song?id=28283406" -}}
-{{ $data = append dict "artist" "天宮みや & 姫城碧海" "title" "不可測的メトロポリス" "album" "不可測的メトロポリス" "url" "https://music.163.com/#/song?id=1414857563" -}}
-{{ $data = append dict "artist" "Flower" "title" "花時計 ～Party's on!～ (version2016)" "album" "瞳の奥の銀河 (形態B)" "url" "https://music.163.com/#/song?id=39227348" -}}
-{{ $data = append dict "artist" "ChouCho" "title" "starlog" "album" "starlog" "url" "https://music.163.com/#/song?id=27526074" -}}
-{{ $data = append dict "artist" "豊田萌絵 & 前田玲奈 & 麻倉もも" "title" "Shining Ray" "album" "ガールフレンド（♪） キャラクターソングCD「Shining Ray」" "url" "https://music.163.com/#/song?id=445845467" -}}
-{{ $data = append dict "artist" "一咲美葵" "title" "永遠の都で[with Marcia]" "album" "永遠の都で" "url" "https://music.163.com/#/song?id=2011887276" -}}
-{{ $data = append dict "artist" "SINGERS GUILD & HOEN" "title" "i believe" "album" "i believe" "url" "https://music.163.com/#/song?id=35726238" -}}
-{{ $data = append dict "artist" "mican* & 綾倉盟" "title" "Saigetsu(砕月)" "album" "PLASTIK WORLD" "url" "https://music.163.com/#/song?id=687140" -}}
-{{ $data = append dict "artist" "詩音" "title" "Re:ナミダボシ feat. CLIFF EDGE" "album" "Truth" "url" "https://music.163.com/#/song?id=22645735" -}}
-{{ $data = append dict "artist" "牧野由依" "title" "synchronicity" "album" "synchronicity" "url" "https://music.163.com/#/song?id=610034" -}}
-{{ $data = append dict "artist" "舞花" "title" "Time and again" "album" "Flying Fantastica" "url" "https://music.163.com/#/song?id=526904552" -}}
-{{ $data = append dict "artist" "Riryka" "title" "疾るセカイと僕らのミライ" "album" "ミライセカイのプラネッタ オリジナルサウンドトラック" "url" "https://music.163.com/#/song?id=26209772" -}}
-{{ $data = append dict "artist" "Kicco" "title" "終わらない煌めきを" "album" "Amazing Sky" "url" "https://music.163.com/#/song?id=418708367" -}}
-{{ $data = append dict "artist" "sweet ARMS" "title" "I swear" "album" "I swear" "url" "https://music.163.com/#/song?id=1340119926" -}}
-{{ $data = append dict "artist" "Larval Stage Planning" "title" "Trip -innocent of D-" "album" "Trip -innocent of D-" "url" "https://music.163.com/#/song?id=775072" -}}
-{{ $data = append dict "artist" "春奈るな" "title" "Startear" "album" "Startear" "url" "https://music.163.com/#/song?id=28949422" -}}
-{{ $data = append dict "artist" "花たん" "title" "cat's dance" "album" "Flower" "url" "https://music.163.com/#/song?id=27548278" -}}
-{{ $data = append dict "artist" "ICHIKO" "title" "I SAY YES" "album" "TVアニメ ゼロの使い魔~双月の骑士~ OPテーマ“I SAY YES”" "url" "https://music.163.com/#/song?id=583624" -}}
-{{ $data = append dict "artist" "fripSide" "title" "Last Fortune - Short Ver -" "album" "ティンクル☆くるせいだーす -Passion Star Stream- 豪華版特典 PSS&GoGo!&SB オリジナルサウンドトラック" "url" "https://music.163.com/#/song?id=4919240" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "温度差" "album" "想いが歴史に変わる時" "url" "https://music.163.com/#/song?id=29897825" -}}
-{{ $data = append dict "artist" "ChouCho" "title" "Asterism" "album" "Asterism" "url" "https://music.163.com/#/song?id=422132770" -}}
-{{ $data = append dict "artist" "米倉千尋" "title" "InFINITE Line" "album" "9-nine-Songbook" "url" "https://music.163.com/#/song?id=1940024246" -}}
-{{ $data = append dict "artist" "中恵光城 & 霜月はるか" "title" "mirage" "album" "Another Flower II" "url" "https://music.163.com/#/song?id=31680144" -}}
-{{ $data = append dict "artist" "冬乃桜" "title" "TSUBAKi IRO KOiUTA" "album" "絆きらめく恋いろは -椿恋歌- 響宴ノ舞" "url" "https://music.163.com/#/song?id=1396497627" -}}
-{{ $data = append dict "artist" "May'n" "title" "Scarlet Ballet" "album" "Scarlet Ballet" "url" "https://music.163.com/#/song?id=609891" -}}
-{{ $data = append dict "artist" "eufonius" "title" "リフレクティア" "album" "TVアニメ true tears 5周年記念CD-BOX" "url" "https://music.163.com/#/song?id=26475785" -}}
-{{ $data = append dict "artist" "ClariS" "title" "カラフル" "album" "カラフル" "url" "https://music.163.com/#/song?id=27901526" -}}
-{{ $data = append dict "artist" "秣本瑳羅" "title" "いと儚き燿の如く" "album" "metamorphoXIs" "url" "https://music.163.com/#/song?id=26099480" -}}
-        { dict "artist" "戸松遥" "title" "courage" "album" "courage" "url" "https://music.163.com/#/song?id9718090" "}"
-#{ $data = append { #   dict "artist" "ave"new" & 佐倉紗織" -}}#   title "Eternal Wish" "#"   album "GWAVE2005 2nd Impact" -}}#   url = "https://music.163.com/#/song?id=739914"; # }
-{{ $data = append dict "artist" "ClariS" "title" "CLICK" "album" "CLICK(期間生産限定アニメ盤)" "url" "https://music.163.com/#/song?id=28234361" -}}
-{{ $data = append dict "artist" "fripSide" "title" "floral summer" "album" "フローラル・フローラブ 予約特典スペシャルサウンドトラック" "url" "https://music.163.com/#/song?id=432698896" -}}
-{{ $data = append dict "artist" "MYNAME" "title" "Baby I'm Sorry (Japanese ver)" "album" "Shirayuki (WEB盤)" "url" "https://music.163.com/#/song?id=1999750254" -}}
-{{ $data = append dict "artist" "Halozy" "title" "源流懐古 (feat. ほたる)" "album" "Cosmic Armonica" "url" "https://music.163.com/#/song?id=22808859" -}}
-{{ $data = append dict "artist" "KOTOKO" "title" "Reboot oN/↓0" "album" "バルドスカイ ゼロ2 BALDRSKY ZERO2 主題歌マキシシングルCD" "url" "https://music.163.com/#/song?id=28432316" -}}
-{{ $data = append dict "artist" "KG & 菅原纱由理（THE SxPLAY）" "title" "谁よりも" "album" "谁よりも duet with 菅原纱由理" "url" "https://music.163.com/#/song?id=456499" -}}
-{{ $data = append dict "artist" "fripSide" "title" "glow in the darkness" "album" "南十字星恋歌 -Southern Cross Love Song ★- ボーカルコレクション" "url" "https://music.163.com/#/song?id=29450460" -}}
-{{ $data = append dict "artist" "jyA-Me & CLIFF EDGE" "title" "White Sweet Love" "album" "White Sweet Love" "url" "https://music.163.com/#/song?id=26096581" -}}
-{{ $data = append dict "artist" "森永真由美" "title" "造花であろうとした者" "album" "造花であろうとした者" "url" "https://music.163.com/#/song?id=425298906" -}}
-{{ $data = append dict "artist" "やなぎなぎ" "title" "恋文" "album" "Rewrite Original SoundTrack" "url" "https://music.163.com/#/song?id=26131698" -}}
-{{ $data = append dict "artist" "発熱巫女~ず" "title" "Pages" "album" "Coda" "url" "https://music.163.com/#/song?id=744960" -}}
-{{ $data = append dict "artist" "中島愛" "title" "星間飛行" "album" "キャラクターソング・コレクション FULL OF LOVE!!" "url" "https://music.163.com/#/song?id=1488050828" -}}
-{{ $data = append dict "artist" "May'n" "title" "真空のダイアモンド クレバス" "album" "マクロスF(フロンティア) O.S.T.2 娘トラ☆" "url" "https://music.163.com/#/song?id=589170" -}}
-{{ $data = append dict "artist" "Juliet" "title" "モトカレ" "album" "モトカレ" "url" "https://music.163.com/song?id=26103514" -}}
-{{ $data = append dict "artist" "ナノ & MY FIRST STORY" "title" "SAVIOR OF SONG" "album" "SAVIOR OF SONG (蒼き鋼のアルペジオVer.)" "url" "https://music.163.com/#/song?id=27901866" -}}
-{{ $data = append dict "artist" "花耶" "title" "Reincarnation" "album" "Reincarnation" "url" "https://music.163.com/#/song?id=2747205657" -}}
-{{ $data = append dict "artist" "Yonder Voice" "title" "Shrine Maiden – 永遠の巫女" "album" "Shrine Maiden Promotion Disc" "url" "https://music.163.com/#/song?id=29724821" -}}
-{{ $data = append dict "artist" "めらみぽっぷ" "title" "どうして…" "album" "宴" "url" "https://music.163.com/#/song?id=850775" -}}
-{{ $data = append dict "artist" "ALTIMA & KOTOKO" "title" "どうして…" "album" "PLASMIC FIRE(アニメ盤)" "url" "https://music.163.com/#/song?id=420500282" -}}
-{{ $data = append dict "artist" "d0tc0mmie & GUMI" "title" "I Can't Wait (feat. GUMI)" "album" "I Can't Wait (feat. GUMI)" "url" "https://music.163.com/#/song?id=3326907142" -}}
-{{ $data = append dict "artist" "RINZO & 茉ひる" "title" "デイドリーム (Daydream)" "album" "デイドリーム (Daydream)" "url" "https://music.163.com/#/song?id=2737352162" -}}
-{{ $data = append dict "artist" "鲷鱼" "title" "明日への花束（Blossoming ver.）" "album" "明日への花束（Blossoming ver.）" "url" "https://music.163.com/#/song?id=2751512490" -}}
-{{ $data = append dict "artist" "EastNewSound" "title" "Scarlet Elegy" "album" "Secret Color" "url" "https://music.163.com/#/song?id=2747135311" -}}
-{{ $data = append dict "artist" "御莉姫 & 廉" "title" "Masquerade Kill" "album" "Masquerade Kill" "url" "https://music.163.com/#/song?id=3312146708" -}}
-{{ $data = append dict "artist" "aki" "title" "壊されたお守り (feat. aki/隣人(ZYTOKINE))" "album" "風 -KAZE-" "url" "https://music.163.com/#/song?id=834954" -}}
-{{ $data = append dict "artist" "MIMI & 重音テト" "title" "トリックハート (feat. 重音テト)" "album" "トリックハート (feat. 重音テト)" "url" "https://music.163.com/#/song?id=3335544260" -}}
-{{ $data = append dict "artist" "少女病 & 中恵光城" "title" "黒紫のオーンブレ" "album" "天巡メルクマール" "url" "https://music.163.com/#/song?id=420154083" -}}
-{{ $data = append dict "artist" "solfa & 夢乃ゆき" "title" "Ever and… (feat. 夢乃ゆき)" "album" "Ever and…" "url" "https://music.163.com/#/song?id=2757955613" -}}
-{{ $data = append dict "artist" "Kicco" "title" "Amazing Sky" "album" "Amazing Sky" "url" "https://music.163.com/#/song?id=418708362" -}}
-{{ $data = append dict "artist" "茶太" "title" "min~眠~" "album" "Sally" "url" "https://music.163.com/#/song?id=835947" -}}
-{{ $data = append dict "artist" "栗林みな実 & 橋本みゆき & yozuca* & Faylan & rino & 美郷あき" "title" "すーぱー☆あふぇくしょん" "album" "すーぱー☆あふぇくしょん" "url" "https://music.163.com/#/song?id=27623632" -}}
-{{ $data = append dict "artist" "EricJC" "title" "東京を遊ぶ" "album" "東京を遊ぶ" "url" "https://music.163.com/#/song?id=3316725626" -}}
-{{ $data = append dict "artist" "Falcom Sound Team J.D.K." "title" "名もなき悪夢の果て" "album" "英雄伝説 黎の軌跡 オリジナルサウンドトラック" "url" "https://music.163.com/#/song?id=1927176367" -}}
-{{ $data = append dict "artist" "平野綾" "title" "God knows..." "album" "TVアニメ『涼宮ハルヒの憂鬱』 Imaginary ENOZ featuring HARUHI" "url" "https://music.163.com/#/song?id=27876224" -}}
-{{ $data = append dict "artist" "早見沙織 & 松井恵理子 & 潘めぐみ" "title" "十六夜ゐ雪洞唄" "album" "十六夜ゐ雪洞唄" "url" "https://music.163.com/#/song?id=441116312" -}}
-{{ $data = append dict "artist" "Stack" "title" "Dreamer" "album" "世界の選択 - Freedom Paradise-" "url" "https://music.163.com/#/song?id=30870396" -}}
-{{ $data = append dict "artist" "May'n & 中島愛" "title" "タブレット" "album" "マクロスF cosmic cuune" "url" "https://music.163.com/#/song?id=4931484" -}}
-{{ $data = append dict "artist" "blue drops" "title" "Ring My Bell (TVサイズ)" "album" "そらのおとしもの ～天使がくれた劇伴集～" "url" "https://music.163.com/#/song?id=4941315" -}}
-{{ $data = append dict "artist" "KEiNA" "title" "Glorias war" "album" "Glorias war" "url" "https://music.163.com/#/song?id=774208" -}}
-{{ $data = append dict "artist" "葉月ゆら" "title" "白羽の乙女と滅びの村" "album" "La Fata" "url" "https://music.163.com/#/song?id=3327188287" -}}
-{{ $data = append dict "artist" "橋本みゆき" "title" "Star☆drops" "album" "Star☆drops" "url" "https://music.163.com/#/song?id=579207" -}}
-{{ $data = append dict "artist" "M・A・O & 伊藤美来 & 立花理香" "title" "Lost Princess" "album" "プリンセスコネクト! Re:Dive PRICONNE CHARACTER SONG 01" "url" "https://music.163.com/#/song?id=1309903594" -}}
-{{ $data = append dict "artist" "ワルキューレ" "title" "ALIVE～祈りの唄～" "album" "「劇場版マクロスΔ 絶対LIVE!!!!!!」ボーカルソング集" "url" "https://music.163.com/#/song?id=1887059984" -}}
-{{ $data = append dict "artist" "冬乃桜" "title" "無上ノ刃" "album" "刹那にかける恋はなび Soundtrack: KOI-HANABI" "url" "https://music.163.com/#/song?id=2621227728" -}}
-{{ $data = append dict "artist" "fripSide" "title" "prismatic fate" "album" "fripSide PC game compilation vol. 1" "url" "https://music.163.com/#/song?id=22660769" -}}
-{{ $data = append dict "artist" "向日葵" "title" "AIRI-愛離-" "album" "AIRI -愛離-、炎路夜行" "url" "https://music.163.com/#/song?id=30039378" -}}
-{{ $data = append dict "artist" "CHIHIRO" "title" "4℃" "album" "4℃" "url" "https://music.163.com/#/song?id=563279" -}}
-{{ $data = append dict "artist" "Flower" "title" "とても深いグリーン" "album" "F" "url" "https://www.bilibili.com/video/BV1EyHYeBEFr" -}}
-{{ $data = append dict "artist" "一咲美葵" "title" "赤く青い炎" "album" "鮮やかな記憶の中で" "url" "https://music.163.com/#/song?id=1832167926" -}}
-{{ $data = append dict "artist" "YOASOBI" "title" "Watch me!" "album" "Watch me!" "url" "https://www.bilibili.com/video/BV1m1JEzAEbd/" -}}
-{{ $data = append dict "artist" "伊東健人" "title" "My Factor" "album" "咲音" "url" "https://www.bilibili.com/video/BV1c64y1P7aH" -}}
-{{ $data = append dict "artist" "フィロソフィーのダンス" "title" "迷っちゃうわ" "album" "迷っちゃうわ" "url" "https://www.bilibili.com/video/BV1iwkUBeEqL/" -}}
-{{ $data = append dict "artist" "花たん" "title" "蕚 – Utena -" "album" "DiGiTAL FLOWER BEST" "url" "https://music.163.com/#/song?id=501133607" -}}
-{{ $data = append dict "artist" "Soala" "title" "声の軌跡" "album" "声の軌跡" "url" "https://music.163.com/#/song?id=3343888367" -}}
-{{ $data = append dict "artist" "VILLSHANA & 茉ひる" "title" "Time" "album" "2" "url" "https://music.163.com/#/song?id=2672467882" -}}
-{{ $data = append dict "artist" "祈Inory" "title" "ViR to ReaL -Connected-" "album" "ViR to ReaL" "url" "https://music.163.com/#/song?id=422429078" -}}
-{{ $data = append dict "artist" "上田麗奈" "title" "リリィ" "album" "リリィ" "url" "https://www.bilibili.com/video/BV1waHTzcEQQ" -}}
-{{ $data = append dict "artist" "AYUMI KAWAKITA" "title" "E☆Right" "album" "WINTER LOVE" "url" "https://music.163.com/#/song?id=29775134" -}}
-{{ $data = append dict "artist" "京" "title" "終電は新月の駅を通り過ぎる" "album" "Ontos Vol.1《終電は新月の駅を通り過ぎる》" "url" "https://music.163.com/#/song?id=2751036411" -}}
-{{ $data = append dict "artist" "真崎ゆか" "title" "あなたがいるから" "album" "Tears of Heart" "url" "https://music.163.com/#/song?id=22787488" -}}
-{{ $data = append dict "artist" "BRIGHT" "title" "lonely tears" "album" "BRIGHT" "url" "https://music.163.com/#/song?id=22647930" -}}
-{{ $data = append dict "artist" "Koshidar" "title" "永遠の軌跡" "album" "永遠の軌跡" "url" "https://music.163.com/#/song?id=3342735561" -}}
+{{ $data = append $data (dict "artist" "Outlaw (feat. Miss Mary)" "title" "it's different" "album" "NCS" "url" "https://www.bilibili.com/video/BV1nx411m7Rd") -}}
+{{ $data = append $data (dict "artist" "山口リサ" "title" "明日へと…" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1654y1n7UT") -}}
+{{ $data = append $data (dict "artist" "fripSide" "title" "Sky" "album" "2nd fragment of fripSide" "url" "https://www.bilibili.com/video/BV1ts41187a6") -}}
+{{ $data = append $data (dict "artist" "Dream" "title" "こんなにも" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV19t4y1H7SY") -}}
+{{ $data = append $data (dict "artist" "Flower" "title" "Blue Sky Blue" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV13r4y1j7Fe") -}}
+{{ $data = append $data (dict "artist" "WITCH NUMBER 4" "title" "SAKURA" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV19F411N7kF") -}}
+{{ $data = append $data (dict "artist" "Flower" "title" "太陽と向日葵" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1HZ4y1Y7Fb") -}}
+{{ $data = append $data (dict "artist" "Ayumi Hamasaki" "title" "My All" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV11Xphe7ESz") -}}
+{{ $data = append $data (dict "artist" "TWICE" "title" "Wonderful Day" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV18m4y197DT") -}}
+{{ $data = append $data (dict "artist" "HIROKO_WISE" "title" "I loved you" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1yS4y1n7EU") -}}
+{{ $data = append $data (dict "artist" "沢井美空" "title" "卒業メモリーズ~サヨナラ、あなた。~" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1jU4y1D7iH") -}}
+{{ $data = append $data (dict "artist" "Lily_μ" "title" "SPECIAL DAY" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1fo4y1v7dY") -}}
+{{ $data = append $data (dict "artist" "安田レイ" "title" "アシンメトリー" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1544y1G7qQ") -}}
+{{ $data = append $data (dict "artist" "Himawari" "title" "shake it!" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1GW411x7yB") -}}
+{{ $data = append $data (dict "artist" "Flower" "title" "秋風のアンサー" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1ZY41177GT") -}}
+{{ $data = append $data (dict "artist" "Yuna Ito" "title" "Pureyes" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV14x411B73a") -}}
+{{ $data = append $data (dict "artist" "Flower" "title" "白雪姫" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1q5411u71A") -}}
+{{ $data = append $data (dict "artist" "Flower" "title" "人魚姫" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1p54y1L7zb") -}}
+{{ $data = append $data (dict "artist" "Flower" "title" "カラフル" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1Ro4y117ip") -}}
+{{ $data = append $data (dict "artist" "Flower" "title" "恋におちたら" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1Jv411p78z") -}}
+{{ $data = append $data (dict "artist" "Flower" "title" "BRIGHT" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1Qa411z7Hj") -}}
+{{ $data = append $data (dict "artist" "Flower" "title" "他の誰かより悲しい恋をしただけ" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1dV41137vD") -}}
+{{ $data = append $data (dict "artist" "Flower" "title" "七色キャンドル" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1dy42187wL") -}}
+{{ $data = append $data (dict "artist" "Flower" "title" "Clover" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV14m411X7S6") -}}
+{{ $data = append $data (dict "artist" "Flower" "title" "瞳の奥の銀河" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV12DXuY5EzV") -}}
+{{ $data = append $data (dict "artist" "花たん" "title" "Ray of Light" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1rUWMe1EQn") -}}
+{{ $data = append $data (dict "artist" "西野カナ" "title" "ONE WAY LOVE" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1LG4y1Q7Pt") -}}
+{{ $data = append $data (dict "artist" "西野カナ" "title" "Love you, Miss you" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1b14y1n7yt") -}}
+{{ $data = append $data (dict "artist" "CHIHIRO" "title" "永遠" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1jd4y1t7wN") -}}
+{{ $data = append $data (dict "artist" "Airots" "title" "桃幻浪漫" "album" "桃幻浪漫 ～千の刃濤、桃花染の皇姫 花あかり～" "url" "https://music.163.com/#/song?id=1395939524") -}}
+{{ $data = append $data (dict "artist" "Thelma Aoyama" "title" "二人の約束の日" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1js411r7QH") -}}
+{{ $data = append $data (dict "artist" "日之内エミ" "title" "卒業" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1PD421K74g") -}}
+{{ $data = append $data (dict "artist" "果山サキ" "title" "さよなら、愛してた。" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1Ks411h7jp") -}}
+{{ $data = append $data (dict "artist" "Juliet" "title" "もっともっとキミを教えてよ" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV17W411D7WX") -}}
+{{ $data = append $data (dict "artist" "Ayuse Kozue" "title" "Cry for You" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1SW411x7fs") -}}
+{{ $data = append $data (dict "artist" "ClariS" "title" "ココロの引力" "album" "irony" "url" "https://music.163.com/#/song?id=705379") -}}
+{{ $data = append $data (dict "artist" "花鋏キョウ" "title" "Behavior" "album" "Myosøtis" "url" "https://music.163.com/#/song?id=1447563289") -}}
+{{ $data = append $data (dict "artist" "花鋏キョウ" "title" "paradøx" "album" "Myosøtis" "url" "https://music.163.com/#/song?id=1447562427") -}}
+{{ $data = append $data (dict "artist" "花たん" "title" "Dear" "album" "Flower" "url" "https://music.163.com/#/song?id=27548279") -}}
+{{ $data = append $data (dict "artist" "mineko" "title" "miscalc" "album" "PARTICLE" "url" "https://music.163.com/#/song?id=1395758737") -}}
+{{ $data = append $data (dict "artist" "96猫" "title" "流れ星" "album" "月と星の虚構空間" "url" "https://music.163.com/#/song?id=25931854") -}}
+{{ $data = append $data (dict "artist" "BENI" "title" "Our Sky" "album" "Our Sky" "url" "https://music.163.com/#/song?id=26544404") -}}
+{{ $data = append $data (dict "artist" "鈴木このみ" "title" "My Days" "album" "My Days" "url" "https://music.163.com/#/song?id=521417493") -}}
+{{ $data = append $data (dict "artist" "ときのそら" "title" "コトバカゼ" "album" "Dreaming!" "url" "https://music.163.com/#/song?id=1354616291") -}}
+{{ $data = append $data (dict "artist" "YuNi" "title" "Winter Berry" "album" "Winter Berry" "url" "https://music.163.com/#/song?id=1335650210") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "束縛アネモネーション" "album" "束縛アネモネーション" "url" "https://music.163.com/#/song?id=28814941") -}}
+{{ $data = append $data (dict "artist" "うさ" "title" "Reflect" "album" "デジウィ IMPACT" "url" "https://music.163.com/#/song?id=34916709") -}}
+{{ $data = append $data (dict "artist" "西沢幸奏" "title" "吹雪" "album" "吹雪" "url" "https://music.163.com/#/song?id=30621776") -}}
+{{ $data = append $data (dict "artist" "仲村芽衣子" "title" "reverb" "album" "DIVINE FORTUNE" "url" "https://music.163.com/#/song?id=26388031") -}}
+{{ $data = append $data (dict "artist" "花たん" "title" "エアーマンが倒せない" "album" "最新热歌慢摇82" "url" "https://music.163.com/#/song?id=29544924") -}}
+{{ $data = append $data (dict "artist" "光岡昌美" "title" "ダメよ♡" "album" "ダメよ" "url" "https://music.163.com/#/song?id=611653") -}}
+{{ $data = append $data (dict "artist" "天宮みや" "title" "果てなき風の軌跡さえ" "album" "果てなき風の軌跡さえ" "url" "https://music.163.com/#/song?id=412951928") -}}
+{{ $data = append $data (dict "artist" "桃梨" "title" "tod und feuer" "album" "HEART CHAIN" "url" "https://music.163.com/#/song?id=4950627") -}}
+{{ $data = append $data (dict "artist" "瑶山百霊" "title" "星夜万華鏡" "album" "Lunatic Heavens" "url" "https://music.163.com/#/song?id=26134301") -}}
+{{ $data = append $data (dict "artist" "井上純一" "title" "それぞれの12ヶ月" "album" "てさぐれ! 歌もの あんこーる" "url" "https://music.163.com/#/song?id=31587061") -}}
+{{ $data = append $data (dict "artist" "yukina & みぃ" "title" "雪琥珀 -snow amber- Remix" "album" "Another World2" "url" "https://music.163.com/#/song?id=27644670") -}}
+{{ $data = append $data (dict "artist" "sajou no hana" "title" "メモセピア" "album" "メモセピア" "url" "https://music.163.com/#/song?id=1339922587") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "零れずの願いゴト" "album" "零れずの願いゴト" "url" "https://music.163.com/#/song?id=528272202") -}}
+{{ $data = append $data (dict "artist" "鹿乃" "title" "今をかける少女" "album" "nowhere" "url" "https://music.163.com/#/song?id=412327101") -}}
+{{ $data = append $data (dict "artist" "Nanaka" "title" "今をかける少女" "album" "Singing" "url" "https://music.163.com/#/song?id=456312718") -}}
+{{ $data = append $data (dict "artist" "鹿乃" "title" "缲り返し一粒 リンver" "album" "暧昧ばんび~な" "url" "https://music.163.com/#/song?id=22705493") -}}
+{{ $data = append $data (dict "artist" "DJ.Lars" "title" "Masayume Chasing (Vocal Version) (DJ.Lars Trance Remix)" "album" "Masayume Chasing(DJ.Lars Trance Remix)" "url" "https://music.163.com/#/song?id=434070608") -}}
+{{ $data = append $data (dict "artist" "隣人 & t+pazolite & 高桥菜菜" "title" "Missing Opus feat. cold kiss(Nana Takahashi) - t+pazolite Remix" "album" "Double Key" "url" "https://music.163.com/#/song?id=28576329") -}}
+{{ $data = append $data (dict "artist" "舞花" "title" "New World" "album" "World Trick" "url" "https://music.163.com/#/song?id=33955442") -}}
+{{ $data = append $data (dict "artist" "仲村芽衣子" "title" "Scarlet Faith" "album" "Scarlet Faith" "url" "https://music.163.com/#/song?id=28812025") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "灼熱のユートピア" "album" "灼熱のユートピア" "url" "https://music.163.com/#/song?id=34509382") -}}
+{{ $data = append $data (dict "artist" "舞花" "title" "crescent moon" "album" "Rebirth Story Ⅲ" "url" "https://music.163.com/#/song?id=413077069") -}}
+{{ $data = append $data (dict "artist" "榊原ゆい" "title" "Miss.Brand-new day" "album" "絶対★魔王ORIGINAL SOUND TRACK ~ボクの耳キュン音楽祭~" "url" "https://music.163.com/#/song?id=723916") -}}
+{{ $data = append $data (dict "artist" "亜咲花" "title" "SHINY DAYS" "album" "SHINY DAYS" "url" "https://music.163.com/#/song?id=530995169") -}}
+{{ $data = append $data (dict "artist" "鈴木みのり" "title" "GIRAFFE BLUES ~Freyja Solo~" "album" "絶対零度θノヴァティック/破滅の純情" "url" "https://music.163.com/#/song?id=424264951") -}}
+{{ $data = append $data (dict "artist" "livetune & halca" "title" "Resonator" "album" "BEATLESS Special Soundtrack" "url" "https://music.163.com/#/song?id=534064135") -}}
+{{ $data = append $data (dict "artist" "アイドルカレッジ" "title" "トゥルーエンド プレイヤー" "album" "トゥルーエンド プレイヤー" "url" "https://music.163.com/#/song?id=29787857") -}}
+{{ $data = append $data (dict "artist" "ClariS" "title" "PRIMALove" "album" "PRIMALove" "url" "https://music.163.com/#/song?id=531051596") -}}
+{{ $data = append $data (dict "artist" "南條愛乃" "title" "空種" "album" "穢翼のユースティア -Original CharacterSong Series- EUSTIA" "url" "https://music.163.com/#/song?id=630884") -}}
+{{ $data = append $data (dict "artist" "山田タマル" "title" "Scarborough Fair" "album" "青い記憶" "url" "https://music.163.com/#/song?id=489970551") -}}
+{{ $data = append $data (dict "artist" "さゆり" "title" "天空の狂詩曲" "album" "月光乱舞" "url" "https://music.163.com/#/song?id=822495") -}}
+{{ $data = append $data (dict "artist" "Tamame" "title" "Ebb and Flow (5 years after remix)" "album" "Ebb and Flow (5 years after remix)" "url" "https://music.163.com/#/song?id=29819851") -}}
+{{ $data = append $data (dict "artist" "ChouCho" "title" "Sleeping Butterfly" "album" "カワルミライ" "url" "https://music.163.com/#/song?id=559908") -}}
+{{ $data = append $data (dict "artist" "TrySail" "title" "High Free Spirits" "album" "High Free Spirits" "url" "https://music.163.com/#/song?id=412327886") -}}
+{{ $data = append $data (dict "artist" "3L" "title" "Gods Garden" "album" "FORLANE | REI" "url" "https://music.163.com/#/song?id=22728023") -}}
+{{ $data = append $data (dict "artist" "marble" "title" "水彩キャンディー" "album" "水彩キャンディー" "url" "https://music.163.com/#/song?id=781130") -}}
+{{ $data = append $data (dict "artist" "美郷あき" "title" "Glitter" "album" "月に寄りそう乙女の作法2 COMPLETE SOUNDTRACK" "url" "https://music.163.com/#/song?id=32235534") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "華鳥風月(with senya)" "album" "華鳥風月" "url" "https://music.163.com/#/song?id=869119") -}}
+{{ $data = append $data (dict "artist" "坂上なち" "title" "last station feat. 坂上なち" "album" "Dancing Dollz" "url" "https://music.163.com/#/song?id=27624985") -}}
+{{ $data = append $data (dict "artist" "ayame" "title" "Doll of Misery feat. ayame" "album" "POP CULTURE 3" "url" "https://music.163.com/#/song?id=32737683") -}}
+{{ $data = append $data (dict "artist" "savage genius" "title" "Forever..." "album" "Forever..." "url" "https://music.163.com/#/song?id=646024") -}}
+{{ $data = append $data (dict "artist" "savage genius" "title" "いつか溶ける涙" "album" "想いを奏でて/いつか溶ける涙" "url" "https://music.163.com/#/song?id=646047") -}}
+{{ $data = append $data (dict "artist" "EastNewSound" "title" "demarcation line" "album" "Blaze Out" "url" "https://music.163.com/#/song?id=22785073") -}}
+{{ $data = append $data (dict "artist" "i.o.sound" "title" "今日よりずっと、明日もきっと" "album" "ドコドナボーカルコレクション" "url" "https://music.163.com/#/song?id=28387662") -}}
+{{ $data = append $data (dict "artist" "LiSA" "title" "Catch the Moment" "album" "LiTTLE DEViL PARADE" "url" "https://music.163.com/#/song?id=479938456") -}}
+{{ $data = append $data (dict "artist" "fripSide" "title" "keep your promise" "album" "keep your promise" "url" "https://music.163.com/#/song?id=31191255") -}}
+{{ $data = append $data (dict "artist" "花たん" "title" "ハジメテノオト" "album" "Flower" "url" "https://music.163.com/#/song?id=27548253") -}}
+{{ $data = append $data (dict "artist" "宮崎歩" "title" "brave heart" "album" "brave heart" "url" "https://music.163.com/#/song?id=29816860") -}}
+{{ $data = append $data (dict "artist" "nayuta" "title" "幽音絶花、缭乱ノ彩" "album" "Alternative Outside 2010 Summer" "url" "https://music.163.com/#/song?id=721891") -}}
+{{ $data = append $data (dict "artist" "はな" "title" "櫻ノ詩" "album" "サクラノ詩 ヴォーカルCD" "url" "https://music.163.com/#/song?id=399367387") -}}
+{{ $data = append $data (dict "artist" "花たん" "title" "Brand New Voice" "album" "すきま桜とうその都会 初回特典 オリジナルサウンドトラック“Sakurano”" "url" "https://music.163.com/#/song?id=4925707") -}}
+{{ $data = append $data (dict "artist" "777☆SISTERS" "title" "H-A-J-I-M-A-R-I-U-T-A-!!" "album" "H-A-J-I-M-A-L-B-U-M-!!" "url" "https://music.163.com/#/song?id=32192774") -}}
+{{ $data = append $data (dict "artist" "下地紫野" "title" "God Save The Girls" "album" "God Save The Girls" "url" "https://music.163.com/#/song?id=437292501") -}}
+{{ $data = append $data (dict "artist" "中村舞子" "title" "Endless Tears" "album" "Best Of Love" "url" "https://music.163.com/#/song?id=22722555") -}}
+{{ $data = append $data (dict "artist" "花たん" "title" "Knots Way" "album" "ERiCa" "url" "https://music.163.com/#/song?id=443070766") -}}
+{{ $data = append $data (dict "artist" "南條愛乃" "title" "Asphodelus" "album" "穢翼のユースティア -Original CharacterSong Series- EUSTIA" "url" "https://music.163.com/#/song?id=630887") -}}
+{{ $data = append $data (dict "artist" "茶太" "title" "詠奏妖華～明鏡止水～" "album" "Auxiliary Brightness" "url" "https://music.163.com/#/song?id=26127127") -}}
+{{ $data = append $data (dict "artist" "Machico" "title" "Magical Happy Show !" "album" "Magical Happy Show !" "url" "https://music.163.com/#/song?id=623450") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "夜桜に君を隠して" "album" "夜桜に君を隠して" "url" "https://music.163.com/#/song?id=28167582") -}}
+{{ $data = append $data (dict "artist" "美郷あき" "title" "DESIRE" "album" "月に寄りそう乙女の作法 COMPLETE SOUNDTRACK" "url" "https://music.163.com/#/song?id=28568035") -}}
+{{ $data = append $data (dict "artist" "doriko" "title" "Mermaid" "album" "の、バラード祭り." "url" "https://music.163.com/#/song?id=860619") -}}
+{{ $data = append $data (dict "artist" "茶太" "title" "Sound of Carnation" "album" "Definite Energy" "url" "https://music.163.com/#/song?id=22785149") -}}
+{{ $data = append $data (dict "artist" "めらみぽっぷ" "title" "靴の音を、響かせて、その手を" "album" "彩" "url" "https://music.163.com/#/song?id=850502") -}}
+{{ $data = append $data (dict "artist" "なつみ" "title" "萃梦想歌" "album" "Vermillion Summer" "url" "https://music.163.com/#/song?id=22730793") -}}
+{{ $data = append $data (dict "artist" "アフィリア・サーガ" "title" "Embrace Blade" "album" "Embrace Blade" "url" "https://music.163.com/#/song?id=36841167") -}}
+{{ $data = append $data (dict "artist" "紫咲ほたる" "title" "You're the love of my life..." "album" "Perpetual Devotion" "url" "https://music.163.com/#/song?id=28953266") -}}
+{{ $data = append $data (dict "artist" "めらみぽっぷ" "title" "Zillion Lights" "album" "Poptrick" "url" "https://music.163.com/#/song?id=833011") -}}
+{{ $data = append $data (dict "artist" "市松椿" "title" "Resolution" "album" "Poptrick" "url" "https://music.163.com/#/song?id=833016") -}}
+{{ $data = append $data (dict "artist" "ルルティア" "title" "ロスト・バタフライ" "album" "LOST BUTTERFLY" "url" "https://music.163.com/#/song?id=640514") -}}
+{{ $data = append $data (dict "artist" "長尾ちえみ" "title" "Kiss & Crazy (feat. 長尾ちえみ)" "album" "864" "url" "https://music.163.com/#/song?id=32405984") -}}
+{{ $data = append $data (dict "artist" "水瀬ましろ" "title" "まっしろな雪" "album" "東方幻奏響UROBOROS弐 ～fAIRYtAILoVERdRIVE～" "url" "https://music.163.com/#/song?id=30841657") -}}
+{{ $data = append $data (dict "artist" "Stack" "title" "カゲロウ" "album" "NO SIGNAL" "url" "https://music.163.com/#/song?id=27746534") -}}
+{{ $data = append $data (dict "artist" "闇音レンリ" "title" "暧昧さ回避" "album" "最新热歌慢摇114" "url" "https://music.163.com/#/song?id=402070756") -}}
+{{ $data = append $data (dict "artist" "闇音レンリ" "title" "Cynic" "album" "Cynic" "url" "https://music.163.com/#/song?id=419596411") -}}
+{{ $data = append $data (dict "artist" "CHIHIRO" "title" "恋時雨" "album" "恋時雨" "url" "https://music.163.com/#/song?id=27853415") -}}
+{{ $data = append $data (dict "artist" "Goose house" "title" "この指とまれ" "album" "Goose house Phrase #05 この指とまれ" "url" "https://music.163.com/#/song?id=26380612") -}}
+{{ $data = append $data (dict "artist" "水樹奈々" "title" "SOUND OF DESTINY" "album" "WHITE ALBUM ～綴られる冬の想い出～ ORIGINAL SOUNDTRACK" "url" "https://music.163.com/#/song?id=32303029") -}}
+{{ $data = append $data (dict "artist" "霜月はるか" "title" "羽ノ亡キ蝶" "album" "羽ノ亡キ蝶" "url" "https://music.163.com/#/song?id=691351") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "アンロジカル" "album" "レプリカの恋" "url" "https://music.163.com/#/song?id=28581729") -}}
+{{ $data = append $data (dict "artist" "市松椿" "title" "Rapture - Taishi Remix" "album" "Poptrick" "url" "https://music.163.com/#/song?id=833020") -}}
+{{ $data = append $data (dict "artist" "のみこ" "title" "Alice Maestera feat. nomico" "album" "Harmony" "url" "https://music.163.com/#/song?id=22645181") -}}
+{{ $data = append $data (dict "artist" "幽閉サテライト" "title" "ひねくれ少女(with senya)" "album" "ミゼラブルの雫" "url" "https://music.163.com/#/song?id=869355") -}}
+{{ $data = append $data (dict "artist" "坂本真綾" "title" "Waiting for the rain" "album" "FOLLOW ME UP" "url" "https://music.163.com/#/song?id=35040542") -}}
+{{ $data = append $data (dict "artist" "I've" "title" "Isolation" "album" "つよきすFull Edition 初回版特典 オリジナルサウンドトラック 复刻版" "url" "https://music.163.com/#/song?id=751380") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "残響は鳴り止まず" "album" "残響は鳴り止まず" "url" "https://music.163.com/#/song?id=28953086") -}}
+{{ $data = append $data (dict "artist" "沙紗飛鳥" "title" "散りゆく時-FINAL-" "album" "記憶～MAIKAZE music works～" "url" "https://music.163.com/#/song?id=784983") -}}
+{{ $data = append $data (dict "artist" "黒石ひとみ" "title" "Continued Story" "album" "Angel Feather Voice 2" "url" "https://music.163.com/#/song?id=22805088") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "FriendShip" "album" "瞳に隠された想ヒ" "url" "https://music.163.com/#/song?id=40729936") -}}
+{{ $data = append $data (dict "artist" "Lia" "title" "Light colors" "album" "智代アフター Original SoundTrack" "url" "https://music.163.com/#/song?id=4977944") -}}
+{{ $data = append $data (dict "artist" "愛原圭織" "title" "Road to Departure" "album" "CLAUDIA" "url" "https://music.163.com/#/song?id=830515") -}}
+{{ $data = append $data (dict "artist" "渕上舞 & 山村響" "title" "Hello, hello" "album" "BLUE" "url" "https://music.163.com/#/song?id=41666870") -}}
+{{ $data = append $data (dict "artist" "nao" "title" "entrance to you" "album" "entrance to you" "url" "https://music.163.com/#/song?id=629877") -}}
+{{ $data = append $data (dict "artist" "末柄里恵" "title" "bitter sweet" "album" "THE IDOLM@STER LIVE THE@TER HARMONY 04" "url" "https://music.163.com/#/song?id=29418355") -}}
+{{ $data = append $data (dict "artist" "紫咲ほたる" "title" "Urahara ff" "album" "Mindless Act" "url" "https://music.163.com/#/song?id=26449171") -}}
+{{ $data = append $data (dict "artist" "藤田麻衣子" "title" "蛍" "album" "瞬间" "url" "https://music.163.com/#/song?id=571213") -}}
+{{ $data = append $data (dict "artist" "美里" "title" "Necro Fantasia feat. 美里" "album" "For Your Pieces" "url" "https://music.163.com/#/song?id=687463") -}}
+{{ $data = append $data (dict "artist" "めらみぽっぷ" "title" "シャングリラ" "album" "パライソ" "url" "https://music.163.com/#/song?id=26454931") -}}
+{{ $data = append $data (dict "artist" "幽閉サテライト" "title" "ミゼラブルの雫(with senya)" "album" "ミゼラブルの雫" "url" "https://music.163.com/#/song?id=869351") -}}
+{{ $data = append $data (dict "artist" "彩音" "title" "いつもこの場所で" "album" "いつもこの場所で" "url" "https://music.163.com/#/song?id=26259014") -}}
+{{ $data = append $data (dict "artist" "下川みくに & Nakagami & Ishikawa" "title" "White Album" "album" "Leaf Vocal Collection Volume 1" "url" "https://music.163.com/#/song?id=27622999") -}}
+{{ $data = append $data (dict "artist" "つじあやの" "title" "風になる" "album" "猫の恩返し サウンドトラック" "url" "https://music.163.com/#/song?id=482172") -}}
+{{ $data = append $data (dict "artist" "Rie fu" "title" "Life Is Like A Boat" "album" "Life Is Like A Boat" "url" "https://music.163.com/#/song?id=640565") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "色は匂へど散りぬるを(with senya)" "album" "さぁ、こごう。" "url" "https://music.163.com/#/song?id=28547521") -}}
+{{ $data = append $data (dict "artist" "Ceui" "title" "今、歩き出す君へ。" "album" "PCゲーム「いますぐお兄ちゃんに妹だっていいたい!」ボーカルアルバム" "url" "https://music.163.com/#/song?id=26209670") -}}
+{{ $data = append $data (dict "artist" "幽閉サテライト" "title" "大地に咲く旋律" "album" "濡れた髪に触れられた时" "url" "https://music.163.com/#/song?id=26107913") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "溺愛エクリプス" "album" "三千世界" "url" "https://music.163.com/#/song?id=27571852") -}}
+{{ $data = append $data (dict "artist" "fripSide" "title" "an evening calm (kai Re:product RMX)" "album" "Re:product mixes ver.0.1" "url" "https://music.163.com/#/song?id=22660898") -}}
+{{ $data = append $data (dict "artist" "左右田左" "title" "永遠の花が降る" "album" "秘密蜜封箋" "url" "https://music.163.com/#/song?id=27610163") -}}
+{{ $data = append $data (dict "artist" "れるりり" "title" "Mr.Music(歌姫Ver)" "album" "Mr.Music" "url" "https://music.163.com/#/song?id=26550694") -}}
+{{ $data = append $data (dict "artist" "彩音" "title" "Lunatic Tears…" "album" "Lunatic Tears…" "url" "https://music.163.com/#/song?id=552075") -}}
+{{ $data = append $data (dict "artist" "3L" "title" "桜华月想" "album" "Overture l SUWA" "url" "https://music.163.com/song?id=686361") -}}
+{{ $data = append $data (dict "artist" "綾倉盟" "title" "melt in the sky" "album" "Replica" "url" "https://music.163.com/#/song?id=833438") -}}
+{{ $data = append $data (dict "artist" "幽閉サテライト" "title" "アイリミテッド" "album" "濡れた髪に触れられた时" "url" "https://music.163.com/#/song?id=26107909") -}}
+{{ $data = append $data (dict "artist" "中村舞子" "title" "言えない気持ち" "album" "言えない気持ち" "url" "https://music.163.com/#/song?id=409830542") -}}
+{{ $data = append $data (dict "artist" "紫咲ほたる" "title" "Relate" "album" "Definite Energy" "url" "https://music.163.com/#/song?id=22785150") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "コノ葉隠レ(with senya)" "album" "コノ葉隠レ" "url" "https://music.163.com/#/song?id=33020436") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "泡沫、哀のまほろば" "album" "幻-MABOROSHI- Singles Best Vol.2" "url" "https://music.163.com/#/song?id=28547527") -}}
+{{ $data = append $data (dict "artist" "幽閉サテライト" "title" "ヒトリシズカ" "album" "幻想万華鏡～紅霧異変の章～ オリジナルサウンドトラック Vol.1" "url" "https://music.163.com/#/song?id=32235274") -}}
+{{ $data = append $data (dict "artist" "幽閉サテライト" "title" "夕立、君と隠れ処" "album" "SOUND VOLTEX ULTIMATE TRACKS - 東方紅魔郷REMIX" "url" "https://music.163.com/#/song?id=28866582") -}}
+{{ $data = append $data (dict "artist" "ゆいこんぬ" "title" "ルートスフィア" "album" "EXIT TUNES PRESENTS Cinderella" "url" "https://music.163.com/#/song?id=28566460") -}}
+{{ $data = append $data (dict "artist" "日南結里 & 小澤亜李" "title" "ミライプリズム" "album" "ミライプリズム" "url" "https://music.163.com/#/song?id=29932153") -}}
+{{ $data = append $data (dict "artist" "茶太" "title" "Secret" "album" "eclipse改" "url" "https://music.163.com/#/song?id=640866") -}}
+{{ $data = append $data (dict "artist" "愛原圭織" "title" "Place" "album" "MA CHERIE" "url" "https://music.163.com/#/song?id=29050075") -}}
+{{ $data = append $data (dict "artist" "花たん" "title" "恋ノ蟲" "album" "デジウィ LEGEND" "url" "https://music.163.com/#/song?id=28524863") -}}
+{{ $data = append $data (dict "artist" "野村香菜子" "title" "恋の音色ライン" "album" "THE IDOLM@STER LIVE THE@TER HARMONY 09" "url" "https://music.163.com/#/song?id=31165257") -}}
+{{ $data = append $data (dict "artist" "ナノ" "title" "DREAMCATCHER" "album" "DREAMCATCHER (アニメver.)" "url" "https://music.163.com/#/song?id=438456473") -}}
+{{ $data = append $data (dict "artist" "沼倉愛美" "title" "叫べ" "album" "叫べ" "url" "https://music.163.com/#/song?id=438466359") -}}
+{{ $data = append $data (dict "artist" "KOTOKO" "title" "Face of Fact" "album" "Starlight Symphony-KOTOKO LIVE 2006-IN YOKOHAMA ARENA" "url" "https://music.163.com/#/song?id=590097") -}}
+{{ $data = append $data (dict "artist" "Halozy" "title" "Paranoid Lost (feat. 美里)" "album" "Tonic Triangle" "url" "https://music.163.com/#/song?id=22808847") -}}
+{{ $data = append $data (dict "artist" "KOTOKO" "title" "Face Of Fact-Resolution Ver.-" "album" "Face Of Fact-Resolution Ver.-" "url" "https://music.163.com/#/song?id=753805") -}}
+{{ $data = append $data (dict "artist" "渡辺麻友" "title" "トライアングラー" "album" "REQUEST" "url" "https://music.163.com/#/song?id=31545006") -}}
+{{ $data = append $data (dict "artist" "KOTOKO" "title" "jihad" "album" "jihad" "url" "https://music.163.com/#/song?id=589672") -}}
+{{ $data = append $data (dict "artist" "上原れな" "title" "届かない恋" "album" "l'espoir" "url" "https://music.163.com/song?id=22809257") -}}
+{{ $data = append $data (dict "artist" "奥井雅美" "title" "宝箱-TREASURE BOX-" "album" "宝箱 -TREASURE BOX- / プラチナジェット" "url" "https://music.163.com/#/song?id=30706884") -}}
+{{ $data = append $data (dict "artist" "Illusion Sonic" "title" "夢の空、約束の場所" "album" "SOUND VOLTEX ULTIMATE TRACKS - 東方紅魔郷REMIX" "url" "https://music.163.com/#/song?id=28866602") -}}
+{{ $data = append $data (dict "artist" "NI+CORA" "title" "オ・モ・イ アプローチ" "album" "t7s Longing for summer" "url" "https://music.163.com/#/song?id=30039364") -}}
+{{ $data = append $data (dict "artist" "NJK Record" "title" "Endless night (梦消失 〜 Lost Dream)" "album" "TOHO EURO FLASH Vol.2" "url" "https://music.163.com/#/song?id=793740") -}}
+{{ $data = append $data (dict "artist" "発熱巫女~ず" "title" "桜花之恋冢 ~ Flower of Life" "album" "Re:Starlights&An Umbrella" "url" "https://music.163.com/#/song?id=745206") -}}
+{{ $data = append $data (dict "artist" "佐藤康夫" "title" "夜明" "album" "陰陽師" "url" "https://music.163.com/#/song?id=29047169") -}}
+{{ $data = append $data (dict "artist" "新谷良子" "title" "ふわふわロンド" "album" "ふわふわロンド" "url" "https://music.163.com/#/song?id=646481") -}}
+{{ $data = append $data (dict "artist" "茶太" "title" "夢笑顔" "album" "茶太 Works Best II" "url" "https://music.163.com/#/song?id=640295") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "幾星霜の物語 ～The Story of Eternity～" "album" "幾星霜の物語 ～The Story of Eternity～" "url" "https://music.163.com/#/song?id=29769746") -}}
+{{ $data = append $data (dict "artist" "花たん" "title" "Little Traveler" "album" "Frozen Traveler" "url" "https://music.163.com/#/song?id=29267629") -}}
+{{ $data = append $data (dict "artist" "坂上なち" "title" "Ephemeral" "album" "Frozen Traveler" "url" "https://music.163.com/#/song?id=29267631") -}}
+{{ $data = append $data (dict "artist" "うさ" "title" "【Diary】" "album" "デジハロ PRIDE" "url" "https://music.163.com/#/song?id=28178185") -}}
+{{ $data = append $data (dict "artist" "Halozy" "title" "midnight cookie (feat. 夕月椿)" "album" "864" "url" "https://music.163.com/#/song?id=32405990") -}}
+{{ $data = append $data (dict "artist" "KOTOKO" "title" "Fatally" "album" "I've MANIA Tracks Vol.II" "url" "https://music.163.com/#/song?id=22743257") -}}
+{{ $data = append $data (dict "artist" "新谷良子" "title" "きらきらセレナーデ" "album" "クロスワールド キャラクターコレクション(4)" "url" "https://music.163.com/#/song?id=646465") -}}
+{{ $data = append $data (dict "artist" "川田まみ" "title" "Lythrum" "album" "犠母姉妹 SLG 特典サウンドトラック" "url" "https://music.163.com/#/song?id=754693") -}}
+{{ $data = append $data (dict "artist" "南條愛乃" "title" "メッセンジャー(FULL)" "album" "朧小町予約特典サウンドトラック" "url" "https://music.163.com/#/song?id=4929493") -}}
+{{ $data = append $data (dict "artist" "佳村はるか & 千菅春香 & 木村珠莉 & 大和田仁美 & 髙野麻美" "title" "プラチナジェット" "album" "宝箱 -TREASURE BOX- / プラチナジェット" "url" "https://music.163.com/#/song?id=30706885") -}}
+{{ $data = append $data (dict "artist" "川田まみ" "title" "Timeless time" "album" "七つのふしぎの終わるとき VOCAL COLLECTION「Timeless time」" "url" "https://music.163.com/#/song?id=592232") -}}
+{{ $data = append $data (dict "artist" "霜月はるか" "title" "Re:Call" "album" "できない私が、くり返す。 初回特典サウンドトラック「憧憬」" "url" "https://music.163.com/#/song?id=29129677") -}}
+{{ $data = append $data (dict "artist" "西明日香 & 明坂聡美 & 大橋彩香 & 三上枝織 & 大久保瑠美 & 小松未可子 & 高森奈津美 & 上坂すみれ & 荻野可鈴" "title" "色彩crossroad" "album" "やっぱりStand Up!!!!!/色彩crossroad" "url" "https://music.163.com/#/song?id=32235723") -}}
+{{ $data = append $data (dict "artist" "明坂聡美 & 大橋彩香 & 西明日香 & 荻野可鈴" "title" "12ヶ月" "album" "てさぐれ! 歌もの" "url" "https://music.163.com/#/song?id=29011487") -}}
+{{ $data = append $data (dict "artist" "上田麗奈 & 田中美海 & 奥野香耶 & 大坪由佳 & 沼倉愛美" "title" "花雪 チーム ハナヤマタ ver." "album" "ハナヤマタ 第6巻 特典CD" "url" "https://music.163.com/#/song?id=31381033") -}}
+{{ $data = append $data (dict "artist" "牧野由依" "title" "アムリタ" "album" "天球の音楽" "url" "https://music.163.com/#/song?id=610128") -}}
+{{ $data = append $data (dict "artist" "詩月カオリ" "title" "A STARRY NIGHT 〜僕らをつなぐ光〜" "album" "A STARRY NIGHT 〜僕らをつなぐ光〜" "url" "https://music.163.com/#/song?id=34072026") -}}
+{{ $data = append $data (dict "artist" "詩月カオリ" "title" "Hold on me ~恋の魔法~" "album" "ラブライド イヴ ~love-bride eve~ 特典OST" "url" "https://music.163.com/#/song?id=666138") -}}
+{{ $data = append $data (dict "artist" "mican*" "title" "Spring Comes Along" "album" "Double Counterpoint" "url" "https://music.163.com/#/song?id=687111") -}}
+{{ $data = append $data (dict "artist" "暁Records" "title" "描いた夏をもう一度" "album" "ENDLESS FANTASY" "url" "https://music.163.com/#/song?id=692420") -}}
+{{ $data = append $data (dict "artist" "nao" "title" "colorless fate -ver. Luna 2011-" "album" "fripSide PC game compilation vol. 1" "url" "https://music.163.com/#/song?id=22660771") -}}
+{{ $data = append $data (dict "artist" "BENI" "title" "ユラユラ" "album" "ユラユラ／ギミギミ" "url" "https://music.163.com/#/song?id=561190") -}}
+{{ $data = append $data (dict "artist" "Dreamy crown" "title" "eternal promise" "album" "eternal promise、終わりなき夏 永遠なる音律" "url" "https://music.163.com/#/song?id=33761102") -}}
+{{ $data = append $data (dict "artist" "Halozy" "title" "まっしろな雪 (feat. 水瀬ましろ)" "album" "Bayside Beat" "url" "https://music.163.com/#/song?id=40729947") -}}
+{{ $data = append $data (dict "artist" "スフィア" "title" "明日への帰り道" "album" "夏色キセキ Complete Songs ～あの夏のカケラ～" "url" "https://music.163.com/#/song?id=29966711") -}}
+{{ $data = append $data (dict "artist" "fripSide" "title" "miracle luminous" "album" "fripSide PC game compilation vol. 1" "url" "https://music.163.com/#/song?id=22660764") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "アマノジャック" "album" "残響は鳴り止まず" "url" "https://music.163.com/#/song?id=28953087") -}}
+{{ $data = append $data (dict "artist" "明坂聡美 & 大久保瑠美" "title" "青と黄色のあまのじゃく" "album" "てさプル! 歌もの" "url" "https://music.163.com/#/song?id=32235695") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "炸裂アイロニー" "album" "炸裂アイロニー" "url" "https://music.163.com/#/song?id=29528357") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "手のひらピアニッシモ" "album" "手のひらピアニッシモ" "url" "https://music.163.com/#/song?id=22780426") -}}
+{{ $data = append $data (dict "artist" "茶太" "title" "Important Lie feat. 茶太" "album" "Radical Destruction" "url" "https://music.163.com/#/song?id=29247552") -}}
+{{ $data = append $data (dict "artist" "花たん" "title" "RED Signal" "album" "Colorful✿Flower" "url" "https://music.163.com/#/song?id=22782491") -}}
+{{ $data = append $data (dict "artist" "仲村芽衣子" "title" "Fixed." "album" "DIVINE FORTUNE" "url" "https://music.163.com/#/song?id=26388028") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "ヒトリシズカ(with senya)" "album" "アノ華咲クヤ" "url" "https://music.163.com/#/song?id=26457750") -}}
+{{ $data = append $data (dict "artist" "CHIHIRO" "title" "ずるいよ…" "album" "NAMIDA CARATS" "url" "https://music.163.com/#/song?id=31352739") -}}
+{{ $data = append $data (dict "artist" "野宮あゆみ" "title" "Sleeping Beauty" "album" "COLORS" "url" "https://music.163.com/#/song?id=22728089") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "指先チョコレイト(with senya)" "album" "アノ華咲クヤ" "url" "https://music.163.com/#/song?id=26457751") -}}
+{{ $data = append $data (dict "artist" "みぃ" "title" "Samsara（輪迴）" "album" "AQ -永久-" "url" "https://music.163.com/#/song?id=737966") -}}
+{{ $data = append $data (dict "artist" "TЁЯRA" "title" "華爛漫 -Flowers-" "album" "ЁVOLUTIФN" "url" "https://music.163.com/#/song?id=22740182") -}}
+{{ $data = append $data (dict "artist" "清水達也" "title" "蛍火 feat.月子" "album" "FAR EAST OF EAST" "url" "https://music.163.com/#/song?id=532922") -}}
+{{ $data = append $data (dict "artist" "鹿乃" "title" "decide" "album" "グッドハロー" "url" "https://music.163.com/#/song?id=29848622") -}}
+{{ $data = append $data (dict "artist" "ねじ式" "title" "紫陽花の夜" "album" "Hydrangean Diva" "url" "https://music.163.com/#/song?id=31341428") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "シンデレラアバター" "album" "シンデレラアバター!" "url" "https://music.163.com/#/song?id=869220") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "名残鸟" "album" "シンデレラアバター!" "url" "https://music.163.com/#/song?id=869224") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "幽閉サテライトメドレーType：Iceon" "album" "千華繚乱" "url" "https://music.163.com/#/song?id=22780378") -}}
+{{ $data = append $data (dict "artist" "nao" "title" "scarlet leap" "album" "entrance to you" "url" "https://music.163.com/#/song?id=629880") -}}
+{{ $data = append $data (dict "artist" "花たん" "title" "サリシノハラ" "album" "Flower" "url" "https://music.163.com/#/song?id=27548260") -}}
+{{ $data = append $data (dict "artist" "山本美禰子" "title" "雪のエルフィンリー ～Never ending love song～" "album" "ASTRAL ARIA" "url" "https://music.163.com/#/song?id=28850849") -}}
+{{ $data = append $data (dict "artist" "茶太" "title" "雪の羽 時の風" "album" "G線上の魔王 オリジナルサウンドコレクション" "url" "https://music.163.com/#/song?id=26450054") -}}
+{{ $data = append $data (dict "artist" "Chris Medina" "title" "What Are Words" "album" "What Are Words" "url" "https://music.163.com/#/song?id=1210496") -}}
+{{ $data = append $data (dict "artist" "Chen-U" "title" "Libertus" "album" "BOUQUET -Grand Finale-" "url" "https://music.163.com/#/song?id=27580521") -}}
+{{ $data = append $data (dict "artist" "Reol" "title" "Echo" "album" "No title-" "url" "https://music.163.com/#/song?id=28941714") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "三千世界" "album" "三千世界" "url" "https://music.163.com/#/song?id=27571849") -}}
+{{ $data = append $data (dict "artist" "坂上なち" "title" "サクラ・ホライズン feat.nachi (BEATLESS)" "album" "POP CULTURE 3" "url" "https://music.163.com/#/song?id=32737684") -}}
+{{ $data = append $data (dict "artist" "DiGiTAL WiNG" "title" "Abracadabra" "album" "HANA TOHOBEST" "url" "https://music.163.com/#/song?id=28996103") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "深読みレゾナンス" "album" "レプリカの恋" "url" "https://music.163.com/#/song?id=28581726") -}}
+{{ $data = append $data (dict "artist" "Rena" "title" "穢れなき薔薇十字" "album" "瑠璃色のローゼンクロイツ" "url" "https://music.163.com/#/song?id=34248930") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "小悪魔りんご" "album" "手のひらピアニッシモ" "url" "https://music.163.com/#/song?id=22780427") -}}
+{{ $data = append $data (dict "artist" "EastNewSound" "title" "Steady night" "album" "Dione Aggregation" "url" "https://music.163.com/#/song?id=22785109") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "零れ桜" "album" "色は匂へど 散りぬるを" "url" "https://music.163.com/#/song?id=869457") -}}
+{{ $data = append $data (dict "artist" "鹿乃" "title" "paranoia" "album" "或る街の白昼夢" "url" "https://music.163.com/#/song?id=28181958") -}}
+{{ $data = append $data (dict "artist" "幽閉サテライト" "title" "濡れた髪に触れられた時" "album" "濡れた髪に触れられた时" "url" "https://music.163.com/#/song?id=26107908") -}}
+{{ $data = append $data (dict "artist" "伊藤かな恵" "title" "Happy Sunshine" "album" "Happy Sunshine" "url" "https://music.163.com/#/song?id=569038") -}}
+{{ $data = append $data (dict "artist" "vaguedge" "title" "次発 ワタシ37号" "album" "東方夢叶幻想日記" "url" "https://music.163.com/#/song?id=860203") -}}
+{{ $data = append $data (dict "artist" "3L" "title" "マクロフィラパラソル" "album" "東方夢叶幻想日記" "url" "https://music.163.com/#/song?id=744608") -}}
+{{ $data = append $data (dict "artist" "3L" "title" "破月" "album" "RADIATA" "url" "https://music.163.com/#/song?id=22728057") -}}
+{{ $data = append $data (dict "artist" "日之内エミ" "title" "卒业 -Congratulations- feat. Lotus Juice" "album" "VOICE" "url" "https://music.163.com/#/song?id=22821586") -}}
+{{ $data = append $data (dict "artist" "めらみぽっぷ" "title" "竹ノ花" "album" "薦" "url" "https://music.163.com/#/song?id=28234319") -}}
+{{ $data = append $data (dict "artist" "やなぎなぎ" "title" "Fall in the Dark" "album" "マジコカタストロフィ - Digital Edition" "url" "https://music.163.com/#/song?id=26107975") -}}
+{{ $data = append $data (dict "artist" "Irony & ℃iel" "title" "藍 Second Love♥ふたりの唇" "album" "虹色キャンバス" "url" "https://music.163.com/#/song?id=30569527") -}}
+{{ $data = append $data (dict "artist" "K2 SOUND" "title" "fairy stage" "album" "天津星-Amatsu Hoshi" "url" "https://music.163.com/#/song?id=766287") -}}
+{{ $data = append $data (dict "artist" "聆玖" "title" "孟姜女" "album" "孟姜女" "url" "https://music.163.com/#/song?id=32958397") -}}
+{{ $data = append $data (dict "artist" "荒木毬菜" "title" "春夏秋冬" "album" "爱情转移日文版" "url" "https://music.163.com/#/song?id=34187525") -}}
+{{ $data = append $data (dict "artist" "茶太" "title" "変わり行く世界のために" "album" "Dragon Valley - Misterio" "url" "https://music.163.com/#/song?id=698168") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "カフカなる群青へ" "album" "纏-MATOI- Singles Best Vol.1" "url" "https://music.163.com/#/song?id=28547518") -}}
+{{ $data = append $data (dict "artist" "ENE" "title" "パズル" "album" "voices in a bottle ～海を越え届いた歌声～" "url" "https://music.163.com/#/song?id=857606") -}}
+{{ $data = append $data (dict "artist" "坂上なち" "title" "Against, Perfect Cherry Blossom." "album" "Double Counterpoint" "url" "https://music.163.com/#/song?id=687077") -}}
+{{ $data = append $data (dict "artist" "ONE OK ROCK" "title" "Deeper Deeper" "album" "人生×僕=" "url" "https://music.163.com/#/song?id=27090435") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "孤独月" "album" "色は匂へど 散りぬるを" "url" "https://music.163.com/#/song?id=869461") -}}
+{{ $data = append $data (dict "artist" "鹿乃" "title" "Stella-rium" "album" "Stella-rium" "url" "https://music.163.com/#/song?id=32098832") -}}
+{{ $data = append $data (dict "artist" "森英治" "title" "百鬼夜行抄" "album" "〜the most relaxing〜feel presents New ASIA III" "url" "https://music.163.com/#/song?id=4904996") -}}
+{{ $data = append $data (dict "artist" "松本晃彦" "title" "Sakae In Action" "album" "Summer Wars (Original Motion Picture Soundtrack)" "url" "https://music.163.com/#/song?id=22710767") -}}
+{{ $data = append $data (dict "artist" "MANYO" "title" "Lilac" "album" "殻ノ少女 オリジナルサウンドトラック「Azure」" "url" "https://music.163.com/#/song?id=28466087") -}}
+{{ $data = append $data (dict "artist" "折戸伸治" "title" "風を待った日" "album" "Kanon Original SoundTrack" "url" "https://music.163.com/#/song?id=26134235") -}}
+{{ $data = append $data (dict "artist" "Sensitive Heart" "title" "予感" "album" "二胡陽炎 ～ 千秋恋歌" "url" "https://music.163.com/#/song?id=836406") -}}
+{{ $data = append $data (dict "artist" "M.Graveyard" "title" "you" "album" "Thanks You" "url" "https://music.163.com/#/song?id=786262") -}}
+{{ $data = append $data (dict "artist" "ANANT-GARDE EYES" "title" "theme of SSS" "album" "Angel Beats! Original SoundTrack" "url" "https://music.163.com/#/song?id=471799") -}}
+{{ $data = append $data (dict "artist" "オムニバス" "title" "Yotsuba no Clover" "album" "Honey and Clover Soundtrack" "url" "https://music.163.com/#/song?id=26133554") -}}
+{{ $data = append $data (dict "artist" "久石譲" "title" "東から来た少年" "album" "もののけ姫 サウンドトラック" "url" "https://music.163.com/#/song?id=444761") -}}
+{{ $data = append $data (dict "artist" "ANANT-GARDE EYES" "title" "unjust life" "album" "Angel Beats! Original SoundTrack" "url" "https://music.163.com/#/song?id=471942") -}}
+{{ $data = append $data (dict "artist" "井上昌己" "title" "纯心" "album" "“怪盗セイント・テール”BEST OF BEST" "url" "https://music.163.com/#/song?id=474485") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "月に叢雲華に風" "album" "月に叢雲華に風" "url" "https://music.163.com/#/song?id=869190") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "Opposite World" "album" "小悪魔りんご" "url" "https://music.163.com/#/song?id=869438") -}}
+{{ $data = append $data (dict "artist" "美里" "title" "Rondo of fantasy" "album" "ソラとトキと二色のチョウ" "url" "https://music.163.com/#/song?id=830958") -}}
+{{ $data = append $data (dict "artist" "ケーキ姫☆優海 & JUMA" "title" "永夜のパレード" "album" "幻想遊園郷 ～Fantastic Park～" "url" "https://music.163.com/#/song?id=692193") -}}
+{{ $data = append $data (dict "artist" "花たん" "title" "会いたい" "album" "Colorful✿Flower" "url" "https://music.163.com/#/song?id=22782484") -}}
+{{ $data = append $data (dict "artist" "BoA" "title" "Only One (Japanese Ver.)" "album" "Only One(Japanese Ver.)" "url" "https://music.163.com/#/song?id=26343056") -}}
+{{ $data = append $data (dict "artist" "花たん" "title" "ねこみみスイッチ" "album" "Chers petits chats～親愛なる愛猫たちへ～" "url" "https://music.163.com/#/song?id=29897804") -}}
+{{ $data = append $data (dict "artist" "花たん" "title" "オレンジ" "album" "Flower" "url" "https://music.163.com/#/song?id=27548280") -}}
+{{ $data = append $data (dict "artist" "花たん" "title" "ロミオとシンデレラ" "album" "Flower" "url" "https://music.163.com/#/song?id=27548282") -}}
+{{ $data = append $data (dict "artist" "花たん" "title" "歌に形はないけれど" "album" "Flower" "url" "https://music.163.com/#/song?id=27548281") -}}
+{{ $data = append $data (dict "artist" "我々楽" "title" "東山花灯路" "album" "Dulcet Series Winter Special Collection - Fantastic Winter Journey" "url" "https://music.163.com/#/song?id=28302615") -}}
+{{ $data = append $data (dict "artist" "神乃木製作所" "title" "三年幻想郷" "album" "三年幻想郷" "url" "https://music.163.com/#/song?id=767452") -}}
+{{ $data = append $data (dict "artist" "Otokaze" "title" "夏恋" "album" "夏恋" "url" "https://music.163.com/#/song?id=493911") -}}
+{{ $data = append $data (dict "artist" "市松椿" "title" "童祭 ~ Innocent Treasures" "album" "palette ~人々が爱した幻想郷~" "url" "https://music.163.com/#/song?id=766014") -}}
+{{ $data = append $data (dict "artist" "沙紗飛鳥" "title" "夜桜街道" "album" "東方幽靜響" "url" "https://music.163.com/#/song?id=26085473") -}}
+{{ $data = append $data (dict "artist" "石田燿子" "title" "COLORFUL BOX" "album" "COLORFUL BOX / Animetic Love Letter" "url" "https://music.163.com/#/song?id=29753399") -}}
+{{ $data = append $data (dict "artist" "松本文紀" "title" "夜の向日葵" "album" "素晴らしき日々 サウンドトラックCD" "url" "https://music.163.com/#/song?id=4937357") -}}
+{{ $data = append $data (dict "artist" "seven oops" "title" "ReReハロ〜終われそうにない夏〜" "album" "ReReハロ〜終われそうにない夏〜" "url" "https://music.163.com/#/song?id=27580227") -}}
+{{ $data = append $data (dict "artist" "Sound Horizon" "title" "美しきもの" "album" "Roman" "url" "https://music.163.com/#/song?id=22782025") -}}
+{{ $data = append $data (dict "artist" "Sora" "title" "1秒でも…" "album" "1秒でも…" "url" "https://music.163.com/#/song?id=5357641") -}}
+{{ $data = append $data (dict "artist" "jyA-Me" "title" "Dear my friend with CHiE" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1Yt411r7BM") -}}
+{{ $data = append $data (dict "artist" "南條愛乃" "title" "fortuna on the Sixteenth night" "album" "十六夜のフォルトゥーナ オリジナルサウンドトラック" "url" "https://music.163.com/#/song?id=28152340") -}}
+{{ $data = append $data (dict "artist" "西野カナ" "title" "Sakura I Love You" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1qY4y1o7Cz") -}}
+{{ $data = append $data (dict "artist" "坂上なち" "title" "サクラ・ホライズン" "album" "Fortune Music selection of nachi" "url" "https://music.163.com/#/song?id=32803111") -}}
+{{ $data = append $data (dict "artist" "So'Fly" "title" "i BELIEVE～星に願いを" "album" "ⅰ BELIEVE ～星に願いを" "url" "https://music.163.com/#/song?id=831459") -}}
+{{ $data = append $data (dict "artist" "KOKIA" "title" "Spirits" "album" "アルカディアの蒼き巫女 オリジナル・サウンドトラック" "url" "https://music.163.com/#/song?id=32069326") -}}
+{{ $data = append $data (dict "artist" "一咲美葵" "title" "紅に染まる恋の花(with Marcia)" "album" "紅に染まる恋の花" "url" "https://music.163.com/#/song?id=1438545192") -}}
+{{ $data = append $data (dict "artist" "諫山実生" "title" "あやとり" "album" "ハナコトバ～花心詩～" "url" "https://music.163.com/#/song?id=22707944") -}}
+{{ $data = append $data (dict "artist" "LiSA" "title" "crossing field" "album" "ソードアート・オンライン ソングコレクション" "url" "https://music.163.com/#/song?id=29027453") -}}
+{{ $data = append $data (dict "artist" "ClariS" "title" "コネクト" "album" "コネクト" "url" "https://music.163.com/#/song?id=536622994") -}}
+{{ $data = append $data (dict "artist" "紫咲ほたる" "title" "ことのは" "album" "Limited Dimension" "url" "https://music.163.com/#/song?id=721401") -}}
+{{ $data = append $data (dict "artist" "F9 & lapix" "title" "A.S.H" "album" "Nature" "url" "https://music.163.com/#/song?id=28587958") -}}
+{{ $data = append $data (dict "artist" "牧野由依" "title" "ジャスミン" "album" "アムリタ" "url" "https://music.163.com/#/song?id=610212") -}}
+{{ $data = append $data (dict "artist" "鎖那" "title" "彼女は旅に出る" "album" "Hush a by little girl" "url" "https://music.163.com/#/song?id=509106775") -}}
+{{ $data = append $data (dict "artist" "発熱巫女~ず" "title" "Flower of Life" "album" "アンチェインドメロディ" "url" "https://music.163.com/#/song?id=745239") -}}
+{{ $data = append $data (dict "artist" "めらみぽっぷ" "title" "童遊" "album" "望" "url" "https://music.163.com/#/song?id=28732503") -}}
+{{ $data = append $data (dict "artist" "C-CLAYS" "title" "月明かりの夜、永遠の色" "album" "YES！" "url" "https://music.163.com/#/song?id=28921683") -}}
+{{ $data = append $data (dict "artist" "仲村芽衣子" "title" "プロセス" "album" "DIVINE FORTUNE" "url" "https://music.163.com/#/song?id=26388032") -}}
+{{ $data = append $data (dict "artist" "3L" "title" "Three Magic" "album" "BEST OF WiNG" "url" "https://music.163.com/#/song?id=26565985") -}}
+{{ $data = append $data (dict "artist" "Masayoshi Minoshima & 坂上なち " "title" "of memories" "album" "of memories" "url" "https://music.163.com/#/song?id=22645087") -}}
+{{ $data = append $data (dict "artist" "やなぎなぎ & 麻枝准" "title" "終わりの世界から" "album" "終わりの惑星のLove Song" "url" "https://music.163.com/#/song?id=676508") -}}
+{{ $data = append $data (dict "artist" "minimum electric design" "title" "グーテンベルクの科学世紀" "album" "Two-Tone" "url" "https://music.163.com/#/song?id=412785540") -}}
+{{ $data = append $data (dict "artist" "EastNewSound" "title" "Replay & Review" "album" "Auxiliary Brightness" "url" "https://music.163.com/#/song?id=26127123") -}}
+{{ $data = append $data (dict "artist" "桃鈴ねね" "title" "Lunch with me" "album" "Lunch with me" "url" "https://music.163.com/#/song?id=1930806302") -}}
+{{ $data = append $data (dict "artist" "Juliet" "title" "サクラブ -桜、咲く-" "album" "サクラブ" "url" "https://music.163.com/#/song?id=753225") -}}
+{{ $data = append $data (dict "artist" "Ms.OOJA" "title" "baby don't know why" "album" "VOICE" "url" "https://music.163.com/#/song?id=22778302") -}}
+{{ $data = append $data (dict "artist" "Aimer & EGOIST" "title" "ninelie" "album" "ninelie" "url" "https://music.163.com/#/song?id=409872504") -}}
+{{ $data = append $data (dict "artist" "山崎あおい" "title" "鯖鯖" "album" "鯖鯖" "url" "https://music.163.com/#/song?id=1316563576") -}}
+{{ $data = append $data (dict "artist" "WHITE JAM" "title" "AMAZING ME" "album" "TIK TOK" "url" "https://music.163.com/#/song?id=28563383") -}}
+{{ $data = append $data (dict "artist" "ROOKiEZ is PUNK'D" "title" "コンプリケイション" "album" "コンプリケイション デュラララ!!盘" "url" "https://music.163.com/#/song?id=811995") -}}
+{{ $data = append $data (dict "artist" "HoneyWorks & かぴ" "title" "可愛くてごめん (feat. かぴ)" "album" "告白実行委員会 -FLYING SONGS- 恋してる" "url" "https://music.163.com/#/song?id=1969519579") -}}
+{{ $data = append $data (dict "artist" "和田光司" "title" "Butter-Fly" "album" "DIGIMON HISTORY 1999-2006 All The Best" "url" "https://music.163.com/#/song?id=4940920") -}}
+{{ $data = append $data (dict "artist" "三浦サリー" "title" "セツナイのは…" "album" "セツナイのは…" "url" "https://music.163.com/#/song?id=26142483") -}}
+{{ $data = append $data (dict "artist" "MY FIRST STORY" "title" "不可逆リプレイス - Fukagyaku Replace" "album" "不可逆リプレイス - Fukagyaku Replace" "url" "https://music.163.com/#/song?id=29436956") -}}
+{{ $data = append $data (dict "artist" "T-ara" "title" "DAY BY DAY (Japanese Ver.)" "album" "Sexy Love (Japanese ver.)" "url" "https://music.163.com/#/song?id=26089233") -}}
+{{ $data = append $data (dict "artist" "ワカバ" "title" "明日、僕は君に会いに行く。" "album" "明日、僕は君に会いに行く。" "url" "https://music.163.com/#/song?id=863974") -}}
+{{ $data = append $data (dict "artist" "Reol & Giga" "title" "No title" "album" "No title-" "url" "https://music.163.com/#/song?id=28941713") -}}
+{{ $data = append $data (dict "artist" "Trident" "title" "ブルー・フィールド" "album" "ブルー・フィールド" "url" "https://music.163.com/#/song?id=27901850") -}}
+{{ $data = append $data (dict "artist" "SPYAIR" "title" "サムライハート(Some Like It Hot!!)" "album" "银魂BEST3" "url" "https://music.163.com/#/song?id=28018217") -}}
+{{ $data = append $data (dict "artist" "一咲美葵" "title" "明日散る運命なら[with Marcia]" "album" "明日散る運命なら" "url" "https://music.163.com/#/song?id=1833392131") -}}
+{{ $data = append $data (dict "artist" "CHiCO with HoneyWorks" "title" "世界は恋に落ちている" "album" "世界は恋に落ちている" "url" "https://music.163.com/#/song?id=28891491") -}}
+{{ $data = append $data (dict "artist" "高野健一" "title" "さくら" "album" "さくら" "url" "https://music.163.com/#/song?id=28283665") -}}
+{{ $data = append $data (dict "artist" "中島みゆき" "title" "銀の龍の背に乗って" "album" "銀の龍の背に乗って" "url" "https://music.163.com/#/song?id=624751") -}}
+{{ $data = append $data (dict "artist" "Field Of View" "title" "DAN DAN 心魅かれてく(Cinema Version)" "album" "ドラゴンボール~最強への道~オリジナルサウンドトラック" "url" "https://music.163.com/#/song?id=493735159") -}}
+{{ $data = append $data (dict "artist" "福原美穂" "title" "LET IT OUT" "album" "LET IT OUT" "url" "https://music.163.com/#/song?id=571330") -}}
+{{ $data = append $data (dict "artist" "Ayase" "title" "夜撫でるメノウ (Ayase ver.)" "album" "幽霊東京" "url" "https://music.163.com/#/song?id=1466019532") -}}
+{{ $data = append $data (dict "artist" "宇多田ヒカル" "title" "Beautiful World 2021 Remastered" "album" "Beautiful World -2021 Remastered-" "url" "https://music.163.com/#/song?id=1825842042") -}}
+{{ $data = append $data (dict "artist" "Spontania & AZU" "title" "同じ空みつめてるあなたに" "album" "同じ空みつめてるあなたに" "url" "https://music.163.com/#/song?id=820340") -}}
+{{ $data = append $data (dict "artist" "高橋洋子" "title" "残酷な天使のテーゼ (Director's Edit.Version)" "album" "残酷な天使のテーゼ FLY ME TO THE MOON" "url" "https://music.163.com/#/song?id=657680") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "レプリカの恋" "album" "レプリカの恋" "url" "https://music.163.com/#/song?id=28581725") -}}
+{{ $data = append $data (dict "artist" "WANDS" "title" "世界が終るまでは···" "album" "SLAM DUNK BEST COLLECTION" "url" "https://music.163.com/#/song?id=26508150") -}}
+{{ $data = append $data (dict "artist" "花たん" "title" "Wave" "album" "Flower" "url" "https://music.163.com/#/song?id=27548257") -}}
+{{ $data = append $data (dict "artist" "シド" "title" "嘘" "album" "鋼の錬金術師 THE BEST" "url" "https://music.163.com/#/song?id=28272047") -}}
+{{ $data = append $data (dict "artist" "SoulJa & 中村舞子 & 壇蜜" "title" "What’s your name? (collaboration with 壇蜜)" "album" "雨のち晴れ What's your name?" "url" "https://music.163.com/#/song?id=26902203") -}}
+{{ $data = append $data (dict "artist" "放課後ティータイム" "title" "Don't say lazy [5人Ver.]" "album" "けいおん!はいれぞ!「Come with Me!!」セット" "url" "https://music.163.com/#/song?id=514765042") -}}
+{{ $data = append $data (dict "artist" "平原綾香" "title" "はじまりの風" "album" "4つのL" "url" "https://music.163.com/#/song?id=22811178") -}}
+{{ $data = append $data (dict "artist" "MARiA" "title" "Girls" "album" "aMazing MusiQue PaRK" "url" "https://music.163.com/#/song?id=22793308") -}}
+{{ $data = append $data (dict "artist" "SPICY CHOCOLATE & JASMINE & SKY-HI & 寿君" "title" "それでも君が好き" "album" "渋谷純愛物語" "url" "https://music.163.com/#/song?id=29567155") -}}
+{{ $data = append $data (dict "artist" "FictionJunction & 南里侑香" "title" "暁の車" "album" "暁の車" "url" "https://music.163.com/#/song?id=724495") -}}
+{{ $data = append $data (dict "artist" "ClariS" "title" "pastel" "album" "アネモネ" "url" "https://music.163.com/#/song?id=33469881") -}}
+{{ $data = append $data (dict "artist" "Lia" "title" "鳥の詩" "album" "Ornithopter -AIR Original Compilation-" "url" "https://music.163.com/#/song?id=761594") -}}
+{{ $data = append $data (dict "artist" "童子-T & YU-A" "title" "願い" "album" "12love Stories" "url" "https://music.163.com/#/song?id=524184") -}}
+{{ $data = append $data (dict "artist" "ナナツカゼ & PIKASONIC & なこたんまる" "title" "朧月夜" "album" "朧月夜" "url" "https://music.163.com/#/song?id=2059807644") -}}
+{{ $data = append $data (dict "artist" "Lezel" "title" "未完成ランデヴー" "album" "未完成ランデヴー" "url" "https://music.163.com/#/song?id=2604586574") -}}
+{{ $data = append $data (dict "artist" "のみこ" "title" "Bad Apple!! feat. nomico" "album" "EXSERENS" "url" "https://music.163.com/#/song?id=687506") -}}
+{{ $data = append $data (dict "artist" "Islet & 倚水" "title" "星になる (feat. 倚水)" "album" "星になる (feat. 倚水)" "url" "https://music.163.com/#/song?id=2002970862") -}}
+{{ $data = append $data (dict "artist" "T-ara" "title" "T.T.L ～Time to Love～ (Japanese ver.)" "album" "Queen of Pops" "url" "https://music.163.com/#/song?id=28828606") -}}
+{{ $data = append $data (dict "artist" "A-One" "title" "How to Love" "album" "NECRO PHANTASISTA" "url" "https://music.163.com/#/song?id=33211167") -}}
+{{ $data = append $data (dict "artist" "ギギ・アンダルシア" "title" "夢で逢いましょう" "album" "TVアニメ『名探偵コナン』EDテーマ「夢で逢いましょう」" "url" "https://music.163.com/#/song?id=2621421177") -}}
+{{ $data = append $data (dict "artist" "島みやえい子" "title" "宇宙の花" "album" "ULYSSES" "url" "https://music.163.com/#/song?id=22789069") -}}
+{{ $data = append $data (dict "artist" "ういにゃす & おっちょこバニー" "title" "嗚呼 絢爛の泡沫が如く" "album" "『千の刃濤、桃花染の皇姫』OPテーマ" "url" "https://music.163.com/#/song?id=424995301") -}}
+{{ $data = append $data (dict "artist" "少女フラクタル" "title" "悠久の月に照らされて" "album" "悠久の月に照らされて" "url" "https://music.163.com/#/song?id=434732450") -}}
+{{ $data = append $data (dict "artist" "大事MANブラザーズバンド" "title" "それが大事" "album" "それが大事" "url" "https://music.163.com/#/song?id=848332") -}}
+{{ $data = append $data (dict "artist" "松澤由美" "title" "地球ぎ" "album" "聖闘士星矢 冥王ハーデス十二宮編 主題歌" "url" "https://music.163.com/#/song?id=614150") -}}
+{{ $data = append $data (dict "artist" "瑶山百霊" "title" "奏穹のラプソディア" "album" "奏穹のラプソディア" "url" "https://music.163.com/#/song?id=469699517") -}}
+{{ $data = append $data (dict "artist" "Risa Yuzuki" "title" "偽りの私" "album" "聖人の調律" "url" "https://music.163.com/#/song?id=40915854") -}}
+{{ $data = append $data (dict "artist" "AKINO" "title" "創聖のアクエリオン" "album" "創聖のアクエリオン" "url" "https://music.163.com/#/song?id=558173") -}}
+{{ $data = append $data (dict "artist" "May'n & 中島愛" "title" "ライオン" "album" "マクロスF VOCAL COLLECTION「娘たま♀」" "url" "https://music.163.com/#/song?id=22766925") -}}
+{{ $data = append $data (dict "artist" "ワルキューレ" "title" "ワルキューレがとまらない ～without Freyja～" "album" "ワルキューレは裏切らない" "url" "https://music.163.com/#/song?id=536623413") -}}
+{{ $data = append $data (dict "artist" "う～み" "title" "星の在り処" "album" "空を見上げて ～英雄伝説 空の軌跡 ボーカルバージョン～" "url" "https://music.163.com/#/song?id=730669") -}}
+{{ $data = append $data (dict "artist" "riya" "title" "小さなてのひら" "album" "CLANNAD ORIGINAL SOUNDTRACK" "url" "https://music.163.com/#/song?id=22707009") -}}
+{{ $data = append $data (dict "artist" "Kiroro" "title" "長い間" "album" "Nagai Aida ～Kiroro no Mori～" "url" "https://music.163.com/#/song?id=22746142") -}}
+{{ $data = append $data (dict "artist" "兎明" "title" "創造の地平線を見つめて" "album" "創造の地平線を見つめて" "url" "https://music.163.com/#/song?id=1316563399") -}}
+{{ $data = append $data (dict "artist" "小清水亜美" "title" "玻璃の空" "album" "玻璃の空" "url" "https://music.163.com/#/song?id=687747") -}}
+{{ $data = append $data (dict "artist" "eufonius" "title" "メグメル (cuckool Mix 2007)" "album" "メグメル/だんご大家族" "url" "https://music.163.com/#/song?id=760528") -}}
+{{ $data = append $data (dict "artist" "See-Saw" "title" "あんなに一绪だったのに" "album" "「機動戦士ガンダムSEED」エンディングテーマ あんなに一緒だったのに" "url" "https://music.163.com/#/song?id=819663") -}}
+{{ $data = append $data (dict "artist" "KG & 滴草由実" "title" "叶わない恋でも… duet with 滴草由実" "album" "DUET WITH BEST" "url" "https://music.163.com/#/song?id=26115245") -}}
+{{ $data = append $data (dict "artist" "シド" "title" "レイン" "album" "鋼の錬金術師 THE BEST" "url" "https://music.163.com/#/song?id=28272061") -}}
+{{ $data = append $data (dict "artist" "nayuta" "title" "死奏憐音、玲瓏ノ終" "album" "Scattered Destiny" "url" "https://music.163.com/#/song?id=22785270") -}}
+{{ $data = append $data (dict "artist" "ClariS" "title" "irony" "album" "irony" "url" "https://music.163.com/#/song?id=705376") -}}
+{{ $data = append $data (dict "artist" "ヲタみん" "title" "Letter Song" "album" "Letter Song" "url" "https://music.163.com/#/song?id=27571001") -}}
+{{ $data = append $data (dict "artist" "YUI" "title" "Rolling star" "album" "BLEACH BEST TUNES" "url" "https://music.163.com/#/song?id=4952978") -}}
+{{ $data = append $data (dict "artist" "Angel Note & 真里歌" "title" "quantum jump" "album" "フレラバ ミニファンディスク＆フルサウンドトラック" "url" "https://music.163.com/#/song?id=29307295") -}}
+{{ $data = append $data (dict "artist" "Risa Yuzuki" "title" "彷徨いの冥" "album" "彷徨いの冥" "url" "https://music.163.com/#/song?id=32098510") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "月輪に巡らされた記憶" "album" "月輪に巡らされた記憶" "url" "https://music.163.com/#/song?id=1387399056") -}}
+{{ $data = append $data (dict "artist" "ういにゃす" "title" "月夜に舞う恋の花" "album" "『千の刃濤、桃花染の皇姫』EDテーママキシシングル" "url" "https://music.163.com/#/song?id=434981395") -}}
+{{ $data = append $data (dict "artist" "あやぽんず* & あよ" "title" "幻想コネクト-森羅万象ver.-" "album" "幻想コネクト / 貴方と繋ぐ想い" "url" "https://music.163.com/#/song?id=1453415397") -}}
+{{ $data = append $data (dict "artist" "平原綾香" "title" "はじまりの风(On Air Ver.)" "album" "彩云国物语 オリジナルサウンドトラック 1" "url" "https://music.163.com/#/song?id=1871420") -}}
+{{ $data = append $data (dict "artist" "坂本昌一郎" "title" "My Sweet Home" "album" "Liber_7 オリジナルサウンドトラック" "url" "https://music.163.com/#/song?id=509512638") -}}
+{{ $data = append $data (dict "artist" "一咲美葵" "title" "瞳を閉じて、映す夢幻" "album" "瞳を閉じて、映す夢幻" "url" "https://music.163.com/#/song?id=1972604900") -}}
+{{ $data = append $data (dict "artist" "結城アイラ" "title" "colorless wind" "album" "colorless wind" "url" "https://music.163.com/#/song?id=28642378") -}}
+{{ $data = append $data (dict "artist" "折戸伸治" "title" "潮鳴り" "album" "CLANNAD ORIGINAL SOUNDTRACK" "url" "https://music.163.com/#/song?id=22707008") -}}
+{{ $data = append $data (dict "artist" "山崎もえ" "title" "コトダマ紬ぐ未来" "album" "アマツツミ 予約特典 主題歌マキシシングルCD" "url" "https://music.163.com/#/song?id=427419615") -}}
+{{ $data = append $data (dict "artist" "himmel & 瑶山百霊" "title" "千之缘" "album" "千之缘" "url" "https://music.163.com/#/song?id=436667894") -}}
+{{ $data = append $data (dict "artist" "幽閉サテライト & sroa" "title" "唯我独尊の果て" "album" "唯我独尊の果て" "url" "https://music.163.com/#/song?id=2618701284") -}}
+{{ $data = append $data (dict "artist" "fripSide" "title" "HesitationSnow" "album" "はつゆきさくら COMPLETE SOUNDTRACK" "url" "https://music.163.com/#/song?id=622956") -}}
+{{ $data = append $data (dict "artist" "真優" "title" "風に吹かれて(vocal song)" "album" "こいらぼ ヴォーカルソング+" "url" "https://music.163.com/#/song?id=717921") -}}
+{{ $data = append $data (dict "artist" "ClariS" "title" "桜咲く" "album" "STEP" "url" "https://music.163.com/#/song?id=28406557") -}}
+{{ $data = append $data (dict "artist" "SoulJa & 青山テルマ" "title" "ここにいるよ" "album" "Spirits" "url" "https://music.163.com/#/song?id=22664256") -}}
+{{ $data = append $data (dict "artist" "ワルキューレ" "title" "僕らの戦場" "album" "Walküre Attack!" "url" "https://music.163.com/#/song?id=419238089") -}}
+{{ $data = append $data (dict "artist" "Vivian or Kazuma" "title" "moment" "album" "moment" "url" "https://music.163.com/#/song?id=858277") -}}
+{{ $data = append $data (dict "artist" "Ceui" "title" "Stigmata" "album" "イメージアルバム 穢翼のユースティア 夢想曲(トロイメライ) ~Seeking Asphodelus~" "url" "https://music.163.com/#/song?id=26141649") -}}
+{{ $data = append $data (dict "artist" "RSP" "title" "さくら 〜あなたに出会えてよかった〜" "album" "さくら 〜あなたに出会えてよかった〜" "url" "https://music.163.com/#/song?id=805197") -}}
+{{ $data = append $data (dict "artist" "Kotoha" "title" "雪は何色" "album" "ましろ色シンフォニー SANA EDITION Maxi Single" "url" "https://music.163.com/#/song?id=2075565121") -}}
+{{ $data = append $data (dict "artist" "仲村芽衣子" "title" "ギプソフィラを花束に" "album" "ギプソフィラを花束に" "url" "https://music.163.com/#/song?id=2042187545") -}}
+{{ $data = append $data (dict "artist" "Kirara Magic & Xomu & nayuta" "title" "Night of Bloom (feat. nayuta)" "album" "Night of Bloom" "url" "https://music.163.com/#/song?id=1963634342") -}}
+{{ $data = append $data (dict "artist" "GFRIEND" "title" "Glass Bead -JP ver.-" "album" "今日から私たちは ～GFRIEND 1st BEST～" "url" "https://music.163.com/#/song?id=568207106") -}}
+{{ $data = append $data (dict "artist" "幽閉サテライト & 森永真由美" "title" "共鳴しない愛のカタチ" "album" "魔法が生まれた日" "url" "https://music.163.com/#/song?id=436016269") -}}
+{{ $data = append $data (dict "artist" "綾瀬理恵" "title" "形のない花" "album" "Infect Paranoia" "url" "https://music.163.com/#/song?id=29027527") -}}
+{{ $data = append $data (dict "artist" "Himeka" "title" "PRECIOUS" "album" "PRECIOUS" "url" "https://music.163.com/#/song?id=440411449") -}}
+{{ $data = append $data (dict "artist" "千歳サラ" "title" "アルカディア" "album" "11月のアルカディア Complete Songs" "url" "https://music.163.com/#/song?id=35470874") -}}
+{{ $data = append $data (dict "artist" "花たん & プリコ & ヲタみん & ChouCho & 転少女" "title" "リリリリ★バーニングナイト" "album" "DANCEROID Official Sound Track" "url" "https://music.163.com/#/song?id=22780159") -}}
+{{ $data = append $data (dict "artist" "东京塔子" "title" "雪之泪 雨之音" "album" "雪之泪 雨之音" "url" "https://music.163.com/#/song?id=460839654") -}}
+{{ $data = append $data (dict "artist" "みぃ" "title" "ROLLING MY LIFE" "album" "Agony" "url" "https://music.163.com/#/song?id=40915753") -}}
+{{ $data = append $data (dict "artist" "ALTIMA" "title" "Burst the Gravity" "album" "Burst the Gravity" "url" "https://music.163.com/#/song?id=26390039") -}}
+{{ $data = append $data (dict "artist" "ワルキューレ" "title" "Absolute 5" "album" "Walküre Trap!" "url" "https://music.163.com/#/song?id=431853288") -}}
+{{ $data = append $data (dict "artist" "紫咲ほたる" "title" "Re:TrymenT" "album" "Re:LieF~親愛なるあなたへ~ OriginaL SounD TracK" "url" "https://music.163.com/#/song?id=451520657") -}}
+{{ $data = append $data (dict "artist" "KyoKa" "title" "桜爛ロマンシア" "album" "さくらの雲＊スカアレットの恋 コンプリートサウンドアルバム" "url" "https://music.163.com/#/song?id=1490122495") -}}
+{{ $data = append $data (dict "artist" "幽閉サテライト & 森永真由美" "title" "魂の語りに導かれて" "album" "魂の語りに導かれて" "url" "https://music.163.com/#/song?id=34338787") -}}
+{{ $data = append $data (dict "artist" "CLIFF EDGE & 中村舞子" "title" "The Distance" "album" "HEART" "url" "https://music.163.com/#/song?id=22672228") -}}
+{{ $data = append $data (dict "artist" "一咲美葵" "title" "語り継ぐ魂は[with Marcia]" "album" "語り継ぐ魂は" "url" "https://music.163.com/#/song?id=1927596918") -}}
+{{ $data = append $data (dict "artist" "志田サマー新井サマー" "title" "あんなに好きだったサマー" "album" "あんなに好きだったサマー/ GO GO ｻﾏｰ!" "url" "https://music.163.com/#/song?id=461581874") -}}
+{{ $data = append $data (dict "artist" "KOTOKO" "title" "→unfinished→" "album" "→unfinished→" "url" "https://music.163.com/#/song?id=589296") -}}
+{{ $data = append $data (dict "artist" "川田まみ" "title" "INITIATIVE" "album" "Love, Election & Chocolate × I've Maxi Single CD" "url" "https://music.163.com/#/song?id=751607") -}}
+{{ $data = append $data (dict "artist" "花たん" "title" "笹舟" "album" "FLOWER DROPS" "url" "https://music.163.com/#/song?id=31191351") -}}
+{{ $data = append $data (dict "artist" "PIKASONIC & なこたんまる" "title" "追憶 (feat. nakotanmaru)" "album" "追憶 (feat. nakotanmaru)" "url" "https://music.163.com/#/song?id=1869161372") -}}
+{{ $data = append $data (dict "artist" "和田光司" "title" "ターゲット~赤い冲撃~" "album" "DIGIMON HISTORY 1999-2006 All The Best" "url" "https://music.163.com/#/song?id=4940921") -}}
+{{ $data = append $data (dict "artist" "YU-A" "title" "忘れられない恋" "album" "忘れられない恋" "url" "https://music.163.com/#/song?id=26284054") -}}
+{{ $data = append $data (dict "artist" "GFRIEND" "title" "NAVILLERA -JP ver.-" "album" "今日から私たちは ～GFRIEND 1st BEST～" "url" "https://music.163.com/#/song?id=568207109") -}}
+{{ $data = append $data (dict "artist" "fripSide" "title" "closest love" "album" "closest love" "url" "https://music.163.com/#/song?id=725429") -}}
+{{ $data = append $data (dict "artist" "ピコ" "title" "桜音" "album" "银魂BEST2" "url" "https://music.163.com/#/song?id=4925822") -}}
+{{ $data = append $data (dict "artist" "山口リサ" "title" "Rainy Love ~届かない想い~" "album" "Eternal Color" "url" "https://music.163.com/#/song?id=22699147") -}}
+{{ $data = append $data (dict "artist" "Suara" "title" "恋夢" "album" "声" "url" "https://music.163.com/#/song?id=35447088") -}}
+{{ $data = append $data (dict "artist" "茉ひる & RINZO" "title" "フレグランス (Sped Up Version)" "album" "フレグランス" "url" "https://music.163.com/#/song?id=2106836589") -}}
+{{ $data = append $data (dict "artist" "一咲美葵" "title" "陽だまり探して[with Marcia]" "album" "陽だまりを探して" "url" "https://music.163.com/#/song?id=1901070033") -}}
+{{ $data = append $data (dict "artist" "坂上なち" "title" "追忆サマーナイト" "album" "Crimson Tempest" "url" "https://music.163.com/#/song?id=685908") -}}
+{{ $data = append $data (dict "artist" "sroa" "title" "硝子の鍵に似ていた" "album" "硝子の鍵に似ていた" "url" "https://music.163.com/#/song?id=2743418869") -}}
+{{ $data = append $data (dict "artist" "川田まみ" "title" "Wings of Courage -空を超えて-" "album" "蒼の彼方のフォーリズム主題歌MAXI SINGLE CD" "url" "https://music.163.com/#/song?id=29771058") -}}
+{{ $data = append $data (dict "artist" "GET IN THE RING" "title" "祭炎" "album" "東方PARTYBOX2" "url" "https://music.163.com/#/song?id=434974954") -}}
+{{ $data = append $data (dict "artist" "Fivesta" "title" "今でもI Love You" "album" "Fivesta" "url" "https://music.163.com/#/song?id=22810614") -}}
+{{ $data = append $data (dict "artist" "nonoc" "title" "Memento" "album" "Memento" "url" "https://music.163.com/#/song?id=1964102917") -}}
+{{ $data = append $data (dict "artist" "NegNasu & Xomu" "title" "Hound of Aubergine (feat. Xomu)" "album" "Hound of Aubergine (feat. Xomu)" "url" "https://music.163.com/#/song?id=2009721409") -}}
+{{ $data = append $data (dict "artist" "鈴木このみ" "title" "真理の鏡、剣乃ように" "album" "真理の鏡、剣乃ように" "url" "https://music.163.com/#/song?id=1375880110") -}}
+{{ $data = append $data (dict "artist" "Tiara" "title" "My best friend" "album" "Message for You" "url" "https://music.163.com/#/song?id=22845966") -}}
+{{ $data = append $data (dict "artist" "25時、ナイトコードで。" "title" "Bad Apple!! feat.SEKAI" "album" "25時、ナイトコードで。 SEKAI ALBUM vol.3" "url" "https://music.163.com/#/song?id=2702706005") -}}
+{{ $data = append $data (dict "artist" "RSP" "title" "優しい詩。" "album" "優しい詩。" "url" "https://music.163.com/#/song?id=28283406") -}}
+{{ $data = append $data (dict "artist" "天宮みや & 姫城碧海" "title" "不可測的メトロポリス" "album" "不可測的メトロポリス" "url" "https://music.163.com/#/song?id=1414857563") -}}
+{{ $data = append $data (dict "artist" "Flower" "title" "花時計 ～Party's on!～ (version2016)" "album" "瞳の奥の銀河 (形態B)" "url" "https://music.163.com/#/song?id=39227348") -}}
+{{ $data = append $data (dict "artist" "ChouCho" "title" "starlog" "album" "starlog" "url" "https://music.163.com/#/song?id=27526074") -}}
+{{ $data = append $data (dict "artist" "豊田萌絵 & 前田玲奈 & 麻倉もも" "title" "Shining Ray" "album" "ガールフレンド（♪） キャラクターソングCD「Shining Ray」" "url" "https://music.163.com/#/song?id=445845467") -}}
+{{ $data = append $data (dict "artist" "一咲美葵" "title" "永遠の都で[with Marcia]" "album" "永遠の都で" "url" "https://music.163.com/#/song?id=2011887276") -}}
+{{ $data = append $data (dict "artist" "SINGERS GUILD & HOEN" "title" "i believe" "album" "i believe" "url" "https://music.163.com/#/song?id=35726238") -}}
+{{ $data = append $data (dict "artist" "mican* & 綾倉盟" "title" "Saigetsu(砕月)" "album" "PLASTIK WORLD" "url" "https://music.163.com/#/song?id=687140") -}}
+{{ $data = append $data (dict "artist" "詩音" "title" "Re:ナミダボシ feat. CLIFF EDGE" "album" "Truth" "url" "https://music.163.com/#/song?id=22645735") -}}
+{{ $data = append $data (dict "artist" "牧野由依" "title" "synchronicity" "album" "synchronicity" "url" "https://music.163.com/#/song?id=610034") -}}
+{{ $data = append $data (dict "artist" "舞花" "title" "Time and again" "album" "Flying Fantastica" "url" "https://music.163.com/#/song?id=526904552") -}}
+{{ $data = append $data (dict "artist" "Riryka" "title" "疾るセカイと僕らのミライ" "album" "ミライセカイのプラネッタ オリジナルサウンドトラック" "url" "https://music.163.com/#/song?id=26209772") -}}
+{{ $data = append $data (dict "artist" "Kicco" "title" "終わらない煌めきを" "album" "Amazing Sky" "url" "https://music.163.com/#/song?id=418708367") -}}
+{{ $data = append $data (dict "artist" "sweet ARMS" "title" "I swear" "album" "I swear" "url" "https://music.163.com/#/song?id=1340119926") -}}
+{{ $data = append $data (dict "artist" "Larval Stage Planning" "title" "Trip -innocent of D-" "album" "Trip -innocent of D-" "url" "https://music.163.com/#/song?id=775072") -}}
+{{ $data = append $data (dict "artist" "春奈るな" "title" "Startear" "album" "Startear" "url" "https://music.163.com/#/song?id=28949422") -}}
+{{ $data = append $data (dict "artist" "花たん" "title" "cat's dance" "album" "Flower" "url" "https://music.163.com/#/song?id=27548278") -}}
+{{ $data = append $data (dict "artist" "ICHIKO" "title" "I SAY YES" "album" "TVアニメ ゼロの使い魔~双月の骑士~ OPテーマ“I SAY YES”" "url" "https://music.163.com/#/song?id=583624") -}}
+{{ $data = append $data (dict "artist" "fripSide" "title" "Last Fortune - Short Ver -" "album" "ティンクル☆くるせいだーす -Passion Star Stream- 豪華版特典 PSS&GoGo!&SB オリジナルサウンドトラック" "url" "https://music.163.com/#/song?id=4919240") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "温度差" "album" "想いが歴史に変わる時" "url" "https://music.163.com/#/song?id=29897825") -}}
+{{ $data = append $data (dict "artist" "ChouCho" "title" "Asterism" "album" "Asterism" "url" "https://music.163.com/#/song?id=422132770") -}}
+{{ $data = append $data (dict "artist" "米倉千尋" "title" "InFINITE Line" "album" "9-nine-Songbook" "url" "https://music.163.com/#/song?id=1940024246") -}}
+{{ $data = append $data (dict "artist" "中恵光城 & 霜月はるか" "title" "mirage" "album" "Another Flower II" "url" "https://music.163.com/#/song?id=31680144") -}}
+{{ $data = append $data (dict "artist" "冬乃桜" "title" "TSUBAKi IRO KOiUTA" "album" "絆きらめく恋いろは -椿恋歌- 響宴ノ舞" "url" "https://music.163.com/#/song?id=1396497627") -}}
+{{ $data = append $data (dict "artist" "May'n" "title" "Scarlet Ballet" "album" "Scarlet Ballet" "url" "https://music.163.com/#/song?id=609891") -}}
+{{ $data = append $data (dict "artist" "eufonius" "title" "リフレクティア" "album" "TVアニメ true tears 5周年記念CD-BOX" "url" "https://music.163.com/#/song?id=26475785") -}}
+{{ $data = append $data (dict "artist" "ClariS" "title" "カラフル" "album" "カラフル" "url" "https://music.163.com/#/song?id=27901526") -}}
+{{ $data = append $data (dict "artist" "秣本瑳羅" "title" "いと儚き燿の如く" "album" "metamorphoXIs" "url" "https://music.163.com/#/song?id=26099480") -}}
+{{ $data = append $data (dict "artist" "戸松遥" "title" "courage" "album" "courage" "url" "https://music.163.com/#/song?id9718090") -}}
+{{ $data = append $data (dict "artist" "ClariS" "title" "CLICK" "album" "CLICK(期間生産限定アニメ盤)" "url" "https://music.163.com/#/song?id=28234361") -}}
+{{ $data = append $data (dict "artist" "fripSide" "title" "floral summer" "album" "フローラル・フローラブ 予約特典スペシャルサウンドトラック" "url" "https://music.163.com/#/song?id=432698896") -}}
+{{ $data = append $data (dict "artist" "MYNAME" "title" "Baby I'm Sorry (Japanese ver)" "album" "Shirayuki (WEB盤)" "url" "https://music.163.com/#/song?id=1999750254") -}}
+{{ $data = append $data (dict "artist" "Halozy" "title" "源流懐古 (feat. ほたる)" "album" "Cosmic Armonica" "url" "https://music.163.com/#/song?id=22808859") -}}
+{{ $data = append $data (dict "artist" "KOTOKO" "title" "Reboot oN/↓0" "album" "バルドスカイ ゼロ2 BALDRSKY ZERO2 主題歌マキシシングルCD" "url" "https://music.163.com/#/song?id=28432316") -}}
+{{ $data = append $data (dict "artist" "KG & 菅原纱由理（THE SxPLAY）" "title" "谁よりも" "album" "谁よりも duet with 菅原纱由理" "url" "https://music.163.com/#/song?id=456499") -}}
+{{ $data = append $data (dict "artist" "fripSide" "title" "glow in the darkness" "album" "南十字星恋歌 -Southern Cross Love Song ★- ボーカルコレクション" "url" "https://music.163.com/#/song?id=29450460") -}}
+{{ $data = append $data (dict "artist" "jyA-Me & CLIFF EDGE" "title" "White Sweet Love" "album" "White Sweet Love" "url" "https://music.163.com/#/song?id=26096581") -}}
+{{ $data = append $data (dict "artist" "森永真由美" "title" "造花であろうとした者" "album" "造花であろうとした者" "url" "https://music.163.com/#/song?id=425298906") -}}
+{{ $data = append $data (dict "artist" "やなぎなぎ" "title" "恋文" "album" "Rewrite Original SoundTrack" "url" "https://music.163.com/#/song?id=26131698") -}}
+{{ $data = append $data (dict "artist" "発熱巫女~ず" "title" "Pages" "album" "Coda" "url" "https://music.163.com/#/song?id=744960") -}}
+{{ $data = append $data (dict "artist" "中島愛" "title" "星間飛行" "album" "キャラクターソング・コレクション FULL OF LOVE!!" "url" "https://music.163.com/#/song?id=1488050828") -}}
+{{ $data = append $data (dict "artist" "May'n" "title" "真空のダイアモンド クレバス" "album" "マクロスF(フロンティア) O.S.T.2 娘トラ☆" "url" "https://music.163.com/#/song?id=589170") -}}
+{{ $data = append $data (dict "artist" "Juliet" "title" "モトカレ" "album" "モトカレ" "url" "https://music.163.com/song?id=26103514") -}}
+{{ $data = append $data (dict "artist" "ナノ & MY FIRST STORY" "title" "SAVIOR OF SONG" "album" "SAVIOR OF SONG (蒼き鋼のアルペジオVer.)" "url" "https://music.163.com/#/song?id=27901866") -}}
+{{ $data = append $data (dict "artist" "花耶" "title" "Reincarnation" "album" "Reincarnation" "url" "https://music.163.com/#/song?id=2747205657") -}}
+{{ $data = append $data (dict "artist" "Yonder Voice" "title" "Shrine Maiden – 永遠の巫女" "album" "Shrine Maiden Promotion Disc" "url" "https://music.163.com/#/song?id=29724821") -}}
+{{ $data = append $data (dict "artist" "めらみぽっぷ" "title" "どうして…" "album" "宴" "url" "https://music.163.com/#/song?id=850775") -}}
+{{ $data = append $data (dict "artist" "ALTIMA & KOTOKO" "title" "どうして…" "album" "PLASMIC FIRE(アニメ盤)" "url" "https://music.163.com/#/song?id=420500282") -}}
+{{ $data = append $data (dict "artist" "d0tc0mmie & GUMI" "title" "I Can't Wait (feat. GUMI)" "album" "I Can't Wait (feat. GUMI)" "url" "https://music.163.com/#/song?id=3326907142") -}}
+{{ $data = append $data (dict "artist" "RINZO & 茉ひる" "title" "デイドリーム (Daydream)" "album" "デイドリーム (Daydream)" "url" "https://music.163.com/#/song?id=2737352162") -}}
+{{ $data = append $data (dict "artist" "鲷鱼" "title" "明日への花束（Blossoming ver.）" "album" "明日への花束（Blossoming ver.）" "url" "https://music.163.com/#/song?id=2751512490") -}}
+{{ $data = append $data (dict "artist" "EastNewSound" "title" "Scarlet Elegy" "album" "Secret Color" "url" "https://music.163.com/#/song?id=2747135311") -}}
+{{ $data = append $data (dict "artist" "御莉姫 & 廉" "title" "Masquerade Kill" "album" "Masquerade Kill" "url" "https://music.163.com/#/song?id=3312146708") -}}
+{{ $data = append $data (dict "artist" "aki" "title" "壊されたお守り (feat. aki/隣人(ZYTOKINE))" "album" "風 -KAZE-" "url" "https://music.163.com/#/song?id=834954") -}}
+{{ $data = append $data (dict "artist" "MIMI & 重音テト" "title" "トリックハート (feat. 重音テト)" "album" "トリックハート (feat. 重音テト)" "url" "https://music.163.com/#/song?id=3335544260") -}}
+{{ $data = append $data (dict "artist" "少女病 & 中恵光城" "title" "黒紫のオーンブレ" "album" "天巡メルクマール" "url" "https://music.163.com/#/song?id=420154083") -}}
+{{ $data = append $data (dict "artist" "solfa & 夢乃ゆき" "title" "Ever and… (feat. 夢乃ゆき)" "album" "Ever and…" "url" "https://music.163.com/#/song?id=2757955613") -}}
+{{ $data = append $data (dict "artist" "Kicco" "title" "Amazing Sky" "album" "Amazing Sky" "url" "https://music.163.com/#/song?id=418708362") -}}
+{{ $data = append $data (dict "artist" "茶太" "title" "min~眠~" "album" "Sally" "url" "https://music.163.com/#/song?id=835947") -}}
+{{ $data = append $data (dict "artist" "栗林みな実 & 橋本みゆき & yozuca* & Faylan & rino & 美郷あき" "title" "すーぱー☆あふぇくしょん" "album" "すーぱー☆あふぇくしょん" "url" "https://music.163.com/#/song?id=27623632") -}}
+{{ $data = append $data (dict "artist" "EricJC" "title" "東京を遊ぶ" "album" "東京を遊ぶ" "url" "https://music.163.com/#/song?id=3316725626") -}}
+{{ $data = append $data (dict "artist" "Falcom Sound Team J.D.K." "title" "名もなき悪夢の果て" "album" "英雄伝説 黎の軌跡 オリジナルサウンドトラック" "url" "https://music.163.com/#/song?id=1927176367") -}}
+{{ $data = append $data (dict "artist" "平野綾" "title" "God knows..." "album" "TVアニメ『涼宮ハルヒの憂鬱』 Imaginary ENOZ featuring HARUHI" "url" "https://music.163.com/#/song?id=27876224") -}}
+{{ $data = append $data (dict "artist" "早見沙織 & 松井恵理子 & 潘めぐみ" "title" "十六夜ゐ雪洞唄" "album" "十六夜ゐ雪洞唄" "url" "https://music.163.com/#/song?id=441116312") -}}
+{{ $data = append $data (dict "artist" "Stack" "title" "Dreamer" "album" "世界の選択 - Freedom Paradise-" "url" "https://music.163.com/#/song?id=30870396") -}}
+{{ $data = append $data (dict "artist" "May'n & 中島愛" "title" "タブレット" "album" "マクロスF cosmic cuune" "url" "https://music.163.com/#/song?id=4931484") -}}
+{{ $data = append $data (dict "artist" "blue drops" "title" "Ring My Bell (TVサイズ)" "album" "そらのおとしもの ～天使がくれた劇伴集～" "url" "https://music.163.com/#/song?id=4941315") -}}
+{{ $data = append $data (dict "artist" "KEiNA" "title" "Glorias war" "album" "Glorias war" "url" "https://music.163.com/#/song?id=774208") -}}
+{{ $data = append $data (dict "artist" "葉月ゆら" "title" "白羽の乙女と滅びの村" "album" "La Fata" "url" "https://music.163.com/#/song?id=3327188287") -}}
+{{ $data = append $data (dict "artist" "橋本みゆき" "title" "Star☆drops" "album" "Star☆drops" "url" "https://music.163.com/#/song?id=579207") -}}
+{{ $data = append $data (dict "artist" "M・A・O & 伊藤美来 & 立花理香" "title" "Lost Princess" "album" "プリンセスコネクト! Re:Dive PRICONNE CHARACTER SONG 01" "url" "https://music.163.com/#/song?id=1309903594") -}}
+{{ $data = append $data (dict "artist" "ワルキューレ" "title" "ALIVE～祈りの唄～" "album" "「劇場版マクロスΔ 絶対LIVE!!!!!!」ボーカルソング集" "url" "https://music.163.com/#/song?id=1887059984") -}}
+{{ $data = append $data (dict "artist" "冬乃桜" "title" "無上ノ刃" "album" "刹那にかける恋はなび Soundtrack: KOI-HANABI" "url" "https://music.163.com/#/song?id=2621227728") -}}
+{{ $data = append $data (dict "artist" "fripSide" "title" "prismatic fate" "album" "fripSide PC game compilation vol. 1" "url" "https://music.163.com/#/song?id=22660769") -}}
+{{ $data = append $data (dict "artist" "向日葵" "title" "AIRI-愛離-" "album" "AIRI -愛離-、炎路夜行" "url" "https://music.163.com/#/song?id=30039378") -}}
+{{ $data = append $data (dict "artist" "CHIHIRO" "title" "4℃" "album" "4℃" "url" "https://music.163.com/#/song?id=563279") -}}
+{{ $data = append $data (dict "artist" "Flower" "title" "とても深いグリーン" "album" "F" "url" "https://www.bilibili.com/video/BV1EyHYeBEFr") -}}
+{{ $data = append $data (dict "artist" "一咲美葵" "title" "赤く青い炎" "album" "鮮やかな記憶の中で" "url" "https://music.163.com/#/song?id=1832167926") -}}
+{{ $data = append $data (dict "artist" "YOASOBI" "title" "Watch me!" "album" "Watch me!" "url" "https://www.bilibili.com/video/BV1m1JEzAEbd/") -}}
+{{ $data = append $data (dict "artist" "伊東健人" "title" "My Factor" "album" "咲音" "url" "https://www.bilibili.com/video/BV1c64y1P7aH") -}}
+{{ $data = append $data (dict "artist" "フィロソフィーのダンス" "title" "迷っちゃうわ" "album" "迷っちゃうわ" "url" "https://www.bilibili.com/video/BV1iwkUBeEqL/") -}}
+{{ $data = append $data (dict "artist" "花たん" "title" "蕚 – Utena -" "album" "DiGiTAL FLOWER BEST" "url" "https://music.163.com/#/song?id=501133607") -}}
+{{ $data = append $data (dict "artist" "Soala" "title" "声の軌跡" "album" "声の軌跡" "url" "https://music.163.com/#/song?id=3343888367") -}}
+{{ $data = append $data (dict "artist" "VILLSHANA & 茉ひる" "title" "Time" "album" "2" "url" "https://music.163.com/#/song?id=2672467882") -}}
+{{ $data = append $data (dict "artist" "祈Inory" "title" "ViR to ReaL -Connected-" "album" "ViR to ReaL" "url" "https://music.163.com/#/song?id=422429078") -}}
+{{ $data = append $data (dict "artist" "上田麗奈" "title" "リリィ" "album" "リリィ" "url" "https://www.bilibili.com/video/BV1waHTzcEQQ") -}}
+{{ $data = append $data (dict "artist" "AYUMI KAWAKITA" "title" "E☆Right" "album" "WINTER LOVE" "url" "https://music.163.com/#/song?id=29775134") -}}
+{{ $data = append $data (dict "artist" "京" "title" "終電は新月の駅を通り過ぎる" "album" "Ontos Vol.1《終電は新月の駅を通り過ぎる》" "url" "https://music.163.com/#/song?id=2751036411") -}}
+{{ $data = append $data (dict "artist" "真崎ゆか" "title" "あなたがいるから" "album" "Tears of Heart" "url" "https://music.163.com/#/song?id=22787488") -}}
+{{ $data = append $data (dict "artist" "BRIGHT" "title" "lonely tears" "album" "BRIGHT" "url" "https://music.163.com/#/song?id=22647930") -}}
+{{ $data = append $data (dict "artist" "Koshidar" "title" "永遠の軌跡" "album" "永遠の軌跡" "url" "https://music.163.com/#/song?id=3342735561") -}}
 
 temp := temp.mp3
 silenceremove := -af silenceremove=start_periods=1:start_duration=0:start_threshold=-50dB:start_silence=1,areverse,silenceremove=start_periods=1:start_duration=0:start_threshold=-50dB:start_silence=1,areverse
 
 .PHONY: all clean test
-all:{{ range $data }} {{ .artist | replace " " "" | replace "'" "" | replace ":" "_" | replace "/" "_" | replace "*" "_" | replace "?" "_" }}-{{ .title | replace " " "" | replace "'" "" | replace ":" "_" | replace "/" "_" | replace "*" "_" | replace "?" "_" }}.mp3{{ end }}
+all:{{ range $data }} {{ .artist | replace " " "_" | replace "'" "" | replace ":" "_" | replace "/" "_" | replace "*" "_" | replace "?" "_" }}-{{ .title | replace " " "_" | replace "'" "" | replace ":" "_" | replace "/" "_" | replace "*" "_" | replace "?" "_" }}.mp3{{ end }}
 
 {{ range $data -}}
-{{ .artist | replace " " "" | replace "'" "" | replace ":" "_" | replace "/" "_" | replace "*" "_" | replace "?" "_" }}-{{ .title | replace " " "" | replace "'" "" | replace ":" "_" | replace "/" "_" | replace "*" "_" | replace "?" "_" }}.mp3:
+{{ .artist | replace " " "_" | replace "'" "" | replace ":" "_" | replace "/" "_" | replace "*" "_" | replace "?" "_" }}-{{ .title | replace " " "_" | replace "'" "" | replace ":" "_" | replace "/" "_" | replace "*" "_" | replace "?" "_" }}.mp3:
 	yt-dlp -t mp3 {{ .url }} -o $(temp)
 	ffmpeg -i $(temp) $(silenceremove) "$@"
 	rm $(temp)
