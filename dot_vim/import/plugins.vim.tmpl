@@ -2,29 +2,37 @@
 {{ if lookPath "vim" -}}
 call plug#begin()
 
-Plug 'tyru/caw.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'liuchengxu/vim-which-key'
+" Plug 'tyru/caw.vim'
 Plug 'alker0/chezmoi.vim'
+" Plug 'raghur/vim-ghost'
+" Plug 'roxma/nvim-yarp', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }
+" Plug 'roxma/vim-hug-neovim-rpc', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }
 {{ if lookPath "node" -}}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 {{ end -}}
-Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
+Plug 'dense-analysis/ale'
+" Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
+" Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }
+" Plug 'vim-scripts/align', { 'on': 'Align' }
 Plug 'ghifarit53/tokyonight-vim'
+" This plugin highlights patterns and ranges for Ex commands in Command-line mode. It also provides live preview for :substitute.
 Plug 'markonm/traces.vim'
-Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }
-Plug 'tpope/vim-eunuch', { 'on': [ 'Remove', 'Delete', 'Move', 'Chmod', 'Mkdir', 'Cfind', 'Clocate', 'Lfind', 'Wall', 'SudoWrite', 'SudoEdit' ] }
+" Plug 'tpope/vim-eunuch', { 'on': [ 'Remove', 'Delete', 'Move', 'Chmod', 'Mkdir', 'Cfind', 'Clocate', 'Lfind', 'Wall', 'SudoWrite', 'SudoEdit' ] }
+" create non-exist dir when saving file
+" Plug 'pbrisbin/vim-mkdir'
+" auto sudo when saving
+" Plug 'lambdalisue/vim-suda'
 {{ if lookPath "git" -}}
 Plug 'tpope/vim-fugitive'
 {{ end -}}
+{{ if lookPath "git" -}}
 Plug 'airblade/vim-gitgutter'
-Plug 'pbrisbin/vim-mkdir'
-Plug 'lambdalisue/vim-suda'
+{{ end -}}
 Plug 'itchyny/lightline.vim'
-Plug 'raghur/vim-ghost'
-Plug 'roxma/nvim-yarp', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }
-Plug 'roxma/vim-hug-neovim-rpc', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }
 Plug 'lervag/vimtex', { 'for': 'tex' }
-Plug 'vim-scripts/align', { 'on': 'Align' }
-Plug 'dense-analysis/ale'
 Plug 'ourgal/vim-workspace'
 
 call plug#end()
