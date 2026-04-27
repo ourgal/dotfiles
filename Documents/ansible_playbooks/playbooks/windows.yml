@@ -876,6 +876,7 @@
             - leo
             - copyparty
             - ffmpeg-progress-yield
+            - vim-vint --preinstall "setuptools<81"
         - name: Remove pip config
           ansible.windows.win_file:
             path: "{{ ansible_facts.env.APPDATA }}\\.pip\\pip.ini"
@@ -926,6 +927,7 @@
             - vscode-langservers-extracted
             - yaml-language-server
             - "@ansible/ansible-language-server"
+            - vim-language-server
         - name: Remove npm config
           ansible.windows.win_file:
             path: "{{ ansible_facts.user_dir }}\\.npmrc"

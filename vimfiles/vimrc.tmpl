@@ -153,6 +153,20 @@ au BufLeave,CursorHold,FocusLost * if(getbufinfo('%')[0].changed) | sil do BufWr
 " au VimEnter * nested if (len(v:argv) == 1) | silent! source Session.vim | endif
 " au VimLeave * if (len(v:argv) == 1) | mksession! | endif
 autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
+set autocomplete
+set complete=o^5,.^5,w^5,b^5,u^5
+set completeopt=popup
+
+inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+let g:ale_completion_enabled = 1
+let g:ale_set_balloons = 1
+let g:ale_hover_to_preview = 1
+let g:ale_floating_preview = 1
+set omnifunc=ale#completion#OmniFunc
+
+map K <cmd>ALEHover<cr>
+
 import 'plugins.vim'
 
 " let g:coc_node_path = {{ lookPath "node" | squote }}
@@ -374,15 +388,18 @@ let g:org_export_emacs = "~/scoop/apps/emacs/current/bin/emacs.exe"
 set termguicolors
 colorscheme catppuccin_mocha
 nnoremap <bs> <cmd>Explore<cr>
-let lspOpts = #{autoHighlightDiags: v:true}
-autocmd User LspSetup call LspOptionsSet(lspOpts)
-
-let lspServers = [#{
-	\	  name: 'yaml-language-server',
-	\	  filetype: ['yaml'],
-	\	  path: '{{ lookPath "yaml-language-server" }}',
-	\	  args: ['--stdio'],
-	\ }]
-autocmd User LspSetup call LspAddServer(lspServers)
+" let lspOpts = #{autoHighlightDiags: v:true}
+" autocmd User LspSetup call LspOptionsSet(lspOpts)
+" 
+" let lspServers = [#{
+" 	\	  name: 'yaml-language-server',
+" 	\	  filetype: ['yaml'],
+" 	\	  path: '{{ lookPath "yaml-language-server" }}',
+" 	\	  args: ['--stdio']
+" 	\ }]
+" autocmd User LspSetup call LspAddServer(lspServers)
+let g:pear_tree_smart_openers = 1
+let g:pear_tree_smart_closers = 1
+let g:pear_tree_smart_backspace = 1
 {{ end -}}
 {{ end -}}
