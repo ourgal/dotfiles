@@ -550,6 +550,10 @@
                                     {
                                       "gnx": "zxc.20260320003625.1",
                                       "vh": "chezmoi"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260427232446.1",
+                                      "vh": "completion"
                                     }
                                   ]
                                 },
@@ -557,6 +561,16 @@
                                   "gnx": "User.20260218141914.1",
                                   "vh": "plugins",
                                   "children": [
+                                    {
+                                      "gnx": "zxc.20260427235829.1",
+                                      "vh": "<< plugin configs pre >>",
+                                      "children": [
+                                        {
+                                          "gnx": "zxc.20260427235833.1",
+                                          "vh": "ale"
+                                        }
+                                      ]
+                                    },
                                     {
                                       "gnx": "User.20260218141914.18",
                                       "vh": "<< plugin configs >>",
@@ -628,6 +642,10 @@
                                         {
                                           "gnx": "zxc.20260427221817.1",
                                           "vh": "lsp"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260428005509.1",
+                                          "vh": "pear-tree"
                                         }
                                       ]
                                     }
@@ -720,13 +738,7 @@
                                         {
                                           "gnx": "zxc.20260427221704.1",
                                           "vh": "lsp"
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "gnx": "zxc.20260426134856.1",
-                                      "vh": "lint",
-                                      "children": [
+                                        },
                                         {
                                           "gnx": "zxc.20260318212806.2",
                                           "vh": "ale"
@@ -762,6 +774,16 @@
                                         {
                                           "gnx": "zxc.20260427005654.1",
                                           "vh": "vim-catppuccin"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "gnx": "zxc.20260428005416.1",
+                                      "vh": "auto pair",
+                                      "children": [
+                                        {
+                                          "gnx": "zxc.20260428005420.1",
+                                          "vh": "pear-tree"
                                         }
                                       ]
                                     },
@@ -6284,6 +6306,10 @@
                                         {
                                           "gnx": "zxc.20260423143729.226",
                                           "vh": "ffmpeg-progress-yield"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260428002443.1",
+                                          "vh": "vint"
                                         }
                                       ]
                                     },
@@ -6348,6 +6374,10 @@
                                         {
                                           "gnx": "zxc.20260423143729.240",
                                           "vh": "ansible-language-server"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260428002132.1",
+                                          "vh": "vimls"
                                         }
                                       ]
                                     },
@@ -8026,7 +8056,10 @@
     "zxc.20260427223226.1": "set noswapfile\nau BufLeave,CursorHold,FocusLost * if(getbufinfo('%')[0].changed) | sil do BufWritePre | sil! up | sil do BufWritePost | endif",
     "User.20260218145141.1": "\" Autosession\n\" au VimEnter * nested if (len(v:argv) == 1) | silent! source Session.vim | endif\n\" au VimLeave * if (len(v:argv) == 1) | mksession! | endif",
     "zxc.20260320003625.1": "autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path \"%\"\n",
-    "User.20260218141914.1": "import 'plugins.vim'\n\n<< plugin configs >>\n",
+    "zxc.20260427232446.1": "set autocomplete\nset complete=o^5,.^5,w^5,b^5,u^5\nset completeopt=popup\n\ninoremap <silent><expr> <Tab>   pumvisible() ? \"\\<C-n>\" : \"\\<Tab>\"\ninoremap <silent><expr> <S-Tab> pumvisible() ? \"\\<C-p>\" : \"\\<S-Tab>\"\n",
+    "User.20260218141914.1": "<< plugin configs pre >>\n\nimport 'plugins.vim'\n\n<< plugin configs >>\n",
+    "zxc.20260427235829.1": "@others",
+    "zxc.20260427235833.1": "let g:ale_completion_enabled = 1\nlet g:ale_set_balloons = 1\nlet g:ale_hover_to_preview = 1\nlet g:ale_floating_preview = 1\nset omnifunc=ale#completion#OmniFunc\n\nmap K <cmd>ALEHover<cr>",
     "User.20260218141914.18": "@others\n",
     "User.20260218141914.19": "\" let g:coc_node_path = {{ lookPath \"node\" | squote }}\n\" \n\" \" coc.nvim\n\" \" Use tab for trigger completion with characters ahead and navigate\n\" \" NOTE: There's always complete item selected by default, you may want to enable\n\" \" no select by `\"suggest.noselect\": true` in your configuration file\n\" \" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by\n\" \" other plugin before putting this into your config\n\" inoremap <silent><expr> <TAB>\n\"       \\ coc#pum#visible() ? coc#pum#next(1) :\n\"       \\ CheckBackspace() ? \"\\<Tab>\" :\n\"       \\ coc#refresh()\n\" inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : \"\\<C-h>\"\n\" \n\" \" Make <CR> to accept selected completion item or notify coc.nvim to format\n\" \" <C-g>u breaks current undo, please make your own choice\n\" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : \"\\<C-g>u\\<CR>\\<c-r>=coc#on_enter()\\<CR>\"\n\" \n\" function! CheckBackspace() abort\n\"   let col = col('.') - 1\n\"   return !col || getline('.')[col - 1]  =~# '\\s'\n\" endfunction\n\" \n\" \" Use <c-space> to trigger completion\n\" if has('nvim')\n\"   inoremap <silent><expr> <c-space> coc#refresh()\n\" else\n\"   inoremap <silent><expr> <c-@> coc#refresh()\n\" endif\n\" \n\" \" Use `[g` and `]g` to navigate diagnostics\n\" \" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list\n\" nmap <silent> [d <Plug>(coc-diagnostic-prev)\n\" nmap <silent> ]d <Plug>(coc-diagnostic-next)\n\" \n\" \" GoTo code navigation\n\" nmap <silent> gd <Plug>(coc-definition)\n\" nmap <silent> gy <Plug>(coc-type-definition)\n\" nmap <silent> gi <Plug>(coc-implementation)\n\" nmap <silent> gr <Plug>(coc-references)\n\" \n\" function! ShowDocumentation()\n\"   if CocAction('hasProvider', 'hover')\n\"     call CocActionAsync('doHover')\n\"   else\n\"     call feedkeys('K', 'in')\n\"   endif\n\" endfunction\n\" \n\" \" Use K to show documentation in preview window\n\" nnoremap <silent> K :call ShowDocumentation()<CR>\n\" \n\" \" Highlight the symbol and its references when holding the cursor\n\" autocmd CursorHold * silent call CocActionAsync('highlight')\n\" \n\" \" Symbol renaming\n\" nnoremap <leader>R <plug>(coc-rename)\n\" \n\" \" Formatting selected code\n\" \" xmap <leader>f  <Plug>(coc-format-selected)\n\" \" nmap <leader>f  <Plug>(coc-format-selected)\n\" \n\" augroup mygroup\n\"   autocmd!\n\"   \" Setup formatexpr specified filetype(s)\n\"   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')\n\"   \" Update signature help on jump placeholder\n\"   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')\n\" augroup end\n\" \n\" \" Applying code actions to the selected code block\n\" \" Example: `<leader>aap` for current paragraph\n\" \" xmap <leader>a  <Plug>(coc-codeaction-selected)\n\" \" nmap <leader>a  <Plug>(coc-codeaction-selected)\n\" \n\" \" Remap keys for applying code actions at the cursor position\n\" \" nmap <leader>ac  <Plug>(coc-codeaction-cursor)\n\" \" Remap keys for apply code actions affect whole buffer\n\" \" nmap <leader>as  <Plug>(coc-codeaction-source)\n\" \" Apply the most preferred quickfix action to fix diagnostic on the current line\n\" \" nmap <leader>qf  <Plug>(coc-fix-current)\n\" \n\" \" Remap keys for applying refactor code actions\n\" \" nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)\n\" \" xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)\n\" \" nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)\n\" \n\" \" Run the Code Lens action on the current line\n\" \" nmap <leader>cl  <Plug>(coc-codelens-action)\n\" \n\" \" Map function and class text objects\n\" \" NOTE: Requires 'textDocument.documentSymbol' support from the language server\n\" xmap if <Plug>(coc-funcobj-i)\n\" omap if <Plug>(coc-funcobj-i)\n\" xmap af <Plug>(coc-funcobj-a)\n\" omap af <Plug>(coc-funcobj-a)\n\" xmap ic <Plug>(coc-classobj-i)\n\" omap ic <Plug>(coc-classobj-i)\n\" xmap ac <Plug>(coc-classobj-a)\n\" omap ac <Plug>(coc-classobj-a)\n\" \n\" \" Remap <C-f> and <C-b> to scroll float windows/popups\n\" if has('nvim-0.4.0') || has('patch-8.2.0750')\n\"   nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : \"\\<C-f>\"\n\"   nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : \"\\<C-b>\"\n\"   inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? \"\\<c-r>=coc#float#scroll(1)\\<cr>\" : \"\\<Right>\"\n\"   inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? \"\\<c-r>=coc#float#scroll(0)\\<cr>\" : \"\\<Left>\"\n\"   vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : \"\\<C-f>\"\n\"   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : \"\\<C-b>\"\n\" endif\n\" \n\" \" Use CTRL-S for selections ranges\n\" \" Requires 'textDocument/selectionRange' support of language server\n\" nmap <silent> <C-s> <Plug>(coc-range-select)\n\" xmap <silent> <C-s> <Plug>(coc-range-select)\n\" \n\" \" Add `:Format` command to format current buffer\n\" command! -nargs=0 Format :call CocActionAsync('format')\n\" \n\" \" Add `:Fold` command to fold current buffer\n\" command! -nargs=? Fold :call     CocAction('fold', <f-args>)\n\" \n\" \" Add `:OR` command for organize imports of the current buffer\n\" command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')\n\" \n\" \" Add (Neo)Vim's native statusline support\n\" \" NOTE: Please see `:h coc-status` for integrations with external plugins that\n\" \" provide custom statusline: lightline.vim, vim-airline\n\" set statusline^=%{coc#status()}%{get(b:,'coc_current_function',''\\'''\\')}\n\" \n\" let g:coc_global_extensions = ['coc-fish', '@yaegassy/coc-marksman', 'coc-emoji', 'coc-dash-complete', 'coc-just-complete', 'coc-translator', 'coc-perl', 'coc-go', 'coc-json', 'coc-prettier', 'coc-basedpyright', 'coc-r-lsp', 'coc-sh', 'coc-snippets', 'coc-sumneko-lua', 'coc-texlab', 'coc-toml', 'coc-vimlsp', 'coc-yaml' ]\n\" \" nnoremap <leader>e <Cmd>CocCommand explorer --quit-on-open<CR>\n\" \n\" \" limit completion item\n\" let g:coc_filetype_map = { 'yaml.ansible': 'ansible', }\n\" set pumheight=10\n\" \n\" nmap <Leader>,t <Plug>(coc-translator-p)\n\" vmap <Leader>,t <Plug>(coc-translator-pv)",
     "User.20260218141914.20": "\" set termguicolors\n\" let g:tokyonight_style = 'night' \" available: night, storm\n\" let g:tokyonight_enable_italic = 1\n\" colorscheme tokyonight\n",
@@ -8043,7 +8076,8 @@
     "zxc.20260427003349.1": "\" nnoremap <bs> <cmd>Dir<cr>",
     "zxc.20260427005833.1": "set termguicolors\ncolorscheme catppuccin_mocha\n",
     "zxc.20260427161453.1": "nnoremap <bs> <cmd>Explore<cr>",
-    "zxc.20260427221817.1": "let lspOpts = #{autoHighlightDiags: v:true}\nautocmd User LspSetup call LspOptionsSet(lspOpts)\n\nlet lspServers = [#{\n\t\\\t  name: 'yaml-language-server',\n\t\\\t  filetype: ['yaml'],\n\t\\\t  path: '{{ lookPath \"yaml-language-server\" }}',\n\t\\\t  args: ['--stdio'],\n\t\\ }]\nautocmd User LspSetup call LspAddServer(lspServers)",
+    "zxc.20260427221817.1": "\" let lspOpts = #{autoHighlightDiags: v:true}\n\" autocmd User LspSetup call LspOptionsSet(lspOpts)\n\" \n\" let lspServers = [#{\n\" \t\\\t  name: 'yaml-language-server',\n\" \t\\\t  filetype: ['yaml'],\n\" \t\\\t  path: '{{ lookPath \"yaml-language-server\" }}',\n\" \t\\\t  args: ['--stdio']\n\" \t\\ }]\n\" autocmd User LspSetup call LspAddServer(lspServers)",
+    "zxc.20260428005509.1": "let g:pear_tree_smart_openers = 1\nlet g:pear_tree_smart_closers = 1\nlet g:pear_tree_smart_backspace = 1",
     "zxc.20260125164142.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125164204.1": "vim9script\n\n# simple fuzzy find finder\n# place into ~/.vim/plugin/fuzzyfind.vim\n\nset wildmode=noselect:lastused,full\nset wildmenu wildoptions=pum,fuzzy pumheight=12\n\n\nvar files_cache: list<string> = []\naugroup CmdComplete\n    au!\n    au CmdlineChanged : wildtrigger()\n    au CmdlineEnter : files_cache = []\naugroup END\n\ndef FindCmd(): string\n    var cmd = ''\n    if executable('fd')\n        cmd = 'fd . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('fdfind')\n        cmd = 'fdfind . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('ugrep')\n        cmd = 'ugrep \"\" -Rl -I --ignore-files'\n    elseif executable('rg')\n        cmd = 'rg --path-separator / --files --hidden --glob !.git'\n    elseif executable('find')\n        cmd = 'find \\! \\( -path \"*/.git\" -prune -o -name \"*.swp\" \\) -type f -follow'\n    endif\n    return cmd\nenddef\n\ndef Find(cmd_arg: string, cmd_complete: bool): list<string>\n    if empty(files_cache)\n        var cmd = FindCmd()\n        # fallback to built-in glob if no fd/rg/ug/find is available\n        # e.g. we are on Windows\n        if empty(cmd)\n            files_cache = globpath('.', '**', 1, 1)\n                ->filter((_, v) => !isdirectory(v))\n                ->mapnew((_, v) => v->substitute('^\\.[\\/]', \"\", \"\"))\n        else\n            files_cache = systemlist(cmd)\n        endif\n    endif\n    if empty(cmd_arg)\n        return files_cache\n    else\n        return files_cache->matchfuzzy(cmd_arg)\n    endif\nenddef\n\nset findfunc=Find",
     "zxc.20260318214950.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -8054,13 +8088,14 @@
     "zxc.20260318212806.5": "Plug 'alker0/chezmoi.vim'\n",
     "zxc.20260318212806.18": "\" Plug 'raghur/vim-ghost'\n\" Plug 'roxma/nvim-yarp', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }\n\" Plug 'roxma/vim-hug-neovim-rpc', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }\n",
     "zxc.20260318212806.6": "{{ if lookPath \"node\" -}}\n\" Plug 'neoclide/coc.nvim', {'branch': 'release'}\n{{ end -}}\n",
-    "zxc.20260427221704.1": "Plug 'yegappan/lsp'",
-    "zxc.20260318212806.2": "\" Plug 'dense-analysis/ale'\n",
+    "zxc.20260427221704.1": "\" Plug 'yegappan/lsp'",
+    "zxc.20260318212806.2": "Plug 'dense-analysis/ale'\n",
     "zxc.20260318212806.7": "\" Plug 'godlygeek/tabular', { 'on': 'Tabularize' }\n",
     "zxc.20260318212806.11": "\" Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }\n",
     "zxc.20260318212806.3": "\" Plug 'vim-scripts/align', { 'on': 'Align' }\n",
     "zxc.20260318212806.8": "\" Plug 'ghifarit53/tokyonight-vim'",
     "zxc.20260427005654.1": "Plug 'https://codeberg.org/mao-yining/vim-catppuccin'",
+    "zxc.20260428005420.1": "Plug 'tmsvg/pear-tree'",
     "zxc.20260318212806.9": "\" This plugin highlights patterns and ranges for Ex commands in Command-line mode. It also provides live preview for :substitute.\nPlug 'markonm/traces.vim'\n",
     "zxc.20260318212806.12": "\" Plug 'tpope/vim-eunuch', { 'on': [ 'Remove', 'Delete', 'Move', 'Chmod', 'Mkdir', 'Cfind', 'Clocate', 'Lfind', 'Wall', 'SudoWrite', 'SudoEdit' ] }\n",
     "zxc.20260318212806.15": "\" create non-exist dir when saving file\n\" Plug 'pbrisbin/vim-mkdir'\n",
@@ -8832,6 +8867,7 @@
     "zxc.20260423143729.224": "- leo\n",
     "zxc.20260423143729.225": "- copyparty\n",
     "zxc.20260423143729.226": "- ffmpeg-progress-yield\n",
+    "zxc.20260428002443.1": "- vim-vint --preinstall \"setuptools<81\"",
     "zxc.20260423143729.251": "- name: Remove pip config\n  ansible.windows.win_file:\n    path: \"{{ ansible_facts.env.APPDATA }}\\\\.pip\\\\pip.ini\"\n    state: absent\n",
     "zxc.20260423143729.229": "- name: Add cargo bin path to PATH\n  tags: path\n  ansible.windows.win_path:\n    state: present\n    scope: user\n    elements: '%userprofile%\\.cargo\\bin'\n",
     "zxc.20260423143729.230": "- name: Create .cargo folder\n  ansible.windows.win_file:\n    dest: \"{{ ansible_facts.user_dir }}\\\\.cargo\"\n    state: directory\n- name: Set cargo config\n  ansible.windows.win_copy:\n    dest: \"{{ ansible_facts.user_dir }}\\\\.cargo\\\\config.toml\"\n    content: |\n      [source.crates-io]\n      replace-with = 'mirror'\n\n      [source.mirror]\n      registry = \"sparse+https://mirrors.cernet.edu.cn/crates.io-index/\"\n\n      [registries.mirror]\n      index = \"sparse+https://mirrors.cernet.edu.cn/crates.io-index/\"\n",
@@ -8845,6 +8881,7 @@
     "zxc.20260423143729.238": "- vscode-langservers-extracted\n",
     "zxc.20260423143729.239": "- yaml-language-server\n",
     "zxc.20260423143729.240": "- \"@ansible/ansible-language-server\"\n",
+    "zxc.20260428002132.1": "- vim-language-server",
     "zxc.20260423143729.241": "- name: Remove npm config\n  ansible.windows.win_file:\n    path: \"{{ ansible_facts.user_dir }}\\\\.npmrc\"\n    state: absent\n",
     "zxc.20260423143729.242": "- name: Facts\n  tags: user-env\n  ansible.builtin.gather_facts:\n  when: ansible_facts.user_dir is not defined\n",
     "zxc.20260423143729.243": "- name: Set home environment variable\n  tags: user-env\n  ansible.windows.win_environment:\n    state: present\n    name: HOME\n    value: \"{{ ansible_facts.user_dir }}\"\n    level: user\n",
@@ -9122,13 +9159,13 @@
       "_mod_time": 1776085878.419
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1777301071.831
+      "_mod_time": 1777308921.083
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1776085878.429
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1777300659.171
+      "_mod_time": 1777308890.654
     },
     "zxc.20260427000037.1": {
       "_mod_time": 1777298774.849
@@ -9137,13 +9174,13 @@
       "_mod_time": 1777301022.72
     },
     "User.20260218142211.1": {
-      "_mod_time": 1777301071.853
+      "_mod_time": 1777308921.114
     },
     "User.20260218142322.1": {
       "_mod_time": 1776085878.463
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1777300659.18
+      "_mod_time": 1777308890.671
     },
     "zxc.20260426235942.1": {
       "_mod_time": 1777298774.859
@@ -9461,7 +9498,7 @@
       "_mod_time": 1776928105.703
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1777192014.671
+      "_mod_time": 1777308374.165
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1774609115.504
