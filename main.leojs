@@ -8097,7 +8097,7 @@
     "zxc.20260411190320.1": "{{ if lookPath \"ruff\" -}}\n[language-server.ruff]\ncommand = \"ruff\"\nargs = [\"server\", \"--preview\"]\nenvironment = { \"RUFF_TRACE\" = \"messages\" }\n\n[language-server.ruff.config.settings]\nlineLength = 100\nlogLevel = \"debug\"\n\n[language-server.ruff.config.settings.lint]\nselect = [\"E\", \"F\", \"W\", \"B\", \"I\", \"RUF\", \"N\", \"LOG\", \"ERA\", \"W\", \"D\", \"UP\", \"ANN\", \"ASYNC\", \"S\", \"RET\", \"TCH\", \"ARG\", \"PTH\", \"DOC\"]\npreview = true\n\n[language-server.ruff.config.settings.format]\npreview = true\nquote-style = \"double\"\ndocstring-code-format = true\nindent-style = \"space\"\n{{ end -}}",
     "zxc.20260125161740.1": "theme = \"catppuccin_mocha\"\n",
     "zxc.20260125161845.1": "[editor]\nbufferline = \"multiple\"\ncolor-modes = true\nidle-timeout = 0\nline-number = \"relative\"\npopup-border = \"none\"\ntrue-color = true\n",
-    "zxc.20260125161912.1": "[editor.auto-save]\nfocus-lost = false",
+    "zxc.20260125161912.1": "[editor.auto-save]\nfocus-lost = true",
     "zxc.20260125161937.1": "[editor.auto-save.after-delay]\nenable = false\ntimeout = 1000",
     "zxc.20260125162004.1": "[editor.cursor-shape]\ninsert = \"bar\"",
     "zxc.20260125162038.1": "[editor.indent-guides]\ncharacter = \"⸽\"\nrender = true\nskip-levels = 1",
@@ -9341,7 +9341,7 @@
       "_mod_time": 1777179946.882
     },
     "zxc.20260125161631.1": {
-      "_mod_time": 1776085878.439
+      "_mod_time": 1777302969.492
     },
     "User.20260216185314.1": {
       "_mod_time": 1776085878.439
@@ -9515,7 +9515,7 @@
       "_mod_time": 1776780168.39
     },
     "zxc.20260214105528.1": {
-      "_mod_time": 1776085878.415
+      "_mod_time": 1777302969.518
     },
     "zxc.20260214142543.1": {
       "_mod_time": 1776085878.415
