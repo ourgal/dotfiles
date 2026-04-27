@@ -616,6 +616,10 @@
                                         {
                                           "gnx": "zxc.20260427005833.1",
                                           "vh": "vim-catppuccin"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260427161453.1",
+                                          "vh": "netrw"
                                         }
                                       ]
                                     }
@@ -7998,8 +8002,9 @@
     "zxc.20260426142134.1": "let g:which_key_map['f'] = {\n      \\ 'name': 'files',\n      \\ 'f'   : [':Files', 'Files'],\n      \\ ' '   : [':GFiles', 'Git Files'],\n      \\ }",
     "zxc.20260426141405.1": "let g:which_key_map['w'] = {\n      \\ 'name': 'windows',\n      \\ 'w'   : ['<C-W>w'     , 'other-window'],\n      \\ 'd'   : ['<C-W>c'     , 'delete-window'],\n      \\ '-'   : ['<C-W>s'     , 'split-window-below'],\n      \\ '|'   : ['<C-W>v'     , 'split-window-right'],\n      \\ '2'   : ['<C-W>v'     , 'layout-double-columns'],\n      \\ 'h'   : ['<C-W>h'     , 'window-left'],\n      \\ 'j'   : ['<C-W>j'     , 'window-below'],\n      \\ 'l'   : ['<C-W>l'     , 'window-right'],\n      \\ 'k'   : ['<C-W>k'     , 'window-up'],\n      \\ 'H'   : ['<C-W>5<'    , 'expand-window-left'],\n      \\ 'J'   : [':resize +5' , 'expand-window-below'],\n      \\ 'L'   : ['<C-W>5>'    , 'expand-window-right'],\n      \\ 'K'   : [':resize -5' , 'expand-window-up'],\n      \\ '='   : ['<C-W>='     , 'balance-window'],\n      \\ 's'   : ['<C-W>s'     , 'split-window-below'],\n      \\ 'v'   : ['<C-W>v'     , 'split-window-below'],\n      \\ '?'   : ['Windows'    , 'fzf-window'],\n      \\ }",
     "zxc.20260427001349.1": "let g:org_export_emacs = \"~/scoop/apps/emacs/current/bin/emacs.exe\"",
-    "zxc.20260427003349.1": "nnoremap <bs> <cmd>Dir<cr>",
+    "zxc.20260427003349.1": "\" nnoremap <bs> <cmd>Dir<cr>",
     "zxc.20260427005833.1": "set termguicolors\ncolorscheme catppuccin_mocha\n",
+    "zxc.20260427161453.1": "nnoremap <bs> <cmd>Explore<cr>",
     "zxc.20260125164142.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125164204.1": "vim9script\n\n# simple fuzzy find finder\n# place into ~/.vim/plugin/fuzzyfind.vim\n\nset wildmode=noselect:lastused,full\nset wildmenu wildoptions=pum,fuzzy pumheight=12\n\n\nvar files_cache: list<string> = []\naugroup CmdComplete\n    au!\n    au CmdlineChanged : wildtrigger()\n    au CmdlineEnter : files_cache = []\naugroup END\n\ndef FindCmd(): string\n    var cmd = ''\n    if executable('fd')\n        cmd = 'fd . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('fdfind')\n        cmd = 'fdfind . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('ugrep')\n        cmd = 'ugrep \"\" -Rl -I --ignore-files'\n    elseif executable('rg')\n        cmd = 'rg --path-separator / --files --hidden --glob !.git'\n    elseif executable('find')\n        cmd = 'find \\! \\( -path \"*/.git\" -prune -o -name \"*.swp\" \\) -type f -follow'\n    endif\n    return cmd\nenddef\n\ndef Find(cmd_arg: string, cmd_complete: bool): list<string>\n    if empty(files_cache)\n        var cmd = FindCmd()\n        # fallback to built-in glob if no fd/rg/ug/find is available\n        # e.g. we are on Windows\n        if empty(cmd)\n            files_cache = globpath('.', '**', 1, 1)\n                ->filter((_, v) => !isdirectory(v))\n                ->mapnew((_, v) => v->substitute('^\\.[\\/]', \"\", \"\"))\n        else\n            files_cache = systemlist(cmd)\n        endif\n    endif\n    if empty(cmd_arg)\n        return files_cache\n    else\n        return files_cache->matchfuzzy(cmd_arg)\n    endif\nenddef\n\nset findfunc=Find",
     "zxc.20260318214950.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -8020,7 +8025,7 @@
     "zxc.20260318212806.12": "\" Plug 'tpope/vim-eunuch', { 'on': [ 'Remove', 'Delete', 'Move', 'Chmod', 'Mkdir', 'Cfind', 'Clocate', 'Lfind', 'Wall', 'SudoWrite', 'SudoEdit' ] }\n",
     "zxc.20260318212806.15": "\" create non-exist dir when saving file\n\" Plug 'pbrisbin/vim-mkdir'\n",
     "zxc.20260318212806.16": "\" auto sudo when saving\n\" Plug 'lambdalisue/vim-suda'\n",
-    "zxc.20260427003116.1": "Plug 'habamax/vim-dir'\n",
+    "zxc.20260427003116.1": "\" Plug 'habamax/vim-dir'\n",
     "zxc.20260318212806.13": "{{ if lookPath \"git\" -}}\nPlug 'tpope/vim-fugitive'\n{{ end -}}\n",
     "zxc.20260318212806.14": "{{ if lookPath \"git\" -}}\nPlug 'airblade/vim-gitgutter'\n{{ end -}}\n",
     "zxc.20260318212806.17": "Plug 'itchyny/lightline.vim'\n",
@@ -9074,25 +9079,25 @@
       "_mod_time": 1777179946.854
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1777222982.156
+      "_mod_time": 1777277707.06
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1777179946.869
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1777222738.23
+      "_mod_time": 1777254916.869
     },
     "zxc.20260427000037.1": {
       "_mod_time": 1777219283.718
     },
     "User.20260218142211.1": {
-      "_mod_time": 1777222982.186
+      "_mod_time": 1777277707.109
     },
     "User.20260218142322.1": {
       "_mod_time": 1777179946.906
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1777222738.325
+      "_mod_time": 1777254916.912
     },
     "zxc.20260426235942.1": {
       "_mod_time": 1777219283.757
