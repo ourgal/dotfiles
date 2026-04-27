@@ -529,7 +529,7 @@
                                 },
                                 {
                                   "gnx": "zxc.20260125163442.1",
-                                  "vh": "main"
+                                  "vh": "import"
                                 },
                                 {
                                   "gnx": "User.20260218141820.1",
@@ -539,6 +539,10 @@
                                   "gnx": "User.20260218141831.1",
                                   "vh": "options",
                                   "children": [
+                                    {
+                                      "gnx": "zxc.20260427223226.1",
+                                      "vh": "auto save"
+                                    },
                                     {
                                       "gnx": "User.20260218145141.1",
                                       "vh": "sessions"
@@ -620,6 +624,10 @@
                                         {
                                           "gnx": "zxc.20260427161453.1",
                                           "vh": "netrw"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260427221817.1",
+                                          "vh": "lsp"
                                         }
                                       ]
                                     }
@@ -708,6 +716,10 @@
                                         {
                                           "gnx": "zxc.20260318212806.6",
                                           "vh": "coc.nvim"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260427221704.1",
+                                          "vh": "lsp"
                                         }
                                       ]
                                     },
@@ -861,6 +873,19 @@
                                   "gnx": "User.20260225203941.1"
                                 }
                               ]
+                            },
+                            {
+                              "gnx": "zxc.20260427224318.1",
+                              "vh": "@clean help.vim.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260427224218.1",
+                                  "vh": "content"
+                                },
+                                {
+                                  "gnx": "User.20260225203941.1"
+                                }
+                              ]
                             }
                           ]
                         }
@@ -929,6 +954,18 @@
                               "children": [
                                 {
                                   "gnx": "zxc.20260427000057.1"
+                                },
+                                {
+                                  "gnx": "User.20260225204326.1"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260427224207.1",
+                              "vh": "@clean help.vim.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260427224218.1"
                                 },
                                 {
                                   "gnx": "User.20260225204326.1"
@@ -7986,17 +8023,18 @@
     "zxc.20260125163442.1": "import 'find.vim'\n",
     "User.20260218141820.1": "let g:mapleader = ' '\nnnoremap <leader>bo <cmd>%bd\\|e#\\|bd#<CR>\nnnoremap ZZ <cmd>xa<cr>\nnnoremap ZQ <cmd>qa!<cr>\nnoremap Q @@\n\nfunction OpenFileOrURL()\n  let cfile = expand('<cfile>')\n  if match(cfile, '^https\\?://') >= 0\n    call system('xdg-open ' . cfile)\n  else\n    normal! gF\n  endif\nendfunction\n\nnnoremap <silent> gf <cmd>call OpenFileOrURL()<CR>\n\nnnoremap g* :%s/<c-r><c-w>/\n\nnnoremap ^[. ;\n",
     "User.20260218141831.1": "set laststatus=2\n\ntry\nset switchbuf=uselast\nset showtabline=2\ncatch\nendtry\n\nset expandtab\nset smarttab\n\nset shiftwidth=4\nset tabstop=4\n\nset cindent\nset wrap\nset clipboard=unnamed\n\nset undodir={{ joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"undo\" }}\nset undofile\n\nset nobackup\nset nowritebackup\n\nset noswapfile\n\" set directory=$HOME/.local/share/vim/swap//\n\nif has('gui_running')\nset guioptions-=T\nset guioptions-=e\nset guioptions-=m\nset t_Co=256\nset guitablabel=%M\\ %t\nendif\n\nset encoding=utf8\nset fileformats=unix,dos,mac\nsyntax enable\n\nset regexpengine=0\n\nset backspace=eol,start,indent\nset whichwrap+=<,>,h,l\n\nset ignorecase\nset smartcase\nset hlsearch\nset incsearch\n\nset lazyredraw\nset magic\nset showmatch\n\nset matchtime=2\n\nset noerrorbells\nset novisualbell\nset t_vb=\nset timeoutlen=500\n\nset foldcolumn=0\n\nlet $LANG = 'en'\nset langmenu=en\n\nset wildmenu\n\nset wildignore=*.o,*~,*.pyc\nif has('win16') || has('win32')\nset wildignore+=.git\\*,.hg\\*,.svn\\*\nelse\nset wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store\nendif\n\nlet &t_SI = \"\\e[6 q\"\nlet &t_EI = \"\\e[2 q\"\n\nset ruler\nset cmdheight=1\nset hidden\nset history=500\nset number relativenumber\n\nfiletype plugin on\nfiletype indent on\n\nset autoread\n\nset updatetime=500\n\nset mouse=a\nset smoothscroll\n\nset showtabline=1\n\naugroup settings\n    autocmd!\n    autocmd FocusGained,BufEnter * checktime\n    autocmd FileType qf nnoremap <buffer><silent> q :cclose<bar>lclose<CR>\naugroup END\n\n{{ if lookPath \"rg\" -}}\nset grepprg=rg\\ --vimgrep\\ --smart-case\\ --hidden\nset grepformat=%f:%l:%c:%m\n{{ end -}}\n\nset signcolumn=auto\nset sessionoptions-=blank\nset foldmethod=marker\nset cursorline\nset scrolloff=5\n\nset shortmess-=S \" show she search count\n\nset gdefault\n\nset signcolumn=yes\n\nautocmd CmdlineChanged [:\\/\\?] call wildtrigger()\nset wildmode=noselect:lastused,full\nset wildoptions=pum\n\nautocmd CmdlineEnter [\\/\\?] set pumheight=8\nautocmd CmdlineLeave [\\/\\?] set pumheight&\n",
-    "User.20260218145141.1": "@\n\" Autosession\nau VimEnter * nested if (len(v:argv) == 1) | silent! source Session.vim | endif\nau VimLeave * if (len(v:argv) == 1) | mksession! | endif\n@c\n",
+    "zxc.20260427223226.1": "set noswapfile\nau BufLeave,CursorHold,FocusLost * if(getbufinfo('%')[0].changed) | sil do BufWritePre | sil! up | sil do BufWritePost | endif",
+    "User.20260218145141.1": "\" Autosession\n\" au VimEnter * nested if (len(v:argv) == 1) | silent! source Session.vim | endif\n\" au VimLeave * if (len(v:argv) == 1) | mksession! | endif",
     "zxc.20260320003625.1": "autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path \"%\"\n",
     "User.20260218141914.1": "import 'plugins.vim'\n\n<< plugin configs >>\n",
     "User.20260218141914.18": "@others\n",
-    "User.20260218141914.19": "let g:coc_node_path = {{ lookPath \"node\" | squote }}\n\n\" coc.nvim\n\" Use tab for trigger completion with characters ahead and navigate\n\" NOTE: There's always complete item selected by default, you may want to enable\n\" no select by `\"suggest.noselect\": true` in your configuration file\n\" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by\n\" other plugin before putting this into your config\ninoremap <silent><expr> <TAB>\n      \\ coc#pum#visible() ? coc#pum#next(1) :\n      \\ CheckBackspace() ? \"\\<Tab>\" :\n      \\ coc#refresh()\ninoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : \"\\<C-h>\"\n\n\" Make <CR> to accept selected completion item or notify coc.nvim to format\n\" <C-g>u breaks current undo, please make your own choice\ninoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : \"\\<C-g>u\\<CR>\\<c-r>=coc#on_enter()\\<CR>\"\n\nfunction! CheckBackspace() abort\n  let col = col('.') - 1\n  return !col || getline('.')[col - 1]  =~# '\\s'\nendfunction\n\n\" Use <c-space> to trigger completion\nif has('nvim')\n  inoremap <silent><expr> <c-space> coc#refresh()\nelse\n  inoremap <silent><expr> <c-@> coc#refresh()\nendif\n\n\" Use `[g` and `]g` to navigate diagnostics\n\" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list\nnmap <silent> [d <Plug>(coc-diagnostic-prev)\nnmap <silent> ]d <Plug>(coc-diagnostic-next)\n\n\" GoTo code navigation\nnmap <silent> gd <Plug>(coc-definition)\nnmap <silent> gy <Plug>(coc-type-definition)\nnmap <silent> gi <Plug>(coc-implementation)\nnmap <silent> gr <Plug>(coc-references)\n\nfunction! ShowDocumentation()\n  if CocAction('hasProvider', 'hover')\n    call CocActionAsync('doHover')\n  else\n    call feedkeys('K', 'in')\n  endif\nendfunction\n\n\" Use K to show documentation in preview window\nnnoremap <silent> K :call ShowDocumentation()<CR>\n\n\" Highlight the symbol and its references when holding the cursor\nautocmd CursorHold * silent call CocActionAsync('highlight')\n\n\" Symbol renaming\nnnoremap <leader>R <plug>(coc-rename)\n\n\" Formatting selected code\n\" xmap <leader>f  <Plug>(coc-format-selected)\n\" nmap <leader>f  <Plug>(coc-format-selected)\n\naugroup mygroup\n  autocmd!\n  \" Setup formatexpr specified filetype(s)\n  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')\n  \" Update signature help on jump placeholder\n  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')\naugroup end\n\n\" Applying code actions to the selected code block\n\" Example: `<leader>aap` for current paragraph\n\" xmap <leader>a  <Plug>(coc-codeaction-selected)\n\" nmap <leader>a  <Plug>(coc-codeaction-selected)\n\n\" Remap keys for applying code actions at the cursor position\n\" nmap <leader>ac  <Plug>(coc-codeaction-cursor)\n\" Remap keys for apply code actions affect whole buffer\n\" nmap <leader>as  <Plug>(coc-codeaction-source)\n\" Apply the most preferred quickfix action to fix diagnostic on the current line\n\" nmap <leader>qf  <Plug>(coc-fix-current)\n\n\" Remap keys for applying refactor code actions\n\" nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)\n\" xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)\n\" nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)\n\n\" Run the Code Lens action on the current line\n\" nmap <leader>cl  <Plug>(coc-codelens-action)\n\n\" Map function and class text objects\n\" NOTE: Requires 'textDocument.documentSymbol' support from the language server\nxmap if <Plug>(coc-funcobj-i)\nomap if <Plug>(coc-funcobj-i)\nxmap af <Plug>(coc-funcobj-a)\nomap af <Plug>(coc-funcobj-a)\nxmap ic <Plug>(coc-classobj-i)\nomap ic <Plug>(coc-classobj-i)\nxmap ac <Plug>(coc-classobj-a)\nomap ac <Plug>(coc-classobj-a)\n\n\" Remap <C-f> and <C-b> to scroll float windows/popups\nif has('nvim-0.4.0') || has('patch-8.2.0750')\n  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : \"\\<C-f>\"\n  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : \"\\<C-b>\"\n  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? \"\\<c-r>=coc#float#scroll(1)\\<cr>\" : \"\\<Right>\"\n  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? \"\\<c-r>=coc#float#scroll(0)\\<cr>\" : \"\\<Left>\"\n  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : \"\\<C-f>\"\n  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : \"\\<C-b>\"\nendif\n\n\" Use CTRL-S for selections ranges\n\" Requires 'textDocument/selectionRange' support of language server\nnmap <silent> <C-s> <Plug>(coc-range-select)\nxmap <silent> <C-s> <Plug>(coc-range-select)\n\n\" Add `:Format` command to format current buffer\ncommand! -nargs=0 Format :call CocActionAsync('format')\n\n\" Add `:Fold` command to fold current buffer\ncommand! -nargs=? Fold :call     CocAction('fold', <f-args>)\n\n\" Add `:OR` command for organize imports of the current buffer\ncommand! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')\n\n\" Add (Neo)Vim's native statusline support\n\" NOTE: Please see `:h coc-status` for integrations with external plugins that\n\" provide custom statusline: lightline.vim, vim-airline\nset statusline^=%{coc#status()}%{get(b:,'coc_current_function',''\\'''\\')}\n\nlet g:coc_global_extensions = ['coc-fish', '@yaegassy/coc-marksman', 'coc-emoji', 'coc-dash-complete', 'coc-just-complete', 'coc-translator', 'coc-perl', 'coc-go', 'coc-json', 'coc-prettier', 'coc-basedpyright', 'coc-r-lsp', 'coc-sh', 'coc-snippets', 'coc-sumneko-lua', 'coc-texlab', 'coc-toml', 'coc-vimlsp', 'coc-yaml' ]\n\" nnoremap <leader>e <Cmd>CocCommand explorer --quit-on-open<CR>\n\n\" limit completion item\nlet g:coc_filetype_map = { 'yaml.ansible': 'ansible', }\nset pumheight=10\n\nnmap <Leader>,t <Plug>(coc-translator-p)\nvmap <Leader>,t <Plug>(coc-translator-pv)\n",
+    "User.20260218141914.19": "\" let g:coc_node_path = {{ lookPath \"node\" | squote }}\n\" \n\" \" coc.nvim\n\" \" Use tab for trigger completion with characters ahead and navigate\n\" \" NOTE: There's always complete item selected by default, you may want to enable\n\" \" no select by `\"suggest.noselect\": true` in your configuration file\n\" \" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by\n\" \" other plugin before putting this into your config\n\" inoremap <silent><expr> <TAB>\n\"       \\ coc#pum#visible() ? coc#pum#next(1) :\n\"       \\ CheckBackspace() ? \"\\<Tab>\" :\n\"       \\ coc#refresh()\n\" inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : \"\\<C-h>\"\n\" \n\" \" Make <CR> to accept selected completion item or notify coc.nvim to format\n\" \" <C-g>u breaks current undo, please make your own choice\n\" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : \"\\<C-g>u\\<CR>\\<c-r>=coc#on_enter()\\<CR>\"\n\" \n\" function! CheckBackspace() abort\n\"   let col = col('.') - 1\n\"   return !col || getline('.')[col - 1]  =~# '\\s'\n\" endfunction\n\" \n\" \" Use <c-space> to trigger completion\n\" if has('nvim')\n\"   inoremap <silent><expr> <c-space> coc#refresh()\n\" else\n\"   inoremap <silent><expr> <c-@> coc#refresh()\n\" endif\n\" \n\" \" Use `[g` and `]g` to navigate diagnostics\n\" \" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list\n\" nmap <silent> [d <Plug>(coc-diagnostic-prev)\n\" nmap <silent> ]d <Plug>(coc-diagnostic-next)\n\" \n\" \" GoTo code navigation\n\" nmap <silent> gd <Plug>(coc-definition)\n\" nmap <silent> gy <Plug>(coc-type-definition)\n\" nmap <silent> gi <Plug>(coc-implementation)\n\" nmap <silent> gr <Plug>(coc-references)\n\" \n\" function! ShowDocumentation()\n\"   if CocAction('hasProvider', 'hover')\n\"     call CocActionAsync('doHover')\n\"   else\n\"     call feedkeys('K', 'in')\n\"   endif\n\" endfunction\n\" \n\" \" Use K to show documentation in preview window\n\" nnoremap <silent> K :call ShowDocumentation()<CR>\n\" \n\" \" Highlight the symbol and its references when holding the cursor\n\" autocmd CursorHold * silent call CocActionAsync('highlight')\n\" \n\" \" Symbol renaming\n\" nnoremap <leader>R <plug>(coc-rename)\n\" \n\" \" Formatting selected code\n\" \" xmap <leader>f  <Plug>(coc-format-selected)\n\" \" nmap <leader>f  <Plug>(coc-format-selected)\n\" \n\" augroup mygroup\n\"   autocmd!\n\"   \" Setup formatexpr specified filetype(s)\n\"   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')\n\"   \" Update signature help on jump placeholder\n\"   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')\n\" augroup end\n\" \n\" \" Applying code actions to the selected code block\n\" \" Example: `<leader>aap` for current paragraph\n\" \" xmap <leader>a  <Plug>(coc-codeaction-selected)\n\" \" nmap <leader>a  <Plug>(coc-codeaction-selected)\n\" \n\" \" Remap keys for applying code actions at the cursor position\n\" \" nmap <leader>ac  <Plug>(coc-codeaction-cursor)\n\" \" Remap keys for apply code actions affect whole buffer\n\" \" nmap <leader>as  <Plug>(coc-codeaction-source)\n\" \" Apply the most preferred quickfix action to fix diagnostic on the current line\n\" \" nmap <leader>qf  <Plug>(coc-fix-current)\n\" \n\" \" Remap keys for applying refactor code actions\n\" \" nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)\n\" \" xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)\n\" \" nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)\n\" \n\" \" Run the Code Lens action on the current line\n\" \" nmap <leader>cl  <Plug>(coc-codelens-action)\n\" \n\" \" Map function and class text objects\n\" \" NOTE: Requires 'textDocument.documentSymbol' support from the language server\n\" xmap if <Plug>(coc-funcobj-i)\n\" omap if <Plug>(coc-funcobj-i)\n\" xmap af <Plug>(coc-funcobj-a)\n\" omap af <Plug>(coc-funcobj-a)\n\" xmap ic <Plug>(coc-classobj-i)\n\" omap ic <Plug>(coc-classobj-i)\n\" xmap ac <Plug>(coc-classobj-a)\n\" omap ac <Plug>(coc-classobj-a)\n\" \n\" \" Remap <C-f> and <C-b> to scroll float windows/popups\n\" if has('nvim-0.4.0') || has('patch-8.2.0750')\n\"   nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : \"\\<C-f>\"\n\"   nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : \"\\<C-b>\"\n\"   inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? \"\\<c-r>=coc#float#scroll(1)\\<cr>\" : \"\\<Right>\"\n\"   inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? \"\\<c-r>=coc#float#scroll(0)\\<cr>\" : \"\\<Left>\"\n\"   vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : \"\\<C-f>\"\n\"   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : \"\\<C-b>\"\n\" endif\n\" \n\" \" Use CTRL-S for selections ranges\n\" \" Requires 'textDocument/selectionRange' support of language server\n\" nmap <silent> <C-s> <Plug>(coc-range-select)\n\" xmap <silent> <C-s> <Plug>(coc-range-select)\n\" \n\" \" Add `:Format` command to format current buffer\n\" command! -nargs=0 Format :call CocActionAsync('format')\n\" \n\" \" Add `:Fold` command to fold current buffer\n\" command! -nargs=? Fold :call     CocAction('fold', <f-args>)\n\" \n\" \" Add `:OR` command for organize imports of the current buffer\n\" command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')\n\" \n\" \" Add (Neo)Vim's native statusline support\n\" \" NOTE: Please see `:h coc-status` for integrations with external plugins that\n\" \" provide custom statusline: lightline.vim, vim-airline\n\" set statusline^=%{coc#status()}%{get(b:,'coc_current_function',''\\'''\\')}\n\" \n\" let g:coc_global_extensions = ['coc-fish', '@yaegassy/coc-marksman', 'coc-emoji', 'coc-dash-complete', 'coc-just-complete', 'coc-translator', 'coc-perl', 'coc-go', 'coc-json', 'coc-prettier', 'coc-basedpyright', 'coc-r-lsp', 'coc-sh', 'coc-snippets', 'coc-sumneko-lua', 'coc-texlab', 'coc-toml', 'coc-vimlsp', 'coc-yaml' ]\n\" \" nnoremap <leader>e <Cmd>CocCommand explorer --quit-on-open<CR>\n\" \n\" \" limit completion item\n\" let g:coc_filetype_map = { 'yaml.ansible': 'ansible', }\n\" set pumheight=10\n\" \n\" nmap <Leader>,t <Plug>(coc-translator-p)\n\" vmap <Leader>,t <Plug>(coc-translator-pv)",
     "User.20260218141914.20": "\" set termguicolors\n\" let g:tokyonight_style = 'night' \" available: night, storm\n\" let g:tokyonight_enable_italic = 1\n\" colorscheme tokyonight\n",
     "User.20260218141914.22": "\" vim-easy-align\n\" xmap ga <Plug>(EasyAlign)\n\" nmap ga <Plug>(EasyAlign)\n",
     "User.20260218141914.23": "\" vim-suda\n\" let g:suda_smart_edit = 1\n",
     "User.20260218143021.1": "let g:lightline = {\n      \\ 'colorscheme': 'catppuccin_mocha',\n      \\ 'active': {\n      \\   'left': [ [ 'mode', 'paste' ],\n      \\             [ 'readonly', 'filename', 'modified' ] ],\n      \\   'right': [ [ 'lineinfo' ],\n      \\              [ 'percent' ],\n      \\              [ 'zoomed', 'fileformat', 'fileencoding', 'filetype' ] ]\n      \\ },\n      \\ 'inactive': {\n      \\   'left': [ [ 'mode', 'paste' ],\n      \\             [ 'readonly', 'filename', 'modified' ] ],\n      \\   'right': [ [ 'lineinfo' ],\n      \\              [ 'percent' ],\n      \\              [ 'fileformat', 'fileencoding', 'filetype' ] ]\n      \\ },\n      \\ 'component_function': {\n      \\   'filename': 'LightlineTruncatedFileName',\n      \\   'zoomed': 'zoom#statusline'\n      \\ }\n      \\ }\n\nfunction! LightlineTruncatedFileName()\nlet l:filePath = expand('%')\n    if winwidth(0) > 100\n        return l:filePath\n    else\n        return pathshorten(l:filePath)\n    endif\nendfunction\n",
     "User.20260227211108.1": "\" let g:python3_host_prog = {{ lookPath \"python\" | squote }}\n",
-    "zxc.20260319224134.1": "let g:workspace_autocreate = 1\nlet g:workspace_session_disable_on_args = 1\nlet g:workspace_session_directory = {{ print (joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"sessions\" ) \"\\\\\" | squote }}\nlet g:workspace_autosave = 1\nlet g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"undo\" ) \"\\\\\" | squote }}\n",
+    "zxc.20260319224134.1": "let g:workspace_autocreate = 1\nlet g:workspace_session_disable_on_args = 1\nlet g:workspace_session_directory = {{ print (joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"sessions\" ) \"\\\\\" | squote }}\nlet g:workspace_autosave = 0\nlet g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"undo\" ) \"\\\\\" | squote }}\n",
     "zxc.20260426141132.1": "nnoremap <silent> <leader> <cmd>WhichKey '<Space>'<CR>",
     "zxc.20260426141355.1": "let g:which_key_map = {}\n\n@others\n\ncall which_key#register('<Space>', \"g:which_key_map\")",
     "zxc.20260426142134.1": "let g:which_key_map['f'] = {\n      \\ 'name': 'files',\n      \\ 'f'   : [':Files', 'Files'],\n      \\ ' '   : [':GFiles', 'Git Files'],\n      \\ }",
@@ -8005,6 +8043,7 @@
     "zxc.20260427003349.1": "\" nnoremap <bs> <cmd>Dir<cr>",
     "zxc.20260427005833.1": "set termguicolors\ncolorscheme catppuccin_mocha\n",
     "zxc.20260427161453.1": "nnoremap <bs> <cmd>Explore<cr>",
+    "zxc.20260427221817.1": "let lspOpts = #{autoHighlightDiags: v:true}\nautocmd User LspSetup call LspOptionsSet(lspOpts)\n\nlet lspServers = [#{\n\t\\\t  name: 'yaml-language-server',\n\t\\\t  filetype: ['yaml'],\n\t\\\t  path: '{{ lookPath \"yaml-language-server\" }}',\n\t\\\t  args: ['--stdio'],\n\t\\ }]\nautocmd User LspSetup call LspAddServer(lspServers)",
     "zxc.20260125164142.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125164204.1": "vim9script\n\n# simple fuzzy find finder\n# place into ~/.vim/plugin/fuzzyfind.vim\n\nset wildmode=noselect:lastused,full\nset wildmenu wildoptions=pum,fuzzy pumheight=12\n\n\nvar files_cache: list<string> = []\naugroup CmdComplete\n    au!\n    au CmdlineChanged : wildtrigger()\n    au CmdlineEnter : files_cache = []\naugroup END\n\ndef FindCmd(): string\n    var cmd = ''\n    if executable('fd')\n        cmd = 'fd . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('fdfind')\n        cmd = 'fdfind . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('ugrep')\n        cmd = 'ugrep \"\" -Rl -I --ignore-files'\n    elseif executable('rg')\n        cmd = 'rg --path-separator / --files --hidden --glob !.git'\n    elseif executable('find')\n        cmd = 'find \\! \\( -path \"*/.git\" -prune -o -name \"*.swp\" \\) -type f -follow'\n    endif\n    return cmd\nenddef\n\ndef Find(cmd_arg: string, cmd_complete: bool): list<string>\n    if empty(files_cache)\n        var cmd = FindCmd()\n        # fallback to built-in glob if no fd/rg/ug/find is available\n        # e.g. we are on Windows\n        if empty(cmd)\n            files_cache = globpath('.', '**', 1, 1)\n                ->filter((_, v) => !isdirectory(v))\n                ->mapnew((_, v) => v->substitute('^\\.[\\/]', \"\", \"\"))\n        else\n            files_cache = systemlist(cmd)\n        endif\n    endif\n    if empty(cmd_arg)\n        return files_cache\n    else\n        return files_cache->matchfuzzy(cmd_arg)\n    endif\nenddef\n\nset findfunc=Find",
     "zxc.20260318214950.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -8014,8 +8053,9 @@
     "zxc.20260318212806.4": "\" Plug 'tyru/caw.vim'\n",
     "zxc.20260318212806.5": "Plug 'alker0/chezmoi.vim'\n",
     "zxc.20260318212806.18": "\" Plug 'raghur/vim-ghost'\n\" Plug 'roxma/nvim-yarp', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }\n\" Plug 'roxma/vim-hug-neovim-rpc', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }\n",
-    "zxc.20260318212806.6": "{{ if lookPath \"node\" -}}\nPlug 'neoclide/coc.nvim', {'branch': 'release'}\n{{ end -}}\n",
-    "zxc.20260318212806.2": "Plug 'dense-analysis/ale'\n",
+    "zxc.20260318212806.6": "{{ if lookPath \"node\" -}}\n\" Plug 'neoclide/coc.nvim', {'branch': 'release'}\n{{ end -}}\n",
+    "zxc.20260427221704.1": "Plug 'yegappan/lsp'",
+    "zxc.20260318212806.2": "\" Plug 'dense-analysis/ale'\n",
     "zxc.20260318212806.7": "\" Plug 'godlygeek/tabular', { 'on': 'Tabularize' }\n",
     "zxc.20260318212806.11": "\" Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }\n",
     "zxc.20260318212806.3": "\" Plug 'vim-scripts/align', { 'on': 'Align' }\n",
@@ -8034,11 +8074,14 @@
     "zxc.20260426235048.1": "Plug 'jceb/vim-orgmode'\nPlug 'tpope/vim-speeddating'\n",
     "zxc.20260427000037.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260427000057.1": "let maplocalleader = \"\\\\\"",
+    "zxc.20260427224318.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260427224218.1": "map q <cmd>quit<cr>",
     "User.20260218142211.1": "@language vim\n<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260225204326.1": "{{ if eq .chezmoi.os \"windows\" -}}",
     "User.20260218142322.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260318212653.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260426235942.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260427224207.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260216220339.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"ansible-language-server\" -}}\n{{ $lsp = append $lsp \"ansible-language-server\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\ncomment-token = \"#\"\ngrammar = \"yaml\"\ninjection-regex = \"ansible\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]\nname = \"ansible\"\nscope = \"source.yaml\"\nshebangs = [\"ansible-playbook\"]\n\n[[language.file-types]]\nglob = \"playbooks/*.yaml\"\n\n[[language.file-types]]\nglob = \"playbooks/*.yml\"\n\n[[language.file-types]]\nglob = \"group_vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"group_vars/*.yml\"\n\n[[language.file-types]]\nglob = \"host_vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"host_vars/*.yml\"\n\n[[language.file-types]]\nglob = \"vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"vars/*.yml\"\n\n[[language.file-types]]\nglob = \"defaults/*.yaml\"\n\n[[language.file-types]]\nglob = \"defaults/*.yml\"\n\n[[language.file-types]]\nglob = \"tasks/*.yaml\"\n\n[[language.file-types]]\nglob = \"tasks/*.yml\"\n\n[[language.file-types]]\nglob = \"handlers/*.yaml\"\n\n[[language.file-types]]\nglob = \"handlers/*.yml\"\n\n[[language.file-types]]\nglob = \"meta/*.yaml\"\n\n[[language.file-types]]\nglob = \"meta/*.yml\"",
     "User.20260216222130.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"marksman\" -}}\n{{ $lsp = append $lsp \"marksman\" -}}\n{{ end -}}\n{{ if lookPath \"markdown-oxide\" -}}\n{{ $lsp = append $lsp \"markdown-oxide\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"markdown\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]\n",
     "User.20260216214259.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"ty\" -}}\n{{ $lsp = append $lsp \"ty\" -}}\n{{ end -}}\n{{ if lookPath \"jedi-language-server\" -}}\n{{ $lsp = append $lsp \"jedi\" -}}\n{{ end -}}\n{{ if lookPath \"pylsp\" -}}\n{{ $lsp = append $lsp \"pylsp\" -}}\n{{ end -}}\n{{ if lookPath \"ruff\" -}}\n{{ $lsp = append $lsp \"ruff\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"python\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]\n\n{{ if lookPath \"ruff\" -}}\nformatter = { command = \"sh\", args = [\"-c\", \"ruff check --fix --select I - | ruff format -\"] }\n{{ end -}}",
@@ -9073,37 +9116,43 @@
       "_mod_time": 1773571522.655
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1777179946.857
+      "_mod_time": 1777298774.844
     },
     "zxc.20260125143959.1": {
-      "_mod_time": 1777179946.854
+      "_mod_time": 1776085878.419
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1777277707.06
+      "_mod_time": 1777301071.831
     },
     "zxc.20260125164142.1": {
-      "_mod_time": 1777179946.869
+      "_mod_time": 1776085878.429
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1777254916.869
+      "_mod_time": 1777300659.171
     },
     "zxc.20260427000037.1": {
-      "_mod_time": 1777219283.718
+      "_mod_time": 1777298774.849
+    },
+    "zxc.20260427224318.1": {
+      "_mod_time": 1777301022.72
     },
     "User.20260218142211.1": {
-      "_mod_time": 1777277707.109
+      "_mod_time": 1777301071.853
     },
     "User.20260218142322.1": {
-      "_mod_time": 1777179946.906
+      "_mod_time": 1776085878.463
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1777254916.912
+      "_mod_time": 1777300659.18
     },
     "zxc.20260426235942.1": {
-      "_mod_time": 1777219283.757
+      "_mod_time": 1777298774.859
+    },
+    "zxc.20260427224207.1": {
+      "_mod_time": 1777300984.749
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1777181851.656
+      "_mod_time": 1777298774.829
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1773571522.6390562
@@ -9121,97 +9170,97 @@
       "_mod_time": 1775182193.7532992
     },
     "User.20260226000855.1": {
-      "_mod_time": 1777179946.832
+      "_mod_time": 1776691470.915
     },
     "zxc.20260202203521.17": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776085878.39
     },
     "User.20260220233639.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776085878.391
     },
     "zxc.20260202203521.20": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776085878.392
     },
     "User.20260216114746.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776085878.388
     },
     "zxc.20260202203521.14": {
-      "_mod_time": 1776614192.458
+      "_mod_time": 1776691470.917
     },
     "zxc.20260202203521.3": {
-      "_mod_time": 1777189908.131
+      "_mod_time": 1777298774.833
     },
     "zxc.20260202213444.1": {
-      "_mod_time": 1776434513.084
+      "_mod_time": 1776085878.394
     },
     "User.20260220142155.2": {
-      "_mod_time": 1776434513.084
+      "_mod_time": 1776085878.393
     },
     "User.20260220151435.2": {
-      "_mod_time": 1777189908.148
+      "_mod_time": 1777298774.833
     },
     "zxc.20260202215023.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776085878.384
     },
     "zxc.20260202215408.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776085878.39
     },
     "zxc.20260202220030.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776085878.391
     },
     "zxc.20260202220553.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776085878.392
     },
     "User.20260217202401.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776085878.388
     },
     "User.20260220214558.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776085878.388
     },
     "User.20260217214851.1": {
-      "_mod_time": 1776851988.666
+      "_mod_time": 1776780168.388
     },
     "zxc.20260422085228.1": {
-      "_mod_time": 1776851988.666
+      "_mod_time": 1776780168.387
     },
     "User.20260220000301.2": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776085878.387
     },
     "User.20260220012738.1": {
       "_mod_time": 1774833042.645
     },
     "User.20260308173318.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776085878.386
     },
     "User.20260308184128.2": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776085878.385
     },
     "User.20260308184713.2": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776085878.387
     },
     "User.20260308214701.2": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776085878.385
     },
     "zxc.20260328213746.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776085878.387
     },
     "User.20260308215626.2": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776085878.386
     },
     "zxc.20260317085009.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776085878.385
     },
     "zxc.20260318203351.1": {
-      "_mod_time": 1777179941.91
+      "_mod_time": 1776085878.386
     },
     "zxc.20260323195318.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776085878.389
     },
     "zxc.20260329102210.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776085878.392
     },
     "zxc.20260404153353.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776085878.392
     },
     "User.20260226001402.1": {
       "_mod_time": 1777180136.352
@@ -9223,37 +9272,37 @@
       "_mod_time": 1777179946.865
     },
     "User.20260220010313.1": {
-      "_mod_time": 1777179946.863
+      "_mod_time": 1776085878.426
     },
     "User.20260220010448.1": {
       "_mod_time": 1773571522.654681
     },
     "User.20260216232855.1": {
-      "_mod_time": 1777179946.854
+      "_mod_time": 1776085878.419
     },
     "User.20260217182613.1": {
-      "_mod_time": 1777179946.857
+      "_mod_time": 1776085878.421
     },
     "zxc.20260317002829.1": {
-      "_mod_time": 1777179946.863
+      "_mod_time": 1776780168.391
     },
     "zxc.20260315140713.1": {
       "_mod_time": 1777179946.861
     },
     "zxc.20260408012432.1": {
-      "_mod_time": 1777179946.871
+      "_mod_time": 1776691470.924
     },
     "User.20260301202336.1": {
-      "_mod_time": 1777179946.857
+      "_mod_time": 1776691470.923
     },
     "zxc.20260327184129.1": {
-      "_mod_time": 1777179946.876
+      "_mod_time": 1776085878.434
     },
     "zxc.20260125162740.1": {
-      "_mod_time": 1777179946.862
+      "_mod_time": 1776085878.424
     },
     "zxc.20260126185048.1": {
-      "_mod_time": 1777179946.853
+      "_mod_time": 1776085878.417
     },
     "zxc.20260130225718.1": {
       "_mod_time": 1777179946.861
@@ -9274,7 +9323,7 @@
       "_mod_time": 1773571522.654681
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1777179946.877
+      "_mod_time": 1776085878.436
     },
     "zxc.20260125145051.1": {
       "_mod_time": 1777179946.885
@@ -9283,7 +9332,7 @@
       "_mod_time": 1777179946.876
     },
     "zxc.20260125152851.2": {
-      "_mod_time": 1777179946.886
+      "_mod_time": 1776085878.441
     },
     "zxc.20260125153131.1": {
       "_mod_time": 1777179946.883
@@ -9292,10 +9341,10 @@
       "_mod_time": 1777179946.882
     },
     "zxc.20260125161631.1": {
-      "_mod_time": 1777179946.883
+      "_mod_time": 1776085878.439
     },
     "User.20260216185314.1": {
-      "_mod_time": 1777179946.883
+      "_mod_time": 1776085878.439
     },
     "User.20260217223023.1": {
       "_mod_time": 1777179946.88
@@ -9310,7 +9359,7 @@
       "_mod_time": 1777179946.879
     },
     "User.20260220233323.1": {
-      "_mod_time": 1777179946.885
+      "_mod_time": 1776085878.44
     },
     "zxc.20260421145655.1": {
       "_mod_time": 1777179946.881
@@ -9319,85 +9368,85 @@
       "_mod_time": 1777179946.881
     },
     "User.20260215182442.1": {
-      "_mod_time": 1777179946.888
+      "_mod_time": 1776085878.449
     },
     "User.20260217022114.1": {
-      "_mod_time": 1777179946.888
+      "_mod_time": 1776085878.449
     },
     "User.20260215182818.1": {
-      "_mod_time": 1777179946.89
+      "_mod_time": 1776085878.45
     },
     "zxc.20260317084145.1": {
-      "_mod_time": 1777179946.889
+      "_mod_time": 1776085878.45
     },
     "zxc.20260201225344.1": {
-      "_mod_time": 1777179946.887
+      "_mod_time": 1776085878.448
     },
     "zxc.20260317082914.1": {
-      "_mod_time": 1777179946.887
+      "_mod_time": 1776085878.448
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1777183731.146
+      "_mod_time": 1777298774.859
     },
     "User.20260215205925.1": {
-      "_mod_time": 1777179946.905
+      "_mod_time": 1776085878.461
     },
     "User.20260215210400.1": {
-      "_mod_time": 1777179946.904
+      "_mod_time": 1776085878.46
     },
     "User.20260220151031.5": {
-      "_mod_time": 1777179946.903
+      "_mod_time": 1776085878.459
     },
     "User.20260220151031.28": {
-      "_mod_time": 1777179946.902
+      "_mod_time": 1776085878.459
     },
     "User.20260221175549.1": {
-      "_mod_time": 1777179946.892
+      "_mod_time": 1776085878.451
     },
     "User.20260221194603.1": {
-      "_mod_time": 1777179946.906
+      "_mod_time": 1776085878.461
     },
     "User.20260222211658.1": {
-      "_mod_time": 1777179946.899
+      "_mod_time": 1776085878.456
     },
     "zxc.20260201203241.1": {
-      "_mod_time": 1777179946.893
+      "_mod_time": 1776085878.452
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1777179946.892
+      "_mod_time": 1776085878.452
     },
     "zxc.20260201214114.1": {
-      "_mod_time": 1777179946.894
+      "_mod_time": 1776085878.452
     },
     "zxc.20260202195207.1": {
-      "_mod_time": 1777179946.896
+      "_mod_time": 1776085878.454
     },
     "zxc.20260322192157.1": {
-      "_mod_time": 1777179946.897
+      "_mod_time": 1776085878.455
     },
     "zxc.20260322192357.1": {
-      "_mod_time": 1777179946.898
+      "_mod_time": 1776085878.455
     },
     "zxc.20260325223009.1": {
-      "_mod_time": 1777179946.899
+      "_mod_time": 1776085878.456
     },
     "zxc.20260325223610.1": {
-      "_mod_time": 1777179946.901
+      "_mod_time": 1776085878.457
     },
     "zxc.20260325223805.1": {
-      "_mod_time": 1777179946.9
+      "_mod_time": 1776085878.457
     },
     "zxc.20260329012003.1": {
-      "_mod_time": 1777179946.894
+      "_mod_time": 1776085878.453
     },
     "zxc.20260411192514.1": {
-      "_mod_time": 1777179946.895
+      "_mod_time": 1777298774.854
     },
     "zxc.20260330235722.1": {
-      "_mod_time": 1777179946.891
+      "_mod_time": 1776085878.451
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1777179946.854
+      "_mod_time": 1777298774.834
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1776085717.92
@@ -9442,76 +9491,76 @@
       "_mod_time": 1775742456.705
     },
     "zxc.20260202205715.1": {
-      "_mod_time": 1777106655.378
+      "_mod_time": 1777298774.844
     },
     "zxc.20260426163956.1": {
       "_mod_time": 1777206464.96
     },
     "User.20260302151947.1": {
-      "_mod_time": 1777179946.836
+      "_mod_time": 1776691470.919
     },
     "zxc.20260407232538.1": {
-      "_mod_time": 1777179946.836
+      "_mod_time": 1776085878.399
     },
     "zxc.20260408005117.1": {
-      "_mod_time": 1777179946.836
+      "_mod_time": 1776691470.919
     },
     "zxc.20260201140523.1": {
-      "_mod_time": 1777179946.85
+      "_mod_time": 1776085878.414
     },
     "zxc.20260130233132.1": {
-      "_mod_time": 1777179946.848
+      "_mod_time": 1776085878.413
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1777179946.836
+      "_mod_time": 1776780168.39
     },
     "zxc.20260214105528.1": {
-      "_mod_time": 1777179946.851
+      "_mod_time": 1776085878.415
     },
     "zxc.20260214142543.1": {
-      "_mod_time": 1777179946.851
+      "_mod_time": 1776085878.415
     },
     "User.20260215234634.1": {
-      "_mod_time": 1777179946.854
+      "_mod_time": 1776085878.418
     },
     "User.20260216124226.1": {
-      "_mod_time": 1777179946.845
+      "_mod_time": 1776085878.412
     },
     "User.20260216125422.1": {
-      "_mod_time": 1777179946.847
+      "_mod_time": 1776085878.412
     },
     "User.20260219235648.1": {
-      "_mod_time": 1777179946.847
+      "_mod_time": 1776085878.412
     },
     "User.20260228231944.1": {
-      "_mod_time": 1777179946.852
+      "_mod_time": 1776085878.416
     },
     "User.20260302211536.1": {
-      "_mod_time": 1777179946.836
+      "_mod_time": 1776085878.404
     },
     "User.20260302211740.1": {
-      "_mod_time": 1777179946.836
+      "_mod_time": 1776085878.404
     },
     "User.20260302211946.1": {
-      "_mod_time": 1777179946.845
+      "_mod_time": 1776085878.411
     },
     "User.20260302212424.1": {
-      "_mod_time": 1777179946.845
+      "_mod_time": 1776085878.411
     },
     "User.20260302212645.1": {
-      "_mod_time": 1777179946.84
+      "_mod_time": 1776085878.41
     },
     "User.20260303213330.1": {
-      "_mod_time": 1777179946.854
+      "_mod_time": 1776085878.418
     },
     "zxc.20260401221312.1": {
-      "_mod_time": 1777179946.849
+      "_mod_time": 1776085878.414
     },
     "zxc.20260402230727.1": {
-      "_mod_time": 1777179946.85
+      "_mod_time": 1776085878.415
     },
     "zxc.20260417220340.1": {
-      "_mod_time": 1777179941.91
+      "_mod_time": 1776691470.922
     }
   }
 }
