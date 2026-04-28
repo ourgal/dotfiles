@@ -3,6 +3,7 @@
 packadd! comment
 packadd! hlyank
 import 'find.vim'
+import 'session.vim'
 let g:mapleader = ' '
 nnoremap <leader>bo <cmd>%bd\|e#\|bd#<CR>
 nnoremap ZZ <cmd>xa<cr>
@@ -341,11 +342,11 @@ let l:filePath = expand('%')
     endif
 endfunction
 " let g:python3_host_prog = {{ lookPath "python" | squote }}
-let g:workspace_autocreate = 1
-let g:workspace_session_disable_on_args = 1
-let g:workspace_session_directory = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "sessions" ) "\\" | squote }}
-let g:workspace_autosave = 0
-let g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "undo" ) "\\" | squote }}
+" let g:workspace_autocreate = 1
+" let g:workspace_session_disable_on_args = 1
+" let g:workspace_session_directory = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "sessions" ) "\\" | squote }}
+" let g:workspace_autosave = 0
+" let g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "undo" ) "\\" | squote }}
 nnoremap <silent> <leader> <cmd>WhichKey '<Space>'<CR>
 let g:which_key_map = {}
 

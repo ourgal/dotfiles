@@ -1,0 +1,55 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "vim" -}}
+if !has('vim9script')
+    finish
+endif
+vim9script
+
+class Session
+    const sep: string = has("win32") ? "\\" : "/"
+    const fileName: string = getcwd()->substitute(this.sep, "%", "g")->substitute(":", "%", "g")
+    const folder: string = get(g:, "my_session_folder", ($MYVIMRC->fnamemodify(":p:h") .. this.sep .. "sessions")->simplify())
+    const fullPath: string = this.folder .. this.sep .. this.fileName
+    const enable: bool = len(v:argv) == 1
+
+    def new()
+        if !isdirectory(this.folder)
+            mkdir(this.folder, "p")
+        endif
+    enddef
+
+    def Save(): void
+        if !this.enable
+            return
+        endif
+        
+        :echom this.fileName
+        :echom this.folder
+        this.fullPath->escape("%")->printf("mksession! %s")->execute()
+        :echom "Save session"
+    enddef
+
+    def Load(): void
+        if !this.enable
+            :echom "Load disable"
+            return
+        endif
+
+        if !filereadable(this.fullPath)
+            :echom this.fullPath
+            return
+        endif
+
+        this.fullPath->escape("%")->printf("source %s")->execute()
+    enddef
+
+endclass
+
+g:my_session = Session.new()
+
+augroup MySession
+    au! VimEnter * ++nested g:my_session.Load()
+    au! VimLeave * g:my_session.Save()
+augroup END
+{{ end -}}
+{{ end -}}

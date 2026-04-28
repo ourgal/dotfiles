@@ -985,6 +985,19 @@
                                   "gnx": "zxc.20260318212719.1"
                                 }
                               ]
+                            },
+                            {
+                              "gnx": "zxc.20260428221625.1",
+                              "vh": "@clean session.vim.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260428221638.1",
+                                  "vh": "content"
+                                },
+                                {
+                                  "gnx": "User.20260225204326.1"
+                                }
+                              ]
                             }
                           ]
                         },
@@ -8072,7 +8085,7 @@
     "zxc.20260125152851.3": "[display]\ncompact = true\nuse_paper = true\n\n[updates]\nauto_update = true\nauto_update_interval_hours = 720",
     "zxc.20260125163416.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260426131724.1": "packadd! comment\npackadd! hlyank",
-    "zxc.20260125163442.1": "import 'find.vim'\n",
+    "zxc.20260125163442.1": "import 'find.vim'\nimport 'session.vim'",
     "zxc.20260428104430.1": "let g:mapleader = ' '",
     "zxc.20260428151448.1": "nnoremap <leader>bo <cmd>%bd\\|e#\\|bd#<CR>",
     "zxc.20260428151520.1": "nnoremap ZZ <cmd>xa<cr>\nnnoremap ZQ <cmd>qa!<cr>",
@@ -8093,7 +8106,7 @@
     "User.20260218141914.23": "\" vim-suda\n\" let g:suda_smart_edit = 1\n",
     "User.20260218143021.1": "let g:lightline = {\n      \\ 'colorscheme': 'catppuccin_mocha',\n      \\ 'active': {\n      \\   'left': [ [ 'mode', 'paste' ],\n      \\             [ 'readonly', 'filename', 'modified' ] ],\n      \\   'right': [ [ 'lineinfo' ],\n      \\              [ 'percent' ],\n      \\              [ 'zoomed', 'fileformat', 'fileencoding', 'filetype' ] ]\n      \\ },\n      \\ 'inactive': {\n      \\   'left': [ [ 'mode', 'paste' ],\n      \\             [ 'readonly', 'filename', 'modified' ] ],\n      \\   'right': [ [ 'lineinfo' ],\n      \\              [ 'percent' ],\n      \\              [ 'fileformat', 'fileencoding', 'filetype' ] ]\n      \\ },\n      \\ 'component_function': {\n      \\   'filename': 'LightlineTruncatedFileName',\n      \\   'zoomed': 'zoom#statusline'\n      \\ }\n      \\ }\n\nfunction! LightlineTruncatedFileName()\nlet l:filePath = expand('%')\n    if winwidth(0) > 100\n        return l:filePath\n    else\n        return pathshorten(l:filePath)\n    endif\nendfunction\n",
     "User.20260227211108.1": "\" let g:python3_host_prog = {{ lookPath \"python\" | squote }}\n",
-    "zxc.20260319224134.1": "let g:workspace_autocreate = 1\nlet g:workspace_session_disable_on_args = 1\nlet g:workspace_session_directory = {{ print (joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"sessions\" ) \"\\\\\" | squote }}\nlet g:workspace_autosave = 0\nlet g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"undo\" ) \"\\\\\" | squote }}\n",
+    "zxc.20260319224134.1": "\" let g:workspace_autocreate = 1\n\" let g:workspace_session_disable_on_args = 1\n\" let g:workspace_session_directory = {{ print (joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"sessions\" ) \"\\\\\" | squote }}\n\" let g:workspace_autosave = 0\n\" let g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"undo\" ) \"\\\\\" | squote }}\n",
     "zxc.20260426141132.1": "nnoremap <silent> <leader> <cmd>WhichKey '<Space>'<CR>",
     "zxc.20260426141355.1": "let g:which_key_map = {}\n\n@others\n\ncall which_key#register('<Space>', \"g:which_key_map\")",
     "zxc.20260426142134.1": "let g:which_key_map['f'] = {\n      \\ 'name': 'files',\n      \\ 'f'   : [':Files', 'Files'],\n      \\ ' '   : [':GFiles', 'Git Files'],\n      \\ }",
@@ -8131,7 +8144,7 @@
     "zxc.20260318212806.14": "{{ if lookPath \"git\" -}}\nPlug 'airblade/vim-gitgutter'\n{{ end -}}\n",
     "zxc.20260318212806.17": "Plug 'itchyny/lightline.vim'\n",
     "zxc.20260318212806.19": "Plug 'lervag/vimtex', { 'for': 'tex' }\n",
-    "zxc.20260319220325.1": "Plug 'ourgal/vim-workspace'\n",
+    "zxc.20260319220325.1": "\" Plug 'ourgal/vim-workspace'\n",
     "zxc.20260426235048.1": "Plug 'jceb/vim-orgmode'\nPlug 'tpope/vim-speeddating'\n",
     "zxc.20260427000037.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260427000057.1": "let maplocalleader = \"\\\\\"",
@@ -8141,6 +8154,8 @@
     "User.20260225204326.1": "{{ if eq .chezmoi.os \"windows\" -}}",
     "User.20260218142322.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260318212653.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260428221625.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260428221638.1": "if !has('vim9script')\n    finish\nendif\nvim9script\n\nclass Session\n    const sep: string = has(\"win32\") ? \"\\\\\" : \"/\"\n    const fileName: string = getcwd()->substitute(this.sep, \"%\", \"g\")->substitute(\":\", \"%\", \"g\")\n    const folder: string = get(g:, \"my_session_folder\", ($MYVIMRC->fnamemodify(\":p:h\") .. this.sep .. \"sessions\")->simplify())\n    const fullPath: string = this.folder .. this.sep .. this.fileName\n    const enable: bool = len(v:argv) == 1\n\n    def new()\n        if !isdirectory(this.folder)\n            mkdir(this.folder, \"p\")\n        endif\n    enddef\n\n    def Save(): void\n        if !this.enable\n            return\n        endif\n        \n        :echom this.fileName\n        :echom this.folder\n        this.fullPath->escape(\"%\")->printf(\"mksession! %s\")->execute()\n        :echom \"Save session\"\n    enddef\n\n    def Load(): void\n        if !this.enable\n            :echom \"Load disable\"\n            return\n        endif\n\n        if !filereadable(this.fullPath)\n            :echom this.fullPath\n            return\n        endif\n\n        this.fullPath->escape(\"%\")->printf(\"source %s\")->execute()\n    enddef\n\nendclass\n\ng:my_session = Session.new()\n\naugroup MySession\n    au! VimEnter * ++nested g:my_session.Load()\n    au! VimLeave * g:my_session.Save()\naugroup END",
     "zxc.20260426235942.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260427224207.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260216220339.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"ansible-language-server\" -}}\n{{ $lsp = append $lsp \"ansible-language-server\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\ncomment-token = \"#\"\ngrammar = \"yaml\"\ninjection-regex = \"ansible\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]\nname = \"ansible\"\nscope = \"source.yaml\"\nshebangs = [\"ansible-playbook\"]\n\n[[language.file-types]]\nglob = \"playbooks/*.yaml\"\n\n[[language.file-types]]\nglob = \"playbooks/*.yml\"\n\n[[language.file-types]]\nglob = \"group_vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"group_vars/*.yml\"\n\n[[language.file-types]]\nglob = \"host_vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"host_vars/*.yml\"\n\n[[language.file-types]]\nglob = \"vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"vars/*.yml\"\n\n[[language.file-types]]\nglob = \"defaults/*.yaml\"\n\n[[language.file-types]]\nglob = \"defaults/*.yml\"\n\n[[language.file-types]]\nglob = \"tasks/*.yaml\"\n\n[[language.file-types]]\nglob = \"tasks/*.yml\"\n\n[[language.file-types]]\nglob = \"handlers/*.yaml\"\n\n[[language.file-types]]\nglob = \"handlers/*.yml\"\n\n[[language.file-types]]\nglob = \"meta/*.yaml\"\n\n[[language.file-types]]\nglob = \"meta/*.yml\"",
@@ -9185,13 +9200,13 @@
       "_mod_time": 1776085878.419
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1777360696.963
+      "_mod_time": 1777398574.865
     },
     "zxc.20260125164142.1": {
-      "_mod_time": 1776085878.429
+      "_mod_time": 1777398596.506
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1777308890.654
+      "_mod_time": 1777395693.08
     },
     "zxc.20260427000037.1": {
       "_mod_time": 1777298774.849
@@ -9200,22 +9215,25 @@
       "_mod_time": 1777301022.72
     },
     "User.20260218142211.1": {
-      "_mod_time": 1777360696.995
+      "_mod_time": 1777398574.896
     },
     "User.20260218142322.1": {
-      "_mod_time": 1776085878.463
+      "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1777308890.671
+      "_mod_time": 1777395693.08
+    },
+    "zxc.20260428221625.1": {
+      "_mod_time": 1777398526.218
     },
     "zxc.20260426235942.1": {
-      "_mod_time": 1777298774.859
+      "_mod_time": 1777219283.757
     },
     "zxc.20260427224207.1": {
-      "_mod_time": 1777300984.749
+      "_mod_time": 1777301694.743
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1777298774.829
+      "_mod_time": 1777385864.713
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1773571522.6390562
@@ -9233,97 +9251,97 @@
       "_mod_time": 1775182193.7532992
     },
     "User.20260226000855.1": {
-      "_mod_time": 1776691470.915
+      "_mod_time": 1777179946.832
     },
     "zxc.20260202203521.17": {
-      "_mod_time": 1776085878.39
+      "_mod_time": 1776434513.068
     },
     "User.20260220233639.1": {
       "_mod_time": 1776085878.391
     },
     "zxc.20260202203521.20": {
-      "_mod_time": 1776085878.392
+      "_mod_time": 1776434513.068
     },
     "User.20260216114746.1": {
-      "_mod_time": 1776085878.388
+      "_mod_time": 1776434513.068
     },
     "zxc.20260202203521.14": {
-      "_mod_time": 1776691470.917
+      "_mod_time": 1776614192.458
     },
     "zxc.20260202203521.3": {
-      "_mod_time": 1777298774.833
+      "_mod_time": 1777189908.131
     },
     "zxc.20260202213444.1": {
-      "_mod_time": 1776085878.394
+      "_mod_time": 1776434513.084
     },
     "User.20260220142155.2": {
-      "_mod_time": 1776085878.393
+      "_mod_time": 1776434513.084
     },
     "User.20260220151435.2": {
-      "_mod_time": 1777298774.833
+      "_mod_time": 1777189908.148
     },
     "zxc.20260202215023.1": {
-      "_mod_time": 1776085878.384
+      "_mod_time": 1776434513.068
     },
     "zxc.20260202215408.1": {
-      "_mod_time": 1776085878.39
+      "_mod_time": 1776434513.068
     },
     "zxc.20260202220030.1": {
-      "_mod_time": 1776085878.391
+      "_mod_time": 1776434513.068
     },
     "zxc.20260202220553.1": {
-      "_mod_time": 1776085878.392
+      "_mod_time": 1776434513.068
     },
     "User.20260217202401.1": {
-      "_mod_time": 1776085878.388
+      "_mod_time": 1776434513.068
     },
     "User.20260220214558.1": {
       "_mod_time": 1776085878.388
     },
     "User.20260217214851.1": {
-      "_mod_time": 1776780168.388
+      "_mod_time": 1776851988.666
     },
     "zxc.20260422085228.1": {
-      "_mod_time": 1776780168.387
+      "_mod_time": 1776851988.666
     },
     "User.20260220000301.2": {
-      "_mod_time": 1776085878.387
+      "_mod_time": 1776434513.068
     },
     "User.20260220012738.1": {
       "_mod_time": 1774833042.645
     },
     "User.20260308173318.1": {
-      "_mod_time": 1776085878.386
+      "_mod_time": 1776434513.068
     },
     "User.20260308184128.2": {
-      "_mod_time": 1776085878.385
+      "_mod_time": 1776434513.068
     },
     "User.20260308184713.2": {
-      "_mod_time": 1776085878.387
+      "_mod_time": 1776434513.068
     },
     "User.20260308214701.2": {
-      "_mod_time": 1776085878.385
+      "_mod_time": 1776434513.068
     },
     "zxc.20260328213746.1": {
-      "_mod_time": 1776085878.387
+      "_mod_time": 1776434513.068
     },
     "User.20260308215626.2": {
-      "_mod_time": 1776085878.386
+      "_mod_time": 1776434513.068
     },
     "zxc.20260317085009.1": {
-      "_mod_time": 1776085878.385
+      "_mod_time": 1776434513.068
     },
     "zxc.20260318203351.1": {
-      "_mod_time": 1776085878.386
+      "_mod_time": 1777179941.91
     },
     "zxc.20260323195318.1": {
-      "_mod_time": 1776085878.389
+      "_mod_time": 1776434513.068
     },
     "zxc.20260329102210.1": {
-      "_mod_time": 1776085878.392
+      "_mod_time": 1776434513.068
     },
     "zxc.20260404153353.1": {
-      "_mod_time": 1776085878.392
+      "_mod_time": 1776434513.068
     },
     "User.20260226001402.1": {
       "_mod_time": 1777180136.352
@@ -9335,37 +9353,37 @@
       "_mod_time": 1777179946.865
     },
     "User.20260220010313.1": {
-      "_mod_time": 1776085878.426
+      "_mod_time": 1777385861.34
     },
     "User.20260220010448.1": {
       "_mod_time": 1773571522.654681
     },
     "User.20260216232855.1": {
-      "_mod_time": 1776085878.419
+      "_mod_time": 1777179946.854
     },
     "User.20260217182613.1": {
-      "_mod_time": 1776085878.421
+      "_mod_time": 1777179946.857
     },
     "zxc.20260317002829.1": {
-      "_mod_time": 1776780168.391
+      "_mod_time": 1777179946.863
     },
     "zxc.20260315140713.1": {
       "_mod_time": 1777179946.861
     },
     "zxc.20260408012432.1": {
-      "_mod_time": 1776691470.924
+      "_mod_time": 1777179946.871
     },
     "User.20260301202336.1": {
-      "_mod_time": 1776691470.923
+      "_mod_time": 1777179946.857
     },
     "zxc.20260327184129.1": {
-      "_mod_time": 1776085878.434
+      "_mod_time": 1777179946.876
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1776085878.424
     },
     "zxc.20260126185048.1": {
-      "_mod_time": 1776085878.417
+      "_mod_time": 1777179946.853
     },
     "zxc.20260130225718.1": {
       "_mod_time": 1777179946.861
@@ -9386,7 +9404,7 @@
       "_mod_time": 1773571522.654681
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1776085878.436
+      "_mod_time": 1777179946.877
     },
     "zxc.20260125145051.1": {
       "_mod_time": 1777179946.885
@@ -9431,85 +9449,85 @@
       "_mod_time": 1777179946.881
     },
     "User.20260215182442.1": {
-      "_mod_time": 1776085878.449
+      "_mod_time": 1777179946.888
     },
     "User.20260217022114.1": {
-      "_mod_time": 1776085878.449
+      "_mod_time": 1777179946.888
     },
     "User.20260215182818.1": {
-      "_mod_time": 1776085878.45
+      "_mod_time": 1777179946.89
     },
     "zxc.20260317084145.1": {
-      "_mod_time": 1776085878.45
+      "_mod_time": 1777179946.889
     },
     "zxc.20260201225344.1": {
-      "_mod_time": 1776085878.448
+      "_mod_time": 1777385858.521
     },
     "zxc.20260317082914.1": {
-      "_mod_time": 1776085878.448
+      "_mod_time": 1777179946.887
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1777298774.859
+      "_mod_time": 1777385856.855
     },
     "User.20260215205925.1": {
-      "_mod_time": 1776085878.461
+      "_mod_time": 1777179946.905
     },
     "User.20260215210400.1": {
-      "_mod_time": 1776085878.46
+      "_mod_time": 1777179946.904
     },
     "User.20260220151031.5": {
-      "_mod_time": 1776085878.459
+      "_mod_time": 1777179946.903
     },
     "User.20260220151031.28": {
-      "_mod_time": 1776085878.459
+      "_mod_time": 1777179946.902
     },
     "User.20260221175549.1": {
-      "_mod_time": 1776085878.451
+      "_mod_time": 1777179946.892
     },
     "User.20260221194603.1": {
-      "_mod_time": 1776085878.461
+      "_mod_time": 1777179946.906
     },
     "User.20260222211658.1": {
-      "_mod_time": 1776085878.456
+      "_mod_time": 1777179946.899
     },
     "zxc.20260201203241.1": {
-      "_mod_time": 1776085878.452
+      "_mod_time": 1777179946.893
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1776085878.452
+      "_mod_time": 1777179946.892
     },
     "zxc.20260201214114.1": {
-      "_mod_time": 1776085878.452
+      "_mod_time": 1777179946.894
     },
     "zxc.20260202195207.1": {
-      "_mod_time": 1776085878.454
+      "_mod_time": 1777179946.896
     },
     "zxc.20260322192157.1": {
-      "_mod_time": 1776085878.455
+      "_mod_time": 1777179946.897
     },
     "zxc.20260322192357.1": {
-      "_mod_time": 1776085878.455
+      "_mod_time": 1777179946.898
     },
     "zxc.20260325223009.1": {
-      "_mod_time": 1776085878.456
+      "_mod_time": 1777179946.899
     },
     "zxc.20260325223610.1": {
-      "_mod_time": 1776085878.457
+      "_mod_time": 1777179946.901
     },
     "zxc.20260325223805.1": {
-      "_mod_time": 1776085878.457
+      "_mod_time": 1777179946.9
     },
     "zxc.20260329012003.1": {
-      "_mod_time": 1776085878.453
+      "_mod_time": 1777179946.894
     },
     "zxc.20260411192514.1": {
-      "_mod_time": 1777298774.854
+      "_mod_time": 1777179946.895
     },
     "zxc.20260330235722.1": {
-      "_mod_time": 1776085878.451
+      "_mod_time": 1777179946.891
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1777298774.834
+      "_mod_time": 1777179946.854
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1776085717.92
@@ -9554,76 +9572,76 @@
       "_mod_time": 1775742456.705
     },
     "zxc.20260202205715.1": {
-      "_mod_time": 1777298774.844
+      "_mod_time": 1777106655.378
     },
     "zxc.20260426163956.1": {
       "_mod_time": 1777379462.256
     },
     "User.20260302151947.1": {
-      "_mod_time": 1776691470.919
+      "_mod_time": 1777179946.836
     },
     "zxc.20260407232538.1": {
-      "_mod_time": 1776085878.399
+      "_mod_time": 1777179946.836
     },
     "zxc.20260408005117.1": {
-      "_mod_time": 1776691470.919
+      "_mod_time": 1777179946.836
     },
     "zxc.20260201140523.1": {
-      "_mod_time": 1776085878.414
+      "_mod_time": 1777179946.85
     },
     "zxc.20260130233132.1": {
-      "_mod_time": 1776085878.413
+      "_mod_time": 1777385863.235
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1776780168.39
+      "_mod_time": 1777179946.836
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1777302969.518
     },
     "zxc.20260214142543.1": {
-      "_mod_time": 1776085878.415
+      "_mod_time": 1777179946.851
     },
     "User.20260215234634.1": {
-      "_mod_time": 1776085878.418
+      "_mod_time": 1777179946.854
     },
     "User.20260216124226.1": {
-      "_mod_time": 1776085878.412
+      "_mod_time": 1777179946.845
     },
     "User.20260216125422.1": {
-      "_mod_time": 1776085878.412
+      "_mod_time": 1777179946.847
     },
     "User.20260219235648.1": {
-      "_mod_time": 1776085878.412
+      "_mod_time": 1777179946.847
     },
     "User.20260228231944.1": {
-      "_mod_time": 1776085878.416
+      "_mod_time": 1777179946.852
     },
     "User.20260302211536.1": {
-      "_mod_time": 1776085878.404
+      "_mod_time": 1777179946.836
     },
     "User.20260302211740.1": {
-      "_mod_time": 1776085878.404
+      "_mod_time": 1777179946.836
     },
     "User.20260302211946.1": {
-      "_mod_time": 1776085878.411
+      "_mod_time": 1777179946.845
     },
     "User.20260302212424.1": {
-      "_mod_time": 1776085878.411
+      "_mod_time": 1777179946.845
     },
     "User.20260302212645.1": {
-      "_mod_time": 1776085878.41
+      "_mod_time": 1777179946.84
     },
     "User.20260303213330.1": {
-      "_mod_time": 1776085878.418
+      "_mod_time": 1777179946.854
     },
     "zxc.20260401221312.1": {
-      "_mod_time": 1776085878.414
+      "_mod_time": 1777179946.849
     },
     "zxc.20260402230727.1": {
-      "_mod_time": 1776085878.415
+      "_mod_time": 1777179946.85
     },
     "zxc.20260417220340.1": {
-      "_mod_time": 1776691470.922
+      "_mod_time": 1777179941.91
     }
   }
 }
