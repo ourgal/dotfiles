@@ -7,8 +7,6 @@ let g:mapleader = ' '
 nnoremap <leader>bo <cmd>%bd\|e#\|bd#<CR>
 nnoremap ZZ <cmd>xa<cr>
 nnoremap ZQ <cmd>qa!<cr>
-noremap Q @@
-
 function OpenFileOrURL()
   let cfile = expand('<cfile>')
   if match(cfile, '^https\?://') >= 0
@@ -19,10 +17,7 @@ function OpenFileOrURL()
 endfunction
 
 nnoremap <silent> gf <cmd>call OpenFileOrURL()<CR>
-
 nnoremap g* :%s/<c-r><c-w>/
-
-nnoremap ^[. ;
 set laststatus=2
 
 try
@@ -152,7 +147,7 @@ au BufLeave,CursorHold,FocusLost * if(getbufinfo('%')[0].changed) | sil do BufWr
 " Autosession
 " au VimEnter * nested if (len(v:argv) == 1) | silent! source Session.vim | endif
 " au VimLeave * if (len(v:argv) == 1) | mksession! | endif
-autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
+" autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
 set autocomplete
 set complete=o^5,.^5,w^5,b^5,u^5
 set completeopt=popup
@@ -164,8 +159,6 @@ let g:ale_set_balloons = 1
 let g:ale_hover_to_preview = 1
 let g:ale_floating_preview = 1
 set omnifunc=ale#completion#OmniFunc
-
-map K <cmd>ALEHover<cr>
 
 import 'plugins.vim'
 

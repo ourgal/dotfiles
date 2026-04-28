@@ -533,7 +533,29 @@
                                 },
                                 {
                                   "gnx": "User.20260218141820.1",
-                                  "vh": "keymap"
+                                  "vh": "keymap",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260428104430.1",
+                                      "vh": "leader key"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260428151448.1",
+                                      "vh": "delete other buffers"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260428151520.1",
+                                      "vh": "exit vim"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260428151626.1",
+                                      "vh": "open file"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260428151704.1",
+                                      "vh": "search current word"
+                                    }
+                                  ]
                                 },
                                 {
                                   "gnx": "User.20260218141831.1",
@@ -8051,15 +8073,19 @@
     "zxc.20260125163416.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260426131724.1": "packadd! comment\npackadd! hlyank",
     "zxc.20260125163442.1": "import 'find.vim'\n",
-    "User.20260218141820.1": "let g:mapleader = ' '\nnnoremap <leader>bo <cmd>%bd\\|e#\\|bd#<CR>\nnnoremap ZZ <cmd>xa<cr>\nnnoremap ZQ <cmd>qa!<cr>\nnoremap Q @@\n\nfunction OpenFileOrURL()\n  let cfile = expand('<cfile>')\n  if match(cfile, '^https\\?://') >= 0\n    call system('xdg-open ' . cfile)\n  else\n    normal! gF\n  endif\nendfunction\n\nnnoremap <silent> gf <cmd>call OpenFileOrURL()<CR>\n\nnnoremap g* :%s/<c-r><c-w>/\n\nnnoremap ^[. ;\n",
+    "zxc.20260428104430.1": "let g:mapleader = ' '",
+    "zxc.20260428151448.1": "nnoremap <leader>bo <cmd>%bd\\|e#\\|bd#<CR>",
+    "zxc.20260428151520.1": "nnoremap ZZ <cmd>xa<cr>\nnnoremap ZQ <cmd>qa!<cr>",
+    "zxc.20260428151626.1": "function OpenFileOrURL()\n  let cfile = expand('<cfile>')\n  if match(cfile, '^https\\?://') >= 0\n    call system('xdg-open ' . cfile)\n  else\n    normal! gF\n  endif\nendfunction\n\nnnoremap <silent> gf <cmd>call OpenFileOrURL()<CR>",
+    "zxc.20260428151704.1": "nnoremap g* :%s/<c-r><c-w>/",
     "User.20260218141831.1": "set laststatus=2\n\ntry\nset switchbuf=uselast\nset showtabline=2\ncatch\nendtry\n\nset expandtab\nset smarttab\n\nset shiftwidth=4\nset tabstop=4\n\nset cindent\nset wrap\nset clipboard=unnamed\n\nset undodir={{ joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"undo\" }}\nset undofile\n\nset nobackup\nset nowritebackup\n\nset noswapfile\n\" set directory=$HOME/.local/share/vim/swap//\n\nif has('gui_running')\nset guioptions-=T\nset guioptions-=e\nset guioptions-=m\nset t_Co=256\nset guitablabel=%M\\ %t\nendif\n\nset encoding=utf8\nset fileformats=unix,dos,mac\nsyntax enable\n\nset regexpengine=0\n\nset backspace=eol,start,indent\nset whichwrap+=<,>,h,l\n\nset ignorecase\nset smartcase\nset hlsearch\nset incsearch\n\nset lazyredraw\nset magic\nset showmatch\n\nset matchtime=2\n\nset noerrorbells\nset novisualbell\nset t_vb=\nset timeoutlen=500\n\nset foldcolumn=0\n\nlet $LANG = 'en'\nset langmenu=en\n\nset wildmenu\n\nset wildignore=*.o,*~,*.pyc\nif has('win16') || has('win32')\nset wildignore+=.git\\*,.hg\\*,.svn\\*\nelse\nset wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store\nendif\n\nlet &t_SI = \"\\e[6 q\"\nlet &t_EI = \"\\e[2 q\"\n\nset ruler\nset cmdheight=1\nset hidden\nset history=500\nset number relativenumber\n\nfiletype plugin on\nfiletype indent on\n\nset autoread\n\nset updatetime=500\n\nset mouse=a\nset smoothscroll\n\nset showtabline=1\n\naugroup settings\n    autocmd!\n    autocmd FocusGained,BufEnter * checktime\n    autocmd FileType qf nnoremap <buffer><silent> q :cclose<bar>lclose<CR>\naugroup END\n\n{{ if lookPath \"rg\" -}}\nset grepprg=rg\\ --vimgrep\\ --smart-case\\ --hidden\nset grepformat=%f:%l:%c:%m\n{{ end -}}\n\nset signcolumn=auto\nset sessionoptions-=blank\nset foldmethod=marker\nset cursorline\nset scrolloff=5\n\nset shortmess-=S \" show she search count\n\nset gdefault\n\nset signcolumn=yes\n\nautocmd CmdlineChanged [:\\/\\?] call wildtrigger()\nset wildmode=noselect:lastused,full\nset wildoptions=pum\n\nautocmd CmdlineEnter [\\/\\?] set pumheight=8\nautocmd CmdlineLeave [\\/\\?] set pumheight&\n",
     "zxc.20260427223226.1": "set noswapfile\nau BufLeave,CursorHold,FocusLost * if(getbufinfo('%')[0].changed) | sil do BufWritePre | sil! up | sil do BufWritePost | endif",
     "User.20260218145141.1": "\" Autosession\n\" au VimEnter * nested if (len(v:argv) == 1) | silent! source Session.vim | endif\n\" au VimLeave * if (len(v:argv) == 1) | mksession! | endif",
-    "zxc.20260320003625.1": "autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path \"%\"\n",
+    "zxc.20260320003625.1": "\" autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path \"%\"\n",
     "zxc.20260427232446.1": "set autocomplete\nset complete=o^5,.^5,w^5,b^5,u^5\nset completeopt=popup\n\ninoremap <silent><expr> <Tab>   pumvisible() ? \"\\<C-n>\" : \"\\<Tab>\"\ninoremap <silent><expr> <S-Tab> pumvisible() ? \"\\<C-p>\" : \"\\<S-Tab>\"\n",
     "User.20260218141914.1": "<< plugin configs pre >>\n\nimport 'plugins.vim'\n\n<< plugin configs >>\n",
     "zxc.20260427235829.1": "@others",
-    "zxc.20260427235833.1": "let g:ale_completion_enabled = 1\nlet g:ale_set_balloons = 1\nlet g:ale_hover_to_preview = 1\nlet g:ale_floating_preview = 1\nset omnifunc=ale#completion#OmniFunc\n\nmap K <cmd>ALEHover<cr>",
+    "zxc.20260427235833.1": "let g:ale_completion_enabled = 1\nlet g:ale_set_balloons = 1\nlet g:ale_hover_to_preview = 1\nlet g:ale_floating_preview = 1\nset omnifunc=ale#completion#OmniFunc",
     "User.20260218141914.18": "@others\n",
     "User.20260218141914.19": "\" let g:coc_node_path = {{ lookPath \"node\" | squote }}\n\" \n\" \" coc.nvim\n\" \" Use tab for trigger completion with characters ahead and navigate\n\" \" NOTE: There's always complete item selected by default, you may want to enable\n\" \" no select by `\"suggest.noselect\": true` in your configuration file\n\" \" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by\n\" \" other plugin before putting this into your config\n\" inoremap <silent><expr> <TAB>\n\"       \\ coc#pum#visible() ? coc#pum#next(1) :\n\"       \\ CheckBackspace() ? \"\\<Tab>\" :\n\"       \\ coc#refresh()\n\" inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : \"\\<C-h>\"\n\" \n\" \" Make <CR> to accept selected completion item or notify coc.nvim to format\n\" \" <C-g>u breaks current undo, please make your own choice\n\" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : \"\\<C-g>u\\<CR>\\<c-r>=coc#on_enter()\\<CR>\"\n\" \n\" function! CheckBackspace() abort\n\"   let col = col('.') - 1\n\"   return !col || getline('.')[col - 1]  =~# '\\s'\n\" endfunction\n\" \n\" \" Use <c-space> to trigger completion\n\" if has('nvim')\n\"   inoremap <silent><expr> <c-space> coc#refresh()\n\" else\n\"   inoremap <silent><expr> <c-@> coc#refresh()\n\" endif\n\" \n\" \" Use `[g` and `]g` to navigate diagnostics\n\" \" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list\n\" nmap <silent> [d <Plug>(coc-diagnostic-prev)\n\" nmap <silent> ]d <Plug>(coc-diagnostic-next)\n\" \n\" \" GoTo code navigation\n\" nmap <silent> gd <Plug>(coc-definition)\n\" nmap <silent> gy <Plug>(coc-type-definition)\n\" nmap <silent> gi <Plug>(coc-implementation)\n\" nmap <silent> gr <Plug>(coc-references)\n\" \n\" function! ShowDocumentation()\n\"   if CocAction('hasProvider', 'hover')\n\"     call CocActionAsync('doHover')\n\"   else\n\"     call feedkeys('K', 'in')\n\"   endif\n\" endfunction\n\" \n\" \" Use K to show documentation in preview window\n\" nnoremap <silent> K :call ShowDocumentation()<CR>\n\" \n\" \" Highlight the symbol and its references when holding the cursor\n\" autocmd CursorHold * silent call CocActionAsync('highlight')\n\" \n\" \" Symbol renaming\n\" nnoremap <leader>R <plug>(coc-rename)\n\" \n\" \" Formatting selected code\n\" \" xmap <leader>f  <Plug>(coc-format-selected)\n\" \" nmap <leader>f  <Plug>(coc-format-selected)\n\" \n\" augroup mygroup\n\"   autocmd!\n\"   \" Setup formatexpr specified filetype(s)\n\"   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')\n\"   \" Update signature help on jump placeholder\n\"   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')\n\" augroup end\n\" \n\" \" Applying code actions to the selected code block\n\" \" Example: `<leader>aap` for current paragraph\n\" \" xmap <leader>a  <Plug>(coc-codeaction-selected)\n\" \" nmap <leader>a  <Plug>(coc-codeaction-selected)\n\" \n\" \" Remap keys for applying code actions at the cursor position\n\" \" nmap <leader>ac  <Plug>(coc-codeaction-cursor)\n\" \" Remap keys for apply code actions affect whole buffer\n\" \" nmap <leader>as  <Plug>(coc-codeaction-source)\n\" \" Apply the most preferred quickfix action to fix diagnostic on the current line\n\" \" nmap <leader>qf  <Plug>(coc-fix-current)\n\" \n\" \" Remap keys for applying refactor code actions\n\" \" nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)\n\" \" xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)\n\" \" nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)\n\" \n\" \" Run the Code Lens action on the current line\n\" \" nmap <leader>cl  <Plug>(coc-codelens-action)\n\" \n\" \" Map function and class text objects\n\" \" NOTE: Requires 'textDocument.documentSymbol' support from the language server\n\" xmap if <Plug>(coc-funcobj-i)\n\" omap if <Plug>(coc-funcobj-i)\n\" xmap af <Plug>(coc-funcobj-a)\n\" omap af <Plug>(coc-funcobj-a)\n\" xmap ic <Plug>(coc-classobj-i)\n\" omap ic <Plug>(coc-classobj-i)\n\" xmap ac <Plug>(coc-classobj-a)\n\" omap ac <Plug>(coc-classobj-a)\n\" \n\" \" Remap <C-f> and <C-b> to scroll float windows/popups\n\" if has('nvim-0.4.0') || has('patch-8.2.0750')\n\"   nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : \"\\<C-f>\"\n\"   nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : \"\\<C-b>\"\n\"   inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? \"\\<c-r>=coc#float#scroll(1)\\<cr>\" : \"\\<Right>\"\n\"   inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? \"\\<c-r>=coc#float#scroll(0)\\<cr>\" : \"\\<Left>\"\n\"   vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : \"\\<C-f>\"\n\"   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : \"\\<C-b>\"\n\" endif\n\" \n\" \" Use CTRL-S for selections ranges\n\" \" Requires 'textDocument/selectionRange' support of language server\n\" nmap <silent> <C-s> <Plug>(coc-range-select)\n\" xmap <silent> <C-s> <Plug>(coc-range-select)\n\" \n\" \" Add `:Format` command to format current buffer\n\" command! -nargs=0 Format :call CocActionAsync('format')\n\" \n\" \" Add `:Fold` command to fold current buffer\n\" command! -nargs=? Fold :call     CocAction('fold', <f-args>)\n\" \n\" \" Add `:OR` command for organize imports of the current buffer\n\" command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')\n\" \n\" \" Add (Neo)Vim's native statusline support\n\" \" NOTE: Please see `:h coc-status` for integrations with external plugins that\n\" \" provide custom statusline: lightline.vim, vim-airline\n\" set statusline^=%{coc#status()}%{get(b:,'coc_current_function',''\\'''\\')}\n\" \n\" let g:coc_global_extensions = ['coc-fish', '@yaegassy/coc-marksman', 'coc-emoji', 'coc-dash-complete', 'coc-just-complete', 'coc-translator', 'coc-perl', 'coc-go', 'coc-json', 'coc-prettier', 'coc-basedpyright', 'coc-r-lsp', 'coc-sh', 'coc-snippets', 'coc-sumneko-lua', 'coc-texlab', 'coc-toml', 'coc-vimlsp', 'coc-yaml' ]\n\" \" nnoremap <leader>e <Cmd>CocCommand explorer --quit-on-open<CR>\n\" \n\" \" limit completion item\n\" let g:coc_filetype_map = { 'yaml.ansible': 'ansible', }\n\" set pumheight=10\n\" \n\" nmap <Leader>,t <Plug>(coc-translator-p)\n\" vmap <Leader>,t <Plug>(coc-translator-pv)",
     "User.20260218141914.20": "\" set termguicolors\n\" let g:tokyonight_style = 'night' \" available: night, storm\n\" let g:tokyonight_enable_italic = 1\n\" colorscheme tokyonight\n",
@@ -9159,7 +9185,7 @@
       "_mod_time": 1776085878.419
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1777308921.083
+      "_mod_time": 1777360696.963
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1776085878.429
@@ -9174,7 +9200,7 @@
       "_mod_time": 1777301022.72
     },
     "User.20260218142211.1": {
-      "_mod_time": 1777308921.114
+      "_mod_time": 1777360696.995
     },
     "User.20260218142322.1": {
       "_mod_time": 1776085878.463
