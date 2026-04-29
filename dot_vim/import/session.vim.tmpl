@@ -1,4 +1,4 @@
-{{ if eq .chezmoi.os "windows" -}}
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
 {{ if lookPath "vim" -}}
 if !has('vim9script')
     finish

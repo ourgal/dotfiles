@@ -898,6 +898,46 @@
                                   ]
                                 }
                               ]
+                            },
+                            {
+                              "gnx": "zxc.20260429111940.1",
+                              "vh": "@clean session.vim.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260428221638.1",
+                                  "vh": "content",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260429144755.1",
+                                      "vh": "head"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260429144738.1",
+                                      "vh": "session class"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260429144851.1",
+                                      "vh": "set session"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "User.20260225203941.1"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260429145437.1",
+                              "vh": "@clean temp.vim.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260429112205.1",
+                                  "vh": "content"
+                                },
+                                {
+                                  "gnx": "User.20260225203941.1"
+                                }
+                              ]
                             }
                           ]
                         },
@@ -991,8 +1031,19 @@
                               "vh": "@clean session.vim.tmpl",
                               "children": [
                                 {
-                                  "gnx": "zxc.20260428221638.1",
-                                  "vh": "content"
+                                  "gnx": "zxc.20260428221638.1"
+                                },
+                                {
+                                  "gnx": "User.20260225204326.1"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260429112140.1",
+                              "vh": "@clean temp.vim.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260429112205.1"
                                 },
                                 {
                                   "gnx": "User.20260225204326.1"
@@ -8083,9 +8134,9 @@
     "zxc.20260125145640.1": "{{ $is_note20 := eq (output \"whoami\" | trim) .my.termux.note20.username -}}\nadd_newline = true\nformat = \"$directory$cmd_duration$hostname$localip$shlvl$shell$env_var$username$sudo$character\"\npalette = \"base16\"\nright_format = \"$singularity$kubernetes$vcsh$fossil_branch$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$package$c$cmake$cobol$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$golang$guix_shell$haskell$haxe$helm$java$julia$kotlin$gradle$lua$nim$nodejs$ocaml$opa$perl$php$pulumi$purescript$python$raku$rlang$red$ruby$rust$scala$solidity$swift$terraform$vlang$vagrant$zig$buf$nix_shell$conda$meson$spack$memory_usage$aws$gcloud$openstack$azure$crystal$custom$jobs$status$os$container{{ if not $is_note20 }}$battery{{ end }}$time\"\n\n[aws]\nformat = \" aws [$symbol $profile $region]($style)\"\nstyle = \"italic blue\"\nsymbol = \"▲ \"\n\n{{ if not $is_note20 -}}\n[battery]\ncharging_symbol = \"[↑](italic green)\"\ndischarging_symbol = \"[↓](italic)\"\nempty_symbol = \"[▃](italic red)\"\nformat = \"[ $percentage $symbol]($style)\"\nfull_symbol = \"[█](italic green)\"\nunknown_symbol = \"[░](italic)\"\n\n[[battery.display]]\nstyle = \"dimmed yellow\"\nthreshold = 40\n\n[[battery.display]]\nstyle = \"dimmed white\"\nthreshold = 70\n{{ end -}}\n\n[buf]\nformat = \" buf [$symbol $version $buf_version]($style)\"\nsymbol = \"■ \"\n\n[c]\nformat = \" c [$symbol($version(-$name))]($style)\"\nsymbol = \"∁ \"\n\n[character]\nerror_symbol = \"[⊘](italic purple)\"\nformat = \"$symbol \"\nsuccess_symbol = \"[◉](bold italic bright-yellow)\"\n\n[cmd_duration]\nformat = \"[$duration ](italic bright-yellow)\"\nmin_time = 10000\n\n[conda]\nformat = \" conda [$symbol$environment]($style)\"\nsymbol = \"◯ \"\n\n[dart]\nformat = \" dart [$symbol($version )]($style)\"\nsymbol = \"◁◅ \"\n\n[deno]\nformat = \" deno [∫ $version](blue italic)\"\nversion_format = \"${major}.${minor}\"\n\n[directory]\nformat = \"[$path]($style)[$read_only]($read_only_style) \"\nhome_symbol = \"⌂\"\nread_only = \" ■\"\nstyle = \"italic blue\"\ntruncation_length = 2\ntruncation_symbol = \"▦ \"\n\n[docker_context]\nformat = \" docker [$symbol$context]($style)\"\nsymbol = \"◧ \"\n\n[elixir]\nformat = \" exs [$symbol $version OTP $otp_version ]($style)\"\nsymbol = \"△ \"\n\n[elm]\nformat = \" elm [$symbol($version )]($style)\"\nsymbol = \"◩ \"\n\n[env_var.VIMSHELL]\nformat = \"[$env_value]($style)\"\nstyle = \"green italic\"\n\n[git_branch]\nformat = \"[ $symbol $branch(:$remote_branch)]($style)\"\nstyle = \"bold italic bright-blue\"\nsymbol = \"[◬](bold bright-blue)\"\n\n[git_status]\nahead = \"[▲│[${count}](bold white)│](italic green)\"\nbehind = \"[▽│[${count}](bold white)│](italic red)\"\nconflicted = \"[◪◦](italic bright-magenta)\"\ndeleted = \"[✕](italic red)\"\ndiverged = \"[◇ ▲┤[${ahead_count}](regular white)│▽┤[${behind_count}](regular white)│](italic bright-magenta)\"\nformat = \"([⎪$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed⎥]($style))\"\nmodified = \"[●◦](italic yellow)\"\nrenamed = \"[◎◦](italic bright-blue)\"\nstaged = \"[■┤[$count](bold white)│](italic bright-cyan)\"\nstashed = \"[◦◫◦](italic white)\"\nstyle = \"italic bright-blue\"\nuntracked = \"[◌◦](italic bright-yellow)\"\n\n[golang]\nformat = \" go [$symbol($version )]($style)\"\nsymbol = \"∩ \"\n\n[haskell]\nformat = \" hs [$symbol($version )]($style)\"\nsymbol = \"❯λ \"\n\n[java]\nformat = \" java [${symbol}(${version} )]($style)\"\nsymbol = \"∪ \"\n\n[jobs]\nformat = \"[ $symbol$number]($style)\"\nstyle = \"white\"\nsymbol = \"[▶ ](blue italic)\"\n\n[julia]\nformat = \" jl [$symbol($version )]($style)\"\nsymbol = \"◎ \"\n\n[localip]\ndisabled = false\nformat = \"◯[$localipv4](bold magenta)\"\nssh_only = true\n\n[lua]\nformat = \" lua [${symbol}${version}]($style)\"\nstyle = \"italic bright-yellow\"\nsymbol = \"⨀ \"\n\n[memory_usage]\nformat = \" mem [${ram}( ${swap})]($style)\"\nsymbol = \"▪▫▪ \"\n\n[nim]\nformat = \" nim [$symbol($version )]($style)\"\nsymbol = \"▴▲▴ \"\n\n[nix_shell]\nformat = \" nix [$symbol$state $name]($style)\"\nsymbol = \"⊛ \"\n\n[nodejs]\ndetect_files = [\"package-lock.json\", \"yarn.lock\"]\nformat = \" node [◫ ($version)](italic bright-green)\"\nversion_format = \"${major}.${minor}\"\n\n[package]\nformat = \" pkg [$symbol$version]($style)\"\nstyle = \"bright-yellow italic\"\nsymbol = \"◫ \"\nversion_format = \"${major}.${minor}\"\n\n[palettes.base16]\nbase00 = \"#1d1f21\"\nbase01 = \"#282a2e\"\nbase02 = \"#373b41\"\nbase03 = \"#969896\"\nbase04 = \"#b4b7b4\"\nbase05 = \"#c5c8c6\"\nbase06 = \"#e0e0e0\"\nbase07 = \"#ffffff\"\nbase08 = \"#cc342b\"\nbase09 = \"#f96a38\"\nbase0A = \"#fba922\"\nbase0B = \"#198844\"\nbase0C = \"#3971ed\"\nbase0D = \"#3971ed\"\nbase0E = \"#a36ac7\"\nbase0F = \"#3971ed\"\nbase10 = \"#1d1f21\"\nbase11 = \"#1d1f21\"\nbase12 = \"#cc342b\"\nbase13 = \"#fba922\"\nbase14 = \"#198844\"\nbase15 = \"#3971ed\"\nbase16 = \"#3971ed\"\nbase17 = \"#a36ac7\"\nblack = \"#1d1f21\"\nblue = \"#3971ed\"\nbright-black = \"#969896\"\nbright-blue = \"#3971ed\"\nbright-cyan = \"#3971ed\"\nbright-green = \"#198844\"\nbright-magenta = \"#a36ac7\"\nbright-purple = \"#a36ac7\"\nbright-red = \"#cc342b\"\nbright-white = \"#ffffff\"\nbright-yellow = \"#fba922\"\nbrown = \"#3971ed\"\ncyan = \"#3971ed\"\ngreen = \"#198844\"\nmagenta = \"#a36ac7\"\norange = \"#f96a38\"\npurple = \"#a36ac7\"\nred = \"#cc342b\"\nwhite = \"#c5c8c6\"\nyellow = \"#fba922\"\n\n[palettes.catppuccin_macchiato]\nbase = \"#24273a\"\nblue = \"#8aadf4\"\ncrust = \"#181926\"\nflamingo = \"#f0c6c6\"\ngreen = \"#a6da95\"\nlavender = \"#b7bdf8\"\nmantle = \"#1e2030\"\nmaroon = \"#ee99a0\"\nmauve = \"#c6a0f6\"\noverlay0 = \"#6e738d\"\noverlay1 = \"#8087a2\"\noverlay2 = \"#939ab7\"\npeach = \"#f5a97f\"\npink = \"#f5bde6\"\nred = \"#ed8796\"\nrosewater = \"#f4dbd6\"\nsapphire = \"#7dc4e4\"\nsky = \"#91d7e3\"\nsubtext0 = \"#a5adcb\"\nsubtext1 = \"#b8c0e0\"\nsurface0 = \"#363a4f\"\nsurface1 = \"#494d64\"\nsurface2 = \"#5b6078\"\nteal = \"#8bd5ca\"\ntext = \"#cad3f5\"\nyellow = \"#eed49f\"\n\n[python]\nformat = \" py [${symbol}${version}]($style)\"\nstyle = \"italic bright-yellow\"\nsymbol = \"[⌉](italic bright-blue)⌊ \"\nversion_format = \"${major}.${minor}\"\n\n[ruby]\nformat = \" rb [${symbol}${version}]($style)\"\nstyle = \"italic red\"\nsymbol = \"◆ \"\nversion_format = \"${major}.${minor}\"\n\n[rust]\nformat = \" rs [$symbol$version]($style)\"\nstyle = \"italic red\"\nsymbol = \"⊃ \"\nversion_format = \"${major}.${minor}\"\n\n[spack]\nformat = \" spack [$symbol$environment]($style)\"\nsymbol = \"◇ \"\n\n[sudo]\ndisabled = false\nformat = \"[$symbol]($style)\"\nstyle = \"italic bright-purple\"\nsymbol = \"◇┈\"\n\n[swift]\nformat = \" sw [${symbol}${version}]($style)\"\nstyle = \"italic bright-red\"\nsymbol = \"◁ \"\nversion_format = \"${major}.${minor}\"\n\n[time]\ndisabled = false\nformat = \"[ $time]($style)\"\nstyle = \"dimmed white\"\ntime_format = \"%R\"\nutc_time_offset = \"local\"\n\n[username]\ndisabled = false\nformat = \" [$user]($style) ▻ \"\nstyle_root = \"purple bold italic\"\nstyle_user = \"yellow bold\"\n",
     "zxc.20260125152804.1": "## Base directory for Atuin data files (databases, keys, session, etc.)\n## All data file paths default to being relative to this directory.\n## linux/mac: ~/.local/share/atuin (or XDG_DATA_HOME/atuin)\n## windows: %USERPROFILE%/.local/share/atuin\n# data_dir = \"~/.local/share/atuin\"\n\n## where to store your database, default is your system data directory\n## linux/mac: ~/.local/share/atuin/history.db\n## windows: %USERPROFILE%/.local/share/atuin/history.db\n# db_path = \"~/.history.db\"\n\n## where to store your encryption key, default is your system data directory\n## linux/mac: ~/.local/share/atuin/key\n## windows: %USERPROFILE%/.local/share/atuin/key\n# key_path = \"~/.key\"\n\n## where to store your auth session token, default is your system data directory\n## linux/mac: ~/.local/share/atuin/session\n## windows: %USERPROFILE%/.local/share/atuin/session\n# session_path = \"~/.session\"\n\n## date format used, either \"us\" or \"uk\"\n# dialect = \"us\"\n\n## default timezone to use when displaying time\n## either \"l\", \"local\" to use the system's current local timezone, or an offset\n## from UTC in the format of \"<+|->H[H][:M[M][:S[S]]]\"\n## for example: \"+9\", \"-05\", \"+03:30\", \"-01:23:45\", etc.\n# timezone = \"local\"\n\n## enable or disable automatic sync\nauto_sync = true\n\n## enable or disable automatic update checks\nupdate_check = false\n\n## address of the sync server\nsync_address = \"https://api.atuin.sh\"\n\n## how often to sync history. note that this is only triggered when a command\n## is ran, so sync intervals may well be longer\n## set it to 0 to sync after every command\nsync_frequency = \"1h\"\n\n## which search mode to use\n## possible values: prefix, fulltext, fuzzy, skim\n# search_mode = \"fuzzy\"\n\n## which filter mode to use by default\n## possible values: \"global\", \"host\", \"session\", \"session-preload\", \"directory\", \"workspace\"\n## consider using search.filters to customize the enablement and order of filter modes\nfilter_mode = \"global\"\n\n## With workspace filtering enabled, Atuin will filter for commands executed\n## in any directory within a git repository tree (default: false).\n##\n## To use workspace mode by default when available, set this to true and\n## set filter_mode to \"workspace\" or leave it unspecified and\n## set search.filters to include \"workspace\" before other filter modes.\n# workspaces = false\n\n## which filter mode to use when atuin is invoked from a shell up-key binding\n## the accepted values are identical to those of \"filter_mode\"\n## leave unspecified to use same mode set in \"filter_mode\"\n# filter_mode_shell_up_key_binding = \"global\"\n\n## which search mode to use when atuin is invoked from a shell up-key binding\n## the accepted values are identical to those of \"search_mode\"\n## leave unspecified to use same mode set in \"search_mode\"\n# search_mode_shell_up_key_binding = \"fuzzy\"\n\n## which style to use\n## possible values: auto, full, compact\n# style = \"auto\"\n\n## the maximum number of lines the interface should take up\n## set it to 0 to always go full screen\n# inline_height = 0\n\n## the maximum number of lines the interface should take up\n## when atuin is invoked from a shell up-key binding\n## the accepted values are identical to those of \"inline_height\"\n# inline_height_shell_up_key_binding = 0\n\n## Invert the UI - put the search bar at the top , Default to `false`\n# invert = false\n\n## enable or disable showing a preview of the selected command\n## useful when the command is longer than the terminal width and is cut off\n# show_preview = true\n\n## what to do when the escape key is pressed when searching\n## possible values: return-original, return-query\n# exit_mode = \"return-original\"\n\n## possible values: emacs, subl\n# word_jump_mode = \"emacs\"\n\n## characters that count as a part of a word\n# word_chars = \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\"\n\n## number of context lines to show when scrolling by pages\n# scroll_context_lines = 1\n\n## use ctrl instead of alt as the shortcut modifier key for numerical UI shortcuts\n## alt-0 .. alt-9\n# ctrl_n_shortcuts = false\n\n## Show numeric shortcuts (1..9) beside list items in the TUI\n## set to false to hide the moving numbers if you find them distracting\n# show_numeric_shortcuts = true\n\n## default history list format - can also be specified with the --format arg\n# history_format = \"{time}\\t{command}\\t{duration}\"\n\n## prevent commands matching any of these regexes from being written to history.\n## Note that these regular expressions are unanchored, i.e. if they don't start\n## with ^ or end with $, they'll match anywhere in the command.\n## For details on the supported regular expression syntax, see\n## https://docs.rs/regex/latest/regex/#syntax\n# history_filter = [\n#   \"^secret-cmd\",\n#   \"^innocuous-cmd .*--secret=.+\",\n# ]\n\n## prevent commands run with cwd matching any of these regexes from being written\n## to history. Note that these regular expressions are unanchored, i.e. if they don't\n## start with ^ or end with $, they'll match anywhere in CWD.\n## For details on the supported regular expression syntax, see\n## https://docs.rs/regex/latest/regex/#syntax\n# cwd_filter = [\n#   \"^/very/secret/area\",\n# ]\n\n## Configure the maximum height of the preview to show.\n## Useful when you have long scripts in your history that you want to distinguish\n## by more than the first few lines.\n# max_preview_height = 4\n\n## Configure whether or not to show the help row, which includes the current Atuin\n## version (and whether an update is available), a keymap hint, and the total\n## amount of commands in your history.\n# show_help = true\n\n## Configure whether or not to show tabs for search and inspect\n# show_tabs = true\n\n## Configure whether or not the tabs row may be auto-hidden, which includes the current Atuin\n## tab, such as Search or Inspector, and other tabs you may wish to see. This will\n## only be hidden if there are fewer than this count of lines available, and does not affect the use\n## of keyboard shortcuts to switch tab. 0 to never auto-hide, default is 8 (lines).\n## This is ignored except in `compact` mode.\n# auto_hide_height = 8\n\n## Defaults to true. This matches history against a set of default regex, and will not save it if we get a match. Defaults include\n## 1. AWS key id\n## 2. Github pat (old and new)\n## 3. Slack oauth tokens (bot, user)\n## 4. Slack webhooks\n## 5. Stripe live/test keys\n# secrets_filter = true\n\n## Defaults to true. If enabled, upon hitting enter Atuin will immediately execute the command,\n## whereas tab will put the command in the prompt for editing.\n## If set to false, both enter and tab will place the command in the prompt for editing.\n## This applies for new installs. Old installs will keep the old behaviour unless configured otherwise.\nenter_accept = true\n\n## Defaults to false. If enabled, when triggered after &&, || or |, Atuin will complete commands to chain rather than replace the current line.\n# command_chaining = false\n\n## Defaults to \"emacs\".  This specifies the keymap on the startup of `atuin\n## search`.  If this is set to \"auto\", the startup keymap mode in the Atuin\n## search is automatically selected based on the shell's keymap where the\n## keybinding is defined.  If this is set to \"emacs\", \"vim-insert\", or\n## \"vim-normal\", the startup keymap mode in the Atuin search is forced to be\n## the specified one.\n# keymap_mode = \"auto\"\n\n## Cursor style in each keymap mode.  If specified, the cursor style is changed\n## in entering the cursor shape.  Available values are \"default\" and\n## \"{blink,steady}-{block,underline,bar}\".\n# keymap_cursor = { emacs = \"blink-block\", vim_insert = \"blink-block\", vim_normal = \"steady-block\" }\n\n# network_connect_timeout = 5\n# network_timeout = 5\n\n## Timeout (in seconds) for acquiring a local database connection (sqlite)\n# local_timeout = 5\n\n## Set this to true and Atuin will minimize motion in the UI - timers will not update live, etc.\n## Alternatively, set env NO_MOTION=true\n# prefers_reduced_motion = false\n\n[stats]\n## Set commands where we should consider the subcommand for statistics. Eg, kubectl get vs just kubectl\n# common_subcommands = [\n#   \"apt\",\n#   \"cargo\",\n#   \"composer\",\n#   \"dnf\",\n#   \"docker\",\n#   \"dotnet\",\n#   \"git\",\n#   \"go\",\n#   \"ip\",\n#   \"jj\",\n#   \"kubectl\",\n#   \"nix\",\n#   \"nmcli\",\n#   \"npm\",\n#   \"pecl\",\n#   \"pnpm\",\n#   \"podman\",\n#   \"port\",\n#   \"systemctl\",\n#   \"tmux\",\n#   \"yarn\",\n# ]\n\n## Set commands that should be totally stripped and ignored from stats\n# common_prefix = [\"sudo\"]\n\n## Set commands that will be completely ignored from stats\n# ignored_commands = [\n#   \"cd\",\n#   \"ls\",\n#   \"vi\"\n# ]\n\n[keys]\n# Defaults to true. If disabled, using the up/down key won't exit the TUI when scrolled past the first/last entry.\n# scroll_exits = true\n\n# Defaults to true. The left arrow key will exit the TUI when scrolling before the first character\n# exit_past_line_start = true\n\n# Defaults to true. The right arrow key performs the same functionality as Tab and copies the selected line to the command line to be modified.\n# accept_past_line_end = true\n\n# Defaults to false. The left arrow key performs the same functionality as Tab and copies the selected line to the command line to be modified.\n# accept_past_line_start = false\n\n# Defaults to false. The backspace key performs the same functionality as Tab and copies the selected line to the command line to be modified when at the start of the line.\n# accept_with_backspace = false\n\n[sync]\n# Enable sync v2 by default\n# This ensures that sync v2 is enabled for new installs only\n# In a later release it will become the default across the board\nrecords = true\n\n[preview]\n## which preview strategy to use to calculate the preview height (respects max_preview_height).\n## possible values: auto, static\n## auto: length of the selected command.\n## static: length of the longest command stored in the history.\n## fixed: use max_preview_height as fixed height.\n# strategy = \"auto\"\n\n[daemon]\n## Enables using the daemon to sync. Requires the daemon to be running in the background. Start it with `atuin daemon`\n# enabled = false\n\n## How often the daemon should sync in seconds\n# sync_frequency = 300\n\n## The path to the unix socket used by the daemon (on unix systems)\n## linux/mac: ~/.local/share/atuin/atuin.sock\n## windows: Not Supported\n# socket_path = \"~/.local/share/atuin/atuin.sock\"\n\n## Use systemd socket activation rather than opening the given path (the path must still be correct for the client)\n## linux: false\n## mac/windows: Not Supported\n# systemd_socket = false\n\n## The port that should be used for TCP on non unix systems\n# tcp_port = 8889\n\n# [theme]\n## Color theme to use for rendering in the terminal.\n## There are some built-in themes, including the base theme (\"default\"),\n## \"autumn\" and \"marine\". You can add your own themes to the \"./themes\" subdirectory of your\n## Atuin config (or ATUIN_THEME_DIR, if provided) as TOML files whose keys should be one or\n## more of AlertInfo, AlertWarn, AlertError, Annotation, Base, Guidance, Important, and\n## the string values as lowercase entries from this list:\n##    https://ogeon.github.io/docs/palette/master/palette/named/index.html\n## If you provide a custom theme file, it should be  called \"NAME.toml\" and the theme below\n## should be the stem, i.e. `theme = \"NAME\"` for your chosen NAME.\n# name = \"autumn\"\n\n## Whether the theme manager should output normal or extra information to help fix themes.\n## Boolean, true or false. If unset, left up to the theme manager.\n# debug = true\n\n[search]\n## The list of enabled filter modes, in order of priority.\n## The \"workspace\" mode is skipped when not in a workspace or workspaces = false.\n## Default filter mode can be overridden with the filter_mode setting.\n# filters = [ \"global\", \"host\", \"session\", \"session-preload\", \"workspace\", \"directory\" ]\n\n[tmux]\n## Enable using atuin with tmux popup (requires tmux >= 3.2)\n## When enabled and running inside tmux, Atuin will use a popup window for interactive search.\n## Set to false to disable the popup.\n## This can also be controlled with the ATUIN_TMUX_POPUP environment variable.\n## Note: The tmux popup is currently supported in zsh, bash, and fish shells. This currently doesn't work with iTerm native tmux integration.\n# enabled = false\n\n## Width of the tmux popup window\n## Can be a percentage, or integer (e.g. \"100\" means 100 characters wide)\n# width = \"80%\"\n\n## Height of the tmux popup window\n## Can be a percentage, or integer (e.g. \"100\" means 100 lines tall)\n# height = \"60%\"\n\n[ui]\n## Columns to display in the interactive search, from left to right.\n## The selection indicator (\" > \") is always shown first implicitly.\n##\n## Each column can be specified as a simple string (uses default width)\n## or as an object with type, width, and expand:\n##   { type = \"directory\", width = 30, expand = true }\n##\n## Available column types (with default widths):\n##   duration  (5)  - Command execution duration (e.g., \"123ms\")\n##   time      (8)  - Relative time since execution (e.g., \"59m ago\")\n##   datetime  (16) - Absolute timestamp (e.g., \"2025-01-22 14:35\")\n##   directory (20) - Working directory (truncated if too long)\n##   host      (15) - Hostname where command was run\n##   user      (10) - Username\n##   exit      (3)  - Exit code (colored by success/failure)\n##   command   (*)  - The command itself (expands by default)\n##\n## The \"expand\" option (default: true for command, false for others) makes a\n## column fill remaining space. Only one column should have expand = true.\n##\n## Default:\n# columns = [\"duration\", \"time\", \"command\"]\n##\n## Examples:\n##\n## Minimal - more space for commands:\n# columns = [\"duration\", \"command\"]\n##\n## With wider directory column:\n# columns = [\"duration\", { type = \"directory\", width = 30 }, \"command\"]\n##\n## Show host for multi-machine sync users:\n# columns = [\"duration\", \"time\", \"host\", \"command\"]\n##\n## Show exit codes prominently:\n# columns = [\"exit\", \"duration\", \"command\"]\n##\n## Make directory expand instead of command:\n# columns = [\"duration\", \"time\", { type = \"directory\", expand = true }, { type = \"command\", expand = false }]",
     "zxc.20260125152851.3": "[display]\ncompact = true\nuse_paper = true\n\n[updates]\nauto_update = true\nauto_update_interval_hours = 720",
-    "zxc.20260125163416.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125163416.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260426131724.1": "packadd! comment\npackadd! hlyank",
-    "zxc.20260125163442.1": "import 'find.vim'\nimport 'session.vim'",
+    "zxc.20260125163442.1": "import 'find.vim'\nimport 'session.vim'\n\" import 'temp.vim'",
     "zxc.20260428104430.1": "let g:mapleader = ' '",
     "zxc.20260428151448.1": "nnoremap <leader>bo <cmd>%bd\\|e#\\|bd#<CR>",
     "zxc.20260428151520.1": "nnoremap ZZ <cmd>xa<cr>\nnnoremap ZQ <cmd>qa!<cr>",
@@ -8146,16 +8197,22 @@
     "zxc.20260318212806.19": "Plug 'lervag/vimtex', { 'for': 'tex' }\n",
     "zxc.20260319220325.1": "\" Plug 'ourgal/vim-workspace'\n",
     "zxc.20260426235048.1": "Plug 'jceb/vim-orgmode'\nPlug 'tpope/vim-speeddating'\n",
+    "zxc.20260429111940.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260429144755.1": "if !has('vim9script')\n    finish\nendif\nvim9script",
+    "zxc.20260429144738.1": "class Session\n    const sep: string = has(\"win32\") ? \"\\\\\" : \"/\"\n    const fileName: string = getcwd()->substitute(this.sep, \"%\", \"g\")->substitute(\":\", \"%\", \"g\")\n    const folder: string = get(g:, \"my_session_folder\", ($MYVIMRC->fnamemodify(\":p:h\") .. this.sep .. \"sessions\")->simplify())\n    const fullPath: string = this.folder .. this.sep .. this.fileName\n\n    def new()\n        if !isdirectory(this.folder)\n            mkdir(this.folder, \"p\")\n        endif\n    enddef\n\n    def Save(): void\n        this.fullPath->escape(\"%\")->printf(\"mksession! %s\")->execute()\n    enddef\n\n    def Load(): void\n        if !filereadable(this.fullPath)\n            return\n        endif\n\n        this.fullPath->escape(\"%\")->printf(\"source %s\")->execute()\n    enddef\n\nendclass\n",
+    "zxc.20260429144851.1": "if len(v:argv) == 1\n    g:my_session = Session.new()\n\n    augroup MySession\n        au! VimEnter * ++nested g:my_session.Load()\n        au! VimLeave * g:my_session.Save()\n    augroup END\nendif",
+    "zxc.20260429145437.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260429112205.1": "vim9script\n\ng:my_temp_body = false\n\n# channel data callback function. Called for every received line.\ndef Chan_data_cb(ch: channel, msg: string)\n  # add(g:rcvd_data, msg)\n  if msg == \"<body>\"\n    g:my_temp_body = true\n  endif\n\n  if g:my_temp_body\n    :echom msg\n  endif\nenddef\n\n# channel close callback function.\ndef Chan_close_cb(ch: channel)\n  :echom g:rcvd_data[0]\nenddef\n\ndef Display_Page()\n  var addr = \"www.baidu.com:443\"\n  var ch_opt = {}\n  # data received is processed one line at a time\n  ch_opt.mode = 'nl'\n  ch_opt.waittime = -1\n  ch_opt.drop = \"never\"\n  ch_opt.callback = function('Chan_data_cb')\n  # ch_opt.close_cb = function('Chan_close_cb')\n  # open the channel\n  var ch = ch_open(addr, ch_opt)\n  if ch_status(ch) != \"open\"\n    echomsg $\"Failed to open channel, status = {ch_status(ch)}\"\n    return\n  endif\n  # send a http request\n  ch_sendraw(ch, \"GET / HTTP/1.0\\nHost: www.baidu.com\\n\\n\")\nenddef\n\nDisplay_Page()",
     "zxc.20260427000037.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260427000057.1": "let maplocalleader = \"\\\\\"",
     "zxc.20260427224318.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260427224218.1": "map q <cmd>quit<cr>",
-    "User.20260218142211.1": "@language vim\n<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "User.20260218142211.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260225204326.1": "{{ if eq .chezmoi.os \"windows\" -}}",
     "User.20260218142322.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260318212653.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260428221625.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260428221638.1": "if !has('vim9script')\n    finish\nendif\nvim9script\n\nclass Session\n    const sep: string = has(\"win32\") ? \"\\\\\" : \"/\"\n    const fileName: string = getcwd()->substitute(this.sep, \"%\", \"g\")->substitute(\":\", \"%\", \"g\")\n    const folder: string = get(g:, \"my_session_folder\", ($MYVIMRC->fnamemodify(\":p:h\") .. this.sep .. \"sessions\")->simplify())\n    const fullPath: string = this.folder .. this.sep .. this.fileName\n    const enable: bool = len(v:argv) == 1\n\n    def new()\n        if !isdirectory(this.folder)\n            mkdir(this.folder, \"p\")\n        endif\n    enddef\n\n    def Save(): void\n        if !this.enable\n            return\n        endif\n        \n        :echom this.fileName\n        :echom this.folder\n        this.fullPath->escape(\"%\")->printf(\"mksession! %s\")->execute()\n        :echom \"Save session\"\n    enddef\n\n    def Load(): void\n        if !this.enable\n            :echom \"Load disable\"\n            return\n        endif\n\n        if !filereadable(this.fullPath)\n            :echom this.fullPath\n            return\n        endif\n\n        this.fullPath->escape(\"%\")->printf(\"source %s\")->execute()\n    enddef\n\nendclass\n\ng:my_session = Session.new()\n\naugroup MySession\n    au! VimEnter * ++nested g:my_session.Load()\n    au! VimLeave * g:my_session.Save()\naugroup END",
+    "zxc.20260429112140.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260426235942.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260427224207.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260216220339.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"ansible-language-server\" -}}\n{{ $lsp = append $lsp \"ansible-language-server\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\ncomment-token = \"#\"\ngrammar = \"yaml\"\ninjection-regex = \"ansible\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]\nname = \"ansible\"\nscope = \"source.yaml\"\nshebangs = [\"ansible-playbook\"]\n\n[[language.file-types]]\nglob = \"playbooks/*.yaml\"\n\n[[language.file-types]]\nglob = \"playbooks/*.yml\"\n\n[[language.file-types]]\nglob = \"group_vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"group_vars/*.yml\"\n\n[[language.file-types]]\nglob = \"host_vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"host_vars/*.yml\"\n\n[[language.file-types]]\nglob = \"vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"vars/*.yml\"\n\n[[language.file-types]]\nglob = \"defaults/*.yaml\"\n\n[[language.file-types]]\nglob = \"defaults/*.yml\"\n\n[[language.file-types]]\nglob = \"tasks/*.yaml\"\n\n[[language.file-types]]\nglob = \"tasks/*.yml\"\n\n[[language.file-types]]\nglob = \"handlers/*.yaml\"\n\n[[language.file-types]]\nglob = \"handlers/*.yml\"\n\n[[language.file-types]]\nglob = \"meta/*.yaml\"\n\n[[language.file-types]]\nglob = \"meta/*.yml\"",
@@ -9194,46 +9251,55 @@
       "_mod_time": 1773571522.655
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1777298774.844
+      "_mod_time": 1776998041.329
     },
     "zxc.20260125143959.1": {
-      "_mod_time": 1776085878.419
+      "_mod_time": 1773571522.655
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1777398574.865
+      "_mod_time": 1777445895.99
     },
     "zxc.20260125164142.1": {
-      "_mod_time": 1777398596.506
+      "_mod_time": 1773571522.655
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1777395693.08
+      "_mod_time": 1777428416.813
+    },
+    "zxc.20260429111940.1": {
+      "_mod_time": 1777445524.334
+    },
+    "zxc.20260429145437.1": {
+      "_mod_time": 1777445708.051
     },
     "zxc.20260427000037.1": {
-      "_mod_time": 1777298774.849
+      "_mod_time": 1777249737.153
     },
     "zxc.20260427224318.1": {
-      "_mod_time": 1777301022.72
+      "_mod_time": 1777337709.088
     },
     "User.20260218142211.1": {
-      "_mod_time": 1777398574.896
+      "_mod_time": 1777445661.807
     },
     "User.20260218142322.1": {
-      "_mod_time": 1777398596.523
+      "_mod_time": 1773571522.686
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1777395693.08
+      "_mod_time": 1777428416.886
     },
     "zxc.20260428221625.1": {
-      "_mod_time": 1777398526.218
+      "_mod_time": 1777445524.38
+    },
+    "zxc.20260429112140.1": {
+      "_mod_time": 1777434599.775
     },
     "zxc.20260426235942.1": {
-      "_mod_time": 1777219283.757
+      "_mod_time": 1777249737.173
     },
     "zxc.20260427224207.1": {
-      "_mod_time": 1777301694.743
+      "_mod_time": 1777337709.122
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1777385864.713
+      "_mod_time": 1777249737.149
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1773571522.6390562
@@ -9251,97 +9317,97 @@
       "_mod_time": 1775182193.7532992
     },
     "User.20260226000855.1": {
-      "_mod_time": 1777179946.832
+      "_mod_time": 1776644732.236
     },
     "zxc.20260202203521.17": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.737
     },
     "User.20260220233639.1": {
-      "_mod_time": 1776085878.391
+      "_mod_time": 1773571522.624
     },
     "zxc.20260202203521.20": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.766
     },
     "User.20260216114746.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.733
     },
     "zxc.20260202203521.14": {
-      "_mod_time": 1776614192.458
+      "_mod_time": 1776644732.237
     },
     "zxc.20260202203521.3": {
-      "_mod_time": 1777189908.131
+      "_mod_time": 1777249737.149
     },
     "zxc.20260202213444.1": {
-      "_mod_time": 1776434513.084
+      "_mod_time": 1774398532.779
     },
     "User.20260220142155.2": {
-      "_mod_time": 1776434513.084
+      "_mod_time": 1774398532.778
     },
     "User.20260220151435.2": {
-      "_mod_time": 1777189908.148
+      "_mod_time": 1777249737.149
     },
     "zxc.20260202215023.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.686
     },
     "zxc.20260202215408.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.737
     },
     "zxc.20260202220030.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.757
     },
     "zxc.20260202220553.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.766
     },
     "User.20260217202401.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774225085.276
     },
     "User.20260220214558.1": {
-      "_mod_time": 1776085878.388
+      "_mod_time": 1774225085.276
     },
     "User.20260217214851.1": {
-      "_mod_time": 1776851988.666
+      "_mod_time": 1776819230.829
     },
     "zxc.20260422085228.1": {
-      "_mod_time": 1776851988.666
+      "_mod_time": 1776819230.912
     },
     "User.20260220000301.2": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.729
     },
     "User.20260220012738.1": {
       "_mod_time": 1774833042.645
     },
     "User.20260308173318.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.712
     },
     "User.20260308184128.2": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.686
     },
     "User.20260308184713.2": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776817843.31
     },
     "User.20260308214701.2": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.701
     },
     "zxc.20260328213746.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774833042.645
     },
     "User.20260308215626.2": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774833042.645
     },
     "zxc.20260317085009.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.707
     },
     "zxc.20260318203351.1": {
-      "_mod_time": 1777179941.91
+      "_mod_time": 1774398532.718
     },
     "zxc.20260323195318.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.733
     },
     "zxc.20260329102210.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774833042.645
     },
     "zxc.20260404153353.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1775529044.695
     },
     "User.20260226001402.1": {
       "_mod_time": 1777180136.352
@@ -9353,37 +9419,37 @@
       "_mod_time": 1777179946.865
     },
     "User.20260220010313.1": {
-      "_mod_time": 1777385861.34
+      "_mod_time": 1773571522.655
     },
     "User.20260220010448.1": {
       "_mod_time": 1773571522.654681
     },
     "User.20260216232855.1": {
-      "_mod_time": 1777179946.854
+      "_mod_time": 1773571522.655
     },
     "User.20260217182613.1": {
-      "_mod_time": 1777179946.857
+      "_mod_time": 1773571522.655
     },
     "zxc.20260317002829.1": {
-      "_mod_time": 1777179946.863
+      "_mod_time": 1776928456.1
     },
     "zxc.20260315140713.1": {
       "_mod_time": 1777179946.861
     },
     "zxc.20260408012432.1": {
-      "_mod_time": 1777179946.871
+      "_mod_time": 1776644732.259
     },
     "User.20260301202336.1": {
-      "_mod_time": 1777179946.857
+      "_mod_time": 1776644732.24
     },
     "zxc.20260327184129.1": {
-      "_mod_time": 1777179946.876
+      "_mod_time": 1775105070.837
     },
     "zxc.20260125162740.1": {
-      "_mod_time": 1776085878.424
+      "_mod_time": 1773571522.655
     },
     "zxc.20260126185048.1": {
-      "_mod_time": 1777179946.853
+      "_mod_time": 1773571522.655
     },
     "zxc.20260130225718.1": {
       "_mod_time": 1777179946.861
@@ -9404,7 +9470,7 @@
       "_mod_time": 1773571522.654681
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1777179946.877
+      "_mod_time": 1776044662.614
     },
     "zxc.20260125145051.1": {
       "_mod_time": 1777179946.885
@@ -9413,7 +9479,7 @@
       "_mod_time": 1777179946.876
     },
     "zxc.20260125152851.2": {
-      "_mod_time": 1776085878.441
+      "_mod_time": 1773571522.67
     },
     "zxc.20260125153131.1": {
       "_mod_time": 1777179946.883
@@ -9422,10 +9488,10 @@
       "_mod_time": 1777179946.882
     },
     "zxc.20260125161631.1": {
-      "_mod_time": 1777302969.492
+      "_mod_time": 1777337709.116
     },
     "User.20260216185314.1": {
-      "_mod_time": 1776085878.439
+      "_mod_time": 1776044662.647
     },
     "User.20260217223023.1": {
       "_mod_time": 1777179946.88
@@ -9440,7 +9506,7 @@
       "_mod_time": 1777179946.879
     },
     "User.20260220233323.1": {
-      "_mod_time": 1776085878.44
+      "_mod_time": 1773571522.67
     },
     "zxc.20260421145655.1": {
       "_mod_time": 1777179946.881
@@ -9449,85 +9515,85 @@
       "_mod_time": 1777179946.881
     },
     "User.20260215182442.1": {
-      "_mod_time": 1777179946.888
+      "_mod_time": 1773571522.67
     },
     "User.20260217022114.1": {
-      "_mod_time": 1777179946.888
+      "_mod_time": 1773709522.909
     },
     "User.20260215182818.1": {
-      "_mod_time": 1777179946.89
+      "_mod_time": 1773571522.67
     },
     "zxc.20260317084145.1": {
-      "_mod_time": 1777179946.889
+      "_mod_time": 1773708150.86
     },
     "zxc.20260201225344.1": {
-      "_mod_time": 1777385858.521
+      "_mod_time": 1773571522.67
     },
     "zxc.20260317082914.1": {
-      "_mod_time": 1777179946.887
+      "_mod_time": 1773712444.025
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1777385856.855
+      "_mod_time": 1777249737.173
     },
     "User.20260215205925.1": {
-      "_mod_time": 1777179946.905
+      "_mod_time": 1774833042.663
     },
     "User.20260215210400.1": {
-      "_mod_time": 1777179946.904
+      "_mod_time": 1773571522.686
     },
     "User.20260220151031.5": {
-      "_mod_time": 1777179946.903
+      "_mod_time": 1774833042.663
     },
     "User.20260220151031.28": {
-      "_mod_time": 1777179946.902
+      "_mod_time": 1773571522.67
     },
     "User.20260221175549.1": {
-      "_mod_time": 1777179946.892
+      "_mod_time": 1773571522.67
     },
     "User.20260221194603.1": {
-      "_mod_time": 1777179946.906
+      "_mod_time": 1773571522.686
     },
     "User.20260222211658.1": {
-      "_mod_time": 1777179946.899
+      "_mod_time": 1775529044.732
     },
     "zxc.20260201203241.1": {
-      "_mod_time": 1777179946.893
+      "_mod_time": 1774225085.298
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1777179946.892
+      "_mod_time": 1774833042.663
     },
     "zxc.20260201214114.1": {
-      "_mod_time": 1777179946.894
+      "_mod_time": 1774833042.663
     },
     "zxc.20260202195207.1": {
-      "_mod_time": 1777179946.896
+      "_mod_time": 1774398532.804
     },
     "zxc.20260322192157.1": {
-      "_mod_time": 1777179946.897
+      "_mod_time": 1774398532.804
     },
     "zxc.20260322192357.1": {
-      "_mod_time": 1777179946.898
+      "_mod_time": 1774398532.805
     },
     "zxc.20260325223009.1": {
-      "_mod_time": 1777179946.899
+      "_mod_time": 1774490258.908
     },
     "zxc.20260325223610.1": {
-      "_mod_time": 1777179946.901
+      "_mod_time": 1774490258.908
     },
     "zxc.20260325223805.1": {
-      "_mod_time": 1777179946.9
+      "_mod_time": 1775182616.335
     },
     "zxc.20260329012003.1": {
-      "_mod_time": 1777179946.894
+      "_mod_time": 1776125926.578
     },
     "zxc.20260411192514.1": {
-      "_mod_time": 1777179946.895
+      "_mod_time": 1776996577.444
     },
     "zxc.20260330235722.1": {
-      "_mod_time": 1777179946.891
+      "_mod_time": 1774916487.394
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1777179946.854
+      "_mod_time": 1775615379.209
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1776085717.92
@@ -9572,76 +9638,76 @@
       "_mod_time": 1775742456.705
     },
     "zxc.20260202205715.1": {
-      "_mod_time": 1777106655.378
+      "_mod_time": 1773571522.67
     },
     "zxc.20260426163956.1": {
       "_mod_time": 1777379462.256
     },
     "User.20260302151947.1": {
-      "_mod_time": 1777179946.836
+      "_mod_time": 1776644732.238
     },
     "zxc.20260407232538.1": {
-      "_mod_time": 1777179946.836
+      "_mod_time": 1775607497.148
     },
     "zxc.20260408005117.1": {
-      "_mod_time": 1777179946.836
+      "_mod_time": 1776753962.305
     },
     "zxc.20260201140523.1": {
-      "_mod_time": 1777179946.85
+      "_mod_time": 1773571522.639
     },
     "zxc.20260130233132.1": {
-      "_mod_time": 1777385863.235
+      "_mod_time": 1773571522.639
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1777179946.836
+      "_mod_time": 1776817490.773
     },
     "zxc.20260214105528.1": {
-      "_mod_time": 1777302969.518
+      "_mod_time": 1777337709.07
     },
     "zxc.20260214142543.1": {
-      "_mod_time": 1777179946.851
+      "_mod_time": 1776044662.566
     },
     "User.20260215234634.1": {
-      "_mod_time": 1777179946.854
+      "_mod_time": 1773571522.655
     },
     "User.20260216124226.1": {
-      "_mod_time": 1777179946.845
+      "_mod_time": 1773571522.639
     },
     "User.20260216125422.1": {
-      "_mod_time": 1777179946.847
+      "_mod_time": 1773571522.639
     },
     "User.20260219235648.1": {
-      "_mod_time": 1777179946.847
+      "_mod_time": 1773571522.639
     },
     "User.20260228231944.1": {
-      "_mod_time": 1777179946.852
+      "_mod_time": 1773571522.655
     },
     "User.20260302211536.1": {
-      "_mod_time": 1777179946.836
+      "_mod_time": 1773571522.639
     },
     "User.20260302211740.1": {
-      "_mod_time": 1777179946.836
+      "_mod_time": 1773571522.639
     },
     "User.20260302211946.1": {
-      "_mod_time": 1777179946.845
+      "_mod_time": 1773571522.639
     },
     "User.20260302212424.1": {
-      "_mod_time": 1777179946.845
+      "_mod_time": 1773571522.639
     },
     "User.20260302212645.1": {
-      "_mod_time": 1777179946.84
+      "_mod_time": 1773571522.639
     },
     "User.20260303213330.1": {
-      "_mod_time": 1777179946.854
+      "_mod_time": 1773571522.655
     },
     "zxc.20260401221312.1": {
-      "_mod_time": 1777179946.849
+      "_mod_time": 1775105070.822
     },
     "zxc.20260402230727.1": {
-      "_mod_time": 1777179946.85
+      "_mod_time": 1775176074.543
     },
     "zxc.20260417220340.1": {
-      "_mod_time": 1777179941.91
+      "_mod_time": 1776644732.239
     }
   }
 }

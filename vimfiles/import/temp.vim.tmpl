@@ -1,0 +1,45 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "vim" -}}
+vim9script
+
+g:my_temp_body = false
+
+# channel data callback function. Called for every received line.
+def Chan_data_cb(ch: channel, msg: string)
+  # add(g:rcvd_data, msg)
+  if msg == "<body>"
+    g:my_temp_body = true
+  endif
+
+  if g:my_temp_body
+    :echom msg
+  endif
+enddef
+
+# channel close callback function.
+def Chan_close_cb(ch: channel)
+  :echom g:rcvd_data[0]
+enddef
+
+def Display_Page()
+  var addr = "www.baidu.com:443"
+  var ch_opt = {}
+  # data received is processed one line at a time
+  ch_opt.mode = 'nl'
+  ch_opt.waittime = -1
+  ch_opt.drop = "never"
+  ch_opt.callback = function('Chan_data_cb')
+  # ch_opt.close_cb = function('Chan_close_cb')
+  # open the channel
+  var ch = ch_open(addr, ch_opt)
+  if ch_status(ch) != "open"
+    echomsg $"Failed to open channel, status = {ch_status(ch)}"
+    return
+  endif
+  # send a http request
+  ch_sendraw(ch, "GET / HTTP/1.0\nHost: www.baidu.com\n\n")
+enddef
+
+Display_Page()
+{{ end -}}
+{{ end -}}
