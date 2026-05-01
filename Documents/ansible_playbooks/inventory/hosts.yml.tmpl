@@ -9,7 +9,7 @@ all:
     void-live:
       ansible_user: anon
       ansible_ssh_pass: voidlinux
-      ansible_host: 192.168.123.181
+      ansible_host: 192.168.123.221
       ansible_become_pass: "{{ gopass "password/linux/user" }}"
     surface-void:
       ansible_user: zxc
@@ -69,4 +69,3 @@ macos:
     macmini:
       ansible_host: 192.168.123.117
       ansible_become_pass: "{{ gopass "password/linux/user" }}"
-

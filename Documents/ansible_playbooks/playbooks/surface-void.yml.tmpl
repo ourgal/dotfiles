@@ -1,0 +1,91 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+- name: Configure void linux
+  hosts: surface-void
+  tasks:
+    - name: Install packages
+      become: true
+      environment:
+        XBPS_ARCH: "{{ ansible_facts.machine }}"
+      community.general.xbps:
+        name: "{{ item }}"
+      loop:
+        - git
+        - curl
+        - aria2
+        - grep
+        - fzf
+        - yt-dlp
+        - ffmpeg
+        - 7zip
+        - atool
+        - buku
+        - Clipboard
+        - xclip
+        - xsel
+        - aria2
+        - transmission
+        - yt-dlp
+        - gvim-huge
+        - helix
+        - chezmoi
+        - lf
+        - nnn
+        - ranger
+        - git
+        - git-annex
+        - git-crypt
+        - git-extras
+        - lazygit
+        - gitui
+        - tmux
+        - zellij
+        - fzf
+        - atuin
+        - starship
+        - rsync
+        - psmisc
+        - ripgrep
+        - zoxide
+        - mmv
+        - fd
+        - eza
+        - tree
+        - duf
+        - dua-cli
+        - btop
+        - htop
+        - bat
+        - mpv
+        - firefox
+        - kitty
+        - ansible
+        - shellcheck
+        - nodejs
+        - uv
+        - xfce4
+        - xfce4-battery-plugin
+        - xorg
+        - noto-fonts-ttf
+        - noto-fonts-cjk
+        - nerd-fonts
+        - noto-fonts-emoji
+        - intel-video-accel
+        - intel-ucode
+        - libva-utils
+        - python3-pipx
+    - name: Install pipx packages
+      tags: pipx
+      community.general.pipx:
+        name: "{{ item }}"
+      loop:
+        - jellyfin-mpv-shim
+
+    - name: Regenerate initramfs
+      become: true
+      ansible.builtin.command:
+        cmd: "xbps-reconfigure --force linux{{ ansible_facts.kernel | regex_search('\\d+\\.\\d+') }}"
+      changed_when: true
+    - name: Download xlocate data
+      changed_when: true
+      ansible.builtin.command:
+        cmd: xlocate -S

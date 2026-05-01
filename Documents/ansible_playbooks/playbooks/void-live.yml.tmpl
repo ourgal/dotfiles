@@ -1,9 +1,10 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
 - name: Install void linux
   hosts: void-live
   vars:
-    xbps_mirror=https://mirror.nju.edu.cn/voidlinux/current
-    xbps_nonfree-mirror=https://mirror.nju.edu.cn/voidlinux/current/nonfree
-    hostname=surface-void
+    xbps_mirror: https://mirror.nju.edu.cn/voidlinux/current
+    xbps_nonfree_mirror: https://mirror.nju.edu.cn/voidlinux/current/nonfree
+    hostname: surface-void
   tasks:
     - name: Debug variables
       ansible.builtin.debug:
@@ -13,20 +14,28 @@
       community.general.xbps:
         name: "{{ item }}"
         repositories:
-          - {{ xbps_mirror }}
-          - {{ xbps_nonfree_mirror }}
+          - "{{ xbps_mirror }}"
+          - "{{ xbps_nonfree_mirror }}"
       loop:
         - parted
+    # Example on how to read info and reuse it in subsequent task
+    - name: Read device information (always use unit when probing)
+      become: true
+      community.general.parted: device=/dev/nvme0n1 unit=MiB
+      register: nvme0n1_info
+      
+    - name: Remove all partitions from disk
+      become: true
+      community.general.parted:
+        device: /dev/nvme0n1
+        number: '{{ item.num }}'
+        state: absent
+      loop: '{{ nvme0n1_info.partitions }}'
     - name: Add partitions
       become: true
       vars:
         device: /dev/nvme0n1
       block:
-        - name: Delete old boot partition
-          community.general.parted:
-            device: "{{ device }}"
-            number: 1
-            state: absent
         - name: Boot partition
           community.general.parted:
             device: "{{ device }}"
@@ -37,11 +46,6 @@
             part_start: "{{ 2 }}MiB"
             part_end: "{{ 2 + 512 }}MiB"
             state: present
-        - name: Delete old swap partition
-          community.general.parted:
-            device: "{{ device }}"
-            number: 2
-            state: absent
         - name: Swap partition
           community.general.parted:
             device: "{{ device }}"
@@ -52,11 +56,6 @@
             part_start: "{{ 2 + 512 }}MiB"
             part_end: "{{ 2 + 512 + 1024 * 4 }}MiB"
             state: present
-        - name: Delete old root partition
-          community.general.parted:
-            device: "{{ device }}"
-            number: 3
-            state: absent
         - name: Root partition
           community.general.parted:
             device: "{{ device }}"
@@ -88,6 +87,21 @@
     - name: Mount other partitions
       become: true
       block:
+        - name: Mount root
+          ansible.posix.mount:
+            src: /dev/nvme0n1p3
+            path: /mnt
+            opts: rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=/
+            fstype: btrfs
+            state: ephemeral
+        - name: Save root to fstab
+          ansible.posix.mount:
+            src: /dev/nvme0n1p3
+            path: /
+            opts: rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=/
+            fstype: btrfs
+            state: present
+            fstab: /mnt/etc/fstab
         - name: Mount boot
           ansible.posix.mount:
             src: /dev/nvme0n1p1
@@ -105,21 +119,6 @@
             state: present
             fstab: /mnt/etc/fstab
             passno: 2
-        - name: Mount root
-          ansible.posix.mount:
-            src: /dev/nvme0n1p3
-            path: /mnt
-            opts: rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=/
-            fstype: btrfs
-            state: ephemeral
-        - name: Save root to fstab
-          ansible.posix.mount:
-            src: /dev/nvme0n1p3
-            path: /
-            opts: rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=/
-            fstype: btrfs
-            state: present
-            fstab: /mnt/etc/fstab
         - name: Write swap to fstab
           ansible.posix.mount:
             src: /dev/nvme0n1p2
@@ -170,18 +169,18 @@
         name: "{{ item }}"
         root: /mnt
         repositories:
-          - {{ xbps_mirror }}
-          - {{ xbps_nonfree_mirror }}
+          - "{{ xbps_mirror }}"
+          - "{{ xbps_nonfree_mirror }}"
       loop:
         - base-system
+        - python3
+        - alsa-utils
         - grub-x86_64-efi
+        - os-prober
         - avahi
         - nss-mdns
-        - python3
         - NetworkManager
-        - os-prober
         - chrony
-        - alsa-utils
     - name: Set timezone
       become: true
       ansible.builtin.file:
@@ -204,12 +203,14 @@
         - avahi-daemon
         - chronyd
     - name: Set hostname
+      become: true
       ansible.builtin.copy:
         dest: /mnt/etc/hostname
         content: |
           {{ hostname }}
         mode: "0644"
     - name: Set NetworkManager rc-manager
+      become: true
       community.general.ini_file:
         path: /mnt/etc/NetworkManager/NetworkManager.conf
         section: main
@@ -231,41 +232,6 @@
             content: |
               repository={{ xbps_nonfree_mirror }}
             mode: "0644"
-    - name: Create files
-      become: true
-      vars:
-        chroot_ssh_keys_host: surface-void
-      block:
-        - name: Set system ssh rsa private key
-          ansible.builtin.copy:
-            dest: /mnt/etc/ssh/ssh_host_rsa_key
-            content: "{{ lookup('gopass', 'ssh/' + chroot_ssh_keys_host + '/system/rsa_key') }}"
-            mode: "600"
-        - name: Set system ssh rsa public key
-          ansible.builtin.copy:
-            dest: /mnt/etc/ssh/ssh_host_rsa_key.pub
-            content: "{{ lookup('gopass', 'ssh/' + chroot_ssh_keys_host + '/system/rsa_key.pub') }}"
-            mode: "644"
-        - name: Set system ssh ed25519 private key
-          ansible.builtin.copy:
-            dest: /mnt/etc/ssh/ssh_host_ed25519_key
-            content: "{{ lookup('gopass', 'ssh/' + chroot_ssh_keys_host + '/system/ed25519_key') }}"
-            mode: "600"
-        - name: Set system ssh ed25519 public key
-          ansible.builtin.copy:
-            dest: /mnt/etc/ssh/ssh_host_ed25519_key.pub
-            content: "{{ lookup('gopass', 'ssh/' + chroot_ssh_keys_host + '/system/ed25519_key.pub') }}"
-            mode: "644"
-        - name: Set system ssh ecdsa private key
-          ansible.builtin.copy:
-            dest: /mnt/etc/ssh/ssh_host_ecdsa_key
-            content: "{{ lookup('gopass', 'ssh/' + chroot_ssh_keys_host + '/system/ecdsa_key') }}"
-            mode: "600"
-        - name: Set system ssh ecdsa public key
-          ansible.builtin.copy:
-            dest: /mnt/etc/ssh/ssh_host_ecdsa_key.pub
-            content: "{{ lookup('gopass', 'ssh/' + chroot_ssh_keys_host + '/system/ecdsa_key.pub') }}"
-            mode: "644"
     - name: Config file
       become: true
       block:
@@ -336,31 +302,39 @@
           ansible.builtin.file:
             path: "{{ xchroot_script_root | default('/mnt') }}/script"
             state: absent
-    - name: Set sshd authorized keys
+    - name: Set root ssh authorized keys
       become: true
       block:
         - name: Create ssh authorized keys folder
           ansible.builtin.file:
-            path: "{{ chroot_sshd_authorized_keys_root | default('/mnt') }}/etc/ssh/authorized_keys.d"
+            path: "{{ chroot_sshd_authorized_keys_root | default('/mnt') }}/root/.ssh"
             state: directory
-            mode: "0755"
+            mode: "0700"
             owner: root
             group: root
         - name: Copy ssh root authorized keys
-          ansible.builtin.copy:
-            src: "/etc/ssh/authorized_keys.d/{{ item }}"
-            dest: "{{ chroot_sshd_authorized_keys_root | default('/mnt') }}/etc/ssh/authorized_keys.d/{{ item }}"
-            mode: "0644"
-          loop:
-            - root
-            - zxc
-        - name: Set sshd config
-          ansible.builtin.lineinfile:
-            path: "{{ chroot_sshd_authorized_keys_root | default('/mnt') }}/etc/ssh/sshd_config"
-            regex: "^[#]?AuthorizedKeysFile"
-            line: "AuthorizedKeysFile %h/.ssh/authorized_keys /etc/ssh/authorized_keys.d/%u"
+          ansible.builtin.get_url:
+            url: https://github.com/ourgal.keys
+            dest: "{{ chroot_sshd_authorized_keys_root | default('/mnt') }}/root/.ssh/authorized_keys"
+            mode: "0600"
+
+    - name: Set user ssh authorized keys
+      block:
+        - name: Create ssh authorized keys folder
+          ansible.builtin.file:
+            path: "{{ chroot_sshd_authorized_keys_root | default('/mnt') }}/home/zxc/.ssh"
+            state: directory
+            mode: "0700"
+        - name: Copy ssh authorized keys
+          ansible.builtin.get_url:
+            url: https://github.com/ourgal.keys
+            dest: "{{ chroot_sshd_authorized_keys_root | default('/mnt') }}/home/zxc/.ssh/authorized_keys"
+            mode: "0600"
     - name: Remove chroot resolv.conf
       become: true
       ansible.builtin.file:
         path: /mnt/etc/resolv.conf
         state: absent
+    - name: Reboot
+      become: true
+      ansible.builtin.reboot:
