@@ -5437,7 +5437,37 @@
                   "children": [
                     {
                       "gnx": "zxc.20260423145238.1",
-                      "vh": "@clean hosts.yml.tmpl"
+                      "vh": "@clean hosts.yml.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260501183147.1",
+                          "vh": "all"
+                        },
+                        {
+                          "gnx": "zxc.20260501183207.1",
+                          "vh": "windows"
+                        },
+                        {
+                          "gnx": "zxc.20260501183224.1",
+                          "vh": "wsl-debian"
+                        },
+                        {
+                          "gnx": "zxc.20260501183235.1",
+                          "vh": "wsl-arch"
+                        },
+                        {
+                          "gnx": "zxc.20260501183245.1",
+                          "vh": "termux"
+                        },
+                        {
+                          "gnx": "zxc.20260501183257.1",
+                          "vh": "uos"
+                        },
+                        {
+                          "gnx": "zxc.20260501183315.1",
+                          "vh": "mac os"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -5461,8 +5491,12 @@
                       "children": [
                         {
                           "gnx": "zxc.20260423143729.3",
-                          "vh": "@clean windows.yml",
+                          "vh": "@clean windows.yml.tmpl",
                           "children": [
+                            {
+                              "gnx": "zxc.20260502011628.1",
+                              "vh": "<< delimiter >>"
+                            },
                             {
                               "gnx": "zxc.20260423143729.4",
                               "vh": "admin part",
@@ -6730,8 +6764,11 @@
                       "children": [
                         {
                           "gnx": "zxc.20260423143729.304",
-                          "vh": "@clean nixos-uos-arm.yml",
+                          "vh": "@clean nixos-uos-arm.yml.tmpl",
                           "children": [
+                            {
+                              "gnx": "zxc.20260502011628.1"
+                            },
                             {
                               "gnx": "zxc.20260423143729.305",
                               "vh": "content",
@@ -6752,8 +6789,11 @@
                       "children": [
                         {
                           "gnx": "zxc.20260423143729.308",
-                          "vh": "@clean wsl-debian.yml",
+                          "vh": "@clean wsl-debian.yml.tmpl",
                           "children": [
+                            {
+                              "gnx": "zxc.20260502011628.1"
+                            },
                             {
                               "gnx": "zxc.20260423143729.309",
                               "vh": "facts"
@@ -6854,8 +6894,11 @@
                       "children": [
                         {
                           "gnx": "zxc.20260423143729.330",
-                          "vh": "@clean wsl-arch.yml",
+                          "vh": "@clean wsl-arch.yml.tmpl",
                           "children": [
+                            {
+                              "gnx": "zxc.20260502011628.1"
+                            },
                             {
                               "gnx": "zxc.20260423143729.331",
                               "vh": "facts"
@@ -6964,8 +7007,11 @@
                       "children": [
                         {
                           "gnx": "zxc.20260423143729.353",
-                          "vh": "@clean termux.yml",
+                          "vh": "@clean termux.yml.tmpl",
                           "children": [
+                            {
+                              "gnx": "zxc.20260502011628.1"
+                            },
                             {
                               "gnx": "zxc.20260423143729.354",
                               "vh": "facts"
@@ -7278,8 +7324,11 @@
                       "children": [
                         {
                           "gnx": "zxc.20260423143729.426",
-                          "vh": "@clean uos-live.yml",
+                          "vh": "@clean uos-live.yml.tmpl",
                           "children": [
+                            {
+                              "gnx": "zxc.20260502011628.1"
+                            },
                             {
                               "gnx": "zxc.20260423143729.427",
                               "vh": "<< vars >>"
@@ -7400,8 +7449,11 @@
                       "children": [
                         {
                           "gnx": "zxc.20260423143729.453",
-                          "vh": "@clean macos.yml",
+                          "vh": "@clean macos.yml.tmpl",
                           "children": [
+                            {
+                              "gnx": "zxc.20260502011628.1"
+                            },
                             {
                               "gnx": "zxc.20260423143729.454",
                               "vh": "facts"
@@ -7502,8 +7554,11 @@
                       "children": [
                         {
                           "gnx": "zxc.20260501132138.1",
-                          "vh": "@clean void-live.yml",
+                          "vh": "@clean void-live.yml.tmpl",
                           "children": [
+                            {
+                              "gnx": "zxc.20260502011628.1"
+                            },
                             {
                               "gnx": "zxc.20260501154924.1",
                               "vh": "<< vars >>"
@@ -7515,6 +7570,10 @@
                             {
                               "gnx": "zxc.20260501140144.1",
                               "vh": "install parted"
+                            },
+                            {
+                              "gnx": "zxc.20260501190027.1",
+                              "vh": "delete all partitions"
                             },
                             {
                               "gnx": "zxc.20260501140222.1",
@@ -7543,12 +7602,12 @@
                               "vh": "mount partitions",
                               "children": [
                                 {
-                                  "gnx": "zxc.20260501140812.1",
-                                  "vh": "boot"
-                                },
-                                {
                                   "gnx": "zxc.20260501140739.1",
                                   "vh": "root"
+                                },
+                                {
+                                  "gnx": "zxc.20260501140812.1",
+                                  "vh": "boot"
                                 },
                                 {
                                   "gnx": "zxc.20260501140831.1",
@@ -7562,7 +7621,35 @@
                             },
                             {
                               "gnx": "zxc.20260501141247.1",
-                              "vh": "install packages"
+                              "vh": "install packages",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260501211824.1",
+                                  "vh": "system",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260501211935.1",
+                                      "vh": "audio"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501211850.1",
+                                      "vh": "boot loader"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501211916.1",
+                                      "vh": "mdns"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501212009.1",
+                                      "vh": "network"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501211957.1",
+                                      "vh": "ntp"
+                                    }
+                                  ]
+                                }
+                              ]
                             },
                             {
                               "gnx": "zxc.20260501141321.1",
@@ -7583,10 +7670,6 @@
                             {
                               "gnx": "zxc.20260501141550.1",
                               "vh": "xbps mirror and non-free repo"
-                            },
-                            {
-                              "gnx": "zxc.20260501141727.1",
-                              "vh": "ssh keys"
                             },
                             {
                               "gnx": "zxc.20260501141911.1",
@@ -7653,6 +7736,221 @@
                             {
                               "gnx": "zxc.20260501143352.1",
                               "vh": "remove chroot resovl.conf"
+                            },
+                            {
+                              "gnx": "zxc.20260501215954.1",
+                              "vh": "reboot"
+                            }
+                          ]
+                        },
+                        {
+                          "gnx": "zxc.20260501214109.1",
+                          "vh": "@clean surface-void.yml.tmpl",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260501214216.1",
+                              "vh": "install packages",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260502011628.1"
+                                },
+                                {
+                                  "gnx": "zxc.20260501214216.2",
+                                  "vh": "cli",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260501214216.3",
+                                      "vh": "anime",
+                                      "children": [
+                                        {
+                                          "gnx": "zxc.20260501214216.4",
+                                          "vh": "ani-cli"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501214216.5",
+                                      "vh": "archive"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501214216.6",
+                                      "vh": "bookmark"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501214216.7",
+                                      "vh": "clipboard"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501214216.8",
+                                      "vh": "download"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501214216.9",
+                                      "vh": "editor"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501214216.10",
+                                      "vh": "file manager"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501214216.11",
+                                      "vh": "git"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501214216.12",
+                                      "vh": "multiplexer"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501214216.13",
+                                      "vh": "shell",
+                                      "children": [
+                                        {
+                                          "gnx": "zxc.20260501214216.14",
+                                          "vh": "fuzzy finder"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.15",
+                                          "vh": "history"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.16",
+                                          "vh": "prompt"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501214216.17",
+                                      "vh": "sync"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501214216.18",
+                                      "vh": "utils",
+                                      "children": [
+                                        {
+                                          "gnx": "zxc.20260501214216.19",
+                                          "vh": "ps"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.20",
+                                          "vh": "grep"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.21",
+                                          "vh": "cd"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.22",
+                                          "vh": "mv"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.23",
+                                          "vh": "find"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.24",
+                                          "vh": "ls"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.25",
+                                          "vh": "df"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.26",
+                                          "vh": "du"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.27",
+                                          "vh": "top"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.28",
+                                          "vh": "less"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501214216.29",
+                                      "vh": "video"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260501214216.30",
+                                  "vh": "gui",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260501214216.31",
+                                      "vh": "browser"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501214216.32",
+                                      "vh": "terminal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260501214216.33",
+                                  "vh": "dev",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260501214216.34",
+                                      "vh": "ansible"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501214216.35",
+                                      "vh": "bash"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501214216.36",
+                                      "vh": "nodejs"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501214216.37",
+                                      "vh": "python"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260501221719.1",
+                                  "vh": "system",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260501221719.4",
+                                      "vh": "desktop"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501221719.5",
+                                      "vh": "font"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501221719.6",
+                                      "vh": "graphic driver"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501221719.10",
+                                      "vh": "package manager"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260501214336.1",
+                              "vh": "pipx packages",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260501214336.2",
+                                  "vh": "jelly-mpv-shim"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260501214447.1",
+                              "vh": "initramfs"
+                            },
+                            {
+                              "gnx": "zxc.20260501214541.1",
+                              "vh": "download xlocate data"
                             }
                           ]
                         }
@@ -8938,8 +9236,16 @@
     "zxc.20260316162600.1": "#Requires AutoHotkey v2.0\n#SingleInstance Force\n\nLWin::F24\nRWin::F24",
     "zxc.20260323180608.1": "InstallKeybdHook\nInstallMouseHook\nCoordMode(\"mouse\", \"screen\")\n\nOnExit (*) => SystemCursor(\"Show\")  ; Ensure the cursor is made visible when the script exits\n\nSetTimer(Main, 10)\n\nMain() {\n\n   if(A_TimeIdleKeyboard < 25)\n      ;A keyboard key has been pressed, hide cursor\n      SystemCursor(\"Hide\")\n\n   else if(A_TimeIdleMouse < 25)\n      ;Mouse have been used, show cursor\n      SystemCursor(\"Show\")\n}\n\nSystemCursor(cmd) { ; cmd = \"Show|Hide|Toggle|Reload\"\n\n   static visible := true, c := Map()\n   static sys_cursors := [32512, 32513, 32514, 32515, 32516, 32642, 32643, 32644, 32645, 32646, 32648, 32649, 32650]\n\n   if (cmd = \"Reload\" or !c.Count) { ; Reload when requested or at first call.\n\n      for i, id in sys_cursors {\n         h_cursor := DllCall(\"LoadCursor\", \"Ptr\", 0, \"Ptr\", id)\n         h_default := DllCall(\"CopyImage\", \"Ptr\", h_cursor, \"UInt\", 2, \"Int\", 0, \"Int\", 0, \"UInt\", 0)\n         h_blank := DllCall(\"CreateCursor\", \"Ptr\", 0, \"Int\", 0, \"Int\", 0, \"Int\", 32, \"Int\", 32, \"Ptr\", Buffer(32 * 4, 0xFF), \"Ptr\", Buffer(32 * 4, 0))\n         c[id] := { default: h_default, blank: h_blank }\n      }\n   }\n\n   switch cmd {\n      case \"Show\":\n         if (!visible)\n            visible := true\n         else\n            return\n      case \"Hide\":\n         if (visible)\n            visible := false\n         else\n            return\n      case \"Toggle\":\n         visible := !visible\n      default: return\n   }\n\n   for id, handles in c {\n      h_cursor := DllCall(\"CopyImage\", \"Ptr\", visible ? handles.default : handles.blank, \"UInt\", 2, \"Int\", 0, \"Int\", 0, \"UInt\", 0)\n      DllCall(\"SetSystemCursor\", \"Ptr\", h_cursor, \"UInt\", id)\n   }\n}",
     "zxc.20260413210312.1": "#Requires AutoHotkey v2.0\n#SingleInstance Force\n\nRun \"gopass show -c keepassxc/main\", ,\"Hide\"\nWinWait \"Message from User\"\n\n{{ if .my.modules.glazewm -}}\nRun \"glazewm command focus --workspace 9\"\n{{ end -}}\nRun \"keepassxc\"\nWinWaitActive \" - KeePassXC\"\nWinActive \" - KeePassXC\"\n\nSend \"^v\"\nSend \"{Enter}\"\nreturn\n",
-    "zxc.20260423145238.1": "---\nall:\n  hosts:\n    chromebit:\n      ansible_user: user\n      ansible_host: chromebit.local\n      ansible_become_method: doas\n      ansible_become_pass: \"{{ gopass \"password/linux/user\" }}\"\n    void-live:\n      ansible_user: anon\n      ansible_ssh_pass: voidlinux\n      ansible_host: 192.168.123.181\n      ansible_become_pass: \"{{ gopass \"password/linux/user\" }}\"\n    surface-void:\n      ansible_user: zxc\n      ansible_host: surface-void.local\n      ansible_become_pass: \"{{ gopass \"password/linux/user\" }}\"\nwindows:\n  vars:\n    ansible_connection: ssh\n    ansible_shell_type: powershell\n  hosts:\n    nuc:\n      ansible_host: nuc.local\n      my_hostname: nuc\n    bed:\n      ansible_host: bed.local\n      my_hostname: bed\n    work:\n      ansible_host: 192.168.1.110\n      my_hostname: work\nwsl-debian:\n  vars:\n    ansible_connection: community.general.wsl\n    ansible_user: user\n  hosts:\n    nuc-windows-wsl-debian:\n      ansible_host: nuc.local\n      wsl_distribution: debian\n      wsl_user: root\nwsl-arch:\n  vars:\n    ansible_connection: community.general.wsl\n    ansible_user: user\n  hosts:\n    nuc-wsl-arch:\n      ansible_host: nuc.local\n      wsl_distribution: archlinux\n      wsl_user: root\n    work-wsl-arch:\n      ansible_host: 192.168.1.110\n      wsl_distribution: archlinux\n      wsl_user: root\ntermux:\n  vars:\n    ansible_ssh_port: 8022\n  hosts:\n    note20:\n      ansible_host: 192.168.123.232\n      ansible_user: u0_a644\nuos:\n  hosts:\n    test:\n      ansible_host: 192.168.1.107\n      ansible_user: uos\n      ansible_become_pass: uos\nmacos:\n  hosts:\n    macmini:\n      ansible_host: 192.168.123.117\n      ansible_become_pass: \"{{ gopass \"password/linux/user\" }}\"\n\n@language yaml",
-    "zxc.20260423143729.3": "@language yaml\n---\n@others\n",
+    "zxc.20260423145238.1": "---\n@others\n@language yaml",
+    "zxc.20260501183147.1": "all:\n  hosts:\n    chromebit:\n      ansible_user: user\n      ansible_host: chromebit.local\n      ansible_become_method: doas\n      ansible_become_pass: \"{{ gopass \"password/linux/user\" }}\"\n    void-live:\n      ansible_user: anon\n      ansible_ssh_pass: voidlinux\n      ansible_host: 192.168.123.221\n      ansible_become_pass: \"{{ gopass \"password/linux/user\" }}\"\n    surface-void:\n      ansible_user: zxc\n      ansible_host: surface-void.local\n      ansible_become_pass: \"{{ gopass \"password/linux/user\" }}\"\n",
+    "zxc.20260501183207.1": "windows:\n  vars:\n    ansible_connection: ssh\n    ansible_shell_type: powershell\n  hosts:\n    nuc:\n      ansible_host: nuc.local\n      my_hostname: nuc\n    bed:\n      ansible_host: bed.local\n      my_hostname: bed\n    work:\n      ansible_host: 192.168.1.110\n      my_hostname: work\n",
+    "zxc.20260501183224.1": "wsl-debian:\n  vars:\n    ansible_connection: community.general.wsl\n    ansible_user: user\n  hosts:\n    nuc-windows-wsl-debian:\n      ansible_host: nuc.local\n      wsl_distribution: debian\n      wsl_user: root\n",
+    "zxc.20260501183235.1": "wsl-arch:\n  vars:\n    ansible_connection: community.general.wsl\n    ansible_user: user\n  hosts:\n    nuc-wsl-arch:\n      ansible_host: nuc.local\n      wsl_distribution: archlinux\n      wsl_user: root\n    work-wsl-arch:\n      ansible_host: 192.168.1.110\n      wsl_distribution: archlinux\n      wsl_user: root\n",
+    "zxc.20260501183245.1": "termux:\n  vars:\n    ansible_ssh_port: 8022\n  hosts:\n    note20:\n      ansible_host: 192.168.123.232\n      ansible_user: u0_a644\n",
+    "zxc.20260501183257.1": "uos:\n  hosts:\n    test:\n      ansible_host: 192.168.1.107\n      ansible_user: uos\n      ansible_become_pass: uos\n",
+    "zxc.20260501183315.1": "macos:\n  hosts:\n    macmini:\n      ansible_host: 192.168.123.117\n      ansible_become_pass: \"{{ gopass \"password/linux/user\" }}\"\n",
+    "zxc.20260423143729.3": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n@others\n",
+    "zxc.20260502011628.1": "# chezmoi:template:left-delimiter=[[ right-delimiter=]]",
     "zxc.20260423143729.4": "- name: Configure windows admin\n  hosts: windows\n  remote_user: admin\n  ignore_unreachable: true\n  tags: admin\n  tasks:\n    @others\n  handlers:\n    << handlers >>\n",
     "zxc.20260423143729.276": "- name: Gather facts\n  ansible.builtin.gather_facts:\n- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts\n",
     "zxc.20260423143729.7": "- name: Install choco pacakges\n  tags: choco-install\n  chocolatey.chocolatey.win_chocolatey:\n    name: \"{{ item }}\"\n    state: latest\n  loop:\n    @others\n",
@@ -9209,10 +9515,10 @@
     "zxc.20260423143729.299": "- name: Unicast options\n  ansible.windows.win_regedit:\n    path: HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Scream\\Options\n    name: UnicastIPv4\n    data: 192.168.123.100\n- name: Unicast options\n  ansible.windows.win_regedit:\n    path: HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Scream\\Options\n    name: UnicastPort\n    data: 4011\n    type: dword\n",
     "zxc.20260423143729.300": "- name: Allow remote logon\n  ansible.windows.win_user_right:\n    name: SeRemoteInteractiveLogonRight\n    users:\n      - User\n    action: add\n",
     "zxc.20260423143729.302": "[global]\ntarget = \"~/.local/bin\"\ngithub_token = {{ gopass \"github/ourgal/token\" | quote }}\n",
-    "zxc.20260423143729.304": "@language yaml\n---\n@others",
+    "zxc.20260423143729.304": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n@others",
     "zxc.20260423143729.305": "- name: Install uos via nixos live cd\n  hosts: nixos-live\n  tasks:\n    @others\n",
     "zxc.20260423143729.306": "- name: Ansible facts\n  ansible.builtin.debug:\n    var: ansible_facts",
-    "zxc.20260423143729.308": "@language yaml\n---\n- name: Configure wsl debian\n  hosts: nuc-windows-wsl-debian\n  tasks:\n    @others",
+    "zxc.20260423143729.308": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n- name: Configure wsl debian\n  hosts: nuc-windows-wsl-debian\n  tasks:\n    @others",
     "zxc.20260423143729.309": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts",
     "zxc.20260423143729.310": "- name: Set mirror\n  block:\n    - name: First mirror url\n      ansible.builtin.replace:\n        path: /etc/apt/sources.list\n        regexp: http://deb.debian.org/\n        replace: https://mirrors.aliyun.com/\n    - name: Second mirror url\n      ansible.builtin.replace:\n        path: /etc/apt/sources.list\n        regexp: http://security.debian.org/\n        replace: https://mirrors.aliyun.com/",
     "zxc.20260423143729.311": "- name: Update apt\n  ansible.builtin.apt:\n    update_cache: true\n- name: Install apt packages\n  ansible.builtin.apt:\n    name: \"{{ item }}\"\n  loop:\n    @others",
@@ -9231,7 +9537,7 @@
     "zxc.20260423143729.325": "- gnupg\n- scdaemon\n- pcscd",
     "zxc.20260423143729.327": "- nodejs",
     "zxc.20260423143729.328": "- name: Install xz-utils\n  ansible.builtin.apt:\n    name: xz-utils\n- name: Install chezmoi\n  ansible.builtin.apt:\n    deb: https://github.com/twpayne/chezmoi/releases/download/v2.69.4/chezmoi_2.69.4_linux_amd64.deb",
-    "zxc.20260423143729.330": "@language yaml\n---\n- name: Configure wsl arch\n  hosts: wsl-arch\n  ignore_unreachable: true\n  tasks:\n    @others",
+    "zxc.20260423143729.330": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n- name: Configure wsl arch\n  hosts: wsl-arch\n  ignore_unreachable: true\n  tasks:\n    @others",
     "zxc.20260423143729.331": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts",
     "zxc.20260423143729.332": "- name: Set mirror\n  ansible.builtin.copy:\n    content: |\n      Server = https://mirror.nju.edu.cn/archlinux/$repo/os/$arch\n      Server = https://mirrors.cernet.edu.cn/archlinux/$repo/os/$arch\n    dest: /etc/pacman.d/mirrorlist\n    mode: \"0644\"",
     "zxc.20260423143729.333": "- name: Update system\n  community.general.pacman:\n    update_cache: true\n    upgrade: true\n- name: Install pacman packages\n  community.general.pacman:\n    name: \"{{ item }}\"\n  loop:\n    @others",
@@ -9252,7 +9558,7 @@
     "zxc.20260423143729.350": "- uv",
     "zxc.20260423143729.351": "- nodejs",
     "zxc.20260501155709.1": "- ansible",
-    "zxc.20260423143729.353": "@language yaml\n---\n- name: Configure termux\n  hosts: note20\n  vars:\n    ansible_remote_tmp: /data/data/com.termux/files/home/.ansible/tmp\n  tasks:\n    @others",
+    "zxc.20260423143729.353": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n- name: Configure termux\n  hosts: note20\n  vars:\n    ansible_remote_tmp: /data/data/com.termux/files/home/.ansible/tmp\n  tasks:\n    @others",
     "zxc.20260423143729.354": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts",
     "zxc.20260423143729.355": "- name: Update all packages\n  tags: apt\n  ansible.builtin.apt:\n    update_cache: true\n    upgrade: true\n- name: Update all packages\n  tags: apt\n  ansible.builtin.apt:\n    name: \"{{ item }}\"\n  loop:\n    @others",
     "zxc.20260423143729.356": "- aichat",
@@ -9323,7 +9629,7 @@
     "zxc.20260423143729.422": "- copyparty",
     "zxc.20260423143729.423": "- mdformat",
     "zxc.20260423143729.424": "- advance-touch",
-    "zxc.20260423143729.426": "@language yaml\n---\n@\ndisable power saving\nenable password ssh login and start ssh\nchange uos password, current password is emtpy\nssh-copy-id\n@c\n- name: Install uos\n  hosts: uos\n  vars:\n    << vars >>\n  tasks:\n    @others\n",
+    "zxc.20260423143729.426": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n@\ndisable power saving\nenable password ssh login and start ssh\nchange uos password, current password is emtpy\nssh-copy-id\n@c\n- name: Install uos\n  hosts: uos\n  vars:\n    << vars >>\n  tasks:\n    @others",
     "zxc.20260423143729.427": "user: uos\ndufs_url: http://192.168.1.110:6500",
     "zxc.20260423143729.428": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts",
     "zxc.20260423143729.429": "- name: Enable developer mode\n  become: true\n  block:\n    @others",
@@ -9348,7 +9654,7 @@
     "zxc.20260423143729.449": "systemctl enable ssh\nchown -R {{ user }}:{{ user }} /home/{{ user }}/.ssh",
     "zxc.20260423143729.450": "- name: Run chroot script\n  environment:\n    LANG: C.UTF-8\n  ansible.builtin.shell:\n    cmd: |\n      fail() {\n              printf '%s\\n' \"$1\" >&2\n              exit 1\n      }\n\n      CHROOT=/target\n\n      [ -d \"$CHROOT\" ] || fail 'not a directory'\n      [ -d \"$CHROOT/dev\" ] || fail 'no /dev in chroot'\n      [ -d \"$CHROOT/proc\" ] || fail 'no /proc in chroot'\n      [ -d \"$CHROOT/sys\" ] || fail 'no /sys in chroot'\n\n      for _fs in dev proc sys; do\n              mount --rbind \"/$_fs\" \"$CHROOT/$_fs\"\n              mount --make-rslave \"$CHROOT/$_fs\"\n      done\n\n      cleanup() {\n              umount -R \"$CHROOT/dev\" \"$CHROOT/proc\" \"$CHROOT/sys\"\n      }\n\n      trap cleanup EXIT INT\n\n      chroot \"$CHROOT\" /bin/bash /script\n  changed_when: true\n",
     "zxc.20260423143729.451": "- name: Remove script\n  ansible.builtin.file:\n    path: /target/script\n    state: absent\n",
-    "zxc.20260423143729.453": "@language yaml\n---\n- name: Configure macos\n  hosts: macos\n  roles:\n    << homebrew >>\n  tasks:\n    @others",
+    "zxc.20260423143729.453": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n- name: Configure macos\n  hosts: macos\n  roles:\n    << homebrew >>\n  tasks:\n    @others",
     "zxc.20260423143729.454": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts",
     "zxc.20260423143729.455": "- role: geerlingguy.mac.homebrew\n  vars:\n    homebrew_installed_packages:\n      << packages >>\n    homebrew_cask_apps:\n      << cask >>\n",
     "zxc.20260423143729.456": "@others",
@@ -9369,27 +9675,33 @@
     "zxc.20260423143729.471": "- copyparty",
     "zxc.20260423143729.472": "- advance-touch",
     "zxc.20260423143729.473": "- jellyfin-mpv-shim",
-    "zxc.20260501132138.1": "- name: Install void linux\n  hosts: void-live\n  vars:\n    << vars >>\n  tasks:\n    @others\n",
-    "zxc.20260501154924.1": "xbps_mirror=https://mirror.nju.edu.cn/voidlinux/current\nxbps_nonfree-mirror=https://mirror.nju.edu.cn/voidlinux/current/nonfree\nhostname=surface-void",
+    "zxc.20260501132138.1": "<< delimiter >>\n@language yaml\n@tabwidth -2\n- name: Install void linux\n  hosts: void-live\n  vars:\n    << vars >>\n  tasks:\n    @others",
+    "zxc.20260501154924.1": "xbps_mirror: https://mirror.nju.edu.cn/voidlinux/current\nxbps_nonfree_mirror: https://mirror.nju.edu.cn/voidlinux/current/nonfree\nhostname: surface-void",
     "zxc.20260501135630.1": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts\n",
-    "zxc.20260501140144.1": "- name: Install parted\n  become: true\n  community.general.xbps:\n    name: \"{{ item }}\"\n    repositories:\n      - {{ xbps_mirror }}\n      - {{ xbps_nonfree_mirror }}\n  loop:\n    - parted\n",
+    "zxc.20260501140144.1": "- name: Install parted\n  become: true\n  community.general.xbps:\n    name: \"{{ item }}\"\n    repositories:\n      - \"{{ xbps_mirror }}\"\n      - \"{{ xbps_nonfree_mirror }}\"\n  loop:\n    - parted\n",
+    "zxc.20260501190027.1": "# Example on how to read info and reuse it in subsequent task\n- name: Read device information (always use unit when probing)\n  become: true\n  community.general.parted: device=/dev/nvme0n1 unit=MiB\n  register: nvme0n1_info\n  \n- name: Remove all partitions from disk\n  become: true\n  community.general.parted:\n    device: /dev/nvme0n1\n    number: '{{ item.num }}'\n    state: absent\n  loop: '{{ nvme0n1_info.partitions }}'\n",
     "zxc.20260501140222.1": "- name: Add partitions\n  become: true\n  vars:\n    device: /dev/nvme0n1\n  block:\n    @others\n",
-    "zxc.20260501140324.1": "- name: Delete old boot partition\n  community.general.parted:\n    device: \"{{ device }}\"\n    number: 1\n    state: absent\n- name: Boot partition\n  community.general.parted:\n    device: \"{{ device }}\"\n    number: 1\n    fs_type: fat32\n    label: gpt\n    name: boot\n    part_start: \"{{ 2 }}MiB\"\n    part_end: \"{{ 2 + 512 }}MiB\"\n    state: present\n",
-    "zxc.20260501140444.1": "- name: Delete old swap partition\n  community.general.parted:\n    device: \"{{ device }}\"\n    number: 2\n    state: absent\n- name: Swap partition\n  community.general.parted:\n    device: \"{{ device }}\"\n    number: 2\n    label: gpt\n    name: swap\n    fs_type: linux-swap\n    part_start: \"{{ 2 + 512 }}MiB\"\n    part_end: \"{{ 2 + 512 + 1024 * 4 }}MiB\"\n    state: present\n",
-    "zxc.20260501140503.1": "- name: Delete old root partition\n  community.general.parted:\n    device: \"{{ device }}\"\n    number: 3\n    state: absent\n- name: Root partition\n  community.general.parted:\n    device: \"{{ device }}\"\n    number: 3\n    label: gpt\n    name: void_root\n    fs_type: btrfs\n    part_start: \"{{ 2 + 512 + 1024 * 4 }}MiB\"\n    part_end: \"100%\"\n    state: present\n",
+    "zxc.20260501140324.1": "- name: Boot partition\n  community.general.parted:\n    device: \"{{ device }}\"\n    number: 1\n    fs_type: fat32\n    label: gpt\n    name: boot\n    part_start: \"{{ 2 }}MiB\"\n    part_end: \"{{ 2 + 512 }}MiB\"\n    state: present\n",
+    "zxc.20260501140444.1": "- name: Swap partition\n  community.general.parted:\n    device: \"{{ device }}\"\n    number: 2\n    label: gpt\n    name: swap\n    fs_type: linux-swap\n    part_start: \"{{ 2 + 512 }}MiB\"\n    part_end: \"{{ 2 + 512 + 1024 * 4 }}MiB\"\n    state: present\n",
+    "zxc.20260501140503.1": "- name: Root partition\n  community.general.parted:\n    device: \"{{ device }}\"\n    number: 3\n    label: gpt\n    name: void_root\n    fs_type: btrfs\n    part_start: \"{{ 2 + 512 + 1024 * 4 }}MiB\"\n    part_end: \"100%\"\n    state: present\n",
     "zxc.20260501140626.1": "- name: Format file systems\n  become: true\n  vars:\n    device: /dev/nvme0n1\n  block:\n    - name: Format boot\n      community.general.filesystem:\n        dev: \"{{ device }}p1\"\n        fstype: vfat\n    - name: Format swap\n      community.general.filesystem:\n        dev: \"{{ device }}p2\"\n        fstype: swap\n    - name: Format root\n      community.general.filesystem:\n        dev: \"{{ device }}p3\"\n        fstype: btrfs\n        force: true\n",
     "zxc.20260501140723.1": "- name: Mount other partitions\n  become: true\n  block:\n    @others",
-    "zxc.20260501140812.1": "- name: Mount boot\n  ansible.posix.mount:\n    src: /dev/nvme0n1p1\n    path: /mnt/boot/efi\n    opts: rw,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro\n    fstype: vfat\n    state: ephemeral\n    passno: 2\n- name: Write boot to fstab\n  ansible.posix.mount:\n    src: /dev/nvme0n1p1\n    path: /boot/efi\n    opts: rw,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro\n    fstype: vfat\n    state: present\n    fstab: /mnt/etc/fstab\n    passno: 2\n",
     "zxc.20260501140739.1": "- name: Mount root\n  ansible.posix.mount:\n    src: /dev/nvme0n1p3\n    path: /mnt\n    opts: rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=/\n    fstype: btrfs\n    state: ephemeral\n- name: Save root to fstab\n  ansible.posix.mount:\n    src: /dev/nvme0n1p3\n    path: /\n    opts: rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=/\n    fstype: btrfs\n    state: present\n    fstab: /mnt/etc/fstab\n",
+    "zxc.20260501140812.1": "- name: Mount boot\n  ansible.posix.mount:\n    src: /dev/nvme0n1p1\n    path: /mnt/boot/efi\n    opts: rw,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro\n    fstype: vfat\n    state: ephemeral\n    passno: 2\n- name: Write boot to fstab\n  ansible.posix.mount:\n    src: /dev/nvme0n1p1\n    path: /boot/efi\n    opts: rw,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro\n    fstype: vfat\n    state: present\n    fstab: /mnt/etc/fstab\n    passno: 2\n",
     "zxc.20260501140831.1": "- name: Write swap to fstab\n  ansible.posix.mount:\n    src: /dev/nvme0n1p2\n    path: none\n    opts: defaults\n    fstype: swap\n    state: present\n    fstab: /mnt/etc/fstab\n- name: Write tmp to fstab\n  ansible.posix.mount:\n    src: tmpfs\n    path: /tmp\n    opts: defaults,nosuid,nodev\n    fstype: tmpfs\n    state: present\n    fstab: /mnt/etc/fstab\n",
     "zxc.20260501141201.1": "- name: Find repository keys to install into a new void system on a mounted partition\n  block:\n    - name: Search key files\n      ansible.builtin.find:\n        path: /var/db/xbps/keys\n        pattern: \"*.plist\"\n      register: chroot_void_xbps_keys_files\n    - name: Create folder\n      become: true\n      ansible.builtin.file:\n        path: /mnt/var/db/xbps/keys\n        state: directory\n        mode: \"0755\"\n        owner: root\n        group: root\n    - name: Copy repository keys to into a new void system on a mounted partition\n      become: true\n      ansible.builtin.copy:\n        remote_src: true\n        src: \"{{ item }}\"\n        dest: \"/mnt{{ item }}\"\n        owner: root\n        group: root\n        mode: \"0644\"\n      when: chroot_void_xbps_keys_files.matched > 0\n      loop: \"{{ chroot_void_xbps_keys_files.files | map(attribute='path') }}\"\n",
-    "zxc.20260501141247.1": "- name: Install packages in mnt\n  become: true\n  environment:\n    XBPS_ARCH: \"{{ ansible_facts.machine }}\"\n  community.general.xbps:\n    name: \"{{ item }}\"\n    root: /mnt\n    repositories:\n      - {{ xbps_mirror }}\n      - {{ xbps_nonfree_mirror }}\n  loop:\n    - base-system\n    - grub-x86_64-efi\n    - avahi\n    - nss-mdns\n    - python3\n    - NetworkManager\n    - os-prober\n    - chrony\n    - alsa-utils",
+    "zxc.20260501141247.1": "- name: Install packages in mnt\n  become: true\n  environment:\n    XBPS_ARCH: \"{{ ansible_facts.machine }}\"\n  community.general.xbps:\n    name: \"{{ item }}\"\n    root: /mnt\n    repositories:\n      - \"{{ xbps_mirror }}\"\n      - \"{{ xbps_nonfree_mirror }}\"\n  loop:\n    @others",
+    "zxc.20260501211824.1": "- base-system\n- python3",
+    "zxc.20260501211935.1": "- alsa-utils",
+    "zxc.20260501211850.1": "- grub-x86_64-efi\n- os-prober",
+    "zxc.20260501211916.1": "- avahi\n- nss-mdns\n",
+    "zxc.20260501212009.1": "- NetworkManager",
+    "zxc.20260501211957.1": "- chrony",
     "zxc.20260501141321.1": "- name: Set timezone\n  become: true\n  ansible.builtin.file:\n    src: /usr/share/zoneinfo/Hongkong\n    dest: /mnt/etc/localtime\n    state: link\n    force: true\n",
     "zxc.20260501141336.1": "- name: Enable services\n  become: true\n  ansible.builtin.file:\n    src: \"/etc/sv/{{ item }}\"\n    dest: \"/mnt/etc/runit/runsvdir/default/{{ item }}\"\n    state: link\n    force: true\n  loop:\n    - NetworkManager\n    - sshd\n    - dbus\n    - alsa\n    - avahi-daemon\n    - chronyd",
-    "zxc.20260501141412.1": "- name: Set hostname\n  ansible.builtin.copy:\n    dest: /mnt/etc/hostname\n    content: |\n      {{ hostname }}\n    mode: \"0644\"\n",
-    "zxc.20260501141441.1": "- name: Set NetworkManager rc-manager\n  community.general.ini_file:\n    path: /mnt/etc/NetworkManager/NetworkManager.conf\n    section: main\n    option: rc-manager\n    value: resolvconf\n    mode: \"0644\"\n",
+    "zxc.20260501141412.1": "- name: Set hostname\n  become: true\n  ansible.builtin.copy:\n    dest: /mnt/etc/hostname\n    content: |\n      {{ hostname }}\n    mode: \"0644\"\n",
+    "zxc.20260501141441.1": "- name: Set NetworkManager rc-manager\n  become: true\n  community.general.ini_file:\n    path: /mnt/etc/NetworkManager/NetworkManager.conf\n    section: main\n    option: rc-manager\n    value: resolvconf\n    mode: \"0644\"\n",
     "zxc.20260501141550.1": "- name: Xbps settings\n  become: true\n  block:\n    - name: Set xbps mirror\n      ansible.builtin.copy:\n        dest: /mnt/etc/xbps.d/00-repository-main.conf\n        content: |\n          repository={{ xbps_mirror }}\n        mode: \"0644\"\n    - name: Set xbps nonfree mirror\n      ansible.builtin.copy:\n        dest: /mnt/etc/xbps.d/01-repository-nonfree.conf\n        content: |\n          repository={{ xbps_nonfree_mirror }}\n        mode: \"0644\"\n",
-    "zxc.20260501141727.1": "- name: Create files\n  become: true\n  vars:\n    chroot_ssh_keys_host: surface-void\n  block:\n    - name: Set system ssh rsa private key\n      ansible.builtin.copy:\n        dest: /mnt/etc/ssh/ssh_host_rsa_key\n        content: \"{{ lookup('gopass', 'ssh/' + chroot_ssh_keys_host + '/system/rsa_key') }}\"\n        mode: \"600\"\n    - name: Set system ssh rsa public key\n      ansible.builtin.copy:\n        dest: /mnt/etc/ssh/ssh_host_rsa_key.pub\n        content: \"{{ lookup('gopass', 'ssh/' + chroot_ssh_keys_host + '/system/rsa_key.pub') }}\"\n        mode: \"644\"\n    - name: Set system ssh ed25519 private key\n      ansible.builtin.copy:\n        dest: /mnt/etc/ssh/ssh_host_ed25519_key\n        content: \"{{ lookup('gopass', 'ssh/' + chroot_ssh_keys_host + '/system/ed25519_key') }}\"\n        mode: \"600\"\n    - name: Set system ssh ed25519 public key\n      ansible.builtin.copy:\n        dest: /mnt/etc/ssh/ssh_host_ed25519_key.pub\n        content: \"{{ lookup('gopass', 'ssh/' + chroot_ssh_keys_host + '/system/ed25519_key.pub') }}\"\n        mode: \"644\"\n    - name: Set system ssh ecdsa private key\n      ansible.builtin.copy:\n        dest: /mnt/etc/ssh/ssh_host_ecdsa_key\n        content: \"{{ lookup('gopass', 'ssh/' + chroot_ssh_keys_host + '/system/ecdsa_key') }}\"\n        mode: \"600\"\n    - name: Set system ssh ecdsa public key\n      ansible.builtin.copy:\n        dest: /mnt/etc/ssh/ssh_host_ecdsa_key.pub\n        content: \"{{ lookup('gopass', 'ssh/' + chroot_ssh_keys_host + '/system/ecdsa_key.pub') }}\"\n        mode: \"644\"\n",
     "zxc.20260501141911.1": "- name: Config file\n  become: true\n  block:\n    @others\n",
     "zxc.20260501141939.1": "- name: Set /etc/rc.conf\n  ansible.builtin.lineinfile:\n    path: /mnt/etc/rc.conf\n    line: KEYMAP=us\n",
     "zxc.20260501142006.1": "- name: Set locale\n  ansible.builtin.lineinfile:\n    path: /mnt/etc/default/libc-locales\n    line: en_US.UTF-8 UTF-8\n",
@@ -9403,8 +9715,49 @@
     "zxc.20260501143142.2": "- name: Create chroot script\n  vars:\n    xchroot_script_content: |\n      yes {{ lookup('gopass', 'password/linux/root') | trim }} | passwd root\n      yes {{ lookup('gopass', 'password/linux/user') | trim }} | passwd zxc\n  ansible.builtin.copy:\n    dest: \"{{ xchroot_script_root | default('/mnt') }}/script\"\n    content: |\n      {{ xchroot_script_content }}\n    mode: \"0644\"\n",
     "zxc.20260501143142.3": "- name: Run chroot script\n  environment:\n    LANG: C.UTF-8\n  ansible.builtin.command:\n    cmd: \"xchroot {{ xchroot_script_root | default('/mnt') }} /bin/bash /script\"\n  changed_when: true\n",
     "zxc.20260501143142.4": "- name: Remove script\n  ansible.builtin.file:\n    path: \"{{ xchroot_script_root | default('/mnt') }}/script\"\n    state: absent\n",
-    "zxc.20260501143257.1": "- name: Set sshd authorized keys\n  become: true\n  block:\n    - name: Create ssh authorized keys folder\n      ansible.builtin.file:\n        path: \"{{ chroot_sshd_authorized_keys_root | default('/mnt') }}/etc/ssh/authorized_keys.d\"\n        state: directory\n        mode: \"0755\"\n        owner: root\n        group: root\n    - name: Copy ssh root authorized keys\n      ansible.builtin.copy:\n        src: \"/etc/ssh/authorized_keys.d/{{ item }}\"\n        dest: \"{{ chroot_sshd_authorized_keys_root | default('/mnt') }}/etc/ssh/authorized_keys.d/{{ item }}\"\n        mode: \"0644\"\n      loop:\n        - root\n        - zxc\n    - name: Set sshd config\n      ansible.builtin.lineinfile:\n        path: \"{{ chroot_sshd_authorized_keys_root | default('/mnt') }}/etc/ssh/sshd_config\"\n        regex: \"^[#]?AuthorizedKeysFile\"\n        line: \"AuthorizedKeysFile %h/.ssh/authorized_keys /etc/ssh/authorized_keys.d/%u\"\n",
+    "zxc.20260501143257.1": "- name: Set root ssh authorized keys\n  become: true\n  block:\n    - name: Create ssh authorized keys folder\n      ansible.builtin.file:\n        path: \"{{ chroot_sshd_authorized_keys_root | default('/mnt') }}/root/.ssh\"\n        state: directory\n        mode: \"0700\"\n        owner: root\n        group: root\n    - name: Copy ssh root authorized keys\n      ansible.builtin.get_url:\n        url: https://github.com/ourgal.keys\n        dest: \"{{ chroot_sshd_authorized_keys_root | default('/mnt') }}/root/.ssh/authorized_keys\"\n        mode: \"0600\"\n\n- name: Set user ssh authorized keys\n  block:\n    - name: Create ssh authorized keys folder\n      ansible.builtin.file:\n        path: \"{{ chroot_sshd_authorized_keys_root | default('/mnt') }}/home/zxc/.ssh\"\n        state: directory\n        mode: \"0700\"\n    - name: Copy ssh authorized keys\n      ansible.builtin.get_url:\n        url: https://github.com/ourgal.keys\n        dest: \"{{ chroot_sshd_authorized_keys_root | default('/mnt') }}/home/zxc/.ssh/authorized_keys\"\n        mode: \"0600\"",
     "zxc.20260501143352.1": "- name: Remove chroot resolv.conf\n  become: true\n  ansible.builtin.file:\n    path: /mnt/etc/resolv.conf\n    state: absent",
+    "zxc.20260501215954.1": "- name: Reboot\n  become: true\n  ansible.builtin.reboot:",
+    "zxc.20260501214109.1": "<< delimiter >>\n@language yaml\n@tabwidth -2\n- name: Configure void linux\n  hosts: surface-void\n  tasks:\n    @others",
+    "zxc.20260501214216.1": "- name: Install packages\n  become: true\n  environment:\n    XBPS_ARCH: \"{{ ansible_facts.machine }}\"\n  community.general.xbps:\n    name: \"{{ item }}\"\n  loop:\n    @others\n",
+    "zxc.20260501214216.4": "- git\n- curl\n- aria2\n- grep\n- fzf\n- yt-dlp\n- ffmpeg\n",
+    "zxc.20260501214216.5": "- 7zip\n- atool",
+    "zxc.20260501214216.6": "- buku",
+    "zxc.20260501214216.7": "- Clipboard\n- xclip\n- xsel",
+    "zxc.20260501214216.8": "- aria2\n- transmission\n- yt-dlp",
+    "zxc.20260501214216.9": "- gvim-huge\n- helix",
+    "zxc.20260501214216.10": "- chezmoi\n- lf\n- nnn\n- ranger",
+    "zxc.20260501214216.11": "- git\n- git-annex\n- git-crypt\n- git-extras\n- lazygit\n- gitui",
+    "zxc.20260501214216.12": "- tmux\n- zellij",
+    "zxc.20260501214216.14": "- fzf",
+    "zxc.20260501214216.15": "- atuin",
+    "zxc.20260501214216.16": "- starship",
+    "zxc.20260501214216.17": "- rsync",
+    "zxc.20260501214216.19": "- psmisc",
+    "zxc.20260501214216.20": "- ripgrep",
+    "zxc.20260501214216.21": "- zoxide",
+    "zxc.20260501214216.22": "- mmv",
+    "zxc.20260501214216.23": "- fd",
+    "zxc.20260501214216.24": "- eza\n- tree",
+    "zxc.20260501214216.25": "- duf",
+    "zxc.20260501214216.26": "- dua-cli",
+    "zxc.20260501214216.27": "- btop\n- htop",
+    "zxc.20260501214216.28": "- bat",
+    "zxc.20260501214216.29": "- mpv",
+    "zxc.20260501214216.31": "- firefox",
+    "zxc.20260501214216.32": "- kitty",
+    "zxc.20260501214216.34": "- ansible",
+    "zxc.20260501214216.35": "- shellcheck",
+    "zxc.20260501214216.36": "- nodejs",
+    "zxc.20260501214216.37": "- uv",
+    "zxc.20260501221719.4": "- xfce4\n- xfce4-battery-plugin\n- xorg",
+    "zxc.20260501221719.5": "- noto-fonts-ttf\n- noto-fonts-cjk\n- nerd-fonts\n- noto-fonts-emoji",
+    "zxc.20260501221719.6": "- intel-video-accel\n- intel-ucode\n- libva-utils",
+    "zxc.20260501221719.10": "- python3-pipx",
+    "zxc.20260501214336.1": "- name: Install pipx packages\n  tags: pipx\n  community.general.pipx:\n    name: \"{{ item }}\"\n  loop:\n    @others\n\n",
+    "zxc.20260501214336.2": "- jellyfin-mpv-shim",
+    "zxc.20260501214447.1": "- name: Regenerate initramfs\n  become: true\n  ansible.builtin.command:\n    cmd: \"xbps-reconfigure --force linux{{ ansible_facts.kernel | regex_search('\\\\d+\\\\.\\\\d+') }}\"\n  changed_when: true\n",
+    "zxc.20260501214541.1": "- name: Download xlocate data\n  changed_when: true\n  ansible.builtin.command:\n    cmd: xlocate -S\n",
     "zxc.20260423143848.2": "@others\n",
     "zxc.20260423143848.3": "[defaults]\n@others",
     "zxc.20260423143848.4": "gathering = smart\n",
@@ -9825,34 +10178,37 @@
       "_mod_time": 1777106655.377824
     },
     "zxc.20260423145238.1": {
-      "_mod_time": 1777106655.3556793
+      "_mod_time": 1777655731.5468316
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1777308374.1653745
+      "_mod_time": 1777656487.0346289
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1777614976.0491798
     },
     "zxc.20260423143729.304": {
-      "_mod_time": 1777106655.3556793
+      "_mod_time": 1777656487.0659406
     },
     "zxc.20260423143729.308": {
-      "_mod_time": 1777106655.377824
+      "_mod_time": 1777656487.0971742
     },
     "zxc.20260423143729.330": {
-      "_mod_time": 1777622237.7477324
+      "_mod_time": 1777656487.113767
     },
     "zxc.20260423143729.353": {
-      "_mod_time": 1777106655.3621888
+      "_mod_time": 1777656565.0860846
     },
     "zxc.20260423143729.426": {
-      "_mod_time": 1777106655.3621888
+      "_mod_time": 1777656120.2679732
     },
     "zxc.20260423143729.453": {
-      "_mod_time": 1777614792.0616715
+      "_mod_time": 1777655978.0232885
     },
     "zxc.20260501132138.1": {
-      "_mod_time": 1777622084.6938565
+      "_mod_time": 1777655832.873521
+    },
+    "zxc.20260501214109.1": {
+      "_mod_time": 1777656487.130419
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777106655.3400538
