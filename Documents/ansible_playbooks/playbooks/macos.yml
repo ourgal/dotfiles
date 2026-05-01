@@ -1,0 +1,46 @@
+---
+- name: Configure macos
+  hosts: macos
+  roles:
+    - role: geerlingguy.mac.homebrew
+      vars:
+        homebrew_installed_packages:
+          - git
+          - gopass
+          - gh
+          - mpv
+          - dufs
+          - syncthing
+          - wget
+          - pipx
+          - duf
+          - btop
+          - htop
+          - emacs
+          - helix
+          - fish
+          - mcfly
+          - chezmoi
+          - fzf
+        homebrew_cask_apps:
+          - visual-studio-code
+          - vscodium
+          - emacs-app
+          - firefox
+          - brave-browser
+          - kitty
+          - ghostty
+          - wezterm
+  tasks:
+    - name: Debug variables
+      ansible.builtin.debug:
+        var: ansible_facts
+    - name: Install pipx packages
+      tags: pipx
+      community.general.pipx:
+        name: "{{ item }}"
+        executable: /opt/homebrew/bin/pipx
+      loop:
+        - copyparty
+        - advance-touch
+        - jellyfin-mpv-shim
