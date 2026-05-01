@@ -6945,6 +6945,10 @@
                                     {
                                       "gnx": "zxc.20260423143729.351",
                                       "vh": "nodejs"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501155709.1",
+                                      "vh": "ansible"
                                     }
                                   ]
                                 }
@@ -7500,6 +7504,10 @@
                           "gnx": "zxc.20260501132138.1",
                           "vh": "@clean void-live.yml",
                           "children": [
+                            {
+                              "gnx": "zxc.20260501154924.1",
+                              "vh": "<< vars >>"
+                            },
                             {
                               "gnx": "zxc.20260501135630.1",
                               "vh": "facts"
@@ -9243,6 +9251,7 @@
     "zxc.20260423143729.348": "- fastfetch",
     "zxc.20260423143729.350": "- uv",
     "zxc.20260423143729.351": "- nodejs",
+    "zxc.20260501155709.1": "- ansible",
     "zxc.20260423143729.353": "@language yaml\n---\n- name: Configure termux\n  hosts: note20\n  vars:\n    ansible_remote_tmp: /data/data/com.termux/files/home/.ansible/tmp\n  tasks:\n    @others",
     "zxc.20260423143729.354": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts",
     "zxc.20260423143729.355": "- name: Update all packages\n  tags: apt\n  ansible.builtin.apt:\n    update_cache: true\n    upgrade: true\n- name: Update all packages\n  tags: apt\n  ansible.builtin.apt:\n    name: \"{{ item }}\"\n  loop:\n    @others",
@@ -9360,25 +9369,26 @@
     "zxc.20260423143729.471": "- copyparty",
     "zxc.20260423143729.472": "- advance-touch",
     "zxc.20260423143729.473": "- jellyfin-mpv-shim",
-    "zxc.20260501132138.1": "- name: Install void linux\n  hosts: void-live\n  tasks:\n    @others\n",
+    "zxc.20260501132138.1": "- name: Install void linux\n  hosts: void-live\n  vars:\n    << vars >>\n  tasks:\n    @others\n",
+    "zxc.20260501154924.1": "xbps_mirror=https://mirror.nju.edu.cn/voidlinux/current\nxbps_nonfree-mirror=https://mirror.nju.edu.cn/voidlinux/current/nonfree\nhostname=surface-void",
     "zxc.20260501135630.1": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts\n",
-    "zxc.20260501140144.1": "- name: Install parted\n  become: true\n  community.general.xbps:\n    name: \"{{ item }}\"\n    repositories:\n      - https://mirror.nju.edu.cn/voidlinux/current\n      - https://mirror.nju.edu.cn/voidlinux/current/nonfree\n  loop:\n    - parted\n",
+    "zxc.20260501140144.1": "- name: Install parted\n  become: true\n  community.general.xbps:\n    name: \"{{ item }}\"\n    repositories:\n      - {{ xbps_mirror }}\n      - {{ xbps_nonfree_mirror }}\n  loop:\n    - parted\n",
     "zxc.20260501140222.1": "- name: Add partitions\n  become: true\n  vars:\n    device: /dev/nvme0n1\n  block:\n    @others\n",
     "zxc.20260501140324.1": "- name: Delete old boot partition\n  community.general.parted:\n    device: \"{{ device }}\"\n    number: 1\n    state: absent\n- name: Boot partition\n  community.general.parted:\n    device: \"{{ device }}\"\n    number: 1\n    fs_type: fat32\n    label: gpt\n    name: boot\n    part_start: \"{{ 2 }}MiB\"\n    part_end: \"{{ 2 + 512 }}MiB\"\n    state: present\n",
     "zxc.20260501140444.1": "- name: Delete old swap partition\n  community.general.parted:\n    device: \"{{ device }}\"\n    number: 2\n    state: absent\n- name: Swap partition\n  community.general.parted:\n    device: \"{{ device }}\"\n    number: 2\n    label: gpt\n    name: swap\n    fs_type: linux-swap\n    part_start: \"{{ 2 + 512 }}MiB\"\n    part_end: \"{{ 2 + 512 + 1024 * 4 }}MiB\"\n    state: present\n",
-    "zxc.20260501140503.1": "- name: Delete old root partition\n  community.general.parted:\n    device: \"{{ device }}\"\n    number: 3\n    state: absent\n- name: Root partition\n  community.general.parted:\n    device: \"{{ device }}\"\n    number: 3\n    label: gpt\n    name: void_root\n    fs_type: btrfs\n    part_start: \"{{ 2 + 512 + 1024 * 4 }}MiB\"\n    part_end: \"{{ 2 + 512 + 1024 * 34 }}MiB\"\n    state: present\n",
+    "zxc.20260501140503.1": "- name: Delete old root partition\n  community.general.parted:\n    device: \"{{ device }}\"\n    number: 3\n    state: absent\n- name: Root partition\n  community.general.parted:\n    device: \"{{ device }}\"\n    number: 3\n    label: gpt\n    name: void_root\n    fs_type: btrfs\n    part_start: \"{{ 2 + 512 + 1024 * 4 }}MiB\"\n    part_end: \"100%\"\n    state: present\n",
     "zxc.20260501140626.1": "- name: Format file systems\n  become: true\n  vars:\n    device: /dev/nvme0n1\n  block:\n    - name: Format boot\n      community.general.filesystem:\n        dev: \"{{ device }}p1\"\n        fstype: vfat\n    - name: Format swap\n      community.general.filesystem:\n        dev: \"{{ device }}p2\"\n        fstype: swap\n    - name: Format root\n      community.general.filesystem:\n        dev: \"{{ device }}p3\"\n        fstype: btrfs\n        force: true\n",
     "zxc.20260501140723.1": "- name: Mount other partitions\n  become: true\n  block:\n    @others",
     "zxc.20260501140812.1": "- name: Mount boot\n  ansible.posix.mount:\n    src: /dev/nvme0n1p1\n    path: /mnt/boot/efi\n    opts: rw,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro\n    fstype: vfat\n    state: ephemeral\n    passno: 2\n- name: Write boot to fstab\n  ansible.posix.mount:\n    src: /dev/nvme0n1p1\n    path: /boot/efi\n    opts: rw,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro\n    fstype: vfat\n    state: present\n    fstab: /mnt/etc/fstab\n    passno: 2\n",
     "zxc.20260501140739.1": "- name: Mount root\n  ansible.posix.mount:\n    src: /dev/nvme0n1p3\n    path: /mnt\n    opts: rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=/\n    fstype: btrfs\n    state: ephemeral\n- name: Save root to fstab\n  ansible.posix.mount:\n    src: /dev/nvme0n1p3\n    path: /\n    opts: rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=/\n    fstype: btrfs\n    state: present\n    fstab: /mnt/etc/fstab\n",
     "zxc.20260501140831.1": "- name: Write swap to fstab\n  ansible.posix.mount:\n    src: /dev/nvme0n1p2\n    path: none\n    opts: defaults\n    fstype: swap\n    state: present\n    fstab: /mnt/etc/fstab\n- name: Write tmp to fstab\n  ansible.posix.mount:\n    src: tmpfs\n    path: /tmp\n    opts: defaults,nosuid,nodev\n    fstype: tmpfs\n    state: present\n    fstab: /mnt/etc/fstab\n",
     "zxc.20260501141201.1": "- name: Find repository keys to install into a new void system on a mounted partition\n  block:\n    - name: Search key files\n      ansible.builtin.find:\n        path: /var/db/xbps/keys\n        pattern: \"*.plist\"\n      register: chroot_void_xbps_keys_files\n    - name: Create folder\n      become: true\n      ansible.builtin.file:\n        path: /mnt/var/db/xbps/keys\n        state: directory\n        mode: \"0755\"\n        owner: root\n        group: root\n    - name: Copy repository keys to into a new void system on a mounted partition\n      become: true\n      ansible.builtin.copy:\n        remote_src: true\n        src: \"{{ item }}\"\n        dest: \"/mnt{{ item }}\"\n        owner: root\n        group: root\n        mode: \"0644\"\n      when: chroot_void_xbps_keys_files.matched > 0\n      loop: \"{{ chroot_void_xbps_keys_files.files | map(attribute='path') }}\"\n",
-    "zxc.20260501141247.1": "- name: Install packages in mnt\n  become: true\n  environment:\n    XBPS_ARCH: \"{{ ansible_facts.machine }}\"\n  community.general.xbps:\n    name: \"{{ item }}\"\n    root: /mnt\n    repositories:\n      - https://mirror.nju.edu.cn/voidlinux/current\n      - https://mirror.nju.edu.cn/voidlinux/current/nonfree\n  loop:\n    - base-system\n    - grub-x86_64-efi\n    - avahi\n    - nss-mdns\n    - python3\n    - NetworkManager\n    - os-prober\n    - chrony\n    - alsa-utils",
+    "zxc.20260501141247.1": "- name: Install packages in mnt\n  become: true\n  environment:\n    XBPS_ARCH: \"{{ ansible_facts.machine }}\"\n  community.general.xbps:\n    name: \"{{ item }}\"\n    root: /mnt\n    repositories:\n      - {{ xbps_mirror }}\n      - {{ xbps_nonfree_mirror }}\n  loop:\n    - base-system\n    - grub-x86_64-efi\n    - avahi\n    - nss-mdns\n    - python3\n    - NetworkManager\n    - os-prober\n    - chrony\n    - alsa-utils",
     "zxc.20260501141321.1": "- name: Set timezone\n  become: true\n  ansible.builtin.file:\n    src: /usr/share/zoneinfo/Hongkong\n    dest: /mnt/etc/localtime\n    state: link\n    force: true\n",
     "zxc.20260501141336.1": "- name: Enable services\n  become: true\n  ansible.builtin.file:\n    src: \"/etc/sv/{{ item }}\"\n    dest: \"/mnt/etc/runit/runsvdir/default/{{ item }}\"\n    state: link\n    force: true\n  loop:\n    - NetworkManager\n    - sshd\n    - dbus\n    - alsa\n    - avahi-daemon\n    - chronyd",
-    "zxc.20260501141412.1": "- name: Set hostname\n  ansible.builtin.copy:\n    dest: /mnt/etc/hostname\n    content: |\n      surface-void\n    mode: \"0644\"\n",
+    "zxc.20260501141412.1": "- name: Set hostname\n  ansible.builtin.copy:\n    dest: /mnt/etc/hostname\n    content: |\n      {{ hostname }}\n    mode: \"0644\"\n",
     "zxc.20260501141441.1": "- name: Set NetworkManager rc-manager\n  community.general.ini_file:\n    path: /mnt/etc/NetworkManager/NetworkManager.conf\n    section: main\n    option: rc-manager\n    value: resolvconf\n    mode: \"0644\"\n",
-    "zxc.20260501141550.1": "- name: Xbps settings\n  become: true\n  block:\n    - name: Set xbps mirror\n      ansible.builtin.copy:\n        dest: /mnt/etc/xbps.d/00-repository-main.conf\n        content: |\n          repository=https://mirror.nju.edu.cn/voidlinux/current\n        mode: \"0644\"\n    - name: Set xbps nonfree mirror\n      ansible.builtin.copy:\n        dest: /mnt/etc/xbps.d/01-repository-nonfree.conf\n        content: |\n          repository=https://mirror.nju.edu.cn/voidlinux/current/nonfree\n        mode: \"0644\"\n",
+    "zxc.20260501141550.1": "- name: Xbps settings\n  become: true\n  block:\n    - name: Set xbps mirror\n      ansible.builtin.copy:\n        dest: /mnt/etc/xbps.d/00-repository-main.conf\n        content: |\n          repository={{ xbps_mirror }}\n        mode: \"0644\"\n    - name: Set xbps nonfree mirror\n      ansible.builtin.copy:\n        dest: /mnt/etc/xbps.d/01-repository-nonfree.conf\n        content: |\n          repository={{ xbps_nonfree_mirror }}\n        mode: \"0644\"\n",
     "zxc.20260501141727.1": "- name: Create files\n  become: true\n  vars:\n    chroot_ssh_keys_host: surface-void\n  block:\n    - name: Set system ssh rsa private key\n      ansible.builtin.copy:\n        dest: /mnt/etc/ssh/ssh_host_rsa_key\n        content: \"{{ lookup('gopass', 'ssh/' + chroot_ssh_keys_host + '/system/rsa_key') }}\"\n        mode: \"600\"\n    - name: Set system ssh rsa public key\n      ansible.builtin.copy:\n        dest: /mnt/etc/ssh/ssh_host_rsa_key.pub\n        content: \"{{ lookup('gopass', 'ssh/' + chroot_ssh_keys_host + '/system/rsa_key.pub') }}\"\n        mode: \"644\"\n    - name: Set system ssh ed25519 private key\n      ansible.builtin.copy:\n        dest: /mnt/etc/ssh/ssh_host_ed25519_key\n        content: \"{{ lookup('gopass', 'ssh/' + chroot_ssh_keys_host + '/system/ed25519_key') }}\"\n        mode: \"600\"\n    - name: Set system ssh ed25519 public key\n      ansible.builtin.copy:\n        dest: /mnt/etc/ssh/ssh_host_ed25519_key.pub\n        content: \"{{ lookup('gopass', 'ssh/' + chroot_ssh_keys_host + '/system/ed25519_key.pub') }}\"\n        mode: \"644\"\n    - name: Set system ssh ecdsa private key\n      ansible.builtin.copy:\n        dest: /mnt/etc/ssh/ssh_host_ecdsa_key\n        content: \"{{ lookup('gopass', 'ssh/' + chroot_ssh_keys_host + '/system/ecdsa_key') }}\"\n        mode: \"600\"\n    - name: Set system ssh ecdsa public key\n      ansible.builtin.copy:\n        dest: /mnt/etc/ssh/ssh_host_ecdsa_key.pub\n        content: \"{{ lookup('gopass', 'ssh/' + chroot_ssh_keys_host + '/system/ecdsa_key.pub') }}\"\n        mode: \"644\"\n",
     "zxc.20260501141911.1": "- name: Config file\n  become: true\n  block:\n    @others\n",
     "zxc.20260501141939.1": "- name: Set /etc/rc.conf\n  ansible.builtin.lineinfile:\n    path: /mnt/etc/rc.conf\n    line: KEYMAP=us\n",
@@ -9830,7 +9840,7 @@
       "_mod_time": 1777106655.377824
     },
     "zxc.20260423143729.330": {
-      "_mod_time": 1777106655.377824
+      "_mod_time": 1777622237.7477324
     },
     "zxc.20260423143729.353": {
       "_mod_time": 1777106655.3621888
@@ -9842,7 +9852,7 @@
       "_mod_time": 1777614792.0616715
     },
     "zxc.20260501132138.1": {
-      "_mod_time": 1777617254.5287867
+      "_mod_time": 1777622084.6938565
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777106655.3400538

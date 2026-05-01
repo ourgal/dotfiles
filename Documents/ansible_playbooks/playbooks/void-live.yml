@@ -1,5 +1,9 @@
 - name: Install void linux
   hosts: void-live
+  vars:
+    xbps_mirror=https://mirror.nju.edu.cn/voidlinux/current
+    xbps_nonfree-mirror=https://mirror.nju.edu.cn/voidlinux/current/nonfree
+    hostname=surface-void
   tasks:
     - name: Debug variables
       ansible.builtin.debug:
@@ -9,8 +13,8 @@
       community.general.xbps:
         name: "{{ item }}"
         repositories:
-          - https://mirror.nju.edu.cn/voidlinux/current
-          - https://mirror.nju.edu.cn/voidlinux/current/nonfree
+          - {{ xbps_mirror }}
+          - {{ xbps_nonfree_mirror }}
       loop:
         - parted
     - name: Add partitions
@@ -61,7 +65,7 @@
             name: void_root
             fs_type: btrfs
             part_start: "{{ 2 + 512 + 1024 * 4 }}MiB"
-            part_end: "{{ 2 + 512 + 1024 * 34 }}MiB"
+            part_end: "100%"
             state: present
     - name: Format file systems
       become: true
@@ -166,8 +170,8 @@
         name: "{{ item }}"
         root: /mnt
         repositories:
-          - https://mirror.nju.edu.cn/voidlinux/current
-          - https://mirror.nju.edu.cn/voidlinux/current/nonfree
+          - {{ xbps_mirror }}
+          - {{ xbps_nonfree_mirror }}
       loop:
         - base-system
         - grub-x86_64-efi
@@ -203,7 +207,7 @@
       ansible.builtin.copy:
         dest: /mnt/etc/hostname
         content: |
-          surface-void
+          {{ hostname }}
         mode: "0644"
     - name: Set NetworkManager rc-manager
       community.general.ini_file:
@@ -219,13 +223,13 @@
           ansible.builtin.copy:
             dest: /mnt/etc/xbps.d/00-repository-main.conf
             content: |
-              repository=https://mirror.nju.edu.cn/voidlinux/current
+              repository={{ xbps_mirror }}
             mode: "0644"
         - name: Set xbps nonfree mirror
           ansible.builtin.copy:
             dest: /mnt/etc/xbps.d/01-repository-nonfree.conf
             content: |
-              repository=https://mirror.nju.edu.cn/voidlinux/current/nonfree
+              repository={{ xbps_nonfree_mirror }}
             mode: "0644"
     - name: Create files
       become: true
