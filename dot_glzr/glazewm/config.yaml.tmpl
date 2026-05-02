@@ -120,13 +120,24 @@ window_rules:
   - commands: ["move --workspace 2"]
     match:
       - window_process: { regex: "firefox" }
-  - commands: ["move --workspace 3"]
-    match:
-      - window_process: { regex: "Code" }
-      - window_process: { regex: "VSCodium" }
   - commands: ["move --workspace 9"]
     match:
       - window_process: { regex: "KeePassXC" }
+  {{ if .my.modules.vscode -}}
+  - commands: ["move --workspace 3"]
+    match:
+      - window_process: { regex: "Code" }
+  {{ end -}}
+  {{ if .my.modules.vscodium -}}
+  - commands: ["move --workspace 3"]
+    match:
+      - window_process: { regex: "VSCodium" }
+  {{ end -}}
+  {{ if .my.modules.leo -}}
+  - commands: ["move --workspace 3"]
+    match:
+      - window_process: { regex: "leo" }
+  {{ end -}}
   - commands: ['ignore']
     match:
       # Ignores any Zebar windows.
