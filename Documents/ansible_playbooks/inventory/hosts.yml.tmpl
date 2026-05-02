@@ -13,7 +13,8 @@ all:
       ansible_become_pass: "{{ gopass "password/linux/user" }}"
     surface-void:
       ansible_user: zxc
-      ansible_host: surface-void.local
+      ansible_ssh_pass: "{{ gopass "password/linux/user" }}"
+      ansible_host: 192.168.123.221
       ansible_become_pass: "{{ gopass "password/linux/user" }}"
 windows:
   vars:

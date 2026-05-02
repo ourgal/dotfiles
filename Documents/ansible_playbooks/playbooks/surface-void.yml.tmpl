@@ -103,7 +103,11 @@
         - jellyfin-mpv-shim
         - leo
         - advance-touch
-
+    - name: Enable services
+      become: true
+      ansible.builtin.command: "ln -sf /etc/sv/{{ item }} /var/service"
+      loop:
+        - lightdm
     - name: Regenerate initramfs
       become: true
       ansible.builtin.command:
