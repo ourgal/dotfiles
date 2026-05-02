@@ -9663,7 +9663,7 @@
     "zxc.20260423143729.415": "- openssh",
     "zxc.20260423143729.416": "- newsboat",
     "zxc.20260423143729.418": "- ffmpeg",
-    "zxc.20260423143729.419": "- name: Create folder\n  tags: pip\n  ansible.builtin.file:\n    path: .pip\n    state: directory\n    mode: \"0755\"\n- name: Set pip config\n  tags: pip\n  ansible.builtin.copy:\n    content: |\n      [global]\n      index-url = https://mirrors.cernet.edu.cn/pypi/web/simple/\n      [install]\n      trusted-host = mirrors.cernet.edu.cn\n    dest: .pip/pip.conf\n    mode: \"0600\"\n- name: Install pip packaging\n  tags: pip\n  ansible.builtin.command: pip install packaging\n- name: Pip packages\n  tags: pip\n  ansible.builtin.pip:\n    name: \"{{ item }}\"\n  loop:\n    @others",
+    "zxc.20260423143729.419": "- name: Create folder\n  tags: pip\n  ansible.builtin.file:\n    path: .pip\n    state: directory\n    mode: \"0755\"\n- name: Set pip config\n  tags: pip\n  ansible.builtin.copy:\n    content: |\n      [global]\n      index-url = https://mirrors.nju.edu.cn/pypi/web/simple/\n      [install]\n      trusted-host = mirrors.nju.edu.cn\n    dest: .pip/pip.conf\n    mode: \"0600\"\n- name: Install pip packaging\n  tags: pip\n  ansible.builtin.command: pip install packaging\n- name: Pip packages\n  tags: pip\n  ansible.builtin.pip:\n    name: \"{{ item }}\"\n  loop:\n    @others",
     "zxc.20260423143729.420": "- pipx",
     "zxc.20260423143729.421": "- name: Install pipx packages\n  tags: pipx\n  community.general.pipx:\n    name: \"{{ item }}\"\n  loop:\n    @others",
     "zxc.20260423143729.422": "- copyparty",
@@ -10240,7 +10240,7 @@
       "_mod_time": 1777656487.113767
     },
     "zxc.20260423143729.353": {
-      "_mod_time": 1777656565.0860846
+      "_mod_time": 1777701496.580028
     },
     "zxc.20260423143729.426": {
       "_mod_time": 1777656120.2679732
