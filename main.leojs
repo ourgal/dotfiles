@@ -8635,7 +8635,7 @@
     "zxc.20260125142149.1": "@tabwidth 4\nall:\n\t@others\n",
     "zxc.20260125142255.1": "yes | git magic -ap\n",
     "zxc.20260125142829.1": "{{ if eq .chezmoi.os \"linux\" -}}\n@others\n{{ end -}}",
-    "zxc.20260125142901.1": "{{ if eq .chezmoi.hostname \"surface-void\" -}}\n{{ if lookPath \"startxfce4\" -}}\nexec /usr/bin/startxfce4\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260125142901.1": "{{ if eq .chezmoi.hostname \"surface-void\" -}}\n{{ if lookPath \"gpg-agent\" -}}\neval $(gpg-agent --daemon --enable-ssh-support --write-env-file \"${HOME}/.gpg-agent-info\")\n{{ end -}}\n{{ if lookPath \"startxfce4\" -}}\nexec /usr/bin/startxfce4\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260423154139.3": "$env:EDITOR = \"hx\"\n$env:shell_startup = \"~\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\"\n",
     "zxc.20260423154139.4": "{{ if lookPath \"sfsu\" -}}\nInvoke-Expression (&sfsu hook)\n{{ end -}}\n",
     "zxc.20260423154139.5": "New-Alias reboot Restart-Computer\nNew-Alias poweroff Stop-Computer\n",
@@ -9917,7 +9917,7 @@
       "_mod_time": 1777128541.2157347
     },
     "zxc.20260125142829.1": {
-      "_mod_time": 1777717148.2839172
+      "_mod_time": 1777719045.3068907
     },
     "zxc.20260423154131.2": {
       "_mod_time": 1777179946.8605473

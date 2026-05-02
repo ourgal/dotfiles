@@ -1,5 +1,8 @@
 {{ if eq .chezmoi.os "linux" -}}
 {{ if eq .chezmoi.hostname "surface-void" -}}
+{{ if lookPath "gpg-agent" -}}
+eval $(gpg-agent --daemon --enable-ssh-support --write-env-file "${HOME}/.gpg-agent-info")
+{{ end -}}
 {{ if lookPath "startxfce4" -}}
 exec /usr/bin/startxfce4
 {{ end -}}
