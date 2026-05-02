@@ -130,9 +130,9 @@
       ansible.builtin.copy:
         content: |
           [global]
-          index-url = https://mirrors.cernet.edu.cn/pypi/web/simple/
+          index-url = https://mirrors.nju.edu.cn/pypi/web/simple/
           [install]
-          trusted-host = mirrors.cernet.edu.cn
+          trusted-host = mirrors.nju.edu.cn
         dest: .pip/pip.conf
         mode: "0600"
     - name: Install pip packaging
