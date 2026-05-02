@@ -122,11 +122,18 @@ FZF_CTRL_R_COMMAND= eval "$(fzf --bash)"
 eval "$(fzf --bash)"
 {{ end -}}
 {{ end -}}
-{{ if and (lookPath "starship") .my.modules.starship -}}
+{{ $starship := and (lookPath "starship") .my.modules.starship -}}
+{{ $oh_my_posh := and (lookPath "oh-my-posh") .my.modules.oh_my_posh -}}
+{{ if any $starship $oh_my_posh -}}
+{{ if $starship -}}
 eval "$(starship init bash)"
-{{ end -}}
-{{ if and (lookPath "oh-my-posh") .my.modules.oh_my_posh -}}
+{{ else -}}
 eval "$(oh-my-posh init bash)"
+{{ end -}}
+{{ else if lookPath "oh-my-posh" -}}
+eval "$(oh-my-posh init bash)"
+{{ else -}}
+eval "$(starship init bash)"
 {{ end -}}
 {{ if lookPath "eza" -}}
 alias ll='eza --long --git --icons auto --group --group-directories-first --time-style relative'
