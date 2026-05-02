@@ -20,30 +20,29 @@
         upgrade: true
     - name: Install pacman packages
       community.general.pacman:
-        name: "{{ item }}"
-      loop:
-        - git
-        - lazygit
-        - emacs
-        - helix
-        - gvim
-        - curl
-        - wget
-        - chezmoi
-        - pipewire
-        - mpv
-        - fish
-        - starship
-        - xclip
-        - openssh
-        - dos2unix
-        - unzip
-        - fzf
-        - eza
-        - zoxide
-        - bat
-        - btop
-        - fastfetch
-        - uv
-        - nodejs
-        - ansible
+        name:
+          - git
+          - lazygit
+          - emacs
+          - helix
+          - gvim
+          - curl
+          - wget
+          - chezmoi
+          - pipewire
+          - mpv
+          - fish
+          - starship
+          - xclip
+          - openssh
+          - dos2unix
+          - unzip
+          - fzf
+          - eza
+          - zoxide
+          - bat
+          - btop
+          - fastfetch
+          - uv
+          - nodejs
+          - ansible
