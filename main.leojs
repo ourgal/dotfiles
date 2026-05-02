@@ -7960,6 +7960,10 @@
                                 {
                                   "gnx": "zxc.20260502142949.1",
                                   "vh": "leo"
+                                },
+                                {
+                                  "gnx": "zxc.20260502182120.1",
+                                  "vh": "advance-touch"
                                 }
                               ]
                             },
@@ -9799,6 +9803,7 @@
     "zxc.20260501214336.1": "- name: Install pipx packages\n  tags: pipx\n  community.general.pipx:\n    name: \"{{ item }}\"\n  loop:\n    @others\n\n",
     "zxc.20260501214336.2": "- jellyfin-mpv-shim",
     "zxc.20260502142949.1": "- leo",
+    "zxc.20260502182120.1": "- advance-touch",
     "zxc.20260501214447.1": "- name: Regenerate initramfs\n  become: true\n  ansible.builtin.command:\n    cmd: \"xbps-reconfigure --force linux{{ ansible_facts.kernel | regex_search('\\\\d+\\\\.\\\\d+') }}\"\n  changed_when: true\n",
     "zxc.20260501214541.1": "- name: Download xlocate data\n  changed_when: true\n  ansible.builtin.command:\n    cmd: xlocate -S\n",
     "zxc.20260423143848.2": "@others\n",
@@ -10255,7 +10260,7 @@
       "_mod_time": 1777703137.5128934
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1777717256.8787568
+      "_mod_time": 1777717308.8063998
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777106655.3400538
