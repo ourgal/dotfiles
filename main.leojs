@@ -9734,7 +9734,7 @@
     "zxc.20260501140812.1": "- name: Mount boot\n  ansible.posix.mount:\n    src: /dev/nvme0n1p1\n    path: /mnt/boot/efi\n    opts: rw,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro\n    fstype: vfat\n    state: ephemeral\n    passno: 2\n- name: Write boot to fstab\n  ansible.posix.mount:\n    src: /dev/nvme0n1p1\n    path: /boot/efi\n    opts: rw,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro\n    fstype: vfat\n    state: present\n    fstab: /mnt/etc/fstab\n    passno: 2\n",
     "zxc.20260501140831.1": "- name: Write swap to fstab\n  ansible.posix.mount:\n    src: /dev/nvme0n1p2\n    path: none\n    opts: defaults\n    fstype: swap\n    state: present\n    fstab: /mnt/etc/fstab\n- name: Write tmp to fstab\n  ansible.posix.mount:\n    src: tmpfs\n    path: /tmp\n    opts: defaults,nosuid,nodev\n    fstype: tmpfs\n    state: present\n    fstab: /mnt/etc/fstab\n",
     "zxc.20260501141201.1": "- name: Find repository keys to install into a new void system on a mounted partition\n  block:\n    - name: Search key files\n      ansible.builtin.find:\n        path: /var/db/xbps/keys\n        pattern: \"*.plist\"\n      register: chroot_void_xbps_keys_files\n    - name: Create folder\n      become: true\n      ansible.builtin.file:\n        path: /mnt/var/db/xbps/keys\n        state: directory\n        mode: \"0755\"\n        owner: root\n        group: root\n    - name: Copy repository keys to into a new void system on a mounted partition\n      become: true\n      ansible.builtin.copy:\n        remote_src: true\n        src: \"{{ item }}\"\n        dest: \"/mnt{{ item }}\"\n        owner: root\n        group: root\n        mode: \"0644\"\n      when: chroot_void_xbps_keys_files.matched > 0\n      loop: \"{{ chroot_void_xbps_keys_files.files | map(attribute='path') }}\"\n",
-    "zxc.20260501141247.1": "- name: Install packages in mnt\n  become: true\n  environment:\n    XBPS_ARCH: \"{{ ansible_facts.machine }}\"\n  community.general.xbps:\n    name: \"{{ item }}\"\n    root: /mnt\n    repositories:\n      - \"{{ xbps_mirror }}\"\n      - \"{{ xbps_nonfree_mirror }}\"\n  loop:\n    @others",
+    "zxc.20260501141247.1": "- name: Install packages in mnt\n  become: true\n  environment:\n    XBPS_ARCH: \"{{ ansible_facts.machine }}\"\n  community.general.xbps:\n    name:\n      @others\n    root: /mnt\n    repositories:\n      - \"{{ xbps_mirror }}\"\n      - \"{{ xbps_nonfree_mirror }}\"\n",
     "zxc.20260501211824.1": "- base-system\n- python3",
     "zxc.20260501211935.1": "- alsa-utils",
     "zxc.20260501211850.1": "- grub-x86_64-efi\n- os-prober",
@@ -9763,7 +9763,7 @@
     "zxc.20260501143352.1": "- name: Remove chroot resolv.conf\n  become: true\n  ansible.builtin.file:\n    path: /mnt/etc/resolv.conf\n    state: absent",
     "zxc.20260501215954.1": "- name: Reboot\n  become: true\n  ansible.builtin.reboot:",
     "zxc.20260501214109.1": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n- name: Configure void linux\n  hosts: surface-void\n  tasks:\n    @others\n",
-    "zxc.20260501214216.1": "- name: Install packages\n  become: true\n  environment:\n    XBPS_ARCH: \"{{ ansible_facts.machine }}\"\n  community.general.xbps:\n    name: \"{{ item }}\"\n  loop:\n    @others\n",
+    "zxc.20260501214216.1": "- name: Install packages\n  become: true\n  environment:\n    XBPS_ARCH: \"{{ ansible_facts.machine }}\"\n  community.general.xbps:\n    name:\n      @others\n",
     "zxc.20260501214216.4": "- git\n- curl\n- aria2\n- grep\n- fzf\n- yt-dlp\n- ffmpeg\n",
     "zxc.20260501214216.5": "- 7zip\n- atool",
     "zxc.20260501214216.6": "- buku",
@@ -10254,10 +10254,10 @@
       "_mod_time": 1777655978.0232885
     },
     "zxc.20260501132138.1": {
-      "_mod_time": 1777697370.8309002
+      "_mod_time": 1777703137.5128934
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1777702474.991741
+      "_mod_time": 1777702941.2023609
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777106655.3400538
