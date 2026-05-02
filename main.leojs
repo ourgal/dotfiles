@@ -8809,7 +8809,7 @@
     "zxc.20260125144753.1": ".bash_profile\n.bashrc",
     "zxc.20260125144810.1": ".xinitrc",
     "zxc.20260125172659.1": "{{ if lookPath \"hx\" -}}\nhx\n{{- else if lookPath \"vim\" -}}\nvim\n{{- else if lookPath \"vi\" -}}\nvi\n{{- else if lookPath \"nano\" -}}\nnano\n{{- end -}}",
-    "zxc.20260319091259.1": "{{ if eq . nil -}}\n{{ fail \"pass hostname to ipM6 template\" -}}\n{{ end -}}\n{{ if eq . \"work\" -}}\n192.168.1.103\n{{- else if  eq . \"nuc\" \"bed\" -}}\n192.168.123.191\n{{- else if  eq . \"localhost\" -}}\n{{- else -}}\n{{ fail (printf \"unknown hostname %s for ipM6 template\" .) -}}\n{{- end -}}",
+    "zxc.20260319091259.1": "{{ if eq . nil -}}\n{{ fail \"pass hostname to ipM6 template\" -}}\n{{ end -}}\n{{ if eq . \"work\" -}}\n192.168.1.103\n{{- else if  eq . \"nuc\" \"bed\" \"surface-void\" -}}\n192.168.123.191\n{{- else if  eq . \"localhost\" -}}\n{{- else -}}\n{{ fail (printf \"unknown hostname %s for ipM6 template\" .) -}}\n{{- end -}}",
     "User.20260221004652.1": "{{ if eq . nil -}}\n{{ fail \"pass pathes to checkPath template\" -}}\n{{ end -}}\n{{ if kindIs \"slice\" . -}}\n    {{ range . -}}\n    {{ template \"_checkPath\" . -}}\n    {{ end -}}\n{{ else if kindIs \"string\" . -}}\n    {{ template \"_checkPath\" . -}}\n{{ else -}}\n    {{ fail (printf \"checkPath: %s unsupported type %s\" . (kindOf .)) -}}\n{{ end -}}\n",
     "User.20260221144015.1": "{{ if not (lookPath .) }}\n{{ fail (printf \"%s is not found\" .) -}}\n{{ end -}}",
     "User.20260307193715.1": "886822.xyz\n",
@@ -9777,7 +9777,7 @@
     "zxc.20260501214109.1": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n- name: Configure void linux\n  hosts: surface-void\n  tasks:\n    @others\n",
     "zxc.20260501214216.1": "- name: Install packages\n  become: true\n  environment:\n    XBPS_ARCH: \"{{ ansible_facts.machine }}\"\n  community.general.xbps:\n    name:\n      @others\n",
     "zxc.20260501214216.4": "- git\n- curl\n- aria2\n- grep\n- fzf\n- yt-dlp\n- ffmpeg\n",
-    "zxc.20260501214216.5": "- 7zip\n- atool",
+    "zxc.20260501214216.5": "- 7zip\n- atool\n- unzip",
     "zxc.20260501214216.6": "- buku",
     "zxc.20260501214216.7": "- Clipboard\n- xclip\n- xsel",
     "zxc.20260501214216.8": "- aria2\n- transmission\n- yt-dlp",
@@ -9942,7 +9942,7 @@
       "_mod_time": 1776434513.08354
     },
     "zxc.20260319091259.1": {
-      "_mod_time": 1777106655.324428
+      "_mod_time": 1777715371.0222514
     },
     "User.20260221004652.1": {
       "_mod_time": 1777106655.324428
@@ -10272,7 +10272,7 @@
       "_mod_time": 1777703137.5128934
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1777706611.1288688
+      "_mod_time": 1777713572.496426
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777106655.3400538
