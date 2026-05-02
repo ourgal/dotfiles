@@ -9388,13 +9388,13 @@
     "zxc.20260502011628.1": "# chezmoi:template:left-delimiter=[[ right-delimiter=]]",
     "zxc.20260423143729.4": "- name: Configure windows admin\n  hosts: windows\n  remote_user: admin\n  ignore_unreachable: true\n  tags: admin\n  tasks:\n    @others\n  handlers:\n    << handlers >>\n",
     "zxc.20260423143729.276": "- name: Gather facts\n  ansible.builtin.gather_facts:\n- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts\n",
-    "zxc.20260423143729.7": "- name: Install choco pacakges\n  tags: choco-install\n  chocolatey.chocolatey.win_chocolatey:\n    name: \"{{ item }}\"\n    state: latest\n  loop:\n    @others\n",
+    "zxc.20260423143729.7": "- name: Install choco pacakges\n  tags: choco-install\n  chocolatey.chocolatey.win_chocolatey:\n    name:\n      @others\n    state: latest\n",
     "zxc.20260423143729.8": "- visualstudio2026-workload-vctools\n- weasel\n- winfsp # rclone\n- steam\n- epicgameslauncher\n- calibre\n- \"{{ 'tailscale' if ansible_facts.nodename == 'work' else omit }}\"\n",
-    "zxc.20260423143729.9": "- name: Uninstall choco pacakges\n  tags: choco-uninstall\n  chocolatey.chocolatey.win_chocolatey:\n    name: \"{{ item }}\"\n    state: absent\n  loop:\n    @others\n",
+    "zxc.20260423143729.9": "- name: Uninstall choco pacakges\n  tags: choco-uninstall\n  chocolatey.chocolatey.win_chocolatey:\n    name:\n      @others\n    state: absent\n",
     "zxc.20260423143729.10": "- gimp\n- gpg4win\n- firefox\n- mpvio\n",
     "zxc.20260423143729.12": "- name: Install init packages via scoop\n  tags: admin-scoop-init\n  community.windows.win_scoop:\n    name: \"{{ item }}\"\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  loop:\n    - git\n",
     "zxc.20260423143729.269": "- name: Add bucket\n  community.windows.win_scoop_bucket:\n    name: \"{{ item }}\"\n    state: present\n  loop:\n    - extras\n    - nerd-fonts\n    - nonportable\n",
-    "zxc.20260423143729.14": "- name: Install nonportable packages via scoop\n  tags: admin-scoop-nonportable\n  community.windows.win_scoop:\n    name: \"{{ item }}\"\n    global: true\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  loop:\n    @others\n",
+    "zxc.20260423143729.14": "- name: Install nonportable packages via scoop\n  tags: admin-scoop-nonportable\n  community.windows.win_scoop:\n    name:\n      @others\n    global: true\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.15": "- files-np\n",
     "zxc.20260423143729.16": "- virtualbox-with-extension-pack-np\n",
     "zxc.20260423143729.17": "- name: WSL\n  tags: wsl\n  block:\n    @others\n",
@@ -9413,14 +9413,14 @@
     "zxc.20260423143729.30": "- name: Download file\n  ansible.windows.win_get_url:\n    url: https://github.com/duncanthrax/scream/releases/download/4.0/Scream4.0.zip\n    dest: C:\\Scream.zip\n- name: Unzip file\n  community.windows.win_unzip:\n    src: C:\\Scream.zip\n    dest: C:\\Scream\n    force: true\n- name: Run installer\n  ansible.windows.win_command: C:\\Scream\\Install\\Install-x64.bat\n",
     "zxc.20260423143729.301": "- name: Reboot\n  ansible.windows.win_reboot:\n",
     "zxc.20260423143729.32": "- name: Configure windows user\n  hosts: windows\n  remote_user: user\n  ignore_unreachable: true\n  tags: user\n  tasks:\n    @others\n  handlers:\n    << handlers >>\n",
-    "zxc.20260423143729.261": "- name: Install aria2 and lessmsi via scoop\n  community.windows.win_scoop:\n    name: \"{{ item }}\"\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  loop:\n    - lessmsi\n    - aria2\n",
+    "zxc.20260423143729.261": "- name: Install aria2 and lessmsi via scoop\n  community.windows.win_scoop:\n    name:\n      - lessmsi\n      - aria2\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.262": "- name: Update scoop config\n  tags: scoop-config\n  block:\n    - name: Facts\n      ansible.builtin.gather_facts:\n      when: ansible_facts is not defined\n    - name: Check scoop config file\n      ansible.windows.win_stat:\n        path: \"{{ ansible_facts.user_dir }}\\\\.config\\\\scoop\\\\config.json\"\n      register: scoop_config_stat\n    - name: Get scoop config content\n      ansible.windows.slurp:\n        src: \"{{ ansible_facts.user_dir }}\\\\.config\\\\scoop\\\\config.json\"\n      register: scoop_config_content\n      when: scoop_config_stat.stat.exists is true\n    - name: Set scoop config\n      vars:\n        << config >>\n      ansible.windows.win_copy:\n        dest: \"{{ ansible_facts.user_dir }}\\\\.config\\\\scoop\\\\config.json\"\n        content: \"{{ scoop_config_content.content | b64decode | from_json | combine(config) | to_json }}\"\n      when: scoop_config_stat.stat.exists is true\n    - name: Set scoop config\n      vars:\n        << config >>\n      ansible.windows.win_copy:\n        dest: \"{{ ansible_facts.user_dir }}\\\\.config\\\\scoop\\\\config.json\"\n        content: \"{{ config | to_json }}\"\n      when: scoop_config_stat.stat.exists is false\n",
     "zxc.20260423143729.264": "config:\n  use_lessmsi: true\n  aria2-enabled: true\n  aria2-warning-enabled: false\n  use_sqlite_cache: true\n  force_update: true\n  use_external_7zip: false\n  gh_token: \"{{ lookup('gopass', 'github/ourgal/token') | trim }}\"\n",
-    "zxc.20260423143729.265": "- name: Install 7zip and git via scoop\n  community.windows.win_scoop:\n    name: \"{{ item }}\"\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  loop:\n    - 7zip\n    - git\n",
+    "zxc.20260423143729.265": "- name: Install 7zip and git via scoop\n  community.windows.win_scoop:\n    name:\n      - 7zip\n      - git\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.266": "- name: Using external 7zip\n  tags: scoop-config\n  block:\n    - name: Facts\n      ansible.builtin.gather_facts:\n      when: ansible_facts is not defined\n    - name: Check scoop config file\n      ansible.windows.win_stat:\n        path: \"{{ ansible_facts.user_dir }}\\\\.config\\\\scoop\\\\config.json\"\n      register: scoop_config_stat\n    - name: Get scoop config content\n      ansible.windows.slurp:\n        src: \"{{ ansible_facts.user_dir }}\\\\.config\\\\scoop\\\\config.json\"\n      register: scoop_config_content\n      when: scoop_config_stat.stat.exists is true\n    - name: Set scoop config\n      vars:\n        << config >>\n      ansible.windows.win_copy:\n        dest: \"{{ ansible_facts.user_dir }}\\\\.config\\\\scoop\\\\config.json\"\n        content: \"{{ scoop_config_content.content | b64decode | from_json | combine(config) | to_json }}\"\n      when: scoop_config_stat.stat.exists is true\n    - name: Set scoop config\n      vars:\n        << config >>\n      ansible.windows.win_copy:\n        dest: \"{{ ansible_facts.user_dir }}\\\\.config\\\\scoop\\\\config.json\"\n        content: \"{{ config | to_json }}\"\n      when: scoop_config_stat.stat.exists is false\n",
     "zxc.20260423143729.268": "config:\n  use_external_7zip: true\n",
     "zxc.20260423143729.45": "- name: Update scoop\n  tags: scoop-update\n  block:\n    - name: Facts\n      ansible.builtin.gather_facts:\n      when: ansible_facts is not defined\n    - name: Update scoop\n      ansible.windows.win_shell: \"{{ ansible_facts.user_dir }}/scoop/apps/scoop/current/bin/scoop.ps1 update\"\n    - name: Update scoop packages\n      ansible.windows.win_shell: \"{{ ansible_facts.user_dir }}/scoop/apps/scoop/current/bin/scoop.ps1 update --all\"\n    - name: Remove scoop cache\n      ansible.windows.win_shell: \"{{ ansible_facts.user_dir }}/scoop/apps/scoop/current/bin/scoop.ps1 cache remove *\"\n    - name: Clean up scoop packages\n      ansible.windows.win_shell: \"{{ ansible_facts.user_dir }}/scoop/apps/scoop/current/bin/scoop.ps1 cleanup --all\"\n",
-    "zxc.20260423143729.46": "- name: Install main packages via scoop\n  tags: scoop-main\n  community.windows.win_scoop:\n    name: \"{{ item }}\"\n    state: present\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  loop:\n    @others\n",
+    "zxc.20260423143729.46": "- name: Install main packages via scoop\n  tags: scoop-main\n  community.windows.win_scoop:\n    name:\n      @others\n    state: present\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.47": "- main/aichat\n",
     "zxc.20260423143729.48": "- main/adb\n- main/scrcpy\n",
     "zxc.20260423143729.49": "- main/mpd\n- main/navidrome\n",
@@ -9509,7 +9509,7 @@
     "zxc.20260423143729.132": "- main/espanso\n",
     "zxc.20260423143729.134": "- main/ffmpeg\n",
     "zxc.20260423143729.135": "- name: Install nodejs and vscode\n  community.windows.win_scoop:\n    name:\n      - nodejs-lts\n      - vscode\n    state: present\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  notify: Reboot\n",
-    "zxc.20260423143729.136": "- name: Install extras packages via scoop\n  tags: scoop-extras\n  community.windows.win_scoop:\n    name: \"{{ item }}\"\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  loop:\n    @others\n",
+    "zxc.20260423143729.136": "- name: Install extras packages via scoop\n  tags: scoop-extras\n  community.windows.win_scoop:\n    name:\n      @others\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.137": "- extras/kdeconnect\n- extras/apkeep\n",
     "zxc.20260423143729.138": "- extras/filebot\n",
     "zxc.20260423143729.139": "- extras/ab-av1\n",
@@ -9565,23 +9565,23 @@
     "zxc.20260423143729.192": "- extras/jellyfin-mpv-shim\n- extras/vlc\n# install failed\n# - miru\n- extras/mpv\n- extras/fladder\n",
     "zxc.20260423143729.193": "- extras/handbrake\n",
     "zxc.20260423143729.194": "- extras/openboard\n",
-    "zxc.20260423143729.195": "- name: Install nerd fonts packages via scoop\n  tags: scoop-fonts\n  community.windows.win_scoop:\n    name: \"{{ item }}\"\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  loop:\n    @others\n",
+    "zxc.20260423143729.195": "- name: Install nerd fonts packages via scoop\n  tags: scoop-fonts\n  community.windows.win_scoop:\n    name:\n      @others\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.196": "- nerd-fonts/Maple-Mono-NF-CN\n",
     "zxc.20260423143729.197": "- nerd-fonts/NerdFontsSymbolsOnly\n",
     "zxc.20260423143729.198": "- nerd-fonts/FiraCode-NF-Mono\n",
     "zxc.20260423143729.199": "- nerd-fonts/Noto-CJK-Mega-OTC\n",
     "zxc.20260423143729.200": "- name: Other packages\n  tags: scoop-other\n  block:\n    @others\n",
-    "zxc.20260423143729.201": "- name: Add main-plus bucket\n  community.windows.win_scoop_bucket:\n    name: main-plus\n    repo: https://github.com/Scoopforge/Main-Plus\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name: \"{{ item }}\"\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  loop:\n    - main-plus/cargo-update\n",
-    "zxc.20260423143729.202": "- name: Add chawyehsu_dorado bucket\n  community.windows.win_scoop_bucket:\n    name: chawyehsu_dorado\n    repo: https://github.com/chawyehsu/dorado\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name: \"{{ item }}\"\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  loop:\n    - chawyehsu_dorado/runany\n    - chawyehsu_dorado/git-credential-gopass\n    - chawyehsu_dorado/aliyundrive\n",
+    "zxc.20260423143729.201": "- name: Add main-plus bucket\n  community.windows.win_scoop_bucket:\n    name: main-plus\n    repo: https://github.com/Scoopforge/Main-Plus\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - main-plus/cargo-update\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
+    "zxc.20260423143729.202": "- name: Add chawyehsu_dorado bucket\n  community.windows.win_scoop_bucket:\n    name: chawyehsu_dorado\n    repo: https://github.com/chawyehsu/dorado\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - chawyehsu_dorado/runany\n      - chawyehsu_dorado/git-credential-gopass\n      - chawyehsu_dorado/aliyundrive\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.203": "- name: Add extras-plus bucket\n  community.windows.win_scoop_bucket:\n    name: extras-plus\n    repo: https://github.com/Scoopforge/Extras-Plus\n    state: present\n",
-    "zxc.20260423143729.204": "- name: Add extras-cn bucket\n  community.windows.win_scoop_bucket:\n    name: extras-cn\n    repo: https://github.com/Scoopforge/Extras-CN\n    state: present\n- name: Install packages from extras-cn\n  community.windows.win_scoop:\n    name: \"{{ item }}\"\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  loop:\n    - extras-cn/neteasemusic\n\n",
-    "zxc.20260423143729.205": "- name: Add anderlli0053_DEV-tools bucket\n  community.windows.win_scoop_bucket:\n    name: anderlli0053_DEV-tools\n    repo: https://github.com/anderlli0053/DEV-tools\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name: \"{{ item }}\"\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  loop:\n    - anderlli0053_DEV-tools/mani\n    - anderlli0053_DEV-tools/ydict\n    - anderlli0053_DEV-tools/kpcli\n",
-    "zxc.20260423143729.206": "- name: Add NSPC911_le-bucket bucket\n  community.windows.win_scoop_bucket:\n    name: NSPC911_le-bucket\n    repo: https://github.com/NSPC911/le-bucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name: \"{{ item }}\"\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  loop:\n    - NSPC911_le-bucket/helix-ghost\n",
-    "zxc.20260423143729.207": "- name: Add ShuguangSun_sgs-scoop-bucket bucket\n  community.windows.win_scoop_bucket:\n    name: ShuguangSun_sgs-scoop-bucket\n    repo: https://github.com/ShuguangSun/sgs-scoop-bucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name: \"{{ item }}\"\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  loop:\n    - ShuguangSun_sgs-scoop-bucket/emacs-lsp-booster\n",
-    "zxc.20260423143729.208": "- name: Add hoilc_scoop-lemon bucket\n  community.windows.win_scoop_bucket:\n    name: hoilc_scoop-lemon\n    repo: https://github.com/hoilc/scoop-lemon\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name: \"{{ item }}\"\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  loop:\n    - hoilc_scoop-lemon/keep-sorted\n",
-    "zxc.20260423143729.209": "- name: Add Befod_Xeno bucket\n  community.windows.win_scoop_bucket:\n    name: Befod_Xeno\n    repo: https://github.com/Befod/Xeno\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name: \"{{ item }}\"\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  loop:\n    - Befod_Xeno/gesturesign\n",
-    "zxc.20260423143729.210": "- name: Add maqibg_MQBucket bucket\n  community.windows.win_scoop_bucket:\n    name: maqibg_MQBucket\n    repo: https://github.com/maqibg/MQBucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name: \"{{ item }}\"\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  loop:\n    - maqibg_MQBucket/Github-Store\n",
-    "zxc.20260423143729.211": "- name: Add ourgal_scoop-bucket bucket\n  community.windows.win_scoop_bucket:\n    name: ourgal_scoop-bucket\n    repo: https://github.com/ourgal/scoop-bucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name: \"{{ item }}\"\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  loop:\n    - ourgal_scoop-bucket/dockfmt\n    - ourgal_scoop-bucket/mtranserver\n    - ourgal_scoop-bucket/altrun\n",
+    "zxc.20260423143729.204": "- name: Add extras-cn bucket\n  community.windows.win_scoop_bucket:\n    name: extras-cn\n    repo: https://github.com/Scoopforge/Extras-CN\n    state: present\n- name: Install packages from extras-cn\n  community.windows.win_scoop:\n    name:\n      - extras-cn/neteasemusic\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  loop:\n\n",
+    "zxc.20260423143729.205": "- name: Add anderlli0053_DEV-tools bucket\n  community.windows.win_scoop_bucket:\n    name: anderlli0053_DEV-tools\n    repo: https://github.com/anderlli0053/DEV-tools\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - anderlli0053_DEV-tools/mani\n      - anderlli0053_DEV-tools/ydict\n      - anderlli0053_DEV-tools/kpcli\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
+    "zxc.20260423143729.206": "- name: Add NSPC911_le-bucket bucket\n  community.windows.win_scoop_bucket:\n    name: NSPC911_le-bucket\n    repo: https://github.com/NSPC911/le-bucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - NSPC911_le-bucket/helix-ghost\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
+    "zxc.20260423143729.207": "- name: Add ShuguangSun_sgs-scoop-bucket bucket\n  community.windows.win_scoop_bucket:\n    name: ShuguangSun_sgs-scoop-bucket\n    repo: https://github.com/ShuguangSun/sgs-scoop-bucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - ShuguangSun_sgs-scoop-bucket/emacs-lsp-booster\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
+    "zxc.20260423143729.208": "- name: Add hoilc_scoop-lemon bucket\n  community.windows.win_scoop_bucket:\n    name: hoilc_scoop-lemon\n    repo: https://github.com/hoilc/scoop-lemon\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - hoilc_scoop-lemon/keep-sorted\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
+    "zxc.20260423143729.209": "- name: Add Befod_Xeno bucket\n  community.windows.win_scoop_bucket:\n    name: Befod_Xeno\n    repo: https://github.com/Befod/Xeno\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - Befod_Xeno/gesturesign\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
+    "zxc.20260423143729.210": "- name: Add maqibg_MQBucket bucket\n  community.windows.win_scoop_bucket:\n    name: maqibg_MQBucket\n    repo: https://github.com/maqibg/MQBucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - maqibg_MQBucket/Github-Store\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
+    "zxc.20260423143729.211": "- name: Add ourgal_scoop-bucket bucket\n  community.windows.win_scoop_bucket:\n    name: ourgal_scoop-bucket\n    repo: https://github.com/ourgal/scoop-bucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - ourgal_scoop-bucket/dockfmt\n      - ourgal_scoop-bucket/mtranserver\n      - ourgal_scoop-bucket/altrun\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.212": "- name: Pipx\n  tags: pipx\n  block:\n    @others\n",
     "zxc.20260423143729.213": "- name: Add pipx bin path to PATH\n  ansible.windows.win_path:\n    state: present\n    scope: user\n    elements: '%userprofile%\\.local\\bin'\n",
     "zxc.20260423143729.248": "- name: Create .pip folder\n  ansible.windows.win_file:\n    dest: \"{{ ansible_facts.env.APPDATA }}\\\\.pip\"\n    state: directory\n- name: Set pip config\n  ansible.windows.win_copy:\n    dest: \"{{ ansible_facts.env.APPDATA }}\\\\.pip\\\\pip.ini\"\n    content: |\n      [global]\n      index-url = https://mirrors.cernet.edu.cn/pypi/web/simple/\n      [install]\n      trusted-host = mirrors.cernet.edu.cn\n",
@@ -9661,7 +9661,7 @@
     "zxc.20260423143729.308": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n- name: Configure wsl debian\n  hosts: nuc-windows-wsl-debian\n  tasks:\n    @others",
     "zxc.20260423143729.309": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts",
     "zxc.20260423143729.310": "- name: Set mirror\n  block:\n    - name: First mirror url\n      ansible.builtin.replace:\n        path: /etc/apt/sources.list\n        regexp: http://deb.debian.org/\n        replace: https://mirrors.aliyun.com/\n    - name: Second mirror url\n      ansible.builtin.replace:\n        path: /etc/apt/sources.list\n        regexp: http://security.debian.org/\n        replace: https://mirrors.aliyun.com/",
-    "zxc.20260423143729.311": "- name: Update apt\n  ansible.builtin.apt:\n    update_cache: true\n- name: Install apt packages\n  ansible.builtin.apt:\n    name: \"{{ item }}\"\n  loop:\n    @others",
+    "zxc.20260423143729.311": "- name: Update apt\n  ansible.builtin.apt:\n    update_cache: true\n- name: Install apt packages\n  ansible.builtin.apt:\n    name:\n      @others\n",
     "zxc.20260423143729.312": "- git\n- lazygit",
     "zxc.20260423143729.313": "- emacs\n- vim-gtk3\n- hx",
     "zxc.20260423143729.315": "- mpv",
@@ -9680,7 +9680,7 @@
     "zxc.20260423143729.330": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n- name: Configure wsl arch\n  hosts: wsl-arch\n  ignore_unreachable: true\n  tasks:\n    @others",
     "zxc.20260423143729.331": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts",
     "zxc.20260423143729.332": "- name: Set mirror\n  ansible.builtin.copy:\n    content: |\n      Server = https://mirror.nju.edu.cn/archlinux/$repo/os/$arch\n      Server = https://mirrors.cernet.edu.cn/archlinux/$repo/os/$arch\n    dest: /etc/pacman.d/mirrorlist\n    mode: \"0644\"",
-    "zxc.20260423143729.333": "- name: Update system\n  community.general.pacman:\n    update_cache: true\n    upgrade: true\n- name: Install pacman packages\n  community.general.pacman:\n    name: \"{{ item }}\"\n  loop:\n    @others",
+    "zxc.20260423143729.333": "- name: Update system\n  community.general.pacman:\n    update_cache: true\n    upgrade: true\n- name: Install pacman packages\n  community.general.pacman:\n    name:\n      @others\n",
     "zxc.20260423143729.334": "- git\n- lazygit",
     "zxc.20260423143729.335": "- emacs\n- helix\n- gvim",
     "zxc.20260423143729.336": "- curl\n- wget",
@@ -9700,7 +9700,7 @@
     "zxc.20260501155709.1": "- ansible",
     "zxc.20260423143729.353": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n- name: Configure termux\n  hosts: note20\n  vars:\n    ansible_remote_tmp: /data/data/com.termux/files/home/.ansible/tmp\n  tasks:\n    @others",
     "zxc.20260423143729.354": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts",
-    "zxc.20260423143729.355": "- name: Update all packages\n  tags: apt\n  ansible.builtin.apt:\n    update_cache: true\n    upgrade: true\n- name: Update all packages\n  tags: apt\n  ansible.builtin.apt:\n    name: \"{{ item }}\"\n  loop:\n    @others",
+    "zxc.20260423143729.355": "- name: Update all packages\n  tags: apt\n  ansible.builtin.apt:\n    update_cache: true\n    upgrade: true\n- name: Update all packages\n  tags: apt\n  ansible.builtin.apt:\n    name:\n      @others\n",
     "zxc.20260423143729.356": "- aichat",
     "zxc.20260423143729.357": "- bk",
     "zxc.20260423143729.358": "- weechat",
@@ -9763,7 +9763,7 @@
     "zxc.20260423143729.415": "- openssh",
     "zxc.20260423143729.416": "- newsboat",
     "zxc.20260423143729.418": "- ffmpeg",
-    "zxc.20260423143729.419": "- name: Create folder\n  tags: pip\n  ansible.builtin.file:\n    path: .pip\n    state: directory\n    mode: \"0755\"\n- name: Set pip config\n  tags: pip\n  ansible.builtin.copy:\n    content: |\n      [global]\n      index-url = https://mirrors.nju.edu.cn/pypi/web/simple/\n      [install]\n      trusted-host = mirrors.nju.edu.cn\n    dest: .pip/pip.conf\n    mode: \"0600\"\n- name: Install pip packaging\n  tags: pip\n  ansible.builtin.command: pip install packaging\n- name: Pip packages\n  tags: pip\n  ansible.builtin.pip:\n    name: \"{{ item }}\"\n  loop:\n    @others",
+    "zxc.20260423143729.419": "- name: Create folder\n  tags: pip\n  ansible.builtin.file:\n    path: .pip\n    state: directory\n    mode: \"0755\"\n- name: Set pip config\n  tags: pip\n  ansible.builtin.copy:\n    content: |\n      [global]\n      index-url = https://mirrors.nju.edu.cn/pypi/web/simple/\n      [install]\n      trusted-host = mirrors.nju.edu.cn\n    dest: .pip/pip.conf\n    mode: \"0600\"\n- name: Install pip packaging\n  tags: pip\n  ansible.builtin.command: pip install packaging\n- name: Pip packages\n  tags: pip\n  ansible.builtin.pip:\n    name:\n      @others\n",
     "zxc.20260423143729.420": "- pipx",
     "zxc.20260423143729.421": "- name: Install pipx packages\n  tags: pipx\n  community.general.pipx:\n    name: \"{{ item }}\"\n  loop:\n    @others",
     "zxc.20260423143729.422": "- copyparty",
@@ -10339,7 +10339,7 @@
       "_mod_time": 1777720743.2104177
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1777697317.7283092
+      "_mod_time": 1777749233.2400908
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1777614976.0491798
@@ -10348,13 +10348,13 @@
       "_mod_time": 1777656487.0659406
     },
     "zxc.20260423143729.308": {
-      "_mod_time": 1777656487.0971742
+      "_mod_time": 1777749309.3032937
     },
     "zxc.20260423143729.330": {
-      "_mod_time": 1777656487.113767
+      "_mod_time": 1777749330.0043728
     },
     "zxc.20260423143729.353": {
-      "_mod_time": 1777701496.580028
+      "_mod_time": 1777749385.045613
     },
     "zxc.20260423143729.426": {
       "_mod_time": 1777656120.2679732

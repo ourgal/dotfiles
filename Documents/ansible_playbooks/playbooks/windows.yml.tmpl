@@ -14,26 +14,24 @@
     - name: Install choco pacakges
       tags: choco-install
       chocolatey.chocolatey.win_chocolatey:
-        name: "{{ item }}"
+        name:
+          - visualstudio2026-workload-vctools
+          - weasel
+          - winfsp # rclone
+          - steam
+          - epicgameslauncher
+          - calibre
+          - "{{ 'tailscale' if ansible_facts.nodename == 'work' else omit }}"
         state: latest
-      loop:
-        - visualstudio2026-workload-vctools
-        - weasel
-        - winfsp # rclone
-        - steam
-        - epicgameslauncher
-        - calibre
-        - "{{ 'tailscale' if ansible_facts.nodename == 'work' else omit }}"
     - name: Uninstall choco pacakges
       tags: choco-uninstall
       chocolatey.chocolatey.win_chocolatey:
-        name: "{{ item }}"
+        name:
+          - gimp
+          - gpg4win
+          - firefox
+          - mpvio
         state: absent
-      loop:
-        - gimp
-        - gpg4win
-        - firefox
-        - mpvio
     - name: Install init packages via scoop
       tags: admin-scoop-init
       community.windows.win_scoop:
@@ -57,16 +55,15 @@
     - name: Install nonportable packages via scoop
       tags: admin-scoop-nonportable
       community.windows.win_scoop:
-        name: "{{ item }}"
+        name:
+          - files-np
+          - virtualbox-with-extension-pack-np
         global: true
         no_cache: true
       register: result
       retries: 3
       delay: 5
       until: result is not failed
-      loop:
-        - files-np
-        - virtualbox-with-extension-pack-np
     - name: WSL
       tags: wsl
       block:
@@ -226,16 +223,15 @@
         var: ansible_facts
     - name: Install aria2 and lessmsi via scoop
       community.windows.win_scoop:
-        name: "{{ item }}"
+        name:
+          - lessmsi
+          - aria2
         global: false
         no_cache: true
       register: result
       retries: 3
       delay: 5
       until: result is not failed
-      loop:
-        - lessmsi
-        - aria2
     - name: Update scoop config
       tags: scoop-config
       block:
@@ -281,16 +277,15 @@
           when: scoop_config_stat.stat.exists is false
     - name: Install 7zip and git via scoop
       community.windows.win_scoop:
-        name: "{{ item }}"
+        name:
+          - 7zip
+          - git
         global: false
         no_cache: true
       register: result
       retries: 3
       delay: 5
       until: result is not failed
-      loop:
-        - 7zip
-        - git
     - name: Using external 7zip
       tags: scoop-config
       block:
@@ -347,7 +342,168 @@
     - name: Install main packages via scoop
       tags: scoop-main
       community.windows.win_scoop:
-        name: "{{ item }}"
+        name:
+          - main/aichat
+          - main/adb
+          - main/scrcpy
+          - main/mpd
+          - main/navidrome
+          - main/cacert
+          - main/hugo
+          - main/chsrc
+          - main/editorconfig
+          - main/dprint
+          - main/aspell
+          - main/shellcheck
+          - main/shfmt
+          - main/binutils
+          - main/clangd
+          - main/make
+          - main/task
+          - main/cmake
+          - main/msys2
+          - main/direnv
+          - main/tree-sitter
+          - main/dirhash
+          - main/haskell
+          - main/haskell-cabal
+          - main/haskell-language-server
+          - main/stack
+          - main/texlab
+          - main/tectonic
+          - main/lua-language-server
+          - main/stylua
+          - main/autocorrect
+          - main/marksman
+          - main/yarn
+          - main/pnpm
+          - main/perl
+          - main/ruff
+          - main/ty
+          - main/uv
+          - main/rust
+          - main/cargo-binstall
+          - main/sqlite
+          - main/taplo
+          - main/tombi
+          - main/static-web-server
+          - main/yamlfmt
+          - main/smartmontools
+          - main/pandoc
+          - main/chezmoi
+          - main/gallery-dl
+          - main/yt-dlp
+          - main/pget
+          - main/wget2
+          - main/wget
+          - main/aria2
+          - main/vim
+          - main/helix
+          - main/neovim
+          - main/fresh
+          - main/mailsend
+          - main/gpg
+          - main/openssl
+          - main/gopass
+          - main/gopass-jsonapi
+          - main/sops
+          - main/lf
+          - main/yazi
+          - main/superfile
+          - main/broot
+          - main/fzf
+          - main/jj
+          - main/gitomatic
+          - main/git-bug
+          - main/gh
+          - main/mob
+          - main/git-lfs
+          - main/git-absorb
+          - main/diff-so-fancy
+          - main/delta
+          - main/difftastic
+          - main/git-crypt
+          - main/gitui
+          - extras/git-cola
+          - main/gogs
+          - main/gitql
+          - main/lefthook
+          - main/gnuplot
+          - main/exiftool
+          - main/imagemagick
+          - main/dog
+          - main/nali
+          - main/nmap
+          - main/q-dns
+          - main/tcping
+          - main/scoop-search
+          - main/everything-cli
+          - main/croc
+          - main/cwrsync
+          - main/dufs
+          - main/miniserve
+          - main/portal
+          - main/rclone
+          - main/syncthing
+          - main/alist
+          - main/serve
+          - main/simple-http-server
+          # hash check filed
+          # - main/ffsend
+          - main/git-annex
+          - main/clink
+          - main/clink-completions
+          - main/cmder-full
+          - main/pwsh
+          - main/nu
+          - main/yori
+          - main/fastfetch
+          - main/ntop
+          - main/btop
+          - main/bottom
+          - main/which
+          - main/ttyper
+          - main/fd
+          - main/bat
+          - main/less
+          - main/rnr
+          - main/shasum
+          - main/zoxide
+          - main/coreutils
+          - main/nircmd
+          - main/grep
+          - main/ripgrep
+          - main/gawk
+          - main/dua
+          - main/dust
+          - main/tealdeer
+          - main/sd
+          - main/eza
+          - main/duf
+          - main/navi
+          - extras/pet
+          - main/unrar
+          - main/unzip
+          - main/mcfly
+          - main/atuin
+          - main/starship
+          - main/oh-my-posh
+          - main/psmux
+          - main/dos2unix
+          - main/goodbyedpi
+          - main/file
+          - main/zip
+          - main/innounp
+          - main/gzip
+          - main/gsudo
+          - main/nssm
+          - main/pipx
+          - main/winget
+          - main/topgrade
+          - main/clipboard@0.9.0.1
+          - main/noti
+          - main/espanso
+          - main/ffmpeg
         state: present
         global: false
         no_cache: true
@@ -355,168 +511,6 @@
       retries: 3
       delay: 5
       until: result is not failed
-      loop:
-        - main/aichat
-        - main/adb
-        - main/scrcpy
-        - main/mpd
-        - main/navidrome
-        - main/cacert
-        - main/hugo
-        - main/chsrc
-        - main/editorconfig
-        - main/dprint
-        - main/aspell
-        - main/shellcheck
-        - main/shfmt
-        - main/binutils
-        - main/clangd
-        - main/make
-        - main/task
-        - main/cmake
-        - main/msys2
-        - main/direnv
-        - main/tree-sitter
-        - main/dirhash
-        - main/haskell
-        - main/haskell-cabal
-        - main/haskell-language-server
-        - main/stack
-        - main/texlab
-        - main/tectonic
-        - main/lua-language-server
-        - main/stylua
-        - main/autocorrect
-        - main/marksman
-        - main/yarn
-        - main/pnpm
-        - main/perl
-        - main/ruff
-        - main/ty
-        - main/uv
-        - main/rust
-        - main/cargo-binstall
-        - main/sqlite
-        - main/taplo
-        - main/tombi
-        - main/static-web-server
-        - main/yamlfmt
-        - main/smartmontools
-        - main/pandoc
-        - main/chezmoi
-        - main/gallery-dl
-        - main/yt-dlp
-        - main/pget
-        - main/wget2
-        - main/wget
-        - main/aria2
-        - main/vim
-        - main/helix
-        - main/neovim
-        - main/fresh
-        - main/mailsend
-        - main/gpg
-        - main/openssl
-        - main/gopass
-        - main/gopass-jsonapi
-        - main/sops
-        - main/lf
-        - main/yazi
-        - main/superfile
-        - main/broot
-        - main/fzf
-        - main/jj
-        - main/gitomatic
-        - main/git-bug
-        - main/gh
-        - main/mob
-        - main/git-lfs
-        - main/git-absorb
-        - main/diff-so-fancy
-        - main/delta
-        - main/difftastic
-        - main/git-crypt
-        - main/gitui
-        - extras/git-cola
-        - main/gogs
-        - main/gitql
-        - main/lefthook
-        - main/gnuplot
-        - main/exiftool
-        - main/imagemagick
-        - main/dog
-        - main/nali
-        - main/nmap
-        - main/q-dns
-        - main/tcping
-        - main/scoop-search
-        - main/everything-cli
-        - main/croc
-        - main/cwrsync
-        - main/dufs
-        - main/miniserve
-        - main/portal
-        - main/rclone
-        - main/syncthing
-        - main/alist
-        - main/serve
-        - main/simple-http-server
-        # hash check filed
-        # - main/ffsend
-        - main/git-annex
-        - main/clink
-        - main/clink-completions
-        - main/cmder-full
-        - main/pwsh
-        - main/nu
-        - main/yori
-        - main/fastfetch
-        - main/ntop
-        - main/btop
-        - main/bottom
-        - main/which
-        - main/ttyper
-        - main/fd
-        - main/bat
-        - main/less
-        - main/rnr
-        - main/shasum
-        - main/zoxide
-        - main/coreutils
-        - main/nircmd
-        - main/grep
-        - main/ripgrep
-        - main/gawk
-        - main/dua
-        - main/dust
-        - main/tealdeer
-        - main/sd
-        - main/eza
-        - main/duf
-        - main/navi
-        - extras/pet
-        - main/unrar
-        - main/unzip
-        - main/mcfly
-        - main/atuin
-        - main/starship
-        - main/oh-my-posh
-        - main/psmux
-        - main/dos2unix
-        - main/goodbyedpi
-        - main/file
-        - main/zip
-        - main/innounp
-        - main/gzip
-        - main/gsudo
-        - main/nssm
-        - main/pipx
-        - main/winget
-        - main/topgrade
-        - main/clipboard@0.9.0.1
-        - main/noti
-        - main/espanso
-        - main/ffmpeg
     - name: Install nodejs and vscode
       community.windows.win_scoop:
         name:
@@ -533,140 +527,138 @@
     - name: Install extras packages via scoop
       tags: scoop-extras
       community.windows.win_scoop:
-        name: "{{ item }}"
+        name:
+          - extras/kdeconnect
+          - extras/apkeep
+          - extras/filebot
+          - extras/ab-av1
+          - extras/mpc
+          - extras/ncmpc
+          - extras/autohotkey
+          - extras/autoclicker
+          - restic
+          - resticprofile
+          - rdiff-backup
+          - extras/firefox
+          - extras/brave
+          - extras/qutebrowser
+          - extras/ungoogled-chromium
+          - extras/librewolf
+          - extras/kavita
+          - extras/telegram
+          - extras/sioyek
+          - extras/sumatrapdf
+          - extras/zeal
+          - extras/libreoffice
+          - extras/wpsoffice
+          - extras/aria-ng-gui
+          - extras/eget
+          - extras/transmission
+          - extras/transgui
+          - extras/notepadplusplus
+          - extras/vscodium
+          - extras/emacs
+          - extras/zed
+          - extras/lunarvim
+          - main/gcc
+          - extras/anki
+          - extras/cfssl
+          - extras/age
+          - extras/keepassxc
+          - extras/win-gpg-agent
+          - extras/mc
+          - extras/vifm
+          - extras/doublecmd
+          - extras/totalcommander
+          - extras/locale-emulator
+          - extras/ludusavi
+          - extras/playnite
+          - extras/sunshine
+          - extras/lazygit
+          - extras/gitu
+          - extras/meld
+          - extras/nomacs
+          - extras/qview
+          - extras/oculante
+          - extras/gimp
+          - extras/photodemon
+          - extras/photoflare
+          - extras/qmk-toolbox
+          - extras/vial
+          - extras/kanata
+          - extras/komokana
+          - extras/qalculate
+          - extras/fiddler
+          - extras/siyuan-note
+          - extras/qrscan
+          - extras/rustdesk
+          - extras/tightvnc
+          - extras/flameshot
+          - extras/television
+          - extras/carapace-bin
+          - extras/ttdl
+          - extras/sfsu
+          - extras/psfzf
+          - extras/psreadline
+          - extras/moor
+          - extras/winspy
+          - extras/windhawk
+          - extras/powertoys
+          - extras/glazewm
+          - extras/zebar
+          - extras/komorebi
+          - extras/yasb
+          - extras/whkd
+          - extras/flclash
+          - extras/diskgenius
+          - extras/crystaldiskinfo
+          - extras/wiztree
+          - extras/windirstat
+          - extras/flow-launcher
+          - extras/unigetui
+          - extras/dhcp-server
+          - extras/hourglass
+          - extras/copyq
+          - extras/bleachbit
+          - extras/everything
+          - extras/deskflow
+          - extras/coretemp
+          - extras/bulk-crap-uninstaller
+          - extras/windows-terminal
+          - extras/alacritty
+          - extras/wezterm
+          - extras/copytranslator
+          - extras/rufus
+          - extras/ventoy
+          - extras/ani-cli
+          - extras/jellyfin-mpv-shim
+          - extras/vlc
+          # install failed
+          # - miru
+          - extras/mpv
+          - extras/fladder
+          - extras/handbrake
+          - extras/openboard
         global: false
         no_cache: true
       register: result
       retries: 3
       delay: 5
       until: result is not failed
-      loop:
-        - extras/kdeconnect
-        - extras/apkeep
-        - extras/filebot
-        - extras/ab-av1
-        - extras/mpc
-        - extras/ncmpc
-        - extras/autohotkey
-        - extras/autoclicker
-        - restic
-        - resticprofile
-        - rdiff-backup
-        - extras/firefox
-        - extras/brave
-        - extras/qutebrowser
-        - extras/ungoogled-chromium
-        - extras/librewolf
-        - extras/kavita
-        - extras/telegram
-        - extras/sioyek
-        - extras/sumatrapdf
-        - extras/zeal
-        - extras/libreoffice
-        - extras/wpsoffice
-        - extras/aria-ng-gui
-        - extras/eget
-        - extras/transmission
-        - extras/transgui
-        - extras/notepadplusplus
-        - extras/vscodium
-        - extras/emacs
-        - extras/zed
-        - extras/lunarvim
-        - main/gcc
-        - extras/anki
-        - extras/cfssl
-        - extras/age
-        - extras/keepassxc
-        - extras/win-gpg-agent
-        - extras/mc
-        - extras/vifm
-        - extras/doublecmd
-        - extras/totalcommander
-        - extras/locale-emulator
-        - extras/ludusavi
-        - extras/playnite
-        - extras/sunshine
-        - extras/lazygit
-        - extras/gitu
-        - extras/meld
-        - extras/nomacs
-        - extras/qview
-        - extras/oculante
-        - extras/gimp
-        - extras/photodemon
-        - extras/photoflare
-        - extras/qmk-toolbox
-        - extras/vial
-        - extras/kanata
-        - extras/komokana
-        - extras/qalculate
-        - extras/fiddler
-        - extras/siyuan-note
-        - extras/qrscan
-        - extras/rustdesk
-        - extras/tightvnc
-        - extras/flameshot
-        - extras/television
-        - extras/carapace-bin
-        - extras/ttdl
-        - extras/sfsu
-        - extras/psfzf
-        - extras/psreadline
-        - extras/moor
-        - extras/winspy
-        - extras/windhawk
-        - extras/powertoys
-        - extras/glazewm
-        - extras/zebar
-        - extras/komorebi
-        - extras/yasb
-        - extras/whkd
-        - extras/flclash
-        - extras/diskgenius
-        - extras/crystaldiskinfo
-        - extras/wiztree
-        - extras/windirstat
-        - extras/flow-launcher
-        - extras/unigetui
-        - extras/dhcp-server
-        - extras/hourglass
-        - extras/copyq
-        - extras/bleachbit
-        - extras/everything
-        - extras/deskflow
-        - extras/coretemp
-        - extras/bulk-crap-uninstaller
-        - extras/windows-terminal
-        - extras/alacritty
-        - extras/wezterm
-        - extras/copytranslator
-        - extras/rufus
-        - extras/ventoy
-        - extras/ani-cli
-        - extras/jellyfin-mpv-shim
-        - extras/vlc
-        # install failed
-        # - miru
-        - extras/mpv
-        - extras/fladder
-        - extras/handbrake
-        - extras/openboard
     - name: Install nerd fonts packages via scoop
       tags: scoop-fonts
       community.windows.win_scoop:
-        name: "{{ item }}"
+        name:
+          - nerd-fonts/Maple-Mono-NF-CN
+          - nerd-fonts/NerdFontsSymbolsOnly
+          - nerd-fonts/FiraCode-NF-Mono
+          - nerd-fonts/Noto-CJK-Mega-OTC
         global: false
         no_cache: true
       register: result
       retries: 3
       delay: 5
       until: result is not failed
-      loop:
-        - nerd-fonts/Maple-Mono-NF-CN
-        - nerd-fonts/NerdFontsSymbolsOnly
-        - nerd-fonts/FiraCode-NF-Mono
-        - nerd-fonts/Noto-CJK-Mega-OTC
     - name: Other packages
       tags: scoop-other
       block:
@@ -677,15 +669,14 @@
             state: present
         - name: Install other packages via scoop
           community.windows.win_scoop:
-            name: "{{ item }}"
+            name:
+              - main-plus/cargo-update
             global: false
             no_cache: true
           register: result
           retries: 3
           delay: 5
           until: result is not failed
-          loop:
-            - main-plus/cargo-update
         - name: Add chawyehsu_dorado bucket
           community.windows.win_scoop_bucket:
             name: chawyehsu_dorado
@@ -693,17 +684,16 @@
             state: present
         - name: Install other packages via scoop
           community.windows.win_scoop:
-            name: "{{ item }}"
+            name:
+              - chawyehsu_dorado/runany
+              - chawyehsu_dorado/git-credential-gopass
+              - chawyehsu_dorado/aliyundrive
             global: false
             no_cache: true
           register: result
           retries: 3
           delay: 5
           until: result is not failed
-          loop:
-            - chawyehsu_dorado/runany
-            - chawyehsu_dorado/git-credential-gopass
-            - chawyehsu_dorado/aliyundrive
         - name: Add extras-plus bucket
           community.windows.win_scoop_bucket:
             name: extras-plus
@@ -716,7 +706,8 @@
             state: present
         - name: Install packages from extras-cn
           community.windows.win_scoop:
-            name: "{{ item }}"
+            name:
+              - extras-cn/neteasemusic
             global: false
             no_cache: true
           register: result
@@ -724,7 +715,6 @@
           delay: 5
           until: result is not failed
           loop:
-            - extras-cn/neteasemusic
 
         - name: Add anderlli0053_DEV-tools bucket
           community.windows.win_scoop_bucket:
@@ -733,17 +723,16 @@
             state: present
         - name: Install other packages via scoop
           community.windows.win_scoop:
-            name: "{{ item }}"
+            name:
+              - anderlli0053_DEV-tools/mani
+              - anderlli0053_DEV-tools/ydict
+              - anderlli0053_DEV-tools/kpcli
             global: false
             no_cache: true
           register: result
           retries: 3
           delay: 5
           until: result is not failed
-          loop:
-            - anderlli0053_DEV-tools/mani
-            - anderlli0053_DEV-tools/ydict
-            - anderlli0053_DEV-tools/kpcli
         - name: Add NSPC911_le-bucket bucket
           community.windows.win_scoop_bucket:
             name: NSPC911_le-bucket
@@ -751,15 +740,14 @@
             state: present
         - name: Install other packages via scoop
           community.windows.win_scoop:
-            name: "{{ item }}"
+            name:
+              - NSPC911_le-bucket/helix-ghost
             global: false
             no_cache: true
           register: result
           retries: 3
           delay: 5
           until: result is not failed
-          loop:
-            - NSPC911_le-bucket/helix-ghost
         - name: Add ShuguangSun_sgs-scoop-bucket bucket
           community.windows.win_scoop_bucket:
             name: ShuguangSun_sgs-scoop-bucket
@@ -767,15 +755,14 @@
             state: present
         - name: Install other packages via scoop
           community.windows.win_scoop:
-            name: "{{ item }}"
+            name:
+              - ShuguangSun_sgs-scoop-bucket/emacs-lsp-booster
             global: false
             no_cache: true
           register: result
           retries: 3
           delay: 5
           until: result is not failed
-          loop:
-            - ShuguangSun_sgs-scoop-bucket/emacs-lsp-booster
         - name: Add hoilc_scoop-lemon bucket
           community.windows.win_scoop_bucket:
             name: hoilc_scoop-lemon
@@ -783,15 +770,14 @@
             state: present
         - name: Install other packages via scoop
           community.windows.win_scoop:
-            name: "{{ item }}"
+            name:
+              - hoilc_scoop-lemon/keep-sorted
             global: false
             no_cache: true
           register: result
           retries: 3
           delay: 5
           until: result is not failed
-          loop:
-            - hoilc_scoop-lemon/keep-sorted
         - name: Add Befod_Xeno bucket
           community.windows.win_scoop_bucket:
             name: Befod_Xeno
@@ -799,15 +785,14 @@
             state: present
         - name: Install other packages via scoop
           community.windows.win_scoop:
-            name: "{{ item }}"
+            name:
+              - Befod_Xeno/gesturesign
             global: false
             no_cache: true
           register: result
           retries: 3
           delay: 5
           until: result is not failed
-          loop:
-            - Befod_Xeno/gesturesign
         - name: Add maqibg_MQBucket bucket
           community.windows.win_scoop_bucket:
             name: maqibg_MQBucket
@@ -815,15 +800,14 @@
             state: present
         - name: Install other packages via scoop
           community.windows.win_scoop:
-            name: "{{ item }}"
+            name:
+              - maqibg_MQBucket/Github-Store
             global: false
             no_cache: true
           register: result
           retries: 3
           delay: 5
           until: result is not failed
-          loop:
-            - maqibg_MQBucket/Github-Store
         - name: Add ourgal_scoop-bucket bucket
           community.windows.win_scoop_bucket:
             name: ourgal_scoop-bucket
@@ -831,17 +815,16 @@
             state: present
         - name: Install other packages via scoop
           community.windows.win_scoop:
-            name: "{{ item }}"
+            name:
+              - ourgal_scoop-bucket/dockfmt
+              - ourgal_scoop-bucket/mtranserver
+              - ourgal_scoop-bucket/altrun
             global: false
             no_cache: true
           register: result
           retries: 3
           delay: 5
           until: result is not failed
-          loop:
-            - ourgal_scoop-bucket/dockfmt
-            - ourgal_scoop-bucket/mtranserver
-            - ourgal_scoop-bucket/altrun
     - name: Pipx
       tags: pipx
       block:
@@ -1020,16 +1003,15 @@
         var: ansible_facts
     - name: Install aria2 and lessmsi via scoop
       community.windows.win_scoop:
-        name: "{{ item }}"
+        name:
+          - lessmsi
+          - aria2
         global: false
         no_cache: true
       register: result
       retries: 3
       delay: 5
       until: result is not failed
-      loop:
-        - lessmsi
-        - aria2
     - name: Update scoop config
       tags: scoop-config
       block:
@@ -1075,16 +1057,15 @@
           when: scoop_config_stat.stat.exists is false
     - name: Install 7zip and git via scoop
       community.windows.win_scoop:
-        name: "{{ item }}"
+        name:
+          - 7zip
+          - git
         global: false
         no_cache: true
       register: result
       retries: 3
       delay: 5
       until: result is not failed
-      loop:
-        - 7zip
-        - git
     - name: Using external 7zip
       tags: scoop-config
       block:

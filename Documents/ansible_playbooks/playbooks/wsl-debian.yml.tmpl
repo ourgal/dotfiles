@@ -23,29 +23,28 @@
         update_cache: true
     - name: Install apt packages
       ansible.builtin.apt:
-        name: "{{ item }}"
-      loop:
-        - git
-        - lazygit
-        - emacs
-        - vim-gtk3
-        - hx
-        - mpv
-        - curl
-        - wget
-        - fish
-        - starship
-        - xclip
-        - dos2unix
-        - fzf
-        - eza
-        - zoxide
-        - bat
-        - btop
-        - gnupg
-        - scdaemon
-        - pcscd
-        - nodejs
+        name:
+          - git
+          - lazygit
+          - emacs
+          - vim-gtk3
+          - hx
+          - mpv
+          - curl
+          - wget
+          - fish
+          - starship
+          - xclip
+          - dos2unix
+          - fzf
+          - eza
+          - zoxide
+          - bat
+          - btop
+          - gnupg
+          - scdaemon
+          - pcscd
+          - nodejs
     - name: Install xz-utils
       ansible.builtin.apt:
         name: xz-utils
