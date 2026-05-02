@@ -167,21 +167,20 @@
       environment:
         XBPS_ARCH: "{{ ansible_facts.machine }}"
       community.general.xbps:
-        name: "{{ item }}"
+        name:
+          - base-system
+          - python3
+          - alsa-utils
+          - grub-x86_64-efi
+          - os-prober
+          - avahi
+          - nss-mdns
+          - NetworkManager
+          - chrony
         root: /mnt
         repositories:
           - "{{ xbps_mirror }}"
           - "{{ xbps_nonfree_mirror }}"
-      loop:
-        - base-system
-        - python3
-        - alsa-utils
-        - grub-x86_64-efi
-        - os-prober
-        - avahi
-        - nss-mdns
-        - NetworkManager
-        - chrony
     - name: Set timezone
       become: true
       ansible.builtin.file:
