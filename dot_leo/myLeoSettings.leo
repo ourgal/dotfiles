@@ -57,7 +57,11 @@ vim.py
 vim-open-node=Alt+v
 focus-to-tree=Esc
 </t>
-<t tx="zxc.20260315205956.1"></t>
+<t tx="zxc.20260315205956.1">None_family = Maple Mono NF CN
+None_weight = normal
+None_slant = roman
+None_size = 12.0
+</t>
 <t tx="zxc.20260315210026.1"></t>
 <t tx="zxc.20260502114231.1">This option applies to directories specified in filenames in all kinds of @file trees, and to filenames specified in the @path directive.
 

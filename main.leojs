@@ -7766,12 +7766,12 @@
                           "vh": "@clean surface-void.yml.tmpl",
                           "children": [
                             {
+                              "gnx": "zxc.20260502011628.1"
+                            },
+                            {
                               "gnx": "zxc.20260501214216.1",
                               "vh": "install packages",
                               "children": [
-                                {
-                                  "gnx": "zxc.20260502011628.1"
-                                },
                                 {
                                   "gnx": "zxc.20260501214216.2",
                                   "vh": "cli",
@@ -9277,7 +9277,7 @@
     "zxc.20260323180608.1": "InstallKeybdHook\nInstallMouseHook\nCoordMode(\"mouse\", \"screen\")\n\nOnExit (*) => SystemCursor(\"Show\")  ; Ensure the cursor is made visible when the script exits\n\nSetTimer(Main, 10)\n\nMain() {\n\n   if(A_TimeIdleKeyboard < 25)\n      ;A keyboard key has been pressed, hide cursor\n      SystemCursor(\"Hide\")\n\n   else if(A_TimeIdleMouse < 25)\n      ;Mouse have been used, show cursor\n      SystemCursor(\"Show\")\n}\n\nSystemCursor(cmd) { ; cmd = \"Show|Hide|Toggle|Reload\"\n\n   static visible := true, c := Map()\n   static sys_cursors := [32512, 32513, 32514, 32515, 32516, 32642, 32643, 32644, 32645, 32646, 32648, 32649, 32650]\n\n   if (cmd = \"Reload\" or !c.Count) { ; Reload when requested or at first call.\n\n      for i, id in sys_cursors {\n         h_cursor := DllCall(\"LoadCursor\", \"Ptr\", 0, \"Ptr\", id)\n         h_default := DllCall(\"CopyImage\", \"Ptr\", h_cursor, \"UInt\", 2, \"Int\", 0, \"Int\", 0, \"UInt\", 0)\n         h_blank := DllCall(\"CreateCursor\", \"Ptr\", 0, \"Int\", 0, \"Int\", 0, \"Int\", 32, \"Int\", 32, \"Ptr\", Buffer(32 * 4, 0xFF), \"Ptr\", Buffer(32 * 4, 0))\n         c[id] := { default: h_default, blank: h_blank }\n      }\n   }\n\n   switch cmd {\n      case \"Show\":\n         if (!visible)\n            visible := true\n         else\n            return\n      case \"Hide\":\n         if (visible)\n            visible := false\n         else\n            return\n      case \"Toggle\":\n         visible := !visible\n      default: return\n   }\n\n   for id, handles in c {\n      h_cursor := DllCall(\"CopyImage\", \"Ptr\", visible ? handles.default : handles.blank, \"UInt\", 2, \"Int\", 0, \"Int\", 0, \"UInt\", 0)\n      DllCall(\"SetSystemCursor\", \"Ptr\", h_cursor, \"UInt\", id)\n   }\n}",
     "zxc.20260413210312.1": "#Requires AutoHotkey v2.0\n#SingleInstance Force\n\nRun \"gopass show -c keepassxc/main\", ,\"Hide\"\nWinWait \"Message from User\"\n\n{{ if .my.modules.glazewm -}}\nRun \"glazewm command focus --workspace 9\"\n{{ end -}}\nRun \"keepassxc\"\nWinWaitActive \" - KeePassXC\"\nWinActive \" - KeePassXC\"\n\nSend \"^v\"\nSend \"{Enter}\"\nreturn\n",
     "zxc.20260423145238.1": "---\n@others\n@language yaml",
-    "zxc.20260501183147.1": "all:\n  hosts:\n    chromebit:\n      ansible_user: user\n      ansible_host: chromebit.local\n      ansible_become_method: doas\n      ansible_become_pass: \"{{ gopass \"password/linux/user\" }}\"\n    void-live:\n      ansible_user: anon\n      ansible_ssh_pass: voidlinux\n      ansible_host: 192.168.123.221\n      ansible_become_pass: \"{{ gopass \"password/linux/user\" }}\"\n    surface-void:\n      ansible_user: zxc\n      ansible_host: surface-void.local\n      ansible_become_pass: \"{{ gopass \"password/linux/user\" }}\"\n",
+    "zxc.20260501183147.1": "all:\n  hosts:\n    chromebit:\n      ansible_user: user\n      ansible_host: chromebit.local\n      ansible_become_method: doas\n      ansible_become_pass: \"{{ gopass \"password/linux/user\" }}\"\n    void-live:\n      ansible_user: anon\n      ansible_ssh_pass: voidlinux\n      ansible_host: 192.168.123.221\n      ansible_become_pass: \"{{ gopass \"password/linux/user\" }}\"\n    surface-void:\n      ansible_user: zxc\n      ansible_ssh_pass: \"{{ gopass \"password/linux/user\" }}\"\n      ansible_host: 192.168.123.221\n      ansible_become_pass: \"{{ gopass \"password/linux/user\" }}\"\n",
     "zxc.20260501183207.1": "windows:\n  vars:\n    ansible_connection: ssh\n    ansible_shell_type: powershell\n  hosts:\n    nuc:\n      ansible_host: nuc.local\n      my_hostname: nuc\n    bed:\n      ansible_host: bed.local\n      my_hostname: bed\n    work:\n      ansible_host: 192.168.1.110\n      my_hostname: work\n",
     "zxc.20260501183224.1": "wsl-debian:\n  vars:\n    ansible_connection: community.general.wsl\n    ansible_user: user\n  hosts:\n    nuc-windows-wsl-debian:\n      ansible_host: nuc.local\n      wsl_distribution: debian\n      wsl_user: root\n",
     "zxc.20260501183235.1": "wsl-arch:\n  vars:\n    ansible_connection: community.general.wsl\n    ansible_user: user\n  hosts:\n    nuc-wsl-arch:\n      ansible_host: nuc.local\n      wsl_distribution: archlinux\n      wsl_user: root\n    work-wsl-arch:\n      ansible_host: 192.168.1.110\n      wsl_distribution: archlinux\n      wsl_user: root\n",
@@ -10222,7 +10222,7 @@
       "_mod_time": 1777106655.377824
     },
     "zxc.20260423145238.1": {
-      "_mod_time": 1777655731.5468316
+      "_mod_time": 1777700695.975757
     },
     "zxc.20260423143729.3": {
       "_mod_time": 1777697317.7283092
