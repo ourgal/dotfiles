@@ -6,6 +6,4 @@ ${TARGETS}:
     {{ if lookPath "ansible-lint" -}}
     ansible-lint playbooks/$@.yml
     {{ end -}}
-    {{ if lookPath "ansible-playbook" -}}
     ansible-playbook playbooks/$@.yml
-    {{ end -}}
