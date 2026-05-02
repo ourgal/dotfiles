@@ -1,5 +1,7 @@
 {{ if eq .chezmoi.os "linux" -}}
 {{ if eq .chezmoi.hostname "surface-void" -}}
-exec /usr/bin/xfce4-session
+{{ if lookPath "startxfce4" -}}
+exec /usr/bin/startxfce4
+{{ end -}}
 {{ end -}}
 {{ end -}}
