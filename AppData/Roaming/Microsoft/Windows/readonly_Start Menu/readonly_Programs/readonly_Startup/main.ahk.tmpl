@@ -8,7 +8,7 @@ RunScoop(app)
 }
 
 SetTitleMatchMode(2)
-{{ if and (lookPath "glazewm") .my.modules.glazewm -}}
+{{ if and (lookPath "glazewm") (default .my.modules.glazewm (index .my.modules .chezmoi.hostname "glazewm")) -}}
 Run("glazewm", {{ .chezmoi.homeDir | quote }}, "Hide")
 Sleep 5000
 {{ end -}}
@@ -27,7 +27,7 @@ Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "espanso" "current" "espansod.e
 {{ if lookPath "alist" -}}
 Run("alist start", , "Hide")
 {{ end -}}
-{{ if and ( lookPath "mpd" ) .my.modules.mpd -}}
+{{ if and ( lookPath "mpd" ) (default .my.modules.mpd (index .my.modules .chezmoi.hostname "mpd")) -}}
 Run("mpd {{ joinPath (env "appdata") "mpd" "mpd.conf"}}", {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
 {{ if lookPath "gpg-connect-agent" -}}
@@ -48,13 +48,13 @@ Run("brave", , "Max")
 {{ end -}}
 {{ $vscode := joinPath .chezmoi.homeDir "scoop" "apps" "vscode" "current" "Code.exe" -}}
 {{ $vscodium := joinPath .chezmoi.homeDir "scoop" "apps" "vscodium" "current" "VSCodium.exe" -}}
-{{ if and (stat $vscodium) .my.modules.vscodium -}}
+{{ if and (stat $vscodium) (default .my.modules.vscodium (index .my.modules .chezmoi.hostname "vscodium")) -}}
 Run({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
 WinWait("ahk_exe VSCodium.exe")
-{{ else if and (stat $vscode) .my.modules.vscode -}}
+{{ else if and (stat $vscode) (default .my.modules.vscode (index .my.modules .chezmoi.hostname "vscode")) -}}
 Run({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
 {{ end -}}
-{{ if and (lookPath "leo") .my.modules.leo -}}
+{{ if and (lookPath "leo") (default .my.modules.leo (index .my.modules .chezmoi.hostname "leo")) -}}
 Run "leo", , "Max"
 {{ end -}}
 {{ if lookPath "everything" -}}
@@ -64,11 +64,11 @@ Run("everything", , "Hide")
 Run {{ joinPath .chezmoi.homeDir "scoop" "apps" "windows-terminal" "current" "wt.exe" | quote }}
 WinWait("ahk_exe WindowsTerminal.exe")
 {{ end -}}
-{{ if and ( lookPath "autohotkey" ) .my.modules.keybindings.autohotkey .my.modules.glazewm -}}
+{{ if and ( lookPath "autohotkey" ) (default .my.modules.autohotkey (index .my.modules .chezmoi.hostname "autohotkey")) (default .my.modules.glazewm (index .my.modules .chezmoi.hostname "glazewm")) -}}
 Run({{ joinPath .chezmoi.homeDir "Documents" "autohotkey" "keybindings.ahk" | quote }}, , "Hide")
 {{ end -}}
 {{ $powertoys := joinPath .chezmoi.homeDir "scoop" "apps" "powertoys" "current" "powertoys.exe" -}}
-{{ if and ( stat $powertoys ) .my.modules.keybindings.powertoys .my.modules.glazewm -}}
+{{ if and ( stat $powertoys ) (default .my.modules.powertoys (index .my.modules .chezmoi.hostname "powertoys")) (default .my.modules.glazewm (index .my.modules .chezmoi.hostname "glazewm")) -}}
 Run({{ $powertoys | quote }}, {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
 {{ if lookPath "autohotkey" -}}
@@ -80,10 +80,10 @@ Run("dufs --allow-upload --allow-search --allow-symlink --allow-archive -p 6500"
 {{ if lookPath "copyparty" -}}
 Run("copyparty --no-del -p 6080,6443", {{ joinPath .chezmoi.homeDir "Documents" "share" | quote }}, "Hide")
 {{ end -}}
-{{ if and (lookPath "altrun") .my.modules.altrun -}}
+{{ if and (lookPath "altrun") (default .my.modules.altrun (index .my.modules .chezmoi.hostname "altrun")) -}}
 Run("altrun -StartMenu", , "Hide")
 {{ end -}}
-{{ if and ( lookPath "navidrome" ) .my.modules.navidrome -}}
+{{ if and ( lookPath "navidrome" ) (default .my.modules.navidrome (index .my.modules .chezmoi.hostname "navidrome")) -}}
 Run({{ print "navidrome --datafolder " (joinPath (env "LOCALAPPDATA") "navidrome") | quote }}, {{ joinPath .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
 {{ if lookPath "syncthing" -}}

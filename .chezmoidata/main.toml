@@ -22,7 +22,7 @@ username = "u0_a455"
 [my.ip]
 brix = "192.168.123.206"
 [my.pip]
-mirror = "https://mirrors.cernet.edu.cn/pypi/web/simple/"
+mirror = "https://mirrors.nju.edu.cn/pypi/web/simple/"
 [my.ssh]
 known_hosts = [
     "home.local,192.168.123.100 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOKREEGtjhZmTsIruPjBmBp0fPHKxfUSbUilpIzVMoBF",
@@ -38,24 +38,18 @@ known_hosts = [
 [my.modules]
 mpd = false
 navidrome = true
-
-mcfly = true
 atuin = false
-
+mcfly = true
 navi = true
-
 starship = false
 oh_my_posh = true
-
 zoxide = true
-
 glazewm = true
-
 altrun = false
-
 vscode = false
 vscodium = false
 leo = true
-[my.modules.keybindings]
 powertoys = true
 autohotkey = false
+
+[my.modules.nuc]

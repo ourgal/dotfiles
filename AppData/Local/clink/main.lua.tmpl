@@ -4,7 +4,7 @@ load(io.popen('starship init cmd'):read("*a"))()
 {{ if and ( lookPath "starship" ) .my.modules.starship -}}
 load(io.popen('starship init cmd'):read("*a"))()
 {{ end -}}
-{{ if and ( lookPath "oh-my-posh" ) .my.modules.oh_my_posh -}}
+{{ if and (lookPath "oh-my-posh") (index .my.modules .chezmoi.hostname "oh_my_posh" | default .my.modules.oh_my_posh) -}}
 load(io.popen('oh-my-posh init cmd'):read("*a"))()
 {{ end -}}
 -- =============================================================================
