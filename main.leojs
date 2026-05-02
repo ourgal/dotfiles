@@ -7957,6 +7957,10 @@
                               ]
                             },
                             {
+                              "gnx": "zxc.20260502144817.1",
+                              "vh": "pip conf"
+                            },
+                            {
                               "gnx": "zxc.20260501214336.1",
                               "vh": "pipx packages",
                               "children": [
@@ -9803,6 +9807,7 @@
     "zxc.20260501221719.5": "- noto-fonts-ttf\n- noto-fonts-cjk\n- nerd-fonts-symbols-ttf\n- noto-fonts-emoji",
     "zxc.20260501221719.6": "- intel-video-accel\n- intel-ucode\n- libva-utils",
     "zxc.20260501221719.10": "- python3-pipx",
+    "zxc.20260502144817.1": "- name: Create .pip folder\n  ansible.builtin.file:\n    dest: \"{{ ansible_facts.user_dir }}/.pip\"\n    state: directory\n- name: Set pip config\n  ansible.builtin.copy:\n    dest: \"{{ ansible_facts.user_dir }}/.pip/pip.ini\"\n    content: |\n      [global]\n      index-url = https://mirrors.nju.edu.cn/pypi/web/simple/\n      [install]\n      trusted-host = mirrors.nju.edu.cn\n",
     "zxc.20260501214336.1": "- name: Install pipx packages\n  tags: pipx\n  community.general.pipx:\n    name: \"{{ item }}\"\n  loop:\n    @others\n\n",
     "zxc.20260501214336.2": "- jellyfin-mpv-shim",
     "zxc.20260502142949.1": "- leo",
@@ -10262,7 +10267,7 @@
       "_mod_time": 1777703137.5128934
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1777703697.448288
+      "_mod_time": 1777704663.2872014
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777106655.3400538
