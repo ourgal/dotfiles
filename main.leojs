@@ -3524,7 +3524,21 @@
                           "children": [
                             {
                               "gnx": "User.20260301211002.1",
-                              "vh": "workspace"
+                              "vh": "workspace",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260502020009.1",
+                                  "vh": "vscode"
+                                },
+                                {
+                                  "gnx": "zxc.20260502020122.1",
+                                  "vh": "vscodium"
+                                },
+                                {
+                                  "gnx": "zxc.20260502020153.1",
+                                  "vh": "leo"
+                                }
+                              ]
                             },
                             {
                               "gnx": "User.20260301210952.1",
@@ -4103,6 +4117,10 @@
             {
               "gnx": "User.20260302135946.1",
               "vh": "vscode / vscodium"
+            },
+            {
+              "gnx": "zxc.20260502015606.1",
+              "vh": "leo"
             },
             {
               "gnx": "zxc.20260315173154.1",
@@ -8021,6 +8039,24 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "gnx": "zxc.20260502111841.1",
+                  "vh": "@clean Makefile.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260502111909.1",
+                      "vh": "vars"
+                    },
+                    {
+                      "gnx": "zxc.20260502112024.1",
+                      "vh": "all"
+                    },
+                    {
+                      "gnx": "zxc.20260502112055.1",
+                      "vh": "TARGETS"
+                    }
+                  ]
                 }
               ]
             },
@@ -8874,7 +8910,7 @@
     "zxc.20260329193635.1": "\"brix.local,192.168.123.206 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJADK7A2hbOUUfvCxe2xNhkVpEHIy3CKK0+bkTE5Uqur\",\n",
     "zxc.20260329194446.1": "\"[192.168.1.103]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n\"[192.168.123.191]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n",
     "zxc.20260329193440.1": "\"[ssh.github.com]:443 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl\",\n\"[ssh.github.com]:443 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=\",\n\"[ssh.github.com]:443 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=\"\n",
-    "zxc.20260321000242.1": "[my.modules]\nmpd = false\nnavidrome = true\n\nmcfly = true\natuin = false\n\nnavi = true\n\nstarship = false\noh_my_posh = true\n\nzoxide = true\n\nglazewm = true\n\naltrun = false\n\nvscode = true\nvscodium = false",
+    "zxc.20260321000242.1": "[my.modules]\nmpd = false\nnavidrome = true\n\nmcfly = true\natuin = false\n\nnavi = true\n\nstarship = false\noh_my_posh = true\n\nzoxide = true\n\nglazewm = true\n\naltrun = false\n\nvscode = false\nvscodium = false\nleo = true",
     "zxc.20260330234020.1": "[my.modules.keybindings]\npowertoys = true\nautohotkey = false",
     "User.20260302211627.1": "ENTRY \"AppData\" URL \"{{ .chezmoi.homeDir }}/AppData/Roaming\"",
     "User.20260302211750.1": "[Midnight-Commander]\nverbose=true\nshell_patterns=true\nauto_save_setup=false\npreallocate_space=false\nauto_menu=false\nuse_internal_view=false\nuse_internal_edit=false\nuse_internal_busybox=false\nclear_before_exec=true\nconfirm_delete=true\nconfirm_overwrite=true\nconfirm_execute=false\nconfirm_history_cleanup=true\nconfirm_exit=false\nconfirm_directory_hotlist_delete=false\nconfirm_view_dir=false\nsafe_delete=false\nsafe_overwrite=false\nuse_8th_bit_as_meta=true\nmouse_move_pages_viewer=true\nmouse_close_dialog=false\nfast_refresh=false\ndrop_menus=false\nwrap_mode=true\nold_esc_mode=false\ncd_symlinks=true\nshow_all_if_ambiguous=false\nuse_file_to_guess_type=true\nalternate_plus_minus=false\nonly_leading_plus_minus=true\nshow_output_starts_shell=false\nxtree_mode=false\nfile_op_compute_totals=true\nclassic_progressbar=true\nuse_netrc=true\nftpfs_always_use_proxy=false\nftpfs_use_passive_connections=true\nftpfs_use_passive_connections_over_proxy=false\nftpfs_use_unix_list_options=true\nftpfs_first_cd_then_ls=true\nignore_ftp_chattr_errors=true\neditor_fill_tabs_with_spaces=false\neditor_return_does_auto_indent=true\neditor_backspace_through_tabs=false\neditor_fake_half_tabs=true\neditor_option_save_position=true\neditor_option_auto_para_formatting=false\neditor_option_typewriter_wrap=false\neditor_edit_confirm_save=true\neditor_syntax_highlighting=true\neditor_persistent_selections=true\neditor_drop_selection_on_copy=true\neditor_cursor_beyond_eol=false\neditor_cursor_after_inserted_block=false\neditor_visible_tabs=true\neditor_visible_spaces=true\neditor_line_state=false\neditor_simple_statusbar=false\neditor_check_new_line=false\neditor_show_right_margin=false\neditor_group_undo=false\neditor_state_full_filename=false\neditor_ask_filename_before_edit=false\nnice_rotating_dash=true\nshadows=false\nmcview_remember_file_position=false\nauto_fill_mkdir_name=true\ncopymove_persistent_attr=true\npause_after_run=1\nmouse_repeat_rate=100\ndouble_click_speed=250\nold_esc_mode_timeout=1000000\nconsole_alert_mode=1\nmax_dirt_limit=10\nnum_history_items_recorded=60\nvfs_timeout=60\nftpfs_directory_timeout=900\nftpfs_retry_seconds=30\nshell_directory_timeout=900\neditor_tab_spacing=8\neditor_word_wrap_line_length=72\neditor_option_save_mode=0\neditor_backup_extension=~\neditor_filesize_threshold=64M\neditor_stop_format_chars=-+*\\\\,.;:&>\nmcview_eof=\nskin=dark\nfilepos_max_saved_entries=1024\n\n[Layout]\noutput_lines=0\nleft_panel_size=94\ntop_panel_size=0\nmessage_visible=false\nkeybar_visible=true\nxterm_title=true\ncommand_prompt=false\nmenubar_visible=true\nfree_space=true\nhorizontal_split=false\nvertical_equal=true\nhorizontal_equal=true\ncommand_view=true\n\n[Misc]\ntimeformat_recent=%b %e %H:%M\ntimeformat_old=%b %e  %Y\nftp_proxy_host=gate\nftpfs_password=anonymous@\ndisplay_codepage=UTF-8\nsource_codepage=Other_8_bit\nautodetect_codeset=\nspell_language=en\nclipboard_store=\nclipboard_paste=\naltgr_enabled=\n\n[Colors]\nbase_color=\ndos-console=\ncolor_terminals=\n\n[FindFile]\nfile_case_sens=true\nfile_shell_pattern=true\nfile_find_recurs=true\nfollow_symlinks=false\nfile_skip_hidden=false\nfile_all_charsets=false\ncontent_case_sens=true\ncontent_regexp=false\ncontent_first_hit=false\ncontent_whole_words=false\ncontent_all_charsets=false\nignore_dirs_enable=true\nignore_dirs=\n\n[Panels]\nshow_mini_info=true\nkilobyte_si=false\nmix_all_files=false\nshow_backups=true\nshow_dot_files=true\nfast_reload=false\nfast_reload_msg_shown=false\nmark_moves_down=true\nreverse_files_only=true\nauto_save_setup_panels=false\nnavigate_with_arrows=true\npanel_scroll_pages=true\npanel_scroll_center=false\nmouse_move_pages=true\nfiletype_mode=true\npermission_mode=false\ntorben_fj_mode=false\nquick_search_mode=0\nselect_flags=6\n\nsimple_swap=false\n\n[Panelize]\nModified git files=git ls-files --modified\nFind *.orig after patching=find . -name \\\\*.orig -print\nFind SUID and SGID programs=find . \\\\( \\\\( -perm -04000 -a -perm /011 \\\\) -o \\\\( -perm -02000 -a -perm /01 \\\\) \\\\) -print\nFind rejects after patching=find . -name \\\\*.rej -print",
@@ -9006,14 +9042,17 @@
     "User.20260222165839.1": "- replace: 'git annex sync --content '\n  trigger: gitas.",
     "User.20260221175941.1": "- force_clipboard: true\n  label: Markdown - Code block\n  replace: '```$|$\n\n    ```'\n  trigger: ':block:'\n- force_clipboard: false\n  label: Markdown - Inline code\n  replace: '`$|$`'\n  trigger: ':code:'\n- label: Markdown - Header1\n  replace: '#'\n  trigger: ':h1:'\n- label: Markdown - Header2\n  replace: '##'\n  trigger: ':h2:'\n- label: Markdown - Header3\n  replace: '###'\n  trigger: ':h3:'\n- label: Markdown - Header4\n  replace: '####'\n  trigger: ':h4:'\n- label: Markdown - Header5\n  replace: '#####'\n  trigger: ':h5:'\n- label: Markdown - Header6\n  replace: '######'\n  trigger: ':h6:'\n- label: Markdown - Bold\n  replace: '**$|$**'\n  trigger: ':bold:'\n- label: Markdown - Italic\n  replace: '*$|$*'\n  trigger: ':italic:'\n- label: Markdown - Strikethrough\n  replace: ~~$|$~~\n  trigger: ':strike:'\n- label: Markdown - URL\n  replace: '[$|$]()'\n  trigger: ':url:'\n- label: Markdown - Image\n  replace: '![]($|$)'\n  trigger: ':img:'\n- label: Markdown - Horizontal line\n  replace: ___\n  trigger: ':horizontal:'\n- label: Markdown - Task\n  replace: '- [ ] '\n  trigger: ':task:'\n- label: Markdown - Task completed\n  replace: '- [x] '\n  trigger: ':taskdone:'\n- force_clipboard: true\n  label: Markdown - Collapse block\n  replace: '<details>\n\n    <summary></summary>\n\n    $|$\n\n    </details>'\n  trigger: ':collapse:'\n- force_clipboard: true\n  label: Markdown - Comment\n  replace: <!--- $|$ -->\n  trigger: ':comment:'",
     "User.20260223181103.1": "{{ template \"espanso_email.key\" }}",
-    "User.20260301202336.1": "<< dos >>\n{{ if lookPath \"glazewm\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "User.20260301202336.1": "<< dos >>\n@language yaml\n@tabwidth -2\n{{ if lookPath \"glazewm\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260301203034.1": "general:\n  # Commands to run when the WM has started. This is useful for running a\n  # script or launching another application.\n  # Example: The below command launches Zebar.\n  startup_commands: []\n  # Commands to run just before the WM is shutdown.\n  # Example: The below command kills Zebar.\n  shutdown_commands: []\n  # Commands to run after the WM config is reloaded.\n  config_reload_commands: []\n  # Whether to automatically focus windows underneath the cursor.\n  focus_follows_cursor: false\n  # Whether to switch back and forth between the previously focused\n  # workspace when focusing the current workspace.\n  toggle_workspace_on_refocus: false\n  cursor_jump:\n    # Whether to automatically move the cursor on the specified trigger.\n    enabled: true\n    # Trigger for cursor jump:\n    # - 'monitor_focus': Jump when focus changes between monitors.\n    # - 'window_focus': Jump when focus changes between windows.\n    trigger: 'monitor_focus'\n  # How windows should be hidden when switching workspaces.\n  # - 'cloak': Recommended. Hides windows with no animation.\n  # - 'hide': Legacy method (v3.5 and earlier) that has a brief animation,\n  # but has stability issues with some apps.\n  hide_method: 'cloak'\n  # Affects which windows get shown in the native Windows taskbar. Has no\n  # effect if `hide_method: 'hide'`.\n  # - 'true': Show all windows (regardless of workspace).\n  # - 'false': Only show windows from the currently shown workspaces.\n  show_all_in_taskbar: false\n",
     "User.20260301203056.1": "gaps:\n  # Whether to scale the gaps with the DPI of the monitor.\n  scale_with_dpi: true\n  # Gap between adjacent windows.\n  inner_gap: '0px'\n  # Gap between windows and the screen edge.\n  outer_gap:\n    top: '2px'\n    right: '2px'\n    bottom: '2px'\n    left: '2px'\n",
     "User.20260301203247.1": "window_effects:\n  # Visual effects to apply to the focused window.\n  focused_window:\n    # Highlight the window with a colored border.\n    # ** Exclusive to Windows 11 due to API limitations.\n    border:\n      enabled: true\n      color: '#8dbcff'\n    # Remove the title bar from the window's frame. Note that this can\n    # cause rendering issues for some applications.\n    hide_title_bar:\n      enabled: false\n    # Change the corner style of the window's frame.\n    # ** Exclusive to Windows 11 due to API limitations.\n    corner_style:\n      enabled: false\n      # Allowed values: 'square', 'rounded', 'small_rounded'.\n\n      style: 'square'\n    # Change the transparency of the window.\n    transparency:\n      enabled: false\n      # Can be something like '95%' or '0.95' for slightly transparent windows.\n\n      # '0' or '0%' is fully transparent (and, by consequence, unfocusable).\n      opacity: '95%'\n  # Visual effects to apply to non-focused windows.\n  other_windows:\n    border:\n      enabled: true\n      color: '#a1a1a1'\n    hide_title_bar:\n      enabled: false\n    corner_style:\n      enabled: false\n      style: 'square'\n    transparency:\n      enabled: false\n      opacity: '0%'\n",
     "User.20260301203431.1": "window_behavior:\n  # New windows are created in this state whenever possible.\n  # Allowed values: 'tiling', 'floating'.\n  initial_state: 'tiling'\n  # Sets the default options for when a new window is created. This also\n  # changes the defaults for when the state change commands, like\n  # `set-floating`, are used without any flags.\n  state_defaults:\n    floating:\n      # Whether to center floating windows by default.\n      centered: true\n      # Whether to show floating windows as always on top.\n      shown_on_top: false\n    fullscreen:\n      # Maximize the window if possible. If the window doesn't have a\n      # maximize button, then it'll be fullscreen'ed normally instead.\n      maximized: false\n      # Whether to show fullscreen windows as always on top.\n      shown_on_top: false\n",
     "User.20260301203458.1": "workspaces:\n  - name: '1'\n  - name: '2'\n  - name: '3'\n  - name: '4'\n  - name: '5'\n  - name: '6'\n  - name: '7'\n  - name: '8'\n  - name: '9'\n",
     "User.20260301203526.1": "window_rules:\n  @others",
-    "User.20260301211002.1": "- commands: [\"move --workspace 1\"]\n  match:\n    - window_process: { regex: \"WindowsTerminal\" }\n    - window_process: { regex: \"wt\" }\n    - window_process: { regex: \"wezterm-gui\" }\n- commands: [\"move --workspace 2\"]\n  match:\n    - window_process: { regex: \"firefox\" }\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"Code\" }\n    - window_process: { regex: \"VSCodium\" }\n- commands: [\"move --workspace 9\"]\n  match:\n    - window_process: { regex: \"KeePassXC\" }",
+    "User.20260301211002.1": "- commands: [\"move --workspace 1\"]\n  match:\n    - window_process: { regex: \"WindowsTerminal\" }\n    - window_process: { regex: \"wt\" }\n    - window_process: { regex: \"wezterm-gui\" }\n- commands: [\"move --workspace 2\"]\n  match:\n    - window_process: { regex: \"firefox\" }\n- commands: [\"move --workspace 9\"]\n  match:\n    - window_process: { regex: \"KeePassXC\" }\n@others",
+    "zxc.20260502020009.1": "{{ if .my.modules.vscode -}}\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"Code\" }\n{{ end -}}\n",
+    "zxc.20260502020122.1": "{{ if .my.modules.vscodium -}}\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"VSCodium\" }\n{{ end -}}\n",
+    "zxc.20260502020153.1": "{{ if .my.modules.leo -}}\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"leo\" }\n{{ end -}}\n",
     "User.20260301210952.1": "- commands: ['ignore']\n  match:\n    # Ignores any Zebar windows.\n    - window_process: {equals: 'zebar'}\n    # Ignores picture-in-picture windows for browsers.\n    - window_title: {regex: '[Pp]icture.in.[Pp]icture'}\n      window_class: {regex: 'Chrome_WidgetWin_1|MozillaDialogClass'}\n    # Ignore rules for various 3rd-party apps.\n    - window_process: {equals: 'PowerToys'}\n      window_class: {regex: 'HwndWrapper\\[PowerToys\\.PowerAccent.*?\\]'}\n    - window_process: {equals: 'PowerToys'}\n      window_title: {regex: '.*? - Peek'}\n    - window_process: {equals: 'Lively'}\n      window_class: {regex: 'HwndWrapper'}\n    - window_process: {equals: 'EXCEL'}\n      window_class: {not_regex: 'XLMAIN'}\n    - window_process: {equals: 'WINWORD'}\n      window_class: {not_regex: 'OpusApp'}\n    - window_process: {equals: 'POWERPNT'}\n      window_class: {not_regex: 'PPTFrameClass'}\n",
     "User.20260301222626.1": "- commands: [\"set-floating\"]\n  match:\n    - window_process: { equals: \"Flow.Launcher\" }\n      window_title: { equals: \"Settings\" }",
     "User.20260301203613.1": "binding_modes:\n  # When enabled, the focused window can be resized via arrow keys or HJKL.\n  - name: 'resize'\n    keybindings:\n      - commands: ['resize --width -2%']\n        bindings: ['h', 'left']\n      - commands: ['resize --width +2%']\n        bindings: ['l', 'right']\n      - commands: ['resize --height +2%']\n        bindings: ['k', 'up']\n      - commands: ['resize --height -2%']\n        bindings: ['j', 'down']\n      - commands: ['wm-disable-binding-mode --name resize']\n        # Press enter/escape to return to default keybindings.\n        bindings: ['escape', 'enter']\n",
@@ -9096,6 +9135,7 @@
     "zxc.20260408010815.1": "{{ if and (lookPath \"wezterm\") (eq .my.terminal.windows \"wezterm\") -}}\nRun \"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"wezterm\" \"current\" \"wezterm-gui.exe\" }}\"\nWinWait(\"ahk_exe wezterm-gui.exe\")\n{{ end -}}\n",
     "User.20260302135941.1": "{{ if lookPath \"firefox\" -}}\nRun(\"firefox\", , \"Max\")\nWinWait(\"ahk_exe firefox.exe\")\n{{ else if lookPath \"brave\" -}}\nRun(\"brave\", , \"Max\")\n{{ end -}}\n",
     "User.20260302135946.1": "{{ $vscode := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscode\" \"current\" \"Code.exe\" -}}\n{{ $vscodium := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscodium\" \"current\" \"VSCodium.exe\" -}}\n{{ if and (stat $vscodium) .my.modules.vscodium -}}\nRun({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait(\"ahk_exe VSCodium.exe\")\n{{ else if and (stat $vscode) .my.modules.vscode -}}\nRun({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\n{{ end -}}",
+    "zxc.20260502015606.1": "{{ if and (lookPath \"leo\") .my.modules.leo -}}\nRun \"leo\", , \"Max\"\n{{ end -}}",
     "zxc.20260315173154.1": "{{ if lookPath \"everything\" -}}\nRun(\"everything\", , \"Hide\")\n{{ end -}}",
     "User.20260302135935.1": "{{ if and (lookPath \"wt\") (lookPath \"pwsh\") (eq .my.terminal.windows \"wt\") -}}\nRun {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"windows-terminal\" \"current\" \"wt.exe\" | quote }}\nWinWait(\"ahk_exe WindowsTerminal.exe\")\n{{ end -}}\n",
     "zxc.20260316162805.1": "{{ if and ( lookPath \"autohotkey\" ) .my.modules.keybindings.autohotkey .my.modules.glazewm -}}\nRun({{ joinPath .chezmoi.homeDir \"Documents\" \"autohotkey\" \"keybindings.ahk\" | quote }}, , \"Hide\")\n{{ end -}}",
@@ -9675,7 +9715,7 @@
     "zxc.20260423143729.471": "- copyparty",
     "zxc.20260423143729.472": "- advance-touch",
     "zxc.20260423143729.473": "- jellyfin-mpv-shim",
-    "zxc.20260501132138.1": "<< delimiter >>\n@language yaml\n@tabwidth -2\n- name: Install void linux\n  hosts: void-live\n  vars:\n    << vars >>\n  tasks:\n    @others",
+    "zxc.20260501132138.1": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n- name: Install void linux\n  hosts: void-live\n  vars:\n    << vars >>\n  tasks:\n    @others\n",
     "zxc.20260501154924.1": "xbps_mirror: https://mirror.nju.edu.cn/voidlinux/current\nxbps_nonfree_mirror: https://mirror.nju.edu.cn/voidlinux/current/nonfree\nhostname: surface-void",
     "zxc.20260501135630.1": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts\n",
     "zxc.20260501140144.1": "- name: Install parted\n  become: true\n  community.general.xbps:\n    name: \"{{ item }}\"\n    repositories:\n      - \"{{ xbps_mirror }}\"\n      - \"{{ xbps_nonfree_mirror }}\"\n  loop:\n    - parted\n",
@@ -9718,7 +9758,7 @@
     "zxc.20260501143257.1": "- name: Set root ssh authorized keys\n  become: true\n  block:\n    - name: Create ssh authorized keys folder\n      ansible.builtin.file:\n        path: \"{{ chroot_sshd_authorized_keys_root | default('/mnt') }}/root/.ssh\"\n        state: directory\n        mode: \"0700\"\n        owner: root\n        group: root\n    - name: Copy ssh root authorized keys\n      ansible.builtin.get_url:\n        url: https://github.com/ourgal.keys\n        dest: \"{{ chroot_sshd_authorized_keys_root | default('/mnt') }}/root/.ssh/authorized_keys\"\n        mode: \"0600\"\n\n- name: Set user ssh authorized keys\n  block:\n    - name: Create ssh authorized keys folder\n      ansible.builtin.file:\n        path: \"{{ chroot_sshd_authorized_keys_root | default('/mnt') }}/home/zxc/.ssh\"\n        state: directory\n        mode: \"0700\"\n    - name: Copy ssh authorized keys\n      ansible.builtin.get_url:\n        url: https://github.com/ourgal.keys\n        dest: \"{{ chroot_sshd_authorized_keys_root | default('/mnt') }}/home/zxc/.ssh/authorized_keys\"\n        mode: \"0600\"",
     "zxc.20260501143352.1": "- name: Remove chroot resolv.conf\n  become: true\n  ansible.builtin.file:\n    path: /mnt/etc/resolv.conf\n    state: absent",
     "zxc.20260501215954.1": "- name: Reboot\n  become: true\n  ansible.builtin.reboot:",
-    "zxc.20260501214109.1": "<< delimiter >>\n@language yaml\n@tabwidth -2\n- name: Configure void linux\n  hosts: surface-void\n  tasks:\n    @others",
+    "zxc.20260501214109.1": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n- name: Configure void linux\n  hosts: surface-void\n  tasks:\n    @others\n",
     "zxc.20260501214216.1": "- name: Install packages\n  become: true\n  environment:\n    XBPS_ARCH: \"{{ ansible_facts.machine }}\"\n  community.general.xbps:\n    name: \"{{ item }}\"\n  loop:\n    @others\n",
     "zxc.20260501214216.4": "- git\n- curl\n- aria2\n- grep\n- fzf\n- yt-dlp\n- ffmpeg\n",
     "zxc.20260501214216.5": "- 7zip\n- atool",
@@ -9771,6 +9811,10 @@
     "zxc.20260423143848.12": "bin_ansible_callbacks = True\nstdout_callback = community.general.diy\n[callback_diy]\nrunner_on_unreachable_msg=\"\"",
     "zxc.20260423143848.13": "[ssh_connection]\n@others\n",
     "zxc.20260423143848.14": "pipelining = True\n",
+    "zxc.20260502111841.1": "@others",
+    "zxc.20260502111909.1": "FILES := $(basename $(wildcard playbooks/*.yml))\nTARGETS := $(FILES:playbooks/%=%)\n",
+    "zxc.20260502112024.1": ".PHONY: all ${TARGETS}\nall: ${TARGETS}",
+    "zxc.20260502112055.1": "${TARGETS}:\n    {{ if lookPath \"ansible-lint\" -}}\n    ansible-lint playbooks/$@.yml\n    {{ end -}}\n    {{ if lookPath \"ansible-playbook\" -}}\n    ansible-playbook playbooks/$@.yml\n    {{ end -}}\n",
     "zxc.20260409214651.1": "# --- Configuration ---\n\n# Set the path to pdftk.exe if it's not in your system's PATH\n# Example: $pdftkPath = \"C:\\Program Files (x86)\\PDFtk\\bin\\pdftk.exe\"\n$pdftkPath = \"pdftk\" # Assumes pdftk is in your PATH\n\n# Define the output filename for the merged PDF\n$outputPdfName = \"output.pdf\"\n\n# --- Script Logic ---\n\n# Get today's date in YYYYMMDD format\n$today = Get-Date -Format \"yyyyMMdd\"\n\n# Define the file pattern to search for\n# This pattern looks for files like IMG_20260409_0001.pdf\n$filePattern = \"IMG_${today}_*.pdf\"\n\n# Get all PDF files matching the pattern in the current directory\n$pdfFiles = Get-ChildItem -Path . -Filter $filePattern -File\n\n# Check if any files were found\nif ($pdfFiles.Count -eq 0) {\n    Write-Host \"No PDF files found matching the pattern 'IMG_${today}_*.pdf' in the current directory.\"\n    exit\n}\n\n# Sort the files by name to ensure correct order\n# The default sorting of Get-ChildItem should be alphabetical, which works for IMG_..._0001.pdf, IMG_..._0002.pdf etc.\n$sortedPdfFiles = $pdfFiles | Sort-Object Name\n\n# Construct the list of files for pdftk\n$pdftkInputFiles = $sortedPdfFiles | ForEach-Object { $_.FullName }\n\n# Construct the pdftk command\n# The 'cat' operation merges the files. 'output' specifies the output file.\n$pdftkCommand = \"$pdftkPath $($pdftkInputFiles -join ' ') cat output $outputPdfName\"\n\nWrite-Host \"Merging the following files:\"\n$sortedPdfFiles | ForEach-Object { Write-Host \"- $($_.Name)\" }\nWrite-Host \"Output file: $outputPdfName\"\n\n# Execute the pdftk command\ntry {\n    # Use Invoke-Expression to execute the command string\n    Invoke-Expression $pdftkCommand\n    Write-Host \"Successfully merged PDF files.\"\n\n    # Delete the original files after successful merge\n    Write-Host \"Deleting original PDF files...\"\n    $sortedPdfFiles | ForEach-Object {\n        $fileName = $_.Name\n        $filePath = $_.FullName\n        try {\n            Remove-Item -Path $filePath -Force -ErrorAction Stop\n            Write-Host \"Deleted: $fileName\"\n        } catch {\n            Write-Error \"Failed to delete '$fileName': $($_.Exception.Message)\"\n        }\n    }\n    Write-Host \"All original PDF files have been deleted.\"\n\n} catch {\n    Write-Error \"An error occurred during PDF merging: $($_.Exception.Message)\"\n    Write-Error \"Please ensure pdftk is installed and in your PATH, or update the `$pdftkPath` variable.\"\n}\n",
     "zxc.20260202205715.1": "<< dos >>\n@others\n{{ end -}}",
     "zxc.20260202205901.1": "# Flower - \u3068\u3066\u3082\u6df1\u3044\u30b0\u30ea\u30fc\u30f3\nhttps://www.bilibili.com/video/BV1EyHYeBEFr",
@@ -9983,7 +10027,7 @@
       "_mod_time": 1776434513.0679176
     },
     "User.20260226001402.1": {
-      "_mod_time": 1777617730.503831
+      "_mod_time": 1777658388.1911619
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1777179946.863
@@ -10013,7 +10057,7 @@
       "_mod_time": 1777179946.8710287
     },
     "User.20260301202336.1": {
-      "_mod_time": 1777179946.857029
+      "_mod_time": 1777658593.497586
     },
     "zxc.20260327184129.1": {
       "_mod_time": 1777179946.8758848
@@ -10181,7 +10225,7 @@
       "_mod_time": 1777655731.5468316
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1777656487.0346289
+      "_mod_time": 1777697317.7283092
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1777614976.0491798
@@ -10205,13 +10249,16 @@
       "_mod_time": 1777655978.0232885
     },
     "zxc.20260501132138.1": {
-      "_mod_time": 1777655832.873521
+      "_mod_time": 1777697370.8309002
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1777656487.130419
+      "_mod_time": 1777697385.0750277
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777106655.3400538
+    },
+    "zxc.20260502111841.1": {
+      "_mod_time": 1777692160.4280813
     },
     "zxc.20260409214651.1": {
       "_mod_time": 1777106655.377824
@@ -10238,7 +10285,7 @@
       "_mod_time": 1777385863.2345476
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1777179946.836245
+      "_mod_time": 1777658635.9527426
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1777302969.5177398

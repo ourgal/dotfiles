@@ -1,0 +1,11 @@
+FILES := $(basename $(wildcard playbooks/*.yml))
+TARGETS := $(FILES:playbooks/%=%)
+.PHONY: all ${TARGETS}
+all: ${TARGETS}
+${TARGETS}:
+    {{ if lookPath "ansible-lint" -}}
+    ansible-lint playbooks/$@.yml
+    {{ end -}}
+    {{ if lookPath "ansible-playbook" -}}
+    ansible-playbook playbooks/$@.yml
+    {{ end -}}

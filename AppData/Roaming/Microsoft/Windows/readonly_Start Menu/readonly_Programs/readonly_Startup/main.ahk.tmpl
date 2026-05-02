@@ -54,6 +54,9 @@ WinWait("ahk_exe VSCodium.exe")
 {{ else if and (stat $vscode) .my.modules.vscode -}}
 Run({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
 {{ end -}}
+{{ if and (lookPath "leo") .my.modules.leo -}}
+Run "leo", , "Max"
+{{ end -}}
 {{ if lookPath "everything" -}}
 Run("everything", , "Hide")
 {{ end -}}

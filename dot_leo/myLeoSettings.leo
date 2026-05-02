@@ -11,6 +11,9 @@
 <v t="zxc.20260315210026.1"><vh>@string font-family = Maple Mono NF CN</vh></v>
 <v t="zxc.20260315205956.1"><vh>@string theme-name = EKRDark</vh></v>
 <v t="zxc.20260315205826.4"><vh>@enabled-plugins</vh></v>
+<v t="zxc.20260502114231.1"><vh>@bool create-nonexistent-directories = True</vh></v>
+<v t="zxc.20260502122343.1"><vh>@bool raise-file-update-dialogs = False</vh></v>
+<v t="zxc.20260502120407.1"><vh>@string external-editor = "gvim"</vh></v>
 <v t="zxc.20260315205826.5"><vh>@keys</vh>
 <v t="zxc.20260315205826.6"><vh>@shortcuts</vh></v>
 </v>
@@ -45,14 +48,22 @@ quicksearch.py      # Nav pane.
 todo.py             # Task pane.
 viewrendered.py     # (Or viewrendered3.py) Plugins menu support.
 leo_to_html_outline_viewer.py  # Self-contained HTML Outline Viewer
-vim.py</t>
+vim.py
+</t>
 <t tx="zxc.20260315205826.5"></t>
 <t tx="zxc.20260315205826.6"># You can define keyboard shortcuts here of the form:
 #
 #    some-command Shift-F5
-vim-open-node=F12
+vim-open-node=Alt+v
+focus-to-tree=Esc
 </t>
 <t tx="zxc.20260315205956.1"></t>
 <t tx="zxc.20260315210026.1"></t>
+<t tx="zxc.20260502114231.1">This option applies to directories specified in filenames in all kinds of @file trees, and to filenames specified in the @path directive.
+
+True:  Leo attempts to create directories if they do not exist.
+False: Leo never attempts to create directories.</t>
+<t tx="zxc.20260502120407.1"></t>
+<t tx="zxc.20260502122343.1"></t>
 </tnodes>
 </leo_file>
