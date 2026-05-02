@@ -1,4 +1,4 @@
-{{ if eq .chezmoi.os "windows" -}}
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
 {{ if lookPath "gpg-agent" -}}
 {{ if .my.git.sign.gpg -}}
 {{ if eq .chezmoi.os "windows" -}}

@@ -4457,6 +4457,45 @@
               ]
             }
           ]
+        },
+        {
+          "gnx": "zxc.20260502182830.1",
+          "vh": "@path dot_gnupg",
+          "children": [
+            {
+              "gnx": "zxc.20260502183455.1",
+              "vh": "@clean gpg.conf.tmpl",
+              "children": [
+                {
+                  "gnx": "zxc.20260201203315.1"
+                },
+                {
+                  "gnx": "User.20260225203941.1"
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260502183056.1",
+              "vh": "@clean gpg-agent.conf.tmpl",
+              "children": [
+                {
+                  "gnx": "User.20260225203941.1"
+                },
+                {
+                  "gnx": "zxc.20260201203539.1"
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260502183253.1",
+              "vh": "@clean sshcontrol.tmpl",
+              "children": [
+                {
+                  "gnx": "User.20260225203941.1"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -8765,7 +8804,7 @@
     "zxc.20260125162302.1": "[keys.normal.space.l]\nf = \":fmt\"",
     "zxc.20260125162324.1": "[keys.select.g]\nc = \"toggle_comments\"\nz = [\"split_selection_on_newline\", \":sort\", \"keep_primary_selection\"]\n",
     "zxc.20260201203315.1": "armor\ncert-digest-algo SHA512\ncharset utf-8\ndefault-preference-list SHA512 SHA384 SHA256 AES256 AES192 AES ZLIB BZIP2 ZIP Uncompressed\nfixed-list-mode\nkeyid-format 0xlong\nlist-options show-uid-validity\nno-comments\nno-emit-version\nno-greeting\nno-symkey-cache\npersonal-cipher-preferences AES256 AES192 AES\npersonal-compress-preferences ZLIB BZIP2 ZIP Uncompressed\npersonal-digest-preferences SHA512 SHA384 SHA256\nrequire-cross-certification\nrequire-secmem\ns2k-cipher-algo AES256\ns2k-digest-algo SHA512\nthrow-keyids\nuse-agent\nverify-options show-uid-validity\nwith-fingerprint",
-    "zxc.20260201203539.1": "{{ if .my.git.sign.gpg -}}\nenable-win32-openssh-support\nenable-ssh-support\n{{ end -}}\ngrab",
+    "zxc.20260201203539.1": "{{ if .my.git.sign.gpg -}}\n{{ if eq .chezmoi.os \"windows\" -}}\nenable-win32-openssh-support\n{{ end -}}\nenable-ssh-support\n{{ end -}}\ngrab\n",
     "zxc.20260402230749.1": "[mounts]\n\tpath = {{ env \"LOCALAPPDATA\" }}\\gopass\\stores\\root\n[core]\n\tautosync = false",
     "zxc.20260202195341.1": "af=%11%scaletempo2\nalang=%16%ja,jp,jpn,en,eng\naudio-file-auto=%5%fuzzy\naudio-pitch-correction=%3%yes\nbackground-color=%7%#000000\nblend-subtitles=%5%video\nforce-seekable=%3%yes\nfullscreen=%3%yes\nhwdec=%4%auto\nkeep-open=%6%always\nosd-back-color=%7%#282a2e\nosd-border-color=%7%#282a2e\nosd-color=%7%#c5c8c6\nosd-font=%11%DejaVu Sans\nosd-shadow-color=%7%#1d1f21\npause=%2%no\nsave-position-on-quit=%3%yes\nslang=%46%en,eng,chs,sc,zh,chi,zho,zh-Hant,zh-CN,zh-Hans\nsub-auto=%5%fuzzy\nsub-font=%11%DejaVu Sans\nvolume=%3%100\nvolume-max=%3%200",
     "User.20260228232118.1": "music_directory {{ joinPath .chezmoi.homeDir \"Music\" | quote }}\nplaylist_directory {{ joinPath (env \"APPDATA\") \"mpd\" \"playlist\" | quote }}\ndb_file {{ joinPath (env \"APPDATA\") \"mpd\" \"tag_cache\" | quote }}\nstate_file {{ joinPath (env \"APPDATA\") \"mpd\" \"state\" | quote }}\nsticker_file {{ joinPath (env \"APPDATA\") \"mpd\" \"sticker.sql\" | quote }}\n\nauto_update \"yes\"\n\naudio_output {\n    type \"winmm\"\n    name \"Windows Speakers\"\n}",
@@ -9174,6 +9213,9 @@
     "zxc.20260421234758.1": "# Rename this file to match the name of the function\n# e.g. ~/.config/fish/functions/n.fish\n# or, add the lines to the 'config.fish' file.\n\nfunction n --wraps nnn --description 'support nnn quit and change directory'\n    # Block nesting of nnn in subshells\n    if test -n \"$NNNLVL\" -a \"$NNNLVL\" -ge 1\n        echo \"nnn is already running\"\n        return\n    end\n\n    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)\n    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to\n    # see. To cd on quit only on ^G, remove the \"-x\" from both lines below,\n    # without changing the paths.\n    if test -n \"$XDG_CONFIG_HOME\"\n        set -x NNN_TMPFILE \"$XDG_CONFIG_HOME/nnn/.lastd\"\n    else\n        set -x NNN_TMPFILE \"$HOME/.config/nnn/.lastd\"\n    end\n\n    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn\n    # stty start undef\n    # stty stop undef\n    # stty lwrap undef\n    # stty lnext undef\n\n    # The command function allows one to alias this function to `nnn` without\n    # making an infinitely recursive alias\n    command nnn $argv\n\n    if test -e $NNN_TMPFILE\n        source $NNN_TMPFILE\n        rm -- $NNN_TMPFILE\n    end\nend",
     "zxc.20260421231645.1": "<< unix dos >>\n{{ if or (lookPath \"msys2\") (lookPath \"fish\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260421231755.1": "jorgebucaran/fisher\njorgebucaran/autopair.fish\nnickeb96/puffer-fish\nmeaningful-ooo/sponge\nicezyclon/zoxide.fish\natusy/by-binds-yourself",
+    "zxc.20260502183455.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260502183056.1": "<< unix >>\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260502183253.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n{{ if .my.git.sign.gpg -}}\nC92C2BCD646A0DE6A60E1C5397CA97FDBE330909\n{{ end -}}\n{{ end -}}\n{{ end -}}\n",
     "User.20260215182442.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260215182554.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\nv2:sha256:f190ead5021be718ae1001570b620a363a3aa0c685fb15a276d8456d436944e5\n{{ end -}}",
     "User.20260217022114.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n<< nuc >>\n{{ else if eq .chezmoi.hostname \"work\" -}}\n<< work >>\n{{ end -}}\n{{ end -}}",
@@ -9882,13 +9924,13 @@
       "_mod_time": 1777179946.8540068
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1777612767.635
+      "_mod_time": 1777612767.63457
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1777398596.506248
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1777612767.634
+      "_mod_time": 1777612767.6335566
     },
     "zxc.20260429111940.1": {
       "_mod_time": 1777612767.63457
@@ -9897,10 +9939,10 @@
       "_mod_time": 1777612767.63457
     },
     "zxc.20260427000037.1": {
-      "_mod_time": 1777249737.153
+      "_mod_time": 1777219283.7184463
     },
     "zxc.20260427224318.1": {
-      "_mod_time": 1777337709.088
+      "_mod_time": 1777301694.72765
     },
     "User.20260218142211.1": {
       "_mod_time": 1777612767.6658328
@@ -10113,7 +10155,7 @@
       "_mod_time": 1777179946.8823242
     },
     "zxc.20260125161631.1": {
-      "_mod_time": 1777337709.116
+      "_mod_time": 1777302969.4915936
     },
     "User.20260216185314.1": {
       "_mod_time": 1777179946.8833754
@@ -10138,6 +10180,15 @@
     },
     "zxc.20260421231645.1": {
       "_mod_time": 1777179946.8812258
+    },
+    "zxc.20260502183455.1": {
+      "_mod_time": 1777717804.6355793
+    },
+    "zxc.20260502183056.1": {
+      "_mod_time": 1777717951.3885016
+    },
+    "zxc.20260502183253.1": {
+      "_mod_time": 1777717995.2117996
     },
     "User.20260215182442.1": {
       "_mod_time": 1777179946.888449
@@ -10182,10 +10233,10 @@
       "_mod_time": 1777179946.8987815
     },
     "zxc.20260201203241.1": {
-      "_mod_time": 1777179946.8927226
+      "_mod_time": 1777718155.120075
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1777179946.8921921
+      "_mod_time": 1777717951.4373848
     },
     "zxc.20260201214114.1": {
       "_mod_time": 1777179946.8938005
