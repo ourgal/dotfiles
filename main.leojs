@@ -1498,6 +1498,10 @@
                             {
                               "gnx": "zxc.20260125144810.1",
                               "vh": ".xinitrc"
+                            },
+                            {
+                              "gnx": "zxc.20260502183801.1",
+                              "vh": "gnupg"
                             }
                           ]
                         }
@@ -4460,7 +4464,7 @@
         },
         {
           "gnx": "zxc.20260502182830.1",
-          "vh": "@path dot_gnupg",
+          "vh": "@path private_dot_gnupg",
           "children": [
             {
               "gnx": "zxc.20260502183455.1",
@@ -8833,6 +8837,7 @@
     "zxc.20260126193455.1": ".pip/\n.pip/**",
     "zxc.20260125144753.1": ".bash_profile\n.bashrc",
     "zxc.20260125144810.1": ".xinitrc",
+    "zxc.20260502183801.1": ".gnupg\n.gnupg/**",
     "zxc.20260125172659.1": "{{ if lookPath \"hx\" -}}\nhx\n{{- else if lookPath \"vim\" -}}\nvim\n{{- else if lookPath \"vi\" -}}\nvi\n{{- else if lookPath \"nano\" -}}\nnano\n{{- end -}}",
     "zxc.20260319091259.1": "{{ if eq . nil -}}\n{{ fail \"pass hostname to ipM6 template\" -}}\n{{ end -}}\n{{ if eq . \"work\" -}}\n192.168.1.103\n{{- else if  eq . \"nuc\" \"bed\" \"surface-void\" -}}\n192.168.123.191\n{{- else if  eq . \"localhost\" -}}\n{{- else -}}\n{{ fail (printf \"unknown hostname %s for ipM6 template\" .) -}}\n{{- end -}}",
     "User.20260221004652.1": "{{ if eq . nil -}}\n{{ fail \"pass pathes to checkPath template\" -}}\n{{ end -}}\n{{ if kindIs \"slice\" . -}}\n    {{ range . -}}\n    {{ template \"_checkPath\" . -}}\n    {{ end -}}\n{{ else if kindIs \"string\" . -}}\n    {{ template \"_checkPath\" . -}}\n{{ else -}}\n    {{ fail (printf \"checkPath: %s unsupported type %s\" . (kindOf .)) -}}\n{{ end -}}\n",
@@ -9966,7 +9971,7 @@
       "_mod_time": 1777301694.743271
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1777385864.7129846
+      "_mod_time": 1777718292.828916
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1776434513.08354
