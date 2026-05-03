@@ -15,6 +15,13 @@ vimfiles/
 vimfiles/**
 .glzr/
 .glzr/**
+{{ if ne .chezmoi.osRelease.name "Void" -}}
+
+service/
+service/**
+.config/sv/
+.config/sv/**
+{{ end -}}
 {{ end -}}
 {{ if eq .chezmoi.os "android" -}}
 Documents/autohotkey/
@@ -31,6 +38,13 @@ vimfiles/
 vimfiles/**
 .glzr/
 .glzr/**
+{{ if ne .chezmoi.osRelease.name "Void" -}}
+
+service/
+service/**
+.config/sv/
+.config/sv/**
+{{ end -}}
 {{ end -}}
 {{ if eq .chezmoi.os "windows" -}}
 .vim/
@@ -42,4 +56,6 @@ vimfiles/**
 .xinitrc
 .gnupg
 .gnupg/**
+service/
+service/**
 {{ end -}}
