@@ -3691,21 +3691,7 @@
                     },
                     {
                       "gnx": "zxc.20260125153456.1",
-                      "vh": "delta",
-                      "children": [
-                        {
-                          "gnx": "zxc.20260125154233.1",
-                          "vh": "side by side"
-                        },
-                        {
-                          "gnx": "zxc.20260125154225.1",
-                          "vh": "navigate"
-                        },
-                        {
-                          "gnx": "zxc.20260125154220.1",
-                          "vh": "file-yellow"
-                        }
-                      ]
+                      "vh": "delta"
                     },
                     {
                       "gnx": "zxc.20260125153507.1",
@@ -9039,14 +9025,12 @@
     "zxc.20260125153928.1": "[color \"branch\"]\n\tcurrent = \"magenta\"\n\tlocal = \"default\"\n\tplain = \"blue\"\n\tremote = \"yellow\"\n\tupstream = \"green\"",
     "zxc.20260125153436.1": "[culumn]\n\tui = \"auto\"",
     "zxc.20260125153348.1": "[commit]\n\ttemplate = \"~/.config/git/template\"\n\tgpgsign = true\n\tverbose = true",
-    "zxc.20260125153401.1": "[core]\n\tcompression = 9\n\teditor = \"{{ template \"editor\" }}\"\n\texcludesfile = \"~/.gitignore\"\n\tfsmonitor = true\n\tpager = \"diff-so-fancy | less '--tabs=4' -RFX\"\n\tpreloadindex = true\n\tuntrackedCache = true\n\twhitespace = \"error\"\n\tautocrlf = \"input\"\n{{ if eq .chezmoi.os \"windows\" }}\tsshCommand = 'C:\\\\Program Files\\\\OpenSSH-Win64\\\\ssh.EXE'\n{{ end -}}",
+    "zxc.20260125153401.1": "[core]\n\tcompression = 9\n\teditor = \"{{ template \"editor\" }}\"\n\texcludesfile = \"~/.gitignore\"\n\tfsmonitor = true\n        {{ if lookPath \"delta\" -}}\n        pager = delta\n        {{ else if lookPath \"diff-so-fancy\" -}}\n\tpager = \"diff-so-fancy | less '--tabs=4' -RFX\"\n        {{ end -}}\n\tpreloadindex = true\n\tuntrackedCache = true\n\twhitespace = \"error\"\n\tautocrlf = \"input\"\n{{ if eq .chezmoi.os \"windows\" }}\tsshCommand = 'C:\\\\Program Files\\\\OpenSSH-Win64\\\\ssh.EXE'\n{{ end -}}",
     "zxc.20260202215744.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"git-credential-gopass\" -}}\n[credential]\n\thelper = \"gopass\"\n[credential \"helperselector\"]\n\tselected = gopass\n{{ else -}}\n[credential]\n\thelper = !\\\"{{ .chezmoi.homeDir }}/scoop/apps/git/current/mingw64/bin/git-credential-manager.exe\\\"\n[credential \"helperselector\"]\n    selected = manager\n{{ end -}}\n{{ end -}}",
     "zxc.20260202215728.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"gopass\" -}}\n[credential]\n\thelper = \"gopass\"\n{{ end -}}\n{{ end -}}",
     "zxc.20260125154038.1": "[credential \"https://gist.github.com\"]\n\thelper = !{{ lookPath \"gh\" | replace \"\\\\\" \"\\\\\\\\\" | squote }} auth git-credential",
     "zxc.20260125154056.1": "[credential \"https://github.com\"]\n\thelper = !{{ lookPath \"gh\" | replace \"\\\\\" \"\\\\\\\\\" | squote }} auth git-credential\n",
-    "zxc.20260125154233.1": "[delta \"side-by-side\"]\n\tenable = true\n",
-    "zxc.20260125154225.1": "[delta \"navigate\"]\n\tenable = true\n",
-    "zxc.20260125154220.1": "[delta \"file-yellow\"]\n\tenable = true\n",
+    "zxc.20260125153456.1": "[delta]\nside-by-side = true\nnavitage = true\nfile-yellow = true",
     "zxc.20260125153507.1": "[diff]\n\talgorithm = \"histogram\"\n\tcolorMoved = \"plain\"\n\tcontext = 3\n\tinterHunkContext = 10\n\tmnemonicPrefix = true\n\trenames = true",
     "zxc.20260125153521.1": "[diff-so-fancy]\n\tchangeHunkIndicators = true\n\tmarkEmptyLines = false\n\tstripLeadingSymbols = true\n\tuseUnicodeRuler = true",
     "zxc.20260125153531.1": "[fetch]\n\tall = true\n\tprune = true\n\tpruneTags = true",
@@ -9717,7 +9701,7 @@
     "zxc.20260501214216.8": "- aria2\n- transmission\n- yt-dlp",
     "zxc.20260501214216.9": "- gvim-huge\n- helix\n- kakoune\n",
     "zxc.20260501214216.10": "- chezmoi\n- lf\n- nnn\n- ranger",
-    "zxc.20260501214216.11": "- git\n- git-annex\n- git-crypt\n- git-extras\n- lazygit\n- gitui",
+    "zxc.20260501214216.11": "- git\n- git-annex\n- git-crypt\n- git-extras\n- lazygit\n- gitui\n- delta",
     "zxc.20260501214216.12": "- tmux\n- zellij",
     "zxc.20260501214216.13": "- fish-shell",
     "zxc.20260501214216.14": "- fzf",
@@ -10056,7 +10040,7 @@
       "_mod_time": 1777713442.5013232
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1777713442.5006568
+      "_mod_time": 1777792597.6384282
     },
     "zxc.20260125161631.1": {
       "_mod_time": 1777713442.5013232
@@ -10215,7 +10199,7 @@
       "_mod_time": 1777713442.480567
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1777790992.9924788
+      "_mod_time": 1777792411.4246762
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777713442.480156
