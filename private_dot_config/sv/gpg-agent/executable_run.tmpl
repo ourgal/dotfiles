@@ -1,0 +1,4 @@
+{{ if lookPath "gpg-agent" -}}
+#!/bin/sh
+exec gpg-agent --daemon --foreground
+{{ end -}}
