@@ -1,4 +1,4 @@
 {{ if lookPath "gpg-agent" -}}
 #!/bin/sh
-exec gpg-agent --daemon --foreground
+exec gpg-agent --daemon --no-detach
 {{ end -}}
