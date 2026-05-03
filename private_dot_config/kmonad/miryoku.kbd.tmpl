@@ -8,10 +8,8 @@
 
 
 (defcfg
-{{ if and (regexMatch .chezmoi.hostname "^surface-.*") (eq .chezmoi.os "linux") -}}
+{{ if eq .chezmoi.hostname "surface-void" -}}
   input (device-file "/dev/input/by-id/usb-Microsoft_Surface_Type_Cover-event-kbd")
-{{ else if and (regexMatch .chezmoi.hostname "^air-.*") (eq .chezmoi.os "linux") -}}
-  input (device-file "/dev/input/by-path/platform-18042-serio-0-event-kbd")
 {{ end -}}
   output (uinput-sink "Miryoku KMonad output")
   fallthrough false
