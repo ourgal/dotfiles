@@ -50,22 +50,6 @@
       ]
     },
     {
-      "gnx": "zxc.20260125142700.1",
-      "vh": "xinitrc",
-      "children": [
-        {
-          "gnx": "zxc.20260125142829.1",
-          "vh": "@clean dot_xinitrc.tmpl",
-          "children": [
-            {
-              "gnx": "zxc.20260125142901.1",
-              "vh": "surface-void"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "gnx": "zxc.20260423154112.1",
       "vh": "cli",
       "children": [
@@ -8565,8 +8549,6 @@
     "zxc.20260421204018.1": "{{ if lookPath \"keepassxc\" -}}\nRun({{ joinPath .chezmoi.homeDir \"Documents\" \"autohotkey\" \"keepassxc.ahk\" | quote }}, , \"Hide\")\n{{ end -}}",
     "zxc.20260125142149.1": "@tabwidth 4\nall:\n\t@others\n",
     "zxc.20260125142255.1": "yes | git magic -ap\n",
-    "zxc.20260125142829.1": "{{ if eq .chezmoi.os \"linux\" -}}\n@others\n{{ end -}}",
-    "zxc.20260125142901.1": "{{ if eq .chezmoi.hostname \"surface-void\" -}}\n{{ if lookPath \"gpg-agent\" -}}\neval $(gpg-agent --daemon --enable-ssh-support --write-env-file \"${HOME}/.gpg-agent-info\")\n{{ end -}}\n{{ if lookPath \"startxfce4\" -}}\nexec /usr/bin/startxfce4\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260125212003.1": "$env:EDITOR = \"hx\"\n$env:shell_startup = \"~\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\"\n",
     "zxc.20260125212135.1": "{{ if lookPath \"sfsu\" -}}\nInvoke-Expression (&sfsu hook)\n{{ end -}}\n",
     "zxc.20260125212222.1": "New-Alias reboot Restart-Computer\nNew-Alias poweroff Stop-Computer\n",
@@ -8886,7 +8868,7 @@
     "zxc.20260329193635.1": "\"brix.local,192.168.123.206 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJADK7A2hbOUUfvCxe2xNhkVpEHIy3CKK0+bkTE5Uqur\",\n",
     "zxc.20260329194446.1": "\"[192.168.1.103]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n\"[192.168.123.191]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n",
     "zxc.20260329193440.1": "\"[ssh.github.com]:443 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl\",\n\"[ssh.github.com]:443 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=\",\n\"[ssh.github.com]:443 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=\"\n",
-    "zxc.20260503010044.1": "[my.modules]\n@others\n\n[my.modules.nuc]\n",
+    "zxc.20260503010044.1": "[my.modules]\n@others\n\n[my.modules.nuc-windows]\n\n[my.modules.bed-windows]\n",
     "zxc.20260503010044.2": "mpd = false\nnavidrome = true\n",
     "zxc.20260503010044.4": "atuin = false\nmcfly = true\n",
     "zxc.20260503010044.5": "navi = true\n",
@@ -9831,9 +9813,6 @@
     "zxc.20260125142149.1": {
       "_mod_time": 1777128541.2157347
     },
-    "zxc.20260125142829.1": {
-      "_mod_time": 1777719045.3068907
-    },
     "zxc.20260423154131.2": {
       "_mod_time": 1777179946.8605473
     },
@@ -9994,7 +9973,7 @@
       "_mod_time": 1776434513.0679176
     },
     "User.20260226001402.1": {
-      "_mod_time": 1777780110.8965206
+      "_mod_time": 1777780893.3679569
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1777179946.863
