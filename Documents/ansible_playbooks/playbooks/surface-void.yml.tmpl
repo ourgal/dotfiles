@@ -6,6 +6,9 @@
     username: zxc
   tasks:
     - name: Install packages
+      tags:
+        - pkg
+        - xbps
       become: true
       environment:
         XBPS_ARCH: "{{ ansible_facts.machine }}"

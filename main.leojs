@@ -2459,6 +2459,10 @@
                                   "vh": "brix"
                                 },
                                 {
+                                  "gnx": "zxc.20260504001723.1",
+                                  "vh": "surface-void"
+                                },
+                                {
                                   "gnx": "zxc.20260329194446.1",
                                   "vh": "m6"
                                 },
@@ -9006,6 +9010,7 @@
     "zxc.20260329194301.1": "\"home.local,192.168.123.100 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOKREEGtjhZmTsIruPjBmBp0fPHKxfUSbUilpIzVMoBF\",\n",
     "zxc.20260329194332.1": "\"[brix.local]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqhuTozhEUlnOCkH1LXw55IUaZHzcO4IKmr1uPOT41u\",\n\"[192.168.123.206]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqhuTozhEUlnOCkH1LXw55IUaZHzcO4IKmr1uPOT41u\",",
     "zxc.20260329193635.1": "\"brix.local,192.168.123.206 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJADK7A2hbOUUfvCxe2xNhkVpEHIy3CKK0+bkTE5Uqur\",\n",
+    "zxc.20260504001723.1": "\"surface-void.local ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHVX0quUeLWv/vQZ528bsWAqYB+uaVC5o/SMmgtnjPkD\",",
     "zxc.20260329194446.1": "\"[192.168.1.103]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n\"[192.168.123.191]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n",
     "zxc.20260329193440.1": "\"[ssh.github.com]:443 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl\",\n\"[ssh.github.com]:443 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=\",\n\"[ssh.github.com]:443 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=\"\n",
     "zxc.20260503010044.1": "[my.modules]\n@others\n\n[my.modules.nuc-windows]\n\n[my.modules.bed-windows]\n",
@@ -9850,7 +9855,7 @@
     "zxc.20260501215954.1": "- name: Reboot\n  become: true\n  ansible.builtin.reboot:",
     "zxc.20260501214109.1": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n- name: Configure void linux\n  hosts: surface-void\n  vars:\n    << vars >>\n  tasks:\n    @others\n",
     "zxc.20260503185527.1": "username: zxc\n",
-    "zxc.20260501214216.1": "- name: Install packages\n  become: true\n  environment:\n    XBPS_ARCH: \"{{ ansible_facts.machine }}\"\n  community.general.xbps:\n    name:\n      @others\n",
+    "zxc.20260501214216.1": "- name: Install packages\n  tags:\n    - pkg\n    - xbps\n  become: true\n  environment:\n    XBPS_ARCH: \"{{ ansible_facts.machine }}\"\n  community.general.xbps:\n    name:\n      @others\n",
     "zxc.20260501214216.4": "- git\n- curl\n- aria2\n- grep\n- fzf\n- yt-dlp\n- ffmpeg\n",
     "zxc.20260501214216.5": "- 7zip\n- atool\n- unzip",
     "zxc.20260501214216.6": "- buku",
@@ -10125,7 +10130,7 @@
       "_mod_time": 1777713442.464656
     },
     "User.20260226001402.1": {
-      "_mod_time": 1777790600.0299976
+      "_mod_time": 1777825107.9173946
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1777713442.4841998
@@ -10371,7 +10376,7 @@
       "_mod_time": 1777713442.480567
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1777824579.9744213
+      "_mod_time": 1777824914.6911767
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777713442.480156
