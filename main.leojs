@@ -9273,7 +9273,7 @@
     "zxc.20260503224914.1": "#!/bin/sh\n",
     "zxc.20260503220138.1": "exec kmonad $HOME/.config/kmonad/miryoku.kbd\n",
     "zxc.20260503225115.1": "{{ if lookPath \"gpg-agent\" -}}\n<< shebang >>\n@others\n{{ end -}}\n",
-    "zxc.20260503225154.1": "exec gpg-agent --daemon --foreground\n",
+    "zxc.20260503225154.1": "exec gpg-agent --daemon --no-detach\n",
     "zxc.20260503220635.1": "{{ joinPath .chezmoi.homeDir \".config\" \"sv\" \"kmonad\" }}\n",
     "zxc.20260503230016.1": "{{ joinPath .chezmoi.homeDir \".config\" \"sv\" \"gpg-agent\" }}\n\n",
     "zxc.20260126154354.1": "<< unix dos >>\n{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -10206,7 +10206,7 @@
       "_mod_time": 1777819798.1630044
     },
     "zxc.20260503225115.1": {
-      "_mod_time": 1777820379.5822217
+      "_mod_time": 1777822694.5736165
     },
     "zxc.20260503220635.1": {
       "_mod_time": 1777819696.757693
