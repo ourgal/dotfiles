@@ -4509,6 +4509,30 @@
               ]
             },
             {
+              "gnx": "zxc.20260504000603.1",
+              "vh": "gitui",
+              "children": [
+                {
+                  "gnx": "zxc.20260504000607.1",
+                  "vh": "@path gitui",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260504000649.1",
+                      "vh": "@clean key_bindings.ron.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225203941.1"
+                        },
+                        {
+                          "gnx": "zxc.20260201140637.1"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "gnx": "zxc.20260503215759.1",
               "vh": "runit user service",
               "children": [
@@ -9250,6 +9274,7 @@
     "zxc.20260421231645.1": "<< unix dos >>\n{{ if or (lookPath \"msys2\") (lookPath \"fish\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260421231755.1": "jorgebucaran/fisher\njorgebucaran/autopair.fish\nnickeb96/puffer-fish\nmeaningful-ooo/sponge\nicezyclon/zoxide.fish\natusy/by-binds-yourself",
     "zxc.20260503171104.1": "<< unix dos >>\n{{ if lookPath \"kmonad\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260504000649.1": "<< unix >>\n{{ if lookPath \"gitui\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260503215955.1": "{{ if lookPath \"kmonad\" -}}\n<< shebang >>\n@others\n{{ end -}}\n",
     "zxc.20260503224914.1": "#!/bin/sh\n",
     "zxc.20260503220138.1": "exec kmonad $HOME/.config/kmonad/miryoku.kbd\n",
@@ -10201,6 +10226,9 @@
     },
     "zxc.20260503171104.1": {
       "_mod_time": 1777815727.7882137
+    },
+    "zxc.20260504000649.1": {
+      "_mod_time": 1777824466.4251297
     },
     "zxc.20260503215955.1": {
       "_mod_time": 1777822517.0613644
