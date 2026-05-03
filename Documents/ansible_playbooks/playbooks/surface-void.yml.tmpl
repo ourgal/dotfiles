@@ -135,6 +135,12 @@
       loop:
         - lightdm
         - "runsvdir-{{ username }}"
+    - name: Set user groups
+      become: true
+      ansible.builtin.user:
+        name: "{{ username }}"
+        groups: input
+        append: true
     - name: Regenerate initramfs
       become: true
       ansible.builtin.command:
