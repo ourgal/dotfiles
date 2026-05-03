@@ -1442,6 +1442,16 @@
                                 {
                                   "gnx": "User.20260301202425.1",
                                   "vh": "glzr"
+                                },
+                                {
+                                  "gnx": "zxc.20260503214529.1",
+                                  "vh": "runnit user service",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260503215107.1",
+                                      "vh": "<< not void >>"
+                                    }
+                                  ]
                                 }
                               ]
                             }
@@ -1486,6 +1496,10 @@
                             {
                               "gnx": "zxc.20260502183801.1",
                               "vh": "gnupg"
+                            },
+                            {
+                              "gnx": "zxc.20260503214440.1",
+                              "vh": "runnit user service"
                             }
                           ]
                         }
@@ -2739,6 +2753,22 @@
                       ]
                     }
                   ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gnx": "zxc.20260503215706.1",
+          "vh": "keybinding",
+          "children": [
+            {
+              "gnx": "zxc.20260503215726.1",
+              "vh": "kmonad",
+              "children": [
+                {
+                  "gnx": "zxc.20260503171231.1",
+                  "vh": "content"
                 }
               ]
             }
@@ -4160,6 +4190,50 @@
       ]
     },
     {
+      "gnx": "zxc.20260503220237.1",
+      "vh": "runit user services",
+      "children": [
+        {
+          "gnx": "zxc.20260503220307.1",
+          "vh": "services",
+          "children": [
+            {
+              "gnx": "zxc.20260503215947.1",
+              "vh": "@path kmonad",
+              "children": [
+                {
+                  "gnx": "zxc.20260503215955.1",
+                  "vh": "@clean executable_run.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260503220138.1",
+                      "vh": "content"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gnx": "zxc.20260503220435.1",
+          "vh": "enabled services",
+          "children": [
+            {
+              "gnx": "zxc.20260503220441.1",
+              "vh": "@path service",
+              "children": [
+                {
+                  "gnx": "zxc.20260503220635.1",
+                  "vh": "@clean symlink_kmonad.tmpl"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "gnx": "zxc.20260125152614.1",
       "vh": "config",
       "children": [
@@ -4477,13 +4551,27 @@
                       "vh": "@clean miryoku.kbd.tmpl",
                       "children": [
                         {
-                          "gnx": "zxc.20260503171231.1",
-                          "vh": "content"
+                          "gnx": "zxc.20260503171231.1"
                         },
                         {
                           "gnx": "User.20260225204914.1"
                         }
                       ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260503215759.1",
+              "vh": "runit user service",
+              "children": [
+                {
+                  "gnx": "zxc.20260503215811.1",
+                  "vh": "@path sv",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260503220307.1"
                     }
                   ]
                 }
@@ -8782,6 +8870,8 @@
     "zxc.20260128003657.1": "AppData/\nAppData/**",
     "User.20260220191553.1": "vimfiles/\nvimfiles/**",
     "User.20260301202425.1": ".glzr/\n.glzr/**",
+    "zxc.20260503214529.1": "<< not void >>\nservice/\nservice/**\n.config/sv/\n.config/sv/**\n{{ end -}}\n",
+    "zxc.20260503215107.1": "{{ if ne .chezmoi.osRelease.name \"Void\" -}}\n\n",
     "User.20260224001419.1": "<< android >>\n@others\n{{ end -}}",
     "User.20260225204449.1": "{{ if eq .chezmoi.os \"android\" -}}\n",
     "zxc.20260125144606.1": "<< dos >>\n@others\n{{ end -}}\n",
@@ -8790,6 +8880,7 @@
     "zxc.20260125144753.1": ".bash_profile\n.bashrc",
     "zxc.20260125144810.1": ".xinitrc",
     "zxc.20260502183801.1": ".gnupg\n.gnupg/**",
+    "zxc.20260503214440.1": "service/\nservice/**\n",
     "zxc.20260125172659.1": "{{ if lookPath \"hx\" -}}\nhx\n{{- else if lookPath \"vim\" -}}\nvim\n{{- else if lookPath \"vi\" -}}\nvi\n{{- else if lookPath \"nano\" -}}\nnano\n{{- end -}}",
     "zxc.20260319091259.1": "{{ if eq . nil -}}\n{{ fail \"pass hostname to ipM6 template\" -}}\n{{ end -}}\n{{ if eq . \"work\" -}}\n192.168.1.103\n{{- else if  eq . \"nuc\" \"bed\" \"surface-void\" -}}\n192.168.123.191\n{{- else if  eq . \"localhost\" -}}\n{{- else -}}\n{{ fail (printf \"unknown hostname %s for ipM6 template\" .) -}}\n{{- end -}}",
     "User.20260221004652.1": "{{ if eq . nil -}}\n{{ fail \"pass pathes to checkPath template\" -}}\n{{ end -}}\n{{ if kindIs \"slice\" . -}}\n    {{ range . -}}\n    {{ template \"_checkPath\" . -}}\n    {{ end -}}\n{{ else if kindIs \"string\" . -}}\n    {{ template \"_checkPath\" . -}}\n{{ else -}}\n    {{ fail (printf \"checkPath: %s unsupported type %s\" . (kindOf .)) -}}\n{{ end -}}\n",
@@ -8943,6 +9034,7 @@
     "zxc.20260419162202.1": "set -g default-shell cmd",
     "zxc.20260419172415.1": "bind -n M-j if -F \"#{pane_at_bottom}\" \"switch-client -n\" \"select-pane -D\"\nbind -n M-k if -F \"#{pane_at_top}\" \"switch-client -p\" \"select-pane -U\"\n\nbind -n M-l if -F \"#{pane_at_right}\" \"next-window\" \"select-pane -R\"\nbind -n M-h if -F \"#{pane_at_left}\" \"previous-window\" \"select-pane -L\"",
     "zxc.20260422181341.1": "set -g status-position top",
+    "zxc.20260503171231.1": ";; Copyright 2021 Manna Harbour\n;; github.com/manna-harbour/miryoku\n\n\n\n\n\n(defcfg\n{{ if eq .chezmoi.hostname \"surface-void\" -}}\n  input (device-file \"/dev/input/by-id/usb-Microsoft_Surface_Type_Cover-event-kbd\")\n{{ end -}}\n  output (uinput-sink \"Miryoku KMonad output\")\n  fallthrough false\n)\n(defsrc\n  2 3 4 5 6 8 9 0 - =\n  q w e r t i o p [ ]\n  caps a s d f k l ; ' ent\n                x c v , . /\n)\n(deflayer U_BASE\nq\tw\tf\tp\tb\tj\tl\tu\ty\t'\n(tap-hold-next-release 200 a met)\t(tap-hold-next-release 200 r alt)\t(tap-hold-next-release 200 s ctl)\t(tap-hold-next-release 200 t sft)\tg\tm\t(tap-hold-next-release 200 n sft)\t(tap-hold-next-release 200 e ctl)\t(tap-hold-next-release 200 i alt)\t(tap-hold-next-release 200 o met)\n(tap-hold-next-release 200 z (layer-toggle U_BUTTON))\t(tap-hold-next-release 200 x ralt)\tc\td\tv\tk\th\t,\t(tap-hold-next-release 200 . ralt)\t(tap-hold-next-release 200 / (layer-toggle U_BUTTON))\n\t\t(tap-hold-next-release 200 esc (layer-toggle U_MEDIA))\t(tap-hold-next-release 200 spc (layer-toggle U_NAV))\t(tap-hold-next-release 200 tab (layer-toggle U_MOUSE))\t(tap-hold-next-release 200 ent (layer-toggle U_SYM))\t(tap-hold-next-release 200 bspc (layer-toggle U_NUM))\t(tap-hold-next-release 200 del (layer-toggle U_FUN))\n)\n(deflayer U_EXTRA\nq\tw\te\tr\tt\ty\tu\ti\to\tp\n(tap-hold-next-release 200 a met)\t(tap-hold-next-release 200 s alt)\t(tap-hold-next-release 200 d ctl)\t(tap-hold-next-release 200 f sft)\tg\th\t(tap-hold-next-release 200 j sft)\t(tap-hold-next-release 200 k ctl)\t(tap-hold-next-release 200 l alt)\t(tap-hold-next-release 200 ' met)\n(tap-hold-next-release 200 z (layer-toggle U_BUTTON))\t(tap-hold-next-release 200 x ralt)\tc\tv\tb\tn\tm\t,\t(tap-hold-next-release 200 . ralt)\t(tap-hold-next-release 200 / (layer-toggle U_BUTTON))\n\t\t(tap-hold-next-release 200 esc (layer-toggle U_MEDIA))\t(tap-hold-next-release 200 spc (layer-toggle U_NAV))\t(tap-hold-next-release 200 tab (layer-toggle U_MOUSE))\t(tap-hold-next-release 200 ent (layer-toggle U_SYM))\t(tap-hold-next-release 200 bspc (layer-toggle U_NUM))\t(tap-hold-next-release 200 del (layer-toggle U_FUN))\n)\n(deflayer U_TAP\nq\tw\tf\tp\tb\tj\tl\tu\ty\t'\na\tr\ts\tt\tg\tm\tn\te\ti\to\nz\tx\tc\td\tv\tk\th\t,\t.\t/\n\t\tesc\tspc\ttab\tent\tbspc\tdel\n)\n(deflayer U_BUTTON\nundo\tS-del\tC-ins\tS-ins\tagain\tagain\tS-ins\tC-ins\tS-del\tundo\nmet\talt\tctl\tsft\tXX\tXX\tsft\tctl\talt\tmet\nundo\tS-del\tC-ins\tS-ins\tagain\tagain\tS-ins\tC-ins\tS-del\tundo\n\t\t#(kp* kp5)\t#(kp/ kp5)\t#(kp- kp5)\t#(kp- kp5)\t#(kp/ kp5)\t#(kp* kp5)\n)\n(deflayer U_NAV\nXX\t(layer-switch U_TAP)\t(layer-switch U_EXTRA)\t(layer-switch U_BASE)\tXX\tagain\tS-ins\tC-ins\tS-del\tundo\nmet\talt\tctl\tsft\tXX\tcaps\tleft\tdown\tup\tright\nXX\tralt\t(layer-switch U_NUM)\t(layer-switch U_NAV)\tXX\tins\thome\tpgdn\tpgup\tend\n\t\tXX\tXX\tXX\tent\tbspc\tdel\n)\n(deflayer U_MOUSE\nXX\t(layer-switch U_TAP)\t(layer-switch U_EXTRA)\t(layer-switch U_BASE)\tXX\tagain\tS-ins\tC-ins\tS-del\tundo\nmet\talt\tctl\tsft\tXX\tXX\tkp4\tkp2\tkp8\tkp6\nXX\tralt\t(layer-switch U_SYM)\t(layer-switch U_MOUSE)\tXX\tXX\tXX\tXX\tXX\tXX\n\t\tXX\tXX\tXX\t#(kp- kp5)\t#(kp/ kp5)\t#(kp* kp5)\n)\n(deflayer U_MEDIA\nXX\t(layer-switch U_TAP)\t(layer-switch U_EXTRA)\t(layer-switch U_BASE)\tXX\tXX\tXX\tXX\tXX\tXX\nmet\talt\tctl\tsft\tXX\tXX\tprevioussong\tvold\tvolu\tnextsong\nXX\tralt\t(layer-switch U_FUN)\t(layer-switch U_MEDIA)\tXX\tXX\tXX\tXX\tXX\tXX\n\t\tXX\tXX\tXX\tstopcd\tplaypause\tmute\n)\n(deflayer U_NUM\n[\t7\t8\t9\t]\tXX\t(layer-switch U_BASE)\t(layer-switch U_EXTRA)\t(layer-switch U_TAP)\tXX\n;\t4\t5\t6\t=\tXX\tsft\tctl\talt\tmet\n`\t1\t2\t3\t\\\\\tXX\t(layer-switch U_NUM)\t(layer-switch U_NAV)\tralt\tXX\n\t\t.\t0\t-\tXX\tXX\tXX\n)\n(deflayer U_SYM\n{\t&\t*\t\\(\t}\tXX\t(layer-switch U_BASE)\t(layer-switch U_EXTRA)\t(layer-switch U_TAP)\tXX\n:\t$\t%\t^\t+\tXX\tsft\tctl\talt\tmet\n~\t!\t@\t#\t|\tXX\t(layer-switch U_SYM)\t(layer-switch U_MOUSE)\tralt\tXX\n\t\t\\(\t\\)\t\\_\tXX\tXX\tXX\n)\n(deflayer U_FUN\nf12\tf7\tf8\tf9\tsysrq\tXX\t(layer-switch U_BASE)\t(layer-switch U_EXTRA)\t(layer-switch U_TAP)\tXX\nf11\tf4\tf5\tf6\tslck\tXX\tsft\tctl\talt\tmet\nf10\tf1\tf2\tf3\tpause\tXX\t(layer-switch U_FUN)\t(layer-switch U_MEDIA)\tralt\tXX\n\t\tcomp\tspc\ttab\tXX\tXX\tXX\n)\n\n",
     "User.20260215210053.1": "\"[leojsbody.plain.wrap][leojsbody.julia.wrap][leojsbody.batch.wrap][leojsbody.shell.wrap][leojsbody.python.wrap][leojsbody.javascript.wrap][leojsbody.typescript.wrap][leojsbody.c.wrap][leojsbody.cpp.wrap][leojsbody.css.wrap][leojsbody.fortran.wrap][leojsbody.fortran90.wrap][leojsbody.html.wrap][leojsbody.java.wrap][leojsbody.json.wrap][leojsbody.markdown.wrap][leojsbody.php.wrap][leojsbody.restructuredtext.wrap][leojsbody.rust.wrap][leojsbody.xml.wrap]\": {\n    \"editor.wordWrap\": \"on\"\n},\n\"leojs.defaultReloadIgnore\": \"yes-all\",\n",
     "User.20260215220918.1": "\"workbench.iconTheme\": \"material-icon-theme\",\n",
     "User.20260215225846.1": "\"vim.easymotion\": true,\n\"vim.useSystemClipboard\": true,\n\"vim.normalModeKeyBindingsNonRecursive\": [\n    {\n        \"before\": [\"<space>\"],\n        \"commands\": [\"vspacecode.space\"]\n    },\n    {\n        \"before\": [\",\"],\n        \"commands\": [\n            \"vspacecode.space\",\n            {\n                \"command\": \"whichkey.triggerKey\",\n                \"args\": \"m\"\n            }\n        ]\n    }\n],\n\"vim.visualModeKeyBindingsNonRecursive\": [\n    {\n        \"before\": [\"<space>\"],\n        \"commands\": [\"vspacecode.space\"]\n    },\n    {\n        \"before\": [\",\"],\n        \"commands\": [\n            \"vspacecode.space\",\n            {\n                \"command\": \"whichkey.triggerKey\",\n                \"args\": \"m\"\n            }\n        ]\n    },\n    {\n        \"before\": [\">\"],\n        \"commands\": [\"editor.action.indentLines\"]\n    },\n    {\n        \"before\": [\"<\"],\n        \"commands\": [\"editor.action.outdentLines\"]\n    }\n],\n",
@@ -9150,6 +9242,9 @@
     "zxc.20260320230804.1": "{{ if and ( lookPath \"navidrome\" ) (default .my.modules.navidrome (index .my.modules .chezmoi.hostname \"navidrome\")) -}}\nRun({{ print \"navidrome --datafolder \" (joinPath (env \"LOCALAPPDATA\") \"navidrome\") | quote }}, {{ joinPath .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}\n",
     "zxc.20260326000727.1": "{{ if lookPath \"syncthing\" -}}\nRun(\"syncthing serve --no-console --no-browser\", , \"Hide\")\n{{ end -}}",
     "zxc.20260329185904.1": "{{ if and (stat (joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"jellyfin-mpv-shim\")) (eq .chezmoi.hostname \"bed\") -}}\nRun({{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"jellyfin-mpv-shim\" \"current\" \"run.exe\" | quote }}, , \"Hide\")\n{{ end -}}",
+    "zxc.20260503215955.1": "{{ if lookPath \"kmonad\" -}}\n@others\n{{ end -}}\n",
+    "zxc.20260503220138.1": "exec kmonad $HOME/.config/kmonad/miryoku.kbd\n",
+    "zxc.20260503220635.1": "{{ joinPath .chezmoi.user_dir \".config\" \"sv\" \"kmonad\" }}\n",
     "zxc.20260126154354.1": "<< unix dos >>\n{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125145051.1": "<< unix dos >>\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125152704.1": "<< unix dos >>\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -9176,7 +9271,6 @@
     "zxc.20260421231645.1": "<< unix dos >>\n{{ if or (lookPath \"msys2\") (lookPath \"fish\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260421231755.1": "jorgebucaran/fisher\njorgebucaran/autopair.fish\nnickeb96/puffer-fish\nmeaningful-ooo/sponge\nicezyclon/zoxide.fish\natusy/by-binds-yourself",
     "zxc.20260503171104.1": "<< unix dos >>\n{{ if lookPath \"kmonad\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260503171231.1": ";; Copyright 2021 Manna Harbour\n;; github.com/manna-harbour/miryoku\n\n\n\n\n\n(defcfg\n{{ if eq .chezmoi.hostname \"surface-void\" -}}\n  input (device-file \"/dev/input/by-id/usb-Microsoft_Surface_Type_Cover-event-kbd\")\n{{ end -}}\n  output (uinput-sink \"Miryoku KMonad output\")\n  fallthrough false\n)\n(defsrc\n  2 3 4 5 6 8 9 0 - =\n  q w e r t i o p [ ]\n  caps a s d f k l ; ' ent\n                x c v , . /\n)\n(deflayer U_BASE\nq\tw\tf\tp\tb\tj\tl\tu\ty\t'\n(tap-hold-next-release 200 a met)\t(tap-hold-next-release 200 r alt)\t(tap-hold-next-release 200 s ctl)\t(tap-hold-next-release 200 t sft)\tg\tm\t(tap-hold-next-release 200 n sft)\t(tap-hold-next-release 200 e ctl)\t(tap-hold-next-release 200 i alt)\t(tap-hold-next-release 200 o met)\n(tap-hold-next-release 200 z (layer-toggle U_BUTTON))\t(tap-hold-next-release 200 x ralt)\tc\td\tv\tk\th\t,\t(tap-hold-next-release 200 . ralt)\t(tap-hold-next-release 200 / (layer-toggle U_BUTTON))\n\t\t(tap-hold-next-release 200 esc (layer-toggle U_MEDIA))\t(tap-hold-next-release 200 spc (layer-toggle U_NAV))\t(tap-hold-next-release 200 tab (layer-toggle U_MOUSE))\t(tap-hold-next-release 200 ent (layer-toggle U_SYM))\t(tap-hold-next-release 200 bspc (layer-toggle U_NUM))\t(tap-hold-next-release 200 del (layer-toggle U_FUN))\n)\n(deflayer U_EXTRA\nq\tw\te\tr\tt\ty\tu\ti\to\tp\n(tap-hold-next-release 200 a met)\t(tap-hold-next-release 200 s alt)\t(tap-hold-next-release 200 d ctl)\t(tap-hold-next-release 200 f sft)\tg\th\t(tap-hold-next-release 200 j sft)\t(tap-hold-next-release 200 k ctl)\t(tap-hold-next-release 200 l alt)\t(tap-hold-next-release 200 ' met)\n(tap-hold-next-release 200 z (layer-toggle U_BUTTON))\t(tap-hold-next-release 200 x ralt)\tc\tv\tb\tn\tm\t,\t(tap-hold-next-release 200 . ralt)\t(tap-hold-next-release 200 / (layer-toggle U_BUTTON))\n\t\t(tap-hold-next-release 200 esc (layer-toggle U_MEDIA))\t(tap-hold-next-release 200 spc (layer-toggle U_NAV))\t(tap-hold-next-release 200 tab (layer-toggle U_MOUSE))\t(tap-hold-next-release 200 ent (layer-toggle U_SYM))\t(tap-hold-next-release 200 bspc (layer-toggle U_NUM))\t(tap-hold-next-release 200 del (layer-toggle U_FUN))\n)\n(deflayer U_TAP\nq\tw\tf\tp\tb\tj\tl\tu\ty\t'\na\tr\ts\tt\tg\tm\tn\te\ti\to\nz\tx\tc\td\tv\tk\th\t,\t.\t/\n\t\tesc\tspc\ttab\tent\tbspc\tdel\n)\n(deflayer U_BUTTON\nundo\tS-del\tC-ins\tS-ins\tagain\tagain\tS-ins\tC-ins\tS-del\tundo\nmet\talt\tctl\tsft\tXX\tXX\tsft\tctl\talt\tmet\nundo\tS-del\tC-ins\tS-ins\tagain\tagain\tS-ins\tC-ins\tS-del\tundo\n\t\t#(kp* kp5)\t#(kp/ kp5)\t#(kp- kp5)\t#(kp- kp5)\t#(kp/ kp5)\t#(kp* kp5)\n)\n(deflayer U_NAV\nXX\t(layer-switch U_TAP)\t(layer-switch U_EXTRA)\t(layer-switch U_BASE)\tXX\tagain\tS-ins\tC-ins\tS-del\tundo\nmet\talt\tctl\tsft\tXX\tcaps\tleft\tdown\tup\tright\nXX\tralt\t(layer-switch U_NUM)\t(layer-switch U_NAV)\tXX\tins\thome\tpgdn\tpgup\tend\n\t\tXX\tXX\tXX\tent\tbspc\tdel\n)\n(deflayer U_MOUSE\nXX\t(layer-switch U_TAP)\t(layer-switch U_EXTRA)\t(layer-switch U_BASE)\tXX\tagain\tS-ins\tC-ins\tS-del\tundo\nmet\talt\tctl\tsft\tXX\tXX\tkp4\tkp2\tkp8\tkp6\nXX\tralt\t(layer-switch U_SYM)\t(layer-switch U_MOUSE)\tXX\tXX\tXX\tXX\tXX\tXX\n\t\tXX\tXX\tXX\t#(kp- kp5)\t#(kp/ kp5)\t#(kp* kp5)\n)\n(deflayer U_MEDIA\nXX\t(layer-switch U_TAP)\t(layer-switch U_EXTRA)\t(layer-switch U_BASE)\tXX\tXX\tXX\tXX\tXX\tXX\nmet\talt\tctl\tsft\tXX\tXX\tprevioussong\tvold\tvolu\tnextsong\nXX\tralt\t(layer-switch U_FUN)\t(layer-switch U_MEDIA)\tXX\tXX\tXX\tXX\tXX\tXX\n\t\tXX\tXX\tXX\tstopcd\tplaypause\tmute\n)\n(deflayer U_NUM\n[\t7\t8\t9\t]\tXX\t(layer-switch U_BASE)\t(layer-switch U_EXTRA)\t(layer-switch U_TAP)\tXX\n;\t4\t5\t6\t=\tXX\tsft\tctl\talt\tmet\n`\t1\t2\t3\t\\\\\tXX\t(layer-switch U_NUM)\t(layer-switch U_NAV)\tralt\tXX\n\t\t.\t0\t-\tXX\tXX\tXX\n)\n(deflayer U_SYM\n{\t&\t*\t\\(\t}\tXX\t(layer-switch U_BASE)\t(layer-switch U_EXTRA)\t(layer-switch U_TAP)\tXX\n:\t$\t%\t^\t+\tXX\tsft\tctl\talt\tmet\n~\t!\t@\t#\t|\tXX\t(layer-switch U_SYM)\t(layer-switch U_MOUSE)\tralt\tXX\n\t\t\\(\t\\)\t\\_\tXX\tXX\tXX\n)\n(deflayer U_FUN\nf12\tf7\tf8\tf9\tsysrq\tXX\t(layer-switch U_BASE)\t(layer-switch U_EXTRA)\t(layer-switch U_TAP)\tXX\nf11\tf4\tf5\tf6\tslck\tXX\tsft\tctl\talt\tmet\nf10\tf1\tf2\tf3\tpause\tXX\t(layer-switch U_FUN)\t(layer-switch U_MEDIA)\tralt\tXX\n\t\tcomp\tspc\ttab\tXX\tXX\tXX\n)\n\n",
     "zxc.20260502183455.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260502183056.1": "<< unix >>\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260502183253.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n{{ if .my.git.sign.gpg -}}\nC92C2BCD646A0DE6A60E1C5397CA97FDBE330909\n{{ end -}}\n{{ end -}}\n{{ end -}}\n",
@@ -9910,7 +10004,7 @@
       "_mod_time": 1777713442.5059884
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1777718308.5615554
+      "_mod_time": 1777816500.859261
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1777713442.4663134
@@ -10077,6 +10171,12 @@
     "zxc.20260125163108.1": {
       "_mod_time": 1777713442.483973
     },
+    "zxc.20260503215955.1": {
+      "_mod_time": 1777816928.2594078
+    },
+    "zxc.20260503220635.1": {
+      "_mod_time": 1777817286.13826
+    },
     "zxc.20260126154354.1": {
       "_mod_time": 1777713442.5000603
     },
@@ -10123,7 +10223,7 @@
       "_mod_time": 1777713442.5006568
     },
     "zxc.20260503171104.1": {
-      "_mod_time": 1777814137.8380156
+      "_mod_time": 1777815727.7882137
     },
     "zxc.20260502183455.1": {
       "_mod_time": 1777790600.0376375
@@ -10255,7 +10355,7 @@
       "_mod_time": 1777713442.480567
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1777814537.3730004
+      "_mod_time": 1777815727.7832065
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777713442.480156
