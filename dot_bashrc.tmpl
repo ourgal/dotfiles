@@ -110,8 +110,9 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-EDITOR={{ template "editor" }}
-PATH=~/.local/bin:$PATH
+export EDITOR={{ template "editor" }}
+export PATH=~/.local/bin:$PATH
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 {{ if and (hasKey .chezmoi.kernel "osrelease") (not (mustRegexMatch ".*WSL.*" .chezmoi.kernel.osrelease)) -}}
 source ~/.local/lib/ble-nightly/ble.sh
 {{ end -}}
