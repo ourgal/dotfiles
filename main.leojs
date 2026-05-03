@@ -4463,6 +4463,31 @@
                   ]
                 }
               ]
+            },
+            {
+              "gnx": "zxc.20260503171031.1",
+              "vh": "kmonad",
+              "children": [
+                {
+                  "gnx": "zxc.20260503171038.1",
+                  "vh": "@path kmonad",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260503171104.1",
+                      "vh": "@clean miryoku.kbd.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260503171231.1",
+                          "vh": "content"
+                        },
+                        {
+                          "gnx": "User.20260225204914.1"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -9128,6 +9153,8 @@
     "zxc.20260421234758.1": "# Rename this file to match the name of the function\n# e.g. ~/.config/fish/functions/n.fish\n# or, add the lines to the 'config.fish' file.\n\nfunction n --wraps nnn --description 'support nnn quit and change directory'\n    # Block nesting of nnn in subshells\n    if test -n \"$NNNLVL\" -a \"$NNNLVL\" -ge 1\n        echo \"nnn is already running\"\n        return\n    end\n\n    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)\n    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to\n    # see. To cd on quit only on ^G, remove the \"-x\" from both lines below,\n    # without changing the paths.\n    if test -n \"$XDG_CONFIG_HOME\"\n        set -x NNN_TMPFILE \"$XDG_CONFIG_HOME/nnn/.lastd\"\n    else\n        set -x NNN_TMPFILE \"$HOME/.config/nnn/.lastd\"\n    end\n\n    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn\n    # stty start undef\n    # stty stop undef\n    # stty lwrap undef\n    # stty lnext undef\n\n    # The command function allows one to alias this function to `nnn` without\n    # making an infinitely recursive alias\n    command nnn $argv\n\n    if test -e $NNN_TMPFILE\n        source $NNN_TMPFILE\n        rm -- $NNN_TMPFILE\n    end\nend",
     "zxc.20260421231645.1": "<< unix dos >>\n{{ if or (lookPath \"msys2\") (lookPath \"fish\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260421231755.1": "jorgebucaran/fisher\njorgebucaran/autopair.fish\nnickeb96/puffer-fish\nmeaningful-ooo/sponge\nicezyclon/zoxide.fish\natusy/by-binds-yourself",
+    "zxc.20260503171104.1": "<< unix dos >>\n{{ if lookPath \"kmonad\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260503171231.1": ";; Copyright 2021 Manna Harbour\n;; github.com/manna-harbour/miryoku\n\n\n\n\n\n(defcfg\n{{ if and (regexMatch .chezmoi.hostname \"^surface-.*\") (eq .chezmoi.os \"linux\") -}}\n  input (device-file \"/dev/input/by-id/usb-Microsoft_Surface_Type_Cover-event-kbd\")\n{{ else if and (regexMatch .chezmoi.hostname \"^air-.*\") (eq .chezmoi.os \"linux\") -}}\n  input (device-file \"/dev/input/by-path/platform-18042-serio-0-event-kbd\")\n{{ end -}}\n  output (uinput-sink \"Miryoku KMonad output\")\n  fallthrough false\n)\n(defsrc\n  2 3 4 5 6 8 9 0 - =\n  q w e r t i o p [ ]\n  caps a s d f k l ; ' ent\n                x c v , . /\n)\n(deflayer U_BASE\nq\tw\tf\tp\tb\tj\tl\tu\ty\t'\n(tap-hold-next-release 200 a met)\t(tap-hold-next-release 200 r alt)\t(tap-hold-next-release 200 s ctl)\t(tap-hold-next-release 200 t sft)\tg\tm\t(tap-hold-next-release 200 n sft)\t(tap-hold-next-release 200 e ctl)\t(tap-hold-next-release 200 i alt)\t(tap-hold-next-release 200 o met)\n(tap-hold-next-release 200 z (layer-toggle U_BUTTON))\t(tap-hold-next-release 200 x ralt)\tc\td\tv\tk\th\t,\t(tap-hold-next-release 200 . ralt)\t(tap-hold-next-release 200 / (layer-toggle U_BUTTON))\n\t\t(tap-hold-next-release 200 esc (layer-toggle U_MEDIA))\t(tap-hold-next-release 200 spc (layer-toggle U_NAV))\t(tap-hold-next-release 200 tab (layer-toggle U_MOUSE))\t(tap-hold-next-release 200 ent (layer-toggle U_SYM))\t(tap-hold-next-release 200 bspc (layer-toggle U_NUM))\t(tap-hold-next-release 200 del (layer-toggle U_FUN))\n)\n(deflayer U_EXTRA\nq\tw\te\tr\tt\ty\tu\ti\to\tp\n(tap-hold-next-release 200 a met)\t(tap-hold-next-release 200 s alt)\t(tap-hold-next-release 200 d ctl)\t(tap-hold-next-release 200 f sft)\tg\th\t(tap-hold-next-release 200 j sft)\t(tap-hold-next-release 200 k ctl)\t(tap-hold-next-release 200 l alt)\t(tap-hold-next-release 200 ' met)\n(tap-hold-next-release 200 z (layer-toggle U_BUTTON))\t(tap-hold-next-release 200 x ralt)\tc\tv\tb\tn\tm\t,\t(tap-hold-next-release 200 . ralt)\t(tap-hold-next-release 200 / (layer-toggle U_BUTTON))\n\t\t(tap-hold-next-release 200 esc (layer-toggle U_MEDIA))\t(tap-hold-next-release 200 spc (layer-toggle U_NAV))\t(tap-hold-next-release 200 tab (layer-toggle U_MOUSE))\t(tap-hold-next-release 200 ent (layer-toggle U_SYM))\t(tap-hold-next-release 200 bspc (layer-toggle U_NUM))\t(tap-hold-next-release 200 del (layer-toggle U_FUN))\n)\n(deflayer U_TAP\nq\tw\tf\tp\tb\tj\tl\tu\ty\t'\na\tr\ts\tt\tg\tm\tn\te\ti\to\nz\tx\tc\td\tv\tk\th\t,\t.\t/\n\t\tesc\tspc\ttab\tent\tbspc\tdel\n)\n(deflayer U_BUTTON\nundo\tS-del\tC-ins\tS-ins\tagain\tagain\tS-ins\tC-ins\tS-del\tundo\nmet\talt\tctl\tsft\tXX\tXX\tsft\tctl\talt\tmet\nundo\tS-del\tC-ins\tS-ins\tagain\tagain\tS-ins\tC-ins\tS-del\tundo\n\t\t#(kp* kp5)\t#(kp/ kp5)\t#(kp- kp5)\t#(kp- kp5)\t#(kp/ kp5)\t#(kp* kp5)\n)\n(deflayer U_NAV\nXX\t(layer-switch U_TAP)\t(layer-switch U_EXTRA)\t(layer-switch U_BASE)\tXX\tagain\tS-ins\tC-ins\tS-del\tundo\nmet\talt\tctl\tsft\tXX\tcaps\tleft\tdown\tup\tright\nXX\tralt\t(layer-switch U_NUM)\t(layer-switch U_NAV)\tXX\tins\thome\tpgdn\tpgup\tend\n\t\tXX\tXX\tXX\tent\tbspc\tdel\n)\n(deflayer U_MOUSE\nXX\t(layer-switch U_TAP)\t(layer-switch U_EXTRA)\t(layer-switch U_BASE)\tXX\tagain\tS-ins\tC-ins\tS-del\tundo\nmet\talt\tctl\tsft\tXX\tXX\tkp4\tkp2\tkp8\tkp6\nXX\tralt\t(layer-switch U_SYM)\t(layer-switch U_MOUSE)\tXX\tXX\tXX\tXX\tXX\tXX\n\t\tXX\tXX\tXX\t#(kp- kp5)\t#(kp/ kp5)\t#(kp* kp5)\n)\n(deflayer U_MEDIA\nXX\t(layer-switch U_TAP)\t(layer-switch U_EXTRA)\t(layer-switch U_BASE)\tXX\tXX\tXX\tXX\tXX\tXX\nmet\talt\tctl\tsft\tXX\tXX\tprevioussong\tvold\tvolu\tnextsong\nXX\tralt\t(layer-switch U_FUN)\t(layer-switch U_MEDIA)\tXX\tXX\tXX\tXX\tXX\tXX\n\t\tXX\tXX\tXX\tstopcd\tplaypause\tmute\n)\n(deflayer U_NUM\n[\t7\t8\t9\t]\tXX\t(layer-switch U_BASE)\t(layer-switch U_EXTRA)\t(layer-switch U_TAP)\tXX\n;\t4\t5\t6\t=\tXX\tsft\tctl\talt\tmet\n`\t1\t2\t3\t\\\\\tXX\t(layer-switch U_NUM)\t(layer-switch U_NAV)\tralt\tXX\n\t\t.\t0\t-\tXX\tXX\tXX\n)\n(deflayer U_SYM\n{\t&\t*\t\\(\t}\tXX\t(layer-switch U_BASE)\t(layer-switch U_EXTRA)\t(layer-switch U_TAP)\tXX\n:\t$\t%\t^\t+\tXX\tsft\tctl\talt\tmet\n~\t!\t@\t#\t|\tXX\t(layer-switch U_SYM)\t(layer-switch U_MOUSE)\tralt\tXX\n\t\t\\(\t\\)\t\\_\tXX\tXX\tXX\n)\n(deflayer U_FUN\nf12\tf7\tf8\tf9\tsysrq\tXX\t(layer-switch U_BASE)\t(layer-switch U_EXTRA)\t(layer-switch U_TAP)\tXX\nf11\tf4\tf5\tf6\tslck\tXX\tsft\tctl\talt\tmet\nf10\tf1\tf2\tf3\tpause\tXX\t(layer-switch U_FUN)\t(layer-switch U_MEDIA)\tralt\tXX\n\t\tcomp\tspc\ttab\tXX\tXX\tXX\n)\n\n",
     "zxc.20260502183455.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260502183056.1": "<< unix >>\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260502183253.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n{{ if .my.git.sign.gpg -}}\nC92C2BCD646A0DE6A60E1C5397CA97FDBE330909\n{{ end -}}\n{{ end -}}\n{{ end -}}\n",
@@ -9872,7 +9899,7 @@
       "_mod_time": 1777713442.4656563
     },
     "User.20260226000855.1": {
-      "_mod_time": 1777713442.4636562
+      "_mod_time": 1777179946.8319871
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1777713442.464656
@@ -9968,10 +9995,10 @@
       "_mod_time": 1777790600.0299976
     },
     "zxc.20260201141149.1": {
-      "_mod_time": 1777713442.4841998
+      "_mod_time": 1777179946.862897
     },
     "User.20260215191351.1": {
-      "_mod_time": 1777713442.4847763
+      "_mod_time": 1777179946.8653052
     },
     "User.20260220010313.1": {
       "_mod_time": 1777713442.4847763
@@ -9989,7 +10016,7 @@
       "_mod_time": 1777713442.4841998
     },
     "zxc.20260315140713.1": {
-      "_mod_time": 1777713442.4835327
+      "_mod_time": 1777179946.8605473
     },
     "zxc.20260408012432.1": {
       "_mod_time": 1777713442.4872582
@@ -10007,40 +10034,40 @@
       "_mod_time": 1777713442.4789302
     },
     "zxc.20260130225718.1": {
-      "_mod_time": 1777713442.4841998
+      "_mod_time": 1777179946.8605473
     },
     "zxc.20260202211707.1": {
       "_mod_time": 1777713442.4826565
     },
     "User.20260216000318.1": {
-      "_mod_time": 1777713442.4826565
+      "_mod_time": 1777179946.857029
     },
     "User.20260218144120.1": {
-      "_mod_time": 1777713442.4841998
+      "_mod_time": 1777190945.8553185
     },
     "User.20260218144232.1": {
-      "_mod_time": 1777713442.4841998
+      "_mod_time": 1777190923.4418054
     },
     "zxc.20260125163108.1": {
       "_mod_time": 1777713442.483973
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1777713442.5000603
+      "_mod_time": 1777179946.8774612
     },
     "zxc.20260125145051.1": {
-      "_mod_time": 1777713442.5015023
+      "_mod_time": 1777179946.8850746
     },
     "zxc.20260125152704.1": {
-      "_mod_time": 1777713442.5000603
+      "_mod_time": 1777179946.8764093
     },
     "zxc.20260125152851.2": {
       "_mod_time": 1777713442.5015023
     },
     "zxc.20260125153131.1": {
-      "_mod_time": 1777713442.5013232
+      "_mod_time": 1777179946.8828404
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1777792597.6384282
+      "_mod_time": 1777799307.0938406
     },
     "zxc.20260125161631.1": {
       "_mod_time": 1777713442.5013232
@@ -10049,25 +10076,28 @@
       "_mod_time": 1777713442.5015023
     },
     "User.20260217223023.1": {
-      "_mod_time": 1777713442.5006313
+      "_mod_time": 1777179946.879592
     },
     "User.20260217223030.1": {
-      "_mod_time": 1777713442.5000603
+      "_mod_time": 1777179946.8779848
     },
     "User.20260217223035.1": {
-      "_mod_time": 1777713442.5006313
+      "_mod_time": 1777179946.8801217
     },
     "User.20260223014430.1": {
-      "_mod_time": 1777713442.5006313
+      "_mod_time": 1777179946.8790371
     },
     "User.20260220233323.1": {
       "_mod_time": 1777713442.5015023
     },
     "zxc.20260421145655.1": {
-      "_mod_time": 1777713442.5006313
+      "_mod_time": 1777179946.8806522
     },
     "zxc.20260421231645.1": {
-      "_mod_time": 1777713442.5006568
+      "_mod_time": 1777179946.8812258
+    },
+    "zxc.20260503171104.1": {
+      "_mod_time": 1777802624.851027
     },
     "zxc.20260502183455.1": {
       "_mod_time": 1777790600.0376375
@@ -10199,7 +10229,7 @@
       "_mod_time": 1777713442.480567
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1777792411.4246762
+      "_mod_time": 1777799307.0782142
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777713442.480156
