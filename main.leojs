@@ -9784,7 +9784,7 @@
     "zxc.20260501214336.2": "- jellyfin-mpv-shim",
     "zxc.20260502142949.1": "- leo",
     "zxc.20260502182120.1": "- advance-touch",
-    "zxc.20260503181445.1": "- name: Create per user service folder\n  ansible.builtin.file:\n    dest: \"/etc/sv/runsvdir-{{ username }}\"\n    state: directory\n    mode: \"0755\"\n- name: Create run script\n  ansible.builtin.copy:\n    dest: \"/etc/sv/runsvdir-{{ username }}/run\"\n    mode: \"0755\"\n    content: |\n      #!/bin/sh\n\n      export USER=\"{{ username }}\"\n      export HOME=\"/home/{{ username }}\"\n\n      groups=\"$(id -Gn \"$USER\" | tr ' ' ':')\"\n      svdir=\"$HOME/service\"\n\n      exec chpst -u \"$USER:$groups\" runsvdir \"$svdir\"\n",
+    "zxc.20260503181445.1": "- name: Create per user service folder\n  become: true\n  ansible.builtin.file:\n    dest: \"/etc/sv/runsvdir-{{ username }}\"\n    state: directory\n    mode: \"0755\"\n- name: Create run script\n  become: true\n  ansible.builtin.copy:\n    dest: \"/etc/sv/runsvdir-{{ username }}/run\"\n    mode: \"0755\"\n    content: |\n      #!/bin/sh\n\n      export USER=\"{{ username }}\"\n      export HOME=\"/home/{{ username }}\"\n\n      groups=\"$(id -Gn \"$USER\" | tr ' ' ':')\"\n      svdir=\"$HOME/service\"\n\n      exec chpst -u \"$USER:$groups\" runsvdir \"$svdir\"\n",
     "zxc.20260502191418.1": "- name: Enable services\n  become: true\n  ansible.builtin.command: \"ln -sf /etc/sv/{{ item }} /var/service\"\n  loop:\n    @others",
     "zxc.20260502191430.1": "- lightdm",
     "zxc.20260503182010.1": "- \"runsvdir-{{ username }}\"\n",
@@ -10250,7 +10250,7 @@
       "_mod_time": 1777713442.480567
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1777811103.8764215
+      "_mod_time": 1777811998.8653934
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777713442.480156

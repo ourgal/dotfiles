@@ -109,11 +109,13 @@
         - leo
         - advance-touch
     - name: Create per user service folder
+      become: true
       ansible.builtin.file:
         dest: "/etc/sv/runsvdir-{{ username }}"
         state: directory
         mode: "0755"
     - name: Create run script
+      become: true
       ansible.builtin.copy:
         dest: "/etc/sv/runsvdir-{{ username }}/run"
         mode: "0755"
