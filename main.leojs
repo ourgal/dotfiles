@@ -313,20 +313,6 @@
                         {
                           "gnx": "zxc.20260125144055.1",
                           "vh": "bashrc"
-                        },
-                        {
-                          "gnx": "zxc.20260125144120.1",
-                          "vh": "surface-void",
-                          "children": [
-                            {
-                              "gnx": "User.20260225204243.1",
-                              "vh": "<< surface-void >>"
-                            },
-                            {
-                              "gnx": "zxc.20260125144207.1",
-                              "vh": "startx"
-                            }
-                          ]
                         }
                       ]
                     }
@@ -4190,77 +4176,6 @@
       ]
     },
     {
-      "gnx": "zxc.20260503220237.1",
-      "vh": "runit user services",
-      "children": [
-        {
-          "gnx": "zxc.20260503220307.1",
-          "vh": "services",
-          "children": [
-            {
-              "gnx": "zxc.20260503215947.1",
-              "vh": "@path kmonad",
-              "children": [
-                {
-                  "gnx": "zxc.20260503215955.1",
-                  "vh": "@clean executable_run.tmpl",
-                  "children": [
-                    {
-                      "gnx": "zxc.20260503224914.1",
-                      "vh": "<< shebang >>"
-                    },
-                    {
-                      "gnx": "zxc.20260503220138.1",
-                      "vh": "content"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "gnx": "zxc.20260503225105.1",
-              "vh": "@path gpg-agent",
-              "children": [
-                {
-                  "gnx": "zxc.20260503225115.1",
-                  "vh": "@clean executable_run.tmpl",
-                  "children": [
-                    {
-                      "gnx": "zxc.20260503225154.1",
-                      "vh": "content"
-                    },
-                    {
-                      "gnx": "zxc.20260503224914.1"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "gnx": "zxc.20260503220435.1",
-          "vh": "enabled services",
-          "children": [
-            {
-              "gnx": "zxc.20260503220441.1",
-              "vh": "@path service",
-              "children": [
-                {
-                  "gnx": "zxc.20260503220635.1",
-                  "vh": "@clean symlink_kmonad.tmpl"
-                },
-                {
-                  "gnx": "zxc.20260503230016.1",
-                  "vh": "@clean symlink_gpg-agent.tmpl"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
       "gnx": "zxc.20260125152614.1",
       "vh": "config",
       "children": [
@@ -4598,7 +4513,49 @@
                   "vh": "@path sv",
                   "children": [
                     {
-                      "gnx": "zxc.20260503220307.1"
+                      "gnx": "zxc.20260503220307.1",
+                      "vh": "services",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260503215947.1",
+                          "vh": "@path kmonad",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260503215955.1",
+                              "vh": "@clean executable_run.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260503224914.1",
+                                  "vh": "<< shebang >>"
+                                },
+                                {
+                                  "gnx": "zxc.20260503220138.1",
+                                  "vh": "content"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "gnx": "zxc.20260503225105.1",
+                          "vh": "@path gpg-agent",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260503225115.1",
+                              "vh": "@clean executable_run.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260503225154.1",
+                                  "vh": "content"
+                                },
+                                {
+                                  "gnx": "zxc.20260503224914.1"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
                     }
                   ]
                 }
@@ -8747,9 +8704,6 @@
     "zxc.20260125143738.1": "{{ if lookPath \"zoxide\" -}}\n# zoxdie is needed be the end of bashrc\neval \"$(zoxide init bash)\"\n{{ end -}}\n",
     "zxc.20260125143959.1": "<< unix >>\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125144055.1": "# Get the aliases and functions\n[ -f $HOME/.bashrc ] && . $HOME/.bashrc\n",
-    "zxc.20260125144120.1": "<< surface-void >>\n@others\n{{ end -}}",
-    "User.20260225204243.1": "{{ if eq .chezmoi.hostname \"surface-void\" -}}",
-    "zxc.20260125144207.1": "if [[ -z \"$DISPLAY\" ]] && [[ $(tty) = /dev/tty1 ]]; then\n    . startx\n    logout\nfi",
     "zxc.20260424082558.3": "if status is-interactive\n@others\nend",
     "zxc.20260424082558.4": "{{ if lookPath \"oh-my-posh\" -}}\noh-my-posh init fish | source\n{{ end -}}",
     "zxc.20260424082558.5": "{{ if lookPath \"fzf\" -}}\nfzf --fish | source\n{{ end -}}",
@@ -9269,13 +9223,6 @@
     "zxc.20260320230804.1": "{{ if and ( lookPath \"navidrome\" ) (default .my.modules.navidrome (index .my.modules .chezmoi.hostname \"navidrome\")) -}}\nRun({{ print \"navidrome --datafolder \" (joinPath (env \"LOCALAPPDATA\") \"navidrome\") | quote }}, {{ joinPath .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}\n",
     "zxc.20260326000727.1": "{{ if lookPath \"syncthing\" -}}\nRun(\"syncthing serve --no-console --no-browser\", , \"Hide\")\n{{ end -}}",
     "zxc.20260329185904.1": "{{ if and (stat (joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"jellyfin-mpv-shim\")) (eq .chezmoi.hostname \"bed\") -}}\nRun({{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"jellyfin-mpv-shim\" \"current\" \"run.exe\" | quote }}, , \"Hide\")\n{{ end -}}",
-    "zxc.20260503215955.1": "{{ if lookPath \"kmonad\" -}}\n<< shebang >>\n@others\n{{ end -}}\n",
-    "zxc.20260503224914.1": "#!/bin/sh\n",
-    "zxc.20260503220138.1": "exec kmonad $HOME/.config/kmonad/miryoku.kbd\n",
-    "zxc.20260503225115.1": "{{ if lookPath \"gpg-agent\" -}}\n<< shebang >>\n@others\n{{ end -}}\n",
-    "zxc.20260503225154.1": "exec gpg-agent --daemon --no-detach\n",
-    "zxc.20260503220635.1": "{{ joinPath .chezmoi.homeDir \".config\" \"sv\" \"kmonad\" }}\n",
-    "zxc.20260503230016.1": "{{ joinPath .chezmoi.homeDir \".config\" \"sv\" \"gpg-agent\" }}\n\n",
     "zxc.20260126154354.1": "<< unix dos >>\n{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125145051.1": "<< unix dos >>\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125152704.1": "<< unix dos >>\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -9302,6 +9249,11 @@
     "zxc.20260421231645.1": "<< unix dos >>\n{{ if or (lookPath \"msys2\") (lookPath \"fish\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260421231755.1": "jorgebucaran/fisher\njorgebucaran/autopair.fish\nnickeb96/puffer-fish\nmeaningful-ooo/sponge\nicezyclon/zoxide.fish\natusy/by-binds-yourself",
     "zxc.20260503171104.1": "<< unix dos >>\n{{ if lookPath \"kmonad\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260503215955.1": "{{ if lookPath \"kmonad\" -}}\n<< shebang >>\n@others\n{{ end -}}\n",
+    "zxc.20260503224914.1": "#!/bin/sh\n",
+    "zxc.20260503220138.1": "exec kmonad $HOME/.config/kmonad/miryoku.kbd\n",
+    "zxc.20260503225115.1": "{{ if lookPath \"gpg-agent\" -}}\n<< shebang >>\n@others\n{{ end -}}\n",
+    "zxc.20260503225154.1": "exec gpg-agent --daemon --no-detach\n",
     "zxc.20260502183455.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260502183056.1": "<< unix >>\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260502183253.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n{{ if .my.git.sign.gpg -}}\nC92C2BCD646A0DE6A60E1C5397CA97FDBE330909\n{{ end -}}\n{{ end -}}\n{{ end -}}\n",
@@ -9990,7 +9942,7 @@
       "_mod_time": 1777793356.249399
     },
     "zxc.20260125143959.1": {
-      "_mod_time": 1777810941.6967359
+      "_mod_time": 1777823190.0998907
     },
     "zxc.20260125163416.1": {
       "_mod_time": 1777713442.4872582
@@ -10202,18 +10154,6 @@
     "zxc.20260125163108.1": {
       "_mod_time": 1777713442.483973
     },
-    "zxc.20260503215955.1": {
-      "_mod_time": 1777819798.1630044
-    },
-    "zxc.20260503225115.1": {
-      "_mod_time": 1777822694.5736165
-    },
-    "zxc.20260503220635.1": {
-      "_mod_time": 1777819696.757693
-    },
-    "zxc.20260503230016.1": {
-      "_mod_time": 1777820447.781801
-    },
     "zxc.20260126154354.1": {
       "_mod_time": 1777713442.5000603
     },
@@ -10261,6 +10201,12 @@
     },
     "zxc.20260503171104.1": {
       "_mod_time": 1777815727.7882137
+    },
+    "zxc.20260503215955.1": {
+      "_mod_time": 1777819798.1630044
+    },
+    "zxc.20260503225115.1": {
+      "_mod_time": 1777822694.5736165
     },
     "zxc.20260502183455.1": {
       "_mod_time": 1777790600.0376375
