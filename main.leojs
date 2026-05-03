@@ -4206,6 +4206,10 @@
                   "vh": "@clean executable_run.tmpl",
                   "children": [
                     {
+                      "gnx": "zxc.20260503224914.1",
+                      "vh": "<< shebang >>"
+                    },
+                    {
                       "gnx": "zxc.20260503220138.1",
                       "vh": "content"
                     }
@@ -9242,9 +9246,10 @@
     "zxc.20260320230804.1": "{{ if and ( lookPath \"navidrome\" ) (default .my.modules.navidrome (index .my.modules .chezmoi.hostname \"navidrome\")) -}}\nRun({{ print \"navidrome --datafolder \" (joinPath (env \"LOCALAPPDATA\") \"navidrome\") | quote }}, {{ joinPath .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}\n",
     "zxc.20260326000727.1": "{{ if lookPath \"syncthing\" -}}\nRun(\"syncthing serve --no-console --no-browser\", , \"Hide\")\n{{ end -}}",
     "zxc.20260329185904.1": "{{ if and (stat (joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"jellyfin-mpv-shim\")) (eq .chezmoi.hostname \"bed\") -}}\nRun({{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"jellyfin-mpv-shim\" \"current\" \"run.exe\" | quote }}, , \"Hide\")\n{{ end -}}",
-    "zxc.20260503215955.1": "{{ if lookPath \"kmonad\" -}}\n@others\n{{ end -}}\n",
+    "zxc.20260503215955.1": "{{ if lookPath \"kmonad\" -}}\n<< shebang >>\n@others\n{{ end -}}\n",
+    "zxc.20260503224914.1": "#!/bin/sh\n",
     "zxc.20260503220138.1": "exec kmonad $HOME/.config/kmonad/miryoku.kbd\n",
-    "zxc.20260503220635.1": "{{ joinPath .chezmoi.user_dir \".config\" \"sv\" \"kmonad\" }}\n",
+    "zxc.20260503220635.1": "{{ joinPath .chezmoi.homeDir \".config\" \"sv\" \"kmonad\" }}\n",
     "zxc.20260126154354.1": "<< unix dos >>\n{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125145051.1": "<< unix dos >>\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125152704.1": "<< unix dos >>\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -10172,10 +10177,10 @@
       "_mod_time": 1777713442.483973
     },
     "zxc.20260503215955.1": {
-      "_mod_time": 1777816928.2594078
+      "_mod_time": 1777819798.1630044
     },
     "zxc.20260503220635.1": {
-      "_mod_time": 1777817286.13826
+      "_mod_time": 1777819696.757693
     },
     "zxc.20260126154354.1": {
       "_mod_time": 1777713442.5000603
