@@ -181,6 +181,9 @@
         groups:
           - Users
           - Administrators
+    - name: Set hostname
+      ansible.builtin.win_hostname:
+        name: nuc-windows
     - name: Install scream pre
       when: ansible_facts.nodename in ['bed', 'nuc']
       tags: scream-pre
