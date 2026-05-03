@@ -34,7 +34,11 @@
 	editor = "{{ template "editor" }}"
 	excludesfile = "~/.gitignore"
 	fsmonitor = true
+        {{ if lookPath "delta" -}}
+        pager = delta
+        {{ else if lookPath "diff-so-fancy" -}}
 	pager = "diff-so-fancy | less '--tabs=4' -RFX"
+        {{ end -}}
 	preloadindex = true
 	untrackedCache = true
 	whitespace = "error"
@@ -64,12 +68,10 @@
 	helper = !{{ lookPath "gh" | replace "\\" "\\\\" | squote }} auth git-credential
 [credential "https://github.com"]
 	helper = !{{ lookPath "gh" | replace "\\" "\\\\" | squote }} auth git-credential
-[delta "side-by-side"]
-	enable = true
-[delta "navigate"]
-	enable = true
-[delta "file-yellow"]
-	enable = true
+[delta]
+side-by-side = true
+navitage = true
+file-yellow = true
 [diff]
 	algorithm = "histogram"
 	colorMoved = "plain"
