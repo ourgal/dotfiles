@@ -10328,7 +10328,7 @@
     "zxc.20260502191418.1": "- name: Enable services\n  become: true\n  when:\n    << is void >>\n  ansible.builtin.command: \"ln -sf /etc/sv/{{ item }} /var/service\"\n  loop:\n    @others",
     "zxc.20260502191430.1": "- lightdm",
     "zxc.20260503182010.1": "- \"runsvdir-{{ username }}\"\n",
-    "zxc.20260504220005.1": "- name LinuxBrew\n  tags:\n    - pkg\n    - brew\n  environment:\n    PATH: \"/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}\"\n  block:\n    @others",
+    "zxc.20260504220005.1": "- name: LinuxBrew\n  tags:\n    - pkg\n    - brew\n  environment:\n    PATH: \"/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}\"\n  block:\n    @others",
     "zxc.20260504220009.1": "- name: Check if Homebrew is installed\n  ansible.builtin.stat:\n    path: \"/home/linuxbrew/.linuxbrew/bin/brew\"\n  register: brew_stat\n- name: Create Homebrew directory\n  ansible.builtin.file:\n    path: \"/home/linuxbrew/.linuxbrew\"\n    state: directory\n    owner: \"{{ ansible_env.USER }}\"\n    group: \"{{ ansible_env.USER }}\"\n    mode: '0755'\n  become: true\n  when: not brew_stat.stat.exists\n- name: Install Homebrew\n  ansible.builtin.shell: |\n    curl -fsSL https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C /home/linuxbrew/.linuxbrew\n  when: not brew_stat.stat.exists",
     "zxc.20260504195440.1": "- name: Set the system hostname\n  become: true\n  when:\n    << is linux >>\n    << is macos >>\n  ansible.builtin.hostname:\n    name: \"{{ hostname }}\"",
     "zxc.20260503212032.1": "- name: Set user groups\n  become: true\n  when:\n    << is linux >>\n    << is macos >>\n  ansible.builtin.user:\n    name: \"{{ username }}\"\n    groups:\n      - \"{{ \"input\" if ansible_facts.os_family == \"Void\" else omit }}\"\n    append: true",
@@ -10819,7 +10819,7 @@
       "_mod_time": 1777895512.128
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1777904027.263
+      "_mod_time": 1777904353.629
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777713442.480156
