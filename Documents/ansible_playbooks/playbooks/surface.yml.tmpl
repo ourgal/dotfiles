@@ -14,6 +14,8 @@
         - pkg
         - xbps
       become: true
+      when:
+        - ansible_facts.os_family == "Void"
       environment:
         XBPS_ARCH: "{{ ansible_facts.machine }}"
       community.general.xbps:
@@ -108,69 +110,93 @@
           - intel-ucode
           - libva-utils
           - python3-pipx
-    - name: Create .pip folder
-      ansible.builtin.file:
-        dest: "{{ ansible_facts.user_dir }}/.pip"
-        state: directory
-    - name: Set pip config
-      ansible.builtin.copy:
-        dest: "{{ ansible_facts.user_dir }}/.pip/pip.ini"
-        content: |
-          [global]
-          index-url = https://mirrors.nju.edu.cn/pypi/web/simple/
-          [install]
-          trusted-host = mirrors.nju.edu.cn
+    - name: Setup pip mirror
+      when:
+        - ansible_facts.system == "Linux"
+        - ansible_facts.os_family == "Darwin"
+      block:
+        - name: Create .pip folder
+          ansible.builtin.file:
+            dest: "{{ ansible_facts.user_dir }}/.pip"
+            state: directory
+        - name: Set pip config
+          ansible.builtin.copy:
+            dest: "{{ ansible_facts.user_dir }}/.pip/pip.ini"
+            content: |
+              [global]
+              index-url = https://mirrors.nju.edu.cn/pypi/web/simple/
+              [install]
+              trusted-host = mirrors.nju.edu.cn
     - name: Install pipx packages
       tags: pipx
+      when:
+        - ansible_facts.system == "Linux"
+        - ansible_facts.os_family == "Darwin"
       community.general.pipx:
         name: "{{ item }}"
       loop:
         - jellyfin-mpv-shim
         - leo
         - advance-touch
-    - name: Create per user service folder
+    - name: Services
       become: true
-      ansible.builtin.file:
-        dest: "/etc/sv/runsvdir-{{ username }}"
-        state: directory
-        mode: "0755"
-    - name: Create run script
-      become: true
-      ansible.builtin.copy:
-        dest: "/etc/sv/runsvdir-{{ username }}/run"
-        mode: "0755"
-        content: |
-          #!/bin/sh
+      when:
+        - ansible_facts.os_family == "Void"
+      block:
+        - name: Create per user service folder
+          ansible.builtin.file:
+            dest: "/etc/sv/runsvdir-{{ username }}"
+            state: directory
+            mode: "0755"
+        - name: Create run script
+          ansible.builtin.copy:
+            dest: "/etc/sv/runsvdir-{{ username }}/run"
+            mode: "0755"
+            content: |
+              #!/bin/sh
 
-          export USER="{{ username }}"
-          export HOME="/home/{{ username }}"
+              export USER="{{ username }}"
+              export HOME="/home/{{ username }}"
 
-          groups="$(id -Gn "$USER" | tr ' ' ':')"
-          svdir="$HOME/service"
+              groups="$(id -Gn "$USER" | tr ' ' ':')"
+              svdir="$HOME/service"
 
-          exec chpst -u "$USER:$groups" runsvdir "$svdir"
+              exec chpst -u "$USER:$groups" runsvdir "$svdir"
     - name: Enable services
       become: true
+      when:
+        - ansible_facts.os_family == "Void"
       ansible.builtin.command: "ln -sf /etc/sv/{{ item }} /var/service"
       loop:
         - lightdm
         - "runsvdir-{{ username }}"
     - name: Set the system hostname
       become: true
+      when:
+        - ansible_facts.system == "Linux"
+        - ansible_facts.os_family == "Darwin"
       ansible.builtin.hostname:
         name: "{{ hostname }}"
     - name: Set user groups
       become: true
+      when:
+        - ansible_facts.system == "Linux"
+        - ansible_facts.os_family == "Darwin"
       ansible.builtin.user:
         name: "{{ username }}"
-        groups: input
+        groups:
+          - "{{ "input" if ansible_facts.os_family == "Void" else omit }}"
         append: true
     - name: Regenerate initramfs
       become: true
+      when:
+        - ansible_facts.os_family == "Void"
       ansible.builtin.command:
         cmd: "xbps-reconfigure --force linux{{ ansible_facts.kernel | regex_search('\\d+\\.\\d+') }}"
       changed_when: true
     - name: Download xlocate data
       changed_when: true
+      when:
+        - ansible_facts.os_family == "Void"
       ansible.builtin.command:
         cmd: xlocate -S

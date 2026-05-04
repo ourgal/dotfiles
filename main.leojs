@@ -8088,8 +8088,12 @@
                             },
                             {
                               "gnx": "zxc.20260501214216.1",
-                              "vh": "install packages",
+                              "vh": "install xbps packages",
                               "children": [
+                                {
+                                  "gnx": "zxc.20260504202810.1",
+                                  "vh": "<< is void >>"
+                                },
                                 {
                                   "gnx": "zxc.20260501214216.2",
                                   "vh": "cli",
@@ -8302,15 +8306,31 @@
                             },
                             {
                               "gnx": "zxc.20260502144817.1",
-                              "vh": "pip conf"
+                              "vh": "pip conf",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260504203517.1",
+                                  "vh": "<< is linux >>"
+                                },
+                                {
+                                  "gnx": "zxc.20260504203658.1",
+                                  "vh": "<< is macos >>"
+                                }
+                              ]
                             },
                             {
                               "gnx": "zxc.20260501214336.1",
                               "vh": "pipx packages",
                               "children": [
                                 {
+                                  "gnx": "zxc.20260504203517.1"
+                                },
+                                {
+                                  "gnx": "zxc.20260504203658.1"
+                                },
+                                {
                                   "gnx": "zxc.20260501214336.2",
-                                  "vh": "jelly-mpv-shim"
+                                  "vh": "jellyfin-mpv-shim"
                                 },
                                 {
                                   "gnx": "zxc.20260502142949.1",
@@ -8327,6 +8347,9 @@
                               "vh": "runit service",
                               "children": [
                                 {
+                                  "gnx": "zxc.20260504202810.1"
+                                },
+                                {
                                   "gnx": "zxc.20260503181445.1",
                                   "vh": "per user service"
                                 }
@@ -8336,6 +8359,9 @@
                               "gnx": "zxc.20260502191418.1",
                               "vh": "enable services",
                               "children": [
+                                {
+                                  "gnx": "zxc.20260504202810.1"
+                                },
                                 {
                                   "gnx": "zxc.20260502191430.1",
                                   "vh": "lightdm"
@@ -8348,19 +8374,45 @@
                             },
                             {
                               "gnx": "zxc.20260504195440.1",
-                              "vh": "set hostname"
+                              "vh": "set hostname",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260504203517.1"
+                                },
+                                {
+                                  "gnx": "zxc.20260504203658.1"
+                                }
+                              ]
                             },
                             {
                               "gnx": "zxc.20260503212032.1",
-                              "vh": "user group"
+                              "vh": "user group",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260504203517.1"
+                                },
+                                {
+                                  "gnx": "zxc.20260504203658.1"
+                                }
+                              ]
                             },
                             {
                               "gnx": "zxc.20260501214447.1",
-                              "vh": "initramfs"
+                              "vh": "initramfs",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260504202810.1"
+                                }
+                              ]
                             },
                             {
                               "gnx": "zxc.20260501214541.1",
-                              "vh": "download xlocate data"
+                              "vh": "download xlocate data",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260504202810.1"
+                                }
+                              ]
                             }
                           ]
                         }
@@ -10187,7 +10239,8 @@
     "zxc.20260501214109.1": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n- name: Configure void linux\n  hosts: surface\n  vars:\n    << vars >>\n  tasks:\n    @others\n",
     "zxc.20260503185527.1": "username: zxc\nhostname: surface\n",
     "zxc.20260504200600.1": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts\n",
-    "zxc.20260501214216.1": "- name: Install packages\n  tags:\n    - pkg\n    - xbps\n  become: true\n  environment:\n    XBPS_ARCH: \"{{ ansible_facts.machine }}\"\n  community.general.xbps:\n    name:\n      @others\n",
+    "zxc.20260501214216.1": "- name: Install packages\n  tags:\n    - pkg\n    - xbps\n  become: true\n  when:\n    << is void >>\n  environment:\n    XBPS_ARCH: \"{{ ansible_facts.machine }}\"\n  community.general.xbps:\n    name:\n      @others\n",
+    "zxc.20260504202810.1": "- ansible_facts.os_family == \"Void\"",
     "zxc.20260501214216.4": "- git\n- curl\n- aria2\n- grep\n- fzf\n- yt-dlp\n- ffmpeg\n",
     "zxc.20260501214216.5": "- 7zip\n- atool\n- unzip",
     "zxc.20260501214216.6": "- buku",
@@ -10231,19 +10284,22 @@
     "zxc.20260501221719.5": "- noto-fonts-ttf\n- noto-fonts-cjk\n- nerd-fonts-symbols-ttf\n- noto-fonts-emoji",
     "zxc.20260501221719.6": "- intel-video-accel\n- intel-ucode\n- libva-utils",
     "zxc.20260501221719.10": "- python3-pipx",
-    "zxc.20260502144817.1": "- name: Create .pip folder\n  ansible.builtin.file:\n    dest: \"{{ ansible_facts.user_dir }}/.pip\"\n    state: directory\n- name: Set pip config\n  ansible.builtin.copy:\n    dest: \"{{ ansible_facts.user_dir }}/.pip/pip.ini\"\n    content: |\n      [global]\n      index-url = https://mirrors.nju.edu.cn/pypi/web/simple/\n      [install]\n      trusted-host = mirrors.nju.edu.cn\n",
-    "zxc.20260501214336.1": "- name: Install pipx packages\n  tags: pipx\n  community.general.pipx:\n    name: \"{{ item }}\"\n  loop:\n    @others",
+    "zxc.20260502144817.1": "- name: Setup pip mirror\n  when:\n    << is linux >>\n    << is macos >>\n  block:\n    - name: Create .pip folder\n      ansible.builtin.file:\n        dest: \"{{ ansible_facts.user_dir }}/.pip\"\n        state: directory\n    - name: Set pip config\n      ansible.builtin.copy:\n        dest: \"{{ ansible_facts.user_dir }}/.pip/pip.ini\"\n        content: |\n          [global]\n          index-url = https://mirrors.nju.edu.cn/pypi/web/simple/\n          [install]\n          trusted-host = mirrors.nju.edu.cn\n",
+    "zxc.20260504203517.1": "- ansible_facts.system == \"Linux\"",
+    "zxc.20260504203658.1": "- ansible_facts.os_family == \"Darwin\"",
+    "zxc.20260501214336.1": "- name: Install pipx packages\n  tags: pipx\n  when:\n    << is linux >>\n    << is macos >>\n  community.general.pipx:\n    name: \"{{ item }}\"\n  loop:\n    @others",
     "zxc.20260501214336.2": "- jellyfin-mpv-shim",
     "zxc.20260502142949.1": "- leo",
     "zxc.20260502182120.1": "- advance-touch",
-    "zxc.20260503181445.1": "- name: Create per user service folder\n  become: true\n  ansible.builtin.file:\n    dest: \"/etc/sv/runsvdir-{{ username }}\"\n    state: directory\n    mode: \"0755\"\n- name: Create run script\n  become: true\n  ansible.builtin.copy:\n    dest: \"/etc/sv/runsvdir-{{ username }}/run\"\n    mode: \"0755\"\n    content: |\n      #!/bin/sh\n\n      export USER=\"{{ username }}\"\n      export HOME=\"/home/{{ username }}\"\n\n      groups=\"$(id -Gn \"$USER\" | tr ' ' ':')\"\n      svdir=\"$HOME/service\"\n\n      exec chpst -u \"$USER:$groups\" runsvdir \"$svdir\"\n",
-    "zxc.20260502191418.1": "- name: Enable services\n  become: true\n  ansible.builtin.command: \"ln -sf /etc/sv/{{ item }} /var/service\"\n  loop:\n    @others",
+    "zxc.20260503181421.1": "- name: Services\n  become: true\n  when:\n    << is void >>\n  block:\n    @others",
+    "zxc.20260503181445.1": "- name: Create per user service folder\n  ansible.builtin.file:\n    dest: \"/etc/sv/runsvdir-{{ username }}\"\n    state: directory\n    mode: \"0755\"\n- name: Create run script\n  ansible.builtin.copy:\n    dest: \"/etc/sv/runsvdir-{{ username }}/run\"\n    mode: \"0755\"\n    content: |\n      #!/bin/sh\n\n      export USER=\"{{ username }}\"\n      export HOME=\"/home/{{ username }}\"\n\n      groups=\"$(id -Gn \"$USER\" | tr ' ' ':')\"\n      svdir=\"$HOME/service\"\n\n      exec chpst -u \"$USER:$groups\" runsvdir \"$svdir\"\n",
+    "zxc.20260502191418.1": "- name: Enable services\n  become: true\n  when:\n    << is void >>\n  ansible.builtin.command: \"ln -sf /etc/sv/{{ item }} /var/service\"\n  loop:\n    @others",
     "zxc.20260502191430.1": "- lightdm",
     "zxc.20260503182010.1": "- \"runsvdir-{{ username }}\"\n",
-    "zxc.20260504195440.1": "- name: Set the system hostname\n  become: true\n  ansible.builtin.hostname:\n    name: \"{{ hostname }}\"",
-    "zxc.20260503212032.1": "- name: Set user groups\n  become: true\n  ansible.builtin.user:\n    name: \"{{ username }}\"\n    groups: input\n    append: true",
-    "zxc.20260501214447.1": "- name: Regenerate initramfs\n  become: true\n  ansible.builtin.command:\n    cmd: \"xbps-reconfigure --force linux{{ ansible_facts.kernel | regex_search('\\\\d+\\\\.\\\\d+') }}\"\n  changed_when: true\n",
-    "zxc.20260501214541.1": "- name: Download xlocate data\n  changed_when: true\n  ansible.builtin.command:\n    cmd: xlocate -S\n",
+    "zxc.20260504195440.1": "- name: Set the system hostname\n  become: true\n  when:\n    << is linux >>\n    << is macos >>\n  ansible.builtin.hostname:\n    name: \"{{ hostname }}\"",
+    "zxc.20260503212032.1": "- name: Set user groups\n  become: true\n  when:\n    << is linux >>\n    << is macos >>\n  ansible.builtin.user:\n    name: \"{{ username }}\"\n    groups:\n      - \"{{ \"input\" if ansible_facts.os_family == \"Void\" else omit }}\"\n    append: true",
+    "zxc.20260501214447.1": "- name: Regenerate initramfs\n  become: true\n  when:\n    << is void >> \n  ansible.builtin.command:\n    cmd: \"xbps-reconfigure --force linux{{ ansible_facts.kernel | regex_search('\\\\d+\\\\.\\\\d+') }}\"\n  changed_when: true\n",
+    "zxc.20260501214541.1": "- name: Download xlocate data\n  changed_when: true\n  when:\n    << is void >>\n  ansible.builtin.command:\n    cmd: xlocate -S\n",
     "zxc.20260423143848.2": "@others\n",
     "zxc.20260423143848.3": "[defaults]\n@others",
     "zxc.20260423143848.4": "gathering = smart\n",
@@ -10729,7 +10785,7 @@
       "_mod_time": 1777895512.128
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1777896940.195
+      "_mod_time": 1777898385.672
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777713442.480156
