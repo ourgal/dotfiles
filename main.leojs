@@ -9386,7 +9386,7 @@
     "zxc.20260503225154.1": "exec gpg-agent --daemon --no-detach\n",
     "zxc.20260503224914.1": "#!/bin/sh\n",
     "zxc.20260504133030.1": "{{ if lookPath \"syncthing\" -}}\n<< shebang >>\n@others\n{{ end -}}",
-    "zxc.20260504133119.1": "exec syncthing serve --no-console --no-browser",
+    "zxc.20260504133119.1": "exec syncthing serve --no-browser",
     "zxc.20260503215955.1": "{{ if lookPath \"kmonad\" -}}\n<< shebang >>\n@others\n{{ end -}}\n",
     "zxc.20260503220138.1": "exec kmonad $HOME/.config/kmonad/miryoku.kbd\n",
     "zxc.20260502183455.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -10360,7 +10360,7 @@
       "_mod_time": 1777822694.5736165
     },
     "zxc.20260504133030.1": {
-      "_mod_time": 1777872740.28089
+      "_mod_time": 1777873520.1618042
     },
     "zxc.20260503215955.1": {
       "_mod_time": 1777819798.1630044
