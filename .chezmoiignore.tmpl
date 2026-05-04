@@ -45,6 +45,8 @@ service/**
 .config/sv/
 .config/sv/**
 {{ end -}}
+.local/share/applications/
+.local/share/applications/**
 {{ end -}}
 {{ if eq .chezmoi.os "windows" -}}
 .vim/
@@ -58,4 +60,6 @@ service/**
 .gnupg/**
 service/
 service/**
+.local/share/applications/
+.local/share/applications/**
 {{ end -}}
