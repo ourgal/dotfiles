@@ -1,4 +1,10 @@
 {{ if eq .chezmoi.os "windows" -}}
+{{ $os := "" -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ $os = .chezmoi.os -}}
+{{ else if eq .chezmoi.os "linux" -}}
+{{ $os = .chezmoi.osRelease.id -}}
+{{ end -}}
 {{ if lookPath "glazewm" -}}
 general:
   # Commands to run when the WM has started. This is useful for running a
@@ -123,17 +129,20 @@ window_rules:
   - commands: ["move --workspace 9"]
     match:
       - window_process: { regex: "KeePassXC" }
-  {{ if .my.modules.vscode -}}
+  {{ $opt := "vscode" -}}
+  {{ if or (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt) -}}
   - commands: ["move --workspace 3"]
     match:
       - window_process: { regex: "Code" }
   {{ end -}}
-  {{ if .my.modules.vscodium -}}
+  {{ $opt := "vscodium" -}}
+  {{ if or (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt) -}}
   - commands: ["move --workspace 3"]
     match:
       - window_process: { regex: "VSCodium" }
   {{ end -}}
-  {{ if .my.modules.leo -}}
+  {{ $opt := "leo" -}}
+  {{ if or (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt) -}}
   - commands: ["move --workspace 3"]
     match:
       - window_process: { regex: "leo" }
