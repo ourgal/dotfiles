@@ -156,6 +156,7 @@
         - lightdm
         - "runsvdir-{{ username }}"
     - name: Set the system hostname
+      become: true
       ansible.builtin.hostname:
         name: "{{ hostname }}"
     - name: Set user groups

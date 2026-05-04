@@ -9330,7 +9330,7 @@
     "zxc.20260504001723.1": "\"surface-void.local ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHVX0quUeLWv/vQZ528bsWAqYB+uaVC5o/SMmgtnjPkD\",",
     "zxc.20260329194446.1": "\"[192.168.1.103]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n\"[192.168.123.191]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n",
     "zxc.20260329193440.1": "\"[ssh.github.com]:443 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl\",\n\"[ssh.github.com]:443 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=\",\n\"[ssh.github.com]:443 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=\"\n",
-    "zxc.20260503010044.1": "[my.modules]\n@others\n\n[my.modules.nuc.windows]\ndeskflow_client = true\n\n[my.modules.bed.windows]\njellyfin_mpv_shim = true\n\n[my.modules.work.windows]\ndeskflow_server = true",
+    "zxc.20260503010044.1": "[my.modules]\n@others\n\n[my.modules.nuc.windows]\ndeskflow_client = true\n\n[my.modules.bed.windows]\njellyfin_mpv_shim = true\n\n[my.modules.work.windows]\ndeskflow_server = true\n\n[my.modules.surface.void]",
     "zxc.20260504155950.1": "alist = true\nkde_connect = true\nsyncthing = true\ncopyparty = true\ndufs = true",
     "zxc.20260504160320.1": "aria2 = true",
     "zxc.20260504161219.1": "gpg_agent = true",
@@ -10240,7 +10240,7 @@
     "zxc.20260502191418.1": "- name: Enable services\n  become: true\n  ansible.builtin.command: \"ln -sf /etc/sv/{{ item }} /var/service\"\n  loop:\n    @others",
     "zxc.20260502191430.1": "- lightdm",
     "zxc.20260503182010.1": "- \"runsvdir-{{ username }}\"\n",
-    "zxc.20260504195440.1": "- name: Set the system hostname\n  ansible.builtin.hostname:\n    name: \"{{ hostname }}\"",
+    "zxc.20260504195440.1": "- name: Set the system hostname\n  become: true\n  ansible.builtin.hostname:\n    name: \"{{ hostname }}\"",
     "zxc.20260503212032.1": "- name: Set user groups\n  become: true\n  ansible.builtin.user:\n    name: \"{{ username }}\"\n    groups: input\n    append: true",
     "zxc.20260501214447.1": "- name: Regenerate initramfs\n  become: true\n  ansible.builtin.command:\n    cmd: \"xbps-reconfigure --force linux{{ ansible_facts.kernel | regex_search('\\\\d+\\\\.\\\\d+') }}\"\n  changed_when: true\n",
     "zxc.20260501214541.1": "- name: Download xlocate data\n  changed_when: true\n  ansible.builtin.command:\n    cmd: xlocate -S\n",
@@ -10468,7 +10468,7 @@
       "_mod_time": 1776434513.068
     },
     "User.20260226001402.1": {
-      "_mod_time": 1777891714.922
+      "_mod_time": 1777896940.179
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1777891402.212
@@ -10729,7 +10729,7 @@
       "_mod_time": 1777895512.128
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1777896375.267
+      "_mod_time": 1777896940.195
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777713442.480156
