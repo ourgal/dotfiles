@@ -8070,7 +8070,13 @@
                               "vh": "reboot"
                             }
                           ]
-                        },
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260504215922.1",
+                      "vh": "surface",
+                      "children": [
                         {
                           "gnx": "zxc.20260501214109.1",
                           "vh": "@clean surface.yml.tmpl",
@@ -8087,218 +8093,233 @@
                               "vh": "facts"
                             },
                             {
-                              "gnx": "zxc.20260501214216.1",
-                              "vh": "install xbps packages",
+                              "gnx": "zxc.20260504221045.1",
+                              "vh": "xbps",
                               "children": [
                                 {
-                                  "gnx": "zxc.20260504202810.1",
-                                  "vh": "<< is void >>"
-                                },
-                                {
-                                  "gnx": "zxc.20260501214216.2",
-                                  "vh": "cli",
+                                  "gnx": "zxc.20260504221108.1",
+                                  "vh": "upgrade system",
                                   "children": [
                                     {
-                                      "gnx": "zxc.20260501214216.3",
-                                      "vh": "anime",
+                                      "gnx": "zxc.20260504202810.1",
+                                      "vh": "<< is void >>"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260501214216.1",
+                                  "vh": "install",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260504202810.1"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260501214216.2",
+                                      "vh": "cli",
                                       "children": [
                                         {
-                                          "gnx": "zxc.20260501214216.4",
-                                          "vh": "ani-cli"
+                                          "gnx": "zxc.20260501214216.3",
+                                          "vh": "anime",
+                                          "children": [
+                                            {
+                                              "gnx": "zxc.20260501214216.4",
+                                              "vh": "ani-cli"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.5",
+                                          "vh": "archive"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.6",
+                                          "vh": "bookmark"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.7",
+                                          "vh": "clipboard"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.8",
+                                          "vh": "download"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.9",
+                                          "vh": "editor"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.10",
+                                          "vh": "file manager"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.11",
+                                          "vh": "git"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.12",
+                                          "vh": "multiplexer"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260504123529.1",
+                                          "vh": "share"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260504123408.1",
+                                          "vh": "image"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.13",
+                                          "vh": "shell",
+                                          "children": [
+                                            {
+                                              "gnx": "zxc.20260501214216.14",
+                                              "vh": "fuzzy finder"
+                                            },
+                                            {
+                                              "gnx": "zxc.20260501214216.15",
+                                              "vh": "history"
+                                            },
+                                            {
+                                              "gnx": "zxc.20260501214216.16",
+                                              "vh": "prompt"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.17",
+                                          "vh": "sync"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260502141426.1",
+                                          "vh": "system",
+                                          "children": [
+                                            {
+                                              "gnx": "zxc.20260503144759.1",
+                                              "vh": "keyboad"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.18",
+                                          "vh": "utils",
+                                          "children": [
+                                            {
+                                              "gnx": "zxc.20260501214216.19",
+                                              "vh": "ps"
+                                            },
+                                            {
+                                              "gnx": "zxc.20260501214216.20",
+                                              "vh": "grep"
+                                            },
+                                            {
+                                              "gnx": "zxc.20260501214216.21",
+                                              "vh": "cd"
+                                            },
+                                            {
+                                              "gnx": "zxc.20260501214216.22",
+                                              "vh": "mv"
+                                            },
+                                            {
+                                              "gnx": "zxc.20260501214216.23",
+                                              "vh": "find"
+                                            },
+                                            {
+                                              "gnx": "zxc.20260501214216.24",
+                                              "vh": "ls"
+                                            },
+                                            {
+                                              "gnx": "zxc.20260501214216.25",
+                                              "vh": "df"
+                                            },
+                                            {
+                                              "gnx": "zxc.20260501214216.26",
+                                              "vh": "du"
+                                            },
+                                            {
+                                              "gnx": "zxc.20260501214216.27",
+                                              "vh": "top"
+                                            },
+                                            {
+                                              "gnx": "zxc.20260501214216.28",
+                                              "vh": "less"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "gnx": "zxc.20260502152245.1",
+                                          "vh": "password manager"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.29",
+                                          "vh": "video"
                                         }
                                       ]
                                     },
                                     {
-                                      "gnx": "zxc.20260501214216.5",
-                                      "vh": "archive"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260501214216.6",
-                                      "vh": "bookmark"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260501214216.7",
-                                      "vh": "clipboard"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260501214216.8",
-                                      "vh": "download"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260501214216.9",
-                                      "vh": "editor"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260501214216.10",
-                                      "vh": "file manager"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260501214216.11",
-                                      "vh": "git"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260501214216.12",
-                                      "vh": "multiplexer"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260504123529.1",
-                                      "vh": "share"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260504123408.1",
-                                      "vh": "image"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260501214216.13",
-                                      "vh": "shell",
+                                      "gnx": "zxc.20260501214216.30",
+                                      "vh": "gui",
                                       "children": [
                                         {
-                                          "gnx": "zxc.20260501214216.14",
-                                          "vh": "fuzzy finder"
+                                          "gnx": "zxc.20260501214216.31",
+                                          "vh": "browser"
                                         },
                                         {
-                                          "gnx": "zxc.20260501214216.15",
-                                          "vh": "history"
+                                          "gnx": "zxc.20260501214216.32",
+                                          "vh": "terminal"
                                         },
                                         {
-                                          "gnx": "zxc.20260501214216.16",
-                                          "vh": "prompt"
+                                          "gnx": "zxc.20260504000934.1",
+                                          "vh": "editor"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260504002523.1",
+                                          "vh": "doc"
                                         }
                                       ]
                                     },
                                     {
-                                      "gnx": "zxc.20260501214216.17",
-                                      "vh": "sync"
+                                      "gnx": "zxc.20260501214216.33",
+                                      "vh": "dev",
+                                      "children": [
+                                        {
+                                          "gnx": "zxc.20260501214216.34",
+                                          "vh": "ansible"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.35",
+                                          "vh": "bash"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.36",
+                                          "vh": "nodejs"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501214216.37",
+                                          "vh": "python"
+                                        }
+                                      ]
                                     },
                                     {
-                                      "gnx": "zxc.20260502141426.1",
+                                      "gnx": "zxc.20260501221719.1",
                                       "vh": "system",
                                       "children": [
                                         {
-                                          "gnx": "zxc.20260503144759.1",
-                                          "vh": "keyboad"
+                                          "gnx": "zxc.20260501221719.4",
+                                          "vh": "desktop"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501221719.5",
+                                          "vh": "font"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501221719.6",
+                                          "vh": "graphic driver"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260501221719.10",
+                                          "vh": "package manager"
                                         }
                                       ]
-                                    },
-                                    {
-                                      "gnx": "zxc.20260501214216.18",
-                                      "vh": "utils",
-                                      "children": [
-                                        {
-                                          "gnx": "zxc.20260501214216.19",
-                                          "vh": "ps"
-                                        },
-                                        {
-                                          "gnx": "zxc.20260501214216.20",
-                                          "vh": "grep"
-                                        },
-                                        {
-                                          "gnx": "zxc.20260501214216.21",
-                                          "vh": "cd"
-                                        },
-                                        {
-                                          "gnx": "zxc.20260501214216.22",
-                                          "vh": "mv"
-                                        },
-                                        {
-                                          "gnx": "zxc.20260501214216.23",
-                                          "vh": "find"
-                                        },
-                                        {
-                                          "gnx": "zxc.20260501214216.24",
-                                          "vh": "ls"
-                                        },
-                                        {
-                                          "gnx": "zxc.20260501214216.25",
-                                          "vh": "df"
-                                        },
-                                        {
-                                          "gnx": "zxc.20260501214216.26",
-                                          "vh": "du"
-                                        },
-                                        {
-                                          "gnx": "zxc.20260501214216.27",
-                                          "vh": "top"
-                                        },
-                                        {
-                                          "gnx": "zxc.20260501214216.28",
-                                          "vh": "less"
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "gnx": "zxc.20260502152245.1",
-                                      "vh": "password manager"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260501214216.29",
-                                      "vh": "video"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "gnx": "zxc.20260501214216.30",
-                                  "vh": "gui",
-                                  "children": [
-                                    {
-                                      "gnx": "zxc.20260501214216.31",
-                                      "vh": "browser"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260501214216.32",
-                                      "vh": "terminal"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260504000934.1",
-                                      "vh": "editor"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260504002523.1",
-                                      "vh": "doc"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "gnx": "zxc.20260501214216.33",
-                                  "vh": "dev",
-                                  "children": [
-                                    {
-                                      "gnx": "zxc.20260501214216.34",
-                                      "vh": "ansible"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260501214216.35",
-                                      "vh": "bash"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260501214216.36",
-                                      "vh": "nodejs"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260501214216.37",
-                                      "vh": "python"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "gnx": "zxc.20260501221719.1",
-                                  "vh": "system",
-                                  "children": [
-                                    {
-                                      "gnx": "zxc.20260501221719.4",
-                                      "vh": "desktop"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260501221719.5",
-                                      "vh": "font"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260501221719.6",
-                                      "vh": "graphic driver"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260501221719.10",
-                                      "vh": "package manager"
                                     }
                                   ]
                                 }
@@ -8369,6 +8390,16 @@
                                 {
                                   "gnx": "zxc.20260503182010.1",
                                   "vh": "runsvdir-user"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260504220005.1",
+                              "vh": "linuxbrew",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260504220009.1",
+                                  "vh": "install"
                                 }
                               ]
                             },
@@ -10239,8 +10270,9 @@
     "zxc.20260501214109.1": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n- name: Configure void linux\n  hosts: surface\n  vars:\n    << vars >>\n  tasks:\n    @others\n",
     "zxc.20260503185527.1": "username: zxc\nhostname: surface\n",
     "zxc.20260504200600.1": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts\n",
-    "zxc.20260501214216.1": "- name: Install packages\n  tags:\n    - pkg\n    - xbps\n  become: true\n  when:\n    << is void >>\n  environment:\n    XBPS_ARCH: \"{{ ansible_facts.machine }}\"\n  community.general.xbps:\n    name:\n      @others\n",
+    "zxc.20260504221108.1": "- name: Upgrade system\n  tags:\n    - pkg\n    - xbps\n  become: true\n  when:\n    << is void >>\n  community.general.xbps:\n    upgrade: true",
     "zxc.20260504202810.1": "- ansible_facts.os_family == \"Void\"",
+    "zxc.20260501214216.1": "- name: Install packages\n  tags:\n    - pkg\n    - xbps\n  become: true\n  when:\n    << is void >>\n  environment:\n    XBPS_ARCH: \"{{ ansible_facts.machine }}\"\n  community.general.xbps:\n    name:\n      @others\n",
     "zxc.20260501214216.4": "- git\n- curl\n- aria2\n- grep\n- fzf\n- yt-dlp\n- ffmpeg\n",
     "zxc.20260501214216.5": "- 7zip\n- atool\n- unzip",
     "zxc.20260501214216.6": "- buku",
@@ -10296,6 +10328,8 @@
     "zxc.20260502191418.1": "- name: Enable services\n  become: true\n  when:\n    << is void >>\n  ansible.builtin.command: \"ln -sf /etc/sv/{{ item }} /var/service\"\n  loop:\n    @others",
     "zxc.20260502191430.1": "- lightdm",
     "zxc.20260503182010.1": "- \"runsvdir-{{ username }}\"\n",
+    "zxc.20260504220005.1": "- name LinuxBrew\n  tags:\n    - pkg\n    - brew\n  environment:\n    PATH: \"/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}\"\n  block:\n    @others",
+    "zxc.20260504220009.1": "- name: Check if Homebrew is installed\n  ansible.builtin.stat:\n    path: \"/home/linuxbrew/.linuxbrew/bin/brew\"\n  register: brew_stat\n- name: Create Homebrew directory\n  ansible.builtin.file:\n    path: \"/home/linuxbrew/.linuxbrew\"\n    state: directory\n    owner: \"{{ ansible_env.USER }}\"\n    group: \"{{ ansible_env.USER }}\"\n    mode: '0755'\n  become: true\n  when: not brew_stat.stat.exists\n- name: Install Homebrew\n  ansible.builtin.shell: |\n    curl -fsSL https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C /home/linuxbrew/.linuxbrew\n  when: not brew_stat.stat.exists",
     "zxc.20260504195440.1": "- name: Set the system hostname\n  become: true\n  when:\n    << is linux >>\n    << is macos >>\n  ansible.builtin.hostname:\n    name: \"{{ hostname }}\"",
     "zxc.20260503212032.1": "- name: Set user groups\n  become: true\n  when:\n    << is linux >>\n    << is macos >>\n  ansible.builtin.user:\n    name: \"{{ username }}\"\n    groups:\n      - \"{{ \"input\" if ansible_facts.os_family == \"Void\" else omit }}\"\n    append: true",
     "zxc.20260501214447.1": "- name: Regenerate initramfs\n  become: true\n  when:\n    << is void >> \n  ansible.builtin.command:\n    cmd: \"xbps-reconfigure --force linux{{ ansible_facts.kernel | regex_search('\\\\d+\\\\.\\\\d+') }}\"\n  changed_when: true\n",
@@ -10785,7 +10819,7 @@
       "_mod_time": 1777895512.128
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1777898385.672
+      "_mod_time": 1777904027.263
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777713442.480156
