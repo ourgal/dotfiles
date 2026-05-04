@@ -1,4 +1,10 @@
 {{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ $os := "" -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ $os = .chezmoi.os -}}
+{{ else if eq .chezmoi.os "linux" -}}
+{{ $os = .chezmoi.osRelease.id -}}
+{{ end -}}
 {{ if lookPath "bash" -}}
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -123,8 +129,8 @@ FZF_CTRL_R_COMMAND= eval "$(fzf --bash)"
 eval "$(fzf --bash)"
 {{ end -}}
 {{ end -}}
-{{ $starship := and (lookPath "starship") .my.modules.starship -}}
-{{ $oh_my_posh := and (lookPath "oh-my-posh") .my.modules.oh_my_posh -}}
+{{ $starship := and (lookPath "starship") (default (index .my.modules "starship") (index .my.modules .chezmoi.hostname $os "starship")) -}}
+{{ $oh_my_posh := and (lookPath "oh-my-posh") (default (index .my.modules "oh_my_posh") (index .my.modules .chezmoi.hostname $os "oh_my_posh")) -}}
 {{ if any $starship $oh_my_posh -}}
 {{ if $starship -}}
 eval "$(starship init bash)"
@@ -139,8 +145,8 @@ eval "$(starship init bash)"
 {{ if lookPath "eza" -}}
 alias ll='eza --long --git --icons auto --group --group-directories-first --time-style relative'
 {{ end -}}
-{{ $atuin := and (lookPath "atuin") .my.modules.atuin -}}
-{{ $mcfly := and (lookPath "mcfly") .my.modules.mcfly -}}
+{{ $atuin := and (lookPath "atuin") (default (index .my.modules "atuin") (index .my.modules .chezmoi.hostname $os "atuin")) -}}
+{{ $mcfly := and (lookPath "mcfly") (default (index .my.modules "mcfly") (index .my.modules .chezmoi.hostname $os "mcfly")) -}}
 {{ if any $atuin $mcfly -}}
 {{ if $atuin -}}
 eval "$(atuin init bash)"
