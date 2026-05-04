@@ -27,9 +27,19 @@
 {{ end -}}
 {{ end -}}
 {{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if ne .chezmoi.osRelease.name "Void" -}}
+
 [".local/share/fonts/nerdsymbols"]
     type = "archive"
     url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdFontsSymbolsOnly.tar.xz"
+    exact = true
+    include = [ "*.ttf" ]
+{{ end -}}
+{{ end -}}
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+[".local/share/fonts/maple"]
+    type = "archive"
+    url = "https://github.com/subframe7536/maple-font/releases/download/v7.9/MapleMono-NF-CN.zip"
     exact = true
     include = [ "*.ttf" ]
 {{ end -}}
