@@ -218,7 +218,7 @@
       ansible.builtin.user:
         name: "{{ username }}"
         groups:
-          - "{{ "input" if ansible_facts.os_family == "Void" else omit }}"
+          - '{{ "input" if ansible_facts.os_family == "Void" else omit }}'
         append: true
     - name: Regenerate initramfs
       become: true
