@@ -185,6 +185,7 @@
         - brew
       environment:
         PATH: "/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
+        HOMEBREW_BREW_GIT_REMOTE: "https://mirror.nju.edu.cn/git/homebrew/brew.git"
       block:
         - name: Check if Homebrew is installed
           ansible.builtin.stat:
