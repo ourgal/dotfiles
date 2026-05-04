@@ -1,10 +1,18 @@
+{{ $os := "" -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ $os = .chezmoi.os -}}
+{{ else if eq .chezmoi.os "linux" -}}
+{{ $os = .chezmoi.osRelease.id -}}
+{{ end -}}
 #Requires AutoHotkey v2.0
 #SingleInstance Force
 
 Run "gopass show -c keepassxc/main", ,"Hide"
 WinWait "Message from User"
 
-{{ if .my.modules.glazewm -}}
+{{ $opt := "glazewm" -}}
+{{ $cmd := "glazewm" -}}
+{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
 Run "glazewm command focus --workspace 9"
 {{ end -}}
 Run "keepassxc"

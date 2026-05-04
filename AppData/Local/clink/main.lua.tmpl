@@ -1,12 +1,25 @@
 {{ if eq .chezmoi.os "windows" -}}
+{{ $os := "" -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ $os = .chezmoi.os -}}
+{{ else if eq .chezmoi.os "linux" -}}
+{{ $os = .chezmoi.osRelease.id -}}
+{{ end -}}
 {{ if lookPath "clink" -}}
 load(io.popen('starship init cmd'):read("*a"))()
-{{ if and ( lookPath "starship" ) .my.modules.starship -}}
+{{ $opt := "starship" -}}
+{{ $cmd := "starship" -}}
+{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
 load(io.popen('starship init cmd'):read("*a"))()
 {{ end -}}
-{{ if and (lookPath "oh-my-posh") (index .my.modules .chezmoi.hostname "oh_my_posh" | default .my.modules.oh_my_posh) -}}
+{{ $opt := "oh_my_posh" -}}
+{{ $cmd := "oh-my-posh" -}}
+{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
 load(io.popen('oh-my-posh init cmd'):read("*a"))()
 {{ end -}}
+{{ $opt := "zoxide" -}}
+{{ $cmd := "zoxide" -}}
+{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
 -- =============================================================================
 --
 -- Settings copied from 'zoxide init'. Run `clink set` to modify these options, e.g. `clink set zoxide.cmd f`
@@ -224,6 +237,7 @@ end
 --
 -- To initalize zoxide, add this script to one of clink's lua script locations (e.g. zoxide.lua)
 -- (see https://chrisant996.github.io/clink/clink.html#location-of-lua-scripts)
+{{ end -}}
 settings.set('zoxide.cmd', 'z', 'Changes the prefix of the aliases')
 clink_gizmos_command_substitution = true
 {{ end -}}

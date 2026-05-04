@@ -1,4 +1,10 @@
 {{ if eq .chezmoi.os "windows" -}}
+{{ $os := "" -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ $os = .chezmoi.os -}}
+{{ else if eq .chezmoi.os "linux" -}}
+{{ $os = .chezmoi.osRelease.id -}}
+{{ end -}}
 {{ if lookPath "pwsh" -}}
 $env:EDITOR = "hx"
 $env:shell_startup = "~\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
@@ -211,14 +217,19 @@ Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 carapace _carapace | Out-String | Invoke-Expression
 {{ end -}}
-{{ if and ( lookPath "starship" ) ( .my.modules.starship ) -}}
+{{ $opt := "starship" -}}
+{{ $cmd := "starship" -}}
+{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
 Invoke-Expression (&starship init powershell)
 {{ end -}}
-{{ if and ( lookPath "oh-my-posh" ) ( .my.modules.oh_my_posh ) -}}
+{{ $opt := "oh_my_posh" -}}
+{{ $cmd := "oh-my-posh" -}}
+{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
 oh-my-posh init pwsh | Invoke-Expression
 {{ end -}}
-{{ if and ( lookPath "zoxide" ) ( .my.modules.zoxide ) -}}
-# zoxide
+{{ $opt := "zoxide" -}}
+{{ $cmd := "zoxide" -}}
+{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 {{ end -}}
 # PSFzf
@@ -233,14 +244,19 @@ Set-PSReadLineKeyHandler -Key Ctrl+o `
     [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Invoke-FuzzyEdit")
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
-{{ if and (lookPath "atuin") ( .my.modules.atuin ) -}}
-# atuin
+{{ $opt := "atuin" -}}
+{{ $cmd := "atuin" -}}
+{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
 Invoke-Expression -Command $(atuin init powershell | out-string)
 {{ end -}}
-{{ if and ( lookPath "mcfly" ) ( .my.modules.mcfly ) -}}
+{{ $opt := "mcfly" -}}
+{{ $cmd := "mcfly" -}}
+{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
 Invoke-Expression -Command $(mcfly init powershell | out-string)
 {{ end -}}
-{{ if and ( lookPath "navi" ) ( .my.modules.navi ) -}}
+{{ $opt := "navi" -}}
+{{ $cmd := "" -}}
+{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
 function Invoke-Navi {
     $startArgs = @{
         FileName = "navi";
