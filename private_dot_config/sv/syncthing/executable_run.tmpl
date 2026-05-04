@@ -1,0 +1,4 @@
+{{ if lookPath "syncthing" -}}
+#!/bin/sh
+exec syncthing serve --no-console --no-browser
+{{ end -}}
