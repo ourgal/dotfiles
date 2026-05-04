@@ -1,10 +1,14 @@
 # chezmoi:template:left-delimiter=[[ right-delimiter=]]
 ---
 - name: Configure void linux
-  hosts: surface-void
+  hosts: surface
   vars:
     username: zxc
+    hostname: surface
   tasks:
+    - name: Debug variables
+      ansible.builtin.debug:
+        var: ansible_facts
     - name: Install packages
       tags:
         - pkg
@@ -151,6 +155,9 @@
       loop:
         - lightdm
         - "runsvdir-{{ username }}"
+    - name: Set the system hostname
+      ansible.builtin.hostname:
+        name: "{{ hostname }}"
     - name: Set user groups
       become: true
       ansible.builtin.user:

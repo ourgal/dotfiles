@@ -8,7 +8,7 @@
 
 
 (defcfg
-{{ if eq .chezmoi.hostname "surface-void" -}}
+{{ if eq .chezmoi.hostname "surface" -}}
   input (device-file "/dev/input/by-id/usb-Microsoft_Surface_Type_Cover-event-kbd")
 {{ end -}}
   output (uinput-sink "Miryoku KMonad output")
