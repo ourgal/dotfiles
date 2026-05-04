@@ -3574,6 +3574,10 @@
                       "gnx": "User.20260225204326.1"
                     },
                     {
+                      "gnx": "zxc.20260504185129.1",
+                      "vh": "<< os >>"
+                    },
+                    {
                       "gnx": "User.20260301202550.1",
                       "vh": "content",
                       "children": [
@@ -3607,15 +3611,31 @@
                               "children": [
                                 {
                                   "gnx": "zxc.20260502020009.1",
-                                  "vh": "vscode"
+                                  "vh": "vscode",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260504185628.1",
+                                      "vh": "<< check opt >>"
+                                    }
+                                  ]
                                 },
                                 {
                                   "gnx": "zxc.20260502020122.1",
-                                  "vh": "vscodium"
+                                  "vh": "vscodium",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260504185628.1"
+                                    }
+                                  ]
                                 },
                                 {
                                   "gnx": "zxc.20260502020153.1",
-                                  "vh": "leo"
+                                  "vh": "leo",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260504185628.1"
+                                    }
+                                  ]
                                 }
                               ]
                             },
@@ -4150,10 +4170,6 @@
             {
               "gnx": "zxc.20260128200402.1",
               "vh": "pre"
-            },
-            {
-              "gnx": "zxc.20260504163732.1",
-              "vh": "variables"
             },
             {
               "gnx": "User.20260302135922.1",
@@ -8595,6 +8611,9 @@
                                           "gnx": "User.20260225204326.1"
                                         },
                                         {
+                                          "gnx": "zxc.20260504185129.1"
+                                        },
+                                        {
                                           "gnx": "zxc.20260128003258.1"
                                         }
                                       ]
@@ -9245,7 +9264,7 @@
     "zxc.20260503010044.7": "zoxide = true\n",
     "zxc.20260503010044.8": "glazewm = true\n",
     "zxc.20260503010044.9": "altrun = false\n",
-    "zxc.20260503010044.10": "vscode = false\nvscodium = false\nleo = false\n",
+    "zxc.20260503010044.10": "vscode = false\nvscodium = true\nleo = false",
     "zxc.20260503010044.11": "powertoys = true\nautohotkey = false\n",
     "zxc.20260504164208.1": "everything = true",
     "zxc.20260504171737.1": "jellyfin_mpv_shim = false",
@@ -9380,7 +9399,8 @@
     "User.20260222165839.1": "- replace: 'git annex sync --content '\n  trigger: gitas.",
     "User.20260221175941.1": "- force_clipboard: true\n  label: Markdown - Code block\n  replace: '```$|$\n\n    ```'\n  trigger: ':block:'\n- force_clipboard: false\n  label: Markdown - Inline code\n  replace: '`$|$`'\n  trigger: ':code:'\n- label: Markdown - Header1\n  replace: '#'\n  trigger: ':h1:'\n- label: Markdown - Header2\n  replace: '##'\n  trigger: ':h2:'\n- label: Markdown - Header3\n  replace: '###'\n  trigger: ':h3:'\n- label: Markdown - Header4\n  replace: '####'\n  trigger: ':h4:'\n- label: Markdown - Header5\n  replace: '#####'\n  trigger: ':h5:'\n- label: Markdown - Header6\n  replace: '######'\n  trigger: ':h6:'\n- label: Markdown - Bold\n  replace: '**$|$**'\n  trigger: ':bold:'\n- label: Markdown - Italic\n  replace: '*$|$*'\n  trigger: ':italic:'\n- label: Markdown - Strikethrough\n  replace: ~~$|$~~\n  trigger: ':strike:'\n- label: Markdown - URL\n  replace: '[$|$]()'\n  trigger: ':url:'\n- label: Markdown - Image\n  replace: '![]($|$)'\n  trigger: ':img:'\n- label: Markdown - Horizontal line\n  replace: ___\n  trigger: ':horizontal:'\n- label: Markdown - Task\n  replace: '- [ ] '\n  trigger: ':task:'\n- label: Markdown - Task completed\n  replace: '- [x] '\n  trigger: ':taskdone:'\n- force_clipboard: true\n  label: Markdown - Collapse block\n  replace: '<details>\n\n    <summary></summary>\n\n    $|$\n\n    </details>'\n  trigger: ':collapse:'\n- force_clipboard: true\n  label: Markdown - Comment\n  replace: <!--- $|$ -->\n  trigger: ':comment:'",
     "User.20260223181103.1": "{{ template \"espanso_email.key\" }}",
-    "User.20260301202336.1": "<< dos >>\n@language yaml\n@tabwidth -2\n{{ if lookPath \"glazewm\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "User.20260301202336.1": "<< dos >>\n<< os >>\n@language yaml\n@tabwidth -2\n{{ if lookPath \"glazewm\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260504185129.1": "{{ $os := \"\" -}}\n{{ if eq .chezmoi.os \"windows\" -}}\n{{ $os = .chezmoi.os -}}\n{{ else if eq .chezmoi.os \"linux\" -}}\n{{ $os = .chezmoi.osRelease.id -}}\n{{ end -}}",
     "User.20260301203034.1": "general:\n  # Commands to run when the WM has started. This is useful for running a\n  # script or launching another application.\n  # Example: The below command launches Zebar.\n  startup_commands: []\n  # Commands to run just before the WM is shutdown.\n  # Example: The below command kills Zebar.\n  shutdown_commands: []\n  # Commands to run after the WM config is reloaded.\n  config_reload_commands: []\n  # Whether to automatically focus windows underneath the cursor.\n  focus_follows_cursor: false\n  # Whether to switch back and forth between the previously focused\n  # workspace when focusing the current workspace.\n  toggle_workspace_on_refocus: false\n  cursor_jump:\n    # Whether to automatically move the cursor on the specified trigger.\n    enabled: true\n    # Trigger for cursor jump:\n    # - 'monitor_focus': Jump when focus changes between monitors.\n    # - 'window_focus': Jump when focus changes between windows.\n    trigger: 'monitor_focus'\n  # How windows should be hidden when switching workspaces.\n  # - 'cloak': Recommended. Hides windows with no animation.\n  # - 'hide': Legacy method (v3.5 and earlier) that has a brief animation,\n  # but has stability issues with some apps.\n  hide_method: 'cloak'\n  # Affects which windows get shown in the native Windows taskbar. Has no\n  # effect if `hide_method: 'hide'`.\n  # - 'true': Show all windows (regardless of workspace).\n  # - 'false': Only show windows from the currently shown workspaces.\n  show_all_in_taskbar: false\n",
     "User.20260301203056.1": "gaps:\n  # Whether to scale the gaps with the DPI of the monitor.\n  scale_with_dpi: true\n  # Gap between adjacent windows.\n  inner_gap: '0px'\n  # Gap between windows and the screen edge.\n  outer_gap:\n    top: '2px'\n    right: '2px'\n    bottom: '2px'\n    left: '2px'\n",
     "User.20260301203247.1": "window_effects:\n  # Visual effects to apply to the focused window.\n  focused_window:\n    # Highlight the window with a colored border.\n    # ** Exclusive to Windows 11 due to API limitations.\n    border:\n      enabled: true\n      color: '#8dbcff'\n    # Remove the title bar from the window's frame. Note that this can\n    # cause rendering issues for some applications.\n    hide_title_bar:\n      enabled: false\n    # Change the corner style of the window's frame.\n    # ** Exclusive to Windows 11 due to API limitations.\n    corner_style:\n      enabled: false\n      # Allowed values: 'square', 'rounded', 'small_rounded'.\n\n      style: 'square'\n    # Change the transparency of the window.\n    transparency:\n      enabled: false\n      # Can be something like '95%' or '0.95' for slightly transparent windows.\n\n      # '0' or '0%' is fully transparent (and, by consequence, unfocusable).\n      opacity: '95%'\n  # Visual effects to apply to non-focused windows.\n  other_windows:\n    border:\n      enabled: true\n      color: '#a1a1a1'\n    hide_title_bar:\n      enabled: false\n    corner_style:\n      enabled: false\n      style: 'square'\n    transparency:\n      enabled: false\n      opacity: '0%'\n",
@@ -9388,9 +9408,10 @@
     "User.20260301203458.1": "workspaces:\n  - name: '1'\n  - name: '2'\n  - name: '3'\n  - name: '4'\n  - name: '5'\n  - name: '6'\n  - name: '7'\n  - name: '8'\n  - name: '9'\n",
     "User.20260301203526.1": "window_rules:\n  @others",
     "User.20260301211002.1": "- commands: [\"move --workspace 1\"]\n  match:\n    - window_process: { regex: \"WindowsTerminal\" }\n    - window_process: { regex: \"wt\" }\n    - window_process: { regex: \"wezterm-gui\" }\n- commands: [\"move --workspace 2\"]\n  match:\n    - window_process: { regex: \"firefox\" }\n- commands: [\"move --workspace 9\"]\n  match:\n    - window_process: { regex: \"KeePassXC\" }\n@others",
-    "zxc.20260502020009.1": "{{ if .my.modules.vscode -}}\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"Code\" }\n{{ end -}}\n",
-    "zxc.20260502020122.1": "{{ if .my.modules.vscodium -}}\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"VSCodium\" }\n{{ end -}}\n",
-    "zxc.20260502020153.1": "{{ if .my.modules.leo -}}\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"leo\" }\n{{ end -}}\n",
+    "zxc.20260502020009.1": "{{ $opt := \"vscode\" -}}\n<< check opt >>\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"Code\" }\n{{ end -}}\n",
+    "zxc.20260504185628.1": "{{ if or (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt) -}}",
+    "zxc.20260502020122.1": "{{ $opt := \"vscodium\" -}}\n<< check opt >>\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"VSCodium\" }\n{{ end -}}\n",
+    "zxc.20260502020153.1": "{{ $opt := \"leo\" -}}\n<< check opt >>\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"leo\" }\n{{ end -}}\n",
     "User.20260301210952.1": "- commands: ['ignore']\n  match:\n    # Ignores any Zebar windows.\n    - window_process: {equals: 'zebar'}\n    # Ignores picture-in-picture windows for browsers.\n    - window_title: {regex: '[Pp]icture.in.[Pp]icture'}\n      window_class: {regex: 'Chrome_WidgetWin_1|MozillaDialogClass'}\n    # Ignore rules for various 3rd-party apps.\n    - window_process: {equals: 'PowerToys'}\n      window_class: {regex: 'HwndWrapper\\[PowerToys\\.PowerAccent.*?\\]'}\n    - window_process: {equals: 'PowerToys'}\n      window_title: {regex: '.*? - Peek'}\n    - window_process: {equals: 'Lively'}\n      window_class: {regex: 'HwndWrapper'}\n    - window_process: {equals: 'EXCEL'}\n      window_class: {not_regex: 'XLMAIN'}\n    - window_process: {equals: 'WINWORD'}\n      window_class: {not_regex: 'OpusApp'}\n    - window_process: {equals: 'POWERPNT'}\n      window_class: {not_regex: 'PPTFrameClass'}\n",
     "User.20260301222626.1": "- commands: [\"set-floating\"]\n  match:\n    - window_process: { equals: \"Flow.Launcher\" }\n      window_title: { equals: \"Settings\" }",
     "User.20260301203613.1": "binding_modes:\n  # When enabled, the focused window can be resized via arrow keys or HJKL.\n  - name: 'resize'\n    keybindings:\n      - commands: ['resize --width -2%']\n        bindings: ['h', 'left']\n      - commands: ['resize --width +2%']\n        bindings: ['l', 'right']\n      - commands: ['resize --height +2%']\n        bindings: ['k', 'up']\n      - commands: ['resize --height -2%']\n        bindings: ['j', 'down']\n      - commands: ['wm-disable-binding-mode --name resize']\n        # Press enter/escape to return to default keybindings.\n        bindings: ['escape', 'enter']\n",
@@ -9461,9 +9482,8 @@
     "zxc.20260125163108.1": "{{ if and (lookPath \"bash\") (lookPath \"fzf\") (lookPath \"xbps-install\") -}}\n@others\n{{ end -}}",
     "zxc.20260125163227.1": "#!/usr/bin/env bash\n# https://gitlab.com/wef/dotfiles/-/blob/master/bin/fzf-xbps\nexport TIME_STAMP=\"20260102.103219\"\n# shellcheck disable=SC2034\n\n# Copyright (C) 2020-2025 Bob Hepple <bob dot hepple at gmail dot com>\n\n# This program is free software: you can redistribute it and/or modify\n# it under the terms of the GNU General Public License as published by\n# the Free Software Foundation, either version 3 of the License, or (at\n# your option) any later version.\n# \n# This program is distributed in the hope that it will be useful, but\n# WITHOUT ANY WARRANTY; without even the implied warranty of\n# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU\n# General Public License for more details.\n# \n# You should have received a copy of the GNU General Public License\n# along with this program. If not, see <http://www.gnu.org/licenses/>.\n\nPROG=$( basename \"$0\" )\nTEMP=$( getopt --options hvV --longoptions verbose,version,help -- \"$@\" ) || exit 1\neval set -- \"$TEMP\"\nsudos=\"doas sudo\" # others?\n\nfor sudo in $sudos; do\n    type \"$sudo\" &> /dev/null && break\n    sudo=\"\"\ndone\n\ncolumns=\"$( tput cols )\"\nblue=$( tput setaf 4 )\nnorm=$( tput sgr0 )\n\ninfo_key=\"alt-i\"\nfiles_key=\"alt-f\"\nmanual_key=\"alt-m\"\ndep_key=\"alt-d\"\nrev_key=\"alt-v\"\nurl_key=\"alt-u\"\ntemplate_key=\"alt-t\"\npreview_key=\"alt-?\"\nhelp_key=\"alt-h\"\ntoggle_key=\"ctrl-r\"\nexit_key=\"ctrl-c\"\norphans_key=\"alt-o\"\nextract_key=\"alt-e\"\nREMOVE_ORPHANS_key=\"alt-O\"\nREMOVE_key=\"alt-R\"\nDELETE_key=\"alt-D\"\nINSTALL_key=\"alt-I\"\nCLEAN_key=\"alt-C\"\nUPDATE_key=\"alt-U\"\n\nhelp=\"\\\n$info_key: info\n$files_key: list files in the package\n$manual_key: list top level packages (not dependencies)\n$dep_key: list dependencies of a package\n$rev_key: list packages depending on this package\n$url_key: open package url in browser\n$template_key: open package template in browser\n$orphans_key: list orphan packages\n$REMOVE_ORPHANS_key: remove orphan packages\n$REMOVE_key: delete package+dependencies\n$DELETE_key: delete package\n$INSTALL_key: install package\n$CLEAN_key: clean xbps cache\n$UPDATE_key: update system\nTAB: mark package for install/remove\nENTER: install/delete marked packages\n$exit_key: exit\"\n\npreview_size=$(( $( echo -e \"\\n$help\" | column -c \"$columns\" | wc -l ) + 2 ))\n\nwhile [[ \"$1\" ]]; do\n    case \"$1\" in\n        -h|--help)\n            echo \"Usage: $PROG OPTIONS\"\n            echo\n            echo \"Simple TUI/fzf package manager for xbps-based systems like voidlinux\"\n            echo\n            echo \"Commands are:\"\n            echo -e \"$help\"\n            echo\n            echo \"Note that commands that change the filesystem (and therefore need\"\n            echo \"sudo/doas) are in upper-case\"\n            echo\n            echo \"Use ' in a search to enable fuzzy finding (see man fzf)\"\n            echo \"Use [i as a search pattern to find all installed packages.\"\n            echo \"Installed packages that have updates pending are marked with upper-case [I].\"\n            echo\n            echo \"The 'list files ($files_key) function has a sub-menu to allow you to select a\"\n            echo \"file (or mark a set of files) from the package and view or extract it to the cwd.\" \n            echo\n            echo \"OPTIONS\"\n            echo \"-h|--help                 this help\"\n            echo \"-v|--verbose              be verbose\"\n            exit 0\n            ;;\n        -v|--verbose)\n            verbose=\"set\"\n            shift\n            ;;\n        -V|--version)\n            echo \"$PROG: Version $TIME_STAMP\"\n            exit 0\n            ;;\n        --)\n            shift\n            ;;\n    esac\ndone\n\nif [[ \"$verbose\" ]]; then\n    set -x\nfi\n\ncontinue=\"echo 'Press ENTER to continue'; read\"\n\nlock=\"$( mktemp -d)\"\ntempfile=\"$(mktemp)\"\nupdates=\"$(mktemp)\"\ntrap 'rm $tempfile $updates; rmdir $lock' EXIT\n\n{\n    # this takes a substantial amount of time (0.7s on my system), so do it in background:\n    xbps-install -Sun | awk '{print gensub(\"^(.*)-[^-]+$\",\"\\\\1\",1,$1)}' > \"$updates\"\n    rmdir \"$lock\"\n} &\n\nmapfile -t packages < <(\n    xbps-query -Rs - > \"$tempfile\" # takes about 0.4s\n\n    # wait for updates to be available:\n    while ! mkdir \"$lock\" &>/dev/null ; do\n        sleep .01\n    done\n    \n    # mark packages that have updates available with [I] instead of [i]\n    awk -v updates=\"$updates\" '\nBEGIN {\n    while ((getline update < updates) > 0) updates_map[update] = 1\n}\n\n{\n    flag=$1\n    pkgver=$2\n    pkgname=gensub(\"^(.*)-[^-]+$\",\"\\\\1\",1,$2)\n    if (flag==\"[*]\") flag=\"[i]\"\n    if (updates_map[pkgname]) flag=\"[I]\"\n    $1=\"\"\n    $2=\"\"\n    printf(\"%s %-40s %s\\n\", flag, pkgver, $0)\n}' < \"$tempfile\" |\n    sort -i -k2 | \n    fzf --exact --reverse --wrap \\\n        --marker=\"M\" \\\n        --multi \\\n        --prompt=\"[i]=installed; [I]=upgradable; SEARCH> \" \\\n        --bind \"start:toggle-sort\" \\\n        --bind \"$preview_key:change-preview-window(hidden|)\" \\\n        --bind \"$help_key:execute($PROG --help|less)\" \\\n        --bind \"$DELETE_key:execute($sudo xbps-remove {2}; $continue)+become($PROG)\" \\\n        --bind \"$REMOVE_key:execute($sudo xbps-remove -R {2}; $continue)+become($PROG)\" \\\n        --bind \"$info_key:execute(xbps-query -RS {2} | less)\" \\\n        --bind \"home:first\" --bind \"end:last\" \\\n        --bind \"$manual_key:execute(xbps-query -m | less)\" \\\n        --bind \"$orphans_key:execute(xbps-query -O | less)\" \\\n        --bind \"$REMOVE_ORPHANS_key:execute($sudo xbps-remove -o; $continue)+become($PROG)\" \\\n        --bind \"$dep_key:execute(xbps-query -R -x {2} | less)\" \\\n        --bind \"$rev_key:execute(xbps-query -R -X {2} | less)\" \\\n        --bind \"$INSTALL_key:execute($sudo xbps-install {2}; $continue)+become($PROG)\" \\\n        --bind \"$url_key:execute-silent[ xbps-query -p homepage -R '{2}' | xargs -Iurl xdg-open url & ]\" \\\n        --bind \"$CLEAN_key:execute(echo 'Cleaning cache, please wait ...'; $sudo xbps-remove --clean-cache)\" \\\n        --bind \"$template_key:execute-silent[ xbps-query -p pkgname -R '{2}' | xargs -I pkgname xdg-open https://github.com/void-linux/void-packages/tree/master/srcpkgs/pkgname & ]\" \\\n        --bind \"${UPDATE_key}:execute($sudo xbps-install -Su; $continue)\" \\\n        --bind \"$toggle_key:toggle-sort\" \\\n        --preview-label \"$preview_key=toggle this; $help_key=help; uppercase keys require $sudo\" \\\n        --preview-window=\"down:wrap:${PREVIEW_BORDER:-border-sharp},$preview_size\" \\\n        --preview \"xbps-query -R {2}|awk '/filename-size/ {f=\\$2} /homepage/ {h=\\$2} /installed_size/ {i=\\$2} END { printf(\\\"%s/%s $blue%s$norm\\\\n\\\",f,i,h)}'; echo; echo -e '\\n$help'|column\" \\\n        --bind \"$files_key:execute(\n          xbps-query -R -f {2} \\\n          | fzf \\\n            ${SHOW_HEADER:+--header=\\\"${FHEADER}\\\"} \\\n            --prompt '{2}: TAB=mark/unmark $files_key=toggle preview $extract_key=extract $exit_key=exit $help_key=help > ' \\\n            --marker=\\\"E\\\" \\\n            --multi \\\n            --no-separator \\\n            --border-label=\\\" Package Contents \\\" \\\n            --bind pgup:preview-up,pgdn:preview-down \\\n            --bind \\\"$help_key:execute($PROG --help|less)\\\" \\\n            --preview \\\"xbps-query -R --cat \\{1} {2}\\\" \\\n            --preview-window=\\\"down:hidden:wrap:${PREVIEW_BORDER:-border-sharp}\\\" \\\n            --preview-label=\\\" File Preview TAB=mark/unmark $files_key=toggle preview $extract_key=extract $exit_key=exit\\\" \\\n            --bind \\\"${files_key}:toggle-preview\\\" \\\n            --bind \\\"${extract_key}:execute(clear; \\\n              while IFS= read -r line; do \\\n                tree=\\\"\\\\\\${line%/*}\\\" ;\\\n                mkdir -p \\\"\\\\\\${tree#*/}\\\" ;\\\n                echo Extracting \\\\\\${line} ;\\\n                xbps-query -R --cat \\\"\\\\\\${line}\\\" {2} > \\\"\\\\\\${line#*/}\\\" ;\\\n              done < \\\"\\{+f}\\\"; $continue )\\\" )\" \\\n        )\n\ninstall_list=( )\nremove_list=( )\nfor line in \"${packages[@]}\"; do\n    pkg=\"$( echo \"$line\" | awk '{print $2}' )\"\n    ins=\"$( xbps-query -s \"^$pkg\\$\" --regex )\"\n    pkg=\"${pkg%-*}\" # remove version number\n    if [[ \"$ins\" ]]; then\n        remove_list+=( \"$pkg\" )\n    else\n        install_list+=( \"$pkg\" )\n    fi\ndone\n\nif [[ \"${install_list[*]}\" ]]; then\n    echo \"Installing: ${install_list[*]}\"\n    $sudo xbps-install \"${install_list[@]}\"\nfi\n\nif [[ \"${remove_list[*]}\" ]]; then\n    echo \"Removing ${remove_list[*]}\"\n    $sudo xbps-remove -R \"${remove_list[@]}\"\nfi\n\nif [[ \"${install_list[*]}${remove_list[*]}\" ]]; then\n    # restart to take account of any changes:\n    eval \"$continue\"\n    exec \"$PROG\"\nfi\n\n# Local Variables:\n# mode: shell-script\n# time-stamp-pattern: \"4/TIME_STAMP=\\\"%:y%02m%02d.%02H%02M%02S\\\"\"\n# eval: (add-hook 'before-save-hook 'time-stamp)\n# End:",
     "zxc.20260128200402.1": "RunScoop(app)\n{\n    appdata_dir := EnvGet(\"AppData\")\n    user_dir := EnvGet(\"userprofile\")\n    scoop_apps_dir := appdata_dir . \"/Microsoft/Windows/Start Menu/Programs/Scoop Apps\"\n    Run(scoop_apps_dir . \"/\" . app . \".lnk\", user_dir, \"Max\")\n}\n\nSetTitleMatchMode(2)",
-    "zxc.20260504163732.1": "{{ $os := \"\" -}}",
     "User.20260302135922.1": "{{ $opt := \"glazewm\" -}}\n{{ $cmd := \"glazewm\" -}}\n<< check opt and cmd >>\nRun(\"glazewm\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\nSleep 5000\n{{ end -}}\n",
-    "zxc.20260504155615.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ $os = .chezmoi.os -}}\n{{ else if eq .chezmoi.os \"linux\" -}}\n{{ $os = .chezmoi.osRelese.id -}}\n{{ end -}}\n{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}",
+    "zxc.20260504155615.1": "{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}",
     "zxc.20260128010842.1": "{{ $opt := \"deskflow_client\" -}}\n{{ $cmd := \"deskflow-core\" -}}\n<< check opt and cmd >>\nRun(\"deskflow-core client\", , \"Hide\")\n{{ end -}}\n",
     "zxc.20260317082237.1": "{{ $opt := \"deskflow_server\" -}}\n{{ $cmd := \"deskflow-core\" -}}\n<< check opt and cmd >>\nRun(\"deskflow-core server\", , \"Hide\")\n{{ end -}}\n",
     "User.20260221160445.1": "{{ $opt := \"aria2\" -}}\n{{ $cmd := \"aria2c\" -}}\n<< check opt and cmd >>\nRun(\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"aria2\" \"current\" \"aria2c.exe\" }} --enable-rpc\", {{ joinPath .chezmoi.homeDir \"Downloads\" | quote }}, \"Hide\")\n{{ end -}}",
@@ -10180,7 +10200,7 @@
     "zxc.20260408005117.2": "ll=eza --long --icons=auto --group --group-directories-first --time-style relative $*\nls=eza --icons=auto $*\nreboot=shutdown /t 0 /r $*\npoweroff=shutdown /t 0 /s $*\n{{ if lookPath \"nircmd\" -}}\nscroff=nircmd monitor off $*\n{{ end -}}\nscoop-update=scoop update * && scoop cache remove * && scoop cleanup *\nunlock-keepassxc=sh -c \"gopass show -o keepassxc/main | keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir \"syncthing\" \"keepassxc\" \"main.kdbx\" | replace \"\\\\\" \"/\" }} &\"",
     "zxc.20260201140523.1": "<< dos >>\n{{ if lookPath \"gitui\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260130233132.1": "<< dos >>\n{{ if lookPath \"alacritty\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260128002742.1": "<< dos >>\n@others\n{{ end -}}\n",
+    "zxc.20260128002742.1": "<< dos >>\n<< os >>\n@others\n{{ end -}}\n",
     "zxc.20260214105528.1": "<< dos >>\n{{ if lookPath \"hx\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260214142543.1": "<< dos >>\n{{ if lookPath \"hx\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260215234634.1": "<< dos >>\n{{ if lookPath \"qutebrowser\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -10368,7 +10388,7 @@
       "_mod_time": 1776434513.068
     },
     "User.20260226001402.1": {
-      "_mod_time": 1777888864.936
+      "_mod_time": 1777891714.922
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1777891402.212
@@ -10398,7 +10418,7 @@
       "_mod_time": 1777179946.871
     },
     "User.20260301202336.1": {
-      "_mod_time": 1777658593.498
+      "_mod_time": 1777892448.149
     },
     "zxc.20260327184129.1": {
       "_mod_time": 1777179946.876
@@ -10662,7 +10682,7 @@
       "_mod_time": 1777385863.235
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1777888741.255
+      "_mod_time": 1777892605.743
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1777302969.518
