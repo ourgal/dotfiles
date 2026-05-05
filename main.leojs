@@ -9436,7 +9436,7 @@
     "zxc.20260505102132.1": "<< unix >>\n{{ if or (lookPath \"code\") (lookPath \"code-oss\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260221011837.1": "#!{{lookPath \"bash\"}}\n",
     "zxc.20260505102603.1": "set -euo pipefail",
-    "zxc.20260505102443.1": "{{ $code := lookPath \"code\" -}}\n{{ if lookPath \"code-oss\" -}}\n{{ $code = lookPath \"code-oss\" -}}\n{{ end -}}\n{{ $code }} --update-extensions\nextensions=(\n    @others\n    << vscode >>\n    )\nfor e in $extensions; do\n    {{ $code }} --install-extension \"$e\"\ndone",
+    "zxc.20260505102443.1": "{{ $code := lookPath \"code\" -}}\n{{ if lookPath \"code-oss\" -}}\n{{ $code = lookPath \"code-oss\" -}}\n{{ end -}}\n{{ $code }} --update-extensions\nextensions=(\n    @others\n    << vscode >>\n    )\nfor e in \"${extensions[@]}\"; do\n    {{ $code }} --install-extension \"$e\"\ndone",
     "zxc.20260202215023.1": "<< dos >>\n{{ if lookPath \"7z\" -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202215044.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"7zip\" \"current\" \"install-context.reg\" | quote }}",
     "zxc.20260202215408.1": "<< dos >>\n{{ if lookPath \"git\" -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}",
@@ -10583,7 +10583,7 @@
       "_mod_time": 1777189908.148
     },
     "zxc.20260505102132.1": {
-      "_mod_time": 1777949676.029
+      "_mod_time": 1777949820.991
     },
     "zxc.20260202215023.1": {
       "_mod_time": 1776434513.068
