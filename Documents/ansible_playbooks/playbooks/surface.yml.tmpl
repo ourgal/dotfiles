@@ -114,7 +114,6 @@
           - xorg
           - lemurs
           - lightdm
-          - dot-xsession
           - noto-fonts-ttf
           - noto-fonts-cjk
           - nerd-fonts-symbols-ttf
@@ -123,6 +122,19 @@
           - intel-ucode
           - libva-utils
           - python3-pipx
+    - name: Uninstall packages
+      tags:
+        - pkg
+        - xbps
+      become: true
+      when:
+        - ansible_facts.os_family == "Void"
+      environment:
+        XBPS_ARCH: "{{ ansible_facts.machine }}"
+      community.general.xbps:
+        state: absent
+        name:
+          - dot-xsession
     - name: Setup pip mirror
       when:
         - ansible_facts.system == "Linux"
