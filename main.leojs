@@ -2418,6 +2418,25 @@
                                   "vh": "content"
                                 }
                               ]
+                            },
+                            {
+                              "gnx": "zxc.20260505141849.1",
+                              "vh": "@clean run_onchange_after_install_vim_plugins.sh.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "User.20260225203941.1"
+                                },
+                                {
+                                  "gnx": "User.20260221011837.1"
+                                },
+                                {
+                                  "gnx": "zxc.20260505102603.1"
+                                },
+                                {
+                                  "gnx": "zxc.20260505142153.1",
+                                  "vh": "content"
+                                }
+                              ]
                             }
                           ]
                         },
@@ -9473,8 +9492,10 @@
     "User.20260308215626.4": "{{ $app := \"librewolf\" -}}\n{{ $name := printf \"%s (Scoop)\" ($app | title) -}}\n{{ $reg_name := printf \"Scoop%sHTM\" ($app | title) -}}\n{{ $user := \"User\" -}}\n{{ $bin_path := lookPath $app -}}\n{{ $icon := print (joinPath .chezmoi.homeDir \"scoop\" \"apps\" $app \"current\" \"librewolf-portable.exe\") \",0\" | quote }}\nNew-Item {{ $app }}.reg -type file\n$contentToAdd = @\"\nWindows Registry Editor Version 5.00\n\n\n[HKEY_CURRENT_USER\\SOFTWARE\\RegisteredApplications]\n{{ $name | quote }}=\"Software\\\\Clients\\\\StartMenuInternet\\\\{{ $name }}\\\\Capabilities\"\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\shell\\open\\command]\n\"\"={{ $bin_path | quote | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\DefaultIcon]\n\"\"={{ $icon }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities\\FileAssociations]\n\".html\"={{ $reg_name | quote }}\n\".htm\"={{ $reg_name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities\\URLAssociations]\n\"https\"={{ $reg_name | quote }}\n\"http\"={{ $reg_name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}\\Capabilities]\n\"ApplicationName\"={{ $name | quote }}\n\"ApplicationIcon\"={{ $icon }}\n\"ApplicationDescription\"={{ $app | title | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Clients\\StartMenuInternet\\{{ $name }}]\n\"\"={{ $name | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}\\shell\\open\\command]\n\"\"={{ print ($bin_path | quote) \" %1\" | quote }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}\\Application]\n; Name in Dialog\n\"ApplicationName\"={{ $name | quote }}\n\"ApplicationDescription\"=\"It's {{ $app | title }}.\"\n\"ApplicationIcon\"={{ $icon }}\n\n[HKEY_CURRENT_USER\\SOFTWARE\\Classes\\{{ $reg_name }}]\n\"\"={{ $name | quote }}\n\"@\n\n Add-Content {{ $app }}.reg $contentToAdd\n\nreg import .\\{{ $app }}.reg\nrm .\\{{ $app }}.reg\n",
     "zxc.20260317085009.1": "<< dos >>\n{{ if and (lookPath \"chromium\") (eq .chezmoi.hostname \"work\") -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260317085321.1": "{{ $scoop_persist := joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"deskflow\" -}}\n{{ $conf := joinPath $scoop_persist \"settings\" \"deskflow-server.conf\" -}}\n{{ $cert := joinPath $scoop_persist \"settings\" \"tls\" \"deskflow.pem\" -}}\n{{ $trusted := joinPath $scoop_persist \"settings\" \"tls\" \"trusted-client\" -}}\n\n# {{ include $conf | sha256sum }}\n# {{ include $cert | sha256sum }}\n# {{ include $trusted | sha256sum }}\n\nmkdir \"C:/ProgramData/Deskflow/tls\" -ErrorAction SilentlyContinue\ncp {{ $conf }} \"C:/ProgramData/Deskflow/\"\ncp {{ $cert }} \"C:/ProgramData/Deskflow/tls/\"\ncp {{ $trusted }} \"C:/ProgramData/Deskflow/tls/\"\n",
-    "zxc.20260318203351.1": "<< dos >>\n{{ if and ( lookPath \"vim\" ) (stat (joinPath .chezmoi.homeDir \".config\" \"git\" \"config\")) -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260318203351.1": "<< dos >>\n{{ if and (lookPath \"vim\") (stat (joinPath .chezmoi.homeDir \".config\" \"git\" \"config\")) -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260318203506.1": "{{ $file_content := include (joinPath .chezmoi.homeDir \"vimfiles\" \"import\" \"plugins.vim\") | splitList \"\\n\" -}}\n{{ $sum := list -}}\n{{ range $file_content -}}\n{{ if hasPrefix \"Plug\" . -}}\n{{ $sum = (. | split \"'\")._1 | append $sum -}}\n{{ end -}}\n{{ end -}}\n# {{ $sum | join \"\" | sha256sum }}\nvim -c \"PlugClean|PlugUpdate|qa!\"",
+    "zxc.20260505141849.1": "<< unix >>\n{{ if and (lookPath \"vim\") (stat (joinPath .chezmoi.homeDir \".config\" \"git\" \"config\")) -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260505142153.1": "{{ $file_content := include (joinPath .chezmoi.homeDir \".vim\" \"import\" \"plugins.vim\") | splitList \"\\n\" -}}\n{{ $sum := list -}}\n{{ range $file_content -}}\n{{ if hasPrefix \"Plug\" . -}}\n{{ $sum = (. | split \"'\")._1 | append $sum -}}\n{{ end -}}\n{{ end -}}\n# {{ $sum | join \"\" | sha256sum }}\nvim -c \"PlugClean|PlugUpdate|qa!\"",
     "zxc.20260323195318.1": "<< dos >>\n<< strict >>\n@others\n{{ end -}}",
     "zxc.20260323195340.1": "Set-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\VisualEffects' -Name 'VisualFXSetting' -Value 1",
     "zxc.20260329102210.1": "<< dos >>\n<< strict >>\n@others\n{{ end -}}",
@@ -10490,25 +10511,25 @@
       "_mod_time": 1777713442.484
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1777906073.3720906
+      "_mod_time": 1777906073.372
     },
     "zxc.20260125143959.1": {
-      "_mod_time": 1777906073.3720906
+      "_mod_time": 1777906073.372
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1777713442.4872582
+      "_mod_time": 1777713442.487
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1777713442.487
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1777713442.4872582
+      "_mod_time": 1777713442.487
     },
     "zxc.20260429111940.1": {
-      "_mod_time": 1777713442.4872582
+      "_mod_time": 1777713442.487
     },
     "zxc.20260429145437.1": {
-      "_mod_time": 1777713442.4872582
+      "_mod_time": 1777713442.487
     },
     "zxc.20260427000037.1": {
       "_mod_time": 1777713442.487
@@ -10583,7 +10604,7 @@
       "_mod_time": 1777950138.7383473
     },
     "zxc.20260505102132.1": {
-      "_mod_time": 1777950138.7383473
+      "_mod_time": 1777950138.738
     },
     "zxc.20260202215023.1": {
       "_mod_time": 1777713442.464
@@ -10601,7 +10622,7 @@
       "_mod_time": 1777952058.268
     },
     "User.20260220214558.1": {
-      "_mod_time": 1777952105.233
+      "_mod_time": 1777952096.194
     },
     "User.20260217214851.1": {
       "_mod_time": 1777713442.465
@@ -10637,7 +10658,10 @@
       "_mod_time": 1777713442.465
     },
     "zxc.20260318203351.1": {
-      "_mod_time": 1777713442.465
+      "_mod_time": 1777962131.716
+    },
+    "zxc.20260505141849.1": {
+      "_mod_time": 1777962131.735
     },
     "zxc.20260323195318.1": {
       "_mod_time": 1777713442.465
@@ -10685,7 +10709,7 @@
       "_mod_time": 1777713442.499
     },
     "zxc.20260125162740.1": {
-      "_mod_time": 1777713442.4841998
+      "_mod_time": 1777713442.484
     },
     "zxc.20260126185048.1": {
       "_mod_time": 1777713442.479
@@ -10739,7 +10763,7 @@
       "_mod_time": 1777799307.094
     },
     "zxc.20260125161631.1": {
-      "_mod_time": 1777713442.5013232
+      "_mod_time": 1777713442.501
     },
     "User.20260216185314.1": {
       "_mod_time": 1777713442.502
@@ -10769,7 +10793,7 @@
       "_mod_time": 1777896574.427
     },
     "zxc.20260504000649.1": {
-      "_mod_time": 1777827566.629
+      "_mod_time": 1777824466.425
     },
     "zxc.20260503225115.1": {
       "_mod_time": 1777822932.207
@@ -10784,7 +10808,7 @@
       "_mod_time": 1777955871.972
     },
     "zxc.20260505105255.1": {
-      "_mod_time": 1777954901.5400817
+      "_mod_time": 1777954901.54
     },
     "zxc.20260502183455.1": {
       "_mod_time": 1777790600.038

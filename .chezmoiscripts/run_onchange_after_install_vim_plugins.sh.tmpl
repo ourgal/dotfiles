@@ -1,0 +1,15 @@
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if and (lookPath "vim") (stat (joinPath .chezmoi.homeDir ".config" "git" "config")) -}}
+#!{{lookPath "bash"}}
+set -euo pipefail
+{{ $file_content := include (joinPath .chezmoi.homeDir ".vim" "import" "plugins.vim") | splitList "\n" -}}
+{{ $sum := list -}}
+{{ range $file_content -}}
+{{ if hasPrefix "Plug" . -}}
+{{ $sum = (. | split "'")._1 | append $sum -}}
+{{ end -}}
+{{ end -}}
+# {{ $sum | join "" | sha256sum }}
+vim -c "PlugClean|PlugUpdate|qa!"
+{{ end -}}
+{{ end -}}
