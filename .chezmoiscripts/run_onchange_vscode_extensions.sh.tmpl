@@ -7,7 +7,7 @@ set -euo pipefail
 {{ $code = lookPath "code-oss" -}}
 {{ end -}}
 {{ $code }} --update-extensions
-$extensions = (
+extensions=(
     "tamasfe.even-better-toml"
     "carlos-algms.make-task-provider"
     "vscodevim.vim"
