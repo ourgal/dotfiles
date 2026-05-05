@@ -113,6 +113,7 @@
           - xfce4-battery-plugin
           - xorg
           - lemurs
+          - lightdm
           - dot-xsession
           - noto-fonts-ttf
           - noto-fonts-cjk
@@ -209,10 +210,20 @@
       become: true
       when:
         - ansible_facts.os_family == "Void"
-      ansible.builtin.command: "ln -sf /etc/sv/{{ item }} /var/service"
+      ansible.builtin.file:
+        src: "/etc/sv/{{ item }}"
+        dest: /var/service
+      loop:
+        - "runsvdir-{{ username }}"
+        - lightdm
+    - name: Disable services
+      become: true
+      when:
+        - ansible_facts.os_family == "Void"
+      ansible.builtin.file:
+        path: "/var/service/{{ item }}"
       loop:
         - lemurs
-        - "runsvdir-{{ username }}"
     - name: Create pam lemurs
       become: true
       ansible.builtin.copy:
