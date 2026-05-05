@@ -1,5 +1,5 @@
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
-{{ if and ( stat (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom") ) (stat (joinPath .chezmoi.homeDir ".config" "doom" "config.el")) -}}
+{{ if stat (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom") -}}
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
