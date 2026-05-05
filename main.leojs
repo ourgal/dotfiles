@@ -10472,10 +10472,10 @@
     "zxc.20260503181421.1": "- name: Services\n  become: true\n  when:\n    << is void >>\n  block:\n    @others",
     "zxc.20260503181445.1": "- name: Create per user service folder\n  ansible.builtin.file:\n    dest: \"/etc/sv/runsvdir-{{ username }}\"\n    state: directory\n    mode: \"0755\"\n- name: Create run script\n  ansible.builtin.copy:\n    dest: \"/etc/sv/runsvdir-{{ username }}/run\"\n    mode: \"0755\"\n    content: |\n      #!/bin/sh\n\n      export USER=\"{{ username }}\"\n      export HOME=\"/home/{{ username }}\"\n\n      groups=\"$(id -Gn \"$USER\" | tr ' ' ':')\"\n      svdir=\"$HOME/service\"\n\n      exec chpst -u \"$USER:$groups\" runsvdir \"$svdir\"\n",
     "zxc.20260505164157.1": "- name: Create lemurs service folder\n  ansible.builtin.file:\n    dest: /etc/sv/lemurs\n    state: directory\n    mode: \"0755\"\n- name: Create run script\n  ansible.builtin.copy:\n    dest: /etc/sv/lemurs/run\n    mode: \"0755\"\n    content: |\n      #!/bin/sh\n      # /etc/sv/lemurs/run\n      # Start Lemurs on tty7 (via agetty) and, best-effort, switch to tty7 during boot.\n\n      # If we're on a real virtual terminal (VT) console: switch to tty7 so Lemurs is visible immediately.\n      if command -v fgconsole >/dev/null 2>&1 && command -v chvt >/dev/null 2>&1; then\n        cur=\"$(fgconsole 2>/dev/null || echo \"\")\"\n        if [ -n \"$cur\" ] && [ \"$cur\" != \"serial\" ] && [ \"$cur\" != \"7\" ]; then\n          chvt 7 2>/dev/null || true\n        fi\n      fi\n\n      # Protect tty7 from kernel printk messages so they don't overwrite Lemurs' TUI.\n      TERM=linux setterm --msg off </dev/tty7 >/dev/tty7 2>/dev/null || true\n\n      # Optional: clear tty7 once so old screen contents don't \"shine through\" into the UI.\n      TERM=linux setterm --clear=all </dev/tty7 >/dev/tty7 2>/dev/null || true\n\n      # Runit expects this script to exec a single foreground process.\n      # agetty attaches to /dev/tty7, sets TERM=linux, and starts Lemurs as the login program.\n      exec agetty --noissue --skip-login --login-program /usr/bin/lemurs tty7 linux",
-    "zxc.20260502191418.1": "- name: Enable services\n  become: true\n  when:\n    << is void >>\n  ansible.builtin.file:\n    src: \"/etc/sv/{{ item }}\"\n    dest: /var/service\n  loop:\n    @others",
+    "zxc.20260502191418.1": "- name: Enable services\n  become: true\n  when:\n    << is void >>\n  ansible.builtin.file:\n    src: \"/etc/sv/{{ item }}\"\n    dest: \"/var/service/{{ item }}\"\n    state: link\n  loop:\n    @others",
     "zxc.20260503182010.1": "- \"runsvdir-{{ username }}\"\n",
     "zxc.20260505171841.1": "- lightdm",
-    "zxc.20260505171719.1": "- name: Disable services\n  become: true\n  when:\n    << is void >>\n  ansible.builtin.file:\n    path: \"/var/service/{{ item }}\"\n  loop:\n    @others\n",
+    "zxc.20260505171719.1": "- name: Disable services\n  become: true\n  when:\n    << is void >>\n  ansible.builtin.file:\n    path: \"/var/service/{{ item }}\"\n    state: absent\n  loop:\n    @others\n",
     "zxc.20260502191430.1": "- lemurs",
     "zxc.20260505164627.1": "- name: Create pam lemurs\n  become: true\n  ansible.builtin.copy:\n    dest: /etc/pam.d/lemurs\n    mode: \"0644\"\n    content: |\n      #%PAM-1.0\n      auth        include    login\n      account     include    login\n      session     include    login\n      password    include    login",
     "zxc.20260505165225.1": "- name: Set lemurs config\n  become: true\n  ansible.builtin.lineinfile:\n    path: /etc/lemurs/config.toml\n    regexp: '^tty ='\n    line: tty = 7",
@@ -10982,7 +10982,7 @@
       "_mod_time": 1777896574.422
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1777972736.659
+      "_mod_time": 1777975353.329
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777713442.480156

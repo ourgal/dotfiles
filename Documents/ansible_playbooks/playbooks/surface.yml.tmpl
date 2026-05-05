@@ -212,7 +212,8 @@
         - ansible_facts.os_family == "Void"
       ansible.builtin.file:
         src: "/etc/sv/{{ item }}"
-        dest: /var/service
+        dest: "/var/service/{{ item }}"
+        state: link
       loop:
         - "runsvdir-{{ username }}"
         - lightdm
@@ -222,6 +223,7 @@
         - ansible_facts.os_family == "Void"
       ansible.builtin.file:
         path: "/var/service/{{ item }}"
+        state: absent
       loop:
         - lemurs
     - name: Create pam lemurs
