@@ -8454,10 +8454,6 @@
                                 {
                                   "gnx": "zxc.20260504203517.1",
                                   "vh": "<< is linux >>"
-                                },
-                                {
-                                  "gnx": "zxc.20260504203658.1",
-                                  "vh": "<< is macos >>"
                                 }
                               ]
                             },
@@ -8467,9 +8463,6 @@
                               "children": [
                                 {
                                   "gnx": "zxc.20260504203517.1"
-                                },
-                                {
-                                  "gnx": "zxc.20260504203658.1"
                                 },
                                 {
                                   "gnx": "zxc.20260501214336.2",
@@ -8538,7 +8531,12 @@
                               "children": [
                                 {
                                   "gnx": "zxc.20260505164627.1",
-                                  "vh": "lemurs"
+                                  "vh": "lemurs",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260504202810.1"
+                                    }
+                                  ]
                                 }
                               ]
                             },
@@ -8548,7 +8546,12 @@
                               "children": [
                                 {
                                   "gnx": "zxc.20260505165225.1",
-                                  "vh": "lemurs"
+                                  "vh": "lemurs",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260504202810.1"
+                                    }
+                                  ]
                                 }
                               ]
                             },
@@ -8556,6 +8559,9 @@
                               "gnx": "zxc.20260504220005.1",
                               "vh": "linuxbrew",
                               "children": [
+                                {
+                                  "gnx": "zxc.20260504203517.1"
+                                },
                                 {
                                   "gnx": "zxc.20260504220009.1",
                                   "vh": "install"
@@ -8568,9 +8574,6 @@
                               "children": [
                                 {
                                   "gnx": "zxc.20260504203517.1"
-                                },
-                                {
-                                  "gnx": "zxc.20260504203658.1"
                                 }
                               ]
                             },
@@ -8580,9 +8583,6 @@
                               "children": [
                                 {
                                   "gnx": "zxc.20260504203517.1"
-                                },
-                                {
-                                  "gnx": "zxc.20260504203658.1"
                                 }
                               ]
                             },
@@ -10487,10 +10487,9 @@
     "zxc.20260501221719.10": "- python3-pipx",
     "zxc.20260505184823.1": "- name: Uninstall packages\n  tags:\n    - pkg\n    - xbps\n  become: true\n  when:\n    << is void >>\n  environment:\n    XBPS_ARCH: \"{{ ansible_facts.machine }}\"\n  community.general.xbps:\n    state: absent\n    name:\n      @others",
     "zxc.20260505184847.1": "- dot-xsession",
-    "zxc.20260502144817.1": "- name: Setup pip mirror\n  when:\n    << is linux >>\n    << is macos >>\n  block:\n    - name: Create .pip folder\n      ansible.builtin.file:\n        dest: \"{{ ansible_facts.user_dir }}/.pip\"\n        state: directory\n    - name: Set pip config\n      ansible.builtin.copy:\n        dest: \"{{ ansible_facts.user_dir }}/.pip/pip.ini\"\n        content: |\n          [global]\n          index-url = https://mirrors.nju.edu.cn/pypi/web/simple/\n          [install]\n          trusted-host = mirrors.nju.edu.cn\n",
+    "zxc.20260502144817.1": "- name: Setup pip mirror\n  when:\n    << is linux >>\n  block:\n    - name: Create .pip folder\n      ansible.builtin.file:\n        dest: \"{{ ansible_facts.user_dir }}/.pip\"\n        state: directory\n    - name: Set pip config\n      ansible.builtin.copy:\n        dest: \"{{ ansible_facts.user_dir }}/.pip/pip.ini\"\n        content: |\n          [global]\n          index-url = https://mirrors.nju.edu.cn/pypi/web/simple/\n          [install]\n          trusted-host = mirrors.nju.edu.cn\n",
     "zxc.20260504203517.1": "- ansible_facts.system == \"Linux\"",
-    "zxc.20260504203658.1": "- ansible_facts.os_family == \"Darwin\"",
-    "zxc.20260501214336.1": "- name: Install pipx packages\n  tags: pipx\n  when:\n    << is linux >>\n    << is macos >>\n  community.general.pipx:\n    name: \"{{ item }}\"\n  loop:\n    @others",
+    "zxc.20260501214336.1": "- name: Install pipx packages\n  tags: pipx\n  when:\n    << is linux >>\n  community.general.pipx:\n    name: \"{{ item }}\"\n  loop:\n    @others",
     "zxc.20260501214336.2": "- jellyfin-mpv-shim",
     "zxc.20260502142949.1": "- leo",
     "zxc.20260502182120.1": "- advance-touch",
@@ -10502,12 +10501,12 @@
     "zxc.20260505171841.1": "- lightdm",
     "zxc.20260505171719.1": "- name: Disable services\n  become: true\n  when:\n    << is void >>\n  ansible.builtin.file:\n    path: \"/var/service/{{ item }}\"\n    state: absent\n  loop:\n    @others\n",
     "zxc.20260502191430.1": "- lemurs",
-    "zxc.20260505164627.1": "- name: Create pam lemurs\n  become: true\n  ansible.builtin.copy:\n    dest: /etc/pam.d/lemurs\n    mode: \"0644\"\n    content: |\n      #%PAM-1.0\n      auth        include    login\n      account     include    login\n      session     include    login\n      password    include    login",
-    "zxc.20260505165225.1": "- name: Set lemurs config\n  become: true\n  ansible.builtin.lineinfile:\n    path: /etc/lemurs/config.toml\n    regexp: '^tty ='\n    line: tty = 7",
-    "zxc.20260504220005.1": "- name: LinuxBrew\n  tags:\n    - pkg\n    - brew\n  environment:\n    PATH: \"/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}\"\n    HOMEBREW_BREW_GIT_REMOTE: \"https://mirror.nju.edu.cn/git/homebrew/brew.git\"\n  block:\n    @others",
+    "zxc.20260505164627.1": "- name: Create pam lemurs\n  become: true\n  when:\n    << is void >>\n  ansible.builtin.copy:\n    dest: /etc/pam.d/lemurs\n    mode: \"0644\"\n    content: |\n      #%PAM-1.0\n      auth        include    login\n      account     include    login\n      session     include    login\n      password    include    login",
+    "zxc.20260505165225.1": "- name: Set lemurs config\n  when:\n    << is void >>\n  become: true\n  ansible.builtin.lineinfile:\n    path: /etc/lemurs/config.toml\n    regexp: '^tty ='\n    line: tty = 7",
+    "zxc.20260504220005.1": "- name: LinuxBrew\n  tags:\n    - pkg\n    - brew\n  when:\n    << is linux >>\n  environment:\n    PATH: \"/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}\"\n    HOMEBREW_BREW_GIT_REMOTE: \"https://mirror.nju.edu.cn/git/homebrew/brew.git\"\n  block:\n    @others",
     "zxc.20260504220009.1": "- name: Check if Homebrew is installed\n  ansible.builtin.stat:\n    path: \"/home/linuxbrew/.linuxbrew/bin/brew\"\n  register: brew_stat\n- name: Create Homebrew directory\n  ansible.builtin.file:\n    path: \"/home/linuxbrew/.linuxbrew\"\n    state: directory\n    owner: \"{{ ansible_env.USER }}\"\n    group: \"{{ ansible_env.USER }}\"\n    mode: '0755'\n  become: true\n  when: not brew_stat.stat.exists\n- name: Install Homebrew\n  ansible.builtin.shell: |\n    curl -fsSL https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C /home/linuxbrew/.linuxbrew\n  when: not brew_stat.stat.exists",
-    "zxc.20260504195440.1": "- name: Set the system hostname\n  become: true\n  when:\n    << is linux >>\n    << is macos >>\n  ansible.builtin.hostname:\n    name: \"{{ hostname }}\"",
-    "zxc.20260503212032.1": "- name: Set user groups\n  become: true\n  when:\n    << is linux >>\n    << is macos >>\n  ansible.builtin.user:\n    name: \"{{ username }}\"\n    groups:\n      - '{{ \"input\" if ansible_facts.os_family == \"Void\" else omit }}'\n    append: true",
+    "zxc.20260504195440.1": "- name: Set the system hostname\n  become: true\n  when:\n    << is linux >>\n  ansible.builtin.hostname:\n    name: \"{{ hostname }}\"",
+    "zxc.20260503212032.1": "- name: Set user groups\n  become: true\n  when:\n    << is linux >>\n  ansible.builtin.user:\n    name: \"{{ username }}\"\n    groups:\n      - '{{ \"input\" if ansible_facts.os_family == \"Void\" else omit }}'\n    append: true",
     "zxc.20260501214447.1": "- name: Regenerate initramfs\n  become: true\n  when:\n    << is void >> \n  ansible.builtin.command:\n    cmd: \"xbps-reconfigure --force linux{{ ansible_facts.kernel | regex_search('\\\\d+\\\\.\\\\d+') }}\"\n  changed_when: true\n",
     "zxc.20260501214541.1": "- name: Download xlocate data\n  changed_when: true\n  when:\n    << is void >>\n  ansible.builtin.command:\n    cmd: xlocate -S\n",
     "zxc.20260423143848.2": "@others\n",
@@ -10578,7 +10577,7 @@
       "_mod_time": 1777713442.484
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1777975995.457
+      "_mod_time": 1777978566.558
     },
     "zxc.20260125143959.1": {
       "_mod_time": 1777906073.372
@@ -10689,7 +10688,7 @@
       "_mod_time": 1777952058.268
     },
     "User.20260220214558.1": {
-      "_mod_time": 1777952096.194
+      "_mod_time": 1777952105.233
     },
     "User.20260217214851.1": {
       "_mod_time": 1777713442.465
@@ -10728,7 +10727,7 @@
       "_mod_time": 1777967012.401
     },
     "zxc.20260505141849.1": {
-      "_mod_time": 1777962131.735
+      "_mod_time": 1777967012.414
     },
     "zxc.20260323195318.1": {
       "_mod_time": 1777713442.465
@@ -10860,7 +10859,7 @@
       "_mod_time": 1777896574.427
     },
     "zxc.20260504000649.1": {
-      "_mod_time": 1777824466.425
+      "_mod_time": 1777827566.629
     },
     "zxc.20260503225115.1": {
       "_mod_time": 1777822932.207
@@ -10872,22 +10871,22 @@
       "_mod_time": 1777822517.0613644
     },
     "zxc.20260505104942.1": {
-      "_mod_time": 1777955871.972
+      "_mod_time": 1777967012.446
     },
     "zxc.20260505105255.1": {
-      "_mod_time": 1777954901.54
+      "_mod_time": 1777967012.43
     },
     "zxc.20260502183455.1": {
       "_mod_time": 1777790600.038
     },
     "zxc.20260502183056.1": {
-      "_mod_time": 1777976772.966
+      "_mod_time": 1777978566.558
     },
     "zxc.20260502183253.1": {
       "_mod_time": 1777790600.038
     },
     "zxc.20260505181144.1": {
-      "_mod_time": 1777975995.691
+      "_mod_time": 1777978566.558
     },
     "User.20260215182442.1": {
       "_mod_time": 1777891060.651
@@ -10935,7 +10934,7 @@
       "_mod_time": 1777718155.12
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1777976772.987
+      "_mod_time": 1777978566.573
     },
     "zxc.20260201214114.1": {
       "_mod_time": 1777713442.503
@@ -11010,7 +11009,7 @@
       "_mod_time": 1777896574.422
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1777978171.285
+      "_mod_time": 1777983666.226
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777713442.480156
