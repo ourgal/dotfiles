@@ -9401,7 +9401,7 @@
     "zxc.20260125162302.1": "[keys.normal.space.l]\nf = \":fmt\"",
     "zxc.20260125162324.1": "[keys.select.g]\nc = \"toggle_comments\"\nz = [\"split_selection_on_newline\", \":sort\", \"keep_primary_selection\"]\n",
     "zxc.20260201203315.1": "armor\ncert-digest-algo SHA512\ncharset utf-8\ndefault-preference-list SHA512 SHA384 SHA256 AES256 AES192 AES ZLIB BZIP2 ZIP Uncompressed\nfixed-list-mode\nkeyid-format 0xlong\nlist-options show-uid-validity\nno-comments\nno-emit-version\nno-greeting\nno-symkey-cache\npersonal-cipher-preferences AES256 AES192 AES\npersonal-compress-preferences ZLIB BZIP2 ZIP Uncompressed\npersonal-digest-preferences SHA512 SHA384 SHA256\nrequire-cross-certification\nrequire-secmem\ns2k-cipher-algo AES256\ns2k-digest-algo SHA512\nthrow-keyids\nuse-agent\nverify-options show-uid-validity\nwith-fingerprint",
-    "zxc.20260201203539.1": "{{ if .my.git.sign.gpg -}}\n{{ if eq .chezmoi.os \"windows\" -}}\nenable-win32-openssh-support\n{{ end -}}\nenable-ssh-support\n{{ end -}}\ngrab\n",
+    "zxc.20260201203539.1": "{{ if .my.git.sign.gpg -}}\n{{ if eq .chezmoi.os \"windows\" -}}\nenable-win32-openssh-support\n{{ end -}}\nenable-ssh-support\n{{ end -}}\ngrab\n{{ if lookPath \"pinentry-gtk-2\" -}}\npinentry-program {{ lookPath \"pinentry-gtk-2\" }}\n{{ end -}}",
     "zxc.20260402230749.1": "[mounts]\n\tpath = {{ env \"LOCALAPPDATA\" }}\\gopass\\stores\\root\n[core]\n\tautosync = false",
     "zxc.20260202195341.1": "af=%11%scaletempo2\nalang=%16%ja,jp,jpn,en,eng\naudio-file-auto=%5%fuzzy\naudio-pitch-correction=%3%yes\nbackground-color=%7%#000000\nblend-subtitles=%5%video\nforce-seekable=%3%yes\nfullscreen=%3%yes\nhwdec=%4%auto\nkeep-open=%6%always\nosd-back-color=%7%#282a2e\nosd-border-color=%7%#282a2e\nosd-color=%7%#c5c8c6\nosd-font=%11%DejaVu Sans\nosd-shadow-color=%7%#1d1f21\npause=%2%no\nsave-position-on-quit=%3%yes\nslang=%46%en,eng,chs,sc,zh,chi,zho,zh-Hant,zh-CN,zh-Hans\nsub-auto=%5%fuzzy\nsub-font=%11%DejaVu Sans\nvolume=%3%100\nvolume-max=%3%200",
     "User.20260228232118.1": "music_directory {{ joinPath .chezmoi.homeDir \"Music\" | quote }}\nplaylist_directory {{ joinPath (env \"APPDATA\") \"mpd\" \"playlist\" | quote }}\ndb_file {{ joinPath (env \"APPDATA\") \"mpd\" \"tag_cache\" | quote }}\nstate_file {{ joinPath (env \"APPDATA\") \"mpd\" \"state\" | quote }}\nsticker_file {{ joinPath (env \"APPDATA\") \"mpd\" \"sticker.sql\" | quote }}\n\nauto_update \"yes\"\n\naudio_output {\n    type \"winmm\"\n    name \"Windows Speakers\"\n}",
@@ -10866,7 +10866,7 @@
       "_mod_time": 1777790600.038
     },
     "zxc.20260502183056.1": {
-      "_mod_time": 1777790600.036
+      "_mod_time": 1777976772.966
     },
     "zxc.20260502183253.1": {
       "_mod_time": 1777790600.038
@@ -10920,7 +10920,7 @@
       "_mod_time": 1777718155.12
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1777718158.694
+      "_mod_time": 1777976772.987
     },
     "zxc.20260201214114.1": {
       "_mod_time": 1777713442.503
