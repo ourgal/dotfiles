@@ -1,6 +1,7 @@
 {{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
 {{ if and ( stat (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom") ) (stat (joinPath .chezmoi.homeDir ".config" "doom" "config.el")) -}}
 #!{{lookPath "sh"}}
+set -euo pipefail
 {{ $sum := list }}
 {{ $homeDir := .chezmoi.homeDir -}}
 {{ range (list "config" "packages" "init") -}}
