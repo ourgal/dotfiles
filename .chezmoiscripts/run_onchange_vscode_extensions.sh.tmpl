@@ -1,6 +1,6 @@
 {{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
 {{ if or (lookPath "code") (lookPath "code-oss") -}}
-#!{{lookPath "sh"}}
+#!{{lookPath "bash"}}
 set -euo pipefail
 {{ $code := lookPath "code" -}}
 {{ if lookPath "code-oss" -}}
