@@ -1991,6 +1991,35 @@
                                   ]
                                 }
                               ]
+                            },
+                            {
+                              "gnx": "zxc.20260505102132.1",
+                              "vh": "@clean run_onchange_vscode_extensions.sh.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "User.20260221011837.1",
+                                  "vh": "shebang"
+                                },
+                                {
+                                  "gnx": "zxc.20260505102603.1",
+                                  "vh": "strict"
+                                },
+                                {
+                                  "gnx": "zxc.20260505102443.1",
+                                  "vh": "content",
+                                  "children": [
+                                    {
+                                      "gnx": "User.20260220153055.1"
+                                    },
+                                    {
+                                      "gnx": "User.20260215215421.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "User.20260225203941.1"
+                                }
+                              ]
                             }
                           ]
                         },
@@ -2114,8 +2143,10 @@
                                   "gnx": "User.20260225205841.1"
                                 },
                                 {
-                                  "gnx": "User.20260221011837.1",
-                                  "vh": "shebang"
+                                  "gnx": "User.20260221011837.1"
+                                },
+                                {
+                                  "gnx": "zxc.20260505102603.1"
                                 },
                                 {
                                   "gnx": "User.20260220214646.1",
@@ -9356,6 +9387,10 @@
     "User.20260220154010.1": "\"ms-vscode-remote.remote-wsl\"",
     "User.20260220153119.1": "\"danprince.vsnetrw\"",
     "zxc.20260418190413.1": "\"ms-playwright.playwright\"",
+    "zxc.20260505102132.1": "<< unix >>\n{{ if or (lookPath \"code\") (lookPath \"code-oss\") -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260221011837.1": "#!{{lookPath \"sh\"}}\n",
+    "zxc.20260505102603.1": "set -euo pipefail",
+    "zxc.20260505102443.1": "{{ $code := lookPath \"code\" -}}\n{{ if lookPath \"code-oss\" -}}\n{{ $code = lookPath \"code-oss\" -}}\n{{ end -}}\n{{ $code }} --update-extensions\n$extensions = (\n    @others\n    << vscode >>\n    )\nfor e in $extensions; do\n    {{ $code }} --install-extension \"$e\"\ndone",
     "zxc.20260202215023.1": "<< dos >>\n{{ if lookPath \"7z\" -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202215044.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"7zip\" \"current\" \"install-context.reg\" | quote }}",
     "zxc.20260202215408.1": "<< dos >>\n{{ if lookPath \"git\" -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}",
@@ -9368,7 +9403,6 @@
     "User.20260225205841.1": "{{ if and ( stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") ) (stat (joinPath .chezmoi.homeDir \".config\" \"doom\" \"config.el\")) -}}\n",
     "User.20260217202404.1": "{{ $sum := list }}\n{{ $homeDir := .chezmoi.homeDir -}}\n{{ range (list \"config\" \"packages\" \"init\") -}}\n{{ $sum = include (joinPath $homeDir \".config\" \"doom\" (print . \".el\")) | append $sum -}}\n{{ end -}}\n# {{ $sum | join \"\" | sha256sum }}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom.ps1\" ) }} sync",
     "User.20260220214558.1": "<< unix >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260221011837.1": "#!{{lookPath \"sh\"}}\n",
     "User.20260220214646.1": "{{ $sum := list }}\n{{ $homeDir := .chezmoi.homeDir -}}\n{{ range (list \"config\" \"packages\" \"init\") -}}\n{{ $sum = include (joinPath $homeDir \".config\" \"doom\" (print . \".el\")) | append $sum -}}\n{{ end -}}\n# {{ $sum | join \"\" | sha256sum }}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\" ) }} sync",
     "User.20260217214851.1": "<< dos >>\n{{ if lookPath \"msys2\" -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260217214859.1": "# (Get-Item {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"msys2\" \"current\" }}).CreationTime\nmsys2 -c \"sed -i 's#https\\?://mirror.msys2.org/#https://mirror.nju.edu.cn/msys2/#g' /etc/pacman.d/mirrorlist*\"\nmsys2 -c \"yes | pacman -Syu\"\nmsys2 -c \"yes | pacman -S --needed {{ .my.msys2.packages | join \" \" }}\"\nmsys2 -shell fish -c \"curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher\"",
@@ -10416,7 +10450,7 @@
       "_mod_time": 1777612767.635
     },
     "zxc.20260125164142.1": {
-      "_mod_time": 1777398596.506248
+      "_mod_time": 1777398596.506
     },
     "zxc.20260318214950.1": {
       "_mod_time": 1777612767.634
@@ -10428,7 +10462,7 @@
       "_mod_time": 1777612767.635
     },
     "zxc.20260427000037.1": {
-      "_mod_time": 1777219283.7184463
+      "_mod_time": 1777219283.718
     },
     "zxc.20260427224318.1": {
       "_mod_time": 1777301694.728
@@ -10499,6 +10533,9 @@
     "User.20260220151435.2": {
       "_mod_time": 1777189908.148
     },
+    "zxc.20260505102132.1": {
+      "_mod_time": 1777948232.524
+    },
     "zxc.20260202215023.1": {
       "_mod_time": 1776434513.068
     },
@@ -10515,7 +10552,7 @@
       "_mod_time": 1776434513.068
     },
     "User.20260220214558.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1777947987.657
     },
     "User.20260217214851.1": {
       "_mod_time": 1776851988.666
@@ -10599,7 +10636,7 @@
       "_mod_time": 1777179946.876
     },
     "zxc.20260125162740.1": {
-      "_mod_time": 1777179946.8623855
+      "_mod_time": 1777179946.862
     },
     "zxc.20260126185048.1": {
       "_mod_time": 1777179946.853
@@ -10656,7 +10693,7 @@
       "_mod_time": 1777302969.492
     },
     "User.20260216185314.1": {
-      "_mod_time": 1777179946.8833754
+      "_mod_time": 1777179946.883
     },
     "User.20260217223023.1": {
       "_mod_time": 1777713442.5006313
