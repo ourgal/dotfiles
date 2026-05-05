@@ -1,7 +1,8 @@
 {{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
-{{ if and ( stat (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom") ) (stat (joinPath .chezmoi.homeDir ".config" "doom" "config.el")) -}}
+{{ if stat (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom") -}}
 #!{{lookPath "bash"}}
 set -euo pipefail
+{{ if stat (joinPath .chezmoi.homeDir ".config" "doom" "config.el" -)}}
 {{ $sum := list }}
 {{ $homeDir := .chezmoi.homeDir -}}
 {{ range (list "config" "packages" "init") -}}
@@ -9,5 +10,6 @@ set -euo pipefail
 {{ end -}}
 # {{ $sum | join "" | sha256sum }}
 {{ (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom" ) }} sync
+{{ end -}}
 {{ end -}}
 {{ end -}}
