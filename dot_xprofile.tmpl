@@ -1,0 +1,9 @@
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if stat "/home/linuxbrew/.linuxbrew" -}}
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+export HOMEBREW_BREW_GIT_REMOTE="https://mirror.nju.edu.cn/git/homebrew/brew.git"
+{{ end -}}
+export EDITOR={{ template "editor" }}
+export PATH=~/.local/bin:$PATH
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+{{ end -}}
