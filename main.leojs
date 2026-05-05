@@ -9449,7 +9449,7 @@
     "User.20260225205841.1": "{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n",
     "User.20260217202404.1": "{{ if stat (joinPath .chezmoi.homeDir \".config\" \"doom\" \"config.el\") -}}\n{{ $sum := list }}\n{{ $homeDir := .chezmoi.homeDir -}}\n{{ range (list \"config\" \"packages\" \"init\") -}}\n{{ $sum = include (joinPath $homeDir \".config\" \"doom\" (print . \".el\")) | append $sum -}}\n{{ end -}}\n# {{ $sum | join \"\" | sha256sum }}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom.ps1\" ) }} sync\n{{ end -}}",
     "User.20260220214558.1": "<< unix >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260220214646.1": "{{ if stat (joinPath .chezmoi.homeDir \".config\" \"doom\" \"config.el\" -)}}\n{{ $sum := list }}\n{{ $homeDir := .chezmoi.homeDir -}}\n{{ range (list \"config\" \"packages\" \"init\") -}}\n{{ $sum = include (joinPath $homeDir \".config\" \"doom\" (print . \".el\")) | append $sum -}}\n{{ end -}}\n# {{ $sum | join \"\" | sha256sum }}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\" ) }} sync\n{{ end -}}",
+    "User.20260220214646.1": "{{ if stat (joinPath .chezmoi.homeDir \".config\" \"doom\" \"config.el\") -}}\n{{ $sum := list }}\n{{ $homeDir := .chezmoi.homeDir -}}\n{{ range (list \"config\" \"packages\" \"init\") -}}\n{{ $sum = include (joinPath $homeDir \".config\" \"doom\" (print . \".el\")) | append $sum -}}\n{{ end -}}\n# {{ $sum | join \"\" | sha256sum }}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\" ) }} sync\n{{ end -}}",
     "User.20260217214851.1": "<< dos >>\n{{ if lookPath \"msys2\" -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260217214859.1": "# (Get-Item {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"msys2\" \"current\" }}).CreationTime\nmsys2 -c \"sed -i 's#https\\?://mirror.msys2.org/#https://mirror.nju.edu.cn/msys2/#g' /etc/pacman.d/mirrorlist*\"\nmsys2 -c \"yes | pacman -Syu\"\nmsys2 -c \"yes | pacman -S --needed {{ .my.msys2.packages | join \" \" }}\"\nmsys2 -shell fish -c \"curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher\"",
     "zxc.20260422085228.1": "<< dos >>\n{{ if lookPath \"msys2\" -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}",
@@ -10601,7 +10601,7 @@
       "_mod_time": 1777952058.268
     },
     "User.20260220214558.1": {
-      "_mod_time": 1777951935.267
+      "_mod_time": 1777952105.233
     },
     "User.20260217214851.1": {
       "_mod_time": 1776851988.666

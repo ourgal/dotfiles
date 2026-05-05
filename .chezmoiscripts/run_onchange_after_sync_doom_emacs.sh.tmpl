@@ -2,7 +2,7 @@
 {{ if stat (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom") -}}
 #!{{lookPath "bash"}}
 set -euo pipefail
-{{ if stat (joinPath .chezmoi.homeDir ".config" "doom" "config.el" -)}}
+{{ if stat (joinPath .chezmoi.homeDir ".config" "doom" "config.el") -}}
 {{ $sum := list }}
 {{ $homeDir := .chezmoi.homeDir -}}
 {{ range (list "config" "packages" "init") -}}
