@@ -279,28 +279,6 @@
                           "vh": "debian origin"
                         },
                         {
-                          "gnx": "zxc.20260504224746.1",
-                          "vh": "env",
-                          "children": [
-                            {
-                              "gnx": "zxc.20260504224746.2",
-                              "vh": "linuxbrew"
-                            },
-                            {
-                              "gnx": "zxc.20260504224746.3",
-                              "vh": "EDITOR"
-                            },
-                            {
-                              "gnx": "zxc.20260504224746.4",
-                              "vh": "PATH"
-                            },
-                            {
-                              "gnx": "zxc.20260504224746.5",
-                              "vh": "SSH_AUTH_SOCK"
-                            }
-                          ]
-                        },
-                        {
                           "gnx": "zxc.20260125143811.1",
                           "vh": "bash readline",
                           "children": [
@@ -4992,6 +4970,37 @@
               ]
             }
           ]
+        },
+        {
+          "gnx": "zxc.20260505181144.1",
+          "vh": "@clean dot_xprofile.tmpl",
+          "children": [
+            {
+              "gnx": "zxc.20260505181312.1",
+              "vh": "env",
+              "children": [
+                {
+                  "gnx": "zxc.20260505181312.2",
+                  "vh": "linuxbrew"
+                },
+                {
+                  "gnx": "zxc.20260505181312.3",
+                  "vh": "EDITOR"
+                },
+                {
+                  "gnx": "zxc.20260505181312.4",
+                  "vh": "PATH"
+                },
+                {
+                  "gnx": "zxc.20260505181312.5",
+                  "vh": "SSH_AUTH_SOCK"
+                }
+              ]
+            },
+            {
+              "gnx": "User.20260225203941.1"
+            }
+          ]
         }
       ]
     },
@@ -9259,10 +9268,6 @@
     "zxc.20260504185129.1": "{{ $os := \"\" -}}\n{{ if eq .chezmoi.os \"windows\" -}}\n{{ $os = .chezmoi.os -}}\n{{ else if eq .chezmoi.os \"linux\" -}}\n{{ $os = .chezmoi.osRelease.id -}}\n{{ end -}}",
     "User.20260225203941.1": "{{ if or (eq .chezmoi.os \"linux\") (eq .chezmoi.os \"android\") -}}\n",
     "zxc.20260125143032.1": "# ~/.bashrc: executed by bash(1) for non-login shells.\n# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)\n# for examples\n\n# If not running interactively, don't do anything\ncase $- in\n    *i*) ;;\n      *) return;;\nesac\n\n# don't put duplicate lines or lines starting with space in the history.\n# See bash(1) for more options\nHISTCONTROL=ignoreboth\n\n# append to the history file, don't overwrite it\nshopt -s histappend\n\n# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)\nHISTSIZE=1000\nHISTFILESIZE=2000\n\n# check the window size after each command and, if necessary,\n# update the values of LINES and COLUMNS.\nshopt -s checkwinsize\n\n# If set, the pattern \"**\" used in a pathname expansion context will\n# match all files and zero or more directories and subdirectories.\n#shopt -s globstar\n\n# make less more friendly for non-text input files, see lesspipe(1)\n#[ -x /usr/bin/lesspipe ] && eval \"$(SHELL=/bin/sh lesspipe)\"\n\n{{ if and (eq .chezmoi.os \"linux\") (eq .chezmoi.osRelease.id \"debian\") -}}\n# set variable identifying the chroot you work in (used in the prompt below)\nif [ -z \"''\\${debian_chroot:-}\" ] && [ -r /etc/debian_chroot ]; then\n    debian_chroot=$(cat /etc/debian_chroot)\nfi\n{{ end -}}\n\n# set a fancy prompt (non-color, unless we know we \"want\" color)\ncase \"$TERM\" in\n    xterm-color|*-256color) color_prompt=yes;;\nesac\n\n# uncomment for a colored prompt, if the terminal has the capability; turned\n# off by default to not distract the user: the focus in a terminal window\n# should be on the output of commands, not on the prompt\n#force_color_prompt=yes\n\nif [ -n \"$force_color_prompt\" ]; then\n    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then\n        # We have color support; assume it's compliant with Ecma-48\n        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such\n        # a case would tend to support setf rather than setaf.)\n        color_prompt=yes\n    else\n        color_prompt=\n    fi\nfi\n\n{{ if and (eq .chezmoi.os \"linux\") (eq .chezmoi.osRelease.id \"debian\") -}}\n# If this is an xterm set the title to user@host:dir\ncase \"$TERM\" in\nxterm*|rxvt*)\n    PS1=\"\\[\\e]0;''\\${debian_chroot:+($debian_chroot)}\\u@\\h: \\w\\a\\]$PS1\"\n    ;;\n*)\n    ;;\nesac\n{{ end -}}\n\n# enable color support of ls and also add handy aliases\nif [ -x /usr/bin/dircolors ]; then\n    test -r ~/.dircolors && eval \"$(dircolors -b ~/.dircolors)\" || eval \"$(dircolors -b)\"\n    alias ls='ls --color=auto'\n    #alias dir='dir --color=auto'\n    #alias vdir='vdir --color=auto'\n\n    #alias grep='grep --color=auto'\n    #alias fgrep='fgrep --color=auto'\n    #alias egrep='egrep --color=auto'\nfi\n\n# colored GCC warnings and errors\n#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'\n\n# some more ls aliases\n#alias ll='ls -l'\n#alias la='ls -A'\n#alias l='ls -CF'\n\n# Alias definitions.\n# You may want to put all your additions into a separate file like\n# ~/.bash_aliases, instead of adding them here directly.\n# See /usr/share/doc/bash-doc/examples in the bash-doc package.\n\nif [ -f ~/.bash_aliases ]; then\n    . ~/.bash_aliases\nfi\n\n# enable programmable completion features (you don't need to enable\n# this, if it's already enabled in /etc/bash.bashrc and /etc/profile\n# sources /etc/bash.bashrc).\nif ! shopt -oq posix; then\n  if [ -f /usr/share/bash-completion/bash_completion ]; then\n    . /usr/share/bash-completion/bash_completion\n  elif [ -f /etc/bash_completion ]; then\n    . /etc/bash_completion\n  fi\nfi",
-    "zxc.20260504224746.2": "{{ if stat \"/home/linuxbrew/.linuxbrew\" -}}\neval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\"\nexport HOMEBREW_BREW_GIT_REMOTE=\"https://mirror.nju.edu.cn/git/homebrew/brew.git\"\n{{ end -}}",
-    "zxc.20260504224746.3": "export EDITOR={{ template \"editor\" }}\n",
-    "zxc.20260504224746.4": "export PATH=~/.local/bin:$PATH",
-    "zxc.20260504224746.5": "export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)\n",
     "zxc.20260125143635.1": "<< not WSL >>\nsource ~/.local/lib/ble-nightly/ble.sh\n{{ end -}}\n",
     "User.20260225204031.1": "{{ if and (hasKey .chezmoi.kernel \"osrelease\") (not (mustRegexMatch \".*WSL.*\" .chezmoi.kernel.osrelease)) -}}",
     "zxc.20260125143653.1": "{{ if lookPath \"fzf\" -}}\n{{ if or (lookPath \"mcfly\") (lookPath \"atuin\") -}}\nFZF_CTRL_R_COMMAND= eval \"$(fzf --bash)\"\n{{ else -}}\neval \"$(fzf --bash)\"\n{{ end -}}\n{{ end -}}",
@@ -9853,6 +9858,11 @@
     "zxc.20260502183455.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260502183056.1": "<< unix >>\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260502183253.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n{{ if .my.git.sign.gpg -}}\nC92C2BCD646A0DE6A60E1C5397CA97FDBE330909\n{{ end -}}\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260505181144.1": "<< unix >>\n@others\n{{ end -}}",
+    "zxc.20260505181312.2": "{{ if stat \"/home/linuxbrew/.linuxbrew\" -}}\neval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\"\nexport HOMEBREW_BREW_GIT_REMOTE=\"https://mirror.nju.edu.cn/git/homebrew/brew.git\"\n{{ end -}}",
+    "zxc.20260505181312.3": "export EDITOR={{ template \"editor\" }}\n",
+    "zxc.20260505181312.4": "export PATH=~/.local/bin:$PATH",
+    "zxc.20260505181312.5": "export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)\n",
     "User.20260215182442.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260215182554.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\nv2:sha256:f190ead5021be718ae1001570b620a363a3aa0c685fb15a276d8456d436944e5\n{{ end -}}",
     "User.20260217022114.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"nuc\" \"work\" -}}\n{{ gopassRaw (printf \"deskflow/%s/cert\" .chezmoi.hostname) -}}\n{{ end -}}\n{{ end -}}",
@@ -10553,7 +10563,7 @@
       "_mod_time": 1777713442.484
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1777906073.372
+      "_mod_time": 1777975995.457
     },
     "zxc.20260125143959.1": {
       "_mod_time": 1777906073.372
@@ -10664,7 +10674,7 @@
       "_mod_time": 1777952058.268
     },
     "User.20260220214558.1": {
-      "_mod_time": 1777952105.233
+      "_mod_time": 1777952096.194
     },
     "User.20260217214851.1": {
       "_mod_time": 1777713442.465
@@ -10703,7 +10713,7 @@
       "_mod_time": 1777967012.401
     },
     "zxc.20260505141849.1": {
-      "_mod_time": 1777967012.414
+      "_mod_time": 1777962131.735
     },
     "zxc.20260323195318.1": {
       "_mod_time": 1777713442.465
@@ -10835,7 +10845,7 @@
       "_mod_time": 1777896574.427
     },
     "zxc.20260504000649.1": {
-      "_mod_time": 1777827566.629
+      "_mod_time": 1777824466.425
     },
     "zxc.20260503225115.1": {
       "_mod_time": 1777822932.207
@@ -10847,10 +10857,10 @@
       "_mod_time": 1777822517.0613644
     },
     "zxc.20260505104942.1": {
-      "_mod_time": 1777967012.446
+      "_mod_time": 1777955871.972
     },
     "zxc.20260505105255.1": {
-      "_mod_time": 1777967012.43
+      "_mod_time": 1777954901.54
     },
     "zxc.20260502183455.1": {
       "_mod_time": 1777790600.038
@@ -10860,6 +10870,9 @@
     },
     "zxc.20260502183253.1": {
       "_mod_time": 1777790600.038
+    },
+    "zxc.20260505181144.1": {
+      "_mod_time": 1777975995.691
     },
     "User.20260215182442.1": {
       "_mod_time": 1777891060.651
@@ -10982,7 +10995,7 @@
       "_mod_time": 1777896574.422
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1777975353.329
+      "_mod_time": 1777975361.522
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777713442.480156
