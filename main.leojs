@@ -9791,7 +9791,7 @@
     "zxc.20260503215955.1": "{{ if lookPath \"kmonad\" -}}\n<< shebang >>\n@others\n{{ end -}}\n",
     "zxc.20260503220138.1": "exec kmonad $HOME/.config/kmonad/miryoku.kbd\n",
     "zxc.20260505104942.1": "<< unix >>\n{{ if lookPath \"code-oss\" -}}\n{\n    << code-oss >>\n    @others\n}\n{{ end -}}\n{{ end -}}",
-    "zxc.20260505105120.1": "\"extensions.verifySignature\": fal,",
+    "zxc.20260505105120.1": "\"extensions.verifySignature\": false,",
     "zxc.20260505105255.1": "<< unix >>\n{{ if lookPath \"code-oss\" -}}\n{\n    @others\n}\n{{ end -}}\n{{ end -}}",
     "zxc.20260502183455.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260502183056.1": "<< unix >>\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -10781,7 +10781,7 @@
       "_mod_time": 1777819798.1630044
     },
     "zxc.20260505104942.1": {
-      "_mod_time": 1777949552.531
+      "_mod_time": 1777949977.094
     },
     "zxc.20260505105255.1": {
       "_mod_time": 1777949644.924
