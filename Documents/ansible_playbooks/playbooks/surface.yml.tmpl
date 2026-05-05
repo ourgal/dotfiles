@@ -112,7 +112,7 @@
           - xfce4
           - xfce4-battery-plugin
           - xorg
-          - lightdm
+          - lemurs
           - dot-xsession
           - noto-fonts-ttf
           - noto-fonts-cjk
@@ -174,14 +174,62 @@
               svdir="$HOME/service"
 
               exec chpst -u "$USER:$groups" runsvdir "$svdir"
+        - name: Create lemurs service folder
+          ansible.builtin.file:
+            dest: /etc/sv/lemurs
+            state: directory
+            mode: "0755"
+        - name: Create run script
+          ansible.builtin.copy:
+            dest: /etc/sv/lemurs/run
+            mode: "0755"
+            content: |
+              #!/bin/sh
+              # /etc/sv/lemurs/run
+              # Start Lemurs on tty7 (via agetty) and, best-effort, switch to tty7 during boot.
+
+              # If we're on a real virtual terminal (VT) console: switch to tty7 so Lemurs is visible immediately.
+              if command -v fgconsole >/dev/null 2>&1 && command -v chvt >/dev/null 2>&1; then
+                cur="$(fgconsole 2>/dev/null || echo "")"
+                if [ -n "$cur" ] && [ "$cur" != "serial" ] && [ "$cur" != "7" ]; then
+                  chvt 7 2>/dev/null || true
+                fi
+              fi
+
+              # Protect tty7 from kernel printk messages so they don't overwrite Lemurs' TUI.
+              TERM=linux setterm --msg off </dev/tty7 >/dev/tty7 2>/dev/null || true
+
+              # Optional: clear tty7 once so old screen contents don't "shine through" into the UI.
+              TERM=linux setterm --clear=all </dev/tty7 >/dev/tty7 2>/dev/null || true
+
+              # Runit expects this script to exec a single foreground process.
+              # agetty attaches to /dev/tty7, sets TERM=linux, and starts Lemurs as the login program.
+              exec agetty --noissue --skip-login --login-program /usr/bin/lemurs tty7 linux
     - name: Enable services
       become: true
       when:
         - ansible_facts.os_family == "Void"
       ansible.builtin.command: "ln -sf /etc/sv/{{ item }} /var/service"
       loop:
-        - lightdm
+        - lemurs
         - "runsvdir-{{ username }}"
+    - name: Create pam lemurs
+      become: true
+      ansible.builtin.copy:
+        dest: /etc/pam.d/lemurs
+        mode: "0644"
+        content: |
+          #%PAM-1.0
+          auth        include    login
+          account     include    login
+          session     include    login
+          password    include    login
+    - name: Set lemurs config
+      become: true
+      ansible.builtin.lineinfile:
+        path: /etc/lemurs/config.toml
+        regexp: '^tty ='
+        line: tty = 7
     - name: LinuxBrew
       tags:
         - pkg
