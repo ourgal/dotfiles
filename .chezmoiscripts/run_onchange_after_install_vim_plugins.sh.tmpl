@@ -1,9 +1,8 @@
-{{ if eq .chezmoi.os "windows" -}}
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
 {{ if and (lookPath "vim") (stat (joinPath .chezmoi.homeDir ".config" "git" "config")) -}}
-Set-StrictMode -Version Latest
-$ErrorActionPreference = "Stop"
-$PSNativeCommandUseErrorActionPreference = $true
-{{ $file_content := include (joinPath .chezmoi.homeDir "vimfiles" "import" "plugins.vim") | splitList "\n" -}}
+#!{{lookPath "bash"}}
+set -euo pipefail
+{{ $file_content := include (joinPath .chezmoi.homeDir ".vim" "import" "plugins.vim") | splitList "\n" -}}
 {{ $sum := list -}}
 {{ range $file_content -}}
 {{ if hasPrefix "Plug" . -}}
