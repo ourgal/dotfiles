@@ -1,6 +1,6 @@
 {{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
 {{ if lookPath "code-oss" -}}
-{
+[
     {
         "key": "ctrl+shift+alt+v",
         "command": "leojs.pasteNodeAsCloneAtSelection",
@@ -220,6 +220,6 @@
         "key": "alt+x g",
         "command": "-magit.status"
     }
-}
+]
 {{ end -}}
 {{ end -}}
