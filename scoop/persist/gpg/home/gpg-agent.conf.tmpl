@@ -7,5 +7,8 @@ enable-win32-openssh-support
 enable-ssh-support
 {{ end -}}
 grab
+{{ if lookPath "pinentry-gtk-2" -}}
+pinentry-program {{ lookPath "pinentry-gtk-2" }}
+{{ end -}}
 {{ end -}}
 {{ end -}}
