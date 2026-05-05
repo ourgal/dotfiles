@@ -8431,6 +8431,19 @@
                                       ]
                                     }
                                   ]
+                                },
+                                {
+                                  "gnx": "zxc.20260505184823.1",
+                                  "vh": "uninstall",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260504202810.1"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260505184847.1",
+                                      "vh": "dot-xsession"
+                                    }
+                                  ]
                                 }
                               ]
                             },
@@ -10468,10 +10481,12 @@
     "zxc.20260501214216.35": "- shellcheck",
     "zxc.20260501214216.36": "- nodejs",
     "zxc.20260501214216.37": "- uv",
-    "zxc.20260501221719.4": "- xfce4\n- xfce4-battery-plugin\n- xorg\n- lemurs\n- lightdm\n- dot-xsession",
+    "zxc.20260501221719.4": "- xfce4\n- xfce4-battery-plugin\n- xorg\n- lemurs\n- lightdm",
     "zxc.20260501221719.5": "- noto-fonts-ttf\n- noto-fonts-cjk\n- nerd-fonts-symbols-ttf\n- noto-fonts-emoji",
     "zxc.20260501221719.6": "- intel-video-accel\n- intel-ucode\n- libva-utils",
     "zxc.20260501221719.10": "- python3-pipx",
+    "zxc.20260505184823.1": "- name: Uninstall packages\n  tags:\n    - pkg\n    - xbps\n  become: true\n  when:\n    << is void >>\n  environment:\n    XBPS_ARCH: \"{{ ansible_facts.machine }}\"\n  community.general.xbps:\n    state: absent\n    name:\n      @others",
+    "zxc.20260505184847.1": "- dot-xsession",
     "zxc.20260502144817.1": "- name: Setup pip mirror\n  when:\n    << is linux >>\n    << is macos >>\n  block:\n    - name: Create .pip folder\n      ansible.builtin.file:\n        dest: \"{{ ansible_facts.user_dir }}/.pip\"\n        state: directory\n    - name: Set pip config\n      ansible.builtin.copy:\n        dest: \"{{ ansible_facts.user_dir }}/.pip/pip.ini\"\n        content: |\n          [global]\n          index-url = https://mirrors.nju.edu.cn/pypi/web/simple/\n          [install]\n          trusted-host = mirrors.nju.edu.cn\n",
     "zxc.20260504203517.1": "- ansible_facts.system == \"Linux\"",
     "zxc.20260504203658.1": "- ansible_facts.os_family == \"Darwin\"",
@@ -10995,7 +11010,7 @@
       "_mod_time": 1777896574.422
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1777975361.522
+      "_mod_time": 1777978171.285
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777713442.480156
