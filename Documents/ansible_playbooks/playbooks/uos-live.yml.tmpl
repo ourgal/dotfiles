@@ -84,6 +84,7 @@
               apt install -y com.360.browser-stable
               apt install -y linglong-bin linglong-installer
               apt install -y /tmp/wps.deb
+              apt install -y awesome
               systemctl enable ssh
               chown -R {{ user }}:{{ user }} /home/{{ user }}/.ssh
             mode: "0644"
