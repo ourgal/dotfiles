@@ -1464,6 +1464,16 @@
                                   ]
                                 }
                               ]
+                            },
+                            {
+                              "gnx": "zxc.20260507002350.1",
+                              "vh": "flatpak not installed",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260507002246.1",
+                                  "vh": "flatpak"
+                                }
+                              ]
                             }
                           ]
                         },
@@ -1481,6 +1491,9 @@
                             {
                               "gnx": "zxc.20260504130849.1",
                               "vh": ".local share applications"
+                            },
+                            {
+                              "gnx": "zxc.20260507002246.1"
                             }
                           ]
                         },
@@ -1518,6 +1531,9 @@
                             {
                               "gnx": "zxc.20260504130800.1",
                               "vh": ".local share applications"
+                            },
+                            {
+                              "gnx": "zxc.20260507002246.1"
                             }
                           ]
                         }
@@ -1778,6 +1794,27 @@
                                   "vh": "content"
                                 }
                               ]
+                            },
+                            {
+                              "gnx": "zxc.20260505221318.1",
+                              "vh": "@clean run_onchange_before_rime_sbsrf.sh.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "User.20260225203941.1"
+                                },
+                                {
+                                  "gnx": "User.20260221011837.1",
+                                  "vh": "bash shebang"
+                                },
+                                {
+                                  "gnx": "zxc.20260505102603.1",
+                                  "vh": "strict"
+                                },
+                                {
+                                  "gnx": "zxc.20260505221436.1",
+                                  "vh": "content"
+                                }
+                              ]
                             }
                           ]
                         },
@@ -1975,12 +2012,10 @@
                               "vh": "@clean run_onchange_after_vscode_extensions.sh.tmpl",
                               "children": [
                                 {
-                                  "gnx": "User.20260221011837.1",
-                                  "vh": "bash shebang"
+                                  "gnx": "User.20260221011837.1"
                                 },
                                 {
-                                  "gnx": "zxc.20260505102603.1",
-                                  "vh": "strict"
+                                  "gnx": "zxc.20260505102603.1"
                                 },
                                 {
                                   "gnx": "zxc.20260505102443.1",
@@ -2535,6 +2570,10 @@
                             {
                               "gnx": "User.20260303224633.1",
                               "vh": "pip"
+                            },
+                            {
+                              "gnx": "zxc.20260505221529.1",
+                              "vh": "sbsrf"
                             },
                             {
                               "gnx": "zxc.20260329193242.1",
@@ -4462,6 +4501,85 @@
       ]
     },
     {
+      "gnx": "zxc.20260507002534.1",
+      "vh": "flatpak",
+      "children": [
+        {
+          "gnx": "zxc.20260507002540.1",
+          "vh": "@path dot_var",
+          "children": [
+            {
+              "gnx": "zxc.20260507002549.1",
+              "vh": "@path app",
+              "children": [
+                {
+                  "gnx": "zxc.20260507002604.1",
+                  "vh": "fcitx5",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260507002613.1",
+                      "vh": "@path org.fcitx.Fcitx5",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260507002619.1",
+                          "vh": "@path data",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260507002634.1",
+                              "vh": "@path fcitx5",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260507002639.1",
+                                  "vh": "@path rime",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260507002719.1",
+                                      "vh": "@clean default.costum.yaml.tmpl",
+                                      "children": [
+                                        {
+                                          "gnx": "zxc.20260507002835.1",
+                                          "vh": "<< flatpak fcitx5 >>"
+                                        },
+                                        {
+                                          "gnx": "User.20260225203941.1"
+                                        },
+                                        {
+                                          "gnx": "User.20260216125349.1"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "gnx": "zxc.20260507003041.1",
+                                      "vh": "@clean sbfm.custom.yaml.tmpl",
+                                      "children": [
+                                        {
+                                          "gnx": "zxc.20260507002835.1"
+                                        },
+                                        {
+                                          "gnx": "User.20260225203941.1"
+                                        },
+                                        {
+                                          "gnx": "User.20260216125513.1"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "gnx": "zxc.20260125152614.1",
       "vh": "config",
       "children": [
@@ -4929,6 +5047,22 @@
                   ]
                 }
               ]
+            },
+            {
+              "gnx": "zxc.20260507000729.1",
+              "vh": "auto start",
+              "children": [
+                {
+                  "gnx": "zxc.20260507000737.1",
+                  "vh": "@path autostart",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260507000814.1",
+                      "vh": "@clean symlink_fcitx5.desktop.tmpl"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -4994,6 +5128,10 @@
                 {
                   "gnx": "zxc.20260505181312.5",
                   "vh": "SSH_AUTH_SOCK"
+                },
+                {
+                  "gnx": "zxc.20260505223347.1",
+                  "vh": "fcitx5"
                 }
               ]
             },
@@ -8431,6 +8569,10 @@
                                         {
                                           "gnx": "zxc.20260501221719.10",
                                           "vh": "package manager"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260506233926.1",
+                                          "vh": "fcitx5 ui"
                                         }
                                       ]
                                     }
@@ -8442,6 +8584,10 @@
                                   "children": [
                                     {
                                       "gnx": "zxc.20260504202810.1"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260506210845.1",
+                                      "vh": "fcitx5"
                                     },
                                     {
                                       "gnx": "zxc.20260505184847.1",
@@ -8479,6 +8625,26 @@
                                 {
                                   "gnx": "zxc.20260502182120.1",
                                   "vh": "advance-touch"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260506221714.1",
+                              "vh": "flatpak",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260506221718.1",
+                                  "vh": "remote"
+                                },
+                                {
+                                  "gnx": "zxc.20260506222621.1",
+                                  "vh": "install",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260506222704.1",
+                                      "vh": "fcitx5"
+                                    }
+                                  ]
                                 }
                               ]
                             },
@@ -9456,6 +9622,8 @@
     "User.20260301202425.1": ".glzr/\n.glzr/**",
     "zxc.20260503214529.1": "<< not void >>\nservice/\nservice/**\n.config/sv/\n.config/sv/**\n{{ end -}}\n",
     "zxc.20260503215107.1": "{{ if ne .chezmoi.osRelease.name \"Void\" -}}\n\n",
+    "zxc.20260507002350.1": "{{ if not (lookPath \"flatpak\") -}}\n@others\n{{ end -}}",
+    "zxc.20260507002246.1": ".var/\n.var/**",
     "User.20260224001419.1": "<< android >>\n@others\n{{ end -}}",
     "User.20260225204449.1": "{{ if eq .chezmoi.os \"android\" -}}\n",
     "zxc.20260504130849.1": ".local/share/applications/\n.local/share/applications/**\n",
@@ -9498,7 +9666,11 @@
     "zxc.20260202203521.23": "function Reset-TaskbarLayout {\n    Get-Process explorer | Stop-Process -Force\n    Remove-Item \"$Env:AppData\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar\\*\" -Force -ErrorAction SilentlyContinue\n    Remove-Item \"$Env:AppData\\Microsoft\\Windows\\Shell\\*.dat\" -Force -ErrorAction SilentlyContinue\n    Remove-Item \"$Env:AppData\\Microsoft\\Windows\\Shell\\LayoutModification.xml\" -Force -ErrorAction SilentlyContinue\n    Remove-Item -Path \"HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Taskband\" -Recurse -ErrorAction SilentlyContinue\n    Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\TrayNotify\" -Name \"IconStreams\" -ErrorAction SilentlyContinue\n    Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\TrayNotify\" -Name \"PastIconsStream\" -ErrorAction SilentlyContinue\n}",
     "zxc.20260202203521.24": "$LnkPaths = @()\nNew-LayoutModificationXml -LnkPaths $LnkPaths -PinListPlacement \"Replace\"\nReset-TaskbarLayout",
     "User.20260216114746.1": "<< dos >>\n{{ if stat \"C:/Program Files/Rime\" -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260216114815.1": "# --- Configuration ---\n\n# 1. Define the source URL\n$DownloadUrl = \"https://github.com/sbsrf/home/releases/download/20260101/sbsrf.zip\"\n\n# 2. Define the target directory using the built-in environment variable $env:APPDATA\n# Note: $env:APPDATA resolves to C:\\Users\\<Username>\\AppData\\Roaming\n$TargetFolder = Join-Path -Path $env:APPDATA -ChildPath \"rime\"\n\n# 3. Define a temporary path for the downloaded file\n$TempZipPath = Join-Path -Path $env:TEMP -ChildPath \"sbsrf_download.zip\"\n\n# --- Execution ---\n\nWrite-Host \"Starting download and extraction process...\"\n\n# 1. Ensure the target directory exists\nif (-not (Test-Path -Path $TargetFolder)) {\n    Write-Host \"Creating target directory: $TargetFolder\"\n    New-Item -Path $TargetFolder -ItemType Directory | Out-Null\n} else {\n    Write-Host \"Target directory already exists: $TargetFolder\"\n}\n\n# 2. Download the file\nWrite-Host \"Downloading file from $DownloadUrl to $TempZipPath...\"\ntry {\n    # Use Invoke-WebRequest (iwr) for downloading files\n    Invoke-WebRequest -Uri $DownloadUrl -OutFile $TempZipPath -UseBasicParsing\n    Write-Host \"Download complete.\"\n}\ncatch {\n    Write-Error \"Failed to download the file. Error: $($_.Exception.Message)\"\n    exit 1\n}\n\n# 3. Extract the contents of the ZIP file\nWrite-Host \"Extracting contents to $TargetFolder...\"\ntry {\n    # Load the necessary .NET assembly for ZIP operations (often loaded automatically, but good practice to ensure)\n    Add-Type -AssemblyName System.IO.Compression.FileSystem\n\n    # Use Expand-Archive (available in PS 5.0+)\n    # -Force overwrites existing files in the destination folder without prompting\n    Expand-Archive -Path $TempZipPath -DestinationPath $TargetFolder -Force\n    \n    Write-Host \"Extraction complete. Files are now in: $TargetFolder\"\n}\ncatch {\n    Write-Error \"Failed to extract the ZIP file. Error: $($_.Exception.Message)\"\n    exit 1\n}\nfinally {\n    # 4. Clean up the temporary ZIP file\n    if (Test-Path -Path $TempZipPath) {\n        Remove-Item -Path $TempZipPath -Force\n        Write-Host \"Cleaned up temporary file: $TempZipPath\"\n    }\n}",
+    "User.20260216114815.1": "# --- Configuration ---\n\n# 1. Define the source URL\n$DownloadUrl = \"{{ .my.sbsrf.url }}\"\n\n# 2. Define the target directory using the built-in environment variable $env:APPDATA\n# Note: $env:APPDATA resolves to C:\\Users\\<Username>\\AppData\\Roaming\n$TargetFolder = Join-Path -Path $env:APPDATA -ChildPath \"rime\"\n\n# 3. Define a temporary path for the downloaded file\n$TempZipPath = Join-Path -Path $env:TEMP -ChildPath \"sbsrf_download.zip\"\n\n# --- Execution ---\n\nWrite-Host \"Starting download and extraction process...\"\n\n# 1. Ensure the target directory exists\nif (-not (Test-Path -Path $TargetFolder)) {\n    Write-Host \"Creating target directory: $TargetFolder\"\n    New-Item -Path $TargetFolder -ItemType Directory | Out-Null\n} else {\n    Write-Host \"Target directory already exists: $TargetFolder\"\n}\n\n# 2. Download the file\nWrite-Host \"Downloading file from $DownloadUrl to $TempZipPath...\"\ntry {\n    # Use Invoke-WebRequest (iwr) for downloading files\n    Invoke-WebRequest -Uri $DownloadUrl -OutFile $TempZipPath -UseBasicParsing\n    Write-Host \"Download complete.\"\n}\ncatch {\n    Write-Error \"Failed to download the file. Error: $($_.Exception.Message)\"\n    exit 1\n}\n\n# 3. Extract the contents of the ZIP file\nWrite-Host \"Extracting contents to $TargetFolder...\"\ntry {\n    # Load the necessary .NET assembly for ZIP operations (often loaded automatically, but good practice to ensure)\n    Add-Type -AssemblyName System.IO.Compression.FileSystem\n\n    # Use Expand-Archive (available in PS 5.0+)\n    # -Force overwrites existing files in the destination folder without prompting\n    Expand-Archive -Path $TempZipPath -DestinationPath $TargetFolder -Force\n    \n    Write-Host \"Extraction complete. Files are now in: $TargetFolder\"\n}\ncatch {\n    Write-Error \"Failed to extract the ZIP file. Error: $($_.Exception.Message)\"\n    exit 1\n}\nfinally {\n    # 4. Clean up the temporary ZIP file\n    if (Test-Path -Path $TempZipPath) {\n        Remove-Item -Path $TempZipPath -Force\n        Write-Host \"Cleaned up temporary file: $TempZipPath\"\n    }\n}",
+    "zxc.20260505221318.1": "<< unix >>\n{{ if lookPath \"fcitx5\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260221011837.1": "#!{{lookPath \"bash\"}}\n",
+    "zxc.20260505102603.1": "set -euo pipefail",
+    "zxc.20260505221436.1": "{{ $flatpak := joinPath .chezmoi.homeDir \".local\" \"share\" \"flatpak\" \"exports\" \"share\" \"applications\" \"org.fcitx.Fcitx5.desktop\" -}}\n{{ template \"checkPath\" (list \"curl\" \"unzip\") -}}\n{{ if or (lookPath \"fcitx5\") (stat $flatpak) }}\nurl=\"{{ .my.sbsrf.url }}\"\n{{ if lookPath \"fcitx5\" -}}\ndir=~/.local/share/fcitx5/rime\n{{ else if stat $flatpak -}}\ndir=~/.var/app/org.fcitx.Fcitx5/data/fcitx5/rime\n{{ else -}}\n{{ fail \"unknown fcitx5\" -}}\n{{ end -}}\ntmp=/tmp/sbsrf.zip\n[ ! -d \"$dir\" ] && mkdir -p \"$dir\"\ncurl -L -o \"$tmp\" \"$url\"\nunzip \"$tmp\" -o -d \"$dir\"\n[ -e \"$tmp\" ] && rm \"$tmp\"\n{{ end -}}",
     "zxc.20260202203521.14": "<< dos >>\n{{ if lookPath \"clink\" -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260202203521.15": "# 定义要设置的注册表路径和键名\n$RegistryPath = \"HKCU:\\Software\\Microsoft\\Command Processor\"\n$RegistryValueName = \"AutoRun\"\n\n# 定义您想要设置的命令字符串\n# 注意：这里使用了字符串拼接，以确保路径和命令的正确性。\n# 对于包含空格的路径，最好用引号括起来。\n# PowerShell 会自动处理 %LOCALAPPDATA% 等环境变量。\n$CommandToRun = \"`\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"clink\" \"current\" \"clink.bat\" }}`\" inject --autorun --profile `\"$env:LOCALAPPDATA\\clink`\" && doskey.exe /macrofile=`\"$env:LOCALAPPDATA\\clink\\aliases`\"\"\n\n# 检查注册表路径是否存在，如果不存在则创建\nif (-not (Test-Path $RegistryPath)) {\n    New-Item -Path $RegistryPath -Force | Out-Null\n    Write-Host \"已创建注册表路径: $RegistryPath\"\n}\n\n# 设置 AutoRun 注册表值\ntry {\n    Set-ItemProperty -Path $RegistryPath -Name $RegistryValueName -Value $CommandToRun -Force\n    Write-Host \"成功设置 '$RegistryValueName' 的值为: $CommandToRun\"\n    Write-Host \"下次启动命令提示符 (cmd.exe) 时，Clink 应该会自动加载。\"\n} catch {\n    Write-Error \"设置注册表值时发生错误: $($_.Exception.Message)\"\n}\n\n# 您也可以选择性地显示当前设置的值来验证\n# Get-ItemProperty -Path $RegistryPath -Name $RegistryValueName\n\n{{ if stat (joinPath (env \"appdata\") \"clink\" \"clink-gizmos\") -}}\nclink installscripts {{ joinPath (env \"appdata\") \"clink\" \"clink-gizmos\" | quote }}\n{{ end -}}\n\n{{ if stat (joinPath (env \"appdata\") \"clink\" \"clink-completions\") -}}\nclink installscripts {{ joinPath (env \"appdata\") \"clink\" \"clink-completions\" | quote }}\n{{ end -}}",
     "zxc.20260202203521.3": "<< dos >>\n{{ if lookPath \"codium\" -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -9526,8 +9698,6 @@
     "User.20260220153119.1": "\"danprince.vsnetrw\"",
     "zxc.20260418190413.1": "\"ms-playwright.playwright\"",
     "zxc.20260505102132.1": "<< unix >>\n{{ if or (lookPath \"code\") (lookPath \"code-oss\") -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260221011837.1": "#!{{lookPath \"bash\"}}\n",
-    "zxc.20260505102603.1": "set -euo pipefail",
     "zxc.20260505102443.1": "{{ $code := lookPath \"code\" -}}\n{{ if lookPath \"code-oss\" -}}\n{{ $code = lookPath \"code-oss\" -}}\n{{ end -}}\n{{ $code }} --update-extensions\nextensions=(\n    @others\n    << vscode >>\n    )\nfor e in \"${extensions[@]}\"; do\n    {{ $code }} --install-extension \"$e\"\ndone",
     "zxc.20260202215023.1": "<< dos >>\n{{ if lookPath \"7z\" -}}\n<< strict >>\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202215044.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"7zip\" \"current\" \"install-context.reg\" | quote }}",
@@ -9585,6 +9755,7 @@
     "User.20260226001451.1": "[my.termux.note20]\nusername = \"u0_a644\"\n[my.termux.m6]\nusername = \"u0_a455\"",
     "zxc.20260403084957.1": "[my.ip]\nbrix = \"192.168.123.206\"",
     "User.20260303224633.1": "[my.pip]\nmirror = \"https://mirrors.nju.edu.cn/pypi/web/simple/\"\n",
+    "zxc.20260505221529.1": "[my.sbsrf]\nurl=\"https://github.com/sbsrf/sbsrf/releases/download/20260425/sbsrf.zip\"",
     "zxc.20260329193242.1": "[my.ssh]\nknown_hosts = [\n    @others\n]\n",
     "zxc.20260329194301.1": "\"home.local,192.168.123.100 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOKREEGtjhZmTsIruPjBmBp0fPHKxfUSbUilpIzVMoBF\",\n",
     "zxc.20260329194332.1": "\"[brix.local]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqhuTozhEUlnOCkH1LXw55IUaZHzcO4IKmr1uPOT41u\",\n\"[192.168.123.206]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqhuTozhEUlnOCkH1LXw55IUaZHzcO4IKmr1uPOT41u\",",
@@ -9849,6 +10020,9 @@
     "zxc.20260504133747.1": "{{ if lookPath \"kmonad\" -}}\n{{ joinPath .chezmoi.homeDir \".config\" \"sv\" \"kmonad\" }}\n{{ end -}}",
     "zxc.20260504133956.1": "{{ if lookPath \"gpg-agent\" -}}\n{{ joinPath .chezmoi.homeDir \".config\" \"sv\" \"gpg-agent\" }}\n{{ end -}}",
     "zxc.20260504134034.1": "{{ if lookPath \"syncthing\" -}}\n{{ joinPath .chezmoi.homeDir \".config\" \"sv\" \"syncthing\" }}\n{{ end -}}",
+    "zxc.20260507002719.1": "<< unix >>\n<< flatpak fcitx5 >>\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260507002835.1": "{{ if stat (joinPath .chezmoi.homeDir \".local\" \"share\" \"flatpak\" \"exports\" \"share\" \"applications\" \"org.fcitx.Fcitx5.desktop\") -}}",
+    "zxc.20260507003041.1": "<< unix >>\n<< flatpak fcitx5 >>\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260126154354.1": "<< unix dos >>\n{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125145051.1": "<< unix dos >>\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125152704.1": "<< unix dos >>\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -9886,6 +10060,7 @@
     "zxc.20260505104942.1": "<< unix >>\n{{ if lookPath \"code-oss\" -}}\n{\n    << code-oss >>\n    @others\n}\n{{ end -}}\n{{ end -}}",
     "zxc.20260505105120.1": "\"extensions.verifySignature\": false,\n\"magit.code-path\": \"code-oss\",",
     "zxc.20260505105255.1": "<< unix >>\n{{ if lookPath \"code-oss\" -}}\n[\n    @others\n]\n{{ end -}}\n{{ end -}}",
+    "zxc.20260507000814.1": "{{ if not (lookPath \"fcitx5\") -}}\n{{ joinPath .chezmoi.homeDir \".local\" \"share\" \"flatpak\" \"exports\" \"share\" \"applications\" \"org.fcitx.Fcitx5.desktop\" }}\n{{ end -}}",
     "zxc.20260502183455.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260502183056.1": "<< unix >>\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260502183253.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n{{ if .my.git.sign.gpg -}}\nC92C2BCD646A0DE6A60E1C5397CA97FDBE330909\n{{ end -}}\n{{ end -}}\n{{ end -}}\n",
@@ -9894,6 +10069,7 @@
     "zxc.20260505181312.3": "export EDITOR={{ template \"editor\" }}\n",
     "zxc.20260505181312.4": "export PATH=~/.local/bin:$PATH",
     "zxc.20260505181312.5": "export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)\n",
+    "zxc.20260505223347.1": "export GTK_IM_MODULE=fcitx\nexport QT_IM_MODULE=fcitx\nexport XMODIFIERS=\"@im=fcitx\"",
     "User.20260215182442.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260215182554.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\nv2:sha256:f190ead5021be718ae1001570b620a363a3aa0c685fb15a276d8456d436944e5\n{{ end -}}",
     "User.20260217022114.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"nuc\" \"work\" -}}\n{{ gopassRaw (printf \"deskflow/%s/cert\" .chezmoi.hostname) -}}\n{{ end -}}\n{{ end -}}",
@@ -10503,8 +10679,10 @@
     "zxc.20260501221719.4": "- xfce4\n- xfce4-battery-plugin\n- xorg\n- lemurs\n- lightdm",
     "zxc.20260501221719.5": "- noto-fonts-ttf\n- noto-fonts-cjk\n- nerd-fonts-symbols-ttf\n- noto-fonts-emoji",
     "zxc.20260501221719.6": "- intel-video-accel\n- intel-ucode\n- libva-utils",
-    "zxc.20260501221719.10": "- python3-pipx",
+    "zxc.20260501221719.10": "- python3-pipx\n- flatpak",
+    "zxc.20260506233926.1": "- fcitx5-gtk+2\n- fcitx5-gtk+3\n- fcitx5-gtk4\n- fcitx5-qt5\n- fcitx5-qt6",
     "zxc.20260505184823.1": "- name: Uninstall packages\n  tags:\n    - pkg\n    - xbps\n  become: true\n  when:\n    << is void >>\n  environment:\n    XBPS_ARCH: \"{{ ansible_facts.machine }}\"\n  community.general.xbps:\n    state: absent\n    name:\n      @others",
+    "zxc.20260506210845.1": "@\nsbsrf not working\n@c\n- fcitxs\n- fcitx5-rime\n- fcitx5-lua\n- fcitx5-configtool",
     "zxc.20260505184847.1": "- dot-xsession",
     "zxc.20260502144817.1": "- name: Setup pip mirror\n  when:\n    << is linux >>\n  block:\n    - name: Create .pip folder\n      ansible.builtin.file:\n        dest: \"{{ ansible_facts.user_dir }}/.pip\"\n        state: directory\n    - name: Set pip config\n      ansible.builtin.copy:\n        dest: \"{{ ansible_facts.user_dir }}/.pip/pip.ini\"\n        content: |\n          [global]\n          index-url = https://mirrors.nju.edu.cn/pypi/web/simple/\n          [install]\n          trusted-host = mirrors.nju.edu.cn\n",
     "zxc.20260504203517.1": "- ansible_facts.system == \"Linux\"",
@@ -10512,6 +10690,10 @@
     "zxc.20260501214336.2": "- jellyfin-mpv-shim",
     "zxc.20260502142949.1": "- leo",
     "zxc.20260502182120.1": "- advance-touch",
+    "zxc.20260506221714.1": "- name: Flatpak\n  tags:\n    - flatpak\n  block:\n    @others",
+    "zxc.20260506221718.1": "- name: Add the flathub flatpak repository remote to the user installation\n  become: true\n  community.general.flatpak_remote:\n    name: flathub\n    state: present\n    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo\n    method: system\n- name: Set mirror\n  become: true\n  ansible.builtin.command: flatpak remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub",
+    "zxc.20260506222621.1": "- name: Install flatpak packages\n  become: true\n  community.general.flatpak:\n    name:\n      @others\n    state: present\n    method: system",
+    "zxc.20260506222704.1": "- org.fcitx.Fcitx5\n- org.fcitx.Fcitx5.Addon.Rime",
     "zxc.20260503181421.1": "- name: Services\n  become: true\n  when:\n    << is void >>\n  block:\n    @others",
     "zxc.20260503181445.1": "- name: Create per user service folder\n  ansible.builtin.file:\n    dest: \"/etc/sv/runsvdir-{{ username }}\"\n    state: directory\n    mode: \"0755\"\n- name: Create run script\n  ansible.builtin.copy:\n    dest: \"/etc/sv/runsvdir-{{ username }}/run\"\n    mode: \"0755\"\n    content: |\n      #!/bin/sh\n\n      export USER=\"{{ username }}\"\n      export HOME=\"/home/{{ username }}\"\n\n      groups=\"$(id -Gn \"$USER\" | tr ' ' ':')\"\n      svdir=\"$HOME/service\"\n\n      exec chpst -u \"$USER:$groups\" runsvdir \"$svdir\"\n",
     "zxc.20260505164157.1": "- name: Create lemurs service folder\n  ansible.builtin.file:\n    dest: /etc/sv/lemurs\n    state: directory\n    mode: \"0755\"\n- name: Create run script\n  ansible.builtin.copy:\n    dest: /etc/sv/lemurs/run\n    mode: \"0755\"\n    content: |\n      #!/bin/sh\n      # /etc/sv/lemurs/run\n      # Start Lemurs on tty7 (via agetty) and, best-effort, switch to tty7 during boot.\n\n      # If we're on a real virtual terminal (VT) console: switch to tty7 so Lemurs is visible immediately.\n      if command -v fgconsole >/dev/null 2>&1 && command -v chvt >/dev/null 2>&1; then\n        cur=\"$(fgconsole 2>/dev/null || echo \"\")\"\n        if [ -n \"$cur\" ] && [ \"$cur\" != \"serial\" ] && [ \"$cur\" != \"7\" ]; then\n          chvt 7 2>/dev/null || true\n        fi\n      fi\n\n      # Protect tty7 from kernel printk messages so they don't overwrite Lemurs' TUI.\n      TERM=linux setterm --msg off </dev/tty7 >/dev/tty7 2>/dev/null || true\n\n      # Optional: clear tty7 once so old screen contents don't \"shine through\" into the UI.\n      TERM=linux setterm --clear=all </dev/tty7 >/dev/tty7 2>/dev/null || true\n\n      # Runit expects this script to exec a single foreground process.\n      # agetty attaches to /dev/tty7, sets TERM=linux, and starts Lemurs as the login program.\n      exec agetty --noissue --skip-login --login-program /usr/bin/lemurs tty7 linux",
@@ -10647,7 +10829,7 @@
       "_mod_time": 1777713442.506
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1778049436.405
+      "_mod_time": 1778084711.455
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1777713442.4663134
@@ -10674,7 +10856,10 @@
       "_mod_time": 1777713442.465
     },
     "User.20260216114746.1": {
-      "_mod_time": 1777713442.465
+      "_mod_time": 1777990586.3
+    },
+    "zxc.20260505221318.1": {
+      "_mod_time": 1778085129.895
     },
     "zxc.20260202203521.14": {
       "_mod_time": 1777713442.465
@@ -10761,7 +10946,7 @@
       "_mod_time": 1777713442.465
     },
     "User.20260226001402.1": {
-      "_mod_time": 1778049436.405
+      "_mod_time": 1778075244.119
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1777891402.212
@@ -10830,7 +11015,13 @@
       "_mod_time": 1778049436.465
     },
     "zxc.20260504134034.1": {
-      "_mod_time": 1778049436.466
+      "_mod_time": 1777873307.318
+    },
+    "zxc.20260507002719.1": {
+      "_mod_time": 1778085192.964
+    },
+    "zxc.20260507003041.1": {
+      "_mod_time": 1778085192.984
     },
     "zxc.20260126154354.1": {
       "_mod_time": 1777713442.5000603
@@ -10887,16 +11078,19 @@
       "_mod_time": 1778049436.439
     },
     "zxc.20260504133030.1": {
-      "_mod_time": 1778049436.44
+      "_mod_time": 1777873522.679
     },
     "zxc.20260503215955.1": {
-      "_mod_time": 1778049436.44
+      "_mod_time": 1777822517.061
     },
     "zxc.20260505104942.1": {
       "_mod_time": 1778049436.434
     },
     "zxc.20260505105255.1": {
       "_mod_time": 1778049436.434
+    },
+    "zxc.20260507000814.1": {
+      "_mod_time": 1778083860.948
     },
     "zxc.20260502183455.1": {
       "_mod_time": 1778049436.441
@@ -10908,7 +11102,7 @@
       "_mod_time": 1778049436.442
     },
     "zxc.20260505181144.1": {
-      "_mod_time": 1778049436.421
+      "_mod_time": 1777992773.454
     },
     "User.20260215182442.1": {
       "_mod_time": 1777891060.651
@@ -11031,7 +11225,7 @@
       "_mod_time": 1778049436.419
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1778049436.417
+      "_mod_time": 1778085382.498
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777713442.480156

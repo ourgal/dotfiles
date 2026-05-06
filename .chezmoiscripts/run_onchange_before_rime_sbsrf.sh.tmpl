@@ -1,0 +1,23 @@
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if lookPath "fcitx5" -}}
+#!{{lookPath "bash"}}
+set -euo pipefail
+{{ $flatpak := joinPath .chezmoi.homeDir ".local" "share" "flatpak" "exports" "share" "applications" "org.fcitx.Fcitx5.desktop" -}}
+{{ template "checkPath" (list "curl" "unzip") -}}
+{{ if or (lookPath "fcitx5") (stat $flatpak) }}
+url="{{ .my.sbsrf.url }}"
+{{ if lookPath "fcitx5" -}}
+dir=~/.local/share/fcitx5/rime
+{{ else if stat $flatpak -}}
+dir=~/.var/app/org.fcitx.Fcitx5/data/fcitx5/rime
+{{ else -}}
+{{ fail "unknown fcitx5" -}}
+{{ end -}}
+tmp=/tmp/sbsrf.zip
+[ ! -d "$dir" ] && mkdir -p "$dir"
+curl -L -o "$tmp" "$url"
+unzip "$tmp" -o -d "$dir"
+[ -e "$tmp" ] && rm "$tmp"
+{{ end -}}
+{{ end -}}
+{{ end -}}
