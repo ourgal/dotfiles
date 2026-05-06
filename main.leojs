@@ -8695,6 +8695,16 @@
                       "vh": "TARGETS"
                     }
                   ]
+                },
+                {
+                  "gnx": "zxc.20260506153412.1",
+                  "vh": "@clean pyproject.toml.tmpl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260506153441.1",
+                      "vh": "content"
+                    }
+                  ]
                 }
               ]
             },
@@ -10531,6 +10541,8 @@
     "zxc.20260502111909.1": "FILES := $(basename $(wildcard playbooks/*.yml))\nTARGETS := $(FILES:playbooks/%=%)\n",
     "zxc.20260502112024.1": ".PHONY: all ${TARGETS}\nall: ${TARGETS}",
     "zxc.20260502112055.1": "${TARGETS}:\n\t{{ if lookPath \"ansible-lint\" -}}\n\tansible-lint playbooks/$@.yml\n\t{{ end -}}\n\tansible-playbook -i inventory/hosts.yml playbooks/$@.yml\n",
+    "zxc.20260506153412.1": "@others",
+    "zxc.20260506153441.1": "[project]\nname = \"playbooks\"\nversion = \"0.1.0\"\ndescription = \"Add your description here\"\nreadme = \"README.md\"\nrequires-python = \">=3.10\"\ndependencies = [\n    \"ansible<2.17.dev0\",\n]",
     "zxc.20260409214651.1": "# --- Configuration ---\n\n# Set the path to pdftk.exe if it's not in your system's PATH\n# Example: $pdftkPath = \"C:\\Program Files (x86)\\PDFtk\\bin\\pdftk.exe\"\n$pdftkPath = \"pdftk\" # Assumes pdftk is in your PATH\n\n# Define the output filename for the merged PDF\n$outputPdfName = \"output.pdf\"\n\n# --- Script Logic ---\n\n# Get today's date in YYYYMMDD format\n$today = Get-Date -Format \"yyyyMMdd\"\n\n# Define the file pattern to search for\n# This pattern looks for files like IMG_20260409_0001.pdf\n$filePattern = \"IMG_${today}_*.pdf\"\n\n# Get all PDF files matching the pattern in the current directory\n$pdfFiles = Get-ChildItem -Path . -Filter $filePattern -File\n\n# Check if any files were found\nif ($pdfFiles.Count -eq 0) {\n    Write-Host \"No PDF files found matching the pattern 'IMG_${today}_*.pdf' in the current directory.\"\n    exit\n}\n\n# Sort the files by name to ensure correct order\n# The default sorting of Get-ChildItem should be alphabetical, which works for IMG_..._0001.pdf, IMG_..._0002.pdf etc.\n$sortedPdfFiles = $pdfFiles | Sort-Object Name\n\n# Construct the list of files for pdftk\n$pdftkInputFiles = $sortedPdfFiles | ForEach-Object { $_.FullName }\n\n# Construct the pdftk command\n# The 'cat' operation merges the files. 'output' specifies the output file.\n$pdftkCommand = \"$pdftkPath $($pdftkInputFiles -join ' ') cat output $outputPdfName\"\n\nWrite-Host \"Merging the following files:\"\n$sortedPdfFiles | ForEach-Object { Write-Host \"- $($_.Name)\" }\nWrite-Host \"Output file: $outputPdfName\"\n\n# Execute the pdftk command\ntry {\n    # Use Invoke-Expression to execute the command string\n    Invoke-Expression $pdftkCommand\n    Write-Host \"Successfully merged PDF files.\"\n\n    # Delete the original files after successful merge\n    Write-Host \"Deleting original PDF files...\"\n    $sortedPdfFiles | ForEach-Object {\n        $fileName = $_.Name\n        $filePath = $_.FullName\n        try {\n            Remove-Item -Path $filePath -Force -ErrorAction Stop\n            Write-Host \"Deleted: $fileName\"\n        } catch {\n            Write-Error \"Failed to delete '$fileName': $($_.Exception.Message)\"\n        }\n    }\n    Write-Host \"All original PDF files have been deleted.\"\n\n} catch {\n    Write-Error \"An error occurred during PDF merging: $($_.Exception.Message)\"\n    Write-Error \"Please ensure pdftk is installed and in your PATH, or update the `$pdftkPath` variable.\"\n}\n",
     "zxc.20260202205715.1": "<< dos >>\n@others\n{{ end -}}",
     "zxc.20260202205901.1": "# Flower - とても深いグリーン\nhttps://www.bilibili.com/video/BV1EyHYeBEFr",
@@ -11021,6 +11033,9 @@
     },
     "zxc.20260502111841.1": {
       "_mod_time": 1778049436.411
+    },
+    "zxc.20260506153412.1": {
+      "_mod_time": 1778052893.302
     },
     "zxc.20260409214651.1": {
       "_mod_time": 1777713442.482
