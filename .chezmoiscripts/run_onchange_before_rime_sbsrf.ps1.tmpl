@@ -6,7 +6,7 @@ $PSNativeCommandUseErrorActionPreference = $true
 # --- Configuration ---
 
 # 1. Define the source URL
-$DownloadUrl = "https://github.com/sbsrf/home/releases/download/20260101/sbsrf.zip"
+$DownloadUrl = "{{ .my.sbsrf.url }}"
 
 # 2. Define the target directory using the built-in environment variable $env:APPDATA
 # Note: $env:APPDATA resolves to C:\Users\<Username>\AppData\Roaming

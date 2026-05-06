@@ -22,6 +22,10 @@ service/**
 .config/sv/
 .config/sv/**
 {{ end -}}
+{{ if not (lookPath "flatpak") -}}
+.var/
+.var/**
+{{ end -}}
 {{ end -}}
 {{ if eq .chezmoi.os "android" -}}
 Documents/autohotkey/
@@ -47,6 +51,8 @@ service/**
 {{ end -}}
 .local/share/applications/
 .local/share/applications/**
+.var/
+.var/**
 {{ end -}}
 {{ if eq .chezmoi.os "windows" -}}
 .vim/
@@ -62,4 +68,6 @@ service/
 service/**
 .local/share/applications/
 .local/share/applications/**
+.var/
+.var/**
 {{ end -}}

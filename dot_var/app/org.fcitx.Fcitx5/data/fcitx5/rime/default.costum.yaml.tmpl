@@ -1,0 +1,8 @@
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if stat (joinPath .chezmoi.homeDir ".local" "share" "flatpak" "exports" "share" "applications" "org.fcitx.Fcitx5.desktop") -}}
+patch:
+  schema_list:
+    - schema: sbfm
+  "switcher/hotkeys":
+{{ end -}}
+{{ end -}}

@@ -6,4 +6,7 @@ export HOMEBREW_BREW_GIT_REMOTE="https://mirror.nju.edu.cn/git/homebrew/brew.git
 export EDITOR={{ template "editor" }}
 export PATH=~/.local/bin:$PATH
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
 {{ end -}}

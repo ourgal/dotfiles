@@ -1,0 +1,3 @@
+{{ if not (lookPath "fcitx5") -}}
+{{ joinPath .chezmoi.homeDir ".local" "share" "flatpak" "exports" "share" "applications" "org.fcitx.Fcitx5.desktop" }}
+{{ end -}}
