@@ -1,0 +1,14 @@
+{{ if lookPath "gpg-agent" -}}
+[Desktop Entry]
+Encoding=UTF-8
+Version=0.9.4
+Type=Application
+Name=gpg-agent
+Comment=
+Exec=gpg-connect-agent /bye
+OnlyShowIn=XFCE;
+RunHook=0
+StartupNotify=false
+Terminal=false
+Hidden=true
+{{ end -}}
