@@ -1,4 +1,4 @@
 {{ if lookPath "gpg-agent" -}}
 #!/bin/sh
-exec gpg-agent --daemon --no-detach
+exec gpg-agent --homedir {{ joinPath .chezmoi.homeDir ".gnupg" }} --use-standard-socket --daemon --no-detach
 {{ end -}}
