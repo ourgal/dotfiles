@@ -51,8 +51,16 @@ service/**
 {{ end -}}
 .local/share/applications/
 .local/share/applications/**
+service/
+service/**
+.config/Code OSS/
+.config/Code OSS/**
+.config/sv/
+.config/sv/**
 .var/
 .var/**
+.config/autostart/
+.config/autostart/**
 {{ end -}}
 {{ if eq .chezmoi.os "windows" -}}
 .vim/
@@ -66,8 +74,16 @@ service/**
 .gnupg/**
 service/
 service/**
+.config/sv/
+.config/sv/**
+.config/Code OSS/
+.config/Code OSS/**
 .local/share/applications/
 .local/share/applications/**
+.config/nnn/
+.config/nnn/**
 .var/
 .var/**
+.config/autostart/
+.config/autostart/**
 {{ end -}}
