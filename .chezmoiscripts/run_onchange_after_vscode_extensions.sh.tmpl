@@ -22,7 +22,9 @@ extensions=(
     "PKief.material-icon-theme"
     "mark-wiemer.vscode-autohotkey-plus-plus"
     "Chouzz.vscode-better-align"
+    {{ if eq .chezmoi.os "windows" -}}
     "ms-vscode-remote.remote-wsl"
+    {{ end -}}
     "danprince.vsnetrw"
     "ms-playwright.playwright"
     )
