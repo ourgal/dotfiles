@@ -1493,7 +1493,23 @@
                               "vh": ".local share applications"
                             },
                             {
+                              "gnx": "zxc.20260503214440.1",
+                              "vh": "runnit user service"
+                            },
+                            {
+                              "gnx": "zxc.20260507103353.1",
+                              "vh": "Code OSS"
+                            },
+                            {
+                              "gnx": "zxc.20260507103217.1",
+                              "vh": "runit config"
+                            },
+                            {
                               "gnx": "zxc.20260507002246.1"
+                            },
+                            {
+                              "gnx": "zxc.20260507092620.1",
+                              "vh": "free desktop auto start"
                             }
                           ]
                         },
@@ -1525,15 +1541,27 @@
                               "vh": "gnupg"
                             },
                             {
-                              "gnx": "zxc.20260503214440.1",
-                              "vh": "runnit user service"
+                              "gnx": "zxc.20260503214440.1"
+                            },
+                            {
+                              "gnx": "zxc.20260507103217.1"
+                            },
+                            {
+                              "gnx": "zxc.20260507103353.1"
                             },
                             {
                               "gnx": "zxc.20260504130800.1",
                               "vh": ".local share applications"
                             },
                             {
+                              "gnx": "zxc.20260507103507.1",
+                              "vh": "nnn"
+                            },
+                            {
                               "gnx": "zxc.20260507002246.1"
+                            },
+                            {
+                              "gnx": "zxc.20260507092620.1"
                             }
                           ]
                         }
@@ -9627,14 +9655,18 @@
     "User.20260224001419.1": "<< android >>\n@others\n{{ end -}}",
     "User.20260225204449.1": "{{ if eq .chezmoi.os \"android\" -}}\n",
     "zxc.20260504130849.1": ".local/share/applications/\n.local/share/applications/**\n",
+    "zxc.20260503214440.1": "service/\nservice/**\n",
+    "zxc.20260507103353.1": ".config/Code OSS/\n.config/Code OSS/**",
+    "zxc.20260507103217.1": ".config/sv/\n.config/sv/**",
+    "zxc.20260507092620.1": ".config/autostart/\n.config/autostart/**",
     "zxc.20260125144606.1": "<< dos >>\n@others\n{{ end -}}\n",
     "zxc.20260125144639.1": ".vim/\n.vim/**",
     "zxc.20260126193455.1": ".pip/\n.pip/**",
     "zxc.20260125144753.1": ".bash_profile\n.bashrc",
     "zxc.20260125144810.1": ".xinitrc",
     "zxc.20260502183801.1": ".gnupg\n.gnupg/**",
-    "zxc.20260503214440.1": "service/\nservice/**\n",
     "zxc.20260504130800.1": ".local/share/applications/\n.local/share/applications/**\n",
+    "zxc.20260507103507.1": ".config/nnn/\n.config/nnn/**",
     "zxc.20260125172659.1": "{{ if lookPath \"hx\" -}}\nhx\n{{- else if lookPath \"vim\" -}}\nvim\n{{- else if lookPath \"vi\" -}}\nvi\n{{- else if lookPath \"nano\" -}}\nnano\n{{- end -}}",
     "zxc.20260319091259.1": "{{ if eq . nil -}}\n{{ fail \"pass hostname to ipM6 template\" -}}\n{{ end -}}\n{{ if eq . \"work\" -}}\n192.168.1.103\n{{- else if  eq . \"nuc\" \"bed\" \"surface\" -}}\n192.168.123.191\n{{- else if  eq . \"localhost\" -}}\n{{- else -}}\n{{ fail (printf \"unknown hostname %s for ipM6 template\" .) -}}\n{{- end -}}",
     "User.20260221004652.1": "{{ if eq . nil -}}\n{{ fail \"pass pathes to checkPath template\" -}}\n{{ end -}}\n{{ if kindIs \"slice\" . -}}\n    {{ range . -}}\n    {{ template \"_checkPath\" . -}}\n    {{ end -}}\n{{ else if kindIs \"string\" . -}}\n    {{ template \"_checkPath\" . -}}\n{{ else -}}\n    {{ fail (printf \"checkPath: %s unsupported type %s\" . (kindOf .)) -}}\n{{ end -}}\n",
@@ -10829,7 +10861,7 @@
       "_mod_time": 1777713442.506
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1778084711.455
+      "_mod_time": 1778121313.49
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1777713442.4663134
@@ -10856,10 +10888,10 @@
       "_mod_time": 1777713442.465
     },
     "User.20260216114746.1": {
-      "_mod_time": 1777990586.3
+      "_mod_time": 1778115749.551
     },
     "zxc.20260505221318.1": {
-      "_mod_time": 1778085129.895
+      "_mod_time": 1778115749.559
     },
     "zxc.20260202203521.14": {
       "_mod_time": 1777713442.465
@@ -10946,7 +10978,7 @@
       "_mod_time": 1777713442.465
     },
     "User.20260226001402.1": {
-      "_mod_time": 1778075244.119
+      "_mod_time": 1778115749.539
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1777891402.212
@@ -11015,13 +11047,13 @@
       "_mod_time": 1778049436.465
     },
     "zxc.20260504134034.1": {
-      "_mod_time": 1777873307.318
+      "_mod_time": 1778049436.466
     },
     "zxc.20260507002719.1": {
-      "_mod_time": 1778085192.964
+      "_mod_time": 1778115749.574
     },
     "zxc.20260507003041.1": {
-      "_mod_time": 1778085192.984
+      "_mod_time": 1778115749.579
     },
     "zxc.20260126154354.1": {
       "_mod_time": 1777713442.5000603
@@ -11078,10 +11110,10 @@
       "_mod_time": 1778049436.439
     },
     "zxc.20260504133030.1": {
-      "_mod_time": 1777873522.679
+      "_mod_time": 1778049436.44
     },
     "zxc.20260503215955.1": {
-      "_mod_time": 1777822517.061
+      "_mod_time": 1778049436.44
     },
     "zxc.20260505104942.1": {
       "_mod_time": 1778049436.434
@@ -11090,7 +11122,7 @@
       "_mod_time": 1778049436.434
     },
     "zxc.20260507000814.1": {
-      "_mod_time": 1778083860.948
+      "_mod_time": 1778115749.599
     },
     "zxc.20260502183455.1": {
       "_mod_time": 1778049436.441
@@ -11102,7 +11134,7 @@
       "_mod_time": 1778049436.442
     },
     "zxc.20260505181144.1": {
-      "_mod_time": 1777992773.454
+      "_mod_time": 1778115749.587
     },
     "User.20260215182442.1": {
       "_mod_time": 1777891060.651
@@ -11225,7 +11257,7 @@
       "_mod_time": 1778049436.419
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1778085382.498
+      "_mod_time": 1778115749.569
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777713442.480156
