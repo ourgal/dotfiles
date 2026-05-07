@@ -6056,6 +6056,10 @@
                         },
                         {
                           "gnx": "zxc.20260501183257.1",
+                          "vh": "uos live"
+                        },
+                        {
+                          "gnx": "zxc.20260507153749.1",
                           "vh": "uos"
                         },
                         {
@@ -8047,6 +8051,43 @@
                                 {
                                   "gnx": "zxc.20260423143729.451",
                                   "vh": "remove script"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260507153527.1",
+                      "vh": "uos",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260507153544.1",
+                          "vh": "@clean uos.yml.tmpl",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260502011628.1"
+                            },
+                            {
+                              "gnx": "zxc.20260507153731.1",
+                              "vh": "<< vars >>"
+                            },
+                            {
+                              "gnx": "zxc.20260507153832.1",
+                              "vh": "facts"
+                            },
+                            {
+                              "gnx": "zxc.20260507153845.1",
+                              "vh": "nix",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260507153959.1",
+                                  "vh": "install nix"
+                                },
+                                {
+                                  "gnx": "zxc.20260507163506.1",
+                                  "vh": "home-manager"
                                 }
                               ]
                             }
@@ -10123,7 +10164,8 @@
     "zxc.20260501183224.1": "wsl-debian:\n  vars:\n    ansible_connection: community.general.wsl\n    ansible_user: user\n  hosts:\n    nuc-windows-wsl-debian:\n      ansible_host: nuc.local\n      wsl_distribution: debian\n      wsl_user: root\n",
     "zxc.20260501183235.1": "wsl-arch:\n  vars:\n    ansible_connection: community.general.wsl\n    ansible_user: user\n  hosts:\n    nuc-wsl-arch:\n      ansible_host: nuc.local\n      wsl_distribution: archlinux\n      wsl_user: root\n    work-wsl-arch:\n      ansible_host: 192.168.1.110\n      wsl_distribution: archlinux\n      wsl_user: root\n",
     "zxc.20260501183245.1": "termux:\n  vars:\n    ansible_ssh_port: 8022\n  hosts:\n    note20:\n      ansible_host: 192.168.123.232\n      ansible_user: u0_a644\n",
-    "zxc.20260501183257.1": "uos:\n  hosts:\n    test:\n      ansible_host: 192.168.1.107\n      ansible_user: uos\n      ansible_become_pass: uos\n",
+    "zxc.20260501183257.1": "uos-live:\n  hosts:\n    uos-live:\n      ansible_host: 192.168.1.107\n      ansible_user: uos\n      ansible_become_pass: uos\n",
+    "zxc.20260507153749.1": "uos:\n  hosts:\n    work2:\n      ansible_host: 192.168.1.107\n      ansible_user: zxc\n      ansible_become_pass: \"{{ gopass \"password/linux/user\" }}\"\n",
     "zxc.20260501183315.1": "macos:\n  hosts:\n    macmini:\n      ansible_host: 192.168.123.117\n      ansible_become_pass: \"{{ gopass \"password/linux/user\" }}\"\n",
     "zxc.20260507120909.1": "void:\n  hosts:\n    surface:\n      ansible_user: zxc\n      ansible_host: surface.local\n      ansible_become_pass: \"{{ gopass \"password/linux/user\" }}\"",
     "zxc.20260507121046.1": "void-live:\n  hosts:\n    void-live:\n      ansible_user: anon\n      ansible_ssh_pass: voidlinux\n      ansible_host: 192.168.123.221\n      ansible_become_pass: \"{{ gopass \"password/linux/user\" }}\"",
@@ -10513,7 +10555,7 @@
     "zxc.20260423143729.422": "- copyparty",
     "zxc.20260423143729.423": "- mdformat",
     "zxc.20260423143729.424": "- advance-touch",
-    "zxc.20260423143729.426": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n@\ndisable power saving\nenable password ssh login and start ssh\nchange uos password, current password is emtpy\nssh-copy-id\n@c\n- name: Install uos\n  hosts: uos\n  vars:\n    << vars >>\n  tasks:\n    @others",
+    "zxc.20260423143729.426": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n@\ndisable power saving\nenable password ssh login and start ssh\nchange uos password, current password is emtpy\nssh-copy-id\n@c\n- name: Install uos\n  hosts: uos-live\n  vars:\n    << vars >>\n  tasks:\n    @others",
     "zxc.20260423143729.427": "user: zxc\ndufs_url: http://192.168.1.110:6500",
     "zxc.20260423143729.428": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts",
     "zxc.20260423143729.429": "- name: Enable developer mode\n  become: true\n  block:\n    @others",
@@ -10539,6 +10581,12 @@
     "zxc.20260423143729.449": "systemctl enable ssh\nchown -R {{ user }}:{{ user }} /home/{{ user }}/.ssh",
     "zxc.20260423143729.450": "- name: Run chroot script\n  environment:\n    LANG: C.UTF-8\n  ansible.builtin.shell:\n    cmd: |\n      fail() {\n              printf '%s\\n' \"$1\" >&2\n              exit 1\n      }\n\n      CHROOT=/target\n\n      [ -d \"$CHROOT\" ] || fail 'not a directory'\n      [ -d \"$CHROOT/dev\" ] || fail 'no /dev in chroot'\n      [ -d \"$CHROOT/proc\" ] || fail 'no /proc in chroot'\n      [ -d \"$CHROOT/sys\" ] || fail 'no /sys in chroot'\n\n      for _fs in dev proc sys; do\n              mount --rbind \"/$_fs\" \"$CHROOT/$_fs\"\n              mount --make-rslave \"$CHROOT/$_fs\"\n      done\n\n      cleanup() {\n              umount -R \"$CHROOT/dev\" \"$CHROOT/proc\" \"$CHROOT/sys\"\n      }\n\n      trap cleanup EXIT INT\n\n      chroot \"$CHROOT\" /bin/bash /script\n  changed_when: true\n",
     "zxc.20260423143729.451": "- name: Remove script\n  ansible.builtin.file:\n    path: /target/script\n    state: absent\n",
+    "zxc.20260507153544.1": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n- name: Configure uos\n  hosts: uos\n  vars:\n    << vars >>\n  tasks:\n    @others\n",
+    "zxc.20260507153731.1": "user: zxc",
+    "zxc.20260507153832.1": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts",
+    "zxc.20260507153845.1": "- name: Nix\n  tags:\n    - pkg\n    - nix\n  block:\n    @others",
+    "zxc.20260507153959.1": "- name: Nix folder stat\n  ansible.builtin.stat:\n    path: /nix\n  register: nix_stat\n- name: Install nix\n  become: true\n  ansible.builtin.shell: curl -sSfL https://artifacts.nixos.org/nix-installer | sh -s -- install --enable-flakes --no-confirm\n  when: not nix_stat.stat.exists\n- name: Add trusted-users to nix config\n  become: true\n  ansible.builtin.lineinfile:\n    path: /etc/nix/nix.conf\n    line: trusted-users = {{ user }}",
+    "zxc.20260507163506.1": "- name: Home-manager stat\n  ansible.builtin.stat:\n    path: \"{{ ansible_facts.user_dir }}/.nix-profile/bin/home-manager\n  register: home_manager_stat\n- name: Install home-manager channel\n  ansible.builtin.shell: nix-channel --add https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz home-manager\n  when: not home_manager_stat.stat.exists\n- name: Update channels\n  ansible.builtin.shell: nix-channel --update\n  when: not home_manager_stat.stat.exists\n- name: Install home-manager\n  ansible.builtin.shell: nix-shell '<home-manager>' -A install\n  when: not home_manager_stat.stat.exists",
     "zxc.20260423143729.453": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n- name: Configure macos\n  hosts: macos\n  roles:\n    << homebrew >>\n  tasks:\n    @others",
     "zxc.20260423143729.454": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts",
     "zxc.20260423143729.455": "- role: geerlingguy.mac.homebrew\n  vars:\n    homebrew_installed_packages:\n      << packages >>\n    homebrew_cask_apps:\n      << cask >>\n",
@@ -11166,7 +11214,7 @@
       "_mod_time": 1778049436.421
     },
     "zxc.20260423145238.1": {
-      "_mod_time": 1778127071.82
+      "_mod_time": 1778139500.721
     },
     "zxc.20260423143729.3": {
       "_mod_time": 1778049436.42
@@ -11187,7 +11235,10 @@
       "_mod_time": 1778049436.418
     },
     "zxc.20260423143729.426": {
-      "_mod_time": 1778055121.741
+      "_mod_time": 1778139410.486
+    },
+    "zxc.20260507153544.1": {
+      "_mod_time": 1778144281.231
     },
     "zxc.20260423143729.453": {
       "_mod_time": 1778049436.415
