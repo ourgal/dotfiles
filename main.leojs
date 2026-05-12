@@ -8769,6 +8769,22 @@
                                 {
                                   "gnx": "zxc.20260504220009.1",
                                   "vh": "install"
+                                },
+                                {
+                                  "gnx": "zxc.20260512230229.1",
+                                  "vh": "packages",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260512230234.1",
+                                      "vh": "shell",
+                                      "children": [
+                                        {
+                                          "gnx": "zxc.20260512230236.1",
+                                          "vh": "history"
+                                        }
+                                      ]
+                                    }
+                                  ]
                                 }
                               ]
                             },
@@ -10732,6 +10748,8 @@
     "zxc.20260505165225.1": "- name: Set lemurs config\n  become: true\n  ansible.builtin.lineinfile:\n    path: /etc/lemurs/config.toml\n    regexp: '^tty ='\n    line: tty = 7",
     "zxc.20260504220005.1": "- name: LinuxBrew\n  tags:\n    - pkg\n    - brew\n  environment:\n    PATH: \"/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}\"\n    HOMEBREW_BREW_GIT_REMOTE: \"https://mirror.nju.edu.cn/git/homebrew/brew.git\"\n  block:\n    @others",
     "zxc.20260504220009.1": "- name: Check if Homebrew is installed\n  ansible.builtin.stat:\n    path: \"/home/linuxbrew/.linuxbrew/bin/brew\"\n  register: brew_stat\n- name: Create Homebrew directory\n  ansible.builtin.file:\n    path: \"/home/linuxbrew/.linuxbrew\"\n    state: directory\n    owner: \"{{ ansible_env.USER }}\"\n    group: \"{{ ansible_env.USER }}\"\n    mode: '0755'\n  become: true\n  when: not brew_stat.stat.exists\n- name: Install Homebrew\n  ansible.builtin.shell: |\n    curl -fsSL https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C /home/linuxbrew/.linuxbrew\n  when: not brew_stat.stat.exists",
+    "zxc.20260512230229.1": "- name: Install linuxbrew packages\n  tags:\n    - pkg\n    - linuxbrew\n    - homebrew\n  community.general.homebrew:\n    name:\n      @others\n    state: latest\n    update_homebrew: true\n    upgrade: true",
+    "zxc.20260512230236.1": "- mcfly",
     "zxc.20260504195440.1": "- name: Set the system hostname\n  become: true\n  ansible.builtin.hostname:\n    name: \"{{ hostname }}\"",
     "zxc.20260503212032.1": "- name: Set user groups\n  become: true\n  ansible.builtin.user:\n    name: \"{{ username }}\"\n    groups:\n      - '{{ \"input\" if ansible_facts.os_family == \"Void\" else omit }}'\n    append: true",
     "zxc.20260501214447.1": "- name: Regenerate initramfs\n  become: true\n  ansible.builtin.command:\n    cmd: \"xbps-reconfigure --force linux{{ ansible_facts.kernel | regex_search('\\\\d+\\\\.\\\\d+') }}\"\n  changed_when: true\n",
@@ -11254,7 +11272,7 @@
       "_mod_time": 1778586914.338
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1778586914.338
+      "_mod_time": 1778598255.39
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777713442.480156
@@ -11272,7 +11290,7 @@
       "_mod_time": 1777713442.4820948
     },
     "zxc.20260426163956.1": {
-      "_mod_time": 1778586975.889
+      "_mod_time": 1778598080.58
     },
     "User.20260302151947.1": {
       "_mod_time": 1778586914.337
