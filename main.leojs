@@ -8426,7 +8426,7 @@
                                 },
                                 {
                                   "gnx": "zxc.20260501214216.1",
-                                  "vh": "install",
+                                  "vh": "install packages",
                                   "children": [
                                     {
                                       "gnx": "zxc.20260501214216.2",
@@ -8657,6 +8657,10 @@
                                     {
                                       "gnx": "zxc.20260505184847.1",
                                       "vh": "dot-xsession"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260512231138.1",
+                                      "vh": "ansible"
                                     }
                                   ]
                                 }
@@ -8774,6 +8778,16 @@
                                   "gnx": "zxc.20260512230229.1",
                                   "vh": "packages",
                                   "children": [
+                                    {
+                                      "gnx": "zxc.20260512231151.1",
+                                      "vh": "dev",
+                                      "children": [
+                                        {
+                                          "gnx": "zxc.20260512231154.1",
+                                          "vh": "ansible"
+                                        }
+                                      ]
+                                    },
                                     {
                                       "gnx": "zxc.20260512230234.1",
                                       "vh": "shell",
@@ -10727,6 +10741,7 @@
     "zxc.20260505184823.1": "- name: Uninstall packages\n  tags:\n    - pkg\n    - xbps\n  become: true\n  environment:\n    XBPS_ARCH: \"{{ ansible_facts.machine }}\"\n  community.general.xbps:\n    state: absent\n    name:\n      @others",
     "zxc.20260506210845.1": "@\nsbsrf not working\n@c\n- fcitxs\n- fcitx5-rime\n- fcitx5-lua\n- fcitx5-configtool",
     "zxc.20260505184847.1": "- dot-xsession",
+    "zxc.20260512231138.1": "- ansible-language-server\n- python3-ansible-lint",
     "zxc.20260502144817.1": "- name: Setup pip mirror\n  block:\n    - name: Create .pip folder\n      ansible.builtin.file:\n        dest: \"{{ ansible_facts.user_dir }}/.pip\"\n        state: directory\n    - name: Set pip config\n      ansible.builtin.copy:\n        dest: \"{{ ansible_facts.user_dir }}/.pip/pip.ini\"\n        content: |\n          [global]\n          index-url = https://mirrors.nju.edu.cn/pypi/web/simple/\n          [install]\n          trusted-host = mirrors.nju.edu.cn\n",
     "zxc.20260501214336.1": "- name: Install pipx packages\n  tags: pipx\n  community.general.pipx:\n    name: \"{{ item }}\"\n  loop:\n    @others",
     "zxc.20260501214336.2": "- jellyfin-mpv-shim",
@@ -10749,6 +10764,7 @@
     "zxc.20260504220005.1": "- name: LinuxBrew\n  tags:\n    - pkg\n    - brew\n  environment:\n    PATH: \"/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}\"\n    HOMEBREW_BREW_GIT_REMOTE: \"https://mirror.nju.edu.cn/git/homebrew/brew.git\"\n  block:\n    @others",
     "zxc.20260504220009.1": "- name: Check if Homebrew is installed\n  ansible.builtin.stat:\n    path: \"/home/linuxbrew/.linuxbrew/bin/brew\"\n  register: brew_stat\n- name: Create Homebrew directory\n  ansible.builtin.file:\n    path: \"/home/linuxbrew/.linuxbrew\"\n    state: directory\n    owner: \"{{ ansible_env.USER }}\"\n    group: \"{{ ansible_env.USER }}\"\n    mode: '0755'\n  become: true\n  when: not brew_stat.stat.exists\n- name: Install Homebrew\n  ansible.builtin.shell: |\n    curl -fsSL https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C /home/linuxbrew/.linuxbrew\n  when: not brew_stat.stat.exists",
     "zxc.20260512230229.1": "- name: Install linuxbrew packages\n  tags:\n    - pkg\n    - linuxbrew\n    - homebrew\n  community.general.homebrew:\n    name:\n      @others\n    state: latest\n    update_homebrew: true\n    upgrade: true",
+    "zxc.20260512231154.1": "- ansible-language-server\n- ansible-lint",
     "zxc.20260512230236.1": "- mcfly",
     "zxc.20260504195440.1": "- name: Set the system hostname\n  become: true\n  ansible.builtin.hostname:\n    name: \"{{ hostname }}\"",
     "zxc.20260503212032.1": "- name: Set user groups\n  become: true\n  ansible.builtin.user:\n    name: \"{{ username }}\"\n    groups:\n      - '{{ \"input\" if ansible_facts.os_family == \"Void\" else omit }}'\n    append: true",
@@ -11272,7 +11288,7 @@
       "_mod_time": 1778586914.338
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1778598255.39
+      "_mod_time": 1778598729.878
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777713442.480156

@@ -141,6 +141,8 @@
           - fcitx5-lua
           - fcitx5-configtool
           - dot-xsession
+          - ansible-language-server
+          - python3-ansible-lint
     - name: Setup pip mirror
       block:
         - name: Create .pip folder
@@ -303,6 +305,8 @@
             - homebrew
           community.general.homebrew:
             name:
+              - ansible-language-server
+              - ansible-lint
               - mcfly
             state: latest
             update_homebrew: true
