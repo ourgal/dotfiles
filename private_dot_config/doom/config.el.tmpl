@@ -156,6 +156,10 @@
   ;; Optional: Evil mode keybindings
   (elsqlite-evil-setup)
   )
+(use-package! super-save
+  :ensure t
+  :config
+  (super-save-mode +1))
 (setq message-send-mail-function 'smtpmail-send-it)
 (setq user-mail-address "ourgal@qq.com")
 (setq user-full-name "ourgal")
