@@ -67,10 +67,6 @@ WinWait("ahk_exe wezterm-gui.exe")
 {{ if lookPath "firefox" -}}
 Run("firefox", , "Max")
 WinWait("ahk_exe firefox.exe")
-WinActivate("ahk_exe firefox.exe")
-{{ if lookPath "glazewm" -}}
-Run "glazewm move --workspace 2", ,"Hide"
-{{ end }}
 {{ else if lookPath "brave" -}}
 Run("brave", , "Max")
 {{ end -}}
@@ -150,5 +146,8 @@ Run("syncthing serve --no-console --no-browser", , "Hide")
 {{ $cmd := $jellyfin_mpv_shim -}}
 {{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
 Run({{ $jellyfin_mpv_shim | quote }}, , "Hide")
+{{ end -}}
+{{ if lookPath "runemacs" -}}
+Run "runemacs --daemon", , "Hide"
 {{ end -}}
 {{ end -}}
