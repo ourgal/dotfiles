@@ -3750,6 +3750,14 @@
                               "vh": "workspace",
                               "children": [
                                 {
+                                  "gnx": "zxc.20260514061140.1",
+                                  "vh": "terminal"
+                                },
+                                {
+                                  "gnx": "zxc.20260514061122.1",
+                                  "vh": "browser"
+                                },
+                                {
                                   "gnx": "zxc.20260502020009.1",
                                   "vh": "vscode",
                                   "children": [
@@ -3776,6 +3784,10 @@
                                       "gnx": "zxc.20260504185628.1"
                                     }
                                   ]
+                                },
+                                {
+                                  "gnx": "zxc.20260514061202.1",
+                                  "vh": "keepassXC"
                                 }
                               ]
                             },
@@ -9976,11 +9988,14 @@
     "User.20260301203431.1": "window_behavior:\n  # New windows are created in this state whenever possible.\n  # Allowed values: 'tiling', 'floating'.\n  initial_state: 'tiling'\n  # Sets the default options for when a new window is created. This also\n  # changes the defaults for when the state change commands, like\n  # `set-floating`, are used without any flags.\n  state_defaults:\n    floating:\n      # Whether to center floating windows by default.\n      centered: true\n      # Whether to show floating windows as always on top.\n      shown_on_top: false\n    fullscreen:\n      # Maximize the window if possible. If the window doesn't have a\n      # maximize button, then it'll be fullscreen'ed normally instead.\n      maximized: false\n      # Whether to show fullscreen windows as always on top.\n      shown_on_top: false\n",
     "User.20260301203458.1": "workspaces:\n  - name: '1'\n  - name: '2'\n  - name: '3'\n  - name: '4'\n  - name: '5'\n  - name: '6'\n  - name: '7'\n  - name: '8'\n  - name: '9'\n",
     "User.20260301203526.1": "window_rules:\n  @others",
-    "User.20260301211002.1": "- commands: [\"move --workspace 1\"]\n  match:\n    - window_process: { regex: \"WindowsTerminal\" }\n    - window_process: { regex: \"wt\" }\n    - window_process: { regex: \"wezterm-gui\" }\n- commands: [\"move --workspace 2\"]\n  match:\n    - window_process: { regex: \"firefox\" }\n- commands: [\"move --workspace 9\"]\n  match:\n    - window_process: { regex: \"KeePassXC\" }\n@others",
+    "User.20260301211002.1": "@others",
+    "zxc.20260514061140.1": "- commands: [\"move --workspace 1\"]\n  match:\n    - window_process: { regex: \"WindowsTerminal\" }\n    - window_process: { regex: \"wt\" }\n    - window_process: { regex: \"wezterm-gui\" }",
+    "zxc.20260514061122.1": "@\n- commands: [\"move --workspace 2\"]\n  match:\n    - window_process: { regex: \"firefox\" }\n@c",
     "zxc.20260502020009.1": "{{ $opt := \"vscode\" -}}\n<< check opt >>\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"Code\" }\n{{ end -}}\n",
     "zxc.20260504185628.1": "{{ if or (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt) -}}",
     "zxc.20260502020122.1": "{{ $opt := \"vscodium\" -}}\n<< check opt >>\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"VSCodium\" }\n{{ end -}}\n",
     "zxc.20260502020153.1": "{{ $opt := \"leo\" -}}\n<< check opt >>\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"leo\" }\n{{ end -}}\n",
+    "zxc.20260514061202.1": "- commands: [\"move --workspace 9\"]\n  match:\n    - window_process: { regex: \"KeePassXC\" }",
     "User.20260301210952.1": "- commands: ['ignore']\n  match:\n    # Ignores any Zebar windows.\n    - window_process: {equals: 'zebar'}\n    # Ignores picture-in-picture windows for browsers.\n    - window_title: {regex: '[Pp]icture.in.[Pp]icture'}\n      window_class: {regex: 'Chrome_WidgetWin_1|MozillaDialogClass'}\n    # Ignore rules for various 3rd-party apps.\n    - window_process: {equals: 'PowerToys'}\n      window_class: {regex: 'HwndWrapper\\[PowerToys\\.PowerAccent.*?\\]'}\n    - window_process: {equals: 'PowerToys'}\n      window_title: {regex: '.*? - Peek'}\n    - window_process: {equals: 'Lively'}\n      window_class: {regex: 'HwndWrapper'}\n    - window_process: {equals: 'EXCEL'}\n      window_class: {not_regex: 'XLMAIN'}\n    - window_process: {equals: 'WINWORD'}\n      window_class: {not_regex: 'OpusApp'}\n    - window_process: {equals: 'POWERPNT'}\n      window_class: {not_regex: 'PPTFrameClass'}\n",
     "User.20260301222626.1": "- commands: [\"set-floating\"]\n  match:\n    - window_process: { equals: \"Flow.Launcher\" }\n      window_title: { equals: \"Settings\" }",
     "User.20260301203613.1": "binding_modes:\n  # When enabled, the focused window can be resized via arrow keys or HJKL.\n  - name: 'resize'\n    keybindings:\n      - commands: ['resize --width -2%']\n        bindings: ['h', 'left']\n      - commands: ['resize --width +2%']\n        bindings: ['l', 'right']\n      - commands: ['resize --height +2%']\n        bindings: ['k', 'up']\n      - commands: ['resize --height -2%']\n        bindings: ['j', 'down']\n      - commands: ['wm-disable-binding-mode --name resize']\n        # Press enter/escape to return to default keybindings.\n        bindings: ['escape', 'enter']\n",
@@ -10061,7 +10076,7 @@
     "zxc.20260329023750.1": "{{ $opt := \"gpg-connect-agent\" -}}\n{{ $cmd := \"gpg_agent\" -}}\n<< check opt and cmd >>\nRun(\"gpg-connect-agent /bye\", , \"Hide\")\n{{ end -}}\n",
     "User.20260301185900.1": "{{ $opt := \"kde_connect\" -}}\n{{ $cmd := \"kdeconnect-cli\" -}}\n<< check opt and cmd >>\nRun(\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"kdeconnect\" \"current\" \"bin\" \"kdeconnectd.exe\" }}\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
     "zxc.20260408010815.1": "{{ if and (lookPath \"wezterm\") (eq .my.terminal.windows \"wezterm\") -}}\nRun \"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"wezterm\" \"current\" \"wezterm-gui.exe\" }}\"\nWinWait(\"ahk_exe wezterm-gui.exe\")\n{{ end -}}\n",
-    "User.20260302135941.1": "{{ if lookPath \"firefox\" -}}\nRun(\"firefox\", , \"Max\")\nWinWait(\"ahk_exe firefox.exe\")\n{{ else if lookPath \"brave\" -}}\nRun(\"brave\", , \"Max\")\n{{ end -}}\n",
+    "User.20260302135941.1": "{{ if lookPath \"firefox\" -}}\nRun(\"firefox\", , \"Max\")\nWinWait(\"ahk_exe firefox.exe\")\nWinActivate(\"ahk_exe firefox.exe\")\n{{ if lookPath \"glazewm\" -}}\nRun \"glazewm move --workspace 2\", ,\"Hide\"\n{{ end }}\n{{ else if lookPath \"brave\" -}}\nRun(\"brave\", , \"Max\")\n{{ end -}}",
     "User.20260302135946.1": "{{ $vscode := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscode\" \"current\" \"Code.exe\" -}}\n{{ $vscodium := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscodium\" \"current\" \"VSCodium.exe\" -}}\n{{ $opt := \"vscodium\" -}}\n{{ $cmd := \"vscodium\" -}}\n<< check opt and cmd >>\nRun({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait(\"ahk_exe VSCodium.exe\")\n{{ end -}}\n{{ $opt := \"vscode\" -}}\n{{ $cmd := \"code\" -}}\n<< check opt and cmd >>\nRun({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\n{{ end -}}\n",
     "zxc.20260502015606.1": "{{ $opt := \"leo\" -}}\n{{ $cmd := \"leo\" -}}\n<< check opt and cmd >>\nRun \"leo\", , \"Max\"\n{{ end -}}\n",
     "zxc.20260315173154.1": "{{ $opt := \"everything\" -}}\n{{ $cmd := \"everything\" -}}\n<< check opt and cmd >>\nRun(\"everything\", , \"Hide\")\n{{ end -}}",
@@ -10901,7 +10916,7 @@
       "_mod_time": 1777713442.506
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1778167399.062
+      "_mod_time": 1778706271.126
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1777713442.4663134
@@ -10928,10 +10943,10 @@
       "_mod_time": 1777713442.465
     },
     "User.20260216114746.1": {
-      "_mod_time": 1778085439.292
+      "_mod_time": 1778706271.126
     },
     "zxc.20260505221318.1": {
-      "_mod_time": 1778586914.337
+      "_mod_time": 1778706271.126
     },
     "zxc.20260202203521.14": {
       "_mod_time": 1777713442.465
@@ -10946,10 +10961,10 @@
       "_mod_time": 1777713442.465
     },
     "User.20260220151435.2": {
-      "_mod_time": 1778167399.286
+      "_mod_time": 1778706271.126
     },
     "zxc.20260505102132.1": {
-      "_mod_time": 1778586914.337
+      "_mod_time": 1778706271.126
     },
     "zxc.20260202215023.1": {
       "_mod_time": 1777713442.464
@@ -10964,7 +10979,7 @@
       "_mod_time": 1777713442.465
     },
     "User.20260217202401.1": {
-      "_mod_time": 1777952053.57
+      "_mod_time": 1777952058.268
     },
     "User.20260220214558.1": {
       "_mod_time": 1778586914.337
@@ -11003,7 +11018,7 @@
       "_mod_time": 1777713442.465
     },
     "zxc.20260318203351.1": {
-      "_mod_time": 1777962131.716
+      "_mod_time": 1777967012.401
     },
     "zxc.20260505141849.1": {
       "_mod_time": 1778586914.337
@@ -11018,7 +11033,7 @@
       "_mod_time": 1777713442.465
     },
     "User.20260226001402.1": {
-      "_mod_time": 1778586914.337
+      "_mod_time": 1778706271.126
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1777891402.212
@@ -11048,10 +11063,10 @@
       "_mod_time": 1777713442.487
     },
     "User.20260301202336.1": {
-      "_mod_time": 1777896574.423
+      "_mod_time": 1778710332.83
     },
     "zxc.20260327184129.1": {
-      "_mod_time": 1778685671.515
+      "_mod_time": 1778706271.142
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1777713442.484
@@ -11087,10 +11102,10 @@
       "_mod_time": 1778586914.342
     },
     "zxc.20260507002719.1": {
-      "_mod_time": 1778586914.339
+      "_mod_time": 1778706271.142
     },
     "zxc.20260507003041.1": {
-      "_mod_time": 1778586914.339
+      "_mod_time": 1778706271.142
     },
     "zxc.20260126154354.1": {
       "_mod_time": 1777713442.5
@@ -11120,10 +11135,10 @@
       "_mod_time": 1778586914.341
     },
     "User.20260217223030.1": {
-      "_mod_time": 1778683115.615
+      "_mod_time": 1778706271.142
     },
     "User.20260217223035.1": {
-      "_mod_time": 1778683115.668
+      "_mod_time": 1778706271.142
     },
     "User.20260223014430.1": {
       "_mod_time": 1778586914.341
@@ -11144,7 +11159,7 @@
       "_mod_time": 1778586914.342
     },
     "zxc.20260503225115.1": {
-      "_mod_time": 1778586914.342
+      "_mod_time": 1778706271.142
     },
     "zxc.20260504133030.1": {
       "_mod_time": 1778586914.342
@@ -11159,10 +11174,10 @@
       "_mod_time": 1778586914.341
     },
     "zxc.20260507000814.1": {
-      "_mod_time": 1778586914.341
+      "_mod_time": 1778706271.142
     },
     "zxc.20260508000348.1": {
-      "_mod_time": 1778586914.341
+      "_mod_time": 1778706271.142
     },
     "zxc.20260502183455.1": {
       "_mod_time": 1778586914.342
@@ -11174,37 +11189,37 @@
       "_mod_time": 1778586914.342
     },
     "zxc.20260505181144.1": {
-      "_mod_time": 1778586914.339
+      "_mod_time": 1778706271.142
     },
     "User.20260215182442.1": {
-      "_mod_time": 1777713442.502
+      "_mod_time": 1777891060.651
     },
     "User.20260217022114.1": {
       "_mod_time": 1777896574.427
     },
     "User.20260215182818.1": {
-      "_mod_time": 1777713442.502
+      "_mod_time": 1777891191.634
     },
     "zxc.20260317084145.1": {
       "_mod_time": 1777896574.427
     },
     "zxc.20260201225344.1": {
-      "_mod_time": 1777713442.502
+      "_mod_time": 1777891060.714
     },
     "zxc.20260317082914.1": {
-      "_mod_time": 1777713442.502
+      "_mod_time": 1777891060.727
     },
     "zxc.20260201034331.1": {
       "_mod_time": 1777713442.506
     },
     "User.20260215205925.1": {
-      "_mod_time": 1777955588.956
+      "_mod_time": 1777967012.446
     },
     "User.20260215210400.1": {
       "_mod_time": 1777713442.505
     },
     "User.20260220151031.5": {
-      "_mod_time": 1777955589.002
+      "_mod_time": 1777967012.446
     },
     "User.20260220151031.28": {
       "_mod_time": 1777713442.505
@@ -11219,10 +11234,10 @@
       "_mod_time": 1777713442.504
     },
     "zxc.20260201203241.1": {
-      "_mod_time": 1777713442.503
+      "_mod_time": 1777718155.12
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1777976772.987
+      "_mod_time": 1777978566.573
     },
     "zxc.20260201214114.1": {
       "_mod_time": 1777713442.503
@@ -11237,10 +11252,10 @@
       "_mod_time": 1777713442.504
     },
     "zxc.20260325223009.1": {
-      "_mod_time": 1777713442.504
+      "_mod_time": 1777891355.163
     },
     "zxc.20260325223610.1": {
-      "_mod_time": 1777713442.504
+      "_mod_time": 1777891355.18
     },
     "zxc.20260325223805.1": {
       "_mod_time": 1777896574.428
@@ -11267,7 +11282,7 @@
       "_mod_time": 1778586914.338
     },
     "zxc.20260423145238.1": {
-      "_mod_time": 1778586914.338
+      "_mod_time": 1778706271.126
     },
     "zxc.20260423143729.3": {
       "_mod_time": 1778586914.338
@@ -11288,10 +11303,10 @@
       "_mod_time": 1778586914.338
     },
     "zxc.20260423143729.426": {
-      "_mod_time": 1778586914.338
+      "_mod_time": 1778706271.126
     },
     "zxc.20260507153544.1": {
-      "_mod_time": 1778586914.338
+      "_mod_time": 1778706271.126
     },
     "zxc.20260423143729.453": {
       "_mod_time": 1778586914.338
@@ -11300,7 +11315,7 @@
       "_mod_time": 1778586914.338
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1778683398.423
+      "_mod_time": 1778706271.126
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777713442.480156
@@ -11309,7 +11324,7 @@
       "_mod_time": 1778586914.338
     },
     "zxc.20260506153412.1": {
-      "_mod_time": 1778586914.338
+      "_mod_time": 1778706271.142
     },
     "zxc.20260409214651.1": {
       "_mod_time": 1777713442.482
@@ -11318,7 +11333,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260426163956.1": {
-      "_mod_time": 1778598080.58
+      "_mod_time": 1778706271.142
     },
     "User.20260302151947.1": {
       "_mod_time": 1777896574.422
@@ -11336,7 +11351,7 @@
       "_mod_time": 1777713442.478
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1777896574.422
+      "_mod_time": 1778710201.982
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1777713442.478

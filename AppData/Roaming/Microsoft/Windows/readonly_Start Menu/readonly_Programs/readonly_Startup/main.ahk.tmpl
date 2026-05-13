@@ -67,6 +67,10 @@ WinWait("ahk_exe wezterm-gui.exe")
 {{ if lookPath "firefox" -}}
 Run("firefox", , "Max")
 WinWait("ahk_exe firefox.exe")
+WinActivate("ahk_exe firefox.exe")
+{{ if lookPath "glazewm" -}}
+Run "glazewm move --workspace 2", ,"Hide"
+{{ end }}
 {{ else if lookPath "brave" -}}
 Run("brave", , "Max")
 {{ end -}}
