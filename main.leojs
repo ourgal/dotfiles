@@ -4086,17 +4086,14 @@
                   "vh": "projects",
                   "children": [
                     {
-                      "gnx": "zxc.20260327184509.1",
-                      "vh": "playbooks"
-                    },
-                    {
                       "gnx": "zxc.20260331200728.1",
                       "vh": "snowfall"
+                    },
+                    {
+                      "gnx": "zxc.20260513232022.1",
+                      "vh": "org"
                     }
                   ]
-                },
-                {
-                  "gnx": "User.20260225204326.1"
                 }
               ]
             }
@@ -8791,6 +8788,10 @@
                                       "vh": "dev",
                                       "children": [
                                         {
+                                          "gnx": "zxc.20260513224314.1",
+                                          "vh": "git"
+                                        },
+                                        {
                                           "gnx": "zxc.20260512231154.1",
                                           "vh": "ansible"
                                         }
@@ -10027,10 +10028,10 @@
     "User.20260222170925.1": "[annex \"security\"]\nallowed-ip-addresses = \"all\"",
     "zxc.20260125153131.2": "# feat: ✨\n# feat: 🔍\n# feat: 🔗\n# feat: 🔒\n\n# fix: 🐛\n# fix: 🐞\n# fix: 🩹\n# fix: 🚑️\n\n# style: 💅\n# style: 🎨\n# style: 💄\n\n# ci: 🦊\n# ci: 📦\n\n# deploy: 🚀\n# deploy: 📦\n\n# chore: 🧹\n# chore: 🔧\n# chore: ⚙️\n# docs: 📜\n\n# refactor: 🔨\n# perf: 🚀\n\n# test: 🚦\n# debug: 🧪\n\n# BREAKING CHANGE: 🚨\n# BREAKING CHANGE: 💥\n# BREAKING CHANGE: 💣",
     "zxc.20260201140637.1": "(\n    move_left: Some(( code: Char('h'), modifiers: \"\")),\n    move_right: Some(( code: Char('l'), modifiers: \"\")),\n    move_up: Some(( code: Char('k'), modifiers: \"\")),\n    move_down: Some(( code: Char('j'), modifiers: \"\")),\n    stage_unstage_item: Some(( code: Char(' '), modifiers: \"\")),\n\n    open_help: Some(( code: F(1), modifiers: \"\")),\n)",
-    "zxc.20260327184129.1": "<< dos >>\n{{ if lookPath \"mani\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260327184129.1": "{{ if lookPath \"mani\" -}}\n@others\n{{ end -}}",
     "zxc.20260327184144.1": "projects:\n  @others",
-    "zxc.20260327184509.1": "playbooks:\n  path: Documents/my_repos/playbooks\n  url: soft:playbooks\n  desc: Ansible playbooks",
     "zxc.20260331200728.1": "snowfall:\n  path: Documents/my_repos/snowfall\n  url: soft:snowfall\n  desc: nixos config",
+    "zxc.20260513232022.1": "org:\n  path: org\n  url: soft:org\n  desc: org",
     "zxc.20260125162740.1": "<< unix >>\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125162834.1": "[global]\nindex-url = {{ .my.pip.mirror }}\n[install]\ntrusted-host = {{ get (urlParse .my.pip.mirror) \"host\" }}",
     "zxc.20260126185048.1": "<< dos >>\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -10774,6 +10775,7 @@
     "zxc.20260504220005.1": "- name: LinuxBrew\n  tags:\n    - pkg\n    - brew\n  environment:\n    PATH: \"/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}\"\n    HOMEBREW_BREW_GIT_REMOTE: \"https://mirror.nju.edu.cn/git/homebrew/brew.git\"\n  block:\n    @others",
     "zxc.20260504220009.1": "- name: Check if Homebrew is installed\n  ansible.builtin.stat:\n    path: \"/home/linuxbrew/.linuxbrew/bin/brew\"\n  register: brew_stat\n- name: Create Homebrew directory\n  ansible.builtin.file:\n    path: \"/home/linuxbrew/.linuxbrew\"\n    state: directory\n    owner: \"{{ ansible_env.USER }}\"\n    group: \"{{ ansible_env.USER }}\"\n    mode: '0755'\n  become: true\n  when: not brew_stat.stat.exists\n- name: Install Homebrew\n  ansible.builtin.shell: |\n    curl -fsSL https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C /home/linuxbrew/.linuxbrew\n  when: not brew_stat.stat.exists",
     "zxc.20260512230229.1": "- name: Install linuxbrew packages\n  tags:\n    - pkg\n    - linuxbrew\n    - homebrew\n  community.general.homebrew:\n    name:\n      @others\n    state: latest\n    update_homebrew: true\n    upgrade: true",
+    "zxc.20260513224314.1": "- mani",
     "zxc.20260512231154.1": "- ansible-language-server\n- ansible-lint",
     "zxc.20260512230236.1": "- mcfly",
     "zxc.20260504195440.1": "- name: Set the system hostname\n  become: true\n  ansible.builtin.hostname:\n    name: \"{{ hostname }}\"",
@@ -10899,7 +10901,7 @@
       "_mod_time": 1777713442.506
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1778586914.337
+      "_mod_time": 1778167399.062
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1777713442.4663134
@@ -10914,7 +10916,7 @@
       "_mod_time": 1777713442.466
     },
     "User.20260226000855.1": {
-      "_mod_time": 1778586914.337
+      "_mod_time": 1777868233.587
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1777713442.465
@@ -10926,7 +10928,7 @@
       "_mod_time": 1777713442.465
     },
     "User.20260216114746.1": {
-      "_mod_time": 1778586914.337
+      "_mod_time": 1778085439.292
     },
     "zxc.20260505221318.1": {
       "_mod_time": 1778586914.337
@@ -10944,7 +10946,7 @@
       "_mod_time": 1777713442.465
     },
     "User.20260220151435.2": {
-      "_mod_time": 1778586914.337
+      "_mod_time": 1778167399.286
     },
     "zxc.20260505102132.1": {
       "_mod_time": 1778586914.337
@@ -10962,7 +10964,7 @@
       "_mod_time": 1777713442.465
     },
     "User.20260217202401.1": {
-      "_mod_time": 1778586914.337
+      "_mod_time": 1777952053.57
     },
     "User.20260220214558.1": {
       "_mod_time": 1778586914.337
@@ -11001,7 +11003,7 @@
       "_mod_time": 1777713442.465
     },
     "zxc.20260318203351.1": {
-      "_mod_time": 1778586914.337
+      "_mod_time": 1777962131.716
     },
     "zxc.20260505141849.1": {
       "_mod_time": 1778586914.337
@@ -11037,19 +11039,19 @@
       "_mod_time": 1777713442.483
     },
     "zxc.20260317002829.1": {
-      "_mod_time": 1777713442.4841998
+      "_mod_time": 1777713442.484
     },
     "zxc.20260315140713.1": {
       "_mod_time": 1777713442.484
     },
     "zxc.20260408012432.1": {
-      "_mod_time": 1777713442.4872582
+      "_mod_time": 1777713442.487
     },
     "User.20260301202336.1": {
-      "_mod_time": 1778586914.338
+      "_mod_time": 1777896574.423
     },
     "zxc.20260327184129.1": {
-      "_mod_time": 1777713442.499
+      "_mod_time": 1778685671.515
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1777713442.484
@@ -11091,7 +11093,7 @@
       "_mod_time": 1778586914.339
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1777713442.5000603
+      "_mod_time": 1777713442.5
     },
     "zxc.20260125145051.1": {
       "_mod_time": 1777713442.502
@@ -11175,40 +11177,40 @@
       "_mod_time": 1778586914.339
     },
     "User.20260215182442.1": {
-      "_mod_time": 1777891060.651
+      "_mod_time": 1777713442.502
     },
     "User.20260217022114.1": {
-      "_mod_time": 1778586914.342
+      "_mod_time": 1777896574.427
     },
     "User.20260215182818.1": {
-      "_mod_time": 1777891191.634
+      "_mod_time": 1777713442.502
     },
     "zxc.20260317084145.1": {
-      "_mod_time": 1778586914.342
+      "_mod_time": 1777896574.427
     },
     "zxc.20260201225344.1": {
-      "_mod_time": 1777891060.714
+      "_mod_time": 1777713442.502
     },
     "zxc.20260317082914.1": {
-      "_mod_time": 1777891060.727
+      "_mod_time": 1777713442.502
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1778586914.342
+      "_mod_time": 1777713442.506
     },
     "User.20260215205925.1": {
-      "_mod_time": 1778586914.342
+      "_mod_time": 1777955588.956
     },
     "User.20260215210400.1": {
-      "_mod_time": 1777713442.50548
+      "_mod_time": 1777713442.505
     },
     "User.20260220151031.5": {
-      "_mod_time": 1778586914.342
+      "_mod_time": 1777955589.002
     },
     "User.20260220151031.28": {
-      "_mod_time": 1777713442.505135
+      "_mod_time": 1777713442.505
     },
     "User.20260221175549.1": {
-      "_mod_time": 1777713442.5024755
+      "_mod_time": 1777713442.502
     },
     "User.20260221194603.1": {
       "_mod_time": 1777713442.506
@@ -11217,43 +11219,43 @@
       "_mod_time": 1777713442.504
     },
     "zxc.20260201203241.1": {
-      "_mod_time": 1777718155.12
+      "_mod_time": 1777713442.503
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1778586914.342
+      "_mod_time": 1777976772.987
     },
     "zxc.20260201214114.1": {
       "_mod_time": 1777713442.503
     },
     "zxc.20260202195207.1": {
-      "_mod_time": 1777713442.503358
+      "_mod_time": 1777713442.503
     },
     "zxc.20260322192157.1": {
-      "_mod_time": 1777713442.5034533
+      "_mod_time": 1777713442.503
     },
     "zxc.20260322192357.1": {
       "_mod_time": 1777713442.504
     },
     "zxc.20260325223009.1": {
-      "_mod_time": 1777891355.163
+      "_mod_time": 1777713442.504
     },
     "zxc.20260325223610.1": {
-      "_mod_time": 1777891355.18
+      "_mod_time": 1777713442.504
     },
     "zxc.20260325223805.1": {
-      "_mod_time": 1778586914.342
+      "_mod_time": 1777896574.428
     },
     "zxc.20260329012003.1": {
-      "_mod_time": 1777713442.5031238
+      "_mod_time": 1777713442.503
     },
     "zxc.20260411192514.1": {
-      "_mod_time": 1777713442.5032554
+      "_mod_time": 1777713442.503
     },
     "zxc.20260330235722.1": {
-      "_mod_time": 1777713442.5024755
+      "_mod_time": 1777713442.502
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1778586914.338
+      "_mod_time": 1777896574.422
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1777713442.482
@@ -11298,7 +11300,7 @@
       "_mod_time": 1778586914.338
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1778598729.878
+      "_mod_time": 1778683398.423
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777713442.480156
@@ -11313,16 +11315,16 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260202205715.1": {
-      "_mod_time": 1777713442.4820948
+      "_mod_time": 1777713442.482
     },
     "zxc.20260426163956.1": {
       "_mod_time": 1778598080.58
     },
     "User.20260302151947.1": {
-      "_mod_time": 1778586914.337
+      "_mod_time": 1777896574.422
     },
     "zxc.20260407232538.1": {
-      "_mod_time": 1777713442.467118
+      "_mod_time": 1777713442.467
     },
     "zxc.20260408005117.1": {
       "_mod_time": 1777713442.467
@@ -11334,7 +11336,7 @@
       "_mod_time": 1777713442.478
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1778586914.338
+      "_mod_time": 1777896574.422
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1777713442.478
@@ -11343,7 +11345,7 @@
       "_mod_time": 1777713442.479
     },
     "User.20260215234634.1": {
-      "_mod_time": 1777713442.4791389
+      "_mod_time": 1777713442.479
     },
     "User.20260216124226.1": {
       "_mod_time": 1777713442.477
@@ -11373,7 +11375,7 @@
       "_mod_time": 1777713442.477
     },
     "User.20260303213330.1": {
-      "_mod_time": 1777713442.4791389
+      "_mod_time": 1777713442.479
     },
     "zxc.20260401221312.1": {
       "_mod_time": 1777713442.478
