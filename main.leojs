@@ -3302,6 +3302,10 @@
                               "vh": "elsqlite"
                             },
                             {
+                              "gnx": "zxc.20260513223820.1",
+                              "vh": "super save"
+                            },
+                            {
                               "gnx": "User.20260223013717.1",
                               "vh": "email",
                               "children": [
@@ -3414,6 +3418,10 @@
                         {
                           "gnx": "zxc.20260411161045.1",
                           "vh": "elsqlite"
+                        },
+                        {
+                          "gnx": "zxc.20260513223650.1",
+                          "vh": "super save"
                         }
                       ]
                     }
@@ -9905,6 +9913,7 @@
     "User.20260218205354.1": "(use-package! zeal-at-point)\n(map! :leader\n      :desc \"Zeal\" \"h z\" #'zeal-at-point)",
     "User.20260218210651.1": "(use-package! eglot-booster\n  :after eglot\n  :config (eglot-booster-mode))",
     "zxc.20260411161108.1": "(use-package! elsqlite\n  :commands (elsqlite elsqlite-browser)\n  :config\n  ;; Optional: Auto-open .db files in ELSQLite\n  (elsqlite-enable-auto-open)\n  ;; Optional: Evil mode keybindings\n  (elsqlite-evil-setup)\n  )",
+    "zxc.20260513223820.1": "(use-package! super-save\n  :ensure t\n  :config\n  (super-save-mode +1))",
     "User.20260223013727.1": "(setq message-send-mail-function 'smtpmail-send-it)\n(setq user-mail-address \"ourgal@qq.com\")\n(setq user-full-name \"ourgal\")\n\n(setq smtpmail-smtp-user \"ourgal@qq.com\"\n      smtpmail-smtp-server \"smtp.qq.com\"\n      smtpmail-smtp-service 465\n      smtpmail-stream-type 'ssl)\n\n(setq smtpmail-debug-info t)\n(setq smtpmail-debug-verb t)\n\n(setq auth-sources '({{ joinPath .chezmoi.homeDir \".config\" \"doom\" \".authinfo\" | quote }}))",
     "User.20260223021647.1": "(setq user-mail-address \"ourgal@qq.com\"\n      user-full-name \"ourgal\")\n\n(setq gnus-select-method '(nnnil nil))\n(setq gnus-secondary-select-methods\n      '((nnimap \"qq\"\n               (nnimap-address \"imap.qq.com\")\n               (nnimap-index \"nnimap+qq:INDEX\")\n               (nnmail-expiry-target \"nnimap+qq:Deleted Messages\")\n               (nnimap-expunge t)\n               (nnimap-server-port 993)\n               (nnimap-stream ssl))\n      (nnimap \"163\"\n               (nnimap-address \"imap.163.com\")\n               (nnimap-index \"nnimap+163:INDEX\")\n               (nnmail-expiry-target \"nnimap+163:已删除\")\n               (nnimap-expunge t)\n               (nnimap-server-port 993)\n               (nnimap-stream ssl))\n      (nnimap \"yandex\"\n               (nnimap-address \"imap.yandex.com\")\n               (nnimap-index \"nnimap+yandex:INDEX\")\n               (nnmail-expiry-target \"nnimap+yandex:Trash\")\n               (nnimap-expunge t)\n               (nnimap-server-port 993)\n               (nnimap-stream ssl))))\n\n(setq gnus-thread-sort-functions '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date)))",
     "User.20260305235255.1": "(add-hook 'elfeed-search-mode-hook #'elfeed-update)\n;; Update hourly\n(run-at-time nil (* 60 60) #'elfeed-update)",
@@ -9925,6 +9934,7 @@
     "User.20260218210513.1": "(package! eglot-booster\n  :recipe (:host github :repo \"jdtsmith/eglot-booster\"))",
     "User.20260307165110.1": "(package! elfeed-protocol)",
     "zxc.20260411161045.1": "(package! elsqlite)",
+    "zxc.20260513223650.1": "(package! super-save)",
     "User.20260220000018.1": "\"theme\": {\n  \"mode\": \"system\",\n  \"light\": \"One Light\",\n  \"dark\": \"One Dark\",\n},",
     "User.20260219235958.1": "\"ui_font_size\": 16,\n\"buffer_font_size\": 15,",
     "User.20260219235853.1": "\"auto_update\": false\n",
@@ -11108,10 +11118,10 @@
       "_mod_time": 1778586914.341
     },
     "User.20260217223030.1": {
-      "_mod_time": 1778586914.341
+      "_mod_time": 1778683115.615
     },
     "User.20260217223035.1": {
-      "_mod_time": 1778586914.342
+      "_mod_time": 1778683115.668
     },
     "User.20260223014430.1": {
       "_mod_time": 1778586914.341
