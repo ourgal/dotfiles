@@ -123,12 +123,9 @@ window_rules:
       - window_process: { regex: "WindowsTerminal" }
       - window_process: { regex: "wt" }
       - window_process: { regex: "wezterm-gui" }
-  - commands: ["move --workspace 2"]
-    match:
-      - window_process: { regex: "firefox" }
-  - commands: ["move --workspace 9"]
-    match:
-      - window_process: { regex: "KeePassXC" }
+  # - commands: ["move --workspace 2"]
+  #   match:
+  #     - window_process: { regex: "firefox" }
   {{ $opt := "vscode" -}}
   {{ if or (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt) -}}
   - commands: ["move --workspace 3"]
@@ -147,6 +144,9 @@ window_rules:
     match:
       - window_process: { regex: "leo" }
   {{ end -}}
+  - commands: ["move --workspace 9"]
+    match:
+      - window_process: { regex: "KeePassXC" }
   - commands: ['ignore']
     match:
       # Ignores any Zebar windows.
