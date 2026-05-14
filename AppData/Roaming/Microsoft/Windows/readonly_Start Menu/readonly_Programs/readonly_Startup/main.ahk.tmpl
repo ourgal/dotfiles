@@ -50,8 +50,8 @@ Run("alist start", , "Hide")
 {{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
 Run("mpd {{ joinPath (env "appdata") "mpd" "mpd.conf"}}", {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
-{{ $opt := "gpg-connect-agent" -}}
-{{ $cmd := "gpg_agent" -}}
+{{ $opt := "gpg_agent" -}}
+{{ $cmd := "gpg-connect-agent" -}}
 {{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
 Run("gpg-connect-agent /bye", , "Hide")
 {{ end -}}
@@ -67,6 +67,10 @@ WinWait("ahk_exe wezterm-gui.exe")
 {{ if lookPath "firefox" -}}
 Run("firefox", , "Max")
 WinWait("ahk_exe firefox.exe")
+{{ if lookPath "glazewm" -}}
+WinActivate "ahk_exe firefox.exe"
+Run "glazewm command move --workspace 2", ,"Hide"
+{{ end -}}
 {{ else if lookPath "brave" -}}
 Run("brave", , "Max")
 {{ end -}}
@@ -77,11 +81,20 @@ Run("brave", , "Max")
 {{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
 Run({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
 WinWait("ahk_exe VSCodium.exe")
+{{ if lookPath "glazewm" -}}
+WinActivate "ahk_exe VSCodium.exe"
+Run "glazewm command move --workspace 3", ,"Hide"
+{{ end -}}
 {{ end -}}
 {{ $opt := "vscode" -}}
 {{ $cmd := "code" -}}
 {{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
 Run({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
+WinWait "ahk_exe Code.exe"
+{{ if lookPath "glazewm" -}}
+WinActivate "ahk_exe Code.exe"
+Run "glazewm command move --workspace 3", ,"Hide"
+{{ end -}}
 {{ end -}}
 {{ $opt := "leo" -}}
 {{ $cmd := "leo" -}}

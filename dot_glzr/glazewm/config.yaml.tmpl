@@ -128,15 +128,15 @@ window_rules:
   #     - window_process: { regex: "firefox" }
   {{ $opt := "vscode" -}}
   {{ if or (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt) -}}
-  - commands: ["move --workspace 3"]
-    match:
-      - window_process: { regex: "Code" }
+  # - commands: ["move --workspace 3"]
+  #   match:
+  #     - window_process: { regex: "Code" }
   {{ end -}}
   {{ $opt := "vscodium" -}}
   {{ if or (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt) -}}
-  - commands: ["move --workspace 3"]
-    match:
-      - window_process: { regex: "VSCodium" }
+  # - commands: ["move --workspace 3"]
+  #   match:
+  #     - window_process: { regex: "VSCodium" }
   {{ end -}}
   {{ $opt := "leo" -}}
   {{ if or (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt) -}}
