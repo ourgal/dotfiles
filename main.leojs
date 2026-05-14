@@ -10009,9 +10009,9 @@
     "User.20260301211002.1": "@others",
     "zxc.20260514061140.1": "- commands: [\"move --workspace 1\"]\n  match:\n    - window_process: { regex: \"WindowsTerminal\" }\n    - window_process: { regex: \"wt\" }\n    - window_process: { regex: \"wezterm-gui\" }",
     "zxc.20260514061122.1": "@\n- commands: [\"move --workspace 2\"]\n  match:\n    - window_process: { regex: \"firefox\" }\n@c",
-    "zxc.20260502020009.1": "{{ $opt := \"vscode\" -}}\n<< check opt >>\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"Code\" }\n{{ end -}}\n",
+    "zxc.20260502020009.1": "{{ $opt := \"vscode\" -}}\n<< check opt >>\n@\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"Code\" }\n@c\n{{ end -}}\n",
     "zxc.20260504185628.1": "{{ if or (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt) -}}",
-    "zxc.20260502020122.1": "{{ $opt := \"vscodium\" -}}\n<< check opt >>\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"VSCodium\" }\n{{ end -}}\n",
+    "zxc.20260502020122.1": "{{ $opt := \"vscodium\" -}}\n<< check opt >>\n@\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"VSCodium\" }\n@c\n{{ end -}}\n",
     "zxc.20260502020153.1": "{{ $opt := \"leo\" -}}\n<< check opt >>\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"leo\" }\n{{ end -}}\n",
     "zxc.20260514061202.1": "- commands: [\"move --workspace 9\"]\n  match:\n    - window_process: { regex: \"KeePassXC\" }",
     "User.20260301210952.1": "- commands: ['ignore']\n  match:\n    # Ignores any Zebar windows.\n    - window_process: {equals: 'zebar'}\n    # Ignores picture-in-picture windows for browsers.\n    - window_title: {regex: '[Pp]icture.in.[Pp]icture'}\n      window_class: {regex: 'Chrome_WidgetWin_1|MozillaDialogClass'}\n    # Ignore rules for various 3rd-party apps.\n    - window_process: {equals: 'PowerToys'}\n      window_class: {regex: 'HwndWrapper\\[PowerToys\\.PowerAccent.*?\\]'}\n    - window_process: {equals: 'PowerToys'}\n      window_title: {regex: '.*? - Peek'}\n    - window_process: {equals: 'Lively'}\n      window_class: {regex: 'HwndWrapper'}\n    - window_process: {equals: 'EXCEL'}\n      window_class: {not_regex: 'XLMAIN'}\n    - window_process: {equals: 'WINWORD'}\n      window_class: {not_regex: 'OpusApp'}\n    - window_process: {equals: 'POWERPNT'}\n      window_class: {not_regex: 'PPTFrameClass'}\n",
@@ -10091,11 +10091,11 @@
     "User.20260221180424.1": "{{ $opt := \"espanso\" -}}\n{{ $cmd := \"espansod\" -}}\n<< check opt and cmd >>\nRun(\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"espanso\" \"current\" \"espansod.exe\" }} start\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
     "User.20260222230813.1": "{{ $opt := \"alist\" -}}\n{{ $cmd := \"alist\" -}}\n<< check opt and cmd >>\nRun(\"alist start\", , \"Hide\")\n{{ end -}}",
     "User.20260301000205.1": "{{ $opt := \"mpd\" -}}\n{{ $cmd := \"mpd\" -}}\n<< check opt and cmd >>\nRun(\"mpd {{ joinPath (env \"appdata\") \"mpd\" \"mpd.conf\"}}\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}\n",
-    "zxc.20260329023750.1": "{{ $opt := \"gpg-connect-agent\" -}}\n{{ $cmd := \"gpg_agent\" -}}\n<< check opt and cmd >>\nRun(\"gpg-connect-agent /bye\", , \"Hide\")\n{{ end -}}\n",
+    "zxc.20260329023750.1": "{{ $opt := \"gpg_agent\" -}}\n{{ $cmd := \"gpg-connect-agent\" -}}\n<< check opt and cmd >>\nRun(\"gpg-connect-agent /bye\", , \"Hide\")\n{{ end -}}\n",
     "User.20260301185900.1": "{{ $opt := \"kde_connect\" -}}\n{{ $cmd := \"kdeconnect-cli\" -}}\n<< check opt and cmd >>\nRun(\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"kdeconnect\" \"current\" \"bin\" \"kdeconnectd.exe\" }}\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
     "zxc.20260408010815.1": "{{ if and (lookPath \"wezterm\") (eq .my.terminal.windows \"wezterm\") -}}\nRun \"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"wezterm\" \"current\" \"wezterm-gui.exe\" }}\"\nWinWait(\"ahk_exe wezterm-gui.exe\")\n{{ end -}}\n",
-    "User.20260302135941.1": "{{ if lookPath \"firefox\" -}}\nRun(\"firefox\", , \"Max\")\nWinWait(\"ahk_exe firefox.exe\")\n{{ else if lookPath \"brave\" -}}\nRun(\"brave\", , \"Max\")\n{{ end -}}",
-    "User.20260302135946.1": "{{ $vscode := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscode\" \"current\" \"Code.exe\" -}}\n{{ $vscodium := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscodium\" \"current\" \"VSCodium.exe\" -}}\n{{ $opt := \"vscodium\" -}}\n{{ $cmd := \"vscodium\" -}}\n<< check opt and cmd >>\nRun({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait(\"ahk_exe VSCodium.exe\")\n{{ end -}}\n{{ $opt := \"vscode\" -}}\n{{ $cmd := \"code\" -}}\n<< check opt and cmd >>\nRun({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\n{{ end -}}\n",
+    "User.20260302135941.1": "{{ if lookPath \"firefox\" -}}\nRun(\"firefox\", , \"Max\")\nWinWait(\"ahk_exe firefox.exe\")\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe firefox.exe\"\nRun \"glazewm command move --workspace 2\", ,\"Hide\"\n{{ end -}}\n{{ else if lookPath \"brave\" -}}\nRun(\"brave\", , \"Max\")\n{{ end -}}",
+    "User.20260302135946.1": "{{ $vscode := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscode\" \"current\" \"Code.exe\" -}}\n{{ $vscodium := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscodium\" \"current\" \"VSCodium.exe\" -}}\n{{ $opt := \"vscodium\" -}}\n{{ $cmd := \"vscodium\" -}}\n<< check opt and cmd >>\nRun({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait(\"ahk_exe VSCodium.exe\")\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe VSCodium.exe\"\nRun \"glazewm command move --workspace 3\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n{{ $opt := \"vscode\" -}}\n{{ $cmd := \"code\" -}}\n<< check opt and cmd >>\nRun({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait \"ahk_exe Code.exe\"\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe Code.exe\"\nRun \"glazewm command move --workspace 3\", ,\"Hide\"\n{{ end -}}\n{{ end -}}",
     "zxc.20260502015606.1": "{{ $opt := \"leo\" -}}\n{{ $cmd := \"leo\" -}}\n<< check opt and cmd >>\nRun \"leo\", , \"Max\"\n{{ end -}}\n",
     "zxc.20260315173154.1": "{{ $opt := \"everything\" -}}\n{{ $cmd := \"everything\" -}}\n<< check opt and cmd >>\nRun(\"everything\", , \"Hide\")\n{{ end -}}",
     "User.20260302135935.1": "{{ if and (lookPath \"wt\") (lookPath \"pwsh\") (eq .my.terminal.windows \"wt\") -}}\nRun {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"windows-terminal\" \"current\" \"wt.exe\" | quote }}\nWinWait(\"ahk_exe WindowsTerminal.exe\")\n{{ end -}}\n",
@@ -11084,7 +11084,7 @@
       "_mod_time": 1777713442.487
     },
     "User.20260301202336.1": {
-      "_mod_time": 1778717681.605
+      "_mod_time": 1778769568.654
     },
     "zxc.20260327184129.1": {
       "_mod_time": 1778717681.621
@@ -11327,10 +11327,10 @@
       "_mod_time": 1778706271.126
     },
     "zxc.20260507153544.1": {
-      "_mod_time": 1778740973.674
+      "_mod_time": 1778768441.01
     },
     "zxc.20260514112740.1": {
-      "_mod_time": 1778729802.471
+      "_mod_time": 1778768441.01
     },
     "zxc.20260423143729.453": {
       "_mod_time": 1778586914.338
@@ -11375,7 +11375,7 @@
       "_mod_time": 1777713442.478
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1778717681.605
+      "_mod_time": 1778769656.544
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1777713442.478
