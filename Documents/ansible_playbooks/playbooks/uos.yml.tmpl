@@ -28,7 +28,7 @@
             line: trusted-users = {{ user }}
         - name: Home-manager stat
           ansible.builtin.stat:
-            path: "{{ ansible_facts.user_dir }}/.nix-profile/bin/home-manager
+            path: "{{ ansible_facts.user_dir }}/.nix-profile/bin/home-manager"
           register: home_manager_stat
         - name: Install home-manager channel
           ansible.builtin.shell: nix-channel --add https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz home-manager
@@ -39,3 +39,11 @@
         - name: Install home-manager
           ansible.builtin.shell: nix-shell '<home-manager>' -A install
           when: not home_manager_stat.stat.exists
+    - name: Fix etc profile PATH
+      become: true
+      ansible.builtin.template:
+        src: templates/uos_etc_profile.j2
+        dest: /etc/profile
+        owner: root
+        group: root
+        mode: "0644"
