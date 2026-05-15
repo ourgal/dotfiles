@@ -8,7 +8,9 @@
 {{ if lookPath "pwsh" -}}
 $env:EDITOR = "hx"
 $env:shell_startup = "~\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
-{{ if lookPath "sfsu" -}}
+{{ $opt := "sfsu" -}}
+{{ $cmd := "sfsu" -}}
+{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
 Invoke-Expression (&sfsu hook)
 {{ end -}}
 New-Alias reboot Restart-Computer
