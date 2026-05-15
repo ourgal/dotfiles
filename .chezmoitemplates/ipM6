@@ -1,7 +1,7 @@
 {{ if eq . nil -}}
 {{ fail "pass hostname to ipM6 template" -}}
 {{ end -}}
-{{ if eq . "work" -}}
+{{ if eq . "work" "work2" -}}
 192.168.1.103
 {{- else if  eq . "nuc" "bed" "surface" -}}
 192.168.123.191
