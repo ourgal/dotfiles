@@ -9586,9 +9586,9 @@
     "zxc.20260125143635.1": "<< not WSL >>\nsource ~/.local/lib/ble-nightly/ble.sh\n{{ end -}}\n",
     "User.20260225204031.1": "{{ if and (hasKey .chezmoi.kernel \"osrelease\") (not (mustRegexMatch \".*WSL.*\" .chezmoi.kernel.osrelease)) -}}",
     "zxc.20260125143653.1": "{{ if lookPath \"fzf\" -}}\n{{ if or (lookPath \"mcfly\") (lookPath \"atuin\") -}}\nFZF_CTRL_R_COMMAND= eval \"$(fzf --bash)\"\n{{ else -}}\neval \"$(fzf --bash)\"\n{{ end -}}\n{{ end -}}",
-    "zxc.20260125143706.1": "{{ $starship := and (lookPath \"starship\") (default (index .my.modules \"starship\") (index .my.modules .chezmoi.hostname $os \"starship\")) -}}\n{{ $oh_my_posh := and (lookPath \"oh-my-posh\") (default (index .my.modules \"oh_my_posh\") (index .my.modules .chezmoi.hostname $os \"oh_my_posh\")) -}}\n{{ if any $starship $oh_my_posh -}}\n{{ if $starship -}}\neval \"$(starship init bash)\"\n{{ else -}}\neval \"$(oh-my-posh init bash)\"\n{{ end -}}\n{{ else if lookPath \"oh-my-posh\" -}}\neval \"$(oh-my-posh init bash)\"\n{{ else -}}\neval \"$(starship init bash)\"\n{{ end -}}",
+    "zxc.20260125143706.1": "{{ $starship := and (lookPath \"starship\") (default (index .my.modules \"starship\") (index .my.modules .chezmoi.hostname $os \"starship\")) -}}\n{{ $oh_my_posh := and (lookPath \"oh-my-posh\") (default (index .my.modules \"oh_my_posh\") (index .my.modules .chezmoi.hostname $os \"oh_my_posh\")) -}}\n{{ if any $starship $oh_my_posh -}}\n{{ if $starship -}}\neval \"$(starship init bash)\"\n{{ else -}}\neval \"$(oh-my-posh init bash)\"\n{{ end -}}\n{{ else if lookPath \"oh-my-posh\" -}}\neval \"$(oh-my-posh init bash)\"\n{{ else if lookPath \"starship\" -}}\neval \"$(starship init bash)\"\n{{ else -}}\n{{ end -}}",
     "zxc.20260125143716.1": "{{ if lookPath \"eza\" -}}\nalias ll='eza --long --git --icons auto --group --group-directories-first --time-style relative'\n{{ end -}}",
-    "zxc.20260125143728.1": "{{ $atuin := and (lookPath \"atuin\") (default (index .my.modules \"atuin\") (index .my.modules .chezmoi.hostname $os \"atuin\")) -}}\n{{ $mcfly := and (lookPath \"mcfly\") (default (index .my.modules \"mcfly\") (index .my.modules .chezmoi.hostname $os \"mcfly\")) -}}\n{{ if any $atuin $mcfly -}}\n{{ if $atuin -}}\neval \"$(atuin init bash)\"\n{{ else -}}\neval \"$(mcfly init bash)\"\n{{ end -}}\n{{ else if lookPath \"mcfly\" -}}\neval \"$(mcfly init bash)\"\n{{ else -}}\neval \"$(atuin init bash)\"\n{{ end -}}\n",
+    "zxc.20260125143728.1": "{{ $atuin := and (lookPath \"atuin\") (default (index .my.modules \"atuin\") (index .my.modules .chezmoi.hostname $os \"atuin\")) -}}\n{{ $mcfly := and (lookPath \"mcfly\") (default (index .my.modules \"mcfly\") (index .my.modules .chezmoi.hostname $os \"mcfly\")) -}}\n{{ if any $atuin $mcfly -}}\n{{ if $atuin -}}\neval \"$(atuin init bash)\"\n{{ else -}}\neval \"$(mcfly init bash)\"\n{{ end -}}\n{{ else if lookPath \"mcfly\" -}}\neval \"$(mcfly init bash)\"\n{{ else if lookPath \"atuin\" -}}\neval \"$(atuin init bash)\"\n{{ else -}}\n{{ end -}}\n",
     "zxc.20260125143738.1": "{{ if lookPath \"zoxide\" -}}\n# zoxdie is needed be the end of bashrc\neval \"$(zoxide init bash)\"\n{{ end -}}\n",
     "zxc.20260125143959.1": "<< unix >>\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125144055.1": "# Get the aliases and functions\n[ -f $HOME/.bashrc ] && . $HOME/.bashrc\n",
@@ -10925,7 +10925,7 @@
       "_mod_time": 1777179946.8605473
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1778586914.338
+      "_mod_time": 1778834909.9181802
     },
     "zxc.20260125143959.1": {
       "_mod_time": 1778586914.338

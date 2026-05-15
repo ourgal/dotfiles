@@ -136,8 +136,9 @@ eval "$(oh-my-posh init bash)"
 {{ end -}}
 {{ else if lookPath "oh-my-posh" -}}
 eval "$(oh-my-posh init bash)"
-{{ else -}}
+{{ else if lookPath "starship" -}}
 eval "$(starship init bash)"
+{{ else -}}
 {{ end -}}
 {{ if lookPath "eza" -}}
 alias ll='eza --long --git --icons auto --group --group-directories-first --time-style relative'
@@ -152,8 +153,9 @@ eval "$(mcfly init bash)"
 {{ end -}}
 {{ else if lookPath "mcfly" -}}
 eval "$(mcfly init bash)"
-{{ else -}}
+{{ else if lookPath "atuin" -}}
 eval "$(atuin init bash)"
+{{ else -}}
 {{ end -}}
 {{ if lookPath "zoxide" -}}
 # zoxdie is needed be the end of bashrc
