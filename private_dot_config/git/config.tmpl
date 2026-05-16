@@ -42,16 +42,16 @@
 	editor = "{{ template "editor" }}"
 	excludesfile = "~/.gitignore"
 	fsmonitor = true
-        {{ if lookPath "delta" -}}
+	{{- if lookPath "delta" }}
 	pager = delta
-        {{ else if lookPath "diff-so-fancy" -}}
+	{{- else if lookPath "diff-so-fancy" }}
 	pager = "diff-so-fancy | less '--tabs=4' -RFX"
-        {{ end -}}
+	{{- end }}
 	preloadindex = true
 	untrackedCache = true
 	whitespace = "error"
 	autocrlf = "input"
-	{{ if eq .chezmoi.os "windows" -}}
+	{{- if eq .chezmoi.os "windows" }}
 	sshCommand = 'C:\\Program Files\\OpenSSH-Win64\\ssh.EXE'
 	symlinks = true
 	{{- end }}
@@ -79,9 +79,9 @@
 [credential "https://github.com"]
 	helper = !{{ lookPath "gh" | replace "\\" "\\\\" | squote }} auth git-credential
 [delta]
-side-by-side = true
-navitage = true
-file-yellow = true
+    side-by-side = true
+    navitage = true
+    file-yellow = true
 [diff]
 	algorithm = "histogram"
 	colorMoved = "plain"
@@ -149,8 +149,8 @@ file-yellow = true
 [rerere]
 	autoupdate = true
 	enabled = true
-{{/* for usb drive */}}
-{{ if eq .chezmoi.os "windows" -}}
+{{- /* for usb drive */ -}}
+{{- if eq .chezmoi.os "windows" }}
 [safe]
 	directory = *
 {{ end -}}
@@ -175,6 +175,6 @@ file-yellow = true
 {{ else if .my.git.sign.gpg }}	signingkey = "1BE4E2268D47C1D1"
 {{ end -}}
 [annex "security"]
-allowed-ip-addresses = "all"
+    allowed-ip-addresses = "all"
 {{ end -}}
 {{ end -}}

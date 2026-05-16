@@ -10105,12 +10105,12 @@
     "zxc.20260125153928.1": "[color \"branch\"]\n\tcurrent = \"magenta\"\n\tlocal = \"default\"\n\tplain = \"blue\"\n\tremote = \"yellow\"\n\tupstream = \"green\"",
     "zxc.20260125153436.1": "[culumn]\n\tui = \"auto\"",
     "zxc.20260125153348.1": "[commit]\n\ttemplate = \"~/.config/git/template\"\n\tgpgsign = true\n\tverbose = true",
-    "zxc.20260125153401.1": "[core]\n\tcompression = 9\n\teditor = \"{{ template \"editor\" }}\"\n\texcludesfile = \"~/.gitignore\"\n\tfsmonitor = true\n        {{ if lookPath \"delta\" -}}\n\tpager = delta\n        {{ else if lookPath \"diff-so-fancy\" -}}\n\tpager = \"diff-so-fancy | less '--tabs=4' -RFX\"\n        {{ end -}}\n\tpreloadindex = true\n\tuntrackedCache = true\n\twhitespace = \"error\"\n\tautocrlf = \"input\"\n\t{{ if eq .chezmoi.os \"windows\" -}}\n\tsshCommand = 'C:\\\\Program Files\\\\OpenSSH-Win64\\\\ssh.EXE'\n\tsymlinks = true\n\t{{- end }}",
+    "zxc.20260125153401.1": "[core]\n\tcompression = 9\n\teditor = \"{{ template \"editor\" }}\"\n\texcludesfile = \"~/.gitignore\"\n\tfsmonitor = true\n\t{{- if lookPath \"delta\" }}\n\tpager = delta\n\t{{- else if lookPath \"diff-so-fancy\" }}\n\tpager = \"diff-so-fancy | less '--tabs=4' -RFX\"\n\t{{- end }}\n\tpreloadindex = true\n\tuntrackedCache = true\n\twhitespace = \"error\"\n\tautocrlf = \"input\"\n\t{{- if eq .chezmoi.os \"windows\" }}\n\tsshCommand = 'C:\\\\Program Files\\\\OpenSSH-Win64\\\\ssh.EXE'\n\tsymlinks = true\n\t{{- end }}",
     "zxc.20260202215744.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"git-credential-gopass\" -}}\n[credential]\n\thelper = \"gopass\"\n[credential \"helperselector\"]\n\tselected = gopass\n{{ else -}}\n[credential]\n\thelper = !\\\"{{ .chezmoi.homeDir }}/scoop/apps/git/current/mingw64/bin/git-credential-manager.exe\\\"\n[credential \"helperselector\"]\n    selected = manager\n{{ end -}}\n{{ end -}}",
     "zxc.20260202215728.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"gopass\" -}}\n[credential]\n\thelper = \"gopass\"\n{{ end -}}\n{{ end -}}",
     "zxc.20260125154038.1": "[credential \"https://gist.github.com\"]\n\thelper = !{{ lookPath \"gh\" | replace \"\\\\\" \"\\\\\\\\\" | squote }} auth git-credential",
     "zxc.20260125154056.1": "[credential \"https://github.com\"]\n\thelper = !{{ lookPath \"gh\" | replace \"\\\\\" \"\\\\\\\\\" | squote }} auth git-credential\n",
-    "zxc.20260125153456.1": "[delta]\nside-by-side = true\nnavitage = true\nfile-yellow = true",
+    "zxc.20260125153456.1": "[delta]\n    side-by-side = true\n    navitage = true\n    file-yellow = true",
     "zxc.20260125153507.1": "[diff]\n\talgorithm = \"histogram\"\n\tcolorMoved = \"plain\"\n\tcontext = 3\n\tinterHunkContext = 10\n\tmnemonicPrefix = true\n\trenames = true",
     "zxc.20260125153521.1": "[diff-so-fancy]\n\tchangeHunkIndicators = true\n\tmarkEmptyLines = false\n\tstripLeadingSymbols = true\n\tuseUnicodeRuler = true",
     "zxc.20260125153531.1": "[fetch]\n\tall = true\n\tprune = true\n\tpruneTags = true",
@@ -10127,7 +10127,7 @@
     "zxc.20260125153715.1": "[push]\n\tautoSetupRemote = true\n\tdefault = \"current\"\n\tfollowTags = true\n\tuseForceIfIncludes = true",
     "zxc.20260125153727.1": "[rebase]\n\tautoSquash = true\n\tautoStash = true\n\tmissingCommitsCheck = \"warn\"\n\tupdateRefs = true",
     "zxc.20260125153745.1": "[rerere]\n\tautoupdate = true\n\tenabled = true",
-    "User.20260222130907.1": "{{/* for usb drive */}}\n{{ if eq .chezmoi.os \"windows\" -}}\n[safe]\n\tdirectory = *\n{{ end -}}",
+    "User.20260222130907.1": "{{- /* for usb drive */ -}}\n{{- if eq .chezmoi.os \"windows\" }}\n[safe]\n\tdirectory = *\n{{ end -}}",
     "zxc.20260125153759.1": "[sequence]\n\teditor = \"interactive-rebase-tool\"",
     "zxc.20260125153816.1": "[status]\n\tbranch = true\n\tshowStash = true\n\tshowUntrackedFiles = \"all\"",
     "zxc.20260125153823.1": "[tag]\n\tsort = \"version:refname\"",
@@ -10135,7 +10135,7 @@
     "zxc.20260125154332.1": "[url \"git@github.com:ourgal/\"]\n\tinsteadOf = \"myg:\"\n",
     "zxc.20260125154321.1": "[url \"git@github.com:\"]\n\tinsteadOf = \"gh:\"\n",
     "zxc.20260125153842.1": "[user]\n\temail = \"{{ .my.git.user.email }}\"\n\tname = \"{{ .my.git.user.name }}\"\n{{ if .my.git.sign.ssh }}\tsigningkey = \"~/.ssh/id_ed25519.pub\"\n{{ else if .my.git.sign.gpg }}\tsigningkey = \"1BE4E2268D47C1D1\"\n{{ end -}}",
-    "User.20260222170925.1": "[annex \"security\"]\nallowed-ip-addresses = \"all\"",
+    "User.20260222170925.1": "[annex \"security\"]\n    allowed-ip-addresses = \"all\"",
     "zxc.20260125153131.2": "# feat: ✨\n# feat: 🔍\n# feat: 🔗\n# feat: 🔒\n\n# fix: 🐛\n# fix: 🐞\n# fix: 🩹\n# fix: 🚑️\n\n# style: 💅\n# style: 🎨\n# style: 💄\n\n# ci: 🦊\n# ci: 📦\n\n# deploy: 🚀\n# deploy: 📦\n\n# chore: 🧹\n# chore: 🔧\n# chore: ⚙️\n# docs: 📜\n\n# refactor: 🔨\n# perf: 🚀\n\n# test: 🚦\n# debug: 🧪\n\n# BREAKING CHANGE: 🚨\n# BREAKING CHANGE: 💥\n# BREAKING CHANGE: 💣",
     "zxc.20260201140637.1": "(\n    move_left: Some(( code: Char('h'), modifiers: \"\")),\n    move_right: Some(( code: Char('l'), modifiers: \"\")),\n    move_up: Some(( code: Char('k'), modifiers: \"\")),\n    move_down: Some(( code: Char('j'), modifiers: \"\")),\n    stage_unstage_item: Some(( code: Char(' '), modifiers: \"\")),\n\n    open_help: Some(( code: F(1), modifiers: \"\")),\n)",
     "zxc.20260327184129.1": "{{ if lookPath \"mani\" -}}\n@others\n{{ end -}}",
@@ -11226,7 +11226,7 @@
       "_mod_time": 1777713442.5013232
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1778905701.641
+      "_mod_time": 1778910703.976
     },
     "zxc.20260125161631.1": {
       "_mod_time": 1777713442.501
