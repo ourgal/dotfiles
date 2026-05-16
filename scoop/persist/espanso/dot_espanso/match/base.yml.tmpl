@@ -226,8 +226,22 @@ matches:
   trigger: gitsw.
 - replace: git switch main
   trigger: gitswm.
-- replace: 'git annex sync --content '
+- replace: 'git annex sync '
   trigger: gitas.
+- replace: 'git annex add '
+  trigger: gitaa.
+- replace: 'git annex get '
+  trigger: gitag.
+- replace: 'git annex drop '
+  trigger: gitad.
+- replace: 'git annex move '
+  trigger: gitam.
+- replace: 'git annex copy '
+  trigger: gitac.
+- replace: 'git annex fsck '
+  trigger: gitaf.
+- replace: 'git annex whereis '
+  trigger: gitaw.
 - force_clipboard: true
   label: Markdown - Code block
   replace: '```$|$
