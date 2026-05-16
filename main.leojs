@@ -7437,6 +7437,10 @@
                                   "vh": "allow user remote logon"
                                 },
                                 {
+                                  "gnx": "zxc.20260516213112.1",
+                                  "vh": "set open ssh default shell to bash"
+                                },
+                                {
                                   "gnx": "zxc.20260423143729.301"
                                 }
                               ]
@@ -10600,6 +10604,7 @@
     "zxc.20260423143729.298": "- name: Disable testing mode\n  ansible.windows.win_command: Bcdedit.exe -set TESTSIGNING OFF\n- name: Reboot\n  ansible.windows.win_reboot:\n",
     "zxc.20260423143729.299": "- name: Unicast options\n  ansible.windows.win_regedit:\n    path: HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Scream\\Options\n    name: UnicastIPv4\n    data: 192.168.123.100\n- name: Unicast options\n  ansible.windows.win_regedit:\n    path: HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Scream\\Options\n    name: UnicastPort\n    data: 4011\n    type: dword\n",
     "zxc.20260423143729.300": "- name: Allow remote logon\n  ansible.windows.win_user_right:\n    name: SeRemoteInteractiveLogonRight\n    users:\n      - User\n    action: add\n",
+    "zxc.20260516213112.1": "- name: Set openssh default shell to git bash\n  ansible.windows.win_regedit:\n    path: HKLM:\\SOFTWARE\\OpenSSH\n    name: DefaultShell\n    data: C:\\Users\\User\\scoop\\apps\\git\\current\\bin\\bash.exe\n    type: string\n",
     "zxc.20260423143729.302": "[global]\ntarget = \"~/.local/bin\"\ngithub_token = {{ gopass \"github/ourgal/token\" | quote }}\n",
     "zxc.20260423143729.304": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n@others",
     "zxc.20260423143729.305": "- name: Install uos via nixos live cd\n  hosts: nixos-live\n  tasks:\n    @others\n",
@@ -11388,7 +11393,7 @@
       "_mod_time": 1778706271.126
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1778907212.182
+      "_mod_time": 1778938529.426
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778586914.338
