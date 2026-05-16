@@ -84,6 +84,12 @@
 (add-hook! 'completion-at-point-functions #'cape-file)
 (after! doom-modeline
   (setq doom-modeline-buffer-file-name-style 'relative-to-project))
+(defun browse-url-mpv (url &optional _new-window)
+  (start-process "mpv" nil "mpv" url))
+
+(setq browse-url-handlers
+      '(("\\(bilibili\\.com\\|vimeo\\.com\\|twitch\\.tv\\)" . browse-url-mpv)
+        ("." . browse-url-firefox)))
 (map! :n "C-w o" #'delete-other-windows
       :n "C-w z" #'doom/window-enlargen)
 (map! :leader
