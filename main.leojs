@@ -6277,6 +6277,10 @@
                                   "vh": "add game user"
                                 },
                                 {
+                                  "gnx": "zxc.20260516120159.1",
+                                  "vh": "enable developer mode"
+                                },
+                                {
                                   "gnx": "zxc.20260503115039.1",
                                   "vh": "set hostname"
                                 },
@@ -10341,6 +10345,7 @@
     "zxc.20260423143729.23": "- name: Update openssh\n  tags: openssh\n  chocolatey.chocolatey.win_chocolatey:\n    name: openssh\n    state: latest\n    allow_prerelease: true\n    package_params: /SSHServerFeature\n",
     "zxc.20260423143729.24": "- name: Optimize powershell\n  tags: optimize-powershell\n  ansible.windows.win_shell: |\n    function Optimize-Assemblies {\n        param (\n            [string]$assemblyFilter = \"Microsoft.PowerShell.\",\n            [string]$activity = \"Native Image Installation\"\n        )\n\n        try {\n            # Get the path to the ngen executable dynamically\n            $ngenPath = [System.IO.Path]::Combine([Runtime.InteropServices.RuntimeEnvironment]::GetRuntimeDirectory(), \"ngen.exe\")\n\n            # Check if ngen.exe exists\n            if (-Not (Test-Path $ngenPath)) {\n                Write-Host \"Ngen.exe not found at $ngenPath. Make sure .NET Framework is installed.\"\n                return\n            }\n\n            # Get a list of loaded assemblies\n            $assemblies = [AppDomain]::CurrentDomain.GetAssemblies()\n\n            # Filter assemblies based on the provided filter\n            $filteredAssemblies = $assemblies | Where-Object { $_.FullName -ilike \"$assemblyFilter*\" }\n\n            if ($filteredAssemblies.Count -eq 0) {\n                Write-Host \"No matching assemblies found for optimization.\"\n                return\n            }\n\n            foreach ($assembly in $filteredAssemblies) {\n                # Get the name of the assembly\n                $name = [System.IO.Path]::GetFileName($assembly.Location)\n\n                # Display progress\n                Write-Progress -Activity $activity -Status \"Optimizing $name\"\n\n                # Use Ngen to install the assembly\n                Start-Process -FilePath $ngenPath -ArgumentList \"install `\"$($assembly.Location)`\"\" -Wait -WindowStyle Hidden\n            }\n\n            Write-Host \"Optimization complete.\"\n        } catch {\n            Write-Host \"An error occurred: $_\"\n        }\n    }\n\n    # Optimize PowerShell assemblies:\n    Optimize-Assemblies -assemblyFilter \"Microsoft.PowerShell.\"\n",
     "zxc.20260423143729.25": "- name: Add game user\n  tags: game-user\n  ansible.windows.win_user:\n    name: Game\n    password_expired: false\n    password_never_expires: true\n    state: present\n    groups:\n      - Users\n      - Administrators\n",
+    "zxc.20260516120159.1": "- name: Set Developer Mode registry key\n  ansible.windows.win_regedit:\n    path: HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\AppModelUnlock\n    name: AllowDevelopmentWithoutSponsor\n    data: 1\n    type: dword\n    state: present\n- name: Ensure Developer Mode Group Policy is enabled\n  ansible.windows.win_regedit:\n    path: HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\Appx\n    name: AllowAllTrustedApps\n    data: 1\n    type: dword\n    state: present\n",
     "zxc.20260503115039.1": "- name: Set hostname\n  ansible.builtin.win_hostname:\n    name: nuc-windows\n",
     "zxc.20260423143729.26": "- name: Install scream pre\n  when: ansible_facts.nodename in ['bed', 'nuc']\n  tags: scream-pre\n  block:\n    @others\n",
     "zxc.20260423143729.27": "- name: Check scream driver file\n  ansible.windows.win_stat:\n    path: C:\\windows\\system32\\drivers\\scream.sys\n  register: scream_driver\n",
@@ -11378,7 +11383,7 @@
       "_mod_time": 1778706271.126
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1778867521.027
+      "_mod_time": 1778904142.596
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778586914.338
