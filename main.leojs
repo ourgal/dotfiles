@@ -3927,6 +3927,10 @@
                       "vh": "advice"
                     },
                     {
+                      "gnx": "zxc.20260516121033.1",
+                      "vh": "alias"
+                    },
+                    {
                       "gnx": "zxc.20260125153318.1",
                       "vh": "branch"
                     },
@@ -10094,13 +10098,14 @@
     "zxc.20260329012020.1": "{{- /* chezmoi:modify-template */ -}}\n{{ $origin := fromIni .chezmoi.stdin -}}\n{{ $origin = $origin | setValueAtPath \"GUI.CheckForUpdates\" false -}}\n{{ $origin = $origin | setValueAtPath \"GUI.MinimizeOnStartup\" false -}}\n{{ $origin = $origin | setValueAtPath \"GUI.ShowTrayIcon\" false -}}\n{{ $origin = $origin | setValueAtPath \"GUI.MinimizeToTray\" false -}}\n{{ $origin = $origin | setValueAtPath \"GUI.MinimizeOnClose\" false -}}\n{{ $origin = $origin | setValueAtPath \"GUI.TrayIconAppearance\" \"monochrome\" -}}\n{{ $origin = $origin | setValueAtPath \"Browser.Enabled\" true -}}\n{{ $origin = $origin | setValueAtPath \"General.MinimizeAfterUnlock\" false -}}\n{{ $origin = $origin | setValueAtPath \"General.AutoGeneratePasswordForNewEntries\" true -}}\n{{ $origin = $origin | setValueAtPath \"General.GlobalAutoTypeKey\" \"65\" -}}\n{{ $origin = $origin | setValueAtPath \"General.GlobalAutoTypeModifiers\" \"234881024\" -}}\n{{ $origin = $origin | setValueAtPath \"SSHAgent.Enabled\" false -}}\n{{ $origin = $origin | setValueAtPath \"SSHAgent.UseOpenSSH\" true -}}\n{{ $origin = $origin | setValueAtPath \"SSHAgent.UsePageant\" false -}}\n{{ $origin = $origin | setValueAtPath \"Security.AutotypeAsk\" false -}}\n{{ $origin | toIni -}}",
     "zxc.20260411192514.3": "{{- /* chezmoi:modify-template */ -}}\n{{ $origin := fromIni .chezmoi.stdin -}}\n{{ $origin = $origin | setValueAtPath \"Security.QuickUnlock\" true -}}\n{{ $origin = $origin | setValueAtPath \"General.LastActiveDatabase\" (joinPath .chezmoi.homeDir \"syncthing\" \"keepassxc\" \"main.kdbx\") -}}\n{{ $origin = $origin | setValueAtPath \"General.LastDatabases\" (joinPath .chezmoi.homeDir \"syncthing\" \"keepassxc\" \"main.kdbx\") -}}\n{{ $origin = $origin | setValueAtPath \"General.LastOpenedDatabases\" (joinPath .chezmoi.homeDir \"syncthing\" \"keepassxc\" \"main.kdbx\") -}}\n{{ $origin = $origin | setValueAtPath \"GUI.ListViewState\" \"\" -}}\n{{ $origin = $origin | setValueAtPath \"GUI.MainWindowGeometry\" \"\" -}}\n{{ $origin = $origin | setValueAtPath \"GUI.MainWindowState\" \"\" -}}\n{{ $origin = $origin | setValueAtPath \"GUI.SearchViewState\" \"\" -}}\n{{ $origin | toIni -}}",
     "zxc.20260125153252.1": "[advice]\n\taddEmptyPathspec = false\n\tpushNonFastForward = false\n\tstatusHints = false",
+    "zxc.20260516121033.1": "[alias]\n    {{- if lookPath \"legit\" }}\n\tsync = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe sync\n\tpublish = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe publish\n\tunpublish = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe unpublish\n\tundo = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe undo\n\tbranches = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe branches\n    {{- end }}",
     "zxc.20260125153318.1": "[branch]\n\tsort = \"-committerdate\"",
     "zxc.20260125153946.1": "[color \"decorate\"]\n\tHEAD = \"red\"\n\tbranch = \"blue\"\n\tremoteBranch = \"magenta\"\n\ttag = \"yellow\"",
     "zxc.20260125153958.1": "[color \"diff\"]\n\tcontext = \"white\"\n\tfrag = \"magenta\"\n\tmeta = \"blue bold\"\n\told = \"red\"\n\twhitespace = \"yellow reverse\"\n",
     "zxc.20260125153928.1": "[color \"branch\"]\n\tcurrent = \"magenta\"\n\tlocal = \"default\"\n\tplain = \"blue\"\n\tremote = \"yellow\"\n\tupstream = \"green\"",
     "zxc.20260125153436.1": "[culumn]\n\tui = \"auto\"",
     "zxc.20260125153348.1": "[commit]\n\ttemplate = \"~/.config/git/template\"\n\tgpgsign = true\n\tverbose = true",
-    "zxc.20260125153401.1": "[core]\n\tcompression = 9\n\teditor = \"{{ template \"editor\" }}\"\n\texcludesfile = \"~/.gitignore\"\n\tfsmonitor = true\n        {{ if lookPath \"delta\" -}}\n        pager = delta\n        {{ else if lookPath \"diff-so-fancy\" -}}\n\tpager = \"diff-so-fancy | less '--tabs=4' -RFX\"\n        {{ end -}}\n\tpreloadindex = true\n\tuntrackedCache = true\n\twhitespace = \"error\"\n\tautocrlf = \"input\"\n{{ if eq .chezmoi.os \"windows\" }}\tsshCommand = 'C:\\\\Program Files\\\\OpenSSH-Win64\\\\ssh.EXE'\n{{ end -}}",
+    "zxc.20260125153401.1": "[core]\n\tcompression = 9\n\teditor = \"{{ template \"editor\" }}\"\n\texcludesfile = \"~/.gitignore\"\n\tfsmonitor = true\n        {{ if lookPath \"delta\" -}}\n\tpager = delta\n        {{ else if lookPath \"diff-so-fancy\" -}}\n\tpager = \"diff-so-fancy | less '--tabs=4' -RFX\"\n        {{ end -}}\n\tpreloadindex = true\n\tuntrackedCache = true\n\twhitespace = \"error\"\n\tautocrlf = \"input\"\n\t{{ if eq .chezmoi.os \"windows\" -}}\n\tsshCommand = 'C:\\\\Program Files\\\\OpenSSH-Win64\\\\ssh.EXE'\n\tsymlinks = true\n\t{{- end }}",
     "zxc.20260202215744.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ if lookPath \"git-credential-gopass\" -}}\n[credential]\n\thelper = \"gopass\"\n[credential \"helperselector\"]\n\tselected = gopass\n{{ else -}}\n[credential]\n\thelper = !\\\"{{ .chezmoi.homeDir }}/scoop/apps/git/current/mingw64/bin/git-credential-manager.exe\\\"\n[credential \"helperselector\"]\n    selected = manager\n{{ end -}}\n{{ end -}}",
     "zxc.20260202215728.1": "{{ if eq .chezmoi.os \"linux\" -}}\n{{ if lookPath \"gopass\" -}}\n[credential]\n\thelper = \"gopass\"\n{{ end -}}\n{{ end -}}",
     "zxc.20260125154038.1": "[credential \"https://gist.github.com\"]\n\thelper = !{{ lookPath \"gh\" | replace \"\\\\\" \"\\\\\\\\\" | squote }} auth git-credential",
@@ -11221,7 +11226,7 @@
       "_mod_time": 1777713442.5013232
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1778901911.145
+      "_mod_time": 1778905701.641
     },
     "zxc.20260125161631.1": {
       "_mod_time": 1777713442.501

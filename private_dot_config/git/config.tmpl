@@ -4,6 +4,14 @@
 	addEmptyPathspec = false
 	pushNonFastForward = false
 	statusHints = false
+[alias]
+    {{- if lookPath "legit" }}
+	sync = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe sync
+	publish = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe publish
+	unpublish = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe unpublish
+	undo = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe undo
+	branches = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe branches
+    {{- end }}
 [branch]
 	sort = "-committerdate"
 [color "decorate"]
@@ -35,7 +43,7 @@
 	excludesfile = "~/.gitignore"
 	fsmonitor = true
         {{ if lookPath "delta" -}}
-        pager = delta
+	pager = delta
         {{ else if lookPath "diff-so-fancy" -}}
 	pager = "diff-so-fancy | less '--tabs=4' -RFX"
         {{ end -}}
@@ -43,8 +51,10 @@
 	untrackedCache = true
 	whitespace = "error"
 	autocrlf = "input"
-{{ if eq .chezmoi.os "windows" }}	sshCommand = 'C:\\Program Files\\OpenSSH-Win64\\ssh.EXE'
-{{ end -}}
+	{{ if eq .chezmoi.os "windows" -}}
+	sshCommand = 'C:\\Program Files\\OpenSSH-Win64\\ssh.EXE'
+	symlinks = true
+	{{- end }}
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "git-credential-gopass" -}}
 [credential]
