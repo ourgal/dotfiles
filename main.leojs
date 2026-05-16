@@ -2882,12 +2882,18 @@
                       "vh": "@clean private_authorized_keys.tmpl",
                       "children": [
                         {
-                          "gnx": "zxc.20260516111142.1",
-                          "vh": "cano rsa"
-                        },
-                        {
-                          "gnx": "zxc.20260516111240.1",
-                          "vh": "cano ecc"
+                          "gnx": "zxc.20260516111624.1",
+                          "vh": "cano",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260516111142.1",
+                              "vh": "rsa"
+                            },
+                            {
+                              "gnx": "zxc.20260516111240.1",
+                              "vh": "ecc"
+                            }
+                          ]
                         }
                       ]
                     }
@@ -10119,7 +10125,7 @@
     "zxc.20260125154343.1": "[url \"ssh://192.168.123.206:23231/\"]\n\tinsteadOf = \"soft:\"\n",
     "zxc.20260125154332.1": "[url \"git@github.com:ourgal/\"]\n\tinsteadOf = \"myg:\"\n",
     "zxc.20260125154321.1": "[url \"git@github.com:\"]\n\tinsteadOf = \"gh:\"\n",
-    "zxc.20260125153842.1": "[user]\n\temail = \"{{ .my.git.user.email }}\"\n\tname = \"{{ .my.git.user.name }}\"\n{{ if .my.git.sign.ssh }}\tsigningkey = \"~/.ssh/id_ed25519.pub\"\n{{ else if .my.git.sign.gpg }}\tsigningkey = \"D0D31211E343897C\"\n{{ end -}}",
+    "zxc.20260125153842.1": "[user]\n\temail = \"{{ .my.git.user.email }}\"\n\tname = \"{{ .my.git.user.name }}\"\n{{ if .my.git.sign.ssh }}\tsigningkey = \"~/.ssh/id_ed25519.pub\"\n{{ else if .my.git.sign.gpg }}\tsigningkey = \"1BE4E2268D47C1D1\"\n{{ end -}}",
     "User.20260222170925.1": "[annex \"security\"]\nallowed-ip-addresses = \"all\"",
     "zxc.20260125153131.2": "# feat: ✨\n# feat: 🔍\n# feat: 🔗\n# feat: 🔒\n\n# fix: 🐛\n# fix: 🐞\n# fix: 🩹\n# fix: 🚑️\n\n# style: 💅\n# style: 🎨\n# style: 💄\n\n# ci: 🦊\n# ci: 📦\n\n# deploy: 🚀\n# deploy: 📦\n\n# chore: 🧹\n# chore: 🔧\n# chore: ⚙️\n# docs: 📜\n\n# refactor: 🔨\n# perf: 🚀\n\n# test: 🚦\n# debug: 🧪\n\n# BREAKING CHANGE: 🚨\n# BREAKING CHANGE: 💥\n# BREAKING CHANGE: 💣",
     "zxc.20260201140637.1": "(\n    move_left: Some(( code: Char('h'), modifiers: \"\")),\n    move_right: Some(( code: Char('l'), modifiers: \"\")),\n    move_up: Some(( code: Char('k'), modifiers: \"\")),\n    move_down: Some(( code: Char('j'), modifiers: \"\")),\n    stage_unstage_item: Some(( code: Char(' '), modifiers: \"\")),\n\n    open_help: Some(( code: F(1), modifiers: \"\")),\n)",
@@ -11210,7 +11216,7 @@
       "_mod_time": 1777713442.5013232
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1778586914.342
+      "_mod_time": 1778901911.145
     },
     "zxc.20260125161631.1": {
       "_mod_time": 1777713442.501
