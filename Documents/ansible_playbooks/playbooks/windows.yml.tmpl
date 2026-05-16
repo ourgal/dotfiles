@@ -1514,6 +1514,12 @@
         users:
           - User
         action: add
+    - name: Set openssh default shell to git bash
+      ansible.windows.win_regedit:
+        path: HKLM:\SOFTWARE\OpenSSH
+        name: DefaultShell
+        data: C:\Users\User\scoop\apps\git\current\bin\bash.exe
+        type: string
   handlers:
     - name: Reboot
       ansible.windows.win_reboot:
