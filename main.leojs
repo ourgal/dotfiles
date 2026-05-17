@@ -6617,10 +6617,6 @@
                                           ]
                                         },
                                         {
-                                          "gnx": "zxc.20260423143729.102",
-                                          "vh": "share"
-                                        },
-                                        {
                                           "gnx": "zxc.20260423143729.103",
                                           "vh": "shell",
                                           "children": [
@@ -10430,9 +10426,8 @@
     "zxc.20260423143729.97": "- main/dog\n- main/nali\n- main/nmap\n- main/q-dns\n- main/tcping\n",
     "zxc.20260423143729.98": "- main/scoop-search\n",
     "zxc.20260423143729.99": "- main/everything-cli\n",
-    "zxc.20260423143729.100": "- main/croc\n- main/cwrsync\n- main/dufs\n- main/miniserve\n- main/portal\n- main/rclone\n- main/syncthing\n- main/alist\n- main/serve\n- main/simple-http-server",
+    "zxc.20260423143729.100": "- main/croc\n- main/cwrsync\n- main/dufs\n- main/miniserve\n- main/portal\n- main/rclone\n- main/syncthing\n- main/alist\n- main/serve\n- main/simple-http-server\n- main/git-annex",
     "zxc.20260423143729.101": "# hash check filed\n# - main/ffsend\n",
-    "zxc.20260423143729.102": "- main/git-annex\n",
     "zxc.20260423143729.103": "- main/clink\n- main/clink-completions\n- main/cmder-full\n- main/pwsh\n- main/nu\n- main/yori\n",
     "zxc.20260423143729.104": "- main/fastfetch\n- main/ntop\n- main/btop\n- main/bottom\n",
     "zxc.20260423143729.105": "- main/which\n",
@@ -10533,7 +10528,7 @@
     "zxc.20260423143729.205": "- name: Add anderlli0053_DEV-tools bucket\n  community.windows.win_scoop_bucket:\n    name: anderlli0053_DEV-tools\n    repo: https://github.com/anderlli0053/DEV-tools\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - anderlli0053_DEV-tools/mani\n      - anderlli0053_DEV-tools/ydict\n      - anderlli0053_DEV-tools/kpcli\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.206": "- name: Add NSPC911_le-bucket bucket\n  community.windows.win_scoop_bucket:\n    name: NSPC911_le-bucket\n    repo: https://github.com/NSPC911/le-bucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - NSPC911_le-bucket/helix-ghost\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.207": "- name: Add ShuguangSun_sgs-scoop-bucket bucket\n  community.windows.win_scoop_bucket:\n    name: ShuguangSun_sgs-scoop-bucket\n    repo: https://github.com/ShuguangSun/sgs-scoop-bucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - ShuguangSun_sgs-scoop-bucket/emacs-lsp-booster\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
-    "zxc.20260423143729.208": "- name: Add hoilc_scoop-lemon bucket\n  community.windows.win_scoop_bucket:\n    name: hoilc_scoop-lemon\n    repo: https://github.com/hoilc/scoop-lemon\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - hoilc_scoop-lemon/keep-sorted\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
+    "zxc.20260423143729.208": "- name: Add hoilc_scoop-lemon bucket\n  community.windows.win_scoop_bucket:\n    name: hoilc_scoop-lemon\n    repo: https://github.com/hoilc/scoop-lemon\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - hoilc_scoop-lemon/keep-sorted\n      - hoilc_scoop-lemon/pikpak\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.209": "- name: Add Befod_Xeno bucket\n  community.windows.win_scoop_bucket:\n    name: Befod_Xeno\n    repo: https://github.com/Befod/Xeno\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - Befod_Xeno/gesturesign\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.210": "- name: Add maqibg_MQBucket bucket\n  community.windows.win_scoop_bucket:\n    name: maqibg_MQBucket\n    repo: https://github.com/maqibg/MQBucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - maqibg_MQBucket/Github-Store\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.211": "- name: Add ourgal_scoop-bucket bucket\n  community.windows.win_scoop_bucket:\n    name: ourgal_scoop-bucket\n    repo: https://github.com/ourgal/scoop-bucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - ourgal_scoop-bucket/dockfmt\n      - ourgal_scoop-bucket/mtranserver\n      - ourgal_scoop-bucket/altrun\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
@@ -11176,7 +11171,7 @@
       "_mod_time": 1777179946.8710287
     },
     "User.20260301202336.1": {
-      "_mod_time": 1778806210.8322108
+      "_mod_time": 1779016340.934
     },
     "zxc.20260327184129.1": {
       "_mod_time": 1778717681.6212523
@@ -11398,7 +11393,7 @@
       "_mod_time": 1778706271.126
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1778985803.067
+      "_mod_time": 1779029799.54
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778586914.338
