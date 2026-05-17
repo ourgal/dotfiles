@@ -6397,6 +6397,10 @@
                                           "vh": "audio"
                                         },
                                         {
+                                          "gnx": "zxc.20260517104320.1",
+                                          "vh": "backup"
+                                        },
+                                        {
                                           "gnx": "zxc.20260423143729.50",
                                           "vh": "CA"
                                         },
@@ -6781,10 +6785,6 @@
                                         {
                                           "gnx": "zxc.20260423143729.141",
                                           "vh": "automation"
-                                        },
-                                        {
-                                          "gnx": "zxc.20260423143729.142",
-                                          "vh": "backup"
                                         },
                                         {
                                           "gnx": "zxc.20260423143729.143",
@@ -10338,7 +10338,7 @@
     "zxc.20260507120909.1": "void:\n  hosts:\n    surface:\n      ansible_user: zxc\n      ansible_host: surface.local\n      ansible_become_pass: \"{{ gopass \"password/linux/user\" }}\"",
     "zxc.20260507121046.1": "void-live:\n  hosts:\n    void-live:\n      ansible_user: anon\n      ansible_ssh_pass: voidlinux\n      ansible_host: 192.168.123.221\n      ansible_become_pass: \"{{ gopass \"password/linux/user\" }}\"",
     "zxc.20260423143729.3": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n@others\n",
-    "zxc.20260502011628.1": "# chezmoi:template:left-delimiter=[[ right-delimiter=]]",
+    "zxc.20260502011628.1": "# chezmoi:template:left-delimiter=[[ right-delimiter=]]\n",
     "zxc.20260423143729.4": "- name: Configure windows admin\n  hosts: windows\n  remote_user: admin\n  ignore_unreachable: true\n  tags: admin\n  tasks:\n    @others\n  handlers:\n    << handlers >>\n",
     "zxc.20260423143729.276": "- name: Gather facts\n  ansible.builtin.gather_facts:\n- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts\n",
     "zxc.20260423143729.7": "- name: Install choco pacakges\n  tags: choco-install\n  chocolatey.chocolatey.win_chocolatey:\n    name:\n      @others\n    state: latest\n",
@@ -10354,7 +10354,7 @@
     "zxc.20260423143729.18": "- name: Enable Virtual Machine Platform\n  ansible.windows.win_optional_feature:\n    name: VirtualMachinePlatform\n    state: present\n  register: vmp_status\n- name: Enable hyper-v\n  ansible.windows.win_shell: bcdedit /set hypersivoralaunchtype auto\n  when: vmp_status is failed\n- name: Reboot for hyper-v\n  ansible.windows.win_reboot:\n  when: vmp_status is failed\n- name: Enable Virtual Machine Platform again\n  ansible.windows.win_optional_feature:\n    name: VirtualMachinePlatform\n    state: present\n  register: vmp_again_status\n  when: vmp_status is failed\n- name: Install Microsoft Subsystem for Linux\n  ansible.windows.win_optional_feature:\n    name: Microsoft-Windows-Subsystem-Linux\n    state: present\n  register: wsl_status\n",
     "zxc.20260423143729.19": "- name: Reboot if installing Linux Subsytem as feature requires it\n  ansible.windows.win_reboot:\n  when: >\n    (wsl_status.reboot_required is defined and wsl_status.reboot_required) or\n    (vmp_status.reboot_required is defined and vmp_status.reboot_required) or\n    (vmp_again_status.reboot_required is defined and vmp_again_status.reboot_required)\n",
     "zxc.20260423143729.20": "- name: Hide admin account\n  tags: hide-admin\n  ansible.windows.win_regedit:\n    path: HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\SpecialAccounts\\UserList\n    type: dword\n    name: Admin\n    data: 0\n",
-    "zxc.20260423143729.21": "- name: Set user groups\n  tags: user-admin\n  ansible.windows.win_user:\n    name: User\n    state: present\n    groups:\n      - Users",
+    "zxc.20260423143729.21": "- name: Set user groups\n  tags: user-admin\n  ansible.windows.win_user:\n    name: User\n    state: present\n    groups:\n      - Users\n",
     "zxc.20260423143729.22": "- name: Disable ssh-agent service\n  tags: ssh-agent\n  ansible.windows.win_service:\n    name: ssh-agent\n    state: stopped\n    start_mode: disabled\n",
     "zxc.20260423143729.23": "- name: Update openssh\n  tags: openssh\n  chocolatey.chocolatey.win_chocolatey:\n    name: openssh\n    state: latest\n    allow_prerelease: true\n    package_params: /SSHServerFeature\n",
     "zxc.20260423143729.24": "- name: Optimize powershell\n  tags: optimize-powershell\n  ansible.windows.win_shell: |\n    function Optimize-Assemblies {\n        param (\n            [string]$assemblyFilter = \"Microsoft.PowerShell.\",\n            [string]$activity = \"Native Image Installation\"\n        )\n\n        try {\n            # Get the path to the ngen executable dynamically\n            $ngenPath = [System.IO.Path]::Combine([Runtime.InteropServices.RuntimeEnvironment]::GetRuntimeDirectory(), \"ngen.exe\")\n\n            # Check if ngen.exe exists\n            if (-Not (Test-Path $ngenPath)) {\n                Write-Host \"Ngen.exe not found at $ngenPath. Make sure .NET Framework is installed.\"\n                return\n            }\n\n            # Get a list of loaded assemblies\n            $assemblies = [AppDomain]::CurrentDomain.GetAssemblies()\n\n            # Filter assemblies based on the provided filter\n            $filteredAssemblies = $assemblies | Where-Object { $_.FullName -ilike \"$assemblyFilter*\" }\n\n            if ($filteredAssemblies.Count -eq 0) {\n                Write-Host \"No matching assemblies found for optimization.\"\n                return\n            }\n\n            foreach ($assembly in $filteredAssemblies) {\n                # Get the name of the assembly\n                $name = [System.IO.Path]::GetFileName($assembly.Location)\n\n                # Display progress\n                Write-Progress -Activity $activity -Status \"Optimizing $name\"\n\n                # Use Ngen to install the assembly\n                Start-Process -FilePath $ngenPath -ArgumentList \"install `\"$($assembly.Location)`\"\" -Wait -WindowStyle Hidden\n            }\n\n            Write-Host \"Optimization complete.\"\n        } catch {\n            Write-Host \"An error occurred: $_\"\n        }\n    }\n\n    # Optimize PowerShell assemblies:\n    Optimize-Assemblies -assemblyFilter \"Microsoft.PowerShell.\"\n",
@@ -10379,9 +10379,10 @@
     "zxc.20260423143729.47": "- main/aichat\n",
     "zxc.20260423143729.48": "- main/adb\n- main/scrcpy\n",
     "zxc.20260423143729.49": "- main/mpd\n- main/navidrome\n",
+    "zxc.20260517104320.1": "- main/restic\n- main/resticprofile\n- main/rdiff-backup",
     "zxc.20260423143729.50": "- main/cacert\n",
     "zxc.20260423143729.51": "- main/hugo\n",
-    "zxc.20260423143729.52": "- main/chsrc\n- main/editorconfig\n- main/dprint\n- main/aspell",
+    "zxc.20260423143729.52": "- main/chsrc\n- main/editorconfig\n- main/dprint\n- main/aspell\n",
     "zxc.20260423143729.53": "- main/shellcheck\n- main/shfmt\n",
     "zxc.20260423143729.54": "- main/binutils\n",
     "zxc.20260423143729.55": "- main/clangd\n",
@@ -10413,7 +10414,7 @@
     "zxc.20260423143729.81": "- main/gitomatic\n",
     "zxc.20260423143729.82": "- main/git-bug\n",
     "zxc.20260423143729.83": "- main/gh\n",
-    "zxc.20260423143729.84": "- main/mob\n- main/legit",
+    "zxc.20260423143729.84": "- main/mob\n- main/legit\n",
     "zxc.20260423143729.85": "- main/git-lfs\n",
     "zxc.20260423143729.86": "- main/git-absorb\n",
     "zxc.20260423143729.87": "- main/diff-so-fancy\n- main/delta\n- main/difftastic\n",
@@ -10429,7 +10430,7 @@
     "zxc.20260423143729.97": "- main/dog\n- main/nali\n- main/nmap\n- main/q-dns\n- main/tcping\n",
     "zxc.20260423143729.98": "- main/scoop-search\n",
     "zxc.20260423143729.99": "- main/everything-cli\n",
-    "zxc.20260423143729.100": "- main/croc\n- main/cwrsync\n- main/dufs\n- main/miniserve\n- main/portal\n- main/rclone\n- main/syncthing\n- main/alist\n- main/serve\n- main/simple-http-server\n",
+    "zxc.20260423143729.100": "- main/croc\n- main/cwrsync\n- main/dufs\n- main/miniserve\n- main/portal\n- main/rclone\n- main/syncthing\n- main/alist\n- main/serve\n- main/simple-http-server",
     "zxc.20260423143729.101": "# hash check filed\n# - main/ffsend\n",
     "zxc.20260423143729.102": "- main/git-annex\n",
     "zxc.20260423143729.103": "- main/clink\n- main/clink-completions\n- main/cmder-full\n- main/pwsh\n- main/nu\n- main/yori\n",
@@ -10452,7 +10453,7 @@
     "zxc.20260423143729.120": "- main/unrar\n- main/unzip\n",
     "zxc.20260423143729.121": "- main/mcfly\n- main/atuin\n",
     "zxc.20260423143729.122": "- main/starship\n- main/oh-my-posh\n",
-    "zxc.20260423143729.123": "- main/psmux",
+    "zxc.20260423143729.123": "- main/psmux\n",
     "zxc.20260423143729.124": "- main/dos2unix\n- main/goodbyedpi\n- main/file\n",
     "zxc.20260423143729.125": "- main/zip\n",
     "zxc.20260423143729.126": "- main/innounp\n- main/gzip\n",
@@ -10470,7 +10471,6 @@
     "zxc.20260423143729.139": "- extras/ab-av1\n",
     "zxc.20260423143729.140": "- extras/mpc\n- extras/ncmpc\n",
     "zxc.20260423143729.141": "- extras/autohotkey\n- extras/autoclicker\n",
-    "zxc.20260423143729.142": "- restic\n- resticprofile\n- rdiff-backup\n",
     "zxc.20260423143729.143": "- extras/firefox\n- extras/brave\n- extras/qutebrowser\n- extras/ungoogled-chromium\n- extras/librewolf\n",
     "zxc.20260423143729.144": "- extras/kavita\n",
     "zxc.20260423143729.145": "- extras/telegram\n",
@@ -10484,7 +10484,7 @@
     "zxc.20260423143729.154": "- extras/locale-emulator\n- extras/ludusavi\n- extras/playnite\n- extras/sunshine\n",
     "zxc.20260423143729.155": "- extras/lazygit\n- extras/gitu\n- extras/sourcegit\n",
     "zxc.20260423143729.156": "- extras/meld\n",
-    "zxc.20260423143729.158": "- extras/nomacs\n- extras/qview\n- extras/oculante\n- extras/fsviewer",
+    "zxc.20260423143729.158": "- extras/nomacs\n- extras/qview\n- extras/oculante\n- extras/fsviewer\n",
     "zxc.20260423143729.159": "- extras/gimp\n- extras/photodemon\n- extras/photoflare\n",
     "zxc.20260423143729.160": "- extras/qmk-toolbox\n- extras/vial\n- extras/kanata\n- extras/komokana\n",
     "zxc.20260423143729.161": "- extras/qalculate\n",
@@ -10552,7 +10552,7 @@
     "zxc.20260423143729.224": "- leo\n",
     "zxc.20260423143729.225": "- copyparty\n",
     "zxc.20260423143729.226": "- ffmpeg-progress-yield\n",
-    "zxc.20260428002443.1": "- vim-vint --preinstall \"setuptools<81\"",
+    "zxc.20260428002443.1": "- vim-vint --preinstall \"setuptools<81\"\n",
     "zxc.20260423143729.251": "- name: Remove pip config\n  ansible.windows.win_file:\n    path: \"{{ ansible_facts.env.APPDATA }}\\\\.pip\\\\pip.ini\"\n    state: absent\n",
     "zxc.20260423143729.229": "- name: Add cargo bin path to PATH\n  tags: path\n  ansible.windows.win_path:\n    state: present\n    scope: user\n    elements: '%userprofile%\\.cargo\\bin'\n",
     "zxc.20260423143729.230": "- name: Create .cargo folder\n  ansible.windows.win_file:\n    dest: \"{{ ansible_facts.user_dir }}\\\\.cargo\"\n    state: directory\n- name: Set cargo config\n  ansible.windows.win_copy:\n    dest: \"{{ ansible_facts.user_dir }}\\\\.cargo\\\\config.toml\"\n    content: |\n      [source.crates-io]\n      replace-with = 'mirror'\n\n      [source.mirror]\n      registry = \"sparse+https://mirrors.cernet.edu.cn/crates.io-index/\"\n\n      [registries.mirror]\n      index = \"sparse+https://mirrors.cernet.edu.cn/crates.io-index/\"\n",
@@ -10566,7 +10566,7 @@
     "zxc.20260423143729.238": "- vscode-langservers-extracted\n",
     "zxc.20260423143729.239": "- yaml-language-server\n",
     "zxc.20260423143729.240": "- \"@ansible/ansible-language-server\"\n",
-    "zxc.20260428002132.1": "- vim-language-server",
+    "zxc.20260428002132.1": "- vim-language-server\n",
     "zxc.20260423143729.241": "- name: Remove npm config\n  ansible.windows.win_file:\n    path: \"{{ ansible_facts.user_dir }}\\\\.npmrc\"\n    state: absent\n",
     "zxc.20260423143729.242": "- name: Facts\n  tags: user-env\n  ansible.builtin.gather_facts:\n  when: ansible_facts.user_dir is not defined\n",
     "zxc.20260423143729.243": "- name: Set home environment variable\n  tags: user-env\n  ansible.windows.win_environment:\n    state: present\n    name: HOME\n    value: \"{{ ansible_facts.user_dir }}\"\n    level: user\n",
@@ -11398,7 +11398,7 @@
       "_mod_time": 1778706271.126
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1778938529.426
+      "_mod_time": 1778985803.067
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778586914.338
