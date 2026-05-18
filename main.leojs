@@ -2625,6 +2625,10 @@
                               "vh": "sbsrf"
                             },
                             {
+                              "gnx": "zxc.20260518221501.1",
+                              "vh": "alist"
+                            },
+                            {
                               "gnx": "zxc.20260329193242.1",
                               "vh": "ssh",
                               "children": [
@@ -6030,6 +6034,28 @@
                               ]
                             }
                           ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260518220531.1",
+              "vh": "@path buckets",
+              "children": [
+                {
+                  "gnx": "zxc.20260518220556.1",
+                  "vh": "@path mygames",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260518220727.1",
+                      "vh": "@path bucket",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260518220745.1",
+                          "vh": "@clean brotato.json.tmpl"
                         }
                       ]
                     }
@@ -9919,6 +9945,7 @@
     "zxc.20260403084957.1": "[my.ip]\nbrix = \"192.168.123.206\"",
     "User.20260303224633.1": "[my.pip]\nmirror = \"https://mirrors.nju.edu.cn/pypi/web/simple/\"\n",
     "zxc.20260505221529.1": "[my.sbsrf]\nurl=\"https://github.com/sbsrf/sbsrf/releases/download/20260425/sbsrf.zip\"",
+    "zxc.20260518221501.1": "[my.alist.local]\nhost = \"http://localhost:5244\"",
     "zxc.20260329193242.1": "[my.ssh]\nknown_hosts = [\n    @others\n]\n",
     "zxc.20260329194301.1": "\"home.local,192.168.123.100 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOKREEGtjhZmTsIruPjBmBp0fPHKxfUSbUilpIzVMoBF\",\n",
     "zxc.20260329194332.1": "\"[brix.local]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqhuTozhEUlnOCkH1LXw55IUaZHzcO4IKmr1uPOT41u\",\n\"[192.168.123.206]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqhuTozhEUlnOCkH1LXw55IUaZHzcO4IKmr1uPOT41u\",",
@@ -10318,6 +10345,7 @@
     "zxc.20260411192514.1": "<< dos >>\n{{ if lookPath \"keepassxc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260330235722.1": "<< dos >>\n{{ if lookPath \"espanso\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260330235914.1": "{{- /* chezmoi:modify-template */ -}}\n{{ $origin := fromYaml .chezmoi.stdin -}}\n{{ $origin = $origin | setValueAtPath \"show_notifications\" false -}}\n{{ $origin | toYaml -}}",
+    "zxc.20260518220745.1": "{\n    \"version\": \"1.1.15.1\",\n    \"description\": \"A spaceship from Potato World crashes onto an alien planet. The sole survivor: Brotato, the only potato capable of handling 6 weapons at the same time. Waiting to be rescued by his mates, Brotato must survive in this hostile environment.\",\n    \"homepage\": \"https://freegogpcgames.com/32560/brotato/\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.alist.local.host }}/d/189cloud_crypt/games/brotato.7z\",\n            \"hash\": \"1b23c8a3db488d7c6cf68750f0b7a8c6260daea2c6e6bfc5b208ae2641cc7eb7\"\n        }\n    },\n    \"shortcut\": [\n        [\n            \"Brotato.exe\",\n            \"Brotato\"\n        ]\n    ]\n}",
     "zxc.20260125211938.1": "<< dos >>\n<< os >>\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260316162600.1": "#Requires AutoHotkey v2.0\n#SingleInstance Force\n\nLWin::F24\nRWin::F24",
     "zxc.20260323180608.1": "InstallKeybdHook\nInstallMouseHook\nCoordMode(\"mouse\", \"screen\")\n\nOnExit (*) => SystemCursor(\"Show\")  ; Ensure the cursor is made visible when the script exits\n\nSetTimer(Main, 10)\n\nMain() {\n\n   if(A_TimeIdleKeyboard < 25)\n      ;A keyboard key has been pressed, hide cursor\n      SystemCursor(\"Hide\")\n\n   else if(A_TimeIdleMouse < 25)\n      ;Mouse have been used, show cursor\n      SystemCursor(\"Show\")\n}\n\nSystemCursor(cmd) { ; cmd = \"Show|Hide|Toggle|Reload\"\n\n   static visible := true, c := Map()\n   static sys_cursors := [32512, 32513, 32514, 32515, 32516, 32642, 32643, 32644, 32645, 32646, 32648, 32649, 32650]\n\n   if (cmd = \"Reload\" or !c.Count) { ; Reload when requested or at first call.\n\n      for i, id in sys_cursors {\n         h_cursor := DllCall(\"LoadCursor\", \"Ptr\", 0, \"Ptr\", id)\n         h_default := DllCall(\"CopyImage\", \"Ptr\", h_cursor, \"UInt\", 2, \"Int\", 0, \"Int\", 0, \"UInt\", 0)\n         h_blank := DllCall(\"CreateCursor\", \"Ptr\", 0, \"Int\", 0, \"Int\", 0, \"Int\", 32, \"Int\", 32, \"Ptr\", Buffer(32 * 4, 0xFF), \"Ptr\", Buffer(32 * 4, 0))\n         c[id] := { default: h_default, blank: h_blank }\n      }\n   }\n\n   switch cmd {\n      case \"Show\":\n         if (!visible)\n            visible := true\n         else\n            return\n      case \"Hide\":\n         if (visible)\n            visible := false\n         else\n            return\n      case \"Toggle\":\n         visible := !visible\n      default: return\n   }\n\n   for id, handles in c {\n      h_cursor := DllCall(\"CopyImage\", \"Ptr\", visible ? handles.default : handles.blank, \"UInt\", 2, \"Int\", 0, \"Int\", 0, \"UInt\", 0)\n      DllCall(\"SetSystemCursor\", \"Ptr\", h_cursor, \"UInt\", id)\n   }\n}",
@@ -11138,7 +11166,7 @@
       "_mod_time": 1776434513.068
     },
     "User.20260226001402.1": {
-      "_mod_time": 1779067019.438
+      "_mod_time": 1779113749.512
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1777891402.212
@@ -11377,6 +11405,9 @@
     "zxc.20260330235722.1": {
       "_mod_time": 1777179946.891
     },
+    "zxc.20260518220745.1": {
+      "_mod_time": 1779113784.193
+    },
     "zxc.20260125211938.1": {
       "_mod_time": 1779067019.438
     },
@@ -11393,7 +11424,7 @@
       "_mod_time": 1778706271.126
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1779071183.755
+      "_mod_time": 1779101445.366
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778586914.338
