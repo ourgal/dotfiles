@@ -6060,6 +6060,10 @@
                         {
                           "gnx": "zxc.20260518220745.1",
                           "vh": "@clean brotato.json.tmpl"
+                        },
+                        {
+                          "gnx": "zxc.20260519083439.1",
+                          "vh": "@clean aotenjo.json.tmpl"
                         }
                       ]
                     }
@@ -10364,7 +10368,8 @@
     "zxc.20260411192514.1": "<< dos >>\n{{ if lookPath \"keepassxc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260330235722.1": "<< dos >>\n{{ if lookPath \"espanso\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260330235914.1": "{{- /* chezmoi:modify-template */ -}}\n{{ $origin := fromYaml .chezmoi.stdin -}}\n{{ $origin = $origin | setValueAtPath \"show_notifications\" false -}}\n{{ $origin | toYaml -}}",
-    "zxc.20260518220745.1": "{\n    \"version\": \"1.1.15.1\",\n    \"description\": \"A spaceship from Potato World crashes onto an alien planet. The sole survivor: Brotato, the only potato capable of handling 6 weapons at the same time. Waiting to be rescued by his mates, Brotato must survive in this hostile environment.\",\n    \"homepage\": \"https://freegogpcgames.com/32560/brotato/\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.alist.local.host }}/d/189cloud_crypt/games/brotato.7z\",\n            \"hash\": \"1b23c8a3db488d7c6cf68750f0b7a8c6260daea2c6e6bfc5b208ae2641cc7eb7\"\n        }\n    },\n    \"shortcut\": [\n        [\n            \"Brotato.exe\",\n            \"Brotato\"\n        ]\n    ]\n}",
+    "zxc.20260518220745.1": "{\n    \"version\": \"1.1.15.1\",\n    \"description\": \"A spaceship from Potato World crashes onto an alien planet. The sole survivor: Brotato, the only potato capable of handling 6 weapons at the same time. Waiting to be rescued by his mates, Brotato must survive in this hostile environment.\",\n    \"homepage\": \"https://freegogpcgames.com/32560/brotato/\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.alist.local.host }}/d/189cloud_crypt/games/brotato.7z\",\n            \"hash\": \"1b23c8a3db488d7c6cf68750f0b7a8c6260daea2c6e6bfc5b208ae2641cc7eb7\"\n        }\n    },\n    \"shortcuts\": [\n        [\n            \"Brotato.exe\",\n            \"Brotato\"\n        ]\n    ]\n}",
+    "zxc.20260519083439.1": "{\n    \"version\": \"20973329\",\n    \"description\": \"The Mahjong Roguelike. Aotenjo: Infinite Hands is an deckbuilder where you will use Mahjong styles all over the world to beat innate threats, play different Patterns and combos, reach the \\\"bottom\\\" of Aotenjo, and discover ancient secrets....\",\n    \"homepage\": \"https://byrutgame.org/index.php?do=download&id=176872\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.alist.local.host }}/d/189cloud_crypt/games/aotenjo.7z\",\n            \"hash\": \"43b66ee21523bbc7cf7b99b455450e0e252a71593552021f0c5a1b37eb2b52bc\"\n        }\n    },\n    \"shortcuts\": [\n        [\n            \"Aotenjo.exe\",\n            \"Aotenjo\"\n        ]\n    ]\n}",
     "zxc.20260125211938.1": "<< dos >>\n<< os >>\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260316162600.1": "#Requires AutoHotkey v2.0\n#SingleInstance Force\n\nLWin::F24\nRWin::F24",
     "zxc.20260323180608.1": "InstallKeybdHook\nInstallMouseHook\nCoordMode(\"mouse\", \"screen\")\n\nOnExit (*) => SystemCursor(\"Show\")  ; Ensure the cursor is made visible when the script exits\n\nSetTimer(Main, 10)\n\nMain() {\n\n   if(A_TimeIdleKeyboard < 25)\n      ;A keyboard key has been pressed, hide cursor\n      SystemCursor(\"Hide\")\n\n   else if(A_TimeIdleMouse < 25)\n      ;Mouse have been used, show cursor\n      SystemCursor(\"Show\")\n}\n\nSystemCursor(cmd) { ; cmd = \"Show|Hide|Toggle|Reload\"\n\n   static visible := true, c := Map()\n   static sys_cursors := [32512, 32513, 32514, 32515, 32516, 32642, 32643, 32644, 32645, 32646, 32648, 32649, 32650]\n\n   if (cmd = \"Reload\" or !c.Count) { ; Reload when requested or at first call.\n\n      for i, id in sys_cursors {\n         h_cursor := DllCall(\"LoadCursor\", \"Ptr\", 0, \"Ptr\", id)\n         h_default := DllCall(\"CopyImage\", \"Ptr\", h_cursor, \"UInt\", 2, \"Int\", 0, \"Int\", 0, \"UInt\", 0)\n         h_blank := DllCall(\"CreateCursor\", \"Ptr\", 0, \"Int\", 0, \"Int\", 0, \"Int\", 32, \"Int\", 32, \"Ptr\", Buffer(32 * 4, 0xFF), \"Ptr\", Buffer(32 * 4, 0))\n         c[id] := { default: h_default, blank: h_blank }\n      }\n   }\n\n   switch cmd {\n      case \"Show\":\n         if (!visible)\n            visible := true\n         else\n            return\n      case \"Hide\":\n         if (visible)\n            visible := false\n         else\n            return\n      case \"Toggle\":\n         visible := !visible\n      default: return\n   }\n\n   for id, handles in c {\n      h_cursor := DllCall(\"CopyImage\", \"Ptr\", visible ? handles.default : handles.blank, \"UInt\", 2, \"Int\", 0, \"Int\", 0, \"UInt\", 0)\n      DllCall(\"SetSystemCursor\", \"Ptr\", h_cursor, \"UInt\", id)\n   }\n}",
@@ -11063,10 +11068,10 @@
       "_mod_time": 1777612767.666
     },
     "zxc.20260426235942.1": {
-      "_mod_time": 1777219283.757
+      "_mod_time": 1777249737.173
     },
     "zxc.20260427224207.1": {
-      "_mod_time": 1777301694.743
+      "_mod_time": 1777337709.122
     },
     "zxc.20260125144442.1": {
       "_mod_time": 1778706271.126
@@ -11084,7 +11089,7 @@
       "_mod_time": 1777713442.466
     },
     "User.20260226000855.1": {
-      "_mod_time": 1777868048.615
+      "_mod_time": 1778049436.405
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1776434513.068
@@ -11102,10 +11107,10 @@
       "_mod_time": 1778706271.126
     },
     "zxc.20260202203521.14": {
-      "_mod_time": 1776614192.458
+      "_mod_time": 1776644732.237
     },
     "zxc.20260202203521.3": {
-      "_mod_time": 1777189908.131
+      "_mod_time": 1777249737.149
     },
     "zxc.20260202213444.1": {
       "_mod_time": 1776434513.084
@@ -11114,7 +11119,7 @@
       "_mod_time": 1776434513.084
     },
     "User.20260220151435.2": {
-      "_mod_time": 1778706271.126
+      "_mod_time": 1778717681.577
     },
     "zxc.20260505102132.1": {
       "_mod_time": 1778717681.5913954
@@ -11132,7 +11137,7 @@
       "_mod_time": 1776434513.068
     },
     "User.20260217202401.1": {
-      "_mod_time": 1777952058.268
+      "_mod_time": 1778049436.405
     },
     "User.20260220214558.1": {
       "_mod_time": 1778586914.337
@@ -11156,7 +11161,7 @@
       "_mod_time": 1776434513.068
     },
     "User.20260308184713.2": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776817843.31
     },
     "User.20260308214701.2": {
       "_mod_time": 1776434513.068
@@ -11171,7 +11176,7 @@
       "_mod_time": 1776434513.068
     },
     "zxc.20260318203351.1": {
-      "_mod_time": 1777967012.401
+      "_mod_time": 1778049436.405
     },
     "zxc.20260505141849.1": {
       "_mod_time": 1778586914.337
@@ -11186,7 +11191,7 @@
       "_mod_time": 1776434513.068
     },
     "User.20260226001402.1": {
-      "_mod_time": 1779113749.512
+      "_mod_time": 1779150538.514
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1777891402.212
@@ -11351,13 +11356,13 @@
       "_mod_time": 1777891060.651
     },
     "User.20260217022114.1": {
-      "_mod_time": 1777891191.612
+      "_mod_time": 1778049436.442
     },
     "User.20260215182818.1": {
       "_mod_time": 1777891191.634
     },
     "zxc.20260317084145.1": {
-      "_mod_time": 1777891060.7
+      "_mod_time": 1778049436.443
     },
     "zxc.20260201225344.1": {
       "_mod_time": 1777891060.714
@@ -11366,22 +11371,22 @@
       "_mod_time": 1777891060.727
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1777617937.909
+      "_mod_time": 1778049436.464
     },
     "User.20260215205925.1": {
-      "_mod_time": 1778902139
+      "_mod_time": 1779067019.452
     },
     "User.20260215210400.1": {
       "_mod_time": 1777179946.904
     },
     "User.20260220151031.5": {
-      "_mod_time": 1778902139.021
+      "_mod_time": 1779067019.452
     },
     "User.20260220151031.28": {
       "_mod_time": 1777179946.902
     },
     "User.20260221175549.1": {
-      "_mod_time": 1778939751.851
+      "_mod_time": 1779067019.452
     },
     "User.20260221194603.1": {
       "_mod_time": 1777179946.906
@@ -11393,10 +11398,10 @@
       "_mod_time": 1777718155.12
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1777978566.573
+      "_mod_time": 1778049436.443
     },
     "zxc.20260201214114.1": {
-      "_mod_time": 1778939057.595
+      "_mod_time": 1779067019.452
     },
     "zxc.20260202195207.1": {
       "_mod_time": 1777179946.896
@@ -11414,7 +11419,7 @@
       "_mod_time": 1777891355.18
     },
     "zxc.20260325223805.1": {
-      "_mod_time": 1777891355.199
+      "_mod_time": 1778049436.444
     },
     "zxc.20260329012003.1": {
       "_mod_time": 1777179946.894
@@ -11426,10 +11431,13 @@
       "_mod_time": 1777179946.891
     },
     "zxc.20260518220745.1": {
-      "_mod_time": 1779113784.193
+      "_mod_time": 1779151788.437
+    },
+    "zxc.20260519083439.1": {
+      "_mod_time": 1779151794.027
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1778865613.547
+      "_mod_time": 1779067019.438
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1777713442.482
@@ -11498,7 +11506,7 @@
       "_mod_time": 1778717681.6050818
     },
     "User.20260302151947.1": {
-      "_mod_time": 1777893376.762
+      "_mod_time": 1778049436.41
     },
     "zxc.20260407232538.1": {
       "_mod_time": 1777179946.836
@@ -11513,10 +11521,10 @@
       "_mod_time": 1777385863.235
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1778769656.544
+      "_mod_time": 1778806210.816
     },
     "zxc.20260214105528.1": {
-      "_mod_time": 1777302969.518
+      "_mod_time": 1777337709.07
     },
     "zxc.20260214142543.1": {
       "_mod_time": 1777179946.851
@@ -11564,10 +11572,10 @@
       "_mod_time": 1777179941.91
     },
     "zxc.20260515010901.1": {
-      "_mod_time": 1778778728.929
+      "_mod_time": 1778806210.816
     },
     "zxc.20260518233322.1": {
-      "_mod_time": 1779118440.014
+      "_mod_time": 1779150538.519
     }
   }
 }
