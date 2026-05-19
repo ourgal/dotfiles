@@ -2,7 +2,7 @@
 {{ if lookPath "syncthing" -}}
 {{ if eq .chezmoi.hostname "bed" -}}
 <configuration version="51">
-    <folder id="gsqw5-i57xh" label="keepassxc" path="~\Syncthing\keepassxc" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="gsqw5-i57xh" label="keepassxc" path="{{ joinPath .chezmoi.homeDir "Syncthing" "keepassxc" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -51,7 +51,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="gc5sz-susp5" label="share" path="~\Syncthing\share" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="gc5sz-susp5" label="share" path="{{ joinPath .chezmoi.homeDir "Syncthing" "share" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -106,7 +106,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="htvji-asdsj" label="gpg_keys" path="~\Syncthing\gpg_keys" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="htvji-asdsj" label="gpg_keys" path="{{ joinPath .chezmoi.homeDir "Syncthing" "gpg_keys" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -155,7 +155,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="y1n6e-yjceb" label="note20-dcim" path="~\Syncthing\note20-dcim" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="y1n6e-yjceb" label="note20-dcim" path="{{ joinPath .chezmoi "Syncthing" "note20-dcim" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -201,7 +201,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="d69wv-ll51l" label="note20-document" path="~\Syncthing\note20-document" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="d69wv-ll51l" label="note20-document" path="{{ joinPath .chezmoi.homeDir "note20-document" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -247,7 +247,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="3kcsy-85jjz" label="note20-download" path="~\Syncthing\note20-download" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="3kcsy-85jjz" label="note20-download" path="{{ joinPath .chezmoi.homeDir "note20-download" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -293,7 +293,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="zphn7-tg89f" label="note20-music" path="~\Syncthing\note20-music" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="zphn7-tg89f" label="note20-music" path="{{ joinPath .chezmoi.homeDir "note20-music" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -339,7 +339,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="k35cr-q06oc" label="note20-picture" path="~\Syncthing\note20-picture" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="k35cr-q06oc" label="note20-picture" path="{{ joinPath .chezmoi.homeDir "note20-picture" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -385,7 +385,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="77uex-q9hva" label="note20-movie" path="~\Syncthing\note20-movie" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="77uex-q9hva" label="note20-movie" path="{{ joinPath .chezmoi.homeDir "note20-movie" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -431,7 +431,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="16ktr-vt585" label="s10-dcim" path="~\Syncthing\s10-dcim" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="16ktr-vt585" label="s10-dcim" path="{{ joinPath .chezmoi.homeDir "s10-dcim" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -480,7 +480,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="4oepn-2l586" label="s10-download" path="~\Syncthing\s10-download" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="4oepn-2l586" label="s10-download" path="{{ joinPath .chezmoi.homeDir "s10-download" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -526,7 +526,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="n2177-ugn6u" label="s10-document" path="~\Syncthing\s10-document" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="n2177-ugn6u" label="s10-document" path="{{ joinPath .chezmoi.homeDir "s10-document" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -572,7 +572,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="2846b-kv95o" label="s10-music" path="~\Syncthing\s10-music" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="2846b-kv95o" label="s10-music" path="{{ joinPath .chezmoi.homeDir "s10-music" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -618,7 +618,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="mf954-uhywx" label="s10-picture" path="~\Syncthing\s10-picture" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="mf954-uhywx" label="s10-picture" path="{{ joinPath .chezmoi.homeDir "s10-picture" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -664,7 +664,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="51ty8-f968l" label="s10-movie" path="~\Syncthing\s10-movie" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="51ty8-f968l" label="s10-movie" path="{{ joinPath .chezmoi.homeDir "s10-movie" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -710,7 +710,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="czmc9-3xr2o" label="m6-dcim" path="~\Syncthing\m6-dcim" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="czmc9-3xr2o" label="m6-dcim" path="{{ joinPath .chezmoi.homeDir "m6-dcim" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -756,7 +756,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="wrau5-k51de" label="m6-download" path="~\Syncthing\m6-download" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="wrau5-k51de" label="m6-download" path="{{ joinPath .chezmoi.homeDir "m6-download" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -802,7 +802,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="b5ivh-mtvk2" label="m6-music" path="~\Syncthing\m6-music" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="b5ivh-mtvk2" label="m6-music" path="{{ joinPath .chezmoi.homeDir "m6-music" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -848,7 +848,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="nxrzw-lqfil" label="m6-picture" path="~\Syncthing\m6-picture" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="nxrzw-lqfil" label="m6-picture" path="{{ joinPath .chezmoi.homeDir "m6-picture" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -894,7 +894,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="jlf00-6rk6u" label="m6-movie" path="~\Syncthing\m6-movie" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="jlf00-6rk6u" label="m6-movie" path="{{ joinPath .chezmoi.homeDir "m6-movie" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -1070,7 +1070,7 @@
         <urUniqueID>zKw6d9Pv</urUniqueID>
     </options>
     <defaults>
-        <folder id="" label="" path="~\Syncthing" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+        <folder id="" label="" path="{{ joinPath .chezmoi.homeDir "Syncthing" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
             <filesystemType>basic</filesystemType>
             <device id="{{ gopass (printf "syncthing/%s/id" .chezmoi.hostname) }}" introducedBy="">
                 <encryptionPassword></encryptionPassword>
@@ -1127,7 +1127,7 @@
 {{ end -}}
 {{ if eq .chezmoi.hostname "nuc" -}}
 <configuration version="51">
-    <folder id="gc5sz-susp5" label="share" path="~\Syncthing\share" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="gc5sz-susp5" label="share" path="{{ joinPath .chezmoi.homeDir "Syncthing" "share" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -1182,7 +1182,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="htvji-asdsj" label="gpg_keys" path="~\Syncthing\gpg_keys" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="htvji-asdsj" label="gpg_keys" path="{{ joinPath .chezmoi.homeDir "Syncthing" "gpg_keys" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -1231,7 +1231,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="gsqw5-i57xh" label="keepassxc" path="~\Syncthing\keepassxc" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="gsqw5-i57xh" label="keepassxc" path="{{ joinPath .chezmoi.homeDir "Syncthing" "keepassxc" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -1280,7 +1280,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="y1n6e-yjceb" label="note20-dcim" path="~\Syncthing\note20-dcim" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="y1n6e-yjceb" label="note20-dcim" path="{{ joinPath .chezmoi "Syncthing" "note20-dcim" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -1326,7 +1326,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="3kcsy-85jjz" label="note20-download" path="~\Syncthing\note20-download" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="3kcsy-85jjz" label="note20-download" path="{{ joinPath .chezmoi.homeDir "note20-download" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -1372,7 +1372,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="d69wv-ll51l" label="note20-document" path="~\Syncthing\note20-document" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="d69wv-ll51l" label="note20-document" path="{{ joinPath .chezmoi.homeDir "note20-document" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -1418,7 +1418,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="zphn7-tg89f" label="note20-music" path="~\Syncthing\note20-music" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="zphn7-tg89f" label="note20-music" path="{{ joinPath .chezmoi.homeDir "note20-music" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -1464,7 +1464,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="k35cr-q06oc" label="note20-picture" path="~\Syncthing\note20-picture" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="k35cr-q06oc" label="note20-picture" path="{{ joinPath .chezmoi.homeDir "note20-picture" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -1510,7 +1510,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="77uex-q9hva" label="note20-movie" path="~\Syncthing\note20-movie" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="77uex-q9hva" label="note20-movie" path="{{ joinPath .chezmoi.homeDir "note20-movie" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -1556,7 +1556,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="16ktr-vt585" label="s10-dcim" path="~\Syncthing\s10-dcim" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="16ktr-vt585" label="s10-dcim" path="{{ joinPath .chezmoi.homeDir "s10-dcim" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -1605,7 +1605,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="4oepn-2l586" label="s10-download" path="~\Syncthing\s10-download" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="4oepn-2l586" label="s10-download" path="{{ joinPath .chezmoi.homeDir "s10-download" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -1651,7 +1651,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="n2177-ugn6u" label="s10-document" path="~\Syncthing\s10-document" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="n2177-ugn6u" label="s10-document" path="{{ joinPath .chezmoi.homeDir "s10-document" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -1697,7 +1697,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="2846b-kv95o" label="s10-music" path="~\Syncthing\s10-music" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="2846b-kv95o" label="s10-music" path="{{ joinPath .chezmoi.homeDir "s10-music" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -1743,7 +1743,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="mf954-uhywx" label="s10-picture" path="~\Syncthing\s10-picture" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="mf954-uhywx" label="s10-picture" path="{{ joinPath .chezmoi.homeDir "s10-picture" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -1789,7 +1789,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="51ty8-f968l" label="s10-movie" path="~\Syncthing\s10-movie" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="51ty8-f968l" label="s10-movie" path="{{ joinPath .chezmoi.homeDir "s10-movie" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -1835,7 +1835,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="czmc9-3xr2o" label="m6-dcim" path="~\Syncthing\m6-dcim" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="czmc9-3xr2o" label="m6-dcim" path="{{ joinPath .chezmoi.homeDir "m6-dcim" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -1881,7 +1881,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="wrau5-k51de" label="m6-download" path="~\Syncthing\m6-download" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="wrau5-k51de" label="m6-download" path="{{ joinPath .chezmoi.homeDir "m6-download" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -1927,7 +1927,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="b5ivh-mtvk2" label="m6-music" path="~\Syncthing\m6-music" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="b5ivh-mtvk2" label="m6-music" path="{{ joinPath .chezmoi.homeDir "m6-music" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -1973,7 +1973,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="nxrzw-lqfil" label="m6-picture" path="~\Syncthing\m6-picture" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="nxrzw-lqfil" label="m6-picture" path="{{ joinPath .chezmoi.homeDir "m6-picture" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -2019,7 +2019,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="jlf00-6rk6u" label="m6-movie" path="~\Syncthing\m6-movie" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="jlf00-6rk6u" label="m6-movie" path="{{ joinPath .chezmoi.homeDir "m6-movie" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -2195,7 +2195,7 @@
         <urUniqueID>pS2Qscaz</urUniqueID>
     </options>
     <defaults>
-        <folder id="" label="" path="~\Syncthing" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+        <folder id="" label="" path="{{ joinPath .chezmoi.homeDir "Syncthing" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
             <filesystemType>basic</filesystemType>
             <device id="{{ gopass (printf "syncthing/%s/id" .chezmoi.hostname) }}" introducedBy="">
                 <encryptionPassword></encryptionPassword>
@@ -2252,7 +2252,7 @@
 {{ end -}}
 {{ if eq .chezmoi.hostname "work" -}}
 <configuration version="51">
-    <folder id="gc5sz-susp5" label="share" path="~\Syncthing\share" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="gc5sz-susp5" label="share" path="{{ joinPath .chezmoi.homeDir "Syncthing" "share" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -2307,7 +2307,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="htvji-asdsj" label="gpg_keys" path="~\Syncthing\gpg_keys" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="htvji-asdsj" label="gpg_keys" path="{{ joinPath .chezmoi.homeDir "Syncthing" "gpg_keys" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -2356,7 +2356,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="16ktr-vt585" label="s10-dcim" path="~\Syncthing\s10-dcim" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="16ktr-vt585" label="s10-dcim" path="{{ joinPath .chezmoi.homeDir "s10-dcim" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -2405,7 +2405,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <folder id="gsqw5-i57xh" label="keepassxc" path="~\Syncthing\keepassxc" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="gsqw5-i57xh" label="keepassxc" path="{{ joinPath .chezmoi.homeDir "Syncthing" "keepassxc" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -2584,7 +2584,7 @@
         <urUniqueID>KCCpjZMF</urUniqueID>
     </options>
     <defaults>
-        <folder id="" label="" path="~\Syncthing" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+        <folder id="" label="" path="{{ joinPath .chezmoi.homeDir "Syncthing" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
             <filesystemType>basic</filesystemType>
             <device id="{{ gopass (printf "syncthing/%s/id" .chezmoi.hostname) }}" introducedBy="">
                 <encryptionPassword></encryptionPassword>
