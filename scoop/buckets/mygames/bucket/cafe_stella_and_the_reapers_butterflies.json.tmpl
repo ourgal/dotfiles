@@ -8,6 +8,13 @@
             "hash": "0eb4803fed0e18865142855b3f473748a216382ab5f620fb3dd035f3b83342d0"
         }
     },
+    "post_install": [
+        "$name = \"cafe_stella_and_the_reapers_butterflies\"",
+        "$path = \"$dir\\savedata\"",
+        "$saves = if ($env:game_saves) { $env:game_saves } else { \"$env:USERPROFILE\\Documents\\game_saves\" }",
+        "mkdir -p $saves\\$name >$null 2>$null",
+        "New-Item -ItemType Junction -Path $path -Target $saves\\$name >$null"
+    ],
     "shortcuts": [
         [
             "CafeStella.exe",

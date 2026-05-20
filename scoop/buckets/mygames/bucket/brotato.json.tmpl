@@ -8,6 +8,13 @@
             "hash": "1b23c8a3db488d7c6cf68750f0b7a8c6260daea2c6e6bfc5b208ae2641cc7eb7"
         }
     },
+    "post_install": [
+        "$name = \"brotato\"",
+        "$path = \"${env:APPDATA}\\brotato\\GOG-saves\"",
+        "$saves = if ($env:game_saves) { $env:game_saves } else { \"$env:USERPROFILE\\Documents\\game_saves\" }",
+        "mkdir -p $saves\\$name >$null 2>$null",
+        "New-Item -ItemType Junction -Path $path -Target $saves\\$name >$null"
+    ],
     "shortcuts": [
         [
             "Brotato.exe",

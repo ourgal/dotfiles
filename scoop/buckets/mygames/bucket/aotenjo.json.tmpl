@@ -8,6 +8,13 @@
             "hash": "43b66ee21523bbc7cf7b99b455450e0e252a71593552021f0c5a1b37eb2b52bc"
         }
     },
+    "post_install": [
+        "$name = \"aotenjo\"",
+        "$path = \"${env:USERPROFILE}\\AppData\\LocalLow\\Aotenjo\\Aotenjo\"",
+        "$saves = if ($env:game_saves) { $env:game_saves } else { \"$env:USERPROFILE\\Documents\\game_saves\" }",
+        "mkdir -p $saves\\$name >$null 2>$null",
+        "New-Item -ItemType Junction -Path $path -Target $saves\\$name >$null"
+    ],
     "shortcuts": [
         [
             "Aotenjo.exe",
