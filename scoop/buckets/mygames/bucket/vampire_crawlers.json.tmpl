@@ -8,6 +8,13 @@
             "hash": "2ffe6417de8191d4f6c61d1fcbab8d460d2db999a41e79529cf26947df792247"
         }
     },
+    "post_install": [
+        "$name = \"vampire_crawlers\"",
+        "$path = \"${env:USERPROFILE}\\AppData\\LocalLow\\Nosebleed Interactive\\Vampire Crawlers\\save\"",
+        "$saves = if ($env:game_saves) { $env:game_saves } else { \"$env:USERPROFILE\\Documents\\game_saves\" }",
+        "mkdir -p $saves\\$name >$null 2>$null",
+        "New-Item -ItemType Junction -Path $path -Target $saves\\$name >$null"
+    ],
     "shortcuts": [
         [
             "Vampire Crawlers.exe",
