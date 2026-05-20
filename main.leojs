@@ -3974,7 +3974,17 @@
                     },
                     {
                       "gnx": "zxc.20260519211616.1",
-                      "vh": "customGames"
+                      "vh": "customGames",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260520123958.1",
+                          "vh": "aotjenjo"
+                        },
+                        {
+                          "gnx": "zxc.20260520124107.1",
+                          "vh": "Café Stella and the Reaper's Butterflies"
+                        }
+                      ]
                     }
                   ]
                 }
@@ -10276,7 +10286,9 @@
     "zxc.20260519211526.1": "scan:\n  showDeselectedGames: true\n  showUnchangedGames: true\n  showUnscannedGames: true",
     "zxc.20260519211540.1": "cloud:\n  remote: ~\n  path: ludusavi-backup\n  synchronize: true",
     "zxc.20260519211557.1": "apps:\n  rclone:\n    path: \"C:/Users/User/scoop/shims/rclone.exe\"\n    arguments: \"--fast-list --ignore-checksum\"",
-    "zxc.20260519211616.1": "customGames:\n  - name: Aotenjo\n    integration: override\n    files:\n      - \"<winLocalAppDataLow>/Aotenjo/Aotenjo\"\n    registry: []\n    installDir: []\n    winePrefix: []",
+    "zxc.20260519211616.1": "customGames:\n  @others",
+    "zxc.20260520123958.1": "- name: Aotenjo\n  integration: override\n  files:\n    - \"<winLocalAppDataLow>/Aotenjo/Aotenjo\"\n  registry: []\n  installDir: []\n  winePrefix: []",
+    "zxc.20260520124107.1": "- name: Café Stella and the Reaper's Butterflies\n  integration: override\n  files:\n    - {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"cafe_stella_and_the_reapers_butterflies\" \"current\" \"savedata\" | quote }}\n  registry: []\n  installDir: []\n  winePrefix: []",
     "zxc.20260125153252.1": "[advice]\n\taddEmptyPathspec = false\n\tpushNonFastForward = false\n\tstatusHints = false",
     "zxc.20260516121033.1": "[alias]\n    {{- if lookPath \"legit\" }}\n\tsync = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe sync\n\tpublish = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe publish\n\tunpublish = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe unpublish\n\tundo = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe undo\n\tbranches = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe branches\n    {{- end }}",
     "zxc.20260125153318.1": "[branch]\n\tsort = \"-committerdate\"",
@@ -11715,7 +11727,7 @@
       "_mod_time": 1778806210.816
     },
     "zxc.20260518233322.1": {
-      "_mod_time": 1779236329.472
+      "_mod_time": 1779257601.09
     }
   }
 }
