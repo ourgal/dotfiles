@@ -10554,7 +10554,7 @@
     "zxc.20260423143729.4": "- name: Configure windows admin\n  hosts: windows\n  remote_user: admin\n  ignore_unreachable: true\n  tags: admin\n  tasks:\n    @others\n  handlers:\n    << handlers >>\n",
     "zxc.20260423143729.276": "- name: Gather facts\n  ansible.builtin.gather_facts:\n- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts\n",
     "zxc.20260423143729.7": "- name: Install choco pacakges\n  tags: choco-install\n  chocolatey.chocolatey.win_chocolatey:\n    name:\n      @others\n    state: latest\n",
-    "zxc.20260423143729.8": "- visualstudio2026-workload-vctools\n- weasel\n- winfsp # rclone\n- steam\n- epicgameslauncher\n- calibre\n- \"{{ 'tailscale' if ansible_facts.nodename == 'work' else omit }}\"\n",
+    "zxc.20260423143729.8": "- visualstudio2026-workload-vctools\n- weasel\n- winfsp # rclone\n- steam\n- epicgameslauncher\n- \"{{ 'tailscale' if ansible_facts.nodename == 'work' else omit }}\"\n- directx",
     "zxc.20260423143729.9": "- name: Uninstall choco pacakges\n  tags: choco-uninstall\n  chocolatey.chocolatey.win_chocolatey:\n    name:\n      @others\n    state: absent\n",
     "zxc.20260423143729.10": "- gimp\n- gpg4win\n- firefox\n- mpvio\n",
     "zxc.20260423143729.12": "- name: Install init packages via scoop\n  tags: admin-scoop-init\n  community.windows.win_scoop:\n    name: \"{{ item }}\"\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  loop:\n    - git\n",
@@ -11628,7 +11628,7 @@
       "_mod_time": 1778706271.126
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1779101445.366
+      "_mod_time": 1779335213.009
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778586914.338
