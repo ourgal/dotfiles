@@ -1,0 +1,24 @@
+{
+    "version": "1.1.1a",
+    "description": "Click, craft and collect your way to alchemical mastery. Progress through a branching skill tree and explore the forbidden woods. Collect resources and build machines of magic. Slay monsters, farm crops and automate your production to become the all-powerful Forage Wizard!",
+    "homepage": "https://byrutgame.org/54765-forage-wizard.html",
+    "architecture": {
+        "64bit": {
+            "url": "{{ .my.alist.local.host }}/d/189cloud_crypt/games/forage_wizard.7z",
+            "hash": "becc8887850006439631ec02c728f31d6da3911586717cd90a2e42cfb3000884"
+        }
+    },
+    "post_install": [
+        "$name = \"forage_wizard\"",
+        "$path = \"${env:USERPROFILE}\\AppData\\LocalLow\\Lost Maxim\\Forage Wizard\"",
+        "$saves = if ($env:game_saves) { $env:game_saves } else { \"$env:USERPROFILE\\Documents\\game_saves\" }",
+        "mkdir -p $saves\\$name >$null 2>$null",
+        "New-Item -ItemType Junction -Path $path -Target $saves\\$name >$null"
+    ],
+    "shortcuts": [
+        [
+            "Forage Wizard.exe",
+            "Forage Wizard"
+        ]
+    ]
+}
