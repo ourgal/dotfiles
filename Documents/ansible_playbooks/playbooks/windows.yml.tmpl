@@ -20,8 +20,8 @@
           - winfsp # rclone
           - steam
           - epicgameslauncher
-          - calibre
           - "{{ 'tailscale' if ansible_facts.nodename == 'work' else omit }}"
+          - directx
         state: latest
     - name: Uninstall choco pacakges
       tags: choco-uninstall
