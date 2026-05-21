@@ -1,0 +1,24 @@
+{
+    "version": "1.0",
+    "description": "First game of a four-part visual novel series. Nerdy Itsuki Ninomae accidentally creates a “digital hypnotism movie.” Showing it to his neighbor causes him to learn her and a classmate’s dark secret, dragging him into the underbelly of society.",
+    "homepage": "https://store.steampowered.com/app/2552410/Liminal_Border_Part_I/",
+    "architecture": {
+        "64bit": {
+            "url": "{{ .my.alist.local.host }}/d/189cloud_crypt/games/liminal_border_1.7z",
+            "hash": "3481e8dc5f7a48515e515b5a571bd92d5e38649a69a5cb36f5734975ead5f758"
+        }
+    },
+    "post_install": [
+        "$name = \"liminal_border_1\"",
+        "$path = \"$dir\\savedata\"",
+        "$saves = if ($env:game_saves) { $env:game_saves } else { \"$env:USERPROFILE\\Documents\\game_saves\" }",
+        "mkdir -p $saves\\$name >$null 2>$null",
+        "New-Item -ItemType Junction -Path $path -Target $saves\\$name >$null"
+    ],
+    "shortcuts": [
+        [
+            "Liminal_Border_Part_1.exe",
+            "Liminal Border Part 1"
+        ]
+    ]
+}
