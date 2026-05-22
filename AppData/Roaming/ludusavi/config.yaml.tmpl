@@ -90,13 +90,6 @@ customGames:
     registry: []
     installDir: []
     winePrefix: []
-  - name: Criminal Border
-    integration: override
-    files:
-      - {{ joinPath .chezmoi.homeDir "scoop" "apps" "liminal_border_1" "current" "savedata" | quote }}
-    registry: []
-    installDir: []
-    winePrefix: []
   - name: Everything is crab
     integration: override
     files:
@@ -111,6 +104,27 @@ customGames:
     integration: override
     files:
       - "<winLocalAppDataLow>/Lost Maxim/Forage Wizard"
+    registry: []
+    installDir: []
+    winePrefix: []
+  - name: Liminal Border Part I
+    integration: override
+    files:
+      - {{ joinPath .chezmoi.homeDir "scoop" "apps" "liminal_border_1" "current" "savedata" | quote }}
+    registry: []
+    installDir: []
+    winePrefix: []
+  - name: Liminal Border Part II
+    integration: override
+    files:
+      - {{ joinPath .chezmoi.homeDir "scoop" "apps" "liminal_border_2" "current" "savedata" | quote }}
+    registry: []
+    installDir: []
+    winePrefix: []
+  - name: Liminal Border Part III
+    integration: override
+    files:
+      - {{ joinPath .chezmoi.homeDir "scoop" "apps" "liminal_border_3" "current" "savedata" | quote }}
     registry: []
     installDir: []
     winePrefix: []

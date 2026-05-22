@@ -1,0 +1,24 @@
+{
+    "version": "1.0",
+    "description": "Following the events of Part II, Itsuki and the gang's \"Rave\" business is close to getting off the ground. Itsuki looks to Meryl Hathaway, a young girl often seen accompanying Kotoko, as a counter to the violence of the Umon-kai as he searches for a way to destroy them once and for all. ",
+    "homepage": "https://store.steampowered.com/app/3094040/Liminal_Border_Part_III/",
+    "architecture": {
+        "64bit": {
+            "url": "{{ .my.dufs.bucket.host }}/bucket/gal/liminal_border_3.7z",
+            "hash": "ffc61e670bdf08b76ac52289ace1e21024686405ba5a5a37e827c7c34acfedf0"
+        }
+    },
+    "post_install": [
+        "$name = \"liminal_border_3\"",
+        "$path = \"$dir\\savedata\"",
+        "$saves = if ($env:game_saves) { $env:game_saves } else { \"$env:USERPROFILE\\Documents\\game_saves\" }",
+        "mkdir -p $saves\\$name >$null 2>$null",
+        "New-Item -ItemType Junction -Path $path -Target $saves\\$name >$null"
+    ],
+    "shortcuts": [
+        [
+            "Liminal_Border_Part_3.exe",
+            "Liminal Border Part 3"
+        ]
+    ]
+}
