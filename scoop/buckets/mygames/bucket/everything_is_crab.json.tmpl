@@ -1,0 +1,24 @@
+{
+    "version": "1.0.1",
+    "description": "The Animal Evolution Roguelite. Hunt, Flee, Scavenge and Thrive in a living ecosystem. Choose from 125+ Evolutions and Specialisations for unique creature combinations in every run. Adapt to survive the natural curve in order to beat carcinisation... or get Darwin'd trying!",
+    "homepage": "https://byrutgame.org/53330-everything-is-crab-the-animal-evolution-roguelite.html",
+    "architecture": {
+        "64bit": {
+            "url": "{{ .my.alist.local.host }}/d/189cloud_crypt/games/everything_is_crab.7z",
+            "hash": "df10b29274725b5e4f84a0320c2277fe19609456338d9ac796aa45176f84db6b"
+        }
+    },
+    "post_install": [
+        "$name = \"everything_is_crab\"",
+        "$path = \"${env:USERPROFILE}\\AppData\\LocalLow\\Odd Dreams Digital\\Everything is Crab\\SyncedData\\Steam\\real\"",
+        "$saves = if ($env:game_saves) { $env:game_saves } else { \"$env:USERPROFILE\\Documents\\game_saves\" }",
+        "mkdir -p $saves\\$name >$null 2>$null",
+        "New-Item -ItemType Junction -Path $path -Target $saves\\$name >$null"
+    ],
+    "shortcuts": [
+        [
+            "steamclient_loader.exe",
+            "Everything is Crab"
+        ]
+    ]
+}
