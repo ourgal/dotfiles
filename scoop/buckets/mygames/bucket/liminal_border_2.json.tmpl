@@ -1,0 +1,24 @@
+{
+    "version": "1.0",
+    "description": "Unfairly saddled with crippling debt after the events of Part I, Itsuki Ninomae and the gang turn to fellow student and daughter of a crime lord Kotoko Teshigawara for help. An intertwined web of loyalties and desire awaits as Itsuki, Kotoko and the others fight for justice.",
+    "homepage": "https://store.steampowered.com/app/2730350/Liminal_Border_Part_II/",
+    "architecture": {
+        "64bit": {
+            "url": "{{ .my.dufs.bucket.host }}/bucket/gal/liminal_border_2.7z",
+            "hash": "65f0c7697a1db5a2b18ed8aa478fa8d9ed6a0df41660ab576b273a25ae9d3c02"
+        }
+    },
+    "post_install": [
+        "$name = \"liminal_border_2\"",
+        "$path = \"$dir\\savedata\"",
+        "$saves = if ($env:game_saves) { $env:game_saves } else { \"$env:USERPROFILE\\Documents\\game_saves\" }",
+        "mkdir -p $saves\\$name >$null 2>$null",
+        "New-Item -ItemType Junction -Path $path -Target $saves\\$name >$null"
+    ],
+    "shortcuts": [
+        [
+            "Liminal_Border_Part_2.exe",
+            "Liminal Border Part 2"
+        ]
+    ]
+}
