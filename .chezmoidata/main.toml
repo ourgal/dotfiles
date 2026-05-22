@@ -27,6 +27,8 @@ mirror = "https://mirrors.nju.edu.cn/pypi/web/simple/"
 url="https://github.com/sbsrf/sbsrf/releases/download/20260425/sbsrf.zip"
 [my.alist.local]
 host = "http://localhost:5244"
+[my.dufs.bucket]
+host = "http://localhost:5000"
 [my.ssh]
 known_hosts = [
     "home.local,192.168.123.100 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOKREEGtjhZmTsIruPjBmBp0fPHKxfUSbUilpIzVMoBF",
