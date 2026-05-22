@@ -3995,6 +3995,10 @@
                         {
                           "gnx": "zxc.20260521145828.1",
                           "vh": "everything is crab"
+                        },
+                        {
+                          "gnx": "zxc.20260522085848.1",
+                          "vh": "forage wizard"
                         }
                       ]
                     }
@@ -10326,6 +10330,7 @@
     "zxc.20260520124107.1": "- name: Café Stella and the Reaper's Butterflies\n  integration: override\n  files:\n    - {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"cafe_stella_and_the_reapers_butterflies\" \"current\" \"savedata\" | quote }}\n  registry: []\n  installDir: []\n  winePrefix: []",
     "zxc.20260521143222.1": "- name: Criminal Border\n  integration: override\n  files:\n    - {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"liminal_border_1\" \"current\" \"savedata\" | quote }}\n  registry: []\n  installDir: []\n  winePrefix: []",
     "zxc.20260521145828.1": "- name: Everything is crab\n  integration: override\n  files:\n    - \"<winLocalAppDataLow>/Odd Dreams Digital/Everything is Crab/SyncedData/Steam/real/Slot_1_Codex_v1.save\"\n    - \"<winLocalAppDataLow>/Odd Dreams Digital/Everything is Crab/SyncedData/Steam/real/Slot_1_ContextualDeathTips_v1.save\"\n    - \"<winLocalAppDataLow>/Odd Dreams Digital/Everything is Crab/SyncedData/Steam/real/Slot_1_Core_v1.save\"\n    - \"<winLocalAppDataLow>/Odd Dreams Digital/Everything is Crab/SyncedData/Steam/real/Slot_1_LastRunsCreatureCreations_v1.save\"\n  registry: []\n  installDir: []\n  winePrefix: []",
+    "zxc.20260522085848.1": "- name: Forage Wizard\n  integration: override\n  files:\n    - \"<winLocalAppDataLow>/Lost Maxim/Forage Wizard\"\n  registry: []\n  installDir: []\n  winePrefix: []",
     "zxc.20260125153252.1": "[advice]\n\taddEmptyPathspec = false\n\tpushNonFastForward = false\n\tstatusHints = false",
     "zxc.20260516121033.1": "[alias]\n    {{- if lookPath \"legit\" }}\n\tsync = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe sync\n\tpublish = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe publish\n\tunpublish = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe unpublish\n\tundo = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe undo\n\tbranches = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe branches\n    {{- end }}",
     "zxc.20260125153318.1": "[branch]\n\tsort = \"-committerdate\"",
@@ -11777,7 +11782,7 @@
       "_mod_time": 1778806210.816
     },
     "zxc.20260518233322.1": {
-      "_mod_time": 1779411085.117
+      "_mod_time": 1779411611.767
     }
   }
 }
