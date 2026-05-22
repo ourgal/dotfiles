@@ -90,5 +90,22 @@ customGames:
     registry: []
     installDir: []
     winePrefix: []
+  - name: Criminal Border
+    integration: override
+    files:
+      - {{ joinPath .chezmoi.homeDir "scoop" "apps" "liminal_border_1" "current" "savedata" | quote }}
+    registry: []
+    installDir: []
+    winePrefix: []
+  - name: Everything is crab
+    integration: override
+    files:
+      - "<winLocalAppDataLow>/Odd Dreams Digital/Everything is Crab/SyncedData/Steam/real/Slot_1_Codex_v1.save"
+      - "<winLocalAppDataLow>/Odd Dreams Digital/Everything is Crab/SyncedData/Steam/real/Slot_1_ContextualDeathTips_v1.save"
+      - "<winLocalAppDataLow>/Odd Dreams Digital/Everything is Crab/SyncedData/Steam/real/Slot_1_Core_v1.save"
+      - "<winLocalAppDataLow>/Odd Dreams Digital/Everything is Crab/SyncedData/Steam/real/Slot_1_LastRunsCreatureCreations_v1.save"
+    registry: []
+    installDir: []
+    winePrefix: []
 {{ end -}}
 {{ end -}}
