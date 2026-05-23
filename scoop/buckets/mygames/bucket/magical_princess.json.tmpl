@@ -1,0 +1,24 @@
+{
+    "version": "1.0.5",
+    "description": "Raise your daughter while she attends a magical academy. Choose which classes she attends, jobs she does, training she undergoes, and more in a character raising sim packed full of story and over 50 endings to reach. How she grows up to be the world's cutest princess depends on you! ",
+    "homepage": "https://byrutgame.org/54539-magical-princess.html",
+    "architecture": {
+        "64bit": {
+            "url": "{{ .my.dufs.bucket.host }}/bucket/games/magical_princess.7z",
+            "hash": "2befa2834cc9ad2b0b72099271712ecd0ebdf9e4b8a56813e9b0ced0178ed9e0"
+        }
+    },
+    "post_install": [
+        "$name = \"magical_princess\"",
+        "$path = \"${env:USERPROFILE}\\AppData\\LocalLow\\Neotro Inc_\\MagicalPrincess\"",
+        "$saves = if ($env:game_saves) { $env:game_saves } else { \"$env:USERPROFILE\\Documents\\game_saves\" }",
+        "mkdir -p $saves\\$name >$null 2>$null",
+        "New-Item -ItemType Junction -Path $path -Target $saves\\$name >$null"
+    ],
+    "shortcuts": [
+        [
+            "MagicalPrincess.exe",
+            "Magical Princess"
+        ]
+    ]
+}
