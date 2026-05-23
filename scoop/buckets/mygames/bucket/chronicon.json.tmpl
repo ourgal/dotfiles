@@ -1,0 +1,24 @@
+{
+    "version": "1.54.1",
+    "description": "Use the magical device known as the Chronicon to travel into the souls and memories of fallen heroes to re-live their grand tales! Epic adventures full of loot and monsters await!",
+    "homepage": "https://byrutgame.org/7250-chronicon.html",
+    "architecture": {
+        "64bit": {
+            "url": "{{ .my.dufs.bucket.host }}/bucket/games/chronicon.7z",
+            "hash": "233e2299b04da5b68bf7c12bf3552a7609bcdf2d5115e794bbf2cee8c314df7e"
+        }
+    },
+    "post_install": [
+        "$name = \"chronicon\"",
+        "$path = \"${env:USERPROFILE}\\AppData\\Local\\Chronicon\\save\"",
+        "$saves = if ($env:game_saves) { $env:game_saves } else { \"$env:USERPROFILE\\Documents\\game_saves\" }",
+        "mkdir -p $saves\\$name >$null 2>$null",
+        "New-Item -ItemType Junction -Path $path -Target $saves\\$name >$null"
+    ],
+    "shortcuts": [
+        [
+            "Chronicon.exe",
+            "Chronicon"
+        ]
+    ]
+}
