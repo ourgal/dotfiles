@@ -128,5 +128,12 @@ customGames:
     registry: []
     installDir: []
     winePrefix: []
+  - name: NEKOPARA After
+    integration: override
+    files:
+      - {{ joinPath .chezmoi.homeDir "scoop" "apps" "nekopara_after" "current" "savedata" | quote }}
+    registry: []
+    installDir: []
+    winePrefix: []
 {{ end -}}
 {{ end -}}

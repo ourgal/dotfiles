@@ -1,0 +1,24 @@
+{
+    "version": "1.0",
+    "description": "A new chapter begins with the arrival of the catgirl, Fraise! She seeks advice from his little sister, Shigure and while Fraise feels the relationship between siblings is most important, Shigure priorities the happiness of her catgirls. This sets the stage in the battle between catgirl and girl!",
+    "homepage": "https://store.steampowered.com/app/3655150/NEKOPARA_After/",
+    "architecture": {
+        "64bit": {
+            "url": "{{ .my.dufs.bucket.host }}/bucket/gal/nekopara_after.7z",
+            "hash": "542be7199af34c0e95158fd5d2080388fd84f0d46405fe1e9ee7633dfe316709"
+        }
+    },
+    "post_install": [
+        "$name = \"nekopara_after\"",
+        "$path = \"$dir\\savedata\"",
+        "$saves = if ($env:game_saves) { $env:game_saves } else { \"$env:USERPROFILE\\Documents\\game_saves\" }",
+        "mkdir -p $saves\\$name >$null 2>$null",
+        "New-Item -ItemType Junction -Path $path -Target $saves\\$name >$null"
+    ],
+    "shortcuts": [
+        [
+            "nekopara_after.exe",
+            "NEKOPARA After"
+        ]
+    ]
+}
