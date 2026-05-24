@@ -1,0 +1,24 @@
+{
+    "version": "1.0",
+    "description": "The conclusion of the Liminal Border visual novel series. After the countless twists and turns of Part III, Itsuki's business is now a massive success, but all he can see is the need for revenge. Standing on the border between justice and evil, which way will Itsuki fall?",
+    "homepage": "https://store.steampowered.com/app/3591440/Liminal_Border_Part_IV/",
+    "architecture": {
+        "64bit": {
+            "url": "{{ .my.dufs.bucket.host }}/bucket/gal/liminal_border_4.7z",
+            "hash": "6f9d333422595ac3cc78cc38491678f28d36f99c337b2259fee9da92ab51cc15"
+        }
+    },
+    "post_install": [
+        "$name = \"liminal_border_4\"",
+        "$path = \"$dir\\savedata\"",
+        "$saves = if ($env:game_saves) { $env:game_saves } else { \"$env:USERPROFILE\\Documents\\game_saves\" }",
+        "mkdir -p $saves\\$name >$null 2>$null",
+        "New-Item -ItemType Junction -Path $path -Target $saves\\$name >$null"
+    ],
+    "shortcuts": [
+        [
+            "Liminal_Border_Part_4.exe",
+            "Liminal Border Part 4"
+        ]
+    ]
+}
