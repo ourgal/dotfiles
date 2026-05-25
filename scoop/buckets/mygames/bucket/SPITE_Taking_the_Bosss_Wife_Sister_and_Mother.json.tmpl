@@ -1,0 +1,24 @@
+{
+    "version": "1.0",
+    "description": "A revenge-driven adult adventure game. Betrayed by your childhood friend turned ruthless CEO, you're given one month in his estate. Seduce his wife, sister, and mother. Manage your schedule, play minigames, and make choices that shape your path to payback. ",
+    "homepage": "https://store.steampowered.com/app/3591440/Liminal_Border_Part_IV/",
+    "architecture": {
+        "64bit": {
+            "url": "{{ .my.dufs.bucket.host }}/bucket/gal/SPITE.Taking.the.Bosss.Wife.Sister.and.Mother.7z",
+            "hash": "751cec0995026a272b8642a26319b059ee200c5d8604e9916e295f2afa5ff11f"
+        }
+    },
+    "post_install": [
+        "$name = \"SPITE_Taking_the_Bosss_Wife_Sister_and_Mother\"",
+        "$path = \"${env:APPDATA}\\Diamond Visual\\SPITE\\saves\"",
+        "$saves = if ($env:game_saves) { $env:game_saves } else { \"$env:USERPROFILE\\Documents\\game_saves\" }",
+        "mkdir -p $saves\\$name >$null 2>$null",
+        "New-Item -ItemType Junction -Path $path -Target $saves\\$name >$null"
+    ],
+    "shortcuts": [
+        [
+            "spite.exe",
+            "SPITE: Taking the Boss's Wife, Sister and Mother"
+        ]
+    ]
+}
