@@ -8,17 +8,10 @@
             "hash": "751cec0995026a272b8642a26319b059ee200c5d8604e9916e295f2afa5ff11f"
         }
     },
-    "post_install": [
-        "$name = \"SPITE_Taking_the_Bosss_Wife_Sister_and_Mother\"",
-        "$path = \"${env:APPDATA}\\Diamond Visual\\SPITE\\saves\"",
-        "$saves = if ($env:game_saves) { $env:game_saves } else { \"$env:USERPROFILE\\Documents\\game_saves\" }",
-        "mkdir -p $saves\\$name >$null 2>$null",
-        "New-Item -ItemType Junction -Path $path -Target $saves\\$name >$null"
-    ],
     "shortcuts": [
         [
             "spite.exe",
-            "SPITE: Taking the Boss's Wife, Sister and Mother"
+            "SPITE Taking the Boss's Wife, Sister and Mother"
         ]
     ]
 }
