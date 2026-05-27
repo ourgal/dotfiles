@@ -8,13 +8,6 @@
             "hash": "efd1f0ff3769a26bae2d310846a30d07d3272b112d04d11aaff11ce901c9a2da"
         }
     },
-    "post_install": [
-        "$name = \"fracture_field\"",
-        "$path = \"${env:USERPROFILE}\\AppData\\LocalLow\\Type Ten LLC\\Fracture Field\"",
-        "$saves = if ($env:game_saves) { $env:game_saves } else { \"$env:USERPROFILE\\Documents\\game_saves\" }",
-        "mkdir -p $saves\\$name >$null 2>$null",
-        "New-Item -ItemType Junction -Path $path -Target $saves\\$name >$null"
-    ],
     "shortcuts": [
         [
             "Fracture Field.exe",
