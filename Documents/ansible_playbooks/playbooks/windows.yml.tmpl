@@ -1450,6 +1450,28 @@
             - 22000
             - 8384
             - 21027
+        - name: Check current source folder
+          ansible.windows.win_stat:
+            path: C:\Users\User\scoop\apps\transmission\current
+          register: path
+        - name: Transmission firewall rule
+          community.windows.win_firewall_rule:
+            name: "transmission-daemon.exe {{ item }}"
+            localport: 51413
+            action: allow
+            protocol: tcp
+            direction: in
+            state: "{{ 'present' if path.stat.exists is true else 'absent' }}"
+            enabled: true
+        - name: Transmission firewall rule
+          community.windows.win_firewall_rule:
+            name: "transmission-daemon.exe udp {{ item }}"
+            localport: 51413
+            action: allow
+            protocol: udp
+            direction: in
+            state: "{{ 'present' if path.stat.exists is true else 'absent' }}"
+            enabled: true
     - name: Set hostname
       tags: hostname
       block:

@@ -7940,6 +7940,10 @@
                                     {
                                       "gnx": "zxc.20260423143729.291",
                                       "vh": "syncthing"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260529203059.1",
+                                      "vh": "transmission"
                                     }
                                   ]
                                 },
@@ -11286,6 +11290,7 @@
     "zxc.20260423143729.289": "- name: Check current source folder\n  ansible.windows.win_stat:\n    path: C:\\Users\\User\\scoop\\apps\\mpd\\current\n  register: path\n- name: Mpd firewall rule\n  community.windows.win_firewall_rule:\n    name: mpd.exe\n    program: \"{{ path.stat.lnk_source if path.stat.exists }}\\\\mpd.exe\"\n    action: allow\n    protocol: tcp\n    direction: in\n    state: absent\n    enabled: true\n- name: Mpd firewall rule\n  community.windows.win_firewall_rule:\n    name: mpd.exe udp\n    program: \"{{ path.stat.lnk_source if path.stat.exists }}\\\\mpd.exe\"\n    action: allow\n    protocol: udp\n    direction: in\n    state: absent\n    enabled: true\n",
     "zxc.20260423143729.290": "- name: Check current source folder\n  ansible.windows.win_stat:\n    path: C:\\Users\\User\\scoop\\apps\\kdeconnect\\current\n  register: path\n- name: Kdeconnect firewall rule\n  community.windows.win_firewall_rule:\n    name: kdeconnectd.exe\n    program: \"{{ path.stat.lnk_source if path.stat.exists }}\\\\bin\\\\kdeconnectd.exe\"\n    action: allow\n    protocol: tcp\n    direction: in\n    state: \"{{ 'present' if path.stat.exists is true else 'absent' }}\"\n    enabled: true\n- name: Kdeconnect firewall rule\n  community.windows.win_firewall_rule:\n    name: kdeconnectd.exe udp\n    program: \"{{ path.stat.lnk_source if path.stat.exists }}\\\\bin\\\\kdeconnectd.exe\"\n    action: allow\n    protocol: udp\n    direction: in\n    state: \"{{ 'present' if path.stat.exists is true else 'absent' }}\"\n    enabled: true\n",
     "zxc.20260423143729.291": "- name: Check current source folder\n  ansible.windows.win_stat:\n    path: C:\\Users\\User\\scoop\\apps\\syncthing\\current\n  register: path\n- name: Syncthing firewall rule\n  community.windows.win_firewall_rule:\n    name: \"syncthing.exe {{ item }}\"\n    localport: \"{{ item }}\"\n    action: allow\n    protocol: tcp\n    direction: in\n    state: \"{{ 'present' if path.stat.exists is true else 'absent' }}\"\n    enabled: true\n  loop:\n    - 22000\n    - 8384\n    - 21027\n- name: Syncthing firewall rule\n  community.windows.win_firewall_rule:\n    name: \"syncthing.exe udp {{ item }}\"\n    localport: \"{{ item }}\"\n    action: allow\n    protocol: udp\n    direction: in\n    state: \"{{ 'present' if path.stat.exists is true else 'absent' }}\"\n    enabled: true\n  loop:\n    - 22000\n    - 8384\n    - 21027\n",
+    "zxc.20260529203059.1": "- name: Check current source folder\n  ansible.windows.win_stat:\n    path: C:\\Users\\User\\scoop\\apps\\transmission\\current\n  register: path\n- name: Transmission firewall rule\n  community.windows.win_firewall_rule:\n    name: \"transmission-daemon.exe {{ item }}\"\n    localport: 51413\n    action: allow\n    protocol: tcp\n    direction: in\n    state: \"{{ 'present' if path.stat.exists is true else 'absent' }}\"\n    enabled: true\n- name: Transmission firewall rule\n  community.windows.win_firewall_rule:\n    name: \"transmission-daemon.exe udp {{ item }}\"\n    localport: 51413\n    action: allow\n    protocol: udp\n    direction: in\n    state: \"{{ 'present' if path.stat.exists is true else 'absent' }}\"\n    enabled: true",
     "zxc.20260423143729.292": "- name: Set hostname\n  tags: hostname\n  block:\n    - name: Set hostname\n      ansible.windows.win_hostname:\n        name: \"{{ my_hostname if my_hostname is defined else 'nuc' }}\"\n      register: res\n    - name: Reboot\n      ansible.windows.win_reboot:\n      when: res.reboot_required\n",
     "zxc.20260423143729.293": "- name: Services\n  tags: service\n  block:\n    @others\n",
     "zxc.20260423143729.294": "- name: Check everything exists\n  ansible.windows.win_stat:\n    path: C:\\Users\\User\\scoop\\apps\\everything\\current\\everything.exe\n  register: everything_bin\n- name: Create everything service\n  ansible.windows.win_service:\n    name: Everything\n    state: started\n    path: C:\\Users\\User\\scoop\\apps\\everything\\current\\everything.exe -svc\n  when: everything_bin.stat.exists is true\n",
@@ -12140,7 +12145,7 @@
       "_mod_time": 1778855150.563
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1779949082.981
+      "_mod_time": 1780057956.066
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778855150.568
