@@ -1,0 +1,24 @@
+{
+    "version": "1.0",
+    "description": "Beast Saga is an open-world RPG set in a martial arts universe where you play as a young wolf tribe member named Lang Jiusi. Immerse yourself in a world of free exploration, gathering, crafting, life skills, martial arts cultivation, forming alliances and experiencing unique Jianghu adventures.",
+    "homepage": "https://igg-games.com/beast-saga-free-download.html",
+    "architecture": {
+        "64bit": {
+            "url": "{{ .my.dufs.bucket.host }}/bucket/games/beast_saga.7z",
+            "hash": "17aae69e64855336b003a3bc8fe5f6037a68c12caa2f6d57e224d41e7157f744"
+        }
+    },
+    "post_install": [
+        "$name = \"beast_saga\"",
+        "$path = \"$dir\\SaveData\"",
+        "$saves = if ($env:game_saves) { $env:game_saves } else { \"$env:USERPROFILE\\Documents\\game_saves\" }",
+        "mkdir -p $saves\\$name >$null 2>$null",
+        "New-Item -ItemType Junction -Path $path -Target $saves\\$name >$null"
+    ],
+    "shortcuts": [
+        [
+            "BeastSaga.exe",
+            "Beast Saga"
+        ]
+    ]
+}
