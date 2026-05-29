@@ -2,6 +2,8 @@
 hx
 {{- else if lookPath "vim" -}}
 vim
+{{- else if lookPath "nvim" -}}
+nvim
 {{- else if lookPath "vi" -}}
 vi
 {{- else if lookPath "nano" -}}
