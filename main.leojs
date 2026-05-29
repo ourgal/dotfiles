@@ -10368,7 +10368,7 @@
     "User.20260301202425.1": ".glzr/\n.glzr/**",
     "zxc.20260520205947.1": "Documents/game_saves/\nDocuments/game_saves/**",
     "zxc.20260503214529.1": "<< not void >>\nservice/\nservice/**\n.config/sv/\n.config/sv/**\n{{ end -}}\n",
-    "zxc.20260503215107.1": "{{ if ne .chezmoi.osRelease.name \"Void\" -}}\n\n",
+    "zxc.20260503215107.1": "{{ if and (hasKey .chezmoi.osRelease \"name\") (ne .chezmoi.osRelease.name \"Void\") -}}",
     "zxc.20260507002350.1": "{{ if not (lookPath \"flatpak\") -}}\n@others\n{{ end -}}",
     "zxc.20260507002246.1": ".var/\n.var/**",
     "User.20260224001419.1": "<< android >>\n@others\n{{ end -}}",
@@ -11719,7 +11719,7 @@
       "_mod_time": 1777337709.122
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1779322338.980213
+      "_mod_time": 1780064147.504
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1780055115.872
@@ -11734,7 +11734,7 @@
       "_mod_time": 1777713442.466
     },
     "User.20260226000855.1": {
-      "_mod_time": 1780055115.864
+      "_mod_time": 1780064147.53
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1776434513.068
