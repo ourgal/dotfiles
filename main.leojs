@@ -5542,7 +5542,49 @@
                           "children": [
                             {
                               "gnx": "zxc.20260529152120.1",
-                              "vh": "content"
+                              "vh": "content",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260529200901.1",
+                                  "vh": "Required libraries"
+                                },
+                                {
+                                  "gnx": "zxc.20260529200943.1",
+                                  "vh": "Error handling"
+                                },
+                                {
+                                  "gnx": "zxc.20260529201034.1",
+                                  "vh": "Autostart windowless processes"
+                                },
+                                {
+                                  "gnx": "zxc.20260529201053.1",
+                                  "vh": "Variable definitions"
+                                },
+                                {
+                                  "gnx": "zxc.20260529201119.1",
+                                  "vh": "Menu"
+                                },
+                                {
+                                  "gnx": "zxc.20260529201142.1",
+                                  "vh": "Screen"
+                                },
+                                {
+                                  "gnx": "zxc.20260529201206.1",
+                                  "vh": "Mouse bindings"
+                                },
+                                {
+                                  "gnx": "zxc.20260529201223.1",
+                                  "vh": "Key bindings"
+                                },
+                                {
+                                  "gnx": "zxc.20260529201320.1",
+                                  "vh": "Rules"
+                                },
+                                {
+                                  "gnx": "zxc.20260529201346.1",
+                                  "vh": "Signals"
+                                }
+                              ]
                             },
                             {
                               "gnx": "User.20260225203941.1"
@@ -10854,8 +10896,18 @@
     "zxc.20260508000348.1": "<< unix >>\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260508000437.1": "[Desktop Entry]\nEncoding=UTF-8\nVersion=0.9.4\nType=Application\nName=gpg-agent\nComment=\nExec=gpg-connect-agent /bye\nOnlyShowIn=XFCE;\nRunHook=0\nStartupNotify=false\nTerminal=false\nHidden=true",
     "zxc.20260529152606.1": "{{ joinPath .chezmoi.homeDir \".config\" \"awesome-copycats\" }}",
-    "zxc.20260529151747.1": "<< unix >>\n{{ if lookPath \"awesome\" -}}\n@others\n{{ end -}}\n{{ end -}}\n@language lua",
-    "zxc.20260529152120.1": "--[[\n\n     Awesome WM configuration template\n     github.com/lcpz\n\n--]]\n\n-- {{{ Required libraries\n\n-- If LuaRocks is installed, make sure that packages installed through it are\n-- found (e.g. lgi). If LuaRocks is not installed, do nothing.\npcall(require, \"luarocks.loader\")\n\nlocal gears         = require(\"gears\")\nlocal awful         = require(\"awful\")\n                      require(\"awful.autofocus\")\nlocal wibox         = require(\"wibox\")\nlocal beautiful     = require(\"beautiful\")\nlocal naughty       = require(\"naughty\")\nlocal lain          = require(\"lain\")\n--local menubar       = require(\"menubar\")\nlocal freedesktop   = require(\"freedesktop\")\nlocal hotkeys_popup = require(\"awful.hotkeys_popup\")\n                      require(\"awful.hotkeys_popup.keys\")\nlocal mytable       = awful.util.table or gears.table -- 4.{0,1} compatibility\n\n-- }}}\n\n-- {{{ Error handling\n\n-- Check if awesome encountered an error during startup and fell back to\n-- another config (This code will only ever execute for the fallback config)\nif awesome.startup_errors then\n    naughty.notify {\n        preset = naughty.config.presets.critical,\n        title = \"Oops, there were errors during startup!\",\n        text = awesome.startup_errors\n    }\nend\n\n-- Handle runtime errors after startup\ndo\n    local in_error = false\n\n    awesome.connect_signal(\"debug::error\", function (err)\n        if in_error then return end\n\n        in_error = true\n\n        naughty.notify {\n            preset = naughty.config.presets.critical,\n            title = \"Oops, an error happened!\",\n            text = tostring(err)\n        }\n\n        in_error = false\n    end)\nend\n\n-- }}}\n\n-- {{{ Autostart windowless processes\n\n-- This function will run once every time Awesome is started\nlocal function run_once(cmd_arr)\n    for _, cmd in ipairs(cmd_arr) do\n        awful.spawn.with_shell(string.format(\"pgrep -u $USER -fx '%s' > /dev/null || (%s)\", cmd, cmd))\n    end\nend\n\nrun_once({ \"urxvtd\", \"unclutter -root\" }) -- comma-separated entries\n\n-- This function implements the XDG autostart specification\n--[[\nawful.spawn.with_shell(\n    'if (xrdb -query | grep -q \"^awesome\\\\.started:\\\\s*true$\"); then exit; fi;' ..\n    'xrdb -merge <<< \"awesome.started:true\";' ..\n    -- list each of your autostart commands, followed by ; inside single quotes, followed by ..\n    'dex --environment Awesome --autostart --search-paths ' ..\n    '\"${XDG_CONFIG_HOME:-$HOME/.config}/autostart:${XDG_CONFIG_DIRS:-/etc/xdg}/autostart\";' -- https://github.com/jceb/dex\n)\n--]]\n\n-- }}}\n\n-- {{{ Variable definitions\n\nlocal themes = {\n    \"blackburn\",       -- 1\n    \"copland\",         -- 2\n    \"dremora\",         -- 3\n    \"holo\",            -- 4\n    \"multicolor\",      -- 5\n    \"powerarrow\",      -- 6\n    \"powerarrow-dark\", -- 7\n    \"rainbow\",         -- 8\n    \"steamburn\",       -- 9\n    \"vertex\"           -- 10\n}\n\nlocal chosen_theme = themes[6]\nlocal modkey       = \"Mod4\"\nlocal altkey       = \"Mod1\"\nlocal terminal     = \"{{ lookPath \"deepin-terminal\" }}\"\nlocal vi_focus     = false -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275\nlocal cycle_prev   = true  -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274\nlocal editor       = os.getenv(\"EDITOR\") or \"{{ template \"editor\" }}\"\nlocal browser      = \"{{ lookPath \"firefox\" }}\"\n\nawful.util.terminal = terminal\nawful.util.tagnames = { \"1\", \"2\", \"3\", \"4\", \"5\" }\nawful.layout.layouts = {\n    awful.layout.suit.floating,\n    awful.layout.suit.tile,\n    awful.layout.suit.tile.left,\n    awful.layout.suit.tile.bottom,\n    awful.layout.suit.tile.top,\n    --awful.layout.suit.fair,\n    --awful.layout.suit.fair.horizontal,\n    --awful.layout.suit.spiral,\n    --awful.layout.suit.spiral.dwindle,\n    --awful.layout.suit.max,\n    --awful.layout.suit.max.fullscreen,\n    --awful.layout.suit.magnifier,\n    --awful.layout.suit.corner.nw,\n    --awful.layout.suit.corner.ne,\n    --awful.layout.suit.corner.sw,\n    --awful.layout.suit.corner.se,\n    --lain.layout.cascade,\n    --lain.layout.cascade.tile,\n    --lain.layout.centerwork,\n    --lain.layout.centerwork.horizontal,\n    --lain.layout.termfair,\n    --lain.layout.termfair.center\n}\n\nlain.layout.termfair.nmaster           = 3\nlain.layout.termfair.ncol              = 1\nlain.layout.termfair.center.nmaster    = 3\nlain.layout.termfair.center.ncol       = 1\nlain.layout.cascade.tile.offset_x      = 2\nlain.layout.cascade.tile.offset_y      = 32\nlain.layout.cascade.tile.extra_padding = 5\nlain.layout.cascade.tile.nmaster       = 5\nlain.layout.cascade.tile.ncol          = 2\n\nawful.util.taglist_buttons = mytable.join(\n    awful.button({ }, 1, function(t) t:view_only() end),\n    awful.button({ modkey }, 1, function(t)\n        if client.focus then client.focus:move_to_tag(t) end\n    end),\n    awful.button({ }, 3, awful.tag.viewtoggle),\n    awful.button({ modkey }, 3, function(t)\n        if client.focus then client.focus:toggle_tag(t) end\n    end),\n    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),\n    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)\n)\n\nawful.util.tasklist_buttons = mytable.join(\n     awful.button({ }, 1, function(c)\n         if c == client.focus then\n             c.minimized = true\n         else\n             c:emit_signal(\"request::activate\", \"tasklist\", { raise = true })\n         end\n     end),\n     awful.button({ }, 3, function()\n         awful.menu.client_list({ theme = { width = 250 } })\n     end),\n     awful.button({ }, 4, function() awful.client.focus.byidx(1) end),\n     awful.button({ }, 5, function() awful.client.focus.byidx(-1) end)\n)\n\nbeautiful.init(string.format(\"%s/.config/awesome/themes/%s/theme.lua\", os.getenv(\"HOME\"), chosen_theme))\n\n-- }}}\n\n-- {{{ Menu\n\n-- Create a launcher widget and a main menu\nlocal myawesomemenu = {\n   { \"Hotkeys\", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },\n   { \"Manual\", string.format(\"%s -e man awesome\", terminal) },\n   { \"Edit config\", string.format(\"%s -e %s %s\", terminal, editor, awesome.conffile) },\n   { \"Restart\", awesome.restart },\n   { \"Quit\", function() awesome.quit() end },\n}\n\nawful.util.mymainmenu = freedesktop.menu.build {\n    before = {\n        { \"Awesome\", myawesomemenu, beautiful.awesome_icon },\n        -- other triads can be put here\n    },\n    after = {\n        { \"Open terminal\", terminal },\n        -- other triads can be put here\n    }\n}\n\n-- Hide the menu when the mouse leaves it\n--[[\nawful.util.mymainmenu.wibox:connect_signal(\"mouse::leave\", function()\n    if not awful.util.mymainmenu.active_child or\n       (awful.util.mymainmenu.wibox ~= mouse.current_wibox and\n       awful.util.mymainmenu.active_child.wibox ~= mouse.current_wibox) then\n        awful.util.mymainmenu:hide()\n    else\n        awful.util.mymainmenu.active_child.wibox:connect_signal(\"mouse::leave\",\n        function()\n            if awful.util.mymainmenu.wibox ~= mouse.current_wibox then\n                awful.util.mymainmenu:hide()\n            end\n        end)\n    end\nend)\n--]]\n\n-- Set the Menubar terminal for applications that require it\n--menubar.utils.terminal = terminal\n\n-- }}}\n\n-- {{{ Screen\n\n-- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)\nscreen.connect_signal(\"property::geometry\", function(s)\n    -- Wallpaper\n    if beautiful.wallpaper then\n        local wallpaper = beautiful.wallpaper\n        -- If wallpaper is a function, call it with the screen\n        if type(wallpaper) == \"function\" then\n            wallpaper = wallpaper(s)\n        end\n        gears.wallpaper.maximized(wallpaper, s, true)\n    end\nend)\n\n-- No borders when rearranging only 1 non-floating or maximized client\nscreen.connect_signal(\"arrange\", function (s)\n    local only_one = #s.tiled_clients == 1\n    for _, c in pairs(s.clients) do\n        if only_one and not c.floating or c.maximized or c.fullscreen then\n            c.border_width = 0\n        else\n            c.border_width = beautiful.border_width\n        end\n    end\nend)\n\n-- Create a wibox for each screen and add it\nawful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)\n\n-- }}}\n\n-- {{{ Mouse bindings\n\nroot.buttons(mytable.join(\n    awful.button({ }, 3, function () awful.util.mymainmenu:toggle() end),\n    awful.button({ }, 4, awful.tag.viewnext),\n    awful.button({ }, 5, awful.tag.viewprev)\n))\n\n-- }}}\n\n-- {{{ Key bindings\n\nglobalkeys = mytable.join(\n    -- Destroy all notifications\n    awful.key({ \"Control\",           }, \"space\", function() naughty.destroy_all_notifications() end,\n              {description = \"destroy all notifications\", group = \"hotkeys\"}),\n    -- Take a screenshot\n    -- https://github.com/lcpz/dots/blob/master/bin/screenshot\n    awful.key({ altkey }, \"p\", function() os.execute(\"screenshot\") end,\n              {description = \"take a screenshot\", group = \"hotkeys\"}),\n\n    -- X screen locker\n    awful.key({ altkey, \"Control\" }, \"l\", function () os.execute(scrlocker) end,\n              {description = \"lock screen\", group = \"hotkeys\"}),\n\n    -- Show help\n    awful.key({ modkey,           }, \"s\",      hotkeys_popup.show_help,\n              {description=\"show help\", group=\"awesome\"}),\n\n    -- Tag browsing\n    awful.key({ modkey,           }, \"Left\",   awful.tag.viewprev,\n              {description = \"view previous\", group = \"tag\"}),\n    awful.key({ modkey,           }, \"Right\",  awful.tag.viewnext,\n              {description = \"view next\", group = \"tag\"}),\n    awful.key({ modkey,           }, \"Escape\", awful.tag.history.restore,\n              {description = \"go back\", group = \"tag\"}),\n\n    -- Non-empty tag browsing\n    awful.key({ altkey }, \"Left\", function () lain.util.tag_view_nonempty(-1) end,\n              {description = \"view  previous nonempty\", group = \"tag\"}),\n    awful.key({ altkey }, \"Right\", function () lain.util.tag_view_nonempty(1) end,\n              {description = \"view  previous nonempty\", group = \"tag\"}),\n\n    -- Default client focus\n    awful.key({ altkey,           }, \"j\",\n        function ()\n            awful.client.focus.byidx( 1)\n        end,\n        {description = \"focus next by index\", group = \"client\"}\n    ),\n    awful.key({ altkey,           }, \"k\",\n        function ()\n            awful.client.focus.byidx(-1)\n        end,\n        {description = \"focus previous by index\", group = \"client\"}\n    ),\n\n    -- By-direction client focus\n    awful.key({ modkey }, \"j\",\n        function()\n            awful.client.focus.global_bydirection(\"down\")\n            if client.focus then client.focus:raise() end\n        end,\n        {description = \"focus down\", group = \"client\"}),\n    awful.key({ modkey }, \"k\",\n        function()\n            awful.client.focus.global_bydirection(\"up\")\n            if client.focus then client.focus:raise() end\n        end,\n        {description = \"focus up\", group = \"client\"}),\n    awful.key({ modkey }, \"h\",\n        function()\n            awful.client.focus.global_bydirection(\"left\")\n            if client.focus then client.focus:raise() end\n        end,\n        {description = \"focus left\", group = \"client\"}),\n    awful.key({ modkey }, \"l\",\n        function()\n            awful.client.focus.global_bydirection(\"right\")\n            if client.focus then client.focus:raise() end\n        end,\n        {description = \"focus right\", group = \"client\"}),\n\n    -- Menu\n    awful.key({ modkey,           }, \"w\", function () awful.util.mymainmenu:show() end,\n              {description = \"show main menu\", group = \"awesome\"}),\n\n    -- Layout manipulation\n    awful.key({ modkey, \"Shift\"   }, \"j\", function () awful.client.swap.byidx(  1)    end,\n              {description = \"swap with next client by index\", group = \"client\"}),\n    awful.key({ modkey, \"Shift\"   }, \"k\", function () awful.client.swap.byidx( -1)    end,\n              {description = \"swap with previous client by index\", group = \"client\"}),\n    awful.key({ modkey, \"Control\" }, \"j\", function () awful.screen.focus_relative( 1) end,\n              {description = \"focus the next screen\", group = \"screen\"}),\n    awful.key({ modkey, \"Control\" }, \"k\", function () awful.screen.focus_relative(-1) end,\n              {description = \"focus the previous screen\", group = \"screen\"}),\n    awful.key({ modkey,           }, \"u\", awful.client.urgent.jumpto,\n              {description = \"jump to urgent client\", group = \"client\"}),\n    awful.key({ modkey,           }, \"Tab\",\n        function ()\n            if cycle_prev then\n                awful.client.focus.history.previous()\n            else\n                awful.client.focus.byidx(-1)\n            end\n            if client.focus then\n                client.focus:raise()\n            end\n        end,\n        {description = \"cycle with previous/go back\", group = \"client\"}),\n\n    -- Show/hide wibox\n    awful.key({ modkey }, \"b\", function ()\n            for s in screen do\n                s.mywibox.visible = not s.mywibox.visible\n                if s.mybottomwibox then\n                    s.mybottomwibox.visible = not s.mybottomwibox.visible\n                end\n            end\n        end,\n        {description = \"toggle wibox\", group = \"awesome\"}),\n\n    -- On-the-fly useless gaps change\n    awful.key({ altkey, \"Control\" }, \"+\", function () lain.util.useless_gaps_resize(1) end,\n              {description = \"increment useless gaps\", group = \"tag\"}),\n    awful.key({ altkey, \"Control\" }, \"-\", function () lain.util.useless_gaps_resize(-1) end,\n              {description = \"decrement useless gaps\", group = \"tag\"}),\n\n    -- Dynamic tagging\n    awful.key({ modkey, \"Shift\" }, \"n\", function () lain.util.add_tag() end,\n              {description = \"add new tag\", group = \"tag\"}),\n    awful.key({ modkey, \"Shift\" }, \"r\", function () lain.util.rename_tag() end,\n              {description = \"rename tag\", group = \"tag\"}),\n    awful.key({ modkey, \"Shift\" }, \"Left\", function () lain.util.move_tag(-1) end,\n              {description = \"move tag to the left\", group = \"tag\"}),\n    awful.key({ modkey, \"Shift\" }, \"Right\", function () lain.util.move_tag(1) end,\n              {description = \"move tag to the right\", group = \"tag\"}),\n    awful.key({ modkey, \"Shift\" }, \"d\", function () lain.util.delete_tag() end,\n              {description = \"delete tag\", group = \"tag\"}),\n\n    -- Standard program\n    awful.key({ modkey,           }, \"Return\", function () awful.spawn(terminal) end,\n              {description = \"open a terminal\", group = \"launcher\"}),\n    awful.key({ modkey, \"Control\" }, \"r\", awesome.restart,\n              {description = \"reload awesome\", group = \"awesome\"}),\n    awful.key({ modkey, \"Shift\"   }, \"q\", awesome.quit,\n              {description = \"quit awesome\", group = \"awesome\"}),\n\n    awful.key({ modkey, altkey    }, \"l\",     function () awful.tag.incmwfact( 0.05)          end,\n              {description = \"increase master width factor\", group = \"layout\"}),\n    awful.key({ modkey, altkey    }, \"h\",     function () awful.tag.incmwfact(-0.05)          end,\n              {description = \"decrease master width factor\", group = \"layout\"}),\n    awful.key({ modkey, \"Shift\"   }, \"h\",     function () awful.tag.incnmaster( 1, nil, true) end,\n              {description = \"increase the number of master clients\", group = \"layout\"}),\n    awful.key({ modkey, \"Shift\"   }, \"l\",     function () awful.tag.incnmaster(-1, nil, true) end,\n              {description = \"decrease the number of master clients\", group = \"layout\"}),\n    awful.key({ modkey, \"Control\" }, \"h\",     function () awful.tag.incncol( 1, nil, true)    end,\n              {description = \"increase the number of columns\", group = \"layout\"}),\n    awful.key({ modkey, \"Control\" }, \"l\",     function () awful.tag.incncol(-1, nil, true)    end,\n              {description = \"decrease the number of columns\", group = \"layout\"}),\n    awful.key({ modkey,           }, \"space\", function () awful.layout.inc( 1)                end,\n              {description = \"select next\", group = \"layout\"}),\n    awful.key({ modkey, \"Shift\"   }, \"space\", function () awful.layout.inc(-1)                end,\n              {description = \"select previous\", group = \"layout\"}),\n\n    awful.key({ modkey, \"Control\" }, \"n\", function ()\n        local c = awful.client.restore()\n        -- Focus restored client\n        if c then\n            c:emit_signal(\"request::activate\", \"key.unminimize\", {raise = true})\n        end\n    end, {description = \"restore minimized\", group = \"client\"}),\n\n    -- Dropdown application\n    awful.key({ modkey, }, \"z\", function () awful.screen.focused().quake:toggle() end,\n              {description = \"dropdown application\", group = \"launcher\"}),\n\n    -- Widgets popups\n    awful.key({ altkey, }, \"c\", function () if beautiful.cal then beautiful.cal.show(7) end end,\n              {description = \"show calendar\", group = \"widgets\"}),\n    awful.key({ altkey, }, \"h\", function () if beautiful.fs then beautiful.fs.show(7) end end,\n              {description = \"show filesystem\", group = \"widgets\"}),\n    awful.key({ altkey, }, \"w\", function () if beautiful.weather then beautiful.weather.show(7) end end,\n              {description = \"show weather\", group = \"widgets\"}),\n\n    -- Screen brightness\n    awful.key({ }, \"XF86MonBrightnessUp\", function () os.execute(\"xbacklight -inc 10\") end,\n              {description = \"+10%\", group = \"hotkeys\"}),\n    awful.key({ }, \"XF86MonBrightnessDown\", function () os.execute(\"xbacklight -dec 10\") end,\n              {description = \"-10%\", group = \"hotkeys\"}),\n\n    -- ALSA volume control\n    awful.key({ altkey }, \"Up\",\n        function ()\n            os.execute(string.format(\"amixer -q set %s 1%%+\", beautiful.volume.channel))\n            beautiful.volume.update()\n        end,\n        {description = \"volume up\", group = \"hotkeys\"}),\n    awful.key({ altkey }, \"Down\",\n        function ()\n            os.execute(string.format(\"amixer -q set %s 1%%-\", beautiful.volume.channel))\n            beautiful.volume.update()\n        end,\n        {description = \"volume down\", group = \"hotkeys\"}),\n    awful.key({ altkey }, \"m\",\n        function ()\n            os.execute(string.format(\"amixer -q set %s toggle\", beautiful.volume.togglechannel or beautiful.volume.channel))\n            beautiful.volume.update()\n        end,\n        {description = \"toggle mute\", group = \"hotkeys\"}),\n    awful.key({ altkey, \"Control\" }, \"m\",\n        function ()\n            os.execute(string.format(\"amixer -q set %s 100%%\", beautiful.volume.channel))\n            beautiful.volume.update()\n        end,\n        {description = \"volume 100%\", group = \"hotkeys\"}),\n    awful.key({ altkey, \"Control\" }, \"0\",\n        function ()\n            os.execute(string.format(\"amixer -q set %s 0%%\", beautiful.volume.channel))\n            beautiful.volume.update()\n        end,\n        {description = \"volume 0%\", group = \"hotkeys\"}),\n\n    -- MPD control\n    awful.key({ altkey, \"Control\" }, \"Up\",\n        function ()\n            os.execute(\"mpc toggle\")\n            beautiful.mpd.update()\n        end,\n        {description = \"mpc toggle\", group = \"widgets\"}),\n    awful.key({ altkey, \"Control\" }, \"Down\",\n        function ()\n            os.execute(\"mpc stop\")\n            beautiful.mpd.update()\n        end,\n        {description = \"mpc stop\", group = \"widgets\"}),\n    awful.key({ altkey, \"Control\" }, \"Left\",\n        function ()\n            os.execute(\"mpc prev\")\n            beautiful.mpd.update()\n        end,\n        {description = \"mpc prev\", group = \"widgets\"}),\n    awful.key({ altkey, \"Control\" }, \"Right\",\n        function ()\n            os.execute(\"mpc next\")\n            beautiful.mpd.update()\n        end,\n        {description = \"mpc next\", group = \"widgets\"}),\n    awful.key({ altkey }, \"0\",\n        function ()\n            local common = { text = \"MPD widget \", position = \"top_middle\", timeout = 2 }\n            if beautiful.mpd.timer.started then\n                beautiful.mpd.timer:stop()\n                common.text = common.text .. lain.util.markup.bold(\"OFF\")\n            else\n                beautiful.mpd.timer:start()\n                common.text = common.text .. lain.util.markup.bold(\"ON\")\n            end\n            naughty.notify(common)\n        end,\n        {description = \"mpc on/off\", group = \"widgets\"}),\n\n    -- Copy primary to clipboard (terminals to gtk)\n    awful.key({ modkey }, \"c\", function () awful.spawn.with_shell(\"xsel | xsel -i -b\") end,\n              {description = \"copy terminal to gtk\", group = \"hotkeys\"}),\n    -- Copy clipboard to primary (gtk to terminals)\n    awful.key({ modkey }, \"v\", function () awful.spawn.with_shell(\"xsel -b | xsel\") end,\n              {description = \"copy gtk to terminal\", group = \"hotkeys\"}),\n\n    -- User programs\n    awful.key({ modkey }, \"q\", function () awful.spawn(browser) end,\n              {description = \"run browser\", group = \"launcher\"}),\n\n    -- Default\n    --[[ Menubar\n    awful.key({ modkey }, \"p\", function() menubar.show() end,\n              {description = \"show the menubar\", group = \"launcher\"}),\n    --]]\n    --[[ dmenu\n    awful.key({ modkey }, \"x\", function ()\n            os.execute(string.format(\"dmenu_run -i -fn 'Monospace' -nb '%s' -nf '%s' -sb '%s' -sf '%s'\",\n            beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))\n        end,\n        {description = \"show dmenu\", group = \"launcher\"}),\n    --]]\n    -- alternatively use rofi, a dmenu-like application with more features\n    -- check https://github.com/DaveDavenport/rofi for more details\n    --[[ rofi\n    awful.key({ modkey }, \"x\", function ()\n            os.execute(string.format(\"rofi -show %s -theme %s\",\n            'run', 'dmenu'))\n        end,\n        {description = \"show rofi\", group = \"launcher\"}),\n    --]]\n    -- Prompt\n    awful.key({ modkey }, \"r\", function () awful.screen.focused().mypromptbox:run() end,\n              {description = \"run prompt\", group = \"launcher\"}),\n\n    awful.key({ modkey }, \"x\",\n              function ()\n                  awful.prompt.run {\n                    prompt       = \"Run Lua code: \",\n                    textbox      = awful.screen.focused().mypromptbox.widget,\n                    exe_callback = awful.util.eval,\n                    history_path = awful.util.get_cache_dir() .. \"/history_eval\"\n                  }\n              end,\n              {description = \"lua execute prompt\", group = \"awesome\"})\n    --]]\n)\n\nclientkeys = mytable.join(\n    awful.key({ altkey, \"Shift\"   }, \"m\",      lain.util.magnify_client,\n              {description = \"magnify client\", group = \"client\"}),\n    awful.key({ modkey,           }, \"f\",\n        function (c)\n            c.fullscreen = not c.fullscreen\n            c:raise()\n        end,\n        {description = \"toggle fullscreen\", group = \"client\"}),\n    awful.key({ modkey, \"Shift\"   }, \"c\",      function (c) c:kill()                         end,\n              {description = \"close\", group = \"client\"}),\n    awful.key({ modkey, \"Control\" }, \"space\",  awful.client.floating.toggle                     ,\n              {description = \"toggle floating\", group = \"client\"}),\n    awful.key({ modkey, \"Control\" }, \"Return\", function (c) c:swap(awful.client.getmaster()) end,\n              {description = \"move to master\", group = \"client\"}),\n    awful.key({ modkey,           }, \"o\",      function (c) c:move_to_screen()               end,\n              {description = \"move to screen\", group = \"client\"}),\n    awful.key({ modkey,           }, \"t\",      function (c) c.ontop = not c.ontop            end,\n              {description = \"toggle keep on top\", group = \"client\"}),\n    awful.key({ modkey,           }, \"n\",\n        function (c)\n            -- The client currently has the input focus, so it cannot be\n            -- minimized, since minimized clients can't have the focus.\n            c.minimized = true\n        end ,\n        {description = \"minimize\", group = \"client\"}),\n    awful.key({ modkey,           }, \"m\",\n        function (c)\n            c.maximized = not c.maximized\n            c:raise()\n        end ,\n        {description = \"(un)maximize\", group = \"client\"}),\n    awful.key({ modkey, \"Control\" }, \"m\",\n        function (c)\n            c.maximized_vertical = not c.maximized_vertical\n            c:raise()\n        end ,\n        {description = \"(un)maximize vertically\", group = \"client\"}),\n    awful.key({ modkey, \"Shift\"   }, \"m\",\n        function (c)\n            c.maximized_horizontal = not c.maximized_horizontal\n            c:raise()\n        end ,\n        {description = \"(un)maximize horizontally\", group = \"client\"})\n)\n\n-- Bind all key numbers to tags.\n-- Be careful: we use keycodes to make it work on any keyboard layout.\n-- This should map on the top row of your keyboard, usually 1 to 9.\nfor i = 1, 9 do\n    globalkeys = mytable.join(globalkeys,\n        -- View tag only.\n        awful.key({ modkey }, \"#\" .. i + 9,\n                  function ()\n                        local screen = awful.screen.focused()\n                        local tag = screen.tags[i]\n                        if tag then\n                           tag:view_only()\n                        end\n                  end,\n                  {description = \"view tag #\"..i, group = \"tag\"}),\n        -- Toggle tag display.\n        awful.key({ modkey, \"Control\" }, \"#\" .. i + 9,\n                  function ()\n                      local screen = awful.screen.focused()\n                      local tag = screen.tags[i]\n                      if tag then\n                         awful.tag.viewtoggle(tag)\n                      end\n                  end,\n                  {description = \"toggle tag #\" .. i, group = \"tag\"}),\n        -- Move client to tag.\n        awful.key({ modkey, \"Shift\" }, \"#\" .. i + 9,\n                  function ()\n                      if client.focus then\n                          local tag = client.focus.screen.tags[i]\n                          if tag then\n                              client.focus:move_to_tag(tag)\n                          end\n                     end\n                  end,\n                  {description = \"move focused client to tag #\"..i, group = \"tag\"}),\n        -- Toggle tag on focused client.\n        awful.key({ modkey, \"Control\", \"Shift\" }, \"#\" .. i + 9,\n                  function ()\n                      if client.focus then\n                          local tag = client.focus.screen.tags[i]\n                          if tag then\n                              client.focus:toggle_tag(tag)\n                          end\n                      end\n                  end,\n                  {description = \"toggle focused client on tag #\" .. i, group = \"tag\"})\n    )\nend\n\nclientbuttons = mytable.join(\n    awful.button({ }, 1, function (c)\n        c:emit_signal(\"request::activate\", \"mouse_click\", {raise = true})\n    end),\n    awful.button({ modkey }, 1, function (c)\n        c:emit_signal(\"request::activate\", \"mouse_click\", {raise = true})\n        awful.mouse.client.move(c)\n    end),\n    awful.button({ modkey }, 3, function (c)\n        c:emit_signal(\"request::activate\", \"mouse_click\", {raise = true})\n        awful.mouse.client.resize(c)\n    end)\n)\n\n-- Set keys\nroot.keys(globalkeys)\n\n-- }}}\n\n-- {{{ Rules\n\n-- Rules to apply to new clients (through the \"manage\" signal).\nawful.rules.rules = {\n    -- All clients will match this rule.\n    { rule = { },\n      properties = { border_width = beautiful.border_width,\n                     border_color = beautiful.border_normal,\n                     callback = awful.client.setslave,\n                     focus = awful.client.focus.filter,\n                     raise = true,\n                     keys = clientkeys,\n                     buttons = clientbuttons,\n                     screen = awful.screen.preferred,\n                     placement = awful.placement.no_overlap+awful.placement.no_offscreen,\n                     size_hints_honor = false\n     }\n    },\n\n    -- Floating clients.\n    { rule_any = {\n        instance = {\n          \"DTA\",  -- Firefox addon DownThemAll.\n          \"copyq\",  -- Includes session name in class.\n          \"pinentry\",\n        },\n        class = {\n          \"Arandr\",\n          \"Blueman-manager\",\n          \"Gpick\",\n          \"Kruler\",\n          \"MessageWin\",  -- kalarm.\n          \"Sxiv\",\n          \"Tor Browser\", -- Needs a fixed window size to avoid fingerprinting by screen size.\n          \"Wpa_gui\",\n          \"veromix\",\n          \"xtightvncviewer\"},\n\n        -- Note that the name property shown in xprop might be set slightly after creation of the client\n        -- and the name shown there might not match defined rules here.\n        name = {\n          \"Event Tester\",  -- xev.\n        },\n        role = {\n          \"AlarmWindow\",  -- Thunderbird's calendar.\n          \"ConfigManager\",  -- Thunderbird's about:config.\n          \"pop-up\",       -- e.g. Google Chrome's (detached) Developer Tools.\n        }\n      }, properties = { floating = true }},\n\n    -- Add titlebars to normal clients and dialogs\n    { rule_any = {type = { \"normal\", \"dialog\" }\n      }, properties = { titlebars_enabled = true }\n    },\n\n    -- Set Firefox to always map on the tag named \"2\" on screen 1.\n    -- { rule = { class = \"Firefox\" },\n    --   properties = { screen = 1, tag = \"2\" } },\n}\n\n-- }}}\n\n-- {{{ Signals\n\n-- Signal function to execute when a new client appears.\nclient.connect_signal(\"manage\", function (c)\n    -- Set the windows at the slave,\n    -- i.e. put it at the end of others instead of setting it master.\n    -- if not awesome.startup then awful.client.setslave(c) end\n\n    if awesome.startup\n      and not c.size_hints.user_position\n      and not c.size_hints.program_position then\n        -- Prevent clients from being unreachable after screen count changes.\n        awful.placement.no_offscreen(c)\n    end\nend)\n\n-- Add a titlebar if titlebars_enabled is set to true in the rules.\nclient.connect_signal(\"request::titlebars\", function(c)\n    -- Custom\n    if beautiful.titlebar_fun then\n        beautiful.titlebar_fun(c)\n        return\n    end\n\n    -- Default\n    -- buttons for the titlebar\n    local buttons = mytable.join(\n        awful.button({ }, 1, function()\n            c:emit_signal(\"request::activate\", \"titlebar\", {raise = true})\n            awful.mouse.client.move(c)\n        end),\n        awful.button({ }, 3, function()\n            c:emit_signal(\"request::activate\", \"titlebar\", {raise = true})\n            awful.mouse.client.resize(c)\n        end)\n    )\n\n    awful.titlebar(c, { size = 16 }) : setup {\n        { -- Left\n            awful.titlebar.widget.iconwidget(c),\n            buttons = buttons,\n            layout  = wibox.layout.fixed.horizontal\n        },\n        { -- Middle\n            { -- Title\n                align  = \"center\",\n                widget = awful.titlebar.widget.titlewidget(c)\n            },\n            buttons = buttons,\n            layout  = wibox.layout.flex.horizontal\n        },\n        { -- Right\n            awful.titlebar.widget.floatingbutton (c),\n            awful.titlebar.widget.maximizedbutton(c),\n            awful.titlebar.widget.stickybutton   (c),\n            awful.titlebar.widget.ontopbutton    (c),\n            awful.titlebar.widget.closebutton    (c),\n            layout = wibox.layout.fixed.horizontal()\n        },\n        layout = wibox.layout.align.horizontal\n    }\nend)\n\n-- Enable sloppy focus, so that focus follows mouse.\nclient.connect_signal(\"mouse::enter\", function(c)\n    c:emit_signal(\"request::activate\", \"mouse_enter\", {raise = vi_focus})\nend)\n\nclient.connect_signal(\"focus\", function(c) c.border_color = beautiful.border_focus end)\nclient.connect_signal(\"unfocus\", function(c) c.border_color = beautiful.border_normal end)\n\n-- switch to parent after closing child window\nlocal function backham()\n    local s = awful.screen.focused()\n    local c = awful.client.focus.history.get(s, 0)\n    if c then\n        client.focus = c\n        c:raise()\n    end\nend\n\n-- attach to minimized state\nclient.connect_signal(\"property::minimized\", backham)\n-- attach to closed state\nclient.connect_signal(\"unmanage\", backham)\n-- ensure there is always a selected client during tag switching or logins\ntag.connect_signal(\"property::selected\", backham)\n\n-- }}}",
+    "zxc.20260529151747.1": "<< unix >>\n{{ if lookPath \"awesome\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260529152120.1": "--[[\n\n     Awesome WM configuration template\n     github.com/lcpz\n\n--]]\n\n@others\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+    "zxc.20260529200901.1": "-- If LuaRocks is installed, make sure that packages installed through it are\n-- found (e.g. lgi). If LuaRocks is not installed, do nothing.\npcall(require, \"luarocks.loader\")\n\nlocal gears         = require(\"gears\")\nlocal awful         = require(\"awful\")\n                      require(\"awful.autofocus\")\nlocal wibox         = require(\"wibox\")\nlocal beautiful     = require(\"beautiful\")\nlocal naughty       = require(\"naughty\")\nlocal lain          = require(\"lain\")\n--local menubar       = require(\"menubar\")\nlocal freedesktop   = require(\"freedesktop\")\nlocal hotkeys_popup = require(\"awful.hotkeys_popup\")\n                      require(\"awful.hotkeys_popup.keys\")\nlocal mytable       = awful.util.table or gears.table -- 4.{0,1} compatibility",
+    "zxc.20260529200943.1": "-- Check if awesome encountered an error during startup and fell back to\n-- another config (This code will only ever execute for the fallback config)\nif awesome.startup_errors then\n    naughty.notify {\n        preset = naughty.config.presets.critical,\n        title = \"Oops, there were errors during startup!\",\n        text = awesome.startup_errors\n    }\nend\n\n-- Handle runtime errors after startup\ndo\n    local in_error = false\n\n    awesome.connect_signal(\"debug::error\", function (err)\n        if in_error then return end\n\n        in_error = true\n\n        naughty.notify {\n            preset = naughty.config.presets.critical,\n            title = \"Oops, an error happened!\",\n            text = tostring(err)\n        }\n\n        in_error = false\n    end)\nend",
+    "zxc.20260529201034.1": "-- This function will run once every time Awesome is started\nlocal function run_once(cmd_arr)\n    for _, cmd in ipairs(cmd_arr) do\n        awful.spawn.with_shell(string.format(\"pgrep -u $USER -fx '%s' > /dev/null || (%s)\", cmd, cmd))\n    end\nend\n\nrun_once({ \"urxvtd\", \"unclutter -root\" }) -- comma-separated entries\n\n-- This function implements the XDG autostart specification\n--[[\nawful.spawn.with_shell(\n    'if (xrdb -query | grep -q \"^awesome\\\\.started:\\\\s*true$\"); then exit; fi;' ..\n    'xrdb -merge <<< \"awesome.started:true\";' ..\n    -- list each of your autostart commands, followed by ; inside single quotes, followed by ..\n    'dex --environment Awesome --autostart --search-paths ' ..\n    '\"${XDG_CONFIG_HOME:-$HOME/.config}/autostart:${XDG_CONFIG_DIRS:-/etc/xdg}/autostart\";' -- https://github.com/jceb/dex\n)\n--]]",
+    "zxc.20260529201053.1": "local themes = {\n    \"blackburn\",       -- 1\n    \"copland\",         -- 2\n    \"dremora\",         -- 3\n    \"holo\",            -- 4\n    \"multicolor\",      -- 5\n    \"powerarrow\",      -- 6\n    \"powerarrow-dark\", -- 7\n    \"rainbow\",         -- 8\n    \"steamburn\",       -- 9\n    \"vertex\"           -- 10\n}\n\nlocal chosen_theme = themes[6]\nlocal modkey       = \"Mod4\"\nlocal altkey       = \"Mod1\"\nlocal terminal     = \"{{ lookPath \"deepin-terminal\" }}\"\nlocal vi_focus     = false -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275\nlocal cycle_prev   = true  -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274\nlocal editor       = os.getenv(\"EDITOR\") or \"{{ template \"editor\" }}\"\nlocal browser      = \"{{ lookPath \"firefox\" }}\"\n\nawful.util.terminal = terminal\nawful.util.tagnames = { \"1\", \"2\", \"3\", \"4\", \"5\" }\nawful.layout.layouts = {\n    awful.layout.suit.floating,\n    awful.layout.suit.tile,\n    awful.layout.suit.tile.left,\n    awful.layout.suit.tile.bottom,\n    awful.layout.suit.tile.top,\n    --awful.layout.suit.fair,\n    --awful.layout.suit.fair.horizontal,\n    --awful.layout.suit.spiral,\n    --awful.layout.suit.spiral.dwindle,\n    --awful.layout.suit.max,\n    --awful.layout.suit.max.fullscreen,\n    --awful.layout.suit.magnifier,\n    --awful.layout.suit.corner.nw,\n    --awful.layout.suit.corner.ne,\n    --awful.layout.suit.corner.sw,\n    --awful.layout.suit.corner.se,\n    --lain.layout.cascade,\n    --lain.layout.cascade.tile,\n    --lain.layout.centerwork,\n    --lain.layout.centerwork.horizontal,\n    --lain.layout.termfair,\n    --lain.layout.termfair.center\n}\n\nlain.layout.termfair.nmaster           = 3\nlain.layout.termfair.ncol              = 1\nlain.layout.termfair.center.nmaster    = 3\nlain.layout.termfair.center.ncol       = 1\nlain.layout.cascade.tile.offset_x      = 2\nlain.layout.cascade.tile.offset_y      = 32\nlain.layout.cascade.tile.extra_padding = 5\nlain.layout.cascade.tile.nmaster       = 5\nlain.layout.cascade.tile.ncol          = 2\n\nawful.util.taglist_buttons = mytable.join(\n    awful.button({ }, 1, function(t) t:view_only() end),\n    awful.button({ modkey }, 1, function(t)\n        if client.focus then client.focus:move_to_tag(t) end\n    end),\n    awful.button({ }, 3, awful.tag.viewtoggle),\n    awful.button({ modkey }, 3, function(t)\n        if client.focus then client.focus:toggle_tag(t) end\n    end),\n    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),\n    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)\n)\n\nawful.util.tasklist_buttons = mytable.join(\n     awful.button({ }, 1, function(c)\n         if c == client.focus then\n             c.minimized = true\n         else\n             c:emit_signal(\"request::activate\", \"tasklist\", { raise = true })\n         end\n     end),\n     awful.button({ }, 3, function()\n         awful.menu.client_list({ theme = { width = 250 } })\n     end),\n     awful.button({ }, 4, function() awful.client.focus.byidx(1) end),\n     awful.button({ }, 5, function() awful.client.focus.byidx(-1) end)\n)\n\nbeautiful.init(string.format(\"%s/.config/awesome/themes/%s/theme.lua\", os.getenv(\"HOME\"), chosen_theme))",
+    "zxc.20260529201119.1": "-- Create a launcher widget and a main menu\nlocal myawesomemenu = {\n   { \"Hotkeys\", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },\n   { \"Manual\", string.format(\"%s -e man awesome\", terminal) },\n   { \"Edit config\", string.format(\"%s -e %s %s\", terminal, editor, awesome.conffile) },\n   { \"Restart\", awesome.restart },\n   { \"Quit\", function() awesome.quit() end },\n}\n\nawful.util.mymainmenu = freedesktop.menu.build {\n    before = {\n        { \"Awesome\", myawesomemenu, beautiful.awesome_icon },\n        -- other triads can be put here\n    },\n    after = {\n        { \"Open terminal\", terminal },\n        -- other triads can be put here\n    }\n}\n\n-- Hide the menu when the mouse leaves it\n--[[\nawful.util.mymainmenu.wibox:connect_signal(\"mouse::leave\", function()\n    if not awful.util.mymainmenu.active_child or\n       (awful.util.mymainmenu.wibox ~= mouse.current_wibox and\n       awful.util.mymainmenu.active_child.wibox ~= mouse.current_wibox) then\n        awful.util.mymainmenu:hide()\n    else\n        awful.util.mymainmenu.active_child.wibox:connect_signal(\"mouse::leave\",\n        function()\n            if awful.util.mymainmenu.wibox ~= mouse.current_wibox then\n                awful.util.mymainmenu:hide()\n            end\n        end)\n    end\nend)\n--]]\n\n-- Set the Menubar terminal for applications that require it\n--menubar.utils.terminal = terminal",
+    "zxc.20260529201142.1": "-- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)\nscreen.connect_signal(\"property::geometry\", function(s)\n    -- Wallpaper\n    if beautiful.wallpaper then\n        local wallpaper = beautiful.wallpaper\n        -- If wallpaper is a function, call it with the screen\n        if type(wallpaper) == \"function\" then\n            wallpaper = wallpaper(s)\n        end\n        gears.wallpaper.maximized(wallpaper, s, true)\n    end\nend)\n\n-- No borders when rearranging only 1 non-floating or maximized client\nscreen.connect_signal(\"arrange\", function (s)\n    local only_one = #s.tiled_clients == 1\n    for _, c in pairs(s.clients) do\n        if only_one and not c.floating or c.maximized or c.fullscreen then\n            c.border_width = 0\n        else\n            c.border_width = beautiful.border_width\n        end\n    end\nend)\n\n-- Create a wibox for each screen and add it\nawful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)",
+    "zxc.20260529201206.1": "root.buttons(mytable.join(\n    awful.button({ }, 3, function () awful.util.mymainmenu:toggle() end),\n    awful.button({ }, 4, awful.tag.viewnext),\n    awful.button({ }, 5, awful.tag.viewprev)\n))",
+    "zxc.20260529201223.1": "globalkeys = mytable.join(\n    -- Destroy all notifications\n    awful.key({ \"Control\",           }, \"space\", function() naughty.destroy_all_notifications() end,\n              {description = \"destroy all notifications\", group = \"hotkeys\"}),\n    -- Take a screenshot\n    -- https://github.com/lcpz/dots/blob/master/bin/screenshot\n    awful.key({ altkey }, \"p\", function() os.execute(\"screenshot\") end,\n              {description = \"take a screenshot\", group = \"hotkeys\"}),\n\n    -- X screen locker\n    awful.key({ altkey, \"Control\" }, \"l\", function () os.execute(scrlocker) end,\n              {description = \"lock screen\", group = \"hotkeys\"}),\n\n    -- Show help\n    awful.key({ modkey,           }, \"s\",      hotkeys_popup.show_help,\n              {description=\"show help\", group=\"awesome\"}),\n\n    -- Tag browsing\n    awful.key({ modkey,           }, \"Left\",   awful.tag.viewprev,\n              {description = \"view previous\", group = \"tag\"}),\n    awful.key({ modkey,           }, \"Right\",  awful.tag.viewnext,\n              {description = \"view next\", group = \"tag\"}),\n    awful.key({ modkey,           }, \"Escape\", awful.tag.history.restore,\n              {description = \"go back\", group = \"tag\"}),\n\n    -- Non-empty tag browsing\n    awful.key({ altkey }, \"Left\", function () lain.util.tag_view_nonempty(-1) end,\n              {description = \"view  previous nonempty\", group = \"tag\"}),\n    awful.key({ altkey }, \"Right\", function () lain.util.tag_view_nonempty(1) end,\n              {description = \"view  previous nonempty\", group = \"tag\"}),\n\n    -- Default client focus\n    awful.key({ altkey,           }, \"j\",\n        function ()\n            awful.client.focus.byidx( 1)\n        end,\n        {description = \"focus next by index\", group = \"client\"}\n    ),\n    awful.key({ altkey,           }, \"k\",\n        function ()\n            awful.client.focus.byidx(-1)\n        end,\n        {description = \"focus previous by index\", group = \"client\"}\n    ),\n\n    -- By-direction client focus\n    awful.key({ modkey }, \"j\",\n        function()\n            awful.client.focus.global_bydirection(\"down\")\n            if client.focus then client.focus:raise() end\n        end,\n        {description = \"focus down\", group = \"client\"}),\n    awful.key({ modkey }, \"k\",\n        function()\n            awful.client.focus.global_bydirection(\"up\")\n            if client.focus then client.focus:raise() end\n        end,\n        {description = \"focus up\", group = \"client\"}),\n    awful.key({ modkey }, \"h\",\n        function()\n            awful.client.focus.global_bydirection(\"left\")\n            if client.focus then client.focus:raise() end\n        end,\n        {description = \"focus left\", group = \"client\"}),\n    awful.key({ modkey }, \"l\",\n        function()\n            awful.client.focus.global_bydirection(\"right\")\n            if client.focus then client.focus:raise() end\n        end,\n        {description = \"focus right\", group = \"client\"}),\n\n    -- Menu\n    awful.key({ modkey,           }, \"w\", function () awful.util.mymainmenu:show() end,\n              {description = \"show main menu\", group = \"awesome\"}),\n\n    -- Layout manipulation\n    awful.key({ modkey, \"Shift\"   }, \"j\", function () awful.client.swap.byidx(  1)    end,\n              {description = \"swap with next client by index\", group = \"client\"}),\n    awful.key({ modkey, \"Shift\"   }, \"k\", function () awful.client.swap.byidx( -1)    end,\n              {description = \"swap with previous client by index\", group = \"client\"}),\n    awful.key({ modkey, \"Control\" }, \"j\", function () awful.screen.focus_relative( 1) end,\n              {description = \"focus the next screen\", group = \"screen\"}),\n    awful.key({ modkey, \"Control\" }, \"k\", function () awful.screen.focus_relative(-1) end,\n              {description = \"focus the previous screen\", group = \"screen\"}),\n    awful.key({ modkey,           }, \"u\", awful.client.urgent.jumpto,\n              {description = \"jump to urgent client\", group = \"client\"}),\n    awful.key({ modkey,           }, \"Tab\",\n        function ()\n            if cycle_prev then\n                awful.client.focus.history.previous()\n            else\n                awful.client.focus.byidx(-1)\n            end\n            if client.focus then\n                client.focus:raise()\n            end\n        end,\n        {description = \"cycle with previous/go back\", group = \"client\"}),\n\n    -- Show/hide wibox\n    awful.key({ modkey }, \"b\", function ()\n            for s in screen do\n                s.mywibox.visible = not s.mywibox.visible\n                if s.mybottomwibox then\n                    s.mybottomwibox.visible = not s.mybottomwibox.visible\n                end\n            end\n        end,\n        {description = \"toggle wibox\", group = \"awesome\"}),\n\n    -- On-the-fly useless gaps change\n    awful.key({ altkey, \"Control\" }, \"+\", function () lain.util.useless_gaps_resize(1) end,\n              {description = \"increment useless gaps\", group = \"tag\"}),\n    awful.key({ altkey, \"Control\" }, \"-\", function () lain.util.useless_gaps_resize(-1) end,\n              {description = \"decrement useless gaps\", group = \"tag\"}),\n\n    -- Dynamic tagging\n    awful.key({ modkey, \"Shift\" }, \"n\", function () lain.util.add_tag() end,\n              {description = \"add new tag\", group = \"tag\"}),\n    awful.key({ modkey, \"Shift\" }, \"r\", function () lain.util.rename_tag() end,\n              {description = \"rename tag\", group = \"tag\"}),\n    awful.key({ modkey, \"Shift\" }, \"Left\", function () lain.util.move_tag(-1) end,\n              {description = \"move tag to the left\", group = \"tag\"}),\n    awful.key({ modkey, \"Shift\" }, \"Right\", function () lain.util.move_tag(1) end,\n              {description = \"move tag to the right\", group = \"tag\"}),\n    awful.key({ modkey, \"Shift\" }, \"d\", function () lain.util.delete_tag() end,\n              {description = \"delete tag\", group = \"tag\"}),\n\n    -- Standard program\n    awful.key({ modkey,           }, \"Return\", function () awful.spawn(terminal) end,\n              {description = \"open a terminal\", group = \"launcher\"}),\n    awful.key({ modkey, \"Control\" }, \"r\", awesome.restart,\n              {description = \"reload awesome\", group = \"awesome\"}),\n    awful.key({ modkey, \"Shift\"   }, \"q\", awesome.quit,\n              {description = \"quit awesome\", group = \"awesome\"}),\n\n    awful.key({ modkey, altkey    }, \"l\",     function () awful.tag.incmwfact( 0.05)          end,\n              {description = \"increase master width factor\", group = \"layout\"}),\n    awful.key({ modkey, altkey    }, \"h\",     function () awful.tag.incmwfact(-0.05)          end,\n              {description = \"decrease master width factor\", group = \"layout\"}),\n    awful.key({ modkey, \"Shift\"   }, \"h\",     function () awful.tag.incnmaster( 1, nil, true) end,\n              {description = \"increase the number of master clients\", group = \"layout\"}),\n    awful.key({ modkey, \"Shift\"   }, \"l\",     function () awful.tag.incnmaster(-1, nil, true) end,\n              {description = \"decrease the number of master clients\", group = \"layout\"}),\n    awful.key({ modkey, \"Control\" }, \"h\",     function () awful.tag.incncol( 1, nil, true)    end,\n              {description = \"increase the number of columns\", group = \"layout\"}),\n    awful.key({ modkey, \"Control\" }, \"l\",     function () awful.tag.incncol(-1, nil, true)    end,\n              {description = \"decrease the number of columns\", group = \"layout\"}),\n    awful.key({ modkey,           }, \"space\", function () awful.layout.inc( 1)                end,\n              {description = \"select next\", group = \"layout\"}),\n    awful.key({ modkey, \"Shift\"   }, \"space\", function () awful.layout.inc(-1)                end,\n              {description = \"select previous\", group = \"layout\"}),\n\n    awful.key({ modkey, \"Control\" }, \"n\", function ()\n        local c = awful.client.restore()\n        -- Focus restored client\n        if c then\n            c:emit_signal(\"request::activate\", \"key.unminimize\", {raise = true})\n        end\n    end, {description = \"restore minimized\", group = \"client\"}),\n\n    -- Dropdown application\n    awful.key({ modkey, }, \"z\", function () awful.screen.focused().quake:toggle() end,\n              {description = \"dropdown application\", group = \"launcher\"}),\n\n    -- Widgets popups\n    awful.key({ altkey, }, \"c\", function () if beautiful.cal then beautiful.cal.show(7) end end,\n              {description = \"show calendar\", group = \"widgets\"}),\n    awful.key({ altkey, }, \"h\", function () if beautiful.fs then beautiful.fs.show(7) end end,\n              {description = \"show filesystem\", group = \"widgets\"}),\n    awful.key({ altkey, }, \"w\", function () if beautiful.weather then beautiful.weather.show(7) end end,\n              {description = \"show weather\", group = \"widgets\"}),\n\n    -- Screen brightness\n    awful.key({ }, \"XF86MonBrightnessUp\", function () os.execute(\"xbacklight -inc 10\") end,\n              {description = \"+10%\", group = \"hotkeys\"}),\n    awful.key({ }, \"XF86MonBrightnessDown\", function () os.execute(\"xbacklight -dec 10\") end,\n              {description = \"-10%\", group = \"hotkeys\"}),\n\n    -- ALSA volume control\n    awful.key({ altkey }, \"Up\",\n        function ()\n            os.execute(string.format(\"amixer -q set %s 1%%+\", beautiful.volume.channel))\n            beautiful.volume.update()\n        end,\n        {description = \"volume up\", group = \"hotkeys\"}),\n    awful.key({ altkey }, \"Down\",\n        function ()\n            os.execute(string.format(\"amixer -q set %s 1%%-\", beautiful.volume.channel))\n            beautiful.volume.update()\n        end,\n        {description = \"volume down\", group = \"hotkeys\"}),\n    awful.key({ altkey }, \"m\",\n        function ()\n            os.execute(string.format(\"amixer -q set %s toggle\", beautiful.volume.togglechannel or beautiful.volume.channel))\n            beautiful.volume.update()\n        end,\n        {description = \"toggle mute\", group = \"hotkeys\"}),\n    awful.key({ altkey, \"Control\" }, \"m\",\n        function ()\n            os.execute(string.format(\"amixer -q set %s 100%%\", beautiful.volume.channel))\n            beautiful.volume.update()\n        end,\n        {description = \"volume 100%\", group = \"hotkeys\"}),\n    awful.key({ altkey, \"Control\" }, \"0\",\n        function ()\n            os.execute(string.format(\"amixer -q set %s 0%%\", beautiful.volume.channel))\n            beautiful.volume.update()\n        end,\n        {description = \"volume 0%\", group = \"hotkeys\"}),\n\n    -- MPD control\n    awful.key({ altkey, \"Control\" }, \"Up\",\n        function ()\n            os.execute(\"mpc toggle\")\n            beautiful.mpd.update()\n        end,\n        {description = \"mpc toggle\", group = \"widgets\"}),\n    awful.key({ altkey, \"Control\" }, \"Down\",\n        function ()\n            os.execute(\"mpc stop\")\n            beautiful.mpd.update()\n        end,\n        {description = \"mpc stop\", group = \"widgets\"}),\n    awful.key({ altkey, \"Control\" }, \"Left\",\n        function ()\n            os.execute(\"mpc prev\")\n            beautiful.mpd.update()\n        end,\n        {description = \"mpc prev\", group = \"widgets\"}),\n    awful.key({ altkey, \"Control\" }, \"Right\",\n        function ()\n            os.execute(\"mpc next\")\n            beautiful.mpd.update()\n        end,\n        {description = \"mpc next\", group = \"widgets\"}),\n    awful.key({ altkey }, \"0\",\n        function ()\n            local common = { text = \"MPD widget \", position = \"top_middle\", timeout = 2 }\n            if beautiful.mpd.timer.started then\n                beautiful.mpd.timer:stop()\n                common.text = common.text .. lain.util.markup.bold(\"OFF\")\n            else\n                beautiful.mpd.timer:start()\n                common.text = common.text .. lain.util.markup.bold(\"ON\")\n            end\n            naughty.notify(common)\n        end,\n        {description = \"mpc on/off\", group = \"widgets\"}),\n\n    -- Copy primary to clipboard (terminals to gtk)\n    awful.key({ modkey }, \"c\", function () awful.spawn.with_shell(\"xsel | xsel -i -b\") end,\n              {description = \"copy terminal to gtk\", group = \"hotkeys\"}),\n    -- Copy clipboard to primary (gtk to terminals)\n    awful.key({ modkey }, \"v\", function () awful.spawn.with_shell(\"xsel -b | xsel\") end,\n              {description = \"copy gtk to terminal\", group = \"hotkeys\"}),\n\n    -- User programs\n    awful.key({ modkey }, \"q\", function () awful.spawn(browser) end,\n              {description = \"run browser\", group = \"launcher\"}),\n\n    -- Default\n    --[[ Menubar\n    awful.key({ modkey }, \"p\", function() menubar.show() end,\n              {description = \"show the menubar\", group = \"launcher\"}),\n    --]]\n    --[[ dmenu\n    awful.key({ modkey }, \"x\", function ()\n            os.execute(string.format(\"dmenu_run -i -fn 'Monospace' -nb '%s' -nf '%s' -sb '%s' -sf '%s'\",\n            beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))\n        end,\n        {description = \"show dmenu\", group = \"launcher\"}),\n    --]]\n    -- alternatively use rofi, a dmenu-like application with more features\n    -- check https://github.com/DaveDavenport/rofi for more details\n    --[[ rofi\n    awful.key({ modkey }, \"x\", function ()\n            os.execute(string.format(\"rofi -show %s -theme %s\",\n            'run', 'dmenu'))\n        end,\n        {description = \"show rofi\", group = \"launcher\"}),\n    --]]\n    -- Prompt\n    awful.key({ modkey }, \"r\", function () awful.screen.focused().mypromptbox:run() end,\n              {description = \"run prompt\", group = \"launcher\"}),\n\n    awful.key({ modkey }, \"x\",\n              function ()\n                  awful.prompt.run {\n                    prompt       = \"Run Lua code: \",\n                    textbox      = awful.screen.focused().mypromptbox.widget,\n                    exe_callback = awful.util.eval,\n                    history_path = awful.util.get_cache_dir() .. \"/history_eval\"\n                  }\n              end,\n              {description = \"lua execute prompt\", group = \"awesome\"})\n    --]]\n)\n\nclientkeys = mytable.join(\n    awful.key({ altkey, \"Shift\"   }, \"m\",      lain.util.magnify_client,\n              {description = \"magnify client\", group = \"client\"}),\n    awful.key({ modkey,           }, \"f\",\n        function (c)\n            c.fullscreen = not c.fullscreen\n            c:raise()\n        end,\n        {description = \"toggle fullscreen\", group = \"client\"}),\n    awful.key({ modkey, \"Shift\"   }, \"c\",      function (c) c:kill()                         end,\n              {description = \"close\", group = \"client\"}),\n    awful.key({ modkey, \"Control\" }, \"space\",  awful.client.floating.toggle                     ,\n              {description = \"toggle floating\", group = \"client\"}),\n    awful.key({ modkey, \"Control\" }, \"Return\", function (c) c:swap(awful.client.getmaster()) end,\n              {description = \"move to master\", group = \"client\"}),\n    awful.key({ modkey,           }, \"o\",      function (c) c:move_to_screen()               end,\n              {description = \"move to screen\", group = \"client\"}),\n    awful.key({ modkey,           }, \"t\",      function (c) c.ontop = not c.ontop            end,\n              {description = \"toggle keep on top\", group = \"client\"}),\n    awful.key({ modkey,           }, \"n\",\n        function (c)\n            -- The client currently has the input focus, so it cannot be\n            -- minimized, since minimized clients can't have the focus.\n            c.minimized = true\n        end ,\n        {description = \"minimize\", group = \"client\"}),\n    awful.key({ modkey,           }, \"m\",\n        function (c)\n            c.maximized = not c.maximized\n            c:raise()\n        end ,\n        {description = \"(un)maximize\", group = \"client\"}),\n    awful.key({ modkey, \"Control\" }, \"m\",\n        function (c)\n            c.maximized_vertical = not c.maximized_vertical\n            c:raise()\n        end ,\n        {description = \"(un)maximize vertically\", group = \"client\"}),\n    awful.key({ modkey, \"Shift\"   }, \"m\",\n        function (c)\n            c.maximized_horizontal = not c.maximized_horizontal\n            c:raise()\n        end ,\n        {description = \"(un)maximize horizontally\", group = \"client\"})\n)\n\n-- Bind all key numbers to tags.\n-- Be careful: we use keycodes to make it work on any keyboard layout.\n-- This should map on the top row of your keyboard, usually 1 to 9.\nfor i = 1, 9 do\n    globalkeys = mytable.join(globalkeys,\n        -- View tag only.\n        awful.key({ modkey }, \"#\" .. i + 9,\n                  function ()\n                        local screen = awful.screen.focused()\n                        local tag = screen.tags[i]\n                        if tag then\n                           tag:view_only()\n                        end\n                  end,\n                  {description = \"view tag #\"..i, group = \"tag\"}),\n        -- Toggle tag display.\n        awful.key({ modkey, \"Control\" }, \"#\" .. i + 9,\n                  function ()\n                      local screen = awful.screen.focused()\n                      local tag = screen.tags[i]\n                      if tag then\n                         awful.tag.viewtoggle(tag)\n                      end\n                  end,\n                  {description = \"toggle tag #\" .. i, group = \"tag\"}),\n        -- Move client to tag.\n        awful.key({ modkey, \"Shift\" }, \"#\" .. i + 9,\n                  function ()\n                      if client.focus then\n                          local tag = client.focus.screen.tags[i]\n                          if tag then\n                              client.focus:move_to_tag(tag)\n                          end\n                     end\n                  end,\n                  {description = \"move focused client to tag #\"..i, group = \"tag\"}),\n        -- Toggle tag on focused client.\n        awful.key({ modkey, \"Control\", \"Shift\" }, \"#\" .. i + 9,\n                  function ()\n                      if client.focus then\n                          local tag = client.focus.screen.tags[i]\n                          if tag then\n                              client.focus:toggle_tag(tag)\n                          end\n                      end\n                  end,\n                  {description = \"toggle focused client on tag #\" .. i, group = \"tag\"})\n    )\nend\n\nclientbuttons = mytable.join(\n    awful.button({ }, 1, function (c)\n        c:emit_signal(\"request::activate\", \"mouse_click\", {raise = true})\n    end),\n    awful.button({ modkey }, 1, function (c)\n        c:emit_signal(\"request::activate\", \"mouse_click\", {raise = true})\n        awful.mouse.client.move(c)\n    end),\n    awful.button({ modkey }, 3, function (c)\n        c:emit_signal(\"request::activate\", \"mouse_click\", {raise = true})\n        awful.mouse.client.resize(c)\n    end)\n)\n\n-- Set keys\nroot.keys(globalkeys)",
+    "zxc.20260529201320.1": "-- Rules to apply to new clients (through the \"manage\" signal).\nawful.rules.rules = {\n    -- All clients will match this rule.\n    { rule = { },\n      properties = { border_width = beautiful.border_width,\n                     border_color = beautiful.border_normal,\n                     callback = awful.client.setslave,\n                     focus = awful.client.focus.filter,\n                     raise = true,\n                     keys = clientkeys,\n                     buttons = clientbuttons,\n                     screen = awful.screen.preferred,\n                     placement = awful.placement.no_overlap+awful.placement.no_offscreen,\n                     size_hints_honor = false\n     }\n    },\n\n    -- Floating clients.\n    { rule_any = {\n        instance = {\n          \"DTA\",  -- Firefox addon DownThemAll.\n          \"copyq\",  -- Includes session name in class.\n          \"pinentry\",\n        },\n        class = {\n          \"Arandr\",\n          \"Blueman-manager\",\n          \"Gpick\",\n          \"Kruler\",\n          \"MessageWin\",  -- kalarm.\n          \"Sxiv\",\n          \"Tor Browser\", -- Needs a fixed window size to avoid fingerprinting by screen size.\n          \"Wpa_gui\",\n          \"veromix\",\n          \"xtightvncviewer\"},\n\n        -- Note that the name property shown in xprop might be set slightly after creation of the client\n        -- and the name shown there might not match defined rules here.\n        name = {\n          \"Event Tester\",  -- xev.\n        },\n        role = {\n          \"AlarmWindow\",  -- Thunderbird's calendar.\n          \"ConfigManager\",  -- Thunderbird's about:config.\n          \"pop-up\",       -- e.g. Google Chrome's (detached) Developer Tools.\n        }\n      }, properties = { floating = true }},\n\n    -- Add titlebars to normal clients and dialogs\n    { rule_any = {type = { \"normal\", \"dialog\" }\n      }, properties = { titlebars_enabled = true }\n    },\n\n    -- Set Firefox to always map on the tag named \"2\" on screen 1.\n    -- { rule = { class = \"Firefox\" },\n    --   properties = { screen = 1, tag = \"2\" } },\n}",
+    "zxc.20260529201346.1": "-- Signal function to execute when a new client appears.\nclient.connect_signal(\"manage\", function (c)\n    -- Set the windows at the slave,\n    -- i.e. put it at the end of others instead of setting it master.\n    -- if not awesome.startup then awful.client.setslave(c) end\n\n    if awesome.startup\n      and not c.size_hints.user_position\n      and not c.size_hints.program_position then\n        -- Prevent clients from being unreachable after screen count changes.\n        awful.placement.no_offscreen(c)\n    end\nend)\n\n-- Add a titlebar if titlebars_enabled is set to true in the rules.\nclient.connect_signal(\"request::titlebars\", function(c)\n    -- Custom\n    if beautiful.titlebar_fun then\n        beautiful.titlebar_fun(c)\n        return\n    end\n\n    -- Default\n    -- buttons for the titlebar\n    local buttons = mytable.join(\n        awful.button({ }, 1, function()\n            c:emit_signal(\"request::activate\", \"titlebar\", {raise = true})\n            awful.mouse.client.move(c)\n        end),\n        awful.button({ }, 3, function()\n            c:emit_signal(\"request::activate\", \"titlebar\", {raise = true})\n            awful.mouse.client.resize(c)\n        end)\n    )\n\n    awful.titlebar(c, { size = 16 }) : setup {\n        { -- Left\n            awful.titlebar.widget.iconwidget(c),\n            buttons = buttons,\n            layout  = wibox.layout.fixed.horizontal\n        },\n        { -- Middle\n            { -- Title\n                align  = \"center\",\n                widget = awful.titlebar.widget.titlewidget(c)\n            },\n            buttons = buttons,\n            layout  = wibox.layout.flex.horizontal\n        },\n        { -- Right\n            awful.titlebar.widget.floatingbutton (c),\n            awful.titlebar.widget.maximizedbutton(c),\n            awful.titlebar.widget.stickybutton   (c),\n            awful.titlebar.widget.ontopbutton    (c),\n            awful.titlebar.widget.closebutton    (c),\n            layout = wibox.layout.fixed.horizontal()\n        },\n        layout = wibox.layout.align.horizontal\n    }\nend)\n\n-- Enable sloppy focus, so that focus follows mouse.\nclient.connect_signal(\"mouse::enter\", function(c)\n    c:emit_signal(\"request::activate\", \"mouse_enter\", {raise = vi_focus})\nend)\n\nclient.connect_signal(\"focus\", function(c) c.border_color = beautiful.border_focus end)\nclient.connect_signal(\"unfocus\", function(c) c.border_color = beautiful.border_normal end)\n\n-- switch to parent after closing child window\nlocal function backham()\n    local s = awful.screen.focused()\n    local c = awful.client.focus.history.get(s, 0)\n    if c then\n        client.focus = c\n        c:raise()\n    end\nend\n\n-- attach to minimized state\nclient.connect_signal(\"property::minimized\", backham)\n-- attach to closed state\nclient.connect_signal(\"unmanage\", backham)\n-- ensure there is always a selected client during tag switching or logins\ntag.connect_signal(\"property::selected\", backham)",
     "zxc.20260502183455.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260502183056.1": "<< unix >>\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260502183253.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n{{ if .my.git.sign.gpg -}}\nC92C2BCD646A0DE6A60E1C5397CA97FDBE330909\n{{ end -}}\n{{ end -}}\n{{ end -}}\n",
@@ -11611,28 +11663,28 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260423154131.2": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1777179946.861
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1778834909.918
+      "_mod_time": 1778865613.374
     },
     "zxc.20260125143959.1": {
       "_mod_time": 1778049436.421
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1777445895.99
+      "_mod_time": 1777612767.635
     },
     "zxc.20260125164142.1": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1777398596.506
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1777446641.368
+      "_mod_time": 1777612767.634
     },
     "zxc.20260429111940.1": {
-      "_mod_time": 1777445524.334
+      "_mod_time": 1777612767.635
     },
     "zxc.20260429145437.1": {
-      "_mod_time": 1777445708.051
+      "_mod_time": 1777612767.635
     },
     "zxc.20260427000037.1": {
       "_mod_time": 1777249737.153
@@ -11641,19 +11693,19 @@
       "_mod_time": 1777337709.088
     },
     "User.20260218142211.1": {
-      "_mod_time": 1777445661.8072505
+      "_mod_time": 1777612767.666
     },
     "User.20260218142322.1": {
-      "_mod_time": 1773571522.686
+      "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1777446641.4
+      "_mod_time": 1777612767.65
     },
     "zxc.20260428221625.1": {
-      "_mod_time": 1777445524.3800142
+      "_mod_time": 1777612767.65
     },
     "zxc.20260429112140.1": {
-      "_mod_time": 1777434599.7750766
+      "_mod_time": 1777612767.666
     },
     "zxc.20260426235942.1": {
       "_mod_time": 1777249737.173387
@@ -11665,7 +11717,7 @@
       "_mod_time": 1779322338.980213
     },
     "zxc.20260125172659.1": {
-      "_mod_time": 1780039438.958
+      "_mod_time": 1780055115.872
     },
     "zxc.20260319091259.1": {
       "_mod_time": 1778865613.374
@@ -11677,22 +11729,22 @@
       "_mod_time": 1777713442.466
     },
     "User.20260226000855.1": {
-      "_mod_time": 1780038867.804
+      "_mod_time": 1780055115.864
     },
     "zxc.20260202203521.17": {
-      "_mod_time": 1774398532.737
+      "_mod_time": 1776434513.068
     },
     "User.20260220233639.1": {
-      "_mod_time": 1773571522.624
+      "_mod_time": 1776434513.068
     },
     "zxc.20260202203521.20": {
-      "_mod_time": 1774398532.766
+      "_mod_time": 1776434513.068
     },
     "User.20260216114746.1": {
-      "_mod_time": 1778115749.5513613
+      "_mod_time": 1778706271.126
     },
     "zxc.20260505221318.1": {
-      "_mod_time": 1778115749.559
+      "_mod_time": 1778706271.126
     },
     "zxc.20260202203521.14": {
       "_mod_time": 1776644732.237
@@ -11701,10 +11753,10 @@
       "_mod_time": 1777249737.1490705
     },
     "zxc.20260202213444.1": {
-      "_mod_time": 1774398532.7792206
+      "_mod_time": 1776434513.084
     },
     "User.20260220142155.2": {
-      "_mod_time": 1774398532.7782125
+      "_mod_time": 1776434513.084
     },
     "User.20260220151435.2": {
       "_mod_time": 1778717681.5771089
@@ -11713,16 +11765,16 @@
       "_mod_time": 1778717681.591
     },
     "zxc.20260202215023.1": {
-      "_mod_time": 1774398532.6864183
+      "_mod_time": 1776434513.068
     },
     "zxc.20260202215408.1": {
-      "_mod_time": 1774398532.737
+      "_mod_time": 1776434513.068
     },
     "zxc.20260202220030.1": {
-      "_mod_time": 1774398532.7574854
+      "_mod_time": 1776434513.068
     },
     "zxc.20260202220553.1": {
-      "_mod_time": 1774398532.7661767
+      "_mod_time": 1776434513.068
     },
     "User.20260217202401.1": {
       "_mod_time": 1778049436.405
@@ -11731,37 +11783,37 @@
       "_mod_time": 1778049436.408
     },
     "User.20260217214851.1": {
-      "_mod_time": 1776819230.8294127
+      "_mod_time": 1776851988.666
     },
     "zxc.20260422085228.1": {
-      "_mod_time": 1776819230.9120836
+      "_mod_time": 1776851988.666
     },
     "User.20260220000301.2": {
-      "_mod_time": 1774398532.7291832
+      "_mod_time": 1776434513.068
     },
     "User.20260220012738.1": {
       "_mod_time": 1777713442.465
     },
     "User.20260308173318.1": {
-      "_mod_time": 1774398532.7124777
+      "_mod_time": 1776434513.068
     },
     "User.20260308184128.2": {
-      "_mod_time": 1774398532.6864183
+      "_mod_time": 1776434513.068
     },
     "User.20260308184713.2": {
       "_mod_time": 1776817843.31
     },
     "User.20260308214701.2": {
-      "_mod_time": 1774398532.7014463
+      "_mod_time": 1776434513.068
     },
     "zxc.20260328213746.1": {
-      "_mod_time": 1774833042.645
+      "_mod_time": 1776434513.068
     },
     "User.20260308215626.2": {
-      "_mod_time": 1774833042.645
+      "_mod_time": 1776434513.068
     },
     "zxc.20260317085009.1": {
-      "_mod_time": 1774398532.7074766
+      "_mod_time": 1776434513.068
     },
     "zxc.20260318203351.1": {
       "_mod_time": 1778049436.405
@@ -11770,16 +11822,16 @@
       "_mod_time": 1778049436.405
     },
     "zxc.20260323195318.1": {
-      "_mod_time": 1774398532.733
+      "_mod_time": 1776434513.068
     },
     "zxc.20260329102210.1": {
-      "_mod_time": 1774833042.645
+      "_mod_time": 1776434513.068
     },
     "zxc.20260404153353.1": {
-      "_mod_time": 1775529044.6953375
+      "_mod_time": 1776434513.068
     },
     "User.20260226001402.1": {
-      "_mod_time": 1780034087.877
+      "_mod_time": 1780055115.86
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1777891402.212
@@ -11788,7 +11840,7 @@
       "_mod_time": 1777713442.485
     },
     "User.20260220010313.1": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1777385861.34
     },
     "User.20260220010448.1": {
       "_mod_time": 1777713442.485
@@ -11797,31 +11849,31 @@
       "_mod_time": 1779288255.221
     },
     "User.20260216232855.1": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1777179946.854
     },
     "User.20260217182613.1": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1777179946.857
     },
     "zxc.20260317002829.1": {
-      "_mod_time": 1776928456.1004975
+      "_mod_time": 1777179946.863
     },
     "zxc.20260315140713.1": {
       "_mod_time": 1777713442.484
     },
     "zxc.20260408012432.1": {
-      "_mod_time": 1776644732.2594094
+      "_mod_time": 1777179946.871
     },
     "User.20260301202336.1": {
-      "_mod_time": 1778806210.8322108
+      "_mod_time": 1779016340.934
     },
     "zxc.20260327184129.1": {
       "_mod_time": 1778855150.594
     },
     "zxc.20260125162740.1": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1777179946.862
     },
     "zxc.20260126185048.1": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1777179946.853
     },
     "zxc.20260130225718.1": {
       "_mod_time": 1777713442.4841998
@@ -11851,13 +11903,13 @@
       "_mod_time": 1778855150.612
     },
     "zxc.20260507002719.1": {
-      "_mod_time": 1778115749.574
+      "_mod_time": 1778706271.142
     },
     "zxc.20260507003041.1": {
-      "_mod_time": 1778115749.579
+      "_mod_time": 1778706271.142
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1776044662.6141384
+      "_mod_time": 1777179946.877
     },
     "zxc.20260125145051.1": {
       "_mod_time": 1777713442.502
@@ -11866,7 +11918,7 @@
       "_mod_time": 1777713442.5000603
     },
     "zxc.20260125152851.2": {
-      "_mod_time": 1773571522.67
+      "_mod_time": 1777179946.886
     },
     "zxc.20260125153131.1": {
       "_mod_time": 1777713442.5013232
@@ -11878,7 +11930,7 @@
       "_mod_time": 1777337709.116
     },
     "User.20260216185314.1": {
-      "_mod_time": 1776044662.647
+      "_mod_time": 1777179946.883
     },
     "User.20260217223023.1": {
       "_mod_time": 1778855150.599
@@ -11893,7 +11945,7 @@
       "_mod_time": 1778855150.599
     },
     "User.20260220233323.1": {
-      "_mod_time": 1773571522.67
+      "_mod_time": 1777179946.885
     },
     "zxc.20260421145655.1": {
       "_mod_time": 1777713442.501
@@ -11923,16 +11975,16 @@
       "_mod_time": 1778049436.434
     },
     "zxc.20260507000814.1": {
-      "_mod_time": 1780039003.421
+      "_mod_time": 1780055115.897
     },
     "zxc.20260508000348.1": {
-      "_mod_time": 1780038974.209
+      "_mod_time": 1780055115.893
     },
     "zxc.20260529152606.1": {
-      "_mod_time": 1780039625.913
+      "_mod_time": 1780055115.91
     },
     "zxc.20260529151747.1": {
-      "_mod_time": 1780039503.901
+      "_mod_time": 1780056851.315
     },
     "zxc.20260502183455.1": {
       "_mod_time": 1778049436.441
@@ -11944,25 +11996,25 @@
       "_mod_time": 1778049436.442
     },
     "zxc.20260505181144.1": {
-      "_mod_time": 1778115749.587
+      "_mod_time": 1778706271.142
     },
     "User.20260215182442.1": {
-      "_mod_time": 1773571522.6703062
+      "_mod_time": 1777891060.651
     },
     "User.20260217022114.1": {
       "_mod_time": 1778049436.442
     },
     "User.20260215182818.1": {
-      "_mod_time": 1773571522.6703062
+      "_mod_time": 1777891191.634
     },
     "zxc.20260317084145.1": {
       "_mod_time": 1778049436.443
     },
     "zxc.20260201225344.1": {
-      "_mod_time": 1773571522.6703062
+      "_mod_time": 1777891060.714
     },
     "zxc.20260317082914.1": {
-      "_mod_time": 1773712444.0250823
+      "_mod_time": 1777891060.727
     },
     "zxc.20260201034331.1": {
       "_mod_time": 1778049436.464
@@ -11971,25 +12023,25 @@
       "_mod_time": 1779067019.4523287
     },
     "User.20260215210400.1": {
-      "_mod_time": 1773571522.686
+      "_mod_time": 1777179946.904
     },
     "User.20260220151031.5": {
       "_mod_time": 1779067019.4523287
     },
     "User.20260220151031.28": {
-      "_mod_time": 1773571522.6703062
+      "_mod_time": 1777179946.902
     },
     "User.20260221175549.1": {
       "_mod_time": 1779067019.4523287
     },
     "User.20260221194603.1": {
-      "_mod_time": 1773571522.686
+      "_mod_time": 1777179946.906
     },
     "User.20260222211658.1": {
-      "_mod_time": 1775529044.7323968
+      "_mod_time": 1777179946.899
     },
     "zxc.20260201203241.1": {
-      "_mod_time": 1774225085.298
+      "_mod_time": 1777718155.12
     },
     "zxc.20260201203515.1": {
       "_mod_time": 1778049436.443
@@ -11998,31 +12050,31 @@
       "_mod_time": 1779067019.4523287
     },
     "zxc.20260202195207.1": {
-      "_mod_time": 1774398532.804
+      "_mod_time": 1777179946.896
     },
     "zxc.20260322192157.1": {
-      "_mod_time": 1774398532.804
+      "_mod_time": 1777179946.897
     },
     "zxc.20260322192357.1": {
-      "_mod_time": 1774398532.805
+      "_mod_time": 1777179946.898
     },
     "zxc.20260325223009.1": {
-      "_mod_time": 1774490258.9080532
+      "_mod_time": 1777891355.163
     },
     "zxc.20260325223610.1": {
-      "_mod_time": 1774490258.9080532
+      "_mod_time": 1777891355.18
     },
     "zxc.20260325223805.1": {
       "_mod_time": 1779322339.0771282
     },
     "zxc.20260329012003.1": {
-      "_mod_time": 1776125926.5781019
+      "_mod_time": 1777179946.894
     },
     "zxc.20260411192514.1": {
-      "_mod_time": 1776996577.444
+      "_mod_time": 1777179946.895
     },
     "zxc.20260330235722.1": {
-      "_mod_time": 1774916487.394
+      "_mod_time": 1777179946.891
     },
     "zxc.20260518220745.1": {
       "_mod_time": 1779672291.556
@@ -12073,7 +12125,7 @@
       "_mod_time": 1779949082.986
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1779326264.125
+      "_mod_time": 1779357222.046
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1777713442.482
@@ -12136,7 +12188,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260202205715.1": {
-      "_mod_time": 1773571522.6703062
+      "_mod_time": 1777106655.378
     },
     "zxc.20260426163956.1": {
       "_mod_time": 1778855150.573
@@ -12145,70 +12197,70 @@
       "_mod_time": 1778049436.41
     },
     "zxc.20260407232538.1": {
-      "_mod_time": 1775607497.148
+      "_mod_time": 1777179946.836
     },
     "zxc.20260408005117.1": {
-      "_mod_time": 1776753962.305
+      "_mod_time": 1777179946.836
     },
     "zxc.20260529091145.1": {
-      "_mod_time": 1780034304.93
+      "_mod_time": 1780055115.877
     },
     "zxc.20260201140523.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1777179946.85
     },
     "zxc.20260130233132.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1777385863.235
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1780034198.367
+      "_mod_time": 1780055115.881
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1777337709.07
     },
     "zxc.20260214142543.1": {
-      "_mod_time": 1776044662.566
+      "_mod_time": 1777179946.851
     },
     "User.20260215234634.1": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1777179946.854
     },
     "User.20260216124226.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1777179946.845
     },
     "User.20260216125422.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1777179946.847
     },
     "User.20260219235648.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1777179946.847
     },
     "User.20260228231944.1": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1777179946.852
     },
     "User.20260302211536.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1777179946.836
     },
     "User.20260302211740.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1777179946.836
     },
     "User.20260302211946.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1777179946.845
     },
     "User.20260302212424.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1777179946.845
     },
     "User.20260302212645.1": {
-      "_mod_time": 1773571522.6390562
+      "_mod_time": 1777179946.84
     },
     "User.20260303213330.1": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1777179946.854
     },
     "zxc.20260401221312.1": {
-      "_mod_time": 1775105070.8223033
+      "_mod_time": 1777179946.849
     },
     "zxc.20260402230727.1": {
-      "_mod_time": 1775176074.5432289
+      "_mod_time": 1777179946.85
     },
     "zxc.20260417220340.1": {
-      "_mod_time": 1776644732.239
+      "_mod_time": 1777179941.91
     },
     "zxc.20260515010901.1": {
       "_mod_time": 1778806210.816
