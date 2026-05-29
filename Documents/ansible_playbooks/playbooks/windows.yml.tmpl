@@ -1456,7 +1456,7 @@
           register: path
         - name: Transmission firewall rule
           community.windows.win_firewall_rule:
-            name: "transmission-daemon.exe {{ item }}"
+            name: "transmission-daemon.exe"
             localport: 51413
             action: allow
             protocol: tcp
@@ -1465,7 +1465,7 @@
             enabled: true
         - name: Transmission firewall rule
           community.windows.win_firewall_rule:
-            name: "transmission-daemon.exe udp {{ item }}"
+            name: "transmission-daemon.exe udp"
             localport: 51413
             action: allow
             protocol: udp
