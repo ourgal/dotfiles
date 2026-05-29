@@ -1,7 +1,5 @@
 {{ $os := "" -}}
-{{ if eq .chezmoi.os "windows" -}}
-{{ $os = .chezmoi.os -}}
-{{ else if eq .chezmoi.os "linux" -}}
+{{ if eq .chezmoi.os "linux" -}}
 {{ $os = .chezmoi.osRelease.id -}}
 {{ end -}}
 #Requires AutoHotkey v2.0
