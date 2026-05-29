@@ -1,0 +1,24 @@
+{
+    "version": "1.0",
+    "description": "STARDUST: Wish of Witch is a single-player SRPG beautifully crafted in pixel art. Follow the secret of the wish-granting star and join the adventure of the girl \“Star\” and the mage \“Yu\”.",
+    "homepage": "https://igg-games.com/stardust-wish-of-witch-free-download.html",
+    "architecture": {
+        "64bit": {
+            "url": "{{ .my.dufs.bucket.host }}/bucket/games/stardust_wish_of_witch.7z",
+            "hash": "29b05e2941a6a4563fe88d6d6d1057c3d9ecb82288425568a13e0b5e32494e95"
+        }
+    },
+    "post_install": [
+        "$name = \"stardust_wish_of_witch\"",
+        "$path = \"${env:USERPROFILE}\\AppData\\LocalLow\\KnivStudio\\StarDust_Steam\"",
+        "$saves = if ($env:game_saves) { $env:game_saves } else { \"$env:USERPROFILE\\Documents\\game_saves\" }",
+        "mkdir -p $saves\\$name >$null 2>$null",
+        "New-Item -ItemType Junction -Path $path -Target $saves\\$name >$null"
+    ],
+    "shortcuts": [
+        [
+            "StarDust_Steam.exe",
+            "STARDUST Wish of Witch"
+        ]
+    ]
+}
