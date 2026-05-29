@@ -35,6 +35,11 @@ Run("deskflow-core server", , "Hide")
 {{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
 Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "aria2" "current" "aria2c.exe" }} --enable-rpc", {{ joinPath .chezmoi.homeDir "Downloads" | quote }}, "Hide")
 {{ end -}}
+{{ $opt := "transmission" -}}
+{{ $cmd := "transmission-daemon" -}}
+{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
+Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "transmission" "current" "transmission-daemon.exe" }} --foreground", {{ joinPath .chezmoi.homeDir "Downloads" | quote }}, "Hide")
+{{ end -}}
 {{ $opt := "espanso" -}}
 {{ $cmd := "espansod" -}}
 {{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
