@@ -1,4 +1,4 @@
-{{ $os := "" -}}
+{{ $os := .chezmoi.os -}}
 {{ if eq .chezmoi.os "linux" -}}
 {{ $os = .chezmoi.osRelease.id -}}
 {{ end -}}
