@@ -17,8 +17,7 @@ vimfiles/**
 .glzr/**
 Documents/game_saves/
 Documents/game_saves/**
-{{ if ne .chezmoi.osRelease.name "Void" -}}
-
+{{ if and (hasKey .chezmoi.osRelease "name") (ne .chezmoi.osRelease.name "Void") -}}
 service/
 service/**
 .config/sv/
@@ -46,8 +45,7 @@ vimfiles/**
 .glzr/**
 Documents/game_saves/
 Documents/game_saves/**
-{{ if ne .chezmoi.osRelease.name "Void" -}}
-
+{{ if and (hasKey .chezmoi.osRelease "name") (ne .chezmoi.osRelease.name "Void") -}}
 service/
 service/**
 .config/sv/

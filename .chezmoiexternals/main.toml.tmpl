@@ -27,8 +27,7 @@
 {{ end -}}
 {{ end -}}
 {{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
-{{ if ne .chezmoi.osRelease.name "Void" -}}
-
+{{ if and (hasKey .chezmoi.osRelease "name") (ne .chezmoi.osRelease.name "Void") -}}
 [".local/share/fonts/nerdsymbols"]
     type = "archive"
     url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdFontsSymbolsOnly.tar.xz"
