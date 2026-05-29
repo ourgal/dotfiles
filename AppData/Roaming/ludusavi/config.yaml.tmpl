@@ -156,5 +156,12 @@ customGames:
     registry: []
     installDir: []
     winePrefix: []
+  - name: Beast Saga
+    integration: override
+    files:
+      - {{ joinPath .chezmoi.homeDir "scoop" "apps" "beast_saga" "current" "SaveData" | quote }}
+    registry: []
+    installDir: []
+    winePrefix: []
 {{ end -}}
 {{ end -}}
