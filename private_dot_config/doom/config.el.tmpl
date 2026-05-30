@@ -90,6 +90,8 @@
 (setq browse-url-handlers
       '(("\\(bilibili\\.com\\|vimeo\\.com\\|twitch\\.tv\\)" . browse-url-mpv)
         ("." . browse-url-firefox)))
+(after! org
+  (setq org-agenda-files '("~/org/agenda.org")))
 (map! :n "C-w o" #'delete-other-windows
       :n "C-w z" #'doom/window-enlargen)
 (map! :leader
