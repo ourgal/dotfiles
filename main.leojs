@@ -3600,6 +3600,10 @@
                             {
                               "gnx": "zxc.20260517023349.1",
                               "vh": "browse-url"
+                            },
+                            {
+                              "gnx": "zxc.20260531010146.1",
+                              "vh": "org agenda"
                             }
                           ]
                         },
@@ -10803,6 +10807,7 @@
     "User.20260218113718.1": "(add-hook! 'completion-at-point-functions #'cape-dabbrev)\n(add-hook! 'completion-at-point-functions #'cape-file)\n",
     "User.20260218114048.1": "(after! doom-modeline\n  (setq doom-modeline-buffer-file-name-style 'relative-to-project))\n",
     "zxc.20260517023349.1": "(defun browse-url-mpv (url &optional _new-window)\n  (start-process \"mpv\" nil \"mpv\" url))\n\n(setq browse-url-handlers\n      '((\"\\\\(bilibili\\\\.com\\\\|vimeo\\\\.com\\\\|twitch\\\\.tv\\\\)\" . browse-url-mpv)\n        (\".\" . browse-url-firefox)))\n",
+    "zxc.20260531010146.1": "(after! org\n  (setq org-agenda-files '(\"~/org/agenda.org\")))\n",
     "User.20260218124824.1": "(map! :n \"C-w o\" #'delete-other-windows\n      :n \"C-w z\" #'doom/window-enlargen)\n",
     "User.20260218124950.1": "(map! :leader\n      :desc \"Kill other buffer\" \"b o\" #'doom/kill-other-buffers)\n(map! :leader\n      :desc \"Kill other buffer\" \"b 0\" nil)\n",
     "User.20260218001127.1": "(use-package! ahk-mode\n  :mode \"\\\\.ahk$\"\n  :defer t)\n",
@@ -12108,7 +12113,7 @@
       "_mod_time": 1778713140.254
     },
     "User.20260217223030.1": {
-      "_mod_time": 1780158785.298
+      "_mod_time": 1780160576.114
     },
     "User.20260217223035.1": {
       "_mod_time": 1780138646.164
