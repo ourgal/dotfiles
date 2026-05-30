@@ -1,0 +1,12 @@
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if stat (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom") -}}
+#!{{lookPath "bash"}}
+set -euo pipefail
+{{ $commit := output "git" "-C" (print .chezmoi.homeDir "/.emacs.d") "rev-parse" "HEAD" }}
+{{ if ne $commit .my.doomemacs.commit -}}
+cd {{ joinPath .chezmoi.homeDir ".emacs.d" | quote }}
+git fetch
+git checkout {{ .my.doomemacs.commit }}
+{{ end -}}
+{{ end -}}
+{{ end -}}
