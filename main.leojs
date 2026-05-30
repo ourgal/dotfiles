@@ -5598,7 +5598,12 @@
                   "children": [
                     {
                       "gnx": "zxc.20260529152606.1",
-                      "vh": "@clean symlink_awesome.tmpl"
+                      "vh": "@clean symlink_awesome.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225203941.1"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -11000,7 +11005,7 @@
     "zxc.20260507000814.1": "<< unix >>\n{{ if not (lookPath \"fcitx5\") -}}\n{{ joinPath .chezmoi.homeDir \".local\" \"share\" \"flatpak\" \"exports\" \"share\" \"applications\" \"org.fcitx.Fcitx5.desktop\" }}\n{{ end -}}\n{{ end -}}",
     "zxc.20260508000348.1": "<< unix >>\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260508000437.1": "[Desktop Entry]\nEncoding=UTF-8\nVersion=0.9.4\nType=Application\nName=gpg-agent\nComment=\nExec=gpg-connect-agent /bye\nOnlyShowIn=XFCE;\nRunHook=0\nStartupNotify=false\nTerminal=false\nHidden=true",
-    "zxc.20260529152606.1": "{{ joinPath .chezmoi.homeDir \".config\" \"awesome-copycats\" }}",
+    "zxc.20260529152606.1": "<< unix >>\n{{ if lookPath \"awesome\" -}}\n{{ joinPath .chezmoi.homeDir \".config\" \"awesome-copycats\" }}\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260529151747.1": "<< unix >>\n{{ if lookPath \"awesome\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260529152120.1": "--[[\n\n     Awesome WM configuration template\n     github.com/lcpz\n\n--]]\n\n@others\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
     "zxc.20260529200901.1": "-- If LuaRocks is installed, make sure that packages installed through it are\n-- found (e.g. lgi). If LuaRocks is not installed, do nothing.\npcall(require, \"luarocks.loader\")\n\nlocal gears         = require(\"gears\")\nlocal awful         = require(\"awful\")\n                      require(\"awful.autofocus\")\nlocal wibox         = require(\"wibox\")\nlocal beautiful     = require(\"beautiful\")\nlocal naughty       = require(\"naughty\")\nlocal lain          = require(\"lain\")\n--local menubar       = require(\"menubar\")\nlocal freedesktop   = require(\"freedesktop\")\nlocal hotkeys_popup = require(\"awful.hotkeys_popup\")\n                      require(\"awful.hotkeys_popup.keys\")\nlocal mytable       = awful.util.table or gears.table -- 4.{0,1} compatibility",
@@ -11777,7 +11782,7 @@
       "_mod_time": 1780066976.644
     },
     "zxc.20260125143959.1": {
-      "_mod_time": 1778049436.421
+      "_mod_time": 1777906067.531
     },
     "zxc.20260125163416.1": {
       "_mod_time": 1777612767.635
@@ -11795,10 +11800,10 @@
       "_mod_time": 1777612767.635
     },
     "zxc.20260427000037.1": {
-      "_mod_time": 1777249737.153
+      "_mod_time": 1777219283.718
     },
     "zxc.20260427224318.1": {
-      "_mod_time": 1777337709.088
+      "_mod_time": 1777301694.728
     },
     "User.20260218142211.1": {
       "_mod_time": 1777612767.666
@@ -11927,7 +11932,7 @@
       "_mod_time": 1778049436.405
     },
     "zxc.20260505141849.1": {
-      "_mod_time": 1778049436.405
+      "_mod_time": 1777967012.414
     },
     "zxc.20260323195318.1": {
       "_mod_time": 1776434513.068
@@ -12035,7 +12040,7 @@
       "_mod_time": 1778910703.976
     },
     "zxc.20260125161631.1": {
-      "_mod_time": 1777337709.116
+      "_mod_time": 1777302969.492
     },
     "User.20260216185314.1": {
       "_mod_time": 1777179946.883
@@ -12065,7 +12070,7 @@
       "_mod_time": 1777896430.983
     },
     "zxc.20260504000649.1": {
-      "_mod_time": 1778049436.438
+      "_mod_time": 1777827566.629
     },
     "zxc.20260503225115.1": {
       "_mod_time": 1778855150.604
@@ -12080,7 +12085,7 @@
       "_mod_time": 1780119415.887
     },
     "zxc.20260505105255.1": {
-      "_mod_time": 1778049436.434
+      "_mod_time": 1777967012.43
     },
     "zxc.20260507000814.1": {
       "_mod_time": 1780055115.897
@@ -12089,19 +12094,19 @@
       "_mod_time": 1780055115.893
     },
     "zxc.20260529152606.1": {
-      "_mod_time": 1780055115.91
+      "_mod_time": 1780148506.597
     },
     "zxc.20260529151747.1": {
       "_mod_time": 1780056851.315
     },
     "zxc.20260502183455.1": {
-      "_mod_time": 1778049436.441
+      "_mod_time": 1777717804.636
     },
     "zxc.20260502183056.1": {
-      "_mod_time": 1778049436.441
+      "_mod_time": 1777978566.558
     },
     "zxc.20260502183253.1": {
-      "_mod_time": 1778049436.442
+      "_mod_time": 1777717995.212
     },
     "zxc.20260505181144.1": {
       "_mod_time": 1778706271.142
