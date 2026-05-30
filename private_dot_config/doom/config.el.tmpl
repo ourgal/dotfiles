@@ -216,8 +216,10 @@
       :map elfeed-show-mode-map
       :n "y" #'elfeed-show-yank)
 {{ $domain := "miniflux.zxc.cn" -}}
+{{ $protocol := "http" -}}
 {{ if eq .chezmoi.hostname "work" -}}
 {{ $domain = print "miniflux." ((includeTemplate "my_domain.key") | trim ) -}}
+{{ $protocol = "https" -}}
 {{ end -}}
 (use-package! elfeed-protocol
   :custom
@@ -225,8 +227,8 @@
   (elfeed-protocol-enabled-protocols '(fever))
   (elfeed-protocol-fever-update-unread-only nil)
   (elfeed-protocol-fever-fetch-category-as-tag t)
-  (elfeed-protocol-feeds '(("fever+http://miniflux@{{ $domain }}"
-                                 :api-url "http://{{ $domain }}/fever/"
+  (elfeed-protocol-feeds '(("fever+{{ $protocol }}://miniflux@{{ $domain }}"
+                                 :api-url "{{ $protocol }}://{{ $domain }}/fever/"
                                  :password "{{ gopass "miniflux/fever" | trim }}")))
   :config
   (elfeed-set-timeout 36000)

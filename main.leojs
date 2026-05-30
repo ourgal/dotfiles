@@ -10478,7 +10478,7 @@
     "User.20260226001021.1": "<< dos >>\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260130074346.2": "[\".cache/vscodium/extensions/vsnetrw.vsix\"]\n    type = \"file\"\n    url = \"https://github.com/danprince/vsnetrw/releases/download/v0.3.2/vsnetrw-0.3.2.vsix\"\n",
     "User.20260226001056.1": "<< unix dos >>\n{{ if lookPath \"emacs\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "User.20260225204914.1": "{{ if eq .chezmoi.os \"windows\" \"linux\" \"android\" -}}",
+    "User.20260225204914.1": "{{ if eq .chezmoi.os \"windows\" \"linux\" \"android\" -}}\n",
     "zxc.20260126160721.1": "[\".emacs.d\"]\n    type = \"git-repo\"\n    url = \"https://mirror.nju.edu.cn/git/doom-emacs.git/\"",
     "User.20260226001125.1": "<< dos >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260226001211.1": "<< unix >>\n<< not void >>\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -10744,7 +10744,7 @@
     "User.20260217235737.1": "(add-hook! 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)\n",
     "User.20260218113718.1": "(add-hook! 'completion-at-point-functions #'cape-dabbrev)\n(add-hook! 'completion-at-point-functions #'cape-file)\n",
     "User.20260218114048.1": "(after! doom-modeline\n  (setq doom-modeline-buffer-file-name-style 'relative-to-project))\n",
-    "zxc.20260517023349.1": "(defun browse-url-mpv (url &optional _new-window)\n  (start-process \"mpv\" nil \"mpv\" url))\n\n(setq browse-url-handlers\n      '((\"\\\\(bilibili\\\\.com\\\\|vimeo\\\\.com\\\\|twitch\\\\.tv\\\\)\" . browse-url-mpv)\n        (\".\" . browse-url-firefox)))",
+    "zxc.20260517023349.1": "(defun browse-url-mpv (url &optional _new-window)\n  (start-process \"mpv\" nil \"mpv\" url))\n\n(setq browse-url-handlers\n      '((\"\\\\(bilibili\\\\.com\\\\|vimeo\\\\.com\\\\|twitch\\\\.tv\\\\)\" . browse-url-mpv)\n        (\".\" . browse-url-firefox)))\n",
     "User.20260218124824.1": "(map! :n \"C-w o\" #'delete-other-windows\n      :n \"C-w z\" #'doom/window-enlargen)\n",
     "User.20260218124950.1": "(map! :leader\n      :desc \"Kill other buffer\" \"b o\" #'doom/kill-other-buffers)\n(map! :leader\n      :desc \"Kill other buffer\" \"b 0\" nil)\n",
     "User.20260218001127.1": "(use-package! ahk-mode\n  :mode \"\\\\.ahk$\"\n  :defer t)\n",
@@ -10757,17 +10757,17 @@
     "User.20260218175815.1": "(use-package! magit-todos\n  :after magit\n  :config (magit-todos-mode 1))\n",
     "User.20260218180536.1": "(use-package! nov\n  :mode (\"\\\\.epub$\" . nov-mode)\n  :defer t)\n",
     "User.20260218185154.1": "(use-package! pangu-spacing\n  :config (add-hook 'markdown-mode-hook 'pangu-spacing-mode))\n",
-    "User.20260218205354.1": "(use-package! zeal-at-point)\n(map! :leader\n      :desc \"Zeal\" \"h z\" #'zeal-at-point)",
-    "User.20260218210651.1": "(use-package! eglot-booster\n  :after eglot\n  :config (eglot-booster-mode))",
-    "zxc.20260411161108.1": "(use-package! elsqlite\n  :commands (elsqlite elsqlite-browser)\n  :config\n  ;; Optional: Auto-open .db files in ELSQLite\n  (elsqlite-enable-auto-open)\n  ;; Optional: Evil mode keybindings\n  (elsqlite-evil-setup)\n  )",
-    "zxc.20260513223820.1": "(use-package! super-save\n  :ensure t\n  :config\n  (super-save-mode +1))",
-    "User.20260223013727.1": "(setq message-send-mail-function 'smtpmail-send-it)\n(setq user-mail-address \"ourgal@qq.com\")\n(setq user-full-name \"ourgal\")\n\n(setq smtpmail-smtp-user \"ourgal@qq.com\"\n      smtpmail-smtp-server \"smtp.qq.com\"\n      smtpmail-smtp-service 465\n      smtpmail-stream-type 'ssl)\n\n(setq smtpmail-debug-info t)\n(setq smtpmail-debug-verb t)\n\n(setq auth-sources '({{ joinPath .chezmoi.homeDir \".config\" \"doom\" \".authinfo\" | quote }}))",
-    "User.20260223021647.1": "(setq user-mail-address \"ourgal@qq.com\"\n      user-full-name \"ourgal\")\n\n(setq gnus-select-method '(nnnil nil))\n(setq gnus-secondary-select-methods\n      '((nnimap \"qq\"\n               (nnimap-address \"imap.qq.com\")\n               (nnimap-index \"nnimap+qq:INDEX\")\n               (nnmail-expiry-target \"nnimap+qq:Deleted Messages\")\n               (nnimap-expunge t)\n               (nnimap-server-port 993)\n               (nnimap-stream ssl))\n      (nnimap \"163\"\n               (nnimap-address \"imap.163.com\")\n               (nnimap-index \"nnimap+163:INDEX\")\n               (nnmail-expiry-target \"nnimap+163:已删除\")\n               (nnimap-expunge t)\n               (nnimap-server-port 993)\n               (nnimap-stream ssl))\n      (nnimap \"yandex\"\n               (nnimap-address \"imap.yandex.com\")\n               (nnimap-index \"nnimap+yandex:INDEX\")\n               (nnmail-expiry-target \"nnimap+yandex:Trash\")\n               (nnimap-expunge t)\n               (nnimap-server-port 993)\n               (nnimap-stream ssl))))\n\n(setq gnus-thread-sort-functions '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date)))",
-    "User.20260305235255.1": "(add-hook 'elfeed-search-mode-hook #'elfeed-update)\n;; Update hourly\n(run-at-time nil (* 60 60) #'elfeed-update)",
-    "User.20260305235234.1": "(map! :leader\n      :desc \"Elfeed\" \"o e\" #'elfeed)\n(map! :after elfeed\n      :map elfeed-show-mode-map\n      :n \"y\" #'elfeed-show-yank)",
-    "User.20260307200154.1": "{{ $domain := \"miniflux.zxc.cn\" -}}\n{{ if eq .chezmoi.hostname \"work\" -}}\n{{ $domain = print \"miniflux.\" ((includeTemplate \"my_domain.key\") | trim ) -}}\n{{ end -}}\n",
-    "User.20260307200144.1": "(use-package! elfeed-protocol\n  :custom\n  (elfeed-use-curl t)\n  (elfeed-protocol-enabled-protocols '(fever))\n  (elfeed-protocol-fever-update-unread-only nil)\n  (elfeed-protocol-fever-fetch-category-as-tag t)\n  (elfeed-protocol-feeds '((\"fever+http://miniflux@{{ $domain }}\"\n                                 :api-url \"http://{{ $domain }}/fever/\"\n                                 :password \"{{ gopass \"miniflux/fever\" | trim }}\")))\n  :config\n  (elfeed-set-timeout 36000)\n  (elfeed-protocol-enable))\n",
-    "User.20260307184451.1": "(require 'url)\n(require 'json)\n\n(defun insert-github-package-snippet ()\n  \"从系统剪贴板读取 GitHub 仓库 URL，\n抓取它的 repo 名和 description，在光标处插入类似：\n[\\\"repo\\\", \\\"desc\\\", \\\"https://…\\\", Categories.SYSTEM, \\\"MM/DD/YYYY\\\", None, Waiting_Status.WAITING, Types.PACKAGE],\"\n  (interactive)\n  ;; 1. 取剪贴板内容\n  (let* ((clip (if (fboundp 'gui-get-selection)\n                   (gui-get-selection 'CLIPBOARD)\n                 (current-kill 0)))\n         (url  (and clip (string-trim clip)))\n         ;; 2. 提取 repo 全路径 user/repo 及 repo 名\n         (m    (and url (string-match \"github\\\\.com/\\\\([^/]+/[^/]+\\\\)\" url)))\n         (full (and m (match-string 1 url)))\n         (repo (and full (file-name-nondirectory full))))\n    (unless (and url full repo)\n      (user-error \"剪贴板中没有有效的 GitHub 仓库 URL\"))\n    ;; 3. 通过 GitHub API 拉 description\n    (let* ((api    (format \"https://api.github.com/repos/%s\" full))\n           ;; 设置一个简单的 User-Agent 以防被拒\n           (url-request-extra-headers\n            '((\"User-Agent\" . \"emacs-insert-github-package-snippet\")))\n           (buf    (url-retrieve-synchronously api))\n           description)\n      (unless buf (user-error \"无法访问 GitHub API\"))\n      (with-current-buffer buf\n        (goto-char (point-min))\n        (re-search-forward \"^$\" nil 'move)  ; 跳过 header\n        (let ((json-object-type 'alist)\n              (json (json-read)))\n          (setq description (or (alist-get 'description json) \"\"))))\n      (kill-buffer buf)\n      ;; 4. 插入结果\n      (insert\n       (format \"[\\\"%s\\\", \\\"%s\\\", \\\"%s\\\", Categories.SYSTEM, \\\"%s\\\", None, Waiting_Status.WAITING, Types.PACKAGE],\"\n               repo\n               ;; 转义双引号\n               (replace-regexp-in-string \"\\\"\" \"\\\\\\\\\\\"\" description)\n               url\n               ;; 用今天的日期\n               (format-time-string \"%m/%d/%Y\"))))))",
+    "User.20260218205354.1": "(use-package! zeal-at-point)\n(map! :leader\n      :desc \"Zeal\" \"h z\" #'zeal-at-point)\n",
+    "User.20260218210651.1": "(use-package! eglot-booster\n  :after eglot\n  :config (eglot-booster-mode))\n",
+    "zxc.20260411161108.1": "(use-package! elsqlite\n  :commands (elsqlite elsqlite-browser)\n  :config\n  ;; Optional: Auto-open .db files in ELSQLite\n  (elsqlite-enable-auto-open)\n  ;; Optional: Evil mode keybindings\n  (elsqlite-evil-setup)\n  )\n",
+    "zxc.20260513223820.1": "(use-package! super-save\n  :ensure t\n  :config\n  (super-save-mode +1))\n",
+    "User.20260223013727.1": "(setq message-send-mail-function 'smtpmail-send-it)\n(setq user-mail-address \"ourgal@qq.com\")\n(setq user-full-name \"ourgal\")\n\n(setq smtpmail-smtp-user \"ourgal@qq.com\"\n      smtpmail-smtp-server \"smtp.qq.com\"\n      smtpmail-smtp-service 465\n      smtpmail-stream-type 'ssl)\n\n(setq smtpmail-debug-info t)\n(setq smtpmail-debug-verb t)\n\n(setq auth-sources '({{ joinPath .chezmoi.homeDir \".config\" \"doom\" \".authinfo\" | quote }}))\n",
+    "User.20260223021647.1": "(setq user-mail-address \"ourgal@qq.com\"\n      user-full-name \"ourgal\")\n\n(setq gnus-select-method '(nnnil nil))\n(setq gnus-secondary-select-methods\n      '((nnimap \"qq\"\n               (nnimap-address \"imap.qq.com\")\n               (nnimap-index \"nnimap+qq:INDEX\")\n               (nnmail-expiry-target \"nnimap+qq:Deleted Messages\")\n               (nnimap-expunge t)\n               (nnimap-server-port 993)\n               (nnimap-stream ssl))\n      (nnimap \"163\"\n               (nnimap-address \"imap.163.com\")\n               (nnimap-index \"nnimap+163:INDEX\")\n               (nnmail-expiry-target \"nnimap+163:已删除\")\n               (nnimap-expunge t)\n               (nnimap-server-port 993)\n               (nnimap-stream ssl))\n      (nnimap \"yandex\"\n               (nnimap-address \"imap.yandex.com\")\n               (nnimap-index \"nnimap+yandex:INDEX\")\n               (nnmail-expiry-target \"nnimap+yandex:Trash\")\n               (nnimap-expunge t)\n               (nnimap-server-port 993)\n               (nnimap-stream ssl))))\n\n(setq gnus-thread-sort-functions '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date)))\n",
+    "User.20260305235255.1": "(add-hook 'elfeed-search-mode-hook #'elfeed-update)\n;; Update hourly\n(run-at-time nil (* 60 60) #'elfeed-update)\n",
+    "User.20260305235234.1": "(map! :leader\n      :desc \"Elfeed\" \"o e\" #'elfeed)\n(map! :after elfeed\n      :map elfeed-show-mode-map\n      :n \"y\" #'elfeed-show-yank)\n",
+    "User.20260307200154.1": "{{ $domain := \"miniflux.zxc.cn\" -}}\n{{ $protocol := \"http\" -}}\n{{ if eq .chezmoi.hostname \"work\" -}}\n{{ $domain = print \"miniflux.\" ((includeTemplate \"my_domain.key\") | trim ) -}}\n{{ $protocol = \"https\" -}}\n{{ end -}}\n",
+    "User.20260307200144.1": "(use-package! elfeed-protocol\n  :custom\n  (elfeed-use-curl t)\n  (elfeed-protocol-enabled-protocols '(fever))\n  (elfeed-protocol-fever-update-unread-only nil)\n  (elfeed-protocol-fever-fetch-category-as-tag t)\n  (elfeed-protocol-feeds '((\"fever+{{ $protocol }}://miniflux@{{ $domain }}\"\n                                 :api-url \"{{ $protocol }}://{{ $domain }}/fever/\"\n                                 :password \"{{ gopass \"miniflux/fever\" | trim }}\")))\n  :config\n  (elfeed-set-timeout 36000)\n  (elfeed-protocol-enable))\n",
+    "User.20260307184451.1": "(require 'url)\n(require 'json)\n\n(defun insert-github-package-snippet ()\n  \"从系统剪贴板读取 GitHub 仓库 URL，\n抓取它的 repo 名和 description，在光标处插入类似：\n[\\\"repo\\\", \\\"desc\\\", \\\"https://…\\\", Categories.SYSTEM, \\\"MM/DD/YYYY\\\", None, Waiting_Status.WAITING, Types.PACKAGE],\"\n  (interactive)\n  ;; 1. 取剪贴板内容\n  (let* ((clip (if (fboundp 'gui-get-selection)\n                   (gui-get-selection 'CLIPBOARD)\n                 (current-kill 0)))\n         (url  (and clip (string-trim clip)))\n         ;; 2. 提取 repo 全路径 user/repo 及 repo 名\n         (m    (and url (string-match \"github\\\\.com/\\\\([^/]+/[^/]+\\\\)\" url)))\n         (full (and m (match-string 1 url)))\n         (repo (and full (file-name-nondirectory full))))\n    (unless (and url full repo)\n      (user-error \"剪贴板中没有有效的 GitHub 仓库 URL\"))\n    ;; 3. 通过 GitHub API 拉 description\n    (let* ((api    (format \"https://api.github.com/repos/%s\" full))\n           ;; 设置一个简单的 User-Agent 以防被拒\n           (url-request-extra-headers\n            '((\"User-Agent\" . \"emacs-insert-github-package-snippet\")))\n           (buf    (url-retrieve-synchronously api))\n           description)\n      (unless buf (user-error \"无法访问 GitHub API\"))\n      (with-current-buffer buf\n        (goto-char (point-min))\n        (re-search-forward \"^$\" nil 'move)  ; 跳过 header\n        (let ((json-object-type 'alist)\n              (json (json-read)))\n          (setq description (or (alist-get 'description json) \"\"))))\n      (kill-buffer buf)\n      ;; 4. 插入结果\n      (insert\n       (format \"[\\\"%s\\\", \\\"%s\\\", \\\"%s\\\", Categories.SYSTEM, \\\"%s\\\", None, Waiting_Status.WAITING, Types.PACKAGE],\"\n               repo\n               ;; 转义双引号\n               (replace-regexp-in-string \"\\\"\" \"\\\\\\\\\\\"\" description)\n               url\n               ;; 用今天的日期\n               (format-time-string \"%m/%d/%Y\"))))))\n",
     "User.20260217223035.2": ";; -*- no-byte-compile: t; -*-\n;;; $DOOMDIR/packages.el\n\n;; To install a package:\n;;\n;;   1. Declare them here in a `package!' statement,\n;;   2. Run 'doom sync' in the shell,\n;;   3. Restart Emacs.\n;;\n;; Use 'C-h f package\\!' to look up documentation for the `package!' macro.\n\n\n;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:\n;; (package! some-package)\n\n;; To install a package directly from a remote git repo, you must specify a\n;; `:recipe'. You'll find documentation on what `:recipe' accepts here:\n;; https://github.com/radian-software/straight.el#the-recipe-format\n;; (package! another-package\n;;   :recipe (:host github :repo \"username/repo\"))\n\n;; If the package you are trying to install does not contain a PACKAGENAME.el\n;; file, or is located in a subdirectory of the repo, you'll need to specify\n;; `:files' in the `:recipe':\n;; (package! this-package\n;;   :recipe (:host github :repo \"username/repo\"\n;;            :files (\"some-file.el\" \"src/lisp/*.el\")))\n\n;; If you'd like to disable a package included with Doom, you can do so here\n;; with the `:disable' property:\n;; (package! builtin-package :disable t)\n\n;; You can override the recipe of a built in package without having to specify\n;; all the properties for `:recipe'. These will inherit the rest of its recipe\n;; from Doom or MELPA/ELPA/Emacsmirror:\n;; (package! builtin-package :recipe (:nonrecursive t))\n;; (package! builtin-package-2 :recipe (:repo \"myfork/package\"))\n\n;; Specify a `:branch' to install a package from a particular branch or tag.\n;; This is required for some packages whose default branch isn't 'master' (which\n;; our package manager can't deal with; see radian-software/straight.el#279)\n;; (package! builtin-package :recipe (:branch \"develop\"))\n\n;; Use `:pin' to specify a particular commit to install.\n;; (package! builtin-package :pin \"1a2b3c4d5e\")\n\n\n;; Doom's packages are pinned to a specific commit and updated from release to\n;; release. The `unpin!' macro allows you to unpin single packages...\n;; (unpin! pinned-package)\n;; ...or multiple packages\n;; (unpin! pinned-package another-pinned-package)\n;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)\n;; (unpin! t)\n",
     "User.20260218000937.1": "(package! ahk-mode)\n",
     "User.20260218115156.1": "(package! chezmoi)\n",
@@ -11885,10 +11885,10 @@
       "_mod_time": 1776434513.068
     },
     "User.20260217202401.1": {
-      "_mod_time": 1778049436.405
+      "_mod_time": 1777952058.268
     },
     "User.20260220214558.1": {
-      "_mod_time": 1778049436.408
+      "_mod_time": 1777952105.233
     },
     "User.20260217214851.1": {
       "_mod_time": 1776851988.666
@@ -11945,7 +11945,7 @@
       "_mod_time": 1777891402.212
     },
     "User.20260215191351.1": {
-      "_mod_time": 1777713442.485
+      "_mod_time": 1777179946.865
     },
     "User.20260220010313.1": {
       "_mod_time": 1777385861.34
@@ -11966,7 +11966,7 @@
       "_mod_time": 1777179946.863
     },
     "zxc.20260315140713.1": {
-      "_mod_time": 1777713442.484
+      "_mod_time": 1777179946.861
     },
     "zxc.20260408012432.1": {
       "_mod_time": 1777179946.871
@@ -11984,19 +11984,19 @@
       "_mod_time": 1777179946.853
     },
     "zxc.20260130225718.1": {
-      "_mod_time": 1777713442.4841998
+      "_mod_time": 1777179946.861
     },
     "zxc.20260202211707.1": {
       "_mod_time": 1777713442.483
     },
     "User.20260216000318.1": {
-      "_mod_time": 1777713442.483
+      "_mod_time": 1777179946.857
     },
     "User.20260218144120.1": {
-      "_mod_time": 1777713442.4841998
+      "_mod_time": 1777190945.855
     },
     "User.20260218144232.1": {
-      "_mod_time": 1777713442.4841998
+      "_mod_time": 1777190923.442
     },
     "zxc.20260504130406.1": {
       "_mod_time": 1778855150.581
@@ -12020,19 +12020,19 @@
       "_mod_time": 1777179946.877
     },
     "zxc.20260125145051.1": {
-      "_mod_time": 1777713442.502
+      "_mod_time": 1777179946.885
     },
     "zxc.20260125152704.1": {
-      "_mod_time": 1777713442.5000603
+      "_mod_time": 1777179946.876
     },
     "zxc.20260125152851.2": {
       "_mod_time": 1777179946.886
     },
     "zxc.20260125153131.1": {
-      "_mod_time": 1777713442.5013232
+      "_mod_time": 1777179946.883
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1779288255.231
+      "_mod_time": 1778910703.976
     },
     "zxc.20260125161631.1": {
       "_mod_time": 1777337709.116
@@ -12041,28 +12041,28 @@
       "_mod_time": 1777179946.883
     },
     "User.20260217223023.1": {
-      "_mod_time": 1778855150.599
+      "_mod_time": 1778713140.254
     },
     "User.20260217223030.1": {
-      "_mod_time": 1780141788.691
+      "_mod_time": 1780145537.857
     },
     "User.20260217223035.1": {
       "_mod_time": 1780138646.164
     },
     "User.20260223014430.1": {
-      "_mod_time": 1778855150.599
+      "_mod_time": 1777951645.419
     },
     "User.20260220233323.1": {
       "_mod_time": 1777179946.885
     },
     "zxc.20260421145655.1": {
-      "_mod_time": 1777713442.501
+      "_mod_time": 1777179946.881
     },
     "zxc.20260421231645.1": {
-      "_mod_time": 1777713442.501
+      "_mod_time": 1777179946.881
     },
     "zxc.20260503171104.1": {
-      "_mod_time": 1778855150.599
+      "_mod_time": 1777896430.983
     },
     "zxc.20260504000649.1": {
       "_mod_time": 1778049436.438
