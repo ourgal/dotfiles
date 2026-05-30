@@ -164,8 +164,11 @@
   )
 (use-package! super-save
   :ensure t
+  :custom
+  (super-save-silent t)
   :config
-  (super-save-mode +1))
+  (super-save-mode +1)
+  (auto-save-visited-mode +1))
 (setq message-send-mail-function 'smtpmail-send-it)
 (setq user-mail-address "ourgal@qq.com")
 (setq user-full-name "ourgal")
