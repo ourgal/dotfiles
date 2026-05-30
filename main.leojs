@@ -10508,6 +10508,7 @@
     "zxc.20260202203521.4": "codium --update-extensions\n$extensions = @(\n    @others\n    << vscodium >>\n    )\nforeach ($e in $extensions) {\n    Write-Host \"Install vscodium extension $e\"\n    codium --install-extension $e\n}",
     "User.20260220152703.1": "@others",
     "zxc.20260202203521.13": "{{ $vsnetrw := (joinPath .chezmoi.homeDir \".cache/vscodium/extensions/vsnetrw.vsix\") }}\n{{ if stat $vsnetrw -}}\n\"{{ $vsnetrw }}\"\n{{ end -}}",
+    "User.20260215215421.1": "\"EditorConfig.EditorConfig\"\n",
     "zxc.20260202203521.5": "\"tamasfe.even-better-toml\"",
     "zxc.20260202203521.6": "\"carlos-algms.make-task-provider\"\n",
     "zxc.20260202203521.7": "\"vscodevim.vim\"\n\"vspacecode.vspacecode\"",
@@ -11852,7 +11853,7 @@
       "_mod_time": 1776644732.237
     },
     "zxc.20260202203521.3": {
-      "_mod_time": 1777249737.1490705
+      "_mod_time": 1780117762.444
     },
     "zxc.20260202213444.1": {
       "_mod_time": 1776434513.084
@@ -11861,10 +11862,10 @@
       "_mod_time": 1776434513.084
     },
     "User.20260220151435.2": {
-      "_mod_time": 1778717681.5771089
+      "_mod_time": 1780117762.459
     },
     "zxc.20260505102132.1": {
-      "_mod_time": 1778717681.591
+      "_mod_time": 1780117762.476
     },
     "zxc.20260202215023.1": {
       "_mod_time": 1776434513.068
