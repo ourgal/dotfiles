@@ -1,1 +1,5 @@
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if lookPath "awesome" -}}
 {{ joinPath .chezmoi.homeDir ".config" "awesome-copycats" }}
+{{ end -}}
+{{ end -}}
