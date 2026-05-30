@@ -9,6 +9,8 @@ set -euo pipefail
 {{ $sum = include (joinPath $homeDir ".config" "doom" (print . ".el")) | append $sum -}}
 {{ end -}}
 # {{ $sum | join "" | sha256sum }}
+# {{ output "git" "-C" (print .chezmoi.homeDir "/.emacs.d") "rev-parse" "HEAD" }}
+# {{ output "emacs" "--version" | trim | splitList "\n" | first }}
 {{ (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom" ) }} sync
 {{ end -}}
 {{ end -}}
