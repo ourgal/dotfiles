@@ -68,7 +68,9 @@
 (package! zeal-at-point)
 (package! eglot-booster
   :recipe (:host github :repo "jdtsmith/eglot-booster"))
+{{ if .my.doomemacs.elfeed_protocol -}}
 (package! elfeed-protocol)
+{{ end -}}
 (package! elsqlite)
 (package! super-save)
 {{ end -}}
