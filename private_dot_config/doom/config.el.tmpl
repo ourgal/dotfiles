@@ -223,7 +223,9 @@
       :n "y" #'elfeed-show-yank)
 {{ if .my.doomemacs.elfeed_org -}}
 (after! elfeed
-  (setq rmh-elfeed-org-files (list "~/org/elfeed.org")))
+  (setq rmh-elfeed-org-files (list "~/org/elfeed.org"))
+  (setq elfeed-search-filter "@2-weeks-ago +unread")
+  (elfeed-set-timeout 60))
 {{ end -}}
 {{ if .my.doomemacs.elfeed_protocol -}}
 {{ $domain := "miniflux.zxc.cn" -}}
