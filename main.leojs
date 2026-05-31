@@ -10700,7 +10700,7 @@
     "zxc.20260404153353.1": "<< dos >>\n{{ if lookPath \"rclone\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260404153505.1": "# {{ include (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"rclone\" \"rclone.conf\") | sha256sum -}}\ncp {{ joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"rclone\" \"rclone.conf\" | quote }} {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"rclone\" \"current\" \"rclone.conf\" | quote }}",
     "zxc.20260531113237.1": "<< dos >>\n{{ if and (lookPath \"buku\") (lookPath \"uv\") (lookPath \"python\") -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260531113722.1": "# {{ include (joinPath .chezmoi.homeDir \".local\" \"share\" \"buku\" \"db.key\") | sha256sum }}\ncd $HOME/.local/share/buku\nrm bookmarks.db\nuv run python db.key\n",
+    "zxc.20260531113722.1": "# {{ include (joinPath .chezmoi.homeDir \".local\" \"share\" \"buku\" \"db.key\") | sha256sum }}\ncd $HOME/.local/share/buku\nif (Test-Path -Path \"bookmarks.db\") {\n    rm bookmarks.db\n}\nuv run python db.key\n",
     "User.20260226001402.1": "@others\n",
     "zxc.20260315140948.1": "[my]\nname = \"zxc\"\n",
     "User.20260226001414.1": "[my.msys2]\npackages = [\"fish\", \"nnn\", \"atool\", \"libarchive\", \"tmux\", \"zsh\"]",
@@ -12074,7 +12074,7 @@
       "_mod_time": 1776434513.068
     },
     "zxc.20260531113237.1": {
-      "_mod_time": 1780223582.696
+      "_mod_time": 1780225213.611
     },
     "User.20260226001402.1": {
       "_mod_time": 1780223582.696
