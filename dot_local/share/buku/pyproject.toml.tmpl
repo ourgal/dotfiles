@@ -1,0 +1,11 @@
+{{ if and (lookPath "python") (lookPath "uv") (lookPath "buku") -}}
+[project]
+name = "buku"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "pandas>=3.0.3",
+]
+{{ end -}}
