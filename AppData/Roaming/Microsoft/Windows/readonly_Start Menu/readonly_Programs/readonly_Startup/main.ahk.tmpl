@@ -164,6 +164,6 @@ Run("syncthing serve --no-console --no-browser", , "Hide")
 Run({{ $jellyfin_mpv_shim | quote }}, , "Hide")
 {{ end -}}
 {{ if lookPath "runemacs" -}}
-Run "runemacs --daemon", , "Hide"
+Run "runemacs --daemon", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
 {{ end -}}
