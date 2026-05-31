@@ -78,6 +78,7 @@
 (setq doom-themes-enable-bold t
       doom-themes-enable-italic t)
 (+global-word-wrap-mode +1)
+(+global-visual-line-mode t)
 (setq select-enable-clipboard nil)
 (add-hook! 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
 (add-hook! 'completion-at-point-functions #'cape-dabbrev)
@@ -220,6 +221,11 @@
 (map! :after elfeed
       :map elfeed-show-mode-map
       :n "y" #'elfeed-show-yank)
+{{ if .my.doomemacs.elfeed_org -}}
+(after! elfeed
+  (setq rmh-elfeed-org-files (list "~/org/elfeed.org")))
+{{ end -}}
+{{ if .my.doomemacs.elfeed_protocol -}}
 {{ $domain := "miniflux.zxc.cn" -}}
 {{ $protocol := "http" -}}
 {{ if eq .chezmoi.hostname "work" -}}
@@ -238,6 +244,7 @@
   :config
   (elfeed-set-timeout 36000)
   (elfeed-protocol-enable))
+{{ end -}}
 (require 'url)
 (require 'json)
 
