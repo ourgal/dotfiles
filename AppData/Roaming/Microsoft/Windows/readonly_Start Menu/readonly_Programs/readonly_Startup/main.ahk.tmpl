@@ -67,15 +67,20 @@ Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "kdeconnect" "current" "bin" "k
 Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "wezterm" "current" "wezterm-gui.exe" }}"
 WinWait("ahk_exe wezterm-gui.exe")
 {{ end -}}
-{{ if lookPath "firefox" -}}
+{{ if lookPath "brave" -}}
+Run("brave", , "Max")
+WinWait("ahk_exe brave.exe")
+{{ if lookPath "glazewm" -}}
+WinActivate "ahk_exe brave.exe"
+Run "glazewm command move --workspace 2", ,"Hide"
+{{ end -}}
+{{ else if lookPath "firefox" -}}
 Run("firefox", , "Max")
 WinWait("ahk_exe firefox.exe")
 {{ if lookPath "glazewm" -}}
 WinActivate "ahk_exe firefox.exe"
 Run "glazewm command move --workspace 2", ,"Hide"
 {{ end -}}
-{{ else if lookPath "brave" -}}
-Run("brave", , "Max")
 {{ end -}}
 {{ $vscode := joinPath .chezmoi.homeDir "scoop" "apps" "vscode" "current" "Code.exe" -}}
 {{ $vscodium := joinPath .chezmoi.homeDir "scoop" "apps" "vscodium" "current" "VSCodium.exe" -}}

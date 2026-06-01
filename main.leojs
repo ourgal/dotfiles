@@ -11068,7 +11068,7 @@
     "zxc.20260329023750.1": "{{ $opt := \"gpg_agent\" -}}\n{{ $cmd := \"gpg-connect-agent\" -}}\n<< check opt and cmd >>\nRun(\"gpg-connect-agent /bye\", , \"Hide\")\n{{ end -}}\n",
     "User.20260301185900.1": "{{ $opt := \"kde_connect\" -}}\n{{ $cmd := \"kdeconnect-cli\" -}}\n<< check opt and cmd >>\nRun(\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"kdeconnect\" \"current\" \"bin\" \"kdeconnectd.exe\" }}\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
     "zxc.20260408010815.1": "{{ if and (lookPath \"wezterm\") (eq .my.terminal.windows \"wezterm\") -}}\nRun \"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"wezterm\" \"current\" \"wezterm-gui.exe\" }}\"\nWinWait(\"ahk_exe wezterm-gui.exe\")\n{{ end -}}\n",
-    "User.20260302135941.1": "{{ if lookPath \"firefox\" -}}\nRun(\"firefox\", , \"Max\")\nWinWait(\"ahk_exe firefox.exe\")\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe firefox.exe\"\nRun \"glazewm command move --workspace 2\", ,\"Hide\"\n{{ end -}}\n{{ else if lookPath \"brave\" -}}\nRun(\"brave\", , \"Max\")\n{{ end -}}",
+    "User.20260302135941.1": "{{ if lookPath \"brave\" -}}\nRun(\"brave\", , \"Max\")\nWinWait(\"ahk_exe brave.exe\")\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe brave.exe\"\nRun \"glazewm command move --workspace 2\", ,\"Hide\"\n{{ end -}}\n{{ else if lookPath \"firefox\" -}}\nRun(\"firefox\", , \"Max\")\nWinWait(\"ahk_exe firefox.exe\")\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe firefox.exe\"\nRun \"glazewm command move --workspace 2\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
     "User.20260302135946.1": "{{ $vscode := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscode\" \"current\" \"Code.exe\" -}}\n{{ $vscodium := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscodium\" \"current\" \"VSCodium.exe\" -}}\n{{ $opt := \"vscodium\" -}}\n{{ $cmd := \"vscodium\" -}}\n<< check opt and cmd >>\nRun({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait(\"ahk_exe VSCodium.exe\")\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe VSCodium.exe\"\nRun \"glazewm command move --workspace 3\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n{{ $opt := \"vscode\" -}}\n{{ $cmd := \"code\" -}}\n<< check opt and cmd >>\nRun({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait \"ahk_exe Code.exe\"\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe Code.exe\"\nRun \"glazewm command move --workspace 3\", ,\"Hide\"\n{{ end -}}\n{{ end -}}",
     "zxc.20260502015606.1": "{{ $opt := \"leo\" -}}\n{{ $cmd := \"leo\" -}}\n<< check opt and cmd >>\nRun \"leo\", , \"Max\"\n{{ end -}}\n",
     "zxc.20260315173154.1": "{{ $opt := \"everything\" -}}\n{{ $cmd := \"everything\" -}}\n<< check opt and cmd >>\nRun(\"everything\", , \"Hide\")\n{{ end -}}",
@@ -12467,7 +12467,7 @@
       "_mod_time": 1777385863.235
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1780272723.744
+      "_mod_time": 1780280479.343
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1777382331.981
