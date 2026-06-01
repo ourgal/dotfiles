@@ -4171,6 +4171,10 @@
                                   "vh": "browser"
                                 },
                                 {
+                                  "gnx": "zxc.20260601141629.1",
+                                  "vh": "emacs"
+                                },
+                                {
                                   "gnx": "zxc.20260502020009.1",
                                   "vh": "vscode",
                                   "children": [
@@ -10951,10 +10955,11 @@
     "User.20260301203526.1": "window_rules:\n  @others",
     "User.20260301211002.1": "@others",
     "zxc.20260514061140.1": "- commands: [\"move --workspace 1\"]\n  match:\n    - window_process: { regex: \"WindowsTerminal\" }\n    - window_process: { regex: \"wt\" }\n    - window_process: { regex: \"wezterm-gui\" }",
-    "zxc.20260514061122.1": "@\n- commands: [\"move --workspace 2\"]\n  match:\n    - window_process: { regex: \"firefox\" }\n@c",
-    "zxc.20260502020009.1": "{{ $opt := \"vscode\" -}}\n<< check opt >>\n@\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"Code\" }\n@c\n{{ end -}}\n",
+    "zxc.20260514061122.1": "@\n- commands: [\"move --workspace 2\"]\n  match:\n    - window_process: { regex: \"firefox\" }\n@c\n- commands: [\"move --workspace 2\"]\n  match:\n    - window_process: { regex: \"brave\" }\n",
+    "zxc.20260601141629.1": "- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"emacs\" }\n",
+    "zxc.20260502020009.1": "{{ $opt := \"vscode\" -}}\n<< check opt >>\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"Code\" }\n{{ end -}}\n",
     "zxc.20260504185628.1": "{{ if or (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt) -}}",
-    "zxc.20260502020122.1": "{{ $opt := \"vscodium\" -}}\n<< check opt >>\n@\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"VSCodium\" }\n@c\n{{ end -}}\n",
+    "zxc.20260502020122.1": "{{ $opt := \"vscodium\" -}}\n<< check opt >>\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"VSCodium\" }\n{{ end -}}\n",
     "zxc.20260502020153.1": "{{ $opt := \"leo\" -}}\n<< check opt >>\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"leo\" }\n{{ end -}}\n",
     "zxc.20260514061202.1": "- commands: [\"move --workspace 9\"]\n  match:\n    - window_process: { regex: \"KeePassXC\" }",
     "User.20260301210952.1": "- commands: ['ignore']\n  match:\n    # Ignores any Zebar windows.\n    - window_process: {equals: 'zebar'}\n    # Ignores picture-in-picture windows for browsers.\n    - window_title: {regex: '[Pp]icture.in.[Pp]icture'}\n      window_class: {regex: 'Chrome_WidgetWin_1|MozillaDialogClass'}\n    # Ignore rules for various 3rd-party apps.\n    - window_process: {equals: 'PowerToys'}\n      window_class: {regex: 'HwndWrapper\\[PowerToys\\.PowerAccent.*?\\]'}\n    - window_process: {equals: 'PowerToys'}\n      window_title: {regex: '.*? - Peek'}\n    - window_process: {equals: 'Lively'}\n      window_class: {regex: 'HwndWrapper'}\n    - window_process: {equals: 'EXCEL'}\n      window_class: {not_regex: 'XLMAIN'}\n    - window_process: {equals: 'WINWORD'}\n      window_class: {not_regex: 'OpusApp'}\n    - window_process: {equals: 'POWERPNT'}\n      window_class: {not_regex: 'PPTFrameClass'}\n",
@@ -12110,7 +12115,7 @@
       "_mod_time": 1777179946.871
     },
     "User.20260301202336.1": {
-      "_mod_time": 1780272723.747
+      "_mod_time": 1780294605.91
     },
     "zxc.20260327184129.1": {
       "_mod_time": 1778855150.594
