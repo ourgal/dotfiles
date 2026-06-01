@@ -1,0 +1,24 @@
+{
+    "version": "1.0.23",
+    "description": "A coin-pushing dopamine machine. RACCOIN is a roguelike deckbuilder where you combine special coins with powerful items to trigger wildly satisfying combos. Stack shiny towers, spin the lucky wheel, and shake the machine until all the coins drop.",
+    "homepage": "https://igg-games.com/raccoin-coin-pusher-roguelike-free-download.html",
+    "architecture": {
+        "64bit": {
+            "url": "{{ .my.dufs.bucket.host }}/bucket/games/raccoin.7z",
+            "hash": "79efa8e8a3a373e53cab1f7ad83e2cfac689bbc0f897bfd7711eec73b2991f85"
+        }
+    },
+    "post_install": [
+        "$name = \"raccoin\"",
+        "$path = \"${env:USERPROFILE}\\DoraccoonGames\\RACCOIN\\SaveData\\76561197960287930\"",
+        "$saves = if ($env:game_saves) { $env:game_saves } else { \"$env:USERPROFILE\\Documents\\game_saves\" }",
+        "mkdir -p $saves\\$name >$null 2>$null",
+        "New-Item -ItemType Junction -Path $path -Target $saves\\$name >$null"
+    ],
+    "shortcuts": [
+        [
+            "RACCOIN.exe",
+            "RACCOIN Coin Pusher Roguelike"
+        ]
+    ]
+}
