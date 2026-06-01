@@ -2717,6 +2717,10 @@
                               "vh": "doom emacs"
                             },
                             {
+                              "gnx": "zxc.20260601195307.1",
+                              "vh": "browser"
+                            },
+                            {
                               "gnx": "zxc.20260329193242.1",
                               "vh": "ssh",
                               "children": [
@@ -4175,8 +4179,8 @@
                                   "vh": "emacs"
                                 },
                                 {
-                                  "gnx": "zxc.20260502020009.1",
-                                  "vh": "vscode",
+                                  "gnx": "zxc.20260502020122.1",
+                                  "vh": "vscodium",
                                   "children": [
                                     {
                                       "gnx": "zxc.20260504185628.1",
@@ -4185,8 +4189,8 @@
                                   ]
                                 },
                                 {
-                                  "gnx": "zxc.20260502020122.1",
-                                  "vh": "vscodium",
+                                  "gnx": "zxc.20260502020009.1",
+                                  "vh": "vscode",
                                   "children": [
                                     {
                                       "gnx": "zxc.20260504185628.1"
@@ -10727,6 +10731,7 @@
     "zxc.20260518221501.1": "[my.alist.local]\nhost = \"http://localhost:5244\"",
     "zxc.20260522233054.1": "[my.dufs.bucket]\nhost = \"http://localhost:5000\"",
     "zxc.20260530231715.1": "[my.doomemacs]\ncommit = \"d8d75443d39d95f3c5256504eb838e0acc62ef44\"\nelfeed_protocol = false\nelfeed_org = true\nelfeed_youtube = false\n",
+    "zxc.20260601195307.1": "[my.browser]\ndefault = \"firefox\"\n",
     "zxc.20260329193242.1": "[my.ssh]\nknown_hosts = [\n    @others\n]\n",
     "zxc.20260329194301.1": "\"home.local,192.168.123.100 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOKREEGtjhZmTsIruPjBmBp0fPHKxfUSbUilpIzVMoBF\",\n",
     "zxc.20260329194332.1": "\"[brix.local]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqhuTozhEUlnOCkH1LXw55IUaZHzcO4IKmr1uPOT41u\",\n\"[192.168.123.206]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqhuTozhEUlnOCkH1LXw55IUaZHzcO4IKmr1uPOT41u\",",
@@ -10963,12 +10968,12 @@
     "User.20260301203526.1": "window_rules:\n  @others",
     "User.20260301211002.1": "@others",
     "zxc.20260514061140.1": "- commands: [\"move --workspace 1\"]\n  match:\n    - window_process: { regex: \"WindowsTerminal\" }\n    - window_process: { regex: \"wt\" }\n    - window_process: { regex: \"wezterm-gui\" }",
-    "zxc.20260514061122.1": "@\n- commands: [\"move --workspace 2\"]\n  match:\n    - window_process: { regex: \"firefox\" }\n@c\n- commands: [\"move --workspace 2\"]\n  match:\n    - window_process: { regex: \"brave\" }\n",
-    "zxc.20260601141629.1": "- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"emacs\" }\n",
-    "zxc.20260502020009.1": "{{ $opt := \"vscode\" -}}\n<< check opt >>\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"Code\" }\n{{ end -}}\n",
+    "zxc.20260514061122.1": "@\n- commands: [\"move --workspace 2\"]\n  match:\n    - window_process: { regex: \"firefox\" }\n- commands: [\"move --workspace 2\"]\n  match:\n    - window_process: { regex: \"brave\" }\n@c\n",
+    "zxc.20260601141629.1": "@\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"emacs\" }\n@c\n",
+    "zxc.20260502020122.1": "{{ $opt := \"vscodium\" -}}\n<< check opt >>\n@\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"VSCodium\" }\n@c\n{{ end -}}\n",
     "zxc.20260504185628.1": "{{ if or (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt) -}}",
-    "zxc.20260502020122.1": "{{ $opt := \"vscodium\" -}}\n<< check opt >>\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"VSCodium\" }\n{{ end -}}\n",
-    "zxc.20260502020153.1": "{{ $opt := \"leo\" -}}\n<< check opt >>\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"leo\" }\n{{ end -}}\n",
+    "zxc.20260502020009.1": "{{ $opt := \"vscode\" -}}\n<< check opt >>\n@\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"Code\" }\n@c\n{{ end -}}\n",
+    "zxc.20260502020153.1": "{{ $opt := \"leo\" -}}\n<< check opt >>\n@\n- commands: [\"move --workspace 3\"]\n  match:\n    - window_process: { regex: \"leo\" }\n@c\n{{ end -}}\n",
     "zxc.20260514061202.1": "- commands: [\"move --workspace 9\"]\n  match:\n    - window_process: { regex: \"KeePassXC\" }",
     "User.20260301210952.1": "- commands: ['ignore']\n  match:\n    # Ignores any Zebar windows.\n    - window_process: {equals: 'zebar'}\n    # Ignores picture-in-picture windows for browsers.\n    - window_title: {regex: '[Pp]icture.in.[Pp]icture'}\n      window_class: {regex: 'Chrome_WidgetWin_1|MozillaDialogClass'}\n    # Ignore rules for various 3rd-party apps.\n    - window_process: {equals: 'PowerToys'}\n      window_class: {regex: 'HwndWrapper\\[PowerToys\\.PowerAccent.*?\\]'}\n    - window_process: {equals: 'PowerToys'}\n      window_title: {regex: '.*? - Peek'}\n    - window_process: {equals: 'Lively'}\n      window_class: {regex: 'HwndWrapper'}\n    - window_process: {equals: 'EXCEL'}\n      window_class: {not_regex: 'XLMAIN'}\n    - window_process: {equals: 'WINWORD'}\n      window_class: {not_regex: 'OpusApp'}\n    - window_process: {equals: 'POWERPNT'}\n      window_class: {not_regex: 'PPTFrameClass'}\n",
     "User.20260301222626.1": "- commands: [\"set-floating\"]\n  match:\n    - window_process: { equals: \"Flow.Launcher\" }\n      window_title: { equals: \"Settings\" }",
@@ -11082,7 +11087,7 @@
     "zxc.20260329023750.1": "{{ $opt := \"gpg_agent\" -}}\n{{ $cmd := \"gpg-connect-agent\" -}}\n<< check opt and cmd >>\nRun(\"gpg-connect-agent /bye\", , \"Hide\")\n{{ end -}}\n",
     "User.20260301185900.1": "{{ $opt := \"kde_connect\" -}}\n{{ $cmd := \"kdeconnect-cli\" -}}\n<< check opt and cmd >>\nRun(\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"kdeconnect\" \"current\" \"bin\" \"kdeconnectd.exe\" }}\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
     "zxc.20260408010815.1": "{{ if and (lookPath \"wezterm\") (eq .my.terminal.windows \"wezterm\") -}}\nRun \"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"wezterm\" \"current\" \"wezterm-gui.exe\" }}\"\nWinWait(\"ahk_exe wezterm-gui.exe\")\n{{ end -}}\n",
-    "User.20260302135941.1": "{{ if lookPath \"brave\" -}}\nRun(\"brave\", , \"Max\")\nWinWait(\"ahk_exe brave.exe\")\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe brave.exe\"\nRun \"glazewm command move --workspace 2\", ,\"Hide\"\n{{ end -}}\n{{ else if lookPath \"firefox\" -}}\nRun(\"firefox\", , \"Max\")\nWinWait(\"ahk_exe firefox.exe\")\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe firefox.exe\"\nRun \"glazewm command move --workspace 2\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
+    "User.20260302135941.1": "{{ if and (lookPath \"firefox\") (eq .my.browser.default \"firefox\") -}}\nRun(\"firefox\", , \"Max\")\nWinWait(\"ahk_exe firefox.exe\")\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe firefox.exe\"\nRun \"glazewm command move --workspace 2\", ,\"Hide\"\n{{ end -}}\n{{ else if and (lookPath \"brave\") (eq .my.browser.default \"brave\") -}}\nRun(\"brave\", , \"Max\")\nWinWait(\"ahk_exe brave.exe\")\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe brave.exe\"\nRun \"glazewm command move --workspace 2\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
     "User.20260302135946.1": "{{ $vscode := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscode\" \"current\" \"Code.exe\" -}}\n{{ $vscodium := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscodium\" \"current\" \"VSCodium.exe\" -}}\n{{ $opt := \"vscodium\" -}}\n{{ $cmd := \"vscodium\" -}}\n<< check opt and cmd >>\nRun({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait(\"ahk_exe VSCodium.exe\")\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe VSCodium.exe\"\nRun \"glazewm command move --workspace 3\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n{{ $opt := \"vscode\" -}}\n{{ $cmd := \"code\" -}}\n<< check opt and cmd >>\nRun({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait \"ahk_exe Code.exe\"\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe Code.exe\"\nRun \"glazewm command move --workspace 3\", ,\"Hide\"\n{{ end -}}\n{{ end -}}",
     "zxc.20260502015606.1": "{{ $opt := \"leo\" -}}\n{{ $cmd := \"leo\" -}}\n<< check opt and cmd >>\nRun \"leo\", , \"Max\"\n{{ end -}}\n",
     "zxc.20260315173154.1": "{{ $opt := \"everything\" -}}\n{{ $cmd := \"everything\" -}}\n<< check opt and cmd >>\nRun(\"everything\", , \"Hide\")\n{{ end -}}",
@@ -11097,7 +11102,7 @@
     "zxc.20260320230804.1": "{{ $opt := \"navidrome\" -}}\n{{ $cmd := \"navidrome\" -}}\n<< check opt and cmd >>\nRun({{ print \"navidrome --datafolder \" (joinPath (env \"LOCALAPPDATA\") \"navidrome\") | quote }}, {{ joinPath .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}\n",
     "zxc.20260326000727.1": "{{ $opt := \"syncthing\" -}}\n{{ $cmd := \"syncthing\" -}}\n<< check opt and cmd >>\nRun(\"syncthing serve --no-console --no-browser\", , \"Hide\")\n{{ end -}}",
     "zxc.20260329185904.1": "{{ $jellyfin_mpv_shim := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"jellyfin-mpv-shim\" \"current\" \"run.exe\" -}}\n{{ $opt := \"jellyfin_mpv_shim\" -}}\n{{ $cmd := $jellyfin_mpv_shim -}}\n<< check opt and cmd >>\nRun({{ $jellyfin_mpv_shim | quote }}, , \"Hide\")\n{{ end -}}",
-    "zxc.20260514061811.1": "{{ if lookPath \"runemacs\" -}}\nRun \"runemacs\", {{ .chezmoi.homeDir | quote }}, \"Hide\"\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe emacs.exe\"\nRun \"glazewm command move --workspace 3\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260514061811.1": "{{ if lookPath \"runemacs\" -}}\nRun \"runemacs\", {{ .chezmoi.homeDir | quote }}, \"Hide\"\nWinWait \"ahk_exe emacs.exe\"\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe emacs.exe\"\nRun \"glazewm command move --workspace 6\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260504133747.1": "{{ if lookPath \"kmonad\" -}}\n{{ joinPath .chezmoi.homeDir \".config\" \"sv\" \"kmonad\" }}\n{{ end -}}",
     "zxc.20260504134034.1": "{{ if lookPath \"syncthing\" -}}\n{{ joinPath .chezmoi.homeDir \".config\" \"sv\" \"syncthing\" }}\n{{ end -}}",
     "zxc.20260507002719.1": "<< unix >>\n<< flatpak fcitx5 >>\n@others\n{{ end -}}\n{{ end -}}",
@@ -12092,7 +12097,7 @@
       "_mod_time": 1780272723.736
     },
     "User.20260226001402.1": {
-      "_mod_time": 1780272723.734
+      "_mod_time": 1780314884.319
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1777891402.212
@@ -12125,7 +12130,7 @@
       "_mod_time": 1777179946.871
     },
     "User.20260301202336.1": {
-      "_mod_time": 1780294605.91
+      "_mod_time": 1780310933.114
     },
     "zxc.20260327184129.1": {
       "_mod_time": 1778855150.594
@@ -12200,7 +12205,7 @@
       "_mod_time": 1780272726.068
     },
     "User.20260217223030.1": {
-      "_mod_time": 1780300929.8
+      "_mod_time": 1780307851.546
     },
     "User.20260217223035.1": {
       "_mod_time": 1780272726.069
@@ -12395,7 +12400,7 @@
       "_mod_time": 1780272726.071
     },
     "zxc.20260601154622.1": {
-      "_mod_time": 1780300205.211
+      "_mod_time": 1780307851.546
     },
     "zxc.20260125211938.1": {
       "_mod_time": 1780272723.745
@@ -12485,7 +12490,7 @@
       "_mod_time": 1777385863.235
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1780282652.699
+      "_mod_time": 1780314884.338
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1777382331.981
@@ -12539,7 +12544,7 @@
       "_mod_time": 1778855150.563
     },
     "zxc.20260518233322.1": {
-      "_mod_time": 1780300642.875
+      "_mod_time": 1780307851.546
     }
   }
 }
