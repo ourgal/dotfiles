@@ -10902,7 +10902,7 @@
     "User.20260305235255.1": "(add-hook 'elfeed-search-mode-hook #'elfeed-update)\n;; Update hourly\n(run-at-time nil (* 60 60) #'elfeed-update)\n",
     "User.20260305235234.1": "(map! :leader\n      :desc \"Elfeed\" \"o e\" #'elfeed)\n(map! :after elfeed\n      :map elfeed-show-mode-map\n      :n \"y\" #'elfeed-show-yank)\n",
     "zxc.20260531155652.1": "{{ if .my.doomemacs.elfeed_org -}}\n@others\n{{ end -}}\n",
-    "zxc.20260531155910.1": "(after! elfeed\n  (setq rmh-elfeed-org-files (list \"~/org/elfeed.org\"))\n  (setq elfeed-search-filter \"@2-weeks-ago +unread\")\n  (elfeed-set-timeout 60))\n",
+    "zxc.20260531155910.1": "(after! elfeed\n  (setq rmh-elfeed-org-files (list \"~/org/elfeed.org\"))\n  (setq elfeed-search-filter \"@2-weeks-ago +unread\")\n  (elfeed-set-timeout 120))\n",
     "User.20260307165206.1": "{{ if .my.doomemacs.elfeed_protocol -}}\n@others\n{{ end -}}\n",
     "User.20260307200154.1": "{{ $domain := \"miniflux.zxc.cn\" -}}\n{{ $protocol := \"http\" -}}\n{{ if eq .chezmoi.hostname \"work\" -}}\n{{ $domain = print \"miniflux.\" ((includeTemplate \"my_domain.key\") | trim ) -}}\n{{ $protocol = \"https\" -}}\n{{ end -}}\n",
     "User.20260307200144.1": "(use-package! elfeed-protocol\n  :custom\n  (elfeed-use-curl t)\n  (elfeed-protocol-enabled-protocols '(fever))\n  (elfeed-protocol-fever-update-unread-only nil)\n  (elfeed-protocol-fever-fetch-category-as-tag t)\n  (elfeed-protocol-feeds '((\"fever+{{ $protocol }}://miniflux@{{ $domain }}\"\n                                 :api-url \"{{ $protocol }}://{{ $domain }}/fever/\"\n                                 :password \"{{ gopass \"miniflux/fever\" | trim }}\")))\n  :config\n  (elfeed-set-timeout 36000)\n  (elfeed-protocol-enable))\n",
@@ -12200,7 +12200,7 @@
       "_mod_time": 1780272726.068
     },
     "User.20260217223030.1": {
-      "_mod_time": 1780279533.659
+      "_mod_time": 1780300929.8
     },
     "User.20260217223035.1": {
       "_mod_time": 1780272726.069
