@@ -90,7 +90,7 @@
 
 (setq browse-url-handlers
       '(("\\(bilibili\\.com\\|vimeo\\.com\\|twitch\\.tv\\)" . browse-url-mpv)
-        ("." . browse-url-firefox)))
+        ("." . {{ if eq .chezmoi.os "windows" }}browse-url-default-windows-browser{{ else }}browse-url-firefox{{ end }})))
 (after! org
   (setq org-agenda-files '("~/org/agenda.org")))
 (map! :n "C-w o" #'delete-other-windows
