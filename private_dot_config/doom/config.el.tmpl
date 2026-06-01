@@ -225,7 +225,7 @@
 (after! elfeed
   (setq rmh-elfeed-org-files (list "~/org/elfeed.org"))
   (setq elfeed-search-filter "@2-weeks-ago +unread")
-  (elfeed-set-timeout 60))
+  (elfeed-set-timeout 120))
 {{ end -}}
 {{ if .my.doomemacs.elfeed_protocol -}}
 {{ $domain := "miniflux.zxc.cn" -}}
