@@ -224,7 +224,7 @@
 {{ if .my.doomemacs.elfeed_org -}}
 (after! elfeed
   (setq rmh-elfeed-org-files (list "~/org/elfeed.org"))
-  (setq elfeed-search-filter "@2-weeks-ago +unread")
+  (setq elfeed-search-filter "@2-weeks-ago +unread ")
   (elfeed-set-timeout 120))
 {{ end -}}
 {{ if .my.doomemacs.elfeed_protocol -}}
@@ -245,6 +245,7 @@
                                  :password "{{ gopass "miniflux/fever" | trim }}")))
   :config
   (elfeed-set-timeout 36000)
+  (setq elfeed-search-filter "@2-weeks-ago +unread !Commit ")
   (elfeed-protocol-enable))
 {{ end -}}
 (require 'url)
