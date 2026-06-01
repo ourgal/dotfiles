@@ -11083,7 +11083,7 @@
     "zxc.20260320230804.1": "{{ $opt := \"navidrome\" -}}\n{{ $cmd := \"navidrome\" -}}\n<< check opt and cmd >>\nRun({{ print \"navidrome --datafolder \" (joinPath (env \"LOCALAPPDATA\") \"navidrome\") | quote }}, {{ joinPath .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}\n",
     "zxc.20260326000727.1": "{{ $opt := \"syncthing\" -}}\n{{ $cmd := \"syncthing\" -}}\n<< check opt and cmd >>\nRun(\"syncthing serve --no-console --no-browser\", , \"Hide\")\n{{ end -}}",
     "zxc.20260329185904.1": "{{ $jellyfin_mpv_shim := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"jellyfin-mpv-shim\" \"current\" \"run.exe\" -}}\n{{ $opt := \"jellyfin_mpv_shim\" -}}\n{{ $cmd := $jellyfin_mpv_shim -}}\n<< check opt and cmd >>\nRun({{ $jellyfin_mpv_shim | quote }}, , \"Hide\")\n{{ end -}}",
-    "zxc.20260514061811.1": "{{ if lookPath \"runemacs\" -}}\nRun \"runemacs --daemon\", {{ .chezmoi.homeDir | quote }}, \"Hide\"\n{{ end -}}\n",
+    "zxc.20260514061811.1": "{{ if lookPath \"runemacs\" -}}\nRun \"runemacs\", {{ .chezmoi.homeDir | quote }}, \"Hide\"\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe emacs.exe\"\nRun \"glazewm command move --workspace 3\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260504133747.1": "{{ if lookPath \"kmonad\" -}}\n{{ joinPath .chezmoi.homeDir \".config\" \"sv\" \"kmonad\" }}\n{{ end -}}",
     "zxc.20260504134034.1": "{{ if lookPath \"syncthing\" -}}\n{{ joinPath .chezmoi.homeDir \".config\" \"sv\" \"syncthing\" }}\n{{ end -}}",
     "zxc.20260507002719.1": "<< unix >>\n<< flatpak fcitx5 >>\n@others\n{{ end -}}\n{{ end -}}",
@@ -12467,7 +12467,7 @@
       "_mod_time": 1777385863.235
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1780280479.343
+      "_mod_time": 1780282652.699
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1777382331.981
