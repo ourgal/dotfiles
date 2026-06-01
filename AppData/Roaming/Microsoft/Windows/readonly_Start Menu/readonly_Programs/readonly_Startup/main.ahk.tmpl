@@ -169,6 +169,10 @@ Run("syncthing serve --no-console --no-browser", , "Hide")
 Run({{ $jellyfin_mpv_shim | quote }}, , "Hide")
 {{ end -}}
 {{ if lookPath "runemacs" -}}
-Run "runemacs --daemon", {{ .chezmoi.homeDir | quote }}, "Hide"
+Run "runemacs", {{ .chezmoi.homeDir | quote }}, "Hide"
+{{ if lookPath "glazewm" -}}
+WinActivate "ahk_exe emacs.exe"
+Run "glazewm command move --workspace 3", ,"Hide"
+{{ end -}}
 {{ end -}}
 {{ end -}}
