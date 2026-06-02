@@ -20,10 +20,6 @@
     url = "https://mirror.nju.edu.cn/git/doom-emacs.git/"
 {{ end -}}
 {{ end -}}
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "mpv" -}}
-{{ end -}}
-{{ end -}}
 {{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
 {{ if and (hasKey .chezmoi.osRelease "name") (ne .chezmoi.osRelease.name "Void") -}}
 [".local/share/fonts/nerdsymbols"]
@@ -64,6 +60,6 @@
 {{ if lookPath "awesome" -}}
 [".config/awesome-copycats"]
     type = "git-repo"
-    url = "https://github.com/lcpz/awesome-copycats"
+    url = "https://gitee.com/mirrors_aviau/awesome-copycats"
 {{ end -}}
 {{ end -}}

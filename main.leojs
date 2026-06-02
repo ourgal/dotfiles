@@ -1675,19 +1675,6 @@
                               ]
                             },
                             {
-                              "gnx": "User.20260226001125.1",
-                              "vh": "mpv plugins",
-                              "children": [
-                                {
-                                  "gnx": "User.20260225204326.1"
-                                },
-                                {
-                                  "gnx": "zxc.20260202201936.1",
-                                  "vh": "content"
-                                }
-                              ]
-                            },
-                            {
                               "gnx": "User.20260226001211.1",
                               "vh": "nerd symbols font",
                               "children": [
@@ -10639,7 +10626,6 @@
     "User.20260226001056.1": "<< unix dos >>\n{{ if lookPath \"emacs\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260225204914.1": "{{ if eq .chezmoi.os \"windows\" \"linux\" \"android\" -}}\n",
     "zxc.20260126160721.1": "[\".emacs.d\"]\n    type = \"git-repo\"\n    url = \"https://mirror.nju.edu.cn/git/doom-emacs.git/\"",
-    "User.20260226001125.1": "<< dos >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260226001211.1": "<< unix >>\n<< not void >>\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260220235538.1": "[\".local/share/fonts/nerdsymbols\"]\n    type = \"archive\"\n    url = \"https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdFontsSymbolsOnly.tar.xz\"\n    exact = true\n    include = [ \"*.ttf\" ]\n",
     "zxc.20260504120847.1": "<< unix >>\n@others\n{{ end -}}\n",
@@ -10649,7 +10635,7 @@
     "zxc.20260419193731.1": "<< dos >>\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260419193742.1": "[\"AppData/Local/clink/clink-gizmos\"]\n    type = \"git-repo\"\n    url = \"https://github.com/chrisant996/clink-gizmos\"\n    refreshPeriod = \"168h\"\n\n[\"AppData/Local/clink/clink-completions\"]\n    type = \"git-repo\"\n    url = \"https://github.com/vladimir-kotikov/clink-completions\"\n    refreshPeriod = \"168h\"",
     "zxc.20260529151253.1": "<< unix >>\n{{ if lookPath \"awesome\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260529151358.1": "[\".config/awesome-copycats\"]\n    type = \"git-repo\"\n    url = \"https://github.com/lcpz/awesome-copycats\"",
+    "zxc.20260529151358.1": "[\".config/awesome-copycats\"]\n    type = \"git-repo\"\n    url = \"https://gitee.com/mirrors_aviau/awesome-copycats\"\n",
     "zxc.20260202203521.17": "<< dos >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260323201237.1": "Set-StrictMode -Version Latest\n$ErrorActionPreference = \"Stop\"\n$PSNativeCommandUseErrorActionPreference = $true",
     "zxc.20260202203521.18": "# 5.12.0\ncd {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"mpv\" \"current\" | quote }}\nirm https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/windows.ps1 | iex",
@@ -12018,7 +12004,7 @@
       "_mod_time": 1777713442.466
     },
     "User.20260226000855.1": {
-      "_mod_time": 1780384781.807
+      "_mod_time": 1780386437.556
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1776434513.068
