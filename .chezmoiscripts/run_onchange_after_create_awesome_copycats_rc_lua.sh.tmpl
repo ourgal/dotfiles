@@ -1,12 +1,18 @@
 {{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
 {{ if lookPath "awesome" -}}
+#!{{lookPath "bash"}}
+set -euo pipefail
+{{ $path := (joinPath .chezmoi.homeDir ".config" "awesome-copycats" "rc.lua") -}}
+{{ if stat $path -}}
+# {{ include $path | sha256sum }}
+cat << EOF > {{ $path }}
+
 --[[
 
      Awesome WM configuration template
      github.com/lcpz
 
 --]]
-
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
@@ -783,24 +789,7 @@ client.connect_signal("property::minimized", backham)
 client.connect_signal("unmanage", backham)
 -- ensure there is always a selected client during tag switching or logins
 tag.connect_signal("property::selected", backham)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+EOF
+{{ end -}}
 {{ end -}}
 {{ end -}}
