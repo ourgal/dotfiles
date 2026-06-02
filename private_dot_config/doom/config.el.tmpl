@@ -213,21 +213,24 @@
                (nnimap-stream ssl))))
 
 (setq gnus-thread-sort-functions '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date)))
-(add-hook 'elfeed-search-mode-hook #'elfeed-update)
-;; Update hourly
-(run-at-time nil (* 60 60) #'elfeed-update)
 (map! :leader
       :desc "Elfeed" "o e" #'elfeed)
 (map! :after elfeed
       :map elfeed-show-mode-map
       :n "y" #'elfeed-show-yank)
 {{ if .my.doomemacs.elfeed_org -}}
+(add-hook 'elfeed-search-mode-hook #'elfeed-update)
+;; Update hourly
+(run-at-time nil (* 60 60) #'elfeed-update)
 (after! elfeed
   (setq rmh-elfeed-org-files (list "~/org/elfeed.org"))
   (setq elfeed-search-filter "@2-weeks-ago +unread ")
   (elfeed-set-timeout 120))
 {{ end -}}
 {{ if .my.doomemacs.elfeed_protocol -}}
+(add-hook 'elfeed-search-mode-hook #'elfeed-update)
+;; Update hourly
+(run-at-time nil (* 15 60) #'elfeed-update)
 {{ $domain := "miniflux.zxc.cn" -}}
 {{ $protocol := "http" -}}
 {{ if eq .chezmoi.hostname "localhost" -}}
