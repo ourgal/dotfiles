@@ -116,7 +116,11 @@ Run("everything", , "Hide")
 {{ end -}}
 {{ if and (lookPath "wt") (lookPath "pwsh") (eq .my.terminal.windows "wt") -}}
 Run {{ joinPath .chezmoi.homeDir "scoop" "apps" "windows-terminal" "current" "wt.exe" | quote }}
-WinWait("ahk_exe WindowsTerminal.exe")
+WinWait "ahk_exe WindowsTerminal.exe"
+{{ if lookPath "glazewm" -}}
+WinActivate "ahk_exe WindowsTerminal.exe"
+Run "glazewm command move --workspace 1", ,"Hide"
+{{ end -}}
 {{ end -}}
 {{ $opt := "autohotkey" -}}
 {{ $cmd := "autohotkey" -}}
