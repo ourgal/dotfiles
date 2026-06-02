@@ -1,10 +1,8 @@
 {{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
 {{ if lookPath "bash" -}}
-[".local/lib/ble-nightly"]
-    type = "archive"
-    url = "https://github.com/akinomyoga/ble.sh/releases/download/nightly/ble-nightly.tar.xz"
-    exact = true
-    stripComponents = 1
+[".local/lib/ble_sh"]
+    type = "git-repo"
+    url = "https://gitcode.com/gh_mirrors/bl/ble.sh"
     refreshPeriod = "168h"
 {{ end -}}
 {{ end -}}
