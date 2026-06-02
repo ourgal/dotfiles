@@ -230,7 +230,7 @@
 {{ if .my.doomemacs.elfeed_protocol -}}
 {{ $domain := "miniflux.zxc.cn" -}}
 {{ $protocol := "http" -}}
-{{ if eq .chezmoi.hostname "work" -}}
+{{ if eq .chezmoi.hostname "localhost" -}}
 {{ $domain = print "miniflux." ((includeTemplate "my_domain.key") | trim ) -}}
 {{ $protocol = "https" -}}
 {{ end -}}
