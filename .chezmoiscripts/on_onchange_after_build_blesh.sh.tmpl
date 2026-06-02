@@ -1,0 +1,11 @@
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if lookPath "bash" -}}
+#!{{lookPath "bash"}}
+set -euo pipefail
+{{ $path := (joinPath .chezmoi.homeDir ".local" "lib" "ble_sh") -}}
+{{ if stat $path -}}
+# {{ output "git" "-C" $path "rev-parse" "HEAD" }}
+make -C {{ $path }}
+{{ end -}}
+{{ end -}}
+{{ end -}}

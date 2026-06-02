@@ -115,7 +115,7 @@ if ! shopt -oq posix; then
   fi
 fi
 {{ if and (hasKey .chezmoi.kernel "osrelease") (not (mustRegexMatch ".*WSL.*" .chezmoi.kernel.osrelease)) -}}
-source ~/.local/lib/ble-nightly/ble.sh
+source ~/.local/lib/ble_sh/out/ble.sh
 {{ end -}}
 {{ if lookPath "fzf" -}}
 {{ if or (lookPath "mcfly") (lookPath "atuin") -}}
