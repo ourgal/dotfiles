@@ -4,6 +4,14 @@
     type = "git-repo"
     url = "https://github.com/akinomyoga/ble.sh.git"
     refreshPeriod = "168h"
+    clone.args = [
+        "--recurse-submodules",
+        "-j8"
+    ]
+    pull.args = [
+        "--recurse-submodules",
+        "-j8"
+    ]
 {{ end -}}
 {{ end -}}
 {{ if eq .chezmoi.os "windows" -}}
@@ -61,5 +69,13 @@
 [".config/awesome-copycats"]
     type = "git-repo"
     url = "https://github.com/lcpz/awesome-copycats"
+    clone.args = [
+        "--recurse-submodules",
+        "-j8"
+    ]
+    pull.args = [
+        "--recurse-submodules",
+        "-j8"
+    ]
 {{ end -}}
 {{ end -}}

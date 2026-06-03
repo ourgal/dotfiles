@@ -1643,7 +1643,13 @@
                                 },
                                 {
                                   "gnx": "zxc.20260126160624.1",
-                                  "vh": "content"
+                                  "vh": "content",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260603085101.1",
+                                      "vh": "<< git update submodule args >>"
+                                    }
+                                  ]
                                 }
                               ]
                             },
@@ -1738,7 +1744,12 @@
                                 },
                                 {
                                   "gnx": "zxc.20260529151358.1",
-                                  "vh": "content"
+                                  "vh": "content",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260603085101.1"
+                                    }
+                                  ]
                                 }
                               ]
                             }
@@ -10620,7 +10631,8 @@
     "User.20260221144015.1": "{{ if not (lookPath .) }}\n{{ fail (printf \"%s is not found\" .) -}}\n{{ end -}}",
     "User.20260226000855.1": "@others",
     "User.20260226000910.1": "<< unix >>\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260126160624.1": "[\".local/lib/ble_sh\"]\n    type = \"git-repo\"\n    url = \"https://github.com/akinomyoga/ble.sh.git\"\n    refreshPeriod = \"168h\"\n",
+    "zxc.20260126160624.1": "[\".local/lib/ble_sh\"]\n    type = \"git-repo\"\n    url = \"https://github.com/akinomyoga/ble.sh.git\"\n    refreshPeriod = \"168h\"\n    clone.args = [\n        << git update submodule args >>\n    ]\n    pull.args = [\n        << git update submodule args >>\n    ]\n",
+    "zxc.20260603085101.1": "\"--recurse-submodules\",\n\"-j8\"\n",
     "User.20260226001021.1": "<< dos >>\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260130074346.2": "[\".cache/vscodium/extensions/vsnetrw.vsix\"]\n    type = \"file\"\n    url = \"https://github.com/danprince/vsnetrw/releases/download/v0.3.2/vsnetrw-0.3.2.vsix\"\n",
     "User.20260226001056.1": "<< unix dos >>\n{{ if lookPath \"emacs\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -10635,7 +10647,7 @@
     "zxc.20260419193731.1": "<< dos >>\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260419193742.1": "[\"AppData/Local/clink/clink-gizmos\"]\n    type = \"git-repo\"\n    url = \"https://github.com/chrisant996/clink-gizmos\"\n    refreshPeriod = \"168h\"\n\n[\"AppData/Local/clink/clink-completions\"]\n    type = \"git-repo\"\n    url = \"https://github.com/vladimir-kotikov/clink-completions\"\n    refreshPeriod = \"168h\"",
     "zxc.20260529151253.1": "<< unix >>\n{{ if lookPath \"awesome\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260529151358.1": "[\".config/awesome-copycats\"]\n    type = \"git-repo\"\n    url = \"https://github.com/lcpz/awesome-copycats\"\n",
+    "zxc.20260529151358.1": "[\".config/awesome-copycats\"]\n    type = \"git-repo\"\n    url = \"https://github.com/lcpz/awesome-copycats\"\n    clone.args = [\n        << git update submodule args >>\n    ]\n    pull.args = [\n        << git update submodule args >>\n    ]\n",
     "zxc.20260202203521.17": "<< dos >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260323201237.1": "Set-StrictMode -Version Latest\n$ErrorActionPreference = \"Stop\"\n$PSNativeCommandUseErrorActionPreference = $true",
     "zxc.20260202203521.18": "# 5.12.0\ncd {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"mpv\" \"current\" | quote }}\nirm https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/windows.ps1 | iex",
@@ -12004,7 +12016,7 @@
       "_mod_time": 1777713442.466
     },
     "User.20260226000855.1": {
-      "_mod_time": 1780446563.296
+      "_mod_time": 1780448023.578
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1776434513.068
