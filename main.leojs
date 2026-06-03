@@ -278,21 +278,31 @@
               ]
             },
             {
-              "gnx": "zxc.20260603203712.1",
+              "gnx": "zxc.20260423154131.1",
               "vh": "clink",
               "children": [
                 {
-                  "gnx": "zxc.20260603203823.1",
-                  "vh": "options",
+                  "gnx": "zxc.20260423154131.2",
+                  "vh": "@clean dot_inputrc.tmpl",
                   "children": [
                     {
-                      "gnx": "zxc.20260423154131.5",
-                      "vh": "color"
+                      "gnx": "User.20260225204326.1",
+                      "vh": "<< dos >>"
+                    },
+                    {
+                      "gnx": "zxc.20260423154131.4",
+                      "vh": "content",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260423154131.5",
+                          "vh": "color"
+                        }
+                      ]
                     }
                   ]
                 },
                 {
-                  "gnx": "zxc.20260603204003.1",
+                  "gnx": "zxc.20260423154131.6",
                   "vh": "aliases",
                   "children": [
                     {
@@ -320,40 +330,6 @@
                           "vh": "unlock keepassxc"
                         }
                       ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "gnx": "zxc.20260423154131.1",
-              "vh": "clink",
-              "children": [
-                {
-                  "gnx": "zxc.20260423154131.2",
-                  "vh": "@clean dot_inputrc.tmpl",
-                  "children": [
-                    {
-                      "gnx": "User.20260225204326.1",
-                      "vh": "<< dos >>"
-                    },
-                    {
-                      "gnx": "zxc.20260423154131.4",
-                      "vh": "content",
-                      "children": [
-                        {
-                          "gnx": "zxc.20260423154131.5"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "gnx": "zxc.20260423154131.6",
-                  "vh": "aliases",
-                  "children": [
-                    {
-                      "gnx": "zxc.20260423154131.7"
                     }
                   ]
                 }
@@ -10335,7 +10311,118 @@
                           ]
                         },
                         {
-                          "gnx": "zxc.20260603203712.1"
+                          "gnx": "zxc.20260603203712.1",
+                          "vh": "clink",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260603203823.1",
+                              "vh": "options",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260423154131.5"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260603204003.1",
+                              "vh": "aliases",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260423154131.7"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "gnx": "zxc.20260603224549.1",
+                          "vh": "bash",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260603224629.1",
+                              "vh": "bashrc",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260603225116.1",
+                                  "vh": "debian origin",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260125143032.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260603225204.1",
+                                  "vh": "bash readline",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260125143635.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260603225301.1",
+                                  "vh": "fzf",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260125143653.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260603225323.1",
+                                  "vh": "prompt",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260125143706.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260603225345.1",
+                                  "vh": "eza",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260125143716.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260603225414.1",
+                                  "vh": "history",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260125143728.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260603225433.1",
+                                  "vh": "zoxide",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260125143738.1"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260603225540.1",
+                              "vh": "bash profile",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260603225607.1",
+                                  "vh": "import bashrc",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260125144055.1"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
                         }
                       ]
                     }
@@ -10980,26 +11067,23 @@
     "zxc.20260603164942.1": "Invoke-Expression -Command $(mcfly init powershell | out-string)\n",
     "User.20260226225250.1": "{{ $opt := \"navi\" -}}\n{{ $cmd := \"\" -}}\n<< check opt and cmd >>\n@others\n{{ end -}}\n",
     "zxc.20260504192519.1": "function Invoke-Navi {\n    $startArgs = @{\n        FileName = \"navi\";\n        Arguments = $args;\n        RedirectStandardOutput = $true;\n        WorkingDirectory = $PWD;\n        UseShellExecute = $false;\n    }\n    $p = [System.Diagnostics.Process]@{StartInfo = $startArgs}\n\n    [void]$p.Start()\n    $result = $p.StandardOutput.ReadToEnd()\n    $p.WaitForExit()\n\n    $result\n}\n\n\n### Initial code from @lurebat (https://github.com/lurebat/)\n### See #570 (https://github.com/denisidoro/navi/issues/570) for its original contribution\nfunction Invoke-NaviWidget {\n    $ast = $tokens = $errors = $cursor = $null\n    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref] $ast, [ref] $tokens, [ref] $errors, [ref] $cursor)\n\n    $line = $ast.ToString().Trim()\n    $output = $null\n\n    if ([String]::IsNullOrEmpty($line)) {\n        $output = (Invoke-Navi \"--print\" | Out-String).Trim()\n    }\n    else {\n        $best_match = (Invoke-Navi \"--print --best-match --query `\"$line`\"\" | Out-String).Trim()\n        if ([String]::IsNullOrEmpty($best_match)) {\n            $output = (Invoke-Navi \"--print --query `\"$line`\"\" | Out-String).Trim()\n        }\n        else {\n            $output = $best_match\n        }\n    }\n\n    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()\n    [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt()\n\n    ### Handling the case when the user escapes without selecting any entry\n    if (-Not([String]::IsNullOrEmpty($output))) {\n        [Microsoft.PowerShell.PSConsoleReadLine]::Insert([String]$output)\n    }\n}\n\nSet-PSReadlineKeyHandler -BriefDescription \"A keybinding to open Navi Widget\" -Chord Ctrl+g -ScriptBlock { Invoke-NaviWidget }\n",
-    "zxc.20260603203712.1": "**** clink\n\n",
-    "zxc.20260603203823.1": "Color options.\n\n#+begin_src\n@others\n#+end_src\n\n",
-    "zxc.20260423154131.5": "set colored-stats                 on   # Turn on completion colors.\nset colored-completion-prefix     on   # Color the typed completion prefix.",
-    "zxc.20260603204003.1": "Aliases.\n\n#+begin_src\n@others\n#+end_src\n",
+    "zxc.20260423154131.2": "<< dos >>\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260225204326.1": "{{ if eq .chezmoi.os \"windows\" -}}\n",
+    "zxc.20260423154131.5": "set colored-stats                 on   # Turn on completion colors.\nset colored-completion-prefix     on   # Color the typed completion prefix.\n",
     "zxc.20260603204111.1": "ll=eza --long --icons=auto --group --group-directories-first --time-style relative $*\nls=eza --icons=auto $*\n",
     "zxc.20260603204123.1": "reboot=shutdown /t 0 /r $*\npoweroff=shutdown /t 0 /s $*\n",
     "zxc.20260603204137.1": "{{ if lookPath \"nircmd\" -}}\nscroff=nircmd monitor off $*\n{{ end -}}\n",
     "zxc.20260603204152.1": "scoop-update=scoop update * && scoop cache remove * && scoop cleanup *\n",
     "zxc.20260603204204.1": "unlock-keepassxc=sh -c \"gopass show -o keepassxc/main | keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir \"syncthing\" \"keepassxc\" \"main.kdbx\" | replace \"\\\\\" \"/\" }} &\"\n",
-    "zxc.20260423154131.2": "<< dos >>\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260225204326.1": "{{ if eq .chezmoi.os \"windows\" -}}\n",
     "zxc.20260125143007.1": "<< unix >>\n<< os >>\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260504185129.1": "{{ $os := .chezmoi.os -}}\n{{ if eq .chezmoi.os \"linux\" -}}\n{{ $os = .chezmoi.osRelease.id -}}\n{{ end -}}\n",
     "User.20260225203941.1": "{{ if or (eq .chezmoi.os \"linux\") (eq .chezmoi.os \"android\") -}}\n",
-    "zxc.20260125143032.1": "# ~/.bashrc: executed by bash(1) for non-login shells.\n# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)\n# for examples\n\n# If not running interactively, don't do anything\ncase $- in\n    *i*) ;;\n      *) return;;\nesac\n\n# don't put duplicate lines or lines starting with space in the history.\n# See bash(1) for more options\nHISTCONTROL=ignoreboth\n\n# append to the history file, don't overwrite it\nshopt -s histappend\n\n# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)\nHISTSIZE=1000\nHISTFILESIZE=2000\n\n# check the window size after each command and, if necessary,\n# update the values of LINES and COLUMNS.\nshopt -s checkwinsize\n\n# If set, the pattern \"**\" used in a pathname expansion context will\n# match all files and zero or more directories and subdirectories.\n#shopt -s globstar\n\n# make less more friendly for non-text input files, see lesspipe(1)\n#[ -x /usr/bin/lesspipe ] && eval \"$(SHELL=/bin/sh lesspipe)\"\n\n{{ if and (eq .chezmoi.os \"linux\") (eq .chezmoi.osRelease.id \"debian\") -}}\n# set variable identifying the chroot you work in (used in the prompt below)\nif [ -z \"''\\${debian_chroot:-}\" ] && [ -r /etc/debian_chroot ]; then\n    debian_chroot=$(cat /etc/debian_chroot)\nfi\n{{ end -}}\n\n# set a fancy prompt (non-color, unless we know we \"want\" color)\ncase \"$TERM\" in\n    xterm-color|*-256color) color_prompt=yes;;\nesac\n\n# uncomment for a colored prompt, if the terminal has the capability; turned\n# off by default to not distract the user: the focus in a terminal window\n# should be on the output of commands, not on the prompt\n#force_color_prompt=yes\n\nif [ -n \"$force_color_prompt\" ]; then\n    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then\n        # We have color support; assume it's compliant with Ecma-48\n        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such\n        # a case would tend to support setf rather than setaf.)\n        color_prompt=yes\n    else\n        color_prompt=\n    fi\nfi\n\n{{ if and (eq .chezmoi.os \"linux\") (eq .chezmoi.osRelease.id \"debian\") -}}\n# If this is an xterm set the title to user@host:dir\ncase \"$TERM\" in\nxterm*|rxvt*)\n    PS1=\"\\[\\e]0;''\\${debian_chroot:+($debian_chroot)}\\u@\\h: \\w\\a\\]$PS1\"\n    ;;\n*)\n    ;;\nesac\n{{ end -}}\n\n# enable color support of ls and also add handy aliases\nif [ -x /usr/bin/dircolors ]; then\n    test -r ~/.dircolors && eval \"$(dircolors -b ~/.dircolors)\" || eval \"$(dircolors -b)\"\n    alias ls='ls --color=auto'\n    #alias dir='dir --color=auto'\n    #alias vdir='vdir --color=auto'\n\n    #alias grep='grep --color=auto'\n    #alias fgrep='fgrep --color=auto'\n    #alias egrep='egrep --color=auto'\nfi\n\n# colored GCC warnings and errors\n#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'\n\n# some more ls aliases\n#alias ll='ls -l'\n#alias la='ls -A'\n#alias l='ls -CF'\n\n# Alias definitions.\n# You may want to put all your additions into a separate file like\n# ~/.bash_aliases, instead of adding them here directly.\n# See /usr/share/doc/bash-doc/examples in the bash-doc package.\n\nif [ -f ~/.bash_aliases ]; then\n    . ~/.bash_aliases\nfi\n\n# enable programmable completion features (you don't need to enable\n# this, if it's already enabled in /etc/bash.bashrc and /etc/profile\n# sources /etc/bash.bashrc).\nif ! shopt -oq posix; then\n  if [ -f /usr/share/bash-completion/bash_completion ]; then\n    . /usr/share/bash-completion/bash_completion\n  elif [ -f /etc/bash_completion ]; then\n    . /etc/bash_completion\n  fi\nfi",
+    "zxc.20260125143032.1": "# ~/.bashrc: executed by bash(1) for non-login shells.\n# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)\n# for examples\n\n# If not running interactively, don't do anything\ncase $- in\n    *i*) ;;\n      *) return;;\nesac\n\n# don't put duplicate lines or lines starting with space in the history.\n# See bash(1) for more options\nHISTCONTROL=ignoreboth\n\n# append to the history file, don't overwrite it\nshopt -s histappend\n\n# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)\nHISTSIZE=1000\nHISTFILESIZE=2000\n\n# check the window size after each command and, if necessary,\n# update the values of LINES and COLUMNS.\nshopt -s checkwinsize\n\n# If set, the pattern \"**\" used in a pathname expansion context will\n# match all files and zero or more directories and subdirectories.\n#shopt -s globstar\n\n# make less more friendly for non-text input files, see lesspipe(1)\n#[ -x /usr/bin/lesspipe ] && eval \"$(SHELL=/bin/sh lesspipe)\"\n\n{{ if and (eq .chezmoi.os \"linux\") (eq .chezmoi.osRelease.id \"debian\") -}}\n# set variable identifying the chroot you work in (used in the prompt below)\nif [ -z \"''\\${debian_chroot:-}\" ] && [ -r /etc/debian_chroot ]; then\n    debian_chroot=$(cat /etc/debian_chroot)\nfi\n{{ end -}}\n\n# set a fancy prompt (non-color, unless we know we \"want\" color)\ncase \"$TERM\" in\n    xterm-color|*-256color) color_prompt=yes;;\nesac\n\n# uncomment for a colored prompt, if the terminal has the capability; turned\n# off by default to not distract the user: the focus in a terminal window\n# should be on the output of commands, not on the prompt\n#force_color_prompt=yes\n\nif [ -n \"$force_color_prompt\" ]; then\n    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then\n        # We have color support; assume it's compliant with Ecma-48\n        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such\n        # a case would tend to support setf rather than setaf.)\n        color_prompt=yes\n    else\n        color_prompt=\n    fi\nfi\n\n{{ if and (eq .chezmoi.os \"linux\") (eq .chezmoi.osRelease.id \"debian\") -}}\n# If this is an xterm set the title to user@host:dir\ncase \"$TERM\" in\nxterm*|rxvt*)\n    PS1=\"\\[\\e]0;''\\${debian_chroot:+($debian_chroot)}\\u@\\h: \\w\\a\\]$PS1\"\n    ;;\n*)\n    ;;\nesac\n{{ end -}}\n\n# enable color support of ls and also add handy aliases\nif [ -x /usr/bin/dircolors ]; then\n    test -r ~/.dircolors && eval \"$(dircolors -b ~/.dircolors)\" || eval \"$(dircolors -b)\"\n    alias ls='ls --color=auto'\n    #alias dir='dir --color=auto'\n    #alias vdir='vdir --color=auto'\n\n    #alias grep='grep --color=auto'\n    #alias fgrep='fgrep --color=auto'\n    #alias egrep='egrep --color=auto'\nfi\n\n# colored GCC warnings and errors\n#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'\n\n# some more ls aliases\n#alias ll='ls -l'\n#alias la='ls -A'\n#alias l='ls -CF'\n\n# Alias definitions.\n# You may want to put all your additions into a separate file like\n# ~/.bash_aliases, instead of adding them here directly.\n# See /usr/share/doc/bash-doc/examples in the bash-doc package.\n\nif [ -f ~/.bash_aliases ]; then\n    . ~/.bash_aliases\nfi\n\n# enable programmable completion features (you don't need to enable\n# this, if it's already enabled in /etc/bash.bashrc and /etc/profile\n# sources /etc/bash.bashrc).\nif ! shopt -oq posix; then\n  if [ -f /usr/share/bash-completion/bash_completion ]; then\n    . /usr/share/bash-completion/bash_completion\n  elif [ -f /etc/bash_completion ]; then\n    . /etc/bash_completion\n  fi\nfi\n",
     "zxc.20260125143635.1": "<< not WSL >>\nsource ~/.local/lib/ble_sh/out/ble.sh\n{{ end -}}\n",
-    "User.20260225204031.1": "{{ if and (hasKey .chezmoi.kernel \"osrelease\") (not (mustRegexMatch \".*WSL.*\" .chezmoi.kernel.osrelease)) -}}",
-    "zxc.20260125143653.1": "{{ if lookPath \"fzf\" -}}\n{{ if or (lookPath \"mcfly\") (lookPath \"atuin\") -}}\nFZF_CTRL_R_COMMAND= eval \"$(fzf --bash)\"\n{{ else -}}\neval \"$(fzf --bash)\"\n{{ end -}}\n{{ end -}}",
-    "zxc.20260125143706.1": "{{ $starship := and (lookPath \"starship\") (default (index .my.modules \"starship\") (index .my.modules .chezmoi.hostname $os \"starship\")) -}}\n{{ $oh_my_posh := and (lookPath \"oh-my-posh\") (default (index .my.modules \"oh_my_posh\") (index .my.modules .chezmoi.hostname $os \"oh_my_posh\")) -}}\n{{ if any $starship $oh_my_posh -}}\n{{ if $starship -}}\neval \"$(starship init bash)\"\n{{ else -}}\neval \"$(oh-my-posh init bash)\"\n{{ end -}}\n{{ else if lookPath \"oh-my-posh\" -}}\neval \"$(oh-my-posh init bash)\"\n{{ else if lookPath \"starship\" -}}\neval \"$(starship init bash)\"\n{{ else -}}\n{{ end -}}",
-    "zxc.20260125143716.1": "{{ if lookPath \"eza\" -}}\nalias ll='eza --long --git --icons auto --group --group-directories-first --time-style relative'\n{{ end -}}",
+    "User.20260225204031.1": "{{ if and (hasKey .chezmoi.kernel \"osrelease\") (not (mustRegexMatch \".*WSL.*\" .chezmoi.kernel.osrelease)) -}}\n",
+    "zxc.20260125143653.1": "{{ if lookPath \"fzf\" -}}\n{{ if or (lookPath \"mcfly\") (lookPath \"atuin\") -}}\nFZF_CTRL_R_COMMAND= eval \"$(fzf --bash)\"\n{{ else -}}\neval \"$(fzf --bash)\"\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260125143706.1": "{{ $starship := and (lookPath \"starship\") (default (index .my.modules \"starship\") (index .my.modules .chezmoi.hostname $os \"starship\")) -}}\n{{ $oh_my_posh := and (lookPath \"oh-my-posh\") (default (index .my.modules \"oh_my_posh\") (index .my.modules .chezmoi.hostname $os \"oh_my_posh\")) -}}\n{{ if any $starship $oh_my_posh -}}\n{{ if $starship -}}\neval \"$(starship init bash)\"\n{{ else -}}\neval \"$(oh-my-posh init bash)\"\n{{ end -}}\n{{ else if lookPath \"oh-my-posh\" -}}\neval \"$(oh-my-posh init bash)\"\n{{ else if lookPath \"starship\" -}}\neval \"$(starship init bash)\"\n{{ else -}}\n{{ end -}}\n",
+    "zxc.20260125143716.1": "{{ if lookPath \"eza\" -}}\nalias ll='eza --long --git --icons auto --group --group-directories-first --time-style relative'\n{{ end -}}\n",
     "zxc.20260125143728.1": "{{ $atuin := and (lookPath \"atuin\") (default (index .my.modules \"atuin\") (index .my.modules .chezmoi.hostname $os \"atuin\")) -}}\n{{ $mcfly := and (lookPath \"mcfly\") (default (index .my.modules \"mcfly\") (index .my.modules .chezmoi.hostname $os \"mcfly\")) -}}\n{{ if any $atuin $mcfly -}}\n{{ if $atuin -}}\neval \"$(atuin init bash)\"\n{{ else -}}\neval \"$(mcfly init bash)\"\n{{ end -}}\n{{ else if lookPath \"mcfly\" -}}\neval \"$(mcfly init bash)\"\n{{ else if lookPath \"atuin\" -}}\neval \"$(atuin init bash)\"\n{{ else -}}\n{{ end -}}\n",
     "zxc.20260125143738.1": "{{ if lookPath \"zoxide\" -}}\n# zoxdie is needed be the end of bashrc\neval \"$(zoxide init bash)\"\n{{ end -}}\n",
     "zxc.20260125143959.1": "<< unix >>\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -12502,6 +12586,20 @@
     "zxc.20260603155546.1": "\nUpdate scoop packages.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
     "zxc.20260603155640.1": "Unlock KeePassXC.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
     "zxc.20260603155746.1": "Choco completion.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603203712.1": "**** clink\n\n",
+    "zxc.20260603203823.1": "Color options.\n\n#+begin_src\n@others\n#+end_src\n\n",
+    "zxc.20260603204003.1": "Aliases.\n\n#+begin_src\n@others\n#+end_src\n\n",
+    "zxc.20260603224549.1": "**** bash\n",
+    "zxc.20260603224629.1": "***** bashrc\n\n",
+    "zxc.20260603225116.1": "Debian origin bashrc.\n\n#+begin_src bash\n@others\n#+end_src\n\n",
+    "zxc.20260603225204.1": "Bash readline.\n\n#+begin_src bash\n@others\n#+end_src\n\n",
+    "zxc.20260603225301.1": "Fzf.\n\n#+begin_src bash\n@others\n#+end_src\n\n",
+    "zxc.20260603225323.1": "Shell prompt.\n\n#+begin_src bash\n@others\n#+end_src\n\n",
+    "zxc.20260603225345.1": "Eza ls altnative.\n\n#+begin_src bash\n@others\n#+end_src\n\n",
+    "zxc.20260603225414.1": "Shell history.\n\n#+begin_src bash\n@others\n#+end_src\n\n",
+    "zxc.20260603225433.1": "Faster cd.\n\n#+begin_src bash\n@others\n#+end_src\n\n",
+    "zxc.20260603225540.1": "***** bash profile\n\n",
+    "zxc.20260603225607.1": "Import bashrc.\n\n#+begin_src bash\n@others\n#+end_src\n\n",
     "zxc.20260202205715.1": "<< dos >>\n@others\n{{ end -}}",
     "zxc.20260202205901.1": "# Flower - とても深いグリーン\nhttps://www.bilibili.com/video/BV1EyHYeBEFr",
     "zxc.20260426163956.1": "{{ if and (lookPath \"yt-dlp\") (lookPath \"ffmpeg\") (lookPath \"mid3v2\") -}}\n@others\n{{ end -}}\n",
@@ -12552,19 +12650,19 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260423154131.2": {
-      "_mod_time": 1776085878.422
+      "_mod_time": 1777179946.861
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1780401618.97
+      "_mod_time": 1780394292.941
     },
     "zxc.20260125143959.1": {
-      "_mod_time": 1778855150.579
+      "_mod_time": 1777906067.531
     },
     "zxc.20260125163416.1": {
       "_mod_time": 1778855150.581
     },
     "zxc.20260125164142.1": {
-      "_mod_time": 1776085878.429
+      "_mod_time": 1777398596.506
     },
     "zxc.20260318214950.1": {
       "_mod_time": 1778855150.581
@@ -12585,7 +12683,7 @@
       "_mod_time": 1778855150.618
     },
     "User.20260218142322.1": {
-      "_mod_time": 1776085878.463
+      "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
       "_mod_time": 1778855150.612
@@ -12621,13 +12719,13 @@
       "_mod_time": 1780486276.597
     },
     "zxc.20260202203521.17": {
-      "_mod_time": 1776085878.39
+      "_mod_time": 1776434513.068
     },
     "User.20260220233639.1": {
-      "_mod_time": 1776085878.391
+      "_mod_time": 1776434513.068
     },
     "zxc.20260202203521.20": {
-      "_mod_time": 1776085878.392
+      "_mod_time": 1776434513.068
     },
     "User.20260216114746.1": {
       "_mod_time": 1778855150.558
@@ -12642,10 +12740,10 @@
       "_mod_time": 1780272723.742
     },
     "zxc.20260202213444.1": {
-      "_mod_time": 1776085878.394
+      "_mod_time": 1776434513.084
     },
     "User.20260220142155.2": {
-      "_mod_time": 1776085878.393
+      "_mod_time": 1776434513.084
     },
     "User.20260220151435.2": {
       "_mod_time": 1780272723.738
@@ -12654,16 +12752,16 @@
       "_mod_time": 1780272723.74
     },
     "zxc.20260202215023.1": {
-      "_mod_time": 1776085878.384
+      "_mod_time": 1776434513.068
     },
     "zxc.20260202215408.1": {
-      "_mod_time": 1776085878.39
+      "_mod_time": 1776434513.068
     },
     "zxc.20260202220030.1": {
-      "_mod_time": 1776085878.391
+      "_mod_time": 1776434513.068
     },
     "zxc.20260202220553.1": {
-      "_mod_time": 1776085878.392
+      "_mod_time": 1776434513.068
     },
     "User.20260217202401.1": {
       "_mod_time": 1780272723.737
@@ -12678,37 +12776,37 @@
       "_mod_time": 1780272723.741
     },
     "User.20260217214851.1": {
-      "_mod_time": 1776819230.829
+      "_mod_time": 1776851988.666
     },
     "zxc.20260422085228.1": {
-      "_mod_time": 1776819230.912
+      "_mod_time": 1776851988.666
     },
     "User.20260220000301.2": {
-      "_mod_time": 1776085878.387
+      "_mod_time": 1776434513.068
     },
     "User.20260220012738.1": {
       "_mod_time": 1776434513.068
     },
     "User.20260308173318.1": {
-      "_mod_time": 1776085878.386
+      "_mod_time": 1776434513.068
     },
     "User.20260308184128.2": {
-      "_mod_time": 1776085878.385
+      "_mod_time": 1776434513.068
     },
     "User.20260308184713.2": {
       "_mod_time": 1776817843.31
     },
     "User.20260308214701.2": {
-      "_mod_time": 1776085878.385
+      "_mod_time": 1776434513.068
     },
     "zxc.20260328213746.1": {
-      "_mod_time": 1776085878.387
+      "_mod_time": 1776434513.068
     },
     "User.20260308215626.2": {
-      "_mod_time": 1776085878.386
+      "_mod_time": 1776434513.068
     },
     "zxc.20260317085009.1": {
-      "_mod_time": 1776085878.385
+      "_mod_time": 1776434513.068
     },
     "zxc.20260318203351.1": {
       "_mod_time": 1778855150.556
@@ -12717,13 +12815,13 @@
       "_mod_time": 1778855150.556
     },
     "zxc.20260323195318.1": {
-      "_mod_time": 1776085878.389
+      "_mod_time": 1776434513.068
     },
     "zxc.20260329102210.1": {
-      "_mod_time": 1776085878.392
+      "_mod_time": 1776434513.068
     },
     "zxc.20260404153353.1": {
-      "_mod_time": 1776085878.392
+      "_mod_time": 1776434513.068
     },
     "zxc.20260531113237.1": {
       "_mod_time": 1780272723.736
@@ -12747,7 +12845,7 @@
       "_mod_time": 1777179946.865
     },
     "User.20260220010313.1": {
-      "_mod_time": 1776085878.426
+      "_mod_time": 1777385861.34
     },
     "User.20260220010448.1": {
       "_mod_time": 1777713442.485
@@ -12756,19 +12854,19 @@
       "_mod_time": 1779288255.221
     },
     "User.20260216232855.1": {
-      "_mod_time": 1776085878.419
+      "_mod_time": 1777179946.854
     },
     "User.20260217182613.1": {
-      "_mod_time": 1776085878.421
+      "_mod_time": 1777179946.857
     },
     "zxc.20260317002829.1": {
-      "_mod_time": 1776928456.1
+      "_mod_time": 1777179946.863
     },
     "zxc.20260315140713.1": {
       "_mod_time": 1777179946.861
     },
     "zxc.20260408012432.1": {
-      "_mod_time": 1776691470.924
+      "_mod_time": 1777179946.871
     },
     "User.20260301202336.1": {
       "_mod_time": 1780401618.977
@@ -12777,10 +12875,10 @@
       "_mod_time": 1778855150.594
     },
     "zxc.20260125162740.1": {
-      "_mod_time": 1776085878.424
+      "_mod_time": 1777179946.862
     },
     "zxc.20260126185048.1": {
-      "_mod_time": 1776085878.417
+      "_mod_time": 1777179946.853
     },
     "zxc.20260130225718.1": {
       "_mod_time": 1777179946.861
@@ -12819,7 +12917,7 @@
       "_mod_time": 1778855150.581
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1776085878.436
+      "_mod_time": 1777179946.877
     },
     "zxc.20260125145051.1": {
       "_mod_time": 1777179946.885
@@ -12828,7 +12926,7 @@
       "_mod_time": 1777179946.876
     },
     "zxc.20260125152851.2": {
-      "_mod_time": 1776085878.441
+      "_mod_time": 1777179946.886
     },
     "zxc.20260125153131.1": {
       "_mod_time": 1777179946.883
@@ -12840,7 +12938,7 @@
       "_mod_time": 1777382332.018
     },
     "User.20260216185314.1": {
-      "_mod_time": 1776085878.439
+      "_mod_time": 1777179946.883
     },
     "User.20260217223023.1": {
       "_mod_time": 1780272726.068
@@ -12855,7 +12953,7 @@
       "_mod_time": 1778855150.599
     },
     "User.20260220233323.1": {
-      "_mod_time": 1776085878.44
+      "_mod_time": 1777179946.885
     },
     "zxc.20260421145655.1": {
       "_mod_time": 1777179946.881
@@ -12909,22 +13007,22 @@
       "_mod_time": 1778855150.589
     },
     "User.20260215182442.1": {
-      "_mod_time": 1776085878.449
+      "_mod_time": 1777891060.651
     },
     "User.20260217022114.1": {
       "_mod_time": 1778855150.604
     },
     "User.20260215182818.1": {
-      "_mod_time": 1776085878.45
+      "_mod_time": 1777891191.634
     },
     "zxc.20260317084145.1": {
       "_mod_time": 1778855150.609
     },
     "zxc.20260201225344.1": {
-      "_mod_time": 1776085878.448
+      "_mod_time": 1777891060.714
     },
     "zxc.20260317082914.1": {
-      "_mod_time": 1776085878.448
+      "_mod_time": 1777891060.727
     },
     "zxc.20260201034331.1": {
       "_mod_time": 1778855150.612
@@ -12933,25 +13031,25 @@
       "_mod_time": 1780272726.073
     },
     "User.20260215210400.1": {
-      "_mod_time": 1776085878.46
+      "_mod_time": 1777179946.904
     },
     "User.20260220151031.5": {
       "_mod_time": 1780272726.072
     },
     "User.20260220151031.28": {
-      "_mod_time": 1776085878.459
+      "_mod_time": 1777179946.902
     },
     "User.20260221175549.1": {
       "_mod_time": 1779288255.231
     },
     "User.20260221194603.1": {
-      "_mod_time": 1776085878.461
+      "_mod_time": 1777179946.906
     },
     "User.20260222211658.1": {
-      "_mod_time": 1776085878.456
+      "_mod_time": 1777179946.899
     },
     "zxc.20260201203241.1": {
-      "_mod_time": 1776085878.452
+      "_mod_time": 1777718155.12
     },
     "zxc.20260201203515.1": {
       "_mod_time": 1778855150.61
@@ -12960,31 +13058,31 @@
       "_mod_time": 1779288255.231
     },
     "zxc.20260202195207.1": {
-      "_mod_time": 1776085878.454
+      "_mod_time": 1777179946.896
     },
     "zxc.20260322192157.1": {
-      "_mod_time": 1776085878.455
+      "_mod_time": 1777179946.897
     },
     "zxc.20260322192357.1": {
-      "_mod_time": 1776085878.455
+      "_mod_time": 1777179946.898
     },
     "zxc.20260325223009.1": {
-      "_mod_time": 1776085878.456
+      "_mod_time": 1777891355.163
     },
     "zxc.20260325223610.1": {
-      "_mod_time": 1776085878.457
+      "_mod_time": 1777891355.18
     },
     "zxc.20260325223805.1": {
       "_mod_time": 1779322339.077
     },
     "zxc.20260329012003.1": {
-      "_mod_time": 1776125926.578
+      "_mod_time": 1777179946.894
     },
     "zxc.20260411192514.1": {
       "_mod_time": 1780272726.071
     },
     "zxc.20260330235722.1": {
-      "_mod_time": 1776085878.451
+      "_mod_time": 1777179946.891
     },
     "zxc.20260518220745.1": {
       "_mod_time": 1779672291.556
@@ -13044,7 +13142,7 @@
       "_mod_time": 1780319153.09
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1780486276.607
+      "_mod_time": 1780480977.894
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1777713442.482
@@ -13107,7 +13205,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1780490440.66
+      "_mod_time": 1780498665.546
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777298774.844
@@ -13119,19 +13217,19 @@
       "_mod_time": 1780272723.743
     },
     "zxc.20260407232538.1": {
-      "_mod_time": 1776085878.399
+      "_mod_time": 1777179946.836
     },
     "zxc.20260408005117.1": {
-      "_mod_time": 1776753962.305
+      "_mod_time": 1777179946.836
     },
     "zxc.20260529091145.1": {
       "_mod_time": 1780272723.743
     },
     "zxc.20260201140523.1": {
-      "_mod_time": 1776085878.414
+      "_mod_time": 1777179946.85
     },
     "zxc.20260130233132.1": {
-      "_mod_time": 1776085878.413
+      "_mod_time": 1777385863.235
     },
     "zxc.20260128002742.1": {
       "_mod_time": 1780401618.963
@@ -13140,52 +13238,52 @@
       "_mod_time": 1777382331.981
     },
     "zxc.20260214142543.1": {
-      "_mod_time": 1776085878.415
+      "_mod_time": 1777179946.851
     },
     "User.20260215234634.1": {
-      "_mod_time": 1776085878.418
+      "_mod_time": 1777179946.854
     },
     "User.20260216124226.1": {
-      "_mod_time": 1776085878.412
+      "_mod_time": 1777179946.845
     },
     "User.20260216125422.1": {
-      "_mod_time": 1776085878.412
+      "_mod_time": 1777179946.847
     },
     "User.20260219235648.1": {
-      "_mod_time": 1776085878.412
+      "_mod_time": 1777179946.847
     },
     "User.20260228231944.1": {
-      "_mod_time": 1776085878.416
+      "_mod_time": 1777179946.852
     },
     "User.20260302211536.1": {
-      "_mod_time": 1776085878.404
+      "_mod_time": 1777179946.836
     },
     "User.20260302211740.1": {
-      "_mod_time": 1776085878.404
+      "_mod_time": 1777179946.836
     },
     "User.20260302211946.1": {
-      "_mod_time": 1776085878.411
+      "_mod_time": 1777179946.845
     },
     "User.20260302212424.1": {
-      "_mod_time": 1776085878.411
+      "_mod_time": 1777179946.845
     },
     "User.20260302212645.1": {
-      "_mod_time": 1776085878.41
+      "_mod_time": 1777179946.84
     },
     "User.20260303213330.1": {
-      "_mod_time": 1776085878.418
+      "_mod_time": 1777179946.854
     },
     "zxc.20260401221312.1": {
-      "_mod_time": 1776085878.414
+      "_mod_time": 1777179946.849
     },
     "zxc.20260402230727.1": {
-      "_mod_time": 1776085878.415
+      "_mod_time": 1777179946.85
     },
     "zxc.20260417220340.1": {
-      "_mod_time": 1776691470.922
+      "_mod_time": 1777179941.91
     },
     "zxc.20260515010901.1": {
-      "_mod_time": 1778855150.563
+      "_mod_time": 1778778728.929
     },
     "zxc.20260518233322.1": {
       "_mod_time": 1780319153.078
