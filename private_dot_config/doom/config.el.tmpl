@@ -88,8 +88,12 @@
 (defun browse-url-mpv (url &optional _new-window)
   (start-process "mpv" nil "mpv" url))
 
+(defun browse-url-mpv-no-dash (url &optional _new-window)
+  (start-process "mpv" nil "mpv" "--ytdl-format=18/22" url))
+
 (setq browse-url-handlers
       '(("\\(bilibili\\.com\\|vimeo\\.com\\|twitch\\.tv\\)" . browse-url-mpv)
+        ("\\(youtube\\.com\\)" . browse-url-mpv-no-dash)
         ("." . {{ if eq .chezmoi.os "windows" }}browse-url-default-windows-browser{{ else }}browse-url-firefox{{ end }})))
 (after! org
   (setq org-agenda-files '("~/org/agenda.org")))
