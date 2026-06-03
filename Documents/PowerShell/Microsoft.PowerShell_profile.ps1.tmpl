@@ -4,7 +4,7 @@
 {{ $os = .chezmoi.osRelease.id -}}
 {{ end -}}
 {{ if lookPath "pwsh" -}}
-$env:EDITOR = "hx"
+$env:EDITOR = "{{ template "editor" }}"
 $env:shell_startup = "~\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
 {{ $opt := "sfsu" -}}
 {{ $cmd := "sfsu" -}}
@@ -232,7 +232,6 @@ oh-my-posh init pwsh | Invoke-Expression
 {{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 {{ end -}}
-# PSFzf
 Import-Module PSFzf
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r' -EnableAliasFuzzyKillProcess
 # Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
