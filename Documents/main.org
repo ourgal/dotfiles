@@ -425,3 +425,25 @@ if (Test-Path($ChocolateyProfile)) {
 {{ end -}}
 #+end_src
 
+**** clink
+
+Color options.
+
+#+begin_src
+set colored-stats                 on   # Turn on completion colors.
+set colored-completion-prefix     on   # Color the typed completion prefix.
+#+end_src
+
+Aliases.
+
+#+begin_src
+ll=eza --long --icons=auto --group --group-directories-first --time-style relative $*
+ls=eza --icons=auto $*
+reboot=shutdown /t 0 /r $*
+poweroff=shutdown /t 0 /s $*
+{{ if lookPath "nircmd" -}}
+scroff=nircmd monitor off $*
+{{ end -}}
+scoop-update=scoop update * && scoop cache remove * && scoop cleanup *
+unlock-keepassxc=sh -c "gopass show -o keepassxc/main | keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir "syncthing" "keepassxc" "main.kdbx" | replace "\\" "/" }} &"
+#+end_src
