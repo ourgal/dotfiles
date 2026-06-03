@@ -1,0 +1,11 @@
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if lookPath "home-manager" -}}
+#!{{lookPath "bash"}}
+set -euo pipefail
+{{ $path := (joinPath .chezmoi.homeDir ".config" "home-manager" "home.nix") -}}
+{{ if stat $path -}}
+# {{ include $path | sha256sum }}
+home-manager switch
+{{ end -}}
+{{ end -}}
+{{ end -}}
