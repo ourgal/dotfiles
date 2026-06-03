@@ -63,7 +63,13 @@
               "children": [
                 {
                   "gnx": "zxc.20260515011023.1",
-                  "vh": "content"
+                  "vh": "content",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260603150605.1",
+                      "vh": "gemini 2.5 flash"
+                    }
+                  ]
                 }
               ]
             }
@@ -92,6 +98,10 @@
                         {
                           "gnx": "zxc.20260504155615.1",
                           "vh": "<< check opt and cmd >>"
+                        },
+                        {
+                          "gnx": "zxc.20260603151749.1",
+                          "vh": "cmd"
                         }
                       ]
                     },
@@ -103,6 +113,10 @@
                       "gnx": "zxc.20260125212238.1",
                       "vh": "PSReadline",
                       "children": [
+                        {
+                          "gnx": "zxc.20260603152243.1",
+                          "vh": "import module"
+                        },
                         {
                           "gnx": "zxc.20260125212355.1",
                           "vh": "smart pair"
@@ -173,6 +187,10 @@
                       "children": [
                         {
                           "gnx": "zxc.20260504155615.1"
+                        },
+                        {
+                          "gnx": "zxc.20260603160024.1",
+                          "vh": "cmd"
                         }
                       ]
                     },
@@ -182,6 +200,10 @@
                       "children": [
                         {
                           "gnx": "zxc.20260504155615.1"
+                        },
+                        {
+                          "gnx": "zxc.20260603160153.1",
+                          "vh": "cmd"
                         }
                       ]
                     },
@@ -191,6 +213,10 @@
                       "children": [
                         {
                           "gnx": "zxc.20260504155615.1"
+                        },
+                        {
+                          "gnx": "zxc.20260603163933.1",
+                          "vh": "cmd"
                         }
                       ]
                     },
@@ -198,6 +224,10 @@
                       "gnx": "zxc.20260125213409.1",
                       "vh": "PSFzf",
                       "children": [
+                        {
+                          "gnx": "zxc.20260603164027.1",
+                          "vh": "import module"
+                        },
                         {
                           "gnx": "zxc.20260125213432.1",
                           "vh": "Ctrl+o"
@@ -209,6 +239,10 @@
                       "vh": "atuin",
                       "children": [
                         {
+                          "gnx": "zxc.20260603164757.1",
+                          "vh": "cmd"
+                        },
+                        {
                           "gnx": "zxc.20260504155615.1"
                         }
                       ]
@@ -217,6 +251,10 @@
                       "gnx": "User.20260228222116.1",
                       "vh": "mcfly",
                       "children": [
+                        {
+                          "gnx": "zxc.20260603164942.1",
+                          "vh": "cmd"
+                        },
                         {
                           "gnx": "zxc.20260504155615.1"
                         }
@@ -227,11 +265,11 @@
                       "vh": "navi",
                       "children": [
                         {
-                          "gnx": "zxc.20260504192519.1",
-                          "vh": "content"
+                          "gnx": "zxc.20260504155615.1"
                         },
                         {
-                          "gnx": "zxc.20260504155615.1"
+                          "gnx": "zxc.20260504192519.1",
+                          "vh": "shell plugin"
                         }
                       ]
                     }
@@ -7001,10 +7039,10 @@
                       "vh": "@clean Microsoft.PowerShell_profile.ps1.tmpl",
                       "children": [
                         {
-                          "gnx": "zxc.20260504185129.1"
+                          "gnx": "User.20260225204326.1"
                         },
                         {
-                          "gnx": "User.20260225204326.1"
+                          "gnx": "zxc.20260504185129.1"
                         },
                         {
                           "gnx": "zxc.20260128004429.1"
@@ -9964,6 +10002,297 @@
             {
               "gnx": "zxc.20260409214651.1",
               "vh": "@clean merge_pdf.ps1"
+            },
+            {
+              "gnx": "zxc.20260603145336.1",
+              "vh": "@clean main.org",
+              "children": [
+                {
+                  "gnx": "zxc.20260603151009.1",
+                  "vh": "CLI",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260603151015.1",
+                      "vh": "AI",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260603150429.1",
+                          "vh": "aichat",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260603150605.1"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260603151147.1",
+                      "vh": "Shell",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260603151234.1",
+                          "vh": "pwsh",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260603151414.1",
+                              "vh": "env",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260125212003.1"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260603151813.1",
+                              "vh": "sfsu",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260603151749.1"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260603152004.1",
+                              "vh": "aliases",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260125212222.1"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260603160209.1",
+                              "vh": "oh my posh",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260603160153.1"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260603160050.1",
+                              "vh": "starship",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260603160024.1"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260603155915.1",
+                              "vh": "carapace",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260125212930.1"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260603163952.1",
+                              "vh": "zoxide",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260603163933.1"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260603164817.1",
+                              "vh": "atuin",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260603164757.1"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260603164901.1",
+                              "vh": "mcfly",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260603164942.1"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260603165033.1",
+                              "vh": "navi",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260504192519.1"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260603164036.1",
+                              "vh": "PSfzf",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260603164119.1",
+                                  "vh": "import module",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260603164027.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260603164710.1",
+                                  "vh": "Ctrl+o",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260125213432.1"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260603152304.1",
+                              "vh": "PSReadline",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260603152354.1",
+                                  "vh": "import module",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260603152243.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260603152652.1",
+                                  "vh": "smart pair",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260125212355.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260603153007.1",
+                                  "vh": "Alt+e",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260125212447.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260603154004.1",
+                                  "vh": "option color",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260125213200.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260603154116.1",
+                                  "vh": "exit shell",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260125213451.1"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260603154334.1",
+                              "vh": "functions",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260603154352.1",
+                                  "vh": "ll",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260125212538.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260603154542.1",
+                                  "vh": "lla",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260125212625.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260603154626.1",
+                                  "vh": "bd",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260125212708.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260603155022.1",
+                                  "vh": "git commit and push",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260125212737.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260603155226.1",
+                                  "vh": "turn off screen",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260125213232.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260603155352.1",
+                                  "vh": "yt",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260125213331.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260603155546.1",
+                                  "vh": "update scoop",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260125213305.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260603155640.1",
+                                  "vh": "unlock kepassxc",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260325003330.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260603155746.1",
+                                  "vh": "choco completion",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260125212857.1"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -10566,12 +10895,14 @@
     "zxc.20260421204018.1": "{{ if lookPath \"keepassxc\" -}}\nRun({{ joinPath .chezmoi.homeDir \"Documents\" \"autohotkey\" \"keepassxc.ahk\" | quote }}, , \"Hide\")\n{{ end -}}",
     "zxc.20260125142149.1": "@tabwidth 4\nall:\n\t@others\n",
     "zxc.20260125142255.1": "yes | git magic -ap\n",
-    "zxc.20260515011023.1": "# see https://github.com/sigoden/aichat/blob/main/config.example.yaml\nmodel: gemini:gemini-2.5-flash\nclients:\n  - type: gemini\n    api_key: {{ gopass \"AI/gemini\" }}",
-    "zxc.20260125212003.1": "$env:EDITOR = \"hx\"\n$env:shell_startup = \"~\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\"\n",
-    "zxc.20260125212135.1": "{{ $opt := \"sfsu\" -}}\n{{ $cmd := \"sfsu\" -}}\n<< check opt and cmd >>\nInvoke-Expression (&sfsu hook)\n{{ end -}}\n",
-    "zxc.20260504155615.1": "{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}",
+    "zxc.20260515011023.1": "# see https://github.com/sigoden/aichat/blob/main/config.example.yaml\n",
+    "zxc.20260603150605.1": "model: gemini:gemini-2.5-flash\nclients:\n  - type: gemini\n    api_key: {{ gopass \"AI/gemini\" }}\n",
+    "zxc.20260125212003.1": "$env:EDITOR = \"{{ template \"editor\" }}\"\n$env:shell_startup = \"~\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\"\n",
+    "zxc.20260125212135.1": "{{ $opt := \"sfsu\" -}}\n{{ $cmd := \"sfsu\" -}}\n<< check opt and cmd >>\n@others\n{{ end -}}\n",
+    "zxc.20260504155615.1": "{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}\n",
+    "zxc.20260603151749.1": "Invoke-Expression (&sfsu hook)\n",
     "zxc.20260125212222.1": "New-Alias reboot Restart-Computer\nNew-Alias poweroff Stop-Computer\n",
-    "zxc.20260125212238.1": "Import-Module PSReadLine\nSet-PSReadLineKeyHandler -Key Tab -Function Complete\n",
+    "zxc.20260603152243.1": "Import-Module PSReadLine\nSet-PSReadLineKeyHandler -Key Tab -Function Complete\n",
     "zxc.20260125212355.1": "#region Smart Insert/Delete\n\n# The next four key handlers are designed to make entering matched quotes\n# parens, and braces a nicer experience.  I'd like to include functions\n# in the module that do this, but this implementation still isn't as smart\n# as ReSharper, so I'm just providing it as a sample.\n\nSet-PSReadLineKeyHandler -Chord '\"',\"'\" `\n                         -BriefDescription SmartInsertQuote `\n                         -LongDescription \"Insert paired quotes if not already on a quote\" `\n                         -ScriptBlock {\n    param($key, $arg)\n\n    $line = $null\n    $cursor = $null\n    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)\n\n    if ($line.Length -gt $cursor -and $line[$cursor] -eq $key.KeyChar) {\n        # Just move the cursor\n        [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($cursor + 1)\n    }\n    else {\n        # Insert matching quotes, move cursor to be in between the quotes\n        [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"$($key.KeyChar)\" * 2)\n        [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)\n        [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($cursor - 1)\n    }\n}\n\nSet-PSReadLineKeyHandler -Key '(','{','[' `\n                         -BriefDescription InsertPairedBraces `\n                         -LongDescription \"Insert matching braces\" `\n                         -ScriptBlock {\n    param($key, $arg)\n\n    $closeChar = switch ($key.KeyChar)\n    {\n        <#case#> '(' { [char]')'; break }\n        <#case#> '{' { [char]'}'; break }\n        <#case#> '[' { [char]']'; break }\n    }\n\n    $selectionStart = $null\n    $selectionLength = $null\n    [Microsoft.PowerShell.PSConsoleReadLine]::GetSelectionState([ref]$selectionStart, [ref]$selectionLength)\n\n    $line = $null\n    $cursor = $null\n    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)\n    \n    if ($selectionStart -ne -1)\n    {\n      # Text is selected, wrap it in brackets\n      [Microsoft.PowerShell.PSConsoleReadLine]::Replace($selectionStart, $selectionLength, $key.KeyChar + $line.SubString($selectionStart, $selectionLength) + $closeChar)\n      [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($selectionStart + $selectionLength + 2)\n    } else {\n      # No text is selected, insert a pair\n      [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"$($key.KeyChar)$closeChar\")\n      [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($cursor + 1)\n    }\n}\n\nSet-PSReadLineKeyHandler -Key ')',']','}' `\n                         -BriefDescription SmartCloseBraces `\n                         -LongDescription \"Insert closing brace or skip\" `\n                         -ScriptBlock {\n    param($key, $arg)\n\n    $line = $null\n    $cursor = $null\n    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)\n\n    if ($line[$cursor] -eq $key.KeyChar)\n    {\n        [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($cursor + 1)\n    }\n    else\n    {\n        [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"$($key.KeyChar)\")\n    }\n}\n\nSet-PSReadLineKeyHandler -Key Backspace `\n                         -BriefDescription SmartBackspace `\n                         -LongDescription \"Delete previous character or matching quotes/parens/braces\" `\n                         -ScriptBlock {\n    param($key, $arg)\n\n    $line = $null\n    $cursor = $null\n    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)\n\n    if ($cursor -gt 0)\n    {\n        $toMatch = $null\n        if ($cursor -lt $line.Length)\n        {\n            switch ($line[$cursor])\n            {\n                <#case#> '\"' { $toMatch = '\"'; break }\n                <#case#> \"'\" { $toMatch = \"'\"; break }\n                <#case#> ')' { $toMatch = '('; break }\n                <#case#> ']' { $toMatch = '['; break }\n                <#case#> '}' { $toMatch = '{'; break }\n            }\n        }\n\n        if ($toMatch -ne $null -and $line[$cursor-1] -eq $toMatch)\n        {\n            [Microsoft.PowerShell.PSConsoleReadLine]::Delete($cursor - 1, 2)\n        }\n        else\n        {\n            [Microsoft.PowerShell.PSConsoleReadLine]::BackwardDeleteChar($key, $arg)\n        }\n    }\n}\n\n#endregion Smart Insert/Delete\n",
     "zxc.20260125212447.1": "Set-PSReadLineKeyHandler -Key Alt+e -Function ViEditVisually\n",
     "zxc.20260125213200.1": "# parameter color\nSet-PSReadLineOption -Colors @{ \"parameter\"=\"Blue\"; \"operator\"=\"DarkMagenta\" }\n",
@@ -10586,21 +10917,26 @@
     "zxc.20260325003330.1": "{{ if and ( lookPath \"scoop\" ) (lookPath \"KeePassXc\") -}}\nfunction unlock-keepassxc {\n    gopass show -o keepassxc/main | & keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir \"syncthing\" \"keepassxc\" \"main.kdbx\" | quote }}\n}\n{{ end -}}\n",
     "zxc.20260125212857.1": "{{ if lookPath \"choco\" -}}\n# Import the Chocolatey Profile that contains the necessary code to enable\n# tab-completions to function for `choco`.\n# Be aware that if you are missing these lines from your profile, tab completion\n# for `choco` will not function.\n# See https://ch0.co/tab-completion for details.\n\n$ChocolateyProfile = \"$env:ChocolateyInstall\\helpers\\chocolateyProfile.psm1\"\nif (Test-Path($ChocolateyProfile)) {\n  Import-Module \"$ChocolateyProfile\"\n}\n{{ end -}}\n",
     "zxc.20260125212930.1": "{{ if lookPath \"carapace\" -}}\n# carapace\n$env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense,powershell' # optional\nSet-PSReadLineOption -Colors @{ \"Selection\" = \"`e[7m\" }\nSet-PSReadlineKeyHandler -Key Tab -Function MenuComplete\ncarapace _carapace | Out-String | Invoke-Expression\n{{ end -}}\n",
-    "zxc.20260125213126.1": "{{ $opt := \"starship\" -}}\n{{ $cmd := \"starship\" -}}\n<< check opt and cmd >>\nInvoke-Expression (&starship init powershell)\n{{ end -}}\n",
-    "zxc.20260321011141.1": "{{ $opt := \"oh_my_posh\" -}}\n{{ $cmd := \"oh-my-posh\" -}}\n<< check opt and cmd >>\noh-my-posh init pwsh | Invoke-Expression\n{{ end -}}\n",
-    "zxc.20260125213514.1": "{{ $opt := \"zoxide\" -}}\n{{ $cmd := \"zoxide\" -}}\n<< check opt and cmd >>\nInvoke-Expression (& { (zoxide init powershell | Out-String) })\n{{ end -}}\n",
-    "zxc.20260125213409.1": "# PSFzf\nImport-Module PSFzf\nSet-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r' -EnableAliasFuzzyKillProcess\n# Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }\n",
+    "zxc.20260125213126.1": "{{ $opt := \"starship\" -}}\n{{ $cmd := \"starship\" -}}\n<< check opt and cmd >>\n@others\n{{ end -}}\n",
+    "zxc.20260603160024.1": "Invoke-Expression (&starship init powershell)\n",
+    "zxc.20260321011141.1": "{{ $opt := \"oh_my_posh\" -}}\n{{ $cmd := \"oh-my-posh\" -}}\n<< check opt and cmd >>\n@others\n{{ end -}}\n",
+    "zxc.20260603160153.1": "oh-my-posh init pwsh | Invoke-Expression\n",
+    "zxc.20260125213514.1": "{{ $opt := \"zoxide\" -}}\n{{ $cmd := \"zoxide\" -}}\n<< check opt and cmd >>\n@others\n{{ end -}}\n",
+    "zxc.20260603163933.1": "Invoke-Expression (& { (zoxide init powershell | Out-String) })\n",
+    "zxc.20260603164027.1": "Import-Module PSFzf\nSet-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r' -EnableAliasFuzzyKillProcess\n# Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }\n",
     "zxc.20260125213432.1": "Set-PSReadLineKeyHandler -Key Ctrl+o `\n                         -BriefDescription FuzzyEdit `\n                         -LongDescription \"Fuzzy Edit\" `\n                         -ScriptBlock {\n    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()\n    [Microsoft.PowerShell.PSConsoleReadLine]::Insert(\"Invoke-FuzzyEdit\")\n    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()\n}\n",
-    "zxc.20260203193108.1": "{{ $opt := \"atuin\" -}}\n{{ $cmd := \"atuin\" -}}\n<< check opt and cmd >>\nInvoke-Expression -Command $(atuin init powershell | out-string)\n{{ end -}}\n",
-    "User.20260228222116.1": "{{ $opt := \"mcfly\" -}}\n{{ $cmd := \"mcfly\" -}}\n<< check opt and cmd >>\nInvoke-Expression -Command $(mcfly init powershell | out-string)\n{{ end -}}\n",
+    "zxc.20260203193108.1": "{{ $opt := \"atuin\" -}}\n{{ $cmd := \"atuin\" -}}\n<< check opt and cmd >>\n@others\n{{ end -}}\n",
+    "zxc.20260603164757.1": "Invoke-Expression -Command $(atuin init powershell | out-string)\n",
+    "User.20260228222116.1": "{{ $opt := \"mcfly\" -}}\n{{ $cmd := \"mcfly\" -}}\n<< check opt and cmd >>\n@others\n{{ end -}}\n",
+    "zxc.20260603164942.1": "Invoke-Expression -Command $(mcfly init powershell | out-string)\n",
     "User.20260226225250.1": "{{ $opt := \"navi\" -}}\n{{ $cmd := \"\" -}}\n<< check opt and cmd >>\n@others\n{{ end -}}\n",
-    "zxc.20260504192519.1": "function Invoke-Navi {\n    $startArgs = @{\n        FileName = \"navi\";\n        Arguments = $args;\n        RedirectStandardOutput = $true;\n        WorkingDirectory = $PWD;\n        UseShellExecute = $false;\n    }\n    $p = [System.Diagnostics.Process]@{StartInfo = $startArgs}\n\n    [void]$p.Start()\n    $result = $p.StandardOutput.ReadToEnd()\n    $p.WaitForExit()\n\n    $result\n}\n\n\n### Initial code from @lurebat (https://github.com/lurebat/)\n### See #570 (https://github.com/denisidoro/navi/issues/570) for its original contribution\nfunction Invoke-NaviWidget {\n    $ast = $tokens = $errors = $cursor = $null\n    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref] $ast, [ref] $tokens, [ref] $errors, [ref] $cursor)\n\n    $line = $ast.ToString().Trim()\n    $output = $null\n\n    if ([String]::IsNullOrEmpty($line)) {\n        $output = (Invoke-Navi \"--print\" | Out-String).Trim()\n    }\n    else {\n        $best_match = (Invoke-Navi \"--print --best-match --query `\"$line`\"\" | Out-String).Trim()\n        if ([String]::IsNullOrEmpty($best_match)) {\n            $output = (Invoke-Navi \"--print --query `\"$line`\"\" | Out-String).Trim()\n        }\n        else {\n            $output = $best_match\n        }\n    }\n\n    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()\n    [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt()\n\n    ### Handling the case when the user escapes without selecting any entry\n    if (-Not([String]::IsNullOrEmpty($output))) {\n        [Microsoft.PowerShell.PSConsoleReadLine]::Insert([String]$output)\n    }\n}\n\nSet-PSReadlineKeyHandler -BriefDescription \"A keybinding to open Navi Widget\" -Chord Ctrl+g -ScriptBlock { Invoke-NaviWidget }",
+    "zxc.20260504192519.1": "function Invoke-Navi {\n    $startArgs = @{\n        FileName = \"navi\";\n        Arguments = $args;\n        RedirectStandardOutput = $true;\n        WorkingDirectory = $PWD;\n        UseShellExecute = $false;\n    }\n    $p = [System.Diagnostics.Process]@{StartInfo = $startArgs}\n\n    [void]$p.Start()\n    $result = $p.StandardOutput.ReadToEnd()\n    $p.WaitForExit()\n\n    $result\n}\n\n\n### Initial code from @lurebat (https://github.com/lurebat/)\n### See #570 (https://github.com/denisidoro/navi/issues/570) for its original contribution\nfunction Invoke-NaviWidget {\n    $ast = $tokens = $errors = $cursor = $null\n    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref] $ast, [ref] $tokens, [ref] $errors, [ref] $cursor)\n\n    $line = $ast.ToString().Trim()\n    $output = $null\n\n    if ([String]::IsNullOrEmpty($line)) {\n        $output = (Invoke-Navi \"--print\" | Out-String).Trim()\n    }\n    else {\n        $best_match = (Invoke-Navi \"--print --best-match --query `\"$line`\"\" | Out-String).Trim()\n        if ([String]::IsNullOrEmpty($best_match)) {\n            $output = (Invoke-Navi \"--print --query `\"$line`\"\" | Out-String).Trim()\n        }\n        else {\n            $output = $best_match\n        }\n    }\n\n    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()\n    [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt()\n\n    ### Handling the case when the user escapes without selecting any entry\n    if (-Not([String]::IsNullOrEmpty($output))) {\n        [Microsoft.PowerShell.PSConsoleReadLine]::Insert([String]$output)\n    }\n}\n\nSet-PSReadlineKeyHandler -BriefDescription \"A keybinding to open Navi Widget\" -Chord Ctrl+g -ScriptBlock { Invoke-NaviWidget }\n",
     "zxc.20260423154131.2": "<< dos >>\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260225204326.1": "{{ if eq .chezmoi.os \"windows\" -}}\n",
     "zxc.20260423154131.5": "set colored-stats                 on   # Turn on completion colors.\nset colored-completion-prefix     on   # Color the typed completion prefix.",
     "zxc.20260423154131.7": "ll=eza --long --icons=auto --group --group-directories-first --time-style relative $*\nls=eza --icons=auto $*\nreboot=shutdown /t 0 /r $*\npoweroff=shutdown /t 0 /s $*\n{{ if lookPath \"nircmd\" -}}\nscroff=nircmd monitor off $*\n{{ end -}}\nscoop-update=scoop update * && scoop cache remove * && scoop cleanup *\nunlock-keepassxc=sh -c \"gopass show -o keepassxc/main | keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir \"syncthing\" \"keepassxc\" \"main.kdbx\" | replace \"\\\\\" \"/\" }} &\"",
     "zxc.20260125143007.1": "<< unix >>\n<< os >>\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260504185129.1": "{{ $os := .chezmoi.os -}}\n{{ if eq .chezmoi.os \"linux\" -}}\n{{ $os = .chezmoi.osRelease.id -}}\n{{ end -}}",
+    "zxc.20260504185129.1": "{{ $os := .chezmoi.os -}}\n{{ if eq .chezmoi.os \"linux\" -}}\n{{ $os = .chezmoi.osRelease.id -}}\n{{ end -}}\n",
     "User.20260225203941.1": "{{ if or (eq .chezmoi.os \"linux\") (eq .chezmoi.os \"android\") -}}\n",
     "zxc.20260125143032.1": "# ~/.bashrc: executed by bash(1) for non-login shells.\n# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)\n# for examples\n\n# If not running interactively, don't do anything\ncase $- in\n    *i*) ;;\n      *) return;;\nesac\n\n# don't put duplicate lines or lines starting with space in the history.\n# See bash(1) for more options\nHISTCONTROL=ignoreboth\n\n# append to the history file, don't overwrite it\nshopt -s histappend\n\n# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)\nHISTSIZE=1000\nHISTFILESIZE=2000\n\n# check the window size after each command and, if necessary,\n# update the values of LINES and COLUMNS.\nshopt -s checkwinsize\n\n# If set, the pattern \"**\" used in a pathname expansion context will\n# match all files and zero or more directories and subdirectories.\n#shopt -s globstar\n\n# make less more friendly for non-text input files, see lesspipe(1)\n#[ -x /usr/bin/lesspipe ] && eval \"$(SHELL=/bin/sh lesspipe)\"\n\n{{ if and (eq .chezmoi.os \"linux\") (eq .chezmoi.osRelease.id \"debian\") -}}\n# set variable identifying the chroot you work in (used in the prompt below)\nif [ -z \"''\\${debian_chroot:-}\" ] && [ -r /etc/debian_chroot ]; then\n    debian_chroot=$(cat /etc/debian_chroot)\nfi\n{{ end -}}\n\n# set a fancy prompt (non-color, unless we know we \"want\" color)\ncase \"$TERM\" in\n    xterm-color|*-256color) color_prompt=yes;;\nesac\n\n# uncomment for a colored prompt, if the terminal has the capability; turned\n# off by default to not distract the user: the focus in a terminal window\n# should be on the output of commands, not on the prompt\n#force_color_prompt=yes\n\nif [ -n \"$force_color_prompt\" ]; then\n    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then\n        # We have color support; assume it's compliant with Ecma-48\n        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such\n        # a case would tend to support setf rather than setaf.)\n        color_prompt=yes\n    else\n        color_prompt=\n    fi\nfi\n\n{{ if and (eq .chezmoi.os \"linux\") (eq .chezmoi.osRelease.id \"debian\") -}}\n# If this is an xterm set the title to user@host:dir\ncase \"$TERM\" in\nxterm*|rxvt*)\n    PS1=\"\\[\\e]0;''\\${debian_chroot:+($debian_chroot)}\\u@\\h: \\w\\a\\]$PS1\"\n    ;;\n*)\n    ;;\nesac\n{{ end -}}\n\n# enable color support of ls and also add handy aliases\nif [ -x /usr/bin/dircolors ]; then\n    test -r ~/.dircolors && eval \"$(dircolors -b ~/.dircolors)\" || eval \"$(dircolors -b)\"\n    alias ls='ls --color=auto'\n    #alias dir='dir --color=auto'\n    #alias vdir='vdir --color=auto'\n\n    #alias grep='grep --color=auto'\n    #alias fgrep='fgrep --color=auto'\n    #alias egrep='egrep --color=auto'\nfi\n\n# colored GCC warnings and errors\n#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'\n\n# some more ls aliases\n#alias ll='ls -l'\n#alias la='ls -A'\n#alias l='ls -CF'\n\n# Alias definitions.\n# You may want to put all your additions into a separate file like\n# ~/.bash_aliases, instead of adding them here directly.\n# See /usr/share/doc/bash-doc/examples in the bash-doc package.\n\nif [ -f ~/.bash_aliases ]; then\n    . ~/.bash_aliases\nfi\n\n# enable programmable completion features (you don't need to enable\n# this, if it's already enabled in /etc/bash.bashrc and /etc/profile\n# sources /etc/bash.bashrc).\nif ! shopt -oq posix; then\n  if [ -f /usr/share/bash-completion/bash_completion ]; then\n    . /usr/share/bash-completion/bash_completion\n  elif [ -f /etc/bash_completion ]; then\n    . /etc/bash_completion\n  fi\nfi",
     "zxc.20260125143635.1": "<< not WSL >>\nsource ~/.local/lib/ble_sh/out/ble.sh\n{{ end -}}\n",
@@ -12076,6 +12412,40 @@
     "zxc.20260506153441.1": "[project]\nname = \"playbooks\"\nversion = \"0.1.0\"\ndescription = \"Add your description here\"\nreadme = \"README.md\"\nrequires-python = \">=3.10\"\ndependencies = [\n    \"ansible<2.17.dev0\",\n]",
     "zxc.20260506154617.1": "[tool.uv]\nindex-url = \"{{ .my.pip.mirror }}\"",
     "zxc.20260409214651.1": "# --- Configuration ---\n\n# Set the path to pdftk.exe if it's not in your system's PATH\n# Example: $pdftkPath = \"C:\\Program Files (x86)\\PDFtk\\bin\\pdftk.exe\"\n$pdftkPath = \"pdftk\" # Assumes pdftk is in your PATH\n\n# Define the output filename for the merged PDF\n$outputPdfName = \"output.pdf\"\n\n# --- Script Logic ---\n\n# Get today's date in YYYYMMDD format\n$today = Get-Date -Format \"yyyyMMdd\"\n\n# Define the file pattern to search for\n# This pattern looks for files like IMG_20260409_0001.pdf\n$filePattern = \"IMG_${today}_*.pdf\"\n\n# Get all PDF files matching the pattern in the current directory\n$pdfFiles = Get-ChildItem -Path . -Filter $filePattern -File\n\n# Check if any files were found\nif ($pdfFiles.Count -eq 0) {\n    Write-Host \"No PDF files found matching the pattern 'IMG_${today}_*.pdf' in the current directory.\"\n    exit\n}\n\n# Sort the files by name to ensure correct order\n# The default sorting of Get-ChildItem should be alphabetical, which works for IMG_..._0001.pdf, IMG_..._0002.pdf etc.\n$sortedPdfFiles = $pdfFiles | Sort-Object Name\n\n# Construct the list of files for pdftk\n$pdftkInputFiles = $sortedPdfFiles | ForEach-Object { $_.FullName }\n\n# Construct the pdftk command\n# The 'cat' operation merges the files. 'output' specifies the output file.\n$pdftkCommand = \"$pdftkPath $($pdftkInputFiles -join ' ') cat output $outputPdfName\"\n\nWrite-Host \"Merging the following files:\"\n$sortedPdfFiles | ForEach-Object { Write-Host \"- $($_.Name)\" }\nWrite-Host \"Output file: $outputPdfName\"\n\n# Execute the pdftk command\ntry {\n    # Use Invoke-Expression to execute the command string\n    Invoke-Expression $pdftkCommand\n    Write-Host \"Successfully merged PDF files.\"\n\n    # Delete the original files after successful merge\n    Write-Host \"Deleting original PDF files...\"\n    $sortedPdfFiles | ForEach-Object {\n        $fileName = $_.Name\n        $filePath = $_.FullName\n        try {\n            Remove-Item -Path $filePath -Force -ErrorAction Stop\n            Write-Host \"Deleted: $fileName\"\n        } catch {\n            Write-Error \"Failed to delete '$fileName': $($_.Exception.Message)\"\n        }\n    }\n    Write-Host \"All original PDF files have been deleted.\"\n\n} catch {\n    Write-Error \"An error occurred during PDF merging: $($_.Exception.Message)\"\n    Write-Error \"Please ensure pdftk is installed and in your PATH, or update the `$pdftkPath` variable.\"\n}\n",
+    "zxc.20260603145336.1": "* Doc\n\n@others\n",
+    "zxc.20260603151009.1": "** CLI\n",
+    "zxc.20260603151015.1": "*** AI\n",
+    "zxc.20260603150429.1": "**** aichat\n\nIt's free.\n\n#+begin_src yaml\n@others\n#+end_src\n\n",
+    "zxc.20260603151147.1": "*** Shell\n",
+    "zxc.20260603151234.1": "**** pwsh\n\n",
+    "zxc.20260603151414.1": "Set environments.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603151813.1": "Set sfsu hook.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603152004.1": "Set aliases.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603160209.1": "Oh-My-Posh hook.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603160050.1": "Starship hook.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603155915.1": "Carapace auto shell completion.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603163952.1": "Init zoxide.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603164817.1": "Init atuin.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603164901.1": "Init mcfly.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603165033.1": "Init navi shell plugin.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603164119.1": "Import PSFzf.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603164710.1": "Fzf and edit.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603152304.1": "***** PSReadLine\n\n",
+    "zxc.20260603152354.1": "Import module.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603152652.1": "Auto close pairs.\n\n#+begin_src powershell\n@others\n#+end_src\n",
+    "zxc.20260603153007.1": "\nEdit commands in the editor.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603154004.1": "Change the color of arguments.\n\n#+begin_src powershell\n@others\n#+end_src\n",
+    "zxc.20260603154116.1": "\nExit the shell.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603154334.1": "***** Functions\n",
+    "zxc.20260603154352.1": "\nEza ll\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603154542.1": "Eza lla\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603154626.1": "Simplely back to parent dir.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603155022.1": "Git commit and push.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603155226.1": "Trun off the screen.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603155352.1": "Wathing a youtube video.\n\n#+begin_src powershell\n@others\n#+end_src\n",
+    "zxc.20260603155546.1": "\nUpdate scoop packages.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603155640.1": "Unlock KeePassXC.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260603155746.1": "Choco completion.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
     "zxc.20260202205715.1": "<< dos >>\n@others\n{{ end -}}",
     "zxc.20260202205901.1": "# Flower - とても深いグリーン\nhttps://www.bilibili.com/video/BV1EyHYeBEFr",
     "zxc.20260426163956.1": "{{ if and (lookPath \"yt-dlp\") (lookPath \"ffmpeg\") (lookPath \"mid3v2\") -}}\n@others\n{{ end -}}\n",
@@ -12126,7 +12496,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260423154131.2": {
-      "_mod_time": 1777179946.861
+      "_mod_time": 1773571522.655
     },
     "zxc.20260125143007.1": {
       "_mod_time": 1780384827.757
@@ -12156,22 +12526,22 @@
       "_mod_time": 1777337709.088
     },
     "User.20260218142211.1": {
-      "_mod_time": 1778855150.618
+      "_mod_time": 1777445661.807
     },
     "User.20260218142322.1": {
-      "_mod_time": 1777398596.523
+      "_mod_time": 1773571522.686
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1778855150.612
+      "_mod_time": 1777446641.4
     },
     "zxc.20260428221625.1": {
-      "_mod_time": 1778855150.612
+      "_mod_time": 1777445524.38
     },
     "zxc.20260429112140.1": {
-      "_mod_time": 1778855150.612
+      "_mod_time": 1777434599.775
     },
     "zxc.20260426235942.1": {
-      "_mod_time": 1777298774.859
+      "_mod_time": 1777249737.173
     },
     "zxc.20260427224207.1": {
       "_mod_time": 1777337709.122
@@ -12195,31 +12565,31 @@
       "_mod_time": 1780448023.578
     },
     "zxc.20260202203521.17": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.737
     },
     "User.20260220233639.1": {
       "_mod_time": 1773571522.624
     },
     "zxc.20260202203521.20": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.766
     },
     "User.20260216114746.1": {
-      "_mod_time": 1778855150.558
+      "_mod_time": 1778115749.551
     },
     "zxc.20260505221318.1": {
       "_mod_time": 1778115749.559
     },
     "zxc.20260202203521.14": {
-      "_mod_time": 1776691470.917
+      "_mod_time": 1776644732.237
     },
     "zxc.20260202203521.3": {
       "_mod_time": 1780272723.742
     },
     "zxc.20260202213444.1": {
-      "_mod_time": 1776434513.084
+      "_mod_time": 1774398532.779
     },
     "User.20260220142155.2": {
-      "_mod_time": 1776434513.084
+      "_mod_time": 1774398532.778
     },
     "User.20260220151435.2": {
       "_mod_time": 1780272723.738
@@ -12228,16 +12598,16 @@
       "_mod_time": 1780272723.74
     },
     "zxc.20260202215023.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.686
     },
     "zxc.20260202215408.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.737
     },
     "zxc.20260202220030.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.757
     },
     "zxc.20260202220553.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.766
     },
     "User.20260217202401.1": {
       "_mod_time": 1780272723.737
@@ -12252,52 +12622,52 @@
       "_mod_time": 1780272723.741
     },
     "User.20260217214851.1": {
-      "_mod_time": 1776851988.666
+      "_mod_time": 1776819230.829
     },
     "zxc.20260422085228.1": {
-      "_mod_time": 1776851988.666
+      "_mod_time": 1776819230.912
     },
     "User.20260220000301.2": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.729
     },
     "User.20260220012738.1": {
       "_mod_time": 1776434513.068
     },
     "User.20260308173318.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.712
     },
     "User.20260308184128.2": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.686
     },
     "User.20260308184713.2": {
       "_mod_time": 1776817843.31
     },
     "User.20260308214701.2": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.701
     },
     "zxc.20260328213746.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774833042.645
     },
     "User.20260308215626.2": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774833042.645
     },
     "zxc.20260317085009.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.707
     },
     "zxc.20260318203351.1": {
-      "_mod_time": 1778855150.556
+      "_mod_time": 1778049436.405
     },
     "zxc.20260505141849.1": {
       "_mod_time": 1778049436.405
     },
     "zxc.20260323195318.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774398532.733
     },
     "zxc.20260329102210.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1774833042.645
     },
     "zxc.20260404153353.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1775529044.695
     },
     "zxc.20260531113237.1": {
       "_mod_time": 1780272723.736
@@ -12321,7 +12691,7 @@
       "_mod_time": 1777179946.865
     },
     "User.20260220010313.1": {
-      "_mod_time": 1777385861.34
+      "_mod_time": 1773571522.655
     },
     "User.20260220010448.1": {
       "_mod_time": 1777713442.485
@@ -12330,22 +12700,22 @@
       "_mod_time": 1779288255.221
     },
     "User.20260216232855.1": {
-      "_mod_time": 1777179946.854
+      "_mod_time": 1773571522.655
     },
     "User.20260217182613.1": {
-      "_mod_time": 1777179946.857
+      "_mod_time": 1773571522.655
     },
     "zxc.20260317002829.1": {
-      "_mod_time": 1777179946.863
+      "_mod_time": 1776928456.1
     },
     "zxc.20260315140713.1": {
       "_mod_time": 1777179946.861
     },
     "zxc.20260408012432.1": {
-      "_mod_time": 1777179946.871
+      "_mod_time": 1776644732.259
     },
     "User.20260301202336.1": {
-      "_mod_time": 1780394292.957
+      "_mod_time": 1780371781.499
     },
     "zxc.20260327184129.1": {
       "_mod_time": 1778855150.594
@@ -12354,7 +12724,7 @@
       "_mod_time": 1773571522.655
     },
     "zxc.20260126185048.1": {
-      "_mod_time": 1777179946.853
+      "_mod_time": 1773571522.655
     },
     "zxc.20260130225718.1": {
       "_mod_time": 1777179946.861
@@ -12393,7 +12763,7 @@
       "_mod_time": 1778115749.579
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1777179946.877
+      "_mod_time": 1776044662.614
     },
     "zxc.20260125145051.1": {
       "_mod_time": 1777179946.885
@@ -12420,7 +12790,7 @@
       "_mod_time": 1780272726.068
     },
     "User.20260217223030.1": {
-      "_mod_time": 1780394293.777
+      "_mod_time": 1780455333.775
     },
     "User.20260217223035.1": {
       "_mod_time": 1780359315.462
@@ -12483,82 +12853,82 @@
       "_mod_time": 1778115749.587
     },
     "User.20260215182442.1": {
-      "_mod_time": 1777891060.651
+      "_mod_time": 1773571522.67
     },
     "User.20260217022114.1": {
-      "_mod_time": 1778855150.604
+      "_mod_time": 1778049436.442
     },
     "User.20260215182818.1": {
-      "_mod_time": 1777891191.634
+      "_mod_time": 1773571522.67
     },
     "zxc.20260317084145.1": {
-      "_mod_time": 1778855150.609
+      "_mod_time": 1778049436.443
     },
     "zxc.20260201225344.1": {
-      "_mod_time": 1777891060.714
+      "_mod_time": 1773571522.67
     },
     "zxc.20260317082914.1": {
-      "_mod_time": 1777891060.727
+      "_mod_time": 1773712444.025
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1778855150.612
+      "_mod_time": 1778049436.464
     },
     "User.20260215205925.1": {
       "_mod_time": 1780272726.073
     },
     "User.20260215210400.1": {
-      "_mod_time": 1777179946.904
+      "_mod_time": 1773571522.686
     },
     "User.20260220151031.5": {
       "_mod_time": 1780272726.072
     },
     "User.20260220151031.28": {
-      "_mod_time": 1777179946.902
+      "_mod_time": 1773571522.67
     },
     "User.20260221175549.1": {
-      "_mod_time": 1779288255.231
+      "_mod_time": 1779067019.452
     },
     "User.20260221194603.1": {
-      "_mod_time": 1777179946.906
+      "_mod_time": 1773571522.686
     },
     "User.20260222211658.1": {
-      "_mod_time": 1777179946.899
+      "_mod_time": 1775529044.732
     },
     "zxc.20260201203241.1": {
-      "_mod_time": 1777718155.12
+      "_mod_time": 1774225085.298
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1778855150.61
+      "_mod_time": 1778049436.443
     },
     "zxc.20260201214114.1": {
-      "_mod_time": 1779288255.231
+      "_mod_time": 1779067019.452
     },
     "zxc.20260202195207.1": {
-      "_mod_time": 1777179946.896
+      "_mod_time": 1774398532.804
     },
     "zxc.20260322192157.1": {
-      "_mod_time": 1777179946.897
+      "_mod_time": 1774398532.804
     },
     "zxc.20260322192357.1": {
-      "_mod_time": 1777179946.898
+      "_mod_time": 1774398532.805
     },
     "zxc.20260325223009.1": {
-      "_mod_time": 1777891355.163
+      "_mod_time": 1774490258.908
     },
     "zxc.20260325223610.1": {
-      "_mod_time": 1777891355.18
+      "_mod_time": 1774490258.908
     },
     "zxc.20260325223805.1": {
       "_mod_time": 1779322339.077
     },
     "zxc.20260329012003.1": {
-      "_mod_time": 1777179946.894
+      "_mod_time": 1776125926.578
     },
     "zxc.20260411192514.1": {
       "_mod_time": 1780272726.071
     },
     "zxc.20260330235722.1": {
-      "_mod_time": 1777179946.891
+      "_mod_time": 1774916487.394
     },
     "zxc.20260518220745.1": {
       "_mod_time": 1779672291.556
@@ -12618,7 +12988,7 @@
       "_mod_time": 1780307851.546
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1780272723.745
+      "_mod_time": 1780476387.985
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1777713442.482
@@ -12680,8 +13050,11 @@
     "zxc.20260409214651.1": {
       "_mod_time": 1777713442.482
     },
+    "zxc.20260603145336.1": {
+      "_mod_time": 1780476682.275
+    },
     "zxc.20260202205715.1": {
-      "_mod_time": 1777298774.844
+      "_mod_time": 1773571522.67
     },
     "zxc.20260426163956.1": {
       "_mod_time": 1778855150.573
@@ -12690,76 +13063,76 @@
       "_mod_time": 1780272723.743
     },
     "zxc.20260407232538.1": {
-      "_mod_time": 1777179946.836
+      "_mod_time": 1775607497.148
     },
     "zxc.20260408005117.1": {
-      "_mod_time": 1777179946.836
+      "_mod_time": 1776753962.305
     },
     "zxc.20260529091145.1": {
       "_mod_time": 1780272723.743
     },
     "zxc.20260201140523.1": {
-      "_mod_time": 1777179946.85
+      "_mod_time": 1773571522.639
     },
     "zxc.20260130233132.1": {
-      "_mod_time": 1777385863.235
+      "_mod_time": 1773571522.639
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1780394292.941
+      "_mod_time": 1780370731.569
     },
     "zxc.20260214105528.1": {
-      "_mod_time": 1777382331.981
+      "_mod_time": 1777337709.07
     },
     "zxc.20260214142543.1": {
-      "_mod_time": 1777179946.851
+      "_mod_time": 1776044662.566
     },
     "User.20260215234634.1": {
-      "_mod_time": 1777179946.854
+      "_mod_time": 1773571522.655
     },
     "User.20260216124226.1": {
-      "_mod_time": 1777179946.845
+      "_mod_time": 1773571522.639
     },
     "User.20260216125422.1": {
-      "_mod_time": 1777179946.847
+      "_mod_time": 1773571522.639
     },
     "User.20260219235648.1": {
-      "_mod_time": 1777179946.847
+      "_mod_time": 1773571522.639
     },
     "User.20260228231944.1": {
-      "_mod_time": 1777179946.852
+      "_mod_time": 1773571522.655
     },
     "User.20260302211536.1": {
-      "_mod_time": 1777179946.836
+      "_mod_time": 1773571522.639
     },
     "User.20260302211740.1": {
-      "_mod_time": 1777179946.836
+      "_mod_time": 1773571522.639
     },
     "User.20260302211946.1": {
-      "_mod_time": 1777179946.845
+      "_mod_time": 1773571522.639
     },
     "User.20260302212424.1": {
-      "_mod_time": 1777179946.845
+      "_mod_time": 1773571522.639
     },
     "User.20260302212645.1": {
-      "_mod_time": 1777179946.84
+      "_mod_time": 1773571522.639
     },
     "User.20260303213330.1": {
-      "_mod_time": 1777179946.854
+      "_mod_time": 1773571522.655
     },
     "zxc.20260401221312.1": {
-      "_mod_time": 1777179946.849
+      "_mod_time": 1775105070.822
     },
     "zxc.20260402230727.1": {
-      "_mod_time": 1777179946.85
+      "_mod_time": 1775176074.543
     },
     "zxc.20260417220340.1": {
-      "_mod_time": 1777179941.91
+      "_mod_time": 1776644732.239
     },
     "zxc.20260515010901.1": {
-      "_mod_time": 1778855150.563
+      "_mod_time": 1780470637.484
     },
     "zxc.20260518233322.1": {
-      "_mod_time": 1780307851.546
+      "_mod_time": 1780300642.875
     }
   }
 }

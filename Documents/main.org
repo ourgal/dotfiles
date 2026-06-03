@@ -1,20 +1,171 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ $os := .chezmoi.os -}}
-{{ if eq .chezmoi.os "linux" -}}
-{{ $os = .chezmoi.osRelease.id -}}
-{{ end -}}
-{{ if lookPath "pwsh" -}}
+* Doc
+
+** CLI
+*** AI
+**** aichat
+
+It's free.
+
+#+begin_src yaml
+model: gemini:gemini-2.5-flash
+clients:
+  - type: gemini
+    api_key: {{ gopass "AI/gemini" }}
+#+end_src
+
+*** Shell
+**** pwsh
+
+Set environments.
+
+#+begin_src powershell
 $env:EDITOR = "{{ template "editor" }}"
 $env:shell_startup = "~\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
-{{ $opt := "sfsu" -}}
-{{ $cmd := "sfsu" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
+#+end_src
+
+Set sfsu hook.
+
+#+begin_src powershell
 Invoke-Expression (&sfsu hook)
-{{ end -}}
+#+end_src
+
+Set aliases.
+
+#+begin_src powershell
 New-Alias reboot Restart-Computer
 New-Alias poweroff Stop-Computer
+#+end_src
+
+Oh-My-Posh hook.
+
+#+begin_src powershell
+oh-my-posh init pwsh | Invoke-Expression
+#+end_src
+
+Starship hook.
+
+#+begin_src powershell
+Invoke-Expression (&starship init powershell)
+#+end_src
+
+Carapace auto shell completion.
+
+#+begin_src powershell
+{{ if lookPath "carapace" -}}
+# carapace
+$env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense,powershell' # optional
+Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
+Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+carapace _carapace | Out-String | Invoke-Expression
+{{ end -}}
+#+end_src
+
+Init zoxide.
+
+#+begin_src powershell
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
+#+end_src
+
+Init atuin.
+
+#+begin_src powershell
+Invoke-Expression -Command $(atuin init powershell | out-string)
+#+end_src
+
+Init mcfly.
+
+#+begin_src powershell
+Invoke-Expression -Command $(mcfly init powershell | out-string)
+#+end_src
+
+Init navi shell plugin.
+
+#+begin_src powershell
+function Invoke-Navi {
+    $startArgs = @{
+        FileName = "navi";
+        Arguments = $args;
+        RedirectStandardOutput = $true;
+        WorkingDirectory = $PWD;
+        UseShellExecute = $false;
+    }
+    $p = [System.Diagnostics.Process]@{StartInfo = $startArgs}
+
+    [void]$p.Start()
+    $result = $p.StandardOutput.ReadToEnd()
+    $p.WaitForExit()
+
+    $result
+}
+
+
+### Initial code from @lurebat (https://github.com/lurebat/)
+### See #570 (https://github.com/denisidoro/navi/issues/570) for its original contribution
+function Invoke-NaviWidget {
+    $ast = $tokens = $errors = $cursor = $null
+    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref] $ast, [ref] $tokens, [ref] $errors, [ref] $cursor)
+
+    $line = $ast.ToString().Trim()
+    $output = $null
+
+    if ([String]::IsNullOrEmpty($line)) {
+        $output = (Invoke-Navi "--print" | Out-String).Trim()
+    }
+    else {
+        $best_match = (Invoke-Navi "--print --best-match --query `"$line`"" | Out-String).Trim()
+        if ([String]::IsNullOrEmpty($best_match)) {
+            $output = (Invoke-Navi "--print --query `"$line`"" | Out-String).Trim()
+        }
+        else {
+            $output = $best_match
+        }
+    }
+
+    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
+    [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt()
+
+    ### Handling the case when the user escapes without selecting any entry
+    if (-Not([String]::IsNullOrEmpty($output))) {
+        [Microsoft.PowerShell.PSConsoleReadLine]::Insert([String]$output)
+    }
+}
+
+Set-PSReadlineKeyHandler -BriefDescription "A keybinding to open Navi Widget" -Chord Ctrl+g -ScriptBlock { Invoke-NaviWidget }
+#+end_src
+
+Import PSFzf.
+
+#+begin_src powershell
+Import-Module PSFzf
+Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r' -EnableAliasFuzzyKillProcess
+# Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
+#+end_src
+
+Fzf and edit.
+
+#+begin_src powershell
+Set-PSReadLineKeyHandler -Key Ctrl+o `
+                         -BriefDescription FuzzyEdit `
+                         -LongDescription "Fuzzy Edit" `
+                         -ScriptBlock {
+    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
+    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Invoke-FuzzyEdit")
+    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+}
+#+end_src
+
+***** PSReadLine
+
+Import module.
+
+#+begin_src powershell
 Import-Module PSReadLine
 Set-PSReadLineKeyHandler -Key Tab -Function Complete
+#+end_src
+
+Auto close pairs.
+
+#+begin_src powershell
 #region Smart Insert/Delete
 
 # The next four key handlers are designed to make entering matched quotes
@@ -134,10 +285,32 @@ Set-PSReadLineKeyHandler -Key Backspace `
 }
 
 #endregion Smart Insert/Delete
+#+end_src
+
+Edit commands in the editor.
+
+#+begin_src powershell
 Set-PSReadLineKeyHandler -Key Alt+e -Function ViEditVisually
+#+end_src
+
+Change the color of arguments.
+
+#+begin_src powershell
 # parameter color
 Set-PSReadLineOption -Colors @{ "parameter"="Blue"; "operator"="DarkMagenta" }
+#+end_src
+
+Exit the shell.
+
+#+begin_src powershell
 Set-PSReadlineKeyHandler -Key Ctrl+d -Function DeleteCharOrExit
+#+end_src
+
+***** Functions
+
+Eza ll
+
+#+begin_src powershell
 {{ if lookPath "eza" -}}
 function ll {
   Param
@@ -148,6 +321,11 @@ function ll {
   eza --long --icons=auto --group --group-directories-first --time-style relative $Path
 }
 {{ end -}}
+#+end_src
+
+Eza lla
+
+#+begin_src powershell
 {{ if lookPath "eza" -}}
 function lla {
   Param
@@ -158,9 +336,19 @@ function lla {
   eza --long --all --icons=auto --group --group-directories-first --time-style relative $Path
 }
 {{ end -}}
+#+end_src
+
+Simplely back to parent dir.
+
+#+begin_src powershell
 function bd {
   cd ..
 }
+#+end_src
+
+Git commit and push.
+
+#+begin_src powershell
 function _git_commit_and_push {
   git add .
   git commit
@@ -175,17 +363,32 @@ Set-PSReadLineKeyHandler -Key Alt+x `
     [Microsoft.PowerShell.PSConsoleReadLine]::Insert("_git_commit_and_push")
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
+#+end_src
+
+Trun off the screen.
+
+#+begin_src powershell
 {{ if lookPath "nircmd" -}}
 # turn off monitor
 function scroff {
   nircmd monitor off
 }
 {{ end -}}
+#+end_src
+
+Wathing a youtube video.
+
+#+begin_src powershell
 {{ if lookPath "yt-dlp" -}}
 function yt {
     yt-dlp -f "bestvideo[height<=1080]+bestaudio/best[height<=1080]" (cb) && mpv (ls | sort LastWriteTime -Descending)[0].Name
 }
 {{ end -}}
+#+end_src
+
+Update scoop packages.
+
+#+begin_src powershell
 {{ if lookPath "scoop" -}}
 function scoop-update {
     scoop update *
@@ -193,11 +396,21 @@ function scoop-update {
     scoop cleanup *
 }
 {{ end -}}
+#+end_src
+
+Unlock KeePassXC.
+
+#+begin_src powershell
 {{ if and ( lookPath "scoop" ) (lookPath "KeePassXc") -}}
 function unlock-keepassxc {
     gopass show -o keepassxc/main | & keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir "syncthing" "keepassxc" "main.kdbx" | quote }}
 }
 {{ end -}}
+#+end_src
+
+Choco completion.
+
+#+begin_src powershell
 {{ if lookPath "choco" -}}
 # Import the Chocolatey Profile that contains the necessary code to enable
 # tab-completions to function for `choco`.
@@ -210,102 +423,5 @@ if (Test-Path($ChocolateyProfile)) {
   Import-Module "$ChocolateyProfile"
 }
 {{ end -}}
-{{ if lookPath "carapace" -}}
-# carapace
-$env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense,powershell' # optional
-Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
-Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
-carapace _carapace | Out-String | Invoke-Expression
-{{ end -}}
-{{ $opt := "starship" -}}
-{{ $cmd := "starship" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Invoke-Expression (&starship init powershell)
-{{ end -}}
-{{ $opt := "oh_my_posh" -}}
-{{ $cmd := "oh-my-posh" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-oh-my-posh init pwsh | Invoke-Expression
-{{ end -}}
-{{ $opt := "zoxide" -}}
-{{ $cmd := "zoxide" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Invoke-Expression (& { (zoxide init powershell | Out-String) })
-{{ end -}}
-Import-Module PSFzf
-Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r' -EnableAliasFuzzyKillProcess
-# Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
-Set-PSReadLineKeyHandler -Key Ctrl+o `
-                         -BriefDescription FuzzyEdit `
-                         -LongDescription "Fuzzy Edit" `
-                         -ScriptBlock {
-    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
-    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Invoke-FuzzyEdit")
-    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
-}
-{{ $opt := "atuin" -}}
-{{ $cmd := "atuin" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Invoke-Expression -Command $(atuin init powershell | out-string)
-{{ end -}}
-{{ $opt := "mcfly" -}}
-{{ $cmd := "mcfly" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Invoke-Expression -Command $(mcfly init powershell | out-string)
-{{ end -}}
-{{ $opt := "navi" -}}
-{{ $cmd := "" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-function Invoke-Navi {
-    $startArgs = @{
-        FileName = "navi";
-        Arguments = $args;
-        RedirectStandardOutput = $true;
-        WorkingDirectory = $PWD;
-        UseShellExecute = $false;
-    }
-    $p = [System.Diagnostics.Process]@{StartInfo = $startArgs}
+#+end_src
 
-    [void]$p.Start()
-    $result = $p.StandardOutput.ReadToEnd()
-    $p.WaitForExit()
-
-    $result
-}
-
-
-### Initial code from @lurebat (https://github.com/lurebat/)
-### See #570 (https://github.com/denisidoro/navi/issues/570) for its original contribution
-function Invoke-NaviWidget {
-    $ast = $tokens = $errors = $cursor = $null
-    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref] $ast, [ref] $tokens, [ref] $errors, [ref] $cursor)
-
-    $line = $ast.ToString().Trim()
-    $output = $null
-
-    if ([String]::IsNullOrEmpty($line)) {
-        $output = (Invoke-Navi "--print" | Out-String).Trim()
-    }
-    else {
-        $best_match = (Invoke-Navi "--print --best-match --query `"$line`"" | Out-String).Trim()
-        if ([String]::IsNullOrEmpty($best_match)) {
-            $output = (Invoke-Navi "--print --query `"$line`"" | Out-String).Trim()
-        }
-        else {
-            $output = $best_match
-        }
-    }
-
-    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
-    [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt()
-
-    ### Handling the case when the user escapes without selecting any entry
-    if (-Not([String]::IsNullOrEmpty($output))) {
-        [Microsoft.PowerShell.PSConsoleReadLine]::Insert([String]$output)
-    }
-}
-
-Set-PSReadlineKeyHandler -BriefDescription "A keybinding to open Navi Widget" -Chord Ctrl+g -ScriptBlock { Invoke-NaviWidget }
-{{ end -}}
-{{ end -}}
-{{ end -}}
