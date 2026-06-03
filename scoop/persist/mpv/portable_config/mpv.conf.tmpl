@@ -18,9 +18,14 @@ osd-shadow-color=%7%#1d1f21
 pause=%2%no
 save-position-on-quit=%3%yes
 slang=%46%en,eng,chs,sc,zh,chi,zho,zh-Hant,zh-CN,zh-Hans
-sub-auto=%5%fuzzy
-sub-font=%11%DejaVu Sans
 volume=%3%100
 volume-max=%3%200
+sub-auto=%5%fuzzy
+sub-font=%{{ len .my.font.sans }}%{{ .my.font.sans }}
+sub-color="#FFFFFF"             # White text
+sub-border-color="#000000"      # Black border for contrast
+sub-border-size=1               # Thickness of the outline
+sub-shadow-color="#000000"      # Subtle shadow
+sub-shadow-offset=1
 {{ end -}}
 {{ end -}}
