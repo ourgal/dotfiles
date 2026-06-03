@@ -89,7 +89,7 @@
   (start-process "mpv" nil "mpv" url))
 
 (defun browse-url-mpv-no-dash (url &optional _new-window)
-  (start-process "mpv" nil "mpv" "--ytdl-format=18/22" url))
+  (start-process "mpv" nil "mpv" "--ytdl-format=18/22" "--speed=3" url))
 
 (setq browse-url-handlers
       '(("\\(bilibili\\.com\\|vimeo\\.com\\|twitch\\.tv\\)" . browse-url-mpv)
