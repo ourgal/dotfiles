@@ -11583,7 +11583,7 @@
     "User.20260217235737.1": "(add-hook! 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)\n",
     "User.20260218113718.1": "(add-hook! 'completion-at-point-functions #'cape-dabbrev)\n(add-hook! 'completion-at-point-functions #'cape-file)\n",
     "User.20260218114048.1": "(after! doom-modeline\n  (setq doom-modeline-buffer-file-name-style 'relative-to-project))\n",
-    "zxc.20260517023349.1": "(defun browse-url-mpv (url &optional _new-window)\n  (start-process \"mpv\" nil \"mpv\" url))\n\n(defun browse-url-mpv-no-dash (url &optional _new-window)\n  (start-process \"mpv\" nil \"mpv\" \"--ytdl-format=18/22\" \"--speed=3\" url))\n\n(setq browse-url-handlers\n      '((\"\\\\(bilibili\\\\.com\\\\|vimeo\\\\.com\\\\|twitch\\\\.tv\\\\)\" . browse-url-mpv)\n        (\"\\\\(youtube\\\\.com\\\\)\" . browse-url-mpv-no-dash)\n        (\".\" . {{ if eq .chezmoi.os \"windows\" }}browse-url-default-windows-browser{{ else }}browse-url-firefox{{ end }})))\n",
+    "zxc.20260517023349.1": "(defun browse-url-mpv (url &optional _new-window)\n  (start-process \"mpv\" (get-buffer-create \"*mpv out*\") \"mpv\" url))\n\n(defun browse-url-mpv-no-dash (url &optional _new-window)\n  (start-process \"mpv\" (get-buffer-create \"*mpv out*\") \"mpv\" \"--ytdl-format=18/22\" \"--speed=2\" url))\n\n(setq browse-url-handlers\n      '((\"\\\\(bilibili\\\\.com\\\\|vimeo\\\\.com\\\\|twitch\\\\.tv\\\\)\" . browse-url-mpv)\n        (\"\\\\(youtube\\\\.com\\\\)\" . browse-url-mpv-no-dash)\n        (\".\" . {{ if eq .chezmoi.os \"windows\" }}browse-url-default-windows-browser{{ else }}browse-url-firefox{{ end }})))\n",
     "zxc.20260531010146.1": "(after! org\n  (setq org-agenda-files '(\"~/org/agenda.org\")))\n",
     "User.20260218124824.1": "(map! :n \"C-w o\" #'delete-other-windows\n      :n \"C-w z\" #'doom/window-enlargen)\n",
     "User.20260218124950.1": "(map! :leader\n      :desc \"Kill other buffer\" \"b o\" #'doom/kill-other-buffers)\n(map! :leader\n      :desc \"Kill other buffer\" \"b 0\" nil)\n",
@@ -12663,7 +12663,7 @@
       "_mod_time": 1780394292.941
     },
     "zxc.20260125143959.1": {
-      "_mod_time": 1777906067.531
+      "_mod_time": 1778049436.421
     },
     "zxc.20260125163416.1": {
       "_mod_time": 1778855150.581
@@ -12843,7 +12843,7 @@
       "_mod_time": 1780486276.607
     },
     "User.20260226001402.1": {
-      "_mod_time": 1780529359.152
+      "_mod_time": 1780532989.766
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1777891402.212
@@ -12951,7 +12951,7 @@
       "_mod_time": 1780272726.068
     },
     "User.20260217223030.1": {
-      "_mod_time": 1780527927.476
+      "_mod_time": 1780562663.237
     },
     "User.20260217223035.1": {
       "_mod_time": 1780401620.006
@@ -12960,7 +12960,7 @@
       "_mod_time": 1778855150.599
     },
     "User.20260220233323.1": {
-      "_mod_time": 1780530279.111
+      "_mod_time": 1780532989.809
     },
     "zxc.20260421145655.1": {
       "_mod_time": 1777179946.881
@@ -13065,7 +13065,7 @@
       "_mod_time": 1779288255.231
     },
     "zxc.20260202195207.1": {
-      "_mod_time": 1780530279.121
+      "_mod_time": 1780532989.817
     },
     "zxc.20260322192157.1": {
       "_mod_time": 1777179946.897
@@ -13212,7 +13212,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1780498665.546
+      "_mod_time": 1780532989.766
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777298774.844
@@ -13290,7 +13290,7 @@
       "_mod_time": 1777179941.91
     },
     "zxc.20260515010901.1": {
-      "_mod_time": 1778778728.929
+      "_mod_time": 1780470637.484
     },
     "zxc.20260518233322.1": {
       "_mod_time": 1780319153.078
