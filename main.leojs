@@ -11221,7 +11221,7 @@
     "zxc.20260201203539.1": "{{ if .my.git.sign.gpg -}}\n{{ if eq .chezmoi.os \"windows\" -}}\nenable-win32-openssh-support\n{{ end -}}\nenable-ssh-support\n{{ end -}}\ngrab\n{{ if lookPath \"pinentry-gtk-2\" -}}\npinentry-program {{ lookPath \"pinentry-gtk-2\" }}\n{{ end -}}",
     "zxc.20260402230749.1": "[mounts]\n\tpath = {{ env \"LOCALAPPDATA\" }}\\gopass\\stores\\root\n[core]\n\tautosync = false",
     "zxc.20260202195341.1": "af=%11%scaletempo2\nalang=%16%ja,jp,jpn,en,eng\naudio-file-auto=%5%fuzzy\naudio-pitch-correction=%3%yes\nbackground-color=%7%#000000\nblend-subtitles=%5%video\nforce-seekable=%3%yes\nfullscreen=%3%yes\nhwdec=%4%auto\nkeep-open=%6%always\nosd-back-color=%7%#282a2e\nosd-border-color=%7%#282a2e\nosd-color=%7%#c5c8c6\nosd-font=%11%DejaVu Sans\nosd-shadow-color=%7%#1d1f21\npause=%2%no\nsave-position-on-quit=%3%yes\nslang=%46%en,eng,chs,sc,zh,chi,zho,zh-Hant,zh-CN,zh-Hans\nvolume=%3%100\nvolume-max=%3%200\n",
-    "zxc.20260604073139.1": "sub-auto=%5%fuzzy\nsub-font=%{{ len .my.font.sans }}%{{ .my.font.sans }}\nsub-color=\"#FFFFFF\"             # White text\nsub-border-color=\"#000000\"      # Black border for contrast\nsub-border-size=1               # Thickness of the outline\nsub-shadow-color=\"#000000\"      # Subtle shadow\nsub-shadow-offset=1\n",
+    "zxc.20260604073139.1": "sub-auto=%5%fuzzy\nsub-font=%{{ len .my.font.sans }}%{{ .my.font.sans }}\nsub-color=\"#FFFF00\"             # Yellow text\nsub-border-color=\"#000000\"      # Black border for contrast\nsub-border-size=1               # Thickness of the outline\nsub-shadow-color=\"#000000\"      # Subtle shadow\nsub-shadow-offset=1\n",
     "User.20260228232118.1": "music_directory {{ joinPath .chezmoi.homeDir \"Music\" | quote }}\nplaylist_directory {{ joinPath (env \"APPDATA\") \"mpd\" \"playlist\" | quote }}\ndb_file {{ joinPath (env \"APPDATA\") \"mpd\" \"tag_cache\" | quote }}\nstate_file {{ joinPath (env \"APPDATA\") \"mpd\" \"state\" | quote }}\nsticker_file {{ joinPath (env \"APPDATA\") \"mpd\" \"sticker.sql\" | quote }}\n\nauto_update \"yes\"\n\naudio_output {\n    type \"winmm\"\n    name \"Windows Speakers\"\n}",
     "User.20260214200035.1": "encryption = \"age\"\n[age]\n    identity = \"~/.ssh/id_ed25519\"\n    symmetric = true",
     "User.20260214200002.1": "[git]\n    autoCommit = false\n    autoPush = false",
@@ -12660,10 +12660,10 @@
       "_mod_time": 1777179946.861
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1780394292.941
+      "_mod_time": 1780401618.97
     },
     "zxc.20260125143959.1": {
-      "_mod_time": 1778049436.421
+      "_mod_time": 1778855150.579
     },
     "zxc.20260125163416.1": {
       "_mod_time": 1778855150.581
@@ -12843,7 +12843,7 @@
       "_mod_time": 1780486276.607
     },
     "User.20260226001402.1": {
-      "_mod_time": 1780532989.766
+      "_mod_time": 1780569920.527
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1777891402.212
@@ -12951,7 +12951,7 @@
       "_mod_time": 1780272726.068
     },
     "User.20260217223030.1": {
-      "_mod_time": 1780562663.237
+      "_mod_time": 1780569920.541
     },
     "User.20260217223035.1": {
       "_mod_time": 1780401620.006
@@ -12960,7 +12960,7 @@
       "_mod_time": 1778855150.599
     },
     "User.20260220233323.1": {
-      "_mod_time": 1780532989.809
+      "_mod_time": 1780573965.081
     },
     "zxc.20260421145655.1": {
       "_mod_time": 1777179946.881
@@ -13065,7 +13065,7 @@
       "_mod_time": 1779288255.231
     },
     "zxc.20260202195207.1": {
-      "_mod_time": 1780532989.817
+      "_mod_time": 1780573965.097
     },
     "zxc.20260322192157.1": {
       "_mod_time": 1777179946.897
@@ -13149,7 +13149,7 @@
       "_mod_time": 1780319153.09
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1780480977.894
+      "_mod_time": 1780486276.607
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1777713442.482
@@ -13212,7 +13212,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1780532989.766
+      "_mod_time": 1780569920.535
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777298774.844
