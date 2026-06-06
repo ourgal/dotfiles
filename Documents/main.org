@@ -1524,170 +1524,7 @@ Search the current word.
 nnoremap g* :%s/<c-r><c-w>/
 #+end_src
 
-****** Options
-
-Main options.
-
-#+begin_src vimscript
-set laststatus=2
-
-try
-set switchbuf=uselast
-set showtabline=2
-catch
-endtry
-
-set expandtab
-set smarttab
-
-set shiftwidth=4
-set tabstop=4
-
-set cindent
-set wrap
-set clipboard=unnamed
-
-set undodir={{ joinPath .chezmoi.homeDir ".local" "share" "vim" "undo" }}
-set undofile
-
-set nobackup
-set nowritebackup
-
-set noswapfile
-" set directory=$HOME/.local/share/vim/swap//
-
-if has('gui_running')
-set guioptions-=T
-set guioptions-=e
-set guioptions-=m
-set t_Co=256
-set guitablabel=%M\ %t
-endif
-
-set encoding=utf8
-set fileformats=unix,dos,mac
-syntax enable
-
-set regexpengine=0
-
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
-
-set ignorecase
-set smartcase
-set hlsearch
-set incsearch
-
-set lazyredraw
-set magic
-set showmatch
-
-set matchtime=2
-
-set noerrorbells
-set novisualbell
-set t_vb=
-set timeoutlen=500
-
-set foldcolumn=0
-
-let $LANG = 'en'
-set langmenu=en
-
-set wildmenu
-
-set wildignore=*.o,*~,*.pyc
-if has('win16') || has('win32')
-set wildignore+=.git\*,.hg\*,.svn\*
-else
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
-endif
-
-let &t_SI = "\e[6 q"
-let &t_EI = "\e[2 q"
-
-set ruler
-set cmdheight=1
-set hidden
-set history=500
-set number relativenumber
-
-filetype plugin on
-filetype indent on
-
-set autoread
-
-set updatetime=500
-
-set mouse=a
-set smoothscroll
-
-set showtabline=1
-
-augroup settings
-    autocmd!
-    autocmd FocusGained,BufEnter * checktime
-    autocmd FileType qf nnoremap <buffer><silent> q :cclose<bar>lclose<CR>
-augroup END
-
-{{ if lookPath "rg" -}}
-set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
-set grepformat=%f:%l:%c:%m
-{{ end -}}
-
-set signcolumn=auto
-set sessionoptions-=blank
-set foldmethod=marker
-set cursorline
-set scrolloff=5
-
-set shortmess-=S " show she search count
-
-set gdefault
-
-set signcolumn=yes
-
-autocmd CmdlineChanged [:\/\?] call wildtrigger()
-set wildmode=noselect:lastused,full
-set wildoptions=pum
-
-autocmd CmdlineEnter [\/\?] set pumheight=8
-autocmd CmdlineLeave [\/\?] set pumheight&
-#+end_src
-
-Auto save.
-
-#+begin_src vimscript
-set noswapfile
-au BufLeave,CursorHold,FocusLost * if(getbufinfo('%')[0].changed) | sil do BufWritePre | sil! up | sil do BufWritePost | endif
-#+end_src
-
-Auto sessions.
-
-#+begin_src vimscript
-" Autosession
-" au VimEnter * nested if (len(v:argv) == 1) | silent! source Session.vim | endif
-" au VimLeave * if (len(v:argv) == 1) | mksession! | endif
-#+end_src
-
-Auto chezmoi apply.
-
-#+begin_src vimscript
-" autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
-#+end_src
-
-Ex command completion.
-
-#+begin_src vimscript
-set autocomplete
-set complete=o^5,.^5,w^5,b^5,u^5
-set completeopt=popup
-
-inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-#+end_src
-
-****** Plugins
+***** Plugins
 
 ******* Coc.nvim.
 
@@ -2261,7 +2098,170 @@ Vim-plug.
 Plug 'lervag/vimtex', { 'for': 'tex' }
 #+end_src
 
-****** Imports
+***** Options
+
+Main options.
+
+#+begin_src vimscript
+set laststatus=2
+
+try
+set switchbuf=uselast
+set showtabline=2
+catch
+endtry
+
+set expandtab
+set smarttab
+
+set shiftwidth=4
+set tabstop=4
+
+set cindent
+set wrap
+set clipboard=unnamed
+
+set undodir={{ joinPath .chezmoi.homeDir ".local" "share" "vim" "undo" }}
+set undofile
+
+set nobackup
+set nowritebackup
+
+set noswapfile
+" set directory=$HOME/.local/share/vim/swap//
+
+if has('gui_running')
+set guioptions-=T
+set guioptions-=e
+set guioptions-=m
+set t_Co=256
+set guitablabel=%M\ %t
+endif
+
+set encoding=utf8
+set fileformats=unix,dos,mac
+syntax enable
+
+set regexpengine=0
+
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+
+set lazyredraw
+set magic
+set showmatch
+
+set matchtime=2
+
+set noerrorbells
+set novisualbell
+set t_vb=
+set timeoutlen=500
+
+set foldcolumn=0
+
+let $LANG = 'en'
+set langmenu=en
+
+set wildmenu
+
+set wildignore=*.o,*~,*.pyc
+if has('win16') || has('win32')
+set wildignore+=.git\*,.hg\*,.svn\*
+else
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+endif
+
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
+set ruler
+set cmdheight=1
+set hidden
+set history=500
+set number relativenumber
+
+filetype plugin on
+filetype indent on
+
+set autoread
+
+set updatetime=500
+
+set mouse=a
+set smoothscroll
+
+set showtabline=1
+
+augroup settings
+    autocmd!
+    autocmd FocusGained,BufEnter * checktime
+    autocmd FileType qf nnoremap <buffer><silent> q :cclose<bar>lclose<CR>
+augroup END
+
+{{ if lookPath "rg" -}}
+set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
+set grepformat=%f:%l:%c:%m
+{{ end -}}
+
+set signcolumn=auto
+set sessionoptions-=blank
+set foldmethod=marker
+set cursorline
+set scrolloff=5
+
+set shortmess-=S " show she search count
+
+set gdefault
+
+set signcolumn=yes
+
+autocmd CmdlineChanged [:\/\?] call wildtrigger()
+set wildmode=noselect:lastused,full
+set wildoptions=pum
+
+autocmd CmdlineEnter [\/\?] set pumheight=8
+autocmd CmdlineLeave [\/\?] set pumheight&
+#+end_src
+
+Auto save.
+
+#+begin_src vimscript
+set noswapfile
+au BufLeave,CursorHold,FocusLost * if(getbufinfo('%')[0].changed) | sil do BufWritePre | sil! up | sil do BufWritePost | endif
+#+end_src
+
+Auto sessions.
+
+#+begin_src vimscript
+" Autosession
+" au VimEnter * nested if (len(v:argv) == 1) | silent! source Session.vim | endif
+" au VimLeave * if (len(v:argv) == 1) | mksession! | endif
+#+end_src
+
+Auto chezmoi apply.
+
+#+begin_src vimscript
+" autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
+#+end_src
+
+Ex command completion.
+
+#+begin_src vimscript
+set autocomplete
+set complete=o^5,.^5,w^5,b^5,u^5
+set completeopt=popup
+
+inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+#+end_src
+
+***** Imports
 
 Find command.
 
@@ -2363,7 +2363,7 @@ if len(v:argv) == 1
 endif
 #+end_src
 
-****** Ftplugin
+***** Ftplugin
 
 Org.
 
@@ -2375,5 +2375,373 @@ Help.
 
 #+begin_src vimscript
 map q <cmd>quit<cr>
+#+end_src
+
+**** Helix
+
+***** Languages
+
+Ansible.
+
+#+begin_src toml
+{{ $lsp := list -}}
+{{ if lookPath "simple-completion-language-server" -}}
+{{ $lsp = append $lsp "scls" -}}
+{{ end -}}
+{{ if lookPath "ansible-language-server" -}}
+{{ $lsp = append $lsp "ansible-language-server" -}}
+{{ end -}}
+[[language]]
+auto-format = true
+comment-token = "#"
+grammar = "yaml"
+injection-regex = "ansible"
+language-servers = [{{- $lsp | quoteList | join ", " -}}]
+name = "ansible"
+scope = "source.yaml"
+shebangs = ["ansible-playbook"]
+
+[[language.file-types]]
+glob = "playbooks/*.yaml"
+
+[[language.file-types]]
+glob = "playbooks/*.yml"
+
+[[language.file-types]]
+glob = "group_vars/*.yaml"
+
+[[language.file-types]]
+glob = "group_vars/*.yml"
+
+[[language.file-types]]
+glob = "host_vars/*.yaml"
+
+[[language.file-types]]
+glob = "host_vars/*.yml"
+
+[[language.file-types]]
+glob = "vars/*.yaml"
+
+[[language.file-types]]
+glob = "vars/*.yml"
+
+[[language.file-types]]
+glob = "defaults/*.yaml"
+
+[[language.file-types]]
+glob = "defaults/*.yml"
+
+[[language.file-types]]
+glob = "tasks/*.yaml"
+
+[[language.file-types]]
+glob = "tasks/*.yml"
+
+[[language.file-types]]
+glob = "handlers/*.yaml"
+
+[[language.file-types]]
+glob = "handlers/*.yml"
+
+[[language.file-types]]
+glob = "meta/*.yaml"
+
+[[language.file-types]]
+glob = "meta/*.yml"
+#+end_src
+
+Markdown.
+
+#+begin_src toml
+{{ $lsp := list -}}
+{{ if lookPath "simple-completion-language-server" -}}
+{{ $lsp = append $lsp "scls" -}}
+{{ end -}}
+{{ if lookPath "marksman" -}}
+{{ $lsp = append $lsp "marksman" -}}
+{{ end -}}
+{{ if lookPath "markdown-oxide" -}}
+{{ $lsp = append $lsp "markdown-oxide" -}}
+{{ end -}}
+[[language]]
+auto-format = true
+name = "markdown"
+language-servers = [{{- $lsp | quoteList | join ", " -}}]
+#+end_src
+
+Python.
+
+#+begin_src toml
+{{ $lsp := list -}}
+{{ if lookPath "simple-completion-language-server" -}}
+{{ $lsp = append $lsp "scls" -}}
+{{ end -}}
+{{ if lookPath "ty" -}}
+{{ $lsp = append $lsp "ty" -}}
+{{ end -}}
+{{ if lookPath "jedi-language-server" -}}
+{{ $lsp = append $lsp "jedi" -}}
+{{ end -}}
+{{ if lookPath "pylsp" -}}
+{{ $lsp = append $lsp "pylsp" -}}
+{{ end -}}
+{{ if lookPath "ruff" -}}
+{{ $lsp = append $lsp "ruff" -}}
+{{ end -}}
+[[language]]
+auto-format = true
+name = "python"
+language-servers = [{{- $lsp | quoteList | join ", " -}}]
+
+{{ if lookPath "ruff" -}}
+formatter = { command = "sh", args = ["-c", "ruff check --fix --select I - | ruff format -"] }
+{{ end -}}
+#+end_src
+
+Lua.
+
+#+begin_src toml
+{{ $lsp := list -}}
+{{ if lookPath "simple-completion-language-server" -}}
+{{ $lsp = append $lsp "scls" -}}
+{{ end -}}
+{{ if lookPath "lua-language-server" -}}
+{{ $lsp = append $lsp "lua-language-server" -}}
+{{ end -}}
+[[language]]
+auto-format = true
+name = "lua"
+language-servers = [{{- $lsp | quoteList | join ", " -}}]
+{{ if lookPath "stylua" -}}
+[language.formatter]
+command = "stylua"
+args = ["-"]
+{{ end -}}
+#+end_src
+
+Toml.
+
+#+begin_src toml
+{{ $lsp := list -}}
+{{ if lookPath "simple-completion-language-server" -}}
+{{ $lsp = append $lsp "scls" -}}
+{{ end -}}
+{{ if lookPath "taplo" -}}
+{{ $lsp = append $lsp "taplo" -}}
+{{ end -}}
+{{ if lookPath "tombi" -}}
+{{ $lsp = append $lsp "tombi" -}}
+{{ end -}}
+[[language]]
+auto-format = true
+name = "toml"
+language-servers = [{{- $lsp | quoteList | join ", " -}}]
+{{ if lookPath "taplo" -}}
+[language.formatter]
+command = "taplo"
+args = ["fmt", "-"]
+{{ end -}}
+#+end_src
+
+Yaml.
+
+#+begin_src toml
+{{ $lsp := list -}}
+{{ if lookPath "simple-completion-language-server" -}}
+{{ $lsp = append $lsp "scls" -}}
+{{ end -}}
+{{ if lookPath "yaml-language-server" -}}
+{{ $lsp = append $lsp "yaml-language-server" -}}
+{{ end -}}
+[[language]]
+auto-format = true
+name = "yaml"
+language-servers = [{{- $lsp | quoteList | join ", " -}}]
+{{ if lookPath "yamlfmt" -}}
+[language.formatter]
+command = "yamlfmt"
+args = ["-"]
+{{ end -}}
+#+end_src
+
+Json.
+
+#+begin_src toml
+{{ $lsp := list -}}
+{{ if lookPath "simple-completion-language-server" -}}
+{{ $lsp = append $lsp "scls" -}}
+{{ end -}}
+{{ if lookPath "vscode-json-language-server" -}}
+{{ $lsp = append $lsp "vscode-json-language-server" -}}
+{{ end -}}
+[[language]]
+auto-format = true
+name = "json"
+language-servers = [{{- $lsp | quoteList | join ", " -}}]
+{{ if lookPath "prettier" -}}
+[language.formatter]
+command = "prettier"
+args = ["--parser", "json"]
+{{ end -}}
+#+end_src
+
+Simple completion language server.
+
+#+begin_src toml
+{{ if lookPath "simple-completion-language-server" -}}
+[language-server.scls]
+command = "simple-completion-language-server"
+
+[language-server.scls.config]
+feature_paths = true
+feature_snippets = true
+feature_unicode_input = true
+feature_words = true
+max_completion_items = 20
+snippets_first = true
+{{ end -}}
+#+end_src
+
+Ruff lsp.
+
+#+begin_src toml
+{{ if lookPath "ruff" -}}
+[language-server.ruff]
+command = "ruff"
+args = ["server", "--preview"]
+environment = { "RUFF_TRACE" = "messages" }
+
+[language-server.ruff.config.settings]
+lineLength = 100
+logLevel = "debug"
+
+[language-server.ruff.config.settings.lint]
+select = ["E", "F", "W", "B", "I", "RUF", "N", "LOG", "ERA", "W", "D", "UP", "ANN", "ASYNC", "S", "RET", "TCH", "ARG", "PTH", "DOC"]
+preview = true
+
+[language-server.ruff.config.settings.format]
+preview = true
+quote-style = "double"
+docstring-code-format = true
+indent-style = "space"
+{{ end -}}
+#+end_src
+
+***** Config
+
+Theme.
+
+#+begin_src toml
+theme = "catppuccin_mocha"
+#+end_src
+
+Editor config.
+
+#+begin_src toml
+[editor]
+bufferline = "multiple"
+color-modes = true
+idle-timeout = 0
+line-number = "relative"
+popup-border = "none"
+true-color = true
+#+end_src
+
+Auto save.
+
+#+begin_src toml
+[editor.auto-save]
+focus-lost = true
+[editor.auto-save.after-delay]
+enable = false
+timeout = 1000
+#+end_src
+
+Cursor shape.
+
+#+begin_src toml
+[editor.cursor-shape]
+insert = "bar"
+#+end_src
+
+Indent guides.
+
+#+begin_src toml
+[editor.indent-guides]
+character = "⸽"
+render = true
+skip-levels = 1
+#+end_src
+
+Lsp.
+
+#+begin_src toml
+[editor.lsp]
+display-inlay-hints = true
+display-messages = true
+#+end_src
+
+Soft wrap.
+
+#+begin_src toml
+[editor.soft-wrap]
+enable = true
+#+end_src
+
+Status line.
+
+#+begin_src toml
+[editor.statusline]
+center = ["file-name"]
+left = ["mode", "spinner"]
+right = [
+  "diagnostics",
+  "selections",
+  "position",
+  "file-encoding",
+  "file-line-ending",
+  "file-type",
+]
+separator = "│"
+[editor.statusline.mode]
+insert = "INSERT"
+normal = "NORMAL"
+select = "SELECT"
+#+end_src
+
+***** Keys
+
+Normal g.
+
+#+begin_src toml
+[keys.normal.g]
+z = ["split_selection_on_newline", ":sort", "keep_primary_selection"]
+[keys.normal.g.c]
+b = "toggle_block_comments"
+c = "toggle_comments"
+l = "toggle_line_comments"
+#+end_src
+
+Normal Z.
+
+#+begin_src toml
+[keys.normal.Z]
+Q = ":qa!"
+Z = ":xa"
+#+end_src
+
+Normal space.
+
+#+begin_src toml
+[keys.normal.space.l]
+f = ":fmt"
+#+end_src
+
+Select g.
+
+#+begin_src toml
+[keys.select.g]
+c = "toggle_comments"
+z = ["split_selection_on_newline", ":sort", "keep_primary_selection"]
 #+end_src
 
