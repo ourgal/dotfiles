@@ -1,7 +1,7 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "vim" -}}
-packadd! comment
 packadd! hlyank
+packadd! comment
 import 'find.vim'
 import 'session.vim'
 " import 'temp.vim'
@@ -310,7 +310,6 @@ import 'plugins.vim'
 " vim-easy-align
 " xmap ga <Plug>(EasyAlign)
 " nmap ga <Plug>(EasyAlign)
-" vim-suda
 " let g:suda_smart_edit = 1
 let g:lightline = {
       \ 'colorscheme': 'catppuccin_mocha',
@@ -350,7 +349,6 @@ endfunction
 " let g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "undo" ) "\\" | squote }}
 nnoremap <silent> <leader> <cmd>WhichKey '<Space>'<CR>
 let g:which_key_map = {}
-
 let g:which_key_map['f'] = {
       \ 'name': 'files',
       \ 'f'   : [':Files', 'Files'],
@@ -376,7 +374,6 @@ let g:which_key_map['w'] = {
       \ 'v'   : ['<C-W>v'     , 'split-window-below'],
       \ '?'   : ['Windows'    , 'fzf-window'],
       \ }
-
 call which_key#register('<Space>', "g:which_key_map")
 let g:org_export_emacs = "~/scoop/apps/emacs/current/bin/emacs.exe"
 " nnoremap <bs> <cmd>Dir<cr>
