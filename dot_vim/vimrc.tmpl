@@ -1,7 +1,7 @@
 {{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
 {{ if lookPath "vim" -}}
 packadd! hlyank
-packadd! comment
+" packadd! comment
 import 'find.vim'
 import 'session.vim'
 " import 'temp.vim'
