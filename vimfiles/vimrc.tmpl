@@ -150,6 +150,12 @@ au BufLeave,CursorHold,FocusLost * if(getbufinfo('%')[0].changed) | sil do BufWr
 " au VimEnter * nested if (len(v:argv) == 1) | silent! source Session.vim | endif
 " au VimLeave * if (len(v:argv) == 1) | mksession! | endif
 " autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
+
+function Chezmoi()
+  ! chezmoi apply --source-path "%"
+endfunction
+
+command! Chezmoi call Chezmoi()
 set autocomplete
 set complete=o^5,.^5,w^5,b^5,u^5
 set completeopt=popup
