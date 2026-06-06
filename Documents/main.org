@@ -1076,3 +1076,1304 @@ style_root = "purple bold italic"
 style_user = "yellow bold"
 #+end_src
 
+*** History
+
+**** atuin
+
+Config file.
+
+#+begin_src toml
+## Base directory for Atuin data files (databases, keys, session, etc.)
+## All data file paths default to being relative to this directory.
+## linux/mac: ~/.local/share/atuin (or XDG_DATA_HOME/atuin)
+## windows: %USERPROFILE%/.local/share/atuin
+# data_dir = "~/.local/share/atuin"
+
+## where to store your database, default is your system data directory
+## linux/mac: ~/.local/share/atuin/history.db
+## windows: %USERPROFILE%/.local/share/atuin/history.db
+# db_path = "~/.history.db"
+
+## where to store your encryption key, default is your system data directory
+## linux/mac: ~/.local/share/atuin/key
+## windows: %USERPROFILE%/.local/share/atuin/key
+# key_path = "~/.key"
+
+## where to store your auth session token, default is your system data directory
+## linux/mac: ~/.local/share/atuin/session
+## windows: %USERPROFILE%/.local/share/atuin/session
+# session_path = "~/.session"
+
+## date format used, either "us" or "uk"
+# dialect = "us"
+
+## default timezone to use when displaying time
+## either "l", "local" to use the system's current local timezone, or an offset
+## from UTC in the format of "<+|->H[H][:M[M][:S[S]]]"
+## for example: "+9", "-05", "+03:30", "-01:23:45", etc.
+# timezone = "local"
+
+## enable or disable automatic sync
+auto_sync = true
+
+## enable or disable automatic update checks
+update_check = false
+
+## address of the sync server
+sync_address = "https://api.atuin.sh"
+
+## how often to sync history. note that this is only triggered when a command
+## is ran, so sync intervals may well be longer
+## set it to 0 to sync after every command
+sync_frequency = "1h"
+
+## which search mode to use
+## possible values: prefix, fulltext, fuzzy, skim
+# search_mode = "fuzzy"
+
+## which filter mode to use by default
+## possible values: "global", "host", "session", "session-preload", "directory", "workspace"
+## consider using search.filters to customize the enablement and order of filter modes
+filter_mode = "global"
+
+## With workspace filtering enabled, Atuin will filter for commands executed
+## in any directory within a git repository tree (default: false).
+##
+## To use workspace mode by default when available, set this to true and
+## set filter_mode to "workspace" or leave it unspecified and
+## set search.filters to include "workspace" before other filter modes.
+# workspaces = false
+
+## which filter mode to use when atuin is invoked from a shell up-key binding
+## the accepted values are identical to those of "filter_mode"
+## leave unspecified to use same mode set in "filter_mode"
+# filter_mode_shell_up_key_binding = "global"
+
+## which search mode to use when atuin is invoked from a shell up-key binding
+## the accepted values are identical to those of "search_mode"
+## leave unspecified to use same mode set in "search_mode"
+# search_mode_shell_up_key_binding = "fuzzy"
+
+## which style to use
+## possible values: auto, full, compact
+# style = "auto"
+
+## the maximum number of lines the interface should take up
+## set it to 0 to always go full screen
+# inline_height = 0
+
+## the maximum number of lines the interface should take up
+## when atuin is invoked from a shell up-key binding
+## the accepted values are identical to those of "inline_height"
+# inline_height_shell_up_key_binding = 0
+
+## Invert the UI - put the search bar at the top , Default to `false`
+# invert = false
+
+## enable or disable showing a preview of the selected command
+## useful when the command is longer than the terminal width and is cut off
+# show_preview = true
+
+## what to do when the escape key is pressed when searching
+## possible values: return-original, return-query
+# exit_mode = "return-original"
+
+## possible values: emacs, subl
+# word_jump_mode = "emacs"
+
+## characters that count as a part of a word
+# word_chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+## number of context lines to show when scrolling by pages
+# scroll_context_lines = 1
+
+## use ctrl instead of alt as the shortcut modifier key for numerical UI shortcuts
+## alt-0 .. alt-9
+# ctrl_n_shortcuts = false
+
+## Show numeric shortcuts (1..9) beside list items in the TUI
+## set to false to hide the moving numbers if you find them distracting
+# show_numeric_shortcuts = true
+
+## default history list format - can also be specified with the --format arg
+# history_format = "{time}\t{command}\t{duration}"
+
+## prevent commands matching any of these regexes from being written to history.
+## Note that these regular expressions are unanchored, i.e. if they don't start
+## with ^ or end with $, they'll match anywhere in the command.
+## For details on the supported regular expression syntax, see
+## https://docs.rs/regex/latest/regex/#syntax
+# history_filter = [
+#   "^secret-cmd",
+#   "^innocuous-cmd .*--secret=.+",
+# ]
+
+## prevent commands run with cwd matching any of these regexes from being written
+## to history. Note that these regular expressions are unanchored, i.e. if they don't
+## start with ^ or end with $, they'll match anywhere in CWD.
+## For details on the supported regular expression syntax, see
+## https://docs.rs/regex/latest/regex/#syntax
+# cwd_filter = [
+#   "^/very/secret/area",
+# ]
+
+## Configure the maximum height of the preview to show.
+## Useful when you have long scripts in your history that you want to distinguish
+## by more than the first few lines.
+# max_preview_height = 4
+
+## Configure whether or not to show the help row, which includes the current Atuin
+## version (and whether an update is available), a keymap hint, and the total
+## amount of commands in your history.
+# show_help = true
+
+## Configure whether or not to show tabs for search and inspect
+# show_tabs = true
+
+## Configure whether or not the tabs row may be auto-hidden, which includes the current Atuin
+## tab, such as Search or Inspector, and other tabs you may wish to see. This will
+## only be hidden if there are fewer than this count of lines available, and does not affect the use
+## of keyboard shortcuts to switch tab. 0 to never auto-hide, default is 8 (lines).
+## This is ignored except in `compact` mode.
+# auto_hide_height = 8
+
+## Defaults to true. This matches history against a set of default regex, and will not save it if we get a match. Defaults include
+## 1. AWS key id
+## 2. Github pat (old and new)
+## 3. Slack oauth tokens (bot, user)
+## 4. Slack webhooks
+## 5. Stripe live/test keys
+# secrets_filter = true
+
+## Defaults to true. If enabled, upon hitting enter Atuin will immediately execute the command,
+## whereas tab will put the command in the prompt for editing.
+## If set to false, both enter and tab will place the command in the prompt for editing.
+## This applies for new installs. Old installs will keep the old behaviour unless configured otherwise.
+enter_accept = true
+
+## Defaults to false. If enabled, when triggered after &&, || or |, Atuin will complete commands to chain rather than replace the current line.
+# command_chaining = false
+
+## Defaults to "emacs".  This specifies the keymap on the startup of `atuin
+## search`.  If this is set to "auto", the startup keymap mode in the Atuin
+## search is automatically selected based on the shell's keymap where the
+## keybinding is defined.  If this is set to "emacs", "vim-insert", or
+## "vim-normal", the startup keymap mode in the Atuin search is forced to be
+## the specified one.
+# keymap_mode = "auto"
+
+## Cursor style in each keymap mode.  If specified, the cursor style is changed
+## in entering the cursor shape.  Available values are "default" and
+## "{blink,steady}-{block,underline,bar}".
+# keymap_cursor = { emacs = "blink-block", vim_insert = "blink-block", vim_normal = "steady-block" }
+
+# network_connect_timeout = 5
+# network_timeout = 5
+
+## Timeout (in seconds) for acquiring a local database connection (sqlite)
+# local_timeout = 5
+
+## Set this to true and Atuin will minimize motion in the UI - timers will not update live, etc.
+## Alternatively, set env NO_MOTION=true
+# prefers_reduced_motion = false
+
+[stats]
+## Set commands where we should consider the subcommand for statistics. Eg, kubectl get vs just kubectl
+# common_subcommands = [
+#   "apt",
+#   "cargo",
+#   "composer",
+#   "dnf",
+#   "docker",
+#   "dotnet",
+#   "git",
+#   "go",
+#   "ip",
+#   "jj",
+#   "kubectl",
+#   "nix",
+#   "nmcli",
+#   "npm",
+#   "pecl",
+#   "pnpm",
+#   "podman",
+#   "port",
+#   "systemctl",
+#   "tmux",
+#   "yarn",
+# ]
+
+## Set commands that should be totally stripped and ignored from stats
+# common_prefix = ["sudo"]
+
+## Set commands that will be completely ignored from stats
+# ignored_commands = [
+#   "cd",
+#   "ls",
+#   "vi"
+# ]
+
+[keys]
+# Defaults to true. If disabled, using the up/down key won't exit the TUI when scrolled past the first/last entry.
+# scroll_exits = true
+
+# Defaults to true. The left arrow key will exit the TUI when scrolling before the first character
+# exit_past_line_start = true
+
+# Defaults to true. The right arrow key performs the same functionality as Tab and copies the selected line to the command line to be modified.
+# accept_past_line_end = true
+
+# Defaults to false. The left arrow key performs the same functionality as Tab and copies the selected line to the command line to be modified.
+# accept_past_line_start = false
+
+# Defaults to false. The backspace key performs the same functionality as Tab and copies the selected line to the command line to be modified when at the start of the line.
+# accept_with_backspace = false
+
+[sync]
+# Enable sync v2 by default
+# This ensures that sync v2 is enabled for new installs only
+# In a later release it will become the default across the board
+records = true
+
+[preview]
+## which preview strategy to use to calculate the preview height (respects max_preview_height).
+## possible values: auto, static
+## auto: length of the selected command.
+## static: length of the longest command stored in the history.
+## fixed: use max_preview_height as fixed height.
+# strategy = "auto"
+
+[daemon]
+## Enables using the daemon to sync. Requires the daemon to be running in the background. Start it with `atuin daemon`
+# enabled = false
+
+## How often the daemon should sync in seconds
+# sync_frequency = 300
+
+## The path to the unix socket used by the daemon (on unix systems)
+## linux/mac: ~/.local/share/atuin/atuin.sock
+## windows: Not Supported
+# socket_path = "~/.local/share/atuin/atuin.sock"
+
+## Use systemd socket activation rather than opening the given path (the path must still be correct for the client)
+## linux: false
+## mac/windows: Not Supported
+# systemd_socket = false
+
+## The port that should be used for TCP on non unix systems
+# tcp_port = 8889
+
+# [theme]
+## Color theme to use for rendering in the terminal.
+## There are some built-in themes, including the base theme ("default"),
+## "autumn" and "marine". You can add your own themes to the "./themes" subdirectory of your
+## Atuin config (or ATUIN_THEME_DIR, if provided) as TOML files whose keys should be one or
+## more of AlertInfo, AlertWarn, AlertError, Annotation, Base, Guidance, Important, and
+## the string values as lowercase entries from this list:
+##    https://ogeon.github.io/docs/palette/master/palette/named/index.html
+## If you provide a custom theme file, it should be  called "NAME.toml" and the theme below
+## should be the stem, i.e. `theme = "NAME"` for your chosen NAME.
+# name = "autumn"
+
+## Whether the theme manager should output normal or extra information to help fix themes.
+## Boolean, true or false. If unset, left up to the theme manager.
+# debug = true
+
+[search]
+## The list of enabled filter modes, in order of priority.
+## The "workspace" mode is skipped when not in a workspace or workspaces = false.
+## Default filter mode can be overridden with the filter_mode setting.
+# filters = [ "global", "host", "session", "session-preload", "workspace", "directory" ]
+
+[tmux]
+## Enable using atuin with tmux popup (requires tmux >= 3.2)
+## When enabled and running inside tmux, Atuin will use a popup window for interactive search.
+## Set to false to disable the popup.
+## This can also be controlled with the ATUIN_TMUX_POPUP environment variable.
+## Note: The tmux popup is currently supported in zsh, bash, and fish shells. This currently doesn't work with iTerm native tmux integration.
+# enabled = false
+
+## Width of the tmux popup window
+## Can be a percentage, or integer (e.g. "100" means 100 characters wide)
+# width = "80%"
+
+## Height of the tmux popup window
+## Can be a percentage, or integer (e.g. "100" means 100 lines tall)
+# height = "60%"
+
+[ui]
+## Columns to display in the interactive search, from left to right.
+## The selection indicator (" > ") is always shown first implicitly.
+##
+## Each column can be specified as a simple string (uses default width)
+## or as an object with type, width, and expand:
+##   { type = "directory", width = 30, expand = true }
+##
+## Available column types (with default widths):
+##   duration  (5)  - Command execution duration (e.g., "123ms")
+##   time      (8)  - Relative time since execution (e.g., "59m ago")
+##   datetime  (16) - Absolute timestamp (e.g., "2025-01-22 14:35")
+##   directory (20) - Working directory (truncated if too long)
+##   host      (15) - Hostname where command was run
+##   user      (10) - Username
+##   exit      (3)  - Exit code (colored by success/failure)
+##   command   (*)  - The command itself (expands by default)
+##
+## The "expand" option (default: true for command, false for others) makes a
+## column fill remaining space. Only one column should have expand = true.
+##
+## Default:
+# columns = ["duration", "time", "command"]
+##
+## Examples:
+##
+## Minimal - more space for commands:
+# columns = ["duration", "command"]
+##
+## With wider directory column:
+# columns = ["duration", { type = "directory", width = 30 }, "command"]
+##
+## Show host for multi-machine sync users:
+# columns = ["duration", "time", "host", "command"]
+##
+## Show exit codes prominently:
+# columns = ["exit", "duration", "command"]
+##
+## Make directory expand instead of command:
+# columns = ["duration", "time", { type = "directory", expand = true }, { type = "command", expand = false }]
+#+end_src
+*** Doc
+
+**** tealdeer
+
+Config file.
+
+#+begin_src toml
+[display]
+compact = true
+use_paper = true
+
+[updates]
+auto_update = true
+auto_update_interval_hours = 720
+#+end_src
+
+*** Editor
+
+**** Vim
+
+***** vimrc
+
+Highlight yank builtin plugin.
+
+#+begin_src vimscript
+packadd! hlyank
+#+end_src
+
+Comment builtin plugin.
+
+#+begin_src vimscript
+packadd! comment
+#+end_src
+
+Import files.
+
+#+begin_src vimscript
+import 'find.vim'
+import 'session.vim'
+" import 'temp.vim'
+#+end_src
+
+Set leader key to space.
+
+#+begin_src vimscript
+let g:mapleader = ' '
+#+end_src
+
+Delete other buffers.
+
+#+begin_src vimscript
+nnoremap <leader>bo <cmd>%bd\|e#\|bd#<CR>
+#+end_src
+
+Exiting vim.
+
+#+begin_src vimscript
+nnoremap ZZ <cmd>xa<cr>
+nnoremap ZQ <cmd>qa!<cr>
+#+end_src
+
+Open the file or URL.
+
+#+begin_src vimscript
+function OpenFileOrURL()
+  let cfile = expand('<cfile>')
+  if match(cfile, '^https\?://') >= 0
+    call system('xdg-open ' . cfile)
+  else
+    normal! gF
+  endif
+endfunction
+
+nnoremap <silent> gf <cmd>call OpenFileOrURL()<CR>
+#+end_src
+
+Search the current word.
+
+#+begin_src vimscript
+nnoremap g* :%s/<c-r><c-w>/
+#+end_src
+
+****** Options
+
+Main options.
+
+#+begin_src vimscript
+set laststatus=2
+
+try
+set switchbuf=uselast
+set showtabline=2
+catch
+endtry
+
+set expandtab
+set smarttab
+
+set shiftwidth=4
+set tabstop=4
+
+set cindent
+set wrap
+set clipboard=unnamed
+
+set undodir={{ joinPath .chezmoi.homeDir ".local" "share" "vim" "undo" }}
+set undofile
+
+set nobackup
+set nowritebackup
+
+set noswapfile
+" set directory=$HOME/.local/share/vim/swap//
+
+if has('gui_running')
+set guioptions-=T
+set guioptions-=e
+set guioptions-=m
+set t_Co=256
+set guitablabel=%M\ %t
+endif
+
+set encoding=utf8
+set fileformats=unix,dos,mac
+syntax enable
+
+set regexpengine=0
+
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+
+set lazyredraw
+set magic
+set showmatch
+
+set matchtime=2
+
+set noerrorbells
+set novisualbell
+set t_vb=
+set timeoutlen=500
+
+set foldcolumn=0
+
+let $LANG = 'en'
+set langmenu=en
+
+set wildmenu
+
+set wildignore=*.o,*~,*.pyc
+if has('win16') || has('win32')
+set wildignore+=.git\*,.hg\*,.svn\*
+else
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+endif
+
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
+set ruler
+set cmdheight=1
+set hidden
+set history=500
+set number relativenumber
+
+filetype plugin on
+filetype indent on
+
+set autoread
+
+set updatetime=500
+
+set mouse=a
+set smoothscroll
+
+set showtabline=1
+
+augroup settings
+    autocmd!
+    autocmd FocusGained,BufEnter * checktime
+    autocmd FileType qf nnoremap <buffer><silent> q :cclose<bar>lclose<CR>
+augroup END
+
+{{ if lookPath "rg" -}}
+set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
+set grepformat=%f:%l:%c:%m
+{{ end -}}
+
+set signcolumn=auto
+set sessionoptions-=blank
+set foldmethod=marker
+set cursorline
+set scrolloff=5
+
+set shortmess-=S " show she search count
+
+set gdefault
+
+set signcolumn=yes
+
+autocmd CmdlineChanged [:\/\?] call wildtrigger()
+set wildmode=noselect:lastused,full
+set wildoptions=pum
+
+autocmd CmdlineEnter [\/\?] set pumheight=8
+autocmd CmdlineLeave [\/\?] set pumheight&
+#+end_src
+
+Auto save.
+
+#+begin_src vimscript
+set noswapfile
+au BufLeave,CursorHold,FocusLost * if(getbufinfo('%')[0].changed) | sil do BufWritePre | sil! up | sil do BufWritePost | endif
+#+end_src
+
+Auto sessions.
+
+#+begin_src vimscript
+" Autosession
+" au VimEnter * nested if (len(v:argv) == 1) | silent! source Session.vim | endif
+" au VimLeave * if (len(v:argv) == 1) | mksession! | endif
+#+end_src
+
+Auto chezmoi apply.
+
+#+begin_src vimscript
+" autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
+#+end_src
+
+Ex command completion.
+
+#+begin_src vimscript
+set autocomplete
+set complete=o^5,.^5,w^5,b^5,u^5
+set completeopt=popup
+
+inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+#+end_src
+
+****** Plugins
+
+******* Coc.nvim.
+
+Vim-plug.
+
+#+begin_src vimscript
+{{ if lookPath "node" -}}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+{{ end -}}
+#+end_src
+
+Coc.nvim config.
+
+#+begin_src vimscript
+" let g:coc_node_path = {{ lookPath "node" | squote }}
+" 
+" " coc.nvim
+" " Use tab for trigger completion with characters ahead and navigate
+" " NOTE: There's always complete item selected by default, you may want to enable
+" " no select by `"suggest.noselect": true` in your configuration file
+" " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" " other plugin before putting this into your config
+" inoremap <silent><expr> <TAB>
+"       \ coc#pum#visible() ? coc#pum#next(1) :
+"       \ CheckBackspace() ? "\<Tab>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+" 
+" " Make <CR> to accept selected completion item or notify coc.nvim to format
+" " <C-g>u breaks current undo, please make your own choice
+" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" 
+" function! CheckBackspace() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+" 
+" " Use <c-space> to trigger completion
+" if has('nvim')
+"   inoremap <silent><expr> <c-space> coc#refresh()
+" else
+"   inoremap <silent><expr> <c-@> coc#refresh()
+" endif
+" 
+" " Use `[g` and `]g` to navigate diagnostics
+" " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
+" nmap <silent> [d <Plug>(coc-diagnostic-prev)
+" nmap <silent> ]d <Plug>(coc-diagnostic-next)
+" 
+" " GoTo code navigation
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+" 
+" function! ShowDocumentation()
+"   if CocAction('hasProvider', 'hover')
+"     call CocActionAsync('doHover')
+"   else
+"     call feedkeys('K', 'in')
+"   endif
+" endfunction
+" 
+" " Use K to show documentation in preview window
+" nnoremap <silent> K :call ShowDocumentation()<CR>
+" 
+" " Highlight the symbol and its references when holding the cursor
+" autocmd CursorHold * silent call CocActionAsync('highlight')
+" 
+" " Symbol renaming
+" nnoremap <leader>R <plug>(coc-rename)
+" 
+" " Formatting selected code
+" " xmap <leader>f  <Plug>(coc-format-selected)
+" " nmap <leader>f  <Plug>(coc-format-selected)
+" 
+" augroup mygroup
+"   autocmd!
+"   " Setup formatexpr specified filetype(s)
+"   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+"   " Update signature help on jump placeholder
+"   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+" augroup end
+" 
+" " Applying code actions to the selected code block
+" " Example: `<leader>aap` for current paragraph
+" " xmap <leader>a  <Plug>(coc-codeaction-selected)
+" " nmap <leader>a  <Plug>(coc-codeaction-selected)
+" 
+" " Remap keys for applying code actions at the cursor position
+" " nmap <leader>ac  <Plug>(coc-codeaction-cursor)
+" " Remap keys for apply code actions affect whole buffer
+" " nmap <leader>as  <Plug>(coc-codeaction-source)
+" " Apply the most preferred quickfix action to fix diagnostic on the current line
+" " nmap <leader>qf  <Plug>(coc-fix-current)
+" 
+" " Remap keys for applying refactor code actions
+" " nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
+" " xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+" " nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+" 
+" " Run the Code Lens action on the current line
+" " nmap <leader>cl  <Plug>(coc-codelens-action)
+" 
+" " Map function and class text objects
+" " NOTE: Requires 'textDocument.documentSymbol' support from the language server
+" xmap if <Plug>(coc-funcobj-i)
+" omap if <Plug>(coc-funcobj-i)
+" xmap af <Plug>(coc-funcobj-a)
+" omap af <Plug>(coc-funcobj-a)
+" xmap ic <Plug>(coc-classobj-i)
+" omap ic <Plug>(coc-classobj-i)
+" xmap ac <Plug>(coc-classobj-a)
+" omap ac <Plug>(coc-classobj-a)
+" 
+" " Remap <C-f> and <C-b> to scroll float windows/popups
+" if has('nvim-0.4.0') || has('patch-8.2.0750')
+"   nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+"   nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+"   inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+"   inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+"   vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+"   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+" endif
+" 
+" " Use CTRL-S for selections ranges
+" " Requires 'textDocument/selectionRange' support of language server
+" nmap <silent> <C-s> <Plug>(coc-range-select)
+" xmap <silent> <C-s> <Plug>(coc-range-select)
+" 
+" " Add `:Format` command to format current buffer
+" command! -nargs=0 Format :call CocActionAsync('format')
+" 
+" " Add `:Fold` command to fold current buffer
+" command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+" 
+" " Add `:OR` command for organize imports of the current buffer
+" command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
+" 
+" " Add (Neo)Vim's native statusline support
+" " NOTE: Please see `:h coc-status` for integrations with external plugins that
+" " provide custom statusline: lightline.vim, vim-airline
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function',''\'''\')}
+" 
+" let g:coc_global_extensions = ['coc-fish', '@yaegassy/coc-marksman', 'coc-emoji', 'coc-dash-complete', 'coc-just-complete', 'coc-translator', 'coc-perl', 'coc-go', 'coc-json', 'coc-prettier', 'coc-basedpyright', 'coc-r-lsp', 'coc-sh', 'coc-snippets', 'coc-sumneko-lua', 'coc-texlab', 'coc-toml', 'coc-vimlsp', 'coc-yaml' ]
+" " nnoremap <leader>e <Cmd>CocCommand explorer --quit-on-open<CR>
+" 
+" " limit completion item
+" let g:coc_filetype_map = { 'yaml.ansible': 'ansible', }
+" set pumheight=10
+" 
+" nmap <Leader>,t <Plug>(coc-translator-p)
+" vmap <Leader>,t <Plug>(coc-translator-pv)
+#+end_src
+
+******* Tokyonight.vim
+
+Vim-plug.
+
+#+begin_src vimscript
+" Plug 'ghifarit53/tokyonight-vim'
+#+end_src
+
+Tokyonight.vim config.
+
+#+begin_src vimscript
+" set termguicolors
+" let g:tokyonight_style = 'night' " available: night, storm
+" let g:tokyonight_enable_italic = 1
+" colorscheme tokyonight
+#+end_src
+
+******* Vim-easy-align
+
+Vim-plug.
+
+#+begin_src vimscript
+" Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }
+#+end_src
+
+vim-easy-align config.
+
+#+begin_src vimscript
+" vim-easy-align
+" xmap ga <Plug>(EasyAlign)
+" nmap ga <Plug>(EasyAlign)
+#+end_src
+
+******* ALE
+
+Vim-plug.
+
+#+begin_src vimscript
+Plug 'dense-analysis/ale'
+#+end_src
+
+ALE config.
+
+#+begin_src vimscript
+let g:ale_completion_enabled = 1
+let g:ale_set_balloons = 1
+let g:ale_hover_to_preview = 1
+let g:ale_floating_preview = 1
+set omnifunc=ale#completion#OmniFunc
+#+end_src
+
+******* vim-suda
+
+Auto sudo when saving a file.
+
+Vim-plug.
+
+#+begin_src vimscript
+" Plug 'lambdalisue/vim-suda'
+#+end_src
+
+Vim-suda config.
+
+#+begin_src vimscript
+" let g:suda_smart_edit = 1
+#+end_src
+
+******* Lightline.vim
+
+Vim-plug.
+
+#+begin_src vimscript
+Plug 'itchyny/lightline.vim'
+#+end_src
+
+Lightline.vim config.
+
+#+begin_src vimscript
+let g:lightline = {
+      \ 'colorscheme': 'catppuccin_mocha',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'zoomed', 'fileformat', 'fileencoding', 'filetype' ] ]
+      \ },
+      \ 'inactive': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \ },
+      \ 'component_function': {
+      \   'filename': 'LightlineTruncatedFileName',
+      \   'zoomed': 'zoom#statusline'
+      \ }
+      \ }
+
+function! LightlineTruncatedFileName()
+let l:filePath = expand('%')
+    if winwidth(0) > 100
+        return l:filePath
+    else
+        return pathshorten(l:filePath)
+    endif
+endfunction
+#+end_src
+
+******* Vim-ghost
+
+Vim-plug.
+
+#+begin_src vimscript
+" Plug 'raghur/vim-ghost'
+" Plug 'roxma/nvim-yarp', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }
+" Plug 'roxma/vim-hug-neovim-rpc', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }
+#+end_src
+
+Vim-ghost config.
+
+#+begin_src vimscript
+" let g:python3_host_prog = {{ lookPath "python" | squote }}
+#+end_src
+
+******* Vim-workspace
+
+Vim-plug.
+
+#+begin_src vimscript
+" Plug 'ourgal/vim-workspace'
+#+end_src
+
+Vim-workspace config.
+
+#+begin_src vimscript
+" let g:workspace_autocreate = 1
+" let g:workspace_session_disable_on_args = 1
+" let g:workspace_session_directory = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "sessions" ) "\\" | squote }}
+" let g:workspace_autosave = 0
+" let g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "undo" ) "\\" | squote }}
+#+end_src
+
+******* Vim-which-key
+
+Vim-plug.
+
+#+begin_src vimscript
+Plug 'liuchengxu/vim-which-key'
+#+end_src
+
+Vim-which-key leader key.
+
+#+begin_src vimscript
+nnoremap <silent> <leader> <cmd>WhichKey '<Space>'<CR>
+#+end_src
+
+Set keymap variable.
+
+#+begin_src vimscript
+let g:which_key_map = {}
+#+end_src
+
+Set f key.
+
+#+begin_src vimscript
+let g:which_key_map['f'] = {
+      \ 'name': 'files',
+      \ 'f'   : [':Files', 'Files'],
+      \ ' '   : [':GFiles', 'Git Files'],
+      \ }
+#+end_src
+
+Set w key.
+
+#+begin_src vimscript
+let g:which_key_map['w'] = {
+      \ 'name': 'windows',
+      \ 'w'   : ['<C-W>w'     , 'other-window'],
+      \ 'd'   : ['<C-W>c'     , 'delete-window'],
+      \ '-'   : ['<C-W>s'     , 'split-window-below'],
+      \ '|'   : ['<C-W>v'     , 'split-window-right'],
+      \ '2'   : ['<C-W>v'     , 'layout-double-columns'],
+      \ 'h'   : ['<C-W>h'     , 'window-left'],
+      \ 'j'   : ['<C-W>j'     , 'window-below'],
+      \ 'l'   : ['<C-W>l'     , 'window-right'],
+      \ 'k'   : ['<C-W>k'     , 'window-up'],
+      \ 'H'   : ['<C-W>5<'    , 'expand-window-left'],
+      \ 'J'   : [':resize +5' , 'expand-window-below'],
+      \ 'L'   : ['<C-W>5>'    , 'expand-window-right'],
+      \ 'K'   : [':resize -5' , 'expand-window-up'],
+      \ '='   : ['<C-W>='     , 'balance-window'],
+      \ 's'   : ['<C-W>s'     , 'split-window-below'],
+      \ 'v'   : ['<C-W>v'     , 'split-window-below'],
+      \ '?'   : ['Windows'    , 'fzf-window'],
+      \ }
+#+end_src
+
+Register keys.
+
+#+begin_src vimscript
+call which_key#register('<Space>', "g:which_key_map")
+#+end_src
+
+******* Vim-orgmode
+
+Vim-plug.
+
+#+begin_src vimscript
+Plug 'jceb/vim-orgmode'
+Plug 'tpope/vim-speeddating'
+#+end_src
+
+Vim-orgmode config.
+
+#+begin_src vimscript
+let g:org_export_emacs = "~/scoop/apps/emacs/current/bin/emacs.exe"
+#+end_src
+
+******* Vim-dir
+
+Vim-plug.
+
+#+begin_src vimscript
+" Plug 'habamax/vim-dir'
+#+end_src
+
+Vim-dir config.
+
+#+begin_src vimscript
+" nnoremap <bs> <cmd>Dir<cr>
+#+end_src
+
+******* Vim-catppuccin
+
+Vim-plug.
+
+#+begin_src vimscript
+Plug 'https://codeberg.org/mao-yining/vim-catppuccin'
+#+end_src
+
+Vim-catppuccin config.
+
+#+begin_src vimscript
+set termguicolors
+colorscheme catppuccin_mocha
+#+end_src
+
+******* Netrw
+
+Netrw config.
+
+#+begin_src vimscript
+nnoremap <bs> <cmd>Explore<cr>
+#+end_src
+
+******* Lsp
+
+Vim-plug.
+
+#+begin_src vimscript
+" Plug 'yegappan/lsp'
+#+end_src
+
+Lsp config.
+
+#+begin_src vimscript
+" let lspOpts = #{autoHighlightDiags: v:true}
+" autocmd User LspSetup call LspOptionsSet(lspOpts)
+" 
+" let lspServers = [#{
+" 	\	  name: 'yaml-language-server',
+" 	\	  filetype: ['yaml'],
+" 	\	  path: '{{ lookPath "yaml-language-server" }}',
+" 	\	  args: ['--stdio']
+" 	\ }]
+" autocmd User LspSetup call LspAddServer(lspServers)
+#+end_src
+
+******* Pear-tree
+
+Auto pairs.
+
+Vim-plug.
+
+#+begin_src vimscript
+Plug 'tmsvg/pear-tree'
+#+end_src
+
+Pear-tree config.
+
+#+begin_src vimscript
+let g:pear_tree_smart_openers = 1
+let g:pear_tree_smart_closers = 1
+let g:pear_tree_smart_backspace = 1
+#+end_src
+
+******* Fzf.vim
+
+Vim-plug.
+
+#+begin_src vimscript
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+#+end_src
+
+******* Caw.vim
+
+Vim-plug.
+
+#+begin_src vimscript
+" Plug 'tyru/caw.vim'
+#+end_src
+
+******* Chezmoi.vim
+
+Vim-plug.
+
+#+begin_src vimscript
+Plug 'alker0/chezmoi.vim'
+#+end_src
+
+******* Tabular
+
+Vim-plug.
+
+#+begin_src vimscript
+" Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
+#+end_src
+
+******* Align
+
+Vim-plug.
+
+#+begin_src vimscript
+" Plug 'vim-scripts/align', { 'on': 'Align' }
+#+end_src
+
+******* Vim-surround
+
+Vim-plug.
+
+#+begin_src vimscript
+Plug 'tpope/vim-surround'
+#+end_src
+
+******* Vim-repeat
+
+Vim-plug.
+
+#+begin_src vimscript
+Plug 'tpope/vim-repeat'
+#+end_src
+
+******* Vim-unimpaired
+
+Vim-plug.
+
+#+begin_src vimscript
+Plug 'tpope/vim-unimpaired'
+#+end_src
+
+******* Traces.vim
+
+This plugin highlights patterns and ranges for Ex commands in Command-line mode. It also provides live preview for :substitute.
+
+Vim-plug.
+
+#+begin_src vimscript
+Plug 'markonm/traces.vim'
+#+end_src
+
+******* Vim-eunuch
+
+Vim-plug.
+
+#+begin_src vimscript
+" Plug 'tpope/vim-eunuch', { 'on': [ 'Remove', 'Delete', 'Move', 'Chmod', 'Mkdir', 'Cfind', 'Clocate', 'Lfind', 'Wall', 'SudoWrite', 'SudoEdit' ] }
+#+end_src
+
+******* Vim-mkdir
+
+Vim-plug.
+
+#+begin_src vimscript
+" create non-exist dir when saving file
+" Plug 'pbrisbin/vim-mkdir'
+#+end_src
+
+******* Vim-fugitive
+
+Vim-plug.
+
+#+begin_src vimscript
+{{ if lookPath "git" -}}
+Plug 'tpope/vim-fugitive'
+{{ end -}}
+#+end_src
+
+******* Vim-gitgutter
+
+Vim-plug.
+
+#+begin_src vimscript
+{{ if lookPath "git" -}}
+Plug 'airblade/vim-gitgutter'
+{{ end -}}
+#+end_src
+
+******* Vimtex
+
+Vim-plug.
+
+#+begin_src vimscript
+Plug 'lervag/vimtex', { 'for': 'tex' }
+#+end_src
+
+****** Imports
+
+Find command.
+
+#+begin_src vimscript
+vim9script
+
+# simple fuzzy find finder
+# place into ~/.vim/plugin/fuzzyfind.vim
+
+set wildmode=noselect:lastused,full
+set wildmenu wildoptions=pum,fuzzy pumheight=12
+
+
+var files_cache: list<string> = []
+augroup CmdComplete
+    au!
+    au CmdlineChanged : wildtrigger()
+    au CmdlineEnter : files_cache = []
+augroup END
+
+def FindCmd(): string
+    var cmd = ''
+    if executable('fd')
+        cmd = 'fd . --path-separator / --type f --hidden --follow --exclude .git'
+    elseif executable('fdfind')
+        cmd = 'fdfind . --path-separator / --type f --hidden --follow --exclude .git'
+    elseif executable('ugrep')
+        cmd = 'ugrep "" -Rl -I --ignore-files'
+    elseif executable('rg')
+        cmd = 'rg --path-separator / --files --hidden --glob !.git'
+    elseif executable('find')
+        cmd = 'find \! \( -path "*/.git" -prune -o -name "*.swp" \) -type f -follow'
+    endif
+    return cmd
+enddef
+
+def Find(cmd_arg: string, cmd_complete: bool): list<string>
+    if empty(files_cache)
+        var cmd = FindCmd()
+        # fallback to built-in glob if no fd/rg/ug/find is available
+        # e.g. we are on Windows
+        if empty(cmd)
+            files_cache = globpath('.', '**', 1, 1)
+                ->filter((_, v) => !isdirectory(v))
+                ->mapnew((_, v) => v->substitute('^\.[\/]', "", ""))
+        else
+            files_cache = systemlist(cmd)
+        endif
+    endif
+    if empty(cmd_arg)
+        return files_cache
+    else
+        return files_cache->matchfuzzy(cmd_arg)
+    endif
+enddef
+
+set findfunc=Find
+#+end_src
+
+Auto session.
+
+#+begin_src vimscript
+if !has('vim9script')
+    finish
+endif
+vim9script
+class Session
+    const sep: string = has("win32") ? "\\" : "/"
+    const fileName: string = getcwd()->substitute(this.sep, "%", "g")->substitute(":", "%", "g")
+    const folder: string = get(g:, "my_session_folder", ($MYVIMRC->fnamemodify(":p:h") .. this.sep .. "sessions")->simplify())
+    const fullPath: string = this.folder .. this.sep .. this.fileName
+
+    def new()
+        if !isdirectory(this.folder)
+            mkdir(this.folder, "p")
+        endif
+    enddef
+
+    def Save(): void
+        this.fullPath->escape("%")->printf("mksession! %s")->execute()
+    enddef
+
+    def Load(): void
+        if !filereadable(this.fullPath)
+            return
+        endif
+
+        this.fullPath->escape("%")->printf("source %s")->execute()
+    enddef
+
+endclass
+if len(v:argv) == 1
+    g:my_session = Session.new()
+
+    augroup MySession
+        au! VimEnter * ++nested g:my_session.Load()
+        au! VimLeave * g:my_session.Save()
+    augroup END
+endif
+#+end_src
+
+****** Ftplugin
+
+Org.
+
+#+begin_src vimscript
+let maplocalleader = "\\"
+#+end_src
+
+Help.
+
+#+begin_src vimscript
+map q <cmd>quit<cr>
+#+end_src
+
