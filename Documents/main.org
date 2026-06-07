@@ -2799,3 +2799,14 @@ pinentry-program {{ lookPath "pinentry-gtk-2" }}
 {{ end -}}
 #+end_src
 
+**** Gopass
+
+Config.
+
+#+begin_src
+[mounts]
+	path = {{ env "LOCALAPPDATA" }}\gopass\stores\root
+[core]
+	autosync = false
+#+end_src
+
