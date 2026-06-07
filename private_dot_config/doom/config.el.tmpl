@@ -106,8 +106,8 @@
 (use-package! ahk-mode
   :mode "\\.ahk$"
   :defer t)
-(use-package! chezmoi
-  :mode ("\\.tmpl$" . chezmoi-mode))
+;; (use-package! chezmoi
+;;   :mode ("\\.tmpl$" . chezmoi-mode))
 (after! dirvish
   (dirvish-side-follow-mode))
 (map! :n "-" #'dirvish)
