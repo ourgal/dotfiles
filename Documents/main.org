@@ -2782,3 +2782,20 @@ verify-options show-uid-validity
 with-fingerprint
 #+end_src
 
+**** Gpg agent
+
+Config.
+
+#+begin_src
+{{ if .my.git.sign.gpg -}}
+{{ if eq .chezmoi.os "windows" -}}
+enable-win32-openssh-support
+{{ end -}}
+enable-ssh-support
+{{ end -}}
+grab
+{{ if lookPath "pinentry-gtk-2" -}}
+pinentry-program {{ lookPath "pinentry-gtk-2" }}
+{{ end -}}
+#+end_src
+
