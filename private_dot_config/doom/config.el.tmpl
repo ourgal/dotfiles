@@ -255,6 +255,9 @@
   (setq elfeed-search-filter "@2-weeks-ago +unread !Commit ")
   (elfeed-protocol-enable))
 {{ end -}}
+(use-package! org-auto-tangle
+  :defer t
+  :hook (org-mode . org-auto-tangle-mode))
 (require 'url)
 (require 'json)
 
