@@ -1458,6 +1458,10 @@
                       "vh": "content",
                       "children": [
                         {
+                          "gnx": "zxc.20260607200437.1",
+                          "vh": "main"
+                        },
+                        {
                           "gnx": "zxc.20260604073139.1",
                           "vh": "subtitle"
                         }
@@ -11761,6 +11765,36 @@
                           ]
                         }
                       ]
+                    },
+                    {
+                      "gnx": "zxc.20260607200349.1",
+                      "vh": "Video",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260607200400.1",
+                          "vh": "mpv",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260607200422.1",
+                              "vh": "config",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260607200437.1"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260607200512.1",
+                              "vh": "subs",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260604073139.1"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
                     }
                   ]
                 }
@@ -12559,7 +12593,7 @@
     "zxc.20260201203315.1": "armor\ncert-digest-algo SHA512\ncharset utf-8\ndefault-preference-list SHA512 SHA384 SHA256 AES256 AES192 AES ZLIB BZIP2 ZIP Uncompressed\nfixed-list-mode\nkeyid-format 0xlong\nlist-options show-uid-validity\nno-comments\nno-emit-version\nno-greeting\nno-symkey-cache\npersonal-cipher-preferences AES256 AES192 AES\npersonal-compress-preferences ZLIB BZIP2 ZIP Uncompressed\npersonal-digest-preferences SHA512 SHA384 SHA256\nrequire-cross-certification\nrequire-secmem\ns2k-cipher-algo AES256\ns2k-digest-algo SHA512\nthrow-keyids\nuse-agent\nverify-options show-uid-validity\nwith-fingerprint",
     "zxc.20260201203539.1": "{{ if .my.git.sign.gpg -}}\n{{ if eq .chezmoi.os \"windows\" -}}\nenable-win32-openssh-support\n{{ end -}}\nenable-ssh-support\n{{ end -}}\ngrab\n{{ if lookPath \"pinentry-gtk-2\" -}}\npinentry-program {{ lookPath \"pinentry-gtk-2\" }}\n{{ end -}}",
     "zxc.20260402230749.1": "[mounts]\n\tpath = {{ env \"LOCALAPPDATA\" }}\\gopass\\stores\\root\n[core]\n\tautosync = false",
-    "zxc.20260202195341.1": "af=%11%scaletempo2\nalang=%16%ja,jp,jpn,en,eng\naudio-file-auto=%5%fuzzy\naudio-pitch-correction=%3%yes\nbackground-color=%7%#000000\nblend-subtitles=%5%video\nforce-seekable=%3%yes\nfullscreen=%3%yes\nhwdec=%4%auto\nkeep-open=%6%always\nosd-back-color=%7%#282a2e\nosd-border-color=%7%#282a2e\nosd-color=%7%#c5c8c6\nosd-font=%11%DejaVu Sans\nosd-shadow-color=%7%#1d1f21\npause=%2%no\nsave-position-on-quit=%3%yes\nslang=%46%en,eng,chs,sc,zh,chi,zho,zh-Hant,zh-CN,zh-Hans\nvolume=%3%100\nvolume-max=%3%200\n",
+    "zxc.20260607200437.1": "af=%11%scaletempo2\nalang=%16%ja,jp,jpn,en,eng\naudio-file-auto=%5%fuzzy\naudio-pitch-correction=%3%yes\nbackground-color=%7%#000000\nblend-subtitles=%5%video\nforce-seekable=%3%yes\nfullscreen=%3%yes\nhwdec=%4%auto\nkeep-open=%6%always\nosd-back-color=%7%#282a2e\nosd-border-color=%7%#282a2e\nosd-color=%7%#c5c8c6\nosd-font=%11%DejaVu Sans\nosd-shadow-color=%7%#1d1f21\npause=%2%no\nsave-position-on-quit=%3%yes\nslang=%46%en,eng,chs,sc,zh,chi,zho,zh-Hant,zh-CN,zh-Hans\nvolume=%3%100\nvolume-max=%3%200\n",
     "zxc.20260604073139.1": "sub-auto=%5%fuzzy\nsub-font=%{{ len .my.font.sans }}%{{ .my.font.sans }}\nsub-color=\"#FFFF00\"             # Yellow text\nsub-border-color=\"#000000\"      # Black border for contrast\nsub-border-size=1               # Thickness of the outline\nsub-shadow-color=\"#000000\"      # Subtle shadow\nsub-shadow-offset=1\n",
     "User.20260228232118.1": "music_directory {{ joinPath .chezmoi.homeDir \"Music\" | quote }}\nplaylist_directory {{ joinPath (env \"APPDATA\") \"mpd\" \"playlist\" | quote }}\ndb_file {{ joinPath (env \"APPDATA\") \"mpd\" \"tag_cache\" | quote }}\nstate_file {{ joinPath (env \"APPDATA\") \"mpd\" \"state\" | quote }}\nsticker_file {{ joinPath (env \"APPDATA\") \"mpd\" \"sticker.sql\" | quote }}\n\nauto_update \"yes\"\n\naudio_output {\n    type \"winmm\"\n    name \"Windows Speakers\"\n}",
     "User.20260214200035.1": "encryption = \"age\"\n[age]\n    identity = \"~/.ssh/id_ed25519\"\n    symmetric = true",
@@ -14105,6 +14139,10 @@
     "zxc.20260607195657.1": "Config.\n\n#+begin_src\n@others\n#+end_src\n\n",
     "zxc.20260607200142.1": "**** Gopass\n\n",
     "zxc.20260607200153.1": "Config.\n\n#+begin_src\n@others\n#+end_src\n\n",
+    "zxc.20260607200349.1": "*** Video\n\n",
+    "zxc.20260607200400.1": "**** Mpv\n\n",
+    "zxc.20260607200422.1": "Config.\n\n#+begin_src\n@others\n#+end_src\n\n",
+    "zxc.20260607200512.1": "Subs.\n\n#+begin_src\n@others\n#+end_src\n\n",
     "zxc.20260202205715.1": "<< dos >>\n@others\n{{ end -}}",
     "zxc.20260202205901.1": "# Flower - とても深いグリーン\nhttps://www.bilibili.com/video/BV1EyHYeBEFr",
     "zxc.20260426163956.1": "{{ if and (lookPath \"yt-dlp\") (lookPath \"ffmpeg\") (lookPath \"mid3v2\") -}}\n@others\n{{ end -}}\n",
@@ -14458,7 +14496,7 @@
       "_mod_time": 1778855150.599
     },
     "User.20260220233323.1": {
-      "_mod_time": 1780748738.611
+      "_mod_time": 1780582383.565
     },
     "zxc.20260421145655.1": {
       "_mod_time": 1777190817.579
@@ -14563,7 +14601,7 @@
       "_mod_time": 1780748738.611
     },
     "zxc.20260202195207.1": {
-      "_mod_time": 1780748738.611
+      "_mod_time": 1780582383.565
     },
     "zxc.20260322192157.1": {
       "_mod_time": 1777179946.897
@@ -14710,7 +14748,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1780833731.444
+      "_mod_time": 1780833936.424
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777190817.577
