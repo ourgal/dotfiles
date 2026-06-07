@@ -2803,7 +2803,7 @@ pinentry-program {{ lookPath "pinentry-gtk-2" }}
 
 Config.
 
-#+begin_src
+#+begin_src toml
 [mounts]
 	path = {{ env "LOCALAPPDATA" }}\gopass\stores\root
 [core]
@@ -2849,5 +2849,26 @@ sub-border-color="#000000"      # Black border for contrast
 sub-border-size=1               # Thickness of the outline
 sub-shadow-color="#000000"      # Subtle shadow
 sub-shadow-offset=1
+#+end_src
+
+*** Audio
+
+**** Mpd
+
+Config.
+
+#+begin_src
+music_directory {{ joinPath .chezmoi.homeDir "Music" | quote }}
+playlist_directory {{ joinPath (env "APPDATA") "mpd" "playlist" | quote }}
+db_file {{ joinPath (env "APPDATA") "mpd" "tag_cache" | quote }}
+state_file {{ joinPath (env "APPDATA") "mpd" "state" | quote }}
+sticker_file {{ joinPath (env "APPDATA") "mpd" "sticker.sql" | quote }}
+
+auto_update "yes"
+
+audio_output {
+    type "winmm"
+    name "Windows Speakers"
+}
 #+end_src
 
