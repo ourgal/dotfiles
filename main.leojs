@@ -1407,7 +1407,7 @@
         },
         {
           "gnx": "zxc.20260423154615.1",
-          "vh": "crypt",
+          "vh": "encrypt",
           "children": [
             {
               "gnx": "zxc.20260201203400.1",
@@ -11710,6 +11710,27 @@
                           ]
                         }
                       ]
+                    },
+                    {
+                      "gnx": "zxc.20260607193738.1",
+                      "vh": "Encrypt",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260607193845.1",
+                          "vh": "gnupg",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260607193931.1",
+                              "vh": "config",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260201203315.1"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
                     }
                   ]
                 }
@@ -14047,6 +14068,9 @@
     "zxc.20260606201452.1": "Normal Z.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
     "zxc.20260606201513.1": "Normal space.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
     "zxc.20260606201542.1": "Select g.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
+    "zxc.20260607193738.1": "*** Encrypt\n\n",
+    "zxc.20260607193845.1": "**** Gnupg\n\n",
+    "zxc.20260607193931.1": "Config.\n\n#+begin_src\n@others\n#+end_src\n\n",
     "zxc.20260202205715.1": "<< dos >>\n@others\n{{ end -}}",
     "zxc.20260202205901.1": "# Flower - とても深いグリーン\nhttps://www.bilibili.com/video/BV1EyHYeBEFr",
     "zxc.20260426163956.1": "{{ if and (lookPath \"yt-dlp\") (lookPath \"ffmpeg\") (lookPath \"mid3v2\") -}}\n@others\n{{ end -}}\n",
@@ -14442,7 +14466,7 @@
       "_mod_time": 1780486276.638
     },
     "zxc.20260502183455.1": {
-      "_mod_time": 1778855150.604
+      "_mod_time": 1777717804.636
     },
     "zxc.20260502183056.1": {
       "_mod_time": 1778855150.604
@@ -14652,7 +14676,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1780750650.981
+      "_mod_time": 1780832397.236
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777106655.378
