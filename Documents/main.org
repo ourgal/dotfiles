@@ -2872,3 +2872,85 @@ audio_output {
 }
 #+end_src
 
+*** File Manager
+
+**** Chezmoi
+
+***** Config
+
+Encryption.
+
+#+begin_src toml
+encryption = "age"
+[age]
+    identity = "~/.ssh/id_ed25519"
+    symmetric = true
+#+end_src
+
+Git.
+
+#+begin_src toml
+[git]
+    autoCommit = false
+    autoPush = false
+#+end_src
+
+Gopass.
+
+#+begin_src toml
+[gopass]
+    mode = "builtin"
+#+end_src
+
+Progress.
+
+#+begin_src toml
+progress = true
+#+end_src
+
+Windows only.
+
+#+begin_src toml
+{{ if eq .chezmoi.os "windows" -}}
+[interpreter.ps1]
+    command = "powershell"
+    args = []
+[cd]
+    command = "{{ .my.shell.windows }}"
+{{ end -}}
+#+end_src
+
+Edit.
+
+#+begin_src toml
+[edit]
+    hardlink = false
+#+end_src
+
+Diff.
+
+#+begin_src toml
+{{ if lookPath "delta" -}}
+[diff]
+    command = "delta"
+    args = ["-s", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]
+{{ else if lookPath "difft" -}}
+[diff]
+    command = "difft"
+    args = ["{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]
+{{ else if lookPath "meld" -}}
+[diff]
+    command = "meld"
+    args = ["--diff", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]
+{{ end -}}
+#+end_src
+
+***** Ignore
+
+Always ignored.
+
+#+begin_src
+Makefile
+main.leojs
+#+end_src
+

@@ -1500,33 +1500,57 @@
           "vh": "file manager",
           "children": [
             {
-              "gnx": "zxc.20260125194735.1",
+              "gnx": "zxc.20260607201158.1",
               "vh": "chezmoi",
               "children": [
                 {
-                  "gnx": "zxc.20260201142826.1",
+                  "gnx": "zxc.20260607201217.1",
                   "vh": "config",
                   "children": [
                     {
-                      "gnx": "zxc.20260126154557.1",
-                      "vh": "content",
+                      "gnx": "zxc.20260607201328.1",
+                      "vh": "encryption",
                       "children": [
                         {
                           "gnx": "User.20260214200035.1",
                           "vh": "encryption"
-                        },
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260607201542.1",
+                      "vh": "git",
+                      "children": [
                         {
                           "gnx": "User.20260214200002.1",
                           "vh": "git"
-                        },
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260607201635.1",
+                      "vh": "gopass",
+                      "children": [
                         {
                           "gnx": "User.20260217023028.1",
                           "vh": "gopass"
-                        },
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260607201709.1",
+                      "vh": "progress",
+                      "children": [
                         {
                           "gnx": "User.20260217122736.1",
                           "vh": "progress"
-                        },
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260607201834.1",
+                      "vh": "windows",
+                      "children": [
                         {
                           "gnx": "zxc.20260126154722.1",
                           "vh": "windows",
@@ -1543,14 +1567,81 @@
                               "vh": "cd"
                             }
                           ]
-                        },
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260607202230.1",
+                      "vh": "edit",
+                      "children": [
                         {
                           "gnx": "zxc.20260320003721.1",
                           "vh": "edit"
-                        },
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260607202252.1",
+                      "vh": "diff",
+                      "children": [
                         {
                           "gnx": "zxc.20260331222155.1",
                           "vh": "diff"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "gnx": "zxc.20260607202332.1",
+                  "vh": "ignore",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260607202356.1",
+                      "vh": "all",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260125144515.1",
+                          "vh": "all"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260125194735.1",
+              "vh": "chezmoi",
+              "children": [
+                {
+                  "gnx": "zxc.20260201142826.1",
+                  "vh": "config",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260126154557.1",
+                      "vh": "content",
+                      "children": [
+                        {
+                          "gnx": "User.20260214200035.1"
+                        },
+                        {
+                          "gnx": "User.20260214200002.1"
+                        },
+                        {
+                          "gnx": "User.20260217023028.1"
+                        },
+                        {
+                          "gnx": "User.20260217122736.1"
+                        },
+                        {
+                          "gnx": "zxc.20260126154722.1"
+                        },
+                        {
+                          "gnx": "zxc.20260320003721.1"
+                        },
+                        {
+                          "gnx": "zxc.20260331222155.1"
                         }
                       ]
                     }
@@ -1565,8 +1656,7 @@
                       "vh": "@clean .chezmoiignore.tmpl",
                       "children": [
                         {
-                          "gnx": "zxc.20260125144515.1",
-                          "vh": "all"
+                          "gnx": "zxc.20260125144515.1"
                         },
                         {
                           "gnx": "zxc.20260125144547.1",
@@ -11816,6 +11906,15 @@
                           ]
                         }
                       ]
+                    },
+                    {
+                      "gnx": "zxc.20260607201143.1",
+                      "vh": "File Manager",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260607201158.1"
+                        }
+                      ]
                     }
                   ]
                 }
@@ -12617,17 +12716,28 @@
     "zxc.20260607200437.1": "af=%11%scaletempo2\nalang=%16%ja,jp,jpn,en,eng\naudio-file-auto=%5%fuzzy\naudio-pitch-correction=%3%yes\nbackground-color=%7%#000000\nblend-subtitles=%5%video\nforce-seekable=%3%yes\nfullscreen=%3%yes\nhwdec=%4%auto\nkeep-open=%6%always\nosd-back-color=%7%#282a2e\nosd-border-color=%7%#282a2e\nosd-color=%7%#c5c8c6\nosd-font=%11%DejaVu Sans\nosd-shadow-color=%7%#1d1f21\npause=%2%no\nsave-position-on-quit=%3%yes\nslang=%46%en,eng,chs,sc,zh,chi,zho,zh-Hant,zh-CN,zh-Hans\nvolume=%3%100\nvolume-max=%3%200\n",
     "zxc.20260604073139.1": "sub-auto=%5%fuzzy\nsub-font=%{{ len .my.font.sans }}%{{ .my.font.sans }}\nsub-color=\"#FFFF00\"             # Yellow text\nsub-border-color=\"#000000\"      # Black border for contrast\nsub-border-size=1               # Thickness of the outline\nsub-shadow-color=\"#000000\"      # Subtle shadow\nsub-shadow-offset=1\n",
     "User.20260228232118.1": "music_directory {{ joinPath .chezmoi.homeDir \"Music\" | quote }}\nplaylist_directory {{ joinPath (env \"APPDATA\") \"mpd\" \"playlist\" | quote }}\ndb_file {{ joinPath (env \"APPDATA\") \"mpd\" \"tag_cache\" | quote }}\nstate_file {{ joinPath (env \"APPDATA\") \"mpd\" \"state\" | quote }}\nsticker_file {{ joinPath (env \"APPDATA\") \"mpd\" \"sticker.sql\" | quote }}\n\nauto_update \"yes\"\n\naudio_output {\n    type \"winmm\"\n    name \"Windows Speakers\"\n}",
+    "zxc.20260607201158.1": "**** Chezmoi\n\n",
+    "zxc.20260607201217.1": "***** Config\n\n",
+    "zxc.20260607201328.1": "Encryption.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
     "User.20260214200035.1": "encryption = \"age\"\n[age]\n    identity = \"~/.ssh/id_ed25519\"\n    symmetric = true",
+    "zxc.20260607201542.1": "Git.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
     "User.20260214200002.1": "[git]\n    autoCommit = false\n    autoPush = false",
+    "zxc.20260607201635.1": "Gopass.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
     "User.20260217023028.1": "[gopass]\n    mode = \"builtin\"",
+    "zxc.20260607201709.1": "Progress.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
     "User.20260217122736.1": "progress = true",
+    "zxc.20260607201834.1": "Windows only.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
     "zxc.20260126154722.1": "<< dos >>\n@others\n{{ end -}}\n",
     "zxc.20260126154908.1": "[interpreter.ps1]\n    command = \"powershell\"\n    args = []",
     "zxc.20260126154820.1": "[cd]\n    command = \"{{ .my.shell.windows }}\"",
+    "zxc.20260607202230.1": "Edit.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
     "zxc.20260320003721.1": "[edit]\n    hardlink = false",
+    "zxc.20260607202252.1": "Diff.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
     "zxc.20260331222155.1": "{{ if lookPath \"delta\" -}}\n[diff]\n    command = \"delta\"\n    args = [\"-s\", \"{{ \"{{\" }} .Destination {{ \"}}\" }}\", \"{{ \"{{\" }} .Target {{ \"}}\" }}\"]\n{{ else if lookPath \"difft\" -}}\n[diff]\n    command = \"difft\"\n    args = [\"{{ \"{{\" }} .Destination {{ \"}}\" }}\", \"{{ \"{{\" }} .Target {{ \"}}\" }}\"]\n{{ else if lookPath \"meld\" -}}\n[diff]\n    command = \"meld\"\n    args = [\"--diff\", \"{{ \"{{\" }} .Destination {{ \"}}\" }}\", \"{{ \"{{\" }} .Target {{ \"}}\" }}\"]\n{{ end -}}",
-    "zxc.20260125144442.1": "@others",
+    "zxc.20260607202332.1": "***** Ignore\n\n",
+    "zxc.20260607202356.1": "Always ignored.\n\n#+begin_src\n@others\n#+end_src\n\n",
     "zxc.20260125144515.1": "Makefile\nmain.leojs",
+    "zxc.20260125144442.1": "@others",
     "zxc.20260125144547.1": "<< linux >>\n@others\n{{ end -}}",
     "User.20260225204416.1": "{{ if eq .chezmoi.os \"linux\" -}}\n",
     "zxc.20260127232118.1": "Documents/autohotkey/\nDocuments/autohotkey/**\nDocuments/PowerToys/\nDocuments/PowerToys/**\nDocuments/PowerShell/\nDocuments/PowerShell/**",
@@ -14167,6 +14277,7 @@
     "zxc.20260607200709.1": "*** Audio\n\n",
     "zxc.20260607200720.1": "**** Mpd\n\n",
     "zxc.20260607200734.1": "Config.\n\n#+begin_src\n@others\n#+end_src\n\n",
+    "zxc.20260607201143.1": "*** File Manager\n\n",
     "zxc.20260202205715.1": "<< dos >>\n@others\n{{ end -}}",
     "zxc.20260202205901.1": "# Flower - とても深いグリーン\nhttps://www.bilibili.com/video/BV1EyHYeBEFr",
     "zxc.20260426163956.1": "{{ if and (lookPath \"yt-dlp\") (lookPath \"ffmpeg\") (lookPath \"mid3v2\") -}}\n@others\n{{ end -}}\n",
@@ -14247,13 +14358,13 @@
       "_mod_time": 1777378884.163
     },
     "User.20260218142211.1": {
-      "_mod_time": 1780816628.42
+      "_mod_time": 1780750471.323
     },
     "User.20260218142322.1": {
       "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1780816628.42
+      "_mod_time": 1780750650.948
     },
     "zxc.20260428221625.1": {
       "_mod_time": 1777612767.65
@@ -14262,10 +14373,10 @@
       "_mod_time": 1777612767.666
     },
     "zxc.20260426235942.1": {
-      "_mod_time": 1777378884.166
+      "_mod_time": 1777219283.757
     },
     "zxc.20260427224207.1": {
-      "_mod_time": 1777378884.166
+      "_mod_time": 1777301694.743
     },
     "zxc.20260125144442.1": {
       "_mod_time": 1780825783.155
@@ -14283,7 +14394,7 @@
       "_mod_time": 1777713442.466
     },
     "User.20260226000855.1": {
-      "_mod_time": 1780748738.606
+      "_mod_time": 1780480977.878
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1776434513.068
@@ -14301,10 +14412,10 @@
       "_mod_time": 1778855150.558
     },
     "zxc.20260202203521.14": {
-      "_mod_time": 1777190817.575
+      "_mod_time": 1776614192.458
     },
     "zxc.20260202203521.3": {
-      "_mod_time": 1780748738.606
+      "_mod_time": 1780117762.444
     },
     "zxc.20260202213444.1": {
       "_mod_time": 1776434513.084
@@ -14313,7 +14424,7 @@
       "_mod_time": 1776434513.084
     },
     "User.20260220151435.2": {
-      "_mod_time": 1780748738.606
+      "_mod_time": 1780117762.459
     },
     "zxc.20260505102132.1": {
       "_mod_time": 1780748738.606
@@ -14331,22 +14442,22 @@
       "_mod_time": 1776434513.068
     },
     "User.20260217202401.1": {
-      "_mod_time": 1780748738.606
+      "_mod_time": 1780155943.602
     },
     "User.20260220214558.1": {
       "_mod_time": 1780748738.606
     },
     "zxc.20260530230944.1": {
-      "_mod_time": 1780748738.606
+      "_mod_time": 1780156216.553
     },
     "zxc.20260531001920.1": {
       "_mod_time": 1780748738.606
     },
     "User.20260217214851.1": {
-      "_mod_time": 1777190817.575
+      "_mod_time": 1776851988.666
     },
     "zxc.20260422085228.1": {
-      "_mod_time": 1777190817.575
+      "_mod_time": 1776851988.666
     },
     "User.20260220000301.2": {
       "_mod_time": 1776434513.068
@@ -14376,7 +14487,7 @@
       "_mod_time": 1776434513.068
     },
     "zxc.20260318203351.1": {
-      "_mod_time": 1778586914.337
+      "_mod_time": 1777967012.401
     },
     "zxc.20260505141849.1": {
       "_mod_time": 1778855150.556
@@ -14391,7 +14502,7 @@
       "_mod_time": 1776434513.068
     },
     "zxc.20260531113237.1": {
-      "_mod_time": 1780748738.606
+      "_mod_time": 1780230892.19
     },
     "zxc.20260602152143.1": {
       "_mod_time": 1780748738.606
@@ -14427,16 +14538,16 @@
       "_mod_time": 1777179946.857
     },
     "zxc.20260317002829.1": {
-      "_mod_time": 1777190817.577
+      "_mod_time": 1777179946.863
     },
     "zxc.20260315140713.1": {
       "_mod_time": 1777179946.861
     },
     "zxc.20260408012432.1": {
-      "_mod_time": 1777190817.577
+      "_mod_time": 1777179946.871
     },
     "User.20260301202336.1": {
-      "_mod_time": 1780748738.607
+      "_mod_time": 1780394292.957
     },
     "zxc.20260327184129.1": {
       "_mod_time": 1780748738.61
@@ -14577,13 +14688,13 @@
       "_mod_time": 1777891060.651
     },
     "User.20260217022114.1": {
-      "_mod_time": 1778586914.342
+      "_mod_time": 1777891191.612
     },
     "User.20260215182818.1": {
       "_mod_time": 1777891191.634
     },
     "zxc.20260317084145.1": {
-      "_mod_time": 1778586914.342
+      "_mod_time": 1777891060.7
     },
     "zxc.20260201225344.1": {
       "_mod_time": 1777891060.714
@@ -14592,22 +14703,22 @@
       "_mod_time": 1777891060.727
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1778586914.342
+      "_mod_time": 1777617937.909
     },
     "User.20260215205925.1": {
-      "_mod_time": 1780748738.612
+      "_mod_time": 1780230892.216
     },
     "User.20260215210400.1": {
       "_mod_time": 1777179946.904
     },
     "User.20260220151031.5": {
-      "_mod_time": 1780748738.612
+      "_mod_time": 1780230892.215
     },
     "User.20260220151031.28": {
       "_mod_time": 1777179946.902
     },
     "User.20260221175549.1": {
-      "_mod_time": 1780748738.611
+      "_mod_time": 1778939751.851
     },
     "User.20260221194603.1": {
       "_mod_time": 1777179946.906
@@ -14619,10 +14730,10 @@
       "_mod_time": 1777718155.12
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1778586914.342
+      "_mod_time": 1777978566.573
     },
     "zxc.20260201214114.1": {
-      "_mod_time": 1780748738.611
+      "_mod_time": 1778939057.595
     },
     "zxc.20260202195207.1": {
       "_mod_time": 1780582383.565
@@ -14640,13 +14751,13 @@
       "_mod_time": 1777891355.18
     },
     "zxc.20260325223805.1": {
-      "_mod_time": 1780748738.612
+      "_mod_time": 1779285586.501
     },
     "zxc.20260329012003.1": {
       "_mod_time": 1777179946.894
     },
     "zxc.20260411192514.1": {
-      "_mod_time": 1780748738.611
+      "_mod_time": 1780072698.113
     },
     "zxc.20260330235722.1": {
       "_mod_time": 1777179946.891
@@ -14709,7 +14820,7 @@
       "_mod_time": 1780748738.611
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1780748738.607
+      "_mod_time": 1780480977.894
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1777713442.482
@@ -14772,25 +14883,25 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1780834207.844
+      "_mod_time": 1780835130.692
     },
     "zxc.20260202205715.1": {
-      "_mod_time": 1777190817.577
+      "_mod_time": 1777106655.378
     },
     "zxc.20260426163956.1": {
       "_mod_time": 1778855150.573
     },
     "User.20260302151947.1": {
-      "_mod_time": 1780748738.607
+      "_mod_time": 1780066976.74
     },
     "zxc.20260407232538.1": {
       "_mod_time": 1777179946.836
     },
     "zxc.20260408005117.1": {
-      "_mod_time": 1777190817.575
+      "_mod_time": 1777179946.836
     },
     "zxc.20260529091145.1": {
-      "_mod_time": 1780748738.607
+      "_mod_time": 1780069890.937
     },
     "zxc.20260201140523.1": {
       "_mod_time": 1777179946.85
@@ -14799,10 +14910,10 @@
       "_mod_time": 1777385863.235
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1780748738.607
+      "_mod_time": 1780394292.941
     },
     "zxc.20260214105528.1": {
-      "_mod_time": 1777378884.163
+      "_mod_time": 1777302969.518
     },
     "zxc.20260214142543.1": {
       "_mod_time": 1777179946.851
@@ -14847,13 +14958,13 @@
       "_mod_time": 1777179946.85
     },
     "zxc.20260417220340.1": {
-      "_mod_time": 1777190817.575
+      "_mod_time": 1777179941.91
     },
     "zxc.20260515010901.1": {
-      "_mod_time": 1780748738.607
+      "_mod_time": 1778778728.929
     },
     "zxc.20260518233322.1": {
-      "_mod_time": 1780748738.607
+      "_mod_time": 1780307851.546
     }
   }
 }
