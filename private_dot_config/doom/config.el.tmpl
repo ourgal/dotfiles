@@ -89,7 +89,7 @@
   (start-process "mpv" (get-buffer-create "*mpv out*") "mpv" url))
 
 (defun browse-url-mpv-no-dash (url &optional _new-window)
-  (start-process "mpv" (get-buffer-create "*mpv out*") "mpv" "--ytdl-format=18/22" "--speed=2" url))
+  (start-process "mpv" (get-buffer-create "*mpv out*") "mpv" "--ytdl-format=18/22" "--ytdl-raw-options-append=write-auto-sub=" "--speed=2" url))
 
 (setq browse-url-handlers
       '(("\\(bilibili\\.com\\|vimeo\\.com\\|twitch\\.tv\\)" . browse-url-mpv)
