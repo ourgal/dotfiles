@@ -41,7 +41,7 @@
 	compression = 9
 	editor = "{{ template "editor" }}"
 	excludesfile = "~/.gitignore"
-	fsmonitor = true
+	fsmonitor = false
 	{{- if lookPath "delta" }}
 	pager = delta
 	{{- else if lookPath "diff-so-fancy" }}
