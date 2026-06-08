@@ -8,4 +8,26 @@ projects:
     path: org
     url: soft:org
     desc: org
+  tutorial:
+    path: Documents/my_repos/tutorial
+    url: soft:tutorial
+    desc: tutorial
+  chezmoi:
+    path: .local/share/chezmoi
+    url: soft:dotfiles
+    desc: chezmoi dotfiles
+specs:
+  custom:
+    output: table
+    parallel: true
+    forks: 8
+targets:
+  all:
+    all: true
+tasks:
+  pull:
+    desc: Pull latest commit
+    spec: custom
+    target: all
+    cmd: git pull origin
 {{ end -}}

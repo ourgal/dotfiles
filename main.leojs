@@ -5104,6 +5104,44 @@
                     {
                       "gnx": "zxc.20260513232022.1",
                       "vh": "org"
+                    },
+                    {
+                      "gnx": "zxc.20260608212736.1",
+                      "vh": "tutorial"
+                    },
+                    {
+                      "gnx": "zxc.20260608213243.1",
+                      "vh": "chezmoi"
+                    }
+                  ]
+                },
+                {
+                  "gnx": "zxc.20260608212902.1",
+                  "vh": "specs",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260608212920.1",
+                      "vh": "custom"
+                    }
+                  ]
+                },
+                {
+                  "gnx": "zxc.20260608212949.1",
+                  "vh": "targets",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260608212955.1",
+                      "vh": "all"
+                    }
+                  ]
+                },
+                {
+                  "gnx": "zxc.20260608213025.1",
+                  "vh": "tasks",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260608213032.1",
+                      "vh": "pull"
                     }
                   ]
                 }
@@ -13261,6 +13299,14 @@
     "zxc.20260327184144.1": "projects:\n  @others",
     "zxc.20260331200728.1": "snowfall:\n  path: Documents/my_repos/snowfall\n  url: soft:snowfall\n  desc: nixos config",
     "zxc.20260513232022.1": "org:\n  path: org\n  url: soft:org\n  desc: org",
+    "zxc.20260608212736.1": "tutorial:\n  path: Documents/my_repos/tutorial\n  url: soft:tutorial\n  desc: tutorial\n",
+    "zxc.20260608213243.1": "chezmoi:\n  path: .local/share/chezmoi\n  url: soft:dotfiles\n  desc: chezmoi dotfiles\n",
+    "zxc.20260608212902.1": "specs:\n  @others\n",
+    "zxc.20260608212920.1": "custom:\n  output: table\n  parallel: true\n  forks: 8\n",
+    "zxc.20260608212949.1": "targets:\n  @others\n",
+    "zxc.20260608212955.1": "all:\n  all: true\n",
+    "zxc.20260608213025.1": "tasks:\n  @others\n",
+    "zxc.20260608213032.1": "pull:\n  desc: Pull latest commit\n  spec: custom\n  target: all\n  cmd: git pull origin\n",
     "zxc.20260125162740.1": "<< unix >>\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125162834.1": "[global]\nindex-url = {{ .my.pip.mirror }}\n[install]\ntrusted-host = {{ get (urlParse .my.pip.mirror) \"host\" }}",
     "zxc.20260126185048.1": "<< dos >>\n{{ if lookPath \"pip\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -14550,7 +14596,7 @@
       "_mod_time": 1780394292.957
     },
     "zxc.20260327184129.1": {
-      "_mod_time": 1780748738.61
+      "_mod_time": 1780925592.504
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1777179946.8623855
