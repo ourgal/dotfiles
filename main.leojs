@@ -7141,6 +7141,31 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "gnx": "zxc.20260609212339.1",
+                  "vh": "@path firefox",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260609212344.1",
+                      "vh": "@path profile",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260609212401.1",
+                          "vh": "@clean user.js.tmpl",
+                          "children": [
+                            {
+                              "gnx": "User.20260225204326.1"
+                            },
+                            {
+                              "gnx": "zxc.20260609212435.1",
+                              "vh": "content"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             },
@@ -13487,6 +13512,8 @@
     "zxc.20260411192514.1": "<< dos >>\n{{ if lookPath \"keepassxc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260330235722.1": "<< dos >>\n{{ if lookPath \"espanso\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260330235914.1": "{{- /* chezmoi:modify-template */ -}}\n{{ $origin := fromYaml .chezmoi.stdin -}}\n{{ $origin = $origin | setValueAtPath \"show_notifications\" false -}}\n{{ $origin | toYaml -}}",
+    "zxc.20260609212401.1": "<< dos >>\n{{ if lookPath \"firefox\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260609212435.1": "user_pref(\"browser.search.region\", \"US\");\nuser_pref(\"sidebar.visibility\", \"hide-sidebar\");\n",
     "zxc.20260518220745.1": "{\n    \"version\": \"1.1.15.1\",\n    \"description\": \"A spaceship from Potato World crashes onto an alien planet. The sole survivor: Brotato, the only potato capable of handling 6 weapons at the same time. Waiting to be rescued by his mates, Brotato must survive in this hostile environment.\",\n    \"homepage\": \"https://freegogpcgames.com/32560/brotato/\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.dufs.bucket.host }}/bucket/games/brotato.7z\",\n            \"hash\": \"1b23c8a3db488d7c6cf68750f0b7a8c6260daea2c6e6bfc5b208ae2641cc7eb7\"\n        }\n    },\n    \"post_install\": [\n        \"$name = \\\"brotato\\\"\",\n        \"$path = \\\"${env:APPDATA}\\\\brotato\\\\GOG-saves\\\"\",\n        \"$saves = if ($env:game_saves) { $env:game_saves } else { \\\"$env:USERPROFILE\\\\Documents\\\\game_saves\\\" }\",\n        \"mkdir -p $saves\\\\$name >$null 2>$null\",\n        \"New-Item -ItemType Junction -Path $path -Target $saves\\\\$name >$null\"\n    ],\n    \"shortcuts\": [\n        [\n            \"Brotato.exe\",\n            \"Brotato\"\n        ]\n    ]\n}",
     "zxc.20260521181617.1": "{\n    \"version\": \"1.1.1a\",\n    \"description\": \"Click, craft and collect your way to alchemical mastery. Progress through a branching skill tree and explore the forbidden woods. Collect resources and build machines of magic. Slay monsters, farm crops and automate your production to become the all-powerful Forage Wizard!\",\n    \"homepage\": \"https://byrutgame.org/54765-forage-wizard.html\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.dufs.bucket.host }}/bocket/games/forage_wizard.7z\",\n            \"hash\": \"becc8887850006439631ec02c728f31d6da3911586717cd90a2e42cfb3000884\"\n        }\n    },\n    \"post_install\": [\n        \"$name = \\\"forage_wizard\\\"\",\n        \"$path = \\\"${env:USERPROFILE}\\\\AppData\\\\LocalLow\\\\Lost Maxim\\\\Forage Wizard\\\"\",\n        \"$saves = if ($env:game_saves) { $env:game_saves } else { \\\"$env:USERPROFILE\\\\Documents\\\\game_saves\\\" }\",\n        \"mkdir -p $saves\\\\$name >$null 2>$null\",\n        \"New-Item -ItemType Junction -Path $path -Target $saves\\\\$name >$null\"\n    ],\n    \"shortcuts\": [\n        [\n            \"Forage Wizard.exe\",\n            \"Forage Wizard\"\n        ]\n    ]\n}",
     "zxc.20260519083439.1": "{\n    \"version\": \"20973329\",\n    \"description\": \"The Mahjong Roguelike. Aotenjo: Infinite Hands is an deckbuilder where you will use Mahjong styles all over the world to beat innate threats, play different Patterns and combos, reach the \\\"bottom\\\" of Aotenjo, and discover ancient secrets....\",\n    \"homepage\": \"https://byrutgame.org/index.php?do=download&id=176872\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.dufs.bucket.host }}/bucket/games/aotenjo.7z\",\n            \"hash\": \"43b66ee21523bbc7cf7b99b455450e0e252a71593552021f0c5a1b37eb2b52bc\"\n        }\n    },\n    \"post_install\": [\n        \"$name = \\\"aotenjo\\\"\",\n        \"$path = \\\"${env:USERPROFILE}\\\\AppData\\\\LocalLow\\\\Aotenjo\\\\Aotenjo\\\"\",\n        \"$saves = if ($env:game_saves) { $env:game_saves } else { \\\"$env:USERPROFILE\\\\Documents\\\\game_saves\\\" }\",\n        \"mkdir -p $saves\\\\$name >$null 2>$null\",\n        \"New-Item -ItemType Junction -Path $path -Target $saves\\\\$name >$null\"\n    ],\n    \"shortcuts\": [\n        [\n            \"Aotenjo.exe\",\n            \"Aotenjo\"\n        ]\n    ]\n}",
@@ -14807,6 +14834,9 @@
     },
     "zxc.20260330235722.1": {
       "_mod_time": 1777179946.891
+    },
+    "zxc.20260609212401.1": {
+      "_mod_time": 1781011741.368
     },
     "zxc.20260518220745.1": {
       "_mod_time": 1780748738.611

@@ -1,0 +1,6 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "firefox" -}}
+user_pref("browser.search.region", "US");
+user_pref("sidebar.visibility", "hide-sidebar");
+{{ end -}}
+{{ end -}}
