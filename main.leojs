@@ -1500,57 +1500,33 @@
           "vh": "file manager",
           "children": [
             {
-              "gnx": "zxc.20260607201158.1",
+              "gnx": "zxc.20260125194735.1",
               "vh": "chezmoi",
               "children": [
                 {
-                  "gnx": "zxc.20260607201217.1",
+                  "gnx": "zxc.20260201142826.1",
                   "vh": "config",
                   "children": [
                     {
-                      "gnx": "zxc.20260607201328.1",
-                      "vh": "encryption",
+                      "gnx": "zxc.20260126154557.1",
+                      "vh": "content",
                       "children": [
                         {
                           "gnx": "User.20260214200035.1",
                           "vh": "encryption"
-                        }
-                      ]
-                    },
-                    {
-                      "gnx": "zxc.20260607201542.1",
-                      "vh": "git",
-                      "children": [
+                        },
                         {
                           "gnx": "User.20260214200002.1",
                           "vh": "git"
-                        }
-                      ]
-                    },
-                    {
-                      "gnx": "zxc.20260607201635.1",
-                      "vh": "gopass",
-                      "children": [
+                        },
                         {
                           "gnx": "User.20260217023028.1",
                           "vh": "gopass"
-                        }
-                      ]
-                    },
-                    {
-                      "gnx": "zxc.20260607201709.1",
-                      "vh": "progress",
-                      "children": [
+                        },
                         {
                           "gnx": "User.20260217122736.1",
                           "vh": "progress"
-                        }
-                      ]
-                    },
-                    {
-                      "gnx": "zxc.20260607201834.1",
-                      "vh": "windows",
-                      "children": [
+                        },
                         {
                           "gnx": "zxc.20260126154722.1",
                           "vh": "windows",
@@ -1567,81 +1543,14 @@
                               "vh": "cd"
                             }
                           ]
-                        }
-                      ]
-                    },
-                    {
-                      "gnx": "zxc.20260607202230.1",
-                      "vh": "edit",
-                      "children": [
+                        },
                         {
                           "gnx": "zxc.20260320003721.1",
                           "vh": "edit"
-                        }
-                      ]
-                    },
-                    {
-                      "gnx": "zxc.20260607202252.1",
-                      "vh": "diff",
-                      "children": [
+                        },
                         {
                           "gnx": "zxc.20260331222155.1",
                           "vh": "diff"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "gnx": "zxc.20260607202332.1",
-                  "vh": "ignore",
-                  "children": [
-                    {
-                      "gnx": "zxc.20260607202356.1",
-                      "vh": "all",
-                      "children": [
-                        {
-                          "gnx": "zxc.20260125144515.1",
-                          "vh": "all"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "gnx": "zxc.20260125194735.1",
-              "vh": "chezmoi",
-              "children": [
-                {
-                  "gnx": "zxc.20260201142826.1",
-                  "vh": "config",
-                  "children": [
-                    {
-                      "gnx": "zxc.20260126154557.1",
-                      "vh": "content",
-                      "children": [
-                        {
-                          "gnx": "User.20260214200035.1"
-                        },
-                        {
-                          "gnx": "User.20260214200002.1"
-                        },
-                        {
-                          "gnx": "User.20260217023028.1"
-                        },
-                        {
-                          "gnx": "User.20260217122736.1"
-                        },
-                        {
-                          "gnx": "zxc.20260126154722.1"
-                        },
-                        {
-                          "gnx": "zxc.20260320003721.1"
-                        },
-                        {
-                          "gnx": "zxc.20260331222155.1"
                         }
                       ]
                     }
@@ -1656,7 +1565,8 @@
                       "vh": "@clean .chezmoiignore.tmpl",
                       "children": [
                         {
-                          "gnx": "zxc.20260125144515.1"
+                          "gnx": "zxc.20260125144515.1",
+                          "vh": "all"
                         },
                         {
                           "gnx": "zxc.20260125144547.1",
@@ -4206,6 +4116,10 @@
                             {
                               "gnx": "zxc.20260607175915.1",
                               "vh": "org-auto-tangle"
+                            },
+                            {
+                              "gnx": "zxc.20260610190113.1",
+                              "vh": "org-modern"
                             }
                           ]
                         },
@@ -4286,6 +4200,10 @@
                         {
                           "gnx": "zxc.20260607175748.1",
                           "vh": "org-auto-tangle"
+                        },
+                        {
+                          "gnx": "zxc.20260610190037.1",
+                          "vh": "org-modern"
                         }
                       ]
                     }
@@ -11979,7 +11897,94 @@
                       "vh": "File Manager",
                       "children": [
                         {
-                          "gnx": "zxc.20260607201158.1"
+                          "gnx": "zxc.20260607201158.1",
+                          "vh": "chezmoi",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260607201217.1",
+                              "vh": "config",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260607201328.1",
+                                  "vh": "encryption",
+                                  "children": [
+                                    {
+                                      "gnx": "User.20260214200035.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260607201542.1",
+                                  "vh": "git",
+                                  "children": [
+                                    {
+                                      "gnx": "User.20260214200002.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260607201635.1",
+                                  "vh": "gopass",
+                                  "children": [
+                                    {
+                                      "gnx": "User.20260217023028.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260607201709.1",
+                                  "vh": "progress",
+                                  "children": [
+                                    {
+                                      "gnx": "User.20260217122736.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260607201834.1",
+                                  "vh": "windows",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260126154722.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260607202230.1",
+                                  "vh": "edit",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260320003721.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260607202252.1",
+                                  "vh": "diff",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260331222155.1"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260607202332.1",
+                              "vh": "ignore",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260607202356.1",
+                                  "vh": "all",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260125144515.1"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
                         }
                       ]
                     }
@@ -12783,28 +12788,17 @@
     "zxc.20260607200437.1": "af=%11%scaletempo2\nalang=%16%ja,jp,jpn,en,eng\naudio-file-auto=%5%fuzzy\naudio-pitch-correction=%3%yes\nbackground-color=%7%#000000\nblend-subtitles=%5%video\nforce-seekable=%3%yes\nfullscreen=%3%yes\nhwdec=%4%auto\nkeep-open=%6%always\nosd-back-color=%7%#282a2e\nosd-border-color=%7%#282a2e\nosd-color=%7%#c5c8c6\nosd-font=%11%DejaVu Sans\nosd-shadow-color=%7%#1d1f21\npause=%2%no\nsave-position-on-quit=%3%yes\nslang=%46%en,eng,chs,sc,zh,chi,zho,zh-Hant,zh-CN,zh-Hans\nvolume=%3%100\nvolume-max=%3%200\n",
     "zxc.20260604073139.1": "sub-auto=%5%fuzzy\nsub-font=%{{ len .my.font.sans }}%{{ .my.font.sans }}\nsub-color=\"#FFFF00\"             # Yellow text\nsub-border-color=\"#000000\"      # Black border for contrast\nsub-border-size=1               # Thickness of the outline\nsub-shadow-color=\"#000000\"      # Subtle shadow\nsub-shadow-offset=1\n",
     "User.20260228232118.1": "music_directory {{ joinPath .chezmoi.homeDir \"Music\" | quote }}\nplaylist_directory {{ joinPath (env \"APPDATA\") \"mpd\" \"playlist\" | quote }}\ndb_file {{ joinPath (env \"APPDATA\") \"mpd\" \"tag_cache\" | quote }}\nstate_file {{ joinPath (env \"APPDATA\") \"mpd\" \"state\" | quote }}\nsticker_file {{ joinPath (env \"APPDATA\") \"mpd\" \"sticker.sql\" | quote }}\n\nauto_update \"yes\"\n\naudio_output {\n    type \"winmm\"\n    name \"Windows Speakers\"\n}",
-    "zxc.20260607201158.1": "**** Chezmoi\n\n",
-    "zxc.20260607201217.1": "***** Config\n\n",
-    "zxc.20260607201328.1": "Encryption.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
     "User.20260214200035.1": "encryption = \"age\"\n[age]\n    identity = \"~/.ssh/id_ed25519\"\n    symmetric = true",
-    "zxc.20260607201542.1": "Git.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
     "User.20260214200002.1": "[git]\n    autoCommit = false\n    autoPush = false",
-    "zxc.20260607201635.1": "Gopass.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
     "User.20260217023028.1": "[gopass]\n    mode = \"builtin\"",
-    "zxc.20260607201709.1": "Progress.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
     "User.20260217122736.1": "progress = true",
-    "zxc.20260607201834.1": "Windows only.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
     "zxc.20260126154722.1": "<< dos >>\n@others\n{{ end -}}\n",
     "zxc.20260126154908.1": "[interpreter.ps1]\n    command = \"powershell\"\n    args = []",
     "zxc.20260126154820.1": "[cd]\n    command = \"{{ .my.shell.windows }}\"",
-    "zxc.20260607202230.1": "Edit.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
     "zxc.20260320003721.1": "[edit]\n    hardlink = false",
-    "zxc.20260607202252.1": "Diff.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
     "zxc.20260331222155.1": "{{ if lookPath \"delta\" -}}\n[diff]\n    command = \"delta\"\n    args = [\"-s\", \"{{ \"{{\" }} .Destination {{ \"}}\" }}\", \"{{ \"{{\" }} .Target {{ \"}}\" }}\"]\n{{ else if lookPath \"difft\" -}}\n[diff]\n    command = \"difft\"\n    args = [\"{{ \"{{\" }} .Destination {{ \"}}\" }}\", \"{{ \"{{\" }} .Target {{ \"}}\" }}\"]\n{{ else if lookPath \"meld\" -}}\n[diff]\n    command = \"meld\"\n    args = [\"--diff\", \"{{ \"{{\" }} .Destination {{ \"}}\" }}\", \"{{ \"{{\" }} .Target {{ \"}}\" }}\"]\n{{ end -}}",
-    "zxc.20260607202332.1": "***** Ignore\n\n",
-    "zxc.20260607202356.1": "Always ignored.\n\n#+begin_src\n@others\n#+end_src\n\n",
-    "zxc.20260125144515.1": "Makefile\nmain.leojs",
     "zxc.20260125144442.1": "@others",
+    "zxc.20260125144515.1": "Makefile\nmain.leojs",
     "zxc.20260125144547.1": "<< linux >>\n@others\n{{ end -}}",
     "User.20260225204416.1": "{{ if eq .chezmoi.os \"linux\" -}}\n",
     "zxc.20260127232118.1": "Documents/autohotkey/\nDocuments/autohotkey/**\nDocuments/PowerToys/\nDocuments/PowerToys/**\nDocuments/PowerShell/\nDocuments/PowerShell/**",
@@ -13183,6 +13177,7 @@
     "User.20260307200154.1": "{{ $domain := \"miniflux.zxc.cn\" -}}\n{{ $protocol := \"http\" -}}\n{{ if eq .chezmoi.hostname \"localhost\" -}}\n{{ $domain = print \"miniflux.\" ((includeTemplate \"my_domain.key\") | trim ) -}}\n{{ $protocol = \"https\" -}}\n{{ end -}}\n",
     "User.20260307200144.1": "(use-package! elfeed-protocol\n  :custom\n  (elfeed-use-curl t)\n  (elfeed-protocol-enabled-protocols '(fever))\n  (elfeed-protocol-fever-update-unread-only nil)\n  (elfeed-protocol-fever-fetch-category-as-tag t)\n  (elfeed-protocol-feeds '((\"fever+{{ $protocol }}://miniflux@{{ $domain }}\"\n                                 :api-url \"{{ $protocol }}://{{ $domain }}/fever/\"\n                                 :password \"{{ gopass \"miniflux/fever\" | trim }}\")))\n  :config\n  (elfeed-set-timeout 36000)\n  (setq elfeed-search-filter \"@2-weeks-ago +unread !Commit \")\n  (elfeed-protocol-enable))\n",
     "zxc.20260607175915.1": "(use-package! org-auto-tangle\n  :defer t\n  :hook (org-mode . org-auto-tangle-mode))\n",
+    "zxc.20260610190113.1": ";; (add-hook 'org-mode-hook #'org-modern-mode)\n;; (add-hook 'org-agenda-finalize-hook #'org-modern-agenda)\n",
     "User.20260307184451.1": "(require 'url)\n(require 'json)\n\n(defun insert-github-package-snippet ()\n  \"从系统剪贴板读取 GitHub 仓库 URL，\n抓取它的 repo 名和 description，在光标处插入类似：\n[\\\"repo\\\", \\\"desc\\\", \\\"https://…\\\", Categories.SYSTEM, \\\"MM/DD/YYYY\\\", None, Waiting_Status.WAITING, Types.PACKAGE],\"\n  (interactive)\n  ;; 1. 取剪贴板内容\n  (let* ((clip (if (fboundp 'gui-get-selection)\n                   (gui-get-selection 'CLIPBOARD)\n                 (current-kill 0)))\n         (url  (and clip (string-trim clip)))\n         ;; 2. 提取 repo 全路径 user/repo 及 repo 名\n         (m    (and url (string-match \"github\\\\.com/\\\\([^/]+/[^/]+\\\\)\" url)))\n         (full (and m (match-string 1 url)))\n         (repo (and full (file-name-nondirectory full))))\n    (unless (and url full repo)\n      (user-error \"剪贴板中没有有效的 GitHub 仓库 URL\"))\n    ;; 3. 通过 GitHub API 拉 description\n    (let* ((api    (format \"https://api.github.com/repos/%s\" full))\n           ;; 设置一个简单的 User-Agent 以防被拒\n           (url-request-extra-headers\n            '((\"User-Agent\" . \"emacs-insert-github-package-snippet\")))\n           (buf    (url-retrieve-synchronously api))\n           description)\n      (unless buf (user-error \"无法访问 GitHub API\"))\n      (with-current-buffer buf\n        (goto-char (point-min))\n        (re-search-forward \"^$\" nil 'move)  ; 跳过 header\n        (let ((json-object-type 'alist)\n              (json (json-read)))\n          (setq description (or (alist-get 'description json) \"\"))))\n      (kill-buffer buf)\n      ;; 4. 插入结果\n      (insert\n       (format \"[\\\"%s\\\", \\\"%s\\\", \\\"%s\\\", Categories.SYSTEM, \\\"%s\\\", None, Waiting_Status.WAITING, Types.PACKAGE],\"\n               repo\n               ;; 转义双引号\n               (replace-regexp-in-string \"\\\"\" \"\\\\\\\\\\\"\" description)\n               url\n               ;; 用今天的日期\n               (format-time-string \"%m/%d/%Y\"))))))\n",
     "User.20260217223035.2": ";; -*- no-byte-compile: t; -*-\n;;; $DOOMDIR/packages.el\n\n;; To install a package:\n;;\n;;   1. Declare them here in a `package!' statement,\n;;   2. Run 'doom sync' in the shell,\n;;   3. Restart Emacs.\n;;\n;; Use 'C-h f package\\!' to look up documentation for the `package!' macro.\n\n\n;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:\n;; (package! some-package)\n\n;; To install a package directly from a remote git repo, you must specify a\n;; `:recipe'. You'll find documentation on what `:recipe' accepts here:\n;; https://github.com/radian-software/straight.el#the-recipe-format\n;; (package! another-package\n;;   :recipe (:host github :repo \"username/repo\"))\n\n;; If the package you are trying to install does not contain a PACKAGENAME.el\n;; file, or is located in a subdirectory of the repo, you'll need to specify\n;; `:files' in the `:recipe':\n;; (package! this-package\n;;   :recipe (:host github :repo \"username/repo\"\n;;            :files (\"some-file.el\" \"src/lisp/*.el\")))\n\n;; If you'd like to disable a package included with Doom, you can do so here\n;; with the `:disable' property:\n;; (package! builtin-package :disable t)\n\n;; You can override the recipe of a built in package without having to specify\n;; all the properties for `:recipe'. These will inherit the rest of its recipe\n;; from Doom or MELPA/ELPA/Emacsmirror:\n;; (package! builtin-package :recipe (:nonrecursive t))\n;; (package! builtin-package-2 :recipe (:repo \"myfork/package\"))\n\n;; Specify a `:branch' to install a package from a particular branch or tag.\n;; This is required for some packages whose default branch isn't 'master' (which\n;; our package manager can't deal with; see radian-software/straight.el#279)\n;; (package! builtin-package :recipe (:branch \"develop\"))\n\n;; Use `:pin' to specify a particular commit to install.\n;; (package! builtin-package :pin \"1a2b3c4d5e\")\n\n\n;; Doom's packages are pinned to a specific commit and updated from release to\n;; release. The `unpin!' macro allows you to unpin single packages...\n;; (unpin! pinned-package)\n;; ...or multiple packages\n;; (unpin! pinned-package another-pinned-package)\n;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)\n;; (unpin! t)\n",
     "User.20260218000937.1": "(package! ahk-mode)\n",
@@ -13199,6 +13194,7 @@
     "zxc.20260411161045.1": "(package! elsqlite)",
     "zxc.20260513223650.1": "(package! super-save)",
     "zxc.20260607175748.1": "(package! org-auto-tangle)\n",
+    "zxc.20260610190037.1": ";; (package! org-modern)\n",
     "User.20260220000018.1": "\"theme\": {\n  \"mode\": \"system\",\n  \"light\": \"One Light\",\n  \"dark\": \"One Dark\",\n},",
     "User.20260219235958.1": "\"ui_font_size\": 16,\n\"buffer_font_size\": 15,",
     "User.20260219235853.1": "\"auto_update\": false\n",
@@ -14356,6 +14352,17 @@
     "zxc.20260607200720.1": "**** Mpd\n\n",
     "zxc.20260607200734.1": "Config.\n\n#+begin_src\n@others\n#+end_src\n\n",
     "zxc.20260607201143.1": "*** File Manager\n\n",
+    "zxc.20260607201158.1": "**** Chezmoi\n\n",
+    "zxc.20260607201217.1": "***** Config\n\n",
+    "zxc.20260607201328.1": "Encryption.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
+    "zxc.20260607201542.1": "Git.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
+    "zxc.20260607201635.1": "Gopass.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
+    "zxc.20260607201709.1": "Progress.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
+    "zxc.20260607201834.1": "Windows only.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
+    "zxc.20260607202230.1": "Edit.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
+    "zxc.20260607202252.1": "Diff.\n\n#+begin_src toml\n@others\n#+end_src\n\n",
+    "zxc.20260607202332.1": "***** Ignore\n\n",
+    "zxc.20260607202356.1": "Always ignored.\n\n#+begin_src\n@others\n#+end_src\n\n",
     "zxc.20260202205715.1": "<< dos >>\n@others\n{{ end -}}",
     "zxc.20260202205901.1": "# Flower - とても深いグリーン\nhttps://www.bilibili.com/video/BV1EyHYeBEFr",
     "zxc.20260426163956.1": "{{ if and (lookPath \"yt-dlp\") (lookPath \"ffmpeg\") (lookPath \"mid3v2\") -}}\n@others\n{{ end -}}\n",
@@ -14592,7 +14599,7 @@
       "_mod_time": 1780748738.606
     },
     "User.20260226001402.1": {
-      "_mod_time": 1780748738.606
+      "_mod_time": 1781093580.295
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1777891402.212
@@ -14700,10 +14707,10 @@
       "_mod_time": 1780826613.668
     },
     "User.20260217223030.1": {
-      "_mod_time": 1780839541.339
+      "_mod_time": 1781093588.461
     },
     "User.20260217223035.1": {
-      "_mod_time": 1780833186.07
+      "_mod_time": 1781093580.311
     },
     "User.20260223014430.1": {
       "_mod_time": 1778855150.599
