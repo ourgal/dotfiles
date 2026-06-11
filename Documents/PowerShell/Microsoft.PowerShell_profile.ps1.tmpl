@@ -198,6 +198,17 @@ function unlock-keepassxc {
     gopass show -o keepassxc/main | & keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir "syncthing" "keepassxc" "main.kdbx" | quote }}
 }
 {{ end -}}
+function Get-Fonts {
+    param (
+        $regex
+    )
+    $AllFonts = (New-Object System.Drawing.Text.InstalledFontCollection).Families.Name
+    if ($null -ne $regex) {
+        $FilteredFonts = $($AllFonts | Select-String -Pattern ".*${regex}.*")
+        return $FilteredFonts
+    }
+    return $AllFonts
+}
 {{ if lookPath "choco" -}}
 # Import the Chocolatey Profile that contains the necessary code to enable
 # tab-completions to function for `choco`.
