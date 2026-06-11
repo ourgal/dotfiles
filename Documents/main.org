@@ -2954,3 +2954,61 @@ Makefile
 main.leojs
 #+end_src
 
+*** Snippet
+
+**** Pet
+
+Snippets
+
+Remove files from git repo.
+
+#+begin_src toml
+[[Snippets]]
+Description = "Remove file from git history"
+Output = ""
+Tag = []
+command = "git filter-repo --path (fzf) --invert-paths"
+#+end_src
+
+Config.
+
+#+begin_src toml
+[GHEGist]
+  Public = false
+  access_token = ""
+  auto_sync = false
+  base_url = ""
+  file_name = ""
+  gist_id = ""
+  upload_url = ""
+
+[General]
+  Backend = "gist"
+  Cmd = []
+  Color = false
+  Column = 40
+  Editor = "{{ template "editor" }}"
+  Format = "[$description]: $command $tags"
+  SelectCmd = "fzf --ansi --layout=reverse --border --height=90% --pointer=* --cycle --prompt=Snippets:"
+  SnippetDirs = []
+  SnippetFile = {{ joinPath .chezmei.homeDir "AppData" "Roaming" "pet" "snippet.toml" | quote }}
+  SortBy = ""
+
+[Gist]
+  Public = false
+  access_token = ""
+  auto_sync = false
+  file_name = "pet-snippet.toml"
+  gist_id = ""
+
+[GitLab]
+  ID = ""
+  Url = ""
+  Visibility = "private"
+  access_token = ""
+  auto_sync = false
+  file_name = "pet-snippet.toml"
+  skip_ssl = false
+
+#+end_src
+
