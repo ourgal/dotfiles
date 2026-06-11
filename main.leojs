@@ -8243,6 +8243,10 @@
                                         {
                                           "gnx": "zxc.20260610210628.1",
                                           "vh": "iosevka"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260611142406.1",
+                                          "vh": "sarasa"
                                         }
                                       ]
                                     },
@@ -13113,7 +13117,7 @@
     "User.20260226001402.1": "@others\n",
     "zxc.20260315140948.1": "[my]\nname = \"zxc\"\n",
     "User.20260226001414.1": "[my.msys2]\npackages = [\"fish\", \"nnn\", \"atool\", \"libarchive\", \"tmux\", \"zsh\"]",
-    "User.20260226001424.1": "[my.font]\nmonospace = \"IosevkaTerm NFM\"\nsans = \"Noto Sans CJK SC\"\n",
+    "User.20260226001424.1": "[my.font]\nmonospace = \"Sarasa Term SC\"\nsans = \"Noto Sans CJK SC\"\n",
     "User.20260226001439.1": "[my.git.sign]\nssh = false\ngpg = true\n\n[my.git.user]\nname = \"fairever\"\nemail = \"git@fairever.aleeas.com\"",
     "zxc.20260409142917.1": "[my.shell]\nwindows = \"pwsh\"",
     "zxc.20260409143158.1": "[my.terminal]\nwindows = \"wt\"",
@@ -13892,6 +13896,7 @@
     "zxc.20260423143729.198": "- nerd-fonts/FiraCode-NF-Mono\n",
     "zxc.20260423143729.199": "- nerd-fonts/Noto-CJK-Mega-OTC\n",
     "zxc.20260610210628.1": "- nerd-fonts/IosevkaTerm-NF-Mono\n",
+    "zxc.20260611142406.1": "- nerd-fonts/SarasaGothic-ttc\n",
     "zxc.20260423143729.200": "- name: Other packages\n  tags: scoop-other\n  block:\n    @others\n",
     "zxc.20260423143729.201": "- name: Add main-plus bucket\n  community.windows.win_scoop_bucket:\n    name: main-plus\n    repo: https://github.com/Scoopforge/Main-Plus\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - main-plus/cargo-update\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.202": "- name: Add chawyehsu_dorado bucket\n  community.windows.win_scoop_bucket:\n    name: chawyehsu_dorado\n    repo: https://github.com/chawyehsu/dorado\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - chawyehsu_dorado/runany\n      - chawyehsu_dorado/git-credential-gopass\n      - chawyehsu_dorado/aliyundrive\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
@@ -14763,7 +14768,7 @@
       "_mod_time": 1780748738.606
     },
     "User.20260226001402.1": {
-      "_mod_time": 1781136998.754
+      "_mod_time": 1781158779.223
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1781137085.606
@@ -15087,7 +15092,7 @@
       "_mod_time": 1778855150.563
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1781139444.789
+      "_mod_time": 1781159086.015
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778855150.568
