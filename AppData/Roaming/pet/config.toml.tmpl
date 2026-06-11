@@ -18,7 +18,7 @@
   Format = "[$description]: $command $tags"
   SelectCmd = "fzf --ansi --layout=reverse --border --height=90% --pointer=* --cycle --prompt=Snippets:"
   SnippetDirs = []
-  SnippetFile = {{ joinPath .chezmei.homeDir "AppData" "Roaming" "pet" "snippet.toml" | quote }}
+  SnippetFile = {{ joinPath .chezmoi.homeDir "AppData" "Roaming" "pet" "snippet.toml" | quote }}
   SortBy = ""
 
 [Gist]
