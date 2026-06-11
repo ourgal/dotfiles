@@ -1,0 +1,9 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "pet" -}}
+[[Snippets]]
+Description = "Remove file from git history"
+Output = ""
+Tag = []
+command = "git filter-repo --path (fzf) --invert-paths"
+{{ end -}}
+{{ end -}}
