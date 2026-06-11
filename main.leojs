@@ -170,6 +170,10 @@
                         {
                           "gnx": "zxc.20260325003330.1",
                           "vh": "unlock keepassxc"
+                        },
+                        {
+                          "gnx": "zxc.20260611110907.1",
+                          "vh": "get fonts"
                         }
                       ]
                     },
@@ -10522,6 +10526,15 @@
                                       "gnx": "zxc.20260125212857.1"
                                     }
                                   ]
+                                },
+                                {
+                                  "gnx": "zxc.20260611110939.1",
+                                  "vh": "get fonts",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260611110907.1"
+                                    }
+                                  ]
                                 }
                               ]
                             }
@@ -12747,6 +12760,7 @@
     "zxc.20260125213331.1": "{{ if lookPath \"yt-dlp\" -}}\nfunction yt {\n    yt-dlp -f \"bestvideo[height<=1080]+bestaudio/best[height<=1080]\" (cb) && mpv (ls | sort LastWriteTime -Descending)[0].Name\n}\n{{ end -}}\n",
     "zxc.20260125213305.1": "{{ if lookPath \"scoop\" -}}\nfunction scoop-update {\n    scoop update *\n    scoop cache rm *\n    scoop cleanup *\n}\n{{ end -}}\n",
     "zxc.20260325003330.1": "{{ if and ( lookPath \"scoop\" ) (lookPath \"KeePassXc\") -}}\nfunction unlock-keepassxc {\n    gopass show -o keepassxc/main | & keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir \"syncthing\" \"keepassxc\" \"main.kdbx\" | quote }}\n}\n{{ end -}}\n",
+    "zxc.20260611110907.1": "function Get-Fonts {\n    param (\n        $regex\n    )\n    $AllFonts = (New-Object System.Drawing.Text.InstalledFontCollection).Families.Name\n    if ($null -ne $regex) {\n        $FilteredFonts = $($AllFonts | Select-String -Pattern \".*${regex}.*\")\n        return $FilteredFonts\n    }\n    return $AllFonts\n}\n",
     "zxc.20260125212857.1": "{{ if lookPath \"choco\" -}}\n# Import the Chocolatey Profile that contains the necessary code to enable\n# tab-completions to function for `choco`.\n# Be aware that if you are missing these lines from your profile, tab completion\n# for `choco` will not function.\n# See https://ch0.co/tab-completion for details.\n\n$ChocolateyProfile = \"$env:ChocolateyInstall\\helpers\\chocolateyProfile.psm1\"\nif (Test-Path($ChocolateyProfile)) {\n  Import-Module \"$ChocolateyProfile\"\n}\n{{ end -}}\n",
     "zxc.20260125212930.1": "{{ if lookPath \"carapace\" -}}\n# carapace\n$env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense,powershell' # optional\nSet-PSReadLineOption -Colors @{ \"Selection\" = \"`e[7m\" }\nSet-PSReadlineKeyHandler -Key Tab -Function MenuComplete\ncarapace _carapace | Out-String | Invoke-Expression\n{{ end -}}\n",
     "zxc.20260125213126.1": "{{ $opt := \"starship\" -}}\n{{ $cmd := \"starship\" -}}\n<< check opt and cmd >>\n@others\n{{ end -}}\n",
@@ -14315,6 +14329,7 @@
     "zxc.20260603155546.1": "Update scoop packages.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
     "zxc.20260603155640.1": "Unlock KeePassXC.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
     "zxc.20260603155746.1": "Choco completion.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
+    "zxc.20260611110939.1": "Get fonts.\n\n#+begin_src powershell\n@others\n#+end_src\n\n",
     "zxc.20260603203712.1": "**** clink\n\n",
     "zxc.20260603203823.1": "Color options.\n\n#+begin_src\n@others\n#+end_src\n\n",
     "zxc.20260603204003.1": "Aliases.\n\n#+begin_src\n@others\n#+end_src\n\n",
@@ -15057,7 +15072,7 @@
       "_mod_time": 1780748738.611
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1780476387.985
+      "_mod_time": 1781147351.765
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1777713442.482
@@ -15120,7 +15135,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1781140809.61
+      "_mod_time": 1781147401.844
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1773571522.67

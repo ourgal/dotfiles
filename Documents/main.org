@@ -428,6 +428,22 @@ if (Test-Path($ChocolateyProfile)) {
 {{ end -}}
 #+end_src
 
+Get fonts.
+
+#+begin_src powershell
+function Get-Fonts {
+    param (
+        $regex
+    )
+    $AllFonts = (New-Object System.Drawing.Text.InstalledFontCollection).Families.Name
+    if ($null -ne $regex) {
+        $FilteredFonts = $($AllFonts | Select-String -Pattern ".*${regex}.*")
+        return $FilteredFonts
+    }
+    return $AllFonts
+}
+#+end_src
+
 **** clink
 
 Color options.
