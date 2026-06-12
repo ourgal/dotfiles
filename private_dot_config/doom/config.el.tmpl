@@ -101,6 +101,9 @@
         ("." . {{ if eq .chezmoi.os "windows" }}browse-url-default-windows-browser{{ else }}browse-url-firefox{{ end }})))
 (after! org
   (setq org-agenda-files '("~/org/agenda.org")))
+(after! emms
+  (setq emms-source-file-default-directory "~/Music")
+  (add-hook 'emms-playlist-mode-hook #'turn-on-evil-mode))
 (map! :n "C-w o" #'delete-other-windows
       :n "C-w z" #'doom/window-enlargen)
 (map! :leader
