@@ -1,0 +1,5 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "mpv" -}}
+auto_start=yes
+{{ end -}}
+{{ end -}}
