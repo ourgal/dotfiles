@@ -13387,7 +13387,7 @@
     "User.20260215230117.1": "{\n    \"key\": \"space\",\n    \"command\": \"vspacecode.space\",\n    \"when\": \"activeEditorGroupEmpty && focusedView == '' && !whichkeyActive && !inputFocus\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"extension.vim_tab\",\n    \"when\": \"editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && editorLangId != 'magit'\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"-extension.vim_tab\",\n    \"when\": \"editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert'\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"magit.discard-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"k\",\n    \"command\": \"-magit.discard-at-point\"\n},\n{\n    \"key\": \"-\",\n    \"command\": \"magit.reverse-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"v\",\n    \"command\": \"-magit.reverse-at-point\"\n},\n{\n    \"key\": \"shift+-\",\n    \"command\": \"magit.reverting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+v\",\n    \"command\": \"-magit.reverting\"\n},\n{\n    \"key\": \"shift+o\",\n    \"command\": \"magit.resetting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+x\",\n    \"command\": \"-magit.resetting\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"-magit.reset-mixed\"\n},\n{\n    \"key\": \"ctrl+u x\",\n    \"command\": \"-magit.reset-hard\"\n},\n{\n    \"key\": \"y\",\n    \"command\": \"-magit.show-refs\"\n},\n{\n    \"key\": \"y\",\n    \"command\": \"vspacecode.showMagitRefMenu\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode == 'Normal'\"\n},\n{\n    \"key\": \"g\",\n    \"command\": \"-magit.refresh\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"g\",\n    \"command\": \"vspacecode.showMagitRefreshMenu\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"ctrl+j\",\n    \"command\": \"workbench.action.quickOpenSelectNext\",\n    \"when\": \"inQuickOpen\"\n},\n{\n    \"key\": \"ctrl+k\",\n    \"command\": \"workbench.action.quickOpenSelectPrevious\",\n    \"when\": \"inQuickOpen\"\n},\n{\n    \"key\": \"ctrl+j\",\n    \"command\": \"selectNextSuggestion\",\n    \"when\": \"suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus\"\n},\n{\n    \"key\": \"ctrl+k\",\n    \"command\": \"selectPrevSuggestion\",\n    \"when\": \"suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus\"\n},\n{\n    \"key\": \"ctrl+l\",\n    \"command\": \"acceptSelectedSuggestion\",\n    \"when\": \"suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus\"\n},\n{\n    \"key\": \"ctrl+j\",\n    \"command\": \"showNextParameterHint\",\n    \"when\": \"editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible\"\n},\n{\n    \"key\": \"ctrl+k\",\n    \"command\": \"showPrevParameterHint\",\n    \"when\": \"editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible\"\n},\n{\n    \"key\": \"ctrl+j\",\n    \"command\": \"selectNextCodeAction\",\n    \"when\": \"codeActionMenuVisible\"\n},\n{\n    \"key\": \"ctrl+k\",\n    \"command\": \"selectPrevCodeAction\",\n    \"when\": \"codeActionMenuVisible\"\n},\n{\n    \"key\": \"ctrl+l\",\n    \"command\": \"acceptSelectedCodeAction\",\n    \"when\": \"codeActionMenuVisible\"\n},\n{\n    \"key\": \"ctrl+h\",\n    \"command\": \"file-browser.stepOut\",\n    \"when\": \"inFileBrowser\"\n},\n{\n    \"key\": \"ctrl+l\",\n    \"command\": \"file-browser.stepIn\",\n    \"when\": \"inFileBrowser\"\n},",
     "User.20260225223301.1": "{\n    \"key\": \"g g\",\n    \"command\": \"cursorTop\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"g r\",\n    \"command\": \"magit.refresh\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"extension.vim_tab\",\n    \"when\": \"editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && !inlineEditIsVisible && editorLangId != 'magit'\"\n},\n{\n    \"key\": \"tab\",\n    \"command\": \"-extension.vim_tab\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"magit.discard-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"k\",\n    \"command\": \"-magit.discard-at-point\"\n},\n{\n    \"key\": \"-\",\n    \"command\": \"magit.reverse-at-point\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"v\",\n    \"command\": \"-magit.reverse-at-point\"\n},\n{\n    \"key\": \"shift+-\",\n    \"command\": \"magit.reverting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+v\",\n    \"command\": \"-magit.reverting\"\n},\n{\n    \"key\": \"shift+o\",\n    \"command\": \"magit.resetting\",\n    \"when\": \"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/\"\n},\n{\n    \"key\": \"shift+x\",\n    \"command\": \"-magit.resetting\"\n},\n{\n    \"key\": \"x\",\n    \"command\": \"-magit.reset-mixed\"\n},\n{\n    \"key\": \"ctrl+u x\",\n    \"command\": \"-magit.reset-hard\"\n},",
     "User.20260225223309.1": "{\n    \"key\": \"alt+x ctrl+g\",\n    \"command\": \"-magit.dispatch\"\n},\n{\n    \"key\": \"alt+x alt+g\",\n    \"command\": \"-magit.file-popup\",\n    \"when\": \"activeEditor\"\n},\n{\n    \"key\": \"alt+x g\",\n    \"command\": \"-magit.status\"\n}",
-    "User.20260217223023.2": ";;; init.el -*- lexical-binding: t; -*-\n\n;; This file controls what Doom modules are enabled and what order they load\n;; in. Remember to run 'doom sync' after modifying it!\n\n;; NOTE Press 'SPC h d h' (or 'C-h d h' for non-vim users) to access Doom's\n;;      documentation. There you'll find a link to Doom's Module Index where all\n;;      of our modules are listed, including what flags they support.\n\n;; NOTE Move your cursor over a module's name (or its flags) and press 'K' (or\n;;      'C-c c k' for non-vim users) to view its documentation. This works on\n;;      flags as well (those symbols that start with a plus).\n;;\n;;      Alternatively, press 'gd' (or 'C-c c d') on a module to browse its\n;;      directory (for easy access to its source code).\n\n(doom! :input\n       ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh\n       ;;chinese\n       ;;japanese\n       ;;layout            ; auie,ctsrnm is the superior home row\n\n       :completion\n       ;;company           ; the ultimate code completion backend\n       (corfu +orderless +icons)  ; complete with cap(f), cape and a flying feather!\n       ;;helm              ; the *other* search engine for love and life\n       ;;ido               ; the other *other* search engine...\n       ;;ivy               ; a search engine for love and life\n       (vertico +childframe +icons)           ; the search engine of the future\n\n       :ui\n       ;;deft              ; notational velocity for Emacs\n       doom              ; what makes DOOM look the way it does\n       doom-dashboard    ; a nifty splash screen for Emacs\n       ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs\n       (emoji +unicode)  ; 🙂\n       hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW\n       indent-guides     ; highlighted indent columns\n       ligatures         ; ligatures and symbols to make your code pretty again\n       ;;minimap           ; show a map of the code on the side\n       modeline          ; snazzy, Atom-inspired modeline, plus API\n       nav-flash         ; blink cursor line after big motions\n       ;;neotree           ; a project drawer, like NERDTree for vim\n       ophints           ; highlight the region an operation acts on\n       (popup +defaults)   ; tame sudden yet inevitable temporary windows\n       smooth-scroll     ; So smooth you won't believe it's not butter\n       ;;tabs              ; a tab bar for Emacs\n       ;;treemacs          ; a project drawer, like neotree but cooler\n       ;;unicode           ; extended unicode support for various languages\n       (vc-gutter +pretty) ; vcs diff in the fringe\n       vi-tilde-fringe   ; fringe tildes to mark beyond EOB\n       (window-select +numbers)     ; visually switch windows\n       workspaces        ; tab emulation, persistence & separate workspaces\n       zen               ; distraction-free coding or writing\n\n       :editor\n       (evil +everywhere); come to the dark side, we have cookies\n       file-templates    ; auto-snippets for empty files\n       fold              ; (nigh) universal code folding\n       (format +onsave)  ; automated prettiness\n       ;;god               ; run Emacs commands without modifier keys\n       ;;lispy             ; vim for lisp, for people who don't like vim\n       multiple-cursors  ; editing in many places at once\n       ;;objed             ; text object editing for the innocent\n       parinfer          ; turn lisp into python, sort of\n       rotate-text       ; cycle region at point between text candidates\n       snippets          ; my elves. They type so I don't have to\n       (whitespace +guess +trim)  ; a butler for your whitespace\n       word-wrap         ; soft wrapping with language-aware indent\n\n       :emacs\n       (dired +icons)             ; making dired pretty [functional]\n       electric          ; smarter, keyword-based electric-indent\n       eww               ; the internet is gross\n       (ibuffer +icons)           ; interactive buffer management\n       tramp             ; remote files at your arthritic fingertips\n       undo              ; persistent, smarter undo for your inevitable mistakes\n       vc                ; version-control and Emacs, sitting in a tree\n\n       :term\n       ;;eshell            ; the elisp shell that works everywhere\n       ;;shell             ; simple shell REPL for Emacs\n       ;;term              ; basic terminal emulator for Emacs\n       vterm             ; the best terminal emulation in Emacs\n\n       :checkers\n       (syntax +childframe)              ; tasing you for every semicolon you forget\n       (spell +aspell) ; tasing you for misspelling mispelling\n       grammar           ; tasing grammar mistake every you make\n\n       :tools\n       ansible\n       ;;biblio            ; Writes a PhD for you (citation needed)\n       ;;collab            ; buffers with friends\n       ;;debugger          ; FIXME stepping through code, to help you add bugs\n       direnv\n       (docker +lsp)\n       editorconfig      ; let someone else argue about tabs vs spaces\n       ;;ein               ; tame Jupyter notebooks with emacs\n       (eval +overlay)     ; run code, run (also, repls)\n       (lookup +dictionary +docsets +offine)              ; navigate your code and its documentation\n       ;;llm               ; when I said you needed friends, I didn't mean...\n       (lsp +eglot)      ; M-x vscode\n       magit             ; a git porcelain for Emacs\n       make              ; run make tasks from Emacs\n       pass              ; password manager for nerds\n       ;;pdf               ; pdf enhancements\n       ;;terraform         ; infrastructure as code\n       ;;tmux              ; an API for interacting with tmux\n       tree-sitter       ; syntax and parsing, sitting in a tree...\n       ;;upload            ; map local to remote projects via ssh/ftp\n\n       :os\n       (:if (featurep :system 'macos) macos)  ; improve compatibility with macOS\n       tty               ; improve the terminal Emacs experience\n\n       :lang\n       ;;ada               ; In strong typing we (blindly) trust\n       ;;agda              ; types of types of types of types...\n       ;;beancount         ; mind the GAAP\n       (cc +lsp)         ; C > C++ == 1\n       ;;clojure           ; java with a lisp\n       ;;common-lisp       ; if you've seen one lisp, you've seen them all\n       ;;coq               ; proofs-as-programs\n       ;;crystal           ; ruby at the speed of c\n       ;;csharp            ; unity, .NET, and mono shenanigans\n       ;;data              ; config/data formats\n       ;;(dart +flutter)   ; paint ui and not much else\n       ;;dhall\n       ;;elixir            ; erlang done right\n       ;;elm               ; care for a cup of TEA?\n       (emacs-lisp +checkers)        ; drown in parentheses\n       ;;erlang            ; an elegant language for a more civilized age\n       ;;ess               ; emacs speaks statistics\n       ;;factor\n       ;;faust             ; dsp, but you get to keep your soul\n       ;;fortran           ; in FORTRAN, GOD is REAL (unless declared INTEGER)\n       ;;fsharp            ; ML stands for Microsoft's Language\n       ;;fstar             ; (dependent) types and (monadic) effects and Z3\n       ;;gdscript          ; the language you waited for\n       ;;(go +lsp)         ; the hipster dialect\n       ;;(graphql +lsp)    ; Give queries a REST\n       (haskell +lsp)    ; a language that's lazier than I am\n       ;;hy                ; readability of scheme w/ speed of python\n       ;;idris             ; a language you can depend on\n       (json +lsp +tree-sitter)              ; At least it ain't XML\n       ;;janet             ; Fun fact: Janet is me!\n       ;;(java +lsp)       ; the poster child for carpal tunnel syndrome\n       ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))\n       ;;julia             ; a better, faster MATLAB\n       ;;kotlin            ; a better, slicker Java(Script)\n       (latex +lsp)             ; writing papers in Emacs has never been so fun\n       ;;lean              ; for folks with too much to prove\n       ;;ledger            ; be audit you can be\n       (lua +lsp +tree-sitter)               ; one-based indices? one-based indices\n       (markdown +grip)          ; writing docs for people to ignore\n       ;;nim               ; python + lisp at the speed of c\n       ;;nix               ; I hereby declare \"nix geht mehr!\"\n       ;;ocaml             ; an objective camel\n       (org +gnuplot +pandoc)               ; organize your plain life in plain text\n       ;;php               ; perl's insecure younger brother\n       ;;plantuml          ; diagrams for confusing people more\n       ;;graphviz          ; diagrams for confusing yourself even more\n       ;;purescript        ; javascript, but functional\n       (python +lsp +tree-sitter)            ; beautiful is better than ugly\n       ;;qt                ; the 'cutest' gui framework ever\n       ;;racket            ; a DSL for DSLs\n       ;;raku              ; the artist formerly known as perl6\n       ;;rest              ; Emacs as a REST client\n       ;;rst               ; ReST in peace\n       ;;(ruby +rails)     ; 1.step {|i| p \"Ruby is #{i.even? ? 'love' : 'life'}\"}\n       ;;(rust +lsp)       ; Fe2O3.unwrap().unwrap().unwrap().unwrap()\n       ;;scala             ; java, but good\n       ;;(scheme +guile)   ; a fully conniving family of lisps\n       (sh +powershell +lsp +tree-sitter)                ; she sells {ba,z,fi}sh shells on the C xor\n       ;;sml\n       ;;solidity          ; do you need a blockchain? No.\n       ;;swift             ; who asked for emoji variables?\n       ;;terra             ; Earth and Moon in alignment for performance.\n       ;;web               ; the tubes\n       (yaml +lsp +tree-sitter)              ; JSON, but readable\n       ;;zig               ; C, but simpler\n\n       :email\n       ;;(mu4e +org +gmail)\n       ;;notmuch\n       ;;(wanderlust +gmail)\n\n       :app\n       ;;calendar\n       emms\n       ;;everywhere        ; *leave* Emacs!? You must be joking\n       ;;irc               ; how neckbeards socialize\n       (rss{{ if .my.doomemacs.elfeed_org }} +org{{ end }}{{ if .my.doomemacs.elfeed_youtube }} +youtube{{ end }})        ; emacs as an RSS reader\n\n       :config\n       ;;literate\n       (default +bindings +smartparens))\n",
+    "User.20260217223023.2": ";;; init.el -*- lexical-binding: t; -*-\n\n;; This file controls what Doom modules are enabled and what order they load\n;; in. Remember to run 'doom sync' after modifying it!\n\n;; NOTE Press 'SPC h d h' (or 'C-h d h' for non-vim users) to access Doom's\n;;      documentation. There you'll find a link to Doom's Module Index where all\n;;      of our modules are listed, including what flags they support.\n\n;; NOTE Move your cursor over a module's name (or its flags) and press 'K' (or\n;;      'C-c c k' for non-vim users) to view its documentation. This works on\n;;      flags as well (those symbols that start with a plus).\n;;\n;;      Alternatively, press 'gd' (or 'C-c c d') on a module to browse its\n;;      directory (for easy access to its source code).\n\n(doom! :input\n       ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh\n       ;;chinese\n       ;;japanese\n       ;;layout            ; auie,ctsrnm is the superior home row\n\n       :completion\n       ;;company           ; the ultimate code completion backend\n       (corfu +orderless +icons)  ; complete with cap(f), cape and a flying feather!\n       ;;helm              ; the *other* search engine for love and life\n       ;;ido               ; the other *other* search engine...\n       ;;ivy               ; a search engine for love and life\n       (vertico +childframe +icons)           ; the search engine of the future\n\n       :ui\n       ;;deft              ; notational velocity for Emacs\n       doom              ; what makes DOOM look the way it does\n       doom-dashboard    ; a nifty splash screen for Emacs\n       ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs\n       (emoji +unicode)  ; 🙂\n       hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW\n       indent-guides     ; highlighted indent columns\n       ligatures         ; ligatures and symbols to make your code pretty again\n       ;;minimap           ; show a map of the code on the side\n       modeline          ; snazzy, Atom-inspired modeline, plus API\n       nav-flash         ; blink cursor line after big motions\n       ;;neotree           ; a project drawer, like NERDTree for vim\n       ophints           ; highlight the region an operation acts on\n       (popup +defaults)   ; tame sudden yet inevitable temporary windows\n       smooth-scroll     ; So smooth you won't believe it's not butter\n       tabs              ; a tab bar for Emacs\n       ;;treemacs          ; a project drawer, like neotree but cooler\n       ;;unicode           ; extended unicode support for various languages\n       (vc-gutter +pretty) ; vcs diff in the fringe\n       vi-tilde-fringe   ; fringe tildes to mark beyond EOB\n       (window-select +numbers)     ; visually switch windows\n       workspaces        ; tab emulation, persistence & separate workspaces\n       zen               ; distraction-free coding or writing\n\n       :editor\n       (evil +everywhere); come to the dark side, we have cookies\n       file-templates    ; auto-snippets for empty files\n       fold              ; (nigh) universal code folding\n       (format +onsave)  ; automated prettiness\n       ;;god               ; run Emacs commands without modifier keys\n       ;;lispy             ; vim for lisp, for people who don't like vim\n       multiple-cursors  ; editing in many places at once\n       ;;objed             ; text object editing for the innocent\n       parinfer          ; turn lisp into python, sort of\n       rotate-text       ; cycle region at point between text candidates\n       snippets          ; my elves. They type so I don't have to\n       (whitespace +guess +trim)  ; a butler for your whitespace\n       word-wrap         ; soft wrapping with language-aware indent\n\n       :emacs\n       (dired +icons)             ; making dired pretty [functional]\n       electric          ; smarter, keyword-based electric-indent\n       eww               ; the internet is gross\n       (ibuffer +icons)           ; interactive buffer management\n       tramp             ; remote files at your arthritic fingertips\n       undo              ; persistent, smarter undo for your inevitable mistakes\n       vc                ; version-control and Emacs, sitting in a tree\n\n       :term\n       ;;eshell            ; the elisp shell that works everywhere\n       ;;shell             ; simple shell REPL for Emacs\n       ;;term              ; basic terminal emulator for Emacs\n       vterm             ; the best terminal emulation in Emacs\n\n       :checkers\n       (syntax +childframe)              ; tasing you for every semicolon you forget\n       (spell +aspell) ; tasing you for misspelling mispelling\n       grammar           ; tasing grammar mistake every you make\n\n       :tools\n       ansible\n       ;;biblio            ; Writes a PhD for you (citation needed)\n       ;;collab            ; buffers with friends\n       ;;debugger          ; FIXME stepping through code, to help you add bugs\n       direnv\n       (docker +lsp)\n       editorconfig      ; let someone else argue about tabs vs spaces\n       ;;ein               ; tame Jupyter notebooks with emacs\n       (eval +overlay)     ; run code, run (also, repls)\n       (lookup +dictionary +docsets +offine)              ; navigate your code and its documentation\n       ;;llm               ; when I said you needed friends, I didn't mean...\n       (lsp +eglot)      ; M-x vscode\n       magit             ; a git porcelain for Emacs\n       make              ; run make tasks from Emacs\n       pass              ; password manager for nerds\n       ;;pdf               ; pdf enhancements\n       ;;terraform         ; infrastructure as code\n       ;;tmux              ; an API for interacting with tmux\n       tree-sitter       ; syntax and parsing, sitting in a tree...\n       ;;upload            ; map local to remote projects via ssh/ftp\n\n       :os\n       (:if (featurep :system 'macos) macos)  ; improve compatibility with macOS\n       tty               ; improve the terminal Emacs experience\n\n       :lang\n       ;;ada               ; In strong typing we (blindly) trust\n       ;;agda              ; types of types of types of types...\n       ;;beancount         ; mind the GAAP\n       (cc +lsp)         ; C > C++ == 1\n       ;;clojure           ; java with a lisp\n       ;;common-lisp       ; if you've seen one lisp, you've seen them all\n       ;;coq               ; proofs-as-programs\n       ;;crystal           ; ruby at the speed of c\n       ;;csharp            ; unity, .NET, and mono shenanigans\n       ;;data              ; config/data formats\n       ;;(dart +flutter)   ; paint ui and not much else\n       ;;dhall\n       ;;elixir            ; erlang done right\n       ;;elm               ; care for a cup of TEA?\n       (emacs-lisp +checkers)        ; drown in parentheses\n       ;;erlang            ; an elegant language for a more civilized age\n       ;;ess               ; emacs speaks statistics\n       ;;factor\n       ;;faust             ; dsp, but you get to keep your soul\n       ;;fortran           ; in FORTRAN, GOD is REAL (unless declared INTEGER)\n       ;;fsharp            ; ML stands for Microsoft's Language\n       ;;fstar             ; (dependent) types and (monadic) effects and Z3\n       ;;gdscript          ; the language you waited for\n       ;;(go +lsp)         ; the hipster dialect\n       ;;(graphql +lsp)    ; Give queries a REST\n       (haskell +lsp)    ; a language that's lazier than I am\n       ;;hy                ; readability of scheme w/ speed of python\n       ;;idris             ; a language you can depend on\n       (json +lsp +tree-sitter)              ; At least it ain't XML\n       ;;janet             ; Fun fact: Janet is me!\n       ;;(java +lsp)       ; the poster child for carpal tunnel syndrome\n       ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))\n       ;;julia             ; a better, faster MATLAB\n       ;;kotlin            ; a better, slicker Java(Script)\n       (latex +lsp)             ; writing papers in Emacs has never been so fun\n       ;;lean              ; for folks with too much to prove\n       ;;ledger            ; be audit you can be\n       (lua +lsp +tree-sitter)               ; one-based indices? one-based indices\n       (markdown +grip)          ; writing docs for people to ignore\n       ;;nim               ; python + lisp at the speed of c\n       ;;nix               ; I hereby declare \"nix geht mehr!\"\n       ;;ocaml             ; an objective camel\n       (org +gnuplot +pandoc)               ; organize your plain life in plain text\n       ;;php               ; perl's insecure younger brother\n       ;;plantuml          ; diagrams for confusing people more\n       ;;graphviz          ; diagrams for confusing yourself even more\n       ;;purescript        ; javascript, but functional\n       (python +lsp +tree-sitter)            ; beautiful is better than ugly\n       ;;qt                ; the 'cutest' gui framework ever\n       ;;racket            ; a DSL for DSLs\n       ;;raku              ; the artist formerly known as perl6\n       ;;rest              ; Emacs as a REST client\n       ;;rst               ; ReST in peace\n       ;;(ruby +rails)     ; 1.step {|i| p \"Ruby is #{i.even? ? 'love' : 'life'}\"}\n       ;;(rust +lsp)       ; Fe2O3.unwrap().unwrap().unwrap().unwrap()\n       ;;scala             ; java, but good\n       ;;(scheme +guile)   ; a fully conniving family of lisps\n       (sh +powershell +lsp +tree-sitter)                ; she sells {ba,z,fi}sh shells on the C xor\n       ;;sml\n       ;;solidity          ; do you need a blockchain? No.\n       ;;swift             ; who asked for emoji variables?\n       ;;terra             ; Earth and Moon in alignment for performance.\n       ;;web               ; the tubes\n       (yaml +lsp +tree-sitter)              ; JSON, but readable\n       ;;zig               ; C, but simpler\n\n       :email\n       ;;(mu4e +org +gmail)\n       ;;notmuch\n       ;;(wanderlust +gmail)\n\n       :app\n       ;;calendar\n       emms\n       ;;everywhere        ; *leave* Emacs!? You must be joking\n       ;;irc               ; how neckbeards socialize\n       (rss{{ if .my.doomemacs.elfeed_org }} +org{{ end }}{{ if .my.doomemacs.elfeed_youtube }} +youtube{{ end }})        ; emacs as an RSS reader\n\n       :config\n       ;;literate\n       (default +bindings +smartparens))\n",
     "User.20260217223030.2": ";;; $DOOMDIR/config.el -*- lexical-binding: t; -*-\n\n;; Place your private configuration here! Remember, you do not need to run 'doom\n;; sync' after modifying this file!\n\n\n;; Some functionality uses this to identify you, e.g. GPG configuration, email\n;; clients, file templates and snippets. It is optional.\n;; (setq user-full-name \"John Doe\"\n;;       user-mail-address \"john@doe.com\")\n\n;; Doom exposes five (optional) variables for controlling fonts in Doom:\n;;\n;; - `doom-font' -- the primary font to use\n;; - `doom-variable-pitch-font' -- a non-monospace font (where applicable)\n;; - `doom-big-font' -- used for `doom-big-font-mode'; use this for\n;;   presentations or streaming.\n;; - `doom-symbol-font' -- for symbols\n;; - `doom-serif-font' -- for the `fixed-pitch-serif' face\n;;\n;; See 'C-h v doom-font' for documentation and more examples of what they\n;; accept. For example:\n;;\n;; If you or Emacs can't find your font, use 'M-x describe-font' to look them\n;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to\n;; refresh your font settings. If Emacs still can't find your font, it likely\n;; wasn't installed correctly. Font issues are rarely Doom issues!\n\n;; Whenever you reconfigure a package, make sure to wrap your config in an\n;; `with-eval-after-load' block, otherwise Doom's defaults may override your\n;; settings. E.g.\n;;\n;;   (with-eval-after-load 'PACKAGE\n;;     (setq x y))\n;;\n;; The exceptions to this rule:\n;;\n;;   - Setting file/directory variables (like `org-directory')\n;;   - Setting variables which explicitly tell you to set them before their\n;;     package is loaded (see 'C-h v VARIABLE' to look them up).\n;;   - Setting doom variables (which start with 'doom-' or '+').\n;;\n;; Here are some additional functions/macros that will help you configure Doom.\n;;\n;; - `load!' for loading external *.el files relative to this one\n;; - `add-load-path!' for adding directories to the `load-path', relative to\n;;   this file. Emacs searches the `load-path' when you load packages with\n;;   `require' or `use-package'.\n;; - `map!' for binding new keys\n;;\n;; To get information about any of these functions/macros, move the cursor over\n;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').\n;; This will open documentation for it, including demos of how they are used.\n;; Alternatively, use `C-h o' to look up a symbol (functions, variables, faces,\n;; etc).\n;;\n;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how\n;; they are implemented.\n",
     "User.20260217223030.3": "(setq package-archives '((\"gnu\"    . \"https://mirror.nju.edu.cn/elpa/gnu/\")\n                         (\"nongnu\" . \"https://mirror.nju.edu.cn/elpa/nongnu/\")\n                         (\"melpa\"  . \"https://mirror.nju.edu.cn/elpa/melpa/\")))\n",
     "User.20260217233138.1": ";; There are two ways to load a theme. Both assume the theme is installed and\n;; available. You can either set `doom-theme' or manually load a theme with the\n;; `load-theme' function. This is the default:\n(setq doom-theme 'doom-tokyo-night)\n",
@@ -14687,7 +14687,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260423154131.2": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1776085878.422
     },
     "zxc.20260125143007.1": {
       "_mod_time": 1780384827.757
@@ -14717,22 +14717,22 @@
       "_mod_time": 1777337709.088
     },
     "User.20260218142211.1": {
-      "_mod_time": 1780878114.764
+      "_mod_time": 1781096323.532
     },
     "User.20260218142322.1": {
-      "_mod_time": 1773571522.686
+      "_mod_time": 1776085878.463
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1780878114.764
+      "_mod_time": 1781096323.531
     },
     "zxc.20260428221625.1": {
-      "_mod_time": 1777445524.38
+      "_mod_time": 1778855150.612
     },
     "zxc.20260429112140.1": {
-      "_mod_time": 1777434599.775
+      "_mod_time": 1778855150.612
     },
     "zxc.20260426235942.1": {
-      "_mod_time": 1777249737.173
+      "_mod_time": 1777298774.859
     },
     "zxc.20260427224207.1": {
       "_mod_time": 1777337709.122
@@ -14753,34 +14753,34 @@
       "_mod_time": 1777713442.466
     },
     "User.20260226000855.1": {
-      "_mod_time": 1780448023.578
+      "_mod_time": 1780486276.597
     },
     "zxc.20260202203521.17": {
-      "_mod_time": 1774398532.737
+      "_mod_time": 1776085878.39
     },
     "User.20260220233639.1": {
       "_mod_time": 1773571522.624
     },
     "zxc.20260202203521.20": {
-      "_mod_time": 1774398532.766
+      "_mod_time": 1776085878.392
     },
     "User.20260216114746.1": {
-      "_mod_time": 1778115749.551
+      "_mod_time": 1778855150.558
     },
     "zxc.20260505221318.1": {
       "_mod_time": 1778115749.559
     },
     "zxc.20260202203521.14": {
-      "_mod_time": 1776644732.237
+      "_mod_time": 1776691470.917
     },
     "zxc.20260202203521.3": {
       "_mod_time": 1780272723.742
     },
     "zxc.20260202213444.1": {
-      "_mod_time": 1774398532.779
+      "_mod_time": 1776085878.394
     },
     "User.20260220142155.2": {
-      "_mod_time": 1774398532.778
+      "_mod_time": 1776085878.393
     },
     "User.20260220151435.2": {
       "_mod_time": 1780272723.738
@@ -14789,16 +14789,16 @@
       "_mod_time": 1780272723.74
     },
     "zxc.20260202215023.1": {
-      "_mod_time": 1774398532.686
+      "_mod_time": 1776085878.384
     },
     "zxc.20260202215408.1": {
-      "_mod_time": 1774398532.737
+      "_mod_time": 1776085878.39
     },
     "zxc.20260202220030.1": {
-      "_mod_time": 1774398532.757
+      "_mod_time": 1776085878.391
     },
     "zxc.20260202220553.1": {
-      "_mod_time": 1774398532.766
+      "_mod_time": 1776085878.392
     },
     "User.20260217202401.1": {
       "_mod_time": 1780272723.737
@@ -14819,46 +14819,46 @@
       "_mod_time": 1776819230.912
     },
     "User.20260220000301.2": {
-      "_mod_time": 1774398532.729
+      "_mod_time": 1776085878.387
     },
     "User.20260220012738.1": {
       "_mod_time": 1776434513.068
     },
     "User.20260308173318.1": {
-      "_mod_time": 1774398532.712
+      "_mod_time": 1776085878.386
     },
     "User.20260308184128.2": {
-      "_mod_time": 1774398532.686
+      "_mod_time": 1776085878.385
     },
     "User.20260308184713.2": {
       "_mod_time": 1776817843.31
     },
     "User.20260308214701.2": {
-      "_mod_time": 1774398532.701
+      "_mod_time": 1776085878.385
     },
     "zxc.20260328213746.1": {
-      "_mod_time": 1774833042.645
+      "_mod_time": 1776085878.387
     },
     "User.20260308215626.2": {
-      "_mod_time": 1774833042.645
+      "_mod_time": 1776085878.386
     },
     "zxc.20260317085009.1": {
-      "_mod_time": 1774398532.707
+      "_mod_time": 1776085878.385
     },
     "zxc.20260318203351.1": {
-      "_mod_time": 1778049436.405
+      "_mod_time": 1778855150.556
     },
     "zxc.20260505141849.1": {
       "_mod_time": 1778049436.405
     },
     "zxc.20260323195318.1": {
-      "_mod_time": 1774398532.733
+      "_mod_time": 1776085878.389
     },
     "zxc.20260329102210.1": {
-      "_mod_time": 1774833042.645
+      "_mod_time": 1776085878.392
     },
     "zxc.20260404153353.1": {
-      "_mod_time": 1775529044.695
+      "_mod_time": 1776085878.392
     },
     "zxc.20260531113237.1": {
       "_mod_time": 1780272723.736
@@ -14882,7 +14882,7 @@
       "_mod_time": 1777179946.865
     },
     "User.20260220010313.1": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1776085878.426
     },
     "User.20260220010448.1": {
       "_mod_time": 1777713442.485
@@ -14891,10 +14891,10 @@
       "_mod_time": 1780748738.608
     },
     "User.20260216232855.1": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1776085878.419
     },
     "User.20260217182613.1": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1776085878.421
     },
     "zxc.20260317002829.1": {
       "_mod_time": 1776928456.1
@@ -14903,10 +14903,10 @@
       "_mod_time": 1777179946.861
     },
     "zxc.20260408012432.1": {
-      "_mod_time": 1776644732.259
+      "_mod_time": 1776691470.924
     },
     "User.20260301202336.1": {
-      "_mod_time": 1780371781.499
+      "_mod_time": 1780401618.977
     },
     "zxc.20260327184129.1": {
       "_mod_time": 1781096323.526
@@ -14915,7 +14915,7 @@
       "_mod_time": 1773571522.655
     },
     "zxc.20260126185048.1": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1776085878.417
     },
     "zxc.20260130225718.1": {
       "_mod_time": 1777179946.861
@@ -14954,7 +14954,7 @@
       "_mod_time": 1778115749.579
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1776044662.614
+      "_mod_time": 1776085878.436
     },
     "zxc.20260125145051.1": {
       "_mod_time": 1777179946.885
@@ -15056,64 +15056,64 @@
       "_mod_time": 1778115749.587
     },
     "User.20260215182442.1": {
-      "_mod_time": 1773571522.67
+      "_mod_time": 1776085878.449
     },
     "User.20260217022114.1": {
-      "_mod_time": 1778049436.442
+      "_mod_time": 1778855150.604
     },
     "User.20260215182818.1": {
-      "_mod_time": 1773571522.67
+      "_mod_time": 1776085878.45
     },
     "zxc.20260317084145.1": {
-      "_mod_time": 1778049436.443
+      "_mod_time": 1778855150.609
     },
     "zxc.20260201225344.1": {
-      "_mod_time": 1773571522.67
+      "_mod_time": 1776085878.448
     },
     "zxc.20260317082914.1": {
-      "_mod_time": 1773712444.025
+      "_mod_time": 1776085878.448
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1778049436.464
+      "_mod_time": 1778855150.612
     },
     "User.20260215205925.1": {
       "_mod_time": 1780272726.073
     },
     "User.20260215210400.1": {
-      "_mod_time": 1773571522.686
+      "_mod_time": 1776085878.46
     },
     "User.20260220151031.5": {
       "_mod_time": 1780272726.072
     },
     "User.20260220151031.28": {
-      "_mod_time": 1773571522.67
+      "_mod_time": 1776085878.459
     },
     "User.20260221175549.1": {
-      "_mod_time": 1779067019.452
+      "_mod_time": 1779288255.231
     },
     "User.20260221194603.1": {
-      "_mod_time": 1773571522.686
+      "_mod_time": 1776085878.461
     },
     "User.20260222211658.1": {
-      "_mod_time": 1775529044.732
+      "_mod_time": 1776085878.456
     },
     "zxc.20260201203241.1": {
-      "_mod_time": 1774225085.298
+      "_mod_time": 1776085878.452
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1778049436.443
+      "_mod_time": 1778855150.61
     },
     "zxc.20260201214114.1": {
-      "_mod_time": 1779067019.452
+      "_mod_time": 1779288255.231
     },
     "zxc.20260202195207.1": {
       "_mod_time": 1780630305.928
     },
     "zxc.20260322192157.1": {
-      "_mod_time": 1774398532.804
+      "_mod_time": 1776085878.455
     },
     "zxc.20260322192357.1": {
-      "_mod_time": 1774398532.805
+      "_mod_time": 1776085878.455
     },
     "zxc.20260612144906.1": {
       "_mod_time": 1781248078.563
@@ -15122,10 +15122,10 @@
       "_mod_time": 1781247370.148
     },
     "zxc.20260325223009.1": {
-      "_mod_time": 1774490258.908
+      "_mod_time": 1776085878.456
     },
     "zxc.20260325223610.1": {
-      "_mod_time": 1774490258.908
+      "_mod_time": 1776085878.457
     },
     "zxc.20260325223805.1": {
       "_mod_time": 1779322339.077
@@ -15137,10 +15137,10 @@
       "_mod_time": 1780272726.071
     },
     "zxc.20260330235722.1": {
-      "_mod_time": 1774916487.394
+      "_mod_time": 1776085878.451
     },
     "zxc.20260609212401.1": {
-      "_mod_time": 1781061833.599
+      "_mod_time": 1781096323.53
     },
     "zxc.20260518220745.1": {
       "_mod_time": 1780748738.611
@@ -15200,7 +15200,7 @@
       "_mod_time": 1780748738.611
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1781147351.765
+      "_mod_time": 1781174037.602
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1777713442.482
@@ -15263,10 +15263,10 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1781147511.277
+      "_mod_time": 1781174037.603
     },
     "zxc.20260202205715.1": {
-      "_mod_time": 1773571522.67
+      "_mod_time": 1777298774.844
     },
     "zxc.20260426163956.1": {
       "_mod_time": 1781225779.442
@@ -15275,7 +15275,7 @@
       "_mod_time": 1780272723.743
     },
     "zxc.20260407232538.1": {
-      "_mod_time": 1775607497.148
+      "_mod_time": 1776085878.399
     },
     "zxc.20260408005117.1": {
       "_mod_time": 1776753962.305
@@ -15284,73 +15284,73 @@
       "_mod_time": 1780272723.743
     },
     "zxc.20260201140523.1": {
-      "_mod_time": 1773571522.639
+      "_mod_time": 1776085878.414
     },
     "zxc.20260130233132.1": {
-      "_mod_time": 1773571522.639
+      "_mod_time": 1776085878.413
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1780370731.569
+      "_mod_time": 1780401618.963
     },
     "zxc.20260214105528.1": {
-      "_mod_time": 1777337709.07
+      "_mod_time": 1777382331.981
     },
     "zxc.20260214142543.1": {
-      "_mod_time": 1776044662.566
+      "_mod_time": 1776085878.415
     },
     "User.20260215234634.1": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1776085878.418
     },
     "User.20260216124226.1": {
-      "_mod_time": 1773571522.639
+      "_mod_time": 1776085878.412
     },
     "User.20260216125422.1": {
-      "_mod_time": 1773571522.639
+      "_mod_time": 1776085878.412
     },
     "User.20260219235648.1": {
-      "_mod_time": 1773571522.639
+      "_mod_time": 1776085878.412
     },
     "User.20260228231944.1": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1776085878.416
     },
     "User.20260302211536.1": {
-      "_mod_time": 1773571522.639
+      "_mod_time": 1776085878.404
     },
     "User.20260302211740.1": {
-      "_mod_time": 1773571522.639
+      "_mod_time": 1776085878.404
     },
     "User.20260302211946.1": {
-      "_mod_time": 1773571522.639
+      "_mod_time": 1776085878.411
     },
     "User.20260302212424.1": {
-      "_mod_time": 1773571522.639
+      "_mod_time": 1776085878.411
     },
     "User.20260302212645.1": {
-      "_mod_time": 1773571522.639
+      "_mod_time": 1776085878.41
     },
     "User.20260303213330.1": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1776085878.418
     },
     "zxc.20260401221312.1": {
-      "_mod_time": 1775105070.822
+      "_mod_time": 1776085878.414
     },
     "zxc.20260402230727.1": {
-      "_mod_time": 1775176074.543
+      "_mod_time": 1776085878.415
     },
     "zxc.20260417220340.1": {
-      "_mod_time": 1776644732.239
+      "_mod_time": 1776691470.922
     },
     "zxc.20260515010901.1": {
       "_mod_time": 1780470637.484
     },
     "zxc.20260518233322.1": {
-      "_mod_time": 1780300642.875
+      "_mod_time": 1780319153.078
     },
     "zxc.20260611090830.1": {
-      "_mod_time": 1781140193.484
+      "_mod_time": 1781174037.601
     },
     "zxc.20260611091007.1": {
-      "_mod_time": 1781147511.403
+      "_mod_time": 1781174037.601
     }
   }
 }
