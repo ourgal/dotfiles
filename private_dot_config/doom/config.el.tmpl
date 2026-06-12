@@ -171,8 +171,7 @@
   ;; Optional: Auto-open .db files in ELSQLite
   (elsqlite-enable-auto-open)
   ;; Optional: Evil mode keybindings
-  (elsqlite-evil-setup)
-  )
+  (elsqlite-evil-setup))
 (use-package! super-save
   :ensure t
   :custom
@@ -199,26 +198,26 @@
 (setq gnus-select-method '(nnnil nil))
 (setq gnus-secondary-select-methods
       '((nnimap "qq"
-               (nnimap-address "imap.qq.com")
-               (nnimap-index "nnimap+qq:INDEX")
-               (nnmail-expiry-target "nnimap+qq:Deleted Messages")
-               (nnimap-expunge t)
-               (nnimap-server-port 993)
-               (nnimap-stream ssl))
-      (nnimap "163"
-               (nnimap-address "imap.163.com")
-               (nnimap-index "nnimap+163:INDEX")
-               (nnmail-expiry-target "nnimap+163:已删除")
-               (nnimap-expunge t)
-               (nnimap-server-port 993)
-               (nnimap-stream ssl))
-      (nnimap "yandex"
-               (nnimap-address "imap.yandex.com")
-               (nnimap-index "nnimap+yandex:INDEX")
-               (nnmail-expiry-target "nnimap+yandex:Trash")
-               (nnimap-expunge t)
-               (nnimap-server-port 993)
-               (nnimap-stream ssl))))
+                (nnimap-address "imap.qq.com")
+                (nnimap-index "nnimap+qq:INDEX")
+                (nnmail-expiry-target "nnimap+qq:Deleted Messages")
+                (nnimap-expunge t)
+                (nnimap-server-port 993)
+                (nnimap-stream ssl))
+        (nnimap "163"
+                (nnimap-address "imap.163.com")
+                (nnimap-index "nnimap+163:INDEX")
+                (nnmail-expiry-target "nnimap+163:已删除")
+                (nnimap-expunge t)
+                (nnimap-server-port 993)
+                (nnimap-stream ssl))
+        (nnimap "yandex"
+                (nnimap-address "imap.yandex.com")
+                (nnimap-index "nnimap+yandex:INDEX")
+                (nnmail-expiry-target "nnimap+yandex:Trash")
+                (nnimap-expunge t)
+                (nnimap-server-port 993)
+                (nnimap-stream ssl))))
 
 (setq gnus-thread-sort-functions '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date)))
 (map! :leader
