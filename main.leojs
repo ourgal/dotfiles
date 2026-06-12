@@ -4040,6 +4040,10 @@
                             {
                               "gnx": "zxc.20260531010146.1",
                               "vh": "org agenda"
+                            },
+                            {
+                              "gnx": "zxc.20260612234219.1",
+                              "vh": "emms"
                             }
                           ]
                         },
@@ -13403,6 +13407,7 @@
     "User.20260218114048.1": "(after! doom-modeline\n  (setq doom-modeline-buffer-file-name-style 'relative-to-project))\n",
     "zxc.20260517023349.1": "(defun browse-url-mpv (url &optional _new-window)\n  (start-process \"mpv\" (get-buffer-create \"*mpv out*\") \"mpv\" url))\n\n(defun browse-url-mpv-youtube (url &optional _new-window)\n  (start-process \"mpv\" (get-buffer-create \"*mpv out*\") \"mpv\" \"--ytdl-format=18/22\" \"--ytdl-raw-options-append=write-auto-sub=\" \"--speed=2\" url))\n\n(defun browse-url-mpv-bili (url &optional _new-window)\n  (start-process \"mpv\" (get-buffer-create \"*mpv out*\") \"mpv\" \"--ytdl-raw-options-append=cookies-from-browser=firefox:~/scoop/persist/firefox/profile\" \"--speed=2\" url))\n\n(setq browse-url-handlers\n      '((\"\\\\(vimeo\\\\.com\\\\|twitch\\\\.tv\\\\)\" . browse-url-mpv)\n        (\"\\\\(youtube\\\\.com\\\\)\" . browse-url-mpv-youtube)\n        (\"\\\\(bilibili\\\\.com\\\\)\" . browse-url-mpv-bili)\n        (\".\" . {{ if eq .chezmoi.os \"windows\" }}browse-url-default-windows-browser{{ else }}browse-url-firefox{{ end }})))\n",
     "zxc.20260531010146.1": "(after! org\n  (setq org-agenda-files '(\"~/org/agenda.org\")))\n",
+    "zxc.20260612234219.1": "(after! emms\n  (setq emms-source-file-default-directory \"~/Music\")\n  (add-hook 'emms-playlist-mode-hook #'turn-on-evil-mode))\n",
     "User.20260218124824.1": "(map! :n \"C-w o\" #'delete-other-windows\n      :n \"C-w z\" #'doom/window-enlargen)\n",
     "User.20260218124950.1": "(map! :leader\n      :desc \"Kill other buffer\" \"b o\" #'doom/kill-other-buffers)\n(map! :leader\n      :desc \"Kill other buffer\" \"b 0\" nil)\n",
     "User.20260218001127.1": "(use-package! ahk-mode\n  :mode \"\\\\.ahk$\"\n  :defer t)\n",
@@ -14981,7 +14986,7 @@
       "_mod_time": 1781276370.627
     },
     "User.20260217223030.1": {
-      "_mod_time": 1781258957.389
+      "_mod_time": 1781282096.154
     },
     "User.20260217223035.1": {
       "_mod_time": 1781224582.422
