@@ -1886,6 +1886,27 @@
                                   ]
                                 }
                               ]
+                            },
+                            {
+                              "gnx": "zxc.20260613095024.1",
+                              "vh": "mpv plugins",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260613095104.1",
+                                  "vh": "content",
+                                  "children": [
+                                    {
+                                      "gnx": "User.20260225204326.1"
+                                    },
+                                    {
+                                      "gnx": "User.20260225203941.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "User.20260225204914.1"
+                                }
+                              ]
                             }
                           ]
                         }
@@ -13268,6 +13289,8 @@
     "zxc.20260419193742.1": "[\"AppData/Local/clink/clink-gizmos\"]\n    type = \"git-repo\"\n    url = \"https://github.com/chrisant996/clink-gizmos\"\n    refreshPeriod = \"168h\"\n\n[\"AppData/Local/clink/clink-completions\"]\n    type = \"git-repo\"\n    url = \"https://github.com/vladimir-kotikov/clink-completions\"\n    refreshPeriod = \"168h\"",
     "zxc.20260529151253.1": "<< unix >>\n{{ if lookPath \"awesome\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260529151358.1": "[\".config/awesome-copycats\"]\n    type = \"git-repo\"\n    url = \"https://github.com/lcpz/awesome-copycats\"\n    clone.args = [\n        << git update submodule args >>\n    ]\n    pull.args = [\n        << git update submodule args >>\n    ]\n",
+    "zxc.20260613095024.1": "<< unix dos >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260613095104.1": "<< unix >>\n[\".config/mpv/scripts/mpv-file-browser\"]\n    type = \"git-repo\"\n    url = \"https://github.com/CogentRedTester/mpv-file-browser\"\n    refreshPeriod = \"168h\"\n{{ end -}}\n\n<< dos >>\n[\"scoop/persist/mpv/portable_config/scripts/mpv-file-browser\"]\n    type = \"git-repo\"\n    url = \"https://github.com/CogentRedTester/mpv-file-browser\"\n    refreshPeriod = \"168h\"\n{{ end -}}\n",
     "zxc.20260202203521.17": "<< dos >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260323201237.1": "Set-StrictMode -Version Latest\n$ErrorActionPreference = \"Stop\"\n$PSNativeCommandUseErrorActionPreference = $true",
     "zxc.20260202203521.18": "# 5.12.0\ncd {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"mpv\" \"current\" | quote }}\nirm https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/windows.ps1 | iex",
@@ -14943,7 +14966,7 @@
       "_mod_time": 1777713442.466
     },
     "User.20260226000855.1": {
-      "_mod_time": 1780480977.878
+      "_mod_time": 1781315608.752
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1776434513.068
@@ -15066,7 +15089,7 @@
       "_mod_time": 1781314847.372
     },
     "zxc.20260201141149.1": {
-      "_mod_time": 1781137085.606
+      "_mod_time": 1777891402.212
     },
     "User.20260215191351.1": {
       "_mod_time": 1777179946.865
@@ -15117,10 +15140,10 @@
       "_mod_time": 1777179946.857
     },
     "User.20260218144120.1": {
-      "_mod_time": 1777249737.153
+      "_mod_time": 1777190945.855
     },
     "User.20260218144232.1": {
-      "_mod_time": 1777249737.153
+      "_mod_time": 1777190923.442
     },
     "zxc.20260504130406.1": {
       "_mod_time": 1778855150.581
@@ -15159,7 +15182,7 @@
       "_mod_time": 1777179946.883
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1780985509.595
+      "_mod_time": 1780925854.849
     },
     "zxc.20260125161631.1": {
       "_mod_time": 1777302969.492
@@ -15174,10 +15197,10 @@
       "_mod_time": 1781282096.154
     },
     "User.20260217223035.1": {
-      "_mod_time": 1781224582.422
+      "_mod_time": 1781192588.961
     },
     "User.20260223014430.1": {
-      "_mod_time": 1778049436.435
+      "_mod_time": 1777951645.419
     },
     "User.20260220233323.1": {
       "_mod_time": 1781288951.432
@@ -15219,7 +15242,7 @@
       "_mod_time": 1777179946.881
     },
     "zxc.20260503171104.1": {
-      "_mod_time": 1778049436.438
+      "_mod_time": 1777896430.983
     },
     "zxc.20260504000649.1": {
       "_mod_time": 1777827566.629

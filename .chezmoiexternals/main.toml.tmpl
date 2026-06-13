@@ -79,3 +79,20 @@
     ]
 {{ end -}}
 {{ end -}}
+{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+{{ if lookPath "mpv" -}}
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+[".config/mpv/scripts/mpv-file-browser"]
+    type = "git-repo"
+    url = "https://github.com/CogentRedTester/mpv-file-browser"
+    refreshPeriod = "168h"
+{{ end -}}
+
+{{ if eq .chezmoi.os "windows" -}}
+["scoop/persist/mpv/portable_config/scripts/mpv-file-browser"]
+    type = "git-repo"
+    url = "https://github.com/CogentRedTester/mpv-file-browser"
+    refreshPeriod = "168h"
+{{ end -}}
+{{ end -}}
+{{ end -}}
