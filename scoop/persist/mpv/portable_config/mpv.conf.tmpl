@@ -1,5 +1,4 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "mpv" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "enable") "os" "windows") | trim | atoi -}}
 af=%11%scaletempo2
 alang=%16%ja,jp,jpn,en,eng
 audio-file-auto=%5%fuzzy
@@ -28,5 +27,4 @@ sub-border-size=1               # Thickness of the outline
 sub-shadow-color="#000000"      # Subtle shadow
 sub-shadow-offset=1
 osd-font=%{{ len .my.font.monospace }}%{{ .my.font.monospace }}
-{{ end -}}
 {{ end -}}

@@ -12,69 +12,50 @@ RunScoop(app)
 }
 
 SetTitleMatchMode(2)
-{{ $opt := "glazewm" -}}
-{{ $cmd := "glazewm" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "glazewm" "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
 Run("glazewm", {{ .chezmoi.homeDir | quote }}, "Hide")
 Sleep 5000
 {{ end -}}
-{{ $opt := "deskflow_client" -}}
-{{ $cmd := "deskflow-core" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Run("deskflow-core client", , "Hide")
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "deskflow-core" "opt" (list "windows" "startup" "deskflow_client" "enable") "os" "windows") | trim | atoi -}}
+Run "deskflow-core client", , "Hide"
 {{ end -}}
-{{ $opt := "deskflow_server" -}}
-{{ $cmd := "deskflow-core" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Run("deskflow-core server", , "Hide")
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "deskflow-core" "opt" (list "windows" "startup" "deskflow_server" "enable") "os" "windows") | trim | atoi -}}
+Run "deskflow-core server", , "Hide"
 {{ end -}}
-{{ $opt := "aria2" -}}
-{{ $cmd := "aria2c" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "aria2" "current" "aria2c.exe" }} --enable-rpc", {{ joinPath .chezmoi.homeDir "Downloads" | quote }}, "Hide")
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "aria2c" "opt" (list "windows" "startup" "aria2" "enable") "os" "windows") | trim | atoi -}}
+Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "aria2" "current" "aria2c.exe" }} --enable-rpc", {{ joinPath .chezmoi.homeDir "Downloads" | quote }}, "Hide"
 {{ end -}}
-{{ $opt := "transmission" -}}
-{{ $cmd := "transmission-daemon" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "transmission" "current" "transmission-daemon.exe" }} --foreground", {{ joinPath .chezmoi.homeDir "Downloads" | quote }}, "Hide")
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "transmission-daemon" "opt" (list "windows" "startup" "transmission" "enable") "os" "windows") | trim | atoi -}}
+Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "transmission" "current" "transmission-daemon.exe" }} --foreground", {{ joinPath .chezmoi.homeDir "Downloads" | quote }}, "Hide"
 {{ end -}}
-{{ $opt := "espanso" -}}
-{{ $cmd := "espansod" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "espanso" "current" "espansod.exe" }} start", {{ .chezmoi.homeDir | quote }}, "Hide")
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "espansod" "opt" (list "windows" "startup" "espanso" "enable") "os" "windows") | trim | atoi -}}
+Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "espanso" "current" "espansod.exe" }} start", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
-{{ $opt := "alist" -}}
-{{ $cmd := "alist" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Run("alist start", , "Hide")
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "alist" "opt" (list "windows" "startup" "alist" "enable") "os" "windows") | trim | atoi -}}
+Run "alist start", , "Hide"
 {{ end -}}
-{{ $opt := "mpd" -}}
-{{ $cmd := "mpd" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Run("mpd {{ joinPath (env "appdata") "mpd" "mpd.conf"}}", {{ .chezmoi.homeDir | quote }}, "Hide")
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpd" "opt" (list "windows" "startup" "mpd" "enable") "os" "windows") | trim | atoi -}}
+Run "mpd {{ joinPath (env "appdata") "mpd" "mpd.conf"}}", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
-{{ $opt := "gpg_agent" -}}
-{{ $cmd := "gpg-connect-agent" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Run("gpg-connect-agent /bye", , "Hide")
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "gpg-connect-agent" "opt" (list "windows" "startup" "gpg_agent" "enable") "os" "windows") | trim | atoi -}}
+Run "gpg-connect-agent /bye", , "Hide"
 {{ end -}}
-{{ $opt := "kde_connect" -}}
-{{ $cmd := "kdeconnect-cli" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Run("{{ joinPath .chezmoi.homeDir "scoop" "apps" "kdeconnect" "current" "bin" "kdeconnectd.exe" }}", {{ .chezmoi.homeDir | quote }}, "Hide")
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "kdeconnect-cli" "opt" (list "windows" "startup" "kde_connect" "enable") "os" "windows") | trim | atoi -}}
+Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "kdeconnect" "current" "bin" "kdeconnectd.exe" }}", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
-{{ if and (lookPath "wezterm") (eq .my.terminal.windows "wezterm") -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "wezterm" "opt" (list "windows" "startup" "wezterm" "enable") "os" "windows") | trim | atoi -}}
 Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "wezterm" "current" "wezterm-gui.exe" }}"
 WinWait("ahk_exe wezterm-gui.exe")
 {{ end -}}
-{{ if and (lookPath "firefox") (eq .my.browser.default "firefox") -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "firefox" "opt" (list "windows" "startup" "firefox" "enable") "os" "windows") | trim | atoi -}}
 Run("firefox", , "Max")
 WinWait("ahk_exe firefox.exe")
 {{ if lookPath "glazewm" -}}
 WinActivate "ahk_exe firefox.exe"
 Run "glazewm command move --workspace 2", ,"Hide"
 {{ end -}}
-{{ else if and (lookPath "brave") (eq .my.browser.default "brave") -}}
+{{ end -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "brave" "opt" (list "windows" "startup" "brave" "enable") "os" "windows") | trim | atoi -}}
 Run("brave", , "Max")
 WinWait("ahk_exe brave.exe")
 {{ if lookPath "glazewm" -}}
@@ -82,21 +63,8 @@ WinActivate "ahk_exe brave.exe"
 Run "glazewm command move --workspace 2", ,"Hide"
 {{ end -}}
 {{ end -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "code" "opt" (list "windows" "startup" "vscode" "enable") "os" "windows") | trim | atoi -}}
 {{ $vscode := joinPath .chezmoi.homeDir "scoop" "apps" "vscode" "current" "Code.exe" -}}
-{{ $vscodium := joinPath .chezmoi.homeDir "scoop" "apps" "vscodium" "current" "VSCodium.exe" -}}
-{{ $opt := "vscodium" -}}
-{{ $cmd := "vscodium" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Run({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
-WinWait("ahk_exe VSCodium.exe")
-{{ if lookPath "glazewm" -}}
-WinActivate "ahk_exe VSCodium.exe"
-Run "glazewm command move --workspace 3", ,"Hide"
-{{ end -}}
-{{ end -}}
-{{ $opt := "vscode" -}}
-{{ $cmd := "code" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
 Run({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
 WinWait "ahk_exe Code.exe"
 {{ if lookPath "glazewm" -}}
@@ -104,17 +72,22 @@ WinActivate "ahk_exe Code.exe"
 Run "glazewm command move --workspace 3", ,"Hide"
 {{ end -}}
 {{ end -}}
-{{ $opt := "leo" -}}
-{{ $cmd := "leo" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "vscodium" "opt" (list "windows" "startup" "vscodium" "enable") "os" "windows") | trim | atoi -}}
+{{ $vscodium := joinPath .chezmoi.homeDir "scoop" "apps" "vscodium" "current" "VSCodium.exe" -}}
+Run({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
+WinWait("ahk_exe VSCodium.exe")
+{{ if lookPath "glazewm" -}}
+WinActivate "ahk_exe VSCodium.exe"
+Run "glazewm command move --workspace 3", ,"Hide"
+{{ end -}}
+{{ end -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "leo" "opt" (list "windows" "startup" "leo" "enable") "os" "windows") | trim | atoi -}}
 Run "leo", , "Max"
 {{ end -}}
-{{ $opt := "everything" -}}
-{{ $cmd := "everything" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Run("everything", , "Hide")
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "everything" "opt" (list "windows" "startup" "everything" "enable") "os" "windows") | trim | atoi -}}
+Run "everything", , "Hide"
 {{ end -}}
-{{ if and (lookPath "wt") (lookPath "pwsh") (eq .my.terminal.windows "wt") -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "wt" "pwsh") "opt" (list "windows" "startup" "wt" "enable") "os" "windows") | trim | atoi -}}
 Run {{ joinPath .chezmoi.homeDir "scoop" "apps" "windows-terminal" "current" "wt.exe" | quote }}
 WinWait "ahk_exe WindowsTerminal.exe"
 {{ if lookPath "glazewm" -}}
@@ -122,57 +95,36 @@ WinActivate "ahk_exe WindowsTerminal.exe"
 Run "glazewm command move --workspace 1", ,"Hide"
 {{ end -}}
 {{ end -}}
-{{ $opt := "autohotkey" -}}
-{{ $cmd := "autohotkey" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Run({{ joinPath .chezmoi.homeDir "Documents" "autohotkey" "keybindings.ahk" | quote }}, , "Hide")
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "autohotkey" "opt" (list "windows" "startup" "autohotkey" "enable") "os" "windows") | trim | atoi -}}
+Run {{ joinPath .chezmoi.homeDir "Documents" "autohotkey" "keybindings.ahk" | quote }}, , "Hide"
 {{ end -}}
 {{ $powertoys := joinPath .chezmoi.homeDir "scoop" "apps" "powertoys" "current" "powertoys.exe" -}}
-{{ $opt := "powertoys" -}}
-{{ $cmd := $powertoys -}}
-{{ if eq .chezmoi.os "windows" -}}
-{{ $os = .chezmoi.os -}}
-{{ else if eq .chezmoi.os "linux" -}}
-{{ $os = .chezmoi.osRelese.id -}}
-{{ end -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Run({{ $powertoys | quote }}, {{ .chezmoi.homeDir | quote }}, "Hide")
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $powertoys "opt" (list "windows" "startup" "powertoys" "enable") "os" "windows") | trim | atoi -}}
+Run {{ $powertoys | quote }}, {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
 {{ if lookPath "autohotkey" -}}
 Run({{ joinPath .chezmoi.homeDir "Documents" "autohotkey" "hide_cursor.ahk" | quote }}, , "Hide")
 {{ end -}}
-{{ $opt := "dufs" -}}
-{{ $cmd := "dufs" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Run("dufs --allow-upload --allow-search --allow-symlink --allow-archive -p 6500", {{ joinPath .chezmoi.homeDir "Documents" "share" | quote }}, "Hide")
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "dufs" "opt" (list "windows" "startup" "dufs" "enable") "os" "windows") | trim | atoi -}}
+Run "dufs --allow-upload --allow-search --allow-symlink --allow-archive -p 6500", {{ joinPath .chezmoi.homeDir "Documents" "share" | quote }}, "Hide"
 {{ end -}}
-{{ $opt := "copyparty" -}}
-{{ $cmd := "copyparty" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Run("copyparty --no-del -p 6080,6443", {{ joinPath .chezmoi.homeDir "Documents" "share" | quote }}, "Hide")
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "copyparty" "opt" (list "windows" "startup" "copyparty" "enable") "os" "windows") | trim | atoi -}}
+Run "copyparty --no-del -p 6080,6443", {{ joinPath .chezmoi.homeDir "Documents" "share" | quote }}, "Hide"
 {{ end -}}
-{{ $opt := "altrun" -}}
-{{ $cmd := "altrun" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Run("altrun -StartMenu", , "Hide")
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "altrun" "opt" (list "windows" "startup" "altrun" "enable") "os" "windows") | trim | atoi -}}
+Run "altrun -StartMenu", , "Hide"
 {{ end -}}
-{{ $opt := "navidrome" -}}
-{{ $cmd := "navidrome" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Run({{ print "navidrome --datafolder " (joinPath (env "LOCALAPPDATA") "navidrome") | quote }}, {{ joinPath .chezmoi.homeDir | quote }}, "Hide")
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "navidrome" "opt" (list "windows" "startup" "navidrome" "enable") "os" "windows") | trim | atoi -}}
+Run {{ print "navidrome --datafolder " (joinPath (env "LOCALAPPDATA") "navidrome") | quote }}, {{ joinPath .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
-{{ $opt := "syncthing" -}}
-{{ $cmd := "syncthing" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Run("syncthing serve --no-console --no-browser", , "Hide")
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "syncthing" "opt" (list "windows" "startup" "syncthing" "enable") "os" "windows") | trim | atoi -}}
+Run "syncthing serve --no-console --no-browser", , "Hide"
 {{ end -}}
 {{ $jellyfin_mpv_shim := joinPath .chezmoi.homeDir "scoop" "apps" "jellyfin-mpv-shim" "current" "run.exe" -}}
-{{ $opt := "jellyfin_mpv_shim" -}}
-{{ $cmd := $jellyfin_mpv_shim -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
-Run({{ $jellyfin_mpv_shim | quote }}, , "Hide")
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $jellyfin_mpv_shim "opt" (list "windows" "startup" "jellyfin_mpv_shim" "enable") "os" "windows") | trim | atoi -}}
+Run {{ $jellyfin_mpv_shim | quote }}, , "Hide"
 {{ end -}}
-{{ if lookPath "runemacs" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "runemacs" "opt" (list "windows" "startup" "emacs" "enable") "os" "windows") | trim | atoi -}}
 Run "runemacs", {{ .chezmoi.homeDir | quote }}, "Hide"
 WinWait "ahk_exe emacs.exe"
 {{ if lookPath "glazewm" -}}

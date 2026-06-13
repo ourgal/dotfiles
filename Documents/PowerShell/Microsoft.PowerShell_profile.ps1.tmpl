@@ -6,9 +6,7 @@
 {{ if lookPath "pwsh" -}}
 $env:EDITOR = "{{ template "editor" }}"
 $env:shell_startup = "~\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
-{{ $opt := "sfsu" -}}
-{{ $cmd := "sfsu" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "sfsu" "opt" (list "shell" "pwsh" "sfsu" "enable") "os" "windows") | atoi -}}
 Invoke-Expression (&sfsu hook)
 {{ end -}}
 New-Alias reboot Restart-Computer
@@ -228,19 +226,13 @@ Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 carapace _carapace | Out-String | Invoke-Expression
 {{ end -}}
-{{ $opt := "starship" -}}
-{{ $cmd := "starship" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "starship" "opt" (list "shell" "pwsh" "starship" "enable") "os" "windows") | trim | atoi -}}
 Invoke-Expression (&starship init powershell)
 {{ end -}}
-{{ $opt := "oh_my_posh" -}}
-{{ $cmd := "oh-my-posh" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
+{{ if (includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "oh-my-posh" "opt" (list "shell" "pwsh" "oh_my_posh" "enable") "os" "windows") | trim | atoi) -}}
 oh-my-posh init pwsh | Invoke-Expression
 {{ end -}}
-{{ $opt := "zoxide" -}}
-{{ $cmd := "zoxide" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "zoxide" "opt" (list "shell" "pwsh" "zoxide" "enable") "os" "windows") | trim | atoi -}}
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 {{ end -}}
 Import-Module PSFzf
@@ -254,19 +246,13 @@ Set-PSReadLineKeyHandler -Key Ctrl+o `
     [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Invoke-FuzzyEdit")
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
-{{ $opt := "atuin" -}}
-{{ $cmd := "atuin" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "atuin" "opt" (list "shell" "pwsh" "atuin" "enable") "os" "windows") | trim | atoi -}}
 Invoke-Expression -Command $(atuin init powershell | out-string)
 {{ end -}}
-{{ $opt := "mcfly" -}}
-{{ $cmd := "mcfly" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mcfly" "opt" (list "shell" "pwsh" "mcfly" "enable") "os" "windows") | trim | atoi -}}
 Invoke-Expression -Command $(mcfly init powershell | out-string)
 {{ end -}}
-{{ $opt := "navi" -}}
-{{ $cmd := "" -}}
-{{ if and (or (lookPath $cmd) (stat $cmd) ) (default (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt)) -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "navi" "opt" (list "shell" "pwsh" "navi" "enable") "os" "windows") | trim | atoi -}}
 function Invoke-Navi {
     $startArgs = @{
         FileName = "navi";

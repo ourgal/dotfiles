@@ -130,20 +130,17 @@ window_rules:
   # - commands: ["move --workspace 3"]
   #   match:
   #     - window_process: { regex: "emacs" }
-  {{ $opt := "vscodium" -}}
-  {{ if or (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt) -}}
+  {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "vscodium" "opt" (list "windows" "startup" "vscodium" "enable") "os" "windows") | trim | atoi -}}
   # - commands: ["move --workspace 3"]
   #   match:
   #     - window_process: { regex: "VSCodium" }
   {{ end -}}
-  {{ $opt := "vscode" -}}
-  {{ if or (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt) -}}
+  {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "code" "opt" (list "windows" "startup" "vscode" "enable") "os" "windows") | trim | atoi -}}
   # - commands: ["move --workspace 3"]
   #   match:
   #     - window_process: { regex: "Code" }
   {{ end -}}
-  {{ $opt := "leo" -}}
-  {{ if or (index .my.modules $opt) (index .my.modules .chezmoi.hostname $os $opt) -}}
+  {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "leo" "opt" (list "windows" "startup" "leo" "enable") "os" "windows") | trim | atoi -}}
   # - commands: ["move --workspace 3"]
   #   match:
   #     - window_process: { regex: "leo" }
@@ -272,7 +269,8 @@ keybindings:
   - commands: ['focus --prev-active-workspace']
     bindings: ['f24+a']
   # Focus the workspace that last had focus.
-  - commands: ['shell-exec {{ if .my.modules.altrun }}{{ joinPath .chezmoi.homeDir "scoop" "apps" "altrun" "current" "altrun.exe" }}{{ else }}nircmd sendkey rwin press{{ end }}']
+  - commands: ['shell-exec {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "altrun" "opt" (list "windows" "startup" "altrun" "enable") "os" "windows") | atoi -}}
+{{ joinPath .chezmoi.homeDir "scoop" "apps" "altrun" "current" "altrun.exe" }}{{ else }}nircmd sendkey rwin press{{ end }}']
     bindings: ['f24+d']
   # Change focus to a workspace defined in `workspaces` config.
   - commands: ['focus --workspace 1']

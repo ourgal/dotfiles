@@ -1,5 +1,4 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "mpv" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "thumbfast") "os" "windows") | trim | atoi -}}
 -- thumbfast.lua
 --
 -- High-performance on-the-fly thumbnailer
@@ -951,5 +950,4 @@ mp.register_event("file-loaded", file_load)
 mp.register_event("shutdown", shutdown)
 
 mp.register_idle(watch_changes)
-{{ end -}}
 {{ end -}}

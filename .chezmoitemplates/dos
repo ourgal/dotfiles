@@ -1,0 +1,3 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ template "dos" dict "chezmoi" .chezmoi "my" .my }}
+{{ end -}}

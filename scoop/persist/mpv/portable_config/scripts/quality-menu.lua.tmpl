@@ -1,5 +1,4 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "mpv" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "quality_menu") "os" "windows") | trim | atoi -}}
 -- quality-menu 4.2.1 - 2025-Jun-29
 -- https://github.com/christoph-heinrich/mpv-quality-menu
 --
@@ -1177,5 +1176,4 @@ mp.observe_property('user-data/mpv/ytdl/json-subprocess-result', 'native', funct
     end
 
 end)
-{{ end -}}
 {{ end -}}
