@@ -14261,7 +14261,7 @@
     "zxc.20260423143729.189": "- extras/copytranslator\n",
     "zxc.20260423143729.190": "- extras/rufus\n- extras/ventoy\n",
     "zxc.20260423143729.191": "- extras/ani-cli\n",
-    "zxc.20260423143729.192": "- extras/jellyfin-mpv-shim\n- extras/vlc\n# install failed\n# - miru\n- extras/mpv\n- extras/fladder\n- extras/gridplayer",
+    "zxc.20260423143729.192": "- extras/jellyfin-mpv-shim\n- extras/vlc\n# install failed\n# - miru\n- extras/mpv\n- extras/fladder\n- extras/gridplayer\n- extras/webtorrent\n",
     "zxc.20260423143729.193": "- extras/handbrake\n",
     "zxc.20260423143729.194": "- extras/openboard\n",
     "zxc.20260423143729.195": "- name: Install nerd fonts packages via scoop\n  tags: scoop-fonts\n  community.windows.win_scoop:\n    name:\n      @others\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
@@ -15532,7 +15532,7 @@
       "_mod_time": 1778855150.563
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1781278893.301
+      "_mod_time": 1781322297.545
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778855150.568
