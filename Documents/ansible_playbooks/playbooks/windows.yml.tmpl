@@ -855,6 +855,21 @@
           retries: 3
           delay: 5
           until: result is not failed
+        - name: Add m75c_scoop-heap bucket
+          community.windows.win_scoop_bucket:
+            name: ourgal_scoop-bucket
+            repo: https://github.com/m75c/scoop-heap
+            state: present
+        - name: Install other packages via scoop
+          community.windows.win_scoop:
+            name:
+              - m75c_scoop-heap/torrserver
+            global: false
+            no_cache: true
+          register: result
+          retries: 3
+          delay: 5
+          until: result is not failed
     - name: Pipx
       tags: pipx
       block:
