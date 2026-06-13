@@ -51,44 +51,63 @@ known_hosts = [
     "[ssh.github.com]:443 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg="
 ]
 [my.modules]
-alist = true
-kde_connect = true
-syncthing = true
-copyparty = true
-dufs = true
-aria2 = true
-transmission = true
-gpg_agent = true
-espanso = true
-deskflow_server = false
-deskflow_client = false
-mpd = true
-navidrome = true
-sfsu = false
-atuin = false
-mcfly = true
-navi = true
-starship = true
-oh_my_posh = false
-zoxide = true
-glazewm = true
-altrun = false
-vscode = false
-vscodium = false
-leo = false
-powertoys = true
-autohotkey = false
-everything = true
-jellyfin_mpv_shim = false
+[my.modules.windows.startup]
+glazewm.enable = true
+deskflow_client.enable = false
+deskflow_server.enable = false
+aria2.enable = true
+transmission.enable = true
+espanso.enable = true
+alist.enable = true
+mpd.enable = true
+gpg_agent.enable = true
+kde_connect.enable = true
+wezterm.enable = false
+firefox.enable = true
+brave.enable = false
+vscode.enable = false
+vscodium.enable = false
+leo.enable = false
+everything.enable = true
+autohotkey.enable = false
+powertoys.enable = true
+dufs.enable = true
+copyparty.enable = true
+altrun.enable = false
+navidrome.enable = true
+jellyfin_mpv_shim.enable = false
+emacs.enable = true
+wt.enable = true
+syncthing.enable = true
+[my.modules.shell.pwsh]
+starship.enable = true
+oh_my_posh.enable = false
+sfsu.enable = false
+zoxide.enable = true
+atuin.enable = false
+mcfly.enable = true
+navi.enable = true
+[my.modules.mpv]
+enable = true
+
+[my.modules.mpv.plugins]
+smartskip = true
+thumbfast = true
+manga_reader = true
+M_x = true
+leader = true
+sponsorblock_minimal = true
+quality_menu = true
+torrserver_hook = true
 
 [my.modules.nuc.windows]
 deskflow_client = true
 
-[my.modules.bed.windows]
-jellyfin_mpv_shim = true
+[my.modules.bed.windows.windows.startup]
+jellyfin_mpv_shim.enable = true
 
-[my.modules.work.windows]
-deskflow_server = true
+[my.modules.work.windows.windows.startup]
+deskflow_server.enable = true
 
 [my.modules.surface.void]
 

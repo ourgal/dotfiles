@@ -1,5 +1,4 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "mpv" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "M_x") "os" "windows") | trim | atoi -}}
 # strip cmd name
 strip_cmd_at=65
 # available values: priority, command_name
@@ -26,5 +25,4 @@ search_heading=M-x
 # table.
 filter_by_fields=[ "cmd", "key", "comment" ]
 column_layout=no
-{{ end -}}
 {{ end -}}

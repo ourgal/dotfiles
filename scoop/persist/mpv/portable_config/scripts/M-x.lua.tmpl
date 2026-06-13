@@ -1,5 +1,4 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "mpv" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "M_x") "os" "windows") | trim | atoi -}}
 local mp = require 'mp' -- isn't actually required, mp still gonna be defined
 local utils = require 'mp.utils'
 local assdraw = require 'mp.assdraw'
@@ -226,5 +225,4 @@ mp.observe_property('input-bindings', 'native', update_bindings)
 mp.add_key_binding(opts.toggle_menu_binding, "M-x", function()
   mx_menu:init(data)
 end)
-{{ end -}}
 {{ end -}}

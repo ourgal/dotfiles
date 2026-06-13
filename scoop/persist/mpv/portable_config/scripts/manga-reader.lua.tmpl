@@ -1,5 +1,4 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "mpv" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "manga_reader") "os" "windows") | trim | atoi -}}
 local input = require "mp.input"
 local utils = require "mp.utils"
 local extensions = {
@@ -851,5 +850,4 @@ mp.add_key_binding("Ctrl+b", "open-bookmark", function()
 mp.add_key_binding("Ctrl+d", "delete-bookmark", function()
 	select_bookmark("DELETE bookmark:", delete_bookmark) end)
 require "mp.options".read_options(opts, "manga-reader")
-{{ end -}}
 {{ end -}}

@@ -1,5 +1,4 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "mpv" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "sponsorblock_minimal") "os" "windows") | trim | atoi -}}
 -- sponsorblock_minimal.lua
 --
 -- This script skips sponsored segments of YouTube videos
@@ -193,5 +192,4 @@ end
 
 mp.register_event("file-loaded", file_loaded)
 mp.register_event("end-file", end_file)
-{{ end -}}
 {{ end -}}

@@ -1,5 +1,4 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "mpv" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "leader") "os" "windows") | trim | atoi -}}
 local mp = require 'mp'
 local utils = require 'mp.utils'
 local assdraw = require 'mp.assdraw'
@@ -557,5 +556,4 @@ end
 -------------------------------------------------------------------------------
 
 return leader
-{{ end -}}
 {{ end -}}

@@ -1,5 +1,4 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "mpv" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "leader") "os" "windows") | trim | atoi -}}
 local mp = require 'mp' -- isn't actually required, mp still gonna be defined
 
 local opts = {
@@ -106,5 +105,4 @@ mp.add_timeout(0.3, function()
     }
   )
 end)
-{{ end -}}
 {{ end -}}

@@ -1,5 +1,4 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "mpv" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "torrserver_hook") "os" "windows") | trim | atoi -}}
 -- torrserver_hook.lua
 
 local mp = require("mp")
@@ -93,5 +92,4 @@ mp.add_hook("on_load", 50, function()
 		end
 	end
 end)
-{{ end -}}
 {{ end -}}

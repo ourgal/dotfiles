@@ -1,5 +1,3 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "mpv" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "manga_reader") "os" "windows") | trim | atoi -}}
 auto_start=yes
-{{ end -}}
 {{ end -}}

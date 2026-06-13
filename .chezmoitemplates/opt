@@ -2,24 +2,16 @@
 {{ if eq .chezmoi.os "linux" -}}
 {{ $os = .chezmoi.osRelease.id -}}
 {{ end -}}
-#Requires AutoHotkey v2.0
-#SingleInstance Force
-
-Run "gopass show -c keepassxc/main", ,"Hide"
-WinWait "Message from User"
-
-{{ $opt := "glazewm" -}}
-{{ $cmd := "glazewm" -}}
 {{ $global_opt := "" -}}
 {{ $host_opt := "" -}}
 {{ $final_opt := "" -}}
-{{ if kindIs "string" $opt -}}
-{{ $global_opt = index .my.modules $opt -}}
-{{ $host_opt = index .my.modules .chezmoi.hostname $os $opt -}}
-{{ else if kindIs "slice" $opt -}}
+{{ if kindIs "string" .opt -}}
+{{ $global_opt = index .my.modules .opt -}}
+{{ $host_opt = index .my.modules .chezmoi.hostname $os .opt -}}
+{{ else if kindIs "slice" .opt -}}
 {{ $global_opt = .my.modules -}}
 {{ $host_opt = index .my.modules .chezmoi.hostname $os -}}
-    {{ range $opt -}}
+    {{ range .opt -}}
         {{ if hasKey $global_opt . -}}
         {{ $global_opt = index $global_opt . -}}
         {{ else -}}
@@ -28,24 +20,30 @@ WinWait "Message from User"
         {{ if hasKey $host_opt . -}}
         {{ $host_opt = index $host_opt . -}}
         {{ else -}}
-        {{ $host_opt = "" -}}
+        {{ $host_opt = dict -}}
         {{ end -}}
     {{ end -}}
 {{ else -}}
 {{ fail (print "unknow opt value: " .) -}}
 {{ end -}}
-{{ if and (kindIs "string" $host_opt) (eq $host_opt "") -}}
+
+{{ if not (kindIs "bool" $host_opt) -}}
 {{ $final_opt = $global_opt -}}
 {{ else -}}
 {{ $final_opt = $host_opt -}}
 {{ end -}}
-{{ if and (or (lookPath $cmd) (stat $cmd)) $final_opt -}}
-Run "glazewm command focus --workspace 9"
-{{ end -}}
-Run "keepassxc"
-WinWaitActive " - KeePassXC"
-WinActive " - KeePassXC"
 
-Send "^v"
-Send "{Enter}"
-return
+{{ $cmd := list -}}
+{{ if kindIs "string" .cmd -}}
+{{ $cmd = or (lookPath .cmd) (stat .cmd) }}
+{{ else if kindIs "slice" .cmd -}}
+    {{ range .cmd -}}
+    {{ $cmd = append $cmd (or (lookPath .) (stat .)) -}}
+    {{ end -}}
+{{ $cmd = all $cmd -}}
+{{ end -}}
+{{ if and $cmd $final_opt (eq $os .os) -}}
+1
+{{- else -}}
+0
+{{- end -}}
