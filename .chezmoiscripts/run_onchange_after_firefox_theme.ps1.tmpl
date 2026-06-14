@@ -1,0 +1,9 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "firefox" -}}
+{{ $dir := joinPath .chezmoi.homeDir "scoop" "persist" "firefox" "profile" "chrome" -}}
+{{ $theme := joinPath .chezmoi.homeDir "scoop" "persist" "firefox" "shyfox" "chrome" -}}
+{{ if not (stat $dir) -}}
+New-Item -ItemType Junction -Path "{{ $dir }}" -Target "{{ $theme }}"
+{{ end -}}
+{{ end -}}
+{{ end -}}

@@ -1902,6 +1902,19 @@
                                   "gnx": "User.20260225204914.1"
                                 }
                               ]
+                            },
+                            {
+                              "gnx": "zxc.20260615002610.1",
+                              "vh": "firefox theme",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260615002642.1",
+                                  "vh": "content"
+                                },
+                                {
+                                  "gnx": "User.20260225204326.1"
+                                }
+                              ]
                             }
                           ]
                         }
@@ -2914,6 +2927,25 @@
                                 {
                                   "gnx": "zxc.20260603094248.1",
                                   "vh": "content"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "gnx": "zxc.20260615003655.1",
+                          "vh": "mklink for firefox theme",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260615003716.1",
+                              "vh": "@clean run_onchange_after_firefox_theme.ps1.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260615003801.1",
+                                  "vh": "content"
+                                },
+                                {
+                                  "gnx": "User.20260225204326.1"
                                 }
                               ]
                             }
@@ -13312,6 +13344,8 @@
     "zxc.20260529151358.1": "[\".config/awesome-copycats\"]\n    type = \"git-repo\"\n    url = \"https://github.com/lcpz/awesome-copycats\"\n    clone.args = [\n        << git update submodule args >>\n    ]\n    pull.args = [\n        << git update submodule args >>\n    ]\n",
     "zxc.20260613095024.1": "<< unix dos >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260613095104.1": "<< unix >>\n[\".config/mpv/scripts/mpv-file-browser\"]\n    type = \"git-repo\"\n    url = \"https://github.com/CogentRedTester/mpv-file-browser\"\n    refreshPeriod = \"168h\"\n{{ end -}}\n\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"file_browser\") \"os\" \"windows\") | trim | atoi -}}\n[\"scoop/persist/mpv/portable_config/scripts/mpv-file-browser\"]\n    type = \"git-repo\"\n    url = \"https://github.com/CogentRedTester/mpv-file-browser\"\n    refreshPeriod = \"168h\"\n{{ end -}}\n\n<< unix >>\n[\".config/mpv/scripts/mpv-anilist-updater\"]\n    type = \"git-repo\"\n    url = \"https://github.com/AzuredBlue/mpv-anilist-updater\"\n    refreshPeriod = \"168h\"\n{{ end -}}\n\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"windows\") | trim | atoi -}}\n[\"scoop/persist/mpv/portable_config/scripts/mpv-anilist-updater\"]\n    type = \"git-repo\"\n    url = \"https://github.com/AzuredBlue/mpv-anilist-updater\"\n    refreshPeriod = \"168h\"\n{{ end -}}\n",
+    "zxc.20260615002610.1": "<< dos >>\n{{ if lookPath \"firefox\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260615002642.1": "[\"scoop/persist/firefox/shyfox\"]\n    type = \"git-repo\"\n    url = \"https://github.com/Naezr/ShyFox\"\n    refreshPeriod = \"168h\"\n",
     "zxc.20260202203521.17": "<< dos >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260323201237.1": "Set-StrictMode -Version Latest\n$ErrorActionPreference = \"Stop\"\n$PSNativeCommandUseErrorActionPreference = $true",
     "zxc.20260202203521.18": "# 5.12.0\ncd {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"mpv\" \"current\" | quote }}\nirm https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/windows.ps1 | iex",
@@ -13425,6 +13459,8 @@
     "zxc.20260603091200.1": "awful.titlebar.hide(c)\n",
     "zxc.20260603094212.1": "<< unix >>\n{{ if lookPath \"home-manager\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260603094248.1": "{{ $path := (joinPath .chezmoi.homeDir \".config\" \"home-manager\" \"home.nix\") -}}\n{{ if stat $path -}}\n# {{ include $path | sha256sum }}\nhome-manager switch\n{{ end -}}\n",
+    "zxc.20260615003716.1": "<< dos >>\n{{ if lookPath \"firefox\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260615003801.1": "{{ $dir := joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" \"profile\" \"chrome\" -}}\n{{ $theme := joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" \"shyfox\" \"chrome\" -}}\n{{ if not (stat $dir) -}}\nNew-Item -ItemType Junction -Path \"{{ $dir }}\" -Target \"{{ $theme }}\"\n{{ end -}}\n",
     "User.20260226001402.1": "@others\n",
     "zxc.20260315140948.1": "[my]\nname = \"zxc\"\n",
     "User.20260226001414.1": "[my.msys2]\npackages = [\"fish\", \"nnn\", \"atool\", \"libarchive\", \"tmux\", \"zsh\"]",
@@ -14027,7 +14063,7 @@
     "zxc.20260330235722.1": "<< dos >>\n{{ if lookPath \"espanso\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260330235914.1": "{{- /* chezmoi:modify-template */ -}}\n{{ $origin := fromYaml .chezmoi.stdin -}}\n{{ $origin = $origin | setValueAtPath \"show_notifications\" false -}}\n{{ $origin | toYaml -}}",
     "zxc.20260609212401.1": "<< dos >>\n{{ if lookPath \"firefox\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260609212435.1": "user_pref(\"browser.search.region\", \"US\");\nuser_pref(\"sidebar.visibility\", \"hide-sidebar\");\n",
+    "zxc.20260609212435.1": "user_pref(\"browser.search.region\", \"US\");\nuser_pref(\"sidebar.visibility\", \"hide-sidebar\");\n\n{{ if stat (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" \"shyfox\" \"user.js\") -}}\n{{ include (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" \"shyfox\" \"user.js\") }}\n{{ end -}}\n",
     "zxc.20260518220745.1": "{\n    \"version\": \"1.1.15.1\",\n    \"description\": \"A spaceship from Potato World crashes onto an alien planet. The sole survivor: Brotato, the only potato capable of handling 6 weapons at the same time. Waiting to be rescued by his mates, Brotato must survive in this hostile environment.\",\n    \"homepage\": \"https://freegogpcgames.com/32560/brotato/\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.dufs.bucket.host }}/bucket/games/brotato.7z\",\n            \"hash\": \"1b23c8a3db488d7c6cf68750f0b7a8c6260daea2c6e6bfc5b208ae2641cc7eb7\"\n        }\n    },\n    \"post_install\": [\n        \"$name = \\\"brotato\\\"\",\n        \"$path = \\\"${env:APPDATA}\\\\brotato\\\\GOG-saves\\\"\",\n        \"$saves = if ($env:game_saves) { $env:game_saves } else { \\\"$env:USERPROFILE\\\\Documents\\\\game_saves\\\" }\",\n        \"mkdir -p $saves\\\\$name >$null 2>$null\",\n        \"New-Item -ItemType Junction -Path $path -Target $saves\\\\$name >$null\"\n    ],\n    \"shortcuts\": [\n        [\n            \"Brotato.exe\",\n            \"Brotato\"\n        ]\n    ]\n}",
     "zxc.20260521181617.1": "{\n    \"version\": \"1.1.1a\",\n    \"description\": \"Click, craft and collect your way to alchemical mastery. Progress through a branching skill tree and explore the forbidden woods. Collect resources and build machines of magic. Slay monsters, farm crops and automate your production to become the all-powerful Forage Wizard!\",\n    \"homepage\": \"https://byrutgame.org/54765-forage-wizard.html\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.dufs.bucket.host }}/bocket/games/forage_wizard.7z\",\n            \"hash\": \"becc8887850006439631ec02c728f31d6da3911586717cd90a2e42cfb3000884\"\n        }\n    },\n    \"post_install\": [\n        \"$name = \\\"forage_wizard\\\"\",\n        \"$path = \\\"${env:USERPROFILE}\\\\AppData\\\\LocalLow\\\\Lost Maxim\\\\Forage Wizard\\\"\",\n        \"$saves = if ($env:game_saves) { $env:game_saves } else { \\\"$env:USERPROFILE\\\\Documents\\\\game_saves\\\" }\",\n        \"mkdir -p $saves\\\\$name >$null 2>$null\",\n        \"New-Item -ItemType Junction -Path $path -Target $saves\\\\$name >$null\"\n    ],\n    \"shortcuts\": [\n        [\n            \"Forage Wizard.exe\",\n            \"Forage Wizard\"\n        ]\n    ]\n}",
     "zxc.20260519083439.1": "{\n    \"version\": \"20973329\",\n    \"description\": \"The Mahjong Roguelike. Aotenjo: Infinite Hands is an deckbuilder where you will use Mahjong styles all over the world to beat innate threats, play different Patterns and combos, reach the \\\"bottom\\\" of Aotenjo, and discover ancient secrets....\",\n    \"homepage\": \"https://byrutgame.org/index.php?do=download&id=176872\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.dufs.bucket.host }}/bucket/games/aotenjo.7z\",\n            \"hash\": \"43b66ee21523bbc7cf7b99b455450e0e252a71593552021f0c5a1b37eb2b52bc\"\n        }\n    },\n    \"post_install\": [\n        \"$name = \\\"aotenjo\\\"\",\n        \"$path = \\\"${env:USERPROFILE}\\\\AppData\\\\LocalLow\\\\Aotenjo\\\\Aotenjo\\\"\",\n        \"$saves = if ($env:game_saves) { $env:game_saves } else { \\\"$env:USERPROFILE\\\\Documents\\\\game_saves\\\" }\",\n        \"mkdir -p $saves\\\\$name >$null 2>$null\",\n        \"New-Item -ItemType Junction -Path $path -Target $saves\\\\$name >$null\"\n    ],\n    \"shortcuts\": [\n        [\n            \"Aotenjo.exe\",\n            \"Aotenjo\"\n        ]\n    ]\n}",
@@ -14973,22 +15009,22 @@
       "_mod_time": 1777301694.728
     },
     "User.20260218142211.1": {
-      "_mod_time": 1781096323.532
+      "_mod_time": 1780750471.323
     },
     "User.20260218142322.1": {
       "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1781096323.531
+      "_mod_time": 1780750650.948
     },
     "zxc.20260428221625.1": {
-      "_mod_time": 1778855150.612
+      "_mod_time": 1777612767.65
     },
     "zxc.20260429112140.1": {
-      "_mod_time": 1778855150.612
+      "_mod_time": 1777612767.666
     },
     "zxc.20260426235942.1": {
-      "_mod_time": 1777298774.859
+      "_mod_time": 1777219283.757
     },
     "zxc.20260427224207.1": {
       "_mod_time": 1777301694.743
@@ -15012,7 +15048,7 @@
       "_mod_time": 1781419018.067
     },
     "User.20260226000855.1": {
-      "_mod_time": 1781434003.078
+      "_mod_time": 1781454430.117
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1776434513.068
@@ -15024,16 +15060,16 @@
       "_mod_time": 1776434513.068
     },
     "User.20260216114746.1": {
-      "_mod_time": 1778855150.558
+      "_mod_time": 1778706271.126
     },
     "zxc.20260505221318.1": {
       "_mod_time": 1778706271.126
     },
     "zxc.20260202203521.14": {
-      "_mod_time": 1776691470.917
+      "_mod_time": 1776614192.458
     },
     "zxc.20260202203521.3": {
-      "_mod_time": 1780223582.706
+      "_mod_time": 1780117762.444
     },
     "zxc.20260202213444.1": {
       "_mod_time": 1776434513.084
@@ -15042,7 +15078,7 @@
       "_mod_time": 1776434513.084
     },
     "User.20260220151435.2": {
-      "_mod_time": 1780223582.706
+      "_mod_time": 1780117762.459
     },
     "zxc.20260505102132.1": {
       "_mod_time": 1780117762.476
@@ -15060,13 +15096,13 @@
       "_mod_time": 1776434513.068
     },
     "User.20260217202401.1": {
-      "_mod_time": 1780223582.706
+      "_mod_time": 1780155943.602
     },
     "User.20260220214558.1": {
       "_mod_time": 1780155936.294
     },
     "zxc.20260530230944.1": {
-      "_mod_time": 1780223582.706
+      "_mod_time": 1780156216.553
     },
     "zxc.20260531001920.1": {
       "_mod_time": 1780158075.007
@@ -15105,7 +15141,7 @@
       "_mod_time": 1776434513.068
     },
     "zxc.20260318203351.1": {
-      "_mod_time": 1778855150.556
+      "_mod_time": 1777967012.401
     },
     "zxc.20260505141849.1": {
       "_mod_time": 1777967012.414
@@ -15130,6 +15166,9 @@
     },
     "zxc.20260603094212.1": {
       "_mod_time": 1780480977.894
+    },
+    "zxc.20260615003716.1": {
+      "_mod_time": 1781455251.573
     },
     "User.20260226001402.1": {
       "_mod_time": 1781438402.302
@@ -15156,7 +15195,7 @@
       "_mod_time": 1777179946.857
     },
     "zxc.20260317002829.1": {
-      "_mod_time": 1777179946.863
+      "_mod_time": 1781442394.083
     },
     "zxc.20260315140713.1": {
       "_mod_time": 1777179946.861
@@ -15360,13 +15399,13 @@
       "_mod_time": 1777891060.651
     },
     "User.20260217022114.1": {
-      "_mod_time": 1778855150.604
+      "_mod_time": 1777891191.612
     },
     "User.20260215182818.1": {
       "_mod_time": 1777891191.634
     },
     "zxc.20260317084145.1": {
-      "_mod_time": 1778855150.609
+      "_mod_time": 1777891060.7
     },
     "zxc.20260201225344.1": {
       "_mod_time": 1777891060.714
@@ -15375,7 +15414,7 @@
       "_mod_time": 1777891060.727
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1778855150.612
+      "_mod_time": 1777617937.909
     },
     "User.20260215205925.1": {
       "_mod_time": 1780230892.216
@@ -15402,10 +15441,10 @@
       "_mod_time": 1777718155.12
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1778855150.61
+      "_mod_time": 1777978566.573
     },
     "zxc.20260201214114.1": {
-      "_mod_time": 1779288255.231
+      "_mod_time": 1778939057.595
     },
     "zxc.20260202195207.1": {
       "_mod_time": 1781419018.159
@@ -15477,19 +15516,19 @@
       "_mod_time": 1777891355.18
     },
     "zxc.20260325223805.1": {
-      "_mod_time": 1779288255.231
+      "_mod_time": 1779285586.501
     },
     "zxc.20260329012003.1": {
       "_mod_time": 1777179946.894
     },
     "zxc.20260411192514.1": {
-      "_mod_time": 1781334385.868
+      "_mod_time": 1781287296.273
     },
     "zxc.20260330235722.1": {
       "_mod_time": 1777179946.891
     },
     "zxc.20260609212401.1": {
-      "_mod_time": 1781096323.53
+      "_mod_time": 1781454792.615
     },
     "zxc.20260518220745.1": {
       "_mod_time": 1780748738.611
@@ -15549,7 +15588,7 @@
       "_mod_time": 1780748738.611
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1781419018.093
+      "_mod_time": 1781410423.627
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1777713442.482
@@ -15612,16 +15651,16 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1781419018.108
+      "_mod_time": 1781412344.87
     },
     "zxc.20260202205715.1": {
-      "_mod_time": 1777298774.844
+      "_mod_time": 1777106655.378
     },
     "zxc.20260426163956.1": {
       "_mod_time": 1781261429.948
     },
     "User.20260302151947.1": {
-      "_mod_time": 1781419018.077
+      "_mod_time": 1781410835.044
     },
     "zxc.20260407232538.1": {
       "_mod_time": 1777179946.836
@@ -15630,7 +15669,7 @@
       "_mod_time": 1777179946.836
     },
     "zxc.20260529091145.1": {
-      "_mod_time": 1780223582.711
+      "_mod_time": 1780069890.937
     },
     "zxc.20260201140523.1": {
       "_mod_time": 1777179946.85
@@ -15642,7 +15681,7 @@
       "_mod_time": 1781437664.814
     },
     "zxc.20260214105528.1": {
-      "_mod_time": 1777382331.981
+      "_mod_time": 1777302969.518
     },
     "zxc.20260214142543.1": {
       "_mod_time": 1777179946.851
@@ -15690,16 +15729,16 @@
       "_mod_time": 1777179941.91
     },
     "zxc.20260515010901.1": {
-      "_mod_time": 1778855150.563
+      "_mod_time": 1778778728.929
     },
     "zxc.20260518233322.1": {
-      "_mod_time": 1780319153.078
+      "_mod_time": 1780307851.546
     },
     "zxc.20260611090830.1": {
-      "_mod_time": 1781174037.601
+      "_mod_time": 1781170166.798
     },
     "zxc.20260611091007.1": {
-      "_mod_time": 1781174037.601
+      "_mod_time": 1781170166.798
     }
   }
 }
