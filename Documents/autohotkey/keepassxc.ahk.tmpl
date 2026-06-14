@@ -8,38 +8,7 @@
 Run "gopass show -c keepassxc/main", ,"Hide"
 WinWait "Message from User"
 
-{{ $opt := "glazewm" -}}
-{{ $cmd := "glazewm" -}}
-{{ $global_opt := "" -}}
-{{ $host_opt := "" -}}
-{{ $final_opt := "" -}}
-{{ if kindIs "string" $opt -}}
-{{ $global_opt = index .my.modules $opt -}}
-{{ $host_opt = index .my.modules .chezmoi.hostname $os $opt -}}
-{{ else if kindIs "slice" $opt -}}
-{{ $global_opt = .my.modules -}}
-{{ $host_opt = index .my.modules .chezmoi.hostname $os -}}
-    {{ range $opt -}}
-        {{ if hasKey $global_opt . -}}
-        {{ $global_opt = index $global_opt . -}}
-        {{ else -}}
-        {{ fail (print $global_opt " unknow opt value: " .) -}}
-        {{ end -}}
-        {{ if hasKey $host_opt . -}}
-        {{ $host_opt = index $host_opt . -}}
-        {{ else -}}
-        {{ $host_opt = "" -}}
-        {{ end -}}
-    {{ end -}}
-{{ else -}}
-{{ fail (print "unknow opt value: " .) -}}
-{{ end -}}
-{{ if and (kindIs "string" $host_opt) (eq $host_opt "") -}}
-{{ $final_opt = $global_opt -}}
-{{ else -}}
-{{ $final_opt = $host_opt -}}
-{{ end -}}
-{{ if and (or (lookPath $cmd) (stat $cmd)) $final_opt -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "glazewm" "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
 Run "glazewm command focus --workspace 9"
 {{ end -}}
 Run "keepassxc"

@@ -114,48 +114,34 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" (joinPath .chezmoi.homeDir ".local" "lib" "ble_sh" "out" "ble.sh")) "opt" (list "shell" "bash" "ble_sh" "enable") "os" (list "linux" "android")) | atoi -}}
 {{ if and (hasKey .chezmoi.kernel "osrelease") (not (mustRegexMatch ".*WSL.*" .chezmoi.kernel.osrelease)) -}}
 source ~/.local/lib/ble_sh/out/ble.sh
 {{ end -}}
-{{ if lookPath "fzf" -}}
+{{ end -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "fzf") "opt" (list "shell" "bash" "fzf" "enable") "os" (list "linux" "android")) | atoi -}}
 {{ if or (lookPath "mcfly") (lookPath "atuin") -}}
 FZF_CTRL_R_COMMAND= eval "$(fzf --bash)"
 {{ else -}}
 eval "$(fzf --bash)"
 {{ end -}}
 {{ end -}}
-{{ $starship := and (lookPath "starship") (default (index .my.modules "starship") (index .my.modules .chezmoi.hostname $os "starship")) -}}
-{{ $oh_my_posh := and (lookPath "oh-my-posh") (default (index .my.modules "oh_my_posh") (index .my.modules .chezmoi.hostname $os "oh_my_posh")) -}}
-{{ if any $starship $oh_my_posh -}}
-{{ if $starship -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "starship") "opt" (list "shell" "bash" "starship" "enable") "os" (list "linux" "android")) | atoi -}}
 eval "$(starship init bash)"
-{{ else -}}
-eval "$(oh-my-posh init bash)"
 {{ end -}}
-{{ else if lookPath "oh-my-posh" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "oh-my-posh") "opt" (list "shell" "bash" "oh_my_posh" "enable") "os" (list "linux" "android")) | atoi -}}
 eval "$(oh-my-posh init bash)"
-{{ else if lookPath "starship" -}}
-eval "$(starship init bash)"
-{{ else -}}
 {{ end -}}
 {{ if lookPath "eza" -}}
 alias ll='eza --long --git --icons auto --group --group-directories-first --time-style relative'
 {{ end -}}
-{{ $atuin := and (lookPath "atuin") (default (index .my.modules "atuin") (index .my.modules .chezmoi.hostname $os "atuin")) -}}
-{{ $mcfly := and (lookPath "mcfly") (default (index .my.modules "mcfly") (index .my.modules .chezmoi.hostname $os "mcfly")) -}}
-{{ if any $atuin $mcfly -}}
-{{ if $atuin -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "atuin") "opt" (list "shell" "bash" "atuin" "enable") "os" (list "linux" "android")) | atoi -}}
 eval "$(atuin init bash)"
-{{ else -}}
+{{ end -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "mcfly") "opt" (list "shell" "bash" "mcfly" "enable") "os" (list "linux" "android")) | atoi -}}
 eval "$(mcfly init bash)"
 {{ end -}}
-{{ else if lookPath "mcfly" -}}
-eval "$(mcfly init bash)"
-{{ else if lookPath "atuin" -}}
-eval "$(atuin init bash)"
-{{ else -}}
-{{ end -}}
-{{ if lookPath "zoxide" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "zoxide") "opt" (list "shell" "bash" "zoxide" "enable") "os" (list "linux" "android")) | atoi -}}
 # zoxdie is needed be the end of bashrc
 eval "$(zoxide init bash)"
 {{ end -}}
