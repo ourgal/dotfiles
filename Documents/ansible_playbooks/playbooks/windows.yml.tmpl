@@ -1018,6 +1018,8 @@
             - SimpleWebSocketServer
             - python-slugify
             - pywinauto
+            - guessit
+            - requests
         - name: Remove pip config
           ansible.windows.win_file:
             path: "{{ ansible_facts.env.APPDATA }}\\.pip\\pip.ini"

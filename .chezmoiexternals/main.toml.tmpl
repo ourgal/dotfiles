@@ -88,10 +88,24 @@
     refreshPeriod = "168h"
 {{ end -}}
 
-{{ if eq .chezmoi.os "windows" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "file_browser") "os" "windows") | trim | atoi -}}
 ["scoop/persist/mpv/portable_config/scripts/mpv-file-browser"]
     type = "git-repo"
     url = "https://github.com/CogentRedTester/mpv-file-browser"
+    refreshPeriod = "168h"
+{{ end -}}
+
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+[".config/mpv/scripts/mpv-anilist-updater"]
+    type = "git-repo"
+    url = "https://github.com/AzuredBlue/mpv-anilist-updater"
+    refreshPeriod = "168h"
+{{ end -}}
+
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "anilist_updater") "os" "windows") | trim | atoi -}}
+["scoop/persist/mpv/portable_config/scripts/mpv-anilist-updater"]
+    type = "git-repo"
+    url = "https://github.com/AzuredBlue/mpv-anilist-updater"
     refreshPeriod = "168h"
 {{ end -}}
 {{ end -}}
