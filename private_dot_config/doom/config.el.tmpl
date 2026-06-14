@@ -98,7 +98,11 @@
       '(("\\(vimeo\\.com\\|twitch\\.tv\\)" . browse-url-mpv)
         ("\\(youtube\\.com\\)" . browse-url-mpv-youtube)
         ("\\(bilibili\\.com\\)" . browse-url-mpv-bili)
-        ("." . {{ if eq .chezmoi.os "windows" }}browse-url-default-windows-browser{{ else }}browse-url-firefox{{ end }})))
+        ("." . {{ if eq .chezmoi.os "windows" -}}
+        browse-url-default-windows-browser
+        {{- else -}}
+        browse-url-firefox
+        {{- end }})))
 (after! org
   (setq org-agenda-files '("~/org/agenda.org")))
 (after! emms

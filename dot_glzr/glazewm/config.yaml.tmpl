@@ -266,7 +266,10 @@ keybindings:
     bindings: ['f24+a']
   # Focus the workspace that last had focus.
   - commands: ['shell-exec {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "altrun" "opt" (list "windows" "startup" "altrun" "enable") "os" "windows") | atoi -}}
-{{ joinPath .chezmoi.homeDir "scoop" "apps" "altrun" "current" "altrun.exe" }}{{ else }}nircmd sendkey rwin press{{ end }}']
+  {{ joinPath .chezmoi.homeDir "scoop" "apps" "altrun" "current" "altrun.exe" }}
+  {{- else -}}
+  nircmd sendkey rwin press
+  {{- end }}']
     bindings: ['f24+d']
   # Change focus to a workspace defined in `workspaces` config.
   - commands: ['focus --workspace 1']
