@@ -1,8 +1,4 @@
 {{ if eq .chezmoi.os "windows" -}}
-{{ $os := .chezmoi.os -}}
-{{ if eq .chezmoi.os "linux" -}}
-{{ $os = .chezmoi.osRelease.id -}}
-{{ end -}}
 {{ if lookPath "glazewm" -}}
 general:
   # Commands to run when the WM has started. This is useful for running a
