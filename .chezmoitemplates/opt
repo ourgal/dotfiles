@@ -42,7 +42,18 @@
     {{ end -}}
 {{ $cmd = all $cmd -}}
 {{ end -}}
-{{ if and $cmd $final_opt (eq $os .os) -}}
+
+{{ $final_os := list -}}
+{{ if kindIs "string" .os -}}
+{{ $final_os = eq $os .os -}}
+{{ else if kindIs "slice" .os -}}
+    {{ range .os -}}
+    {{ $final_os = append $final_os (eq $os .) -}}
+    {{ end -}}
+{{ $final_os = any $final_os -}}
+{{ end -}}
+
+{{ if and $cmd $final_opt $final_os -}}
 1
 {{- else -}}
 0
