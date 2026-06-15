@@ -3,8 +3,6 @@
 user_pref("browser.search.region", "US");
 user_pref("sidebar.visibility", "hide-sidebar");
 
-{{ if stat (joinPath .chezmoi.homeDir "scoop" "persist" "firefox" "shyfox" "user.js") -}}
-{{ include (joinPath .chezmoi.homeDir "scoop" "persist" "firefox" "shyfox" "user.js") }}
-{{ end -}}
+{{ template "include" (joinPath .chezmoi.homeDir "scoop" "persist" "firefox" "shyfox" "user.js") }}
 {{ end -}}
 {{ end -}}
