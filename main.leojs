@@ -13465,7 +13465,7 @@
     "zxc.20260603094212.1": "<< unix >>\n{{ if lookPath \"home-manager\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260603094248.1": "{{ $path := (joinPath .chezmoi.homeDir \".config\" \"home-manager\" \"home.nix\") -}}\n{{ if stat $path -}}\n# {{ include $path | sha256sum }}\nhome-manager switch\n{{ end -}}\n",
     "zxc.20260615003716.1": "<< dos >>\n{{ if lookPath \"firefox\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260615003801.1": "{{ $dir := joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" \"profile\" \"chrome\" -}}\n{{ $theme := joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" \"shyfox\" \"chrome\" -}}\n{{ if not (stat $dir) -}}\nNew-Item -ItemType Junction -Path \"{{ $dir }}\" -Target \"{{ $theme }}\"\n{{ end -}}\n",
+    "zxc.20260615003801.1": "{{ $dir := joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" \"profile\" \"chrome\" -}}\n{{ $theme := joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" \"shyfox\" \"chrome\" -}}\nfunction Link-Theme {\n    New-Item -ItemType Junction -Path \"{{ $dir }}\" -Target \"{{ $theme }}\"\n}\nfunction Relink-Theme {\n    Remove-Item -Path \"{{ $dir }}\"\n    Link-Theme\n}\n{{ if not (stat $dir) -}}\nLink-Theme\n{{ else -}}\nif ((Get-Item -Path \"{{ $dir }}\" -Force).LinkType -ne \"Junction\") {\n    Relink-Theme\n}\nif ((Get-Item -Path \"{{ $dir }}\" -Force).Target -ne \"{{ $theme }}\") {\n    Relink-Theme\n}\n{{ end -}}\n",
     "User.20260226001402.1": "@others\n",
     "zxc.20260315140948.1": "[my]\nname = \"zxc\"\n",
     "User.20260226001414.1": "[my.msys2]\npackages = [\"fish\", \"nnn\", \"atool\", \"libarchive\", \"tmux\", \"zsh\"]",
@@ -15173,7 +15173,7 @@
       "_mod_time": 1780480977.894
     },
     "zxc.20260615003716.1": {
-      "_mod_time": 1781484842.602
+      "_mod_time": 1781510746.796
     },
     "User.20260226001402.1": {
       "_mod_time": 1781484842.601
