@@ -1764,6 +1764,10 @@
                               "vh": "<< rm >>"
                             }
                           ]
+                        },
+                        {
+                          "gnx": "zxc.20260615184146.1",
+                          "vh": "@clean include"
                         }
                       ]
                     }
@@ -13393,6 +13397,7 @@
     "zxc.20260615175522.1": "{{ if not (hasKey . \"source\") -}}\n{{ fail (print \"There is not a source key in the arguments of powershell_junction template\")}}\n{{ end -}}\n{{ if not (hasKey . \"target\") -}}\n{{ fail (print \"There is not a target key in the arguments of powershell_junction template\")}}\n{{ end -}}\n\n{{ if not (any (and (kindIs \"string\" .source) (kindIs \"string\" .target)) (and (kindIs \"slice\" .source) (kindIs \"slice\" .target))) }}\n{{ fail (print \"Wrong arugment types of powershell_junction\")}}\n{{ end -}}\n\n{{ if kindIs \"string\" .source -}}\n$source = \"{{ .source }}\"\n$target = \"{{ .target }}\"\nif (! (Test-Path -Path $source)) {\n    << link >>\n} elseif ((Get-Item -Path $source -Force).LinkType -ne \"Junction\") {\n    << rm >>\n    << link >>\n} elseif ((Get-Item -Path $source -Force).Target -ne $target) {\n    << rm >>\n    << link >>\n}\n{{ else if kindIs \"slice\" .source -}}\n    {{ if ne (len .source) (len .target) -}}\n    {{ fail (print \"powershell_junction sources and targets not match\") -}}\n    {{ end -}}\n{{ $targets := .target -}}\n    {{ range $i, $s := .source -}}\n    $source = \"{{ $s }}\"\n    $target = \"{{ index $targets $i }}\"\n    if (! (Test-Path -Path $source)) {\n        << link >>\n    } elseif ((Get-Item -Path $source -Force).LinkType -ne \"Junction\") {\n        << rm >>\n        << link >>\n    } elseif ((Get-Item -Path $source -Force).Target -ne $target) {\n        << rm >>\n        << link >>\n    }\n    {{ end -}}\n{{ end -}}\n",
     "zxc.20260615180653.1": "New-Item -ItemType Junction -Path $source -Target $target\n",
     "zxc.20260615180907.1": "Remove-Item -Path -Force $source\n",
+    "zxc.20260615184146.1": "{{ if not (any (kindIs \"string\" .) (kindIs \"slice\" .)) -}}\n{{ fail (print \"Wrong arugment types of include\")}}\n{{ end -}}\n\n{{ if kindIs \"string\" . -}}\n    {{ if not (stat .) -}}\n    {{ warnf (print \"file \" . \" not found\") }}\n    {{ end -}}\n{{ include . }}\n{{ else -}}\n    {{ range . -}}\n        {{ if not (stat .) -}}\n        {{ warnf (print \"file \" . \" not found\") }}\n        {{ end -}}\n        {{ include . }}\n    {{ end -}}\n{{ end -}}\n",
     "User.20260226000855.1": "@others",
     "User.20260226000910.1": "<< unix >>\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260126160624.1": "[\".local/lib/ble_sh\"]\n    type = \"git-repo\"\n    url = \"https://github.com/akinomyoga/ble.sh.git\"\n    refreshPeriod = \"168h\"\n    clone.args = [\n        << git update submodule args >>\n    ]\n    pull.args = [\n        << git update submodule args >>\n    ]\n",
@@ -14144,7 +14149,7 @@
     "zxc.20260330235722.1": "<< dos >>\n{{ if lookPath \"espanso\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260330235914.1": "{{- /* chezmoi:modify-template */ -}}\n{{ $origin := fromYaml .chezmoi.stdin -}}\n{{ $origin = $origin | setValueAtPath \"show_notifications\" false -}}\n{{ $origin | toYaml -}}",
     "zxc.20260609212401.1": "<< dos >>\n{{ if lookPath \"firefox\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260609212435.1": "user_pref(\"browser.search.region\", \"US\");\nuser_pref(\"sidebar.visibility\", \"hide-sidebar\");\n\n{{ if stat (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" \"shyfox\" \"user.js\") -}}\n{{ include (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" \"shyfox\" \"user.js\") }}\n{{ end -}}\n",
+    "zxc.20260609212435.1": "user_pref(\"browser.search.region\", \"US\");\nuser_pref(\"sidebar.visibility\", \"hide-sidebar\");\n\n{{ template \"include\" (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" \"shyfox\" \"user.js\") }}\n",
     "zxc.20260518220745.1": "{\n    \"version\": \"1.1.15.1\",\n    \"description\": \"A spaceship from Potato World crashes onto an alien planet. The sole survivor: Brotato, the only potato capable of handling 6 weapons at the same time. Waiting to be rescued by his mates, Brotato must survive in this hostile environment.\",\n    \"homepage\": \"https://freegogpcgames.com/32560/brotato/\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.dufs.bucket.host }}/bucket/games/brotato.7z\",\n            \"hash\": \"1b23c8a3db488d7c6cf68750f0b7a8c6260daea2c6e6bfc5b208ae2641cc7eb7\"\n        }\n    },\n    \"post_install\": [\n        \"$name = \\\"brotato\\\"\",\n        \"$path = \\\"${env:APPDATA}\\\\brotato\\\\GOG-saves\\\"\",\n        \"$saves = if ($env:game_saves) { $env:game_saves } else { \\\"$env:USERPROFILE\\\\Documents\\\\game_saves\\\" }\",\n        \"mkdir -p $saves\\\\$name >$null 2>$null\",\n        \"New-Item -ItemType Junction -Path $path -Target $saves\\\\$name >$null\"\n    ],\n    \"shortcuts\": [\n        [\n            \"Brotato.exe\",\n            \"Brotato\"\n        ]\n    ]\n}",
     "zxc.20260521181617.1": "{\n    \"version\": \"1.1.1a\",\n    \"description\": \"Click, craft and collect your way to alchemical mastery. Progress through a branching skill tree and explore the forbidden woods. Collect resources and build machines of magic. Slay monsters, farm crops and automate your production to become the all-powerful Forage Wizard!\",\n    \"homepage\": \"https://byrutgame.org/54765-forage-wizard.html\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.dufs.bucket.host }}/bocket/games/forage_wizard.7z\",\n            \"hash\": \"becc8887850006439631ec02c728f31d6da3911586717cd90a2e42cfb3000884\"\n        }\n    },\n    \"post_install\": [\n        \"$name = \\\"forage_wizard\\\"\",\n        \"$path = \\\"${env:USERPROFILE}\\\\AppData\\\\LocalLow\\\\Lost Maxim\\\\Forage Wizard\\\"\",\n        \"$saves = if ($env:game_saves) { $env:game_saves } else { \\\"$env:USERPROFILE\\\\Documents\\\\game_saves\\\" }\",\n        \"mkdir -p $saves\\\\$name >$null 2>$null\",\n        \"New-Item -ItemType Junction -Path $path -Target $saves\\\\$name >$null\"\n    ],\n    \"shortcuts\": [\n        [\n            \"Forage Wizard.exe\",\n            \"Forage Wizard\"\n        ]\n    ]\n}",
     "zxc.20260519083439.1": "{\n    \"version\": \"20973329\",\n    \"description\": \"The Mahjong Roguelike. Aotenjo: Infinite Hands is an deckbuilder where you will use Mahjong styles all over the world to beat innate threats, play different Patterns and combos, reach the \\\"bottom\\\" of Aotenjo, and discover ancient secrets....\",\n    \"homepage\": \"https://byrutgame.org/index.php?do=download&id=176872\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.dufs.bucket.host }}/bucket/games/aotenjo.7z\",\n            \"hash\": \"43b66ee21523bbc7cf7b99b455450e0e252a71593552021f0c5a1b37eb2b52bc\"\n        }\n    },\n    \"post_install\": [\n        \"$name = \\\"aotenjo\\\"\",\n        \"$path = \\\"${env:USERPROFILE}\\\\AppData\\\\LocalLow\\\\Aotenjo\\\\Aotenjo\\\"\",\n        \"$saves = if ($env:game_saves) { $env:game_saves } else { \\\"$env:USERPROFILE\\\\Documents\\\\game_saves\\\" }\",\n        \"mkdir -p $saves\\\\$name >$null 2>$null\",\n        \"New-Item -ItemType Junction -Path $path -Target $saves\\\\$name >$null\"\n    ],\n    \"shortcuts\": [\n        [\n            \"Aotenjo.exe\",\n            \"Aotenjo\"\n        ]\n    ]\n}",
@@ -15131,6 +15136,9 @@
     "zxc.20260615175522.1": {
       "_mod_time": 1781519587.412
     },
+    "zxc.20260615184146.1": {
+      "_mod_time": 1781520495.223
+    },
     "User.20260226000855.1": {
       "_mod_time": 1781516875.941
     },
@@ -15375,7 +15383,7 @@
       "_mod_time": 1781516875.973
     },
     "zxc.20260612144646.1": {
-      "_mod_time": 1781484843.615
+      "_mod_time": 1781520413.627
     },
     "zxc.20260612144743.1": {
       "_mod_time": 1781258957.405
@@ -15537,7 +15545,7 @@
       "_mod_time": 1781484843.62
     },
     "zxc.20260322192157.1": {
-      "_mod_time": 1781484843.626
+      "_mod_time": 1781520363.807
     },
     "zxc.20260322192357.1": {
       "_mod_time": 1781484843.628
@@ -15612,7 +15620,7 @@
       "_mod_time": 1777179946.891
     },
     "zxc.20260609212401.1": {
-      "_mod_time": 1781484843.619
+      "_mod_time": 1781520445.98
     },
     "zxc.20260518220745.1": {
       "_mod_time": 1780748738.611

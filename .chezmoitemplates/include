@@ -1,0 +1,17 @@
+{{ if not (any (kindIs "string" .) (kindIs "slice" .)) -}}
+{{ fail (print "Wrong arugment types of include")}}
+{{ end -}}
+
+{{ if kindIs "string" . -}}
+    {{ if not (stat .) -}}
+    {{ warnf (print "file " . " not found") }}
+    {{ end -}}
+{{ include . }}
+{{ else -}}
+    {{ range . -}}
+        {{ if not (stat .) -}}
+        {{ warnf (print "file " . " not found") }}
+        {{ end -}}
+        {{ include . }}
+    {{ end -}}
+{{ end -}}
