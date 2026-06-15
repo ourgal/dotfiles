@@ -1,0 +1,15 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ template "checkPath" (list "dirhash" "go") -}}
+{{ if lookPath "mpv" -}}
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
+# {{ output "dirhash" (joinPath .chezmoi.homeDir ".local" "share" "repos" "uosc" "src" "ziggy") "-quiet" "-nowait" }}
+cd ~/.local/share/repos/uosc
+./tools/build.ps1 ziggy placeholder
+
+{{ $sources := list (joinPath .chezmoi.homeDir "scoop" "persist" "mpv" "portable_config" "scripts" "uosc") (joinPath .chezmoi.homeDir "scoop" "persist" "mpv" "portable_config" "fonts") -}}
+{{ $targets := list (joinPath .chezmoi.homeDir ".local" "share" "repos" "uosc" "src" "uosc") (joinPath .chezmoi.homeDir ".local" "share" "repos" "uosc" "src" "fonts") -}}
+{{ template "powershell_junction" dict "source" $sources "target" $targets }}
+{{ end -}}
+{{ end -}}

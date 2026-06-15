@@ -389,6 +389,7 @@
           - main/haskell-cabal
           - main/haskell-language-server
           - main/stack
+          - main/go
           - main/jq
           - main/texlab
           - main/tectonic
@@ -974,11 +975,25 @@
         value: "{{ ansible_facts.user_dir }}"
         level: user
     - name: Add doom bin path to PATH
-      tags: path
+      tags:
+        - user-env
+        - path
       ansible.windows.win_path:
         state: present
         scope: user
         elements: '%userprofile%\.emacs.d\bin'
+    - name: Set go environment variable
+      tags: user-env
+      ansible.windows.win_environment:
+        state: present
+        name: "{{ .name }}"
+        value: "{{ .value }}"
+        level: user
+      loop:
+        - name: GO111MODULE
+          value: on
+        - name: GOPROXY
+          value: https://goproxy.cn
     - name: Set rime as default input method
       ansible.windows.win_regedit:
         path: HKCU:\Keyboard Layout\Preload

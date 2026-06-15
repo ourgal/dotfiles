@@ -117,6 +117,10 @@
     type = "git-repo"
     url = "https://github.com/ObserverOfTime/mpv-scripts"
     refreshPeriod = "168h"
+[".local/share/repos/uosc"]
+    type = "git-repo"
+    url = "https://github.com/tomasklaen/uosc"
+    refreshPeriod = "168h"
 {{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
 [".config/mpv/scripts/mpv-anilist-updater"]
     type = "git-repo"
@@ -125,7 +129,7 @@
 {{ end -}}
 
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "anilist_updater") "os" "windows") | trim | atoi -}}
-["scoop/persist/mpv/portable_config/scripts/mpv-anilist-updater"]
+[".local/share/repos/mpv-anilist-updater"]
     type = "git-repo"
     url = "https://github.com/AzuredBlue/mpv-anilist-updater"
     refreshPeriod = "168h"

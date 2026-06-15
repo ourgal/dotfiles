@@ -1,5 +1,8 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "firefox" -}}
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
 {{ $dir := joinPath .chezmoi.homeDir "scoop" "persist" "firefox" "profile" "chrome" -}}
 {{ $theme := joinPath .chezmoi.homeDir "scoop" "persist" "firefox" "shyfox" "chrome" -}}
 {{ template "powershell_junction" dict "source" $dir "target" $theme }}
