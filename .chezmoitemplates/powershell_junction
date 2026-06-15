@@ -1,0 +1,42 @@
+{{ if not (hasKey . "source") -}}
+{{ fail (print "There is not a source key in the arguments of powershell_junction template")}}
+{{ end -}}
+{{ if not (hasKey . "target") -}}
+{{ fail (print "There is not a target key in the arguments of powershell_junction template")}}
+{{ end -}}
+
+{{ if not (any (and (kindIs "string" .source) (kindIs "string" .target)) (and (kindIs "slice" .source) (kindIs "slice" .target))) }}
+{{ fail (print "Wrong arugment types of powershell_junction")}}
+{{ end -}}
+
+{{ if kindIs "string" .source -}}
+$source = "{{ .source }}"
+$target = "{{ .target }}"
+if (! (Test-Path -Path $source)) {
+    New-Item -ItemType Junction -Path $source -Target $target
+} elseif ((Get-Item -Path $source -Force).LinkType -ne "Junction") {
+    Remove-Item -Path -Force $source
+    New-Item -ItemType Junction -Path $source -Target $target
+} elseif ((Get-Item -Path $source -Force).Target -ne $target) {
+    Remove-Item -Path -Force $source
+    New-Item -ItemType Junction -Path $source -Target $target
+}
+{{ else if kindIs "slice" .source -}}
+    {{ if ne (len .source) (len .target) -}}
+    {{ fail (print "powershell_junction sources and targets not match") -}}
+    {{ end -}}
+{{ $targets := .target -}}
+    {{ range $i, $s := .source -}}
+    $source = "{{ $s }}"
+    $target = "{{ index $targets $i }}"
+    if (! (Test-Path -Path $source)) {
+        New-Item -ItemType Junction -Path $source -Target $target
+    } elseif ((Get-Item -Path $source -Force).LinkType -ne "Junction") {
+        Remove-Item -Path -Force $source
+        New-Item -ItemType Junction -Path $source -Target $target
+    } elseif ((Get-Item -Path $source -Force).Target -ne $target) {
+        Remove-Item -Path -Force $source
+        New-Item -ItemType Junction -Path $source -Target $target
+    }
+    {{ end -}}
+{{ end -}}
