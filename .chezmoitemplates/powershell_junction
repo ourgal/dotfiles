@@ -15,10 +15,10 @@ $target = "{{ .target }}"
 if (! (Test-Path -Path $source)) {
     New-Item -ItemType Junction -Path $source -Target $target
 } elseif ((Get-Item -Path $source -Force).LinkType -ne "Junction") {
-    Remove-Item -Path -Force $source
+    Remove-Item -Path $source -Force
     New-Item -ItemType Junction -Path $source -Target $target
 } elseif ((Get-Item -Path $source -Force).Target -ne $target) {
-    Remove-Item -Path -Force $source
+    Remove-Item -Path $source -Force
     New-Item -ItemType Junction -Path $source -Target $target
 }
 {{ else if kindIs "slice" .source -}}
@@ -32,10 +32,10 @@ if (! (Test-Path -Path $source)) {
     if (! (Test-Path -Path $source)) {
         New-Item -ItemType Junction -Path $source -Target $target
     } elseif ((Get-Item -Path $source -Force).LinkType -ne "Junction") {
-        Remove-Item -Path -Force $source
+        Remove-Item -Path $source -Force
         New-Item -ItemType Junction -Path $source -Target $target
     } elseif ((Get-Item -Path $source -Force).Target -ne $target) {
-        Remove-Item -Path -Force $source
+        Remove-Item -Path $source -Force
         New-Item -ItemType Junction -Path $source -Target $target
     }
     {{ end -}}
