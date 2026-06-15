@@ -81,20 +81,42 @@
 {{ end -}}
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
 {{ if lookPath "mpv" -}}
-{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
-[".config/mpv/scripts/mpv-file-browser"]
+[".local/share/repos/Eisa01_mpv-scripts"]
     type = "git-repo"
-    url = "https://github.com/CogentRedTester/mpv-file-browser"
+    url = "https://github.com/Eisa01/mpv-scripts"
     refreshPeriod = "168h"
-{{ end -}}
-
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "file_browser") "os" "windows") | trim | atoi -}}
-["scoop/persist/mpv/portable_config/scripts/mpv-file-browser"]
+[".local/share/repos/thumbfast"]
     type = "git-repo"
-    url = "https://github.com/CogentRedTester/mpv-file-browser"
+    url = "https://github.com/po5/thumbfast"
     refreshPeriod = "168h"
-{{ end -}}
-
+[".local/share/repos/mpv-manga-reader"]
+    type = "git-repo"
+    url = "https://github.com/Dudemanguy/mpv-manga-reader"
+    refreshPeriod = "168h"
+[".local/share/repos/Seme4eg_mpv-scripts"]
+    type = "git-repo"
+    url = "https://github.com/Seme4eg/mpv-scripts"
+    refreshPeriod = "168h"
+[".local/share/repos/mpv_sponsorblock_minimal"]
+    type = "git-repo"
+    url = "https://codeberg.org/jouni/mpv_sponsorblock_minimal"
+    refreshPeriod = "168h"
+[".local/share/repos/mpv-quality-menu"]
+    type = "git-repo"
+    url = "https://github.com/christoph-heinrich/mpv-quality-menu"
+    refreshPeriod = "168h"
+[".local/share/repos/mpv-torrserver-hook"]
+    type = "git-repo"
+    url = "https://github.com/eNV25/mpv-torrserver-hook"
+    refreshPeriod = "168h"
+[".local/share/repos/mpv-ytdlautoformat"]
+    type = "git-repo"
+    url = "https://github.com/Samillion/mpv-ytdlautoformat"
+    refreshPeriod = "168h"
+[".local/share/repos/ObserverOfTime_mpv-scripts"]
+    type = "git-repo"
+    url = "https://github.com/ObserverOfTime/mpv-scripts"
+    refreshPeriod = "168h"
 {{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
 [".config/mpv/scripts/mpv-anilist-updater"]
     type = "git-repo"
@@ -106,6 +128,19 @@
 ["scoop/persist/mpv/portable_config/scripts/mpv-anilist-updater"]
     type = "git-repo"
     url = "https://github.com/AzuredBlue/mpv-anilist-updater"
+    refreshPeriod = "168h"
+{{ end -}}
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+[".config/mpv/scripts/mpv-file-browser"]
+    type = "git-repo"
+    url = "https://github.com/CogentRedTester/mpv-file-browser"
+    refreshPeriod = "168h"
+{{ end -}}
+
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "file_browser") "os" "windows") | trim | atoi -}}
+["scoop/persist/mpv/portable_config/scripts/mpv-file-browser"]
+    type = "git-repo"
+    url = "https://github.com/CogentRedTester/mpv-file-browser"
     refreshPeriod = "168h"
 {{ end -}}
 {{ end -}}
