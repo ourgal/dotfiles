@@ -1080,6 +1080,25 @@
                               ]
                             }
                           ]
+                        },
+                        {
+                          "gnx": "zxc.20260615224512.1",
+                          "vh": "@path autoload",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260615224512.2",
+                              "vh": "@clean plug.vim.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260615224512.3",
+                                  "vh": "content"
+                                },
+                                {
+                                  "gnx": "User.20260225203941.1"
+                                }
+                              ]
+                            }
+                          ]
                         }
                       ]
                     }
@@ -1181,6 +1200,25 @@
                               "children": [
                                 {
                                   "gnx": "zxc.20260427224218.1"
+                                },
+                                {
+                                  "gnx": "User.20260225204326.1"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "gnx": "zxc.20260615224321.1",
+                          "vh": "@path autoload",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260615224333.1",
+                              "vh": "@clean plug.vim.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260615224404.1",
+                                  "vh": "content"
                                 },
                                 {
                                   "gnx": "User.20260225204326.1"
@@ -1975,6 +2013,19 @@
                                       ]
                                     }
                                   ]
+                                },
+                                {
+                                  "gnx": "User.20260225204914.1"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260615224041.1",
+                              "vh": "vim-plug",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260615224124.1",
+                                  "vh": "content"
                                 },
                                 {
                                   "gnx": "User.20260225204914.1"
@@ -13363,6 +13414,8 @@
     "zxc.20260427000057.1": "let maplocalleader = \"\\\\\"\n",
     "zxc.20260427224318.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260427224218.1": "map q <cmd>quit<cr>\n",
+    "zxc.20260615224512.2": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260615224512.3": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"vim-plug\" \"plug.vim\") }}\n",
     "User.20260218142211.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260218142322.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260318212653.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -13370,6 +13423,8 @@
     "zxc.20260429112140.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260426235942.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260427224207.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260615224333.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260615224404.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"vim-plug\" \"plug.vim\") }}\n",
     "User.20260216220339.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"ansible-language-server\" -}}\n{{ $lsp = append $lsp \"ansible-language-server\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\ncomment-token = \"#\"\ngrammar = \"yaml\"\ninjection-regex = \"ansible\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]\nname = \"ansible\"\nscope = \"source.yaml\"\nshebangs = [\"ansible-playbook\"]\n\n[[language.file-types]]\nglob = \"playbooks/*.yaml\"\n\n[[language.file-types]]\nglob = \"playbooks/*.yml\"\n\n[[language.file-types]]\nglob = \"group_vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"group_vars/*.yml\"\n\n[[language.file-types]]\nglob = \"host_vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"host_vars/*.yml\"\n\n[[language.file-types]]\nglob = \"vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"vars/*.yml\"\n\n[[language.file-types]]\nglob = \"defaults/*.yaml\"\n\n[[language.file-types]]\nglob = \"defaults/*.yml\"\n\n[[language.file-types]]\nglob = \"tasks/*.yaml\"\n\n[[language.file-types]]\nglob = \"tasks/*.yml\"\n\n[[language.file-types]]\nglob = \"handlers/*.yaml\"\n\n[[language.file-types]]\nglob = \"handlers/*.yml\"\n\n[[language.file-types]]\nglob = \"meta/*.yaml\"\n\n[[language.file-types]]\nglob = \"meta/*.yml\"",
     "User.20260216222130.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"marksman\" -}}\n{{ $lsp = append $lsp \"marksman\" -}}\n{{ end -}}\n{{ if lookPath \"markdown-oxide\" -}}\n{{ $lsp = append $lsp \"markdown-oxide\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"markdown\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]\n",
     "User.20260216214259.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"ty\" -}}\n{{ $lsp = append $lsp \"ty\" -}}\n{{ end -}}\n{{ if lookPath \"jedi-language-server\" -}}\n{{ $lsp = append $lsp \"jedi\" -}}\n{{ end -}}\n{{ if lookPath \"pylsp\" -}}\n{{ $lsp = append $lsp \"pylsp\" -}}\n{{ end -}}\n{{ if lookPath \"ruff\" -}}\n{{ $lsp = append $lsp \"ruff\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\nname = \"python\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]\n\n{{ if lookPath \"ruff\" -}}\nformatter = { command = \"sh\", args = [\"-c\", \"ruff check --fix --select I - | ruff format -\"] }\n{{ end -}}",
@@ -13487,10 +13542,12 @@
     "zxc.20260615194526.1": "[\".local/share/repos/uosc\"]\n    type = \"git-repo\"\n    url = \"https://github.com/tomasklaen/uosc\"\n    refreshPeriod = \"168h\"\n",
     "zxc.20260615204718.1": "<< unix >>\n[\".config/mpv/scripts/mpv-anilist-updater\"]\n    type = \"git-repo\"\n    url = \"https://github.com/AzuredBlue/mpv-anilist-updater\"\n    refreshPeriod = \"168h\"\n{{ end -}}\n\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"windows\") | trim | atoi -}}\n[\".local/share/repos/mpv-anilist-updater\"]\n    type = \"git-repo\"\n    url = \"https://github.com/AzuredBlue/mpv-anilist-updater\"\n    refreshPeriod = \"168h\"\n{{ end -}}\n",
     "zxc.20260615162659.1": "<< unix >>\n[\".config/mpv/scripts/mpv-file-browser\"]\n    type = \"git-repo\"\n    url = \"https://github.com/CogentRedTester/mpv-file-browser\"\n    refreshPeriod = \"168h\"\n{{ end -}}\n\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"file_browser\") \"os\" \"windows\") | trim | atoi -}}\n[\"scoop/persist/mpv/portable_config/scripts/mpv-file-browser\"]\n    type = \"git-repo\"\n    url = \"https://github.com/CogentRedTester/mpv-file-browser\"\n    refreshPeriod = \"168h\"\n{{ end -}}\n",
+    "zxc.20260615224041.1": "<< unix dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260615224124.1": "[\".local/share/repos/vim-plug\"]\n    type = \"git-repo\"\n    url = \"https://github.com/junegunn/vim-plug\"\n    refreshPeriod = \"168h\"\n",
     "zxc.20260615002610.1": "<< dos >>\n{{ if lookPath \"firefox\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260615002642.1": "[\"scoop/persist/firefox/shyfox\"]\n    type = \"git-repo\"\n    url = \"https://github.com/Naezr/ShyFox\"\n    refreshPeriod = \"168h\"\n",
     "zxc.20260202203521.17": "<< dos >>\n{{ template \"checkPath\" (list \"dirhash\" \"go\") -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260323201237.1": "Set-StrictMode -Version Latest\n$ErrorActionPreference = \"Stop\"\n$PSNativeCommandUseErrorActionPreference = $true",
+    "zxc.20260323201237.1": "Set-StrictMode -Version Latest\n$ErrorActionPreference = \"Stop\"\n$PSNativeCommandUseErrorActionPreference = $true\n",
     "zxc.20260202203521.18": "# {{ output \"dirhash\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"uosc\" \"src\" \"ziggy\") \"-quiet\" \"-nowait\" }}\ncd ~/.local/share/repos/uosc\n./tools/build.ps1 ziggy placeholder\n\n{{ $sources := list (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"mpv\" \"portable_config\" \"scripts\" \"uosc\") (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"mpv\" \"portable_config\" \"fonts\") -}}\n{{ $targets := list (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"uosc\" \"src\" \"uosc\") (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"uosc\" \"src\" \"fonts\") -}}\n{{ template \"powershell_junction\" dict \"source\" $sources \"target\" $targets }}\n",
     "User.20260220233639.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260220233712.1": "#!{{lookPath \"bash\"}}\n{{ template \"checkPath\" (list \"bash\" \"curl\" \"unzip\") -}}\n{{ if and (lookPath \"bash\") (lookPath \"curl\") (lookPath \"unzip\") -}}\n/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/unix.sh)\"\n{{ end -}}",
@@ -13536,7 +13593,7 @@
     "zxc.20260202215023.1": "<< dos >>\n{{ if lookPath \"7z\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260202215044.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"7zip\" \"current\" \"install-context.reg\" | quote }}",
     "zxc.20260202215408.1": "<< dos >>\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260202215423.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"git\" \"current\" \"install-context.reg\" | quote }}\nreg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"git\" \"current\" \"install-associations.reg\" | quote }}",
+    "zxc.20260202215423.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"git\" \"current\" \"install-context.reg\" | quote }}\nreg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"git\" \"current\" \"install-associations.reg\" | quote }}\n",
     "zxc.20260202220030.1": "<< dos >>\n{{ if lookPath \"pwsh\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260202220046.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"pwsh\" \"current\" \"install-explorer-context.reg\" | quote }}\nreg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"pwsh\" \"current\" \"install-file-context.reg\" | quote }}",
     "zxc.20260202220553.1": "<< dos >>\n{{ if lookPath \"gvim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -15159,14 +15216,17 @@
     "zxc.20260427224318.1": {
       "_mod_time": 1777301694.728
     },
+    "zxc.20260615224512.2": {
+      "_mod_time": 1781534729.293
+    },
     "User.20260218142211.1": {
-      "_mod_time": 1780878114.764
+      "_mod_time": 1780750471.323
     },
     "User.20260218142322.1": {
       "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1780878114.764
+      "_mod_time": 1780750650.948
     },
     "zxc.20260428221625.1": {
       "_mod_time": 1777612767.65
@@ -15175,10 +15235,13 @@
       "_mod_time": 1777612767.666
     },
     "zxc.20260426235942.1": {
-      "_mod_time": 1777249737.173
+      "_mod_time": 1777219283.757
     },
     "zxc.20260427224207.1": {
-      "_mod_time": 1777337709.122
+      "_mod_time": 1777301694.743
+    },
+    "zxc.20260615224333.1": {
+      "_mod_time": 1781534693.623
     },
     "zxc.20260125144442.1": {
       "_mod_time": 1781528627.075
@@ -15205,7 +15268,7 @@
       "_mod_time": 1781520495.223
     },
     "User.20260226000855.1": {
-      "_mod_time": 1781527788.914
+      "_mod_time": 1781534528.487
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1781527467.63
@@ -15244,7 +15307,7 @@
       "_mod_time": 1776434513.068
     },
     "zxc.20260202215408.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1781530506.443
     },
     "zxc.20260202220030.1": {
       "_mod_time": 1776434513.068
@@ -15253,13 +15316,13 @@
       "_mod_time": 1776434513.068
     },
     "User.20260217202401.1": {
-      "_mod_time": 1780272723.737
+      "_mod_time": 1780155943.602
     },
     "User.20260220214558.1": {
       "_mod_time": 1780155936.294
     },
     "zxc.20260530230944.1": {
-      "_mod_time": 1780272723.741
+      "_mod_time": 1780156216.553
     },
     "zxc.20260531001920.1": {
       "_mod_time": 1780158075.007
@@ -15313,7 +15376,7 @@
       "_mod_time": 1776434513.068
     },
     "zxc.20260531113237.1": {
-      "_mod_time": 1780272723.736
+      "_mod_time": 1780230892.19
     },
     "zxc.20260602152143.1": {
       "_mod_time": 1780394292.926
@@ -15331,10 +15394,10 @@
       "_mod_time": 1781484842.601
     },
     "zxc.20260201141149.1": {
-      "_mod_time": 1781137085.606
+      "_mod_time": 1777891402.212
     },
     "User.20260215191351.1": {
-      "_mod_time": 1777179946.8653052
+      "_mod_time": 1777179946.865
     },
     "User.20260220010313.1": {
       "_mod_time": 1777385861.34
@@ -15361,7 +15424,7 @@
       "_mod_time": 1777179946.871
     },
     "User.20260301202336.1": {
-      "_mod_time": 1781484842.615
+      "_mod_time": 1781422707.612
     },
     "zxc.20260327184129.1": {
       "_mod_time": 1781096323.526
@@ -15379,13 +15442,13 @@
       "_mod_time": 1777713442.483
     },
     "User.20260216000318.1": {
-      "_mod_time": 1777179946.857029
+      "_mod_time": 1777179946.857
     },
     "User.20260218144120.1": {
-      "_mod_time": 1777298774.844
+      "_mod_time": 1777190945.855
     },
     "User.20260218144232.1": {
-      "_mod_time": 1777298774.849
+      "_mod_time": 1777190923.442
     },
     "zxc.20260504130406.1": {
       "_mod_time": 1778855150.581
@@ -15412,10 +15475,10 @@
       "_mod_time": 1777179946.877
     },
     "zxc.20260125145051.1": {
-      "_mod_time": 1777179946.8850746
+      "_mod_time": 1777179946.885
     },
     "zxc.20260125152704.1": {
-      "_mod_time": 1777179946.8764093
+      "_mod_time": 1777179946.876
     },
     "zxc.20260125152851.2": {
       "_mod_time": 1777179946.886
@@ -15424,7 +15487,7 @@
       "_mod_time": 1777179946.883
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1781096323.529
+      "_mod_time": 1780925854.849
     },
     "zxc.20260125161631.1": {
       "_mod_time": 1777302969.492
@@ -15433,16 +15496,16 @@
       "_mod_time": 1777179946.883
     },
     "User.20260217223023.1": {
-      "_mod_time": 1781484843.598
+      "_mod_time": 1781276370.627
     },
     "User.20260217223030.1": {
-      "_mod_time": 1781484843.59
+      "_mod_time": 1781422708.455
     },
     "User.20260217223035.1": {
-      "_mod_time": 1781261429.964
+      "_mod_time": 1781192588.961
     },
     "User.20260223014430.1": {
-      "_mod_time": 1778855150.599
+      "_mod_time": 1777951645.419
     },
     "User.20260220233323.1": {
       "_mod_time": 1781516875.973
@@ -15505,10 +15568,10 @@
       "_mod_time": 1777179946.881
     },
     "zxc.20260421231645.1": {
-      "_mod_time": 1777179946.8812258
+      "_mod_time": 1777179946.881
     },
     "zxc.20260503171104.1": {
-      "_mod_time": 1778855150.599
+      "_mod_time": 1777896430.983
     },
     "zxc.20260504000649.1": {
       "_mod_time": 1777827566.629
@@ -15556,13 +15619,13 @@
       "_mod_time": 1777891060.651
     },
     "User.20260217022114.1": {
-      "_mod_time": 1778049436.442
+      "_mod_time": 1777891191.612
     },
     "User.20260215182818.1": {
       "_mod_time": 1777891191.634
     },
     "zxc.20260317084145.1": {
-      "_mod_time": 1778049436.443
+      "_mod_time": 1777891060.7
     },
     "zxc.20260201225344.1": {
       "_mod_time": 1777891060.714
@@ -15571,16 +15634,16 @@
       "_mod_time": 1777891060.727
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1778049436.464
+      "_mod_time": 1777617937.909
     },
     "User.20260215205925.1": {
-      "_mod_time": 1780272726.073
+      "_mod_time": 1780230892.216
     },
     "User.20260215210400.1": {
       "_mod_time": 1777179946.904
     },
     "User.20260220151031.5": {
-      "_mod_time": 1780272726.072
+      "_mod_time": 1780230892.215
     },
     "User.20260220151031.28": {
       "_mod_time": 1777179946.902
@@ -15598,10 +15661,10 @@
       "_mod_time": 1777718155.12
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1778049436.443
+      "_mod_time": 1777978566.573
     },
     "zxc.20260201214114.1": {
-      "_mod_time": 1779067019.452
+      "_mod_time": 1778939057.595
     },
     "zxc.20260202195207.1": {
       "_mod_time": 1781516875.988
@@ -15682,13 +15745,13 @@
       "_mod_time": 1777891355.18
     },
     "zxc.20260325223805.1": {
-      "_mod_time": 1779322339.077
+      "_mod_time": 1779285586.501
     },
     "zxc.20260329012003.1": {
       "_mod_time": 1777179946.894
     },
     "zxc.20260411192514.1": {
-      "_mod_time": 1781484843.619
+      "_mod_time": 1781287296.273
     },
     "zxc.20260330235722.1": {
       "_mod_time": 1777179946.891
@@ -15754,7 +15817,7 @@
       "_mod_time": 1780748738.611
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1781484842.604
+      "_mod_time": 1781410423.627
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1777713442.482
@@ -15817,7 +15880,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1781484842.613
+      "_mod_time": 1781412344.87
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777106655.378
@@ -15826,7 +15889,7 @@
       "_mod_time": 1781261429.948
     },
     "User.20260302151947.1": {
-      "_mod_time": 1781484842.603
+      "_mod_time": 1781410835.044
     },
     "zxc.20260407232538.1": {
       "_mod_time": 1777179946.836
@@ -15835,7 +15898,7 @@
       "_mod_time": 1777179946.836
     },
     "zxc.20260529091145.1": {
-      "_mod_time": 1780272723.743
+      "_mod_time": 1780069890.937
     },
     "zxc.20260201140523.1": {
       "_mod_time": 1777179946.85
@@ -15844,10 +15907,10 @@
       "_mod_time": 1777385863.235
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1781484842.603
+      "_mod_time": 1781437664.814
     },
     "zxc.20260214105528.1": {
-      "_mod_time": 1777337709.07
+      "_mod_time": 1777302969.518
     },
     "zxc.20260214142543.1": {
       "_mod_time": 1777179946.851
@@ -15895,7 +15958,7 @@
       "_mod_time": 1777179941.91
     },
     "zxc.20260515010901.1": {
-      "_mod_time": 1780470637.484
+      "_mod_time": 1778778728.929
     },
     "zxc.20260518233322.1": {
       "_mod_time": 1780307851.546
