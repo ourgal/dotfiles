@@ -2,22 +2,6 @@
 {{ if lookPath "firefox" -}}
 {{ $dir := joinPath .chezmoi.homeDir "scoop" "persist" "firefox" "profile" "chrome" -}}
 {{ $theme := joinPath .chezmoi.homeDir "scoop" "persist" "firefox" "shyfox" "chrome" -}}
-function Link-Theme {
-    New-Item -ItemType Junction -Path "{{ $dir }}" -Target "{{ $theme }}"
-}
-function Relink-Theme {
-    Remove-Item -Path "{{ $dir }}"
-    Link-Theme
-}
-{{ if not (stat $dir) -}}
-Link-Theme
-{{ else -}}
-if ((Get-Item -Path "{{ $dir }}" -Force).LinkType -ne "Junction") {
-    Relink-Theme
-}
-if ((Get-Item -Path "{{ $dir }}" -Force).Target -ne "{{ $theme }}") {
-    Relink-Theme
-}
-{{ end -}}
+{{ template "powershell_junction" dict "source" $dir "target" $theme }}
 {{ end -}}
 {{ end -}}
