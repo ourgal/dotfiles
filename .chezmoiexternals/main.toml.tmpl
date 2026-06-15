@@ -149,6 +149,14 @@
 {{ end -}}
 {{ end -}}
 {{ end -}}
+{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+{{ if lookPath "vim" -}}
+[".local/share/repos/vim-plug"]
+    type = "git-repo"
+    url = "https://github.com/junegunn/vim-plug"
+    refreshPeriod = "168h"
+{{ end -}}
+{{ end -}}
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "firefox" -}}
 ["scoop/persist/firefox/shyfox"]
