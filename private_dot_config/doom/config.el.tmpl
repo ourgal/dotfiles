@@ -88,16 +88,10 @@
 (defun browse-url-mpv (url &optional _new-window)
   (start-process "mpv" (get-buffer-create "*mpv out*") "mpv" url))
 
-(defun browse-url-mpv-youtube (url &optional _new-window)
-  (start-process "mpv" (get-buffer-create "*mpv out*") "mpv" "--ytdl-format=18/22" "--ytdl-raw-options-append=write-auto-sub=" "--speed=2" url))
-
-(defun browse-url-mpv-bili (url &optional _new-window)
-  (start-process "mpv" (get-buffer-create "*mpv out*") "mpv" "--ytdl-raw-options-append=cookies-from-browser=firefox:~/scoop/persist/firefox/profile" "--speed=2" url))
-
 (setq browse-url-handlers
       '(("\\(vimeo\\.com\\|twitch\\.tv\\)" . browse-url-mpv)
-        ("\\(youtube\\.com\\)" . browse-url-mpv-youtube)
-        ("\\(bilibili\\.com\\)" . browse-url-mpv-bili)
+        ("\\(youtube\\.com\\)" . browse-url-mpv)
+        ("\\(bilibili\\.com\\)" . browse-url-mpv)
         ("." . {{ if eq .chezmoi.os "windows" -}}
         browse-url-default-windows-browser
         {{- else -}}
