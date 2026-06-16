@@ -16,6 +16,90 @@ projects:
     path: .local/share/chezmoi
     url: soft:dotfiles
     desc: chezmoi dotfiles
+  {{ if eq .chezmoi.os "windows" -}}
+  psmux_plugins:
+    path: .psmux/plugins
+    url: https://github.com/psmux/psmux-plugins
+    desc: psmux plugins
+  {{ end -}}
+  {{ if eq .chezmoi.os "windows" -}}
+  clink_scripts:
+    path: AppData/Local/clink/clink-gizmos
+    url: https://github.com/chrisant996/clink-gizmos
+    desc: clink scripts
+  clink_completions:
+    path: AppData/Local/clink/clink-completions
+    url: https://github.com/vladimir-kotikov/clink-completions
+    desc: clink completions
+  {{ end -}}
+  Eisa01_mpv-scripts:
+    path: ".local/share/repos/Eisa01_mpv-scripts"
+    url: "https://github.com/Eisa01/mpv-scripts"
+    desc: Eisa01 mpv-scripts
+  thumbfast:
+    path: ".local/share/repos/thumbfast"
+    url: "https://github.com/po5/thumbfast"
+    dsec: thumbfast
+  mpv_manga_reader:
+    path: ".local/share/repos/mpv-manga-reader"
+    url: "https://github.com/Dudemanguy/mpv-manga-reader"
+    desc: mpv manga reader
+  Seme4eg_mpv-scripts:
+    path: ".local/share/repos/Seme4eg_mpv-scripts"
+    url: "https://github.com/Seme4eg/mpv-scripts"
+    desc: Seme4eg mpv-scripts
+  mpv_sponsorblock_minimal:
+    path: ".local/share/repos/mpv_sponsorblock_minimal"
+    url: "https://codeberg.org/jouni/mpv_sponsorblock_minimal"
+    desc: mpv sponsorblock minimal
+  mpv-quality-menu:
+    path: ".local/share/repos/mpv-quality-menu"
+    url: "https://github.com/christoph-heinrich/mpv-quality-menu"
+    desc: mpv quality menu
+  mpv-torrserver-hook:
+    path: ".local/share/repos/mpv-torrserver-hook"
+    url: "https://github.com/eNV25/mpv-torrserver-hook"
+    desc: mpv torrserver hook
+  mpv-ytdlautoformat:
+    path: ".local/share/repos/mpv-ytdlautoformat"
+    url: "https://github.com/Samillion/mpv-ytdlautoformat"
+    desc: mpv ytdlautoformat
+  ObserverOfTime_mpv-scripts:
+    path: ".local/share/repos/ObserverOfTime_mpv-scripts"
+    url: "https://github.com/ObserverOfTime/mpv-scripts"
+    desc: ObserverOfTime mpv-scripts
+  uosc:
+    path: ".local/share/repos/uosc"
+    url: "https://github.com/tomasklaen/uosc"
+    desc: mpv uosc
+  {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "anilist_updater") "os" "windows") | trim | atoi -}}
+  mpv-anilist-updater:
+    path: ".local/share/repos/mpv-anilist-updater"
+    url: "https://github.com/AzuredBlue/mpv-anilist-updater"
+    desc: mpv anilist updater
+  {{ end -}}
+  {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "file_browser") "os" "windows") | trim | atoi -}}
+  mpv-file-browser:
+    path: "scoop/persist/mpv/portable_config/scripts/mpv-file-browser"
+    url: "https://github.com/CogentRedTester/mpv-file-browser"
+    desc: mpv file browser
+  {{ end -}}
+  vim_plug:
+    path: ".local/share/repos/vim-plug"
+    url: "https://github.com/junegunn/vim-plug"
+    desc: vim plug
+  {{ if eq .chezmoi.os "windows" -}}
+  {{ if lookPath "firefox" -}}
+  shyfox:
+    path: "scoop/persist/firefox/shyfox"
+    url: "https://github.com/Naezr/ShyFox"
+    desc: firefox shyfox theme
+  flexfox:
+    path: "scoop/persist/firefox/flexfox"
+    url: "https://github.com/yuuqilin/FlexFox"
+    desc: firefox flexfox theme
+  {{ end -}}
+  {{ end }}
 specs:
   custom:
     output: table
