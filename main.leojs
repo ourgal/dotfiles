@@ -14233,7 +14233,7 @@
     "zxc.20260615205253.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260615205309.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"mpv-anilist-updater\" \"anilistUpdater.py\") }}\n",
     "zxc.20260615205559.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
-    "zxc.20260615205640.1": "{{ includeTemplate \"include\" (joinPath \"scoop\" \"persist\" \"mpv\" \"portable_config\" \"scripts\" \"mpv-anilist-updater\" \"anilistToken.key\" ) | trim }}\n",
+    "zxc.20260615205640.1": "{{ includeTemplate \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"chezmoi\" \"scoop\" \"persist\" \"mpv\" \"portable_config\" \"scripts\" \"mpv-anilist-updater\" \"anilistToken.key\" ) | trim }}\n",
     "zxc.20260616145335.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"betterchapters\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260612145521.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"manga_reader\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260613013159.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"M_x\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
@@ -15740,7 +15740,7 @@
       "_mod_time": 1781590487.322
     },
     "zxc.20260615205559.1": {
-      "_mod_time": 1781590487.312
+      "_mod_time": 1781593139.009
     },
     "zxc.20260616145335.1": {
       "_mod_time": 1781592990.28
