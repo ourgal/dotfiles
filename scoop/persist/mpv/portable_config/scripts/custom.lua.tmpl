@@ -1,0 +1,17 @@
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "costum") "os" "windows") | trim | atoi -}}
+local url = dofile({{ joinPath .chezmoi.homeDir ".local" "share" "repos" "neturl" "lib" "net" "url.lua" | quote }})
+
+mp.add_hook("on_load", 9, function()
+    local path = url.parse(mp.get_property("path", ""))
+
+    if path.host == "www.bilibili.com" then
+        mp.commandv("change-list", "ytdl-raw-options", "append", "cookies-from-browser=firefox:~/scoop/persist/firefox")
+    end
+
+    if path.host == "www.youtube.com" or path.host == "youtu.be" then
+        mp.set_property("file-local-options/ytdl-format", "18/22")
+        mp.set_property("file-local-options/speed", 2.0)
+        mp.commandv("change-list", "ytdl-raw-options", "append", "write-auto-sub=")
+    end
+end)
+{{ end -}}
