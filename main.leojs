@@ -1500,6 +1500,10 @@
                         {
                           "gnx": "zxc.20260615144438.1",
                           "vh": "save watch history"
+                        },
+                        {
+                          "gnx": "zxc.20260616161430.1",
+                          "vh": "keep open"
                         }
                       ]
                     }
@@ -13482,10 +13486,11 @@
     "zxc.20260201203315.1": "armor\ncert-digest-algo SHA512\ncharset utf-8\ndefault-preference-list SHA512 SHA384 SHA256 AES256 AES192 AES ZLIB BZIP2 ZIP Uncompressed\nfixed-list-mode\nkeyid-format 0xlong\nlist-options show-uid-validity\nno-comments\nno-emit-version\nno-greeting\nno-symkey-cache\npersonal-cipher-preferences AES256 AES192 AES\npersonal-compress-preferences ZLIB BZIP2 ZIP Uncompressed\npersonal-digest-preferences SHA512 SHA384 SHA256\nrequire-cross-certification\nrequire-secmem\ns2k-cipher-algo AES256\ns2k-digest-algo SHA512\nthrow-keyids\nuse-agent\nverify-options show-uid-validity\nwith-fingerprint",
     "zxc.20260201203539.1": "{{ if .my.git.sign.gpg -}}\n{{ if eq .chezmoi.os \"windows\" -}}\nenable-win32-openssh-support\n{{ end -}}\nenable-ssh-support\n{{ end -}}\ngrab\n{{ if lookPath \"pinentry-gtk-2\" -}}\npinentry-program {{ lookPath \"pinentry-gtk-2\" }}\n{{ end -}}",
     "zxc.20260402230749.1": "[mounts]\n\tpath = {{ env \"LOCALAPPDATA\" }}\\gopass\\stores\\root\n[core]\n\tautosync = false",
-    "zxc.20260607200437.1": "af=%11%scaletempo2\nalang=%16%ja,jp,jpn,en,eng\naudio-file-auto=%5%fuzzy\naudio-pitch-correction=%3%yes\nbackground-color=%7%#000000\nblend-subtitles=%5%video\nforce-seekable=%3%yes\nfullscreen=%3%yes\nhwdec=%4%auto\nkeep-open=%6%always\nosd-back-color=%7%#282a2e\nosd-border-color=%7%#282a2e\nosd-color=%7%#c5c8c6\nosd-font=%11%DejaVu Sans\nosd-shadow-color=%7%#1d1f21\npause=%2%no\nsave-position-on-quit=%3%yes\nslang=%46%en,eng,chs,sc,zh,chi,zho,zh-Hant,zh-CN,zh-Hans\nvolume=%3%100\nvolume-max=%3%200\n",
+    "zxc.20260607200437.1": "af=%11%scaletempo2\nalang=%16%ja,jp,jpn,en,eng\naudio-file-auto=%5%fuzzy\naudio-pitch-correction=%3%yes\nbackground-color=%7%#000000\nblend-subtitles=%5%video\nforce-seekable=%3%yes\nfullscreen=%3%yes\nhwdec=%4%auto\nosd-back-color=%7%#282a2e\nosd-border-color=%7%#282a2e\nosd-color=%7%#c5c8c6\nosd-font=%11%DejaVu Sans\nosd-shadow-color=%7%#1d1f21\npause=%2%no\nsave-position-on-quit=%3%yes\nslang=%46%en,eng,chs,sc,zh,chi,zho,zh-Hant,zh-CN,zh-Hans\nvolume=%3%100\nvolume-max=%3%200\n",
     "zxc.20260604073139.1": "sub-auto=%5%fuzzy\nsub-font=%{{ len .my.font.sans }}%{{ .my.font.sans }}\nsub-color=\"#FFFF00\"             # Yellow text\nsub-border-color=\"#000000\"      # Black border for contrast\nsub-border-size=1               # Thickness of the outline\nsub-shadow-color=\"#000000\"      # Subtle shadow\nsub-shadow-offset=1\n",
     "zxc.20260613022839.1": "osd-font=%{{ len .my.font.monospace }}%{{ .my.font.monospace }}\n",
-    "zxc.20260615144438.1": "save-watch-history=%3%yes\n",
+    "zxc.20260615144438.1": "save-watch-history=%{{ len \"yes\" }}%{{ \"yes\" }}\n",
+    "zxc.20260616161430.1": "keep-open=%{{ len \"no\" }}%{{ \"no\" }}\n",
     "User.20260228232118.1": "music_directory {{ joinPath .chezmoi.homeDir \"Music\" | quote }}\nplaylist_directory {{ joinPath (env \"APPDATA\") \"mpd\" \"playlist\" | quote }}\ndb_file {{ joinPath (env \"APPDATA\") \"mpd\" \"tag_cache\" | quote }}\nstate_file {{ joinPath (env \"APPDATA\") \"mpd\" \"state\" | quote }}\nsticker_file {{ joinPath (env \"APPDATA\") \"mpd\" \"sticker.sql\" | quote }}\n\nauto_update \"yes\"\n\naudio_output {\n    type \"winmm\"\n    name \"Windows Speakers\"\n}",
     "User.20260214200035.1": "encryption = \"age\"\n[age]\n    identity = \"~/.ssh/id_ed25519\"\n    symmetric = true",
     "User.20260214200002.1": "[git]\n    autoCommit = false\n    autoPush = false",
@@ -15538,7 +15543,7 @@
       "_mod_time": 1778855150.599
     },
     "User.20260220233323.1": {
-      "_mod_time": 1781505911.634
+      "_mod_time": 1781597938.149
     },
     "zxc.20260612144646.1": {
       "_mod_time": 1781590486.345
@@ -15700,7 +15705,7 @@
       "_mod_time": 1779288255.231
     },
     "zxc.20260202195207.1": {
-      "_mod_time": 1781537291.149
+      "_mod_time": 1781597938.182
     },
     "zxc.20260614184825.1": {
       "_mod_time": 1781537291.149
@@ -15916,7 +15921,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1781484842.613
+      "_mod_time": 1781597693.794
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777298774.844
