@@ -68,9 +68,6 @@
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
 (setq user-full-name "zxc")
 (setq doom-font (font-spec :family "{{ .my.font.monospace }}" :size 15)
       doom-variable-pitch-font (font-spec :family "{{ .my.font.monospace }}" :size 15))
@@ -97,8 +94,14 @@
         {{- else -}}
         browse-url-firefox
         {{- end }})))
+;; If you use `org' and don't want your org files in the default location below,
+;; change `org-directory'. It must be set before org loads!
+(setq org-directory "~/org/")
 (after! org
-  (setq org-agenda-files '("~/org/agenda.org")))
+  (setq org-agenda-files '("~/org/agenda.org"))
+  (org-babel-do-load-languages
+    org-babel-load-languages
+    '((dot . t))))
 (after! emms
   (setq emms-source-file-default-directory "~/Music")
   (add-hook 'emms-playlist-mode-hook #'turn-on-evil-mode))
