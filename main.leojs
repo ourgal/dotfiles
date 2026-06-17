@@ -4152,10 +4152,6 @@
                               "vh": "relative line number"
                             },
                             {
-                              "gnx": "User.20260217233813.1",
-                              "vh": "org directory"
-                            },
-                            {
                               "gnx": "User.20260217233843.1",
                               "vh": "user name"
                             },
@@ -4192,8 +4188,12 @@
                               "vh": "browse-url"
                             },
                             {
+                              "gnx": "User.20260217233813.1",
+                              "vh": "org directory"
+                            },
+                            {
                               "gnx": "zxc.20260531010146.1",
-                              "vh": "org agenda"
+                              "vh": "org settings"
                             },
                             {
                               "gnx": "zxc.20260612234219.1",
@@ -7246,15 +7246,15 @@
                                   "vh": "content"
                                 }
                               ]
-                            }
-                          ]
-                        },
-                        {
-                          "gnx": "zxc.20260616145335.1",
-                          "vh": "@clean betterchapters.lua.tmpl",
-                          "children": [
+                            },
                             {
-                              "gnx": "zxc.20260616145450.1"
+                              "gnx": "zxc.20260616145335.1",
+                              "vh": "@clean betterchapters.lua.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260616145450.1"
+                                }
+                              ]
                             }
                           ]
                         },
@@ -13971,7 +13971,6 @@
     "User.20260217223030.3": "(setq package-archives '((\"gnu\"    . \"https://mirror.nju.edu.cn/elpa/gnu/\")\n                         (\"nongnu\" . \"https://mirror.nju.edu.cn/elpa/nongnu/\")\n                         (\"melpa\"  . \"https://mirror.nju.edu.cn/elpa/melpa/\")))\n",
     "User.20260217233138.1": ";; There are two ways to load a theme. Both assume the theme is installed and\n;; available. You can either set `doom-theme' or manually load a theme with the\n;; `load-theme' function. This is the default:\n(setq doom-theme 'doom-tokyo-night)\n",
     "User.20260217233737.1": ";; This determines the style of line numbers in effect. If set to `nil', line\n;; numbers are disabled. For relative line numbers, set this to `relative'.\n(setq display-line-numbers-type 'relative)\n",
-    "User.20260217233813.1": ";; If you use `org' and don't want your org files in the default location below,\n;; change `org-directory'. It must be set before org loads!\n(setq org-directory \"~/org/\")\n",
     "User.20260217233843.1": "(setq user-full-name \"zxc\")\n",
     "User.20260217234025.1": "(setq doom-font (font-spec :family \"{{ .my.font.monospace }}\" :size 15)\n      doom-variable-pitch-font (font-spec :family \"{{ .my.font.monospace }}\" :size 15))\n\n(setq doom-themes-enable-bold t\n      doom-themes-enable-italic t)\n",
     "User.20260217235643.1": "(+global-word-wrap-mode +1)\n",
@@ -13981,7 +13980,8 @@
     "User.20260218113718.1": "(add-hook! 'completion-at-point-functions #'cape-dabbrev)\n(add-hook! 'completion-at-point-functions #'cape-file)\n",
     "User.20260218114048.1": "(after! doom-modeline\n  (setq doom-modeline-buffer-file-name-style 'relative-to-project))\n",
     "zxc.20260517023349.1": "(defun browse-url-mpv (url &optional _new-window)\n  (start-process \"mpv\" (get-buffer-create \"*mpv out*\") \"mpv\" url))\n\n(setq browse-url-handlers\n      '((\"\\\\(vimeo\\\\.com\\\\|twitch\\\\.tv\\\\)\" . browse-url-mpv)\n        (\"\\\\(youtube\\\\.com\\\\)\" . browse-url-mpv)\n        (\"\\\\(bilibili\\\\.com\\\\)\" . browse-url-mpv)\n        (\".\" . {{ if eq .chezmoi.os \"windows\" -}}\n        browse-url-default-windows-browser\n        {{- else -}}\n        browse-url-firefox\n        {{- end }})))\n",
-    "zxc.20260531010146.1": "(after! org\n  (setq org-agenda-files '(\"~/org/agenda.org\")))\n",
+    "User.20260217233813.1": ";; If you use `org' and don't want your org files in the default location below,\n;; change `org-directory'. It must be set before org loads!\n(setq org-directory \"~/org/\")\n",
+    "zxc.20260531010146.1": "(after! org\n  (setq org-agenda-files '(\"~/org/agenda.org\"))\n  (org-babel-do-load-languages\n    org-babel-load-languages\n    '((dot . t))))\n",
     "zxc.20260612234219.1": "(after! emms\n  (setq emms-source-file-default-directory \"~/Music\")\n  (add-hook 'emms-playlist-mode-hook #'turn-on-evil-mode))\n",
     "User.20260218124824.1": "(map! :n \"C-w o\" #'delete-other-windows\n      :n \"C-w z\" #'doom/window-enlargen)\n",
     "User.20260218124950.1": "(map! :leader\n      :desc \"Kill other buffer\" \"b o\" #'doom/kill-other-buffers)\n(map! :leader\n      :desc \"Kill other buffer\" \"b 0\" nil)\n",
@@ -15383,13 +15383,13 @@
       "_mod_time": 1781590486.331
     },
     "User.20260218142211.1": {
-      "_mod_time": 1780750471.323
+      "_mod_time": 1780878114.764
     },
     "User.20260218142322.1": {
       "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1780750650.948
+      "_mod_time": 1780878114.764
     },
     "zxc.20260428221625.1": {
       "_mod_time": 1777612767.65
@@ -15398,16 +15398,16 @@
       "_mod_time": 1777612767.666
     },
     "zxc.20260426235942.1": {
-      "_mod_time": 1777219283.757
+      "_mod_time": 1777249737.173
     },
     "zxc.20260427224207.1": {
-      "_mod_time": 1777301694.743
+      "_mod_time": 1777337709.122
     },
     "zxc.20260615224333.1": {
-      "_mod_time": 1781534693.623
+      "_mod_time": 1781590487.338
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1781528627.075
+      "_mod_time": 1781590486.329
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1780748738.606
@@ -15431,10 +15431,10 @@
       "_mod_time": 1781590486.33
     },
     "User.20260226000855.1": {
-      "_mod_time": 1781619250.829
+      "_mod_time": 1781656218.326
     },
     "zxc.20260202203521.17": {
-      "_mod_time": 1781527467.63
+      "_mod_time": 1781590486.33
     },
     "User.20260220233639.1": {
       "_mod_time": 1781527488.629
@@ -15449,10 +15449,10 @@
       "_mod_time": 1778855150.558
     },
     "zxc.20260202203521.14": {
-      "_mod_time": 1776614192.458
+      "_mod_time": 1776644732.237
     },
     "zxc.20260202203521.3": {
-      "_mod_time": 1780117762.444
+      "_mod_time": 1780272723.742
     },
     "zxc.20260202213444.1": {
       "_mod_time": 1776434513.084
@@ -15461,7 +15461,7 @@
       "_mod_time": 1776434513.084
     },
     "User.20260220151435.2": {
-      "_mod_time": 1780117762.459
+      "_mod_time": 1780272723.738
     },
     "zxc.20260505102132.1": {
       "_mod_time": 1780272723.74
@@ -15479,13 +15479,13 @@
       "_mod_time": 1776434513.068
     },
     "User.20260217202401.1": {
-      "_mod_time": 1780155943.602
+      "_mod_time": 1780272723.737
     },
     "User.20260220214558.1": {
       "_mod_time": 1780272723.737
     },
     "zxc.20260530230944.1": {
-      "_mod_time": 1780156216.553
+      "_mod_time": 1780272723.741
     },
     "zxc.20260531001920.1": {
       "_mod_time": 1780272723.741
@@ -15509,7 +15509,7 @@
       "_mod_time": 1776434513.068
     },
     "User.20260308184713.2": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1776817843.31
     },
     "User.20260308214701.2": {
       "_mod_time": 1776434513.068
@@ -15524,7 +15524,7 @@
       "_mod_time": 1776434513.068
     },
     "zxc.20260318203351.1": {
-      "_mod_time": 1777967012.401
+      "_mod_time": 1778049436.405
     },
     "zxc.20260505141849.1": {
       "_mod_time": 1778855150.556
@@ -15539,7 +15539,7 @@
       "_mod_time": 1776434513.068
     },
     "zxc.20260531113237.1": {
-      "_mod_time": 1780230892.19
+      "_mod_time": 1780272723.736
     },
     "zxc.20260602152143.1": {
       "_mod_time": 1780401618.945
@@ -15554,7 +15554,7 @@
       "_mod_time": 1781602833.363
     },
     "User.20260226001402.1": {
-      "_mod_time": 1781621858.775
+      "_mod_time": 1781656218.31
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1781137085.606
@@ -15587,10 +15587,10 @@
       "_mod_time": 1777179946.871
     },
     "User.20260301202336.1": {
-      "_mod_time": 1781422707.612
+      "_mod_time": 1781484842.615
     },
     "zxc.20260327184129.1": {
-      "_mod_time": 1781619551.335
+      "_mod_time": 1781656218.342
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1777179946.862
@@ -15662,7 +15662,7 @@
       "_mod_time": 1781484843.598
     },
     "User.20260217223030.1": {
-      "_mod_time": 1781624315.277
+      "_mod_time": 1781681025.372
     },
     "User.20260217223035.1": {
       "_mod_time": 1781261429.964
@@ -15785,13 +15785,13 @@
       "_mod_time": 1777891060.651
     },
     "User.20260217022114.1": {
-      "_mod_time": 1777891191.612
+      "_mod_time": 1778049436.442
     },
     "User.20260215182818.1": {
       "_mod_time": 1777891191.634
     },
     "zxc.20260317084145.1": {
-      "_mod_time": 1777891060.7
+      "_mod_time": 1778049436.443
     },
     "zxc.20260201225344.1": {
       "_mod_time": 1777891060.714
@@ -15800,16 +15800,16 @@
       "_mod_time": 1777891060.727
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1777617937.909
+      "_mod_time": 1778049436.464
     },
     "User.20260215205925.1": {
-      "_mod_time": 1780230892.216
+      "_mod_time": 1780272726.073
     },
     "User.20260215210400.1": {
       "_mod_time": 1777179946.904
     },
     "User.20260220151031.5": {
-      "_mod_time": 1780230892.215
+      "_mod_time": 1780272726.072
     },
     "User.20260220151031.28": {
       "_mod_time": 1777179946.902
@@ -15827,10 +15827,10 @@
       "_mod_time": 1777718155.12
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1777978566.573
+      "_mod_time": 1778049436.443
     },
     "zxc.20260201214114.1": {
-      "_mod_time": 1778939057.595
+      "_mod_time": 1779067019.452
     },
     "zxc.20260202195207.1": {
       "_mod_time": 1781607696.647
@@ -15881,10 +15881,10 @@
       "_mod_time": 1781607696.647
     },
     "zxc.20260616222720.1": {
-      "_mod_time": 1781622014.81
+      "_mod_time": 1781656218.36
     },
     "zxc.20260616145335.1": {
-      "_mod_time": 1781607696.647
+      "_mod_time": 1781592913.923
     },
     "zxc.20260612145521.1": {
       "_mod_time": 1781484843.624
@@ -15917,13 +15917,13 @@
       "_mod_time": 1777891355.18
     },
     "zxc.20260325223805.1": {
-      "_mod_time": 1779285586.501
+      "_mod_time": 1779322339.077
     },
     "zxc.20260329012003.1": {
       "_mod_time": 1777179946.894
     },
     "zxc.20260411192514.1": {
-      "_mod_time": 1781287296.273
+      "_mod_time": 1781484843.619
     },
     "zxc.20260330235722.1": {
       "_mod_time": 1777179946.891
@@ -15989,7 +15989,7 @@
       "_mod_time": 1780748738.611
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1781410423.627
+      "_mod_time": 1781484842.604
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1777713442.482
@@ -16061,7 +16061,7 @@
       "_mod_time": 1781261429.948
     },
     "User.20260302151947.1": {
-      "_mod_time": 1781410835.044
+      "_mod_time": 1781484842.603
     },
     "zxc.20260407232538.1": {
       "_mod_time": 1777179946.836
@@ -16070,7 +16070,7 @@
       "_mod_time": 1777179946.836
     },
     "zxc.20260529091145.1": {
-      "_mod_time": 1780069890.937
+      "_mod_time": 1780272723.743
     },
     "zxc.20260201140523.1": {
       "_mod_time": 1777179946.85
@@ -16079,10 +16079,10 @@
       "_mod_time": 1777385863.235
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1781437664.814
+      "_mod_time": 1781484842.603
     },
     "zxc.20260214105528.1": {
-      "_mod_time": 1777302969.518
+      "_mod_time": 1777337709.07
     },
     "zxc.20260214142543.1": {
       "_mod_time": 1777179946.851
@@ -16130,7 +16130,7 @@
       "_mod_time": 1777179941.91
     },
     "zxc.20260515010901.1": {
-      "_mod_time": 1778778728.929
+      "_mod_time": 1780470637.484
     },
     "zxc.20260518233322.1": {
       "_mod_time": 1780307851.546
