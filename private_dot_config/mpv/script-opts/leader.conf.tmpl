@@ -1,6 +1,6 @@
 {{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
 {{ if lookPath "mpv" -}}
-leader_key=SPACE
+leader_key=\
 pause_on_open=yes
 # another possible value is true
 resume_on_exit=only-if-was-paused

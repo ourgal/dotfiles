@@ -14291,7 +14291,7 @@
     "zxc.20260613013257.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260613013216.1": "# strip cmd name\nstrip_cmd_at=65\n# available values: priority, command_name\nsort_commands_by=priority\n\n#- options for extended menu ------------------------------------------------\ntoggle_menu_binding=alt+x\nlines_to_show=17\npause_on_open=yes\nresume_on_exit=only-if-was-paused\n\n#- styles\nfont_size=21\n# cursor 'width', useful to change if you have hidpi monitor\ncursor_x_border=0.3\nline_bottom_margin=1\nmenu_x_padding=5\nmenu_y_padding=2\n\n# heading text of a search bar\nsearch_heading=M-x\n# will determine in which fields to look for your search query. For instance if\n# you don't want to search in comments to commands then just omit it from initial\n# table.\nfilter_by_fields=[ \"cmd\", \"key\", \"comment\" ]\ncolumn_layout=no\n",
     "zxc.20260613021949.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260613021917.1": "leader_key=SPACE\npause_on_open=yes\n# another possible value is true\nresume_on_exit=only-if-was-paused\n# timeout in seconds to hide menu\nhide_timeout=2\n# timeout in seconds to show which-key menu\nwhich_key_show_delay=1\n# max symbols for cmd names in which-key menu\nstrip_cmd_at=28\n\n# styles\nfont_size=21\n# this padding for now applies only to 'left', not x\nmenu_x_padding=3\nwhich_key_menu_y_padding=3\n",
+    "zxc.20260613021917.1": "leader_key=\\\npause_on_open=yes\n# another possible value is true\nresume_on_exit=only-if-was-paused\n# timeout in seconds to hide menu\nhide_timeout=2\n# timeout in seconds to show which-key menu\nwhich_key_show_delay=1\n# max symbols for cmd names in which-key menu\nstrip_cmd_at=28\n\n# styles\nfont_size=21\n# this padding for now applies only to 'left', not x\nmenu_x_padding=3\nwhich_key_menu_y_padding=3\n",
     "zxc.20260614150059.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260614150009.1": "# which domains should ytdl-format change on?\n# separate each domain with a comma\ndomains=youtu.be, youtube.com\n\n# set maximum video quality (on load/start)\n# 240, 360, 480, 720, 1080, 1440, 2160, 4320\n# use 0 to ignore quality\nquality=360\n\n# preferred codec: avc, hevc, vp9, av1, novp9, noav1, none\n# novp9/av1: accept any codec except vp9/av1\n# none: no codec preference\ncodec=avc\n\n# maximum video fps\n# set 0 to ignore\nfps=0\n\n# force a specific extension\nforce_extension=yes\nextension_type=mp4a\n\n# rare: to avoid mpv shutting down if nothing is found with the specified format\n# if true, and format not found, it'll use fallback_format\nfallback=yes\n# an alternative: bv+ba/b\nfallback_format=b\n\n# respect manual format changes (ie: by a quality selector script)\nrespect_manual_changes=yes\n\n# regex to detect urls\n# a simpler pattern: ^%a+://\nurl_pattern=^[%a][%a%d+.-]*://\n",
     "zxc.20260614200117.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -15726,7 +15726,7 @@
       "_mod_time": 1781484843.611
     },
     "zxc.20260613021949.1": {
-      "_mod_time": 1781484843.613
+      "_mod_time": 1781850236.066
     },
     "zxc.20260614150059.1": {
       "_mod_time": 1781484843.613
@@ -15903,7 +15903,7 @@
       "_mod_time": 1781484843.622
     },
     "zxc.20260613021915.1": {
-      "_mod_time": 1781484843.623
+      "_mod_time": 1781850236.096
     },
     "zxc.20260614145943.1": {
       "_mod_time": 1781484843.624
@@ -16068,7 +16068,7 @@
       "_mod_time": 1777106655.378
     },
     "zxc.20260426163956.1": {
-      "_mod_time": 1781849577.926
+      "_mod_time": 1781849592.881
     },
     "User.20260302151947.1": {
       "_mod_time": 1781484842.603
