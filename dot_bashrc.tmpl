@@ -114,6 +114,9 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+{{ if eq .chezmoi.os "android" -}}
+export PATH=$PATH:$HOME/.local/bin
+{{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "bash" "file" (joinPath .chezmoi.homeDir ".local" "lib" "ble_sh" "out" "ble.sh") "opt" (list "shell" "bash" "ble_sh" "enable") "os" (list "linux" "android")) | atoi -}}
 {{ if and (hasKey .chezmoi.kernel "osrelease") (not (mustRegexMatch ".*WSL.*" .chezmoi.kernel.osrelease)) -}}
 source ~/.local/lib/ble_sh/out/ble.sh
