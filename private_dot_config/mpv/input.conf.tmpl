@@ -1,0 +1,8 @@
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "enable") "os" "windows") | trim | atoi -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "anilist_updater") "os" "windows") | trim | atoi -}}
+Ctrl+a script-binding update_anilist
+Alt+a script-binding launch_anilist
+D script-binding open_folde
+B script-binding correct_anime_id
+{{ end -}}
+{{ end -}}

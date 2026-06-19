@@ -1,5 +1,4 @@
-{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
-{{ if lookPath "mpv" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "enable") "os" "linux") | trim | atoi -}}
 af=%11%scaletempo2
 alang=%16%ja,jp,jpn,en,eng
 audio-file-auto=%5%fuzzy
@@ -29,5 +28,4 @@ sub-shadow-offset=1
 osd-font=%{{ len .my.font.monospace }}%{{ .my.font.monospace }}
 save-watch-history=%{{ len "yes" }}%{{ "yes" }}
 keep-open=%{{ len "no" }}%{{ "no" }}
-{{ end -}}
 {{ end -}}

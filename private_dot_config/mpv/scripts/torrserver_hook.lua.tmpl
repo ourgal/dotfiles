@@ -1,5 +1,3 @@
-{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
-{{ if lookPath "mpv" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "torrserver_hook") "os" "linux") | trim | atoi -}}
 {{ template "include" (joinPath .chezmoi.homeDir ".local" "share" "repos" "mpv-torrserver-hook" "torrserver_hook.lua") }}
-{{ end -}}
 {{ end -}}

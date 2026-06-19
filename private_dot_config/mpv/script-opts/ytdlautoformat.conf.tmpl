@@ -1,5 +1,4 @@
-{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
-{{ if lookPath "mpv" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "mpv" "yt-dlp") "opt" (list "mpv" "plugins" "ytdlautoformat") "os" "linux") | trim | atoi -}}
 # which domains should ytdl-format change on?
 # separate each domain with a comma
 domains=youtu.be, youtube.com
@@ -34,5 +33,4 @@ respect_manual_changes=yes
 # regex to detect urls
 # a simpler pattern: ^%a+://
 url_pattern=^[%a][%a%d+.-]*://
-{{ end -}}
 {{ end -}}

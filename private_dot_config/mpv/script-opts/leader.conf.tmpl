@@ -1,5 +1,4 @@
-{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
-{{ if lookPath "mpv" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "leader") "os" "linux") | trim | atoi -}}
 leader_key=\
 pause_on_open=yes
 # another possible value is true
@@ -16,5 +15,4 @@ font_size=21
 # this padding for now applies only to 'left', not x
 menu_x_padding=3
 which_key_menu_y_padding=3
-{{ end -}}
 {{ end -}}

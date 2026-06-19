@@ -1,5 +1,3 @@
-{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
-{{ if lookPath "mpv" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "mpv" "yt-dlp") "opt" (list "mpv" "plugins" "ytdlautoformat") "os" "linux") | trim | atoi -}}
 {{ template "include" (joinPath .chezmoi.homeDir ".local" "share" "repos" "mpv-ytdlautoformat" "ytdlautoformat.lua") }}
-{{ end -}}
 {{ end -}}

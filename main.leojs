@@ -2000,21 +2000,11 @@
                                     },
                                     {
                                       "gnx": "zxc.20260615204718.1",
-                                      "vh": "anilist updater",
-                                      "children": [
-                                        {
-                                          "gnx": "User.20260225203941.1"
-                                        }
-                                      ]
+                                      "vh": "anilist updater"
                                     },
                                     {
                                       "gnx": "zxc.20260615162659.1",
-                                      "vh": "file manager",
-                                      "children": [
-                                        {
-                                          "gnx": "User.20260225203941.1"
-                                        }
-                                      ]
+                                      "vh": "file manager"
                                     }
                                   ]
                                 },
@@ -6045,10 +6035,29 @@
                       "vh": "@clean mpv.conf.tmpl",
                       "children": [
                         {
-                          "gnx": "User.20260225203941.1"
-                        },
-                        {
                           "gnx": "zxc.20260202195341.1"
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260619203536.1",
+                      "vh": "@clean input.conf.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260614184839.1",
+                          "vh": "content",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260614184847.1",
+                              "vh": "anilist updater",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260614184908.1",
+                                  "vh": "content"
+                                }
+                              ]
+                            }
+                          ]
                         }
                       ]
                     },
@@ -6063,9 +6072,6 @@
                             {
                               "gnx": "zxc.20260322192302.1",
                               "vh": "content"
-                            },
-                            {
-                              "gnx": "User.20260225203941.1"
                             }
                           ]
                         },
@@ -6076,9 +6082,6 @@
                             {
                               "gnx": "zxc.20260322192357.3",
                               "vh": "content"
-                            },
-                            {
-                              "gnx": "User.20260225203941.1"
                             }
                           ]
                         },
@@ -6086,9 +6089,6 @@
                           "gnx": "zxc.20260612145004.1",
                           "vh": "@clean manga-reader.lua.tmpl",
                           "children": [
-                            {
-                              "gnx": "User.20260225203941.1"
-                            },
                             {
                               "gnx": "zxc.20260612144946.1",
                               "vh": "content"
@@ -6102,9 +6102,6 @@
                             {
                               "gnx": "zxc.20260613012717.1",
                               "vh": "content"
-                            },
-                            {
-                              "gnx": "User.20260225203941.1"
                             }
                           ]
                         },
@@ -6112,9 +6109,6 @@
                           "gnx": "zxc.20260613020836.1",
                           "vh": "@clean leader.lua.tmpl",
                           "children": [
-                            {
-                              "gnx": "User.20260225203941.1"
-                            },
                             {
                               "gnx": "zxc.20260613020750.1",
                               "vh": "content"
@@ -6126,9 +6120,6 @@
                           "vh": "@clean sponsorblock_minimal.lua.tmpl",
                           "children": [
                             {
-                              "gnx": "User.20260225203941.1"
-                            },
-                            {
                               "gnx": "zxc.20260613104158.1",
                               "vh": "content"
                             }
@@ -6139,9 +6130,6 @@
                           "vh": "@clean quality-menu.lua.tmpl",
                           "children": [
                             {
-                              "gnx": "User.20260225203941.1"
-                            },
-                            {
                               "gnx": "zxc.20260613105929.1",
                               "vh": "content"
                             }
@@ -6151,9 +6139,6 @@
                           "gnx": "zxc.20260613121109.1",
                           "vh": "@clean torrserver_hook.lua.tmpl",
                           "children": [
-                            {
-                              "gnx": "User.20260225203941.1"
-                            },
                             {
                               "gnx": "zxc.20260613121036.1",
                               "vh": "content"
@@ -6167,9 +6152,6 @@
                             {
                               "gnx": "zxc.20260614145716.1",
                               "vh": "content"
-                            },
-                            {
-                              "gnx": "User.20260225203941.1"
                             }
                           ]
                         },
@@ -6177,9 +6159,6 @@
                           "gnx": "zxc.20260614154432.1",
                           "vh": "@clean clipshot.lua.tmpl",
                           "children": [
-                            {
-                              "gnx": "User.20260225203941.1"
-                            },
                             {
                               "gnx": "zxc.20260614154334.1",
                               "vh": "content"
@@ -6190,9 +6169,6 @@
                           "gnx": "zxc.20260614195759.1",
                           "vh": "@clean SmartCopyPaste.lua.tmpl",
                           "children": [
-                            {
-                              "gnx": "User.20260225203941.1"
-                            },
                             {
                               "gnx": "zxc.20260614195655.1",
                               "vh": "ocntent"
@@ -6206,9 +6182,52 @@
                             {
                               "gnx": "zxc.20260616145450.1",
                               "vh": "content"
+                            }
+                          ]
+                        },
+                        {
+                          "gnx": "zxc.20260619211159.1",
+                          "vh": "@clean custom.lua.tmpl",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260616222806.1",
+                              "vh": "content"
+                            }
+                          ]
+                        },
+                        {
+                          "gnx": "zxc.20260619203724.1",
+                          "vh": "@path mpv-anilist-updater",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260619203724.2",
+                              "vh": "@clean main.lua.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260615205203.1",
+                                  "vh": "content"
+                                }
+                              ]
                             },
                             {
-                              "gnx": "User.20260225203941.1"
+                              "gnx": "zxc.20260619203724.4",
+                              "vh": "@clean anilistUpdater.py.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260615205309.1",
+                                  "vh": "content"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260619203724.6",
+                              "vh": "@clean anilistToken.txt.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260615205640.1",
+                                  "vh": "content"
+                                }
+                              ]
                             }
                           ]
                         }
@@ -6225,9 +6244,6 @@
                             {
                               "gnx": "zxc.20260612145600.1",
                               "vh": "content"
-                            },
-                            {
-                              "gnx": "User.20260225203941.1"
                             }
                           ]
                         },
@@ -6238,9 +6254,6 @@
                             {
                               "gnx": "zxc.20260613013216.1",
                               "vh": "content"
-                            },
-                            {
-                              "gnx": "User.20260225203941.1"
                             }
                           ]
                         },
@@ -6248,9 +6261,6 @@
                           "gnx": "zxc.20260613021949.1",
                           "vh": "@clean leader.conf.tmpl",
                           "children": [
-                            {
-                              "gnx": "User.20260225203941.1"
-                            },
                             {
                               "gnx": "zxc.20260613021917.1",
                               "vh": "content"
@@ -6262,9 +6272,6 @@
                           "vh": "@clean ytdlautoformat.conf.tmpl",
                           "children": [
                             {
-                              "gnx": "User.20260225203941.1"
-                            },
-                            {
                               "gnx": "zxc.20260614150009.1",
                               "vh": "content"
                             }
@@ -6274,9 +6281,6 @@
                           "gnx": "zxc.20260614200117.1",
                           "vh": "@clean SmartCopyPaste.conf.tmpl",
                           "children": [
-                            {
-                              "gnx": "User.20260225203941.1"
-                            },
                             {
                               "gnx": "zxc.20260614200047.1",
                               "vh": "content"
@@ -6294,9 +6298,6 @@
                           "vh": "@clean extended-menu.lua.tmpl",
                           "children": [
                             {
-                              "gnx": "User.20260225203941.1"
-                            },
-                            {
                               "gnx": "zxc.20260613013000.1",
                               "vh": "content"
                             }
@@ -6306,9 +6307,6 @@
                           "gnx": "zxc.20260613021402.1",
                           "vh": "@clean leader.lua.tmpl",
                           "children": [
-                            {
-                              "gnx": "User.20260225203941.1"
-                            },
                             {
                               "gnx": "zxc.20260613021406.1",
                               "vh": "content"
@@ -7089,20 +7087,7 @@
                           "vh": "@clean input.conf.tmpl",
                           "children": [
                             {
-                              "gnx": "zxc.20260614184839.1",
-                              "vh": "content",
-                              "children": [
-                                {
-                                  "gnx": "zxc.20260614184847.1",
-                                  "vh": "anilist updater",
-                                  "children": [
-                                    {
-                                      "gnx": "zxc.20260614184908.1",
-                                      "vh": "content"
-                                    }
-                                  ]
-                                }
-                              ]
+                              "gnx": "zxc.20260614184839.1"
                             }
                           ]
                         },
@@ -7218,8 +7203,7 @@
                                   "vh": "@clean main.lua.tmpl",
                                   "children": [
                                     {
-                                      "gnx": "zxc.20260615205203.1",
-                                      "vh": "content"
+                                      "gnx": "zxc.20260615205203.1"
                                     }
                                   ]
                                 },
@@ -7228,8 +7212,7 @@
                                   "vh": "@clean anilistUpdater.py.tmpl",
                                   "children": [
                                     {
-                                      "gnx": "zxc.20260615205309.1",
-                                      "vh": "content"
+                                      "gnx": "zxc.20260615205309.1"
                                     }
                                   ]
                                 },
@@ -7238,8 +7221,7 @@
                                   "vh": "@clean anilistToken.txt.tmpl",
                                   "children": [
                                     {
-                                      "gnx": "zxc.20260615205640.1",
-                                      "vh": "content"
+                                      "gnx": "zxc.20260615205640.1"
                                     }
                                   ]
                                 }
@@ -7250,8 +7232,7 @@
                               "vh": "@clean custom.lua.tmpl",
                               "children": [
                                 {
-                                  "gnx": "zxc.20260616222806.1",
-                                  "vh": "content"
+                                  "gnx": "zxc.20260616222806.1"
                                 }
                               ]
                             },
@@ -13977,7 +13958,7 @@
     "zxc.20260615175522.1": "{{ if not (hasKey . \"source\") -}}\n{{ fail (print \"There is not a source key in the arguments of powershell_junction template\")}}\n{{ end -}}\n{{ if not (hasKey . \"target\") -}}\n{{ fail (print \"There is not a target key in the arguments of powershell_junction template\")}}\n{{ end -}}\n\n{{ if not (any (and (kindIs \"string\" .source) (kindIs \"string\" .target)) (and (kindIs \"slice\" .source) (kindIs \"slice\" .target))) }}\n{{ fail (print \"Wrong arugment types of powershell_junction\")}}\n{{ end -}}\n\n{{ if kindIs \"string\" .source -}}\n$source = \"{{ .source }}\"\n$target = \"{{ .target }}\"\nif (! (Test-Path -Path $source)) {\n    << link >>\n} elseif ((Get-Item -Path $source -Force).LinkType -ne \"Junction\") {\n    << rm >>\n    << link >>\n} elseif ((Get-Item -Path $source -Force).Target -ne $target) {\n    << rm >>\n    << link >>\n}\n{{ else if kindIs \"slice\" .source -}}\n    {{ if ne (len .source) (len .target) -}}\n    {{ fail (print \"powershell_junction sources and targets not match\") -}}\n    {{ end -}}\n{{ $targets := .target -}}\n    {{ range $i, $s := .source -}}\n    $source = \"{{ $s }}\"\n    $target = \"{{ index $targets $i }}\"\n    if (! (Test-Path -Path $source)) {\n        << link >>\n    } elseif ((Get-Item -Path $source -Force).LinkType -ne \"Junction\") {\n        << rm >>\n        << link >>\n    } elseif ((Get-Item -Path $source -Force).Target -ne $target) {\n        << rm >>\n        << link >>\n    }\n    {{ end -}}\n{{ end -}}\n",
     "zxc.20260615180653.1": "New-Item -ItemType Junction -Path $source -Target $target\n",
     "zxc.20260615180907.1": "Remove-Item -Path $source -Force\n",
-    "zxc.20260615184146.1": "{{ if not (any (kindIs \"string\" .) (kindIs \"slice\" .)) -}}\n{{ fail (print \"Wrong arugment types of include\")}}\n{{ end -}}\n\n{{ if kindIs \"string\" . -}}\n    {{ if not (stat .) -}}\n    {{ warnf (print \"file \" . \" not found\") }}\n    {{ end -}}\n{{ include . }}\n{{ else -}}\n    {{ range . -}}\n        {{ if not (stat .) -}}\n        {{ warnf (print \"file \" . \" not found\") }}\n        {{ end -}}\n        {{ include . }}\n    {{ end -}}\n{{ end -}}\n",
+    "zxc.20260615184146.1": "{{ if not (any (kindIs \"string\" .) (kindIs \"slice\" .)) -}}\n{{ fail (print \"Wrong arugment types of include\")}}\n{{ end -}}\n\n{{ if kindIs \"string\" . -}}\n    {{ if not (stat .) -}}\n    {{ warnf (print \"file \" . \" not found\") }}\n    {{ else -}}\n    {{ include . }}\n    {{ end -}}\n{{ else -}}\n    {{ range . -}}\n        {{ if not (stat .) -}}\n        {{ warnf (print \"file \" . \" not found\") }}\n        {{ else -}}\n        {{ include . }}\n        {{ end -}}\n    {{ end -}}\n{{ end -}}\n",
     "User.20260226000855.1": "@others",
     "User.20260226000910.1": "<< unix >>\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260126160624.1": "[\".local/lib/ble_sh\"]\n    type = \"git-repo\"\n    url = \"https://github.com/akinomyoga/ble.sh.git\"\n    refreshPeriod = \"168h\"\n    clone.args = [\n        << git update submodule args >>\n    ]\n    pull.args = [\n        << git update submodule args >>\n    ]\n",
@@ -14009,8 +13990,8 @@
     "zxc.20260615164116.1": "[\".local/share/repos/mpv-ytdlautoformat\"]\n    type = \"git-repo\"\n    url = \"https://github.com/Samillion/mpv-ytdlautoformat\"\n    refreshPeriod = \"168h\"\n",
     "zxc.20260615164212.1": "[\".local/share/repos/ObserverOfTime_mpv-scripts\"]\n    type = \"git-repo\"\n    url = \"https://github.com/ObserverOfTime/mpv-scripts\"\n    refreshPeriod = \"168h\"\n",
     "zxc.20260615194526.1": "[\".local/share/repos/uosc\"]\n    type = \"git-repo\"\n    url = \"https://github.com/tomasklaen/uosc\"\n    refreshPeriod = \"168h\"\n",
-    "zxc.20260615204718.1": "<< unix >>\n[\".config/mpv/scripts/mpv-anilist-updater\"]\n    type = \"git-repo\"\n    url = \"https://github.com/AzuredBlue/mpv-anilist-updater\"\n    refreshPeriod = \"168h\"\n{{ end -}}\n\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"windows\") | trim | atoi -}}\n[\".local/share/repos/mpv-anilist-updater\"]\n    type = \"git-repo\"\n    url = \"https://github.com/AzuredBlue/mpv-anilist-updater\"\n    refreshPeriod = \"168h\"\n{{ end -}}\n",
-    "zxc.20260615162659.1": "<< unix >>\n[\".config/mpv/scripts/mpv-file-browser\"]\n    type = \"git-repo\"\n    url = \"https://github.com/CogentRedTester/mpv-file-browser\"\n    refreshPeriod = \"168h\"\n{{ end -}}\n\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"file_browser\") \"os\" \"windows\") | trim | atoi -}}\n[\"scoop/persist/mpv/portable_config/scripts/mpv-file-browser\"]\n    type = \"git-repo\"\n    url = \"https://github.com/CogentRedTester/mpv-file-browser\"\n    refreshPeriod = \"168h\"\n{{ end -}}\n",
+    "zxc.20260615204718.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" (list \"linux\" \"windows\")) | trim | atoi -}}\n[\".local/share/repos/mpv-anilist-updater\"]\n    type = \"git-repo\"\n    url = \"https://github.com/AzuredBlue/mpv-anilist-updater\"\n    refreshPeriod = \"168h\"\n{{ end -}}\n",
+    "zxc.20260615162659.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"file_browser\") \"os\" \"windows\") | trim | atoi -}}\n[\"scoop/persist/mpv/portable_config/scripts/mpv-file-browser\"]\n    type = \"git-repo\"\n    url = \"https://github.com/CogentRedTester/mpv-file-browser\"\n    refreshPeriod = \"168h\"\n{{ end -}}\n\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"file_browser\") \"os\" \"linux\") | trim | atoi -}}\n[\".config/mpv/scripts/mpv-file-browser\"]\n    type = \"git-repo\"\n    url = \"https://github.com/CogentRedTester/mpv-file-browser\"\n    refreshPeriod = \"168h\"\n{{ end -}}\n",
     "zxc.20260615224041.1": "<< unix dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260615224124.1": "[\".local/share/repos/vim-plug\"]\n    type = \"git-repo\"\n    url = \"https://github.com/junegunn/vim-plug\"\n    refreshPeriod = \"168h\"\n",
     "zxc.20260615002610.1": "<< dos >>\n{{ if lookPath \"firefox\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -14157,7 +14138,7 @@
     "zxc.20260613235707.1": "[my.modules.windows.startup]\nglazewm.enable = true\ndeskflow_client.enable = false\ndeskflow_server.enable = false\naria2.enable = true\ntransmission.enable = true\nespanso.enable = true\nalist.enable = true\nmpd.enable = true\ngpg_agent.enable = true\nkde_connect.enable = true\nwezterm.enable = false\nfirefox.enable = true\nbrave.enable = false\nvscode.enable = false\nvscodium.enable = false\nleo.enable = false\neverything.enable = true\nautohotkey.enable = false\npowertoys.enable = true\ndufs.enable = true\ncopyparty.enable = true\naltrun.enable = false\nnavidrome.enable = true\njellyfin_mpv_shim.enable = false\nemacs.enable = true\nwt.enable = true\nsyncthing.enable = true\ntorrserver.enable = true\n",
     "zxc.20260614011525.1": "[my.modules.shell.pwsh]\nstarship.enable = false\noh_my_posh.enable = true\nsfsu.enable = false\nzoxide.enable = true\natuin.enable = false\nmcfly.enable = true\nnavi.enable = true\n",
     "zxc.20260614121829.1": "[my.modules.shell.clink]\nstarship.enable = false\noh_my_posh.enable = true\nzoxide.enable = true\n",
-    "zxc.20260614123554.1": "[my.modules.shell.bash]\nble_sh.enable = true\nfzf.enable = true\nstarship.enable = false\noh_my_posh.enable = true\natuin.enable = false\nmcfly.enable = true\nzoxide.enable = true\n",
+    "zxc.20260614123554.1": "[my.modules.shell.bash]\nble_sh.enable = true\nfzf.enable = true\nstarship.enable = false\noh_my_posh.enable = true\natuin.enable = false\nmcfly.enable = true\nzoxide.enable = true\npay_respects.enable = true\n",
     "zxc.20260613164155.1": "[my.modules.mpv]\nenable = true\n\n[my.modules.mpv.plugins]\nsmartskip = true\nthumbfast = true\nmanga_reader = true\nM_x = true\nleader = true\nsponsorblock_minimal = true\nquality_menu = true\ntorrserver_hook = true\nytdlautoformat = false\nclipshot = true\nfile_browser = true\nanilist_updater = true\nsmart_copy_paste = true\nbetterchapters = true\ncostum = true\n",
     "zxc.20260616151751.1": "[my.modules.firefox]\ntheme = \"flexfox\"\n",
     "User.20260302211627.1": "ENTRY \"AppData\" URL \"{{ .chezmoi.homeDir }}/AppData/Roaming\"",
@@ -14584,45 +14565,56 @@
     "User.20260217223035.1": "<< unix dos >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260223014430.1": "<< unix dos >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260223014458.1": "machine smtp.qq.com port 465 login ourgal@qq.com password {{ gopass \"email/qq/main\" }}\nmachine imap.qq.com port 993 login ourgal@qq.com password {{ gopass \"email/qq/main\" }}\nmachine imap.163.com port 993 login fairever01@163.com password {{ gopass \"email/163/main\" }}\nmachine pop3.163.com port 995 login fairever01@163.com password {{ gopass \"email/163/main\" }}\nmachine imap.yandex.com port 993 login airever@yandex.com password {{ gopass \"email/yandex/main\" }}",
-    "User.20260220233323.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260612144646.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "User.20260220233323.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"enable\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
+    "zxc.20260619203536.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
+    "zxc.20260614184847.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
+    "zxc.20260614184908.1": "Ctrl+a script-binding update_anilist\nAlt+a script-binding launch_anilist\nD script-binding open_folde\nB script-binding correct_anime_id\n",
+    "zxc.20260612144646.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"smartskip\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260322192302.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"Eisa01_mpv-scripts\" \"scripts\" \"SmartSkip.lua\") }}\n",
-    "zxc.20260612144743.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260612144743.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"thumbfast\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260322192357.3": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"thumbfast\" \"thumbfast.lua\") }}\n",
-    "zxc.20260612145004.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260612145004.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"manga_reader\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260612144946.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"mpv-manga-reader\" \"manga-reader.lua\") }}\n",
-    "zxc.20260613012804.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260613012804.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"M_x\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260613012717.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"Seme4eg_mpv-scripts\" \"M-x.lua\") }}\n",
-    "zxc.20260613020836.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260613020836.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"leader\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260613020750.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"Seme4eg_mpv-scripts\" \"leader.lua\") }}\n",
-    "zxc.20260613104254.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260613104254.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"sponsorblock_minimal\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260613104158.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"mpv_sponsorblock_minimal\" \"sponsorblock_minimal.lua\") }}\n",
-    "zxc.20260613110002.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260613110002.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"quality_menu\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260613105929.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"mpv-quality-menu\" \"quality-menu.lua\") }}\n",
-    "zxc.20260613121109.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260613121109.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"torrserver_hook\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260613121036.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"mpv-torrserver-hook\" \"torrserver_hook.lua\") }}\n",
-    "zxc.20260614145830.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260614145830.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"mpv\" \"yt-dlp\") \"opt\" (list \"mpv\" \"plugins\" \"ytdlautoformat\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260614145716.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"mpv-ytdlautoformat\" \"ytdlautoformat.lua\") }}\n",
-    "zxc.20260614154432.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260614154432.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"clipshot\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260614154334.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"ObserverOfTime_mpv-scripts\" \"clipshot.lua\") }}\n",
-    "zxc.20260614195759.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260614195759.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"smart_copy_paste\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260614195655.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"Eisa01_mpv-scripts\" \"scripts\" \"SmartCopyPaste.lua\") }}\n",
-    "zxc.20260616145557.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260616145557.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"betterchapters\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260616145450.1": "-- betterchapters.lua\n-- Loads the next or previous playlist entry if there are no more chapters in the seek direction.\n-- To bind in input.conf, use: <keybind> script_binding <keybind name>\n-- Keybind names: chapter_next, chapter_prev\n-- Recommended to use with autoload.lua\n\nfunction chapter_seek(direction)\n    local chapters = mp.get_property_number(\"chapters\")\n    local chapter  = mp.get_property_number(\"chapter\")\n    if chapter == nil then chapter = 0 end\n    if chapters == nil then chapters = 0 end\n    if chapter+direction < 0 then\n        mp.command(\"playlist_prev\")\n    elseif chapter+direction >= chapters then\n        mp.command(\"playlist_next\")\n    else\n        mp.commandv(\"osd-msg\", \"add\", \"chapter\", direction)\n    end\nend\n\nmp.add_key_binding(\"PGUP\", \"chapter_next\", function() chapter_seek(1) end)\nmp.add_key_binding(\"PGDWN\", \"chapter_prev\", function() chapter_seek(-1) end)\n",
-    "zxc.20260612145641.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260619211159.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"costum\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
+    "zxc.20260616222806.1": "local url = dofile({{ joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"neturl\" \"lib\" \"net\" \"url.lua\" | quote }})\n\nmp.add_hook(\"on_load\", 9, function()\n    local path = url.parse(mp.get_property(\"path\", \"\"))\n\n    if path.host == \"www.bilibili.com\" then\n        mp.commandv(\"change-list\", \"ytdl-raw-options\", \"append\", \"cookies-from-browser=firefox:~/scoop/persist/firefox\")\n    end\n\n    if path.host == \"www.youtube.com\" or path.host == \"youtu.be\" then\n        mp.set_property(\"file-local-options/ytdl-format\", \"18/22\")\n        mp.set_property(\"file-local-options/speed\", 2.0)\n        mp.commandv(\"change-list\", \"ytdl-raw-options\", \"append\", \"write-auto-sub=\")\n    end\nend)\n",
+    "zxc.20260619203724.2": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
+    "zxc.20260615205203.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"mpv-anilist-updater\" \"main.lua\") }}\n",
+    "zxc.20260619203724.4": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
+    "zxc.20260615205309.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"mpv-anilist-updater\" \"anilistUpdater.py\") }}\n",
+    "zxc.20260619203724.6": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
+    "zxc.20260615205640.1": "{{ includeTemplate \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"chezmoi\" \"scoop\" \"persist\" \"mpv\" \"portable_config\" \"scripts\" \"mpv-anilist-updater\" \"anilistToken.key\" ) | trim }}\n",
+    "zxc.20260612145641.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"manga_reader\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260612145600.1": "auto_start=yes\n",
-    "zxc.20260613013257.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260613013257.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"M_x\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260613013216.1": "# strip cmd name\nstrip_cmd_at=65\n# available values: priority, command_name\nsort_commands_by=priority\n\n#- options for extended menu ------------------------------------------------\ntoggle_menu_binding=alt+x\nlines_to_show=17\npause_on_open=yes\nresume_on_exit=only-if-was-paused\n\n#- styles\nfont_size=21\n# cursor 'width', useful to change if you have hidpi monitor\ncursor_x_border=0.3\nline_bottom_margin=1\nmenu_x_padding=5\nmenu_y_padding=2\n\n# heading text of a search bar\nsearch_heading=M-x\n# will determine in which fields to look for your search query. For instance if\n# you don't want to search in comments to commands then just omit it from initial\n# table.\nfilter_by_fields=[ \"cmd\", \"key\", \"comment\" ]\ncolumn_layout=no\n",
-    "zxc.20260613021949.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260613021949.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"leader\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260613021917.1": "leader_key=\\\npause_on_open=yes\n# another possible value is true\nresume_on_exit=only-if-was-paused\n# timeout in seconds to hide menu\nhide_timeout=2\n# timeout in seconds to show which-key menu\nwhich_key_show_delay=1\n# max symbols for cmd names in which-key menu\nstrip_cmd_at=28\n\n# styles\nfont_size=21\n# this padding for now applies only to 'left', not x\nmenu_x_padding=3\nwhich_key_menu_y_padding=3\n",
-    "zxc.20260614150059.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260614150059.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"mpv\" \"yt-dlp\") \"opt\" (list \"mpv\" \"plugins\" \"ytdlautoformat\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260614150009.1": "# which domains should ytdl-format change on?\n# separate each domain with a comma\ndomains=youtu.be, youtube.com\n\n# set maximum video quality (on load/start)\n# 240, 360, 480, 720, 1080, 1440, 2160, 4320\n# use 0 to ignore quality\nquality=360\n\n# preferred codec: avc, hevc, vp9, av1, novp9, noav1, none\n# novp9/av1: accept any codec except vp9/av1\n# none: no codec preference\ncodec=avc\n\n# maximum video fps\n# set 0 to ignore\nfps=0\n\n# force a specific extension\nforce_extension=yes\nextension_type=mp4a\n\n# rare: to avoid mpv shutting down if nothing is found with the specified format\n# if true, and format not found, it'll use fallback_format\nfallback=yes\n# an alternative: bv+ba/b\nfallback_format=b\n\n# respect manual format changes (ie: by a quality selector script)\nrespect_manual_changes=yes\n\n# regex to detect urls\n# a simpler pattern: ^%a+://\nurl_pattern=^[%a][%a%d+.-]*://\n",
-    "zxc.20260614200117.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260614200117.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"smart_copy_paste\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260614200047.1": "######----Settings For SmartCopyPaste 3.1----######\n####------Script Settings-----####\n\n#--auto is for automatic device detection, or manually change to: windows or mac or linux\ndevice=auto\n\n#--copy command that will be used in Linux. OR write a different command\nlinux_copy=xclip -silent -selection clipboard -in\n\n#--paste command that will be used in Linux. OR write a different command\nlinux_paste=xclip -selection clipboard -o\n\n#--copy command that will be used in MAC. OR write a different command\nmac_copy=pbcopy\n\n#--paste command that will be used in MAC. OR write a different command\nmac_paste=pbpaste\n\n#--powershell is for using windows powershell to copy. OR write the copy command, e.g:clip\nwindows_copy=powershell\n\n#--powershell is for using windows powershell to paste. OR write the paste command\nwindows_paste=powershell\n\n#--change to 0 so item resumes from the exact position, or decrease the value so that it gives you a little preview before loading the resume point\nresume_offset=-0.65\n\n#--yes is for displaying osd messages when actions occur. Change to no will disable all osd messages generated from this script\nosd_messages=yes\n\n#--Time seperator that will be shown before the saved time in osd messages\ntime_seperator= 🕒\n\n#--Prefers to copy filename over filetitle. Select between: local, protocols, all, none. 'local' prefer filenames for videos that are not protocols. 'protocols' will prefer filenames for protocols only. 'all' will prefer filename over filetitle for both protocols and not protocols videos. 'none' will always use filetitle instead of filename\nprefer_filename_over_title=local\n\n#--Option to copy time with video. Select between: local, protocols, specifics, all, none. 'none' for disabled, 'all' to copy time for all videos, 'protocols' for copying time only for protocols, 'specifics' to copy time only for websites defined below, 'local' to copy time for videos that are not protocols\ncopy_time_method=all\n\n#--The time attributes which will be added when copying protocols of specific websites from this list. Additional attributes can be added following the same format.\nspecific_time_attributes=[ [\"twitter\", \"?t=\", \"\"], [\"twitch\", \"?t=\", \"s\"], [\"youtube\", \"&t=\", \"s\"] ]\n\n#--The text that will be copied before the seek time when copying a protocol video from mpv\nprotocols_time_attribute=&t=\n\n#--The text that will be copied before the seek time when copying a local video from mpv\nlocal_time_attribute=&time=\n\n#--The time attributes that can be pasted for resume, specific_time_attributes, protocols_time_attribute, local_time_attribute are automatically added\npastable_time_attributes=[\" | time=\"]\n\n#--Keybind that will be used to copy\ncopy_keybind=[\"ctrl+c\", \"ctrl+C\", \"meta+c\", \"meta+C\"]\n\n#--The priority of paste behavior when a video is running. Select between: playlist, timestamp, force.\nrunning_paste_behavior=playlist\n\n#--Keybind that will be used to paste\npaste_keybind=[\"ctrl+v\", \"ctrl+V\", \"meta+v\", \"meta+V\"]\n\n#--Copy behavior when using copy_specific_keybind. Select between: title, path, timestamp, path&timestamp.\ncopy_specific_behavior=path\n\n#--Keybind that will be used to copy based on the copy behavior specified\ncopy_specific_keybind=[\"ctrl+alt+c\", \"ctrl+alt+C\", \"meta+alt+c\", \"meta+alt+C\"]\n\n#--Paste behavior when using paste_specific_keybind. Select between: playlist, timestamp, force.\npaste_specific_behavior=playlist\n\n#--Keybind that will be used to paste based on the paste behavior specified\npaste_specific_keybind=[\"ctrl+alt+v\", \"ctrl+alt+V\", \"meta+alt+v\", \"meta+alt+V\"]\n\n#--add below (after a comma) any protocol you want paste to work with; e.g: ,'ftp://'. Or set it as \"\" by deleting all defined protocols to make paste works with any protocol.\npaste_protocols=[\"https?://\", \"magnet:\", \"rtmp:\", \"file:\"]\n\n#--add below (after a comma) any extension you want paste to work with; e.g: ,'pdf'. Or set it as \"\" by deleting all defined extension to make paste works with any extension.\npaste_extensions=[\"ac3\", \"a52\", \"eac3\", \"mlp\", \"dts\", \"dts-hd\", \"dtshd\", \"yes-hd\", \"thd\", \"yeshd\", \"thd+ac3\", \"tta\", \"pcm\", \"wav\", \"aiff\", \"aif\", \"aifc\", \"amr\", \"awb\", \"au\", \"snd\", \"lpcm\", \"yuv\", \"y4m\", \"ape\", \"wv\", \"shn\", \"m2ts\", \"m2t\", \"mts\", \"mtv\", \"ts\", \"tsv\", \"tsa\", \"tts\", \"trp\", \"adts\", \"adt\", \"mpa\", \"m1a\", \"m2a\", \"mp1\", \"mp2\", \"mp3\", \"mpeg\", \"mpg\", \"mpe\", \"mpeg2\", \"m1v\", \"m2v\", \"mp2v\", \"mpv\", \"mpv2\", \"mod\", \"tod\", \"vob\", \"vro\", \"evob\", \"evo\", \"mpeg4\", \"m4v\", \"mp4\", \"mp4v\", \"mpg4\", \"m4a\", \"aac\", \"h264\", \"avc\", \"x264\", \"264\", \"hevc\", \"h265\", \"x265\", \"265\", \"flac\", \"oga\", \"ogg\", \"opus\", \"spx\", \"ogv\", \"ogm\", \"ogx\", \"mkv\", \"mk3d\", \"mka\", \"webm\", \"weba\", \"avi\", \"vfw\", \"divx\", \"3iv\", \"xvid\", \"nut\", \"flic\", \"fli\", \"flc\", \"nsv\", \"gxf\", \"mxf\", \"wma\", \"wm\", \"wmv\", \"asf\", \"dvr-ms\", \"dvr\", \"wtv\", \"dv\", \"hdv\", \"flv\", \"f4v\", \"f4a\", \"qt\", \"mov\", \"hdmov\", \"rm\", \"rmvb\", \"ra\", \"ram\", \"3ga\", \"3ga2\", \"3gpp\", \"3gp\", \"3gp2\", \"3g2\", \"ay\", \"gbs\", \"gym\", \"hes\", \"kss\", \"nsf\", \"nsfe\", \"sap\", \"spc\", \"vgm\", \"vgz\", \"m3u\", \"m3u8\", \"pls\", \"cue\", \"ase\", \"art\", \"bmp\", \"blp\", \"cd5\", \"cit\", \"cpt\", \"cr2\", \"cut\", \"dds\", \"dib\", \"djvu\", \"egt\", \"exif\", \"gif\", \"gpl\", \"grf\", \"icns\", \"ico\", \"iff\", \"jng\", \"jpeg\", \"jpg\", \"jfif\", \"jp2\", \"jps\", \"lbm\", \"max\", \"miff\", \"mng\", \"msp\", \"nitf\", \"ota\", \"pbm\", \"pc1\", \"pc2\", \"pc3\", \"pcf\", \"pcx\", \"pdn\", \"pgm\", \"PI1\", \"PI2\", \"PI3\", \"pict\", \"pct\", \"pnm\", \"pns\", \"ppm\", \"psb\", \"psd\", \"pdd\", \"psp\", \"px\", \"pxm\", \"pxr\", \"qfx\", \"raw\", \"rle\", \"sct\", \"sgi\", \"rgb\", \"int\", \"bw\", \"tga\", \"tiff\", \"tif\", \"vtf\", \"xbm\", \"xcf\", \"xpm\", \"3dv\", \"amf\", \"ai\", \"awg\", \"cgm\", \"cdr\", \"cmx\", \"dxf\", \"e2d\", \"egt\", \"eps\", \"fs\", \"gbr\", \"odg\", \"svg\", \"stl\", \"vrml\", \"x3d\", \"sxd\", \"v2d\", \"vnd\", \"wmf\", \"emf\", \"art\", \"xar\", \"png\", \"webp\", \"jxr\", \"hdp\", \"wdp\", \"cur\", \"ecw\", \"iff\", \"lbm\", \"liff\", \"nrrd\", \"pam\", \"pcx\", \"pgf\", \"sgi\", \"rgb\", \"rgba\", \"bw\", \"int\", \"inta\", \"sid\", \"ras\", \"sun\", \"tga\", \"torrent\"]\n\n#--add below (after a comma) any extension you want paste to attempt to add as a subtitle file, e.g.:'txt'. Or set it as \"\" by deleting all defined extension to make paste attempt to add any subtitle.\npaste_subtitles=[\"aqt\", \"gsub\", \"jss\", \"sub\", \"ttxt\", \"pjs\", \"psb\", \"rt\", \"smi\", \"slt\", \"ssf\", \"srt\", \"ssa\", \"ass\", \"usf\", \"idx\", \"vtt\"]\n\n####-----Time Format Settings-----####\n##--in the first parameter, you can define from the available styles: default, hms, hms-full, timestamp, timestamp-concise \"default\" to show in HH:MM:SS.sss format. \"hms\" to show in 1h 2m 3.4s format. \"hms-full\" is the same as hms but keeps the hours and minutes persistent when they are 0. \"timestamp\" to show the total time as timestamp 123456.700 format. \"timestamp-concise\" shows the total time in 123456.7 format (shows and hides decimals depending on availability).\n##--in the second parameter, you can define whether to show milliseconds, round them or truncate them. Available options: 'truncate' to remove the milliseconds and keep the seconds. 0 to remove the milliseconds and round the seconds. 1 or above is the amount of milliseconds to display. The default value is 3 milliseconds.\n##--in the third parameter you can define the seperator between hour:minute:second. \"default\" style is automatically set to \":\", \"hms\", \"hms-full\" are automatically set to \" \". You can define your own. Some examples: [\"default\", 3, \"-\"],[\"hms-full\", 5, \".\"],[\"hms\", \"truncate\", \":\"],[\"timestamp-concise\"],[\"timestamp\", 0],[\"timestamp\", \"truncate\"],[\"timestamp\", 5]\n\ncopy_time_format=[\"timestamp-concise\"]\nosd_time_format=[\"default\", \"truncate\"]\n\n######----End of Settings----######\n",
-    "zxc.20260613012938.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260613013000.1": "local mp = require 'mp'\nlocal utils = require 'mp.utils'\nlocal assdraw = require 'mp.assdraw'\n\n-- create namespace with default values\nlocal em = {\n\n  -- customisable values ------------------------------------------------------\n\n  loop_when_navigating = false,          -- Loop when navigating through list\n  lines_to_show = 17,                    -- NOT including search line\n  pause_on_open = true,\n  resume_on_exit = \"only-if-was-paused\", -- another possible value is true\n\n  -- styles (earlyer it was a table, but required many more steps to pass def-s\n  --            here from .conf file)\n  font_size = 21,\n  --font size scales by window\n  scale_by_window = false,\n  -- cursor 'width', useful to change if you have hidpi monitor\n  cursor_x_border = 0.3,\n  line_bottom_margin = 1, -- basically space between lines\n  text_color = {\n    default = 'ffffff',\n    accent = 'd8a07b',\n    current = 'aaaaaa',\n    comment = '636363',\n  },\n  menu_x_padding = 5, -- this padding for now applies only to 'left', not x\n  menu_y_padding = 2, -- but this one applies to both - top & bottom\n\n\n  -- values that should be passed from main script ----------------------------\n\n  search_heading = 'Default search heading',\n  -- 'full' is required from main script, 'current_i' is optional\n  -- others are 'private'\n  list = {\n    full = {}, filtered = {}, current_i = nil, pointer_i = 1, show_from_to = {}\n  },\n  -- field to compare with when searching for 'current value' by 'current_i'\n  index_field = 'index',\n  -- fields to use when searching for string match / any other custom searching\n  -- if value has 0 length, then search list item itself\n  filter_by_fields = {},\n\n\n  -- 'private' values that are not supposed to be changed from the outside ----\n\n  is_active = false,\n  -- https://mpv.io/manual/master/#lua-scripting-mp-create-osd-overlay(format)\n  ass = mp.create_osd_overlay(\"ass-events\"),\n  was_paused = false, -- flag that indicates that vid was paused by this script\n\n  line = '',\n  -- if there was no cursor it wouldn't have been needed, but for now we need\n  -- variable below only to compare it with 'line' and see if we need to filter\n  prev_line = '',\n  cursor = 1,\n  history = {},\n  history_pos = 1,\n  key_bindings = {},\n  insert_mode = false,\n\n  -- used only in 'update' func to get error text msgs\n  error_codes = {\n    no_match = 'Match required',\n    no_submit_provided = 'No submit function provided'\n  }\n}\n\n-- PRIVATE METHODS ------------------------------------------------------------\n\nlocal ime_active = mp.get_property_native(\"input-ime\")\n\n-- declare constructor function\nfunction em:new(o)\n  o = o or {}\n  setmetatable(o, self)\n  self.__index = self\n\n  -- some options might be customised by user in .conf file and read as strings\n  -- in that case parse those\n  if type(o.filter_by_fields) == 'string' then\n    o.filter_by_fields = utils.parse_json(o.filter_by_fields)\n  end\n\n  if type(o.text_color) == 'string' then\n    o.text_color = utils.parse_json(o.text_color)\n  end\n\n  return o\nend\n\n-- this func is just a getter of a current list depending on search line\nfunction em:current()\n  return self.line == '' and self.list.full or self.list.filtered\nend\n\n-- REVIEW: how to get rid of this wrapper and handle filter func sideeffects\n-- in a more elegant way?\nfunction em:filter_wrapper()\n  -- handles sideeffect that are needed to be run on filtering list\n  -- cuz the filter func may be redefined in main script and therefore needs\n  -- to be straight forward - only doing filtering and returning the table\n\n  -- passing current query just in case, so ppl can use it in their custom funcs\n  self.list.filtered = self:filter(self.line)\n\n  self.prev_line = self.line\n  self.list.pointer_i = 1\n  self:set_from_to(true)\nend\n\nfunction em:set_from_to(reset_flag)\n  -- additional variables just for shorter var name\n  local i = self.list.pointer_i\n  local to_show = self.lines_to_show\n  local total = #self:current()\n\n  if reset_flag or to_show >= total then\n    self.list.show_from_to = { 1, math.min(to_show, total) }\n    return\n  end\n\n  -- If menu is opened with something already selected we want this 'selected'\n  -- to be displayed close to the middle of the menu. That's why 'show_from_to'\n  -- is not initially set, so we can know - if show_from_to length is 0 - it is\n  -- first call of this func in cur. init\n  if #self.list.show_from_to == 0 then\n    -- set show_from_to so chosen item will be displayed close to middle\n    local half_list = math.ceil(to_show / 2)\n    if i < half_list then\n      self.list.show_from_to = { 1, to_show }\n    elseif total - i < half_list then\n      self.list.show_from_to = { total - to_show + 1, total }\n    else\n      self.list.show_from_to = { i - half_list + 1, i - half_list + to_show }\n    end\n  else\n    table.unpack = table.unpack or unpack -- 5.1 compatibility\n    local first, last = table.unpack(self.list.show_from_to)\n\n    -- handle cursor moving towards start / end bondary\n    if first ~= 1 and i - first < 2 then\n      self.list.show_from_to = { first - 1, last - 1 }\n    end\n    if last ~= total and last - i < 2 then\n      self.list.show_from_to = { first + 1, last + 1 }\n    end\n\n    -- handle index jumps from beginning to end and backwards\n    if i > last then\n      self.list.show_from_to = { i - to_show + 1, i }\n    end\n    if i < first then self.list.show_from_to = { 1, to_show } end\n  end\nend\n\nfunction em:change_selected_index(num)\n  self.list.pointer_i = self.list.pointer_i + num\n  if self.loop_when_navigating then\n    if self.list.pointer_i < 1 then\n      self.list.pointer_i = #self:current()\n    elseif self.list.pointer_i > #self:current() then\n      self.list.pointer_i = 1\n    end\n  else\n    if self.list.pointer_i < 1 then\n      self.list.pointer_i = 1\n    elseif self.list.pointer_i > #self:current() then\n      self.list.pointer_i = #self:current()\n    end\n  end\n  self:set_from_to()\n  self:update()\nend\n\n-- Render the REPL and console as an ASS OSD\nfunction em:update(err_code)\n  -- ASS tags documentation here - https://aegi.vmoe.info/docs/3.0/ASS_Tags/\n\n  -- do not bother if function was called to close the menu..\n  if not self.is_active then\n    em.ass:remove()\n    return\n  end\n\n  local line_height = self.font_size + self.line_bottom_margin\n  local _, h, aspect = mp.get_osd_size()\n  local wh = self.scale_by_window and 720 or h\n  local ww = wh * aspect\n\n  -- '+ 1' below is a search string\n  local menu_y_pos =\n      wh - (line_height * (self.lines_to_show + 1) + self.menu_y_padding * 2)\n\n  -- didn't find better place to handle filtered list update\n  if self.line ~= self.prev_line then self:filter_wrapper() end\n\n  local function get_background()\n    local a = self:ass_new_wrapper()\n    a:append('{\\\\1c&H1c1c1c\\\\1a&H19}') -- background color & opacity\n    a:pos(0, 0)\n    a:draw_start()\n    a:rect_cw(0, menu_y_pos, ww, wh)\n    a:draw_stop()\n    return a.text\n  end\n\n  local function get_search_header()\n    local a = self:ass_new_wrapper()\n\n    a:pos(self.menu_x_padding, menu_y_pos + self.menu_y_padding)\n\n    local search_prefix = table.concat({\n      self:get_font_color('accent'),\n      (#self:current() ~= 0 and self.list.pointer_i or '!'),\n      '/', #self:current(), '\\\\h\\\\h', self.search_heading, ':\\\\h'\n    });\n\n    a:append(search_prefix)\n    -- reset font color after search prefix\n    a:append(self:get_font_color 'default')\n\n    -- Create the cursor glyph as an ASS drawing. ASS will draw the cursor\n    -- inline with the surrounding text, but it sets the advance to the width\n    -- of the drawing. So the cursor doesn't affect layout too much, make it as\n    -- thin as possible and make it appear to be 1px wide by giving it 0.5px\n    -- horizontal borders.\n    local cheight = self.font_size * 8\n    -- TODO: maybe do it using draw_rect from ass?\n    local cglyph = '{\\\\r' ..                                   -- styles reset\n        '\\\\1c&Hffffff&\\\\3c&Hffffff' ..                         -- font color and border color\n        '\\\\xbord' .. self.cursor_x_border .. '\\\\p4\\\\pbo24}' .. -- xborder, scale x8 and baseline offset\n        'm 0 0 l 0 ' .. cheight ..                             -- drawing just a line\n        '{\\\\p0\\\\r}'                                            -- finish drawing and reset styles\n    local before_cur = self:ass_escape(self.line:sub(1, self.cursor - 1))\n    local after_cur = self:ass_escape(self.line:sub(self.cursor))\n\n    a:append(table.concat({\n      before_cur, cglyph, self:reset_styles(),\n      self:get_font_color('default'), after_cur,\n      (err_code and '\\\\h' .. self.error_codes[err_code] or \"\")\n    }))\n\n    return a.text\n\n    -- NOTE: perhaps this commented code will some day help me in coding cursor\n    -- like in M-x emacs menu:\n    -- Redraw the cursor with the REPL text invisible. This will make the\n    -- cursor appear in front of the text.\n    -- ass:new_event()\n    -- ass:an(1)\n    -- ass:append(style .. '{\\\\alpha&HFF&}> ' .. before_cur)\n    -- ass:append(cglyph)\n    -- ass:append(style .. '{\\\\alpha&HFF&}' .. after_cur)\n  end\n\n  local function get_list()\n    local a = assdraw.ass_new()\n\n    local function apply_highlighting(y)\n      a:new_event()\n      a:append(self:reset_styles())\n      a:append('{\\\\1c&Hffffff\\\\1a&HE6}') -- background color & opacity\n      a:pos(0, 0)\n      a:draw_start()\n      a:rect_cw(0, y, ww, y + self.font_size)\n      a:draw_stop()\n    end\n\n    -- REVIEW: maybe make another function 'get_line_str' and move there\n    -- everything from this for loop?\n    -- REVIEW: how to use something like table.unpack below?\n    for i = self.list.show_from_to[1], self.list.show_from_to[2] do\n      local value = assert(self:current()[i], 'no value with index ' .. i)\n      local y_offset = menu_y_pos + self.menu_y_padding +\n          (line_height * (i - self.list.show_from_to[1] + 1))\n\n      if i == self.list.pointer_i then apply_highlighting(y_offset) end\n\n      a:new_event()\n      a:append(self:reset_styles())\n      a:pos(self.menu_x_padding, y_offset)\n      a:append(self:get_line(i, value))\n    end\n\n    return a.text\n  end\n\n  em.ass.res_x = ww\n  em.ass.res_y = wh\n  em.ass.data = table.concat({\n    get_background(),\n    get_search_header(),\n    get_list()\n  }, \"\\n\")\n\n  em.ass:update()\nend\n\n-- params:\n--  - data : {list: {}, [current_i] : num}\nfunction em:init(data)\n  self.list.full = data.list or {}\n  self.list.current_i = data.current_i or nil\n  self.list.pointer_i = data.current_i or 1\n  self:set_active(true)\nend\n\nfunction em:exit()\n  self:undefine_key_bindings()\n  collectgarbage()\nend\n\n-- TODO: write some idle func like this\n-- function idle()\n--     if pending_selection then\n--         gallery:set_selection(pending_selection)\n--         pending_selection = nil\n--     end\n--     if ass_changed or geometry_changed then\n--         local ww, wh = mp.get_osd_size()\n--         if geometry_changed then\n--             geometry_changed = false\n--             compute_geometry(ww, wh)\n--         end\n--         if ass_changed then\n--             ass_changed = false\n--             mp.set_osd_ass(ww, wh, ass)\n--         end\n--     end\n-- end\n-- ...\n-- and handle it as follows\n-- init():\n-- mp.register_idle(idle)\n-- idle()\n-- exit():\n-- mp.unregister_idle(idle)\n-- idle()\n-- And in these observers he is setting a flag, that's being checked in func above\n-- mp.observe_property(\"osd-width\", \"native\", mark_geometry_stale)\n-- mp.observe_property(\"osd-height\", \"native\", mark_geometry_stale)\n\n-- PRIVATE METHODS END --------------------------------------------------------\n\n-- PUBLIC METHODS -------------------------------------------------------------\n\nfunction em:filter()\n  -- default filter func, might be redefined in main script\n  local result = {}\n\n  local function get_full_search_str(v)\n    local str = ''\n    for _, key in ipairs(self.filter_by_fields) do str = str .. (v[key] or '') end\n    return str\n  end\n\n  for _, v in ipairs(self.list.full) do\n    -- if filter_by_fields has 0 length, then search list item itself\n    if #self.filter_by_fields == 0 then\n      if self:search_method(v) then table.insert(result, v) end\n    else\n      -- NOTE: we might use search_method on fiels separately like this:\n      -- for _,key in ipairs(self.filter_by_fields) do\n      --   if self:search_method(v[key]) then table.insert(result, v) end\n      -- end\n      -- But since im planning to implement fuzzy search in future i need full\n      -- search string here\n      if self:search_method(get_full_search_str(v)) then\n        table.insert(result, v)\n      end\n    end\n  end\n  return result\nend\n\n-- TODO: implement fuzzy search and maybe match highlights\nfunction em:search_method(str)\n  -- also might be redefined by main script\n\n  -- convert to string just to make sure..\n  return tostring(str):lower():find(self.line:lower(), 1, true)\nend\n\n-- this module requires submit function to be defined in main script\nfunction em:submit() self:update('no_submit_provided') end\n\nfunction em:update_list(list)\n  -- for now this func doesn't handle cases when we have 'current_i' to update\n  -- it\n  self.list.full = list\n  if self.line ~= self.prev_line then self:filter_wrapper() end\nend\n\n-- PUBLIC METHODS END ---------------------------------------------------------\n\n-- HELPER METHODS -------------------------------------------------------------\n\nfunction em:get_line(_, v) -- [i]ndex, [v]alue\n  -- this func might be redefined in main script to get a custom-formatted line\n  -- default implementation of this func supposes that value.content field is a\n  -- String\n  local a = assdraw.ass_new()\n  local style = (self.list.current_i == v[self.index_field])\n      and 'current' or 'default'\n\n  a:append(self:reset_styles())\n  a:append(self:get_font_color(style))\n  -- content as default field, which is holding string\n  -- no point in moving it to main object since content itself is being\n  -- composed in THIS function, that might (and most likely, should) be\n  -- redefined in main script\n  a:append(v.content or 'Something is off in `get_line` func')\n  return a.text\nend\n\n-- REVIEW: for now i don't see normal way of mergin this func with below one\n-- but it's being used only once\nfunction em:reset_styles()\n  local a = assdraw.ass_new()\n  -- alignment top left, no word wrapping, border 0, shadow 0\n  a:append('{\\\\an7\\\\q2\\\\bord0\\\\shad0}')\n  a:append('{\\\\fs' .. self.font_size .. '}')\n  return a.text\nend\n\n-- function to get rid of some copypaste\nfunction em:ass_new_wrapper()\n  local a = assdraw.ass_new()\n  a:new_event()\n  a:append(self:reset_styles())\n  return a\nend\n\nfunction em:get_font_color(style)\n  return '{\\\\1c&H' .. self.text_color[style] .. '}'\nend\n\n-- HELPER METHODS END ---------------------------------------------------------\n\n\n--[[\n  The below code is a modified implementation of text input from mpv's console.lua:\n  https://github.com/mpv-player/mpv/blob/87c9eefb2928252497f6141e847b74ad1158bc61/player/lua/console.lua\n\n  I was too lazy to list all modifications i've done to the script, but if u\n  rly need to see those - do diff with the original code\n]]\n   --\n\n-------------------------------------------------------------------------------\n--                          START ORIGINAL MPV CODE                          --\n-------------------------------------------------------------------------------\n\n-- Copyright (C) 2019 the mpv developers\n--\n-- Permission to use, copy, modify, and/or distribute this software for any\n-- purpose with or without fee is hereby granted, provided that the above\n-- copyright notice and this permission notice appear in all copies.\n--\n-- THE SOFTWARE IS PROVIDED \"AS IS\" AND THE AUTHOR DISCLAIMS ALL WARRANTIES\n-- WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF\n-- MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY\n-- SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES\n-- WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION\n-- OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN\n-- CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.\n\nfunction em:detect_platform()\n  local o = {}\n  -- Kind of a dumb way of detecting the platform but whatever\n  if mp.get_property_native('options/vo-mmcss-profile', o) ~= o then\n    return 'windows'\n  elseif mp.get_property_native('options/macos-force-dedicated-gpu', o) ~= o then\n    return 'macos'\n  elseif os.getenv('WAYLAND_DISPLAY') then\n    return 'wayland'\n  end\n  return 'x11'\nend\n\n-- Escape a string for verbatim display on the OSD\nfunction em:ass_escape(str)\n  -- There is no escape for '\\' in ASS (I think?) but '\\' is used verbatim if\n  -- it isn't followed by a recognised character, so add a zero-width\n  -- non-breaking space\n  str = str:gsub('\\\\', '\\\\\\239\\187\\191')\n  str = str:gsub('{', '\\\\{')\n  str = str:gsub('}', '\\\\}')\n  -- Precede newlines with a ZWNBSP to prevent ASS's weird collapsing of\n  -- consecutive newlines\n  str = str:gsub('\\n', '\\239\\187\\191\\\\N')\n  -- Turn leading spaces into hard spaces to prevent ASS from stripping them\n  str = str:gsub('\\\\N ', '\\\\N\\\\h')\n  str = str:gsub('^ ', '\\\\h')\n  return str\nend\n\n-- Set the REPL visibility (\"enable\", Esc)\nfunction em:set_active(active)\n  if active == self.is_active then return end\n  if active then\n    if ime_active == false then\n      mp.set_property_bool(\"input-ime\", true)\n    end\n    self.is_active = true\n    self.insert_mode = false\n    mp.enable_messages('terminal-default')\n    self:define_key_bindings()\n\n    -- set flag 'was_paused' only if vid wasn't paused before EM init\n    if self.pause_on_open and not mp.get_property_bool(\"pause\", false) then\n      mp.set_property_bool(\"pause\", true)\n      self.was_paused = true\n    end\n\n    self:set_from_to()\n    self:update()\n  else\n    -- no need to call 'update' in this block cuz 'clear' method is calling it\n    if ime_active == false then\n      mp.set_property_bool(\"input-ime\", false)\n    end\n    self.is_active = false\n    self:undefine_key_bindings()\n\n    if self.resume_on_exit == true or\n        (self.resume_on_exit == \"only-if-was-paused\" and self.was_paused) then\n      mp.set_property_bool(\"pause\", false)\n    end\n\n    self:clear()\n    collectgarbage()\n  end\nend\n\n-- Naive helper function to find the next UTF-8 character in 'str' after 'pos'\n-- by skipping continuation bytes. Assumes 'str' contains valid UTF-8.\nfunction em:next_utf8(str, pos)\n  if pos > str:len() then return pos end\n  repeat\n    pos = pos + 1\n  until pos > str:len() or str:byte(pos) < 0x80 or str:byte(pos) > 0xbf\n  return pos\nend\n\n-- As above, but finds the previous UTF-8 charcter in 'str' before 'pos'\nfunction em:prev_utf8(str, pos)\n  if pos <= 1 then return pos end\n  repeat\n    pos = pos - 1\n  until pos <= 1 or str:byte(pos) < 0x80 or str:byte(pos) > 0xbf\n  return pos\nend\n\n-- Insert a character at the current cursor position (any_unicode)\nfunction em:handle_char_input(c)\n  if self.insert_mode then\n    self.line = self.line:sub(1, self.cursor - 1) .. c .. self.line:sub(self:next_utf8(self.line, self.cursor))\n  else\n    self.line = self.line:sub(1, self.cursor - 1) .. c .. self.line:sub(self.cursor)\n  end\n  self.cursor = self.cursor + #c\n  self:update()\nend\n\n-- Remove the character behind the cursor (Backspace)\nfunction em:handle_backspace()\n  if self.cursor <= 1 then return end\n  local prev = self:prev_utf8(self.line, self.cursor)\n  self.line = self.line:sub(1, prev - 1) .. self.line:sub(self.cursor)\n  self.cursor = prev\n  self:update()\nend\n\n-- Remove the character in front of the cursor (Del)\nfunction em:handle_del()\n  if self.cursor > self.line:len() then return end\n  self.line = self.line:sub(1, self.cursor - 1) .. self.line:sub(self:next_utf8(self.line, self.cursor))\n  self:update()\nend\n\n-- Toggle insert mode (Ins)\nfunction em:handle_ins()\n  self.insert_mode = not self.insert_mode\nend\n\n-- Move the cursor to the next character (Right)\nfunction em:next_char()\n  self.cursor = self:next_utf8(self.line, self.cursor)\n  self:update()\nend\n\n-- Move the cursor to the previous character (Left)\nfunction em:prev_char()\n  self.cursor = self:prev_utf8(self.line, self.cursor)\n  self:update()\nend\n\n-- Clear the current line (Ctrl+C)\nfunction em:clear()\n  self.line = ''\n  self.prev_line = ''\n\n  self.list.current_i = nil\n  self.list.pointer_i = 1\n  self.list.filtered = {}\n  self.list.show_from_to = {}\n\n  self.was_paused = false\n\n  self.cursor = 1\n  self.insert_mode = false\n  self.history_pos = #self.history + 1\n\n  self:update()\nend\n\n-- Run the current command and clear the line (Enter)\nfunction em:handle_enter()\n  if #self:current() == 0 then\n    self:update('no_match')\n    return\n  end\n\n  if self.history[#self.history] ~= self.line then\n    self.history[#self.history + 1] = self.line\n  end\n\n  self:submit(self:current()[self.list.pointer_i])\n  self:set_active(false)\nend\n\n-- Go to the specified position in the command history\nfunction em:go_history(new_pos)\n  local old_pos = self.history_pos\n  self.history_pos = new_pos\n\n  -- Restrict the position to a legal value\n  if self.history_pos > #self.history + 1 then\n    self.history_pos = #self.history + 1\n  elseif self.history_pos < 1 then\n    self.history_pos = 1\n  end\n\n  -- Do nothing if the history position didn't actually change\n  if self.history_pos == old_pos then\n    return\n  end\n\n  -- If the user was editing a non-history line, save it as the last history\n  -- entry. This makes it much less frustrating to accidentally hit Up/Down\n  -- while editing a line.\n  if old_pos == #self.history + 1 and self.line ~= '' and self.history[#self.history] ~= self.line then\n    self.history[#self.history + 1] = self.line\n  end\n\n  -- Now show the history line (or a blank line for #history + 1)\n  if self.history_pos <= #self.history then\n    self.line = self.history[self.history_pos]\n  else\n    self.line = ''\n  end\n  self.cursor = self.line:len() + 1\n  self.insert_mode = false\n  self:update()\nend\n\n-- Go to the specified relative position in the command history (Up, Down)\nfunction em:move_history(amount)\n  self:go_history(self.history_pos + amount)\nend\n\n-- Go to the first command in the command history (PgUp)\nfunction em:handle_pgup()\n  -- Determine the number of items to move up (half a page)\n  local half_page = math.ceil(self.lines_to_show / 2)\n\n  -- Move the history position up by half a page\n  self:change_selected_index(-half_page)\nend\n\n-- Stop browsing history and start editing a blank line (PgDown)\nfunction em:handle_pgdown()\n  -- Determine the number of items to move down (half a page)\n  local half_page = math.ceil(self.lines_to_show / 2)\n\n  -- Move the history position down by half a page\n  self:change_selected_index(half_page)\nend\n\n-- Move to the start of the current word, or if already at the start, the start\n-- of the previous word. (Ctrl+Left)\nfunction em:prev_word()\n  -- This is basically the same as next_word() but backwards, so reverse the\n  -- string in order to do a \"backwards\" find. This wouldn't be as annoying\n  -- to do if Lua didn't insist on 1-based indexing.\n  self.cursor = self.line:len() - select(2, self.line:reverse():find('%s*[^%s]*', self.line:len() - self.cursor + 2)) + 1\n  self:update()\nend\n\n-- Move to the end of the current word, or if already at the end, the end of\n-- the next word. (Ctrl+Right)\nfunction em:next_word()\n  self.cursor = select(2, self.line:find('%s*[^%s]*', self.cursor)) + 1\n  self:update()\nend\n\n-- Move the cursor to the beginning of the line (HOME)\nfunction em:go_home()\n  self.cursor = 1\n  self:update()\nend\n\n-- Move the cursor to the end of the line (END)\nfunction em:go_end()\n  self.cursor = self.line:len() + 1\n  self:update()\nend\n\n-- Delete from the cursor to the beginning of the word (Ctrl+Backspace)\nfunction em:del_word()\n  local before_cur = self.line:sub(1, self.cursor - 1)\n  local after_cur = self.line:sub(self.cursor)\n\n  before_cur = before_cur:gsub('[^%s]+%s*$', '', 1)\n  self.line = before_cur .. after_cur\n  self.cursor = before_cur:len() + 1\n  self:update()\nend\n\n-- Delete from the cursor to the end of the word (Ctrl+Del)\nfunction em:del_next_word()\n  if self.cursor > self.line:len() then return end\n\n  local before_cur = self.line:sub(1, self.cursor - 1)\n  local after_cur = self.line:sub(self.cursor)\n\n  after_cur = after_cur:gsub('^%s*[^%s]+', '', 1)\n  self.line = before_cur .. after_cur\n  self:update()\nend\n\n-- Delete from the cursor to the end of the line (Ctrl+K)\nfunction em:del_to_eol()\n  self.line = self.line:sub(1, self.cursor - 1)\n  self:update()\nend\n\n-- Delete from the cursor back to the start of the line (Ctrl+U)\nfunction em:del_to_start()\n  self.line = self.line:sub(self.cursor)\n  self.cursor = 1\n  self:update()\nend\n\n-- Returns a string of UTF-8 text from the clipboard (or the primary selection)\nfunction em:get_clipboard(clip)\n  -- Pick a better default font for Windows and macOS\n  local platform = self:detect_platform()\n\n  if platform == 'x11' then\n    local res = utils.subprocess({\n      args = { 'xclip', '-selection', clip and 'clipboard' or 'primary', '-out' },\n      playback_only = false,\n    })\n    if not res.error then\n      return res.stdout\n    end\n  elseif platform == 'wayland' then\n    local res = utils.subprocess({\n      args = { 'wl-paste', clip and '-n' or '-np' },\n      playback_only = false,\n    })\n    if not res.error then\n      return res.stdout\n    end\n  elseif platform == 'windows' then\n    local res = utils.subprocess({\n      args = { 'powershell', '-NoProfile', '-Command', [[& {\n                Trap {\n                    Write-Error -ErrorRecord $_\n                    Exit 1\n                }\n\n                $clip = \"\"\n                if (Get-Command \"Get-Clipboard\" -errorAction SilentlyContinue) {\n                    $clip = Get-Clipboard -Raw -Format Text -TextFormatType UnicodeText\n                } else {\n                    Add-Type -AssemblyName PresentationCore\n                    $clip = [Windows.Clipboard]::GetText()\n                }\n\n                $clip = $clip -Replace \"`r\",\"\"\n                $u8clip = [System.Text.Encoding]::UTF8.GetBytes($clip)\n                [Console]::OpenStandardOutput().Write($u8clip, 0, $u8clip.Length)\n            }]] },\n      playback_only = false,\n    })\n    if not res.error then\n      return res.stdout\n    end\n  elseif platform == 'macos' then\n    local res = utils.subprocess({\n      args = { 'pbpaste' },\n      playback_only = false,\n    })\n    if not res.error then\n      return res.stdout\n    end\n  end\n  return ''\nend\n\n-- Paste text from the window-system's clipboard. 'clip' determines whether the\n-- clipboard or the primary selection buffer is used (on X11 and Wayland only.)\nfunction em:paste(clip)\n  local text = self:get_clipboard(clip)\n  local before_cur = self.line:sub(1, self.cursor - 1)\n  local after_cur = self.line:sub(self.cursor)\n  self.line = before_cur .. text .. after_cur\n  self.cursor = self.cursor + text:len()\n  self:update()\nend\n\n-- List of input bindings. This is a weird mashup between common GUI text-input\n-- bindings and readline bindings.\nfunction em:get_bindings()\n  local bindings = {\n    { 'ctrl+[',      function() self:set_active(false) end },\n    { 'ctrl+g',      function() self:set_active(false) end },\n    { 'esc',         function() self:set_active(false) end },\n    { 'enter',       function() self:handle_enter() end },\n    { 'kp_enter',    function() self:handle_enter() end },\n    { 'ctrl+m',      function() self:handle_enter() end },\n    { 'bs',          function() self:handle_backspace() end },\n    { 'shift+bs',    function() self:handle_backspace() end },\n    { 'ctrl+h',      function() self:handle_backspace() end },\n    { 'del',         function() self:handle_del() end },\n    { 'shift+del',   function() self:handle_del() end },\n    { 'ins',         function() self:handle_ins() end },\n    { 'shift+ins',   function() self:paste(false) end },\n    { 'mbtn_mid',    function() self:paste(false) end },\n    { 'left',        function() self:prev_char() end },\n    { 'ctrl+b',      function() self:prev_char() end },\n    { 'right',       function() self:next_char() end },\n    { 'ctrl+f',      function() self:next_char() end },\n    { 'ctrl+k',      function() self:change_selected_index(-1) end },\n    { 'ctrl+p',      function() self:change_selected_index(-1) end },\n    { 'ctrl+j',      function() self:change_selected_index(1) end },\n    { 'ctrl+n',      function() self:change_selected_index(1) end },\n    { 'up',          function() self:move_history(-1) end },\n    { 'alt+p',       function() self:move_history(-1) end },\n    { 'wheel_up',    function() self:move_history(-1) end },\n    { 'down',        function() self:move_history(1) end },\n    { 'alt+n',       function() self:move_history(1) end },\n    { 'wheel_down',  function() self:move_history(1) end },\n    { 'wheel_left',  function() end },\n    { 'wheel_right', function() end },\n    { 'ctrl+left',   function() self:prev_word() end },\n    { 'alt+b',       function() self:prev_word() end },\n    { 'ctrl+right',  function() self:next_word() end },\n    { 'alt+f',       function() self:next_word() end },\n    { 'ctrl+a',      function() self:go_home() end },\n    { 'home',        function() self:go_home() end },\n    { 'ctrl+e',      function() self:go_end() end },\n    { 'end',         function() self:go_end() end },\n    { 'ctrl+shift+f',function() self:handle_pgdown() end },\n    { 'ctrl+shift+b',function() self:handle_pgup() end },\n    { 'pgdwn',       function() self:handle_pgdown() end },\n    { 'pgup',        function() self:handle_pgup() end },\n    { 'ctrl+c',      function() self:clear() end },\n    { 'ctrl+d',      function() self:handle_del() end },\n    { 'ctrl+u',      function() self:del_to_start() end },\n    { 'ctrl+v',      function() self:paste(true) end },\n    { 'meta+v',      function() self:paste(true) end },\n    { 'ctrl+bs',     function() self:del_word() end },\n    { 'ctrl+w',      function() self:del_word() end },\n    { 'ctrl+del',    function() self:del_next_word() end },\n    { 'alt+d',       function() self:del_next_word() end },\n    { 'kp_dec',      function() self:handle_char_input('.') end },\n  }\n\n  for i = 0, 9 do\n    bindings[#bindings + 1] =\n    { 'kp' .. i, function() self:handle_char_input('' .. i) end }\n  end\n\n  return bindings\nend\n\nfunction em:text_input(info)\n  if info.key_text and (info.event == \"press\" or info.event == \"down\"\n        or info.event == \"repeat\")\n  then\n    self:handle_char_input(info.key_text)\n  end\nend\n\nfunction em:define_key_bindings()\n  if #self.key_bindings > 0 then\n    return\n  end\n  for _, bind in ipairs(self:get_bindings()) do\n    -- Generate arbitrary name for removing the bindings later.\n    local name = \"search_\" .. (#self.key_bindings + 1)\n    self.key_bindings[#self.key_bindings + 1] = name\n    mp.add_forced_key_binding(bind[1], name, bind[2], { repeatable = true })\n  end\n  mp.add_forced_key_binding(\"any_unicode\", \"search_input\", function(...)\n    self:text_input(...)\n  end, { repeatable = true, complex = true })\n  self.key_bindings[#self.key_bindings + 1] = \"search_input\"\nend\n\nfunction em:undefine_key_bindings()\n  for _, name in ipairs(self.key_bindings) do\n    mp.remove_key_binding(name)\n  end\n  self.key_bindings = {}\nend\n\n-------------------------------------------------------------------------------\n--                           END ORIGINAL MPV CODE                           --\n-------------------------------------------------------------------------------\n\nreturn em\n",
-    "zxc.20260613021402.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260613021406.1": "local mp = require 'mp'\nlocal utils = require 'mp.utils'\nlocal assdraw = require 'mp.assdraw'\n\nlocal opts = {\n  leader_key = ',',\n  pause_on_open = false,\n  resume_on_exit = \"only-if-was-paused\", -- another possible value is true\n  hide_timeout = 2,                      -- timeout in seconds to hide menu\n  which_key_show_delay = 0.1,            -- timeout in seconds to show which-key menu\n  strip_cmd_at = 28,                     -- max symbols for cmd names in which-key menu\n\n  -- styles\n  font_size = 21,\n  menu_x_padding = 3, -- this padding for now applies only to 'left', not x\n  which_key_menu_y_padding = 3,\n}\n\n-- create namespace\nlocal leader = {\n  is_active = false,\n  -- https://mpv.io/manual/master/#lua-scripting-mp-create-osd-overlay(format)\n  ass = mp.create_osd_overlay(\"ass-events\"),\n  was_paused = false, -- flag that indicates that vid was paused by this script\n\n  leader_bindings = {},\n  prefixes = {},         -- needed for some display info only\n  matching_commands = {},\n  which_key_timer = nil, -- timer obj, that opens which-key\n  close_timer = nil,     -- timer obj, that closes menu\n\n  text_color = {\n    key = 'a9dfa1',\n    command = 'fcddb5',\n    prefix = 'd8a07b',\n    comment = '636363',\n  },\n\n  key_sequence = '',\n  key_bindings = {},\n}\n\nfunction leader:init(options)\n  local _opts = opts\n  _opts.__index = _opts\n  opts = options\n  setmetatable(opts, _opts)\n\n  -- keybind to launch menu\n  mp.add_forced_key_binding(opts.leader_key, \"leader\", function()\n    self:start_key_sequence()\n  end)\nend\n\n-- REVIEW: remove this func, ain't needed (since im copying emacs behavior)\nfunction leader:exit()\n  self:undefine_key_bindings()\n  self.close_timer:kill()\n  collectgarbage()\nend\n\nfunction leader:start_key_sequence()\n  -- remove close timer in case user started another sequence before status\n  -- line disappeared\n  if self.close_timer then self.close_timer:kill() end\n\n  self:set_active(true)\nend\n\n-- basically a getter for 'matching_commands', but also returns prefixes\nfunction leader:get_matching_commands()\n  local result = {}\n\n  -- include all prefixes on n-th level that match current key sequence\n  for prefix, name in pairs(self.prefixes) do\n    if #prefix == #self.key_sequence + 1\n        and prefix:sub(1, #self.key_sequence):find(self.key_sequence, 1, true)\n    then\n      table.insert(result,\n        { key = prefix, name = 'prefix', cmd = name.prefix_name })\n    end\n  end\n\n  -- in case user pressed jsut leader key - compose 'matching_commands' from\n  -- self.leader_bidnings with key.length == 1\n  if #self.key_sequence == 0 then\n    -- include all commands that consist of only 1 key\n    for i, v in ipairs(self.leader_bindings) do\n      if #v.key == 1 then\n        table.insert(result, v)\n      end\n    end\n  else -- in case there is at least 1 key pressed after leadre handle prefixes\n    -- include all commands that consist of only 1 key\n    for i, v in ipairs(self.matching_commands) do\n      if #v.key == #self.key_sequence + 1 then\n        table.insert(result, v)\n      end\n    end\n  end\n\n  -- aplhabetical sort\n  table.sort(result, function(i, j) return i.key < j.key end)\n\n  return result\nend\n\nfunction leader:update_matching_commands(kbd)\n  self.matching_commands = {}\n  for _, v in ipairs(self.leader_bindings) do\n    -- exact match of the beginning of the string\n    if v.key:sub(1, #kbd):find(kbd, 1, true) then\n      table.insert(self.matching_commands, v)\n    end\n  end\nend\n\nfunction leader:set_leader_bindings(bindings)\n  local function get_full_cmd_name(cmd)\n    -- for now i decided to not implement 'guess' logic on which command user\n    -- wants to fire, cuz it will make things less obvious and i'd rather have\n    -- user explicitly state which functions he wants to call rather than guess\n    -- it. I'm only applying this to script-bindings, which full names i find\n    -- by 'name' stated when they were defined.\n\n    local b_list = mp.get_property_native(\"input-bindings\")\n\n    -- if there is no spaces, look for full name if present\n    -- supposing there's gonna be only one match\n    for _, binding in ipairs(b_list) do\n      -- if it's a script-binding - find and return it's full name\n      if binding.cmd:find(cmd, 1, true) then return binding.cmd end\n    end\n  end\n\n  local function set(_bindings, prefix_sequence)\n    local key, name, comment, innerBindings\n\n    prefix_sequence = prefix_sequence or ''\n\n    for _, binding in ipairs(_bindings) do\n      table.unpack = table.unpack or unpack -- 5.1 compatibility\n      key, name, comment, innerBindings = table.unpack(binding)\n\n      if name == 'prefix' then\n        -- fill prefixes object with prefixes names\n        self.prefixes[prefix_sequence .. key] = { prefix_name = comment }\n        -- recursively call this function to set inner bindings, do not return\n        set(innerBindings, prefix_sequence .. key)\n      else\n        local local_name\n\n        -- if command contains space, most likely it is not script-binding, but\n        -- this thing still needs a REVIEW, cuz i think it is not reliable\n        -- enough\n        if not name:match('.*%s.*') then\n          name = get_full_cmd_name(name) or name\n        else\n          -- gsub for stripping several spaces, since in input.conf those r common\n          name = name:gsub('%s+', ' ')\n        end\n\n        table.insert(self.leader_bindings, {\n          key = prefix_sequence .. key,\n          cmd = name,\n          comment = comment\n        })\n      end\n    end\n  end\n\n  set(bindings)\n\n  self:provide_leader_bindings()\nend\n\n-- send leader bindings to M-x\nfunction leader:provide_leader_bindings()\n  -- Maybe this func might be extended / made public in the future so people can\n  -- redefine it and instead there's gonna be a wrapper of it in this script\n  local bindings_json = utils.format_json(self.leader_bindings)\n  print('provided')\n  mp.commandv(\"script-message-to\", \"M_x\", \"merge-leader-bindings\",\n    bindings_json, opts.leader_key)\nend\n\n-- opts: {is_prefix = Bool, is_undefined_kbd = Bool}\nfunction leader:update(params)\n  -- ASS tags documentation here - https://aegi.vmoe.info/docs/3.0/ASS_Tags/\n\n  params = params or {}\n\n  -- do not bother if function was called to close the menu..\n  if not self.is_active then\n    leader.ass:remove()\n    return\n  end\n\n  local ww, wh = mp.get_osd_size() -- window width & height\n  local menu_y_pos = wh - opts.font_size\n\n  -- matching commands with prefixes included, only for 'which-key'\n  local current_matchings = self:get_matching_commands()\n  local show_which_key = #current_matchings > 1\n  local which_key_lines_amount = math.min(#current_matchings, 6)\n\n  -- if case of which-key for 'leader' raise 8 lines max number to 8\n  if #self.key_sequence == 0 then\n    which_key_lines_amount = math.min(#current_matchings, 8)\n  end\n\n  -- y pos where to start drawing which key (1 is pixels from divider line)\n  local which_key_y_offset = menu_y_pos - 1 - opts.font_size *\n      which_key_lines_amount - opts.which_key_menu_y_padding * 2\n\n  -- function to get rid of some copypaste\n  local function ass_new_wrapper()\n    local a = assdraw.ass_new()\n    a:new_event()\n    a:append('{\\\\an7\\\\bord0\\\\shad0}') -- alignment top left, border 0, shadow 0\n    a:append('{\\\\fs' .. opts.font_size .. '}')\n    return a\n  end\n\n  local function get_font_color(style)\n    return '{\\\\1c&H' .. self.text_color[style] .. '}'\n  end\n\n  local function get_background()\n    local a = ass_new_wrapper()\n\n    -- draw keybind background\n    a:append('{\\\\1c&H1c1c1c}') -- background color\n    a:pos(0, 0)\n    a:draw_start()\n    a:rect_cw(0, menu_y_pos, ww, wh)\n    a:draw_stop()\n\n    -- draw separator line\n    if show_which_key then\n      a:new_event()\n      a:append('{\\\\1c&Hffffff}') -- background color\n      a:pos(0, 0)\n      a:draw_start()\n      a:rect_cw(0, menu_y_pos - 1, ww, menu_y_pos)\n      a:draw_stop()\n\n      -- draw lines of background based on matching_command length (max 6 lines)\n      -- (for which-key functionality)\n      a:new_event()\n      a:append('{\\\\1c&H1c1c1c}') -- background color\n      a:pos(0, 0)\n      a:draw_start()\n      a:rect_cw(0, which_key_y_offset, ww, menu_y_pos)\n      a:draw_stop()\n    end\n\n    return a.text\n  end\n\n  local function get_display_kbd()\n    local str = ''\n    for char in self.key_sequence:gmatch '.' do\n      str = str .. char .. ' '\n    end\n    return str:gsub(\"(.-)%s*$\", \"%1\")\n  end\n\n  local function get_input_string()\n    local a = ass_new_wrapper()\n    a:pos(opts.menu_x_padding, menu_y_pos)\n    a:append(self:ass_escape(opts.leader_key) ..\n      (#self.key_sequence == 0 and '' or '\\\\h'))\n    a:append(self:ass_escape(get_display_kbd()))\n\n    a:append(params.is_undefined_kbd and '\\\\his undefined' or \"-\")\n\n    if params.is_prefix and show_which_key then\n      a:append(get_font_color('comment'))\n      -- in case user just pressed <leader> - show it\n      -- if prefix name is undefined - show '+prefix'\n\n      -- get last key of current keybinding and append prefix name after\n      -- keybinding string\n\n      local prefix_name\n      if #self.key_sequence == 0 then\n        prefix_name = '<leader>'\n      else\n        prefix_name = self.prefixes[self.key_sequence].prefix_name or ''\n      end\n      a:append('\\\\h' .. prefix_name)\n    end\n\n    return a.text\n  end\n\n  local function get_spaces(num)\n    -- returns num-length string full of spaces\n    local s = ''\n    for _ = 1, num do s = s .. '\\\\h' end\n    return s\n  end\n\n  local function which_key()\n    if #current_matchings <= 1 then return '' end\n\n    local a = assdraw.ass_new()\n\n    local function get_line(i)\n      -- get remaining keys of currently matching commands\n      local keys = current_matchings[i].key:gsub(self.key_sequence ..\n        '(.*)$', '%1')\n\n      -- if cmd is longer than max length - strip it\n      local cmd = #current_matchings[i].cmd > opts.strip_cmd_at\n          and string.sub(current_matchings[i].cmd, 1,\n            opts.strip_cmd_at - 3) .. '...'\n          or current_matchings[i].cmd\n\n      -- prepend all prefix names with '+'\n      if current_matchings[i].name == 'prefix' then cmd = '+' .. cmd end\n\n      a:append(get_font_color('key'))\n      a:append(self:ass_escape(keys))\n      a:append(get_font_color('comment'))\n      a:append('\\\\h→\\\\h')\n      -- in case current key is not pre-last one - show kbd as 'prefix'\n      a:append(get_font_color(\n        (#keys == 1 and current_matchings[i].name ~= 'prefix')\n        and 'command'\n        or 'prefix'))\n      a:append(#keys == 1 and self:ass_escape(cmd) or '+prefix')\n      -- 2 for 2 spaces between columns\n      a:append(get_spaces(opts.strip_cmd_at + 2 - #cmd))\n    end\n\n    for i = 1, which_key_lines_amount do\n      local y_offset = which_key_y_offset + opts.which_key_menu_y_padding +\n          opts.font_size * (i - 1)\n\n      a:new_event()\n      -- reset styles\n      a:append('{\\\\an7\\\\bord0\\\\shad0}') -- alignment top left, border 0, shadow 0\n      a:append('{\\\\fs' .. opts.font_size .. '}')\n\n      a:pos(opts.menu_x_padding, y_offset)\n\n      get_line(i)\n\n      -- compose lines out of elements A(n) and A(n+6)\n      local j = i\n      while current_matchings[j + which_key_lines_amount] do\n        get_line(j + which_key_lines_amount)\n        j = j + which_key_lines_amount\n      end\n    end\n\n    return a.text\n  end\n\n  leader.ass.res_x = ww\n  leader.ass.res_y = wh\n  leader.ass.data = table.concat({ get_background(),\n    get_input_string(),\n    which_key() }, \"\\n\")\n\n  leader.ass:update()\nend\n\n-- Set the REPL visibility\nfunction leader:set_active(active, delayed)\n  if active == self.is_active then return end\n  if active then\n    self.is_active = true\n    -- mp.enable_messages('terminal-default') -- REVIEW: what's that?\n    self:define_key_bindings()\n\n    -- set flag 'was_paused' only if vid wasn't paused before EM init\n    if opts.pause_on_open and not mp.get_property_bool(\"pause\", false) then\n      mp.set_property_bool(\"pause\", true)\n      self.was_paused = true\n    end\n\n    self:update()\n  else\n    -- no need to call 'update' in this block cuz 'clear' method is calling it\n    self.is_active = false\n    self:undefine_key_bindings()\n\n    if opts.resume_on_exit == true or\n        (opts.resume_on_exit == \"only-if-was-paused\" and self.was_paused) then\n      mp.set_property_bool(\"pause\", false)\n    end\n\n    -- clearing up\n    self.key_sequence = ''\n    self.was_paused = false\n    self.close_timer = mp.add_timeout((delayed and opts.hide_timeout or 0), function()\n      self:update()\n    end)\n    collectgarbage()\n  end\nend\n\nfunction leader:handle_input(c)\n  self.key_sequence = self.key_sequence .. c\n  self:update_matching_commands(self.key_sequence)\n\n  -- always kill current timer if present\n  if self.which_key_timer then\n    self.which_key_timer:kill()\n  end\n\n  if #self.matching_commands == 0 then\n    self:update({ is_undefined_kbd = true })\n    self:set_active(false, true)\n  end\n\n  if #self.matching_commands > 1 then\n    self:update({ is_prefix = true }) -- show just leader string\n\n    -- and set timeout to show which-key\n    self.which_key_timer = mp.add_timeout(\n      opts.which_key_show_delay, function()\n        self:update({ is_prefix = true })\n      end)\n  end\n\n  if #self.matching_commands == 1 then\n    -- if key sequence matches only one command, but key sequence isn't full..\n    if #self.matching_commands[1].key ~= #self.key_sequence then\n      self:update({ is_prefix = true }) -- show just leader string\n\n      -- and set timeout to show which-key\n      self.which_key_timer = mp.add_timeout(\n        opts.which_key_show_delay, function()\n          self:update({ is_prefix = true })\n        end)\n\n      return\n    end\n\n    -- in case there is bound command to that key, but it's undefined..\n    if not self.matching_commands[1].cmd then\n      self:update({ is_undefined_kbd = true })\n      self:set_active(false, true)\n      return\n    end\n\n    mp.command(self.matching_commands[1].cmd)\n\n    self:update()\n    self:set_active(false)\n  end\nend\n\n--[[\n  The below code is a modified implementation of text input from mpv's console.lua:\n  https://github.com/mpv-player/mpv/blob/87c9eefb2928252497f6141e847b74ad1158bc61/player/lua/console.lua\n\n  I was too lazy to list all modifications i've done to the script, but if u\n  rly need to see those - do diff with the original code\n]]\n   --\n\n-------------------------------------------------------------------------------\n--                          START ORIGINAL MPV CODE                          --\n-------------------------------------------------------------------------------\n\n-- Copyright (C) 2019 the mpv developers\n--\n-- Permission to use, copy, modify, and/or distribute this software for any\n-- purpose with or without fee is hereby granted, provided that the above\n-- copyright notice and this permission notice appear in all copies.\n--\n-- THE SOFTWARE IS PROVIDED \"AS IS\" AND THE AUTHOR DISCLAIMS ALL WARRANTIES\n-- WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF\n-- MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY\n-- SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES\n-- WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION\n-- OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN\n-- CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.\n\n-- Escape a string for verbatim display on the OSD\nfunction leader:ass_escape(str)\n  -- There is no escape for '\\' in ASS (I think?) but '\\' is used verbatim if\n  -- it isn't followed by a recognised character, so add a zero-width\n  -- non-breaking space\n  str = str:gsub('\\\\', '\\\\\\239\\187\\191')\n  str = str:gsub('{', '\\\\{')\n  str = str:gsub('}', '\\\\}')\n  -- Precede newlines with a ZWNBSP to prevent ASS's weird collapsing of\n  -- consecutive newlines\n  str = str:gsub('\\n', '\\239\\187\\191\\\\N')\n  -- Turn leading spaces into hard spaces to prevent ASS from stripping them\n  str = str:gsub('\\\\N ', '\\\\N\\\\h')\n  str = str:gsub('^ ', '\\\\h')\n  return str\nend\n\n-- List of input bindings. This is a weird mashup between common GUI text-input\n-- bindings and readline bindings.\nfunction leader:get_bindings()\n  local bindings = {\n    { 'ctrl+[', function() self:set_active(false) end },\n    { 'ctrl+g', function() self:set_active(false) end },\n    { 'esc',    function() self:set_active(false) end },\n    { 'enter',  function() self:handle_input('enter') end },\n    { 'bs',     function() self:handle_input('bs') end },\n\n    -- { 'ctrl+h',      function() self:handle_backspace() end        },\n  }\n\n  for i = 0, 9 do\n    bindings[#bindings + 1] =\n    { 'kp' .. i, function() self:handle_input('' .. i) end }\n  end\n\n  return bindings\nend\n\nfunction leader:text_input(info)\n  if info.key_text and (info.event == \"press\" or info.event == \"down\"\n        or info.event == \"repeat\")\n  then\n    self:handle_input(info.key_text)\n  end\nend\n\nfunction leader:define_key_bindings()\n  if #self.key_bindings > 0 then return end\n\n  for _, bind in ipairs(self:get_bindings()) do\n    -- Generate arbitrary name for removing the bindings later.\n    local name = \"leader_\" .. (#self.key_bindings + 1)\n    self.key_bindings[#self.key_bindings + 1] = name\n    mp.add_forced_key_binding(bind[1], name, bind[2], { repeatable = true })\n  end\n  mp.add_forced_key_binding(\"any_unicode\", \"leader_input\", function(...)\n    self:text_input(...)\n  end, { repeatable = true, complex = true })\n  self.key_bindings[#self.key_bindings + 1] = \"leader_input\"\nend\n\nfunction leader:undefine_key_bindings()\n  for _, name in ipairs(self.key_bindings) do\n    mp.remove_key_binding(name)\n  end\n  self.key_bindings = {}\nend\n\n-------------------------------------------------------------------------------\n--                           END ORIGINAL MPV CODE                           --\n-------------------------------------------------------------------------------\n\nreturn leader\n",
+    "zxc.20260613012938.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"M_x\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
+    "zxc.20260613013000.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"Seme4eg_mpv-scripts\" \"script-modules\" \"extended-menu.lua\") }}\n",
+    "zxc.20260613021402.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"leader\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
+    "zxc.20260613021406.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"Seme4eg_mpv-scripts\" \"script-modules\" \"leader.lua\") }}\n",
     "zxc.20260421145655.1": "<< unix dos >>\n{{ if or (lookPath \"msys2\") (lookPath \"fish\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260421145759.1": "if status is-interactive\n@others\nend",
     "zxc.20260421150607.1": "{{ if lookPath \"oh-my-posh\" -}}\noh-my-posh init fish | source\n{{ end -}}",
@@ -14684,8 +14676,6 @@
     "zxc.20260201214114.1": "<< dos >>\n{{ if lookPath \"gpg\" -}}\n{{ if .my.git.sign.gpg -}}\n66E220F513E05B9F44D77B9B15F629D7C1270868\n{{ end -}}\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260202195207.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260614184825.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
-    "zxc.20260614184847.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
-    "zxc.20260614184908.1": "Ctrl+a script-binding update_anilist\nAlt+a script-binding launch_anilist\nD script-binding open_folde\nB script-binding correct_anime_id\n",
     "zxc.20260322192157.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"smartskip\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260322192357.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"thumbfast\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260612144906.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"manga_reader\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
@@ -14698,13 +14688,9 @@
     "zxc.20260614154323.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"clipshot\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260614195641.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"smart_copy_paste\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260615205058.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
-    "zxc.20260615205203.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"mpv-anilist-updater\" \"main.lua\") }}\n",
     "zxc.20260615205253.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
-    "zxc.20260615205309.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"mpv-anilist-updater\" \"anilistUpdater.py\") }}\n",
     "zxc.20260615205559.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
-    "zxc.20260615205640.1": "{{ includeTemplate \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"chezmoi\" \"scoop\" \"persist\" \"mpv\" \"portable_config\" \"scripts\" \"mpv-anilist-updater\" \"anilistToken.key\" ) | trim }}\n",
     "zxc.20260616222720.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"costum\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
-    "zxc.20260616222806.1": "local url = dofile({{ joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"neturl\" \"lib\" \"net\" \"url.lua\" | quote }})\n\nmp.add_hook(\"on_load\", 9, function()\n    local path = url.parse(mp.get_property(\"path\", \"\"))\n\n    if path.host == \"www.bilibili.com\" then\n        mp.commandv(\"change-list\", \"ytdl-raw-options\", \"append\", \"cookies-from-browser=firefox:~/scoop/persist/firefox\")\n    end\n\n    if path.host == \"www.youtube.com\" or path.host == \"youtu.be\" then\n        mp.set_property(\"file-local-options/ytdl-format\", \"18/22\")\n        mp.set_property(\"file-local-options/speed\", 2.0)\n        mp.commandv(\"change-list\", \"ytdl-raw-options\", \"append\", \"write-auto-sub=\")\n    end\nend)\n",
     "zxc.20260616145335.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"betterchapters\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260612145521.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"manga_reader\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260613013159.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"M_x\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
@@ -15760,34 +15746,34 @@
       "_mod_time": 1777179946.861
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1781484842.614
+      "_mod_time": 1781412344.823
     },
     "zxc.20260125143959.1": {
-      "_mod_time": 1778855150.579
+      "_mod_time": 1777906067.531
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1781096323.517
+      "_mod_time": 1780750569.218
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1777398596.506
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1781096323.516
+      "_mod_time": 1780750650.885
     },
     "zxc.20260429111940.1": {
-      "_mod_time": 1778855150.581
+      "_mod_time": 1777612767.635
     },
     "zxc.20260429145437.1": {
-      "_mod_time": 1778855150.581
+      "_mod_time": 1777612767.635
     },
     "zxc.20260427000037.1": {
-      "_mod_time": 1777298774.849
+      "_mod_time": 1777219283.718
     },
     "zxc.20260427224318.1": {
-      "_mod_time": 1777337709.088
+      "_mod_time": 1777301694.728
     },
     "zxc.20260615224512.2": {
-      "_mod_time": 1781590486.331
+      "_mod_time": 1781534729.293
     },
     "User.20260218142211.1": {
       "_mod_time": 1781096323.532
@@ -15835,10 +15821,10 @@
       "_mod_time": 1781602833.363
     },
     "zxc.20260615184146.1": {
-      "_mod_time": 1781590486.33
+      "_mod_time": 1781871977.123
     },
     "User.20260226000855.1": {
-      "_mod_time": 1781856158.691
+      "_mod_time": 1781873117.207
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1781590486.33
@@ -15853,7 +15839,7 @@
       "_mod_time": 1778855150.558
     },
     "zxc.20260505221318.1": {
-      "_mod_time": 1778855150.558
+      "_mod_time": 1778706271.126
     },
     "zxc.20260202203521.14": {
       "_mod_time": 1776691470.917
@@ -15871,7 +15857,7 @@
       "_mod_time": 1780272723.738
     },
     "zxc.20260505102132.1": {
-      "_mod_time": 1780272723.74
+      "_mod_time": 1780117762.476
     },
     "zxc.20260202215023.1": {
       "_mod_time": 1776434513.068
@@ -15889,13 +15875,13 @@
       "_mod_time": 1780272723.737
     },
     "User.20260220214558.1": {
-      "_mod_time": 1780272723.737
+      "_mod_time": 1780155936.294
     },
     "zxc.20260530230944.1": {
       "_mod_time": 1780272723.741
     },
     "zxc.20260531001920.1": {
-      "_mod_time": 1780272723.741
+      "_mod_time": 1780158075.007
     },
     "User.20260217214851.1": {
       "_mod_time": 1776851988.666
@@ -15934,7 +15920,7 @@
       "_mod_time": 1778855150.556
     },
     "zxc.20260505141849.1": {
-      "_mod_time": 1778855150.556
+      "_mod_time": 1777967012.414
     },
     "zxc.20260323195318.1": {
       "_mod_time": 1776434513.068
@@ -15949,19 +15935,19 @@
       "_mod_time": 1780272723.736
     },
     "zxc.20260602152143.1": {
-      "_mod_time": 1780401618.945
+      "_mod_time": 1780394292.926
     },
     "zxc.20260602183356.1": {
-      "_mod_time": 1780486276.597
+      "_mod_time": 1780480977.894
     },
     "zxc.20260603094212.1": {
-      "_mod_time": 1780486276.607
+      "_mod_time": 1780480977.894
     },
     "zxc.20260615003716.1": {
       "_mod_time": 1781607695.717
     },
     "User.20260226001402.1": {
-      "_mod_time": 1781856158.691
+      "_mod_time": 1781871424.9
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1781137085.606
@@ -16036,10 +16022,10 @@
       "_mod_time": 1778855150.612
     },
     "zxc.20260507002719.1": {
-      "_mod_time": 1778855150.581
+      "_mod_time": 1778706271.142
     },
     "zxc.20260507003041.1": {
-      "_mod_time": 1778855150.581
+      "_mod_time": 1778706271.142
     },
     "zxc.20260126154354.1": {
       "_mod_time": 1777179946.877
@@ -16060,7 +16046,7 @@
       "_mod_time": 1781096323.529
     },
     "zxc.20260125161631.1": {
-      "_mod_time": 1777382332.018
+      "_mod_time": 1777302969.492
     },
     "User.20260216185314.1": {
       "_mod_time": 1777179946.883
@@ -16078,64 +16064,79 @@
       "_mod_time": 1778855150.599
     },
     "User.20260220233323.1": {
-      "_mod_time": 1781607696.631
+      "_mod_time": 1781872526.718
+    },
+    "zxc.20260619203536.1": {
+      "_mod_time": 1781872731.378
     },
     "zxc.20260612144646.1": {
-      "_mod_time": 1781590486.345
+      "_mod_time": 1781871977.279
     },
     "zxc.20260612144743.1": {
-      "_mod_time": 1781590486.35
+      "_mod_time": 1781872071.542
     },
     "zxc.20260612145004.1": {
-      "_mod_time": 1781590486.345
+      "_mod_time": 1781872079.34
     },
     "zxc.20260613012804.1": {
-      "_mod_time": 1781590486.344
+      "_mod_time": 1781872130.722
     },
     "zxc.20260613020836.1": {
-      "_mod_time": 1781590486.345
+      "_mod_time": 1781872164.85
     },
     "zxc.20260613104254.1": {
-      "_mod_time": 1781590486.349
+      "_mod_time": 1781872186.794
     },
     "zxc.20260613110002.1": {
-      "_mod_time": 1781590486.346
+      "_mod_time": 1781872265.586
     },
     "zxc.20260613121109.1": {
-      "_mod_time": 1781590486.35
+      "_mod_time": 1781872265.599
     },
     "zxc.20260614145830.1": {
-      "_mod_time": 1781590486.35
+      "_mod_time": 1781872265.616
     },
     "zxc.20260614154432.1": {
-      "_mod_time": 1781590486.345
+      "_mod_time": 1781872343.119
     },
     "zxc.20260614195759.1": {
-      "_mod_time": 1781590486.344
+      "_mod_time": 1781872343.132
     },
     "zxc.20260616145557.1": {
-      "_mod_time": 1781607696.631
+      "_mod_time": 1781872343.148
+    },
+    "zxc.20260619211159.1": {
+      "_mod_time": 1781874757.845
+    },
+    "zxc.20260619203724.2": {
+      "_mod_time": 1781872731.395
+    },
+    "zxc.20260619203724.4": {
+      "_mod_time": 1781872731.408
+    },
+    "zxc.20260619203724.6": {
+      "_mod_time": 1781872731.42
     },
     "zxc.20260612145641.1": {
-      "_mod_time": 1781261429.986
+      "_mod_time": 1781872445.08
     },
     "zxc.20260613013257.1": {
-      "_mod_time": 1781484843.611
+      "_mod_time": 1781872445.097
     },
     "zxc.20260613021949.1": {
-      "_mod_time": 1781856158.753
+      "_mod_time": 1781872445.105
     },
     "zxc.20260614150059.1": {
-      "_mod_time": 1781484843.613
+      "_mod_time": 1781872445.13
     },
     "zxc.20260614200117.1": {
-      "_mod_time": 1781537291.149
+      "_mod_time": 1781872445.143
     },
     "zxc.20260613012938.1": {
-      "_mod_time": 1781484843.61
+      "_mod_time": 1781872477.584
     },
     "zxc.20260613021402.1": {
-      "_mod_time": 1781484843.611
+      "_mod_time": 1781872477.597
     },
     "zxc.20260421145655.1": {
       "_mod_time": 1777179946.881
@@ -16147,7 +16148,7 @@
       "_mod_time": 1778855150.599
     },
     "zxc.20260504000649.1": {
-      "_mod_time": 1778855150.599
+      "_mod_time": 1777827566.629
     },
     "zxc.20260503225115.1": {
       "_mod_time": 1778855150.604
@@ -16159,34 +16160,34 @@
       "_mod_time": 1778855150.604
     },
     "zxc.20260505104942.1": {
-      "_mod_time": 1780272726.066
+      "_mod_time": 1780230892.201
     },
     "zxc.20260505105255.1": {
-      "_mod_time": 1778855150.594
+      "_mod_time": 1777967012.43
     },
     "zxc.20260507000814.1": {
-      "_mod_time": 1780223583.696
+      "_mod_time": 1780055115.897
     },
     "zxc.20260508000348.1": {
-      "_mod_time": 1780223583.696
+      "_mod_time": 1780055115.893
     },
     "zxc.20260529152606.1": {
-      "_mod_time": 1780272726.07
+      "_mod_time": 1780148506.597
     },
     "zxc.20260603092509.1": {
-      "_mod_time": 1780486276.638
+      "_mod_time": 1780480977.925
     },
     "zxc.20260502183455.1": {
-      "_mod_time": 1778855150.604
+      "_mod_time": 1777717804.636
     },
     "zxc.20260502183056.1": {
-      "_mod_time": 1778855150.604
+      "_mod_time": 1777978566.558
     },
     "zxc.20260502183253.1": {
-      "_mod_time": 1778855150.604
+      "_mod_time": 1777717995.212
     },
     "zxc.20260505181144.1": {
-      "_mod_time": 1778855150.589
+      "_mod_time": 1778706271.142
     },
     "User.20260215182442.1": {
       "_mod_time": 1777891060.651
@@ -16243,7 +16244,7 @@
       "_mod_time": 1781607696.647
     },
     "zxc.20260614184825.1": {
-      "_mod_time": 1781537291.149
+      "_mod_time": 1781434274.033
     },
     "zxc.20260322192157.1": {
       "_mod_time": 1781590486.363
@@ -16282,13 +16283,13 @@
       "_mod_time": 1781624163.629
     },
     "zxc.20260615205253.1": {
-      "_mod_time": 1781590487.322
+      "_mod_time": 1781528007.648
     },
     "zxc.20260615205559.1": {
-      "_mod_time": 1781607696.647
+      "_mod_time": 1781602834.187
     },
     "zxc.20260616222720.1": {
-      "_mod_time": 1781856158.76
+      "_mod_time": 1781622014.81
     },
     "zxc.20260616145335.1": {
       "_mod_time": 1781607696.647
@@ -16312,10 +16313,10 @@
       "_mod_time": 1781537291.149
     },
     "zxc.20260613013057.1": {
-      "_mod_time": 1781484843.621
+      "_mod_time": 1781871424.933
     },
     "zxc.20260613021448.1": {
-      "_mod_time": 1781484843.622
+      "_mod_time": 1781871439.863
     },
     "zxc.20260325223009.1": {
       "_mod_time": 1777891355.163
