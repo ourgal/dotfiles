@@ -2,19 +2,23 @@
 {{ if or (lookPath "msys2") (lookPath "fish") -}}
 if status is-interactive
 {{ if lookPath "oh-my-posh" -}}
-oh-my-posh init fish | source
+{{ output "oh-my-posh" "init" "fish" }}
 {{ end -}}
 {{ if lookPath "fzf" -}}
-fzf --fish | source
+{{ if or (lookPath "mcfly") (lookPath "atuin") -}}
+{{ output "env" "FZF_CTRL_R_COMMAND=" "fzf" "--fish" }}
+{{ else -}}
+{{ output "fzf" "--fish" }}
+{{ end -}}
 {{ end -}}
 {{ if lookPath "mcfly" -}}
-mcfly init fish | source
+{{ output "mcfly" "init" "fish" }}
 {{ end -}}
 {{ if lookPath "navi" -}}
-navi widget fish | source
+{{ output "navi" "widget" "fish" }}
 {{ end -}}
 {{ if lookPath "carapace" -}}
-carapace _carapace | source
+{{ output "carapace" "_carapace" }}
 {{ end -}}
 {{ if lookPath "eza" -}}
 {{ $opts := "--git --icons auto --group --group-directories-first --time-style relative"}}
