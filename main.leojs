@@ -3093,6 +3093,31 @@
                               ]
                             }
                           ]
+                        },
+                        {
+                          "gnx": "zxc.20260620011407.1",
+                          "vh": "termux change shell to fish",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260620011448.1",
+                              "vh": "@clean run_onchange_after_termux_chsh_to_fish.sh.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "User.20260225204449.1"
+                                },
+                                {
+                                  "gnx": "User.20260221011837.1"
+                                },
+                                {
+                                  "gnx": "zxc.20260505102603.1"
+                                },
+                                {
+                                  "gnx": "zxc.20260620011608.1",
+                                  "vh": "content"
+                                }
+                              ]
+                            }
+                          ]
                         }
                       ]
                     }
@@ -14183,6 +14208,8 @@
     "zxc.20260603094248.1": "{{ $path := (joinPath .chezmoi.homeDir \".config\" \"home-manager\" \"home.nix\") -}}\n{{ if stat $path -}}\n# {{ include $path | sha256sum }}\nhome-manager switch\n{{ end -}}\n",
     "zxc.20260615003716.1": "<< dos >>\n{{ if lookPath \"firefox\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260615003801.1": "{{ $dir := joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" \"profile\" \"chrome\" -}}\n{{ $theme := joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" .my.modules.firefox.theme \"chrome\" -}}\n{{ template \"powershell_junction\" dict \"source\" $dir \"target\" $theme }}\n",
+    "zxc.20260620011448.1": "<< android >>\n{{ if lookPath \"fish\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260620011608.1": "{{ if eq (env \"SHELL\" | splitList \"/\" | last) \"bash\" -}}\nchsh -s fish\n{{ end -}}\n",
     "User.20260226001402.1": "@others\n",
     "zxc.20260315140948.1": "[my]\nname = \"zxc\"\n",
     "User.20260226001414.1": "[my.msys2]\npackages = [\"fish\", \"nnn\", \"atool\", \"libarchive\", \"tmux\", \"zsh\"]",
@@ -16025,6 +16052,9 @@
     },
     "zxc.20260615003716.1": {
       "_mod_time": 1781607695.717
+    },
+    "zxc.20260620011448.1": {
+      "_mod_time": 1781889514.981
     },
     "User.20260226001402.1": {
       "_mod_time": 1781877961.766
