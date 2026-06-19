@@ -1,0 +1,3 @@
+{{ if eq .chezmoi.os "android" -}}
+{{ template "include" (joinPath .chezmoi.homeDir ".local" "share" "repos" "termux-nf" "applynf") }}
+{{ end -}}
