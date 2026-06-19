@@ -1,5 +1,4 @@
-{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
-{{ if lookPath "mpv" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "betterchapters") "os" "linux") | trim | atoi -}}
 -- betterchapters.lua
 -- Loads the next or previous playlist entry if there are no more chapters in the seek direction.
 -- To bind in input.conf, use: <keybind> script_binding <keybind name>
@@ -22,5 +21,4 @@ end
 
 mp.add_key_binding("PGUP", "chapter_next", function() chapter_seek(1) end)
 mp.add_key_binding("PGDWN", "chapter_prev", function() chapter_seek(-1) end)
-{{ end -}}
 {{ end -}}

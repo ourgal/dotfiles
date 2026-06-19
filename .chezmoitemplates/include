@@ -5,13 +5,15 @@
 {{ if kindIs "string" . -}}
     {{ if not (stat .) -}}
     {{ warnf (print "file " . " not found") }}
+    {{ else -}}
+    {{ include . }}
     {{ end -}}
-{{ include . }}
 {{ else -}}
     {{ range . -}}
         {{ if not (stat .) -}}
         {{ warnf (print "file " . " not found") }}
-        {{ end -}}
+        {{ else -}}
         {{ include . }}
+        {{ end -}}
     {{ end -}}
 {{ end -}}
