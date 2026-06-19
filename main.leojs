@@ -1790,12 +1790,7 @@
                         },
                         {
                           "gnx": "zxc.20260613223245.1",
-                          "vh": "@clean opt",
-                          "children": [
-                            {
-                              "gnx": "zxc.20260504185129.1"
-                            }
-                          ]
+                          "vh": "@clean opt"
                         },
                         {
                           "gnx": "zxc.20260615175522.1",
@@ -13759,7 +13754,7 @@
     "zxc.20260504185129.1": "{{ $os := .chezmoi.os -}}\n{{ if eq .chezmoi.os \"linux\" -}}\n{{ $os = .chezmoi.osRelease.id -}}\n{{ end -}}\n",
     "User.20260225203941.1": "{{ if or (eq .chezmoi.os \"linux\") (eq .chezmoi.os \"android\") -}}\n",
     "zxc.20260125143032.1": "# ~/.bashrc: executed by bash(1) for non-login shells.\n# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)\n# for examples\n\n# If not running interactively, don't do anything\ncase $- in\n    *i*) ;;\n      *) return;;\nesac\n\n# don't put duplicate lines or lines starting with space in the history.\n# See bash(1) for more options\nHISTCONTROL=ignoreboth\n\n# append to the history file, don't overwrite it\nshopt -s histappend\n\n# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)\nHISTSIZE=1000\nHISTFILESIZE=2000\n\n# check the window size after each command and, if necessary,\n# update the values of LINES and COLUMNS.\nshopt -s checkwinsize\n\n# If set, the pattern \"**\" used in a pathname expansion context will\n# match all files and zero or more directories and subdirectories.\n#shopt -s globstar\n\n# make less more friendly for non-text input files, see lesspipe(1)\n#[ -x /usr/bin/lesspipe ] && eval \"$(SHELL=/bin/sh lesspipe)\"\n\n{{ if and (eq .chezmoi.os \"linux\") (eq .chezmoi.osRelease.id \"debian\") -}}\n# set variable identifying the chroot you work in (used in the prompt below)\nif [ -z \"''\\${debian_chroot:-}\" ] && [ -r /etc/debian_chroot ]; then\n    debian_chroot=$(cat /etc/debian_chroot)\nfi\n{{ end -}}\n\n# set a fancy prompt (non-color, unless we know we \"want\" color)\ncase \"$TERM\" in\n    xterm-color|*-256color) color_prompt=yes;;\nesac\n\n# uncomment for a colored prompt, if the terminal has the capability; turned\n# off by default to not distract the user: the focus in a terminal window\n# should be on the output of commands, not on the prompt\n#force_color_prompt=yes\n\nif [ -n \"$force_color_prompt\" ]; then\n    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then\n        # We have color support; assume it's compliant with Ecma-48\n        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such\n        # a case would tend to support setf rather than setaf.)\n        color_prompt=yes\n    else\n        color_prompt=\n    fi\nfi\n\n{{ if and (eq .chezmoi.os \"linux\") (eq .chezmoi.osRelease.id \"debian\") -}}\n# If this is an xterm set the title to user@host:dir\ncase \"$TERM\" in\nxterm*|rxvt*)\n    PS1=\"\\[\\e]0;''\\${debian_chroot:+($debian_chroot)}\\u@\\h: \\w\\a\\]$PS1\"\n    ;;\n*)\n    ;;\nesac\n{{ end -}}\n\n# enable color support of ls and also add handy aliases\nif [ -x /usr/bin/dircolors ]; then\n    test -r ~/.dircolors && eval \"$(dircolors -b ~/.dircolors)\" || eval \"$(dircolors -b)\"\n    alias ls='ls --color=auto'\n    #alias dir='dir --color=auto'\n    #alias vdir='vdir --color=auto'\n\n    #alias grep='grep --color=auto'\n    #alias fgrep='fgrep --color=auto'\n    #alias egrep='egrep --color=auto'\nfi\n\n# colored GCC warnings and errors\n#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'\n\n# some more ls aliases\n#alias ll='ls -l'\n#alias la='ls -A'\n#alias l='ls -CF'\n\n# Alias definitions.\n# You may want to put all your additions into a separate file like\n# ~/.bash_aliases, instead of adding them here directly.\n# See /usr/share/doc/bash-doc/examples in the bash-doc package.\n\nif [ -f ~/.bash_aliases ]; then\n    . ~/.bash_aliases\nfi\n\n# enable programmable completion features (you don't need to enable\n# this, if it's already enabled in /etc/bash.bashrc and /etc/profile\n# sources /etc/bash.bashrc).\nif ! shopt -oq posix; then\n  if [ -f /usr/share/bash-completion/bash_completion ]; then\n    . /usr/share/bash-completion/bash_completion\n  elif [ -f /etc/bash_completion ]; then\n    . /etc/bash_completion\n  fi\nfi\n",
-    "zxc.20260125143635.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" (joinPath .chezmoi.homeDir \".local\" \"lib\" \"ble_sh\" \"out\" \"ble.sh\")) \"opt\" (list \"shell\" \"bash\" \"ble_sh\" \"enable\") \"os\" (list \"linux\" \"android\")) | atoi -}}\n<< not WSL >>\nsource ~/.local/lib/ble_sh/out/ble.sh\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260125143635.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"bash\" \"file\" (joinPath .chezmoi.homeDir \".local\" \"lib\" \"ble_sh\" \"out\" \"ble.sh\") \"opt\" (list \"shell\" \"bash\" \"ble_sh\" \"enable\") \"os\" (list \"linux\" \"android\")) | atoi -}}\n<< not WSL >>\nsource ~/.local/lib/ble_sh/out/ble.sh\n{{ end -}}\n{{ end -}}\n",
     "User.20260225204031.1": "{{ if and (hasKey .chezmoi.kernel \"osrelease\") (not (mustRegexMatch \".*WSL.*\" .chezmoi.kernel.osrelease)) -}}\n",
     "zxc.20260125143653.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"fzf\") \"opt\" (list \"shell\" \"bash\" \"fzf\" \"enable\") \"os\" (list \"linux\" \"android\")) | atoi -}}\n{{ if or (lookPath \"mcfly\") (lookPath \"atuin\") -}}\nFZF_CTRL_R_COMMAND= eval \"$(fzf --bash)\"\n{{ else -}}\neval \"$(fzf --bash)\"\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260614123759.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"starship\") \"opt\" (list \"shell\" \"bash\" \"starship\" \"enable\") \"os\" (list \"linux\" \"android\")) | atoi -}}\neval \"$(starship init bash)\"\n{{ end -}}\n",
@@ -13958,7 +13953,7 @@
     "zxc.20260319091259.1": "{{ if eq . nil -}}\n{{ fail \"pass hostname to ipM6 template\" -}}\n{{ end -}}\n{{ if eq . \"work\" \"work2\" -}}\n192.168.1.103\n{{- else if  eq . \"nuc\" \"bed\" \"surface\" -}}\n192.168.123.191\n{{- else if  eq . \"localhost\" -}}\n{{- else -}}\n{{ fail (printf \"unknown hostname %s for ipM6 template\" .) -}}\n{{- end -}}",
     "User.20260221004652.1": "{{ if eq . nil -}}\n{{ fail \"pass pathes to checkPath template\" -}}\n{{ end -}}\n{{ if kindIs \"slice\" . -}}\n    {{ range . -}}\n    {{ template \"_checkPath\" . -}}\n    {{ end -}}\n{{ else if kindIs \"string\" . -}}\n    {{ template \"_checkPath\" . -}}\n{{ else -}}\n    {{ fail (printf \"checkPath: %s unsupported type %s\" . (kindOf .)) -}}\n{{ end -}}\n",
     "User.20260221144015.1": "{{ if not (lookPath .) }}\n{{ fail (printf \"%s is not found\" .) -}}\n{{ end -}}",
-    "zxc.20260613223245.1": "<< os >>\n{{ $global_opt := \"\" -}}\n{{ $host_opt := \"\" -}}\n{{ $final_opt := \"\" -}}\n{{ if kindIs \"string\" .opt -}}\n{{ $global_opt = index .my.modules .opt -}}\n{{ $host_opt = index .my.modules .chezmoi.hostname $os .opt -}}\n{{ else if kindIs \"slice\" .opt -}}\n{{ $global_opt = .my.modules -}}\n{{ $host_opt = index .my.modules .chezmoi.hostname $os -}}\n    {{ range .opt -}}\n        {{ if hasKey $global_opt . -}}\n        {{ $global_opt = index $global_opt . -}}\n        {{ else -}}\n        {{ fail (print $global_opt \" unknow opt value: \" .) -}}\n        {{ end -}}\n        {{ if hasKey $host_opt . -}}\n        {{ $host_opt = index $host_opt . -}}\n        {{ else -}}\n        {{ $host_opt = dict -}}\n        {{ end -}}\n    {{ end -}}\n{{ else -}}\n{{ fail (print \"unknow opt value: \" .) -}}\n{{ end -}}\n\n{{ if not (kindIs \"bool\" $host_opt) -}}\n{{ $final_opt = $global_opt -}}\n{{ else -}}\n{{ $final_opt = $host_opt -}}\n{{ end -}}\n\n{{ $cmd := list -}}\n{{ if kindIs \"string\" .cmd -}}\n{{ $cmd = or (lookPath .cmd) (stat .cmd) }}\n{{ else if kindIs \"slice\" .cmd -}}\n    {{ range .cmd -}}\n    {{ $cmd = append $cmd (or (lookPath .) (stat .)) -}}\n    {{ end -}}\n{{ $cmd = all $cmd -}}\n{{ end -}}\n\n{{ $final_os := list -}}\n{{ if kindIs \"string\" .os -}}\n{{ $final_os = eq $os .os -}}\n{{ else if kindIs \"slice\" .os -}}\n    {{ range .os -}}\n    {{ $final_os = append $final_os (eq $os .) -}}\n    {{ end -}}\n{{ $final_os = any $final_os -}}\n{{ end -}}\n\n{{ if and $cmd $final_opt $final_os -}}\n1\n{{- else -}}\n0\n{{- end -}}\n",
+    "zxc.20260613223245.1": "{{ $os := .chezmoi.os -}}\n{{ if eq .chezmoi.os \"linux\" -}}\n{{ $linux := .chezmoi.osRelease.id -}}\n{{ end -}}\n\n{{ $global_opt := \"\" -}}\n{{ $host_opt := \"\" -}}\n{{ $final_opt := \"\" -}}\n{{ if kindIs \"string\" .opt -}}\n{{ $global_opt = index .my.modules .opt -}}\n{{ $host_opt = index .my.modules .chezmoi.hostname $os .opt -}}\n{{ else if kindIs \"slice\" .opt -}}\n{{ $global_opt = .my.modules -}}\n{{ $host_opt = index .my.modules .chezmoi.hostname $os -}}\n    {{ range .opt -}}\n        {{ if hasKey $global_opt . -}}\n        {{ $global_opt = index $global_opt . -}}\n        {{ else -}}\n        {{ fail (print $global_opt \" unknow opt value: \" .) -}}\n        {{ end -}}\n        {{ if hasKey $host_opt . -}}\n        {{ $host_opt = index $host_opt . -}}\n        {{ else -}}\n        {{ $host_opt = dict -}}\n        {{ end -}}\n    {{ end -}}\n{{ else -}}\n{{ fail (print \"unknow opt value: \" .) -}}\n{{ end -}}\n\n{{ if not (kindIs \"bool\" $host_opt) -}}\n{{ $final_opt = $global_opt -}}\n{{ else -}}\n{{ $final_opt = $host_opt -}}\n{{ end -}}\n\n{{ $cmd := true -}}\n{{ if hasKey . \"cmd\" -}}\n    {{ if kindIs \"string\" .cmd -}}\n    {{ $cmd = lookPath .cmd }}\n    {{ else if kindIs \"slice\" .cmd -}}\n        {{ $cmd := list -}}\n        {{ range .cmd -}}\n        {{ $cmd = append $cmd (lookPath .) -}}\n        {{ end -}}\n    {{ $cmd = all $cmd -}}\n    {{ end -}}\n{{ end -}}\n\n{{ $file := true -}}\n{{ if hasKey . \"file\" -}}\n    {{ if kindIs \"string\" .file -}}\n    {{ $file = stat .file }}\n    {{ else if kindIs \"slice\" .file -}}\n        {{ $file := list -}}\n        {{ range .file -}}\n        {{ $file = append $file (stat .) -}}\n        {{ end -}}\n    {{ $file = all $file -}}\n    {{ end -}}\n{{ end -}}\n\n{{ $final_os := list -}}\n{{ if kindIs \"string\" .os -}}\n{{ $final_os = eq $os .os -}}\n{{ else if kindIs \"slice\" .os -}}\n    {{ range .os -}}\n    {{ $final_os = append $final_os (eq $os .) -}}\n    {{ end -}}\n{{ $final_os = any $final_os -}}\n{{ end -}}\n\n{{ if and $cmd $file $final_opt $final_os -}}\n1\n{{- else -}}\n0\n{{- end -}}\n",
     "zxc.20260615175522.1": "{{ if not (hasKey . \"source\") -}}\n{{ fail (print \"There is not a source key in the arguments of powershell_junction template\")}}\n{{ end -}}\n{{ if not (hasKey . \"target\") -}}\n{{ fail (print \"There is not a target key in the arguments of powershell_junction template\")}}\n{{ end -}}\n\n{{ if not (any (and (kindIs \"string\" .source) (kindIs \"string\" .target)) (and (kindIs \"slice\" .source) (kindIs \"slice\" .target))) }}\n{{ fail (print \"Wrong arugment types of powershell_junction\")}}\n{{ end -}}\n\n{{ if kindIs \"string\" .source -}}\n$source = \"{{ .source }}\"\n$target = \"{{ .target }}\"\nif (! (Test-Path -Path $source)) {\n    << link >>\n} elseif ((Get-Item -Path $source -Force).LinkType -ne \"Junction\") {\n    << rm >>\n    << link >>\n} elseif ((Get-Item -Path $source -Force).Target -ne $target) {\n    << rm >>\n    << link >>\n}\n{{ else if kindIs \"slice\" .source -}}\n    {{ if ne (len .source) (len .target) -}}\n    {{ fail (print \"powershell_junction sources and targets not match\") -}}\n    {{ end -}}\n{{ $targets := .target -}}\n    {{ range $i, $s := .source -}}\n    $source = \"{{ $s }}\"\n    $target = \"{{ index $targets $i }}\"\n    if (! (Test-Path -Path $source)) {\n        << link >>\n    } elseif ((Get-Item -Path $source -Force).LinkType -ne \"Junction\") {\n        << rm >>\n        << link >>\n    } elseif ((Get-Item -Path $source -Force).Target -ne $target) {\n        << rm >>\n        << link >>\n    }\n    {{ end -}}\n{{ end -}}\n",
     "zxc.20260615180653.1": "New-Item -ItemType Junction -Path $source -Target $target\n",
     "zxc.20260615180907.1": "Remove-Item -Path $source -Force\n",
@@ -15751,7 +15746,7 @@
       "_mod_time": 1777179946.861
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1781412344.823
+      "_mod_time": 1781875459.162
     },
     "zxc.20260125143959.1": {
       "_mod_time": 1777906067.531
@@ -15820,16 +15815,16 @@
       "_mod_time": 1777713442.466
     },
     "zxc.20260613223245.1": {
-      "_mod_time": 1781484842.602
+      "_mod_time": 1781876983.769
     },
     "zxc.20260615175522.1": {
       "_mod_time": 1781602833.363
     },
     "zxc.20260615184146.1": {
-      "_mod_time": 1781871977.123
+      "_mod_time": 1781874779.25
     },
     "User.20260226000855.1": {
-      "_mod_time": 1781873117.207
+      "_mod_time": 1781874779.25
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1781590486.33
@@ -15952,7 +15947,7 @@
       "_mod_time": 1781607695.717
     },
     "User.20260226001402.1": {
-      "_mod_time": 1781871424.9
+      "_mod_time": 1781874779.25
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1781137085.606
@@ -16069,79 +16064,79 @@
       "_mod_time": 1778855150.599
     },
     "User.20260220233323.1": {
-      "_mod_time": 1781872526.718
+      "_mod_time": 1781874779.266
     },
     "zxc.20260619203536.1": {
-      "_mod_time": 1781872731.378
+      "_mod_time": 1781874779.266
     },
     "zxc.20260612144646.1": {
-      "_mod_time": 1781871977.279
+      "_mod_time": 1781874779.281
     },
     "zxc.20260612144743.1": {
-      "_mod_time": 1781872071.542
+      "_mod_time": 1781874779.29
     },
     "zxc.20260612145004.1": {
-      "_mod_time": 1781872079.34
+      "_mod_time": 1781874779.282
     },
     "zxc.20260613012804.1": {
-      "_mod_time": 1781872130.722
+      "_mod_time": 1781874779.266
     },
     "zxc.20260613020836.1": {
-      "_mod_time": 1781872164.85
+      "_mod_time": 1781874779.282
     },
     "zxc.20260613104254.1": {
-      "_mod_time": 1781872186.794
+      "_mod_time": 1781874779.288
     },
     "zxc.20260613110002.1": {
-      "_mod_time": 1781872265.586
+      "_mod_time": 1781874779.288
     },
     "zxc.20260613121109.1": {
-      "_mod_time": 1781872265.599
+      "_mod_time": 1781874779.29
     },
     "zxc.20260614145830.1": {
-      "_mod_time": 1781872265.616
+      "_mod_time": 1781874779.291
     },
     "zxc.20260614154432.1": {
-      "_mod_time": 1781872343.119
+      "_mod_time": 1781874779.282
     },
     "zxc.20260614195759.1": {
-      "_mod_time": 1781872343.132
+      "_mod_time": 1781874779.266
     },
     "zxc.20260616145557.1": {
-      "_mod_time": 1781872343.148
+      "_mod_time": 1781874779.281
     },
     "zxc.20260619211159.1": {
-      "_mod_time": 1781874757.845
+      "_mod_time": 1781874779.474
     },
     "zxc.20260619203724.2": {
-      "_mod_time": 1781872731.395
+      "_mod_time": 1781874779.286
     },
     "zxc.20260619203724.4": {
-      "_mod_time": 1781872731.408
+      "_mod_time": 1781874779.282
     },
     "zxc.20260619203724.6": {
-      "_mod_time": 1781872731.42
+      "_mod_time": 1781874779.282
     },
     "zxc.20260612145641.1": {
-      "_mod_time": 1781872445.08
+      "_mod_time": 1781874779.266
     },
     "zxc.20260613013257.1": {
-      "_mod_time": 1781872445.097
+      "_mod_time": 1781874779.266
     },
     "zxc.20260613021949.1": {
-      "_mod_time": 1781872445.105
+      "_mod_time": 1781874779.266
     },
     "zxc.20260614150059.1": {
-      "_mod_time": 1781872445.13
+      "_mod_time": 1781874779.266
     },
     "zxc.20260614200117.1": {
-      "_mod_time": 1781872445.143
+      "_mod_time": 1781874779.266
     },
     "zxc.20260613012938.1": {
-      "_mod_time": 1781872477.584
+      "_mod_time": 1781874779.266
     },
     "zxc.20260613021402.1": {
-      "_mod_time": 1781872477.597
+      "_mod_time": 1781874779.266
     },
     "zxc.20260421145655.1": {
       "_mod_time": 1777179946.881
@@ -16318,10 +16313,10 @@
       "_mod_time": 1781537291.149
     },
     "zxc.20260613013057.1": {
-      "_mod_time": 1781871424.933
+      "_mod_time": 1781874779.292
     },
     "zxc.20260613021448.1": {
-      "_mod_time": 1781871439.863
+      "_mod_time": 1781874779.293
     },
     "zxc.20260325223009.1": {
       "_mod_time": 1777891355.163
@@ -16411,7 +16406,7 @@
       "_mod_time": 1777713442.481
     },
     "zxc.20260413210312.1": {
-      "_mod_time": 1781484842.605
+      "_mod_time": 1781411092.656
     },
     "zxc.20260423145238.1": {
       "_mod_time": 1778855150.563
@@ -16450,7 +16445,7 @@
       "_mod_time": 1777895512.128
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1781873897.618
+      "_mod_time": 1781874781.96
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777713442.480156
@@ -16495,7 +16490,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1781864233.854
+      "_mod_time": 1781875459.262
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777298774.844
@@ -16522,7 +16517,7 @@
       "_mod_time": 1777385863.235
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1781537291.133
+      "_mod_time": 1781437664.814
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1777382331.981
