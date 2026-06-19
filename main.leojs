@@ -6205,6 +6205,16 @@
                               ]
                             },
                             {
+                              "gnx": "zxc.20260619215636.1",
+                              "vh": "@clean correction_overlay.lua.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260619215701.1",
+                                  "vh": "content"
+                                }
+                              ]
+                            },
+                            {
                               "gnx": "zxc.20260619203724.4",
                               "vh": "@clean anilistUpdater.py.tmpl",
                               "children": [
@@ -7199,6 +7209,16 @@
                                   "children": [
                                     {
                                       "gnx": "zxc.20260615205203.1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "gnx": "zxc.20260619215744.1",
+                                  "vh": "@clean correction_overlay.lua.tmpl",
+                                  "children": [
+                                    {
+                                      "gnx": "zxc.20260619215744.2",
+                                      "vh": "content"
                                     }
                                   ]
                                 },
@@ -14133,7 +14153,7 @@
     "zxc.20260504001723.1": "\"surface.local ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHVX0quUeLWv/vQZ528bsWAqYB+uaVC5o/SMmgtnjPkD\",",
     "zxc.20260329194446.1": "\"[192.168.1.103]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n\"[192.168.123.191]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n",
     "zxc.20260329193440.1": "\"[ssh.github.com]:443 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl\",\n\"[ssh.github.com]:443 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=\",\n\"[ssh.github.com]:443 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=\"\n",
-    "zxc.20260503010044.1": "[my.modules]\n@others\n\n[my.modules.nuc.windows]\ndeskflow_client = true\n\n[my.modules.bed.windows.windows.startup]\njellyfin_mpv_shim.enable = true\n\n[my.modules.work.windows.windows.startup]\ndeskflow_server.enable = true\n\n[my.modules.surface.void]\n\n[my.modules.localhost.android]\n",
+    "zxc.20260503010044.1": "[my.modules]\n@others\n\n[my.modules.nuc.windows]\ndeskflow_client = true\n\n[my.modules.bed.windows.windows.startup]\njellyfin_mpv_shim.enable = true\n\n[my.modules.work.windows.windows.startup]\ndeskflow_server.enable = true\n\n[my.modules.surface.void]\nmpv.plugins.anilist_updater = false\n\n[my.modules.localhost.android]\n",
     "zxc.20260613235707.1": "[my.modules.windows.startup]\nglazewm.enable = true\ndeskflow_client.enable = false\ndeskflow_server.enable = false\naria2.enable = true\ntransmission.enable = true\nespanso.enable = true\nalist.enable = true\nmpd.enable = true\ngpg_agent.enable = true\nkde_connect.enable = true\nwezterm.enable = false\nfirefox.enable = true\nbrave.enable = false\nvscode.enable = false\nvscodium.enable = false\nleo.enable = false\neverything.enable = true\nautohotkey.enable = false\npowertoys.enable = true\ndufs.enable = true\ncopyparty.enable = true\naltrun.enable = false\nnavidrome.enable = true\njellyfin_mpv_shim.enable = false\nemacs.enable = true\nwt.enable = true\nsyncthing.enable = true\ntorrserver.enable = true\n",
     "zxc.20260614011525.1": "[my.modules.shell.pwsh]\nstarship.enable = false\noh_my_posh.enable = true\nsfsu.enable = false\nzoxide.enable = true\natuin.enable = false\nmcfly.enable = true\nnavi.enable = true\n",
     "zxc.20260614121829.1": "[my.modules.shell.clink]\nstarship.enable = false\noh_my_posh.enable = true\nzoxide.enable = true\n",
@@ -14596,6 +14616,8 @@
     "zxc.20260616222806.1": "local url = dofile({{ joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"neturl\" \"lib\" \"net\" \"url.lua\" | quote }})\n\nmp.add_hook(\"on_load\", 9, function()\n    local path = url.parse(mp.get_property(\"path\", \"\"))\n\n    if path.host == \"www.bilibili.com\" then\n        mp.commandv(\"change-list\", \"ytdl-raw-options\", \"append\", \"cookies-from-browser=firefox:~/scoop/persist/firefox\")\n    end\n\n    if path.host == \"www.youtube.com\" or path.host == \"youtu.be\" then\n        mp.set_property(\"file-local-options/ytdl-format\", \"18/22\")\n        mp.set_property(\"file-local-options/speed\", 2.0)\n        mp.commandv(\"change-list\", \"ytdl-raw-options\", \"append\", \"write-auto-sub=\")\n    end\nend)\n",
     "zxc.20260619203724.2": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260615205203.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"mpv-anilist-updater\" \"main.lua\") }}\n",
+    "zxc.20260619215636.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
+    "zxc.20260619215701.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"mpv-anilist-updater\" \"correction_overlay.lua\") }}\n",
     "zxc.20260619203724.4": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260615205309.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"mpv-anilist-updater\" \"anilistUpdater.py\") }}\n",
     "zxc.20260619203724.6": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
@@ -14687,6 +14709,8 @@
     "zxc.20260614154323.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"clipshot\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260614195641.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"smart_copy_paste\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260615205058.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
+    "zxc.20260619215744.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
+    "zxc.20260619215744.2": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"mpv-anilist-updater\" \"correction_overlay.lua\") }}\n",
     "zxc.20260615205253.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260615205559.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260616222720.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"costum\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
@@ -15947,7 +15971,7 @@
       "_mod_time": 1781607695.717
     },
     "User.20260226001402.1": {
-      "_mod_time": 1781874779.25
+      "_mod_time": 1781877543.483
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1781137085.606
@@ -16110,6 +16134,9 @@
     },
     "zxc.20260619203724.2": {
       "_mod_time": 1781874779.286
+    },
+    "zxc.20260619215636.1": {
+      "_mod_time": 1781877434.826
     },
     "zxc.20260619203724.4": {
       "_mod_time": 1781874779.282
@@ -16281,6 +16308,9 @@
     },
     "zxc.20260615205058.1": {
       "_mod_time": 1781624163.629
+    },
+    "zxc.20260619215744.1": {
+      "_mod_time": 1781877474.74
     },
     "zxc.20260615205253.1": {
       "_mod_time": 1781528007.648
