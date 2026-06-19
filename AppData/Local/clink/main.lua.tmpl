@@ -2,10 +2,10 @@
 {{ if lookPath "clink" -}}
 load(io.popen('starship init cmd'):read("*a"))()
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "starship" "clink") "opt" (list "shell" "clink" "starship" "enable") "os" "windows") | trim | atoi -}}
-load(io.popen('starship init cmd'):read("*a"))()
+{{ output "starship" "init" "cmd" }}
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "oh-my-posh" "clink") "opt" (list "shell" "clink" "oh_my_posh" "enable") "os" "windows") | trim | atoi -}}
-load(io.popen('oh-my-posh init cmd'):read("*a"))()
+{{ output "oh-my-posh" "init" "cmd" }}
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "zoxide" "clink") "opt" (list "shell" "clink" "zoxide" "enable") "os" "windows") | trim | atoi -}}
 -- =============================================================================
