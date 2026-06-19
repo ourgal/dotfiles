@@ -133,6 +133,8 @@ jellyfin_mpv_shim.enable = true
 deskflow_server.enable = true
 
 [my.modules.surface.void]
-mpv.plugins.anilist_updater = false
+
+[my.modules.surface.void.mpv.plugins]
+anilist_updater = false
 
 [my.modules.localhost.android]

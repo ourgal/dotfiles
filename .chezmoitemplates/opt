@@ -1,6 +1,7 @@
 {{ $os := .chezmoi.os -}}
+{{ $linux := "" -}}
 {{ if eq .chezmoi.os "linux" -}}
-{{ $linux := .chezmoi.osRelease.id -}}
+{{ $linux = .chezmoi.osRelease.id -}}
 {{ end -}}
 
 {{ $global_opt := "" -}}
@@ -11,7 +12,13 @@
 {{ $host_opt = index .my.modules .chezmoi.hostname $os .opt -}}
 {{ else if kindIs "slice" .opt -}}
 {{ $global_opt = .my.modules -}}
-{{ $host_opt = index .my.modules .chezmoi.hostname $os -}}
+
+    {{ if eq $os "linux" -}}
+    {{ $host_opt = index .my.modules .chezmoi.hostname $linux -}}
+    {{ else -}}
+    {{ $host_opt = index .my.modules .chezmoi.hostname $os -}}
+    {{ end -}}
+
     {{ range .opt -}}
         {{ if hasKey $global_opt . -}}
         {{ $global_opt = index $global_opt . -}}
