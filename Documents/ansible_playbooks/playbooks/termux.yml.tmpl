@@ -28,6 +28,7 @@
           - termux-create-package
           - sqlite
           - nodejs-lts
+          - rust
           - marksman
           - jq
           - golang
@@ -146,6 +147,8 @@
           - pipx
     - name: Install pipx packages
       tags: pipx
+      environment:
+        ANDROID_API_LEVEL: 28
       community.general.pipx:
         name: "{{ item }}"
         executable: /data/data/com.termux/files/usr/bin/pipx
@@ -153,3 +156,5 @@
         - copyparty
         - mdformat
         - advance-touch
+        - ansible-core
+        - ansible
