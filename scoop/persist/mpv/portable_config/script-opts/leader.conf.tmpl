@@ -1,5 +1,5 @@
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "leader") "os" "windows") | trim | atoi -}}
-leader_key=SPACE
+leader_key=\
 pause_on_open=yes
 # another possible value is true
 resume_on_exit=only-if-was-paused
