@@ -6408,6 +6408,10 @@
                           "vh": "content",
                           "children": [
                             {
+                              "gnx": "zxc.20260620015235.1",
+                              "vh": "env"
+                            },
+                            {
                               "gnx": "zxc.20260424082558.4"
                             },
                             {
@@ -14712,6 +14716,7 @@
     "zxc.20260613021406.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"Seme4eg_mpv-scripts\" \"script-modules\" \"leader.lua\") }}\n",
     "zxc.20260421145655.1": "<< unix dos >>\n{{ if or (lookPath \"msys2\") (lookPath \"fish\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260421145759.1": "if status is-interactive\n@others\nend",
+    "zxc.20260620015235.1": "fish_add_path --append ~/.local/bin\n",
     "zxc.20260421231645.1": "<< unix dos >>\n{{ if or (lookPath \"msys2\") (lookPath \"fish\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260421231755.1": "jorgebucaran/fisher\njorgebucaran/autopair.fish\nnickeb96/puffer-fish\nmeaningful-ooo/sponge\nicezyclon/zoxide.fish\natusy/by-binds-yourself",
     "zxc.20260503171104.1": "<< unix dos >>\n{{ if lookPath \"kmonad\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -16244,7 +16249,7 @@
       "_mod_time": 1781874779.266
     },
     "zxc.20260421145655.1": {
-      "_mod_time": 1781891458.102
+      "_mod_time": 1781891582.423
     },
     "zxc.20260421231645.1": {
       "_mod_time": 1777179946.881

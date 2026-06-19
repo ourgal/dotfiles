@@ -1,6 +1,7 @@
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
 {{ if or (lookPath "msys2") (lookPath "fish") -}}
 if status is-interactive
+fish_add_path --append ~/.local/bin
 {{ if lookPath "oh-my-posh" -}}
 {{ output "oh-my-posh" "init" "fish" }}
 {{ end -}}
