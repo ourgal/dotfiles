@@ -167,3 +167,9 @@
     type = "git-repo"
     url = "https://github.com/golgote/neturl"
     refreshPeriod = "168h"
+{{ if eq .chezmoi.os "android" -}}
+[".local/share/repos/termux-nf"]
+    type = "git-repo"
+    url = "https://github.com/arnavgr/termux-nf"
+    refreshPeriod = "168h"
+{{ end -}}
