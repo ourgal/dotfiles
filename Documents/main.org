@@ -29,7 +29,7 @@ $env:shell_startup = "~\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\St
 Set sfsu hook.
 
 #+begin_src powershell
-Invoke-Expression (&sfsu hook)
+{{ output "sfsu" "hook" }}
 #+end_src
 
 Set aliases.
@@ -42,13 +42,13 @@ New-Alias poweroff Stop-Computer
 Oh-My-Posh hook.
 
 #+begin_src powershell
-oh-my-posh init pwsh | Invoke-Expression
+{{ output "oh-my-posh" "init" "pwsh" }}
 #+end_src
 
 Starship hook.
 
 #+begin_src powershell
-Invoke-Expression (&starship init powershell)
+{{ output "starship" "init" "powershell" }}
 #+end_src
 
 Carapace auto shell completion.
@@ -66,19 +66,19 @@ carapace _carapace | Out-String | Invoke-Expression
 Init zoxide.
 
 #+begin_src powershell
-Invoke-Expression (& { (zoxide init powershell | Out-String) })
+{{ output "zoxide" "init" "powershell" }}
 #+end_src
 
 Init atuin.
 
 #+begin_src powershell
-Invoke-Expression -Command $(atuin init powershell | out-string)
+{{ output "atuin" "init" "powershell" }}
 #+end_src
 
 Init mcfly.
 
 #+begin_src powershell
-Invoke-Expression -Command $(mcfly init powershell | out-string)
+{{ output "mcfly" "init" "powershell" }}
 #+end_src
 
 Init navi shell plugin.
