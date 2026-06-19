@@ -10757,6 +10757,10 @@
                                         {
                                           "gnx": "zxc.20260512230236.1",
                                           "vh": "history"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260619205810.1",
+                                          "vh": "prompt"
                                         }
                                       ]
                                     }
@@ -15360,6 +15364,7 @@
     "zxc.20260513224314.1": "- mani",
     "zxc.20260512231154.1": "- ansible-language-server\n- ansible-lint",
     "zxc.20260512230236.1": "- mcfly",
+    "zxc.20260619205810.1": "- oh-my-posh\n",
     "zxc.20260504195440.1": "- name: Set the system hostname\n  become: true\n  ansible.builtin.hostname:\n    name: \"{{ hostname }}\"",
     "zxc.20260503212032.1": "- name: Set user groups\n  become: true\n  ansible.builtin.user:\n    name: \"{{ username }}\"\n    groups:\n      - '{{ \"input\" if ansible_facts.os_family == \"Void\" else omit }}'\n    append: true",
     "zxc.20260501214447.1": "- name: Regenerate initramfs\n  become: true\n  ansible.builtin.command:\n    cmd: \"xbps-reconfigure --force linux{{ ansible_facts.kernel | regex_search('\\\\d+\\\\.\\\\d+') }}\"\n  changed_when: true\n",
@@ -16445,7 +16450,7 @@
       "_mod_time": 1777895512.128
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1778706271.126
+      "_mod_time": 1781873897.618
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777713442.480156
