@@ -15137,7 +15137,7 @@
     "zxc.20260501155709.1": "- ansible",
     "zxc.20260423143729.353": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n- name: Configure termux\n  hosts: note20\n  vars:\n    ansible_remote_tmp: /data/data/com.termux/files/home/.ansible/tmp\n  tasks:\n    @others",
     "zxc.20260423143729.354": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts",
-    "zxc.20260423143729.355": "- name: Update all packages\n  tags: apt\n  ansible.builtin.apt:\n    update_cache: true\n    upgrade: true\n- name: Update all packages\n  tags: apt\n  ansible.builtin.apt:\n    name:\n      @others\n",
+    "zxc.20260423143729.355": "- name: Update all packages\n  tags: apt\n  ansible.builtin.apt:\n    update_cache: true\n    upgrade: true\n- name: Install all packages\n  tags: apt\n  ansible.builtin.apt:\n    name:\n      @others\n",
     "zxc.20260423143729.356": "- aichat",
     "zxc.20260423143729.357": "- bk",
     "zxc.20260423143729.358": "- weechat",
@@ -16457,7 +16457,7 @@
       "_mod_time": 1777749330.004
     },
     "zxc.20260423143729.353": {
-      "_mod_time": 1777749385.046
+      "_mod_time": 1781881430.88
     },
     "zxc.20260423143729.426": {
       "_mod_time": 1778706271.126

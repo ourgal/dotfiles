@@ -13,7 +13,7 @@
       ansible.builtin.apt:
         update_cache: true
         upgrade: true
-    - name: Update all packages
+    - name: Install all packages
       tags: apt
       ansible.builtin.apt:
         name:
