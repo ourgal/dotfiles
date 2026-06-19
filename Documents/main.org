@@ -674,7 +674,7 @@ Set oh-my-posh.
 
 #+begin_src fish
 {{ if lookPath "oh-my-posh" -}}
-oh-my-posh init fish | source
+{{ output "oh-my-posh" "init" "fish" }}
 {{ end -}}
 #+end_src
 
@@ -682,7 +682,11 @@ Set fzf.
 
 #+begin_src fish
 {{ if lookPath "fzf" -}}
-fzf --fish | source
+{{ if or (lookPath "mcfly") (lookPath "atuin") -}}
+{{ output "env" "FZF_CTRL_R_COMMAND=" "fzf" "--fish" }}
+{{ else -}}
+{{ output "fzf" "--fish" }}
+{{ end -}}
 {{ end -}}
 #+end_src
 
@@ -690,7 +694,7 @@ Set mcfly.
 
 #+begin_src fish
 {{ if lookPath "mcfly" -}}
-mcfly init fish | source
+{{ output "mcfly" "init" "fish" }}
 {{ end -}}
 #+end_src
 
@@ -698,7 +702,7 @@ Set navi.
 
 #+begin_src fish
 {{ if lookPath "navi" -}}
-navi widget fish | source
+{{ output "navi" "widget" "fish" }}
 {{ end -}}
 #+end_src
 
@@ -706,7 +710,7 @@ Set carapace.
 
 #+begin_src fish
 {{ if lookPath "carapace" -}}
-carapace _carapace | source
+{{ output "carapace" "_carapace" }}
 {{ end -}}
 #+end_src
 

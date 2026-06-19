@@ -6408,32 +6408,25 @@
                           "vh": "content",
                           "children": [
                             {
-                              "gnx": "zxc.20260421150607.1",
-                              "vh": "oh-my-posh"
+                              "gnx": "zxc.20260424082558.4"
                             },
                             {
-                              "gnx": "zxc.20260421151056.1",
-                              "vh": "fzf"
+                              "gnx": "zxc.20260424082558.5"
                             },
                             {
-                              "gnx": "zxc.20260421151309.1",
-                              "vh": "mcfly"
+                              "gnx": "zxc.20260424082558.6"
                             },
                             {
-                              "gnx": "zxc.20260421151656.1",
-                              "vh": "navi"
+                              "gnx": "zxc.20260424082558.7"
                             },
                             {
-                              "gnx": "zxc.20260421152125.1",
-                              "vh": "carapace"
+                              "gnx": "zxc.20260424082558.8"
                             },
                             {
-                              "gnx": "zxc.20260421224340.1",
-                              "vh": "eza"
+                              "gnx": "zxc.20260424082558.9"
                             },
                             {
-                              "gnx": "zxc.20260421234758.1",
-                              "vh": "nnn"
+                              "gnx": "zxc.20260424082558.10"
                             }
                           ]
                         },
@@ -13863,11 +13856,11 @@
     "zxc.20260125143959.1": "<< unix >>\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125144055.1": "# Get the aliases and functions\n[ -f $HOME/.bashrc ] && . $HOME/.bashrc\n",
     "zxc.20260424082558.3": "if status is-interactive\n@others\nend",
-    "zxc.20260424082558.4": "{{ if lookPath \"oh-my-posh\" -}}\noh-my-posh init fish | source\n{{ end -}}\n",
-    "zxc.20260424082558.5": "{{ if lookPath \"fzf\" -}}\nfzf --fish | source\n{{ end -}}\n",
-    "zxc.20260424082558.6": "{{ if lookPath \"mcfly\" -}}\nmcfly init fish | source\n{{ end -}}\n",
-    "zxc.20260424082558.7": "{{ if lookPath \"navi\" -}}\nnavi widget fish | source\n{{ end -}}\n",
-    "zxc.20260424082558.8": "{{ if lookPath \"carapace\" -}}\ncarapace _carapace | source\n{{ end -}}\n",
+    "zxc.20260424082558.4": "{{ if lookPath \"oh-my-posh\" -}}\n{{ output \"oh-my-posh\" \"init\" \"fish\" }}\n{{ end -}}\n",
+    "zxc.20260424082558.5": "{{ if lookPath \"fzf\" -}}\n{{ if or (lookPath \"mcfly\") (lookPath \"atuin\") -}}\n{{ output \"env\" \"FZF_CTRL_R_COMMAND=\" \"fzf\" \"--fish\" }}\n{{ else -}}\n{{ output \"fzf\" \"--fish\" }}\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260424082558.6": "{{ if lookPath \"mcfly\" -}}\n{{ output \"mcfly\" \"init\" \"fish\" }}\n{{ end -}}\n",
+    "zxc.20260424082558.7": "{{ if lookPath \"navi\" -}}\n{{ output \"navi\" \"widget\" \"fish\" }}\n{{ end -}}\n",
+    "zxc.20260424082558.8": "{{ if lookPath \"carapace\" -}}\n{{ output \"carapace\" \"_carapace\" }}\n{{ end -}}\n",
     "zxc.20260424082558.9": "{{ if lookPath \"eza\" -}}\n{{ $opts := \"--git --icons auto --group --group-directories-first --time-style relative\"}}\nfunction ls\n    eza {{ $opts }} $argv\nend\n\nfunction ll\n    eza -l {{ $opts }} $argv\nend\n{{ end -}}\n",
     "zxc.20260424082558.10": "# Rename this file to match the name of the function\n# e.g. ~/.config/fish/functions/n.fish\n# or, add the lines to the 'config.fish' file.\n\nfunction n --wraps nnn --description 'support nnn quit and change directory'\n    # Block nesting of nnn in subshells\n    if test -n \"$NNNLVL\" -a \"$NNNLVL\" -ge 1\n        echo \"nnn is already running\"\n        return\n    end\n\n    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)\n    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to\n    # see. To cd on quit only on ^G, remove the \"-x\" from both lines below,\n    # without changing the paths.\n    if test -n \"$XDG_CONFIG_HOME\"\n        set -x NNN_TMPFILE \"$XDG_CONFIG_HOME/nnn/.lastd\"\n    else\n        set -x NNN_TMPFILE \"$HOME/.config/nnn/.lastd\"\n    end\n\n    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn\n    # stty start undef\n    # stty stop undef\n    # stty lwrap undef\n    # stty lnext undef\n\n    # The command function allows one to alias this function to `nnn` without\n    # making an infinitely recursive alias\n    command nnn $argv\n\n    if test -e $NNN_TMPFILE\n        source $NNN_TMPFILE\n        rm -- $NNN_TMPFILE\n    end\nend\n",
     "zxc.20260424082558.12": "atusy/by-binds-yourself\n",
@@ -14719,13 +14712,6 @@
     "zxc.20260613021406.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"Seme4eg_mpv-scripts\" \"script-modules\" \"leader.lua\") }}\n",
     "zxc.20260421145655.1": "<< unix dos >>\n{{ if or (lookPath \"msys2\") (lookPath \"fish\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260421145759.1": "if status is-interactive\n@others\nend",
-    "zxc.20260421150607.1": "{{ if lookPath \"oh-my-posh\" -}}\noh-my-posh init fish | source\n{{ end -}}",
-    "zxc.20260421151056.1": "{{ if lookPath \"fzf\" -}}\nfzf --fish | source\n{{ end -}}",
-    "zxc.20260421151309.1": "{{ if lookPath \"mcfly\" -}}\nmcfly init fish | source\n{{ end -}}",
-    "zxc.20260421151656.1": "{{ if lookPath \"navi\" -}}\nnavi widget fish | source\n{{ end -}}",
-    "zxc.20260421152125.1": "{{ if lookPath \"carapace\" -}}\ncarapace _carapace | source\n{{ end -}}",
-    "zxc.20260421224340.1": "{{ if lookPath \"eza\" -}}\n{{ $opts := \"--git --icons auto --group --group-directories-first --time-style relative\"}}\nfunction ls\n    eza {{ $opts }} $argv\nend\n\nfunction ll\n    eza -l {{ $opts }} $argv\nend\n{{ end -}}",
-    "zxc.20260421234758.1": "# Rename this file to match the name of the function\n# e.g. ~/.config/fish/functions/n.fish\n# or, add the lines to the 'config.fish' file.\n\nfunction n --wraps nnn --description 'support nnn quit and change directory'\n    # Block nesting of nnn in subshells\n    if test -n \"$NNNLVL\" -a \"$NNNLVL\" -ge 1\n        echo \"nnn is already running\"\n        return\n    end\n\n    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)\n    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to\n    # see. To cd on quit only on ^G, remove the \"-x\" from both lines below,\n    # without changing the paths.\n    if test -n \"$XDG_CONFIG_HOME\"\n        set -x NNN_TMPFILE \"$XDG_CONFIG_HOME/nnn/.lastd\"\n    else\n        set -x NNN_TMPFILE \"$HOME/.config/nnn/.lastd\"\n    end\n\n    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn\n    # stty start undef\n    # stty stop undef\n    # stty lwrap undef\n    # stty lnext undef\n\n    # The command function allows one to alias this function to `nnn` without\n    # making an infinitely recursive alias\n    command nnn $argv\n\n    if test -e $NNN_TMPFILE\n        source $NNN_TMPFILE\n        rm -- $NNN_TMPFILE\n    end\nend",
     "zxc.20260421231645.1": "<< unix dos >>\n{{ if or (lookPath \"msys2\") (lookPath \"fish\") -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260421231755.1": "jorgebucaran/fisher\njorgebucaran/autopair.fish\nnickeb96/puffer-fish\nmeaningful-ooo/sponge\nicezyclon/zoxide.fish\natusy/by-binds-yourself",
     "zxc.20260503171104.1": "<< unix dos >>\n{{ if lookPath \"kmonad\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -16258,7 +16244,7 @@
       "_mod_time": 1781874779.266
     },
     "zxc.20260421145655.1": {
-      "_mod_time": 1777179946.881
+      "_mod_time": 1781891458.102
     },
     "zxc.20260421231645.1": {
       "_mod_time": 1777179946.881
@@ -16612,7 +16598,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1781890934.978
+      "_mod_time": 1781891239.854
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777298774.844
