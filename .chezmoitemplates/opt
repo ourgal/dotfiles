@@ -1,7 +1,8 @@
 {{ $os := .chezmoi.os -}}
 {{ if eq .chezmoi.os "linux" -}}
-{{ $os = .chezmoi.osRelease.id -}}
+{{ $linux := .chezmoi.osRelease.id -}}
 {{ end -}}
+
 {{ $global_opt := "" -}}
 {{ $host_opt := "" -}}
 {{ $final_opt := "" -}}
@@ -33,14 +34,30 @@
 {{ $final_opt = $host_opt -}}
 {{ end -}}
 
-{{ $cmd := list -}}
-{{ if kindIs "string" .cmd -}}
-{{ $cmd = or (lookPath .cmd) (stat .cmd) }}
-{{ else if kindIs "slice" .cmd -}}
-    {{ range .cmd -}}
-    {{ $cmd = append $cmd (or (lookPath .) (stat .)) -}}
+{{ $cmd := true -}}
+{{ if hasKey . "cmd" -}}
+    {{ if kindIs "string" .cmd -}}
+    {{ $cmd = lookPath .cmd }}
+    {{ else if kindIs "slice" .cmd -}}
+        {{ $cmd := list -}}
+        {{ range .cmd -}}
+        {{ $cmd = append $cmd (lookPath .) -}}
+        {{ end -}}
+    {{ $cmd = all $cmd -}}
     {{ end -}}
-{{ $cmd = all $cmd -}}
+{{ end -}}
+
+{{ $file := true -}}
+{{ if hasKey . "file" -}}
+    {{ if kindIs "string" .file -}}
+    {{ $file = stat .file }}
+    {{ else if kindIs "slice" .file -}}
+        {{ $file := list -}}
+        {{ range .file -}}
+        {{ $file = append $file (stat .) -}}
+        {{ end -}}
+    {{ $file = all $file -}}
+    {{ end -}}
 {{ end -}}
 
 {{ $final_os := list -}}
@@ -53,7 +70,7 @@
 {{ $final_os = any $final_os -}}
 {{ end -}}
 
-{{ if and $cmd $final_opt $final_os -}}
+{{ if and $cmd $file $final_opt $final_os -}}
 1
 {{- else -}}
 0

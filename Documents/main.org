@@ -589,7 +589,7 @@ fi
 Bash readline.
 
 #+begin_src bash
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" (joinPath .chezmoi.homeDir ".local" "lib" "ble_sh" "out" "ble.sh")) "opt" (list "shell" "bash" "ble_sh" "enable") "os" (list "linux" "android")) | atoi -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "bash" "file" (joinPath .chezmoi.homeDir ".local" "lib" "ble_sh" "out" "ble.sh") "opt" (list "shell" "bash" "ble_sh" "enable") "os" (list "linux" "android")) | atoi -}}
 {{ if and (hasKey .chezmoi.kernel "osrelease") (not (mustRegexMatch ".*WSL.*" .chezmoi.kernel.osrelease)) -}}
 source ~/.local/lib/ble_sh/out/ble.sh
 {{ end -}}
