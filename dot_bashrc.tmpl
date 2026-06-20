@@ -116,6 +116,7 @@ if ! shopt -oq posix; then
 fi
 {{ if eq .chezmoi.os "android" -}}
 export PATH=$PATH:$HOME/.local/bin
+export SSH_AUTH_SOCK=$PREFIX/var/run/ssh-agent.socket
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "bash" "file" (joinPath .chezmoi.homeDir ".local" "lib" "ble_sh" "out" "ble.sh") "opt" (list "shell" "bash" "ble_sh" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ if and (hasKey .chezmoi.kernel "osrelease") (not (mustRegexMatch ".*WSL.*" .chezmoi.kernel.osrelease)) -}}
