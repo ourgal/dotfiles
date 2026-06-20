@@ -1,7 +1,10 @@
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
 {{ if or (lookPath "msys2") (lookPath "fish") -}}
 if status is-interactive
+{{ if eq .chezmoi.os "android" -}}
 fish_add_path --append ~/.local/bin
+set -x SSH_AUTH_SOCK $PREFIX/var/run/ssh-agent.socket
+{{ end -}}
 {{ if lookPath "oh-my-posh" -}}
 {{ output "oh-my-posh" "init" "fish" }}
 {{ end -}}
