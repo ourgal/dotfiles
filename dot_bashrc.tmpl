@@ -123,29 +123,29 @@ export SSH_AUTH_SOCK=$PREFIX/var/run/ssh-agent.socket
 source ~/.local/lib/ble_sh/out/ble.sh
 {{ end -}}
 {{ end -}}
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "fzf") "opt" (list "shell" "bash" "fzf" "enable") "os" (list "linux" "android")) | atoi -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "fzf") "opt" (list "shell" "bash" "fzf" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ if or (lookPath "mcfly") (lookPath "atuin") -}}
 {{ output "env" "FZF_CTRL_R_COMMAND=" "fzf" "--bash" }}
 {{ else -}}
 {{ output "fzf" "--bash" }}
 {{ end -}}
 {{ end -}}
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "starship") "opt" (list "shell" "bash" "starship" "enable") "os" (list "linux" "android")) | atoi -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "starship") "opt" (list "shell" "bash" "starship" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "starship" "init" "bash" }}
 {{ end -}}
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "oh-my-posh") "opt" (list "shell" "bash" "oh_my_posh" "enable") "os" (list "linux" "android")) | atoi -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "oh-my-posh") "opt" (list "shell" "bash" "oh_my_posh" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "oh-my-posh" "init" "bash" }}
 {{ end -}}
 {{ if lookPath "eza" -}}
 alias ll='eza --long --git --icons auto --group --group-directories-first --time-style relative'
 {{ end -}}
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "atuin") "opt" (list "shell" "bash" "atuin" "enable") "os" (list "linux" "android")) | atoi -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "atuin") "opt" (list "shell" "bash" "atuin" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "atuin" "init" "bash" }}
 {{ end -}}
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "mcfly") "opt" (list "shell" "bash" "mcfly" "enable") "os" (list "linux" "android")) | atoi -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "mcfly") "opt" (list "shell" "bash" "mcfly" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "mcfly" "init" "bash" }}
 {{ end -}}
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "zoxide") "opt" (list "shell" "bash" "zoxide" "enable") "os" (list "linux" "android")) | atoi -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "zoxide") "opt" (list "shell" "bash" "zoxide" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 # zoxdie is needed be the end of bashrc
 {{ output "zoxide" "init" "bash" }}
 {{ end -}}
