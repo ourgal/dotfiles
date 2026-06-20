@@ -138,4 +138,7 @@ Run "torrserver", , "Hide"
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "torrserver" "opt" (list "windows" "startup" "flameshot" "enable") "os" "windows") | trim | atoi -}}
 Run "flameshot", , "Hide"
 {{ end -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "kdeconnect-cli" "opt" (list "windows" "startup" "seanime" "enable") "os" "windows") | trim | atoi -}}
+Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "seanime-server" "current" "seanime.exe" }}", {{ .chezmoi.homeDir | quote }}, "Hide"
+{{ end -}}
 {{ end -}}
