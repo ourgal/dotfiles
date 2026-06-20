@@ -14889,7 +14889,7 @@
     "zxc.20260613021915.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"leader\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260614145943.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"mpv\" \"yt-dlp\") \"opt\" (list \"mpv\" \"plugins\" \"ytdlautoformat\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260614184606.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
-    "zxc.20260614184647.1": "# Use 'yes' or 'no' for boolean options below\n# Example for multiple directories (comma or semicolon separated):\n# DIRECTORIES=D:/Torrents,D:/Anime\n# or\n# DIRECTORIES=D:/Torrents;D:/Anime\nDIRECTORIES=http://localhost;http://127.0.0.1\nEXCLUDED_DIRECTORIES=\nUPDATE_PERCENTAGE=85\nSET_COMPLETED_TO_REWATCHING_ON_FIRST_EPISODE=no\nUPDATE_PROGRESS_WHEN_REWATCHING=yes\nSET_TO_COMPLETED_AFTER_LAST_EPISODE_CURRENT=yes\nSET_TO_COMPLETED_AFTER_LAST_EPISODE_REWATCHING=yes\nADD_ENTRY_IF_MISSING=no\nCACHE_REFRESH_RATE=24\nCACHE_MODE=NORMAL\nSILENT_MODE=no\n",
+    "zxc.20260614184647.1": "# Use 'yes' or 'no' for boolean options below\n# Example for multiple directories (comma or semicolon separated):\n# DIRECTORIES=D:/Torrents,D:/Anime\n# or\n# DIRECTORIES=D:/Torrents;D:/Anime\nDIRECTORIES=\nEXCLUDED_DIRECTORIES=\nUPDATE_PERCENTAGE=85\nSET_COMPLETED_TO_REWATCHING_ON_FIRST_EPISODE=no\nUPDATE_PROGRESS_WHEN_REWATCHING=yes\nSET_TO_COMPLETED_AFTER_LAST_EPISODE_CURRENT=yes\nSET_TO_COMPLETED_AFTER_LAST_EPISODE_REWATCHING=yes\nADD_ENTRY_IF_MISSING=no\nCACHE_REFRESH_RATE=24\nCACHE_MODE=NORMAL\nSILENT_MODE=yes\n",
     "zxc.20260614200044.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"smart_copy_paste\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260620214842.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"autocrop\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260613013057.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"M_x\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
@@ -16534,7 +16534,7 @@
       "_mod_time": 1781484843.624
     },
     "zxc.20260614184606.1": {
-      "_mod_time": 1781537291.165
+      "_mod_time": 1781983824.157
     },
     "zxc.20260614200044.1": {
       "_mod_time": 1781537291.149
