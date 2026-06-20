@@ -135,4 +135,7 @@ Run "glazewm command move --workspace 6", ,"Hide"
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "torrserver" "opt" (list "windows" "startup" "torrserver" "enable") "os" "windows") | trim | atoi -}}
 Run "torrserver", , "Hide"
 {{ end -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "torrserver" "opt" (list "windows" "startup" "flameshot" "enable") "os" "windows") | trim | atoi -}}
+Run "flameshot", , "Hide"
+{{ end -}}
 {{ end -}}
