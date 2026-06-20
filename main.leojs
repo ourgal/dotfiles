@@ -5784,6 +5784,10 @@
             {
               "gnx": "zxc.20260614194721.1",
               "vh": "torrserver"
+            },
+            {
+              "gnx": "zxc.20260620161414.1",
+              "vh": "flameshot"
             }
           ]
         }
@@ -14241,7 +14245,7 @@
     "zxc.20260329194446.1": "\"[192.168.1.103]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n\"[192.168.123.191]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n",
     "zxc.20260329193440.1": "\"[ssh.github.com]:443 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl\",\n\"[ssh.github.com]:443 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=\",\n\"[ssh.github.com]:443 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=\"\n",
     "zxc.20260503010044.1": "[my.modules]\n@others\n\n[my.modules.nuc.windows]\ndeskflow_client = true\n\n[my.modules.bed.windows.windows.startup]\njellyfin_mpv_shim.enable = true\n\n[my.modules.work.windows.windows.startup]\ndeskflow_server.enable = true\n\n[my.modules.surface.void]\n\n[my.modules.surface.void.mpv.plugins]\nanilist_updater = false\n\n[my.modules.localhost.android]\n",
-    "zxc.20260613235707.1": "[my.modules.windows.startup]\nglazewm.enable = true\ndeskflow_client.enable = false\ndeskflow_server.enable = false\naria2.enable = true\ntransmission.enable = true\nespanso.enable = true\nalist.enable = true\nmpd.enable = true\ngpg_agent.enable = true\nkde_connect.enable = true\nwezterm.enable = false\nfirefox.enable = true\nbrave.enable = false\nvscode.enable = false\nvscodium.enable = false\nleo.enable = false\neverything.enable = true\nautohotkey.enable = false\npowertoys.enable = true\ndufs.enable = true\ncopyparty.enable = true\naltrun.enable = false\nnavidrome.enable = true\njellyfin_mpv_shim.enable = false\nemacs.enable = true\nwt.enable = true\nsyncthing.enable = true\ntorrserver.enable = true\n",
+    "zxc.20260613235707.1": "[my.modules.windows.startup]\nglazewm.enable = true\ndeskflow_client.enable = false\ndeskflow_server.enable = false\naria2.enable = true\ntransmission.enable = true\nespanso.enable = true\nalist.enable = true\nmpd.enable = true\ngpg_agent.enable = true\nkde_connect.enable = true\nwezterm.enable = false\nfirefox.enable = true\nbrave.enable = false\nvscode.enable = false\nvscodium.enable = false\nleo.enable = false\neverything.enable = true\nautohotkey.enable = false\npowertoys.enable = true\ndufs.enable = true\ncopyparty.enable = true\naltrun.enable = false\nnavidrome.enable = true\njellyfin_mpv_shim.enable = false\nemacs.enable = true\nwt.enable = true\nsyncthing.enable = true\ntorrserver.enable = true\nflameshot.enable = true\n",
     "zxc.20260614011525.1": "[my.modules.shell.pwsh]\nstarship.enable = false\noh_my_posh.enable = true\nsfsu.enable = false\nzoxide.enable = true\natuin.enable = false\nmcfly.enable = true\nnavi.enable = true\n",
     "zxc.20260614121829.1": "[my.modules.shell.clink]\nstarship.enable = false\noh_my_posh.enable = true\nzoxide.enable = true\n",
     "zxc.20260614123554.1": "[my.modules.shell.bash]\nble_sh.enable = true\nfzf.enable = true\nstarship.enable = false\noh_my_posh.enable = true\natuin.enable = false\nmcfly.enable = true\nzoxide.enable = true\npay_respects.enable = true\n",
@@ -14656,6 +14660,7 @@
     "zxc.20260329185904.1": "{{ $jellyfin_mpv_shim := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"jellyfin-mpv-shim\" \"current\" \"run.exe\" -}}\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" $jellyfin_mpv_shim \"opt\" (list \"windows\" \"startup\" \"jellyfin_mpv_shim\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun {{ $jellyfin_mpv_shim | quote }}, , \"Hide\"\n{{ end -}}\n",
     "zxc.20260514061811.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"runemacs\" \"opt\" (list \"windows\" \"startup\" \"emacs\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"runemacs\", {{ .chezmoi.homeDir | quote }}, \"Hide\"\nWinWait \"ahk_exe emacs.exe\"\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe emacs.exe\"\nRun \"glazewm command move --workspace 6\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260614194721.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"torrserver\" \"opt\" (list \"windows\" \"startup\" \"torrserver\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"torrserver\", , \"Hide\"\n{{ end -}}\n",
+    "zxc.20260620161414.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"torrserver\" \"opt\" (list \"windows\" \"startup\" \"flameshot\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"flameshot\", , \"Hide\"\n{{ end -}}\n",
     "zxc.20260504133747.1": "{{ if lookPath \"kmonad\" -}}\n{{ joinPath .chezmoi.homeDir \".config\" \"sv\" \"kmonad\" }}\n{{ end -}}",
     "zxc.20260504134034.1": "{{ if lookPath \"syncthing\" -}}\n{{ joinPath .chezmoi.homeDir \".config\" \"sv\" \"syncthing\" }}\n{{ end -}}",
     "zxc.20260507002719.1": "<< unix >>\n<< flatpak fcitx5 >>\n@others\n{{ end -}}\n{{ end -}}",
@@ -16063,7 +16068,7 @@
       "_mod_time": 1781889514.981
     },
     "User.20260226001402.1": {
-      "_mod_time": 1781931502.171
+      "_mod_time": 1781943307.451
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1781930867.827
@@ -16645,7 +16650,7 @@
       "_mod_time": 1777385863.235
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1781437664.814
+      "_mod_time": 1781943278.724
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1777382331.981
