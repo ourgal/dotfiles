@@ -873,6 +873,21 @@
           retries: 3
           delay: 5
           until: result is not failed
+        - name: Add Rinkerbel_scooped bucket
+          community.windows.win_scoop_bucket:
+            name: Rinkerbel_scooped
+            repo: https://github.com/Rinkerbel/scooped
+            state: present
+        - name: Install other packages via scoop
+          community.windows.win_scoop:
+            name:
+              - Rinkerbel_scooped/seanime-server
+            global: false
+            no_cache: true
+          register: result
+          retries: 3
+          delay: 5
+          until: result is not failed
     - name: Pipx
       tags: pipx
       block:
