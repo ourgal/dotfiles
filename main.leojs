@@ -8995,6 +8995,10 @@
                                         {
                                           "gnx": "zxc.20260613124503.1",
                                           "vh": "m75c_scoop-heap"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260620143358.1",
+                                          "vh": "Rinkerbel_scooped"
                                         }
                                       ]
                                     }
@@ -15093,6 +15097,7 @@
     "zxc.20260423143729.210": "- name: Add maqibg_MQBucket bucket\n  community.windows.win_scoop_bucket:\n    name: maqibg_MQBucket\n    repo: https://github.com/maqibg/MQBucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - maqibg_MQBucket/Github-Store\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.211": "- name: Add ourgal_scoop-bucket bucket\n  community.windows.win_scoop_bucket:\n    name: ourgal_scoop-bucket\n    repo: https://github.com/ourgal/scoop-bucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - ourgal_scoop-bucket/dockfmt\n      - ourgal_scoop-bucket/mtranserver\n      - ourgal_scoop-bucket/altrun\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260613124503.1": "- name: Add m75c_scoop-heap bucket\n  community.windows.win_scoop_bucket:\n    name: ourgal_scoop-bucket\n    repo: https://github.com/m75c/scoop-heap\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - m75c_scoop-heap/torrserver\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
+    "zxc.20260620143358.1": "- name: Add Rinkerbel_scooped bucket\n  community.windows.win_scoop_bucket:\n    name: Rinkerbel_scooped\n    repo: https://github.com/Rinkerbel/scooped\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - Rinkerbel_scooped/seanime-server\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.212": "- name: Pipx\n  tags: pipx\n  block:\n    @others\n",
     "zxc.20260423143729.213": "- name: Add pipx bin path to PATH\n  ansible.windows.win_path:\n    state: present\n    scope: user\n    elements: '%userprofile%\\.local\\bin'\n",
     "zxc.20260423143729.248": "- name: Create .pip folder\n  ansible.windows.win_file:\n    dest: \"{{ ansible_facts.env.APPDATA }}\\\\.pip\"\n    state: directory\n- name: Set pip config\n  ansible.windows.win_copy:\n    dest: \"{{ ansible_facts.env.APPDATA }}\\\\.pip\\\\pip.ini\"\n    content: |\n      [global]\n      index-url = https://mirrors.cernet.edu.cn/pypi/web/simple/\n      [install]\n      trusted-host = mirrors.cernet.edu.cn\n",
@@ -16535,7 +16540,7 @@
       "_mod_time": 1778855150.563
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1781602833.378
+      "_mod_time": 1781937309.038
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778855150.568
