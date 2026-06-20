@@ -9654,6 +9654,10 @@
                                   "vh": "AI"
                                 },
                                 {
+                                  "gnx": "zxc.20260620134748.1",
+                                  "vh": "anime"
+                                },
+                                {
                                   "gnx": "zxc.20260423143729.357",
                                   "vh": "book"
                                 },
@@ -15213,6 +15217,7 @@
     "zxc.20260423143729.354": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts",
     "zxc.20260423143729.355": "- name: Update all packages\n  tags: apt\n  ansible.builtin.apt:\n    update_cache: true\n    upgrade: true\n- name: Install all packages\n  tags: apt\n  ansible.builtin.apt:\n    name:\n      @others\n",
     "zxc.20260423143729.356": "- aichat",
+    "zxc.20260620134748.1": "- ani-cli\n",
     "zxc.20260423143729.357": "- bk",
     "zxc.20260423143729.358": "- weechat",
     "zxc.20260423143729.359": "- direnv\n- editorconfig-core-c\n- just\n- make\n- termux-apt-repo\n- termux-create-package",
@@ -16545,7 +16550,7 @@
       "_mod_time": 1777749330.004
     },
     "zxc.20260423143729.353": {
-      "_mod_time": 1781933883.769
+      "_mod_time": 1781934472.421
     },
     "zxc.20260423143729.426": {
       "_mod_time": 1778706271.126
