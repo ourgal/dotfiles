@@ -6143,6 +6143,16 @@
                                   "vh": "content"
                                 }
                               ]
+                            },
+                            {
+                              "gnx": "zxc.20260620214717.1",
+                              "vh": "autocrop",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260620214740.1",
+                                  "vh": "content"
+                                }
+                              ]
                             }
                           ]
                         }
@@ -6327,6 +6337,16 @@
                               ]
                             }
                           ]
+                        },
+                        {
+                          "gnx": "zxc.20260620220957.1",
+                          "vh": "@clean autocrop.lua.tmpl",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260620214136.1",
+                              "vh": "content"
+                            }
+                          ]
                         }
                       ]
                     },
@@ -6380,6 +6400,16 @@
                           "children": [
                             {
                               "gnx": "zxc.20260614200047.1",
+                              "vh": "content"
+                            }
+                          ]
+                        },
+                        {
+                          "gnx": "zxc.20260620221129.1",
+                          "vh": "@clean autocrop.conf.tmpl",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260620214853.1",
                               "vh": "content"
                             }
                           ]
@@ -7320,6 +7350,15 @@
                                   "gnx": "zxc.20260616145450.1"
                                 }
                               ]
+                            },
+                            {
+                              "gnx": "zxc.20260620214103.1",
+                              "vh": "@clean autocrop.lua.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260620214136.1"
+                                }
+                              ]
                             }
                           ]
                         },
@@ -7379,6 +7418,15 @@
                               "children": [
                                 {
                                   "gnx": "zxc.20260614200047.1"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260620214842.1",
+                              "vh": "@clean autocrop.conf.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260620214853.1"
                                 }
                               ]
                             }
@@ -14254,7 +14302,7 @@
     "zxc.20260614121829.1": "[my.modules.shell.clink]\nstarship.enable = false\noh_my_posh.enable = true\nzoxide.enable = true\n",
     "zxc.20260614123554.1": "[my.modules.shell.bash]\nble_sh.enable = true\nfzf.enable = true\nstarship.enable = false\noh_my_posh.enable = true\natuin.enable = false\nmcfly.enable = true\nzoxide.enable = true\npay_respects.enable = true\n",
     "zxc.20260620125523.1": "[my.modules.shell.fish]\noh_my_posh.enable = true\nfzf.enable = true\nmcfly.enable = true\nnavi.enable = true\ncarapace.enable = true\nzoxide.enable = true\n",
-    "zxc.20260613164155.1": "[my.modules.mpv]\nenable = true\n\n[my.modules.mpv.plugins]\nsmartskip = true\nthumbfast = true\nmanga_reader = true\nM_x = true\nleader = true\nsponsorblock_minimal = true\nquality_menu = true\ntorrserver_hook = true\nytdlautoformat = false\nclipshot = true\nfile_browser = true\nanilist_updater = true\nsmart_copy_paste = true\nbetterchapters = true\ncostum = true\n",
+    "zxc.20260613164155.1": "[my.modules.mpv]\nenable = true\n\n[my.modules.mpv.plugins]\nsmartskip = true\nthumbfast = true\nmanga_reader = true\nM_x = true\nleader = true\nsponsorblock_minimal = true\nquality_menu = true\ntorrserver_hook = true\nytdlautoformat = false\nclipshot = true\nfile_browser = true\nanilist_updater = true\nsmart_copy_paste = true\nbetterchapters = true\ncostum = true\nautocrop = true\n",
     "zxc.20260616151751.1": "[my.modules.firefox]\ntheme = \"flexfox\"\n",
     "User.20260302211627.1": "ENTRY \"AppData\" URL \"{{ .chezmoi.homeDir }}/AppData/Roaming\"",
     "User.20260302211750.1": "[Midnight-Commander]\nverbose=true\nshell_patterns=true\nauto_save_setup=false\npreallocate_space=false\nauto_menu=false\nuse_internal_view=false\nuse_internal_edit=false\nuse_internal_busybox=false\nclear_before_exec=true\nconfirm_delete=true\nconfirm_overwrite=true\nconfirm_execute=false\nconfirm_history_cleanup=true\nconfirm_exit=false\nconfirm_directory_hotlist_delete=false\nconfirm_view_dir=false\nsafe_delete=false\nsafe_overwrite=false\nuse_8th_bit_as_meta=true\nmouse_move_pages_viewer=true\nmouse_close_dialog=false\nfast_refresh=false\ndrop_menus=false\nwrap_mode=true\nold_esc_mode=false\ncd_symlinks=true\nshow_all_if_ambiguous=false\nuse_file_to_guess_type=true\nalternate_plus_minus=false\nonly_leading_plus_minus=true\nshow_output_starts_shell=false\nxtree_mode=false\nfile_op_compute_totals=true\nclassic_progressbar=true\nuse_netrc=true\nftpfs_always_use_proxy=false\nftpfs_use_passive_connections=true\nftpfs_use_passive_connections_over_proxy=false\nftpfs_use_unix_list_options=true\nftpfs_first_cd_then_ls=true\nignore_ftp_chattr_errors=true\neditor_fill_tabs_with_spaces=false\neditor_return_does_auto_indent=true\neditor_backspace_through_tabs=false\neditor_fake_half_tabs=true\neditor_option_save_position=true\neditor_option_auto_para_formatting=false\neditor_option_typewriter_wrap=false\neditor_edit_confirm_save=true\neditor_syntax_highlighting=true\neditor_persistent_selections=true\neditor_drop_selection_on_copy=true\neditor_cursor_beyond_eol=false\neditor_cursor_after_inserted_block=false\neditor_visible_tabs=true\neditor_visible_spaces=true\neditor_line_state=false\neditor_simple_statusbar=false\neditor_check_new_line=false\neditor_show_right_margin=false\neditor_group_undo=false\neditor_state_full_filename=false\neditor_ask_filename_before_edit=false\nnice_rotating_dash=true\nshadows=false\nmcview_remember_file_position=false\nauto_fill_mkdir_name=true\ncopymove_persistent_attr=true\npause_after_run=1\nmouse_repeat_rate=100\ndouble_click_speed=250\nold_esc_mode_timeout=1000000\nconsole_alert_mode=1\nmax_dirt_limit=10\nnum_history_items_recorded=60\nvfs_timeout=60\nftpfs_directory_timeout=900\nftpfs_retry_seconds=30\nshell_directory_timeout=900\neditor_tab_spacing=8\neditor_word_wrap_line_length=72\neditor_option_save_mode=0\neditor_backup_extension=~\neditor_filesize_threshold=64M\neditor_stop_format_chars=-+*\\\\,.;:&>\nmcview_eof=\nskin=dark\nfilepos_max_saved_entries=1024\n\n[Layout]\noutput_lines=0\nleft_panel_size=94\ntop_panel_size=0\nmessage_visible=false\nkeybar_visible=true\nxterm_title=true\ncommand_prompt=false\nmenubar_visible=true\nfree_space=true\nhorizontal_split=false\nvertical_equal=true\nhorizontal_equal=true\ncommand_view=true\n\n[Misc]\ntimeformat_recent=%b %e %H:%M\ntimeformat_old=%b %e  %Y\nftp_proxy_host=gate\nftpfs_password=anonymous@\ndisplay_codepage=UTF-8\nsource_codepage=Other_8_bit\nautodetect_codeset=\nspell_language=en\nclipboard_store=\nclipboard_paste=\naltgr_enabled=\n\n[Colors]\nbase_color=\ndos-console=\ncolor_terminals=\n\n[FindFile]\nfile_case_sens=true\nfile_shell_pattern=true\nfile_find_recurs=true\nfollow_symlinks=false\nfile_skip_hidden=false\nfile_all_charsets=false\ncontent_case_sens=true\ncontent_regexp=false\ncontent_first_hit=false\ncontent_whole_words=false\ncontent_all_charsets=false\nignore_dirs_enable=true\nignore_dirs=\n\n[Panels]\nshow_mini_info=true\nkilobyte_si=false\nmix_all_files=false\nshow_backups=true\nshow_dot_files=true\nfast_reload=false\nfast_reload_msg_shown=false\nmark_moves_down=true\nreverse_files_only=true\nauto_save_setup_panels=false\nnavigate_with_arrows=true\npanel_scroll_pages=true\npanel_scroll_center=false\nmouse_move_pages=true\nfiletype_mode=true\npermission_mode=false\ntorben_fj_mode=false\nquick_search_mode=0\nselect_flags=6\n\nsimple_swap=false\n\n[Panelize]\nModified git files=git ls-files --modified\nFind *.orig after patching=find . -name \\\\*.orig -print\nFind SUID and SGID programs=find . \\\\( \\\\( -perm -04000 -a -perm /011 \\\\) -o \\\\( -perm -02000 -a -perm /01 \\\\) \\\\) -print\nFind rejects after patching=find . -name \\\\*.rej -print",
@@ -14687,7 +14735,9 @@
     "User.20260220233323.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"enable\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260619203536.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260614184847.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
-    "zxc.20260614184908.1": "Ctrl+a script-binding update_anilist\nAlt+a script-binding launch_anilist\nD script-binding open_folde\nB script-binding correct_anime_id\n",
+    "zxc.20260614184908.1": "Ctrl+a script-binding mpv_anilist_updater/update_anilist\nAlt+a script-binding mpv_anilist_updater/launch_anilist\nD script-binding mpv_anilist_updater/open_folder\nB script-binding mpv_anilist_updater/correct_anime_id\n",
+    "zxc.20260620214717.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"autocrop\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
+    "zxc.20260620214740.1": "X script-binding auto_crop/toggle_crop\n",
     "zxc.20260612144646.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"smartskip\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260322192302.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"Eisa01_mpv-scripts\" \"scripts\" \"SmartSkip.lua\") }}\n",
     "zxc.20260612144743.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"thumbfast\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
@@ -14722,6 +14772,8 @@
     "zxc.20260615205309.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"mpv-anilist-updater\" \"anilistUpdater.py\") }}\n",
     "zxc.20260619203724.6": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260615205640.1": "{{ includeTemplate \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"chezmoi\" \"scoop\" \"persist\" \"mpv\" \"portable_config\" \"scripts\" \"mpv-anilist-updater\" \"anilistToken.key\" ) | trim }}\n",
+    "zxc.20260620220957.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"autocrop\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
+    "zxc.20260620214136.1": "--[[\nThis script uses the lavfi cropdetect filter and the video-crop property to\nautomatically crop the currently playing video with appropriate parameters.\n\nIt automatically crops the video when playback starts.\n\nYou can also manually crop the video by pressing the \"C\" (shift+c) key.\nPressing it again undoes the crop.\n\nThe workflow is as follows: First, it inserts the cropdetect filter. After\n<detect_seconds> (default is 1) seconds, it then sets video-crop based on the\nvf-metadata values gathered by cropdetect. The cropdetect filter is removed\nafter video-crop is set as it is no longer needed.\n\nSince the crop parameters are determined from the 1 second of video between\ninserting the cropdetect filter and setting video-crop, the \"C\" key should be\npressed at a position in the video where the crop region is unambiguous (i.e.,\nnot a black frame, black background title card, or dark scene).\n\nIf non-copy-back hardware decoding is in use, hwdec is temporarily disabled for\nthe duration of cropdetect as the filter would fail otherwise.\n\nThese are the default options. They can be overridden by adding\nscript-opts-append=autocrop-<parameter>=<value> to mpv.conf.\n--]]\nlocal options = {\n  -- Whether to automatically apply crop at the start of playback. If you\n  -- don't want to crop automatically, add\n  -- script-opts-append=autocrop-auto=no to mpv.conf.\n  auto = true,\n  -- Delay before starting crop in auto mode. You can try to increase this\n  -- value to avoid dark scenes or fade ins at beginning. Automatic cropping\n  -- will not occur if the value is larger than the remaining playback time.\n  auto_delay = 4,\n  -- Black threshold for cropdetect. Smaller values will generally result in\n  -- less cropping. See limit of\n  -- https://ffmpeg.org/ffmpeg-filters.html#cropdetect\n  detect_limit = \"24/255\",\n  -- The value which the width/height should be divisible by. Smaller\n  -- values have better detection accuracy. If you have problems with\n  -- other filters, you can try to set it to 4 or 16. See round of\n  -- https://ffmpeg.org/ffmpeg-filters.html#cropdetect\n  detect_round = 2,\n  -- The ratio of the minimum clip size to the original. A number from 0 to\n  -- 1. If the picture is over cropped, try adjusting this value.\n  detect_min_ratio = 0.5,\n  -- How long to gather cropdetect data. Increasing this may be desirable to\n  -- allow cropdetect more time to collect data.\n  detect_seconds = 1,\n  -- Whether the OSD shouldn't be used when cropdetect and video-crop are\n  -- applied and removed.\n  suppress_osd = false,\n}\n\nrequire(\"mp.options\").read_options(options)\n\nlocal cropdetect_label = mp.get_script_name() .. \"-cropdetect\"\n\nlocal timers = {\n  auto_delay = nil,\n  detect_crop = nil,\n}\n\nlocal hwdec_backup\n\nlocal command_prefix = options.suppress_osd and \"no-osd\" or \"\"\n\nlocal function is_enough_time(seconds)\n  -- Plus 1 second for deviation.\n  local time_needed = seconds + 1\n  local playtime_remaining = mp.get_property_native(\"playtime-remaining\")\n\n  return playtime_remaining and time_needed < playtime_remaining\nend\n\nlocal function is_cropable(time_needed)\n  if mp.get_property_native(\"current-tracks/video/image\") ~= false then\n    mp.msg.warn(\"autocrop only works for videos.\")\n    return false\n  end\n\n  if not is_enough_time(time_needed) then\n    mp.msg.warn(\"Not enough time to detect crop.\")\n    return false\n  end\n\n  return true\nend\n\nlocal function remove_cropdetect()\n  for _, filter in pairs(mp.get_property_native(\"vf\")) do\n    if filter.label == cropdetect_label then\n      mp.command(string.format(\"%s vf remove @%s\", command_prefix, filter.label))\n\n      return\n    end\n  end\nend\n\nlocal function restore_hwdec()\n  if hwdec_backup then\n    mp.set_property(\"hwdec\", hwdec_backup)\n    hwdec_backup = nil\n  end\nend\n\nlocal function cleanup()\n  remove_cropdetect()\n\n  -- Kill all timers.\n  for index, timer in pairs(timers) do\n    if timer then\n      timer:kill()\n      timers[index] = nil\n    end\n  end\n\n  restore_hwdec()\nend\n\nlocal function apply_crop(meta)\n  -- Verify if it is necessary to crop.\n  local is_effective = meta.w\n    and meta.h\n    and meta.x\n    and meta.y\n    and (meta.x > 0 or meta.y > 0 or meta.w < meta.max_w or meta.h < meta.max_h)\n\n  -- Verify it is not over cropped.\n  local is_excessive = false\n  if is_effective and (meta.w < meta.min_w or meta.h < meta.min_h) then\n    mp.msg.info(\"The area to be cropped is too large.\")\n    mp.msg.info(\"You might need to decrease detect_min_ratio.\")\n    is_excessive = true\n  end\n\n  if not is_effective or is_excessive then\n    -- Clear any existing crop.\n    mp.command(string.format(\"%s set file-local-options/video-crop ''\", command_prefix))\n    return\n  end\n\n  -- Apply crop.\n  mp.command(\n    string.format(\"%s set file-local-options/video-crop %sx%s+%s+%s\", command_prefix, meta.w, meta.h, meta.x, meta.y)\n  )\nend\n\nlocal function detect_end()\n  -- Get the metadata and remove the cropdetect filter.\n  local cropdetect_metadata = mp.get_property_native(\"vf-metadata/\" .. cropdetect_label)\n  remove_cropdetect()\n\n  -- Remove the timer of detect crop.\n  if timers.detect_crop then\n    timers.detect_crop:kill()\n    timers.detect_crop = nil\n  end\n\n  restore_hwdec()\n\n  local meta\n\n  -- Verify the existence of metadata.\n  if cropdetect_metadata then\n    meta = {\n      w = cropdetect_metadata[\"lavfi.cropdetect.w\"],\n      h = cropdetect_metadata[\"lavfi.cropdetect.h\"],\n      x = cropdetect_metadata[\"lavfi.cropdetect.x\"],\n      y = cropdetect_metadata[\"lavfi.cropdetect.y\"],\n    }\n  else\n    mp.msg.error(\"No crop data.\")\n    mp.msg.info(\"Was the cropdetect filter successfully inserted?\")\n    mp.msg.info(\"Does your version of FFmpeg support AVFrame metadata?\")\n    return\n  end\n\n  -- Verify that the metadata meets the requirements and convert it.\n  if meta.w and meta.h and meta.x and meta.y then\n    local width = mp.get_property_native(\"width\")\n    local height = mp.get_property_native(\"height\")\n\n    meta = {\n      w = tonumber(meta.w),\n      h = tonumber(meta.h),\n      x = tonumber(meta.x),\n      y = tonumber(meta.y),\n      min_w = width * options.detect_min_ratio,\n      min_h = height * options.detect_min_ratio,\n      max_w = width,\n      max_h = height,\n    }\n  else\n    mp.msg.error(\"Got empty crop data.\")\n    mp.msg.info(\"You might need to increase detect_seconds.\")\n  end\n\n  apply_crop(meta)\nend\n\nlocal function detect_crop()\n  local time_needed = options.detect_seconds\n\n  if not is_cropable(time_needed) then\n    return\n  end\n\n  local hwdec_current = mp.get_property(\"hwdec-current\", \"no\")\n  if\n    hwdec_current:find(\"-copy$\") == nil\n    and hwdec_current ~= \"no\"\n    and hwdec_current ~= \"crystalhd\"\n    and hwdec_current ~= \"rkmpp\"\n  then\n    hwdec_backup = mp.get_property(\"hwdec\")\n    mp.set_property(\"hwdec\", \"no\")\n  end\n\n  -- Insert the cropdetect filter.\n  local limit = options.detect_limit\n  local round = options.detect_round\n\n  mp.command(\n    string.format(\"%s vf pre @%s:cropdetect=limit=%s:round=%d:reset=0\", command_prefix, cropdetect_label, limit, round)\n  )\n\n  -- Wait to gather data.\n  timers.detect_crop = mp.add_timeout(time_needed, detect_end)\nend\n\nlocal function on_start()\n  -- Clean up at the beginning.\n  cleanup()\n\n  -- If auto is not true, exit.\n  if not options.auto then\n    return\n  end\n\n  -- If it is the beginning, wait for detect_crop\n  -- after auto_delay seconds, otherwise immediately.\n  local playback_time = mp.get_property_native(\"playback-time\")\n  local is_delay_needed = playback_time and options.auto_delay > playback_time\n\n  if is_delay_needed then\n    -- Verify if there is enough time for autocrop.\n    local time_needed = options.auto_delay + options.detect_seconds\n\n    if not is_cropable(time_needed) then\n      return\n    end\n\n    timers.auto_delay = mp.add_timeout(time_needed, function()\n      detect_crop()\n\n      -- Remove the timer of auto delay.\n      timers.auto_delay:kill()\n      timers.auto_delay = nil\n    end)\n  else\n    detect_crop()\n  end\nend\n\nlocal function on_toggle()\n  -- If it is during auto_delay, kill the timer.\n  if timers.auto_delay then\n    timers.auto_delay:kill()\n    timers.auto_delay = nil\n  end\n\n  -- Cropped => Remove it.\n  if mp.get_property(\"video-crop\") ~= \"\" then\n    mp.command(string.format(\"%s set file-local-options/video-crop ''\", command_prefix))\n    return\n  end\n\n  -- Detecting => Leave it.\n  if timers.detect_crop then\n    mp.msg.warn(\"Already cropdetecting!\")\n    return\n  end\n\n  -- Neither => Detect crop.\n  detect_crop()\nend\n\nmp.add_key_binding(\"C\", \"toggle_crop\", on_toggle)\nmp.register_event(\"end-file\", cleanup)\nmp.register_event(\"file-loaded\", on_start)\n",
     "zxc.20260612145641.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"manga_reader\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260612145600.1": "auto_start=yes\n",
     "zxc.20260613013257.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"M_x\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
@@ -14732,6 +14784,8 @@
     "zxc.20260614150009.1": "# which domains should ytdl-format change on?\n# separate each domain with a comma\ndomains=youtu.be, youtube.com\n\n# set maximum video quality (on load/start)\n# 240, 360, 480, 720, 1080, 1440, 2160, 4320\n# use 0 to ignore quality\nquality=360\n\n# preferred codec: avc, hevc, vp9, av1, novp9, noav1, none\n# novp9/av1: accept any codec except vp9/av1\n# none: no codec preference\ncodec=avc\n\n# maximum video fps\n# set 0 to ignore\nfps=0\n\n# force a specific extension\nforce_extension=yes\nextension_type=mp4a\n\n# rare: to avoid mpv shutting down if nothing is found with the specified format\n# if true, and format not found, it'll use fallback_format\nfallback=yes\n# an alternative: bv+ba/b\nfallback_format=b\n\n# respect manual format changes (ie: by a quality selector script)\nrespect_manual_changes=yes\n\n# regex to detect urls\n# a simpler pattern: ^%a+://\nurl_pattern=^[%a][%a%d+.-]*://\n",
     "zxc.20260614200117.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"smart_copy_paste\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260614200047.1": "######----Settings For SmartCopyPaste 3.1----######\n####------Script Settings-----####\n\n#--auto is for automatic device detection, or manually change to: windows or mac or linux\ndevice=auto\n\n#--copy command that will be used in Linux. OR write a different command\nlinux_copy=xclip -silent -selection clipboard -in\n\n#--paste command that will be used in Linux. OR write a different command\nlinux_paste=xclip -selection clipboard -o\n\n#--copy command that will be used in MAC. OR write a different command\nmac_copy=pbcopy\n\n#--paste command that will be used in MAC. OR write a different command\nmac_paste=pbpaste\n\n#--powershell is for using windows powershell to copy. OR write the copy command, e.g:clip\nwindows_copy=powershell\n\n#--powershell is for using windows powershell to paste. OR write the paste command\nwindows_paste=powershell\n\n#--change to 0 so item resumes from the exact position, or decrease the value so that it gives you a little preview before loading the resume point\nresume_offset=-0.65\n\n#--yes is for displaying osd messages when actions occur. Change to no will disable all osd messages generated from this script\nosd_messages=yes\n\n#--Time seperator that will be shown before the saved time in osd messages\ntime_seperator= 🕒\n\n#--Prefers to copy filename over filetitle. Select between: local, protocols, all, none. 'local' prefer filenames for videos that are not protocols. 'protocols' will prefer filenames for protocols only. 'all' will prefer filename over filetitle for both protocols and not protocols videos. 'none' will always use filetitle instead of filename\nprefer_filename_over_title=local\n\n#--Option to copy time with video. Select between: local, protocols, specifics, all, none. 'none' for disabled, 'all' to copy time for all videos, 'protocols' for copying time only for protocols, 'specifics' to copy time only for websites defined below, 'local' to copy time for videos that are not protocols\ncopy_time_method=all\n\n#--The time attributes which will be added when copying protocols of specific websites from this list. Additional attributes can be added following the same format.\nspecific_time_attributes=[ [\"twitter\", \"?t=\", \"\"], [\"twitch\", \"?t=\", \"s\"], [\"youtube\", \"&t=\", \"s\"] ]\n\n#--The text that will be copied before the seek time when copying a protocol video from mpv\nprotocols_time_attribute=&t=\n\n#--The text that will be copied before the seek time when copying a local video from mpv\nlocal_time_attribute=&time=\n\n#--The time attributes that can be pasted for resume, specific_time_attributes, protocols_time_attribute, local_time_attribute are automatically added\npastable_time_attributes=[\" | time=\"]\n\n#--Keybind that will be used to copy\ncopy_keybind=[\"ctrl+c\", \"ctrl+C\", \"meta+c\", \"meta+C\"]\n\n#--The priority of paste behavior when a video is running. Select between: playlist, timestamp, force.\nrunning_paste_behavior=playlist\n\n#--Keybind that will be used to paste\npaste_keybind=[\"ctrl+v\", \"ctrl+V\", \"meta+v\", \"meta+V\"]\n\n#--Copy behavior when using copy_specific_keybind. Select between: title, path, timestamp, path&timestamp.\ncopy_specific_behavior=path\n\n#--Keybind that will be used to copy based on the copy behavior specified\ncopy_specific_keybind=[\"ctrl+alt+c\", \"ctrl+alt+C\", \"meta+alt+c\", \"meta+alt+C\"]\n\n#--Paste behavior when using paste_specific_keybind. Select between: playlist, timestamp, force.\npaste_specific_behavior=playlist\n\n#--Keybind that will be used to paste based on the paste behavior specified\npaste_specific_keybind=[\"ctrl+alt+v\", \"ctrl+alt+V\", \"meta+alt+v\", \"meta+alt+V\"]\n\n#--add below (after a comma) any protocol you want paste to work with; e.g: ,'ftp://'. Or set it as \"\" by deleting all defined protocols to make paste works with any protocol.\npaste_protocols=[\"https?://\", \"magnet:\", \"rtmp:\", \"file:\"]\n\n#--add below (after a comma) any extension you want paste to work with; e.g: ,'pdf'. Or set it as \"\" by deleting all defined extension to make paste works with any extension.\npaste_extensions=[\"ac3\", \"a52\", \"eac3\", \"mlp\", \"dts\", \"dts-hd\", \"dtshd\", \"yes-hd\", \"thd\", \"yeshd\", \"thd+ac3\", \"tta\", \"pcm\", \"wav\", \"aiff\", \"aif\", \"aifc\", \"amr\", \"awb\", \"au\", \"snd\", \"lpcm\", \"yuv\", \"y4m\", \"ape\", \"wv\", \"shn\", \"m2ts\", \"m2t\", \"mts\", \"mtv\", \"ts\", \"tsv\", \"tsa\", \"tts\", \"trp\", \"adts\", \"adt\", \"mpa\", \"m1a\", \"m2a\", \"mp1\", \"mp2\", \"mp3\", \"mpeg\", \"mpg\", \"mpe\", \"mpeg2\", \"m1v\", \"m2v\", \"mp2v\", \"mpv\", \"mpv2\", \"mod\", \"tod\", \"vob\", \"vro\", \"evob\", \"evo\", \"mpeg4\", \"m4v\", \"mp4\", \"mp4v\", \"mpg4\", \"m4a\", \"aac\", \"h264\", \"avc\", \"x264\", \"264\", \"hevc\", \"h265\", \"x265\", \"265\", \"flac\", \"oga\", \"ogg\", \"opus\", \"spx\", \"ogv\", \"ogm\", \"ogx\", \"mkv\", \"mk3d\", \"mka\", \"webm\", \"weba\", \"avi\", \"vfw\", \"divx\", \"3iv\", \"xvid\", \"nut\", \"flic\", \"fli\", \"flc\", \"nsv\", \"gxf\", \"mxf\", \"wma\", \"wm\", \"wmv\", \"asf\", \"dvr-ms\", \"dvr\", \"wtv\", \"dv\", \"hdv\", \"flv\", \"f4v\", \"f4a\", \"qt\", \"mov\", \"hdmov\", \"rm\", \"rmvb\", \"ra\", \"ram\", \"3ga\", \"3ga2\", \"3gpp\", \"3gp\", \"3gp2\", \"3g2\", \"ay\", \"gbs\", \"gym\", \"hes\", \"kss\", \"nsf\", \"nsfe\", \"sap\", \"spc\", \"vgm\", \"vgz\", \"m3u\", \"m3u8\", \"pls\", \"cue\", \"ase\", \"art\", \"bmp\", \"blp\", \"cd5\", \"cit\", \"cpt\", \"cr2\", \"cut\", \"dds\", \"dib\", \"djvu\", \"egt\", \"exif\", \"gif\", \"gpl\", \"grf\", \"icns\", \"ico\", \"iff\", \"jng\", \"jpeg\", \"jpg\", \"jfif\", \"jp2\", \"jps\", \"lbm\", \"max\", \"miff\", \"mng\", \"msp\", \"nitf\", \"ota\", \"pbm\", \"pc1\", \"pc2\", \"pc3\", \"pcf\", \"pcx\", \"pdn\", \"pgm\", \"PI1\", \"PI2\", \"PI3\", \"pict\", \"pct\", \"pnm\", \"pns\", \"ppm\", \"psb\", \"psd\", \"pdd\", \"psp\", \"px\", \"pxm\", \"pxr\", \"qfx\", \"raw\", \"rle\", \"sct\", \"sgi\", \"rgb\", \"int\", \"bw\", \"tga\", \"tiff\", \"tif\", \"vtf\", \"xbm\", \"xcf\", \"xpm\", \"3dv\", \"amf\", \"ai\", \"awg\", \"cgm\", \"cdr\", \"cmx\", \"dxf\", \"e2d\", \"egt\", \"eps\", \"fs\", \"gbr\", \"odg\", \"svg\", \"stl\", \"vrml\", \"x3d\", \"sxd\", \"v2d\", \"vnd\", \"wmf\", \"emf\", \"art\", \"xar\", \"png\", \"webp\", \"jxr\", \"hdp\", \"wdp\", \"cur\", \"ecw\", \"iff\", \"lbm\", \"liff\", \"nrrd\", \"pam\", \"pcx\", \"pgf\", \"sgi\", \"rgb\", \"rgba\", \"bw\", \"int\", \"inta\", \"sid\", \"ras\", \"sun\", \"tga\", \"torrent\"]\n\n#--add below (after a comma) any extension you want paste to attempt to add as a subtitle file, e.g.:'txt'. Or set it as \"\" by deleting all defined extension to make paste attempt to add any subtitle.\npaste_subtitles=[\"aqt\", \"gsub\", \"jss\", \"sub\", \"ttxt\", \"pjs\", \"psb\", \"rt\", \"smi\", \"slt\", \"ssf\", \"srt\", \"ssa\", \"ass\", \"usf\", \"idx\", \"vtt\"]\n\n####-----Time Format Settings-----####\n##--in the first parameter, you can define from the available styles: default, hms, hms-full, timestamp, timestamp-concise \"default\" to show in HH:MM:SS.sss format. \"hms\" to show in 1h 2m 3.4s format. \"hms-full\" is the same as hms but keeps the hours and minutes persistent when they are 0. \"timestamp\" to show the total time as timestamp 123456.700 format. \"timestamp-concise\" shows the total time in 123456.7 format (shows and hides decimals depending on availability).\n##--in the second parameter, you can define whether to show milliseconds, round them or truncate them. Available options: 'truncate' to remove the milliseconds and keep the seconds. 0 to remove the milliseconds and round the seconds. 1 or above is the amount of milliseconds to display. The default value is 3 milliseconds.\n##--in the third parameter you can define the seperator between hour:minute:second. \"default\" style is automatically set to \":\", \"hms\", \"hms-full\" are automatically set to \" \". You can define your own. Some examples: [\"default\", 3, \"-\"],[\"hms-full\", 5, \".\"],[\"hms\", \"truncate\", \":\"],[\"timestamp-concise\"],[\"timestamp\", 0],[\"timestamp\", \"truncate\"],[\"timestamp\", 5]\n\ncopy_time_format=[\"timestamp-concise\"]\nosd_time_format=[\"default\", \"truncate\"]\n\n######----End of Settings----######\n",
+    "zxc.20260620221129.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"autocrop\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
+    "zxc.20260620214853.1": "auto=no\n",
     "zxc.20260613012938.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"M_x\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260613013000.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"Seme4eg_mpv-scripts\" \"script-modules\" \"extended-menu.lua\") }}\n",
     "zxc.20260613021402.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"leader\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
@@ -14807,6 +14861,7 @@
     "zxc.20260615205559.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260616222720.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"costum\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260616145335.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"betterchapters\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
+    "zxc.20260620214103.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"autocrop\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260612145521.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"manga_reader\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260613013159.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"M_x\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260613021915.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"leader\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
@@ -14814,6 +14869,7 @@
     "zxc.20260614184606.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260614184647.1": "# Use 'yes' or 'no' for boolean options below\n# Example for multiple directories (comma or semicolon separated):\n# DIRECTORIES=D:/Torrents,D:/Anime\n# or\n# DIRECTORIES=D:/Torrents;D:/Anime\nDIRECTORIES=http://localhost;http://127.0.0.1\nEXCLUDED_DIRECTORIES=\nUPDATE_PERCENTAGE=85\nSET_COMPLETED_TO_REWATCHING_ON_FIRST_EPISODE=no\nUPDATE_PROGRESS_WHEN_REWATCHING=yes\nSET_TO_COMPLETED_AFTER_LAST_EPISODE_CURRENT=yes\nSET_TO_COMPLETED_AFTER_LAST_EPISODE_REWATCHING=yes\nADD_ENTRY_IF_MISSING=no\nCACHE_REFRESH_RATE=24\nCACHE_MODE=NORMAL\nSILENT_MODE=no\n",
     "zxc.20260614200044.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"smart_copy_paste\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
+    "zxc.20260620214842.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"autocrop\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260613013057.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"M_x\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260613021448.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"leader\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260325223009.1": "<< dos >>\n{{ if lookPath \"syncthing\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -16073,7 +16129,7 @@
       "_mod_time": 1781953136.932
     },
     "User.20260226001402.1": {
-      "_mod_time": 1781962716.897
+      "_mod_time": 1781963410.815
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1781953136.948
@@ -16199,7 +16255,7 @@
       "_mod_time": 1781953136.959
     },
     "zxc.20260619203536.1": {
-      "_mod_time": 1781953136.959
+      "_mod_time": 1781963291.644
     },
     "zxc.20260612144646.1": {
       "_mod_time": 1781953136.959
@@ -16252,6 +16308,9 @@
     "zxc.20260619203724.6": {
       "_mod_time": 1781953136.959
     },
+    "zxc.20260620220957.1": {
+      "_mod_time": 1781964728.872
+    },
     "zxc.20260612145641.1": {
       "_mod_time": 1781953136.959
     },
@@ -16266,6 +16325,9 @@
     },
     "zxc.20260614200117.1": {
       "_mod_time": 1781953136.959
+    },
+    "zxc.20260620221129.1": {
+      "_mod_time": 1781964728.894
     },
     "zxc.20260613012938.1": {
       "_mod_time": 1781953136.959
@@ -16379,7 +16441,7 @@
       "_mod_time": 1781607696.647
     },
     "zxc.20260614184825.1": {
-      "_mod_time": 1781537291.149
+      "_mod_time": 1781963291.656
     },
     "zxc.20260322192157.1": {
       "_mod_time": 1781590486.363
@@ -16432,6 +16494,9 @@
     "zxc.20260616145335.1": {
       "_mod_time": 1781607696.647
     },
+    "zxc.20260620214103.1": {
+      "_mod_time": 1781962920.857
+    },
     "zxc.20260612145521.1": {
       "_mod_time": 1781484843.624
     },
@@ -16449,6 +16514,9 @@
     },
     "zxc.20260614200044.1": {
       "_mod_time": 1781537291.149
+    },
+    "zxc.20260620214842.1": {
+      "_mod_time": 1781963659.196
     },
     "zxc.20260613013057.1": {
       "_mod_time": 1781953136.959

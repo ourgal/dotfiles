@@ -1,0 +1,3 @@
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "autocrop") "os" "windows") | trim | atoi -}}
+auto=no
+{{ end -}}
