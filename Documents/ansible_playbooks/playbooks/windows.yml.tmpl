@@ -730,6 +730,17 @@
             name: extras-plus
             repo: https://github.com/Scoopforge/Extras-Plus
             state: present
+        - name: Install packages from extras-plus
+          community.windows.win_scoop:
+            name:
+              - extras-plus/dbgate
+            global: false
+            no_cache: true
+          register: result
+          retries: 3
+          delay: 5
+          until: result is not failed
+          loop:
         - name: Add extras-cn bucket
           community.windows.win_scoop_bucket:
             name: extras-cn
