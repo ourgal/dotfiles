@@ -474,6 +474,10 @@
                         {
                           "gnx": "zxc.20260424082558.10",
                           "vh": "nnn"
+                        },
+                        {
+                          "gnx": "zxc.20260620125318.1",
+                          "vh": "zoxide"
                         }
                       ]
                     }
@@ -3259,6 +3263,10 @@
                                     {
                                       "gnx": "zxc.20260614123554.1",
                                       "vh": "bash"
+                                    },
+                                    {
+                                      "gnx": "zxc.20260620125523.1",
+                                      "vh": "fish"
                                     }
                                   ]
                                 },
@@ -13839,24 +13847,25 @@
     "User.20260225204449.1": "{{ if eq .chezmoi.os \"android\" -}}\n",
     "zxc.20260125143635.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"bash\" \"file\" (joinPath .chezmoi.homeDir \".local\" \"lib\" \"ble_sh\" \"out\" \"ble.sh\") \"opt\" (list \"shell\" \"bash\" \"ble_sh\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n<< not WSL >>\nsource ~/.local/lib/ble_sh/out/ble.sh\n{{ end -}}\n{{ end -}}\n",
     "User.20260225204031.1": "{{ if and (hasKey .chezmoi.kernel \"osrelease\") (not (mustRegexMatch \".*WSL.*\" .chezmoi.kernel.osrelease)) -}}\n",
-    "zxc.20260125143653.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"fzf\") \"opt\" (list \"shell\" \"bash\" \"fzf\" \"enable\") \"os\" (list \"linux\" \"android\")) | atoi -}}\n{{ if or (lookPath \"mcfly\") (lookPath \"atuin\") -}}\n{{ output \"env\" \"FZF_CTRL_R_COMMAND=\" \"fzf\" \"--bash\" }}\n{{ else -}}\n{{ output \"fzf\" \"--bash\" }}\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260614123759.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"starship\") \"opt\" (list \"shell\" \"bash\" \"starship\" \"enable\") \"os\" (list \"linux\" \"android\")) | atoi -}}\n{{ output \"starship\" \"init\" \"bash\" }}\n{{ end -}}\n",
-    "zxc.20260614123845.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"oh-my-posh\") \"opt\" (list \"shell\" \"bash\" \"oh_my_posh\" \"enable\") \"os\" (list \"linux\" \"android\")) | atoi -}}\n{{ output \"oh-my-posh\" \"init\" \"bash\" }}\n{{ end -}}\n",
+    "zxc.20260125143653.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"fzf\") \"opt\" (list \"shell\" \"bash\" \"fzf\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ if or (lookPath \"mcfly\") (lookPath \"atuin\") -}}\n{{ output \"env\" \"FZF_CTRL_R_COMMAND=\" \"fzf\" \"--bash\" }}\n{{ else -}}\n{{ output \"fzf\" \"--bash\" }}\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260614123759.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"starship\") \"opt\" (list \"shell\" \"bash\" \"starship\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"starship\" \"init\" \"bash\" }}\n{{ end -}}\n",
+    "zxc.20260614123845.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"oh-my-posh\") \"opt\" (list \"shell\" \"bash\" \"oh_my_posh\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"oh-my-posh\" \"init\" \"bash\" }}\n{{ end -}}\n",
     "zxc.20260125143716.1": "{{ if lookPath \"eza\" -}}\nalias ll='eza --long --git --icons auto --group --group-directories-first --time-style relative'\n{{ end -}}\n",
-    "zxc.20260614124259.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"atuin\") \"opt\" (list \"shell\" \"bash\" \"atuin\" \"enable\") \"os\" (list \"linux\" \"android\")) | atoi -}}\n{{ output \"atuin\" \"init\" \"bash\" }}\n{{ end -}}\n",
-    "zxc.20260614124321.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"mcfly\") \"opt\" (list \"shell\" \"bash\" \"mcfly\" \"enable\") \"os\" (list \"linux\" \"android\")) | atoi -}}\n{{ output \"mcfly\" \"init\" \"bash\" }}\n{{ end -}}\n",
-    "zxc.20260125143738.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"zoxide\") \"opt\" (list \"shell\" \"bash\" \"zoxide\" \"enable\") \"os\" (list \"linux\" \"android\")) | atoi -}}\n# zoxdie is needed be the end of bashrc\n{{ output \"zoxide\" \"init\" \"bash\" }}\n{{ end -}}\n",
+    "zxc.20260614124259.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"atuin\") \"opt\" (list \"shell\" \"bash\" \"atuin\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"atuin\" \"init\" \"bash\" }}\n{{ end -}}\n",
+    "zxc.20260614124321.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"mcfly\") \"opt\" (list \"shell\" \"bash\" \"mcfly\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"mcfly\" \"init\" \"bash\" }}\n{{ end -}}\n",
+    "zxc.20260125143738.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"zoxide\") \"opt\" (list \"shell\" \"bash\" \"zoxide\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n# zoxdie is needed be the end of bashrc\n{{ output \"zoxide\" \"init\" \"bash\" }}\n{{ end -}}\n",
     "zxc.20260125143959.1": "<< unix >>\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125144055.1": "# Get the aliases and functions\n[ -f $HOME/.bashrc ] && . $HOME/.bashrc\n",
     "zxc.20260421145759.1": "if status is-interactive\n@others\nend",
     "zxc.20260620015235.1": "<< android >>\nfish_add_path --append ~/.local/bin\nset -x SSH_AUTH_SOCK $PREFIX/var/run/ssh-agent.socket\n{{ end -}}\n",
-    "zxc.20260424082558.4": "{{ if lookPath \"oh-my-posh\" -}}\n{{ output \"oh-my-posh\" \"init\" \"fish\" }}\n{{ end -}}\n",
-    "zxc.20260424082558.5": "{{ if lookPath \"fzf\" -}}\n{{ if or (lookPath \"mcfly\") (lookPath \"atuin\") -}}\n{{ output \"env\" \"FZF_CTRL_R_COMMAND=\" \"fzf\" \"--fish\" }}\n{{ else -}}\n{{ output \"fzf\" \"--fish\" }}\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260424082558.6": "{{ if lookPath \"mcfly\" -}}\n{{ output \"mcfly\" \"init\" \"fish\" }}\n{{ end -}}\n",
-    "zxc.20260424082558.7": "{{ if lookPath \"navi\" -}}\n{{ output \"navi\" \"widget\" \"fish\" }}\n{{ end -}}\n",
-    "zxc.20260424082558.8": "{{ if lookPath \"carapace\" -}}\n{{ output \"carapace\" \"_carapace\" }}\n{{ end -}}\n",
+    "zxc.20260424082558.4": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"zoxide\") \"opt\" (list \"shell\" \"fish\" \"oh_my_posh\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"oh-my-posh\" \"init\" \"fish\" }}\n{{ end -}}\n",
+    "zxc.20260424082558.5": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"zoxide\") \"opt\" (list \"shell\" \"fish\" \"fzf\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ if or (lookPath \"mcfly\") (lookPath \"atuin\") -}}\n{{ output \"env\" \"FZF_CTRL_R_COMMAND=\" \"fzf\" \"--fish\" }}\n{{ else -}}\n{{ output \"fzf\" \"--fish\" }}\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260424082558.6": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"zoxide\") \"opt\" (list \"shell\" \"fish\" \"mcfly\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"mcfly\" \"init\" \"fish\" }}\n{{ end -}}\n",
+    "zxc.20260424082558.7": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"zoxide\") \"opt\" (list \"shell\" \"fish\" \"navi\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"navi\" \"widget\" \"fish\" }}\n{{ end -}}\n",
+    "zxc.20260424082558.8": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"zoxide\") \"opt\" (list \"shell\" \"fish\" \"carapace\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"carapace\" \"_carapace\" }}\n{{ end -}}\n",
     "zxc.20260424082558.9": "{{ if lookPath \"eza\" -}}\n{{ $opts := \"--git --icons auto --group --group-directories-first --time-style relative\"}}\nfunction ls\n    eza {{ $opts }} $argv\nend\n\nfunction ll\n    eza -l {{ $opts }} $argv\nend\n{{ end -}}\n",
-    "zxc.20260424082558.10": "# Rename this file to match the name of the function\n# e.g. ~/.config/fish/functions/n.fish\n# or, add the lines to the 'config.fish' file.\n\nfunction n --wraps nnn --description 'support nnn quit and change directory'\n    # Block nesting of nnn in subshells\n    if test -n \"$NNNLVL\" -a \"$NNNLVL\" -ge 1\n        echo \"nnn is already running\"\n        return\n    end\n\n    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)\n    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to\n    # see. To cd on quit only on ^G, remove the \"-x\" from both lines below,\n    # without changing the paths.\n    if test -n \"$XDG_CONFIG_HOME\"\n        set -x NNN_TMPFILE \"$XDG_CONFIG_HOME/nnn/.lastd\"\n    else\n        set -x NNN_TMPFILE \"$HOME/.config/nnn/.lastd\"\n    end\n\n    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn\n    # stty start undef\n    # stty stop undef\n    # stty lwrap undef\n    # stty lnext undef\n\n    # The command function allows one to alias this function to `nnn` without\n    # making an infinitely recursive alias\n    command nnn $argv\n\n    if test -e $NNN_TMPFILE\n        source $NNN_TMPFILE\n        rm -- $NNN_TMPFILE\n    end\nend\n",
+    "zxc.20260424082558.10": "{{ if lookPath \"nnn\" -}}\n# Rename this file to match the name of the function\n# e.g. ~/.config/fish/functions/n.fish\n# or, add the lines to the 'config.fish' file.\n\nfunction n --wraps nnn --description 'support nnn quit and change directory'\n    # Block nesting of nnn in subshells\n    if test -n \"$NNNLVL\" -a \"$NNNLVL\" -ge 1\n        echo \"nnn is already running\"\n        return\n    end\n\n    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)\n    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to\n    # see. To cd on quit only on ^G, remove the \"-x\" from both lines below,\n    # without changing the paths.\n    if test -n \"$XDG_CONFIG_HOME\"\n        set -x NNN_TMPFILE \"$XDG_CONFIG_HOME/nnn/.lastd\"\n    else\n        set -x NNN_TMPFILE \"$HOME/.config/nnn/.lastd\"\n    end\n\n    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn\n    # stty start undef\n    # stty stop undef\n    # stty lwrap undef\n    # stty lnext undef\n\n    # The command function allows one to alias this function to `nnn` without\n    # making an infinitely recursive alias\n    command nnn $argv\n\n    if test -e $NNN_TMPFILE\n        source $NNN_TMPFILE\n        rm -- $NNN_TMPFILE\n    end\nend\n{{ end -}}\n",
+    "zxc.20260620125318.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"zoxide\") \"opt\" (list \"shell\" \"fish\" \"zoxide\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"zoxide\" \"init\" \"fish\" }}\n{{ end -}}\n",
     "zxc.20260424082558.12": "atusy/by-binds-yourself\n",
     "zxc.20260605112229.1": "jorgebucaran/fisher\n",
     "zxc.20260605112327.1": "jorgebucaran/autopair.fish\n",
@@ -14224,6 +14233,7 @@
     "zxc.20260614011525.1": "[my.modules.shell.pwsh]\nstarship.enable = false\noh_my_posh.enable = true\nsfsu.enable = false\nzoxide.enable = true\natuin.enable = false\nmcfly.enable = true\nnavi.enable = true\n",
     "zxc.20260614121829.1": "[my.modules.shell.clink]\nstarship.enable = false\noh_my_posh.enable = true\nzoxide.enable = true\n",
     "zxc.20260614123554.1": "[my.modules.shell.bash]\nble_sh.enable = true\nfzf.enable = true\nstarship.enable = false\noh_my_posh.enable = true\natuin.enable = false\nmcfly.enable = true\nzoxide.enable = true\npay_respects.enable = true\n",
+    "zxc.20260620125523.1": "[my.modules.shell.fish]\noh_my_posh.enable = true\nfzf.enable = true\nmcfly.enable = true\nnavi.enable = true\ncarapace.enable = true\nzoxide.enable = true\n",
     "zxc.20260613164155.1": "[my.modules.mpv]\nenable = true\n\n[my.modules.mpv.plugins]\nsmartskip = true\nthumbfast = true\nmanga_reader = true\nM_x = true\nleader = true\nsponsorblock_minimal = true\nquality_menu = true\ntorrserver_hook = true\nytdlautoformat = false\nclipshot = true\nfile_browser = true\nanilist_updater = true\nsmart_copy_paste = true\nbetterchapters = true\ncostum = true\n",
     "zxc.20260616151751.1": "[my.modules.firefox]\ntheme = \"flexfox\"\n",
     "User.20260302211627.1": "ENTRY \"AppData\" URL \"{{ .chezmoi.homeDir }}/AppData/Roaming\"",
@@ -15834,7 +15844,7 @@
       "_mod_time": 1777179946.861
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1781930099.543
+      "_mod_time": 1781931273.273
     },
     "zxc.20260125143959.1": {
       "_mod_time": 1777906067.531
@@ -16038,7 +16048,7 @@
       "_mod_time": 1781889514.981
     },
     "User.20260226001402.1": {
-      "_mod_time": 1781877961.766
+      "_mod_time": 1781931502.171
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1781930867.827
@@ -16239,7 +16249,7 @@
       "_mod_time": 1781874779.266
     },
     "zxc.20260421145655.1": {
-      "_mod_time": 1781930755.655
+      "_mod_time": 1781931671.3
     },
     "zxc.20260421231645.1": {
       "_mod_time": 1777179946.881
@@ -16593,7 +16603,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1781891239.854
+      "_mod_time": 1781931671.32
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777298774.844

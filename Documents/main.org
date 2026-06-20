@@ -599,7 +599,7 @@ source ~/.local/lib/ble_sh/out/ble.sh
 Fzf.
 
 #+begin_src bash
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "fzf") "opt" (list "shell" "bash" "fzf" "enable") "os" (list "linux" "android")) | atoi -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "fzf") "opt" (list "shell" "bash" "fzf" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ if or (lookPath "mcfly") (lookPath "atuin") -}}
 {{ output "env" "FZF_CTRL_R_COMMAND=" "fzf" "--bash" }}
 {{ else -}}
@@ -611,7 +611,7 @@ Fzf.
 Starship.
 
 #+begin_src bash
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "starship") "opt" (list "shell" "bash" "starship" "enable") "os" (list "linux" "android")) | atoi -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "starship") "opt" (list "shell" "bash" "starship" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "starship" "init" "bash" }}
 {{ end -}}
 #+end_src
@@ -619,7 +619,7 @@ Starship.
 Oh my posh.
 
 #+begin_src bash
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "oh-my-posh") "opt" (list "shell" "bash" "oh_my_posh" "enable") "os" (list "linux" "android")) | atoi -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "oh-my-posh") "opt" (list "shell" "bash" "oh_my_posh" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "oh-my-posh" "init" "bash" }}
 {{ end -}}
 #+end_src
@@ -635,7 +635,7 @@ alias ll='eza --long --git --icons auto --group --group-directories-first --time
 Atuin.
 
 #+begin_src bash
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "atuin") "opt" (list "shell" "bash" "atuin" "enable") "os" (list "linux" "android")) | atoi -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "atuin") "opt" (list "shell" "bash" "atuin" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "atuin" "init" "bash" }}
 {{ end -}}
 #+end_src
@@ -643,7 +643,7 @@ Atuin.
 Mcfly.
 
 #+begin_src bash
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "mcfly") "opt" (list "shell" "bash" "mcfly" "enable") "os" (list "linux" "android")) | atoi -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "mcfly") "opt" (list "shell" "bash" "mcfly" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "mcfly" "init" "bash" }}
 {{ end -}}
 #+end_src
@@ -651,7 +651,7 @@ Mcfly.
 Faster cd.
 
 #+begin_src bash
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "zoxide") "opt" (list "shell" "bash" "zoxide" "enable") "os" (list "linux" "android")) | atoi -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "zoxide") "opt" (list "shell" "bash" "zoxide" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 # zoxdie is needed be the end of bashrc
 {{ output "zoxide" "init" "bash" }}
 {{ end -}}
@@ -673,7 +673,7 @@ Import bashrc.
 Set oh-my-posh.
 
 #+begin_src fish
-{{ if lookPath "oh-my-posh" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "zoxide") "opt" (list "shell" "fish" "oh_my_posh" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "oh-my-posh" "init" "fish" }}
 {{ end -}}
 #+end_src
@@ -681,7 +681,7 @@ Set oh-my-posh.
 Set fzf.
 
 #+begin_src fish
-{{ if lookPath "fzf" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "zoxide") "opt" (list "shell" "fish" "fzf" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ if or (lookPath "mcfly") (lookPath "atuin") -}}
 {{ output "env" "FZF_CTRL_R_COMMAND=" "fzf" "--fish" }}
 {{ else -}}
@@ -693,7 +693,7 @@ Set fzf.
 Set mcfly.
 
 #+begin_src fish
-{{ if lookPath "mcfly" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "zoxide") "opt" (list "shell" "fish" "mcfly" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "mcfly" "init" "fish" }}
 {{ end -}}
 #+end_src
@@ -701,7 +701,7 @@ Set mcfly.
 Set navi.
 
 #+begin_src fish
-{{ if lookPath "navi" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "zoxide") "opt" (list "shell" "fish" "navi" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "navi" "widget" "fish" }}
 {{ end -}}
 #+end_src
@@ -709,7 +709,7 @@ Set navi.
 Set carapace.
 
 #+begin_src fish
-{{ if lookPath "carapace" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "zoxide") "opt" (list "shell" "fish" "carapace" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "carapace" "_carapace" }}
 {{ end -}}
 #+end_src
@@ -732,6 +732,7 @@ end
 Nnn file manager.
 
 #+begin_src fish
+{{ if lookPath "nnn" -}}
 # Rename this file to match the name of the function
 # e.g. ~/.config/fish/functions/n.fish
 # or, add the lines to the 'config.fish' file.
@@ -768,6 +769,7 @@ function n --wraps nnn --description 'support nnn quit and change directory'
         rm -- $NNN_TMPFILE
     end
 end
+{{ end -}}
 #+end_src
 
 ***** plugins
