@@ -13877,6 +13877,72 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "gnx": "zxc.20260621234814.1",
+                  "vh": "@path fdroidcl",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260621234825.1",
+                      "vh": "@clean config.toml.tmpl",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260621234846.1",
+                          "vh": "content",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260621235026.1",
+                              "vh": "repos",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260621235046.1",
+                                  "vh": "f-droid"
+                                },
+                                {
+                                  "gnx": "zxc.20260621235106.1",
+                                  "vh": "f-droid-archive"
+                                },
+                                {
+                                  "gnx": "zxc.20260621235123.1",
+                                  "vh": "cernet mirror"
+                                },
+                                {
+                                  "gnx": "zxc.20260621235146.1",
+                                  "vh": "nju mirror"
+                                },
+                                {
+                                  "gnx": "zxc.20260621235159.1",
+                                  "vh": "lzzy"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "zxc.20260621235218.1",
+                              "vh": "setups",
+                              "children": [
+                                {
+                                  "gnx": "zxc.20260621235232.1",
+                                  "vh": "phone"
+                                },
+                                {
+                                  "gnx": "zxc.20260621235249.1",
+                                  "vh": "sub phone"
+                                },
+                                {
+                                  "gnx": "zxc.20260621235304.1",
+                                  "vh": "tablet"
+                                },
+                                {
+                                  "gnx": "zxc.20260621235317.1",
+                                  "vh": "bak"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -15948,7 +16014,17 @@
     "zxc.20260515010901.1": "<< dos >>\n{{ if lookPath \"aichat\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260518233322.1": "<< dos >>\n{{ if lookPath \"ludusavi\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260611090830.1": "<< dos >>\n{{ if lookPath \"pet\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260611091007.1": "<< dos >>\n{{ if lookPath \"pet\" -}}\n@others\n{{ end -}}\n{{ end -}}\n"
+    "zxc.20260611091007.1": "<< dos >>\n{{ if lookPath \"pet\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260621234825.1": "{{ if lookPath \"fdroidcl\" -}}\n@others\n{{ end -}}\n",
+    "zxc.20260621235046.1": "[[repos]]\nenabled = true\nid = \"f-droid\"\nurl = \"https://f-droid.org/repo\"\n",
+    "zxc.20260621235106.1": "[[repos]]\nenabled = false\nid = \"f-droid-archive\"\nurl = \"https://f-droid.org/archive\"\n",
+    "zxc.20260621235123.1": "[[repos]]\nenabled = false\nid = \"cernet\"\nurl = \"https://mirrors.cernet.edu.cn/fdroid/repo\"\n",
+    "zxc.20260621235146.1": "[[repos]]\nenabled = false\nid = \"nju\"\nurl = \"https://mirror.nju.edu.cn/fdroid/repo\"\n",
+    "zxc.20260621235159.1": "[[repos]]\nenabled = true\nid = \"lzzy\"\nurl = \"https://apt.izzysoft.de/fdroid/repo\"\n",
+    "zxc.20260621235232.1": "[[setups]]\napps = [\n  \"me.hackerchick.raisetoanswer\",\n  \"spam.blocker\",\n  \"org.moire.ultrasonic\",\n  \"org.oxycblt.auxio\",\n  \"org.gateshipone.malp\",\n  \"de.badaix.snapcast\",\n  \"me.echeung.moemoekyun.fdroid\",\n  \"github.paroj.dsub2000\",\n  \"biz.binarysolutions.healthybatterycharging\",\n  \"org.videolan.vlc\",\n  \"dev.jdtech.jellyfin\",\n  \"com.github.libretube\",\n  \"is.xyz.mpv\",\n  \"org.jellyfin.mobile\",\n  \"org.schabi.newpipe\",\n  \"com.gianlu.aria2app\",\n  \"com.github.catfriend1.syncthingfork\",\n  \"org.forkgram.messenger\",\n  \"chat.simplex.app\",\n  \"org.koitharu.kotatsu\",\n  \"ch.protonvpn.android\",\n  \"com.tailscale.ipn\",\n  \"com.axiel7.anihyou\",\n  \"com.predidit.kazumi\",\n  \"com.example.knkpanime\",\n  \"org.github.henryquan.animeone\",\n  \"io.github.jica98\",\n  \"org.koreader.launcher.fdroid\",\n  \"org.kde.kdeconnect_tp\",\n  \"com.osfans.trime\",\n  \"com.termux\",\n  \"com.termux.api\",\n  \"org.breezyweather\",\n  \"de.tnmgl.ntodotxt\",\n  \"org.tasks\",\n  \"inc.flide.vi8\",\n  \"com.secuso.privacyFriendlyCodeScanner\",\n  \"com.machiav3lli.fdroid\",\n  \"org.fdroid.fdroid\",\n  \"zed.rainxch.githubstore\",\n]\nid = \"phone\"\nrepos = [\"f-droid\"]\n",
+    "zxc.20260621235249.1": "[[setups]]\napps = [\n  \"me.hackerchick.raisetoanswer\",\n  \"spam.blocker\",\n  \"biz.binarysolutions.healthybatterycharging\",\n  \"com.github.catfriend1.syncthingfork\",\n  \"org.kde.kdeconnect_tp\",\n  \"com.osfans.trime\",\n  \"org.breezyweather\",\n  \"com.termux\",\n  \"com.termux.api\",\n  \"de.tnmgl.ntodotxt\",\n  \"org.tasks\",\n  \"inc.flide.vi8\",\n  \"com.secuso.privacyFriendlyCodeScanner\",\n  \"com.machiav3lli.fdroid\",\n  \"org.fdroid.fdroid\",\n  \"zed.rainxch.githubstore\",\n]\nid = \"sub-phone\"\nrepos = [\"f-droid\"]\n",
+    "zxc.20260621235304.1": "[[setups]]\napps = [\n  \"com.vrem.wifianalyzer\",\n  \"de.srlabs.snoopsnitch\",\n  \"biz.binarysolutions.healthybatterycharging\",\n  \"org.moire.ultrasonic\",\n  \"org.oxycblt.auxio\",\n  \"org.gateshipone.malp\",\n  \"de.badaix.snapcast\",\n  \"me.echeung.moemoekyun.fdroid\",\n  \"github.paroj.dsub2000\",\n  \"org.videolan.vlc\",\n  \"dev.jdtech.jellyfin\",\n  \"com.github.libretube\",\n  \"is.xyz.mpv\",\n  \"org.jellyfin.mobile\",\n  \"org.schabi.newpipe\",\n  \"com.gianlu.aria2app\",\n  \"com.github.catfriend1.syncthingfork\",\n  \"org.koitharu.kotatsu\",\n  \"com.axiel7.anihyou\",\n  \"com.predidit.kazumi\",\n  \"com.example.knkpanime\",\n  \"org.github.henryquan.animeone\",\n  \"io.github.jica98\",\n  \"org.koreader.launcher.fdroid\",\n  \"org.kde.kdeconnect_tp\",\n  \"com.osfans.trime\",\n  \"com.machiav3lli.fdroid\",\n  \"org.fdroid.fdroid\",\n  \"zed.rainxch.githubstore\",\n  \"org.breezyweather\",\n  \"com.catpuppyapp.puppygit.play.pro\",\n  \"com.droidvim\",\n  \"inc.flide.vi8\",\n  \"com.termux.nix\",\n  \"com.secuso.privacyFriendlyCodeScanner\",\n]\nid = \"tablet\"\nrepos = [\"f-droid\"]\n",
+    "zxc.20260621235317.1": "[[setups]]\napps = [\"com.github.howeyc.crocgui\"]\nid = \"bak\"\nrepos = [\"f-droid\"]\n"
   },
   "uas": {
     "zxc.20260125142149.1": {
@@ -16820,6 +16896,9 @@
     },
     "zxc.20260611091007.1": {
       "_mod_time": 1781174037.601
+    },
+    "zxc.20260621234825.1": {
+      "_mod_time": 1782057204.075
     }
   }
 }
