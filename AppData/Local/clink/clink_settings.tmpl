@@ -4,6 +4,8 @@
 # type: boolean
 argmatcher.show_hints = True
 
+autosuggest.inline = True
+
 # name: Enable asynchronous suggestions
 # type: boolean
 autosuggest.async = True
@@ -26,7 +28,7 @@ autosuggest.strategy = match_prev_cmd history completion
 
 # name: Command to run when injected
 # type: string
-clink.autostart = 
+clink.autostart =
 
 # name: Auto-update the Clink program files
 # type: enum
@@ -39,7 +41,7 @@ clink.colorize_input = True
 
 # name: A .clinkprompt file to use for the prompt
 # type: string
-clink.customprompt = 
+clink.customprompt =
 
 # name: Selects default key bindings
 # type: enum
@@ -62,7 +64,7 @@ clink.paste_crlf = crlf
 
 # name: Paths to load Lua scripts from
 # type: string
-clink.path = 
+clink.path =
 
 # name: Direction for repeated deletion in popup lists
 # type: enum
@@ -88,7 +90,7 @@ clink.update_interval = 5
 
 # name: Replaces the console title prefix when elevated
 # type: string
-cmd.admin_title_prefix = 
+cmd.admin_title_prefix =
 
 # name: Pressing Alt-F4 exits session
 # type: boolean
@@ -109,91 +111,91 @@ cmd.get_errorlevel = True
 
 # name: Argmatcher color
 # type: color
-color.argmatcher = 
+color.argmatcher =
 
 # name: Common prefix of completions
 # type: color
-color.common_match_prefix = 
+color.common_match_prefix =
 
 # name: Color for executable command word
 # type: color
-color.executable = 
+color.executable =
 
 # name: Hidden file completions
 # type: color
-color.hidden = 
+color.hidden =
 
 # name: History expansion color
 # type: color
-color.histexpand = 
+color.histexpand =
 
 # name: Horizontal scroll marker color
 # type: color
-color.horizscroll = 
+color.horizscroll =
 
 # name: Input text color
 # type: color
-color.input = 
+color.input =
 
 # name: Modified history line mark color
 # type: color
-color.modmark = 
+color.modmark =
 
 # name: Color for popup lists and messages
 # type: color
-color.popup = 
+color.popup =
 
 # name: Color for popup border
 # type: color
-color.popup_border = 
+color.popup_border =
 
 # name: Color for popup description column(s)
 # type: color
-color.popup_desc = 
+color.popup_desc =
 
 # name: Color for popup footer message
 # type: color
-color.popup_footer = 
+color.popup_footer =
 
 # name: Color for popup title text
 # type: color
-color.popup_header = 
+color.popup_header =
 
 # name: Color for selected item in popup list
 # type: color
-color.popup_select = 
+color.popup_select =
 
 # name: Color for selected item in popup list
 # type: color
-color.popup_selectdesc = 
+color.popup_selectdesc =
 
 # name: Prompt color
 # type: color
-color.prompt = 
+color.prompt =
 
 # name: Readonly file completions
 # type: color
-color.readonly = 
+color.readonly =
 
 # name: Selected completion color
 # type: color
-color.selected_completion = 
+color.selected_completion =
 
 # name: Selection color
 # type: color
-color.selection = 
+color.selection =
 
 # name: Color for suggestion text
 # type: color
-color.suggestion = 
+color.suggestion =
 
 # name: Color for suggestions in the suggestion list
 # type: color
-color.suggestionlist = 
+color.suggestionlist =
 
 # name: Color for unrecognized command word
 # type: color
-color.unrecognized = 
+color.unrecognized =
 
 # name: Delay before showing input hints
 # type: integer
@@ -282,7 +284,7 @@ fzf.default_bindings = True
 
 # name: Location of fzf.exe if not on the PATH
 # type: string
-fzf.exe_location = 
+fzf.exe_location =
 
 # name: Height to use for the --height flag
 # type: string
@@ -302,7 +304,7 @@ fzf_git.height = 50%
 
 # name: Configures how to invoke the editor
 # type: string
-fzf_rg.editor = 
+fzf_rg.editor =
 
 # name: Height to use for the --height flag
 # type: string
@@ -357,7 +359,7 @@ history.sticky_search = False
 
 # name: Format for showing history times
 # type: string
-history.time_format = %F %T  
+history.time_format = %F %T
 
 # name: History item timestamps
 # type: enum
@@ -378,7 +380,7 @@ lua.debug = False
 
 # name: 'require' search path
 # type: string
-lua.path = 
+lua.path =
 
 # name: Fail on argument errors
 # type: boolean
@@ -394,7 +396,7 @@ lua.traceback_on_error = False
 
 # name: Coloring rules for completions
 # type: string
-match.coloring_rules = 
+match.coloring_rules =
 
 # name: Expand abbreviated paths when completing
 # type: boolean
@@ -403,6 +405,8 @@ match.expand_abbrev = True
 # name: Expand envvars when completing
 # type: boolean
 match.expand_envvars = False
+
+match.file_size = True
 
 # name: Fits match columns to screen width
 # type: boolean
@@ -507,7 +511,7 @@ terminal.mouse_input = auto
 
 # name: Modifier keys for mouse input
 # type: string
-terminal.mouse_modifier = 
+terminal.mouse_modifier =
 
 # name: Esc sends a literal escape character
 # type: boolean
