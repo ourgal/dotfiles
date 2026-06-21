@@ -760,21 +760,6 @@
           until: result is not failed
           loop:
 
-        - name: Add anderlli0053_DEV-tools bucket
-          community.windows.win_scoop_bucket:
-            name: anderlli0053_DEV-tools
-            repo: https://github.com/anderlli0053/DEV-tools
-            state: present
-        - name: Install other packages via scoop
-          community.windows.win_scoop:
-            name:
-              - anderlli0053_DEV-tools/mani
-            global: false
-            no_cache: true
-          register: result
-          retries: 3
-          delay: 5
-          until: result is not failed
         - name: Add NSPC911_le-bucket bucket
           community.windows.win_scoop_bucket:
             name: NSPC911_le-bucket
@@ -863,6 +848,7 @@
               - ourgal_scoop-bucket/dockfmt
               - ourgal_scoop-bucket/mtranserver
               - ourgal_scoop-bucket/altrun
+              - ourgal_scoop-bucket/mani
             global: false
             no_cache: true
           register: result
