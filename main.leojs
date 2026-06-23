@@ -5269,6 +5269,10 @@
                         {
                           "gnx": "zxc.20260601155640.1",
                           "vh": "RACCOIN: Coin Pusher Roguelike"
+                        },
+                        {
+                          "gnx": "zxc.20260623195825.1",
+                          "vh": "Discounty"
                         }
                       ]
                     }
@@ -8216,6 +8220,10 @@
                         {
                           "gnx": "zxc.20260519140821.1",
                           "vh": "@clean vampire_survivors.json.tmpl"
+                        },
+                        {
+                          "gnx": "zxc.20260623195308.1",
+                          "vh": "@clean discounty.json.tmpl"
                         },
                         {
                           "gnx": "zxc.20260520104153.1",
@@ -15267,6 +15275,7 @@
     "zxc.20260521181617.1": "{\n    \"version\": \"1.1.1a\",\n    \"description\": \"Click, craft and collect your way to alchemical mastery. Progress through a branching skill tree and explore the forbidden woods. Collect resources and build machines of magic. Slay monsters, farm crops and automate your production to become the all-powerful Forage Wizard!\",\n    \"homepage\": \"https://byrutgame.org/54765-forage-wizard.html\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.dufs.bucket.host }}/bocket/games/forage_wizard.7z\",\n            \"hash\": \"becc8887850006439631ec02c728f31d6da3911586717cd90a2e42cfb3000884\"\n        }\n    },\n    \"post_install\": [\n        \"$name = \\\"forage_wizard\\\"\",\n        \"$path = \\\"${env:USERPROFILE}\\\\AppData\\\\LocalLow\\\\Lost Maxim\\\\Forage Wizard\\\"\",\n        \"$saves = if ($env:game_saves) { $env:game_saves } else { \\\"$env:USERPROFILE\\\\Documents\\\\game_saves\\\" }\",\n        \"mkdir -p $saves\\\\$name >$null 2>$null\",\n        \"New-Item -ItemType Junction -Path $path -Target $saves\\\\$name >$null\"\n    ],\n    \"shortcuts\": [\n        [\n            \"Forage Wizard.exe\",\n            \"Forage Wizard\"\n        ]\n    ]\n}",
     "zxc.20260519083439.1": "{\n    \"version\": \"20973329\",\n    \"description\": \"The Mahjong Roguelike. Aotenjo: Infinite Hands is an deckbuilder where you will use Mahjong styles all over the world to beat innate threats, play different Patterns and combos, reach the \\\"bottom\\\" of Aotenjo, and discover ancient secrets....\",\n    \"homepage\": \"https://byrutgame.org/index.php?do=download&id=176872\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.dufs.bucket.host }}/bucket/games/aotenjo.7z\",\n            \"hash\": \"43b66ee21523bbc7cf7b99b455450e0e252a71593552021f0c5a1b37eb2b52bc\"\n        }\n    },\n    \"post_install\": [\n        \"$name = \\\"aotenjo\\\"\",\n        \"$path = \\\"${env:USERPROFILE}\\\\AppData\\\\LocalLow\\\\Aotenjo\\\\Aotenjo\\\"\",\n        \"$saves = if ($env:game_saves) { $env:game_saves } else { \\\"$env:USERPROFILE\\\\Documents\\\\game_saves\\\" }\",\n        \"mkdir -p $saves\\\\$name >$null 2>$null\",\n        \"New-Item -ItemType Junction -Path $path -Target $saves\\\\$name >$null\"\n    ],\n    \"shortcuts\": [\n        [\n            \"Aotenjo.exe\",\n            \"Aotenjo\"\n        ]\n    ]\n}",
     "zxc.20260519140821.1": "{\n    \"version\": \"1.14.112\",\n    \"description\": \"Mow down thousands of night creatures and survive until dawn! Vampire Survivors is a gothic horror casual game with rogue-lite elements, where your choices can allow you to quickly snowball against the hundreds of monsters that get thrown at you. Be the bullet hell!\",\n    \"homepage\": \"https://byrutgame.org/23136-vampire-survivors.html\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.dufs.bucket.host }}/bucket/games/VampireSurvivors.7z\",\n            \"hash\": \"031394a987a50b75506eec57639bbf782ef09db26da646e8465bc2162e32e17c\"\n        }\n    },\n    \"shortcuts\": [\n        [\n            \"VampireSurvivors.exe\",\n            \"Vampire Survivors\"\n        ]\n    ]\n}",
+    "zxc.20260623195308.1": "{\n    \"version\": \"1.2.0a\",\n    \"description\": \"Manage your own discount supermarket! Get caught up in small-town drama, organize and plan your shop's layout, and strike lucrative trade deals as you expand your secretive aunt's business empire. Selling more frozen fries will surely heal this broken community...right?\",\n    \"homepage\": \"https://igg-games.com/discounty-free-download.html\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.dufs.bucket.host }}/bucket/games/discounty.7z\",\n            \"hash\": \"a1924f7451033863acdd68c44426ef08c21f7f0b1074ee910e09dd7e777078bb\"\n        }\n    },\n    \"shortcuts\": [\n        [\n            \"Discounty.exe\",\n            \"Discounty\"\n        ]\n    ]\n}\n",
     "zxc.20260520104153.1": "{\n    \"version\": \"1.4.1a\",\n    \"description\": \"From the creators of Vampire Survivors comes a turbo-charged, turn-based roguelite deckbuilder! Deal world-ending combos, blitz through infested dungeons, and master the Turboturn to obliterate hordes of familiar foes with a chaotic hand of cards.\",\n    \"homepage\": \"https://byrutgame.org/53218-vampire-crawlers-the-turbo-wildcard-from-vampire-survivors.html\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.dufs.bucket.host }}/bucket/games/VampireCrawlers.7z\",\n            \"hash\": \"2ffe6417de8191d4f6c61d1fcbab8d460d2db999a41e79529cf26947df792247\"\n        }\n    },\n    \"post_install\": [\n        \"$name = \\\"vampire_crawlers\\\"\",\n        \"$path = \\\"${env:USERPROFILE}\\\\AppData\\\\LocalLow\\\\Nosebleed Interactive\\\\Vampire Crawlers\\\\save\\\"\",\n        \"$saves = if ($env:game_saves) { $env:game_saves } else { \\\"$env:USERPROFILE\\\\Documents\\\\game_saves\\\" }\",\n        \"mkdir -p $saves\\\\$name >$null 2>$null\",\n        \"New-Item -ItemType Junction -Path $path -Target $saves\\\\$name >$null\"\n    ],\n    \"shortcuts\": [\n        [\n            \"Vampire Crawlers.exe\",\n            \"Vampire Crawlers\"\n        ]\n    ]\n}",
     "zxc.20260521144357.1": "{\n    \"version\": \"1.0.1\",\n    \"description\": \"The Animal Evolution Roguelite. Hunt, Flee, Scavenge and Thrive in a living ecosystem. Choose from 125+ Evolutions and Specialisations for unique creature combinations in every run. Adapt to survive the natural curve in order to beat carcinisation... or get Darwin'd trying!\",\n    \"homepage\": \"https://byrutgame.org/53330-everything-is-crab-the-animal-evolution-roguelite.html\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.dufs.bucket.host }}/bucket/games/everything_is_crab.7z\",\n            \"hash\": \"df10b29274725b5e4f84a0320c2277fe19609456338d9ac796aa45176f84db6b\"\n        }\n    },\n    \"post_install\": [\n        \"$name = \\\"everything_is_crab\\\"\",\n        \"$path = \\\"${env:USERPROFILE}\\\\AppData\\\\LocalLow\\\\Odd Dreams Digital\\\\Everything is Crab\\\\SyncedData\\\\Steam\\\\real\\\"\",\n        \"$saves = if ($env:game_saves) { $env:game_saves } else { \\\"$env:USERPROFILE\\\\Documents\\\\game_saves\\\" }\",\n        \"mkdir -p $saves\\\\$name >$null 2>$null\",\n        \"New-Item -ItemType Junction -Path $path -Target $saves\\\\$name >$null\"\n    ],\n    \"shortcuts\": [\n        [\n            \"steamclient_loader.exe\",\n            \"Everything is Crab\"\n        ]\n    ]\n}",
     "zxc.20260523104524.1": "{\n    \"version\": \"1.2.1.3-4986\",\n    \"description\": \"Explore a vast cavern of creatures, relics and resources in a mining sandbox adventure for 1-8 players. Mine, build, fight, craft and farm to unravel the mystery of the ancient Core.\",\n    \"homepage\": \"https://byrutgame.org/21317-core-keeper.html\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.dufs.bucket.host }}/bucket/games/core_keeper.7z\",\n            \"hash\": \"a6a47876c60a1f056183a1863b81b025f041c67b3a02620b5b084a20d4fae73a\"\n        }\n    },\n    \"post_install\": [\n        \"$name = \\\"core_keeper\\\"\",\n        \"$path = \\\"${env:USERPROFILE}\\\\AppData\\\\LocalLow\\\\Pugstorm\\\\Core Keeper\\\\Steam\\\\848908519\\\"\",\n        \"$saves = if ($env:game_saves) { $env:game_saves } else { \\\"$env:USERPROFILE\\\\Documents\\\\game_saves\\\" }\",\n        \"mkdir -p $saves\\\\$name >$null 2>$null\",\n        \"New-Item -ItemType Junction -Path $path -Target $saves\\\\$name >$null\"\n    ],\n    \"shortcuts\": [\n        [\n            \"CoreKeeper.exe\",\n            \"Core Keeper\"\n        ]\n    ]\n}",
@@ -16900,6 +16909,9 @@
     "zxc.20260519140821.1": {
       "_mod_time": 1780748738.611
     },
+    "zxc.20260623195308.1": {
+      "_mod_time": 1782215802.672
+    },
     "zxc.20260520104153.1": {
       "_mod_time": 1780748738.611
     },
@@ -17120,7 +17132,7 @@
       "_mod_time": 1780470637.484
     },
     "zxc.20260518233322.1": {
-      "_mod_time": 1780319153.078
+      "_mod_time": 1782215984.543
     },
     "zxc.20260611090830.1": {
       "_mod_time": 1781174037.601
