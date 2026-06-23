@@ -517,6 +517,10 @@
                         {
                           "gnx": "zxc.20260423154131.5",
                           "vh": "color"
+                        },
+                        {
+                          "gnx": "zxc.20260624004726.1",
+                          "vh": "vi mode"
                         }
                       ]
                     }
@@ -14254,6 +14258,7 @@
     "zxc.20260423154131.2": "<< dos >>\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260225204326.1": "{{ if eq .chezmoi.os \"windows\" -}}\n",
     "zxc.20260423154131.5": "set colored-stats                 on   # Turn on completion colors.\nset colored-completion-prefix     on   # Color the typed completion prefix.\n",
+    "zxc.20260624004726.1": "set editing-mode                  vi\n",
     "zxc.20260603204111.1": "ll=eza --long --icons=auto --group --group-directories-first --time-style relative $*\nls=eza --icons=auto $*\n",
     "zxc.20260603204123.1": "reboot=shutdown /t 0 /r $*\npoweroff=shutdown /t 0 /s $*\n",
     "zxc.20260603204137.1": "{{ if lookPath \"nircmd\" -}}\nscroff=nircmd monitor off $*\n{{ end -}}\n",
@@ -16281,7 +16286,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260423154131.2": {
-      "_mod_time": 1777179946.861
+      "_mod_time": 1782233227.429
     },
     "zxc.20260125143007.1": {
       "_mod_time": 1782087842.61
@@ -17064,7 +17069,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1782087842.588
+      "_mod_time": 1782233252.468
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777298774.844
