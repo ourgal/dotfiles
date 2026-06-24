@@ -1,4 +1,3 @@
-{{ if and (lookPath "yt-dlp") (lookPath "ffmpeg") (lookPath "mid3v2") -}}
 {{ $data := list -}}
 {{ $data = append $data (dict "artist" "Outlaw (feat. Miss Mary)" "title" "it's different" "album" "NCS" "url" "https://www.bilibili.com/video/BV1nx411m7Rd") -}}
 {{ $data = append $data (dict "artist" "山口リサ" "title" "明日へと…" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1654y1n7UT") -}}
@@ -559,22 +558,112 @@
 	{{ end -}}
 {{ $check = append $check $song -}}
 {{ end -}}
+args:
+args.module (
+  args
+  // (
+    let
+      inherit (args)
+        pkgs
+        lib
+        config
+        switch
+        cfgHome
+        namespace
+        ;
+      inherit (builtins) foldl' replaceStrings concatStringsSep;
+      sanitizeString = str: replaceStrings [ " " "'" ":" "/" "*" "?" ] [ "_" "" "_" "_" "_" "_" ] str;
+      mkFilename = artist: title: "${sanitizeString artist}-${sanitizeString title}.mp3";
+      cfg = cfgHome config.${namespace} ./.;
+      metadata = [
+        {{ range $data -}}
+        {
+          artist = "{{ .artist }}";
+          title = "{{ .title }}";
+          album = "{{ .album }}";
+          url = "{{ .url }}";
+        }
+        {{ end -}}
+      ];
+      filenames = foldl' (acc: elem: acc + " " + (mkFilename elem.artist elem.title)) "" metadata;
+      targets = concatStringsSep "\n" (
+        foldl' (
+          acc: elem:
+          acc
+          ++ [
+            ''
+              ${mkFilename elem.artist elem.title}:
+              	yt-dlp -t mp3 ${elem.url} -o $(temp)
+              	ffmpeg -i $(temp) $(silenceremove) "$@"
+              	rm $(temp)
+              	mid3v2 --song "${elem.title}" --artist "${elem.artist}" --album "${elem.album}" "$@"
+            ''
+          ]
+        ) [ ] metadata
+      );
+      duplicateSongs = lib.pipe metadata [
+        (map (x: {
+          key = mkFilename x.artist x.title;
+        }))
+        (builtins.groupBy (entry: entry.key))
+        (lib.filterAttrs (_key: entries: builtins.length entries > 1))
+        (lib.mapAttrsToList (key: _entries: "Duplicate song ${key} found"))
+        lib.concatStrings
+      ];
+      duplicateSongUrls = lib.pipe metadata [
+        (map (x: {
+          key = x.url;
+        }))
+        (builtins.groupBy (entry: entry.key))
+        (lib.filterAttrs (_key: entries: builtins.length entries > 1))
+        (lib.mapAttrsToList (key: _entries: "Duplicate song url ${key} found"))
+        lib.concatStrings
+      ];
+    in
+    {
+      files."Music/net/Makefile" = {
+        text = ''
+          temp := temp.mp3
+          silenceremove := -af silenceremove=start_periods=1:start_duration=0:start_threshold=-50dB:start_silence=1,areverse,silenceremove=start_periods=1:start_duration=0:start_threshold=-50dB:start_silence=1,areverse
 
-temp := temp.mp3
-silenceremove := -af silenceremove=start_periods=1:start_duration=0:start_threshold=-50dB:start_silence=1,areverse,silenceremove=start_periods=1:start_duration=0:start_threshold=-50dB:start_silence=1,areverse
+          .PHONY: all clean test
+          all: ${filenames}
 
-.PHONY: all clean test
-all:{{ range $data }} {{ .artist | replace " " "_" | replace "'" "" | replace ":" "_" | replace "/" "_" | replace "*" "_" | replace "?" "_" }}-{{ .title | replace " " "_" | replace "'" "" | replace ":" "_" | replace "/" "_" | replace "*" "_" | replace "?" "_" }}.mp3{{ end }}
+          ${targets}
 
-{{ range $data -}}
-{{ .artist | replace " " "_" | replace "'" "" | replace ":" "_" | replace "/" "_" | replace "*" "_" | replace "?" "_" }}-{{ .title | replace " " "_" | replace "'" "" | replace ":" "_" | replace "/" "_" | replace "*" "_" | replace "?" "_" }}.mp3:
-	yt-dlp -t mp3 {{ .url }} -o $(temp)
-	ffmpeg -i $(temp) $(silenceremove) "$@"
-	rm $(temp)
-	mid3v2 --song "{{ .title }}" --artist "{{ .artist }}" --album "{{ .album }}" "$@"
-
-{{ end -}}
-
-clean:
-	rm *.mp3
-{{ end -}}
+          clean:
+          	rm *.mp3
+        '';
+        _onchange = lib.optionalString cfg.script.enable ''
+          echo "Downloading music from network"
+          $DRY_RUN_CMD ${lib.getExe pkgs.gnumake} -C ${config.home.homeDirectory}/Music/net
+        '';
+      };
+      systemdServices.lib-network = {
+        path = [
+          pkgs.bash
+          pkgs.coreutils
+          pkgs.ffmpeg
+          pkgs.python3Packages.mutagen
+          pkgs.yt-dlp
+        ];
+        online = true;
+        type = "oneshot";
+        start = "${lib.getExe pkgs.gnumake} -C ${config.xdg.userDirs.music}/net";
+      };
+      extraOpts = {
+        script = switch;
+      };
+      assertions = [
+        {
+          assertion = duplicateSongs == "";
+          message = duplicateSongs;
+        }
+        {
+          assertion = duplicateSongUrls == "";
+          message = duplicateSongUrls;
+        }
+      ];
+    }
+  )
+)
