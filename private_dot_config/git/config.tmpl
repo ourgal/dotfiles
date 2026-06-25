@@ -22,7 +22,7 @@
 
 {{ $_ = dict -}}
 {{ $_ = set $_ "compression" 9 -}}
-{{ $_ = set $_ "editor" (includeTemplate "editor") -}}
+{{ $_ = set $_ "editor" "hx" -}}
 {{ $_ = set $_ "excludesfile" "~/.gitignore" -}}
 {{ $_ = set $_ "fsmonitor" false -}}
 	{{- if lookPath "delta" -}}
@@ -71,7 +71,7 @@
 
 {{ if .my.git.sign.ssh -}}
 {{ $cfg = set $cfg "gpg" (dict "format" "ssh") -}}
-{{ if eq .chezmoi.os "windows" }}
+{{ if eq .chezmoi.os "windows" -}}
 {{ $cfg = set $cfg (print "gpg " ("ssh" | quote)) (dict "program" (lookPath "ssh-keygen" | replace "\\" "\\" | quote)) -}}
 {{ end -}}
 {{ end -}}
@@ -100,7 +100,7 @@
 
 {{ $cfg = set $cfg "rerere" (dict "autoupdate" true "enabled" true) -}}
 
-{{ if eq .chezmoi.os "windows" }}
+{{ if eq .chezmoi.os "windows" -}}
 {{ $cfg = set $cfg "safe" (dict "directory" "*") -}}
 {{ end -}}
 
@@ -116,18 +116,21 @@
 
 {{ $cfg = set $cfg (print "url " ("git@github.com:" | quote)) (dict "insteadOf" "gh:") -}}
 
-
 {{ $_ = dict -}}
 {{ $_ = set $_ "email" .my.git.user.email -}}
 {{ $_ = set $_ "name" .my.git.user.name -}}
-{{ if .my.git.sign.ssh -}}
-{{ $_ = set $_ "signingkey" "~/.ssh/id_ed25519.pub" -}}
-{{ else if .my.git.sign.gpg -}}
-{{ $_ = set $_ "signingkey" "1BE4E2268D47C1D1" -}}
-{{ end -}}
+	{{ if .my.git.sign.ssh -}}
+	{{ $_ = set $_ "signingkey" "~/.ssh/id_ed25519.pub" -}}
+	{{ else if .my.git.sign.gpg -}}
+	{{ $_ = set $_ "signingkey" "1BE4E2268D47C1D1" -}}
+	{{ end -}}
 {{ $cfg = set $cfg "user" $_ -}}
 
 {{ $cfg = set $cfg (print "annex " ("security" | quote)) (dict "allowed-ip-addresses" "all") -}}
+
+{{ $cfg = set $cfg "git-extras" (dict "default-branch" $cfg.init.defaultBranch "get" (dict "clone-path" "~/src")) -}}
+
+{{ $cfg = set $cfg "merge" (dict "conflictstyle" "zdiff3") -}}
 [advice]
 	addEmptyPathspec = {{ $cfg.advice.addEmptyPathspec }}
 	pushNonFastForward = {{ $cfg.advice.pushNonFastForward }}
