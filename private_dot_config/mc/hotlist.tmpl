@@ -3,5 +3,6 @@
 {{ if eq .chezmoi.os "windows" -}}
 ENTRY "AppData" URL "{{ .chezmoi.homeDir }}/AppData/Roaming"
 {{ end -}}
+ENTRY "nuc" URL "sftp://user@192.168.123.123:/C:/Users/User"
 {{ end -}}
 {{ end -}}
