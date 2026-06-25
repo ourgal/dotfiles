@@ -1,180 +1,296 @@
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
 {{ if lookPath "git" -}}
-[advice]
-	addEmptyPathspec = false
-	pushNonFastForward = false
-	statusHints = false
-[alias]
-    {{- if lookPath "legit" }}
-	sync = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe sync
-	publish = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe publish
-	unpublish = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe unpublish
-	undo = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe undo
-	branches = !{{ .chezmoi.homeDir }}/scoop/apps/legit/current/legit.exe branches
-    {{- end }}
-[branch]
-	sort = "-committerdate"
-[color "decorate"]
-	HEAD = "red"
-	branch = "blue"
-	remoteBranch = "magenta"
-	tag = "yellow"
-[color "diff"]
-	context = "white"
-	frag = "magenta"
-	meta = "blue bold"
-	old = "red"
-	whitespace = "yellow reverse"
-[color "branch"]
-	current = "magenta"
-	local = "default"
-	plain = "blue"
-	remote = "yellow"
-	upstream = "green"
-[culumn]
-	ui = "auto"
-[commit]
-	template = "~/.config/git/template"
-	gpgsign = true
-	verbose = true
-[core]
-	compression = 9
-	editor = "{{ template "editor" }}"
-	excludesfile = "~/.gitignore"
-	fsmonitor = false
-	{{- if lookPath "delta" }}
-	pager = delta
-	{{- else if lookPath "diff-so-fancy" }}
-	pager = "diff-so-fancy | less '--tabs=4' -RFX"
+{{ $cfg := dict -}}
+{{ $_ := dict -}}
+{{ $cfg = set $cfg "advice" (dict "addEmptyPathspec" false "pushNonFastForward" false "statusHints" false) -}}
+
+{{ $_ = set $_ "sync" (printf "!%s/scoop/apps/legit/current/legit.exe sync" .chezmoi.homeDir) -}}
+{{ $_ = set $_ "publish" (printf "!%s/scoop/apps/legit/current/legit.exe publish" .chezmoi.homeDir) -}}
+{{ $_ = set $_ "unpublish" (printf "!%s/scoop/apps/legit/current/legit.exe unpublish" .chezmoi.homeDir) -}}
+{{ $_ = set $_ "undo" (printf "!%s/scoop/apps/legit/current/legit.exe undo" .chezmoi.homeDir) -}}
+{{ $_ = set $_ "branches" (printf "!%s/scoop/apps/legit/current/legit.exe branches" .chezmoi.homeDir) -}}
+{{ $cfg = set $cfg "alias" $_ -}}
+
+{{ $cfg = set $cfg "branch" (dict "sort" "-committerdate") -}}
+
+{{ $cfg = set $cfg (print "color " ("decorate" | quote)) (dict "HEAD" "red" "branch" "blue" "remoteBranch" "magenta" "tag" "yellow") -}}
+{{ $cfg = set $cfg (print "color " ("diff" | quote)) (dict "context" "white" "frag" "magenta" "meta" "blue bold" "old" "red" "whitespace" "yellow reverse") -}}
+{{ $cfg = set $cfg (print "color " ("branch" | quote)) (dict "current" "magenta" "local" "default" "plain" "blue" "remote" "yellow" "upstream" "green") -}}
+
+{{ $cfg = set $cfg "column" (dict "ui" "auto") -}}
+{{ $cfg = set $cfg "commit" (dict "template" "~/.config/git/template" "gpgsign" true "verbose" true) -}}
+
+{{ $_ = dict -}}
+{{ $_ = set $_ "compression" 9 -}}
+{{ $_ = set $_ "editor" (includeTemplate "editor") -}}
+{{ $_ = set $_ "excludesfile" "~/.gitignore" -}}
+{{ $_ = set $_ "fsmonitor" false -}}
+	{{- if lookPath "delta" -}}
+    {{ $_ = set $_ "paper" "delta" -}}
+	{{- else if lookPath "diff-so-fancy" -}}
+    {{ $_ = set $_ "paper" "diff-so-fancy | less '--tabs=4' -RFX" -}}
 	{{- end }}
-	preloadindex = true
-	untrackedCache = true
-	whitespace = "error"
-	autocrlf = "input"
-	{{- if eq .chezmoi.os "windows" }}
-	sshCommand = 'C:\\Program Files\\OpenSSH-Win64\\ssh.EXE'
-	symlinks = true
-	{{- end }}
+{{ $_ = set $_ "preloadindex" true -}}
+{{ $_ = set $_ "untrackedCache" true -}}
+{{ $_ = set $_ "whitespace" "error" -}}
+{{ $_ = set $_ "autocrlf" "input" -}}
+	{{- if eq .chezmoi.os "windows" -}}
+    {{ $_ = set $_ "sshCommand" "C:\\\\Program Files\\\\OpenSSH-Win64\\\\ssh.EXE" -}}
+    {{ $_ = set $_ "symlinks" true -}}
+	{{- end -}}
+{{ $cfg = set $cfg "core" $_ -}}
+
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "git-credential-gopass" -}}
-[credential]
-	helper = "gopass"
-[credential "helperselector"]
-	selected = gopass
+{{ $cfg = set $cfg "credential" (dict "helper" "gopass") -}}
+{{ $cfg = set $cfg (print "credential " ("helperselector" | quote)) (dict "selected" "gopass") -}}
 {{ else -}}
-[credential]
-	helper = !\"{{ .chezmoi.homeDir }}/scoop/apps/git/current/mingw64/bin/git-credential-manager.exe\"
-[credential "helperselector"]
-    selected = manager
+{{ $cfg = set $cfg "credential" (printf "!%s/scoop/apps/git/current/mingw64/bin/git-credential-manager.exe" .chezmoi.homeDir) -}}
+{{ $cfg = set $cfg (print "credential " ("helperselector" | quote)) (dict "selected" "manager") -}}
 {{ end -}}
+{{ end -}}
+
+{{ if eq .chezmoi.os "linux" -}}
+{{ if lookPath "gopass" -}}
+{{ $cfg = set $cfg "credential" (dict "helper" "gopass") -}}
+{{ end -}}
+{{ end -}}
+
+{{ $cfg = set $cfg (print "credential " ("https://gist.github.com" | quote)) (dict "helper" (printf "!%s auth git-credential" (lookPath "gh" | replace "\\" "\\\\" | squote))) -}}
+{{ $cfg = set $cfg (print "credential " ("https://github.com" | quote)) (dict "helper" (printf "!%s auth git-credential" (lookPath "gh" | replace "\\" "\\\\" | squote))) -}}
+
+{{ $cfg = set $cfg "delta" (dict "side-by-side" true "navitage" true "file-yellow" true) -}}
+
+{{ $cfg = set $cfg "diff" (dict "algorithm" "histogram" "colorMoved" "plain" "context" 3 "interHunkContext" 10 "mnemonicPrefix" true "renames" true) -}}
+
+{{ $cfg = set $cfg "diff-so-fancy" (dict "changeHunkIndicators" true "markEmptyLines" false "stripLeadingSymbols" true "useUnicodeRuler" true) -}}
+
+{{ $cfg = set $cfg "fetch" (dict "all" true "prune" true "pruneTags" true) -}}
+
+{{ $cfg = set $cfg (print "filter " ("lfs" | quote)) (dict "clean" "git-lfs clean -- %f" "process" "git-lfs filter-process" "required" true "smudge" "git-lfs smudge -- %f") -}}
+
+{{ if .my.git.sign.ssh -}}
+{{ $cfg = set $cfg "gpg" (dict "format" "ssh") -}}
+{{ if eq .chezmoi.os "windows" }}
+{{ $cfg = set $cfg (print "gpg " ("ssh" | quote)) (dict "program" (lookPath "ssh-keygen" | replace "\\" "\\" | quote)) -}}
+{{ end -}}
+{{ end -}}
+
+{{ if .my.git.sign.gpg -}}
+{{ $cfg = set $cfg "gpg" (dict "program" (lookPath "gpg" | quote)) -}}
+{{ end -}}
+
+{{ $cfg = set $cfg "help" (dict "autocorrect" "prompt") -}}
+
+{{ $cfg = set $cfg "init" (dict "defaultBranch" "main") -}}
+
+{{ $cfg = set $cfg "interactive" (dict "diffFilter" "diff-so-fancy --patch" "singlekey" true) -}}
+
+{{ $cfg = set $cfg "interactive-rebase-tool" (dict "inputMoveDown" "Down j" "inputMoveSelectionDown" "l" "inputMoveSelectionUp" "h" "inputMoveUp" "Up k" "inputRedo" "Control+r" "inputUndo" "u") -}}
+
+{{ $cfg = set $cfg "log" (dict "abbrevCommit" true "graphColors" "blue,yellow,cyan,magenta,green,red") -}}
+
+{{ $cfg = set $cfg (print "merge " ("core" | quote)) (dict "attributesfile" "~/.gitattributes") -}}
+
+{{ $cfg = set $cfg "pull" (dict "default" "current" "rebase" true) -}}
+
+{{ $cfg = set $cfg "push" (dict "autoSetupRemote" true "default" "current" "followTags" true "useForceIfIncludes" true) -}}
+
+{{ $cfg = set $cfg "rebase" (dict "autoSquash" true "autoStash" true "missingCommitsCheck" "warn" "updateRefs" true) -}}
+
+{{ $cfg = set $cfg "rerere" (dict "autoupdate" true "enabled" true) -}}
+
+{{ if eq .chezmoi.os "windows" }}
+{{ $cfg = set $cfg "safe" (dict "directory" "*") -}}
+{{ end -}}
+
+{{ $cfg = set $cfg "sequence" (dict "editor" "interactive-rebase-tool") -}}
+
+{{ $cfg = set $cfg "status" (dict "branch" true "showStash" true "showUntrackedFiles" "all") -}}
+
+{{ $cfg = set $cfg "tag" (dict "sort" "version:refname") -}}
+
+{{ $cfg = set $cfg (print "url " ("ssh://192.168.123.206:23231/" | quote)) (dict "insteadOf" "soft:") -}}
+
+{{ $cfg = set $cfg (print "url " ("git@github.com:ourgal/" | quote)) (dict "insteadOf" "myg:") -}}
+
+{{ $cfg = set $cfg (print "url " ("git@github.com:" | quote)) (dict "insteadOf" "gh:") -}}
+
+
+{{ $_ = dict -}}
+{{ $_ = set $_ "email" .my.git.user.email -}}
+{{ $_ = set $_ "name" .my.git.user.name -}}
+{{ if .my.git.sign.ssh -}}
+{{ $_ = set $_ "signingkey" "~/.ssh/id_ed25519.pub" -}}
+{{ else if .my.git.sign.gpg -}}
+{{ $_ = set $_ "signingkey" "1BE4E2268D47C1D1" -}}
+{{ end -}}
+{{ $cfg = set $cfg "user" $_ -}}
+
+{{ $cfg = set $cfg (print "annex " ("security" | quote)) (dict "allowed-ip-addresses" "all") -}}
+[advice]
+	addEmptyPathspec = {{ $cfg.advice.addEmptyPathspec }}
+	pushNonFastForward = {{ $cfg.advice.pushNonFastForward }}
+	statusHints = {{ $cfg.advice.statusHints }}
+[alias]
+    {{- if lookPath "legit" }}
+	sync = {{ $cfg.alias.sync }}
+	publish = {{ $cfg.alias.publish }}
+	unpublish = {{ $cfg.alias.unpublish }}
+	undo = {{ $cfg.alias.undo }}
+	branches = {{ $cfg.alias.branches }}
+    {{- end }}
+[branch]
+	sort = "{{ $cfg.branch.sort }}"
+[color "decorate"]
+	HEAD = {{ index $cfg (print "color " ("decorate" | quote) ) "HEAD" | quote }}
+	branch = {{ index $cfg (print "color " ("decorate" | quote) ) "branch" | quote }}
+	remoteBranch = {{ index $cfg (print "color " ("decorate" | quote) ) "remoteBranch" | quote }}
+	tag = {{ index $cfg (print "color " ("decorate" | quote) ) "tag" | quote }}
+[color "diff"]
+	context = {{ index $cfg (print "color " ("diff" | quote) ) "context" | quote }}
+	frag = {{ index $cfg (print "color " ("diff" | quote) ) "frag" | quote }}
+	meta = {{ index $cfg (print "color " ("diff" | quote) ) "meta" | quote }}
+	old = {{ index $cfg (print "color " ("diff" | quote) ) "old" | quote }}
+	whitespace = {{ index $cfg (print "color " ("diff" | quote) ) "whitespace" | quote }}
+[color "branch"]
+	current = {{ index $cfg (print "color " ("branch" | quote) ) "current" | quote }}
+	local = {{ index $cfg (print "color " ("branch" | quote) ) "local" | quote }}
+	plain = {{ index $cfg (print "color " ("branch" | quote) ) "plain" | quote }}
+	remote = {{ index $cfg (print "color " ("branch" | quote) ) "remote" | quote }}
+	upstream = {{ index $cfg (print "color " ("branch" | quote) ) "upstream" | quote }}
+[column]
+	ui = "{{ $cfg.column.ui }}"
+[commit]
+	template = "{{ $cfg.commit.template }}"
+	gpgsign = {{ $cfg.commit.gpgsign }}
+	verbose = {{ $cfg.commit.verbose }}
+[core]
+	compression = {{ $cfg.core.compression }}
+	editor = "{{ $cfg.core.editor }}"
+	excludesfile = "{{ $cfg.core.excludesfile }}"
+	fsmonitor = {{ $cfg.core.fsmonitor }}
+	pager = "{{ $cfg.core.paper }}"
+	preloadindex = {{ $cfg.core.preloadindex }}
+	untrackedCache = {{ $cfg.core.untrackedCache }}
+	whitespace = "{{ $cfg.core.whitespace }}"
+	autocrlf = "{{ $cfg.core.autocrlf }}"
+	{{- if eq .chezmoi.os "windows" }}
+	sshCommand = '{{ $cfg.core.sshCommand }}'
+	symlinks = {{ $cfg.core.symlinks }}
+	{{- end }}
+{{ if eq .chezmoi.os "windows" -}}
+[credential]
+	helper = "{{ $cfg.credential.helper }}"
+[credential "helperselector"]
+	selected = {{ index $cfg (print "credential " ("helperselector" | quote) ) "selected" }}
 {{ end -}}
 {{ if eq .chezmoi.os "linux" -}}
 {{ if lookPath "gopass" -}}
 [credential]
-	helper = "gopass"
+	helper = "{{ $cfg.credential.helper }}"
 {{ end -}}
 {{ end -}}
 [credential "https://gist.github.com"]
-	helper = !{{ lookPath "gh" | replace "\\" "\\\\" | squote }} auth git-credential
+	helper = {{ index $cfg (print "credential " ("https://gist.github.com" | quote)) "helper" }}
 [credential "https://github.com"]
-	helper = !{{ lookPath "gh" | replace "\\" "\\\\" | squote }} auth git-credential
+	helper = {{ index $cfg (print "credential " ("https://github.com" | quote)) "helper" }}
 [delta]
-    side-by-side = true
-    navitage = true
-    file-yellow = true
+    side-by-side = {{ index $cfg "delta" "side-by-side" }}
+    navitage = {{ $cfg.delta.navitage }}
+    file-yellow = {{ index $cfg "delta" "file-yellow" }}
 [diff]
-	algorithm = "histogram"
-	colorMoved = "plain"
-	context = 3
-	interHunkContext = 10
-	mnemonicPrefix = true
-	renames = true
+	algorithm = "{{ $cfg.diff.algorithm }}"
+	colorMoved = "{{ $cfg.diff.colorMoved }}"
+	context = {{ $cfg.diff.context }}
+	interHunkContext = {{ $cfg.diff.interHunkContext }}
+	mnemonicPrefix = {{ $cfg.diff.mnemonicPrefix }}
+	renames = {{ $cfg.diff.renames }}
 [diff-so-fancy]
-	changeHunkIndicators = true
-	markEmptyLines = false
-	stripLeadingSymbols = true
-	useUnicodeRuler = true
+	changeHunkIndicators = {{ index $cfg "diff-so-fancy" "changeHunkIndicators" }}
+	markEmptyLines = {{ index $cfg "diff-so-fancy" "markEmptyLines" }}
+	stripLeadingSymbols = {{ index $cfg "diff-so-fancy" "stripLeadingSymbols" }}
+	useUnicodeRuler = {{ index $cfg "diff-so-fancy" "useUnicodeRuler" }}
 [fetch]
-	all = true
-	prune = true
-	pruneTags = true
+	all = {{ $cfg.fetch.all }}
+	prune = {{ $cfg.fetch.prune }}
+	pruneTags = {{ $cfg.fetch.pruneTags }}
 [filter "lfs"]
-	clean = "git-lfs clean -- %f"
-	process = "git-lfs filter-process"
-	required = true
-	smudge = "git-lfs smudge -- %f"
+	clean = {{ index $cfg (print "filter " ("lfs" | quote) ) "clean" | quote }}
+	process = {{ index $cfg (print "filter " ("lfs" | quote) ) "process" | quote }}
+	required = {{ index $cfg (print "filter " ("lfs" | quote) ) "required" }}
+	smudge = {{ index $cfg (print "filter " ("lfs" | quote) ) "smudge" | quote }}
 {{ if .my.git.sign.ssh -}}
 [gpg]
-	format = "ssh"
+	format = "{{ $cfg.gpg.format }}"
+{{ if eq .chezmoi.os "windows" }}
 [gpg "ssh"]
-{{ if eq .chezmoi.os "windows" }}	program = {{ lookPath "ssh-keygen" | replace "\\" "\\" | quote }}
+	program = {{ index $cfg (print "gpg " ("ssh" | quote)) "porgram" }}
 {{ end -}}
 {{ end -}}
 {{ if .my.git.sign.gpg -}}
 [gpg]
-	program = {{ lookPath "gpg" | quote }}
+	program = {{ $cfg.gpg.program }}
 {{ end -}}
 [help]
-	autocorrect = "prompt"
+	autocorrect = "{{ $cfg.help.autocorrect }}"
 [init]
-	defaultBranch = "main"
+	defaultBranch = "{{ $cfg.init.defaultBranch }}"
 [interactive]
-	diffFilter = "diff-so-fancy --patch"
-	singlekey = true
+	diffFilter = "{{ $cfg.interactive.diffFilter }}"
+	singlekey = {{ $cfg.interactive.singlekey }}
 [interactive-rebase-tool]
-	inputMoveDown = "Down j"
-	inputMoveSelectionDown = "l"
-	inputMoveSelectionUp = "h"
-	inputMoveUp = "Up k"
-	inputRedo = "Control+r"
-	inputUndo = "u"
+	inputMoveDown = "{{ index $cfg "interactive-rebase-tool" "inputMoveDown" }}"
+	inputMoveSelectionDown = "{{ index $cfg "interactive-rebase-tool" "inputMoveSelectionDown" }}"
+	inputMoveSelectionUp = "{{ index $cfg "interactive-rebase-tool" "inputMoveSelectionUp" }}"
+	inputMoveUp = "{{ index $cfg "interactive-rebase-tool" "inputMoveUp" }}"
+	inputRedo = "{{ index $cfg "interactive-rebase-tool" "inputRedo" }}"
+	inputUndo = "{{ index $cfg "interactive-rebase-tool" "inputUndo" }}"
 [log]
-	abbrevCommit = true
-	graphColors = "blue,yellow,cyan,magenta,green,red"
+	abbrevCommit = {{ $cfg.log.abbrevCommit }}
+	graphColors = "{{ $cfg.log.graphColors }}"
 [merge "core"]
-	attributesfile = "~/.gitattributes"
+	attributesfile = "{{ index $cfg (print "merge " ("core" | quote)) "attributesfile" }}"
 [pull]
-	default = "current"
-	rebase = true
+	default = "{{ $cfg.pull.default }}"
+	rebase = {{ $cfg.pull.rebase }}
 [push]
-	autoSetupRemote = true
-	default = "current"
-	followTags = true
-	useForceIfIncludes = true
+	autoSetupRemote = {{ $cfg.push.autoSetupRemote }}
+	default = "{{ $cfg.push.default }}"
+	followTags = {{ $cfg.push.followTags }}
+	useForceIfIncludes = {{ $cfg.push.useForceIfIncludes }}
 [rebase]
-	autoSquash = true
-	autoStash = true
-	missingCommitsCheck = "warn"
-	updateRefs = true
+	autoSquash = {{ $cfg.rebase.autoSquash }}
+	autoStash = {{ $cfg.rebase.autoStash }}
+	missingCommitsCheck = {{ $cfg.rebase.missingCommitsCheck | quote }}
+	updateRefs = {{ $cfg.rebase.updateRefs }}
 [rerere]
-	autoupdate = true
-	enabled = true
+	autoupdate = {{ $cfg.rerere.autoupdate }}
+	enabled = {{ $cfg.rerere.enabled }}
 {{- /* for usb drive */ -}}
 {{- if eq .chezmoi.os "windows" }}
 [safe]
-	directory = *
+	directory = {{ $cfg.safe.directory }}
 {{ end -}}
 [sequence]
-	editor = "interactive-rebase-tool"
+	editor = "{{ $cfg.sequence.editor }}"
 [status]
-	branch = true
-	showStash = true
-	showUntrackedFiles = "all"
+	branch = {{ $cfg.status.branch }}
+	showStash = {{ $cfg.status.showStash }}
+	showUntrackedFiles = {{ $cfg.status.showUntrackedFiles | quote }}
 [tag]
-	sort = "version:refname"
+	sort = "{{ $cfg.tag.sort }}"
 [url "ssh://192.168.123.206:23231/"]
-	insteadOf = "soft:"
+	insteadOf = "{{ index $cfg (print "url " ("ssh://192.168.123.206:23231/" | quote)) "insteadOf" }}"
 [url "git@github.com:ourgal/"]
-	insteadOf = "myg:"
+	insteadOf = "{{ index $cfg (print "url " ("git@github.com:ourgal/" | quote)) "insteadOf" }}"
 [url "git@github.com:"]
-	insteadOf = "gh:"
+	insteadOf = "{{ index $cfg (print "url " ("git@github.com:" | quote)) "insteadOf" }}"
 [user]
-	email = "{{ .my.git.user.email }}"
-	name = "{{ .my.git.user.name }}"
-{{ if .my.git.sign.ssh }}	signingkey = "~/.ssh/id_ed25519.pub"
-{{ else if .my.git.sign.gpg }}	signingkey = "1BE4E2268D47C1D1"
-{{ end -}}
+	email = "{{ $cfg.user.email }}"
+	name = "{{ $cfg.user.name }}"
+	signingkey = "{{ $cfg.user.signingkey }}"
 [annex "security"]
-    allowed-ip-addresses = "all"
+	allowed-ip-addresses = "{{ index $cfg (print "annex " ("security" | quote)) "allowed-ip-addresses" }}"
 {{ end -}}
 {{ end -}}
