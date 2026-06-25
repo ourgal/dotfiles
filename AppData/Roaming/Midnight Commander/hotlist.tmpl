@@ -1,5 +1,7 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "mc" -}}
+{{ if eq .chezmoi.os "windows" -}}
 ENTRY "AppData" URL "{{ .chezmoi.homeDir }}/AppData/Roaming"
+{{ end -}}
 {{ end -}}
 {{ end -}}

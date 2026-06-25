@@ -3511,7 +3511,12 @@
                   "children": [
                     {
                       "gnx": "User.20260302211627.1",
-                      "vh": "content"
+                      "vh": "content",
+                      "children": [
+                        {
+                          "gnx": "User.20260225204326.1"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -7047,6 +7052,78 @@
                         },
                         {
                           "gnx": "User.20260225203941.1"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "gnx": "zxc.20260625221933.1",
+              "vh": "mc",
+              "children": [
+                {
+                  "gnx": "zxc.20260625221942.1",
+                  "vh": "@path mc",
+                  "children": [
+                    {
+                      "gnx": "zxc.20260625222427.1",
+                      "vh": "@clean hotlist.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225203941.1"
+                        },
+                        {
+                          "gnx": "User.20260302211627.1"
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260625222003.1",
+                      "vh": "@clean ini.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225203941.1"
+                        },
+                        {
+                          "gnx": "User.20260302211750.1"
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260625222119.1",
+                      "vh": "@clean menu.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225203941.1"
+                        },
+                        {
+                          "gnx": "User.20260302212011.1"
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260625222215.1",
+                      "vh": "@clean panels.ini.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225203941.1"
+                        },
+                        {
+                          "gnx": "User.20260302212456.1"
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "zxc.20260625222255.1",
+                      "vh": "@clean mc.ext.ini.tmpl",
+                      "children": [
+                        {
+                          "gnx": "User.20260225203941.1"
+                        },
+                        {
+                          "gnx": "User.20260302212656.1"
                         }
                       ]
                     }
@@ -14821,7 +14898,7 @@
     "zxc.20260620125523.1": "[my.modules.shell.fish]\noh_my_posh.enable = true\nfzf.enable = true\nmcfly.enable = true\nnavi.enable = true\ncarapace.enable = true\nzoxide.enable = true\n",
     "zxc.20260613164155.1": "[my.modules.mpv]\nenable = true\n\n[my.modules.mpv.plugins]\nsmartskip = true\nthumbfast = true\nmanga_reader = true\nM_x = true\nleader = true\nsponsorblock_minimal = true\nquality_menu = true\ntorrserver_hook = true\nytdlautoformat = false\nclipshot = true\nfile_browser = true\nanilist_updater = true\nsmart_copy_paste = true\nbetterchapters = true\ncostum = true\nautocrop = true\n",
     "zxc.20260616151751.1": "[my.modules.firefox]\ntheme = \"flexfox\"\n",
-    "User.20260302211627.1": "ENTRY \"AppData\" URL \"{{ .chezmoi.homeDir }}/AppData/Roaming\"",
+    "User.20260302211627.1": "<< dos >>\nENTRY \"AppData\" URL \"{{ .chezmoi.homeDir }}/AppData/Roaming\"\n{{ end -}}\n",
     "User.20260302211750.1": "[Midnight-Commander]\nverbose=true\nshell_patterns=true\nauto_save_setup=false\npreallocate_space=false\nauto_menu=false\nuse_internal_view=false\nuse_internal_edit=false\nuse_internal_busybox=false\nclear_before_exec=true\nconfirm_delete=true\nconfirm_overwrite=true\nconfirm_execute=false\nconfirm_history_cleanup=true\nconfirm_exit=false\nconfirm_directory_hotlist_delete=false\nconfirm_view_dir=false\nsafe_delete=false\nsafe_overwrite=false\nuse_8th_bit_as_meta=true\nmouse_move_pages_viewer=true\nmouse_close_dialog=false\nfast_refresh=false\ndrop_menus=false\nwrap_mode=true\nold_esc_mode=false\ncd_symlinks=true\nshow_all_if_ambiguous=false\nuse_file_to_guess_type=true\nalternate_plus_minus=false\nonly_leading_plus_minus=true\nshow_output_starts_shell=false\nxtree_mode=false\nfile_op_compute_totals=true\nclassic_progressbar=true\nuse_netrc=true\nftpfs_always_use_proxy=false\nftpfs_use_passive_connections=true\nftpfs_use_passive_connections_over_proxy=false\nftpfs_use_unix_list_options=true\nftpfs_first_cd_then_ls=true\nignore_ftp_chattr_errors=true\neditor_fill_tabs_with_spaces=false\neditor_return_does_auto_indent=true\neditor_backspace_through_tabs=false\neditor_fake_half_tabs=true\neditor_option_save_position=true\neditor_option_auto_para_formatting=false\neditor_option_typewriter_wrap=false\neditor_edit_confirm_save=true\neditor_syntax_highlighting=true\neditor_persistent_selections=true\neditor_drop_selection_on_copy=true\neditor_cursor_beyond_eol=false\neditor_cursor_after_inserted_block=false\neditor_visible_tabs=true\neditor_visible_spaces=true\neditor_line_state=false\neditor_simple_statusbar=false\neditor_check_new_line=false\neditor_show_right_margin=false\neditor_group_undo=false\neditor_state_full_filename=false\neditor_ask_filename_before_edit=false\nnice_rotating_dash=true\nshadows=false\nmcview_remember_file_position=false\nauto_fill_mkdir_name=true\ncopymove_persistent_attr=true\npause_after_run=1\nmouse_repeat_rate=100\ndouble_click_speed=250\nold_esc_mode_timeout=1000000\nconsole_alert_mode=1\nmax_dirt_limit=10\nnum_history_items_recorded=60\nvfs_timeout=60\nftpfs_directory_timeout=900\nftpfs_retry_seconds=30\nshell_directory_timeout=900\neditor_tab_spacing=8\neditor_word_wrap_line_length=72\neditor_option_save_mode=0\neditor_backup_extension=~\neditor_filesize_threshold=64M\neditor_stop_format_chars=-+*\\\\,.;:&>\nmcview_eof=\nskin=dark\nfilepos_max_saved_entries=1024\n\n[Layout]\noutput_lines=0\nleft_panel_size=94\ntop_panel_size=0\nmessage_visible=false\nkeybar_visible=true\nxterm_title=true\ncommand_prompt=false\nmenubar_visible=true\nfree_space=true\nhorizontal_split=false\nvertical_equal=true\nhorizontal_equal=true\ncommand_view=true\n\n[Misc]\ntimeformat_recent=%b %e %H:%M\ntimeformat_old=%b %e  %Y\nftp_proxy_host=gate\nftpfs_password=anonymous@\ndisplay_codepage=UTF-8\nsource_codepage=Other_8_bit\nautodetect_codeset=\nspell_language=en\nclipboard_store=\nclipboard_paste=\naltgr_enabled=\n\n[Colors]\nbase_color=\ndos-console=\ncolor_terminals=\n\n[FindFile]\nfile_case_sens=true\nfile_shell_pattern=true\nfile_find_recurs=true\nfollow_symlinks=false\nfile_skip_hidden=false\nfile_all_charsets=false\ncontent_case_sens=true\ncontent_regexp=false\ncontent_first_hit=false\ncontent_whole_words=false\ncontent_all_charsets=false\nignore_dirs_enable=true\nignore_dirs=\n\n[Panels]\nshow_mini_info=true\nkilobyte_si=false\nmix_all_files=false\nshow_backups=true\nshow_dot_files=true\nfast_reload=false\nfast_reload_msg_shown=false\nmark_moves_down=true\nreverse_files_only=true\nauto_save_setup_panels=false\nnavigate_with_arrows=true\npanel_scroll_pages=true\npanel_scroll_center=false\nmouse_move_pages=true\nfiletype_mode=true\npermission_mode=false\ntorben_fj_mode=false\nquick_search_mode=0\nselect_flags=6\n\nsimple_swap=false\n\n[Panelize]\nModified git files=git ls-files --modified\nFind *.orig after patching=find . -name \\\\*.orig -print\nFind SUID and SGID programs=find . \\\\( \\\\( -perm -04000 -a -perm /011 \\\\) -o \\\\( -perm -02000 -a -perm /01 \\\\) \\\\) -print\nFind rejects after patching=find . -name \\\\*.rej -print",
     "User.20260302212011.1": "shell_patterns=0\n\n##############################################################################\n#   %%  The % character\n#   %f  The current file (if non-local vfs, file will be copied locally and\n#                         %f will be full path to it)\n#   %p  The current file\n#   %d  The current working directory\n#   %s  \"Selected files\"; the tagged files if any, otherwise the current file\n#   %t  Tagged files\n#   %u  Tagged files (and they are untagged on return from expand_format)\n#   %view Runs the commands and pipes standard output to the view command\n#   If %view is immediately followed by '{', recognize keywords\n#   ascii, hex, mcmandoc -T utf8 and unform\n#\n#   If the format letter is in uppercase, it refers to the other panel\n#\n#   With a number followed the % character you can turn quoting on (default)\n#   and off. For example:\n#   %f    quote expanded macro\n#   %1f   ditto\n#   %0f   don't quote expanded macro\n##############################################################################\n\n+ ! t t\n%       Do something on the current file\n        CMD=%{Enter command}\n        $CMD %f\n\n+ t t\n%       Do something on the tagged files\n        CMD=%{Enter command}\n        for i in %t ; do\n            $CMD \"$i\"\n        done\n\n0       Edit a bug report and send it to root\n        I=`mktemp \"${MC_TMPDIR:-/tmp}/mail.XXXXXX\"` || exit 1\n        ${EDITOR-vi} \"$I\"\n        test -r \"$I\" && mail root < \"$I\"\n        rm -f \"$I\"\n\n=+ f \\.1$ | f \\.3$ | f \\.4$ | f \\.5$ | f \\.6$ | f \\.7$ | f \\.8$ | f \\.man$ & t r\n1       Display the file with mcmandoc -T utf8 -man\n        %view{ascii,nroff} mcmandoc -T utf8 %f\n\n2       Call the info hypertext browser\n        info\n\n= t d\n3       Compress the current subdirectory (tar.gz)\n        Pwd=`basename %d /`\n        echo -n \"Name of the compressed file (without extension) [$Pwd]: \"\n        read tar\n        [ \"$tar\"x = x ] && tar=\"$Pwd\"\n        cd .. && \\\n        tar cf - \"$Pwd\" | gzip -f9 > \"$tar.tar.gz\" && \\\n        echo \"../$tar.tar.gz created.\"\n\n4       Compress the current subdirectory (tar.bz2)\n        Pwd=`basename %d /`\n        echo -n \"Name of the compressed file (without extension) [$Pwd]: \"\n        read tar\n        [ \"$tar\"x = x ] && tar=\"$Pwd\"\n        cd .. && \\\n        tar cf - \"$Pwd\" | bzip2 -f > \"$tar.tar.bz2\" && \\\n        echo \"../$tar.tar.bz2 created.\"\n\n5       Compress the current subdirectory (tar.7z)\n        Pwd=`basename %d /`\n        echo -n \"Name of the compressed file (without extension) [$Pwd]: \"\n        read tar\n        [ \"$tar\"x = x ] && tar=\"$Pwd\"\n        cd .. && \\\n        tar cf - \"$Pwd\" | 7za a -si \"$tar.tar.7z\" && \\\n        echo \"../$tar.tar.7z created.\"\n\n6       Compress the current subdirectory (tar.xz)\n        Pwd=`basename %d /`\n        echo -n \"Name of the compressed file (without extension) [$Pwd]: \"\n        read tar\n        [ \"$tar\"x = x ] && tar=\"$Pwd\"\n        cd .. && \\\n        tar cf - \"$Pwd\" | xz -f > \"$tar.tar.xz\" && \\\n        echo \"../$tar.tar.xz created.\"\n\n7       Compress the current subdirectory (tar.zst)\n        Pwd=`basename %d /`\n        echo -n \"Name of the compressed file (without extension) [$Pwd]: \"\n        read tar\n        [ \"$tar\"x = x ] && tar=\"$Pwd\"\n        cd .. && \\\n        tar cf - \"$Pwd\" | zstd -f > \"$tar.tar.zst\" && \\\n        echo \"../$tar.tar.zst created.\"\n\n8       Compress the current subdirectory (tar.lzo)\n        Pwd=`basename %d /`\n        echo -n \"Name of the compressed file (without extension) [$Pwd]: \"\n        read tar\n        [ \"$tar\"x = x ] && tar=\"$Pwd\"\n        cd .. && \\\n        tar cf - \"$Pwd\" | lzop -f > \"$tar.tar.lzo\" && \\\n        echo \"../$tar.tar.lzo created.\"\n\n9       Compress the current subdirectory (zip)\n        Pwd=`basename %d /`\n        echo -n \"Name of the compressed file (without extension) [$Pwd]: \"\n        read zip\n        [ \"$zip\"x = x ] && zip=\"$Pwd\"\n        cd .. && \\\n        zip $zip.zip \"$Pwd\"/*  && \\\n        echo \"../$zip.zip created.\"\n\n= f \\.c$ & t r\n+ f \\.c$ & t r & ! t t\nc       Compile and link current .c file\n        make \"`basename %f .c`\" 2>/dev/null || cc -O -o \"`basename %f .c`\" %f\n\n+ t r & ! t t\na       Append file to opposite\n        cat %f >> %D/%f\n\n+ t t\nA       Append files to opposite files\n        for i in %t ; do\n            cat \"$i\" >> %D/\"$i\"\n        done\n\n+ t r & ! t t\nd       Delete file if a copy exists in the other directory.\n        if [ %d = %D ]; then\n            echo \"The two directories must be different.\"\n            exit 1\n        fi\n        if [ -f %D/%f ]; then        # if two of them, then\n            if cmp -s %D/%f %f; then\n                rm %f && echo %f\": DELETED.\"\n            else\n                echo %f\" and \"%D/%f\" differ: NOT deleted.\"\n                echo -n \"Press RETURN \"\n                read key\n            fi\n        else\n            echo %f\": No copy in \"%D/%f\": NOT deleted.\"\n        fi\n\n+ t t\nD       Delete tagged files if a copy exists in the other directory.\n        if [ %d = %D ]; then\n            echo \"The two directories must be different.\"\n            exit 1\n        fi\n        for i in %t ; do\n            if [ -f %D/\"$i\" ]; then\n                SUM1=`sum \"$i\"`\n                SUM2=`sum %D/\"$i\"`\n                if [ \"$SUM1\" = \"$SUM2\" ]; then\n                    rm \"$i\" && echo \"${i}: DELETED.\"\n                else\n                    echo \"$i and \"%D\"/$i differ: NOT deleted.\"\n                fi\n            else\n                echo \"$i has no copy in \"%D\": NOT deleted.\"\n            fi\n        done\n\nm       View manual page\n        MAN=%{Enter manual name}\n        %view{ascii,nroff} MANROFFOPT='' MAN_KEEP_FORMATTING=1 mcmandoc -T utf8 \"$MAN\"\n\n= f \\.gz$ & t r\n+ ! t t\nn       Inspect gzip'ed newsbatch file\n        dd if=%f bs=1 skip=12 | zcat | ${PAGER-more}\n        # assuming the cunbatch header is 12 bytes long.\n\n= t r &\n+ ! t t\nh       Strip headers from current newsarticle\n        CHECK=`awk '{print $1 ; exit}' %f` 2>/dev/null\n        case \"$CHECK\" in\n            Newsgroups:|Path:)\n                I=`mktemp \"${MC_TMPDIR:-/tmp}/news.XXXXXX\"` || exit 1\n                cp %f \"$I\" && sed '/^'\"$CHECK\"' /,/^$/d' \"$I\" > %f\n                [ \"$?\" = \"0\" ] && rm \"$I\"\n                echo %f\": header removed.\"\n                ;;\n            *)\n                echo %f\" is not a news article.\"\n                ;;\n        esac\n\n+ t t\nH       Strip headers from the marked newsarticles\n        for i in %t ; do\n            CHECK=`awk '{print $1 ; exit}' \"$i\"` 2>/dev/null\n            WFILE=`mktemp \"${MC_TMPDIR:-/tmp}/news.XXXXXX\"` || exit 1\n            case \"$CHECK\" in\n                Newsgroups:|Path:)\n                    cp \"$i\" \"$WFILE\" && sed '/^'\"$CHECK\"' /,/^$/d' \"$WFILE\" > \"$i\"\n                    if [ \"$?\" = \"0\" ]; then\n                        rm \"$WFILE\"; echo \"$i header removed. OK.\"\n                    else\n                        echo \"Oops! Please check $i against $WFILE.\"\n                    fi\n                    ;;\n                *)\n                    echo \"$i skipped: Not a news article.\"\n                    ;;\n            esac\n        done\n\n= t r\n+ ! t t\nr       Copy file to remote host\n        echo -n \"To which host?: \"\n        read Host\n        echo -n \"To which directory on $Host?: \"\n        read Dir\n        rcp -p %f \"${Host}:${Dir}\"\n\n+ t t\nR       Copy files to remote host (no error checking)\n        echo -n \"Copy files to which host?: \"\n        read Host\n        echo -n \"To which directory on $Host? :\"\n        read Dir\n        rcp -pr %u \"${Host}:${Dir}\"\n\n= f \\.tex$ & t r\n+ f \\.tex$ & t r & ! t t\nt       Run latex on file and show it with xdvi\n        latex %f && xdvi \"`basename %f .tex`\".dvi\n\n=+ f ^part | f ^Part | f uue & t r\n+ t t\nU       Uudecode marked news articles (needs work)\n        (\n            for i in %t ; do # strip headers\n                FIRST=`awk '{print $1 ; exit}' \"$i\"`\n                cat \"$i\" | sed '/^'\"$FIRST\"' /,/^$/d'\n            done\n        ) | sed '/^$/d' | sed -n '/^begin 6/,/^end$/p' | uudecode\n        if [ \"$?\" != \"0\" ]; then\n            echo \"Cannot decode \"%t\".\"\n        fi\n        echo \"Please test the output file before deleting anything.\"\n\n=+ f \\.tar\\.gz$ | f \\.tar\\.z$ | f \\.tgz$ | f \\.tpz$ | f \\.tar\\.lz$ | f \\.tar\\.lz4$ | f \\.tar\\.lzma$ | f \\.tar\\.lzo$ | f \\.tar\\.7z$ | f \\.tar\\.xz$ | f \\.tar\\.zst | f \\.tar\\.Z$ | f \\.tar\\.bz2$ & t rl\nx       Extract the contents of a compressed tar file\n        unset PRG\n        case %f in\n            *.tar.7z)   PRG=\"7za e -so\";;\n            *.tar.bz2)  PRG=\"bunzip2 -c\";;\n            *.tar.gz|*.tar.z|*.tgz|*.tpz|*.tar.Z) PRG=\"gzip -dc\";;\n            *.tar.lz)   PRG=\"lzip -dc\";;\n            *.tar.lz4)  PRG=\"lz4 -dc\";;\n            *.tar.lzma) PRG=\"lzma -dc\";;\n            *.tar.lzo)  PRG=\"lzop -dc\";;\n            *.tar.xz)   PRG=\"xz -dc\";;\n            *.tar.zst)  PRG=\"zstd -dc\";;\n            *)          exit 1;;\n        esac\n        $PRG %f | tar xvf -\n\n= t r\n+ ! t t\ny       Gzip or gunzip current file\n        unset DECOMP\n        case %f in\n            *.gz|*.[zZ]) DECOMP=-d;;\n        esac\n        # Do *not* add quotes around $DECOMP!\n        gzip $DECOMP -v %f\n\n+ t t\nY       Gzip or gunzip tagged files\n        for i in %t ; do\n            unset DECOMP\n            case \"$i\" in\n                *.gz|*.[zZ]) DECOMP=-d;;\n            esac\n            gzip $DECOMP -v \"$i\"\n        done\n\n+ ! t t\nb       Bzip2 or bunzip2 current file\n        unset DECOMP\n        case %f in\n            *.bz2) DECOMP=-d;;\n        esac\n        bzip2 $DECOMP -v %f\n\n+ t t\nB       Bzip2 or bunzip2 tagged files\n        for i in %t ; do\n            unset DECOMP\n            case \"$i\" in\n                *.bz2) DECOMP=-d;;\n            esac\n            bzip2 $DECOMP -v \"$i\"\n        done\n\n+ f \\.tar.gz$ | f \\.tgz$ | f \\.tpz$ | f \\.tar.Z$ | f \\.tar.z$ | f \\.tar.bz2$ | f \\.tar.F$ & t r & ! t t\nz       Extract compressed tar file to subdirectory\n        unset D\n        set gzip -cd\n        case %f in\n            *.tar.F)   D=`basename %f .tar.F`; set freeze -dc;;\n            *.tar.Z)   D=`basename %f .tar.Z`;;\n            *.tar.bz2) D=`basename %f .tar.bz2`; set bunzip2 -c;;\n            *.tar.gz)  D=`basename %f .tar.gz`;;\n            *.tar.z)   D=`basename %f .tar.z`;;\n            *.tgz)     D=`basename %f .tgz`;;\n            *.tpz)     D=`basename %f .tpz`;;\n        esac\n        mkdir \"$D\"; cd \"$D\" && (\"$1\" \"$2\" ../%f | tar xvf -)\n\n+ t t\nZ       Extract compressed tar files to subdirectories\n        for i in %t ; do\n            set gzip -dc\n            unset D\n            case \"$i\" in\n                *.tar.F)   D=`basename \"$i\" .tar.F`; set freeze -dc;;\n                *.tar.Z)   D=`basename \"$i\" .tar.Z`;;\n                *.tar.bz2) D=`basename \"$i\" .tar.bz2`; set bunzip2 -c;;\n                *.tar.gz)  D=`basename \"$i\" .tar.gz`;;\n                *.tar.z)   D=`basename \"$i\" .tar.z`;;\n                *.tgz)     D=`basename \"$i\" .tgz`;;\n                *.tpz)     D=`basename \"$i\" .tpz`;;\n          esac\n          mkdir \"$D\"; (cd \"$D\" && \"$1\" \"$2\" \"../$i\" | tar xvf -)\n        done\n\n+ f \\.gz$ | f \\.tgz$ | f \\.tpz$ | f \\.Z$ | f \\.z$ | f \\.bz2$ & t r & ! t t\nc       Convert gz<->bz2, tar.gz<->tar.bz2 & tgz->tar.bz2\n        unset D\n        unset EXT\n        case %f in\n            *.Z)   EXT=Z;;\n            *.bz2) EXT=bz2;;\n            *.gz)  EXT=gz;;\n            *.tgz) EXT=tgz;;\n            *.tpz) EXT=tpz;;\n            *.z)   EXT=z;;\n        esac\n        case \"$EXT\" in\n            bz2|Z|gz|z) D=`basename %f .\"$EXT\"`;;\n            tgz|tpz)    D=`basename %f .\"$EXT\"`.tar;;\n        esac\n        if [ \"$EXT\" = \"bz2\" ]; then\n            bunzip2 -v %f\n            gzip -f9 -v \"$D\"\n        else\n            gunzip -v %f\n            bzip2 -v \"$D\"\n        fi\n\n+ t t\nC       Convert gz<->bz2, tar.gz<->tar.bz2 & tgz->tar.bz2\n        for i in %t ; do\n            unset D\n            unset EXT\n            case \"$i\" in\n                *.Z)   EXT=Z;;\n                *.bz2) EXT=bz2;;\n                *.gz)  EXT=gz;;\n                *.tgz) EXT=tgz;;\n                *.tpz) EXT=tpz;;\n                *.z)   EXT=z;;\n            esac\n            case \"$EXT\" in\n                bz2|Z|gz|z) D=`basename \"$i\" .\"$EXT\"`;;\n                tgz|tpz)    D=`basename \"$i\" .\"$EXT\"`.tar;;\n            esac\n            if [ \"$EXT\" = \"bz2\" ]; then\n                bunzip2 -v \"$i\"\n                gzip -f9 -v \"$D\"\n            else\n                gunzip -v \"$i\"\n                bzip2 -v \"$D\"\n            fi\n        done\n\n+ x /usr/bin/open | x /usr/local/bin/open & x /bin/sh\no       Open next a free console\n        open -s -- sh",
     "User.20260302212456.1": "[New Left Panel]\ndisplay=listing\nreverse=false\ncase_sensitive=true\nexec_first=false\nsort_order=name\nlist_mode=full\nbrief_cols=2\nuser_mini_status=false\nfilter_flags=7\nlist_format=full\n\n[New Right Panel]\ndisplay=listing\nreverse=false\ncase_sensitive=true\nexec_first=false\nsort_order=name\nlist_mode=full\nbrief_cols=2\nuser_mini_status=false\nfilter_flags=7\nlist_format=full\n\n[Dirs]\ncurrent_is_left=false\nother_dir={{ .chezmoi.homeDir }}",
@@ -15345,6 +15422,11 @@
     "zxc.20260508000437.1": "[Desktop Entry]\nEncoding=UTF-8\nVersion=0.9.4\nType=Application\nName=gpg-agent\nComment=\nExec=gpg-connect-agent /bye\nOnlyShowIn=XFCE;\nRunHook=0\nStartupNotify=false\nTerminal=false\nHidden=true",
     "zxc.20260529152606.1": "<< unix >>\n{{ if lookPath \"awesome\" -}}\n{{ joinPath .chezmoi.homeDir \".config\" \"awesome-copycats\" }}\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260603092509.1": "<< unix >>\n{{ if lookPath \"home-manager\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260625222427.1": "<< unix >>\n{{ if lookPath \"mc\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260625222003.1": "<< unix >>\n{{ if lookPath \"mc\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260625222119.1": "<< unix >>\n{{ if lookPath \"mc\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260625222215.1": "<< unix >>\n{{ if lookPath \"mc\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260625222255.1": "<< unix >>\n{{ if lookPath \"mc\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260502183455.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260502183056.1": "<< unix >>\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260502183253.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n{{ if .my.git.sign.gpg -}}\n66E220F513E05B9F44D77B9B15F629D7C1270868\n{{ end -}}\n{{ end -}}\n{{ end -}}\n",
@@ -16467,64 +16549,64 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260423154131.2": {
-      "_mod_time": 1782305651.342
+      "_mod_time": 1782233227.429
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1782087842.61
+      "_mod_time": 1781931273.273
     },
     "zxc.20260125143959.1": {
-      "_mod_time": 1778855150.579
+      "_mod_time": 1777906067.531
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1781096323.517
+      "_mod_time": 1780750569.218
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1777398596.506
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1781096323.516
+      "_mod_time": 1780750650.885
     },
     "zxc.20260429111940.1": {
-      "_mod_time": 1778855150.581
+      "_mod_time": 1777612767.635
     },
     "zxc.20260429145437.1": {
-      "_mod_time": 1778855150.581
+      "_mod_time": 1777612767.635
     },
     "zxc.20260427000037.1": {
-      "_mod_time": 1777298774.849
+      "_mod_time": 1777219283.718
     },
     "zxc.20260427224318.1": {
-      "_mod_time": 1777337709.088
+      "_mod_time": 1777301694.728
     },
     "zxc.20260615224512.2": {
-      "_mod_time": 1781590486.331
+      "_mod_time": 1781534729.293
     },
     "User.20260218142211.1": {
-      "_mod_time": 1781096323.532
+      "_mod_time": 1780750471.323
     },
     "User.20260218142322.1": {
       "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1781096323.531
+      "_mod_time": 1780750650.948
     },
     "zxc.20260428221625.1": {
-      "_mod_time": 1778855150.612
+      "_mod_time": 1777612767.65
     },
     "zxc.20260429112140.1": {
-      "_mod_time": 1778855150.612
+      "_mod_time": 1777612767.666
     },
     "zxc.20260426235942.1": {
-      "_mod_time": 1777298774.859
+      "_mod_time": 1777219283.757
     },
     "zxc.20260427224207.1": {
-      "_mod_time": 1777337709.122
+      "_mod_time": 1777301694.743
     },
     "zxc.20260615224333.1": {
-      "_mod_time": 1781590487.338
+      "_mod_time": 1781534693.623
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1781590486.329
+      "_mod_time": 1781528627.075
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1780748738.606
@@ -16548,10 +16630,10 @@
       "_mod_time": 1782087842.583
     },
     "User.20260226000855.1": {
-      "_mod_time": 1782087842.578
+      "_mod_time": 1781884770.849
     },
     "zxc.20260202203521.17": {
-      "_mod_time": 1781590486.33
+      "_mod_time": 1781527467.63
     },
     "User.20260220233639.1": {
       "_mod_time": 1781527488.629
@@ -16560,16 +16642,16 @@
       "_mod_time": 1776434513.068
     },
     "User.20260216114746.1": {
-      "_mod_time": 1778855150.558
+      "_mod_time": 1778706271.126
     },
     "zxc.20260505221318.1": {
-      "_mod_time": 1778855150.558
+      "_mod_time": 1778706271.126
     },
     "zxc.20260202203521.14": {
-      "_mod_time": 1776691470.917
+      "_mod_time": 1776614192.458
     },
     "zxc.20260202203521.3": {
-      "_mod_time": 1780272723.742
+      "_mod_time": 1780117762.444
     },
     "zxc.20260202213444.1": {
       "_mod_time": 1776434513.084
@@ -16578,10 +16660,10 @@
       "_mod_time": 1776434513.084
     },
     "User.20260220151435.2": {
-      "_mod_time": 1780272723.738
+      "_mod_time": 1780117762.459
     },
     "zxc.20260505102132.1": {
-      "_mod_time": 1780272723.74
+      "_mod_time": 1780117762.476
     },
     "zxc.20260202215023.1": {
       "_mod_time": 1776434513.068
@@ -16596,16 +16678,16 @@
       "_mod_time": 1776434513.068
     },
     "User.20260217202401.1": {
-      "_mod_time": 1780272723.737
+      "_mod_time": 1780155943.602
     },
     "User.20260220214558.1": {
-      "_mod_time": 1780272723.737
+      "_mod_time": 1780155936.294
     },
     "zxc.20260530230944.1": {
-      "_mod_time": 1780272723.741
+      "_mod_time": 1780156216.553
     },
     "zxc.20260531001920.1": {
-      "_mod_time": 1780272723.741
+      "_mod_time": 1780158075.007
     },
     "User.20260217214851.1": {
       "_mod_time": 1776851988.666
@@ -16626,7 +16708,7 @@
       "_mod_time": 1776434513.068
     },
     "User.20260308184713.2": {
-      "_mod_time": 1776817843.31
+      "_mod_time": 1776434513.068
     },
     "User.20260308214701.2": {
       "_mod_time": 1776434513.068
@@ -16641,10 +16723,10 @@
       "_mod_time": 1776434513.068
     },
     "zxc.20260318203351.1": {
-      "_mod_time": 1778855150.556
+      "_mod_time": 1777967012.401
     },
     "zxc.20260505141849.1": {
-      "_mod_time": 1778855150.556
+      "_mod_time": 1777967012.414
     },
     "zxc.20260323195318.1": {
       "_mod_time": 1776434513.068
@@ -16656,19 +16738,19 @@
       "_mod_time": 1776434513.068
     },
     "zxc.20260531113237.1": {
-      "_mod_time": 1780272723.736
+      "_mod_time": 1780230892.19
     },
     "zxc.20260602152143.1": {
-      "_mod_time": 1780401618.945
+      "_mod_time": 1780394292.926
     },
     "zxc.20260602183356.1": {
-      "_mod_time": 1780486276.597
+      "_mod_time": 1780480977.894
     },
     "zxc.20260603094212.1": {
-      "_mod_time": 1780486276.607
+      "_mod_time": 1780480977.894
     },
     "zxc.20260615003716.1": {
-      "_mod_time": 1781607695.717
+      "_mod_time": 1781602833.363
     },
     "zxc.20260620011448.1": {
       "_mod_time": 1782087842.583
@@ -16707,10 +16789,10 @@
       "_mod_time": 1777179946.871
     },
     "User.20260301202336.1": {
-      "_mod_time": 1781484842.615
+      "_mod_time": 1781422707.612
     },
     "zxc.20260327184129.1": {
-      "_mod_time": 1782132910.842
+      "_mod_time": 1782016325.205
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1777179946.862
@@ -16755,10 +16837,10 @@
       "_mod_time": 1778855150.612
     },
     "zxc.20260507002719.1": {
-      "_mod_time": 1778855150.581
+      "_mod_time": 1778706271.142
     },
     "zxc.20260507003041.1": {
-      "_mod_time": 1778855150.581
+      "_mod_time": 1778706271.142
     },
     "zxc.20260126154354.1": {
       "_mod_time": 1777179946.877
@@ -16779,7 +16861,7 @@
       "_mod_time": 1782391904.21
     },
     "zxc.20260125161631.1": {
-      "_mod_time": 1777382332.018
+      "_mod_time": 1777302969.492
     },
     "User.20260216185314.1": {
       "_mod_time": 1777179946.883
@@ -16890,7 +16972,7 @@
       "_mod_time": 1778855150.599
     },
     "zxc.20260504000649.1": {
-      "_mod_time": 1778855150.599
+      "_mod_time": 1777827566.629
     },
     "zxc.20260503225115.1": {
       "_mod_time": 1778855150.604
@@ -16902,46 +16984,61 @@
       "_mod_time": 1778855150.604
     },
     "zxc.20260505104942.1": {
-      "_mod_time": 1780272726.066
+      "_mod_time": 1780230892.201
     },
     "zxc.20260505105255.1": {
-      "_mod_time": 1778855150.594
+      "_mod_time": 1777967012.43
     },
     "zxc.20260507000814.1": {
-      "_mod_time": 1780223583.696
+      "_mod_time": 1780055115.897
     },
     "zxc.20260508000348.1": {
-      "_mod_time": 1780223583.696
+      "_mod_time": 1780055115.893
     },
     "zxc.20260529152606.1": {
-      "_mod_time": 1780272726.07
+      "_mod_time": 1780148506.597
     },
     "zxc.20260603092509.1": {
-      "_mod_time": 1780486276.638
+      "_mod_time": 1780480977.925
+    },
+    "zxc.20260625222427.1": {
+      "_mod_time": 1782397499.366
+    },
+    "zxc.20260625222003.1": {
+      "_mod_time": 1782397414.941
+    },
+    "zxc.20260625222119.1": {
+      "_mod_time": 1782397414.97
+    },
+    "zxc.20260625222215.1": {
+      "_mod_time": 1782397414.992
+    },
+    "zxc.20260625222255.1": {
+      "_mod_time": 1782397415.021
     },
     "zxc.20260502183455.1": {
-      "_mod_time": 1778855150.604
+      "_mod_time": 1777717804.636
     },
     "zxc.20260502183056.1": {
-      "_mod_time": 1778855150.604
+      "_mod_time": 1777978566.558
     },
     "zxc.20260502183253.1": {
-      "_mod_time": 1782087842.673
+      "_mod_time": 1781928426.128
     },
     "zxc.20260505181144.1": {
-      "_mod_time": 1778855150.589
+      "_mod_time": 1778706271.142
     },
     "User.20260215182442.1": {
       "_mod_time": 1777891060.651
     },
     "User.20260217022114.1": {
-      "_mod_time": 1778855150.604
+      "_mod_time": 1777891191.612
     },
     "User.20260215182818.1": {
       "_mod_time": 1777891191.634
     },
     "zxc.20260317084145.1": {
-      "_mod_time": 1778855150.609
+      "_mod_time": 1777891060.7
     },
     "zxc.20260201225344.1": {
       "_mod_time": 1777891060.714
@@ -16950,16 +17047,16 @@
       "_mod_time": 1777891060.727
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1782132910.857
+      "_mod_time": 1782049775.217
     },
     "User.20260215205925.1": {
-      "_mod_time": 1780272726.073
+      "_mod_time": 1780230892.216
     },
     "User.20260215210400.1": {
       "_mod_time": 1777179946.904
     },
     "User.20260220151031.5": {
-      "_mod_time": 1780272726.072
+      "_mod_time": 1780230892.215
     },
     "User.20260220151031.28": {
       "_mod_time": 1777179946.902
@@ -16977,10 +17074,10 @@
       "_mod_time": 1777718155.12
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1778855150.61
+      "_mod_time": 1777978566.573
     },
     "zxc.20260201214114.1": {
-      "_mod_time": 1779288255.231
+      "_mod_time": 1778939057.595
     },
     "zxc.20260202195207.1": {
       "_mod_time": 1781607696.647
@@ -17079,19 +17176,19 @@
       "_mod_time": 1777891355.18
     },
     "zxc.20260325223805.1": {
-      "_mod_time": 1779322339.077
+      "_mod_time": 1779285586.501
     },
     "zxc.20260329012003.1": {
       "_mod_time": 1777179946.894
     },
     "zxc.20260411192514.1": {
-      "_mod_time": 1781484843.619
+      "_mod_time": 1781287296.273
     },
     "zxc.20260330235722.1": {
       "_mod_time": 1777179946.891
     },
     "zxc.20260609212401.1": {
-      "_mod_time": 1781607696.631
+      "_mod_time": 1781602834.187
     },
     "zxc.20260518220745.1": {
       "_mod_time": 1780748738.611
@@ -17157,7 +17254,7 @@
       "_mod_time": 1782305651.363
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1782087842.586
+      "_mod_time": 1781864243.199
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1777713442.482
@@ -17268,22 +17365,22 @@
       "_mod_time": 1782392581.659
     },
     "zxc.20260202205715.1": {
-      "_mod_time": 1777298774.844
+      "_mod_time": 1777106655.378
     },
     "zxc.20260426163956.1": {
       "_mod_time": 1782352762.464
     },
     "User.20260302151947.1": {
-      "_mod_time": 1782087842.585
+      "_mod_time": 1781863634.272
     },
     "zxc.20260407232538.1": {
-      "_mod_time": 1782132910.807
+      "_mod_time": 1782049349.424
     },
     "zxc.20260408005117.1": {
       "_mod_time": 1777179946.836
     },
     "zxc.20260529091145.1": {
-      "_mod_time": 1780272723.743
+      "_mod_time": 1780069890.937
     },
     "zxc.20260201140523.1": {
       "_mod_time": 1777179946.85
@@ -17292,10 +17389,10 @@
       "_mod_time": 1777385863.235
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1782087842.585
+      "_mod_time": 1781944894.353
     },
     "zxc.20260214105528.1": {
-      "_mod_time": 1777382331.981
+      "_mod_time": 1777302969.518
     },
     "zxc.20260214142543.1": {
       "_mod_time": 1777179946.851
@@ -17316,7 +17413,7 @@
       "_mod_time": 1777179946.852
     },
     "User.20260302211536.1": {
-      "_mod_time": 1777179946.836
+      "_mod_time": 1782397451.83
     },
     "User.20260302211740.1": {
       "_mod_time": 1777179946.836
@@ -17343,16 +17440,16 @@
       "_mod_time": 1777179941.91
     },
     "zxc.20260515010901.1": {
-      "_mod_time": 1780470637.484
+      "_mod_time": 1778778728.929
     },
     "zxc.20260518233322.1": {
-      "_mod_time": 1782305651.315
+      "_mod_time": 1782224094.973
     },
     "zxc.20260611090830.1": {
       "_mod_time": 1782392561.137
     },
     "zxc.20260611091007.1": {
-      "_mod_time": 1781174037.601
+      "_mod_time": 1781170166.798
     },
     "zxc.20260621234825.1": {
       "_mod_time": 1782196061.774
