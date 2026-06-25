@@ -5,10 +5,14 @@
 {{ $termux = set $termux "m6" (dict "port" 8022 "user" "u0_a455" "host" "localhost" "ip" "192.168.123.191") -}}
 {{ if eq .chezmoi.os "windows" -}}
 ENTRY "AppData" URL "{{ .chezmoi.homeDir }}/AppData/Roaming"
-ENTRY "note20" URL "sh://note20:/data/data/com.termux/files/home"
-ENTRY "note20 sdcard" URL "sh://note20:/sdcard"
-ENTRY "m6" URL "sh://m6:/data/data/com.termux/files/home"
-ENTRY "m6 sdcard" URL "sh://m6:/sdcard"
+GROUP "note20"
+  ENTRY "note20" URL "sh://note20:/data/data/com.termux/files/home"
+  ENTRY "note20 sdcard" URL "sh://note20:/sdcard"
+ENDGROUP
+GROUP "m6"
+  ENTRY "m6" URL "sh://m6:/data/data/com.termux/files/home"
+  ENTRY "m6 sdcard" URL "sh://m6:/sdcard"
+ENDGROUP
 {{ end -}}
 {{ if eq .chezmoi.os "android" -}}
 ENTRY "nuc" URL "sh://nuc:/C:/Users/User"
