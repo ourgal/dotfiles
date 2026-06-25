@@ -7,6 +7,6 @@
     {{ $origin = append $origin . -}}
     {{ end -}}
 {{ end -}}
-{{ $origin | compact | join "\n" -}}
+{{ $origin | compact | join "\n" }}
 {{ end -}}
 {{ end -}}

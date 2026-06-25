@@ -26,17 +26,17 @@
 {{ $_ = set $_ "excludesfile" "~/.gitignore" -}}
 {{ $_ = set $_ "fsmonitor" false -}}
 	{{- if lookPath "delta" -}}
-    {{ $_ = set $_ "paper" "delta" -}}
+	{{ $_ = set $_ "paper" "delta" -}}
 	{{- else if lookPath "diff-so-fancy" -}}
-    {{ $_ = set $_ "paper" "diff-so-fancy | less '--tabs=4' -RFX" -}}
+	{{ $_ = set $_ "paper" "diff-so-fancy | less '--tabs=4' -RFX" -}}
 	{{- end }}
 {{ $_ = set $_ "preloadindex" true -}}
 {{ $_ = set $_ "untrackedCache" true -}}
 {{ $_ = set $_ "whitespace" "error" -}}
 {{ $_ = set $_ "autocrlf" "input" -}}
 	{{- if eq .chezmoi.os "windows" -}}
-    {{ $_ = set $_ "sshCommand" "C:\\\\Program Files\\\\OpenSSH-Win64\\\\ssh.EXE" -}}
-    {{ $_ = set $_ "symlinks" true -}}
+	{{ $_ = set $_ "sshCommand" "C:\\\\Program Files\\\\OpenSSH-Win64\\\\ssh.EXE" -}}
+	{{ $_ = set $_ "symlinks" true -}}
 	{{- end -}}
 {{ $cfg = set $cfg "core" $_ -}}
 

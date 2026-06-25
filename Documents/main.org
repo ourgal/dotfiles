@@ -817,7 +817,7 @@ atusy/by-binds-yourself
 [[https://starship.rs/presets/jetpack][Jetpack]] config.
 
 #+begin_src toml
-{{ $is_note20 := eq (output "whoami" | trim) .my.termux.note20.username -}}
+{{ $is_note20 := eq (output "whoami" | trim) $termux.note20.user -}}
 add_newline = true
 format = "$directory$cmd_duration$hostname$localip$shlvl$shell$env_var$username$sudo$character"
 palette = "base16"
