@@ -28,4 +28,14 @@ sub-shadow-offset=1
 osd-font=%{{ len .my.font.monospace }}%{{ .my.font.monospace }}
 save-watch-history=%{{ len "yes" }}%{{ "yes" }}
 keep-open=%{{ len "no" }}%{{ "no" }}
+[youtube]
+profile-cond=path:find('youtu%.?be')
+ytdl-format=18/22
+speed=2.0
+ytdl-raw-options=write-auto-sub=
+profile-restore=copy
+[bilibili]
+profile-cond=path:find('bilibili%.com')
+ytdl-raw-options=cookies-from-browser=firefox:~/scoop/persist/firefox
+profile-restore=copy
 {{ end -}}

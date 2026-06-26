@@ -6527,6 +6527,14 @@
                             {
                               "gnx": "zxc.20260616161430.1",
                               "vh": "keep open"
+                            },
+                            {
+                              "gnx": "user.20260627010209.1",
+                              "vh": "youtube"
+                            },
+                            {
+                              "gnx": "user.20260627010904.1",
+                              "vh": "bilibili"
                             }
                           ]
                         }
@@ -14986,7 +14994,7 @@
     "zxc.20260614121829.1": "[my.modules.shell.clink]\nstarship.enable = false\noh_my_posh.enable = true\nzoxide.enable = true\n",
     "zxc.20260614123554.1": "[my.modules.shell.bash]\nble_sh.enable = true\nfzf.enable = true\nstarship.enable = false\noh_my_posh.enable = true\natuin.enable = false\nmcfly.enable = true\nzoxide.enable = true\npay_respects.enable = true\n",
     "zxc.20260620125523.1": "[my.modules.shell.fish]\noh_my_posh.enable = true\nfzf.enable = true\nmcfly.enable = true\nnavi.enable = true\ncarapace.enable = true\nzoxide.enable = true\n",
-    "zxc.20260613164155.1": "[my.modules.mpv]\nenable = true\n\n[my.modules.mpv.plugins]\nuosc = true\nsmartskip = true\nthumbfast = true\nmanga_reader = true\nM_x = true\nleader = true\nsponsorblock_minimal = true\nquality_menu = true\ntorrserver_hook = true\nytdlautoformat = true\nclipshot = true\nfile_browser = true\nanilist_updater = true\nsmart_copy_paste = true\nbetterchapters = true\ncostum = true\nautocrop = true\n",
+    "zxc.20260613164155.1": "[my.modules.mpv]\nenable = true\n\n[my.modules.mpv.plugins]\nuosc = true\nsmartskip = true\nthumbfast = true\nmanga_reader = true\nM_x = true\nleader = true\nsponsorblock_minimal = true\nquality_menu = true\ntorrserver_hook = true\nytdlautoformat = true\nclipshot = true\nfile_browser = true\nanilist_updater = true\nsmart_copy_paste = true\nbetterchapters = true\ncostum = false\nautocrop = true\n",
     "zxc.20260616151751.1": "[my.modules.firefox]\ntheme = \"flexfox\"\n",
     "User.20260302211627.1": "@others\n",
     "zxc.20260626154828.1": "{{ $username := dict -}}\n{{ $username = set $username \"windows\" \"user\" -}}\n{{ $username = set $username \"linux\" \"zxc\" -}}\n",
@@ -15450,6 +15458,8 @@
     "zxc.20260613022839.1": "osd-font=%{{ len .my.font.monospace }}%{{ .my.font.monospace }}\n",
     "zxc.20260615144438.1": "save-watch-history=%{{ len \"yes\" }}%{{ \"yes\" }}\n",
     "zxc.20260616161430.1": "keep-open=%{{ len \"no\" }}%{{ \"no\" }}\n",
+    "user.20260627010209.1": "[youtube]\nprofile-cond=path:find('youtu%.?be')\nytdl-format=18/22\nspeed=2.0\nytdl-raw-options=write-auto-sub=\nprofile-restore=copy\n",
+    "user.20260627010904.1": "[bilibili]\nprofile-cond=path:find('bilibili%.com')\nytdl-raw-options=cookies-from-browser=firefox:~/scoop/persist/firefox\nprofile-restore=copy\n",
     "zxc.20260619203536.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260614184847.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"anilist_updater\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260614184908.1": "Ctrl+a script-binding mpv_anilist_updater/update_anilist\nAlt+a script-binding mpv_anilist_updater/launch_anilist\nD script-binding mpv_anilist_updater/open_folder\nB script-binding mpv_anilist_updater/correct_anime_id\n",
@@ -16740,7 +16750,7 @@
       "_mod_time": 1782087842.578
     },
     "zxc.20260202203521.17": {
-      "_mod_time": 1782490249.755
+      "_mod_time": 1782490333.255
     },
     "User.20260220233639.1": {
       "_mod_time": 1781527488.629
@@ -16863,10 +16873,10 @@
       "_mod_time": 1782087842.583
     },
     "User.20260226001402.1": {
-      "_mod_time": 1782477813.609
+      "_mod_time": 1782493319.883
     },
     "zxc.20260201141149.1": {
-      "_mod_time": 1782479865.432
+      "_mod_time": 1782490333.028
     },
     "User.20260215191351.1": {
       "_mod_time": 1782477813.62
@@ -16953,7 +16963,7 @@
       "_mod_time": 1777179946.877
     },
     "zxc.20260125145051.1": {
-      "_mod_time": 1782479865.461
+      "_mod_time": 1782490333.061
     },
     "zxc.20260125152704.1": {
       "_mod_time": 1777179946.876
@@ -16986,7 +16996,7 @@
       "_mod_time": 1778855150.599
     },
     "User.20260220233323.1": {
-      "_mod_time": 1782490200.752
+      "_mod_time": 1782494095.784
     },
     "zxc.20260619203536.1": {
       "_mod_time": 1782087842.643
@@ -17109,7 +17119,7 @@
       "_mod_time": 1780486276.638
     },
     "zxc.20260625222427.1": {
-      "_mod_time": 1782479865.477
+      "_mod_time": 1782490333.054
     },
     "zxc.20260625222003.1": {
       "_mod_time": 1782477813.631
@@ -17187,7 +17197,7 @@
       "_mod_time": 1779288255.231
     },
     "zxc.20260202195207.1": {
-      "_mod_time": 1782490200.767
+      "_mod_time": 1782494095.799
     },
     "zxc.20260614184825.1": {
       "_mod_time": 1782087842.674
@@ -17523,7 +17533,7 @@
       "_mod_time": 1777179946.852
     },
     "User.20260302211536.1": {
-      "_mod_time": 1782479865.49
+      "_mod_time": 1782490333.013
     },
     "User.20260302211740.1": {
       "_mod_time": 1777179946.836
@@ -17556,7 +17566,7 @@
       "_mod_time": 1782305651.315
     },
     "zxc.20260611090830.1": {
-      "_mod_time": 1782479913.934
+      "_mod_time": 1782490333.013
     },
     "zxc.20260611091007.1": {
       "_mod_time": 1781174037.601
