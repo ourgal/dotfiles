@@ -14994,7 +14994,7 @@
     "zxc.20260614121829.1": "[my.modules.shell.clink]\nstarship.enable = false\noh_my_posh.enable = true\nzoxide.enable = true\n",
     "zxc.20260614123554.1": "[my.modules.shell.bash]\nble_sh.enable = true\nfzf.enable = true\nstarship.enable = false\noh_my_posh.enable = true\natuin.enable = false\nmcfly.enable = true\nzoxide.enable = true\npay_respects.enable = true\n",
     "zxc.20260620125523.1": "[my.modules.shell.fish]\noh_my_posh.enable = true\nfzf.enable = true\nmcfly.enable = true\nnavi.enable = true\ncarapace.enable = true\nzoxide.enable = true\n",
-    "zxc.20260613164155.1": "[my.modules.mpv]\nenable = true\n\n[my.modules.mpv.plugins]\nuosc = true\nsmartskip = true\nthumbfast = true\nmanga_reader = true\nM_x = true\nleader = true\nsponsorblock_minimal = true\nquality_menu = true\ntorrserver_hook = true\nytdlautoformat = true\nclipshot = true\nfile_browser = true\nanilist_updater = true\nsmart_copy_paste = true\nbetterchapters = true\ncostum = false\nautocrop = true\n",
+    "zxc.20260613164155.1": "[my.modules.mpv]\nenable = true\n\n[my.modules.mpv.plugins]\nuosc = true\nsmartskip = true\nthumbfast = true\nmanga_reader = true\nM_x = true\nleader = true\nsponsorblock_minimal = true\nquality_menu = true\ntorrserver_hook = true\nytdlautoformat = false\nclipshot = true\nfile_browser = true\nanilist_updater = true\nsmart_copy_paste = true\nbetterchapters = true\ncostum = false\nautocrop = true\n",
     "zxc.20260616151751.1": "[my.modules.firefox]\ntheme = \"flexfox\"\n",
     "User.20260302211627.1": "@others\n",
     "zxc.20260626154828.1": "{{ $username := dict -}}\n{{ $username = set $username \"windows\" \"user\" -}}\n{{ $username = set $username \"linux\" \"zxc\" -}}\n",
@@ -15164,7 +15164,7 @@
     "User.20260217235737.1": "(add-hook! 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)\n",
     "User.20260218113718.1": "(add-hook! 'completion-at-point-functions #'cape-dabbrev)\n(add-hook! 'completion-at-point-functions #'cape-file)\n",
     "User.20260218114048.1": "(after! doom-modeline\n  (setq doom-modeline-buffer-file-name-style 'relative-to-project))\n",
-    "zxc.20260517023349.1": "(defun browse-url-mpv (url &optional _new-window)\n  (start-process \"mpv\" (get-buffer-create \"*mpv out*\") \"mpv\" url))\n\n(setq browse-url-handlers\n      '((\"\\\\(vimeo\\\\.com\\\\|twitch\\\\.tv\\\\)\" . browse-url-mpv)\n        (\"\\\\(youtube\\\\.com\\\\)\" . browse-url-mpv)\n        (\"\\\\(bilibili\\\\.com\\\\)\" . browse-url-mpv)\n        (\".\" . {{ if eq .chezmoi.os \"windows\" -}}\n        browse-url-default-windows-browser\n        {{- else -}}\n        browse-url-firefox\n        {{- end }})))\n",
+    "zxc.20260517023349.1": "{{ $sponsorblock := joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"mpv\" \"portable_config\" \"scripts\" \"sponsorblock_minimal.lua\" -}}\n(defun browse-url-mpv (url &optional _new-window)\n  (start-process \"mpv\" (get-buffer-create \"*mpv out*\") \"mpv\" \"--load-scripts=no\"{{ if stat $sponsorblock }} {{ print \"--script=\" $sponsorblock | quote }}{{ end }} url))\n\n(setq browse-url-handlers\n      '((\"\\\\(vimeo\\\\.com\\\\|twitch\\\\.tv\\\\)\" . browse-url-mpv)\n        (\"\\\\(youtube\\\\.com\\\\)\" . browse-url-mpv)\n        (\"\\\\(bilibili\\\\.com\\\\)\" . browse-url-mpv)\n        (\".\" . {{ if eq .chezmoi.os \"windows\" -}}\n        browse-url-default-windows-browser\n        {{- else -}}\n        browse-url-firefox\n        {{- end }})))\n",
     "User.20260217233813.1": ";; If you use `org' and don't want your org files in the default location below,\n;; change `org-directory'. It must be set before org loads!\n(setq org-directory \"~/org/\")\n",
     "zxc.20260531010146.1": "(after! org\n  (setq org-agenda-files '(\"~/org/agenda.org\"))\n  (org-babel-do-load-languages\n    org-babel-load-languages\n    '((dot . t))))\n",
     "zxc.20260612234219.1": "(after! emms\n  (setq emms-source-file-default-directory \"~/Music\")\n  (add-hook 'emms-playlist-mode-hook #'turn-on-evil-mode))\n",
@@ -16873,7 +16873,7 @@
       "_mod_time": 1782087842.583
     },
     "User.20260226001402.1": {
-      "_mod_time": 1782493319.883
+      "_mod_time": 1782496324.24
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1782490333.028
@@ -16987,7 +16987,7 @@
       "_mod_time": 1781484843.598
     },
     "User.20260217223030.1": {
-      "_mod_time": 1781856158.738
+      "_mod_time": 1782497626.632
     },
     "User.20260217223035.1": {
       "_mod_time": 1781856158.738
@@ -16996,7 +16996,7 @@
       "_mod_time": 1778855150.599
     },
     "User.20260220233323.1": {
-      "_mod_time": 1782494095.784
+      "_mod_time": 1782496558.45
     },
     "zxc.20260619203536.1": {
       "_mod_time": 1782087842.643
@@ -17197,7 +17197,7 @@
       "_mod_time": 1779288255.231
     },
     "zxc.20260202195207.1": {
-      "_mod_time": 1782494095.799
+      "_mod_time": 1782496558.46
     },
     "zxc.20260614184825.1": {
       "_mod_time": 1782087842.674
