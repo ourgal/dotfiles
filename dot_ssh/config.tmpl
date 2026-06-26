@@ -1,7 +1,7 @@
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
 {{ if lookPath "ssh" -}}
 {{ $termux := dict -}}
-{{ $termux = set $termux "note20" (dict "port" 8023 "user" "u0_a664" "host" "localhost" "ip" "192.168.123.232") -}}
+{{ $termux = set $termux "note20" (dict "port" 8023 "user" "u0_a664" "host" "localhost" "ip" (ternary "192.168.1.106" "192.168.123.232" (eq .chezmoi.hostname "work" "work2"))) -}}
 {{ $termux = set $termux "m6" (dict "port" 8022 "user" "u0_a455" "host" "localhost" "ip" "192.168.123.191") -}}
 Host soft
   Port 23231
@@ -31,6 +31,12 @@ Host gogs-m6
   Port 23231
   User {{ $termux.m6.user }}
   HostName {{ template "ipM6" .chezmoi.hostname }}
+{{ end -}}
+{{ if eq .chezmoi.hostname "work" "work2" -}}
+Host work2
+  Port 22
+  User {{ .my.name }}
+  HostName 192.168.1.107
 {{ end -}}
 Host *
   AddKeysToAgent yes
