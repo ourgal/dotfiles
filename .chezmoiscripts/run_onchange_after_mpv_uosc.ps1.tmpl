@@ -10,6 +10,14 @@ cd ~/.local/share/repos/uosc
 
 {{ $sources := list (joinPath .chezmoi.homeDir "scoop" "persist" "mpv" "portable_config" "scripts" "uosc") (joinPath .chezmoi.homeDir "scoop" "persist" "mpv" "portable_config" "fonts") -}}
 {{ $targets := list (joinPath .chezmoi.homeDir ".local" "share" "repos" "uosc" "src" "uosc") (joinPath .chezmoi.homeDir ".local" "share" "repos" "uosc" "src" "fonts") -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "uosc") "os" "windows") | trim | atoi -}}
 {{ template "powershell_junction" dict "source" $sources "target" $targets }}
+{{ else -}}
+    {{ range $sources -}}
+        {{ if stat . -}}
+        rm -force {{ . }}
+        {{ end -}}
+    {{ end -}}
+{{ end -}}
 {{ end -}}
 {{ end -}}
