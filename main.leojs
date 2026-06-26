@@ -14845,7 +14845,7 @@
     "zxc.20260619235746.1": "<< android >>\n[\".local/share/repos/termux-nf\"]\n    type = \"git-repo\"\n    url = \"https://github.com/arnavgr/termux-nf\"\n    refreshPeriod = \"168h\"\n{{ end -}}\n",
     "zxc.20260202203521.17": "<< dos >>\n{{ template \"checkPath\" (list \"dirhash\" \"go\") -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260323201237.1": "Set-StrictMode -Version Latest\n$ErrorActionPreference = \"Stop\"\n$PSNativeCommandUseErrorActionPreference = $true\n",
-    "zxc.20260202203521.18": "# {{ output \"dirhash\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"uosc\" \"src\" \"ziggy\") \"-quiet\" \"-nowait\" }}\ncd ~/.local/share/repos/uosc\n./tools/build.ps1 ziggy placeholder\n\n{{ $sources := list (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"mpv\" \"portable_config\" \"scripts\" \"uosc\") (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"mpv\" \"portable_config\" \"fonts\") -}}\n{{ $targets := list (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"uosc\" \"src\" \"uosc\") (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"uosc\" \"src\" \"fonts\") -}}\n{{ template \"powershell_junction\" dict \"source\" $sources \"target\" $targets }}\n",
+    "zxc.20260202203521.18": "# {{ output \"dirhash\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"uosc\" \"src\" \"ziggy\") \"-quiet\" \"-nowait\" }}\ncd ~/.local/share/repos/uosc\n./tools/build.ps1 ziggy placeholder\n\n{{ $sources := list (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"mpv\" \"portable_config\" \"scripts\" \"uosc\") (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"mpv\" \"portable_config\" \"fonts\") -}}\n{{ $targets := list (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"uosc\" \"src\" \"uosc\") (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"uosc\" \"src\" \"fonts\") -}}\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"uosc\") \"os\" \"windows\") | trim | atoi -}}\n{{ template \"powershell_junction\" dict \"source\" $sources \"target\" $targets }}\n{{ else -}}\n    {{ range $sources -}}\n        {{ if stat . -}}\n        rm -force {{ . }}\n        {{ end -}}\n    {{ end -}}\n{{ end -}}\n",
     "User.20260220233639.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260220233712.1": "#!{{lookPath \"bash\"}}\n{{ template \"checkPath\" (list \"bash\" \"curl\" \"unzip\") -}}\n{{ if and (lookPath \"bash\") (lookPath \"curl\") (lookPath \"unzip\") -}}\n/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/unix.sh)\"\n{{ end -}}",
     "zxc.20260202203521.20": "<< dos >>\n@others\n{{ end -}}\n",
@@ -14986,7 +14986,7 @@
     "zxc.20260614121829.1": "[my.modules.shell.clink]\nstarship.enable = false\noh_my_posh.enable = true\nzoxide.enable = true\n",
     "zxc.20260614123554.1": "[my.modules.shell.bash]\nble_sh.enable = true\nfzf.enable = true\nstarship.enable = false\noh_my_posh.enable = true\natuin.enable = false\nmcfly.enable = true\nzoxide.enable = true\npay_respects.enable = true\n",
     "zxc.20260620125523.1": "[my.modules.shell.fish]\noh_my_posh.enable = true\nfzf.enable = true\nmcfly.enable = true\nnavi.enable = true\ncarapace.enable = true\nzoxide.enable = true\n",
-    "zxc.20260613164155.1": "[my.modules.mpv]\nenable = true\n\n[my.modules.mpv.plugins]\nsmartskip = true\nthumbfast = false\nmanga_reader = true\nM_x = true\nleader = true\nsponsorblock_minimal = true\nquality_menu = true\ntorrserver_hook = true\nytdlautoformat = false\nclipshot = true\nfile_browser = true\nanilist_updater = true\nsmart_copy_paste = true\nbetterchapters = true\ncostum = true\nautocrop = true\n",
+    "zxc.20260613164155.1": "[my.modules.mpv]\nenable = true\n\n[my.modules.mpv.plugins]\nuosc = true\nsmartskip = true\nthumbfast = true\nmanga_reader = true\nM_x = true\nleader = true\nsponsorblock_minimal = true\nquality_menu = true\ntorrserver_hook = true\nytdlautoformat = true\nclipshot = true\nfile_browser = true\nanilist_updater = true\nsmart_copy_paste = true\nbetterchapters = true\ncostum = true\nautocrop = true\n",
     "zxc.20260616151751.1": "[my.modules.firefox]\ntheme = \"flexfox\"\n",
     "User.20260302211627.1": "@others\n",
     "zxc.20260626154828.1": "{{ $username := dict -}}\n{{ $username = set $username \"windows\" \"user\" -}}\n{{ $username = set $username \"linux\" \"zxc\" -}}\n",
@@ -16740,7 +16740,7 @@
       "_mod_time": 1782087842.578
     },
     "zxc.20260202203521.17": {
-      "_mod_time": 1781590486.33
+      "_mod_time": 1782490249.755
     },
     "User.20260220233639.1": {
       "_mod_time": 1781527488.629
@@ -16986,7 +16986,7 @@
       "_mod_time": 1778855150.599
     },
     "User.20260220233323.1": {
-      "_mod_time": 1782087842.644
+      "_mod_time": 1782490200.752
     },
     "zxc.20260619203536.1": {
       "_mod_time": 1782087842.643
@@ -17187,7 +17187,7 @@
       "_mod_time": 1779288255.231
     },
     "zxc.20260202195207.1": {
-      "_mod_time": 1781607696.647
+      "_mod_time": 1782490200.767
     },
     "zxc.20260614184825.1": {
       "_mod_time": 1782087842.674
