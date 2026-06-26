@@ -1,5 +1,12 @@
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
 {{ if lookPath "leo" -}}
-{{ .my.name }}
+{{ $username := dict -}}
+{{ $username = set $username "windows" "user" -}}
+{{ $username = set $username "linux" "zxc" -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ $username.windows }}
+{{ else if eq .chezmoi.os "linux" -}}
+{{ $username.linux }}
+{{ end -}}
 {{ end -}}
 {{ end -}}

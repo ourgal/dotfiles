@@ -3362,10 +3362,6 @@
                           "vh": "@clean main.toml",
                           "children": [
                             {
-                              "gnx": "zxc.20260315140948.1",
-                              "vh": "name"
-                            },
-                            {
                               "gnx": "User.20260226001414.1",
                               "vh": "msys"
                             },
@@ -3384,10 +3380,6 @@
                             {
                               "gnx": "zxc.20260409143158.1",
                               "vh": "terminal"
-                            },
-                            {
-                              "gnx": "zxc.20260403084957.1",
-                              "vh": "ip"
                             },
                             {
                               "gnx": "User.20260303224633.1",
@@ -3514,12 +3506,26 @@
                       "vh": "content",
                       "children": [
                         {
-                          "gnx": "zxc.20260625205223.1",
-                          "vh": "termux"
-                        },
-                        {
-                          "gnx": "zxc.20260626150915.1",
-                          "vh": "const"
+                          "gnx": "zxc.20260626155606.1",
+                          "vh": "const",
+                          "children": [
+                            {
+                              "gnx": "zxc.20260626154828.1",
+                              "vh": "username"
+                            },
+                            {
+                              "gnx": "zxc.20260625205223.1",
+                              "vh": "termux"
+                            },
+                            {
+                              "gnx": "zxc.20260626150915.1",
+                              "vh": "path"
+                            },
+                            {
+                              "gnx": "zxc.20260626153034.1",
+                              "vh": "ip"
+                            }
+                          ]
                         },
                         {
                           "gnx": "zxc.20260625233508.1",
@@ -3731,7 +3737,7 @@
                           "gnx": "User.20260225204914.1"
                         },
                         {
-                          "gnx": "zxc.20260625205223.1"
+                          "gnx": "zxc.20260626155606.1"
                         },
                         {
                           "gnx": "zxc.20260201141201.1",
@@ -4821,6 +4827,9 @@
                       "children": [
                         {
                           "gnx": "User.20260225204914.1"
+                        },
+                        {
+                          "gnx": "zxc.20260626154828.1"
                         },
                         {
                           "gnx": "zxc.20260315140919.1",
@@ -14948,13 +14957,11 @@
     "zxc.20260620011448.1": "<< android >>\n{{ if lookPath \"fish\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260620011608.1": "{{ if eq (env \"SHELL\" | splitList \"/\" | last) \"bash\" -}}\nchsh -s fish\n{{ end -}}\n",
     "User.20260226001402.1": "@others\n",
-    "zxc.20260315140948.1": "[my]\nname = \"zxc\"\n",
     "User.20260226001414.1": "[my.msys2]\npackages = [\"fish\", \"nnn\", \"atool\", \"libarchive\", \"tmux\", \"zsh\"]",
     "User.20260226001424.1": "[my.font]\nmonospace = \"IosevkaTerm NFM\"\nsans = \"Noto Sans CJK SC\"\n",
     "User.20260226001439.1": "[my.git.sign]\nssh = false\ngpg = true\n\n[my.git.user]\nname = \"fairever\"\nemail = \"git@fairever.aleeas.com\"\n",
     "zxc.20260409142917.1": "[my.shell]\nwindows = \"pwsh\"",
     "zxc.20260409143158.1": "[my.terminal]\nwindows = \"wt\"",
-    "zxc.20260403084957.1": "[my.ip]\nbrix = \"192.168.123.206\"",
     "User.20260303224633.1": "[my.pip]\nmirror = \"https://mirrors.nju.edu.cn/pypi/web/simple/\"\n",
     "zxc.20260505221529.1": "[my.sbsrf]\nurl=\"https://github.com/sbsrf/sbsrf/releases/download/20260425/sbsrf.zip\"",
     "zxc.20260518221501.1": "[my.alist.local]\nhost = \"http://localhost:5244\"",
@@ -14978,8 +14985,10 @@
     "zxc.20260613164155.1": "[my.modules.mpv]\nenable = true\n\n[my.modules.mpv.plugins]\nsmartskip = true\nthumbfast = true\nmanga_reader = true\nM_x = true\nleader = true\nsponsorblock_minimal = true\nquality_menu = true\ntorrserver_hook = true\nytdlautoformat = false\nclipshot = true\nfile_browser = true\nanilist_updater = true\nsmart_copy_paste = true\nbetterchapters = true\ncostum = true\nautocrop = true\n",
     "zxc.20260616151751.1": "[my.modules.firefox]\ntheme = \"flexfox\"\n",
     "User.20260302211627.1": "@others\n",
-    "zxc.20260625205223.1": "{{ $termux := dict -}}\n{{ $termux = set $termux \"note20\" (dict \"port\" 8023 \"user\" \"u0_a664\" \"host\" \"localhost\" \"ip\" (ternary \"192.168.1.106\" \"192.168.123.232\" (eq .chezmoi.hostname \"work\" \"work2\"))) -}}\n{{ $termux = set $termux \"m6\" (dict \"port\" 8022 \"user\" \"u0_a455\" \"host\" \"localhost\" \"ip\" \"192.168.123.191\") -}}\n",
-    "zxc.20260626150915.1": "{{ $termux_home := \"/data/data/com.termux/files/home\" -}}\n{{ $windows_home := \"/C:/Users/User\" -}}\n{{ $linux_home := (print \"/home/\" .my.name ) -}}\n",
+    "zxc.20260626154828.1": "{{ $username := dict -}}\n{{ $username = set $username \"windows\" \"user\" -}}\n{{ $username = set $username \"linux\" \"zxc\" -}}\n",
+    "zxc.20260625205223.1": "{{ $termux := dict -}}\n{{ $termux = set $termux \"note20_adb\" (dict \"port\" 8023 \"user\" \"u0_a664\" \"ip\" (ternary \"192.168.1.106\" \"192.168.123.232\" (eq .chezmoi.hostname \"work\" \"work2\"))) -}}\n{{ $termux = set $termux \"note20\" (dict \"port\" 8022 \"user\" \"u0_a664\" \"ip\" \"localhost\") -}}\n{{ $termux = set $termux \"m6_adb\" (dict \"port\" 8022 \"user\" \"u0_a455\" \"ip\" \"localhost\") -}}\n{{ $termux = set $termux \"m6\" (dict \"port\" 8022 \"user\" \"u0_a455\" \"ip\" \"192.168.123.191\") -}}\n",
+    "zxc.20260626150915.1": "{{ $termux_home := \"/data/data/com.termux/files/home\" -}}\n{{ $windows_home := print \"/C:/Users/\" $username.windows -}}\n{{ $linux_home := print \"/home/\" $username.linux -}}\n",
+    "zxc.20260626153034.1": "{{ $ip := dict -}}\n{{ $ip = set $ip \"brix\" (dict \"ip\" \"192.168.123.206\" \"port\" \"22\" \"user\" $username.linux) -}}\n{{ $ip = set $ip \"soft\" (dict \"ip\" \"192.168.123.206\" \"port\" \"23231\" \"user\" $username.linux) -}}\n{{ $ip = set $ip \"nuc\" (dict \"ip\" \"192.168.123.123\" \"port\" \"22\" \"user\" $username.windows) -}}\n{{ $ip = set $ip \"work2\" (dict \"ip\" \"192.168.1.107\" \"port\" \"22\" \"user\" $username.linux) -}}\n",
     "zxc.20260625233508.1": "<< dos >>\n@others\n{{ end -}}\n",
     "zxc.20260625233129.1": "@others\n",
     "zxc.20260626000612.1": "ENTRY \"AppData\" URL \"{{ .chezmoi.homeDir }}/AppData/Roaming\"\n",
@@ -15012,14 +15021,14 @@
     "zxc.20260603093325.1": "  # Home Manager is pretty good at managing dotfiles. The primary way to manage\n  # plain files is through 'home.file'.\n  home.file = {\n    # # Building this configuration will create a copy of 'dotfiles/screenrc' in\n    # # the Nix store. Activating the configuration will then make '~/.screenrc' a\n    # # symlink to the Nix store copy.\n    # \".screenrc\".source = dotfiles/screenrc;\n\n    # # You can also set the file content immediately.\n    # \".gradle/gradle.properties\".text = ''\n    #   org.gradle.console=verbose\n    #   org.gradle.daemon.idletimeout=3600000\n    # '';\n  };\n",
     "zxc.20260603093302.1": "# This value determines the Home Manager release that your configuration is\n# compatible with. This helps avoid breakage when a new Home Manager release\n# introduces backwards incompatible changes.\n#\n# You should not change this value, even if you update Home Manager. If you do\n# want to update the value, then make sure to first check the Home Manager\n# release notes.\nhome.stateVersion = \"{{ if eq .chezmoi.hostname \"work2\" }}25.11{{ else}}{{ fail \"home-manager unknow host\"}}{{end}}\"; # Please read the comment before changing.\n",
     "zxc.20260201141149.1": "<< unix dos >>\n{{ if lookPath \"ssh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260201141201.1": "Host soft\n  Port 23231\n  HostName {{ .my.ip.brix }}",
-    "zxc.20260625235808.1": "Host nuc\n  Port 22\n  User user\n  HostName 192.168.123.123\n",
+    "zxc.20260201141201.1": "Host soft\n  Port {{ $ip.soft.port }}\n  HostName {{ $ip.soft.ip }}\n",
+    "zxc.20260625235808.1": "Host nuc\n  Port {{ $ip.nuc.port }}\n  User {{ $ip.nuc.user }}\n  HostName {{ $ip.nuc.ip }}\n",
     "zxc.20260201141231.1": "Host github.com\n  HostName ssh.github.com\n  Port 443\n  User git",
-    "zxc.20260201141321.1": "Host note20-adb\n  Port {{ $termux.note20.port }}\n  User {{ $termux.note20.user }}\n  HostName {{ $termux.note20.host }}\n",
-    "zxc.20260625234718.1": "Host note20\n  Port 8022\n  User {{ $termux.note20.user }}\n  HostName {{ $termux.note20.ip }}\n",
-    "zxc.20260625205407.1": "Host m6-adb\n  Port {{ $termux.m6.port }}\n  User {{ $termux.m6.user }}\n  HostName {{ $termux.m6.host }}\n",
+    "zxc.20260201141321.1": "Host note20-adb\n  Port {{ $termux.note20_adb.port }}\n  User {{ $termux.note20_adb.user }}\n  HostName {{ $termux.note20_adb.ip }}\n",
+    "zxc.20260625234718.1": "Host note20\n  Port {{ $termux.note20.port }}\n  User {{ $termux.note20.user }}\n  HostName {{ $termux.note20.ip }}\n",
+    "zxc.20260625205407.1": "Host m6-adb\n  Port {{ $termux.m6_adb.port }}\n  User {{ $termux.m6_adb.user }}\n  HostName {{ $termux.m6_adb.ip }}\n",
     "zxc.20260319090429.1": "{{ if ne .chezmoi.hostname \"localhost\" -}}\nHost gogs-m6\n  Port 23231\n  User {{ $termux.m6.user }}\n  HostName {{ template \"ipM6\" .chezmoi.hostname }}\n{{ end -}}\n",
-    "zxc.20260626150750.1": "{{ if eq .chezmoi.hostname \"work\" \"work2\" -}}\nHost work2\n  Port 22\n  User {{ .my.name }}\n  HostName 192.168.1.107\n{{ end -}}\n",
+    "zxc.20260626150750.1": "{{ if eq .chezmoi.hostname \"work\" \"work2\" -}}\nHost work2\n  Port {{ $ip.work2.port }}\n  User {{ $ip.work2.user }}\n  HostName {{ $ip.work2.ip }}\n{{ end -}}\n",
     "User.20260214222054.1": "Host *\n  AddKeysToAgent yes",
     "User.20260215191351.1": "<< unix dos >>\n{{ if lookPath \"ssh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260329195706.1": "{{- /* chezmoi:modify-template */ -}}\n{{ $origin := .chezmoi.stdin | trim | splitList \"\\n\" -}}\n{{ range .my.ssh.known_hosts -}}\n    {{ if not (has . $origin) -}}\n    {{ $origin = append $origin . -}}\n    {{ end -}}\n{{ end -}}\n{{ $origin | compact | join \"\\n\" }}\n",
@@ -15199,7 +15208,7 @@
     "User.20260219235958.1": "\"ui_font_size\": 16,\n\"buffer_font_size\": 15,",
     "User.20260219235853.1": "\"auto_update\": false\n",
     "zxc.20260315140713.1": "<< unix dos >>\n{{ if lookPath \"leo\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260315140919.1": "{{ .my.name }}",
+    "zxc.20260315140919.1": "{{ if eq .chezmoi.os \"windows\" -}}\n{{ $username.windows }}\n{{ else if eq .chezmoi.os \"linux\" -}}\n{{ $username.linux }}\n{{ end -}}\n",
     "zxc.20260201225427.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}",
     "zxc.20260201225513.1": "[core]\nscreenName=nuc\nlastVersion=1.25.0.0\ncoreMode=1\nport=24800\npreventSleep=false\nlanguage=English\nwlClipboard=false\nprocessMode=1\ncomputerName=nuc\n\n[internalConfig]\nnumColumns=5\nnumRows=3\nhasHeartbeat=false\nheartbeat=5000\nprotocol=1\nrelativeMouseMoves=false\nwin32KeepForeground=false\nhasSwitchDelay=false\nswitchDelay=250\nhasSwitchDoubleTap=false\nswitchDoubleTap=250\nswitchCornerSize=0\ndisableLockToScreen=false\nclipboardSharing=true\nclipboardSharingSize=3072\nswitchCornerArray\\1\\switchCorner=false\nswitchCornerArray\\2\\switchCorner=false\nswitchCornerArray\\3\\switchCorner=false\nswitchCornerArray\\4\\switchCorner=false\nswitchCornerArray\\size=4\nscreens\\1\\name=\nscreens\\2\\name=\nscreens\\3\\name=\nscreens\\4\\name=\nscreens\\5\\name=\nscreens\\6\\name=\nscreens\\7\\name=\nscreens\\8\\name=\nscreens\\9\\name=\nscreens\\10\\name=\nscreens\\11\\name=\nscreens\\12\\name=\nscreens\\13\\name=\nscreens\\14\\name=\nscreens\\15\\name=\nscreens\\size=15\nhotkeys\\size=0\n\n[gui]\nlogExpanded=true\nenableUpdateCheck=false\nautoHide=true\ncloseToTray=true\nsymbolicTrayIcon=true\ncloseReminder=false\n\n[log]\nlevel=4\ntoFile=false\nfile=C:/Users/User/deskflow.log\nguiDebug=false\n\n[daemon]\nelevate=false\n\n[security]\ncertificate=C:/Users/User/scoop/apps/deskflow/current/settings/tls/deskflow.pem\nkeySize=2048\ntlsEnabled=true\ncheckPeerFingerprints=true\n\n[client]\nlanguageSync=true\nremoteHost=home.local",
     "zxc.20260317083115.1": "{{ if eq .chezmoi.hostname \"work\" -}}\n@others\n{{ end -}}\n",
@@ -16849,10 +16858,10 @@
       "_mod_time": 1782087842.583
     },
     "User.20260226001402.1": {
-      "_mod_time": 1782439163.146
+      "_mod_time": 1782459908.267
     },
     "zxc.20260201141149.1": {
-      "_mod_time": 1782458688.767
+      "_mod_time": 1782460813.717
     },
     "User.20260215191351.1": {
       "_mod_time": 1782439163.182
@@ -16876,7 +16885,7 @@
       "_mod_time": 1781442394.083
     },
     "zxc.20260315140713.1": {
-      "_mod_time": 1777179946.861
+      "_mod_time": 1782460377.238
     },
     "zxc.20260408012432.1": {
       "_mod_time": 1777179946.871
@@ -16939,7 +16948,7 @@
       "_mod_time": 1777179946.877
     },
     "zxc.20260125145051.1": {
-      "_mod_time": 1782457639.02
+      "_mod_time": 1782459751.665
     },
     "zxc.20260125152704.1": {
       "_mod_time": 1777179946.876
@@ -17095,7 +17104,7 @@
       "_mod_time": 1780480977.925
     },
     "zxc.20260625222427.1": {
-      "_mod_time": 1782458102.62
+      "_mod_time": 1782460697.933
     },
     "zxc.20260625222003.1": {
       "_mod_time": 1782439163.199
@@ -17509,7 +17518,7 @@
       "_mod_time": 1777179946.852
     },
     "User.20260302211536.1": {
-      "_mod_time": 1782458102.657
+      "_mod_time": 1782460697.979
     },
     "User.20260302211740.1": {
       "_mod_time": 1777179946.836
@@ -17542,7 +17551,7 @@
       "_mod_time": 1782260301.716
     },
     "zxc.20260611090830.1": {
-      "_mod_time": 1782457639.239
+      "_mod_time": 1782459751.777
     },
     "zxc.20260611091007.1": {
       "_mod_time": 1781170166.798
