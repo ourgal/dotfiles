@@ -132,6 +132,9 @@ WinActivate "ahk_exe emacs.exe"
 Run "glazewm command move --workspace 6", ,"Hide"
 {{ end -}}
 {{ end -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "runemacs" "opt" (list "windows" "startup" "emacs_daemon" "enable") "os" "windows") | trim | atoi -}}
+Run "runemacs --daemon", {{ .chezmoi.homeDir | quote }}, "Hide"
+{{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "torrserver" "opt" (list "windows" "startup" "torrserver" "enable") "os" "windows") | trim | atoi -}}
 Run "torrserver", , "Hide"
 {{ end -}}
