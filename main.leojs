@@ -15164,7 +15164,7 @@
     "User.20260217235737.1": "(add-hook! 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)\n",
     "User.20260218113718.1": "(add-hook! 'completion-at-point-functions #'cape-dabbrev)\n(add-hook! 'completion-at-point-functions #'cape-file)\n",
     "User.20260218114048.1": "(after! doom-modeline\n  (setq doom-modeline-buffer-file-name-style 'relative-to-project))\n",
-    "zxc.20260517023349.1": "{{ $sponsorblock := joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"mpv\" \"portable_config\" \"scripts\" \"sponsorblock_minimal.lua\" -}}\n(defun browse-url-mpv (url &optional _new-window)\n  (start-process \"mpv\" (get-buffer-create \"*mpv out*\") \"mpv\" \"--load-scripts=no\"{{ if stat $sponsorblock }} {{ print \"--script=\" $sponsorblock | quote }}{{ end }} url))\n\n(setq browse-url-handlers\n      '((\"\\\\(vimeo\\\\.com\\\\|twitch\\\\.tv\\\\)\" . browse-url-mpv)\n        (\"\\\\(youtube\\\\.com\\\\)\" . browse-url-mpv)\n        (\"\\\\(bilibili\\\\.com\\\\)\" . browse-url-mpv)\n        (\".\" . {{ if eq .chezmoi.os \"windows\" -}}\n        browse-url-default-windows-browser\n        {{- else -}}\n        browse-url-firefox\n        {{- end }})))\n",
+    "zxc.20260517023349.1": "{{ $sponsorblock := joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"mpv\" \"portable_config\" \"scripts\" \"sponsorblock_minimal.lua\" -}}\n{{ $script := \"\" -}}\n{{ if and (stat $sponsorblock) (eq .chezmoi.os \"windows\") -}}\n{{ $script = print \" --script=\" $sponsorblock -}}\n{{ end -}}\n(defun browse-url-mpv (url &optional _new-window)\n  (start-process-shell-command \"mpv\" (get-buffer-create \"*mpv out*\") (format {{ print \"mpv --load-scripts=no\" $script \" %s || firefox %s\" | quote }} url url)))\n\n(setq browse-url-handlers\n      '((\"\\\\(vimeo\\\\.com\\\\|twitch\\\\.tv\\\\)\" . browse-url-mpv)\n        (\"\\\\(youtube\\\\.com\\\\)\" . browse-url-mpv)\n        (\"\\\\(bilibili\\\\.com\\\\)\" . browse-url-mpv)\n        (\".\" . {{ if eq .chezmoi.os \"windows\" -}}\n        browse-url-default-windows-browser\n        {{- else -}}\n        browse-url-firefox\n        {{- end }})))\n",
     "User.20260217233813.1": ";; If you use `org' and don't want your org files in the default location below,\n;; change `org-directory'. It must be set before org loads!\n(setq org-directory \"~/org/\")\n",
     "zxc.20260531010146.1": "(after! org\n  (setq org-agenda-files '(\"~/org/agenda.org\"))\n  (org-babel-do-load-languages\n    org-babel-load-languages\n    '((dot . t))))\n",
     "zxc.20260612234219.1": "(after! emms\n  (setq emms-source-file-default-directory \"~/Music\")\n  (add-hook 'emms-playlist-mode-hook #'turn-on-evil-mode))\n",
@@ -16987,7 +16987,7 @@
       "_mod_time": 1781484843.598
     },
     "User.20260217223030.1": {
-      "_mod_time": 1782497626.632
+      "_mod_time": 1782537810.572
     },
     "User.20260217223035.1": {
       "_mod_time": 1781856158.738

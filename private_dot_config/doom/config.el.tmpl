@@ -83,8 +83,12 @@
 (after! doom-modeline
   (setq doom-modeline-buffer-file-name-style 'relative-to-project))
 {{ $sponsorblock := joinPath .chezmoi.homeDir "scoop" "persist" "mpv" "portable_config" "scripts" "sponsorblock_minimal.lua" -}}
+{{ $script := "" -}}
+{{ if and (stat $sponsorblock) (eq .chezmoi.os "windows") -}}
+{{ $script = print " --script=" $sponsorblock -}}
+{{ end -}}
 (defun browse-url-mpv (url &optional _new-window)
-  (start-process "mpv" (get-buffer-create "*mpv out*") "mpv" "--load-scripts=no"{{ if stat $sponsorblock }} {{ print "--script=" $sponsorblock | quote }}{{ end }} url))
+  (start-process-shell-command "mpv" (get-buffer-create "*mpv out*") (format {{ print "mpv --load-scripts=no" $script " %s || firefox %s" | quote }} url url)))
 
 (setq browse-url-handlers
       '(("\\(vimeo\\.com\\|twitch\\.tv\\)" . browse-url-mpv)
