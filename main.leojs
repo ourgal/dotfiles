@@ -1022,6 +1022,10 @@
                                         {
                                           "gnx": "zxc.20260428005509.1",
                                           "vh": "pear-tree"
+                                        },
+                                        {
+                                          "gnx": "user.20260629011025.1",
+                                          "vh": "vim explorer"
                                         }
                                       ]
                                     }
@@ -1226,6 +1230,10 @@
                                         {
                                           "gnx": "user.20260629004000.1",
                                           "vh": "supra water"
+                                        },
+                                        {
+                                          "gnx": "user.20260629010950.1",
+                                          "vh": "Vim Explorer"
                                         }
                                       ]
                                     },
@@ -14923,6 +14931,7 @@
     "zxc.20260427161453.1": "nnoremap <bs> <cmd>Explore<cr>\n",
     "zxc.20260427221817.1": "\" let lspOpts = #{autoHighlightDiags: v:true}\n\" autocmd User LspSetup call LspOptionsSet(lspOpts)\n\" \n\" let lspServers = [#{\n\" \t\\\t  name: 'yaml-language-server',\n\" \t\\\t  filetype: ['yaml'],\n\" \t\\\t  path: '{{ lookPath \"yaml-language-server\" }}',\n\" \t\\\t  args: ['--stdio']\n\" \t\\ }]\n\" autocmd User LspSetup call LspAddServer(lspServers)\n",
     "zxc.20260428005509.1": "let g:pear_tree_smart_openers = 1\nlet g:pear_tree_smart_closers = 1\nlet g:pear_tree_smart_backspace = 1\n",
+    "user.20260629011025.1": "\" nnoremap <bs> <cmd>VimExplorer<cr>\n",
     "zxc.20260125164142.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125164204.1": "vim9script\n\n# simple fuzzy find finder\n# place into ~/.vim/plugin/fuzzyfind.vim\n\nset wildmode=noselect:lastused,full\nset wildmenu wildoptions=pum,fuzzy pumheight=12\n\n\nvar files_cache: list<string> = []\naugroup CmdComplete\n    au!\n    au CmdlineChanged : wildtrigger()\n    au CmdlineEnter : files_cache = []\naugroup END\n\ndef FindCmd(): string\n    var cmd = ''\n    if executable('fd')\n        cmd = 'fd . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('fdfind')\n        cmd = 'fdfind . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('ugrep')\n        cmd = 'ugrep \"\" -Rl -I --ignore-files'\n    elseif executable('rg')\n        cmd = 'rg --path-separator / --files --hidden --glob !.git'\n    elseif executable('find')\n        cmd = 'find \\! \\( -path \"*/.git\" -prune -o -name \"*.swp\" \\) -type f -follow'\n    endif\n    return cmd\nenddef\n\ndef Find(cmd_arg: string, cmd_complete: bool): list<string>\n    if empty(files_cache)\n        var cmd = FindCmd()\n        # fallback to built-in glob if no fd/rg/ug/find is available\n        # e.g. we are on Windows\n        if empty(cmd)\n            files_cache = globpath('.', '**', 1, 1)\n                ->filter((_, v) => !isdirectory(v))\n                ->mapnew((_, v) => v->substitute('^\\.[\\/]', \"\", \"\"))\n        else\n            files_cache = systemlist(cmd)\n        endif\n    endif\n    if empty(cmd_arg)\n        return files_cache\n    else\n        return files_cache->matchfuzzy(cmd_arg)\n    endif\nenddef\n\nset findfunc=Find\n",
     "zxc.20260318214950.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -14950,6 +14959,7 @@
     "zxc.20260318212806.16": "\" Plug 'lambdalisue/vim-suda'\n",
     "zxc.20260427003116.1": "\" Plug 'habamax/vim-dir'\n",
     "user.20260629004000.1": "\" Plug 'nda-cunh/SupraWater'\n",
+    "user.20260629010950.1": "\" Plug 'Ashik80/VimExplorer'\n",
     "zxc.20260318212806.13": "{{ if lookPath \"git\" -}}\nPlug 'tpope/vim-fugitive'\n{{ end -}}\n",
     "zxc.20260318212806.14": "{{ if lookPath \"git\" -}}\nPlug 'airblade/vim-gitgutter'\n{{ end -}}\n",
     "zxc.20260318212806.17": "Plug 'itchyny/lightline.vim'\n",
@@ -16951,13 +16961,13 @@
       "_mod_time": 1778855150.579
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1782664392.403
+      "_mod_time": 1782667072.925
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1777398596.506
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1782665692.277
+      "_mod_time": 1782667072.949
     },
     "zxc.20260429145437.1": {
       "_mod_time": 1778855150.581
@@ -16972,13 +16982,13 @@
       "_mod_time": 1781590486.331
     },
     "User.20260218142211.1": {
-      "_mod_time": 1782664392.425
+      "_mod_time": 1782667072.955
     },
     "User.20260218142322.1": {
       "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1782665692.287
+      "_mod_time": 1782667072.979
     },
     "zxc.20260429112140.1": {
       "_mod_time": 1777612767.666
@@ -17767,7 +17777,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1782664392.447
+      "_mod_time": 1782667072.992
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777106655.378
