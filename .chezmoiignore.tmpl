@@ -1,5 +1,15 @@
 Makefile
 main.leojs
+
+{{ if not (stat (joinPath .chezmoi.homeDir "Documents" "my_repos" "snowfall")) -}}
+Documents/my_repos/snowfall/
+Documents/my_repos/snowfall/**
+{{ end -}}
+
+{{ if not (stat (joinPath .chezmoi.homeDir "Documents" "my_repos" "playwright_ritdon")) -}}
+Documents/my_repos/playwright_ritdon/
+Documents/my_repos/playwright_ritdon/**
+{{ end -}}
 {{ if eq .chezmoi.os "linux" -}}
 Documents/autohotkey/
 Documents/autohotkey/**
