@@ -1284,33 +1284,6 @@
                               ]
                             },
                             {
-                              "gnx": "zxc.20260429111940.1",
-                              "vh": "@clean session.vim.tmpl",
-                              "children": [
-                                {
-                                  "gnx": "zxc.20260428221638.1",
-                                  "vh": "content",
-                                  "children": [
-                                    {
-                                      "gnx": "zxc.20260429144755.1",
-                                      "vh": "head"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260429144738.1",
-                                      "vh": "session class"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260429144851.1",
-                                      "vh": "set session"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "gnx": "User.20260225203941.1"
-                                }
-                              ]
-                            },
-                            {
                               "gnx": "zxc.20260429145437.1",
                               "vh": "@clean temp.vim.tmpl",
                               "children": [
@@ -1425,18 +1398,6 @@
                                 },
                                 {
                                   "gnx": "zxc.20260318212719.1"
-                                }
-                              ]
-                            },
-                            {
-                              "gnx": "zxc.20260428221625.1",
-                              "vh": "@clean session.vim.tmpl",
-                              "children": [
-                                {
-                                  "gnx": "zxc.20260428221638.1"
-                                },
-                                {
-                                  "gnx": "User.20260225204326.1"
                                 }
                               ]
                             },
@@ -13672,7 +13633,22 @@
                                   "vh": "session",
                                   "children": [
                                     {
-                                      "gnx": "zxc.20260428221638.1"
+                                      "gnx": "zxc.20260428221638.1",
+                                      "vh": "content",
+                                      "children": [
+                                        {
+                                          "gnx": "zxc.20260429144755.1",
+                                          "vh": "head"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260429144738.1",
+                                          "vh": "session class"
+                                        },
+                                        {
+                                          "gnx": "zxc.20260429144851.1",
+                                          "vh": "set session"
+                                        }
+                                      ]
                                     }
                                   ]
                                 }
@@ -14916,7 +14892,7 @@
     "zxc.20260428151626.1": "function OpenFileOrURL()\n  let cfile = expand('<cfile>')\n  if match(cfile, '^https\\?://') >= 0\n    call system('xdg-open ' . cfile)\n  else\n    normal! gF\n  endif\nendfunction\n\nnnoremap <silent> gf <cmd>call OpenFileOrURL()<CR>\n",
     "zxc.20260428151704.1": "nnoremap g* :%s/<c-r><c-w>/\n",
     "zxc.20260605221719.1": "set laststatus=2\n\ntry\nset switchbuf=uselast\nset showtabline=2\ncatch\nendtry\n\nset expandtab\nset smarttab\n\nset shiftwidth=4\nset tabstop=4\n\nset cindent\nset wrap\nset clipboard=unnamed\n\nset undodir={{ joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"undo\" }}\nset undofile\n\nset nobackup\nset nowritebackup\n\nset noswapfile\n\" set directory=$HOME/.local/share/vim/swap//\n\nif has('gui_running')\nset guioptions-=T\nset guioptions-=e\nset guioptions-=m\nset t_Co=256\nset guitablabel=%M\\ %t\nendif\n\nset encoding=utf8\nset fileformats=unix,dos,mac\nsyntax enable\n\nset regexpengine=0\n\nset backspace=eol,start,indent\nset whichwrap+=<,>,h,l\n\nset ignorecase\nset smartcase\nset hlsearch\nset incsearch\n\nset lazyredraw\nset magic\nset showmatch\n\nset matchtime=2\n\nset noerrorbells\nset novisualbell\nset t_vb=\nset timeoutlen=500\n\nset foldcolumn=0\n\nlet $LANG = 'en'\nset langmenu=en\n\nset wildmenu\n\nset wildignore=*.o,*~,*.pyc\nif has('win16') || has('win32')\nset wildignore+=.git\\*,.hg\\*,.svn\\*\nelse\nset wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store\nendif\n\nlet &t_SI = \"\\e[6 q\"\nlet &t_EI = \"\\e[2 q\"\n\nset ruler\nset cmdheight=1\nset hidden\nset history=500\nset number relativenumber\n\nfiletype plugin on\nfiletype indent on\n\nset autoread\n\nset updatetime=500\n\nset mouse=a\nset smoothscroll\n\nset showtabline=1\n\naugroup settings\n    autocmd!\n    autocmd FocusGained,BufEnter * checktime\n    autocmd FileType qf nnoremap <buffer><silent> q :cclose<bar>lclose<CR>\naugroup END\n\n{{ if lookPath \"rg\" -}}\nset grepprg=rg\\ --vimgrep\\ --smart-case\\ --hidden\nset grepformat=%f:%l:%c:%m\n{{ end -}}\n\nset signcolumn=auto\nset sessionoptions-=blank\nset foldmethod=marker\nset cursorline\nset scrolloff=5\n\nset shortmess-=S \" show she search count\n\nset gdefault\n\nset signcolumn=yes\n\nautocmd CmdlineChanged [:\\/\\?] call wildtrigger()\nset wildmode=noselect:lastused,full\nset wildoptions=pum\n\nautocmd CmdlineEnter [\\/\\?] set pumheight=8\nautocmd CmdlineLeave [\\/\\?] set pumheight&\n",
-    "zxc.20260427223226.1": "set noswapfile\nau BufLeave,CursorHold,FocusLost * if(getbufinfo('%')[0].changed) | sil do BufWritePre | sil! up | sil do BufWritePost | endif\n",
+    "zxc.20260427223226.1": "\" set noswapfile\n\" au BufLeave,CursorHold,FocusLost * if(getbufinfo('%')[0].changed) | sil do BufWritePre | sil! up | sil do BufWritePost | endif\n",
     "User.20260218145141.1": "\" Autosession\n\" au VimEnter * nested if (len(v:argv) == 1) | silent! source Session.vim | endif\n\" au VimLeave * if (len(v:argv) == 1) | mksession! | endif\n",
     "zxc.20260320003625.1": "\" autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path \"%\"\n\nfunction Chezmoi()\n  ! chezmoi apply --source-path \"%\"\nendfunction\n\ncommand! Chezmoi call Chezmoi()\n",
     "zxc.20260427232446.1": "set autocomplete\nset complete=o^5,.^5,w^5,b^5,u^5\nset completeopt=popup\n\ninoremap <silent><expr> <Tab>   pumvisible() ? \"\\<C-n>\" : \"\\<Tab>\"\ninoremap <silent><expr> <S-Tab> pumvisible() ? \"\\<C-p>\" : \"\\<S-Tab>\"\n",
@@ -14930,7 +14906,7 @@
     "User.20260218141914.23": "\" let g:suda_smart_edit = 1\n",
     "User.20260218143021.1": "let g:lightline = {\n      \\ 'colorscheme': 'catppuccin_mocha',\n      \\ 'active': {\n      \\   'left': [ [ 'mode', 'paste' ],\n      \\             [ 'readonly', 'filename', 'modified' ] ],\n      \\   'right': [ [ 'lineinfo' ],\n      \\              [ 'percent' ],\n      \\              [ 'zoomed', 'fileformat', 'fileencoding', 'filetype' ] ]\n      \\ },\n      \\ 'inactive': {\n      \\   'left': [ [ 'mode', 'paste' ],\n      \\             [ 'readonly', 'filename', 'modified' ] ],\n      \\   'right': [ [ 'lineinfo' ],\n      \\              [ 'percent' ],\n      \\              [ 'fileformat', 'fileencoding', 'filetype' ] ]\n      \\ },\n      \\ 'component_function': {\n      \\   'filename': 'LightlineTruncatedFileName',\n      \\   'zoomed': 'zoom#statusline'\n      \\ }\n      \\ }\n\nfunction! LightlineTruncatedFileName()\nlet l:filePath = expand('%')\n    if winwidth(0) > 100\n        return l:filePath\n    else\n        return pathshorten(l:filePath)\n    endif\nendfunction\n",
     "User.20260227211108.1": "\" let g:python3_host_prog = {{ lookPath \"python\" | squote }}\n",
-    "zxc.20260319224134.1": "\" let g:workspace_autocreate = 1\n\" let g:workspace_session_disable_on_args = 1\n\" let g:workspace_session_directory = {{ print (joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"sessions\" ) \"\\\\\" | squote }}\n\" let g:workspace_autosave = 0\n\" let g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"undo\" ) \"\\\\\" | squote }}\n",
+    "zxc.20260319224134.1": "let g:workspace_autocreate = 1\nlet g:workspace_session_disable_on_args = 1\nlet g:workspace_session_directory = {{ print (joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"sessions\" ) \"\\\\\" | squote }}\nlet g:workspace_autosave = 1\nlet g:workspace_autosave_ignore = ['gitcommit', 'suprawater']\nlet g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"undo\" ) \"\\\\\" | squote }}\n",
     "zxc.20260606101656.1": "nnoremap <silent> <leader> <cmd>WhichKey '<Space>'<CR>\n",
     "zxc.20260426141355.1": "@others\n",
     "zxc.20260606101722.1": "let g:which_key_map = {}\n",
@@ -14973,12 +14949,8 @@
     "zxc.20260318212806.14": "{{ if lookPath \"git\" -}}\nPlug 'airblade/vim-gitgutter'\n{{ end -}}\n",
     "zxc.20260318212806.17": "Plug 'itchyny/lightline.vim'\n",
     "zxc.20260318212806.19": "Plug 'lervag/vimtex', { 'for': 'tex' }\n",
-    "zxc.20260319220325.1": "\" Plug 'ourgal/vim-workspace'\n",
+    "zxc.20260319220325.1": "Plug 'ourgal/vim-workspace'\n",
     "zxc.20260426235048.1": "Plug 'jceb/vim-orgmode'\nPlug 'tpope/vim-speeddating'\n",
-    "zxc.20260429111940.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260429144755.1": "if !has('vim9script')\n    finish\nendif\nvim9script\n",
-    "zxc.20260429144738.1": "class Session\n    const sep: string = has(\"win32\") ? \"\\\\\" : \"/\"\n    const fileName: string = getcwd()->substitute(this.sep, \"%\", \"g\")->substitute(\":\", \"%\", \"g\")\n    const folder: string = get(g:, \"my_session_folder\", ($MYVIMRC->fnamemodify(\":p:h\") .. this.sep .. \"sessions\")->simplify())\n    const fullPath: string = this.folder .. this.sep .. this.fileName\n\n    def new()\n        if !isdirectory(this.folder)\n            mkdir(this.folder, \"p\")\n        endif\n    enddef\n\n    def Save(): void\n        this.fullPath->escape(\"%\")->printf(\"mksession! %s\")->execute()\n    enddef\n\n    def Load(): void\n        if !filereadable(this.fullPath)\n            return\n        endif\n\n        this.fullPath->escape(\"%\")->printf(\"source %s\")->execute()\n    enddef\n\nendclass\n",
-    "zxc.20260429144851.1": "if len(v:argv) == 1\n    g:my_session = Session.new()\n\n    augroup MySession\n        au! VimEnter * ++nested g:my_session.Load()\n        au! VimLeave * g:my_session.Save()\n    augroup END\nendif\n",
     "zxc.20260429145437.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260429112205.1": "vim9script\n\ng:my_temp_body = false\n\n# channel data callback function. Called for every received line.\ndef Chan_data_cb(ch: channel, msg: string)\n  # add(g:rcvd_data, msg)\n  if msg == \"<body>\"\n    g:my_temp_body = true\n  endif\n\n  if g:my_temp_body\n    :echom msg\n  endif\nenddef\n\n# channel close callback function.\ndef Chan_close_cb(ch: channel)\n  :echom g:rcvd_data[0]\nenddef\n\ndef Display_Page()\n  var addr = \"www.baidu.com:443\"\n  var ch_opt = {}\n  # data received is processed one line at a time\n  ch_opt.mode = 'nl'\n  ch_opt.waittime = -1\n  ch_opt.drop = \"never\"\n  ch_opt.callback = function('Chan_data_cb')\n  # ch_opt.close_cb = function('Chan_close_cb')\n  # open the channel\n  var ch = ch_open(addr, ch_opt)\n  if ch_status(ch) != \"open\"\n    echomsg $\"Failed to open channel, status = {ch_status(ch)}\"\n    return\n  endif\n  # send a http request\n  ch_sendraw(ch, \"GET / HTTP/1.0\\nHost: www.baidu.com\\n\\n\")\nenddef\n\nDisplay_Page()",
     "zxc.20260427000037.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -14990,7 +14962,6 @@
     "User.20260218142211.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260218142322.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260318212653.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260428221625.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260429112140.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260426235942.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260427224207.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -16852,6 +16823,9 @@
     "zxc.20260606114208.1": "***** Imports\n\n",
     "zxc.20260606114245.1": "Find command.\n\n#+begin_src vimscript\n@others\n#+end_src\n\n",
     "zxc.20260606114352.1": "Auto session.\n\n#+begin_src vimscript\n@others\n#+end_src\n\n",
+    "zxc.20260429144755.1": "if !has('vim9script')\n    finish\nendif\nvim9script\n",
+    "zxc.20260429144738.1": "class Session\n    const sep: string = has(\"win32\") ? \"\\\\\" : \"/\"\n    const fileName: string = getcwd()->substitute(this.sep, \"%\", \"g\")->substitute(\":\", \"%\", \"g\")\n    const folder: string = get(g:, \"my_session_folder\", ($MYVIMRC->fnamemodify(\":p:h\") .. this.sep .. \"sessions\")->simplify())\n    const fullPath: string = this.folder .. this.sep .. this.fileName\n\n    def new()\n        if !isdirectory(this.folder)\n            mkdir(this.folder, \"p\")\n        endif\n    enddef\n\n    def Save(): void\n        this.fullPath->escape(\"%\")->printf(\"mksession! %s\")->execute()\n    enddef\n\n    def Load(): void\n        if !filereadable(this.fullPath)\n            return\n        endif\n\n        this.fullPath->escape(\"%\")->printf(\"source %s\")->execute()\n    enddef\n\nendclass\n",
+    "zxc.20260429144851.1": "if len(v:argv) == 1\n    g:my_session = Session.new()\n\n    augroup MySession\n        au! VimEnter * ++nested g:my_session.Load()\n        au! VimLeave * g:my_session.Save()\n    augroup END\nendif\n",
     "zxc.20260606114502.1": "***** Ftplugin\n\n",
     "zxc.20260606114514.1": "Org.\n\n#+begin_src vimscript\n@others\n#+end_src\n\n",
     "zxc.20260606114544.1": "Help.\n\n#+begin_src vimscript\n@others\n#+end_src\n\n",
@@ -16972,16 +16946,13 @@
       "_mod_time": 1778855150.579
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1781096323.517
+      "_mod_time": 1782664392.403
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1777398596.506
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1781096323.516
-    },
-    "zxc.20260429111940.1": {
-      "_mod_time": 1778855150.581
+      "_mod_time": 1782663569.662
     },
     "zxc.20260429145437.1": {
       "_mod_time": 1778855150.581
@@ -16996,16 +16967,13 @@
       "_mod_time": 1781590486.331
     },
     "User.20260218142211.1": {
-      "_mod_time": 1780750471.323
+      "_mod_time": 1782664392.425
     },
     "User.20260218142322.1": {
       "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1780750650.948
-    },
-    "zxc.20260428221625.1": {
-      "_mod_time": 1777612767.65
+      "_mod_time": 1782663569.678
     },
     "zxc.20260429112140.1": {
       "_mod_time": 1777612767.666
@@ -17794,7 +17762,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1782639687.388
+      "_mod_time": 1782664392.447
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777106655.378
