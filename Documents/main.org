@@ -1829,17 +1829,18 @@ Vim-ghost config.
 Vim-plug.
 
 #+begin_src vimscript
-" Plug 'ourgal/vim-workspace'
+Plug 'ourgal/vim-workspace'
 #+end_src
 
 Vim-workspace config.
 
 #+begin_src vimscript
-" let g:workspace_autocreate = 1
-" let g:workspace_session_disable_on_args = 1
-" let g:workspace_session_directory = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "sessions" ) "\\" | squote }}
-" let g:workspace_autosave = 0
-" let g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "undo" ) "\\" | squote }}
+let g:workspace_autocreate = 1
+let g:workspace_session_disable_on_args = 1
+let g:workspace_session_directory = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "sessions" ) "\\" | squote }}
+let g:workspace_autosave = 1
+let g:workspace_autosave_ignore = ['gitcommit', 'suprawater']
+let g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "undo" ) "\\" | squote }}
 #+end_src
 
 ******* Vim-which-key
@@ -2250,8 +2251,8 @@ autocmd CmdlineLeave [\/\?] set pumheight&
 Auto save.
 
 #+begin_src vimscript
-set noswapfile
-au BufLeave,CursorHold,FocusLost * if(getbufinfo('%')[0].changed) | sil do BufWritePre | sil! up | sil do BufWritePost | endif
+" set noswapfile
+" au BufLeave,CursorHold,FocusLost * if(getbufinfo('%')[0].changed) | sil do BufWritePre | sil! up | sil do BufWritePost | endif
 #+end_src
 
 Auto sessions.

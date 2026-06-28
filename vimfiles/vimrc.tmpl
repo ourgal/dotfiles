@@ -144,8 +144,8 @@ set wildoptions=pum
 
 autocmd CmdlineEnter [\/\?] set pumheight=8
 autocmd CmdlineLeave [\/\?] set pumheight&
-set noswapfile
-au BufLeave,CursorHold,FocusLost * if(getbufinfo('%')[0].changed) | sil do BufWritePre | sil! up | sil do BufWritePost | endif
+" set noswapfile
+" au BufLeave,CursorHold,FocusLost * if(getbufinfo('%')[0].changed) | sil do BufWritePre | sil! up | sil do BufWritePost | endif
 " Autosession
 " au VimEnter * nested if (len(v:argv) == 1) | silent! source Session.vim | endif
 " au VimLeave * if (len(v:argv) == 1) | mksession! | endif
@@ -348,11 +348,12 @@ let l:filePath = expand('%')
     endif
 endfunction
 " let g:python3_host_prog = {{ lookPath "python" | squote }}
-" let g:workspace_autocreate = 1
-" let g:workspace_session_disable_on_args = 1
-" let g:workspace_session_directory = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "sessions" ) "\\" | squote }}
-" let g:workspace_autosave = 0
-" let g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "undo" ) "\\" | squote }}
+let g:workspace_autocreate = 1
+let g:workspace_session_disable_on_args = 1
+let g:workspace_session_directory = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "sessions" ) "\\" | squote }}
+let g:workspace_autosave = 1
+let g:workspace_autosave_ignore = ['gitcommit', 'suprawater']
+let g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "undo" ) "\\" | squote }}
 nnoremap <silent> <leader> <cmd>WhichKey '<Space>'<CR>
 let g:which_key_map = {}
 let g:which_key_map['f'] = {
