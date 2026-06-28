@@ -4064,6 +4064,54 @@
                   ]
                 }
               ]
+            },
+            {
+              "gnx": "user.20260628104238.1",
+              "vh": "yt-dlp",
+              "children": [
+                {
+                  "gnx": "user.20260628110259.1",
+                  "vh": "main",
+                  "children": [
+                    {
+                      "gnx": "user.20260628104335.1",
+                      "vh": "content",
+                      "children": [
+                        {
+                          "gnx": "user.20260628104448.1",
+                          "vh": "video quality"
+                        },
+                        {
+                          "gnx": "user.20260628104616.1",
+                          "vh": "organization"
+                        },
+                        {
+                          "gnx": "user.20260628104700.1",
+                          "vh": "performance"
+                        },
+                        {
+                          "gnx": "user.20260628104722.1",
+                          "vh": "subtitle"
+                        },
+                        {
+                          "gnx": "user.20260628104845.1",
+                          "vh": "post processing"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "gnx": "user.20260628110309.1",
+                  "vh": "audio",
+                  "children": [
+                    {
+                      "gnx": "user.20260628110205.1",
+                      "vh": "content"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -8422,6 +8470,36 @@
                         {
                           "gnx": "zxc.20260625230340.1",
                           "vh": "content"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "gnx": "user.20260628104254.1",
+                  "vh": "@path yt-dlp",
+                  "children": [
+                    {
+                      "gnx": "user.20260628104306.1",
+                      "vh": "@clean yt-dlp.conf.tmpl",
+                      "children": [
+                        {
+                          "gnx": "user.20260628104335.1"
+                        },
+                        {
+                          "gnx": "User.20260225204326.1"
+                        }
+                      ]
+                    },
+                    {
+                      "gnx": "user.20260628110148.1",
+                      "vh": "@clean audio.conf.tmpl",
+                      "children": [
+                        {
+                          "gnx": "user.20260628110205.1"
+                        },
+                        {
+                          "gnx": "User.20260225204326.1"
                         }
                       ]
                     }
@@ -15111,6 +15189,12 @@
     "zxc.20260529114310.1": "\"upload-slots-per-torrent\": 8,",
     "zxc.20260529114344.1": "\"utp-enabled\": true,",
     "zxc.20260529114434.1": "\"watch-dir\": \"\",\n\"watch-dir-enabled\": false,\n\"watch-dir-force-generic\": false",
+    "user.20260628104448.1": "# Video quality\n-f bestvideo[height<=1080]+bestaudio/best[height<=1080]\n\n# Prefer free formats\n--prefer-free-formats\n\n# Merge to mkv\n--merge-output-format mkv\n",
+    "user.20260628104616.1": "# Download archive (avoid re-downloading)\n--download-archive ~/.local/share/yt-dlp-archive.txt\n\n# Organized output\n-o \"%(uploader)s/%(playlist|)s/%(upload_date>%Y-%m-%d)s - %(title)s [%(id)s].%(ext)s\"\n-P \"~/Videos/YouTube\"\n\n# Write metadata files\n--write-info-json\n--write-description\n--write-thumbnail\n",
+    "user.20260628104700.1": "# Concurrent downloads\n--concurrent-fragments 5\n\n# Retry configuration\n--retries 10\n--fragment-retries 10\n\n# Rate limiting (be nice to servers)\n--limit-rate 5M\n\n# Sleep between downloads\n--sleep-interval 3\n--max-sleep-interval 10\n",
+    "user.20260628104722.1": "# Download subtitles\n--write-subs\n--write-auto-subs\n\n# Languages (regex supported)\n--sub-langs \"zh,en.*,ja\"\n\n# Embed in video\n--embed-subs\n\n# Convert format\n--convert-subs srt\n",
+    "user.20260628104845.1": "# Embed metadata\n--embed-metadata\n--embed-thumbnail\n--embed-chapters\n\n# SponsorBlock integration\n--sponsorblock-mark all\n--sponsorblock-remove sponsor,intro,outro\n\n# Execute after download\n{{ if lookPath \"noti\" -}}\n--exec \"noti -t 'Download complete' -m '%(title)s'\"\n{{ end -}}\n",
+    "user.20260628110205.1": "# In ~/.config/yt-dlp/audio.conf\n-x\n--audio-format opus\n--audio-quality 0\n-o \"~/Music/%(artist|uploader)s - %(title)s.%(ext)s\"\n--embed-thumbnail\n--embed-metadata\n\n# Use with:\n# yt-dlp --config-locations ~/.config/yt-dlp/audio.conf URL\n",
     "zxc.20260317002829.1": "<< dos >>\n{{ if lookPath \"psmux\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260317003033.1": "# ─────────────────────────────────────────────────────────────\n# PSMux Configuration — Factory Defaults\n# ─────────────────────────────────────────────────────────────\n# Reset to defaults by tmuxpanel — Tmux Plugin Panel\n# For more info: https://github.com/marlocarlo/psmux\n#\n# PSMux built-in defaults are applied automatically.\n# Uncomment and change any line below to override a default.\n# To restore a setting to default, comment it out or delete it.\n# ─────────────────────────────────────────────────────────────\n\n# ── General ──────────────────────────────────────────────────\n# Prefix key (PSMux default: C-b)\n# set -g prefix C-b\n\n# Escape key delay in milliseconds (PSMux default: 500)\n# set -g escape-time 500\n\n# Repeat time for prefix keys in ms (PSMux default: 500)\n# set -g repeat-time 500\n\n# Scrollback history limit (PSMux default: 2000)\n# set -g history-limit 2000\n\n# Window/pane base index (PSMux default: 0)\n# set -g base-index 0\n# setw -g pane-base-index 0\n\n# ── Mouse ────────────────────────────────────────────────────\n# Mouse support (PSMux default: on — PSMux enables mouse by default)\n# set -g mouse on\n\n# ── Display ──────────────────────────────────────────────────\n# Allow window auto-rename (PSMux default: on)\n# setw -g automatic-rename on\n\n# Renumber windows when one is closed (PSMux default: off)\n# set -g renumber-windows off\n\n# Message display time in ms (PSMux default: 750)\n# set -g display-time 750\n\n# Pane number display time in ms (PSMux default: 1000)\n# set -g display-panes-time 1000\n\n# ── Status Bar ───────────────────────────────────────────────\n# Show status bar (PSMux default: on)\n# set -g status on\n\n# Status bar position (PSMux default: bottom)\n# set -g status-position bottom\n\n# Status refresh interval in seconds (PSMux default: 15)\n# set -g status-interval 15\n\n# Status bar style (PSMux default: bg=green,fg=black)\n# set -g status-style 'bg=green,fg=black'\n\n# Status bar justify (PSMux default: left)\n# set -g status-justify left\n\n# ── Key Bindings ─────────────────────────────────────────────\n# Copy mode keys (PSMux default: emacs)\n# setw -g mode-keys emacs\n\n# Focus events (PSMux default: off)\n# set -g focus-events off\n\n# Clipboard integration (PSMux default: on)\n# set -g set-clipboard on\n\n\n# ── Plugins (managed by tmuxpanel) ──────────────────────\nset -g @plugin 'psmux-plugins/psmux-theme-tokyonight'\nsource-file 'C:\\Users\\User\\.psmux\\plugins\\psmux-theme-tokyonight\\plugin.conf'\nset -g @plugin 'psmux-plugins/psmux-sensible'\nsource-file 'C:\\Users\\User\\.psmux\\plugins\\psmux-sensible\\plugin.conf'\nset -g @plugin 'psmux-plugins/psmux-prefix-highlight'\nsource-file 'C:\\Users\\User\\.psmux\\plugins\\psmux-prefix-highlight\\plugin.conf'\nset -g @plugin 'psmux-plugins/psmux-resurrect'\nsource-file 'C:\\Users\\User\\.psmux\\plugins\\psmux-resurrect\\plugin.conf'\n# ── End plugins ──────────────────────────────────────",
     "zxc.20260419162202.1": "set -g default-shell cmd",
@@ -15671,6 +15755,8 @@
     "zxc.20260609212435.1": "user_pref(\"browser.search.region\", \"US\");\nuser_pref(\"sidebar.visibility\", \"hide-sidebar\");\n\n{{ if eq .my.modules.firefox.theme \"shyfox\" -}}\n{{ template \"include\" (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" \"shyfox\" \"user.js\") }}\n{{ else if eq .my.modules.firefox.theme \"flexfox\" -}}\n{{ template \"include\" (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" \"flexfox\" \"scripts\" \"user.js\") }}\n{{ end -}}\n",
     "zxc.20260625230303.1": "<< dos >>\n{{ if lookPath \"syncthing\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260625230340.1": "browsercache\ncache\n",
+    "user.20260628104306.1": "<< dos >>\n{{ if lookPath \"yt-dlp\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "user.20260628110148.1": "<< dos >>\n{{ if lookPath \"yt-dlp\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260518220745.1": "{\n    \"version\": \"1.1.15.1\",\n    \"description\": \"A spaceship from Potato World crashes onto an alien planet. The sole survivor: Brotato, the only potato capable of handling 6 weapons at the same time. Waiting to be rescued by his mates, Brotato must survive in this hostile environment.\",\n    \"homepage\": \"https://freegogpcgames.com/32560/brotato/\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.dufs.bucket.host }}/bucket/games/brotato.7z\",\n            \"hash\": \"1b23c8a3db488d7c6cf68750f0b7a8c6260daea2c6e6bfc5b208ae2641cc7eb7\"\n        }\n    },\n    \"post_install\": [\n        \"$name = \\\"brotato\\\"\",\n        \"$path = \\\"${env:APPDATA}\\\\brotato\\\\GOG-saves\\\"\",\n        \"$saves = if ($env:game_saves) { $env:game_saves } else { \\\"$env:USERPROFILE\\\\Documents\\\\game_saves\\\" }\",\n        \"mkdir -p $saves\\\\$name >$null 2>$null\",\n        \"New-Item -ItemType Junction -Path $path -Target $saves\\\\$name >$null\"\n    ],\n    \"shortcuts\": [\n        [\n            \"Brotato.exe\",\n            \"Brotato\"\n        ]\n    ]\n}",
     "zxc.20260521181617.1": "{\n    \"version\": \"1.1.1a\",\n    \"description\": \"Click, craft and collect your way to alchemical mastery. Progress through a branching skill tree and explore the forbidden woods. Collect resources and build machines of magic. Slay monsters, farm crops and automate your production to become the all-powerful Forage Wizard!\",\n    \"homepage\": \"https://byrutgame.org/54765-forage-wizard.html\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.dufs.bucket.host }}/bocket/games/forage_wizard.7z\",\n            \"hash\": \"becc8887850006439631ec02c728f31d6da3911586717cd90a2e42cfb3000884\"\n        }\n    },\n    \"post_install\": [\n        \"$name = \\\"forage_wizard\\\"\",\n        \"$path = \\\"${env:USERPROFILE}\\\\AppData\\\\LocalLow\\\\Lost Maxim\\\\Forage Wizard\\\"\",\n        \"$saves = if ($env:game_saves) { $env:game_saves } else { \\\"$env:USERPROFILE\\\\Documents\\\\game_saves\\\" }\",\n        \"mkdir -p $saves\\\\$name >$null 2>$null\",\n        \"New-Item -ItemType Junction -Path $path -Target $saves\\\\$name >$null\"\n    ],\n    \"shortcuts\": [\n        [\n            \"Forage Wizard.exe\",\n            \"Forage Wizard\"\n        ]\n    ]\n}",
     "zxc.20260519083439.1": "{\n    \"version\": \"20973329\",\n    \"description\": \"The Mahjong Roguelike. Aotenjo: Infinite Hands is an deckbuilder where you will use Mahjong styles all over the world to beat innate threats, play different Patterns and combos, reach the \\\"bottom\\\" of Aotenjo, and discover ancient secrets....\",\n    \"homepage\": \"https://byrutgame.org/index.php?do=download&id=176872\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.dufs.bucket.host }}/bucket/games/aotenjo.7z\",\n            \"hash\": \"43b66ee21523bbc7cf7b99b455450e0e252a71593552021f0c5a1b37eb2b52bc\"\n        }\n    },\n    \"post_install\": [\n        \"$name = \\\"aotenjo\\\"\",\n        \"$path = \\\"${env:USERPROFILE}\\\\AppData\\\\LocalLow\\\\Aotenjo\\\\Aotenjo\\\"\",\n        \"$saves = if ($env:game_saves) { $env:game_saves } else { \\\"$env:USERPROFILE\\\\Documents\\\\game_saves\\\" }\",\n        \"mkdir -p $saves\\\\$name >$null 2>$null\",\n        \"New-Item -ItemType Junction -Path $path -Target $saves\\\\$name >$null\"\n    ],\n    \"shortcuts\": [\n        [\n            \"Aotenjo.exe\",\n            \"Aotenjo\"\n        ]\n    ]\n}",
@@ -16681,7 +16767,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260423154131.2": {
-      "_mod_time": 1782305651.342
+      "_mod_time": 1782233227.429
     },
     "zxc.20260125143007.1": {
       "_mod_time": 1782087842.61
@@ -16714,31 +16800,31 @@
       "_mod_time": 1781590486.331
     },
     "User.20260218142211.1": {
-      "_mod_time": 1781096323.532
+      "_mod_time": 1780750471.323
     },
     "User.20260218142322.1": {
       "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1781096323.531
+      "_mod_time": 1780750650.948
     },
     "zxc.20260428221625.1": {
-      "_mod_time": 1778855150.612
+      "_mod_time": 1777612767.65
     },
     "zxc.20260429112140.1": {
-      "_mod_time": 1778855150.612
+      "_mod_time": 1777612767.666
     },
     "zxc.20260426235942.1": {
-      "_mod_time": 1777298774.859
+      "_mod_time": 1777219283.757
     },
     "zxc.20260427224207.1": {
-      "_mod_time": 1777337709.122
+      "_mod_time": 1777301694.743
     },
     "zxc.20260615224333.1": {
-      "_mod_time": 1781590487.338
+      "_mod_time": 1781534693.623
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1781590486.329
+      "_mod_time": 1781528627.075
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1780748738.606
@@ -16762,7 +16848,7 @@
       "_mod_time": 1782087842.583
     },
     "User.20260226000855.1": {
-      "_mod_time": 1782087842.578
+      "_mod_time": 1781884770.849
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1782490333.255
@@ -16774,16 +16860,16 @@
       "_mod_time": 1776434513.068
     },
     "User.20260216114746.1": {
-      "_mod_time": 1778855150.558
+      "_mod_time": 1778706271.126
     },
     "zxc.20260505221318.1": {
       "_mod_time": 1778855150.558
     },
     "zxc.20260202203521.14": {
-      "_mod_time": 1776691470.917
+      "_mod_time": 1776614192.458
     },
     "zxc.20260202203521.3": {
-      "_mod_time": 1780272723.742
+      "_mod_time": 1780117762.444
     },
     "zxc.20260202213444.1": {
       "_mod_time": 1776434513.084
@@ -16792,7 +16878,7 @@
       "_mod_time": 1776434513.084
     },
     "User.20260220151435.2": {
-      "_mod_time": 1780272723.738
+      "_mod_time": 1780117762.459
     },
     "zxc.20260505102132.1": {
       "_mod_time": 1780272723.74
@@ -16810,13 +16896,13 @@
       "_mod_time": 1776434513.068
     },
     "User.20260217202401.1": {
-      "_mod_time": 1780272723.737
+      "_mod_time": 1780155943.602
     },
     "User.20260220214558.1": {
       "_mod_time": 1780272723.737
     },
     "zxc.20260530230944.1": {
-      "_mod_time": 1780272723.741
+      "_mod_time": 1780156216.553
     },
     "zxc.20260531001920.1": {
       "_mod_time": 1780272723.741
@@ -16840,7 +16926,7 @@
       "_mod_time": 1776434513.068
     },
     "User.20260308184713.2": {
-      "_mod_time": 1776817843.31
+      "_mod_time": 1776434513.068
     },
     "User.20260308214701.2": {
       "_mod_time": 1776434513.068
@@ -16855,7 +16941,7 @@
       "_mod_time": 1776434513.068
     },
     "zxc.20260318203351.1": {
-      "_mod_time": 1778855150.556
+      "_mod_time": 1777967012.401
     },
     "zxc.20260505141849.1": {
       "_mod_time": 1778855150.556
@@ -16870,7 +16956,7 @@
       "_mod_time": 1776434513.068
     },
     "zxc.20260531113237.1": {
-      "_mod_time": 1780272723.736
+      "_mod_time": 1780230892.19
     },
     "zxc.20260602152143.1": {
       "_mod_time": 1780401618.945
@@ -16882,7 +16968,7 @@
       "_mod_time": 1780486276.607
     },
     "zxc.20260615003716.1": {
-      "_mod_time": 1781607695.717
+      "_mod_time": 1781602833.363
     },
     "zxc.20260620011448.1": {
       "_mod_time": 1782087842.583
@@ -16921,10 +17007,10 @@
       "_mod_time": 1777179946.871
     },
     "User.20260301202336.1": {
-      "_mod_time": 1781484842.615
+      "_mod_time": 1781422707.612
     },
     "zxc.20260327184129.1": {
-      "_mod_time": 1782132910.842
+      "_mod_time": 1782016325.205
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1777179946.862
@@ -17164,13 +17250,13 @@
       "_mod_time": 1777891060.651
     },
     "User.20260217022114.1": {
-      "_mod_time": 1778855150.604
+      "_mod_time": 1777891191.612
     },
     "User.20260215182818.1": {
       "_mod_time": 1777891191.634
     },
     "zxc.20260317084145.1": {
-      "_mod_time": 1778855150.609
+      "_mod_time": 1777891060.7
     },
     "zxc.20260201225344.1": {
       "_mod_time": 1777891060.714
@@ -17179,16 +17265,16 @@
       "_mod_time": 1777891060.727
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1782477813.635
+      "_mod_time": 1782406691.174
     },
     "User.20260215205925.1": {
-      "_mod_time": 1780272726.073
+      "_mod_time": 1780230892.216
     },
     "User.20260215210400.1": {
       "_mod_time": 1777179946.904
     },
     "User.20260220151031.5": {
-      "_mod_time": 1780272726.072
+      "_mod_time": 1780230892.215
     },
     "User.20260220151031.28": {
       "_mod_time": 1777179946.902
@@ -17206,10 +17292,10 @@
       "_mod_time": 1777718155.12
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1778855150.61
+      "_mod_time": 1777978566.573
     },
     "zxc.20260201214114.1": {
-      "_mod_time": 1779288255.231
+      "_mod_time": 1778939057.595
     },
     "zxc.20260202195207.1": {
       "_mod_time": 1782496558.46
@@ -17308,22 +17394,28 @@
       "_mod_time": 1777891355.18
     },
     "zxc.20260325223805.1": {
-      "_mod_time": 1779322339.077
+      "_mod_time": 1779285586.501
     },
     "zxc.20260329012003.1": {
       "_mod_time": 1777179946.894
     },
     "zxc.20260411192514.1": {
-      "_mod_time": 1781484843.619
+      "_mod_time": 1781287296.273
     },
     "zxc.20260330235722.1": {
       "_mod_time": 1777179946.891
     },
     "zxc.20260609212401.1": {
-      "_mod_time": 1781607696.631
+      "_mod_time": 1781602834.187
     },
     "zxc.20260625230303.1": {
-      "_mod_time": 1782477813.633
+      "_mod_time": 1782399873.228
+    },
+    "user.20260628104306.1": {
+      "_mod_time": 1782615803.544
+    },
+    "user.20260628110148.1": {
+      "_mod_time": 1782615803.563
     },
     "zxc.20260518220745.1": {
       "_mod_time": 1780748738.611
@@ -17389,7 +17481,7 @@
       "_mod_time": 1782305651.363
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1782087842.586
+      "_mod_time": 1781864243.199
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1777713442.482
@@ -17497,25 +17589,25 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1782477813.614
+      "_mod_time": 1782392581.659
     },
     "zxc.20260202205715.1": {
-      "_mod_time": 1777298774.844
+      "_mod_time": 1777106655.378
     },
     "zxc.20260426163956.1": {
       "_mod_time": 1782477813.619
     },
     "User.20260302151947.1": {
-      "_mod_time": 1782087842.585
+      "_mod_time": 1781863634.272
     },
     "zxc.20260407232538.1": {
-      "_mod_time": 1782132910.807
+      "_mod_time": 1782049349.424
     },
     "zxc.20260408005117.1": {
       "_mod_time": 1777179946.836
     },
     "zxc.20260529091145.1": {
-      "_mod_time": 1780272723.743
+      "_mod_time": 1780069890.937
     },
     "zxc.20260201140523.1": {
       "_mod_time": 1777179946.85
@@ -17527,7 +17619,7 @@
       "_mod_time": 1782544719.951
     },
     "zxc.20260214105528.1": {
-      "_mod_time": 1777382331.981
+      "_mod_time": 1777302969.518
     },
     "zxc.20260214142543.1": {
       "_mod_time": 1777179946.851
@@ -17575,16 +17667,16 @@
       "_mod_time": 1777179941.91
     },
     "zxc.20260515010901.1": {
-      "_mod_time": 1780470637.484
+      "_mod_time": 1778778728.929
     },
     "zxc.20260518233322.1": {
-      "_mod_time": 1782305651.315
+      "_mod_time": 1782224094.973
     },
     "zxc.20260611090830.1": {
       "_mod_time": 1782490333.013
     },
     "zxc.20260611091007.1": {
-      "_mod_time": 1781174037.601
+      "_mod_time": 1781170166.798
     },
     "zxc.20260621234825.1": {
       "_mod_time": 1782196061.774
