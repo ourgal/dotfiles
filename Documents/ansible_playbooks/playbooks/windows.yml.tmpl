@@ -697,54 +697,6 @@
     - name: Other packages
       tags: scoop-other
       block:
-        - name: Add main-plus bucket
-          community.windows.win_scoop_bucket:
-            name: main-plus
-            repo: https://github.com/Scoopforge/Main-Plus
-            state: present
-        - name: Install other packages via scoop
-          community.windows.win_scoop:
-            name:
-              - main-plus/cargo-update
-            global: false
-            no_cache: true
-          register: result
-          retries: 3
-          delay: 5
-          until: result is not failed
-        - name: Add chawyehsu_dorado bucket
-          community.windows.win_scoop_bucket:
-            name: chawyehsu_dorado
-            repo: https://github.com/chawyehsu/dorado
-            state: present
-        - name: Install other packages via scoop
-          community.windows.win_scoop:
-            name:
-              - chawyehsu_dorado/runany
-              - chawyehsu_dorado/git-credential-gopass
-              - chawyehsu_dorado/aliyundrive
-            global: false
-            no_cache: true
-          register: result
-          retries: 3
-          delay: 5
-          until: result is not failed
-        - name: Add extras-plus bucket
-          community.windows.win_scoop_bucket:
-            name: extras-plus
-            repo: https://github.com/Scoopforge/Extras-Plus
-            state: present
-        - name: Install packages from extras-plus
-          community.windows.win_scoop:
-            name:
-              - extras-plus/dbgate
-            global: false
-            no_cache: true
-          register: result
-          retries: 3
-          delay: 5
-          until: result is not failed
-          loop:
         - name: Add extras-cn bucket
           community.windows.win_scoop_bucket:
             name: extras-cn
@@ -854,6 +806,10 @@
               - ourgal_scoop-bucket/altrun
               - ourgal_scoop-bucket/mani
               - ourgal_scoop-bucket/mmv
+              - ourgal_scoop-bucket/cargo-update
+              - ourgal_scoop-bucket/runany
+              - ourgal_scoop-bucket/git-credential-gopass
+              - ourgal_scoop-bucket/dbgate
             global: false
             no_cache: true
           register: result
