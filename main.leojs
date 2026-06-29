@@ -9598,18 +9598,6 @@
                                       "vh": "other packages",
                                       "children": [
                                         {
-                                          "gnx": "zxc.20260423143729.201",
-                                          "vh": "main-plus"
-                                        },
-                                        {
-                                          "gnx": "zxc.20260423143729.202",
-                                          "vh": "dorado"
-                                        },
-                                        {
-                                          "gnx": "zxc.20260423143729.203",
-                                          "vh": "extras-plus"
-                                        },
-                                        {
                                           "gnx": "zxc.20260423143729.204",
                                           "vh": "extras-cn"
                                         },
@@ -16155,16 +16143,13 @@
     "zxc.20260610210628.1": "- nerd-fonts/IosevkaTerm-NF-Mono\n",
     "zxc.20260611142406.1": "- nerd-fonts/SarasaGothic-ttc\n",
     "zxc.20260423143729.200": "- name: Other packages\n  tags: scoop-other\n  block:\n    @others\n",
-    "zxc.20260423143729.201": "- name: Add main-plus bucket\n  community.windows.win_scoop_bucket:\n    name: main-plus\n    repo: https://github.com/Scoopforge/Main-Plus\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - main-plus/cargo-update\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
-    "zxc.20260423143729.202": "- name: Add chawyehsu_dorado bucket\n  community.windows.win_scoop_bucket:\n    name: chawyehsu_dorado\n    repo: https://github.com/chawyehsu/dorado\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - chawyehsu_dorado/runany\n      - chawyehsu_dorado/git-credential-gopass\n      - chawyehsu_dorado/aliyundrive\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
-    "zxc.20260423143729.203": "- name: Add extras-plus bucket\n  community.windows.win_scoop_bucket:\n    name: extras-plus\n    repo: https://github.com/Scoopforge/Extras-Plus\n    state: present\n- name: Install packages from extras-plus\n  community.windows.win_scoop:\n    name:\n      - extras-plus/dbgate\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  loop:\n",
     "zxc.20260423143729.204": "- name: Add extras-cn bucket\n  community.windows.win_scoop_bucket:\n    name: extras-cn\n    repo: https://github.com/Scoopforge/Extras-CN\n    state: present\n- name: Install packages from extras-cn\n  community.windows.win_scoop:\n    name:\n      - extras-cn/neteasemusic\n      - extras-cn/goldendict-ng\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  loop:\n\n",
     "zxc.20260423143729.206": "- name: Add NSPC911_le-bucket bucket\n  community.windows.win_scoop_bucket:\n    name: NSPC911_le-bucket\n    repo: https://github.com/NSPC911/le-bucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - NSPC911_le-bucket/helix-ghost\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.207": "- name: Add ShuguangSun_sgs-scoop-bucket bucket\n  community.windows.win_scoop_bucket:\n    name: ShuguangSun_sgs-scoop-bucket\n    repo: https://github.com/ShuguangSun/sgs-scoop-bucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - ShuguangSun_sgs-scoop-bucket/emacs-lsp-booster\n      - ShuguangSun_sgs-scoop-bucket/ydict\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.208": "- name: Add hoilc_scoop-lemon bucket\n  community.windows.win_scoop_bucket:\n    name: hoilc_scoop-lemon\n    repo: https://github.com/hoilc/scoop-lemon\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - hoilc_scoop-lemon/keep-sorted\n      - hoilc_scoop-lemon/pikpak\n      - hoilc_scoop-lemon/fdroidcl\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.209": "- name: Add Befod_Xeno bucket\n  community.windows.win_scoop_bucket:\n    name: Befod_Xeno\n    repo: https://github.com/Befod/Xeno\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - Befod_Xeno/gesturesign\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.210": "- name: Add maqibg_MQBucket bucket\n  community.windows.win_scoop_bucket:\n    name: maqibg_MQBucket\n    repo: https://github.com/maqibg/MQBucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - maqibg_MQBucket/Github-Store\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
-    "zxc.20260423143729.211": "- name: Add ourgal_scoop-bucket bucket\n  community.windows.win_scoop_bucket:\n    name: ourgal_scoop-bucket\n    repo: https://github.com/ourgal/scoop-bucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - ourgal_scoop-bucket/dockfmt\n      - ourgal_scoop-bucket/mtranserver\n      - ourgal_scoop-bucket/altrun\n      - ourgal_scoop-bucket/mani\n      - ourgal_scoop-bucket/mmv\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
+    "zxc.20260423143729.211": "- name: Add ourgal_scoop-bucket bucket\n  community.windows.win_scoop_bucket:\n    name: ourgal_scoop-bucket\n    repo: https://github.com/ourgal/scoop-bucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - ourgal_scoop-bucket/dockfmt\n      - ourgal_scoop-bucket/mtranserver\n      - ourgal_scoop-bucket/altrun\n      - ourgal_scoop-bucket/mani\n      - ourgal_scoop-bucket/mmv\n      - ourgal_scoop-bucket/cargo-update\n      - ourgal_scoop-bucket/runany\n      - ourgal_scoop-bucket/git-credential-gopass\n      - ourgal_scoop-bucket/dbgate\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260613124503.1": "- name: Add m75c_scoop-heap bucket\n  community.windows.win_scoop_bucket:\n    name: ourgal_scoop-bucket\n    repo: https://github.com/m75c/scoop-heap\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - m75c_scoop-heap/torrserver\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260620143358.1": "- name: Add Rinkerbel_scooped bucket\n  community.windows.win_scoop_bucket:\n    name: Rinkerbel_scooped\n    repo: https://github.com/Rinkerbel/scooped\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - Rinkerbel_scooped/seanime-server\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.212": "- name: Pipx\n  tags: pipx\n  block:\n    @others\n",
@@ -16962,7 +16947,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260423154131.2": {
-      "_mod_time": 1782260301.796
+      "_mod_time": 1782305651.342
     },
     "zxc.20260125143007.1": {
       "_mod_time": 1782087842.61
@@ -16971,13 +16956,13 @@
       "_mod_time": 1778855150.579
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1782695824.52
+      "_mod_time": 1782736239.889
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1777398596.506
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1782695824.52
+      "_mod_time": 1782736239.889
     },
     "zxc.20260429145437.1": {
       "_mod_time": 1778855150.581
@@ -16992,19 +16977,19 @@
       "_mod_time": 1781590486.331
     },
     "User.20260218142211.1": {
-      "_mod_time": 1782695824.562
+      "_mod_time": 1782736239.901
     },
     "User.20260218142322.1": {
       "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1782695824.561
+      "_mod_time": 1782736239.899
     },
     "zxc.20260429112140.1": {
-      "_mod_time": 1777612767.666
+      "_mod_time": 1778855150.612
     },
     "zxc.20260426235942.1": {
-      "_mod_time": 1777249737.173
+      "_mod_time": 1777298774.859
     },
     "zxc.20260427224207.1": {
       "_mod_time": 1777337709.122
@@ -17049,13 +17034,13 @@
       "_mod_time": 1776434513.068
     },
     "User.20260216114746.1": {
-      "_mod_time": 1778706271.126
+      "_mod_time": 1778855150.558
     },
     "zxc.20260505221318.1": {
       "_mod_time": 1778855150.558
     },
     "zxc.20260202203521.14": {
-      "_mod_time": 1776644732.237
+      "_mod_time": 1776691470.917
     },
     "zxc.20260202203521.3": {
       "_mod_time": 1780272723.742
@@ -17130,7 +17115,7 @@
       "_mod_time": 1776434513.068
     },
     "zxc.20260318203351.1": {
-      "_mod_time": 1778049436.405
+      "_mod_time": 1778855150.556
     },
     "zxc.20260505141849.1": {
       "_mod_time": 1778855150.556
@@ -17157,7 +17142,7 @@
       "_mod_time": 1780486276.607
     },
     "zxc.20260615003716.1": {
-      "_mod_time": 1781602833.363
+      "_mod_time": 1781607695.717
     },
     "zxc.20260620011448.1": {
       "_mod_time": 1782087842.583
@@ -17199,7 +17184,7 @@
       "_mod_time": 1781484842.615
     },
     "zxc.20260327184129.1": {
-      "_mod_time": 1782087842.643
+      "_mod_time": 1782132910.842
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1777179946.862
@@ -17439,13 +17424,13 @@
       "_mod_time": 1777891060.651
     },
     "User.20260217022114.1": {
-      "_mod_time": 1778049436.442
+      "_mod_time": 1778855150.604
     },
     "User.20260215182818.1": {
       "_mod_time": 1777891191.634
     },
     "zxc.20260317084145.1": {
-      "_mod_time": 1778049436.443
+      "_mod_time": 1778855150.609
     },
     "zxc.20260201225344.1": {
       "_mod_time": 1777891060.714
@@ -17454,7 +17439,7 @@
       "_mod_time": 1777891060.727
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1782439163.199
+      "_mod_time": 1782477813.635
     },
     "User.20260215205925.1": {
       "_mod_time": 1780272726.073
@@ -17481,10 +17466,10 @@
       "_mod_time": 1777718155.12
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1778049436.443
+      "_mod_time": 1778855150.61
     },
     "zxc.20260201214114.1": {
-      "_mod_time": 1779067019.452
+      "_mod_time": 1779288255.231
     },
     "zxc.20260202195207.1": {
       "_mod_time": 1782695824.55
@@ -17595,10 +17580,10 @@
       "_mod_time": 1777179946.891
     },
     "zxc.20260609212401.1": {
-      "_mod_time": 1781602834.187
+      "_mod_time": 1781607696.631
     },
     "zxc.20260625230303.1": {
-      "_mod_time": 1782439163.199
+      "_mod_time": 1782477813.633
     },
     "user.20260628104306.1": {
       "_mod_time": 1782695824.561
@@ -17685,7 +17670,7 @@
       "_mod_time": 1778855150.563
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1782700571.072
+      "_mod_time": 1782745163.285
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778855150.568
@@ -17778,19 +17763,19 @@
       "_mod_time": 1782695824.483
     },
     "user.20260628172017.1": {
-      "_mod_time": 1782699256.038
+      "_mod_time": 1782736239.879
     },
     "user.20260628172043.1": {
-      "_mod_time": 1782699256.134
+      "_mod_time": 1782736239.889
     },
     "zxc.20260409214651.1": {
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1782695824.482
+      "_mod_time": 1782736239.871
     },
     "zxc.20260202205715.1": {
-      "_mod_time": 1777106655.378
+      "_mod_time": 1777298774.844
     },
     "zxc.20260426163956.1": {
       "_mod_time": 1782477813.619
@@ -17799,7 +17784,7 @@
       "_mod_time": 1782087842.585
     },
     "zxc.20260407232538.1": {
-      "_mod_time": 1782087842.584
+      "_mod_time": 1782132910.807
     },
     "zxc.20260408005117.1": {
       "_mod_time": 1777179946.836
@@ -17817,7 +17802,7 @@
       "_mod_time": 1782695824.474
     },
     "zxc.20260214105528.1": {
-      "_mod_time": 1777337709.07
+      "_mod_time": 1777382331.981
     },
     "zxc.20260214142543.1": {
       "_mod_time": 1777179946.851
@@ -17868,13 +17853,13 @@
       "_mod_time": 1780470637.484
     },
     "zxc.20260518233322.1": {
-      "_mod_time": 1782260301.716
+      "_mod_time": 1782305651.315
     },
     "zxc.20260611090830.1": {
       "_mod_time": 1782695824.481
     },
     "zxc.20260611091007.1": {
-      "_mod_time": 1781170166.798
+      "_mod_time": 1781174037.601
     },
     "zxc.20260621234825.1": {
       "_mod_time": 1782196061.774
