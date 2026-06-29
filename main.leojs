@@ -9724,6 +9724,10 @@
                                         {
                                           "gnx": "user.20260629101059.1",
                                           "vh": "tvnamer"
+                                        },
+                                        {
+                                          "gnx": "user.20260629101152.1",
+                                          "vh": "mnamer"
                                         }
                                       ]
                                     },
@@ -16182,6 +16186,7 @@
     "user.20260628020348.1": "- aria2p[tui]\n",
     "user.20260628023732.1": "- tewi-torrent\n",
     "user.20260629101059.1": "- tvnamer\n",
+    "user.20260629101152.1": "- mnamer\n",
     "zxc.20260423143729.251": "- name: Remove pip config\n  ansible.windows.win_file:\n    path: \"{{ ansible_facts.env.APPDATA }}\\\\.pip\\\\pip.ini\"\n    state: absent\n",
     "zxc.20260423143729.229": "- name: Add cargo bin path to PATH\n  tags: path\n  ansible.windows.win_path:\n    state: present\n    scope: user\n    elements: '%userprofile%\\.cargo\\bin'\n",
     "zxc.20260423143729.230": "- name: Create .cargo folder\n  ansible.windows.win_file:\n    dest: \"{{ ansible_facts.user_dir }}\\\\.cargo\"\n    state: directory\n- name: Set cargo config\n  ansible.windows.win_copy:\n    dest: \"{{ ansible_facts.user_dir }}\\\\.cargo\\\\config.toml\"\n    content: |\n      [source.crates-io]\n      replace-with = 'mirror'\n\n      [source.mirror]\n      registry = \"sparse+https://mirrors.cernet.edu.cn/crates.io-index/\"\n\n      [registries.mirror]\n      index = \"sparse+https://mirrors.cernet.edu.cn/crates.io-index/\"\n",
@@ -17680,7 +17685,7 @@
       "_mod_time": 1778855150.563
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1782699075.155
+      "_mod_time": 1782699117.455
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778855150.568
