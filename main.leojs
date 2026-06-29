@@ -16664,13 +16664,13 @@
     "user.20260628172316.1": "async function switchPage(page: Page, page_index: number) {\n  await page.locator('#page-input').fill(page_index.toString());\n  await page.getByRole('button', { name: '跳转' }).click();\n}\n\n",
     "user.20260628172340.1": "async function saveBase64(raw: string, title: string, img_index: number) {\n  var base64Data = raw.split(';base64,').pop()\n\n  const dir = path.join(currentDir, '../output', title, 'images');\n  await mkdir(dir, { recursive: true });\n  const img = path.join(dir, `${img_index}.jpg`);\n\n  writeFile(img, base64Data, 'base64', function (err: any) {\n    console.log(err);\n  });\n\n  return { path: path.join('images', `${img_index}.jpg`), img_index: img_index + 1 };\n}\n\n",
     "user.20260628172359.1": "async function search(page: Page, keyword: string) {\n  await page.getByPlaceholder(\"搜索书籍...\").fill(keyword)\n  await page.getByRole('button', { name: '搜索' }).click();\n}\n\n",
-    "user.20260628172017.1": "import { appendFile } from 'node:fs/promises';\nimport { expect, Page, test } from 'patchright/test';\nimport path from 'path';\n\n@others\n\ntest('main', async ({ page }) => {\n  await page.goto(HOME_PAGE);\n\n  await blcokImages(page);\n\n  await waitForLogin(page);\n\n  await getBookTitles(page, title_file);\n\n  const max_page = await getMaxPageNum(page);\n\n  for (let i = 0; i < (max_page - 2); i++) {\n    await switchPage(page, i + 2)\n    await getBookTitles(page)\n  }\n\n});\n",
+    "user.20260628172017.1": "import { appendFile } from 'node:fs/promises';\nimport { expect, Page, test } from 'patchright/test';\nimport path from 'path';\n\n@others\n\ntest('main', async ({ page }) => {\n  await page.goto(HOME_PAGE);\n\n  await blcokImages(page);\n\n  await waitForLogin(page);\n\n  await getBookTitles(page, title_file);\n\n  const max_page = await getMaxPageNum(page);\n\n  for (let i = 0; i < (max_page - 2); i++) {\n    await switchPage(page, i + 2)\n    await getBookTitles(page, title_file)\n  }\n\n});\n",
     "user.20260628173825.1": "@others\n\n",
     "user.20260628173951.1": "const title_file = path.join(currentDir, '../titles', 'titles.txt');\n",
     "user.20260628172635.1": "async function getBookTitles(page: Page, path: string) {\n  for (let i = 0; i < 20; i++) {\n    const title = await getBookTitle(page, i)\n    await appendFile(path, title + '\\n', 'utf8');\n  }\n}\n\n",
     "user.20260628172701.1": "async function getMaxPageNum(page: Page): Promise<number> {\n  const text = await page.locator('div.status-bar').innerText();\n  console.log(text)\n  const regex = /\\d+\\/(\\d+)/;\n  const match = text.match(regex);\n  if (match) {\n    const num = match[1];\n    return parseInt(num, 10);\n  } else {\n    throw new Error('Max page number not found');\n  }\n}\n\n",
     "user.20260628172911.1": "async function blcokImages(page: Page) {\n  // Intercept and block all image requests\n  await page.route('**/*', route => {\n    if (route.request().resourceType() === 'image') {\n      return route.abort();\n    }\n    return route.continue();\n  });\n}\n\n",
-    "user.20260628172043.1": "import { appendFile } from 'node:fs/promises';\nimport { expect, Page, test } from 'patchright/test';\nimport path from 'path';\n\n@others\n\ntest('main', async ({ page }) => {\n  await page.goto(HOME_PAGE);\n\n  await blcokImages(page);\n\n  await waitForLogin(page);\n\n  await switchZht(page);\n\n  await getBookTitles(page, title_file);\n\n  const max_page = await getMaxPageNum(page);\n\n  for (let i = 0; i < (max_page - 2); i++) {\n    await switchPage(page, i + 2)\n    await getBookTitles(page)\n  }\n\n});\n",
+    "user.20260628172043.1": "import { appendFile } from 'node:fs/promises';\nimport { expect, Page, test } from 'patchright/test';\nimport path from 'path';\n\n@others\n\ntest('main', async ({ page }) => {\n  await page.goto(HOME_PAGE);\n\n  await blcokImages(page);\n\n  await waitForLogin(page);\n\n  await switchZht(page);\n\n  await getBookTitles(page, title_file);\n\n  const max_page = await getMaxPageNum(page);\n\n  for (let i = 0; i < (max_page - 2); i++) {\n    await switchPage(page, i + 2)\n    await getBookTitles(page, title_file)\n  }\n\n});\n",
     "user.20260628173832.1": "@others\n\n",
     "user.20260628173936.1": "const title_file = path.join(currentDir, '../titles', 'titles_zht.txt');\n",
     "user.20260628173546.1": "async function switchZht(page: Page) {\n  await page.locator('select#cat-select').selectOption('traditional');\n  await expect(page.getByRole('button', { name: '跳转' })).toBeVisible({ timeout: 10000 });\n}\n\n",
@@ -17778,10 +17778,10 @@
       "_mod_time": 1782695824.483
     },
     "user.20260628172017.1": {
-      "_mod_time": 1782695824.494
+      "_mod_time": 1782699256.038
     },
     "user.20260628172043.1": {
-      "_mod_time": 1782695824.495
+      "_mod_time": 1782699256.134
     },
     "zxc.20260409214651.1": {
       "_mod_time": 1777713442.482
