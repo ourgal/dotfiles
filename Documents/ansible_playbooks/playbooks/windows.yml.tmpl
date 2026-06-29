@@ -927,6 +927,7 @@
             - vim-vint --preinstall "setuptools<81"
             - aria2p[tui]
             - tewi-torrent
+            - tvnamer
         - name: Remove pip config
           ansible.windows.win_file:
             path: "{{ ansible_facts.env.APPDATA }}\\.pip\\pip.ini"
