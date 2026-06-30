@@ -16641,9 +16641,9 @@
     "user.20260628173805.1": "const HOME_PAGE = \"https://ritdon.com/epub_library.php\"\n",
     "user.20260628173844.1": "const currentDir = import.meta.dirname;\n",
     "user.20260628182854.1": "dotenv.config();\n\nconst BOOK_INDEX = parseInt(process.env.BOOK_INDEX, 10);\nconst PAGE = parseInt(process.env.PAGE, 10);\nconst SEARCH_KEYWORD = process.env.SEARCH_KEYWORD;\n",
-    "user.20260628172146.1": "async function saveContent(page: Page, title: string, img_index: number) {\n  try {\n    await page.waitForLoadState('networkidle');\n    await expect(page.getByRole('button', { name: '目录' })).toBeVisible({ timeout: 60000 });\n    const body = await page.locator('div.content-area').innerHTML();\n\n    const matches = body.match(/\"(data:image\\/jpeg;base64,.*?)\"/g) || [];\n\n    let tmpBody = body;\n    for (const match of matches) {\n      const res = await saveBase64(match, title, img_index);\n      img_index = res.img_index\n      tmpBody = tmpBody.replace(match, res.path)\n    }\n\n    const content = tmpBody.replace(/<meta.*?>/g, '').replace(/<style.*?>[\\s\\S]*?<\\/style>/g, '').replace(/<title.*?>.*?<\\/title>/g, '').replace(/<div.*?>/g, '').replace(/<\\/div>/g, '').replace(/^\\s*[\\r\\n]$/gm, '');\n\n    const dir = path.join(currentDir, '../output', title);\n    const file = path.join(dir, 'output.html');\n\n    await mkdir(dir, { recursive: true });\n    await appendFile(file, content, 'utf-8');\n    console.log(`Saved content to: ${dir}`);\n  } catch (error: any) {\n    console.error(`Error saving content for \"${title}\": ${error.message}`);\n  }\n\n  return img_index;\n}\n\n",
-    "user.20260628172206.1": "async function saveNextPage(page: Page, title: string, img_index: number) {\n  const nextBtm = page.getByRole('link', { name: '下一页' });\n  await expect(nextBtm).not.toHaveClass(\"disabled\");\n\n  await nextBtm.click();\n  return await saveContent(page, title, img_index)\n}\n\n",
-    "user.20260628172225.1": "async function waitForLogin(page: Page) {\n  await expect(page.getByRole('button', { name: '跳转' })).toBeVisible({ timeout: 10000 });\n}\n\n",
+    "user.20260628172146.1": "async function saveContent(page: Page, title: string, img_index: number) {\n  try {\n    await page.waitForLoadState('networkidle');\n    await expect(page.locator('button#btnPanel')).toBeVisible({ timeout: 60000 });\n    const body = await page.locator('div.content-area').innerHTML();\n\n    const matches = body.match(/\"(data:image\\/jpeg;base64,.*?)\"/g) || [];\n\n    let tmpBody = body;\n    for (const match of matches) {\n      const res = await saveBase64(match, title, img_index);\n      img_index = res.img_index\n      tmpBody = tmpBody.replace(match, res.path)\n    }\n\n    const content = tmpBody.replace(/<meta.*?>/g, '').replace(/<style.*?>[\\s\\S]*?<\\/style>/g, '').replace(/<title.*?>.*?<\\/title>/g, '').replace(/<div.*?>/g, '').replace(/<\\/div>/g, '').replace(/^\\s*[\\r\\n]$/gm, '');\n\n    const dir = path.join(currentDir, '../output', title);\n    const file = path.join(dir, 'output.html');\n\n    await mkdir(dir, { recursive: true });\n    await appendFile(file, content, 'utf-8');\n    console.log(`Saved content to: ${dir}`);\n  } catch (error: any) {\n    console.error(`Error saving content for \"${title}\": ${error.message}`);\n  }\n\n  return img_index;\n}\n\n",
+    "user.20260628172206.1": "async function saveNextPage(page: Page, title: string, img_index: number) {\n  await page.locator('a#btnNext').click();\n  return await saveContent(page, title, img_index)\n}\n\n",
+    "user.20260628172225.1": "async function waitForLogin(page: Page) {\n  await expect(page.getByRole('button', { name: '跳转' })).toBeVisible({ timeout: 60000 });\n}\n\n",
     "user.20260628172245.1": "async function openBook(page: Page, index: number) {\n  await page.locator('div.book-cover').nth(index).locator('a').click();\n}\n\n",
     "user.20260628172304.1": "async function getBookTitle(page: Page, index: number): Promise<string> {\n  try {\n    const title = await page.locator('div.book-title').nth(index).getAttribute('title');\n    if (title) {\n      console.log(`Found title for book at index ${index}: \"${title}\"`);\n      return title.replace(/\\s/g, '_');\n    } else {\n      throw new Error(`'title' attribute is null or undefined for book at index ${index}.`);\n    }\n  } catch (error: any) {\n    console.error(`Error getting title for book at index ${index}: ${error.message}`);\n    throw error;\n  }\n}\n\n",
     "user.20260628172316.1": "async function switchPage(page: Page, page_index: number) {\n  await page.locator('#page-input').fill(page_index.toString());\n  await page.getByRole('button', { name: '跳转' }).click();\n}\n\n",
@@ -17670,7 +17670,7 @@
       "_mod_time": 1778855150.563
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1782745163.285
+      "_mod_time": 1782817539.601
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778855150.568
@@ -17760,13 +17760,13 @@
       "_mod_time": 1782087842.598
     },
     "user.20260628171858.1": {
-      "_mod_time": 1782695824.483
+      "_mod_time": 1782821971.035
     },
     "user.20260628172017.1": {
-      "_mod_time": 1782736239.879
+      "_mod_time": 1782818090.094
     },
     "user.20260628172043.1": {
-      "_mod_time": 1782736239.889
+      "_mod_time": 1782818090.117
     },
     "zxc.20260409214651.1": {
       "_mod_time": 1777713442.482
