@@ -63,6 +63,14 @@ WinActivate "ahk_exe brave.exe"
 Run "glazewm command move --workspace 2", ,"Hide"
 {{ end -}}
 {{ end -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "brave" "opt" (list "windows" "startup" "chromium" "enable") "os" "windows") | trim | atoi -}}
+Run {{ joinPath (env "AppData") "Microsoft" "Windows" "Start Menu" "Programs" "Scoop Apps" "Chromium.lnk" | quote }}, , "Max"
+WinWait("ahk_exe chrome.exe")
+{{ if lookPath "glazewm" -}}
+WinActivate "ahk_exe chrome.exe"
+Run "glazewm command move --workspace 2", ,"Hide"
+{{ end -}}
+{{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "code" "opt" (list "windows" "startup" "vscode" "enable") "os" "windows") | trim | atoi -}}
 {{ $vscode := joinPath .chezmoi.homeDir "scoop" "apps" "vscode" "current" "Code.exe" -}}
 Run({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
