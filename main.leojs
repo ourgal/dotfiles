@@ -2254,6 +2254,10 @@
                                   "gnx": "User.20260225204449.1"
                                 }
                               ]
+                            },
+                            {
+                              "gnx": "user.20260701164019.1",
+                              "vh": "youtube auto liker"
                             }
                           ]
                         }
@@ -15161,6 +15165,7 @@
     "zxc.20260615002642.1": "[\"scoop/persist/firefox/shyfox\"]\n    type = \"git-repo\"\n    url = \"https://github.com/Naezr/ShyFox\"\n    refreshPeriod = \"168h\"\n\n[\"scoop/persist/firefox/flexfox\"]\n    type = \"git-repo\"\n    url = \"https://github.com/yuuqilin/FlexFox\"\n    refreshPeriod = \"168h\"\n",
     "zxc.20260616221329.1": "[\".local/share/repos/neturl\"]\n    type = \"git-repo\"\n    url = \"https://github.com/golgote/neturl\"\n    refreshPeriod = \"168h\"\n",
     "zxc.20260619235746.1": "<< android >>\n[\".local/share/repos/termux-nf\"]\n    type = \"git-repo\"\n    url = \"https://github.com/arnavgr/termux-nf\"\n    refreshPeriod = \"168h\"\n{{ end -}}\n",
+    "user.20260701164019.1": "[\".local/share/repos/youtube-auto-like\"]\n    type = \"git-repo\"\n    url = \"https://github.com/austencm/youtube-auto-like\"\n    refreshPeriod = \"168h\"\n",
     "zxc.20260202203521.17": "<< dos >>\n{{ template \"checkPath\" (list \"dirhash\" \"go\") -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260323201237.1": "Set-StrictMode -Version Latest\n$ErrorActionPreference = \"Stop\"\n$PSNativeCommandUseErrorActionPreference = $true\n",
     "zxc.20260202203521.18": "# {{ output \"dirhash\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"uosc\" \"src\" \"ziggy\") \"-quiet\" \"-nowait\" }}\ncd ~/.local/share/repos/uosc\n./tools/build.ps1 ziggy placeholder\n\n{{ $sources := list (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"mpv\" \"portable_config\" \"scripts\" \"uosc\") (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"mpv\" \"portable_config\" \"fonts\") -}}\n{{ $targets := list (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"uosc\" \"src\" \"uosc\") (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"uosc\" \"src\" \"fonts\") -}}\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"uosc\") \"os\" \"windows\") | trim | atoi -}}\n{{ template \"powershell_junction\" dict \"source\" $sources \"target\" $targets }}\n{{ else -}}\n    {{ range $sources -}}\n        {{ if stat . -}}\n        rm -force {{ . }}\n        {{ end -}}\n    {{ end -}}\n{{ end -}}\n",
@@ -17093,7 +17098,7 @@
       "_mod_time": 1782087842.583
     },
     "User.20260226000855.1": {
-      "_mod_time": 1782087842.578
+      "_mod_time": 1782895254.887
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1782695824.473
