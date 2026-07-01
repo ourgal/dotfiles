@@ -6135,6 +6135,10 @@
               "vh": "brave"
             },
             {
+              "gnx": "user.20260701202533.1",
+              "vh": "chromium"
+            },
+            {
               "gnx": "zxc.20260614001309.1",
               "vh": "vscode"
             },
@@ -15743,6 +15747,7 @@
     "zxc.20260408010815.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"wezterm\" \"opt\" (list \"windows\" \"startup\" \"wezterm\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"wezterm\" \"current\" \"wezterm-gui.exe\" }}\"\nWinWait(\"ahk_exe wezterm-gui.exe\")\n{{ end -}}\n",
     "zxc.20260614001058.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"firefox\" \"opt\" (list \"windows\" \"startup\" \"firefox\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun(\"firefox\", , \"Max\")\nWinWait(\"ahk_exe firefox.exe\")\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe firefox.exe\"\nRun \"glazewm command move --workspace 2\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260614001152.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"brave\" \"opt\" (list \"windows\" \"startup\" \"brave\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun(\"brave\", , \"Max\")\nWinWait(\"ahk_exe brave.exe\")\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe brave.exe\"\nRun \"glazewm command move --workspace 2\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
+    "user.20260701202533.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"brave\" \"opt\" (list \"windows\" \"startup\" \"chromium\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun {{ joinPath (env \"AppData\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Scoop Apps\" \"Chromium.lnk\" | quote }}, , \"Max\"\nWinWait(\"ahk_exe chrome.exe\")\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe chrome.exe\"\nRun \"glazewm command move --workspace 2\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260614001309.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"code\" \"opt\" (list \"windows\" \"startup\" \"vscode\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\n{{ $vscode := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscode\" \"current\" \"Code.exe\" -}}\nRun({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait \"ahk_exe Code.exe\"\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe Code.exe\"\nRun \"glazewm command move --workspace 3\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260614001457.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"vscodium\" \"opt\" (list \"windows\" \"startup\" \"vscodium\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\n{{ $vscodium := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscodium\" \"current\" \"VSCodium.exe\" -}}\nRun({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait(\"ahk_exe VSCodium.exe\")\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe VSCodium.exe\"\nRun \"glazewm command move --workspace 3\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260502015606.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"leo\" \"opt\" (list \"windows\" \"startup\" \"leo\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"leo\", , \"Max\"\n{{ end -}}\n",
@@ -17886,7 +17891,7 @@
       "_mod_time": 1777385863.235
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1782695824.474
+      "_mod_time": 1782908905.654
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1777382331.981
