@@ -12235,7 +12235,56 @@
                                 },
                                 {
                                   "gnx": "user.20260628173546.1",
-                                  "vh": "switchZht"
+                                  "vh": "switchCategroy"
+                                },
+                                {
+                                  "gnx": "user.20260628172701.1"
+                                },
+                                {
+                                  "gnx": "user.20260628172911.1"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "gnx": "user.20260701153620.1",
+                          "vh": "@clean title_other.spec.ts.tmpl",
+                          "children": [
+                            {
+                              "gnx": "user.20260701153626.1",
+                              "vh": "const",
+                              "children": [
+                                {
+                                  "gnx": "user.20260628173805.1"
+                                },
+                                {
+                                  "gnx": "user.20260628173844.1"
+                                },
+                                {
+                                  "gnx": "user.20260701153916.1",
+                                  "vh": "title file"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "user.20260701153831.1",
+                              "vh": "functions",
+                              "children": [
+                                {
+                                  "gnx": "user.20260628172225.1"
+                                },
+                                {
+                                  "gnx": "user.20260628172316.1"
+                                },
+                                {
+                                  "gnx": "user.20260628172304.1"
+                                },
+                                {
+                                  "gnx": "user.20260628172635.1"
+                                },
+                                {
+                                  "gnx": "user.20260628173546.1"
                                 },
                                 {
                                   "gnx": "user.20260628172701.1"
@@ -12248,6 +12297,10 @@
                           ]
                         }
                       ]
+                    },
+                    {
+                      "gnx": "user.20260701154149.1",
+                      "vh": "@clean Makefile.tmpl"
                     }
                   ]
                 }
@@ -16670,10 +16723,13 @@
     "user.20260628172635.1": "async function getBookTitles(page: Page, path: string) {\n  for (let i = 0; i < 20; i++) {\n    const title = await getBookTitle(page, i)\n    await appendFile(path, title + '\\n', 'utf8');\n  }\n}\n\n",
     "user.20260628172701.1": "async function getMaxPageNum(page: Page): Promise<number> {\n  const text = await page.locator('div.status-bar').innerText();\n  console.log(text)\n  const regex = /\\d+\\/(\\d+)/;\n  const match = text.match(regex);\n  if (match) {\n    const num = match[1];\n    return parseInt(num, 10);\n  } else {\n    throw new Error('Max page number not found');\n  }\n}\n\n",
     "user.20260628172911.1": "async function blcokImages(page: Page) {\n  // Intercept and block all image requests\n  await page.route('**/*', route => {\n    if (route.request().resourceType() === 'image') {\n      return route.abort();\n    }\n    return route.continue();\n  });\n}\n\n",
-    "user.20260628172043.1": "import { appendFile } from 'node:fs/promises';\nimport { expect, Page, test } from 'patchright/test';\nimport path from 'path';\n\n@others\n\ntest('main', async ({ page }) => {\n  await page.goto(HOME_PAGE);\n\n  await blcokImages(page);\n\n  await waitForLogin(page);\n\n  await switchZht(page);\n\n  await getBookTitles(page, title_file);\n\n  const max_page = await getMaxPageNum(page);\n\n  for (let i = 0; i < (max_page - 2); i++) {\n    await switchPage(page, i + 2)\n    await getBookTitles(page, title_file)\n  }\n\n});\n",
+    "user.20260628172043.1": "import { appendFile } from 'node:fs/promises';\nimport { expect, Page, test } from 'patchright/test';\nimport path from 'path';\n\n@others\n\ntest('main', async ({ page }) => {\n  await blcokImages(page);\n\n  await page.goto(HOME_PAGE);\n\n  await waitForLogin(page);\n\n  await switchCategory(page);\n\n  await getBookTitles(page, title_file);\n\n  const max_page = await getMaxPageNum(page);\n\n  for (let i = 0; i < (max_page - 2); i++) {\n    await switchPage(page, i + 2)\n    await getBookTitles(page, title_file)\n  }\n\n});\n",
     "user.20260628173832.1": "@others\n\n",
     "user.20260628173936.1": "const title_file = path.join(currentDir, '../titles', 'titles_zht.txt');\n",
-    "user.20260628173546.1": "async function switchZht(page: Page) {\n  await page.locator('select#cat-select').selectOption('traditional');\n  await expect(page.getByRole('button', { name: '跳转' })).toBeVisible({ timeout: 10000 });\n}\n\n",
+    "user.20260628173546.1": "async function switchCategory(page: Page, cat: string = 'traditional') {\n  await page.locator('select#cat-select').selectOption(cat);\n  await expect(page.getByRole('button', { name: '跳转' })).toBeVisible({ timeout: 10000 });\n}\n\n",
+    "user.20260701153620.1": "import { appendFile } from 'node:fs/promises';\nimport { expect, Page, test } from 'patchright/test';\nimport path from 'path';\n\n@others\n\ntest('main', async ({ page }) => {\n  await blcokImages(page);\n\n  await page.goto(HOME_PAGE);\n\n  await waitForLogin(page);\n\n  await switchCategory(page, 'other');\n\n  await getBookTitles(page, title_file);\n\n  const max_page = await getMaxPageNum(page);\n\n  for (let i = 0; i < (max_page - 2); i++) {\n    await switchPage(page, i + 2)\n    await getBookTitles(page, title_file)\n  }\n\n});\n\n",
+    "user.20260701153916.1": "const title_file = path.join(currentDir, '../titles', 'titles_other.txt');\n",
+    "user.20260701154149.1": "DIRS := $(wildcard output/*/)\nFILES := $(patsubst %, %temp.md, $(DIRS))\ntitle := titles/titles\n\nall:\n\t@pnpm exec patchright test --headed tests/main.spec.ts\n\ntitles: title title_zht title_other\n\ntitle:\n\t@-rm $(title).txt\n\t@pnpm exec patchright test --headed tests/title.spec.ts\n\t@pwsh -c \"cat $(title).txt | sort > $(title)_sorted.txt\"\n\ntitle_zht:\n\t@-rm $(title)_zht.txt\n\t@pnpm exec patchright test --headed tests/title_zht.spec.ts\n\t@pwsh -c \"cat $(title)_zht.txt | sort > $(title)_zht_sorted.txt\"\n\ntitle_other:\n\t@-rm $(title)_other.txt\n\t@pnpm exec patchright test --headed tests/title_other.spec.ts\n\t@pwsh -c \"cat $(title)_other.txt | sort > $(title)_other_sorted.txt\"\n\nauth:\n\t@pnpm exec patchright test --headed tests/auth.setup.ts\n\ninstall:\n\t@pnpm exec patchright install chromium\n\nmd: ${FILES}\n\n${FILES}:\n\tpandoc -f html $(dir $@)output.html -t markdown -o $@ --wrap=none\n",
     "zxc.20260409214651.1": "# --- Configuration ---\n\n# Set the path to pdftk.exe if it's not in your system's PATH\n# Example: $pdftkPath = \"C:\\Program Files (x86)\\PDFtk\\bin\\pdftk.exe\"\n$pdftkPath = \"pdftk\" # Assumes pdftk is in your PATH\n\n# Define the output filename for the merged PDF\n$outputPdfName = \"output.pdf\"\n\n# --- Script Logic ---\n\n# Get today's date in YYYYMMDD format\n$today = Get-Date -Format \"yyyyMMdd\"\n\n# Define the file pattern to search for\n# This pattern looks for files like IMG_20260409_0001.pdf\n$filePattern = \"IMG_${today}_*.pdf\"\n\n# Get all PDF files matching the pattern in the current directory\n$pdfFiles = Get-ChildItem -Path . -Filter $filePattern -File\n\n# Check if any files were found\nif ($pdfFiles.Count -eq 0) {\n    Write-Host \"No PDF files found matching the pattern 'IMG_${today}_*.pdf' in the current directory.\"\n    exit\n}\n\n# Sort the files by name to ensure correct order\n# The default sorting of Get-ChildItem should be alphabetical, which works for IMG_..._0001.pdf, IMG_..._0002.pdf etc.\n$sortedPdfFiles = $pdfFiles | Sort-Object Name\n\n# Construct the list of files for pdftk\n$pdftkInputFiles = $sortedPdfFiles | ForEach-Object { $_.FullName }\n\n# Construct the pdftk command\n# The 'cat' operation merges the files. 'output' specifies the output file.\n$pdftkCommand = \"$pdftkPath $($pdftkInputFiles -join ' ') cat output $outputPdfName\"\n\nWrite-Host \"Merging the following files:\"\n$sortedPdfFiles | ForEach-Object { Write-Host \"- $($_.Name)\" }\nWrite-Host \"Output file: $outputPdfName\"\n\n# Execute the pdftk command\ntry {\n    # Use Invoke-Expression to execute the command string\n    Invoke-Expression $pdftkCommand\n    Write-Host \"Successfully merged PDF files.\"\n\n    # Delete the original files after successful merge\n    Write-Host \"Deleting original PDF files...\"\n    $sortedPdfFiles | ForEach-Object {\n        $fileName = $_.Name\n        $filePath = $_.FullName\n        try {\n            Remove-Item -Path $filePath -Force -ErrorAction Stop\n            Write-Host \"Deleted: $fileName\"\n        } catch {\n            Write-Error \"Failed to delete '$fileName': $($_.Exception.Message)\"\n        }\n    }\n    Write-Host \"All original PDF files have been deleted.\"\n\n} catch {\n    Write-Error \"An error occurred during PDF merging: $($_.Exception.Message)\"\n    Write-Error \"Please ensure pdftk is installed and in your PATH, or update the `$pdftkPath` variable.\"\n}\n",
     "zxc.20260603145336.1": "* Doc\n\n@others\n",
     "zxc.20260603151009.1": "** CLI\n\n",
@@ -17781,7 +17837,13 @@
       "_mod_time": 1782889016.044
     },
     "user.20260628172043.1": {
-      "_mod_time": 1782889016.045
+      "_mod_time": 1782891657.659
+    },
+    "user.20260701153620.1": {
+      "_mod_time": 1782891657.709
+    },
+    "user.20260701154149.1": {
+      "_mod_time": 1782892007.134
     },
     "zxc.20260409214651.1": {
       "_mod_time": 1777713442.482
