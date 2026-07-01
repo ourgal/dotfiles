@@ -15974,7 +15974,7 @@
     "zxc.20260330235722.1": "<< dos >>\n{{ if lookPath \"espanso\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260330235914.1": "{{- /* chezmoi:modify-template */ -}}\n{{ $origin := fromYaml .chezmoi.stdin -}}\n{{ $origin = $origin | setValueAtPath \"show_notifications\" false -}}\n{{ $origin | toYaml -}}",
     "zxc.20260609212401.1": "<< dos >>\n{{ if lookPath \"firefox\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260609212435.1": "user_pref(\"browser.search.region\", \"US\");\nuser_pref(\"sidebar.visibility\", \"hide-sidebar\");\n\n{{ if eq .my.modules.firefox.theme \"shyfox\" -}}\n{{ template \"include\" (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" \"shyfox\" \"user.js\") }}\n{{ else if eq .my.modules.firefox.theme \"flexfox\" -}}\n{{ template \"include\" (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" \"flexfox\" \"scripts\" \"user.js\") }}\n{{ end -}}\n",
+    "zxc.20260609212435.1": "user_pref(\"browser.search.region\", \"US\");\nuser_pref(\"sidebar.visibility\", \"hide-sidebar\");\n\n{{ if eq .my.modules.firefox.theme \"shyfox\" -}}\n{{ template \"include\" (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" \"shyfox\" \"user.js\") }}\n{{ else if eq .my.modules.firefox.theme \"flexfox\" -}}\n{{ template \"include\" (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" \"flexfox\" \"user.js\") }}\n{{ end -}}\n",
     "zxc.20260625230303.1": "<< dos >>\n{{ if lookPath \"syncthing\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260625230340.1": "browsercache\ncache\n",
     "user.20260628104306.1": "<< dos >>\n{{ if lookPath \"yt-dlp\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -17651,7 +17651,7 @@
       "_mod_time": 1777179946.891
     },
     "zxc.20260609212401.1": {
-      "_mod_time": 1781607696.631
+      "_mod_time": 1782894992.036
     },
     "zxc.20260625230303.1": {
       "_mod_time": 1782477813.633

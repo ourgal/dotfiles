@@ -6,7 +6,7 @@ user_pref("sidebar.visibility", "hide-sidebar");
 {{ if eq .my.modules.firefox.theme "shyfox" -}}
 {{ template "include" (joinPath .chezmoi.homeDir "scoop" "persist" "firefox" "shyfox" "user.js") }}
 {{ else if eq .my.modules.firefox.theme "flexfox" -}}
-{{ template "include" (joinPath .chezmoi.homeDir "scoop" "persist" "firefox" "flexfox" "scripts" "user.js") }}
+{{ template "include" (joinPath .chezmoi.homeDir "scoop" "persist" "firefox" "flexfox" "user.js") }}
 {{ end -}}
 {{ end -}}
 {{ end -}}
