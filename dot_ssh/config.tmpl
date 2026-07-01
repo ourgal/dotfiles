@@ -16,6 +16,7 @@
 {{ $ip = set $ip "soft" (dict "ip" "192.168.123.206" "port" "23231" "user" $username.linux) -}}
 {{ $ip = set $ip "nuc" (dict "ip" "192.168.123.123" "port" "22" "user" $username.windows) -}}
 {{ $ip = set $ip "work2" (dict "ip" "192.168.1.107" "port" "22" "user" $username.linux) -}}
+{{ $ip = set $ip "office2043" (dict "ip" "192.168.1.104" "port" "22" "user" $username.linux) -}}
 Host soft
   Port {{ $ip.soft.port }}
   HostName {{ $ip.soft.ip }}
@@ -50,6 +51,12 @@ Host work2
   Port {{ $ip.work2.port }}
   User {{ $ip.work2.user }}
   HostName {{ $ip.work2.ip }}
+{{ end -}}
+{{ if eq .chezmoi.hostname "work" "work2" -}}
+Host office2043
+  Port {{ $ip.office2043.port }}
+  User {{ $ip.office2043.user }}
+  HostName {{ $ip.office2043.ip }}
 {{ end -}}
 Host *
   AddKeysToAgent yes

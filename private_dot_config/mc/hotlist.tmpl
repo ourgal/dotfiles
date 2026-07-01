@@ -16,6 +16,7 @@
 {{ $ip = set $ip "soft" (dict "ip" "192.168.123.206" "port" "23231" "user" $username.linux) -}}
 {{ $ip = set $ip "nuc" (dict "ip" "192.168.123.123" "port" "22" "user" $username.windows) -}}
 {{ $ip = set $ip "work2" (dict "ip" "192.168.1.107" "port" "22" "user" $username.linux) -}}
+{{ $ip = set $ip "office2043" (dict "ip" "192.168.1.104" "port" "22" "user" $username.linux) -}}
 {{ if eq .chezmoi.os "windows" -}}
 ENTRY "AppData" URL "{{ .chezmoi.homeDir }}/AppData/Roaming"
 GROUP "note20"
@@ -28,6 +29,9 @@ GROUP "m6"
 ENDGROUP
 {{ if eq .chezmoi.hostname "work" "work2" -}}
 ENTRY "work2" URL "sh://work2:{{ $linux_home }}"
+{{ end -}}
+{{ if eq .chezmoi.hostname "work" "work2" -}}
+ENTRY "office2043" URL "sh://office2043:{{ $linux_home }}"
 {{ end -}}
 {{ end -}}
 {{ if eq .chezmoi.os "android" -}}
