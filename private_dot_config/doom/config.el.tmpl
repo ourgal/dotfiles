@@ -101,7 +101,7 @@
 {{ end -}}
 
 (defun browse-url-mpv (url &optional _new-window)
-  (start-process-shell-command "mpv" (get-buffer-create "*mpv out*") (format {{ print "mpv --load-scripts=no" $script " %s || {{ $browser }} %s" | quote }} url url)))
+  (start-process-shell-command "mpv" (get-buffer-create "*mpv out*") (format {{ print "mpv --load-scripts=no" $script " %s || " $browser " %s" | quote }} url url)))
 
 (setq browse-url-handlers
       '(("\\(vimeo\\.com\\|twitch\\.tv\\)" . browse-url-mpv)
