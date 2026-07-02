@@ -1,0 +1,134 @@
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if lookPath "fdroidcl" -}}
+[[repos]]
+enabled = true
+id = "f-droid"
+url = "https://f-droid.org/repo"
+[[repos]]
+enabled = false
+id = "f-droid-archive"
+url = "https://f-droid.org/archive"
+[[repos]]
+enabled = false
+id = "cernet"
+url = "https://mirrors.cernet.edu.cn/fdroid/repo"
+[[repos]]
+enabled = false
+id = "nju"
+url = "https://mirror.nju.edu.cn/fdroid/repo"
+[[repos]]
+enabled = true
+id = "lzzy"
+url = "https://apt.izzysoft.de/fdroid/repo"
+[[setups]]
+apps = [
+  "me.hackerchick.raisetoanswer" # Raise To Answer, Simply hold your phone to your ear to answer an incoming call
+  "spam.blocker" # SpamBlocker (Call & SMS), Spam Call/SMS blocker
+  "org.moire.ultrasonic" # Ultrasonic, A music streaming client for Subsonic servers
+  "org.oxycblt.auxio" # Auxio, A simple, rational music player
+  "org.gateshipone.malp" # M.A.L.P., M.A.L.P. - MPD Client
+  "de.badaix.snapcast" # Snapcast - multi-room audio in perfect, sync Snapcast client for Android
+  "me.echeung.moemoekyun.fdroid" # LISTEN.moe, Listen to j-pop and anime music radio 24/7 ad-free
+  "github.paroj.dsub2000" # DSub2000, Android client for Subsonic servers.
+  "biz.binarysolutions.healthybatterycharging" # Healthy Battery Charging, Prolong the life of your battery by keeping it charged between 40% and 80%
+  "org.videolan.vlc" # VLC, The best video and music player. Fast and “just works”, plays any file
+  "dev.jdtech.jellyfin" # Findroid, Third-party native Jellyfin app
+  "com.github.libretube" # LibreTube, Alternative YouTube frontend for Android built with Piped
+  "is.xyz.mpv" # mpv-android, Listen to music and watch videos
+  "org.jellyfin.mobile" # Jellyfin - your media in your hands!, Mobile client for Jellyfin, the free software media system
+  "org.schabi.newpipe" # NewPipe, Lightweight YouTube frontend
+  "com.gianlu.aria2app" # Aria2App, An advanced download manager and aria2 client for your pocket.
+  "com.github.catfriend1.syncthingfork" # Syncthing-Fork, Wrapper for Syncthing - Open and decentralized file synchronization
+  "org.forkgram.messenger" # Forkgram is a fork of the official Telegram for Android application.
+  "chat.simplex.app" # SimpleX Chat, SimpleX Chat - e2e encrypted messenger without any user IDs - private by design!
+  "org.koitharu.kotatsu" # Kotatsu, Manga reader with online catalogues
+  "ch.protonvpn.android" # ProtonVPN - Secure and Free VPN, Free Swiss VPN with advanced security and privacy features.
+  "com.tailscale.ipn" # Tailscale, Mesh VPN based on WireGuard
+  "com.axiel7.anihyou" # AniHyou - AniList client, Another unofficial Android AniList client
+  "com.predidit.kazumi" # Kazumi, An anime collection APP based on custom rules.
+  "com.example.knkpanime" # knkpanime, Anime app with multiple source and danmaku support
+  "org.github.henryquan.animeone" # AnimeOne, Unofficial AnimeOne client
+  "io.github.jica98"
+  "org.koreader.launcher.fdroid" # KOReader, Ebook reader
+  "org.kde.kdeconnect_tp" # KDE Connect, KDE Connect integrates your smartphone and computer
+  "com.osfans.trime" # Trime, Chinese IME with Rime Input Method Engine
+  "com.termux"
+  "com.termux.api"
+  "org.breezyweather" # Breezy Weather, A powerful, open-source Material Design weather app.
+  "de.tnmgl.ntodotxt"
+  "org.tasks"
+  "inc.flide.vi8"
+  "com.secuso.privacyFriendlyCodeScanner"
+  "com.machiav3lli.fdroid" # Neo Store, A modern feature-rich F-Droid client
+  "org.fdroid.fdroid" # F-Droid, The app store that respects freedom and privacy
+  "zed.rainxch.githubstore" # App store for GitHub releases - discover and install apps with one click
+]
+id = "phone"
+repos = ["f-droid"]
+[[setups]]
+apps = [
+  "me.hackerchick.raisetoanswer" # Raise To Answer, Simply hold your phone to your ear to answer an incoming call
+  "spam.blocker" # SpamBlocker (Call & SMS), Spam Call/SMS blocker
+  "biz.binarysolutions.healthybatterycharging" # Healthy Battery Charging, Prolong the life of your battery by keeping it charged between 40% and 80%
+  "com.github.catfriend1.syncthingfork" # Syncthing-Fork, Wrapper for Syncthing - Open and decentralized file synchronization
+  "org.kde.kdeconnect_tp" # KDE Connect, KDE Connect integrates your smartphone and computer
+  "com.osfans.trime" # Trime, Chinese IME with Rime Input Method Engine
+  "org.breezyweather" # Breezy Weather, A powerful, open-source Material Design weather app.
+  "com.termux"
+  "com.termux.api"
+  "de.tnmgl.ntodotxt"
+  "org.tasks"
+  "inc.flide.vi8"
+  "com.secuso.privacyFriendlyCodeScanner"
+  "com.machiav3lli.fdroid" # Neo Store, A modern feature-rich F-Droid client
+  "org.fdroid.fdroid" # F-Droid, The app store that respects freedom and privacy
+  "zed.rainxch.githubstore" # App store for GitHub releases - discover and install apps with one click
+]
+id = "sub-phone"
+repos = ["f-droid"]
+[[setups]]
+apps = [
+  "com.vrem.wifianalyzer" # WiFiAnalyzer, Optimize your WiFi network
+  "de.srlabs.snoopsnitch" # SnoopSnitch, Check mobile network security
+  "biz.binarysolutions.healthybatterycharging" # Healthy Battery Charging, Prolong the life of your battery by keeping it charged between 40% and 80%
+  "org.moire.ultrasonic" # Ultrasonic, A music streaming client for Subsonic servers
+  "org.oxycblt.auxio" # Auxio, A simple, rational music player
+  "org.gateshipone.malp" # M.A.L.P., M.A.L.P. - MPD Client
+  "de.badaix.snapcast" # Snapcast - multi-room audio in perfect, sync Snapcast client for Android
+  "me.echeung.moemoekyun.fdroid" # LISTEN.moe, Listen to j-pop and anime music radio 24/7 ad-free
+  "github.paroj.dsub2000" # DSub2000, Android client for Subsonic servers.
+  "org.videolan.vlc" # VLC, The best video and music player. Fast and “just works”, plays any file
+  "dev.jdtech.jellyfin" # Findroid, Third-party native Jellyfin app
+  "com.github.libretube" # LibreTube, Alternative YouTube frontend for Android built with Piped
+  "is.xyz.mpv" # mpv-android, Listen to music and watch videos
+  "org.jellyfin.mobile" # Jellyfin - your media in your hands!, Mobile client for Jellyfin, the free software media system
+  "org.schabi.newpipe" # NewPipe, Lightweight YouTube frontend
+  "com.gianlu.aria2app" # Aria2App, An advanced download manager and aria2 client for your pocket.
+  "com.github.catfriend1.syncthingfork" # Syncthing-Fork, Wrapper for Syncthing - Open and decentralized file synchronization
+  "org.koitharu.kotatsu" # Kotatsu, Manga reader with online catalogues
+  "com.axiel7.anihyou" # AniHyou - AniList client, Another unofficial Android AniList client
+  "com.predidit.kazumi" # Kazumi, An anime collection APP based on custom rules.
+  "com.example.knkpanime" # knkpanime, Anime app with multiple source and danmaku support
+  "org.github.henryquan.animeone" # AnimeOne, Unofficial AnimeOne client
+  "io.github.jica98"
+  "org.koreader.launcher.fdroid" # KOReader, Ebook reader
+  "org.kde.kdeconnect_tp" # KDE Connect, KDE Connect integrates your smartphone and computer
+  "com.osfans.trime" # Trime, Chinese IME with Rime Input Method Engine
+  "com.machiav3lli.fdroid" # Neo Store, A modern feature-rich F-Droid client
+  "org.fdroid.fdroid" # F-Droid, The app store that respects freedom and privacy
+  "zed.rainxch.githubstore" # App store for GitHub releases - discover and install apps with one click
+  "org.breezyweather" # Breezy Weather, A powerful, open-source Material Design weather app.
+  "com.catpuppyapp.puppygit.play.pro" # PuppyGit Pro is a Git client for Android. Open Source, no Ads and free to use.
+  "com.droidvim"
+  "inc.flide.vi8"
+    "com.termux.nix",
+  "com.secuso.privacyFriendlyCodeScanner"
+]
+id = "tablet"
+repos = ["f-droid"]
+[[setups]]
+apps = ["com.github.howeyc.crocgui"]
+id = "bak"
+repos = ["f-droid"]
+{{ end -}}
+{{ end -}}
