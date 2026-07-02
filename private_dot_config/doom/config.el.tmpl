@@ -82,13 +82,26 @@
 (add-hook! 'completion-at-point-functions #'cape-file)
 (after! doom-modeline
   (setq doom-modeline-buffer-file-name-style 'relative-to-project))
+{{ $browser := "firefox" -}}
+
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "brave" "opt" (list "windows" "startup" "brave" "enable") "os" "windows") | trim | atoi -}}
+{{ $browser = "brave" -}}
+{{ end -}}
+
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "chromium" "opt" (list "windows" "startup" "chromium" "enable") "os" "windows") | trim | atoi -}}
+{{ $browser := "chromium" -}}
+{{ end -}}
+
 {{ $sponsorblock := joinPath .chezmoi.homeDir "scoop" "persist" "mpv" "portable_config" "scripts" "sponsorblock_minimal.lua" -}}
+
 {{ $script := "" -}}
+
 {{ if and (stat $sponsorblock) (eq .chezmoi.os "windows") -}}
 {{ $script = print " --script=" $sponsorblock -}}
 {{ end -}}
+
 (defun browse-url-mpv (url &optional _new-window)
-  (start-process-shell-command "mpv" (get-buffer-create "*mpv out*") (format {{ print "mpv --load-scripts=no" $script " %s || chromium %s" | quote }} url url)))
+  (start-process-shell-command "mpv" (get-buffer-create "*mpv out*") (format {{ print "mpv --load-scripts=no" $script " %s || {{ $browser }} %s" | quote }} url url)))
 
 (setq browse-url-handlers
       '(("\\(vimeo\\.com\\|twitch\\.tv\\)" . browse-url-mpv)

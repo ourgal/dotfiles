@@ -48,7 +48,7 @@ Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "wezterm" "current" "wezterm-gu
 WinWait("ahk_exe wezterm-gui.exe")
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "firefox" "opt" (list "windows" "startup" "firefox" "enable") "os" "windows") | trim | atoi -}}
-Run("firefox", , "Max")
+Run {{ joinPath (env "AppData") "Microsoft" "Windows" "Start Menu" "Programs" "Scoop Apps" "Firefox.lnk" | quote }}, , "Max"
 WinWait("ahk_exe firefox.exe")
 {{ if lookPath "glazewm" -}}
 WinActivate "ahk_exe firefox.exe"
@@ -56,7 +56,7 @@ Run "glazewm command move --workspace 2", ,"Hide"
 {{ end -}}
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "brave" "opt" (list "windows" "startup" "brave" "enable") "os" "windows") | trim | atoi -}}
-Run("brave", , "Max")
+Run {{ joinPath (env "AppData") "Microsoft" "Windows" "Start Menu" "Programs" "Scoop Apps" "Brave.lnk" | quote }}, , "Max"
 WinWait("ahk_exe brave.exe")
 {{ if lookPath "glazewm" -}}
 WinActivate "ahk_exe brave.exe"
