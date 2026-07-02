@@ -717,84 +717,6 @@
           until: result is not failed
           loop:
 
-        - name: Add NSPC911_le-bucket bucket
-          community.windows.win_scoop_bucket:
-            name: NSPC911_le-bucket
-            repo: https://github.com/NSPC911/le-bucket
-            state: present
-        - name: Install other packages via scoop
-          community.windows.win_scoop:
-            name:
-              - NSPC911_le-bucket/helix-ghost
-            global: false
-            no_cache: true
-          register: result
-          retries: 3
-          delay: 5
-          until: result is not failed
-        - name: Add ShuguangSun_sgs-scoop-bucket bucket
-          community.windows.win_scoop_bucket:
-            name: ShuguangSun_sgs-scoop-bucket
-            repo: https://github.com/ShuguangSun/sgs-scoop-bucket
-            state: present
-        - name: Install other packages via scoop
-          community.windows.win_scoop:
-            name:
-              - ShuguangSun_sgs-scoop-bucket/emacs-lsp-booster
-              - ShuguangSun_sgs-scoop-bucket/ydict
-            global: false
-            no_cache: true
-          register: result
-          retries: 3
-          delay: 5
-          until: result is not failed
-        - name: Add hoilc_scoop-lemon bucket
-          community.windows.win_scoop_bucket:
-            name: hoilc_scoop-lemon
-            repo: https://github.com/hoilc/scoop-lemon
-            state: present
-        - name: Install other packages via scoop
-          community.windows.win_scoop:
-            name:
-              - hoilc_scoop-lemon/keep-sorted
-              - hoilc_scoop-lemon/pikpak
-              - hoilc_scoop-lemon/fdroidcl
-            global: false
-            no_cache: true
-          register: result
-          retries: 3
-          delay: 5
-          until: result is not failed
-        - name: Add Befod_Xeno bucket
-          community.windows.win_scoop_bucket:
-            name: Befod_Xeno
-            repo: https://github.com/Befod/Xeno
-            state: present
-        - name: Install other packages via scoop
-          community.windows.win_scoop:
-            name:
-              - Befod_Xeno/gesturesign
-            global: false
-            no_cache: true
-          register: result
-          retries: 3
-          delay: 5
-          until: result is not failed
-        - name: Add maqibg_MQBucket bucket
-          community.windows.win_scoop_bucket:
-            name: maqibg_MQBucket
-            repo: https://github.com/maqibg/MQBucket
-            state: present
-        - name: Install other packages via scoop
-          community.windows.win_scoop:
-            name:
-              - maqibg_MQBucket/Github-Store
-            global: false
-            no_cache: true
-          register: result
-          retries: 3
-          delay: 5
-          until: result is not failed
         - name: Add ourgal_scoop-bucket bucket
           community.windows.win_scoop_bucket:
             name: ourgal_scoop-bucket
@@ -812,21 +734,14 @@
               - ourgal_scoop-bucket/runany
               - ourgal_scoop-bucket/git-credential-gopass
               - ourgal_scoop-bucket/dbgate
-            global: false
-            no_cache: true
-          register: result
-          retries: 3
-          delay: 5
-          until: result is not failed
-        - name: Add m75c_scoop-heap bucket
-          community.windows.win_scoop_bucket:
-            name: ourgal_scoop-bucket
-            repo: https://github.com/m75c/scoop-heap
-            state: present
-        - name: Install other packages via scoop
-          community.windows.win_scoop:
-            name:
-              - m75c_scoop-heap/torrserver
+              - ourgal_scoop-bucket/helix-ghost
+              - ourgal_scoop-bucket/emacs-lsp-booster
+              - ourgal_scoop-bucket/keep-sorted
+              - ourgal_scoop-bucket/pikpak
+              - ourgal_scoop-bucket/fdroidcl
+              - ourgal_scoop-bucket/gesturesign
+              - ourgal_scoop-bucket/Github-Store
+              - ourgal_scoop-bucket/torrserver
             global: false
             no_cache: true
           register: result
