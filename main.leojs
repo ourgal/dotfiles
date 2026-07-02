@@ -9646,32 +9646,8 @@
                                           "vh": "extras-cn"
                                         },
                                         {
-                                          "gnx": "zxc.20260423143729.206",
-                                          "vh": "NSPC911_le-bucket"
-                                        },
-                                        {
-                                          "gnx": "zxc.20260423143729.207",
-                                          "vh": "ShuguangSun_sgs-scoop-bucket"
-                                        },
-                                        {
-                                          "gnx": "zxc.20260423143729.208",
-                                          "vh": "hoilc_scoop-lemon"
-                                        },
-                                        {
-                                          "gnx": "zxc.20260423143729.209",
-                                          "vh": "Befod_Xeno"
-                                        },
-                                        {
-                                          "gnx": "zxc.20260423143729.210",
-                                          "vh": "maqibg_MQBucket"
-                                        },
-                                        {
                                           "gnx": "zxc.20260423143729.211",
                                           "vh": "ourgal_scoop-bucket"
-                                        },
-                                        {
-                                          "gnx": "zxc.20260613124503.1",
-                                          "vh": "m75c_scoop-heap"
                                         },
                                         {
                                           "gnx": "zxc.20260620143358.1",
@@ -16290,13 +16266,7 @@
     "zxc.20260611142406.1": "- nerd-fonts/SarasaGothic-ttc\n",
     "zxc.20260423143729.200": "- name: Other packages\n  tags: scoop-other\n  block:\n    @others\n",
     "zxc.20260423143729.204": "- name: Add extras-cn bucket\n  community.windows.win_scoop_bucket:\n    name: extras-cn\n    repo: https://github.com/Scoopforge/Extras-CN\n    state: present\n- name: Install packages from extras-cn\n  community.windows.win_scoop:\n    name:\n      - extras-cn/neteasemusic\n      - extras-cn/goldendict-ng\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  loop:\n\n",
-    "zxc.20260423143729.206": "- name: Add NSPC911_le-bucket bucket\n  community.windows.win_scoop_bucket:\n    name: NSPC911_le-bucket\n    repo: https://github.com/NSPC911/le-bucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - NSPC911_le-bucket/helix-ghost\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
-    "zxc.20260423143729.207": "- name: Add ShuguangSun_sgs-scoop-bucket bucket\n  community.windows.win_scoop_bucket:\n    name: ShuguangSun_sgs-scoop-bucket\n    repo: https://github.com/ShuguangSun/sgs-scoop-bucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - ShuguangSun_sgs-scoop-bucket/emacs-lsp-booster\n      - ShuguangSun_sgs-scoop-bucket/ydict\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
-    "zxc.20260423143729.208": "- name: Add hoilc_scoop-lemon bucket\n  community.windows.win_scoop_bucket:\n    name: hoilc_scoop-lemon\n    repo: https://github.com/hoilc/scoop-lemon\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - hoilc_scoop-lemon/keep-sorted\n      - hoilc_scoop-lemon/pikpak\n      - hoilc_scoop-lemon/fdroidcl\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
-    "zxc.20260423143729.209": "- name: Add Befod_Xeno bucket\n  community.windows.win_scoop_bucket:\n    name: Befod_Xeno\n    repo: https://github.com/Befod/Xeno\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - Befod_Xeno/gesturesign\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
-    "zxc.20260423143729.210": "- name: Add maqibg_MQBucket bucket\n  community.windows.win_scoop_bucket:\n    name: maqibg_MQBucket\n    repo: https://github.com/maqibg/MQBucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - maqibg_MQBucket/Github-Store\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
-    "zxc.20260423143729.211": "- name: Add ourgal_scoop-bucket bucket\n  community.windows.win_scoop_bucket:\n    name: ourgal_scoop-bucket\n    repo: https://github.com/ourgal/scoop-bucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - ourgal_scoop-bucket/dockfmt\n      - ourgal_scoop-bucket/mtranserver\n      - ourgal_scoop-bucket/altrun\n      - ourgal_scoop-bucket/mani\n      - ourgal_scoop-bucket/mmv\n      - ourgal_scoop-bucket/cargo-update\n      - ourgal_scoop-bucket/runany\n      - ourgal_scoop-bucket/git-credential-gopass\n      - ourgal_scoop-bucket/dbgate\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
-    "zxc.20260613124503.1": "- name: Add m75c_scoop-heap bucket\n  community.windows.win_scoop_bucket:\n    name: ourgal_scoop-bucket\n    repo: https://github.com/m75c/scoop-heap\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - m75c_scoop-heap/torrserver\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
+    "zxc.20260423143729.211": "- name: Add ourgal_scoop-bucket bucket\n  community.windows.win_scoop_bucket:\n    name: ourgal_scoop-bucket\n    repo: https://github.com/ourgal/scoop-bucket\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - ourgal_scoop-bucket/dockfmt\n      - ourgal_scoop-bucket/mtranserver\n      - ourgal_scoop-bucket/altrun\n      - ourgal_scoop-bucket/mani\n      - ourgal_scoop-bucket/mmv\n      - ourgal_scoop-bucket/cargo-update\n      - ourgal_scoop-bucket/runany\n      - ourgal_scoop-bucket/git-credential-gopass\n      - ourgal_scoop-bucket/dbgate\n      - ourgal_scoop-bucket/helix-ghost\n      - ourgal_scoop-bucket/emacs-lsp-booster\n      - ourgal_scoop-bucket/keep-sorted\n      - ourgal_scoop-bucket/pikpak\n      - ourgal_scoop-bucket/fdroidcl\n      - ourgal_scoop-bucket/gesturesign\n      - ourgal_scoop-bucket/Github-Store\n      - ourgal_scoop-bucket/torrserver\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260620143358.1": "- name: Add Rinkerbel_scooped bucket\n  community.windows.win_scoop_bucket:\n    name: Rinkerbel_scooped\n    repo: https://github.com/Rinkerbel/scooped\n    state: present\n- name: Install other packages via scoop\n  community.windows.win_scoop:\n    name:\n      - Rinkerbel_scooped/seanime-server\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.212": "- name: Pipx\n  tags: pipx\n  block:\n    @others\n",
     "zxc.20260423143729.213": "- name: Add pipx bin path to PATH\n  ansible.windows.win_path:\n    state: present\n    scope: user\n    elements: '%userprofile%\\.local\\bin'\n",
@@ -17829,7 +17799,7 @@
       "_mod_time": 1778855150.563
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1782900305.828
+      "_mod_time": 1782998361.023
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778855150.568
