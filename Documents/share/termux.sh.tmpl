@@ -1,0 +1,4 @@
+sed -i 's@^\(deb.*stable main\)$@#\1\ndeb https://mirror.nju.edu.cn/termux/apt/termux-main stable main@' $PREFIX/etc/apt/sources.list
+pkg update && pkg upgrade
+pkg i python3 python3-apt openssh
+whoami

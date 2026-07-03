@@ -12374,6 +12374,30 @@
               ]
             },
             {
+              "gnx": "user.20260703171033.1",
+              "vh": "@path share",
+              "children": [
+                {
+                  "gnx": "user.20260703171055.1",
+                  "vh": "@clean termux.sh.tmpl",
+                  "children": [
+                    {
+                      "gnx": "user.20260703171123.1",
+                      "vh": "nju mirror"
+                    },
+                    {
+                      "gnx": "user.20260703171153.1",
+                      "vh": "ansible"
+                    },
+                    {
+                      "gnx": "user.20260703171318.1",
+                      "vh": "whoami"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "gnx": "zxc.20260409214651.1",
               "vh": "@clean merge_pdf.ps1"
             },
@@ -16804,6 +16828,10 @@
     "user.20260701153626.1": "@others\n",
     "user.20260701153916.1": "const title_file = path.join(currentDir, '../titles', 'titles_other.txt');\n",
     "user.20260701154149.1": "DIRS := $(wildcard output/*/)\nFILES := $(patsubst %, %temp.md, $(DIRS))\ntitle := titles/titles\n\nall:\n\t@pnpm exec patchright test --headed tests/main.spec.ts\n\ntitles: title title_zht title_other\n\ntitle:\n\t@-rm $(title).txt\n\t@pnpm exec patchright test --headed tests/title.spec.ts\n\t@pwsh -c \"cat $(title).txt | sort > $(title)_sorted.txt\"\n\ntitle_zht:\n\t@-rm $(title)_zht.txt\n\t@pnpm exec patchright test --headed tests/title_zht.spec.ts\n\t@pwsh -c \"cat $(title)_zht.txt | sort > $(title)_zht_sorted.txt\"\n\ntitle_other:\n\t@-rm $(title)_other.txt\n\t@pnpm exec patchright test --headed tests/title_other.spec.ts\n\t@pwsh -c \"cat $(title)_other.txt | sort > $(title)_other_sorted.txt\"\n\nauth:\n\t@pnpm exec patchright test --headed tests/auth.setup.ts\n\ninstall:\n\t@pnpm exec patchright install chromium\n\nmd: ${FILES}\n\n${FILES}:\n\tpandoc -f html $(dir $@)output.html -t markdown -o $@ --wrap=none\n",
+    "user.20260703171055.1": "@others\n",
+    "user.20260703171123.1": "sed -i 's@^\\(deb.*stable main\\)$@#\\1\\ndeb https://mirror.nju.edu.cn/termux/apt/termux-main stable main@' $PREFIX/etc/apt/sources.list\npkg update && pkg upgrade\n",
+    "user.20260703171153.1": "pkg i python3 python3-apt openssh\n",
+    "user.20260703171318.1": "whoami\n",
     "zxc.20260409214651.1": "# --- Configuration ---\n\n# Set the path to pdftk.exe if it's not in your system's PATH\n# Example: $pdftkPath = \"C:\\Program Files (x86)\\PDFtk\\bin\\pdftk.exe\"\n$pdftkPath = \"pdftk\" # Assumes pdftk is in your PATH\n\n# Define the output filename for the merged PDF\n$outputPdfName = \"output.pdf\"\n\n# --- Script Logic ---\n\n# Get today's date in YYYYMMDD format\n$today = Get-Date -Format \"yyyyMMdd\"\n\n# Define the file pattern to search for\n# This pattern looks for files like IMG_20260409_0001.pdf\n$filePattern = \"IMG_${today}_*.pdf\"\n\n# Get all PDF files matching the pattern in the current directory\n$pdfFiles = Get-ChildItem -Path . -Filter $filePattern -File\n\n# Check if any files were found\nif ($pdfFiles.Count -eq 0) {\n    Write-Host \"No PDF files found matching the pattern 'IMG_${today}_*.pdf' in the current directory.\"\n    exit\n}\n\n# Sort the files by name to ensure correct order\n# The default sorting of Get-ChildItem should be alphabetical, which works for IMG_..._0001.pdf, IMG_..._0002.pdf etc.\n$sortedPdfFiles = $pdfFiles | Sort-Object Name\n\n# Construct the list of files for pdftk\n$pdftkInputFiles = $sortedPdfFiles | ForEach-Object { $_.FullName }\n\n# Construct the pdftk command\n# The 'cat' operation merges the files. 'output' specifies the output file.\n$pdftkCommand = \"$pdftkPath $($pdftkInputFiles -join ' ') cat output $outputPdfName\"\n\nWrite-Host \"Merging the following files:\"\n$sortedPdfFiles | ForEach-Object { Write-Host \"- $($_.Name)\" }\nWrite-Host \"Output file: $outputPdfName\"\n\n# Execute the pdftk command\ntry {\n    # Use Invoke-Expression to execute the command string\n    Invoke-Expression $pdftkCommand\n    Write-Host \"Successfully merged PDF files.\"\n\n    # Delete the original files after successful merge\n    Write-Host \"Deleting original PDF files...\"\n    $sortedPdfFiles | ForEach-Object {\n        $fileName = $_.Name\n        $filePath = $_.FullName\n        try {\n            Remove-Item -Path $filePath -Force -ErrorAction Stop\n            Write-Host \"Deleted: $fileName\"\n        } catch {\n            Write-Error \"Failed to delete '$fileName': $($_.Exception.Message)\"\n        }\n    }\n    Write-Host \"All original PDF files have been deleted.\"\n\n} catch {\n    Write-Error \"An error occurred during PDF merging: $($_.Exception.Message)\"\n    Write-Error \"Please ensure pdftk is installed and in your PATH, or update the `$pdftkPath` variable.\"\n}\n",
     "zxc.20260603145336.1": "* Doc\n\n@others\n",
     "zxc.20260603151009.1": "** CLI\n\n",
@@ -17927,6 +17955,9 @@
     },
     "user.20260701154149.1": {
       "_mod_time": 1782900305.828
+    },
+    "user.20260703171055.1": {
+      "_mod_time": 1783070002.13
     },
     "zxc.20260409214651.1": {
       "_mod_time": 1777713442.482
