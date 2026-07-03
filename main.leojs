@@ -5921,8 +5921,8 @@
                   "gnx": "User.20260225204914.1"
                 },
                 {
-                  "gnx": "User.20260216000441.1",
-                  "vh": "content"
+                  "gnx": "user.20260703235710.1",
+                  "vh": "mirror"
                 }
               ]
             }
@@ -10626,6 +10626,15 @@
                               ]
                             },
                             {
+                              "gnx": "user.20260703234252.1",
+                              "vh": "cargo mirror",
+                              "children": [
+                                {
+                                  "gnx": "user.20260703235710.1"
+                                }
+                              ]
+                            },
+                            {
                               "gnx": "zxc.20260423143729.419",
                               "vh": "pip",
                               "children": [
@@ -12383,11 +12392,19 @@
                   "children": [
                     {
                       "gnx": "user.20260703171123.1",
-                      "vh": "nju mirror"
+                      "vh": "apt mirror"
                     },
                     {
                       "gnx": "user.20260703171153.1",
                       "vh": "ansible"
+                    },
+                    {
+                      "gnx": "user.20260703221159.1",
+                      "vh": "ssh authorized keys"
+                    },
+                    {
+                      "gnx": "user.20260703223446.1",
+                      "vh": "enable sshd"
                     },
                     {
                       "gnx": "user.20260703171318.1",
@@ -15400,7 +15417,7 @@
     "zxc.20260616151751.1": "[my.modules.firefox]\ntheme = \"flexfox\"\n",
     "User.20260302211627.1": "@others\n",
     "zxc.20260626154828.1": "{{ $username := dict -}}\n{{ $username = set $username \"windows\" \"user\" -}}\n{{ $username = set $username \"linux\" \"zxc\" -}}\n",
-    "zxc.20260625205223.1": "{{ $termux := dict -}}\n{{ $termux = set $termux \"note20\" (dict \"port\" 8022 \"user\" \"u0_a650\" \"ip\" (ternary \"192.168.1.106\" \"192.168.123.232\" (eq .chezmoi.hostname \"work\" \"work2\"))) -}}\n{{ $termux = set $termux \"note20_adb\" (dict \"port\" 8023 \"user\" $termux.note20.user \"ip\" \"localhost\") -}}\n{{ $termux = set $termux \"m6\" (dict \"port\" 8022 \"user\" \"u0_a455\" \"ip\" (ternary \"192.168.1.103\" \"192.168.123.191\" (eq .chezmoi.hostname \"work\" \"work2\"))) -}}\n{{ $termux = set $termux \"m6_adb\" (dict \"port\" 8022 \"user\" $termux.m6.user \"ip\" \"localhost\") -}}\n",
+    "zxc.20260625205223.1": "{{ $termux := dict -}}\n{{ $termux = set $termux \"note20\" (dict \"port\" 8022 \"user\" \"u0_a650\" \"ip\" (ternary \"192.168.1.106\" \"192.168.123.232\" (eq .chezmoi.hostname \"work\" \"work2\"))) -}}\n{{ $termux = set $termux \"note20_adb\" (dict \"port\" 8023 \"user\" $termux.note20.user \"ip\" \"localhost\") -}}\n{{ $termux = set $termux \"m6\" (dict \"port\" 8022 \"user\" \"u0_a555\" \"ip\" (ternary \"192.168.1.103\" \"192.168.123.191\" (eq .chezmoi.hostname \"work\" \"work2\"))) -}}\n{{ $termux = set $termux \"m6_adb\" (dict \"port\" 8022 \"user\" $termux.m6.user \"ip\" \"localhost\") -}}\n",
     "zxc.20260626150915.1": "{{ $termux_home := \"/data/data/com.termux/files/home\" -}}\n{{ $windows_home := print \"/C:/Users/\" $username.windows -}}\n{{ $linux_home := print \"/home/\" $username.linux -}}\n",
     "zxc.20260626153034.1": "{{ $ip := dict -}}\n{{ $ip = set $ip \"brix\" (dict \"ip\" \"192.168.123.206\" \"port\" \"22\" \"user\" $username.linux) -}}\n{{ $ip = set $ip \"soft\" (dict \"ip\" \"192.168.123.206\" \"port\" \"23231\" \"user\" $username.linux) -}}\n{{ $ip = set $ip \"nuc\" (dict \"ip\" \"192.168.123.123\" \"port\" \"22\" \"user\" $username.windows) -}}\n{{ $ip = set $ip \"work2\" (dict \"ip\" \"192.168.1.107\" \"port\" \"22\" \"user\" $username.linux) -}}\n{{ $ip = set $ip \"office2043\" (dict \"ip\" \"192.168.1.104\" \"port\" \"22\" \"user\" $username.linux) -}}\n",
     "zxc.20260625233508.1": "<< dos >>\n@others\n{{ end -}}\n",
@@ -15800,7 +15817,7 @@
     "zxc.20260202211707.1": "{{ if or ( eq .chezmoi.os \"linux\" ) ( eq .chezmoi.os \"windows\" ) -}}\n{{ if lookPath \"editorconfig\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260202211948.1": "root=true\n\n[*]\ncharset=utf-8\n{{ if eq .chezmoi.os \"linux\" -}}\nend_of_line=lf\n{{ else if eq .chezmoi.os \"windows\" -}}\nend_of_line=crlf\n{{ end -}}\nindent_size=2\nindent_style=space\ninsert_final_newline=true\ntrim_trailing_whitespace=true\n\n[*.py]\nindent_size=4\nindent_style=space\n\n[Makefile]\nindent_style=tab",
     "User.20260216000318.1": "<< unix dos >>\n{{ if lookPath \"cargo\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260216000441.1": "[source.crates-io]\nreplace-with = 'mirror'\n\n[source.mirror]\nregistry = \"sparse+https://mirrors.cernet.edu.cn/crates.io-index/\"\n\n[registries.mirror]\nindex = \"sparse+https://mirrors.cernet.edu.cn/crates.io-index/\"",
+    "user.20260703235710.1": "[source.crates-io]\nreplace-with = 'mirror'\n\n[source.mirror]\nregistry = \"sparse+https://mirrors.ustc.edu.cn/crates.io-index/\"\n\n[registries.mirror]\nindex = \"sparse+https://mirrors.ustc.edu.cn/crates.io-index/\"\n",
     "User.20260303213403.1": "[[index]]\nurl = {{ .my.pip.mirror | quote }}\ndefault = true",
     "User.20260218144120.1": "<< unix dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260218144149.1": "vim workspace session folder",
@@ -16435,7 +16452,7 @@
     "zxc.20260423143729.350": "- uv",
     "zxc.20260423143729.351": "- nodejs",
     "zxc.20260501155709.1": "- ansible",
-    "zxc.20260423143729.353": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n- name: Configure termux\n  hosts: note20\n  vars:\n    ansible_remote_tmp: /data/data/com.termux/files/home/.ansible/tmp\n  tasks:\n    @others",
+    "zxc.20260423143729.353": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n- name: Configure termux\n  hosts: termux\n  vars:\n    ansible_remote_tmp: /data/data/com.termux/files/home/.ansible/tmp\n  tasks:\n    @others\n",
     "zxc.20260423143729.354": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts",
     "zxc.20260423143729.355": "- name: Update all packages\n  tags: apt\n  ansible.builtin.apt:\n    update_cache: true\n    upgrade: true\n- name: Install all packages\n  tags: apt\n  ansible.builtin.apt:\n    name:\n      @others\n",
     "zxc.20260423143729.356": "- aichat",
@@ -16505,6 +16522,7 @@
     "zxc.20260423143729.415": "- openssh",
     "zxc.20260423143729.416": "- newsboat",
     "zxc.20260423143729.418": "- ffmpeg",
+    "user.20260703234252.1": "- name: Create folder\n  tags: cargo\n  ansible.builtin.file:\n    path: .cargo\n    state: directory\n    mode: \"0755\"\n- name: Set cargo config\n  tags: cargo\n  ansible.builtin.copy:\n    content: |\n      @others\n    dest: .cargo/config.toml\n    mode: \"0600\"\n",
     "zxc.20260423143729.419": "- name: Create folder\n  tags: pip\n  ansible.builtin.file:\n    path: .pip\n    state: directory\n    mode: \"0755\"\n- name: Set pip config\n  tags: pip\n  ansible.builtin.copy:\n    content: |\n      [global]\n      index-url = https://mirrors.nju.edu.cn/pypi/web/simple/\n      [install]\n      trusted-host = mirrors.nju.edu.cn\n    dest: .pip/pip.conf\n    mode: \"0600\"\n- name: Install pip packaging\n  tags: pip\n  ansible.builtin.command: pip install packaging\n- name: Pip packages\n  tags: pip\n  ansible.builtin.pip:\n    name:\n      @others\n",
     "zxc.20260423143729.420": "- pipx",
     "zxc.20260423143729.421": "- name: Install pipx packages\n  tags: pipx\n  environment:\n    ANDROID_API_LEVEL: 28\n  community.general.pipx:\n    name: \"{{ item }}\"\n    executable: /data/data/com.termux/files/usr/bin/pipx\n  loop:\n    @others\n",
@@ -16830,7 +16848,9 @@
     "user.20260701154149.1": "DIRS := $(wildcard output/*/)\nFILES := $(patsubst %, %temp.md, $(DIRS))\ntitle := titles/titles\n\nall:\n\t@pnpm exec patchright test --headed tests/main.spec.ts\n\ntitles: title title_zht title_other\n\ntitle:\n\t@-rm $(title).txt\n\t@pnpm exec patchright test --headed tests/title.spec.ts\n\t@pwsh -c \"cat $(title).txt | sort > $(title)_sorted.txt\"\n\ntitle_zht:\n\t@-rm $(title)_zht.txt\n\t@pnpm exec patchright test --headed tests/title_zht.spec.ts\n\t@pwsh -c \"cat $(title)_zht.txt | sort > $(title)_zht_sorted.txt\"\n\ntitle_other:\n\t@-rm $(title)_other.txt\n\t@pnpm exec patchright test --headed tests/title_other.spec.ts\n\t@pwsh -c \"cat $(title)_other.txt | sort > $(title)_other_sorted.txt\"\n\nauth:\n\t@pnpm exec patchright test --headed tests/auth.setup.ts\n\ninstall:\n\t@pnpm exec patchright install chromium\n\nmd: ${FILES}\n\n${FILES}:\n\tpandoc -f html $(dir $@)output.html -t markdown -o $@ --wrap=none\n",
     "user.20260703171055.1": "@others\n",
     "user.20260703171123.1": "sed -i 's@^\\(deb.*stable main\\)$@#\\1\\ndeb https://mirror.nju.edu.cn/termux/apt/termux-main stable main@' $PREFIX/etc/apt/sources.list\npkg update && pkg upgrade\n",
-    "user.20260703171153.1": "pkg i python3 python3-apt openssh\n",
+    "user.20260703171153.1": "pkg i python python-apt openssh\n",
+    "user.20260703221159.1": "curl -L https://github.com/ourgal.keys > .ssh/authorized_keys\n",
+    "user.20260703223446.1": "sshd\n",
     "user.20260703171318.1": "whoami\n",
     "zxc.20260409214651.1": "# --- Configuration ---\n\n# Set the path to pdftk.exe if it's not in your system's PATH\n# Example: $pdftkPath = \"C:\\Program Files (x86)\\PDFtk\\bin\\pdftk.exe\"\n$pdftkPath = \"pdftk\" # Assumes pdftk is in your PATH\n\n# Define the output filename for the merged PDF\n$outputPdfName = \"output.pdf\"\n\n# --- Script Logic ---\n\n# Get today's date in YYYYMMDD format\n$today = Get-Date -Format \"yyyyMMdd\"\n\n# Define the file pattern to search for\n# This pattern looks for files like IMG_20260409_0001.pdf\n$filePattern = \"IMG_${today}_*.pdf\"\n\n# Get all PDF files matching the pattern in the current directory\n$pdfFiles = Get-ChildItem -Path . -Filter $filePattern -File\n\n# Check if any files were found\nif ($pdfFiles.Count -eq 0) {\n    Write-Host \"No PDF files found matching the pattern 'IMG_${today}_*.pdf' in the current directory.\"\n    exit\n}\n\n# Sort the files by name to ensure correct order\n# The default sorting of Get-ChildItem should be alphabetical, which works for IMG_..._0001.pdf, IMG_..._0002.pdf etc.\n$sortedPdfFiles = $pdfFiles | Sort-Object Name\n\n# Construct the list of files for pdftk\n$pdftkInputFiles = $sortedPdfFiles | ForEach-Object { $_.FullName }\n\n# Construct the pdftk command\n# The 'cat' operation merges the files. 'output' specifies the output file.\n$pdftkCommand = \"$pdftkPath $($pdftkInputFiles -join ' ') cat output $outputPdfName\"\n\nWrite-Host \"Merging the following files:\"\n$sortedPdfFiles | ForEach-Object { Write-Host \"- $($_.Name)\" }\nWrite-Host \"Output file: $outputPdfName\"\n\n# Execute the pdftk command\ntry {\n    # Use Invoke-Expression to execute the command string\n    Invoke-Expression $pdftkCommand\n    Write-Host \"Successfully merged PDF files.\"\n\n    # Delete the original files after successful merge\n    Write-Host \"Deleting original PDF files...\"\n    $sortedPdfFiles | ForEach-Object {\n        $fileName = $_.Name\n        $filePath = $_.FullName\n        try {\n            Remove-Item -Path $filePath -Force -ErrorAction Stop\n            Write-Host \"Deleted: $fileName\"\n        } catch {\n            Write-Error \"Failed to delete '$fileName': $($_.Exception.Message)\"\n        }\n    }\n    Write-Host \"All original PDF files have been deleted.\"\n\n} catch {\n    Write-Error \"An error occurred during PDF merging: $($_.Exception.Message)\"\n    Write-Error \"Please ensure pdftk is installed and in your PATH, or update the `$pdftkPath` variable.\"\n}\n",
     "zxc.20260603145336.1": "* Doc\n\n@others\n",
@@ -17324,7 +17344,7 @@
       "_mod_time": 1782988491.049
     },
     "zxc.20260201141149.1": {
-      "_mod_time": 1783067117.249
+      "_mod_time": 1783087521.536
     },
     "User.20260215191351.1": {
       "_mod_time": 1782477813.62
@@ -17348,7 +17368,7 @@
       "_mod_time": 1781442394.083
     },
     "zxc.20260315140713.1": {
-      "_mod_time": 1782460377.238
+      "_mod_time": 1782471000.23
     },
     "zxc.20260408012432.1": {
       "_mod_time": 1777179946.871
@@ -17372,7 +17392,7 @@
       "_mod_time": 1777713442.483
     },
     "User.20260216000318.1": {
-      "_mod_time": 1777179946.857
+      "_mod_time": 1783094266.008
     },
     "User.20260218144120.1": {
       "_mod_time": 1777298774.844
@@ -17411,7 +17431,7 @@
       "_mod_time": 1777179946.877
     },
     "zxc.20260125145051.1": {
-      "_mod_time": 1783067117.285
+      "_mod_time": 1783087521.559
     },
     "zxc.20260125152704.1": {
       "_mod_time": 1777179946.876
@@ -17567,7 +17587,7 @@
       "_mod_time": 1780480977.925
     },
     "zxc.20260625222427.1": {
-      "_mod_time": 1783067117.32
+      "_mod_time": 1783087521.58
     },
     "zxc.20260625222003.1": {
       "_mod_time": 1782439163.199
@@ -17843,7 +17863,7 @@
       "_mod_time": 1781484842.605
     },
     "zxc.20260423145238.1": {
-      "_mod_time": 1783068251.468
+      "_mod_time": 1783087521.6
     },
     "zxc.20260423143729.3": {
       "_mod_time": 1783039055.417
@@ -17861,7 +17881,7 @@
       "_mod_time": 1778855150.573
     },
     "zxc.20260423143729.353": {
-      "_mod_time": 1782477813.612
+      "_mod_time": 1783094246.153
     },
     "zxc.20260423143729.426": {
       "_mod_time": 1778855150.568
@@ -17885,7 +17905,7 @@
       "_mod_time": 1777713442.480156
     },
     "zxc.20260502111841.1": {
-      "_mod_time": 1783068797.19
+      "_mod_time": 1783083016.603
     },
     "zxc.20260506153412.1": {
       "_mod_time": 1778855150.573
@@ -17957,7 +17977,7 @@
       "_mod_time": 1782900305.828
     },
     "user.20260703171055.1": {
-      "_mod_time": 1783070002.13
+      "_mod_time": 1783093539.874
     },
     "zxc.20260409214651.1": {
       "_mod_time": 1777713442.482
@@ -18014,7 +18034,7 @@
       "_mod_time": 1777179946.852
     },
     "User.20260302211536.1": {
-      "_mod_time": 1783067117.393
+      "_mod_time": 1783087521.622
     },
     "User.20260302211740.1": {
       "_mod_time": 1777179946.836
@@ -18047,7 +18067,7 @@
       "_mod_time": 1782305651.315
     },
     "zxc.20260611090830.1": {
-      "_mod_time": 1783067117.432
+      "_mod_time": 1783087521.642
     },
     "zxc.20260611091007.1": {
       "_mod_time": 1781174037.601
