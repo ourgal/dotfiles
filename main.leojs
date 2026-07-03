@@ -8708,6 +8708,9 @@
                       "vh": "@clean hosts.yml.tmpl",
                       "children": [
                         {
+                          "gnx": "zxc.20260626155606.1"
+                        },
+                        {
                           "gnx": "zxc.20260501183147.1",
                           "vh": "all"
                         },
@@ -15373,7 +15376,7 @@
     "zxc.20260616151751.1": "[my.modules.firefox]\ntheme = \"flexfox\"\n",
     "User.20260302211627.1": "@others\n",
     "zxc.20260626154828.1": "{{ $username := dict -}}\n{{ $username = set $username \"windows\" \"user\" -}}\n{{ $username = set $username \"linux\" \"zxc\" -}}\n",
-    "zxc.20260625205223.1": "{{ $termux := dict -}}\n{{ $termux = set $termux \"note20\" (dict \"port\" 8022 \"user\" \"u0_a664\" \"ip\" (ternary \"192.168.1.106\" \"192.168.123.232\" (eq .chezmoi.hostname \"work\" \"work2\"))) -}}\n{{ $termux = set $termux \"note20_adb\" (dict \"port\" 8023 \"user\" \"u0_a664\" \"ip\" \"localhost\") -}}\n{{ $termux = set $termux \"m6_adb\" (dict \"port\" 8022 \"user\" \"u0_a455\" \"ip\" \"localhost\") -}}\n{{ $termux = set $termux \"m6\" (dict \"port\" 8022 \"user\" \"u0_a455\" \"ip\" \"192.168.123.191\") -}}\n",
+    "zxc.20260625205223.1": "{{ $termux := dict -}}\n{{ $termux = set $termux \"note20\" (dict \"port\" 8022 \"user\" \"u0_a650\" \"ip\" (ternary \"192.168.1.106\" \"192.168.123.232\" (eq .chezmoi.hostname \"work\" \"work2\"))) -}}\n{{ $termux = set $termux \"note20_adb\" (dict \"port\" 8023 \"user\" $termux.note20.user \"ip\" \"localhost\") -}}\n{{ $termux = set $termux \"m6\" (dict \"port\" 8022 \"user\" \"u0_a455\" \"ip\" (ternary \"192.168.1.103\" \"192.168.123.191\" (eq .chezmoi.hostname \"work\" \"work2\"))) -}}\n{{ $termux = set $termux \"m6_adb\" (dict \"port\" 8022 \"user\" $termux.m6.user \"ip\" \"localhost\") -}}\n",
     "zxc.20260626150915.1": "{{ $termux_home := \"/data/data/com.termux/files/home\" -}}\n{{ $windows_home := print \"/C:/Users/\" $username.windows -}}\n{{ $linux_home := print \"/home/\" $username.linux -}}\n",
     "zxc.20260626153034.1": "{{ $ip := dict -}}\n{{ $ip = set $ip \"brix\" (dict \"ip\" \"192.168.123.206\" \"port\" \"22\" \"user\" $username.linux) -}}\n{{ $ip = set $ip \"soft\" (dict \"ip\" \"192.168.123.206\" \"port\" \"23231\" \"user\" $username.linux) -}}\n{{ $ip = set $ip \"nuc\" (dict \"ip\" \"192.168.123.123\" \"port\" \"22\" \"user\" $username.windows) -}}\n{{ $ip = set $ip \"work2\" (dict \"ip\" \"192.168.1.107\" \"port\" \"22\" \"user\" $username.linux) -}}\n{{ $ip = set $ip \"office2043\" (dict \"ip\" \"192.168.1.104\" \"port\" \"22\" \"user\" $username.linux) -}}\n",
     "zxc.20260625233508.1": "<< dos >>\n@others\n{{ end -}}\n",
@@ -16079,7 +16082,7 @@
     "zxc.20260501183207.1": "windows:\n  vars:\n    ansible_connection: ssh\n    ansible_shell_type: powershell\n  hosts:\n    nuc:\n      ansible_host: nuc.local\n      my_hostname: nuc\n    bed:\n      ansible_host: bed.local\n      my_hostname: bed\n    work:\n      ansible_host: 192.168.1.110\n      my_hostname: work\n",
     "zxc.20260501183224.1": "wsl-debian:\n  vars:\n    ansible_connection: community.general.wsl\n    ansible_user: user\n  hosts:\n    nuc-windows-wsl-debian:\n      ansible_host: nuc.local\n      wsl_distribution: debian\n      wsl_user: root\n",
     "zxc.20260501183235.1": "wsl-arch:\n  vars:\n    ansible_connection: community.general.wsl\n    ansible_user: user\n  hosts:\n    nuc-wsl-arch:\n      ansible_host: nuc.local\n      wsl_distribution: archlinux\n      wsl_user: root\n    work-wsl-arch:\n      ansible_host: 192.168.1.110\n      wsl_distribution: archlinux\n      wsl_user: root\n",
-    "zxc.20260501183245.1": "termux:\n  vars:\n    ansible_ssh_port: 8022\n  hosts:\n    note20:\n      ansible_host: 192.168.123.232\n      ansible_user: u0_a644\n",
+    "zxc.20260501183245.1": "termux:\n  vars:\n    ansible_ssh_port: 8022\n  hosts:\n    note20:\n      ansible_host: {{ $termux.note20.ip }}\n      ansible_user: {{ $termux.note20.user }}\n      ansible_ssh_pass: {{ gopass \"password/linux/user\" }}\n    m6:\n      ansible_host: {{ $termux.m6.ip }}\n      ansible_user: {{ $termux.m6.user }}\n      ansible_ssh_pass: {{ gopass \"password/linux/user\" }}\n",
     "zxc.20260501183257.1": "uos-live:\n  hosts:\n    uos-live:\n      ansible_host: 192.168.1.107\n      ansible_user: uos\n      ansible_become_pass: uos\n",
     "zxc.20260507153749.1": "uos:\n  hosts:\n    work2:\n      ansible_host: 192.168.1.107\n      ansible_user: zxc\n      ansible_become_pass: \"{{ gopass \"password/linux/user\" }}\"\n",
     "zxc.20260501183315.1": "macos:\n  hosts:\n    macmini:\n      ansible_host: 192.168.123.117\n      ansible_become_pass: \"{{ gopass \"password/linux/user\" }}\"\n",
@@ -16683,7 +16686,7 @@
     "zxc.20260502111841.1": "@others",
     "zxc.20260502111909.1": "FILES := $(basename $(wildcard playbooks/*.yml))\nTARGETS := $(FILES:playbooks/%=%)\n",
     "zxc.20260502112024.1": ".PHONY: all ${TARGETS}\nall: ${TARGETS}",
-    "zxc.20260502112055.1": "${TARGETS}:\n\t{{ if lookPath \"ansible-lint\" -}}\n\tansible-lint playbooks/$@.yml\n\t{{ end -}}\n\tansible-playbook -i inventory/hosts.yml playbooks/$@.yml\n",
+    "zxc.20260502112055.1": "{{ $env_var := \"\" }}\n{{ if not (eq .chezmoi.os \"windows\") -}}\n{{ $env_var = \"LC_ALL=C.UTF-8 ANSIBLE_CONFIG=ansible.cfg \" }}\n{{ end -}}\n${TARGETS}:\n\t{{ if and (lookPath \"ansible-lint\") (not (eq .chezmoi.os \"windows\")) -}}\n\tansible-lint playbooks/$@.yml\n\t{{ end -}}\n\t{{ $env_var }}ansible-playbook -i inventory/hosts.yml playbooks/$@.yml\n",
     "zxc.20260506153412.1": "@others",
     "zxc.20260506153441.1": "[project]\nname = \"playbooks\"\nversion = \"0.1.0\"\ndescription = \"Add your description here\"\nreadme = \"README.md\"\nrequires-python = \">=3.10\"\ndependencies = [\n    \"ansible<2.17.dev0\",\n]",
     "zxc.20260506154617.1": "[tool.uv]\nindex-url = \"{{ .my.pip.mirror }}\"",
@@ -17293,7 +17296,7 @@
       "_mod_time": 1782988491.049
     },
     "zxc.20260201141149.1": {
-      "_mod_time": 1782900305.844
+      "_mod_time": 1783067117.249
     },
     "User.20260215191351.1": {
       "_mod_time": 1782477813.62
@@ -17317,7 +17320,7 @@
       "_mod_time": 1781442394.083
     },
     "zxc.20260315140713.1": {
-      "_mod_time": 1782477813.619
+      "_mod_time": 1782460377.238
     },
     "zxc.20260408012432.1": {
       "_mod_time": 1777179946.871
@@ -17326,7 +17329,7 @@
       "_mod_time": 1781484842.615
     },
     "zxc.20260327184129.1": {
-      "_mod_time": 1783008042.215
+      "_mod_time": 1783039056.276
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1777179946.862
@@ -17380,7 +17383,7 @@
       "_mod_time": 1777179946.877
     },
     "zxc.20260125145051.1": {
-      "_mod_time": 1782695824.549
+      "_mod_time": 1783067117.285
     },
     "zxc.20260125152704.1": {
       "_mod_time": 1777179946.876
@@ -17404,7 +17407,7 @@
       "_mod_time": 1781484843.598
     },
     "User.20260217223030.1": {
-      "_mod_time": 1782993368.024
+      "_mod_time": 1783039056.282
     },
     "User.20260217223035.1": {
       "_mod_time": 1781856158.738
@@ -17536,7 +17539,7 @@
       "_mod_time": 1780480977.925
     },
     "zxc.20260625222427.1": {
-      "_mod_time": 1782900305.86
+      "_mod_time": 1783067117.32
     },
     "zxc.20260625222003.1": {
       "_mod_time": 1782439163.199
@@ -17812,10 +17815,10 @@
       "_mod_time": 1781484842.605
     },
     "zxc.20260423145238.1": {
-      "_mod_time": 1778855150.563
+      "_mod_time": 1783068251.468
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1782998361.023
+      "_mod_time": 1783039055.417
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778855150.568
@@ -17854,7 +17857,7 @@
       "_mod_time": 1777713442.480156
     },
     "zxc.20260502111841.1": {
-      "_mod_time": 1778855150.563
+      "_mod_time": 1783068797.19
     },
     "zxc.20260506153412.1": {
       "_mod_time": 1778855150.573
@@ -17980,7 +17983,7 @@
       "_mod_time": 1777179946.852
     },
     "User.20260302211536.1": {
-      "_mod_time": 1782900305.817
+      "_mod_time": 1783067117.393
     },
     "User.20260302211740.1": {
       "_mod_time": 1777179946.836
@@ -18013,7 +18016,7 @@
       "_mod_time": 1782305651.315
     },
     "zxc.20260611090830.1": {
-      "_mod_time": 1782695824.481
+      "_mod_time": 1783067117.432
     },
     "zxc.20260611091007.1": {
       "_mod_time": 1781174037.601
