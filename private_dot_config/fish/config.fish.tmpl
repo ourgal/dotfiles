@@ -22,7 +22,7 @@ set -x SSH_AUTH_SOCK $PREFIX/var/run/ssh-agent.socket
 {{ output "navi" "widget" "fish" }}
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "zoxide") "opt" (list "shell" "fish" "carapace" "enable") "os" (list "linux" "android")) | trim | atoi -}}
-{{ output "carapace" "_carapace" }}
+{{ output "carapace" "_carapace" "fish" }}
 {{ end -}}
 {{ if lookPath "eza" -}}
 {{ $opts := "--git --icons auto --group --group-directories-first --time-style relative"}}

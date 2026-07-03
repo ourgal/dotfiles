@@ -710,7 +710,7 @@ Set carapace.
 
 #+begin_src fish
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "zoxide") "opt" (list "shell" "fish" "carapace" "enable") "os" (list "linux" "android")) | trim | atoi -}}
-{{ output "carapace" "_carapace" }}
+{{ output "carapace" "_carapace" "fish" }}
 {{ end -}}
 #+end_src
 

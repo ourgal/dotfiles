@@ -3745,6 +3745,10 @@
                           "vh": "m6"
                         },
                         {
+                          "gnx": "user.20260704002653.1",
+                          "vh": "m6-adb"
+                        },
+                        {
                           "gnx": "zxc.20260319090429.1",
                           "vh": "gogs-m6"
                         },
@@ -7281,6 +7285,30 @@
                       "children": [
                         {
                           "gnx": "zxc.20260621234846.1"
+                        },
+                        {
+                          "gnx": "User.20260225203941.1"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "gnx": "user.20260704002001.1",
+              "vh": "transmission",
+              "children": [
+                {
+                  "gnx": "user.20260704002017.1",
+                  "vh": "@path transmission-daemon",
+                  "children": [
+                    {
+                      "gnx": "user.20260704002025.1",
+                      "vh": "@clean settings.json",
+                      "children": [
+                        {
+                          "gnx": "zxc.20260529091245.1"
                         },
                         {
                           "gnx": "User.20260225203941.1"
@@ -15053,7 +15081,7 @@
     "zxc.20260424082558.5": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"zoxide\") \"opt\" (list \"shell\" \"fish\" \"fzf\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ if or (lookPath \"mcfly\") (lookPath \"atuin\") -}}\n{{ output \"env\" \"FZF_CTRL_R_COMMAND=\" \"fzf\" \"--fish\" }}\n{{ else -}}\n{{ output \"fzf\" \"--fish\" }}\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260424082558.6": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"zoxide\") \"opt\" (list \"shell\" \"fish\" \"mcfly\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"mcfly\" \"init\" \"fish\" }}\n{{ end -}}\n",
     "zxc.20260424082558.7": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"zoxide\") \"opt\" (list \"shell\" \"fish\" \"navi\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"navi\" \"widget\" \"fish\" }}\n{{ end -}}\n",
-    "zxc.20260424082558.8": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"zoxide\") \"opt\" (list \"shell\" \"fish\" \"carapace\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"carapace\" \"_carapace\" }}\n{{ end -}}\n",
+    "zxc.20260424082558.8": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"zoxide\") \"opt\" (list \"shell\" \"fish\" \"carapace\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"carapace\" \"_carapace\" \"fish\" }}\n{{ end -}}\n",
     "zxc.20260424082558.9": "{{ if lookPath \"eza\" -}}\n{{ $opts := \"--git --icons auto --group --group-directories-first --time-style relative\"}}\nfunction ls\n    eza {{ $opts }} $argv\nend\n\nfunction ll\n    eza -l {{ $opts }} $argv\nend\n{{ end -}}\n",
     "zxc.20260424082558.10": "{{ if lookPath \"nnn\" -}}\n# Rename this file to match the name of the function\n# e.g. ~/.config/fish/functions/n.fish\n# or, add the lines to the 'config.fish' file.\n\nfunction n --wraps nnn --description 'support nnn quit and change directory'\n    # Block nesting of nnn in subshells\n    if test -n \"$NNNLVL\" -a \"$NNNLVL\" -ge 1\n        echo \"nnn is already running\"\n        return\n    end\n\n    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)\n    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to\n    # see. To cd on quit only on ^G, remove the \"-x\" from both lines below,\n    # without changing the paths.\n    if test -n \"$XDG_CONFIG_HOME\"\n        set -x NNN_TMPFILE \"$XDG_CONFIG_HOME/nnn/.lastd\"\n    else\n        set -x NNN_TMPFILE \"$HOME/.config/nnn/.lastd\"\n    end\n\n    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn\n    # stty start undef\n    # stty stop undef\n    # stty lwrap undef\n    # stty lnext undef\n\n    # The command function allows one to alias this function to `nnn` without\n    # making an infinitely recursive alias\n    command nnn $argv\n\n    if test -e $NNN_TMPFILE\n        source $NNN_TMPFILE\n        rm -- $NNN_TMPFILE\n    end\nend\n{{ end -}}\n",
     "zxc.20260620125318.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"zoxide\") \"opt\" (list \"shell\" \"fish\" \"zoxide\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"zoxide\" \"init\" \"fish\" }}\n{{ end -}}\n",
@@ -15462,7 +15490,8 @@
     "zxc.20260201141231.1": "Host github.com\n  HostName ssh.github.com\n  Port 443\n  User git",
     "zxc.20260201141321.1": "Host note20-adb\n  Port {{ $termux.note20_adb.port }}\n  User {{ $termux.note20_adb.user }}\n  HostName {{ $termux.note20_adb.ip }}\n",
     "zxc.20260625234718.1": "Host note20\n  Port {{ $termux.note20.port }}\n  User {{ $termux.note20.user }}\n  HostName {{ $termux.note20.ip }}\n",
-    "zxc.20260625205407.1": "Host m6-adb\n  Port {{ $termux.m6_adb.port }}\n  User {{ $termux.m6_adb.user }}\n  HostName {{ $termux.m6_adb.ip }}\n",
+    "zxc.20260625205407.1": "Host m6\n  Port {{ $termux.m6.port }}\n  User {{ $termux.m6.user }}\n  HostName {{ $termux.m6.ip }}\n",
+    "user.20260704002653.1": "Host m6-adb\n  Port {{ $termux.m6_adb.port }}\n  User {{ $termux.m6_adb.user }}\n  HostName {{ $termux.m6_adb.ip }}\n",
     "zxc.20260319090429.1": "{{ if ne .chezmoi.hostname \"localhost\" -}}\nHost gogs-m6\n  Port 23231\n  User {{ $termux.m6.user }}\n  HostName {{ template \"ipM6\" .chezmoi.hostname }}\n{{ end -}}\n",
     "zxc.20260626150750.1": "{{ if eq .chezmoi.hostname \"work\" \"work2\" -}}\nHost work2\n  Port {{ $ip.work2.port }}\n  User {{ $ip.work2.user }}\n  HostName {{ $ip.work2.ip }}\n{{ end -}}\n",
     "user.20260629171015.1": "{{ if eq .chezmoi.hostname \"work\" \"work2\" -}}\nHost office2043\n  Port {{ $ip.office2043.port }}\n  User {{ $ip.office2043.user }}\n  HostName {{ $ip.office2043.ip }}\n{{ end -}}\n",
@@ -15979,6 +16008,7 @@
     "zxc.20260625222215.1": "<< unix >>\n{{ if lookPath \"mc\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260625222255.1": "<< unix >>\n{{ if lookPath \"mc\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "user.20260702165628.1": "<< unix >>\n{{ if lookPath \"fdroidcl\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "user.20260704002025.1": "<< unix >>\n{{ if lookPath \"transmission-daemon\" -}}\n@others\n{{ end -}}\n{{ end -}}\n@language json\n",
     "zxc.20260502183455.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260502183056.1": "<< unix >>\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260502183253.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n{{ if .my.git.sign.gpg -}}\n66E220F513E05B9F44D77B9B15F629D7C1270868\n{{ end -}}\n{{ end -}}\n{{ end -}}\n",
@@ -16475,7 +16505,7 @@
     "zxc.20260423143729.367": "- tectonic\n- texlab\n- texlive-bin",
     "zxc.20260423143729.368": "- python",
     "zxc.20260423143729.369": "- pandoc",
-    "zxc.20260423143729.370": "- aria2\n- axel\n- cloneit\n- python-yt-dlp\n",
+    "zxc.20260423143729.370": "- aria2\n- axel\n- cloneit\n- python-yt-dlp\n- transmission\n",
     "zxc.20260620003409.1": "- recutils\n",
     "zxc.20260423143729.371": "- helix\n- helix-grammars\n- neovim\n- python-pynvim\n- vim",
     "zxc.20260423143729.372": "- gopass",
@@ -17148,31 +17178,31 @@
       "_mod_time": 1782305651.342
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1782087842.61
+      "_mod_time": 1781931273.273
     },
     "zxc.20260125143959.1": {
-      "_mod_time": 1778049436.421
+      "_mod_time": 1777906067.531
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1782695824.52
+      "_mod_time": 1782667072.925
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1777398596.506
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1782695824.52
+      "_mod_time": 1782667072.949
     },
     "zxc.20260429145437.1": {
       "_mod_time": 1777612767.635
     },
     "zxc.20260427000037.1": {
-      "_mod_time": 1777249737.153
+      "_mod_time": 1777219283.718
     },
     "zxc.20260427224318.1": {
-      "_mod_time": 1777337709.088
+      "_mod_time": 1777301694.728
     },
     "zxc.20260615224512.2": {
-      "_mod_time": 1781590486.331
+      "_mod_time": 1781534729.293
     },
     "User.20260218142211.1": {
       "_mod_time": 1782736239.901
@@ -17253,7 +17283,7 @@
       "_mod_time": 1780272723.738
     },
     "zxc.20260505102132.1": {
-      "_mod_time": 1780272723.74
+      "_mod_time": 1780117762.476
     },
     "zxc.20260202215023.1": {
       "_mod_time": 1776434513.068
@@ -17271,13 +17301,13 @@
       "_mod_time": 1780272723.737
     },
     "User.20260220214558.1": {
-      "_mod_time": 1780272723.737
+      "_mod_time": 1780155936.294
     },
     "zxc.20260530230944.1": {
       "_mod_time": 1780272723.741
     },
     "zxc.20260531001920.1": {
-      "_mod_time": 1780272723.741
+      "_mod_time": 1780158075.007
     },
     "User.20260217214851.1": {
       "_mod_time": 1776851988.666
@@ -17316,7 +17346,7 @@
       "_mod_time": 1778855150.556
     },
     "zxc.20260505141849.1": {
-      "_mod_time": 1778049436.405
+      "_mod_time": 1777967012.414
     },
     "zxc.20260323195318.1": {
       "_mod_time": 1776434513.068
@@ -17349,7 +17379,7 @@
       "_mod_time": 1782988491.049
     },
     "zxc.20260201141149.1": {
-      "_mod_time": 1783087521.536
+      "_mod_time": 1783096034.31
     },
     "User.20260215191351.1": {
       "_mod_time": 1782477813.62
@@ -17451,7 +17481,7 @@
       "_mod_time": 1782477813.63
     },
     "zxc.20260125161631.1": {
-      "_mod_time": 1777337709.116
+      "_mod_time": 1777302969.492
     },
     "User.20260216185314.1": {
       "_mod_time": 1777179946.883
@@ -17553,7 +17583,7 @@
       "_mod_time": 1782087842.645
     },
     "zxc.20260421145655.1": {
-      "_mod_time": 1782087842.643
+      "_mod_time": 1783099129.77
     },
     "zxc.20260421231645.1": {
       "_mod_time": 1777179946.881
@@ -17562,7 +17592,7 @@
       "_mod_time": 1778855150.599
     },
     "zxc.20260504000649.1": {
-      "_mod_time": 1778049436.438
+      "_mod_time": 1777827566.629
     },
     "zxc.20260503225115.1": {
       "_mod_time": 1778855150.604
@@ -17574,10 +17604,10 @@
       "_mod_time": 1778855150.604
     },
     "zxc.20260505104942.1": {
-      "_mod_time": 1780272726.066
+      "_mod_time": 1780230892.201
     },
     "zxc.20260505105255.1": {
-      "_mod_time": 1778049436.434
+      "_mod_time": 1777967012.43
     },
     "zxc.20260507000814.1": {
       "_mod_time": 1780055115.897
@@ -17586,7 +17616,7 @@
       "_mod_time": 1780055115.893
     },
     "zxc.20260529152606.1": {
-      "_mod_time": 1780272726.07
+      "_mod_time": 1780148506.597
     },
     "zxc.20260603092509.1": {
       "_mod_time": 1780480977.925
@@ -17595,28 +17625,31 @@
       "_mod_time": 1783087521.58
     },
     "zxc.20260625222003.1": {
-      "_mod_time": 1782439163.199
+      "_mod_time": 1782397414.941
     },
     "zxc.20260625222119.1": {
-      "_mod_time": 1782439163.199
+      "_mod_time": 1782397414.97
     },
     "zxc.20260625222215.1": {
-      "_mod_time": 1782439163.199
+      "_mod_time": 1782397414.992
     },
     "zxc.20260625222255.1": {
-      "_mod_time": 1782439163.199
+      "_mod_time": 1782397415.021
     },
     "user.20260702165628.1": {
       "_mod_time": 1782988491.901
     },
+    "user.20260704002025.1": {
+      "_mod_time": 1783095662.79
+    },
     "zxc.20260502183455.1": {
-      "_mod_time": 1778049436.441
+      "_mod_time": 1777717804.636
     },
     "zxc.20260502183056.1": {
-      "_mod_time": 1778049436.441
+      "_mod_time": 1777978566.558
     },
     "zxc.20260502183253.1": {
-      "_mod_time": 1782087842.673
+      "_mod_time": 1781928426.128
     },
     "zxc.20260505181144.1": {
       "_mod_time": 1778706271.142
@@ -17886,7 +17919,7 @@
       "_mod_time": 1778855150.573
     },
     "zxc.20260423143729.353": {
-      "_mod_time": 1783094700.309
+      "_mod_time": 1783095345.279
     },
     "zxc.20260423143729.426": {
       "_mod_time": 1778855150.568
@@ -17988,7 +18021,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1782736239.871
+      "_mod_time": 1783099129.795
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777298774.844
@@ -18006,7 +18039,7 @@
       "_mod_time": 1777179946.836
     },
     "zxc.20260529091145.1": {
-      "_mod_time": 1780272723.743
+      "_mod_time": 1780069890.937
     },
     "zxc.20260201140523.1": {
       "_mod_time": 1777179946.85
