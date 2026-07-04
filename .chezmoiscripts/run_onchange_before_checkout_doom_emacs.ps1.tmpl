@@ -1,8 +1,16 @@
 {{ if eq .chezmoi.os "windows" -}}
-{{ if stat (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom") -}}
-{{ $commit := output "git" "-C" (print .chezmoi.homeDir "/.emacs.d") "rev-parse" "HEAD" }}
+{{ $doom_dir := joinPath .chezmoi.homeDir ".config" "emacs" -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ $doom_dir = joinPath .chezmoi.homeDir ".emacs.d" -}}
+{{ end -}}
+{{ $doom_bin := joinPath $doom_dir "bin" "doom" -}}
+{{ if stat $doom_bin -}}
+{{ $commit := output "git" "-C" $doom_dir "rev-parse" "HEAD" }}
 {{ if ne $commit .my.doomemacs.commit -}}
-cd {{ joinPath .chezmoi.homeDir ".emacs.d" | quote }}
+cd {{ $doom_dir | quote }}
+
+git reset --hard HEAD
+
 git fetch
 git checkout {{ .my.doomemacs.commit }}
 {{ end -}}

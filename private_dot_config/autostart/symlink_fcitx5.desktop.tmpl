@@ -1,4 +1,4 @@
-{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 {{ if not (lookPath "fcitx5") -}}
 {{ joinPath .chezmoi.homeDir ".local" "share" "flatpak" "exports" "share" "applications" "org.fcitx.Fcitx5.desktop" }}
 {{ end -}}

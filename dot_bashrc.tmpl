@@ -1,4 +1,4 @@
-{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 {{ $os := .chezmoi.os -}}
 {{ if eq .chezmoi.os "linux" -}}
 {{ $os = .chezmoi.osRelease.id -}}

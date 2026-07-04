@@ -1,5 +1,10 @@
 {{ if eq .chezmoi.os "windows" -}}
-{{ if stat (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom") -}}
+{{ $doom_dir := joinPath .chezmoi.homeDir ".config" "emacs" -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ $doom_dir = joinPath .chezmoi.homeDir ".emacs.d" -}}
+{{ end -}}
+{{ $doom_bin := joinPath $doom_dir "bin" "doom" -}}
+{{ if stat $doom_bin -}}
 {{ if stat (joinPath .chezmoi.homeDir ".config" "doom" "config.el") -}}
 {{ $sum := list }}
 {{ $homeDir := .chezmoi.homeDir -}}
@@ -7,9 +12,9 @@
 {{ $sum = include (joinPath $homeDir ".config" "doom" (print . ".el")) | append $sum -}}
 {{ end -}}
 # {{ $sum | join "" | sha256sum }}
-# {{ output "git" "-C" (print .chezmoi.homeDir "/.emacs.d") "rev-parse" "HEAD" }}
+# {{ output "git" "-C" $doom_dir "rev-parse" "HEAD" }}
 # {{ output "emacs" "--version" | trim | splitList "\n" | first }}
-{{ (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom.ps1" ) }} sync
+{{ $doom_bin }} sync
 {{ end -}}
 {{ end -}}
 {{ end -}}

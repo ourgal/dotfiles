@@ -1,4 +1,4 @@
-{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 {{ if and (lookPath "vim") (stat (joinPath .chezmoi.homeDir ".config" "git" "config")) -}}
 #!{{lookPath "bash"}}
 set -euo pipefail

@@ -1,4 +1,4 @@
-{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 {{ if lookPath "bash" -}}
 [".local/lib/ble_sh"]
     type = "git-repo"
@@ -21,14 +21,39 @@
     url = "https://github.com/danprince/vsnetrw/releases/download/v0.3.2/vsnetrw-0.3.2.vsix"
 {{ end -}}
 {{ end -}}
+{{ $doom_repo := "https://mirror.nju.edu.cn/git/doom-emacs.git/" -}}
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
 {{ if lookPath "emacs" -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+[".config/emacs"]
+    type = "git-repo"
+    url = "{{ $doom_repo }}"
+{{ end -}}
+
+{{ if eq .chezmoi.os "windows" -}}
 [".emacs.d"]
     type = "git-repo"
-    url = "https://mirror.nju.edu.cn/git/doom-emacs.git/"
+    url = "{{ $doom_repo }}"
 {{ end -}}
 {{ end -}}
-{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ end -}}
+
+{{ if eq .chezmoi.os "android" -}}
+{{ if stat "/data/data/org.gnu.emacs/files" -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+[".config/emacs"]
+    type = "git-repo"
+    url = "{{ $doom_repo }}"
+{{ end -}}
+
+{{ if eq .chezmoi.os "windows" -}}
+[".emacs.d"]
+    type = "git-repo"
+    url = "{{ $doom_repo }}"
+{{ end -}}
+{{ end -}}
+{{ end -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 {{ if and (hasKey .chezmoi.osRelease "name") (ne .chezmoi.osRelease.name "Void") -}}
 [".local/share/fonts/nerdsymbols"]
     type = "archive"
@@ -37,7 +62,7 @@
     include = [ "*.ttf" ]
 {{ end -}}
 {{ end -}}
-{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 [".local/share/fonts/maple"]
     type = "archive"
     url = "https://github.com/subframe7536/maple-font/releases/download/v7.9/MapleMono-NF-CN.zip"
@@ -64,7 +89,7 @@
     refreshPeriod = "168h"
 {{ end -}}
 {{ end -}}
-{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 {{ if lookPath "awesome" -}}
 [".config/awesome-copycats"]
     type = "git-repo"

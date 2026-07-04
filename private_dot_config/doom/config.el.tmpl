@@ -1,5 +1,10 @@
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
-{{ if stat (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom") -}}
+{{ $doom_dir := joinPath .chezmoi.homeDir ".config" "emacs" -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ $doom_dir = joinPath .chezmoi.homeDir ".emacs.d" -}}
+{{ end -}}
+{{ $doom_bin := joinPath $doom_dir "bin" "doom" -}}
+{{ if stat $doom_bin -}}
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
@@ -69,8 +74,14 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
 (setq user-full-name "zxc")
-(setq doom-font (font-spec :family "{{ .my.font.monospace }}" :size 15)
-      doom-variable-pitch-font (font-spec :family "{{ .my.font.monospace }}" :size 15))
+{{ $size := 15 -}}
+{{ $font := .my.font.monospace -}}
+{{ if eq .chezmoi.os "android" -}}
+{{ $font = "IosevkaTerm Nerd Font" -}}
+{{ $size = 30 -}}
+{{ end -}}
+(setq doom-font (font-spec :family "{{ $font }}" :size {{ $size }})
+      doom-variable-pitch-font (font-spec :family "{{ $font }}" :size {{ $size }}))
 
 (setq doom-themes-enable-bold t
       doom-themes-enable-italic t)
@@ -123,6 +134,9 @@
 (after! emms
   (setq emms-source-file-default-directory "~/Music")
   (add-hook 'emms-playlist-mode-hook #'turn-on-evil-mode))
+{{ if eq .chezmoi.os "android" -}}
+(setq overriding-text-conversion-style nil)
+{{ end -}}
 (map! :n "C-w o" #'delete-other-windows
       :n "C-w z" #'doom/window-enlargen)
 (map! :leader

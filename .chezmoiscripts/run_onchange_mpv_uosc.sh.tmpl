@@ -1,4 +1,4 @@
-{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 {{ if lookPath "mpv" -}}
 #!{{lookPath "bash"}}
 {{ template "checkPath" (list "bash" "curl" "unzip") -}}

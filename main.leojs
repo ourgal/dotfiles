@@ -2075,8 +2075,15 @@
                                   "vh": "<< unix dos >>"
                                 },
                                 {
+                                  "gnx": "User.20260225204449.1"
+                                },
+                                {
+                                  "gnx": "user.20260704144505.1",
+                                  "vh": "doom repo"
+                                },
+                                {
                                   "gnx": "zxc.20260126160721.1",
-                                  "vh": "content"
+                                  "vh": "<< doom repo >>"
                                 }
                               ]
                             },
@@ -2748,14 +2755,14 @@
                               "vh": "@clean run_onchange_before_checkout_doom_emacs.ps1.tmpl",
                               "children": [
                                 {
-                                  "gnx": "zxc.20260530231023.1",
-                                  "vh": "content"
-                                },
-                                {
                                   "gnx": "User.20260225205841.1"
                                 },
                                 {
                                   "gnx": "User.20260225204326.1"
+                                },
+                                {
+                                  "gnx": "zxc.20260530231023.1",
+                                  "vh": "content"
                                 }
                               ]
                             },
@@ -3316,6 +3323,34 @@
                                 },
                                 {
                                   "gnx": "zxc.20260620011608.1",
+                                  "vh": "content"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "gnx": "user.20260704161538.1",
+                          "vh": "termux emacs config",
+                          "children": [
+                            {
+                              "gnx": "user.20260704161622.1",
+                              "vh": "@clean run_onchange_after_termux_emacs_config.sh.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "User.20260225204449.1"
+                                },
+                                {
+                                  "gnx": "User.20260225205841.1"
+                                },
+                                {
+                                  "gnx": "User.20260221011837.1"
+                                },
+                                {
+                                  "gnx": "zxc.20260505102603.1"
+                                },
+                                {
+                                  "gnx": "user.20260704161904.1",
                                   "vh": "content"
                                 }
                               ]
@@ -4583,6 +4618,15 @@
                             {
                               "gnx": "zxc.20260612234219.1",
                               "vh": "emms"
+                            },
+                            {
+                              "gnx": "user.20260704223557.1",
+                              "vh": "disable android text conversion",
+                              "children": [
+                                {
+                                  "gnx": "User.20260225204449.1"
+                                }
+                              ]
                             }
                           ]
                         },
@@ -15060,7 +15104,7 @@
     "zxc.20260408001030.1": "# name: Show input hints from argmatchers\n# type: boolean\nargmatcher.show_hints = True\n\nautosuggest.inline = True\n\n# name: Enable asynchronous suggestions\n# type: boolean\nautosuggest.async = True\n\n# name: Enable automatic suggestions\n# type: boolean\nautosuggest.enable = True\n\n# name: Show usage hint for automatic suggestions\n# type: boolean\nautosuggest.hint = True\n\n# name: Accept original capitalization\n# type: boolean\nautosuggest.original_case = True\n\n# name: Controls how suggestions are chosen\n# type: string\nautosuggest.strategy = match_prev_cmd history completion\n\n# name: Command to run when injected\n# type: string\nclink.autostart =\n\n# name: Auto-update the Clink program files\n# type: enum\n# options: off,check,prompt,auto\nclink.autoupdate = check\n\n# name: Colorize the input text\n# type: boolean\nclink.colorize_input = True\n\n# name: A .clinkprompt file to use for the prompt\n# type: string\nclink.customprompt =\n\n# name: Selects default key bindings\n# type: enum\n# options: bash,windows\nclink.default_bindings = bash\n\n# name: Controls what startup logo to show\n# type: enum\n# options: none,full,short\nclink.logo = none\n\n# name: Maximum rows for the input line\n# type: integer\nclink.max_input_rows = 0\n\n# name: Strips CR and LF chars on paste\n# type: enum\n# options: delete,space,ampersand,crlf\nclink.paste_crlf = crlf\n\n# name: Paths to load Lua scripts from\n# type: string\nclink.path =\n\n# name: Direction for repeated deletion in popup lists\n# type: enum\n# options: down,up\nclink.popup_delete_direction = down\n\n# name: Default search mode in popup lists\n# type: enum\n# options: find,filter\nclink.popup_search_mode = find\n\n# name: Enable prompt filtering by Lua scripts\n# type: boolean\nclink.promptfilter = True\n\n# name: Scroll offset above/below selected item in list\n# type: integer\nclink.scroll_offset = 3\n\n# name: Days between update checks\n# type: integer\nclink.update_interval = 5\n\n# name: Replaces the console title prefix when elevated\n# type: string\ncmd.admin_title_prefix =\n\n# name: Pressing Alt-F4 exits session\n# type: boolean\ncmd.altf4_exits = True\n\n# name: Auto-answer terminate prompt\n# type: enum\n# options: off,answer_yes,answer_no\ncmd.auto_answer = off\n\n# name: Pressing Ctrl-D exits session\n# type: boolean\ncmd.ctrld_exits = True\n\n# name: Retrieve last exit code\n# type: boolean\ncmd.get_errorlevel = True\n\n# name: Argmatcher color\n# type: color\ncolor.argmatcher =\n\n# name: Common prefix of completions\n# type: color\ncolor.common_match_prefix =\n\n# name: Color for executable command word\n# type: color\ncolor.executable =\n\n# name: Hidden file completions\n# type: color\ncolor.hidden =\n\n# name: History expansion color\n# type: color\ncolor.histexpand =\n\n# name: Horizontal scroll marker color\n# type: color\ncolor.horizscroll =\n\n# name: Input text color\n# type: color\ncolor.input =\n\n# name: Modified history line mark color\n# type: color\ncolor.modmark =\n\n# name: Color for popup lists and messages\n# type: color\ncolor.popup =\n\n# name: Color for popup border\n# type: color\ncolor.popup_border =\n\n# name: Color for popup description column(s)\n# type: color\ncolor.popup_desc =\n\n# name: Color for popup footer message\n# type: color\ncolor.popup_footer =\n\n# name: Color for popup title text\n# type: color\ncolor.popup_header =\n\n# name: Color for selected item in popup list\n# type: color\ncolor.popup_select =\n\n# name: Color for selected item in popup list\n# type: color\ncolor.popup_selectdesc =\n\n# name: Prompt color\n# type: color\ncolor.prompt =\n\n# name: Readonly file completions\n# type: color\ncolor.readonly =\n\n# name: Selected completion color\n# type: color\ncolor.selected_completion =\n\n# name: Selection color\n# type: color\ncolor.selection =\n\n# name: Color for suggestion text\n# type: color\ncolor.suggestion =\n\n# name: Color for suggestions in the suggestion list\n# type: color\ncolor.suggestionlist =\n\n# name: Color for unrecognized command word\n# type: color\ncolor.unrecognized =\n\n# name: Delay before showing input hints\n# type: integer\ncomment_row.hint_delay = 500\n\n# name: Allow showing input hints in the comment row\n# type: boolean\ncomment_row.show_hints = False\n\n# name: Include callstack when logging output\n# type: boolean\ndebug.log_output_callstacks = False\n\n# name: Log the prompt string\n# type: boolean\ndebug.log_prompt = False\n\n# name: Log terminal input and output\n# type: boolean\ndebug.log_terminal = False\n\n# name: Controls duplicates in directory history\n# type: enum\n# options: add,erase_prev\ndirectories.dupe_mode = add\n\n# name: Add enhancements to Doskey\n# type: boolean\ndoskey.enhanced = True\n\n# name: Include aliases\n# type: boolean\nexec.aliases = True\n\n# name: Include launchable documents\n# type: boolean\nexec.associations = False\n\n# name: Include CMD commands\n# type: boolean\nexec.commands = True\n\n# name: Match executables in current directory\n# type: boolean\nexec.cwd = True\n\n# name: Include directories\n# type: boolean\nexec.dirs = True\n\n# name: Enable executable completions\n# type: boolean\nexec.enable = True\n\n# name: Include files\n# type: boolean\nexec.files = False\n\n# name: Match executables in PATH\n# type: boolean\nexec.path = True\n\n# name: Whitespace prefix matches files\n# type: boolean\nexec.space_prefix = True\n\n# name: Include hidden files\n# type: boolean\nfiles.hidden = True\n\n# name: Include system files\n# type: boolean\nfiles.system = False\n\n# name: Allow fzf.exe_location to not be an EXE file\n# type: boolean\nfzf.allow_unsafe_query = False\n\n# name: Apply color to match descriptions when shown\n# type: boolean\nfzf.color_descriptions = False\n\n# name: Use default key bindings\n# type: boolean\nfzf.default_bindings = True\n\n# name: Location of fzf.exe if not on the PATH\n# type: string\nfzf.exe_location =\n\n# name: Height to use for the --height flag\n# type: string\nfzf.height = 40%\n\n# name: Show match descriptions when available\n# type: boolean\nfzf.show_descriptions = True\n\n# name: Use default key bindings for fzf_git integration\n# type: boolean\nfzf_git.default_bindings = True\n\n# name: Height to use for the --height flag\n# type: string\nfzf_git.height = 50%\n\n# name: Configures how to invoke the editor\n# type: string\nfzf_rg.editor =\n\n# name: Height to use for the --height flag\n# type: string\nfzf_rg.height = 75%\n\n# name: Show preview window by default in fzf\n# type: enum\n# options: right,bottom,off\nfzf_rg.show_preview = right\n\n# name: Perform history expansion automatically\n# type: boolean\nhistory.auto_expand = True\n\n# name: Commands not automatically added to the history\n# type: string\nhistory.dont_add_to_history_cmds = exit history\n\n# name: Controls how duplicate entries are handled\n# type: enum\n# options: add,ignore,erase_prev\nhistory.dupe_mode = erase_prev\n\n# name: Sets how command history expansion is applied\n# type: enum\n# options: off,on,not_squoted,not_dquoted,not_quoted\nhistory.expand_mode = not_quoted\n\n# name: Skip adding lines prefixed with whitespace\n# type: boolean\nhistory.ignore_space = True\n\n# name: The number of history lines to save\n# type: integer\nhistory.max_lines = 10000\n\n# name: Save history between sessions\n# type: boolean\nhistory.save = True\n\n# name: Share history between instances\n# type: boolean\nhistory.shared = False\n\n# name: Show preview of history expansion at cursor\n# type: boolean\nhistory.show_preview = True\n\n# name: Makes it easy to replay a series of commands\n# type: boolean\nhistory.sticky_search = False\n\n# name: Format for showing history times\n# type: string\nhistory.time_format = %F %T\n\n# name: History item timestamps\n# type: enum\n# options: off,save,show\nhistory.time_stamp = off\n\n# name: Breaks into Lua debugger on Lua errors\n# type: boolean\nlua.break_on_error = False\n\n# name: Breaks into Lua debugger on traceback\n# type: boolean\nlua.break_on_traceback = False\n\n# name: Enables Lua debugging\n# type: boolean\nlua.debug = False\n\n# name: 'require' search path\n# type: string\nlua.path =\n\n# name: Fail on argument errors\n# type: boolean\nlua.strict = True\n\n# name: Restricts coroutine execution\n# type: integer\nlua.throttle_interval = 0\n\n# name: Prints stack trace on Lua errors\n# type: boolean\nlua.traceback_on_error = False\n\n# name: Coloring rules for completions\n# type: string\nmatch.coloring_rules =\n\n# name: Expand abbreviated paths when completing\n# type: boolean\nmatch.expand_abbrev = True\n\n# name: Expand envvars when completing\n# type: boolean\nmatch.expand_envvars = False\n\nmatch.file_size = True\n\n# name: Fits match columns to screen width\n# type: boolean\nmatch.fit_columns = True\n\n# name: Accent insensitive matching\n# type: boolean\nmatch.ignore_accent = True\n\n# name: Case insensitive matching\n# type: enum\n# options: off,on,relaxed\nmatch.ignore_case = relaxed\n\n# name: Limits fitted columns by number of matches\n# type: integer\nmatch.max_fitted_matches = 0\n\n# name: Max rows in clink-select-complete\n# type: integer\nmatch.max_rows = 0\n\n# name: Preview rows\n# type: integer\nmatch.preview_rows = 5\n\n# name: Where to sort matching directories\n# type: enum\n# options: before,with,after\nmatch.sort_dirs = with\n\n# name: Try substring if no prefix matches\n# type: boolean\nmatch.substring = False\n\n# name: Translate slashes and backslashes\n# type: enum\n# options: off,system,slash,backslash,auto\nmatch.translate_slashes = auto\n\n# name: Match ? and * wildcards when completing\n# type: boolean\nmatch.wild = True\n\n# name: Enables asynchronous prompt refresh\n# type: boolean\nprompt.async = True\n\n# name: Controls spacing before prompt\n# type: enum\n# options: normal,compact,sparse\nprompt.spacing = normal\n\n# name: Controls when past prompts are collapsed\n# type: enum\n# options: off,always,same_dir\nprompt.transient = off\n\n# name: Suppress stderr from the Readline library\n# type: boolean\nreadline.hide_stderr = False\n\n# name: Start with the suggestion list enabled\n# type: boolean\nsuggestionlist.default = False\n\n# name: Hide input hints in the suggestion list\n# type: boolean\nsuggestionlist.hide_hints = True\n\n# name: History items to show at the top\n# type: integer\nsuggestionlist.num_history = 3\n\n# name: Adjusts the cursor visibility and shape\n# type: boolean\nterminal.adjust_cursor_style = True\n\n# name: Color emoji support in terminal\n# type: enum\n# options: off,on,auto\nterminal.color_emoji = auto\n\n# name: Use special sequences for Ctrl-H, -I, -M, -[\n# type: boolean\nterminal.differentiate_keys = False\n\n# name: East Asian Ambiguous character widths\n# type: enum\n# options: font,one,two,auto\nterminal.east_asian_ambiguous = auto\n\n# name: Controls VT emulation\n# type: enum\n# options: native,emulate,auto\nterminal.emulation = auto\n\n# name: Clink mouse input\n# type: enum\n# options: off,on,auto\nterminal.mouse_input = auto\n\n# name: Modifier keys for mouse input\n# type: string\nterminal.mouse_modifier =\n\n# name: Esc sends a literal escape character\n# type: boolean\nterminal.raw_esc = False\n\n# name: Show scrollbars in lists\n# type: boolean\nterminal.scrollbars = True\n\n# name: Send terminal shell integration codes\n# type: enum\n# options: off,on,auto\nterminal.shell_integration = auto\n\n# name: Support Windows' Ctrl-Alt substitute for AltGr\n# type: boolean\nterminal.use_altgr_substitute = False\n\n# name: Changes the prefix of the aliases\n# type: string\nzoxide.cmd = z\n\n# name: Changes when directory scores are incremented\n# type: enum\n# options: pwd,prompt,none\nzoxide.hook = pwd\n\n# name: Don't define aliases\n# type: boolean\nzoxide.no_aliases = False\n\n# name: Changes the priority of the promptfilter hook (o\n# type: integer\nzoxide.promptfilter_prio = -50\n\n# name: Use clink promptfilter to hook even if onbegined\n# type: boolean\nzoxide.usepromptfilter = False\n\n",
     "zxc.20260125143007.1": "<< unix >>\n<< os >>\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260504185129.1": "{{ $os := .chezmoi.os -}}\n{{ if eq .chezmoi.os \"linux\" -}}\n{{ $os = .chezmoi.osRelease.id -}}\n{{ end -}}\n",
-    "User.20260225203941.1": "{{ if or (eq .chezmoi.os \"linux\") (eq .chezmoi.os \"android\") -}}\n",
+    "User.20260225203941.1": "{{ if eq .chezmoi.os \"linux\" \"android\" -}}\n",
     "zxc.20260125143032.1": "# ~/.bashrc: executed by bash(1) for non-login shells.\n# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)\n# for examples\n\n# If not running interactively, don't do anything\ncase $- in\n    *i*) ;;\n      *) return;;\nesac\n\n# don't put duplicate lines or lines starting with space in the history.\n# See bash(1) for more options\nHISTCONTROL=ignoreboth\n\n# append to the history file, don't overwrite it\nshopt -s histappend\n\n# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)\nHISTSIZE=1000\nHISTFILESIZE=2000\n\n# check the window size after each command and, if necessary,\n# update the values of LINES and COLUMNS.\nshopt -s checkwinsize\n\n# If set, the pattern \"**\" used in a pathname expansion context will\n# match all files and zero or more directories and subdirectories.\n#shopt -s globstar\n\n# make less more friendly for non-text input files, see lesspipe(1)\n#[ -x /usr/bin/lesspipe ] && eval \"$(SHELL=/bin/sh lesspipe)\"\n\n{{ if and (eq .chezmoi.os \"linux\") (eq .chezmoi.osRelease.id \"debian\") -}}\n# set variable identifying the chroot you work in (used in the prompt below)\nif [ -z \"''\\${debian_chroot:-}\" ] && [ -r /etc/debian_chroot ]; then\n    debian_chroot=$(cat /etc/debian_chroot)\nfi\n{{ end -}}\n\n# set a fancy prompt (non-color, unless we know we \"want\" color)\ncase \"$TERM\" in\n    xterm-color|*-256color) color_prompt=yes;;\nesac\n\n# uncomment for a colored prompt, if the terminal has the capability; turned\n# off by default to not distract the user: the focus in a terminal window\n# should be on the output of commands, not on the prompt\n#force_color_prompt=yes\n\nif [ -n \"$force_color_prompt\" ]; then\n    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then\n        # We have color support; assume it's compliant with Ecma-48\n        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such\n        # a case would tend to support setf rather than setaf.)\n        color_prompt=yes\n    else\n        color_prompt=\n    fi\nfi\n\n{{ if and (eq .chezmoi.os \"linux\") (eq .chezmoi.osRelease.id \"debian\") -}}\n# If this is an xterm set the title to user@host:dir\ncase \"$TERM\" in\nxterm*|rxvt*)\n    PS1=\"\\[\\e]0;''\\${debian_chroot:+($debian_chroot)}\\u@\\h: \\w\\a\\]$PS1\"\n    ;;\n*)\n    ;;\nesac\n{{ end -}}\n\n# enable color support of ls and also add handy aliases\nif [ -x /usr/bin/dircolors ]; then\n    test -r ~/.dircolors && eval \"$(dircolors -b ~/.dircolors)\" || eval \"$(dircolors -b)\"\n    alias ls='ls --color=auto'\n    #alias dir='dir --color=auto'\n    #alias vdir='vdir --color=auto'\n\n    #alias grep='grep --color=auto'\n    #alias fgrep='fgrep --color=auto'\n    #alias egrep='egrep --color=auto'\nfi\n\n# colored GCC warnings and errors\n#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'\n\n# some more ls aliases\n#alias ll='ls -l'\n#alias la='ls -A'\n#alias l='ls -CF'\n\n# Alias definitions.\n# You may want to put all your additions into a separate file like\n# ~/.bash_aliases, instead of adding them here directly.\n# See /usr/share/doc/bash-doc/examples in the bash-doc package.\n\nif [ -f ~/.bash_aliases ]; then\n    . ~/.bash_aliases\nfi\n\n# enable programmable completion features (you don't need to enable\n# this, if it's already enabled in /etc/bash.bashrc and /etc/profile\n# sources /etc/bash.bashrc).\nif ! shopt -oq posix; then\n  if [ -f /usr/share/bash-completion/bash_completion ]; then\n    . /usr/share/bash-completion/bash_completion\n  elif [ -f /etc/bash_completion ]; then\n    . /etc/bash_completion\n  fi\nfi\n",
     "zxc.20260620001836.1": "<< android >>\nexport PATH=$PATH:$HOME/.local/bin\nexport SSH_AUTH_SOCK=$PREFIX/var/run/ssh-agent.socket\n{{ end -}}\n",
     "User.20260225204449.1": "{{ if eq .chezmoi.os \"android\" -}}\n",
@@ -15268,9 +15312,10 @@
     "zxc.20260603085101.1": "\"--recurse-submodules\",\n\"-j8\"\n",
     "User.20260226001021.1": "<< dos >>\n{{ if lookPath \"codium\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260130074346.2": "[\".cache/vscodium/extensions/vsnetrw.vsix\"]\n    type = \"file\"\n    url = \"https://github.com/danprince/vsnetrw/releases/download/v0.3.2/vsnetrw-0.3.2.vsix\"\n",
-    "User.20260226001056.1": "<< unix dos >>\n{{ if lookPath \"emacs\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "User.20260226001056.1": "@others\n<< unix dos >>\n{{ if lookPath \"emacs\" -}}\n<< doom repo >>\n{{ end -}}\n{{ end -}}\n\n<< android >>\n{{ if stat \"/data/data/org.gnu.emacs/files\" -}}\n<< doom repo >>\n{{ end -}}\n{{ end -}}\n",
     "User.20260225204914.1": "{{ if eq .chezmoi.os \"windows\" \"linux\" \"android\" -}}\n",
-    "zxc.20260126160721.1": "[\".emacs.d\"]\n    type = \"git-repo\"\n    url = \"https://mirror.nju.edu.cn/git/doom-emacs.git/\"",
+    "user.20260704144505.1": "{{ $doom_repo := \"https://mirror.nju.edu.cn/git/doom-emacs.git/\" -}}\n",
+    "zxc.20260126160721.1": "{{ if eq .chezmoi.os \"linux\" \"android\" -}}\n[\".config/emacs\"]\n    type = \"git-repo\"\n    url = \"{{ $doom_repo }}\"\n{{ end -}}\n\n{{ if eq .chezmoi.os \"windows\" -}}\n[\".emacs.d\"]\n    type = \"git-repo\"\n    url = \"{{ $doom_repo }}\"\n{{ end -}}\n",
     "User.20260226001211.1": "<< unix >>\n<< not void >>\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260220235538.1": "[\".local/share/fonts/nerdsymbols\"]\n    type = \"archive\"\n    url = \"https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdFontsSymbolsOnly.tar.xz\"\n    exact = true\n    include = [ \"*.ttf\" ]\n",
     "zxc.20260504120847.1": "<< unix >>\n@others\n{{ end -}}\n",
@@ -15354,15 +15399,15 @@
     "zxc.20260202220046.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"pwsh\" \"current\" \"install-explorer-context.reg\" | quote }}\nreg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"pwsh\" \"current\" \"install-file-context.reg\" | quote }}",
     "zxc.20260202220553.1": "<< dos >>\n{{ if lookPath \"gvim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260202220615.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vim\" \"current\" \"install-context.reg\" | quote }}",
-    "User.20260217202401.1": "<< dos >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260225205841.1": "{{ if stat (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\") -}}\n",
-    "User.20260217202404.1": "{{ if stat (joinPath .chezmoi.homeDir \".config\" \"doom\" \"config.el\") -}}\n{{ $sum := list }}\n{{ $homeDir := .chezmoi.homeDir -}}\n{{ range (list \"config\" \"packages\" \"init\") -}}\n{{ $sum = include (joinPath $homeDir \".config\" \"doom\" (print . \".el\")) | append $sum -}}\n{{ end -}}\n# {{ $sum | join \"\" | sha256sum }}\n# {{ output \"git\" \"-C\" (print .chezmoi.homeDir \"/.emacs.d\") \"rev-parse\" \"HEAD\" }}\n# {{ output \"emacs\" \"--version\" | trim | splitList \"\\n\" | first }}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom.ps1\" ) }} sync\n{{ end -}}\n",
-    "User.20260220214558.1": "<< unix >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}",
-    "User.20260220214646.1": "{{ if stat (joinPath .chezmoi.homeDir \".config\" \"doom\" \"config.el\") -}}\n{{ $sum := list }}\n{{ $homeDir := .chezmoi.homeDir -}}\n{{ range (list \"config\" \"packages\" \"init\") -}}\n{{ $sum = include (joinPath $homeDir \".config\" \"doom\" (print . \".el\")) | append $sum -}}\n{{ end -}}\n# {{ $sum | join \"\" | sha256sum }}\n# {{ output \"git\" \"-C\" (print .chezmoi.homeDir \"/.emacs.d\") \"rev-parse\" \"HEAD\" }}\n# {{ output \"emacs\" \"--version\" | trim | splitList \"\\n\" | first }}\n{{ (joinPath .chezmoi.homeDir \".emacs.d\" \"bin\" \"doom\" ) }} sync\n{{ end -}}\n",
+    "User.20260217202401.1": "<< dos >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}\n",
+    "User.20260225205841.1": "{{ $doom_dir := joinPath .chezmoi.homeDir \".config\" \"emacs\" -}}\n{{ if eq .chezmoi.os \"windows\" -}}\n{{ $doom_dir = joinPath .chezmoi.homeDir \".emacs.d\" -}}\n{{ end -}}\n{{ $doom_bin := joinPath $doom_dir \"bin\" \"doom\" -}}\n{{ if stat $doom_bin -}}\n",
+    "User.20260217202404.1": "{{ if stat (joinPath .chezmoi.homeDir \".config\" \"doom\" \"config.el\") -}}\n{{ $sum := list }}\n{{ $homeDir := .chezmoi.homeDir -}}\n{{ range (list \"config\" \"packages\" \"init\") -}}\n{{ $sum = include (joinPath $homeDir \".config\" \"doom\" (print . \".el\")) | append $sum -}}\n{{ end -}}\n# {{ $sum | join \"\" | sha256sum }}\n# {{ output \"git\" \"-C\" $doom_dir \"rev-parse\" \"HEAD\" }}\n# {{ output \"emacs\" \"--version\" | trim | splitList \"\\n\" | first }}\n{{ $doom_bin }} sync\n{{ end -}}\n",
+    "User.20260220214558.1": "<< unix >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}\n",
+    "User.20260220214646.1": "{{ if stat (joinPath .chezmoi.homeDir \".config\" \"doom\" \"config.el\") -}}\n\n{{ if eq .chezmoi.os \"linux\" -}}\n    {{ $sum := list }}\n    {{ $homeDir := .chezmoi.homeDir -}}\n        {{ range (list \"config\" \"packages\" \"init\") -}}\n        {{ $sum = include (joinPath $homeDir \".config\" \"doom\" (print . \".el\")) | append $sum -}}\n        {{ end -}}\n    # {{ $sum | join \"\" | sha256sum }}\n    # {{ output \"git\" \"-C\" $doom_dir \"rev-parse\" \"HEAD\" }}\n    # {{ output \"emacs\" \"--version\" | trim | splitList \"\\n\" | first }}\n    {{ $doom_bin }} sync\n{{ end -}}\n\n{{ if eq .chezmoi.os \"android\" -}}\n    {{ $sum := list }}\n    {{ $homeDir := .chezmoi.homeDir -}}\n\n    {{ range (list \"config\" \"packages\" \"init\") -}}\n    {{ $sum = include (joinPath $homeDir \".config\" \"doom\" (print . \".el\")) | append $sum -}}\n    {{ end -}}\n\n    {{ $emacs_home := \"/data/data/org.gnu.emacs/files\" -}}\n    {{ if stat $emacs_home -}}\n\n    # {{ $sum | join \"\" | sha256sum }}\n    mkdir -p /data/data/org.gnu.emacs/files/.config/doom\n        {{ range (list \"config.el\" \"packages.el\" \"init.el\" \".authinfo\") -}}\n        cp {{ joinPath $homeDir \".config\" \"doom\" . }} /data/data/org.gnu.emacs/files/.config/doom\n        {{ end -}}\n    echo \"Run doom sync in emacs\"\n    {{ end -}}\n\n{{ end -}}\n\n{{ end -}}\n",
     "zxc.20260530230944.1": "<< dos >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260530231023.1": "{{ $commit := output \"git\" \"-C\" (print .chezmoi.homeDir \"/.emacs.d\") \"rev-parse\" \"HEAD\" }}\n{{ if ne $commit .my.doomemacs.commit -}}\ncd {{ joinPath .chezmoi.homeDir \".emacs.d\" | quote }}\ngit fetch\ngit checkout {{ .my.doomemacs.commit }}\n{{ end -}}\n",
+    "zxc.20260530231023.1": "{{ $commit := output \"git\" \"-C\" $doom_dir \"rev-parse\" \"HEAD\" }}\n{{ if ne $commit .my.doomemacs.commit -}}\ncd {{ $doom_dir | quote }}\n\ngit reset --hard HEAD\n\ngit fetch\ngit checkout {{ .my.doomemacs.commit }}\n{{ end -}}\n",
     "zxc.20260531001920.1": "<< unix >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260531002005.1": "{{ $commit := output \"git\" \"-C\" (print .chezmoi.homeDir \"/.emacs.d\") \"rev-parse\" \"HEAD\" }}\n{{ if ne $commit .my.doomemacs.commit -}}\ncd {{ joinPath .chezmoi.homeDir \".emacs.d\" | quote }}\ngit fetch\ngit checkout {{ .my.doomemacs.commit }}\n{{ end -}}\n",
+    "zxc.20260531002005.1": "{{ $commit := output \"git\" \"-C\" $doom_dir \"rev-parse\" \"HEAD\" }}\n{{ if ne $commit .my.doomemacs.commit -}}\ncd {{ $doom_dir | quote }}\n\ngit reset --hard HEAD\n\ngit fetch\ngit checkout {{ .my.doomemacs.commit }}\n{{ end -}}\n",
     "User.20260217214851.1": "<< dos >>\n{{ if lookPath \"msys2\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260217214859.1": "# (Get-Item {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"msys2\" \"current\" }}).CreationTime\nmsys2 -c \"sed -i 's#https\\?://mirror.msys2.org/#https://mirror.nju.edu.cn/msys2/#g' /etc/pacman.d/mirrorlist*\"\nmsys2 -c \"yes | pacman -Syu\"\nmsys2 -c \"yes | pacman -S --needed {{ .my.msys2.packages | join \" \" }}\"\nmsys2 -shell fish -c \"curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher\"",
     "zxc.20260422085228.1": "<< dos >>\n{{ if lookPath \"msys2\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -15419,6 +15464,8 @@
     "zxc.20260615003801.1": "{{ $dir := joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" \"profile\" \"chrome\" -}}\n{{ $theme := joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" .my.modules.firefox.theme \"chrome\" -}}\n{{ template \"powershell_junction\" dict \"source\" $dir \"target\" $theme }}\n",
     "zxc.20260620011448.1": "<< android >>\n{{ if lookPath \"fish\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260620011608.1": "{{ if eq (env \"SHELL\" | splitList \"/\" | last) \"bash\" -}}\nchsh -s fish\n{{ end -}}\n",
+    "user.20260704161622.1": "<< android >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}\n",
+    "user.20260704161904.1": "{{ $termux_root := \"/data/data/com.termux/files\" -}}\n{{ $termux_home := \"/data/data/com.termux/files/home\" -}}\n{{ $emacs_home := \"/data/data/org.gnu.emacs/files\" -}}\n{{ $emacs_data := \"/data/data/org.gnu.emacs\" -}}\n{{ if stat $emacs_home -}}\n\n# {{ output \"git\" \"-C\" $doom_dir \"rev-parse\" \"HEAD\" }}\n\n{{ if joinPath $emacs_home \".config\" \"emacs\" | stat | not -}}\nmkdir -p {{ joinPath $emacs_home \".config\" }}\ngit clone {{ joinPath $termux_home \".config\" \"emacs\" }} {{ joinPath $emacs_home \".config\" \"emacs\" }}\n{{ else if output \"git\" \"-C\" $doom_dir \"rev-parse\" \"HEAD\" | ne .my.doomemacs.commit -}}\ngit -C {{ joinPath $emacs_home \".config\" \"emacs\" }} fetch\ngit -C {{ joinPath $emacs_home \".config\" \"emacs\" }} checkout {{ .my.doomemacs.commit }}\n{{ end -}}\n\ncp {{ joinPath $emacs_data \"lib\" \"libandroid-emacs.so\" }} {{ joinPath $emacs_home \".config\" \"emacs\" \"bin\" \"emacs\" }}\n\nfor i in {{ joinPath $emacs_home \".config\" \"emacs\" \"bin\" }}/*; do\n  sed -i '1 s;/usr/bin/env sh;/system/bin/sh;' $i\n  sed -i '1 s;/bin/bash;/system/bin/sh;' $i\ndone\n\n{{ if joinPath $emacs_home \".config\" \"emacs\" \".local\" | stat | not -}}\nmkdir -p {{ joinPath $emacs_home \".emacs.d\" }}\ncat << EOF > {{ joinPath $emacs_home \".emacs.d\" \"early-init.el\" }}\n;; -*- lexical-binding: t; -*-\n(when (string-equal system-type \"android\")\n  ;; Add Termux binaries to PATH environment\n  ;; It is important that termuxpath is prepended, not appended.\n  ;; Otherwise we will get Androids incompatible diff executable, instead of the one in Termux.\n  (let ((termuxpath \"{{ joinPath $termux_root \"usr\" \"bin\" }}\"))\n    (setenv \"PATH\" (format \"%s:%s\" termuxpath\n                       (getenv \"PATH\")))\n    (setenv \"PATH\" (format \"%s:%s\" \"{{ joinPath $emacs_home \".config\" \"emacs\" \"bin\" }}\"\n                       (getenv \"PATH\")))\n    (push termuxpath exec-path)\n    (push \"{{ joinPath $emacs_home \".config\" \"emacs\" \"bin\" }}\" exec-path)))\nEOF\n{{ else if joinPath $emacs_home \".emacs.d\" \"early-init.el\" | stat -}}\nrm -rf {{ joinPath $emacs_home \".emacs.d\" }}\n{{ end -}}\n\n{{ end -}}\n",
     "User.20260226001402.1": "@others\n",
     "User.20260226001414.1": "[my.msys2]\npackages = [\"fish\", \"nnn\", \"atool\", \"libarchive\", \"tmux\", \"zsh\"]\n",
     "User.20260226001424.1": "[my.font]\nmonospace = \"IosevkaTerm NFM\"\nsans = \"Noto Sans CJK SC\"\n",
@@ -15617,7 +15664,7 @@
     "User.20260217233138.1": ";; There are two ways to load a theme. Both assume the theme is installed and\n;; available. You can either set `doom-theme' or manually load a theme with the\n;; `load-theme' function. This is the default:\n(setq doom-theme 'doom-tokyo-night)\n",
     "User.20260217233737.1": ";; This determines the style of line numbers in effect. If set to `nil', line\n;; numbers are disabled. For relative line numbers, set this to `relative'.\n(setq display-line-numbers-type 'relative)\n",
     "User.20260217233843.1": "(setq user-full-name \"zxc\")\n",
-    "User.20260217234025.1": "(setq doom-font (font-spec :family \"{{ .my.font.monospace }}\" :size 15)\n      doom-variable-pitch-font (font-spec :family \"{{ .my.font.monospace }}\" :size 15))\n\n(setq doom-themes-enable-bold t\n      doom-themes-enable-italic t)\n",
+    "User.20260217234025.1": "{{ $size := 15 -}}\n{{ $font := .my.font.monospace -}}\n{{ if eq .chezmoi.os \"android\" -}}\n{{ $font = \"IosevkaTerm Nerd Font\" -}}\n{{ $size = 30 -}}\n{{ end -}}\n(setq doom-font (font-spec :family \"{{ $font }}\" :size {{ $size }})\n      doom-variable-pitch-font (font-spec :family \"{{ $font }}\" :size {{ $size }}))\n\n(setq doom-themes-enable-bold t\n      doom-themes-enable-italic t)\n",
     "User.20260217235643.1": "(+global-word-wrap-mode +1)\n",
     "zxc.20260531171642.1": "(global-visual-line-mode t)\n",
     "User.20260218124715.1": "(setq select-enable-clipboard nil)\n",
@@ -15628,6 +15675,7 @@
     "User.20260217233813.1": ";; If you use `org' and don't want your org files in the default location below,\n;; change `org-directory'. It must be set before org loads!\n(setq org-directory \"~/org/\")\n",
     "zxc.20260531010146.1": "(after! org\n  (setq org-agenda-files '(\"~/org/agenda.org\"))\n  (org-babel-do-load-languages\n    org-babel-load-languages\n    '((dot . t))))\n",
     "zxc.20260612234219.1": "(after! emms\n  (setq emms-source-file-default-directory \"~/Music\")\n  (add-hook 'emms-playlist-mode-hook #'turn-on-evil-mode))\n",
+    "user.20260704223557.1": "<< android >>\n(setq overriding-text-conversion-style nil)\n{{ end -}}\n",
     "User.20260218124824.1": "(map! :n \"C-w o\" #'delete-other-windows\n      :n \"C-w z\" #'doom/window-enlargen)\n",
     "User.20260218124950.1": "(map! :leader\n      :desc \"Kill other buffer\" \"b o\" #'doom/kill-other-buffers)\n(map! :leader\n      :desc \"Kill other buffer\" \"b 0\" nil)\n",
     "User.20260218001127.1": "(use-package! ahk-mode\n  :mode \"\\\\.ahk$\"\n  :defer t)\n",
@@ -17178,31 +17226,31 @@
       "_mod_time": 1782305651.342
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1781931273.273
+      "_mod_time": 1783170265.284
     },
     "zxc.20260125143959.1": {
-      "_mod_time": 1777906067.531
+      "_mod_time": 1783170265.268
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1782667072.925
+      "_mod_time": 1783170265.4
     },
     "zxc.20260125164142.1": {
-      "_mod_time": 1777398596.506
+      "_mod_time": 1783170265.338
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1782667072.949
+      "_mod_time": 1783170265.369
     },
     "zxc.20260429145437.1": {
-      "_mod_time": 1777612767.635
+      "_mod_time": 1783170265.385
     },
     "zxc.20260427000037.1": {
-      "_mod_time": 1777219283.718
+      "_mod_time": 1783170265.338
     },
     "zxc.20260427224318.1": {
-      "_mod_time": 1777301694.728
+      "_mod_time": 1783170265.315
     },
     "zxc.20260615224512.2": {
-      "_mod_time": 1781534729.293
+      "_mod_time": 1783170265.315
     },
     "User.20260218142211.1": {
       "_mod_time": 1782736239.901
@@ -17226,7 +17274,7 @@
       "_mod_time": 1781590487.338
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1782695824.472
+      "_mod_time": 1782651007.736
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1780748738.606
@@ -17250,13 +17298,13 @@
       "_mod_time": 1782087842.583
     },
     "User.20260226000855.1": {
-      "_mod_time": 1782900305.817
+      "_mod_time": 1783170265.18
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1782695824.473
     },
     "User.20260220233639.1": {
-      "_mod_time": 1781527488.629
+      "_mod_time": 1783170265.268
     },
     "zxc.20260202203521.20": {
       "_mod_time": 1776434513.068
@@ -17265,7 +17313,7 @@
       "_mod_time": 1778855150.558
     },
     "zxc.20260505221318.1": {
-      "_mod_time": 1778706271.126
+      "_mod_time": 1783170265.268
     },
     "zxc.20260202203521.14": {
       "_mod_time": 1776691470.917
@@ -17283,7 +17331,7 @@
       "_mod_time": 1780272723.738
     },
     "zxc.20260505102132.1": {
-      "_mod_time": 1780117762.476
+      "_mod_time": 1783170265.237
     },
     "zxc.20260202215023.1": {
       "_mod_time": 1776434513.068
@@ -17298,16 +17346,16 @@
       "_mod_time": 1776434513.068
     },
     "User.20260217202401.1": {
-      "_mod_time": 1780272723.737
+      "_mod_time": 1783170801.842
     },
     "User.20260220214558.1": {
-      "_mod_time": 1780155936.294
+      "_mod_time": 1783170953.385
     },
     "zxc.20260530230944.1": {
-      "_mod_time": 1780272723.741
+      "_mod_time": 1783170265.253
     },
     "zxc.20260531001920.1": {
-      "_mod_time": 1780158075.007
+      "_mod_time": 1783170265.253
     },
     "User.20260217214851.1": {
       "_mod_time": 1776851988.666
@@ -17346,7 +17394,7 @@
       "_mod_time": 1778855150.556
     },
     "zxc.20260505141849.1": {
-      "_mod_time": 1777967012.414
+      "_mod_time": 1783170265.221
     },
     "zxc.20260323195318.1": {
       "_mod_time": 1776434513.068
@@ -17361,25 +17409,28 @@
       "_mod_time": 1780272723.736
     },
     "zxc.20260602152143.1": {
-      "_mod_time": 1780394292.926
+      "_mod_time": 1783170265.196
     },
     "zxc.20260602183356.1": {
-      "_mod_time": 1780480977.894
+      "_mod_time": 1783170265.196
     },
     "zxc.20260603094212.1": {
-      "_mod_time": 1780480977.894
+      "_mod_time": 1783170265.211
     },
     "zxc.20260615003716.1": {
       "_mod_time": 1781607695.717
     },
     "zxc.20260620011448.1": {
-      "_mod_time": 1782087842.583
+      "_mod_time": 1781953136.932
+    },
+    "user.20260704161622.1": {
+      "_mod_time": 1783172056.636
     },
     "User.20260226001402.1": {
-      "_mod_time": 1782988491.049
+      "_mod_time": 1783140836.837
     },
     "zxc.20260201141149.1": {
-      "_mod_time": 1783096034.31
+      "_mod_time": 1783140837.774
     },
     "User.20260215191351.1": {
       "_mod_time": 1782477813.62
@@ -17403,7 +17454,7 @@
       "_mod_time": 1781442394.083
     },
     "zxc.20260315140713.1": {
-      "_mod_time": 1782471000.23
+      "_mod_time": 1782477813.619
     },
     "zxc.20260408012432.1": {
       "_mod_time": 1777179946.871
@@ -17412,10 +17463,10 @@
       "_mod_time": 1781484842.615
     },
     "zxc.20260327184129.1": {
-      "_mod_time": 1783039056.276
+      "_mod_time": 1783140837.782
     },
     "zxc.20260125162740.1": {
-      "_mod_time": 1777179946.862
+      "_mod_time": 1783170265.284
     },
     "zxc.20260126185048.1": {
       "_mod_time": 1777179946.853
@@ -17427,7 +17478,7 @@
       "_mod_time": 1777713442.483
     },
     "User.20260216000318.1": {
-      "_mod_time": 1783094266.008
+      "_mod_time": 1783140836.848
     },
     "User.20260218144120.1": {
       "_mod_time": 1777298774.844
@@ -17445,10 +17496,10 @@
       "_mod_time": 1777713442.484
     },
     "zxc.20260620000810.1": {
-      "_mod_time": 1782087842.619
+      "_mod_time": 1781953136.948
     },
     "zxc.20260620000819.1": {
-      "_mod_time": 1782087842.618
+      "_mod_time": 1781953136.948
     },
     "zxc.20260504133747.1": {
       "_mod_time": 1778855150.612
@@ -17457,22 +17508,22 @@
       "_mod_time": 1778855150.612
     },
     "zxc.20260507002719.1": {
-      "_mod_time": 1778706271.142
+      "_mod_time": 1783170265.299
     },
     "zxc.20260507003041.1": {
-      "_mod_time": 1778706271.142
+      "_mod_time": 1783170265.299
     },
     "zxc.20260126154354.1": {
       "_mod_time": 1777179946.877
     },
     "zxc.20260125145051.1": {
-      "_mod_time": 1783087521.559
+      "_mod_time": 1783140837.787
     },
     "zxc.20260125152704.1": {
       "_mod_time": 1777179946.876
     },
     "zxc.20260125152851.2": {
-      "_mod_time": 1777179946.886
+      "_mod_time": 1783170265.574
     },
     "zxc.20260125153131.1": {
       "_mod_time": 1777179946.883
@@ -17481,22 +17532,22 @@
       "_mod_time": 1782477813.63
     },
     "zxc.20260125161631.1": {
-      "_mod_time": 1777302969.492
+      "_mod_time": 1783170265.505
     },
     "User.20260216185314.1": {
-      "_mod_time": 1777179946.883
+      "_mod_time": 1783170265.517
     },
     "User.20260217223023.1": {
-      "_mod_time": 1781484843.598
+      "_mod_time": 1783170265.478
     },
     "User.20260217223030.1": {
-      "_mod_time": 1783039056.282
+      "_mod_time": 1783176136.993
     },
     "User.20260217223035.1": {
-      "_mod_time": 1781856158.738
+      "_mod_time": 1783170265.478
     },
     "User.20260223014430.1": {
-      "_mod_time": 1778855150.599
+      "_mod_time": 1783170265.463
     },
     "User.20260220233323.1": {
       "_mod_time": 1782695824.549
@@ -17583,7 +17634,7 @@
       "_mod_time": 1782087842.645
     },
     "zxc.20260421145655.1": {
-      "_mod_time": 1783099129.77
+      "_mod_time": 1783140837.785
     },
     "zxc.20260421231645.1": {
       "_mod_time": 1777179946.881
@@ -17592,7 +17643,7 @@
       "_mod_time": 1778855150.599
     },
     "zxc.20260504000649.1": {
-      "_mod_time": 1777827566.629
+      "_mod_time": 1783170265.505
     },
     "zxc.20260503225115.1": {
       "_mod_time": 1778855150.604
@@ -17604,55 +17655,55 @@
       "_mod_time": 1778855150.604
     },
     "zxc.20260505104942.1": {
-      "_mod_time": 1780230892.201
+      "_mod_time": 1783170265.432
     },
     "zxc.20260505105255.1": {
-      "_mod_time": 1777967012.43
+      "_mod_time": 1783170265.432
     },
     "zxc.20260507000814.1": {
-      "_mod_time": 1780055115.897
+      "_mod_time": 1783170265.447
     },
     "zxc.20260508000348.1": {
-      "_mod_time": 1780055115.893
+      "_mod_time": 1783170265.447
     },
     "zxc.20260529152606.1": {
-      "_mod_time": 1780148506.597
+      "_mod_time": 1783170265.574
     },
     "zxc.20260603092509.1": {
-      "_mod_time": 1780480977.925
+      "_mod_time": 1783170265.527
     },
     "zxc.20260625222427.1": {
-      "_mod_time": 1783087521.58
+      "_mod_time": 1783170265.527
     },
     "zxc.20260625222003.1": {
-      "_mod_time": 1782397414.941
+      "_mod_time": 1783170265.543
     },
     "zxc.20260625222119.1": {
-      "_mod_time": 1782397414.97
+      "_mod_time": 1783170265.559
     },
     "zxc.20260625222215.1": {
-      "_mod_time": 1782397414.992
+      "_mod_time": 1783170265.559
     },
     "zxc.20260625222255.1": {
-      "_mod_time": 1782397415.021
+      "_mod_time": 1783170265.543
     },
     "user.20260702165628.1": {
-      "_mod_time": 1782988491.901
+      "_mod_time": 1783170265.494
     },
     "user.20260704002025.1": {
-      "_mod_time": 1783095662.79
+      "_mod_time": 1783170265.59
     },
     "zxc.20260502183455.1": {
-      "_mod_time": 1777717804.636
+      "_mod_time": 1783170265.602
     },
     "zxc.20260502183056.1": {
-      "_mod_time": 1777978566.558
+      "_mod_time": 1783170265.602
     },
     "zxc.20260502183253.1": {
-      "_mod_time": 1781928426.128
+      "_mod_time": 1783170265.616
     },
     "zxc.20260505181144.1": {
-      "_mod_time": 1778706271.142
+      "_mod_time": 1783170265.4
     },
     "User.20260215182442.1": {
       "_mod_time": 1777891060.651
@@ -17814,7 +17865,7 @@
       "_mod_time": 1777179946.891
     },
     "zxc.20260609212401.1": {
-      "_mod_time": 1782900305.86
+      "_mod_time": 1782909313.174
     },
     "zxc.20260625230303.1": {
       "_mod_time": 1782477813.633
@@ -17901,10 +17952,10 @@
       "_mod_time": 1781484842.605
     },
     "zxc.20260423145238.1": {
-      "_mod_time": 1783087521.6
+      "_mod_time": 1783140836.84
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1783039055.417
+      "_mod_time": 1783140836.841
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778855150.568
@@ -17919,7 +17970,7 @@
       "_mod_time": 1778855150.573
     },
     "zxc.20260423143729.353": {
-      "_mod_time": 1783095345.279
+      "_mod_time": 1783140836.841
     },
     "zxc.20260423143729.426": {
       "_mod_time": 1778855150.568
@@ -17943,16 +17994,16 @@
       "_mod_time": 1777713442.480156
     },
     "zxc.20260502111841.1": {
-      "_mod_time": 1783083016.603
+      "_mod_time": 1783140836.84
     },
     "zxc.20260506153412.1": {
       "_mod_time": 1778855150.573
     },
     "user.20260702164727.1": {
-      "_mod_time": 1782988491.083
+      "_mod_time": 1783140836.845
     },
     "user.20260702165301.1": {
-      "_mod_time": 1782988491.083
+      "_mod_time": 1783140836.847
     },
     "zxc.20260624094647.1": {
       "_mod_time": 1782312757.545
@@ -18000,28 +18051,28 @@
       "_mod_time": 1782087842.598
     },
     "user.20260628171858.1": {
-      "_mod_time": 1782988491.066
+      "_mod_time": 1783140836.843
     },
     "user.20260628172017.1": {
-      "_mod_time": 1782988491.082
+      "_mod_time": 1783140836.843
     },
     "user.20260628172043.1": {
-      "_mod_time": 1782988491.083
+      "_mod_time": 1783140836.845
     },
     "user.20260701153620.1": {
-      "_mod_time": 1782988491.082
+      "_mod_time": 1783140836.844
     },
     "user.20260701154149.1": {
-      "_mod_time": 1782900305.828
+      "_mod_time": 1782909313.105
     },
     "user.20260703171055.1": {
-      "_mod_time": 1783093539.874
+      "_mod_time": 1783140836.847
     },
     "zxc.20260409214651.1": {
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1783099129.795
+      "_mod_time": 1783140836.842
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777298774.844
@@ -18039,7 +18090,7 @@
       "_mod_time": 1777179946.836
     },
     "zxc.20260529091145.1": {
-      "_mod_time": 1780069890.937
+      "_mod_time": 1780223582.711
     },
     "zxc.20260201140523.1": {
       "_mod_time": 1777179946.85
@@ -18048,7 +18099,7 @@
       "_mod_time": 1777385863.235
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1782988491.066
+      "_mod_time": 1783140836.838
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1777382331.981
@@ -18072,7 +18123,7 @@
       "_mod_time": 1777179946.852
     },
     "User.20260302211536.1": {
-      "_mod_time": 1783087521.622
+      "_mod_time": 1783140836.839
     },
     "User.20260302211740.1": {
       "_mod_time": 1777179946.836
@@ -18105,7 +18156,7 @@
       "_mod_time": 1782305651.315
     },
     "zxc.20260611090830.1": {
-      "_mod_time": 1783087521.642
+      "_mod_time": 1783140836.84
     },
     "zxc.20260611091007.1": {
       "_mod_time": 1781174037.601
