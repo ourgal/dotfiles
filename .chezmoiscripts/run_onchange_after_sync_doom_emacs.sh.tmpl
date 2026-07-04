@@ -1,17 +1,47 @@
-{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
-{{ if stat (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom") -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+{{ $doom_dir := joinPath .chezmoi.homeDir ".config" "emacs" -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ $doom_dir = joinPath .chezmoi.homeDir ".emacs.d" -}}
+{{ end -}}
+{{ $doom_bin := joinPath $doom_dir "bin" "doom" -}}
+{{ if stat $doom_bin -}}
 #!{{lookPath "bash"}}
 set -euo pipefail
 {{ if stat (joinPath .chezmoi.homeDir ".config" "doom" "config.el") -}}
-{{ $sum := list }}
-{{ $homeDir := .chezmoi.homeDir -}}
-{{ range (list "config" "packages" "init") -}}
-{{ $sum = include (joinPath $homeDir ".config" "doom" (print . ".el")) | append $sum -}}
+
+{{ if eq .chezmoi.os "linux" -}}
+    {{ $sum := list }}
+    {{ $homeDir := .chezmoi.homeDir -}}
+        {{ range (list "config" "packages" "init") -}}
+        {{ $sum = include (joinPath $homeDir ".config" "doom" (print . ".el")) | append $sum -}}
+        {{ end -}}
+    # {{ $sum | join "" | sha256sum }}
+    # {{ output "git" "-C" $doom_dir "rev-parse" "HEAD" }}
+    # {{ output "emacs" "--version" | trim | splitList "\n" | first }}
+    {{ $doom_bin }} sync
 {{ end -}}
-# {{ $sum | join "" | sha256sum }}
-# {{ output "git" "-C" (print .chezmoi.homeDir "/.emacs.d") "rev-parse" "HEAD" }}
-# {{ output "emacs" "--version" | trim | splitList "\n" | first }}
-{{ (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom" ) }} sync
+
+{{ if eq .chezmoi.os "android" -}}
+    {{ $sum := list }}
+    {{ $homeDir := .chezmoi.homeDir -}}
+
+    {{ range (list "config" "packages" "init") -}}
+    {{ $sum = include (joinPath $homeDir ".config" "doom" (print . ".el")) | append $sum -}}
+    {{ end -}}
+
+    {{ $emacs_home := "/data/data/org.gnu.emacs/files" -}}
+    {{ if stat $emacs_home -}}
+
+    # {{ $sum | join "" | sha256sum }}
+    mkdir -p /data/data/org.gnu.emacs/files/.config/doom
+        {{ range (list "config.el" "packages.el" "init.el" ".authinfo") -}}
+        cp {{ joinPath $homeDir ".config" "doom" . }} /data/data/org.gnu.emacs/files/.config/doom
+        {{ end -}}
+    echo "Run doom sync in emacs"
+    {{ end -}}
+
+{{ end -}}
+
 {{ end -}}
 {{ end -}}
 {{ end -}}

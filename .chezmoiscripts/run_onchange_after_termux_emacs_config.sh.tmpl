@@ -1,0 +1,55 @@
+{{ if eq .chezmoi.os "android" -}}
+{{ $doom_dir := joinPath .chezmoi.homeDir ".config" "emacs" -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ $doom_dir = joinPath .chezmoi.homeDir ".emacs.d" -}}
+{{ end -}}
+{{ $doom_bin := joinPath $doom_dir "bin" "doom" -}}
+{{ if stat $doom_bin -}}
+#!{{lookPath "bash"}}
+set -euo pipefail
+{{ $termux_root := "/data/data/com.termux/files" -}}
+{{ $termux_home := "/data/data/com.termux/files/home" -}}
+{{ $emacs_home := "/data/data/org.gnu.emacs/files" -}}
+{{ $emacs_data := "/data/data/org.gnu.emacs" -}}
+{{ if stat $emacs_home -}}
+
+# {{ output "git" "-C" $doom_dir "rev-parse" "HEAD" }}
+
+{{ if joinPath $emacs_home ".config" "emacs" | stat | not -}}
+mkdir -p {{ joinPath $emacs_home ".config" }}
+git clone {{ joinPath $termux_home ".config" "emacs" }} {{ joinPath $emacs_home ".config" "emacs" }}
+{{ else if output "git" "-C" $doom_dir "rev-parse" "HEAD" | ne .my.doomemacs.commit -}}
+git -C {{ joinPath $emacs_home ".config" "emacs" }} fetch
+git -C {{ joinPath $emacs_home ".config" "emacs" }} checkout {{ .my.doomemacs.commit }}
+{{ end -}}
+
+cp {{ joinPath $emacs_data "lib" "libandroid-emacs.so" }} {{ joinPath $emacs_home ".config" "emacs" "bin" "emacs" }}
+
+for i in {{ joinPath $emacs_home ".config" "emacs" "bin" }}/*; do
+  sed -i '1 s;/usr/bin/env sh;/system/bin/sh;' $i
+  sed -i '1 s;/bin/bash;/system/bin/sh;' $i
+done
+
+{{ if joinPath $emacs_home ".config" "emacs" ".local" | stat | not -}}
+mkdir -p {{ joinPath $emacs_home ".emacs.d" }}
+cat << EOF > {{ joinPath $emacs_home ".emacs.d" "early-init.el" }}
+;; -*- lexical-binding: t; -*-
+(when (string-equal system-type "android")
+  ;; Add Termux binaries to PATH environment
+  ;; It is important that termuxpath is prepended, not appended.
+  ;; Otherwise we will get Androids incompatible diff executable, instead of the one in Termux.
+  (let ((termuxpath "{{ joinPath $termux_root "usr" "bin" }}"))
+    (setenv "PATH" (format "%s:%s" termuxpath
+                       (getenv "PATH")))
+    (setenv "PATH" (format "%s:%s" "{{ joinPath $emacs_home ".config" "emacs" "bin" }}"
+                       (getenv "PATH")))
+    (push termuxpath exec-path)
+    (push "{{ joinPath $emacs_home ".config" "emacs" "bin" }}" exec-path)))
+EOF
+{{ else if joinPath $emacs_home ".emacs.d" "early-init.el" | stat -}}
+rm -rf {{ joinPath $emacs_home ".emacs.d" }}
+{{ end -}}
+
+{{ end -}}
+{{ end -}}
+{{ end -}}

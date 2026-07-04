@@ -1,4 +1,4 @@
-{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "android") -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 {{ if lookPath "gpg" -}}
 {{ if .my.git.sign.gpg -}}
 66E220F513E05B9F44D77B9B15F629D7C1270868

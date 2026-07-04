@@ -1,5 +1,10 @@
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
-{{ if stat (joinPath .chezmoi.homeDir ".emacs.d" "bin" "doom") -}}
+{{ $doom_dir := joinPath .chezmoi.homeDir ".config" "emacs" -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ $doom_dir = joinPath .chezmoi.homeDir ".emacs.d" -}}
+{{ end -}}
+{{ $doom_bin := joinPath $doom_dir "bin" "doom" -}}
+{{ if stat $doom_bin -}}
 machine smtp.qq.com port 465 login ourgal@qq.com password {{ gopass "email/qq/main" }}
 machine imap.qq.com port 993 login ourgal@qq.com password {{ gopass "email/qq/main" }}
 machine imap.163.com port 993 login fairever01@163.com password {{ gopass "email/163/main" }}
