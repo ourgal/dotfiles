@@ -50,7 +50,7 @@ WinWait("ahk_exe wezterm-gui.exe")
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "firefox" "opt" (list "windows" "startup" "firefox" "enable") "os" "windows") | trim | atoi -}}
 Run {{ joinPath (env "AppData") "Microsoft" "Windows" "Start Menu" "Programs" "Scoop Apps" "Firefox.lnk" | quote }}, , "Max"
 WinWait("ahk_exe firefox.exe")
-{{ if lookPath "glazewm" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "glazewm" "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
 WinActivate "ahk_exe firefox.exe"
 Run "glazewm command move --workspace 2", ,"Hide"
 {{ end -}}
@@ -58,7 +58,7 @@ Run "glazewm command move --workspace 2", ,"Hide"
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "brave" "opt" (list "windows" "startup" "brave" "enable") "os" "windows") | trim | atoi -}}
 Run {{ joinPath (env "AppData") "Microsoft" "Windows" "Start Menu" "Programs" "Scoop Apps" "Brave.lnk" | quote }}, , "Max"
 WinWait("ahk_exe brave.exe")
-{{ if lookPath "glazewm" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "glazewm" "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
 WinActivate "ahk_exe brave.exe"
 Run "glazewm command move --workspace 2", ,"Hide"
 {{ end -}}
@@ -66,7 +66,7 @@ Run "glazewm command move --workspace 2", ,"Hide"
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "brave" "opt" (list "windows" "startup" "chromium" "enable") "os" "windows") | trim | atoi -}}
 Run {{ joinPath (env "AppData") "Microsoft" "Windows" "Start Menu" "Programs" "Scoop Apps" "Chromium.lnk" | quote }}, , "Max"
 WinWait("ahk_exe chrome.exe")
-{{ if lookPath "glazewm" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "glazewm" "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
 WinActivate "ahk_exe chrome.exe"
 Run "glazewm command move --workspace 2", ,"Hide"
 {{ end -}}
@@ -75,7 +75,7 @@ Run "glazewm command move --workspace 2", ,"Hide"
 {{ $vscode := joinPath .chezmoi.homeDir "scoop" "apps" "vscode" "current" "Code.exe" -}}
 Run({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
 WinWait "ahk_exe Code.exe"
-{{ if lookPath "glazewm" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "glazewm" "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
 WinActivate "ahk_exe Code.exe"
 Run "glazewm command move --workspace 3", ,"Hide"
 {{ end -}}
@@ -84,7 +84,7 @@ Run "glazewm command move --workspace 3", ,"Hide"
 {{ $vscodium := joinPath .chezmoi.homeDir "scoop" "apps" "vscodium" "current" "VSCodium.exe" -}}
 Run({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
 WinWait("ahk_exe VSCodium.exe")
-{{ if lookPath "glazewm" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "glazewm" "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
 WinActivate "ahk_exe VSCodium.exe"
 Run "glazewm command move --workspace 3", ,"Hide"
 {{ end -}}
@@ -98,7 +98,7 @@ Run "everything", , "Hide"
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "wt" "pwsh") "opt" (list "windows" "startup" "wt" "enable") "os" "windows") | trim | atoi -}}
 Run {{ joinPath .chezmoi.homeDir "scoop" "apps" "windows-terminal" "current" "wt.exe" | quote }}
 WinWait "ahk_exe WindowsTerminal.exe"
-{{ if lookPath "glazewm" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "glazewm" "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
 WinActivate "ahk_exe WindowsTerminal.exe"
 Run "glazewm command move --workspace 1", ,"Hide"
 {{ end -}}
@@ -135,7 +135,7 @@ Run {{ $jellyfin_mpv_shim | quote }}, , "Hide"
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "runemacs" "opt" (list "windows" "startup" "emacs" "enable") "os" "windows") | trim | atoi -}}
 Run "runemacs", {{ .chezmoi.homeDir | quote }}, "Hide"
 WinWait "ahk_exe emacs.exe"
-{{ if lookPath "glazewm" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "glazewm" "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
 WinActivate "ahk_exe emacs.exe"
 Run "glazewm command move --workspace 6", ,"Hide"
 {{ end -}}
