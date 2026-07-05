@@ -152,22 +152,22 @@
           index = "sparse+https://mirrors.ustc.edu.cn/crates.io-index/"
         dest: .cargo/config.toml
         mode: "0600"
-    - name: Create folder
-      tags: pip
-      ansible.builtin.file:
-        path: .pip
-        state: directory
-        mode: "0755"
-    - name: Set pip config
-      tags: pip
-      ansible.builtin.copy:
-        content: |
-          [global]
-          index-url = https://mirrors.nju.edu.cn/pypi/web/simple/
-          [install]
-          trusted-host = mirrors.nju.edu.cn
-        dest: .pip/pip.conf
-        mode: "0600"
+    # - name: Create folder
+    #   tags: pip
+    #   ansible.builtin.file:
+    #     path: .pip
+    #     state: directory
+    #     mode: "0755"
+    # - name: Set pip config
+    #   tags: pip
+    #   ansible.builtin.copy:
+    #     content: |
+    #       [global]
+    #       index-url = https://mirrors.nju.edu.cn/pypi/web/simple/
+    #       [install]
+    #       trusted-host = mirrors.nju.edu.cn
+    #     dest: .pip/pip.conf
+    #     mode: "0600"
     - name: Install pip packaging
       tags: pip
       ansible.builtin.command: pip install packaging

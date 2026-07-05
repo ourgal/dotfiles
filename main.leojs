@@ -16633,7 +16633,7 @@
     "zxc.20260423143729.416": "- newsboat\n",
     "zxc.20260423143729.418": "- ffmpeg\n",
     "user.20260703234252.1": "- name: Create folder\n  tags: cargo\n  ansible.builtin.file:\n    path: .cargo\n    state: directory\n    mode: \"0755\"\n- name: Set cargo config\n  tags: cargo\n  ansible.builtin.copy:\n    content: |\n      @others\n    dest: .cargo/config.toml\n    mode: \"0600\"\n",
-    "zxc.20260423143729.419": "- name: Create folder\n  tags: pip\n  ansible.builtin.file:\n    path: .pip\n    state: directory\n    mode: \"0755\"\n- name: Set pip config\n  tags: pip\n  ansible.builtin.copy:\n    content: |\n      [global]\n      index-url = https://mirrors.nju.edu.cn/pypi/web/simple/\n      [install]\n      trusted-host = mirrors.nju.edu.cn\n    dest: .pip/pip.conf\n    mode: \"0600\"\n- name: Install pip packaging\n  tags: pip\n  ansible.builtin.command: pip install packaging\n- name: Pip packages\n  tags: pip\n  ansible.builtin.pip:\n    name:\n      @others\n",
+    "zxc.20260423143729.419": "@\n- name: Create folder\n  tags: pip\n  ansible.builtin.file:\n    path: .pip\n    state: directory\n    mode: \"0755\"\n- name: Set pip config\n  tags: pip\n  ansible.builtin.copy:\n    content: |\n      [global]\n      index-url = https://mirrors.nju.edu.cn/pypi/web/simple/\n      [install]\n      trusted-host = mirrors.nju.edu.cn\n    dest: .pip/pip.conf\n    mode: \"0600\"\n@c\n- name: Install pip packaging\n  tags: pip\n  ansible.builtin.command: pip install packaging\n- name: Pip packages\n  tags: pip\n  ansible.builtin.pip:\n    name:\n      @others\n",
     "zxc.20260423143729.420": "- pipx\n",
     "zxc.20260423143729.421": "- name: Install pipx packages\n  tags: pipx\n  environment:\n    ANDROID_API_LEVEL: 28\n  community.general.pipx:\n    name: \"{{ item }}\"\n    executable: /data/data/com.termux/files/usr/bin/pipx\n  loop:\n    @others\n",
     "zxc.20260423143729.422": "- copyparty\n",
@@ -17302,7 +17302,7 @@
       "_mod_time": 1781590487.338
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1782651007.736
+      "_mod_time": 1783254884.663
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1780748738.606
@@ -17998,7 +17998,7 @@
       "_mod_time": 1777749330.004
     },
     "zxc.20260423143729.353": {
-      "_mod_time": 1783220327.75
+      "_mod_time": 1783255060.126
     },
     "zxc.20260423143729.426": {
       "_mod_time": 1778706271.126
@@ -18100,7 +18100,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1783140836.842
+      "_mod_time": 1783254885.228
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777298774.844
