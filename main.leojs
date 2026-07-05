@@ -12489,6 +12489,10 @@
                       "vh": "enable sshd"
                     },
                     {
+                      "gnx": "user.20260705105204.1",
+                      "vh": "passwd"
+                    },
+                    {
                       "gnx": "user.20260703171318.1",
                       "vh": "whoami"
                     }
@@ -15502,7 +15506,7 @@
     "zxc.20260616151751.1": "[my.modules.firefox]\ntheme = \"flexfox\"\n",
     "User.20260302211627.1": "@others\n",
     "zxc.20260626154828.1": "{{ $username := dict -}}\n{{ $username = set $username \"windows\" \"user\" -}}\n{{ $username = set $username \"linux\" \"zxc\" -}}\n",
-    "zxc.20260625205223.1": "{{ $termux := dict -}}\n{{ $termux = set $termux \"note20\" (dict \"port\" 8022 \"user\" \"u0_a650\" \"ip\" (ternary \"192.168.1.106\" \"192.168.123.232\" (eq .chezmoi.hostname \"work\" \"work2\"))) -}}\n{{ $termux = set $termux \"note20_adb\" (dict \"port\" 8023 \"user\" $termux.note20.user \"ip\" \"localhost\") -}}\n{{ $termux = set $termux \"m6\" (dict \"port\" 8022 \"user\" \"u0_a555\" \"ip\" (ternary \"192.168.1.103\" \"192.168.123.191\" (eq .chezmoi.hostname \"work\" \"work2\"))) -}}\n{{ $termux = set $termux \"m6_adb\" (dict \"port\" 8022 \"user\" $termux.m6.user \"ip\" \"localhost\") -}}\n",
+    "zxc.20260625205223.1": "{{ $termux := dict -}}\n{{ $termux = set $termux \"note20\" (dict \"port\" 8022 \"user\" \"u0_a650\" \"ip\" (ternary \"192.168.1.106\" \"192.168.123.232\" (eq .chezmoi.hostname \"work\" \"work2\"))) -}}\n{{ $termux = set $termux \"note20_adb\" (dict \"port\" 8023 \"user\" $termux.note20.user \"ip\" \"localhost\") -}}\n{{ $termux = set $termux \"m6\" (dict \"port\" 8022 \"user\" \"u0_a556\" \"ip\" (ternary \"192.168.1.103\" \"192.168.123.191\" (eq .chezmoi.hostname \"work\" \"work2\"))) -}}\n{{ $termux = set $termux \"m6_adb\" (dict \"port\" 8022 \"user\" $termux.m6.user \"ip\" \"localhost\") -}}\n",
     "zxc.20260626150915.1": "{{ $termux_home := \"/data/data/com.termux/files/home\" -}}\n{{ $windows_home := print \"/C:/Users/\" $username.windows -}}\n{{ $linux_home := print \"/home/\" $username.linux -}}\n",
     "zxc.20260626153034.1": "{{ $ip := dict -}}\n{{ $ip = set $ip \"brix\" (dict \"ip\" \"192.168.123.206\" \"port\" \"22\" \"user\" $username.linux) -}}\n{{ $ip = set $ip \"soft\" (dict \"ip\" \"192.168.123.206\" \"port\" \"23231\" \"user\" $username.linux) -}}\n{{ $ip = set $ip \"nuc\" (dict \"ip\" \"192.168.123.123\" \"port\" \"22\" \"user\" $username.windows) -}}\n{{ $ip = set $ip \"work2\" (dict \"ip\" \"192.168.1.107\" \"port\" \"22\" \"user\" $username.linux) -}}\n{{ $ip = set $ip \"office2043\" (dict \"ip\" \"192.168.1.104\" \"port\" \"22\" \"user\" $username.linux) -}}\n",
     "zxc.20260625233508.1": "<< dos >>\n@others\n{{ end -}}\n",
@@ -16613,7 +16617,7 @@
     "zxc.20260423143729.416": "- newsboat",
     "zxc.20260423143729.418": "- ffmpeg",
     "user.20260703234252.1": "- name: Create folder\n  tags: cargo\n  ansible.builtin.file:\n    path: .cargo\n    state: directory\n    mode: \"0755\"\n- name: Set cargo config\n  tags: cargo\n  ansible.builtin.copy:\n    content: |\n      @others\n    dest: .cargo/config.toml\n    mode: \"0600\"\n",
-    "zxc.20260423143729.419": "- name: Create folder\n  tags: pip\n  ansible.builtin.file:\n    path: .pip\n    state: directory\n    mode: \"0755\"\n- name: Set pip config\n  tags: pip\n  ansible.builtin.copy:\n    content: |\n      [global]\n      index-url = https://mirrors.nju.edu.cn/pypi/web/simple/\n      [install]\n      trusted-host = mirrors.nju.edu.cn\n    dest: .pip/pip.conf\n    mode: \"0600\"\n- name: Install pip packaging\n  tags: pip\n  ansible.builtin.command: pip install packaging\n- name: Pip packages\n  tags: pip\n  ansible.builtin.pip:\n    name:\n      @others\n",
+    "zxc.20260423143729.419": "- name: Create folder\n  tags: pip\n  ansible.builtin.file:\n    path: .pip\n    state: directory\n    mode: \"0755\"\n- name: Set pip config\n  tags: pip\n  ansible.builtin.copy:\n    content: |\n      [global]\n      index-url=http://mirrors.cloud.aliyuncs.com/pypi/simple/\n\n      [install]\n      trusted-host=mirrors.cloud.aliyuncs.com\n    dest: .pip/pip.conf\n    mode: \"0600\"\n- name: Install pip packaging\n  tags: pip\n  ansible.builtin.command: pip install packaging\n- name: Pip packages\n  tags: pip\n  ansible.builtin.pip:\n    name:\n      @others\n",
     "zxc.20260423143729.420": "- pipx",
     "zxc.20260423143729.421": "- name: Install pipx packages\n  tags: pipx\n  environment:\n    ANDROID_API_LEVEL: 28\n  community.general.pipx:\n    name: \"{{ item }}\"\n    executable: /data/data/com.termux/files/usr/bin/pipx\n  loop:\n    @others\n",
     "zxc.20260423143729.422": "- copyparty",
@@ -16941,6 +16945,7 @@
     "user.20260703171153.1": "pkg i python python-apt openssh\n",
     "user.20260703221159.1": "curl -L https://github.com/ourgal.keys > .ssh/authorized_keys\n",
     "user.20260703223446.1": "sshd\n",
+    "user.20260705105204.1": "echo \"{{ gopass \"password/linux/user\" }}\\n{{ gopass \"password/linux/user\" }}\" | passwd\n",
     "user.20260703171318.1": "whoami\n",
     "zxc.20260409214651.1": "# --- Configuration ---\n\n# Set the path to pdftk.exe if it's not in your system's PATH\n# Example: $pdftkPath = \"C:\\Program Files (x86)\\PDFtk\\bin\\pdftk.exe\"\n$pdftkPath = \"pdftk\" # Assumes pdftk is in your PATH\n\n# Define the output filename for the merged PDF\n$outputPdfName = \"output.pdf\"\n\n# --- Script Logic ---\n\n# Get today's date in YYYYMMDD format\n$today = Get-Date -Format \"yyyyMMdd\"\n\n# Define the file pattern to search for\n# This pattern looks for files like IMG_20260409_0001.pdf\n$filePattern = \"IMG_${today}_*.pdf\"\n\n# Get all PDF files matching the pattern in the current directory\n$pdfFiles = Get-ChildItem -Path . -Filter $filePattern -File\n\n# Check if any files were found\nif ($pdfFiles.Count -eq 0) {\n    Write-Host \"No PDF files found matching the pattern 'IMG_${today}_*.pdf' in the current directory.\"\n    exit\n}\n\n# Sort the files by name to ensure correct order\n# The default sorting of Get-ChildItem should be alphabetical, which works for IMG_..._0001.pdf, IMG_..._0002.pdf etc.\n$sortedPdfFiles = $pdfFiles | Sort-Object Name\n\n# Construct the list of files for pdftk\n$pdftkInputFiles = $sortedPdfFiles | ForEach-Object { $_.FullName }\n\n# Construct the pdftk command\n# The 'cat' operation merges the files. 'output' specifies the output file.\n$pdftkCommand = \"$pdftkPath $($pdftkInputFiles -join ' ') cat output $outputPdfName\"\n\nWrite-Host \"Merging the following files:\"\n$sortedPdfFiles | ForEach-Object { Write-Host \"- $($_.Name)\" }\nWrite-Host \"Output file: $outputPdfName\"\n\n# Execute the pdftk command\ntry {\n    # Use Invoke-Expression to execute the command string\n    Invoke-Expression $pdftkCommand\n    Write-Host \"Successfully merged PDF files.\"\n\n    # Delete the original files after successful merge\n    Write-Host \"Deleting original PDF files...\"\n    $sortedPdfFiles | ForEach-Object {\n        $fileName = $_.Name\n        $filePath = $_.FullName\n        try {\n            Remove-Item -Path $filePath -Force -ErrorAction Stop\n            Write-Host \"Deleted: $fileName\"\n        } catch {\n            Write-Error \"Failed to delete '$fileName': $($_.Exception.Message)\"\n        }\n    }\n    Write-Host \"All original PDF files have been deleted.\"\n\n} catch {\n    Write-Error \"An error occurred during PDF merging: $($_.Exception.Message)\"\n    Write-Error \"Please ensure pdftk is installed and in your PATH, or update the `$pdftkPath` variable.\"\n}\n",
     "zxc.20260603145336.1": "* Doc\n\n@others\n",
@@ -17437,7 +17442,7 @@
       "_mod_time": 1783140836.837
     },
     "zxc.20260201141149.1": {
-      "_mod_time": 1783140837.774
+      "_mod_time": 1783218387.267
     },
     "User.20260215191351.1": {
       "_mod_time": 1782477813.62
@@ -17524,7 +17529,7 @@
       "_mod_time": 1777179946.877
     },
     "zxc.20260125145051.1": {
-      "_mod_time": 1783140837.787
+      "_mod_time": 1783218387.284
     },
     "zxc.20260125152704.1": {
       "_mod_time": 1777179946.876
@@ -17680,7 +17685,7 @@
       "_mod_time": 1783170265.527
     },
     "zxc.20260625222427.1": {
-      "_mod_time": 1783170265.527
+      "_mod_time": 1783218387.3
     },
     "zxc.20260625222003.1": {
       "_mod_time": 1783170265.543
@@ -17959,7 +17964,7 @@
       "_mod_time": 1781484842.605
     },
     "zxc.20260423145238.1": {
-      "_mod_time": 1783140836.84
+      "_mod_time": 1783218387.332
     },
     "zxc.20260423143729.3": {
       "_mod_time": 1783186854.909
@@ -17977,7 +17982,7 @@
       "_mod_time": 1778855150.573
     },
     "zxc.20260423143729.353": {
-      "_mod_time": 1783217497.082
+      "_mod_time": 1783219789.981
     },
     "zxc.20260423143729.426": {
       "_mod_time": 1778855150.568
@@ -18073,7 +18078,7 @@
       "_mod_time": 1782909313.105
     },
     "user.20260703171055.1": {
-      "_mod_time": 1783140836.847
+      "_mod_time": 1783219965.655
     },
     "zxc.20260409214651.1": {
       "_mod_time": 1777713442.482
@@ -18130,7 +18135,7 @@
       "_mod_time": 1777179946.852
     },
     "User.20260302211536.1": {
-      "_mod_time": 1783140836.839
+      "_mod_time": 1783218387.35
     },
     "User.20260302211740.1": {
       "_mod_time": 1777179946.836
@@ -18163,7 +18168,7 @@
       "_mod_time": 1782305651.315
     },
     "zxc.20260611090830.1": {
-      "_mod_time": 1783140836.84
+      "_mod_time": 1783218387.367
     },
     "zxc.20260611091007.1": {
       "_mod_time": 1781174037.601

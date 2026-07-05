@@ -3,7 +3,7 @@
 {{ $termux := dict -}}
 {{ $termux = set $termux "note20" (dict "port" 8022 "user" "u0_a650" "ip" (ternary "192.168.1.106" "192.168.123.232" (eq .chezmoi.hostname "work" "work2"))) -}}
 {{ $termux = set $termux "note20_adb" (dict "port" 8023 "user" $termux.note20.user "ip" "localhost") -}}
-{{ $termux = set $termux "m6" (dict "port" 8022 "user" "u0_a555" "ip" (ternary "192.168.1.103" "192.168.123.191" (eq .chezmoi.hostname "work" "work2"))) -}}
+{{ $termux = set $termux "m6" (dict "port" 8022 "user" "u0_a556" "ip" (ternary "192.168.1.103" "192.168.123.191" (eq .chezmoi.hostname "work" "work2"))) -}}
 {{ $termux = set $termux "m6_adb" (dict "port" 8022 "user" $termux.m6.user "ip" "localhost") -}}
 {{ $is_note20 := eq (output "whoami" | trim) $termux.note20.user -}}
 add_newline = true
