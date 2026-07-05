@@ -15497,7 +15497,7 @@
     "zxc.20260625210558.1": "\"[localhost]:8023 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBM+qtBP8Hw2P2GiZ8UWOFQ6ca/INlOsRxDwVl1U7Th4Kddl2gXkwrJMWgZMBlX0ynoeSN6eN/1fAamufbMgcZbs=\",\n",
     "zxc.20260329193440.1": "\"[ssh.github.com]:443 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl\",\n\"[ssh.github.com]:443 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=\",\n\"[ssh.github.com]:443 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=\"\n",
     "zxc.20260503010044.1": "[my.modules]\n@others\n\n[my.modules.nuc.windows]\ndeskflow_client = true\n\n[my.modules.bed.windows.windows.startup]\njellyfin_mpv_shim.enable = true\n\n[my.modules.work.windows.windows.startup]\ndeskflow_server.enable = true\n\n[my.modules.surface.void]\n\n[my.modules.surface.void.mpv.plugins]\nanilist_updater = false\n\n[my.modules.localhost.android]\n",
-    "zxc.20260613235707.1": "[my.modules.windows.startup]\nglazewm.enable = true\ndeskflow_client.enable = false\ndeskflow_server.enable = false\naria2.enable = true\ntransmission.enable = true\nespanso.enable = true\nalist.enable = true\nmpd.enable = true\ngpg_agent.enable = true\nkde_connect.enable = true\nwezterm.enable = false\nfirefox.enable = false\nbrave.enable = true\nchromium.enable = false\nvscode.enable = false\nvscodium.enable = false\nleo.enable = false\neverything.enable = true\nautohotkey.enable = false\npowertoys.enable = true\ndufs.enable = true\ncopyparty.enable = true\naltrun.enable = false\nnavidrome.enable = true\njellyfin_mpv_shim.enable = false\nemacs.enable = true\nemacs_daemon.enable = false\nwt.enable = true\nsyncthing.enable = true\ntorrserver.enable = true\nflameshot.enable = true\nseanime.enable = true\nrclone.enable = true\n",
+    "zxc.20260613235707.1": "[my.modules.windows.startup]\nglazewm.enable = false\ndeskflow_client.enable = false\ndeskflow_server.enable = false\naria2.enable = true\ntransmission.enable = true\nespanso.enable = true\nalist.enable = true\nmpd.enable = true\ngpg_agent.enable = true\nkde_connect.enable = true\nwezterm.enable = false\nfirefox.enable = false\nbrave.enable = true\nchromium.enable = false\nvscode.enable = false\nvscodium.enable = false\nleo.enable = false\neverything.enable = true\nautohotkey.enable = false\npowertoys.enable = false\ndufs.enable = true\ncopyparty.enable = true\naltrun.enable = false\nnavidrome.enable = true\njellyfin_mpv_shim.enable = false\nemacs.enable = true\nemacs_daemon.enable = false\nwt.enable = true\nsyncthing.enable = true\ntorrserver.enable = false\nflameshot.enable = true\nseanime.enable = true\nrclone.enable = false\n",
     "zxc.20260614011525.1": "[my.modules.shell.pwsh]\nstarship.enable = false\noh_my_posh.enable = true\nsfsu.enable = false\nzoxide.enable = true\natuin.enable = false\nmcfly.enable = true\nnavi.enable = true\n",
     "zxc.20260614121829.1": "[my.modules.shell.clink]\nstarship.enable = false\noh_my_posh.enable = true\nzoxide.enable = true\n",
     "zxc.20260614123554.1": "[my.modules.shell.bash]\nble_sh.enable = true\nfzf.enable = true\nstarship.enable = false\noh_my_posh.enable = true\natuin.enable = false\nmcfly.enable = true\nzoxide.enable = true\npay_respects.enable = true\n",
@@ -15934,14 +15934,14 @@
     "zxc.20260329023750.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"gpg-connect-agent\" \"opt\" (list \"windows\" \"startup\" \"gpg_agent\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"gpg-connect-agent /bye\", , \"Hide\"\n{{ end -}}\n",
     "User.20260301185900.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"kdeconnect-cli\" \"opt\" (list \"windows\" \"startup\" \"kde_connect\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"kdeconnect\" \"current\" \"bin\" \"kdeconnectd.exe\" }}\", {{ .chezmoi.homeDir | quote }}, \"Hide\"\n{{ end -}}\n",
     "zxc.20260408010815.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"wezterm\" \"opt\" (list \"windows\" \"startup\" \"wezterm\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"wezterm\" \"current\" \"wezterm-gui.exe\" }}\"\nWinWait(\"ahk_exe wezterm-gui.exe\")\n{{ end -}}\n",
-    "zxc.20260614001058.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"firefox\" \"opt\" (list \"windows\" \"startup\" \"firefox\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun {{ joinPath (env \"AppData\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Scoop Apps\" \"Firefox.lnk\" | quote }}, , \"Max\"\nWinWait(\"ahk_exe firefox.exe\")\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe firefox.exe\"\nRun \"glazewm command move --workspace 2\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260614001152.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"brave\" \"opt\" (list \"windows\" \"startup\" \"brave\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun {{ joinPath (env \"AppData\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Scoop Apps\" \"Brave.lnk\" | quote }}, , \"Max\"\nWinWait(\"ahk_exe brave.exe\")\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe brave.exe\"\nRun \"glazewm command move --workspace 2\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
-    "user.20260701202533.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"brave\" \"opt\" (list \"windows\" \"startup\" \"chromium\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun {{ joinPath (env \"AppData\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Scoop Apps\" \"Chromium.lnk\" | quote }}, , \"Max\"\nWinWait(\"ahk_exe chrome.exe\")\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe chrome.exe\"\nRun \"glazewm command move --workspace 2\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260614001309.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"code\" \"opt\" (list \"windows\" \"startup\" \"vscode\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\n{{ $vscode := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscode\" \"current\" \"Code.exe\" -}}\nRun({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait \"ahk_exe Code.exe\"\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe Code.exe\"\nRun \"glazewm command move --workspace 3\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260614001457.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"vscodium\" \"opt\" (list \"windows\" \"startup\" \"vscodium\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\n{{ $vscodium := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscodium\" \"current\" \"VSCodium.exe\" -}}\nRun({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait(\"ahk_exe VSCodium.exe\")\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe VSCodium.exe\"\nRun \"glazewm command move --workspace 3\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260614001058.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"firefox\" \"opt\" (list \"windows\" \"startup\" \"firefox\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun {{ joinPath (env \"AppData\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Scoop Apps\" \"Firefox.lnk\" | quote }}, , \"Max\"\nWinWait(\"ahk_exe firefox.exe\")\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"glazewm\" \"opt\" (list \"windows\" \"startup\" \"glazewm\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nWinActivate \"ahk_exe firefox.exe\"\nRun \"glazewm command move --workspace 2\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260614001152.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"brave\" \"opt\" (list \"windows\" \"startup\" \"brave\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun {{ joinPath (env \"AppData\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Scoop Apps\" \"Brave.lnk\" | quote }}, , \"Max\"\nWinWait(\"ahk_exe brave.exe\")\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"glazewm\" \"opt\" (list \"windows\" \"startup\" \"glazewm\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nWinActivate \"ahk_exe brave.exe\"\nRun \"glazewm command move --workspace 2\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
+    "user.20260701202533.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"brave\" \"opt\" (list \"windows\" \"startup\" \"chromium\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun {{ joinPath (env \"AppData\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Scoop Apps\" \"Chromium.lnk\" | quote }}, , \"Max\"\nWinWait(\"ahk_exe chrome.exe\")\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"glazewm\" \"opt\" (list \"windows\" \"startup\" \"glazewm\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nWinActivate \"ahk_exe chrome.exe\"\nRun \"glazewm command move --workspace 2\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260614001309.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"code\" \"opt\" (list \"windows\" \"startup\" \"vscode\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\n{{ $vscode := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscode\" \"current\" \"Code.exe\" -}}\nRun({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait \"ahk_exe Code.exe\"\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"glazewm\" \"opt\" (list \"windows\" \"startup\" \"glazewm\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nWinActivate \"ahk_exe Code.exe\"\nRun \"glazewm command move --workspace 3\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260614001457.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"vscodium\" \"opt\" (list \"windows\" \"startup\" \"vscodium\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\n{{ $vscodium := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscodium\" \"current\" \"VSCodium.exe\" -}}\nRun({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait(\"ahk_exe VSCodium.exe\")\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"glazewm\" \"opt\" (list \"windows\" \"startup\" \"glazewm\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nWinActivate \"ahk_exe VSCodium.exe\"\nRun \"glazewm command move --workspace 3\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260502015606.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"leo\" \"opt\" (list \"windows\" \"startup\" \"leo\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"leo\", , \"Max\"\n{{ end -}}\n",
     "zxc.20260315173154.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"everything\" \"opt\" (list \"windows\" \"startup\" \"everything\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"everything\", , \"Hide\"\n{{ end -}}\n",
-    "User.20260302135935.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"wt\" \"pwsh\") \"opt\" (list \"windows\" \"startup\" \"wt\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"windows-terminal\" \"current\" \"wt.exe\" | quote }}\nWinWait \"ahk_exe WindowsTerminal.exe\"\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe WindowsTerminal.exe\"\nRun \"glazewm command move --workspace 1\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
+    "User.20260302135935.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"wt\" \"pwsh\") \"opt\" (list \"windows\" \"startup\" \"wt\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"windows-terminal\" \"current\" \"wt.exe\" | quote }}\nWinWait \"ahk_exe WindowsTerminal.exe\"\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"glazewm\" \"opt\" (list \"windows\" \"startup\" \"glazewm\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nWinActivate \"ahk_exe WindowsTerminal.exe\"\nRun \"glazewm command move --workspace 1\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260316162805.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"autohotkey\" \"opt\" (list \"windows\" \"startup\" \"autohotkey\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun {{ joinPath .chezmoi.homeDir \"Documents\" \"autohotkey\" \"keybindings.ahk\" | quote }}, , \"Hide\"\n{{ end -}}\n",
     "zxc.20260316162735.1": "{{ $powertoys := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"powertoys\" \"current\" \"powertoys.exe\" -}}\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" $powertoys \"opt\" (list \"windows\" \"startup\" \"powertoys\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun {{ $powertoys | quote }}, {{ .chezmoi.homeDir | quote }}, \"Hide\"\n{{ end -}}\n",
     "zxc.20260323180658.1": "{{ if lookPath \"autohotkey\" -}}\nRun({{ joinPath .chezmoi.homeDir \"Documents\" \"autohotkey\" \"hide_cursor.ahk\" | quote }}, , \"Hide\")\n{{ end -}}",
@@ -15951,7 +15951,7 @@
     "zxc.20260320230804.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"navidrome\" \"opt\" (list \"windows\" \"startup\" \"navidrome\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun {{ print \"navidrome --datafolder \" (joinPath (env \"LOCALAPPDATA\") \"navidrome\") | quote }}, {{ joinPath .chezmoi.homeDir | quote }}, \"Hide\"\n{{ end -}}\n",
     "zxc.20260326000727.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"syncthing\" \"opt\" (list \"windows\" \"startup\" \"syncthing\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"syncthing serve --no-console --no-browser\", , \"Hide\"\n{{ end -}}\n",
     "zxc.20260329185904.1": "{{ $jellyfin_mpv_shim := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"jellyfin-mpv-shim\" \"current\" \"run.exe\" -}}\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" $jellyfin_mpv_shim \"opt\" (list \"windows\" \"startup\" \"jellyfin_mpv_shim\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun {{ $jellyfin_mpv_shim | quote }}, , \"Hide\"\n{{ end -}}\n",
-    "zxc.20260514061811.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"runemacs\" \"opt\" (list \"windows\" \"startup\" \"emacs\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"runemacs\", {{ .chezmoi.homeDir | quote }}, \"Hide\"\nWinWait \"ahk_exe emacs.exe\"\n{{ if lookPath \"glazewm\" -}}\nWinActivate \"ahk_exe emacs.exe\"\nRun \"glazewm command move --workspace 6\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260514061811.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"runemacs\" \"opt\" (list \"windows\" \"startup\" \"emacs\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"runemacs\", {{ .chezmoi.homeDir | quote }}, \"Hide\"\nWinWait \"ahk_exe emacs.exe\"\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"glazewm\" \"opt\" (list \"windows\" \"startup\" \"glazewm\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nWinActivate \"ahk_exe emacs.exe\"\nRun \"glazewm command move --workspace 6\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
     "user.20260627151713.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"runemacs\" \"opt\" (list \"windows\" \"startup\" \"emacs_daemon\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"runemacs --daemon\", {{ .chezmoi.homeDir | quote }}, \"Hide\"\n{{ end -}}\n",
     "zxc.20260614194721.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"torrserver\" \"opt\" (list \"windows\" \"startup\" \"torrserver\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"torrserver\", , \"Hide\"\n{{ end -}}\n",
     "zxc.20260620161414.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"torrserver\" \"opt\" (list \"windows\" \"startup\" \"flameshot\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"flameshot\", , \"Hide\"\n{{ end -}}\n",
@@ -16546,83 +16546,83 @@
     "zxc.20260423143729.351": "- nodejs",
     "zxc.20260501155709.1": "- ansible",
     "zxc.20260423143729.353": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n- name: Configure termux\n  hosts: termux\n  vars:\n    ansible_remote_tmp: /data/data/com.termux/files/home/.ansible/tmp\n  tasks:\n    @others\n",
-    "zxc.20260423143729.354": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts",
+    "zxc.20260423143729.354": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts\n",
     "zxc.20260423143729.355": "- name: Update all packages\n  tags: apt\n  ansible.builtin.apt:\n    update_cache: true\n    upgrade: true\n- name: Install all packages\n  tags: apt\n  ansible.builtin.apt:\n    name:\n      @others\n",
-    "zxc.20260423143729.356": "- aichat",
+    "zxc.20260423143729.356": "- aichat\n",
     "zxc.20260620134748.1": "- ani-cli\n",
-    "zxc.20260423143729.357": "- bk",
-    "zxc.20260423143729.358": "- weechat",
-    "zxc.20260423143729.359": "- direnv\n- editorconfig-core-c\n- just\n- make\n- termux-apt-repo\n- termux-create-package",
-    "zxc.20260423143729.360": "- sqlite",
-    "zxc.20260423143729.361": "- nodejs-lts",
+    "zxc.20260423143729.357": "- bk\n",
+    "zxc.20260423143729.358": "- weechat\n",
+    "zxc.20260423143729.359": "- direnv\n- editorconfig-core-c\n- just\n- make\n- termux-apt-repo\n- termux-create-package\n",
+    "zxc.20260423143729.360": "- sqlite\n",
+    "zxc.20260423143729.361": "- nodejs-lts\n",
     "zxc.20260620020830.1": "- rust\n",
-    "zxc.20260423143729.362": "- marksman",
-    "zxc.20260423143729.363": "- jq",
-    "zxc.20260423143729.364": "- golang",
-    "zxc.20260423143729.365": "- ghc",
-    "zxc.20260423143729.366": "- taplo",
-    "zxc.20260423143729.367": "- tectonic\n- texlab\n- texlive-bin",
-    "zxc.20260423143729.368": "- python",
-    "zxc.20260423143729.369": "- pandoc",
+    "zxc.20260423143729.362": "- marksman\n",
+    "zxc.20260423143729.363": "- jq\n",
+    "zxc.20260423143729.364": "- golang\n",
+    "zxc.20260423143729.365": "- ghc\n",
+    "zxc.20260423143729.366": "- taplo\n",
+    "zxc.20260423143729.367": "- tectonic\n- texlab\n- texlive-bin\n",
+    "zxc.20260423143729.368": "- python\n",
+    "zxc.20260423143729.369": "- pandoc\n",
     "zxc.20260423143729.370": "- aria2\n- axel\n- cloneit\n- python-yt-dlp\n- transmission\n",
     "zxc.20260620003409.1": "- recutils\n",
     "zxc.20260423143729.371": "- helix\n- helix-grammars\n- neovim\n- python-pynvim\n- vim\n- kakoune\n- kakoune-lsp\n- emacs\n",
-    "zxc.20260423143729.372": "- gopass",
-    "zxc.20260423143729.373": "- gnuplot",
-    "zxc.20260423143729.374": "- imagemagick",
-    "zxc.20260423143729.375": "- qalc",
-    "zxc.20260423143729.376": "- figlet\n- toilet",
-    "zxc.20260423143729.377": "- chezmoi",
+    "zxc.20260423143729.372": "- gopass\n",
+    "zxc.20260423143729.373": "- gnuplot\n",
+    "zxc.20260423143729.374": "- imagemagick\n",
+    "zxc.20260423143729.375": "- qalc\n",
+    "zxc.20260423143729.376": "- figlet\n- toilet\n",
+    "zxc.20260423143729.377": "- chezmoi\n",
     "zxc.20260423143729.378": "- lf\n- clifm\n- nnn\n- ranger\n- vifm\n- yazi\n- mc\n",
-    "zxc.20260423143729.379": "- gh\n- git",
+    "zxc.20260423143729.379": "- gh\n- git\n",
     "zxc.20260620131731.1": "- onefetch\n",
-    "zxc.20260423143729.380": "- gitui\n- lazygit\n- tig",
-    "zxc.20260423143729.381": "- diff-so-fancy\n- git-delta",
+    "zxc.20260423143729.380": "- gitui\n- lazygit\n- tig\n",
+    "zxc.20260423143729.381": "- diff-so-fancy\n- git-delta\n",
     "zxc.20260620003122.1": "- git-crypt\n",
-    "zxc.20260423143729.382": "- git-extras",
-    "zxc.20260423143729.383": "- git-lfs",
-    "zxc.20260423143729.384": "- translate-shell",
-    "zxc.20260423143729.385": "- ttyper",
-    "zxc.20260423143729.386": "- croc\n- dufs\n- miniserve\n- rclone",
-    "zxc.20260423143729.387": "- fish",
-    "zxc.20260423143729.388": "- which",
-    "zxc.20260423143729.389": "- tmux\n- zellij",
-    "zxc.20260423143729.390": "- zoxide",
-    "zxc.20260423143729.391": "- tealdeer",
-    "zxc.20260423143729.392": "- starship\n- oh-my-posh",
-    "zxc.20260423143729.393": "- rsync",
-    "zxc.20260423143729.394": "- rnr",
+    "zxc.20260423143729.382": "- git-extras\n",
+    "zxc.20260423143729.383": "- git-lfs\n",
+    "zxc.20260423143729.384": "- translate-shell\n",
+    "zxc.20260423143729.385": "- ttyper\n",
+    "zxc.20260423143729.386": "- croc\n- dufs\n- miniserve\n- rclone\n",
+    "zxc.20260423143729.387": "- fish\n",
+    "zxc.20260423143729.388": "- which\n",
+    "zxc.20260423143729.389": "- tmux\n- zellij\n",
+    "zxc.20260423143729.390": "- zoxide\n",
+    "zxc.20260423143729.391": "- tealdeer\n",
+    "zxc.20260423143729.392": "- starship\n- oh-my-posh\n",
+    "zxc.20260423143729.393": "- rsync\n",
+    "zxc.20260423143729.394": "- rnr\n",
     "zxc.20260423143729.395": "- navi\n- pet\n",
-    "zxc.20260423143729.396": "- ripgrep",
-    "zxc.20260423143729.397": "- broot\n- fzf",
-    "zxc.20260423143729.398": "- carapace",
-    "zxc.20260423143729.399": "- atuin\n- mcfly",
-    "zxc.20260423143729.400": "- bat\n- moor",
-    "zxc.20260423143729.401": "- moreutils",
-    "zxc.20260423143729.402": "- termux-api",
-    "zxc.20260423143729.403": "- oma\n- nala",
-    "zxc.20260423143729.404": "- iproute2",
-    "zxc.20260423143729.405": "- gping",
-    "zxc.20260423143729.406": "- fontconfig-utils",
-    "zxc.20260423143729.407": "- doge\n- q-dns-client",
-    "zxc.20260423143729.408": "- eza\n- tree",
+    "zxc.20260423143729.396": "- ripgrep\n",
+    "zxc.20260423143729.397": "- broot\n- fzf\n",
+    "zxc.20260423143729.398": "- carapace\n",
+    "zxc.20260423143729.399": "- atuin\n- mcfly\n",
+    "zxc.20260423143729.400": "- bat\n- moor\n",
+    "zxc.20260423143729.401": "- moreutils\n",
+    "zxc.20260423143729.402": "- termux-api\n",
+    "zxc.20260423143729.403": "- oma\n- nala\n",
+    "zxc.20260423143729.404": "- iproute2\n",
+    "zxc.20260423143729.405": "- gping\n",
+    "zxc.20260423143729.406": "- fontconfig-utils\n",
+    "zxc.20260423143729.407": "- doge\n- q-dns-client\n",
+    "zxc.20260423143729.408": "- eza\n- tree\n",
     "zxc.20260423143729.409": "- fastfetch\n- cpufetch\n",
-    "zxc.20260423143729.410": "- htop",
-    "zxc.20260423143729.411": "- fd",
-    "zxc.20260423143729.412": "- diskus\n- dua\n- duc\n- dust\n- gdu",
-    "zxc.20260423143729.413": "- duf",
-    "zxc.20260423143729.414": "- atool\n- unrar",
+    "zxc.20260423143729.410": "- htop\n",
+    "zxc.20260423143729.411": "- fd\n",
+    "zxc.20260423143729.412": "- diskus\n- dua\n- duc\n- dust\n- gdu\n",
+    "zxc.20260423143729.413": "- duf\n",
+    "zxc.20260423143729.414": "- atool\n- unrar\n",
     "user.20260704000452.1": "- termux-services\n",
-    "zxc.20260423143729.415": "- openssh",
-    "zxc.20260423143729.416": "- newsboat",
-    "zxc.20260423143729.418": "- ffmpeg",
+    "zxc.20260423143729.415": "- openssh\n",
+    "zxc.20260423143729.416": "- newsboat\n",
+    "zxc.20260423143729.418": "- ffmpeg\n",
     "user.20260703234252.1": "- name: Create folder\n  tags: cargo\n  ansible.builtin.file:\n    path: .cargo\n    state: directory\n    mode: \"0755\"\n- name: Set cargo config\n  tags: cargo\n  ansible.builtin.copy:\n    content: |\n      @others\n    dest: .cargo/config.toml\n    mode: \"0600\"\n",
-    "zxc.20260423143729.419": "- name: Create folder\n  tags: pip\n  ansible.builtin.file:\n    path: .pip\n    state: directory\n    mode: \"0755\"\n- name: Set pip config\n  tags: pip\n  ansible.builtin.copy:\n    content: |\n      [global]\n      index-url=http://mirrors.cloud.aliyuncs.com/pypi/simple/\n\n      [install]\n      trusted-host=mirrors.cloud.aliyuncs.com\n    dest: .pip/pip.conf\n    mode: \"0600\"\n- name: Install pip packaging\n  tags: pip\n  ansible.builtin.command: pip install packaging\n- name: Pip packages\n  tags: pip\n  ansible.builtin.pip:\n    name:\n      @others\n",
-    "zxc.20260423143729.420": "- pipx",
+    "zxc.20260423143729.419": "- name: Create folder\n  tags: pip\n  ansible.builtin.file:\n    path: .pip\n    state: directory\n    mode: \"0755\"\n- name: Set pip config\n  tags: pip\n  ansible.builtin.copy:\n    content: |\n      [global]\n      index-url = https://mirrors.nju.edu.cn/pypi/web/simple/\n      [install]\n      trusted-host = mirrors.nju.edu.cn\n    dest: .pip/pip.conf\n    mode: \"0600\"\n- name: Install pip packaging\n  tags: pip\n  ansible.builtin.command: pip install packaging\n- name: Pip packages\n  tags: pip\n  ansible.builtin.pip:\n    name:\n      @others\n",
+    "zxc.20260423143729.420": "- pipx\n",
     "zxc.20260423143729.421": "- name: Install pipx packages\n  tags: pipx\n  environment:\n    ANDROID_API_LEVEL: 28\n  community.general.pipx:\n    name: \"{{ item }}\"\n    executable: /data/data/com.termux/files/usr/bin/pipx\n  loop:\n    @others\n",
-    "zxc.20260423143729.422": "- copyparty",
-    "zxc.20260423143729.423": "- mdformat",
-    "zxc.20260423143729.424": "- advance-touch",
+    "zxc.20260423143729.422": "- copyparty\n",
+    "zxc.20260423143729.423": "- mdformat\n",
+    "zxc.20260423143729.424": "- advance-touch\n",
     "zxc.20260620023925.1": "- ansible-core\n- ansible\n",
     "zxc.20260423143729.426": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n@\ndisable power saving\nenable password ssh login and start ssh\nchange uos password, current password is emtpy\nssh-copy-id\n@c\n- name: Install uos\n  hosts: uos-live\n  vars:\n    << vars >>\n  tasks:\n    @others",
     "zxc.20260423143729.427": "user: zxc\ndufs_url: http://192.168.1.110:6500",
@@ -17439,7 +17439,7 @@
       "_mod_time": 1783186804.539
     },
     "User.20260226001402.1": {
-      "_mod_time": 1783140836.837
+      "_mod_time": 1783223952.677
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1783218387.267
@@ -17490,7 +17490,7 @@
       "_mod_time": 1777713442.483
     },
     "User.20260216000318.1": {
-      "_mod_time": 1783140836.848
+      "_mod_time": 1783094266.008
     },
     "User.20260218144120.1": {
       "_mod_time": 1777298774.844
@@ -17973,34 +17973,34 @@
       "_mod_time": 1778855150.568
     },
     "zxc.20260423143729.304": {
-      "_mod_time": 1778855150.568
+      "_mod_time": 1777656487.066
     },
     "zxc.20260423143729.308": {
-      "_mod_time": 1778855150.573
+      "_mod_time": 1777749309.303
     },
     "zxc.20260423143729.330": {
-      "_mod_time": 1778855150.573
+      "_mod_time": 1777749330.004
     },
     "zxc.20260423143729.353": {
-      "_mod_time": 1783219789.981
+      "_mod_time": 1783220327.75
     },
     "zxc.20260423143729.426": {
-      "_mod_time": 1778855150.568
+      "_mod_time": 1778706271.126
     },
     "zxc.20260507153544.1": {
-      "_mod_time": 1778855150.568
+      "_mod_time": 1778768441.01
     },
     "zxc.20260514112740.1": {
       "_mod_time": 1780748738.607
     },
     "zxc.20260423143729.453": {
-      "_mod_time": 1778855150.568
+      "_mod_time": 1777655978.023
     },
     "zxc.20260501132138.1": {
-      "_mod_time": 1778855150.568
+      "_mod_time": 1777895512.128
     },
     "zxc.20260501214109.1": {
-      "_mod_time": 1782087842.587
+      "_mod_time": 1781874781.96
     },
     "zxc.20260423143848.2": {
       "_mod_time": 1777713442.480156
@@ -18051,7 +18051,7 @@
       "_mod_time": 1782087842.597
     },
     "zxc.20260619161828.1": {
-      "_mod_time": 1782087842.598
+      "_mod_time": 1781863787.169
     },
     "zxc.20260619164753.1": {
       "_mod_time": 1782087842.597
@@ -18111,7 +18111,7 @@
       "_mod_time": 1777385863.235
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1783140836.838
+      "_mod_time": 1783223877.268
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1777382331.981

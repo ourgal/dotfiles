@@ -46,7 +46,7 @@ known_hosts = [
 ]
 [my.modules]
 [my.modules.windows.startup]
-glazewm.enable = true
+glazewm.enable = false
 deskflow_client.enable = false
 deskflow_server.enable = false
 aria2.enable = true
@@ -65,7 +65,7 @@ vscodium.enable = false
 leo.enable = false
 everything.enable = true
 autohotkey.enable = false
-powertoys.enable = true
+powertoys.enable = false
 dufs.enable = true
 copyparty.enable = true
 altrun.enable = false
@@ -75,10 +75,10 @@ emacs.enable = true
 emacs_daemon.enable = false
 wt.enable = true
 syncthing.enable = true
-torrserver.enable = true
+torrserver.enable = false
 flameshot.enable = true
 seanime.enable = true
-rclone.enable = true
+rclone.enable = false
 [my.modules.shell.pwsh]
 starship.enable = false
 oh_my_posh.enable = true
