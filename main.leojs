@@ -15201,7 +15201,7 @@
     "User.20260218141914.23": "\" let g:suda_smart_edit = 1\n",
     "User.20260218143021.1": "let g:lightline = {\n      \\ 'colorscheme': 'catppuccin_mocha',\n      \\ 'active': {\n      \\   'left': [ [ 'mode', 'paste' ],\n      \\             [ 'readonly', 'filename', 'modified' ] ],\n      \\   'right': [ [ 'lineinfo' ],\n      \\              [ 'percent' ],\n      \\              [ 'zoomed', 'fileformat', 'fileencoding', 'filetype' ] ]\n      \\ },\n      \\ 'inactive': {\n      \\   'left': [ [ 'mode', 'paste' ],\n      \\             [ 'readonly', 'filename', 'modified' ] ],\n      \\   'right': [ [ 'lineinfo' ],\n      \\              [ 'percent' ],\n      \\              [ 'fileformat', 'fileencoding', 'filetype' ] ]\n      \\ },\n      \\ 'component_function': {\n      \\   'filename': 'LightlineTruncatedFileName',\n      \\   'zoomed': 'zoom#statusline'\n      \\ }\n      \\ }\n\nfunction! LightlineTruncatedFileName()\nlet l:filePath = expand('%')\n    if winwidth(0) > 100\n        return l:filePath\n    else\n        return pathshorten(l:filePath)\n    endif\nendfunction\n",
     "User.20260227211108.1": "\" let g:python3_host_prog = {{ lookPath \"python\" | squote }}\n",
-    "zxc.20260319224134.1": "let g:workspace_autocreate = 1\nlet g:workspace_session_disable_on_args = 1\nlet g:workspace_session_directory = {{ print (joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"sessions\" ) \"\\\\\" | squote }}\nlet g:workspace_autosave = 1\nlet g:workspace_autosave_ignore = ['gitcommit', 'suprawater']\nlet g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"undo\" ) \"\\\\\" | squote }}\n",
+    "zxc.20260319224134.1": "let g:workspace_autocreate = 1\nlet g:workspace_session_disable_on_args = 1\nlet g:workspace_session_directory = {{ print (joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"sessions\" ) \"\\\\\" | squote }}\nlet g:workspace_autosave = 1\nlet g:workspace_autosave_always = 1\nlet g:workspace_autosave_ignore = ['gitcommit', 'suprawater']\nlet g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"undo\" ) \"\\\\\" | squote }}\n",
     "zxc.20260606101656.1": "nnoremap <silent> <leader> <cmd>WhichKey '<Space>'<CR>\n",
     "zxc.20260426141355.1": "@others\n",
     "zxc.20260606101722.1": "let g:which_key_map = {}\n",
@@ -17275,7 +17275,7 @@
       "_mod_time": 1783297134.866
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1783338156.186
+      "_mod_time": 1783339707.73
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1783297135.058
@@ -17296,7 +17296,7 @@
       "_mod_time": 1783297135.057
     },
     "User.20260218142211.1": {
-      "_mod_time": 1783338156.217
+      "_mod_time": 1783339707.747
     },
     "User.20260218142322.1": {
       "_mod_time": 1777398596.523
@@ -18118,7 +18118,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1783337931.769
+      "_mod_time": 1783339707.78
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777298774.844
