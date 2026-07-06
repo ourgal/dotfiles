@@ -15297,7 +15297,7 @@
     "zxc.20260125162302.1": "[keys.normal.space.l]\nf = \":fmt\"",
     "zxc.20260125162324.1": "[keys.select.g]\nc = \"toggle_comments\"\nz = [\"split_selection_on_newline\", \":sort\", \"keep_primary_selection\"]\n",
     "zxc.20260201203315.1": "armor\ncert-digest-algo SHA512\ncharset utf-8\ndefault-preference-list SHA512 SHA384 SHA256 AES256 AES192 AES ZLIB BZIP2 ZIP Uncompressed\nfixed-list-mode\nkeyid-format 0xlong\nlist-options show-uid-validity\nno-comments\nno-emit-version\nno-greeting\nno-symkey-cache\npersonal-cipher-preferences AES256 AES192 AES\npersonal-compress-preferences ZLIB BZIP2 ZIP Uncompressed\npersonal-digest-preferences SHA512 SHA384 SHA256\nrequire-cross-certification\nrequire-secmem\ns2k-cipher-algo AES256\ns2k-digest-algo SHA512\nthrow-keyids\nuse-agent\nverify-options show-uid-validity\nwith-fingerprint",
-    "zxc.20260201203539.1": "{{ if .my.git.sign.gpg -}}\n{{ if eq .chezmoi.os \"windows\" -}}\nenable-win32-openssh-support\n{{ end -}}\nenable-ssh-support\n{{ end -}}\ngrab\n{{ if lookPath \"pinentry-gtk-2\" -}}\npinentry-program {{ lookPath \"pinentry-gtk-2\" }}\n{{ end -}}",
+    "zxc.20260201203539.1": "{{ if .my.git.sign.gpg -}}\n\n{{ if eq .chezmoi.os \"windows\" -}}\nenable-win32-openssh-support\n{{ end -}}\n\n{{ if ne .chezmoi.os \"android\" -}}\nenable-ssh-support\n{{ end -}}\n\n{{ end -}}\ngrab\n\n{{ if lookPath \"pinentry-gtk-2\" -}}\npinentry-program {{ lookPath \"pinentry-gtk-2\" }}\n{{ end -}}\n",
     "zxc.20260402230749.1": "[mounts]\n\tpath = {{ env \"LOCALAPPDATA\" }}\\gopass\\stores\\root\n[core]\n\tautosync = false",
     "User.20260228232118.1": "music_directory {{ joinPath .chezmoi.homeDir \"Music\" | quote }}\nplaylist_directory {{ joinPath (env \"APPDATA\") \"mpd\" \"playlist\" | quote }}\ndb_file {{ joinPath (env \"APPDATA\") \"mpd\" \"tag_cache\" | quote }}\nstate_file {{ joinPath (env \"APPDATA\") \"mpd\" \"state\" | quote }}\nsticker_file {{ joinPath (env \"APPDATA\") \"mpd\" \"sticker.sql\" | quote }}\n\nauto_update \"yes\"\n\naudio_output {\n    type \"winmm\"\n    name \"Windows Speakers\"\n}",
     "User.20260214200035.1": "encryption = \"age\"\n[age]\n    identity = \"~/.ssh/id_ed25519\"\n    symmetric = true",
@@ -16101,7 +16101,7 @@
     "user.20260704002025.1": "<< unix >>\n{{ if lookPath \"transmission-daemon\" -}}\n@others\n{{ end -}}\n{{ end -}}\n@language json\n",
     "zxc.20260502183455.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260502183056.1": "<< unix >>\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260502183253.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n{{ if .my.git.sign.gpg -}}\n66E220F513E05B9F44D77B9B15F629D7C1270868\n{{ end -}}\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260502183253.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n{{ if .my.git.sign.gpg -}}\n{{ if ne .chezmoi.os \"android\" -}}\n66E220F513E05B9F44D77B9B15F629D7C1270868\n{{ end -}}\n{{ end -}}\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260505181144.1": "<< unix >>\n@others\n{{ end -}}",
     "zxc.20260505181312.2": "{{ if stat \"/home/linuxbrew/.linuxbrew\" -}}\neval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\"\nexport HOMEBREW_BREW_GIT_REMOTE=\"https://mirror.nju.edu.cn/git/homebrew/brew.git\"\n{{ end -}}",
     "zxc.20260505181312.3": "export EDITOR={{ template \"editor\" }}\n",
@@ -17743,10 +17743,10 @@
       "_mod_time": 1783297135.131
     },
     "zxc.20260502183056.1": {
-      "_mod_time": 1783297135.131
+      "_mod_time": 1783355287.883
     },
     "zxc.20260502183253.1": {
-      "_mod_time": 1783297135.132
+      "_mod_time": 1783355377.171
     },
     "zxc.20260505181144.1": {
       "_mod_time": 1783297135.074
@@ -17797,7 +17797,7 @@
       "_mod_time": 1777718155.12
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1777978566.573
+      "_mod_time": 1783355287.907
     },
     "zxc.20260201214114.1": {
       "_mod_time": 1778939057.595
@@ -18121,7 +18121,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1783339707.78
+      "_mod_time": 1783355288.015
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777106655.378

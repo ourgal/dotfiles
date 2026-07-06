@@ -2806,12 +2806,18 @@ Config.
 
 #+begin_src
 {{ if .my.git.sign.gpg -}}
+
 {{ if eq .chezmoi.os "windows" -}}
 enable-win32-openssh-support
 {{ end -}}
+
+{{ if ne .chezmoi.os "android" -}}
 enable-ssh-support
 {{ end -}}
+
+{{ end -}}
 grab
+
 {{ if lookPath "pinentry-gtk-2" -}}
 pinentry-program {{ lookPath "pinentry-gtk-2" }}
 {{ end -}}
