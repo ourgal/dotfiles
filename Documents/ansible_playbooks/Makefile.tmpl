@@ -3,7 +3,7 @@ TARGETS := $(FILES:playbooks/%=%)
 .PHONY: all ${TARGETS}
 all: ${TARGETS}
 {{ $env_var := "" }}
-{{ if not (eq .chezmoi.os "windows") -}}
+{{ if eq .chezmoi.os "windows" -}}
 {{ $env_var = "LC_ALL=C.UTF-8 ANSIBLE_CONFIG=ansible.cfg " }}
 {{ end -}}
 ${TARGETS}:

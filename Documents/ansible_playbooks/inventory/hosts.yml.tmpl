@@ -46,6 +46,10 @@ wsl-debian:
       ansible_host: nuc.local
       wsl_distribution: debian
       wsl_user: root
+    work-wsl-debian:
+      ansible_host: 192.168.1.110
+      wsl_distribution: debian
+      wsl_user: root
 wsl-arch:
   vars:
     ansible_connection: community.general.wsl
