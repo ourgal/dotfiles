@@ -1,0 +1,50 @@
+use strict;
+use warnings;
+use v5.40;
+use File::Spec;
+use File::Path qw(make_path);
+
+my @apk_ids = (
+    "org.telegram.messenger",
+    "com.gbox.android",
+    "org.mozilla.firefox",
+    "com.brave.browser",
+    "com.microsoft.emmx.canary",
+    "com.rookiestudio.perfectviewer",
+);
+my $repo_dir = "repo";
+my $apkeep_cmd = "apkeep";
+
+sub run_command {
+  my $output = `@_`;
+  my $exit_code = $? >> 8;
+
+  ($output, $exit_code);
+}
+
+sub apkeep_latest_version {
+  my ($out, $code) = run_command("$apkeep_cmd -a @_ -l");
+  $out =~ /^.*\n.*, (.*)/ if $code == 0 or die "@_ code: $code";
+}
+
+sub apk_filename {
+  my ($id, $v) = @_;
+  "${id}@${v}.apk"
+}
+
+sub check_dir {
+  unless (-d $repo_dir) {
+    make_path($repo_dir) or die "Can't create folder $repo_dir: $!";
+  }
+}
+
+sub download_apk {
+  my ($id) = @_;
+  my ($v) = apkeep_latest_version($id);
+  `$apkeep_cmd -a ${id}\@${v} $repo_dir`;
+}
+
+check_dir();
+for (@apk_ids) {
+  download_apk($_);
+}
