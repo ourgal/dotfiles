@@ -11,7 +11,7 @@
     "post_install": [
         "$name = \"master_healer_kale\"",
         "$path = \"${env:USERPROFILE}\\AppData\\LocalLow\\Evrac Studio\\MasterHealerKale\"",
-        b$saves = if ($env:game_saves) { $env:game_saves } else { \"$env:USERPROFILE\\Documents\\game_saves\" }",
+        "$saves = if ($env:game_saves) { $env:game_saves } else { \"$env:USERPROFILE\\Documents\\game_saves\" }",
         "mkdir -p $saves\\$name >$null 2>$null",
         "New-Item -ItemType Junction -Path $path -Target $saves\\$name >$null"
     ],
