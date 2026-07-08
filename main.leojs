@@ -12319,6 +12319,14 @@
                                   "vh": "saveContent"
                                 },
                                 {
+                                  "gnx": "user.20260708102058.1",
+                                  "vh": "verify"
+                                },
+                                {
+                                  "gnx": "user.20260708102251.1",
+                                  "vh": "nextPage"
+                                },
+                                {
                                   "gnx": "user.20260628172206.1",
                                   "vh": "saveNextPage"
                                 },
@@ -12345,6 +12353,14 @@
                                 {
                                   "gnx": "user.20260628172359.1",
                                   "vh": "search"
+                                },
+                                {
+                                  "gnx": "user.20260708090057.1",
+                                  "vh": "getPageNum"
+                                },
+                                {
+                                  "gnx": "user.20260708144302.1",
+                                  "vh": "getSpineIndex"
                                 }
                               ]
                             }
@@ -16973,19 +16989,23 @@
     "zxc.20260619165720.1": "waiting.db\n",
     "zxc.20260619165733.1": ".env\n",
     "zxc.20260619165753.1": "tags\n",
-    "user.20260628171858.1": "import { appendFile, mkdir, writeFile } from 'fs/promises';\nimport { expect, Page, test } from 'patchright/test';\nimport path from 'path';\nimport dotenv from 'dotenv';\n\n@others\n\ntest('main', async ({ page }) => {\n  await page.goto(HOME_PAGE);\n\n  await loading(page);\n\n  await search(page, SEARCH_KEYWORD)\n\n  // await switchPage(page, PAGE);\n\n  let bookTitle: string;\n  try {\n    bookTitle = await getBookTitle(page, BOOK_INDEX);\n  } catch (error) {\n    console.error(\"Failed to get book title. Aborting test.\");\n    throw error;\n  }\n  let img_index = 0;\n\n  await openBook(page, BOOK_INDEX);\n\n  img_index = await saveContent(page, bookTitle, img_index);\n\n  while (true) {\n    img_index = await saveNextPage(page, bookTitle, img_index)\n  }\n});\n",
+    "user.20260628171858.1": "import { appendFile, mkdir, writeFile } from 'fs/promises';\nimport { expect, Page, test } from 'patchright/test';\nimport path from 'path';\nimport dotenv from 'dotenv';\n\n@others\n\ntest('main', async ({ page }) => {\n  await page.goto(HOME_PAGE);\n\n  await loading(page);\n\n  await search(page, SEARCH_KEYWORD)\n\n  // await switchPage(page, PAGE);\n\n  let bookTitle: string;\n  try {\n    bookTitle = await getBookTitle(page, BOOK_INDEX);\n  } catch (error) {\n    console.error(\"Failed to get book title. Aborting test.\");\n    throw error;\n  }\n  let img_index = 0;\n\n  await openBook(page, BOOK_INDEX);\n\n  img_index = await saveContent(page, bookTitle, img_index);\n\n  while (img_index >= 0) {\n    img_index = await saveNextPage(page, bookTitle, img_index)\n  }\n});\n",
     "user.20260628173753.1": "@others\n\n",
     "user.20260628173805.1": "const HOME_PAGE = \"https://ritdon.com/epub_library.php\"\n",
     "user.20260628173844.1": "const currentDir = import.meta.dirname;\n",
     "user.20260628182854.1": "dotenv.config();\n\nconst BOOK_INDEX = parseInt(process.env.BOOK_INDEX, 10);\nconst PAGE = parseInt(process.env.PAGE, 10);\nconst SEARCH_KEYWORD = process.env.SEARCH_KEYWORD;\n",
-    "user.20260628172146.1": "async function saveContent(page: Page, title: string, img_index: number) {\n  try {\n    await page.waitForLoadState('networkidle');\n    await expect(page.locator('button#btnPanel')).toBeVisible({ timeout: 60000 });\n    const body = await page.locator('div.content-area').innerHTML();\n\n    const matches = body.match(/\"(data:image\\/jpeg;base64,.*?)\"/g) || [];\n\n    let tmpBody = body;\n    for (const match of matches) {\n      const res = await saveBase64(match, title, img_index);\n      img_index = res.img_index\n      tmpBody = tmpBody.replace(match, res.path)\n    }\n\n    const content = tmpBody.replace(/<meta.*?>/g, '').replace(/<style.*?>[\\s\\S]*?<\\/style>/g, '').replace(/<title.*?>.*?<\\/title>/g, '').replace(/<div.*?>/g, '').replace(/<\\/div>/g, '').replace(/^\\s*[\\r\\n]$/gm, '');\n\n    const dir = path.join(currentDir, '../output', title);\n    const file = path.join(dir, 'output.html');\n\n    await mkdir(dir, { recursive: true });\n    await appendFile(file, content, 'utf-8');\n    console.log(`Saved content to: ${dir}`);\n  } catch (error: any) {\n    console.error(`Error saving content for \"${title}\": ${error.message}`);\n  }\n\n  return img_index;\n}\n\n",
-    "user.20260628172206.1": "async function saveNextPage(page: Page, title: string, img_index: number) {\n  await page.locator('a#btnNext').click();\n  return await saveContent(page, title, img_index)\n}\n\n",
+    "user.20260628172146.1": "async function saveContent(page: Page, title: string, img_index: number) {\n  await verify(page);\n\n  await page.waitForLoadState('networkidle');\n  await expect(page.locator('button#btnPanel')).toBeVisible({ timeout: 60000 });\n  const body = await page.locator('div.content-area').innerHTML();\n\n  const matches = body.match(/\"(data:image\\/jpeg;base64,.*?)\"/g) || [];\n\n  let tmpBody = body;\n  for (const match of matches) {\n    const res = await saveBase64(match, title, img_index);\n    img_index = res.img_index\n    tmpBody = tmpBody.replace(match, res.path)\n  }\n\n  const content = tmpBody.replace(/<meta.*?>/g, '').replace(/<style.*?>[\\s\\S]*?<\\/style>/g, '').replace(/<title.*?>.*?<\\/title>/g, '').replace(/<div.*?>/g, '').replace(/<\\/div>/g, '').replace(/^\\s*[\\r\\n]$/gm, '');\n\n  const dir = path.join(currentDir, '../output', title);\n  const file = path.join(dir, 'output.html');\n\n  await mkdir(dir, { recursive: true });\n  await appendFile(file, content, 'utf-8');\n\n  const progress = await getSpineIndex(page);\n  console.log(`${title} ${progress}`);\n\n  return img_index;\n}\n\n",
+    "user.20260708102058.1": "async function verify(page: Page) {\n  await page.waitForLoadState('networkidle');\n\n  const btn = page.getByRole('button', { name: '验证' });\n  const count = await btn.count();\n  if (count > 0) {\n    await page.locator(\"input[name='antispider_captcha']\").fill(\"0\");\n    await btn.click();\n    return true;\n  } else {\n    return false;\n  }\n}\n\n",
+    "user.20260708102251.1": "async function nextPage(page: Page) {\n  const btn = page.locator('a#btnNext');\n  const count = await btn.count();\n  if (count > 0) {\n    await btn.click();\n    return true;\n  } else {\n    return false;\n  }\n}\n\n",
+    "user.20260628172206.1": "async function saveNextPage(page: Page, title: string, img_index: number) {\n  if (await nextPage(page)) {\n    return await saveContent(page, title, img_index);\n  } else {\n    return -1;\n  }\n}\n\n",
     "user.20260628172225.1": "async function loading(page: Page) {\n  await expect(page.getByRole('button', { name: '跳转' })).toBeVisible({ timeout: 120000 });\n}\n\n",
     "user.20260628172245.1": "async function openBook(page: Page, index: number) {\n  await page.locator('div.book-cover').nth(index).locator('a').click();\n}\n\n",
     "user.20260628172304.1": "async function getBookTitle(page: Page, index: number): Promise<string> {\n  try {\n    const title = await page.locator('div.book-title').nth(index).getAttribute('title');\n    if (title) {\n      console.log(`Found title for book at index ${index}: \"${title}\"`);\n      return title.replace(/\\s/g, '_');\n    } else {\n      throw new Error(`'title' attribute is null or undefined for book at index ${index}.`);\n    }\n  } catch (error: any) {\n    console.error(`Error getting title for book at index ${index}: ${error.message}`);\n    throw error;\n  }\n}\n\n",
     "user.20260628172316.1": "async function switchPage(page: Page, page_index: number) {\n  await page.locator('#page-input').fill(page_index.toString());\n  await page.getByRole('button', { name: '跳转' }).click();\n}\n\n",
     "user.20260628172340.1": "async function saveBase64(raw: string, title: string, img_index: number) {\n  var base64Data = raw.split(';base64,').pop()\n\n  const dir = path.join(currentDir, '../output', title, 'images');\n  await mkdir(dir, { recursive: true });\n  const img = path.join(dir, `${img_index}.jpg`);\n\n  writeFile(img, base64Data, 'base64', function (err: any) {\n    console.log(err);\n  });\n\n  return { path: path.join('images', `${img_index}.jpg`), img_index: img_index + 1 };\n}\n\n",
     "user.20260628172359.1": "async function search(page: Page, keyword: string) {\n  await page.getByPlaceholder(\"搜索书籍...\").fill(keyword)\n  await page.getByRole('button', { name: '搜索' }).click();\n}\n\n",
+    "user.20260708090057.1": "async function getPageNum(page: Page) {\n  const raw = await page.locator('span#bookProgress').innerText();\n  console.log(raw)\n  const regex = /\\d+\\/(\\d+)/;\n  const match = raw.match(regex);\n  if (match) {\n    const num = match[1];\n    return parseInt(num, 10);\n  } else {\n    throw new Error('Page number not found');\n  }\n}\n\n",
+    "user.20260708144302.1": "async function getSpineIndex(page: Page) {\n  const content = await page.content();\n\n  const regex_current = /CURRENT_SPINE = (\\d+)/;\n  const match_current = content.match(regex_current);\n\n  let current = '';\n  if (match_current) {\n    current = parseInt(match_current[1], 10) + 1;\n  } else {\n    throw new Error('Page number not found');\n  }\n\n  let total = '';\n  const regex_total = /SPINE_TOTAL = (\\d+)/;\n  const match_total = content.match(regex_total);\n  if (match_total) {\n    total = parseInt(match_total[1]);\n  } else {\n    throw new Error('Page number not found');\n  }\n\n  return `${current}/${total}`;\n}\n\n",
     "user.20260628172017.1": "import { appendFile } from 'node:fs/promises';\nimport { expect, Page, test } from 'patchright/test';\nimport path from 'path';\n\n@others\n\ntest('main', async ({ page }) => {\n  await page.goto(HOME_PAGE);\n\n  await blcokImages(page);\n\n  await loading(page);\n\n  await getBookTitles(page, title_file);\n\n  const max_page = await getMaxPageNum(page);\n\n  for (let i = 1; i < max_page; i++) {\n    await switchPage(page, i + 1)\n    await loading(page);\n    await getBookTitles(page, title_file)\n  }\n\n});\n",
     "user.20260628173825.1": "@others\n\n",
     "user.20260628173951.1": "const title_file = path.join(currentDir, '../titles', 'titles.txt');\n",
@@ -16999,7 +17019,7 @@
     "user.20260701153620.1": "import { appendFile } from 'node:fs/promises';\nimport { expect, Page, test } from 'patchright/test';\nimport path from 'path';\n\n@others\n\ntest('main', async ({ page }) => {\n  await blcokImages(page);\n\n  await page.goto(HOME_PAGE);\n\n  await loading(page);\n\n  await switchCategory(page, 'other');\n\n  await getBookTitles(page, title_file);\n\n  const max_page = await getMaxPageNum(page);\n\n  for (let i = 1; i < max_page; i++) {\n    await switchPage(page, i + 1)\n    await loading(page);\n    await getBookTitles(page, title_file)\n  }\n\n});\n\n",
     "user.20260701153626.1": "@others\n",
     "user.20260701153916.1": "const title_file = path.join(currentDir, '../titles', 'titles_other.txt');\n",
-    "user.20260701154149.1": "DIRS := $(wildcard output/*/)\nFILES := $(patsubst %, %temp.md, $(DIRS))\ntitle := titles/titles\n\nall:\n\t@pnpm exec patchright test --headed tests/main.spec.ts\n\ntitles: title title_zht title_other\n\ntitle:\n\t@-rm $(title).txt\n\t@pnpm exec patchright test --headed tests/title.spec.ts\n\t@pwsh -c \"cat $(title).txt | sort > $(title)_sorted.txt\"\n\ntitle_zht:\n\t@-rm $(title)_zht.txt\n\t@pnpm exec patchright test --headed tests/title_zht.spec.ts\n\t@pwsh -c \"cat $(title)_zht.txt | sort > $(title)_zht_sorted.txt\"\n\ntitle_other:\n\t@-rm $(title)_other.txt\n\t@pnpm exec patchright test --headed tests/title_other.spec.ts\n\t@pwsh -c \"cat $(title)_other.txt | sort > $(title)_other_sorted.txt\"\n\nauth:\n\t@pnpm exec patchright test --headed tests/auth.setup.ts\n\ninstall:\n\t@pnpm exec patchright install chromium\n\nmd: ${FILES}\n\n${FILES}:\n\tpandoc -f html $(dir $@)output.html -t markdown -o $@ --wrap=none\n",
+    "user.20260701154149.1": "DIRS := $(wildcard output/*/)\nFILES := $(patsubst %, %temp.md, $(DIRS))\ntitle := titles/titles\n\nall:\n\t@pnpm exec patchright test --headed tests/main.spec.ts\n\ntitles: pull title title_zht title_other\n\ntitle:\n\t@-rm $(title).txt\n\t@pnpm exec patchright test --headed tests/title.spec.ts\n\t@pwsh -c \"cat $(title).txt | sort > $(title)_sorted.txt\"\n\ntitle_zht:\n\t@-rm $(title)_zht.txt\n\t@pnpm exec patchright test --headed tests/title_zht.spec.ts\n\t@pwsh -c \"cat $(title)_zht.txt | sort > $(title)_zht_sorted.txt\"\n\ntitle_other:\n\t@-rm $(title)_other.txt\n\t@pnpm exec patchright test --headed tests/title_other.spec.ts\n\t@pwsh -c \"cat $(title)_other.txt | sort > $(title)_other_sorted.txt\"\n\nPHONY: auth\nauth:\n\t@pnpm exec patchright test --headed tests/auth.setup.ts\n\nPHONY: install\ninstall:\n\t@pnpm exec patchright install chromium\n\nmd: ${FILES}\n\n${FILES}:\n\tpandoc -f html $(dir $@)output.html -t markdown -o $@ --wrap=none\n\nPHONY: pull\npull:\n\t@git pull origin\n",
     "user.20260707170204.1": "use strict;\nuse warnings;\nuse v5.40;\nuse File::Spec;\nuse File::Path qw(make_path);\n\nmy @apk_ids = (\n    \"org.telegram.messenger\",\n    \"com.gbox.android\",\n    \"org.mozilla.firefox\",\n    \"com.brave.browser\",\n    \"com.microsoft.emmx.canary\",\n    \"com.rookiestudio.perfectviewer\",\n);\nmy $repo_dir = \"repo\";\nmy $apkeep_cmd = \"apkeep\";\n\nsub run_command {\n  my $output = `@_`;\n  my $exit_code = $? >> 8;\n\n  ($output, $exit_code);\n}\n\nsub apkeep_latest_version {\n  my ($out, $code) = run_command(\"$apkeep_cmd -a @_ -l\");\n  $out =~ /^.*\\n.*, (.*)/ if $code == 0 or die \"@_ code: $code\";\n}\n\nsub apk_filename {\n  my ($id, $v) = @_;\n  \"${id}@${v}.apk\"\n}\n\nsub check_dir {\n  unless (-d $repo_dir) {\n    make_path($repo_dir) or die \"Can't create folder $repo_dir: $!\";\n  }\n}\n\nsub download_apk {\n  my ($id) = @_;\n  my ($v) = apkeep_latest_version($id);\n  `$apkeep_cmd -a ${id}\\@${v} $repo_dir`;\n}\n\ncheck_dir();\nfor (@apk_ids) {\n  download_apk($_);\n}\n",
     "user.20260703171055.1": "@others\n",
     "user.20260703171123.1": "sed -i 's@^\\(deb.*stable main\\)$@#\\1\\ndeb https://mirror.nju.edu.cn/termux/apt/termux-main stable main@' $PREFIX/etc/apt/sources.list\npkg update && pkg upgrade\n",
@@ -17299,7 +17319,7 @@
       "_mod_time": 1782260301.796
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1783164752.818
+      "_mod_time": 1783297134.866
     },
     "zxc.20260125143959.1": {
       "_mod_time": 1783297134.866
@@ -17311,7 +17331,7 @@
       "_mod_time": 1783297135.058
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1783425866.129
+      "_mod_time": 1783472839.163
     },
     "zxc.20260429145437.1": {
       "_mod_time": 1783297135.072
@@ -17332,7 +17352,7 @@
       "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1783425866.146
+      "_mod_time": 1783472839.177
     },
     "zxc.20260429112140.1": {
       "_mod_time": 1777612767.666
@@ -17371,7 +17391,7 @@
       "_mod_time": 1782087842.583
     },
     "User.20260226000855.1": {
-      "_mod_time": 1783164753.008
+      "_mod_time": 1783297134.666
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1782695824.473
@@ -17494,10 +17514,10 @@
       "_mod_time": 1781602833.363
     },
     "zxc.20260620011448.1": {
-      "_mod_time": 1781889514.981
+      "_mod_time": 1782087842.583
     },
     "user.20260704161622.1": {
-      "_mod_time": 1783186804.539
+      "_mod_time": 1783297134.737
     },
     "User.20260226001402.1": {
       "_mod_time": 1783297134.656
@@ -17509,10 +17529,10 @@
       "_mod_time": 1782477813.62
     },
     "User.20260220010313.1": {
-      "_mod_time": 1783354758.687
+      "_mod_time": 1783383452.934
     },
     "User.20260220010448.1": {
-      "_mod_time": 1783354775.854
+      "_mod_time": 1783383452.94
     },
     "zxc.20260516111037.1": {
       "_mod_time": 1780748738.608
@@ -17569,10 +17589,10 @@
       "_mod_time": 1777713442.484
     },
     "zxc.20260620000810.1": {
-      "_mod_time": 1781885505.742
+      "_mod_time": 1782087842.619
     },
     "zxc.20260620000819.1": {
-      "_mod_time": 1781885527.561
+      "_mod_time": 1782087842.618
     },
     "zxc.20260504133747.1": {
       "_mod_time": 1778855150.612
@@ -17614,7 +17634,7 @@
       "_mod_time": 1783297135.109
     },
     "User.20260217223030.1": {
-      "_mod_time": 1783186850.909
+      "_mod_time": 1783297135.108
     },
     "User.20260217223035.1": {
       "_mod_time": 1783297135.109
@@ -17707,7 +17727,7 @@
       "_mod_time": 1782087842.645
     },
     "zxc.20260421145655.1": {
-      "_mod_time": 1783099129.77
+      "_mod_time": 1783297135.11
     },
     "zxc.20260421231645.1": {
       "_mod_time": 1777179946.881
@@ -17746,7 +17766,7 @@
       "_mod_time": 1783297135.113
     },
     "zxc.20260625222427.1": {
-      "_mod_time": 1783218387.3
+      "_mod_time": 1783297135.113
     },
     "zxc.20260625222003.1": {
       "_mod_time": 1783297135.114
@@ -17761,7 +17781,7 @@
       "_mod_time": 1783297135.127
     },
     "user.20260702165628.1": {
-      "_mod_time": 1783439279.775
+      "_mod_time": 1783472839.169
     },
     "user.20260704002025.1": {
       "_mod_time": 1783297135.13
@@ -18013,7 +18033,7 @@
       "_mod_time": 1782305651.363
     },
     "user.20260706164644.1": {
-      "_mod_time": 1783440881.985
+      "_mod_time": 1783472839.175
     },
     "zxc.20260125211938.1": {
       "_mod_time": 1782087842.586
@@ -18127,19 +18147,19 @@
       "_mod_time": 1782087842.598
     },
     "user.20260628171858.1": {
-      "_mod_time": 1783140836.843
+      "_mod_time": 1783497832.066
     },
     "user.20260628172017.1": {
-      "_mod_time": 1783140836.843
+      "_mod_time": 1782959109.024
     },
     "user.20260628172043.1": {
-      "_mod_time": 1783140836.845
+      "_mod_time": 1782959118.923
     },
     "user.20260701153620.1": {
-      "_mod_time": 1783140836.844
+      "_mod_time": 1782959118.98
     },
     "user.20260701154149.1": {
-      "_mod_time": 1782900305.828
+      "_mod_time": 1783473913.175
     },
     "user.20260707170204.1": {
       "_mod_time": 1783424374.818
@@ -18202,7 +18222,7 @@
       "_mod_time": 1777179946.852
     },
     "User.20260302211536.1": {
-      "_mod_time": 1783218387.35
+      "_mod_time": 1783297134.835
     },
     "User.20260302211740.1": {
       "_mod_time": 1777179946.836
@@ -18241,7 +18261,7 @@
       "_mod_time": 1781170166.798
     },
     "zxc.20260621234825.1": {
-      "_mod_time": 1783439279.794
+      "_mod_time": 1783472839.163
     }
   }
 }
