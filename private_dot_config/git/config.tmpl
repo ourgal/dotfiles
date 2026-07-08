@@ -275,10 +275,10 @@
 	autoupdate = {{ $cfg.rerere.autoupdate }}
 	enabled = {{ $cfg.rerere.enabled }}
 {{- /* for usb drive */ -}}
-{{- if eq .chezmoi.os "windows" }}
+{{ if eq .chezmoi.os "windows" }}
 [safe]
 	directory = {{ $cfg.safe.directory }}
-{{ end -}}
+{{ end }}
 [sequence]
 	editor = "{{ $cfg.sequence.editor }}"
 [status]
