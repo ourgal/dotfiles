@@ -15929,7 +15929,7 @@
     "zxc.20260125153715.1": "[push]\n\tautoSetupRemote = {{ $cfg.push.autoSetupRemote }}\n\tdefault = \"{{ $cfg.push.default }}\"\n\tfollowTags = {{ $cfg.push.followTags }}\n\tuseForceIfIncludes = {{ $cfg.push.useForceIfIncludes }}\n",
     "zxc.20260125153727.1": "[rebase]\n\tautoSquash = {{ $cfg.rebase.autoSquash }}\n\tautoStash = {{ $cfg.rebase.autoStash }}\n\tmissingCommitsCheck = {{ $cfg.rebase.missingCommitsCheck | quote }}\n\tupdateRefs = {{ $cfg.rebase.updateRefs }}\n",
     "zxc.20260125153745.1": "[rerere]\n\tautoupdate = {{ $cfg.rerere.autoupdate }}\n\tenabled = {{ $cfg.rerere.enabled }}\n",
-    "User.20260222130907.1": "{{- /* for usb drive */ -}}\n{{- if eq .chezmoi.os \"windows\" }}\n[safe]\n\tdirectory = {{ $cfg.safe.directory }}\n{{ end -}}\n",
+    "User.20260222130907.1": "{{- /* for usb drive */ -}}\n{{ if eq .chezmoi.os \"windows\" }}\n[safe]\n\tdirectory = {{ $cfg.safe.directory }}\n{{ end }}\n",
     "zxc.20260125153759.1": "[sequence]\n\teditor = \"{{ $cfg.sequence.editor }}\"\n",
     "zxc.20260125153816.1": "[status]\n\tbranch = {{ $cfg.status.branch }}\n\tshowStash = {{ $cfg.status.showStash }}\n\tshowUntrackedFiles = {{ $cfg.status.showUntrackedFiles | quote }}\n",
     "zxc.20260125153823.1": "[tag]\n\tsort = \"{{ $cfg.tag.sort }}\"\n",
@@ -17622,7 +17622,7 @@
       "_mod_time": 1777179946.883
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1783499088.949
+      "_mod_time": 1783499482.734
     },
     "zxc.20260125161631.1": {
       "_mod_time": 1783297135.111
