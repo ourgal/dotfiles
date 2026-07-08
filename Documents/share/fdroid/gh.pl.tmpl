@@ -7,49 +7,71 @@ my $dir = "repo";
 my $version = "";
 
 sub latest_version {
-  `gh release list -R @_ --json name,isLatest --jq '.[] | select(.isLatest) | .name'`;
+  my $output = `gh release list -R @_ --json name,isLatest --jq ".[] | select(.isLatest) | .name"`;
+  chomp($output);
+  $output;
 }
 
+say "AnimeFlow";
 `gh release download -R openAnimeFlow/AnimeFlow -p "*arm64*.apk" -D $dir`;
 
+say "AnimeStream";
 $version = latest_version("frostnova721/AnimeStream");
-`gh release download -R frostnova721/AnimeStream -p "*.apk" -D $dir -o "AnimeStream_$version.apk"`;
+`gh release download -R frostnova721/AnimeStream -p "*.apk" -O "$dir/AnimeStream_${version}.apk"`;
 
+say "animeko";
 `gh release download -R open-ani/animeko -p "*arm64*.apk" -D $dir`;
 
+say "oneAnime";
 `gh release download -R Predidit/oneAnime -p "*.apk" -D $dir`;
 
+say "Telegram-X";
 `gh release download -R TGX-Android/Telegram-X -p "*lollipop" -D $dir`;
 
+say "LightNovelReader";
 `gh release download -R dmzz-yyhyy/LightNovelReader -p "*.apk" -D $dir`;
 
+say "mihon";
 `gh release download -R mihonapp/mihon -p "*arm64*.apk" -D $dir`;
 
+say "Transfer";
 $version = latest_version("matan-h/Transfer");
-`gh release download -R matan-h/Transfer -p "**.apk" -D $dir -o "Transfer_$version.apk"`;
+`gh release download -R matan-h/Transfer -p "**.apk" -O "$dir/Transfer_$version.apk"`;
 
+say "dragon-store";
 `gh release download -R jpdoshi/dragon-store -p "*.apk" -D $dir`;
 
+say "Shizuku";
 `gh release download -R RikkaApps/Shizuku -p "*.apk" -D $dir`;
 
+say "ShizuTools";
 $version = latest_version("legendsayantan/ShizuTools");
-`gh release download -R legendsayantan/ShizuTools -p "*.apk" -D $dir -o "ShizuTools_$version.apk"`;
+`gh release download -R legendsayantan/ShizuTools -p "*.apk" -O "$dir/ShizuTools_$version.apk"`;
 
+say "essentials";
 $version = latest_version("sameerasw/essentials");
-`gh release download -R sameerasw/essentials -p "*.apk" -D $dir -o "essentials_$version.apk"`;
+`gh release download -R sameerasw/essentials -p "*.apk" -O "$dir/essentials_$version.apk"`;
 
+say "TapTap";
 `gh release download -R KieronQuinn/TapTap -p "*.apk" -D $dir`;
 
+say "BiliPai";
 `gh release download -R jay3-yy/BiliPai -p "*.apk" -D $dir`;
 
+say "Ghosten-Player";
 `gh release download -R GhostenEditor/Ghosten-Player -p "*arm64-v8a-release.apk" -D $dir`;
 
+say "aniyomi";
 `gh release download -R aniyomiorg/aniyomi -p "*arm64*.apk" -D $dir`;
 
+say "Fladder";
 `gh release download -R DonutWare/Fladder -p "*arm64*.apk" -D $dir`;
 
+say "mpvEx";
 `gh release download -R marlboro-advance/mpvEx -p "*arm64*.apk" -D $dir`;
 
+say "streamyfin";
 `gh release download -R streamyfin/streamyfin -p "*phone*.apk" -D $dir`;
 
+say "NekoBoxForAndroid";
 `gh release download -R MatsuriDayo/NekoBoxForAndroid -p "*arm64*.apk" -D $dir`;
