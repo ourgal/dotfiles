@@ -69,14 +69,14 @@
 
 {{ $cfg = set $cfg (print "filter " ("lfs" | quote)) (dict "clean" "git-lfs clean -- %f" "process" "git-lfs filter-process" "required" true "smudge" "git-lfs smudge -- %f") -}}
 
-{{ if .my.git.sign.ssh -}}
+{{ if or (.my.git.sign.ssh) (eq .chezmoi.os "android") -}}
 {{ $cfg = set $cfg "gpg" (dict "format" "ssh") -}}
 {{ if eq .chezmoi.os "windows" -}}
 {{ $cfg = set $cfg (print "gpg " ("ssh" | quote)) (dict "program" (lookPath "ssh-keygen" | replace "\\" "\\" | quote)) -}}
 {{ end -}}
 {{ end -}}
 
-{{ if .my.git.sign.gpg -}}
+{{ if and (.my.git.sign.gpg) (ne .chezmoi.os "android") -}}
 {{ $cfg = set $cfg "gpg" (dict "program" (lookPath "gpg" | quote)) -}}
 {{ end -}}
 
@@ -123,6 +123,10 @@
 	{{ $_ = set $_ "signingkey" "~/.ssh/id_ed25519.pub" -}}
 	{{ else if .my.git.sign.gpg -}}
 	{{ $_ = set $_ "signingkey" "1BE4E2268D47C1D1" -}}
+	{{ end -}}
+
+	{{ if eq .chezmoi.os "android" -}}
+	{{ $_ = set $_ "signingkey" "~/.ssh/id_ed25519.pub" -}}
 	{{ end -}}
 {{ $cfg = set $cfg "user" $_ -}}
 
@@ -223,7 +227,7 @@
 	process = {{ index $cfg (print "filter " ("lfs" | quote) ) "process" | quote }}
 	required = {{ index $cfg (print "filter " ("lfs" | quote) ) "required" }}
 	smudge = {{ index $cfg (print "filter " ("lfs" | quote) ) "smudge" | quote }}
-{{ if .my.git.sign.ssh -}}
+{{ if or (.my.git.sign.ssh) (eq .chezmoi.os "android") -}}
 [gpg]
 	format = "{{ $cfg.gpg.format }}"
 {{ if eq .chezmoi.os "windows" }}
@@ -231,7 +235,7 @@
 	program = {{ index $cfg (print "gpg " ("ssh" | quote)) "porgram" }}
 {{ end -}}
 {{ end -}}
-{{ if .my.git.sign.gpg -}}
+{{ if and (.my.git.sign.gpg) (ne .chezmoi.os "android") -}}
 [gpg]
 	program = {{ $cfg.gpg.program }}
 {{ end -}}
