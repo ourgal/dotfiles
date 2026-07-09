@@ -18,6 +18,9 @@ set -x SSH_AUTH_SOCK $PREFIX/var/run/ssh-agent.socket
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "zoxide") "opt" (list "shell" "fish" "mcfly" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "mcfly" "init" "fish" }}
 {{ end -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "atuin") "opt" (list "shell" "fish" "atuin" "enable") "os" (list "linux" "android")) | trim | atoi -}}
+{{ output "atuin" "init" "fish" }}
+{{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "zoxide") "opt" (list "shell" "fish" "navi" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "navi" "widget" "fish" }}
 {{ end -}}
