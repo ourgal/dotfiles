@@ -15816,7 +15816,7 @@
     "user.20260704223557.1": "<< android >>\n(setq overriding-text-conversion-style nil)\n{{ end -}}\n",
     "User.20260218124824.1": "(map! :n \"C-w o\" #'delete-other-windows\n      :n \"C-w z\" #'doom/window-enlargen)\n",
     "User.20260218124950.1": "(map! :leader\n      :desc \"Kill other buffer\" \"b o\" #'doom/kill-other-buffers)\n(map! :leader\n      :desc \"Kill other buffer\" \"b 0\" nil)\n",
-    "user.20260709233750.1": "(map! :map Info-mode-map\n      \"C-c C-c\" #'gt-translate)\n",
+    "user.20260709233750.1": "(map! :map Info-mode-map\n      \"C-c C-c\" #'gt-translate)\n\n(map! :map eww-mode-map\n      \"C-c C-c\" #'gt-translate)\n",
     "User.20260218001127.1": "(use-package! ahk-mode\n  :mode \"\\\\.ahk$\"\n  :defer t)\n",
     "User.20260218115216.1": ";; (use-package! chezmoi\n;;   :mode (\"\\\\.tmpl$\" . chezmoi-mode))\n",
     "User.20260218160006.1": "(after! dirvish\n  (dirvish-side-follow-mode))\n(map! :n \"-\" #'dirvish)\n(map! :map 'dirvish-mode-map :n \"a\" #'dired-create-empty-file)\n",
@@ -17694,7 +17694,7 @@
       "_mod_time": 1783610034.226
     },
     "User.20260217223030.1": {
-      "_mod_time": 1783611901.203
+      "_mod_time": 1783614207.163
     },
     "User.20260217223035.1": {
       "_mod_time": 1783610034.277
