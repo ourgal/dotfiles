@@ -1,0 +1,11 @@
+use strict;
+use warnings;
+use v5.40;
+
+my @files = <repo/*.xapk>;
+my $apk = "";
+for my $xapk (@files) {
+  $apk = $xapk =~ s/\@/_/r;
+  $apk = $apk =~ s/xapk/apk/r;
+  `python ~/.lcoal/share/xapk2apk/xapk2apk.py $xapk` if (! -e $apk);
+}
