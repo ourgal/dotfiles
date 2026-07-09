@@ -148,6 +148,9 @@
       :desc "Kill other buffer" "b 0" nil)
 (map! :map Info-mode-map
       "C-c C-c" #'gt-translate)
+
+(map! :map eww-mode-map
+      "C-c C-c" #'gt-translate)
 (use-package! ahk-mode
   :mode "\\.ahk$"
   :defer t)
