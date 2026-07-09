@@ -768,6 +768,20 @@
           retries: 3
           delay: 5
           until: result is not failed
+        - name: Add java bucket
+          community.windows.win_scoop_bucket:
+            name: java
+            state: present
+        - name: Install java packages via scoop
+          community.windows.win_scoop:
+            name:
+              - java/openjdk17
+            global: false
+            no_cache: true
+          register: result
+          retries: 3
+          delay: 5
+          until: result is not failed
     - name: Pipx
       tags: pipx
       block:
