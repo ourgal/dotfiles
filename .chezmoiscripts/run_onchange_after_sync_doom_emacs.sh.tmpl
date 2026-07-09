@@ -4,6 +4,9 @@
 {{ $doom_dir = joinPath .chezmoi.homeDir ".emacs.d" -}}
 {{ end -}}
 {{ $doom_bin := joinPath $doom_dir "bin" "doom" -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ $doom_bin = joinPath $doom_dir "bin" "doom.ps1" -}}
+{{ end -}}
 {{ if stat $doom_bin -}}
 #!{{lookPath "bash"}}
 set -euo pipefail
