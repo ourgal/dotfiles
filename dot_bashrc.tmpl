@@ -140,7 +140,7 @@ source ~/.local/lib/ble_sh/out/ble.sh
 alias ll='eza --long --git --icons auto --group --group-directories-first --time-style relative'
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "atuin") "opt" (list "shell" "bash" "atuin" "enable") "os" (list "linux" "android")) | trim | atoi -}}
-{{ output "atuin" "init" "bash" }}
+{{ output "atuin" "init" "bash" "--disable-up-arrow" }}
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "mcfly") "opt" (list "shell" "bash" "mcfly" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "mcfly" "init" "bash" }}

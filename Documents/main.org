@@ -72,7 +72,7 @@ Init zoxide.
 Init atuin.
 
 #+begin_src powershell
-{{ output "atuin" "init" "powershell" }}
+{{ output "atuin" "init" "powershell" "--disable-up-arrow" }}
 #+end_src
 
 Init mcfly.
@@ -636,7 +636,7 @@ Atuin.
 
 #+begin_src bash
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "atuin") "opt" (list "shell" "bash" "atuin" "enable") "os" (list "linux" "android")) | trim | atoi -}}
-{{ output "atuin" "init" "bash" }}
+{{ output "atuin" "init" "bash" "--disable-up-arrow" }}
 {{ end -}}
 #+end_src
 
