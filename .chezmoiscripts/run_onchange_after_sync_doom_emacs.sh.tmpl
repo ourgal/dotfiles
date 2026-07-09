@@ -9,38 +9,15 @@
 set -euo pipefail
 {{ if stat (joinPath .chezmoi.homeDir ".config" "doom" "config.el") -}}
 
-{{ if eq .chezmoi.os "linux" -}}
-    {{ $sum := list }}
-    {{ $homeDir := .chezmoi.homeDir -}}
-        {{ range (list "config" "packages" "init") -}}
-        {{ $sum = include (joinPath $homeDir ".config" "doom" (print . ".el")) | append $sum -}}
-        {{ end -}}
-    # {{ $sum | join "" | sha256sum }}
-    # {{ output "git" "-C" $doom_dir "rev-parse" "HEAD" }}
-    # {{ output "emacs" "--version" | trim | splitList "\n" | first }}
-    {{ $doom_bin }} sync
-{{ end -}}
-
-{{ if eq .chezmoi.os "android" -}}
-    {{ $sum := list }}
-    {{ $homeDir := .chezmoi.homeDir -}}
-
+{{ $sum := list }}
+{{ $homeDir := .chezmoi.homeDir -}}
     {{ range (list "config" "packages" "init") -}}
     {{ $sum = include (joinPath $homeDir ".config" "doom" (print . ".el")) | append $sum -}}
     {{ end -}}
-
-    {{ $emacs_home := "/data/data/org.gnu.emacs/files" -}}
-    {{ if stat $emacs_home -}}
-
-    # {{ $sum | join "" | sha256sum }}
-    mkdir -p /data/data/org.gnu.emacs/files/.config/doom
-        {{ range (list "config.el" "packages.el" "init.el" ".authinfo") -}}
-        cp {{ joinPath $homeDir ".config" "doom" . }} /data/data/org.gnu.emacs/files/.config/doom
-        {{ end -}}
-    echo "Run doom sync in emacs"
-    {{ end -}}
-
-{{ end -}}
+# {{ $sum | join "" | sha256sum }}
+# {{ output "git" "-C" $doom_dir "rev-parse" "HEAD" }}
+# {{ output "emacs" "--version" | trim | splitList "\n" | first }}
+{{ $doom_bin }} sync
 
 {{ end -}}
 {{ end -}}
