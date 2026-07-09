@@ -243,7 +243,7 @@ Set-PSReadLineKeyHandler -Key Ctrl+o `
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "atuin" "opt" (list "shell" "pwsh" "atuin" "enable") "os" "windows") | trim | atoi -}}
-{{ output "atuin" "init" "powershell" }}
+{{ output "atuin" "init" "powershell" "--disable-up-arrow" }}
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mcfly" "opt" (list "shell" "pwsh" "mcfly" "enable") "os" "windows") | trim | atoi -}}
 {{ output "mcfly" "init" "powershell" }}
