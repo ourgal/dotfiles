@@ -4,6 +4,9 @@
 {{ $doom_dir = joinPath .chezmoi.homeDir ".emacs.d" -}}
 {{ end -}}
 {{ $doom_bin := joinPath $doom_dir "bin" "doom" -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ $doom_bin = joinPath $doom_dir "bin" "doom.ps1" -}}
+{{ end -}}
 {{ if stat $doom_bin -}}
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
@@ -143,6 +146,8 @@
       :desc "Kill other buffer" "b o" #'doom/kill-other-buffers)
 (map! :leader
       :desc "Kill other buffer" "b 0" nil)
+(map! :map Info-mode-map
+      "C-c C-c" #'gt-translate)
 (use-package! ahk-mode
   :mode "\\.ahk$"
   :defer t)
@@ -300,6 +305,16 @@
 ;; (add-hook 'org-mode-hook #'org-modern-mode)
 ;; (add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
 ;; (use-package! bing-dict)
+(use-package! gt
+  :ensure t
+  :custom
+  (gt-langs '(en zh))
+  :config
+  (setq gt-default-translator
+      (gt-translator
+       :taker   (gt-taker :text 'buffer :pick 'paragraph)       ; 配置拾取器
+       :engines (list (gt-bing-engine) (gt-youdao-dict-engine)) ; 指定多引擎
+       :render  (gt-buffer-render))))
 (require 'url)
 (require 'json)
 
