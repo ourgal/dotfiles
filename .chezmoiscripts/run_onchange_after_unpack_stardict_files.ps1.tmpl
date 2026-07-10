@@ -1,0 +1,14 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "sdcv" -}}
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
+{{ if and (joinPath .chezmoi.homeDir ".local" "share" "repos" "stardict" | stat) (joinPath .chezmoi.homeDir ".stardict" "dic" "stardict-langdao-ce-gb-2.4.2" | stat | not) -}}
+7z x {{ joinPath .chezmoi.homeDir ".local" "share" "repos" "stardict" "stardict-langdao-ce-gb-2.4.2.7z" }} -o{{ joinPath .chezmoi.homeDir ".stardict" "dic" }}
+{{ end -}}
+
+{{ if and (joinPath .chezmoi.homeDir ".local" "share" "repos" "stardict" | stat) (joinPath .chezmoi.homeDir ".stardict" "dic" "stardict-langdao-ec-gb-2.4.2" | stat | not) -}}
+7z x {{ joinPath .chezmoi.homeDir ".local" "share" "repos" "stardict" "stardict-langdao-ec-gb-2.4.2.7z" }} -o{{ joinPath .chezmoi.homeDir ".stardict" "dic" }}
+{{ end -}}
+{{ end -}}
+{{ end -}}
