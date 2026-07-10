@@ -161,6 +161,9 @@ set completeopt=popup
 
 inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+{{ if lookPath "sdcv" -}}
+set keywordprg=sdcv\ -n
+{{ end -}}
 let g:ale_completion_enabled = 1
 let g:ale_set_balloons = 1
 let g:ale_hover_to_preview = 1
