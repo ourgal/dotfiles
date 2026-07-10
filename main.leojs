@@ -960,6 +960,10 @@
                                     {
                                       "gnx": "zxc.20260427232446.1",
                                       "vh": "completion"
+                                    },
+                                    {
+                                      "gnx": "user.20260710215024.1",
+                                      "vh": "keywordprg"
                                     }
                                   ]
                                 },
@@ -15306,6 +15310,7 @@
     "User.20260218145141.1": "\" Autosession\n\" au VimEnter * nested if (len(v:argv) == 1) | silent! source Session.vim | endif\n\" au VimLeave * if (len(v:argv) == 1) | mksession! | endif\n",
     "zxc.20260320003625.1": "\" autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path \"%\"\n\nfunction Chezmoi()\n  ! chezmoi apply --source-path \"%\"\nendfunction\n\ncommand! Chezmoi call Chezmoi()\n",
     "zxc.20260427232446.1": "set autocomplete\nset complete=o^5,.^5,w^5,b^5,u^5\nset completeopt=popup\n\ninoremap <silent><expr> <Tab>   pumvisible() ? \"\\<C-n>\" : \"\\<Tab>\"\ninoremap <silent><expr> <S-Tab> pumvisible() ? \"\\<C-p>\" : \"\\<S-Tab>\"\n",
+    "user.20260710215024.1": "{{ if lookPath \"sdcv\" -}}\nset keywordprg=sdcv\\ -n\n{{ end -}}\n",
     "User.20260218141914.1": "<< plugin configs pre >>\n\nimport 'plugins.vim'\n\n<< plugin configs >>\n",
     "zxc.20260427235829.1": "@others\n",
     "zxc.20260427235833.1": "let g:ale_completion_enabled = 1\nlet g:ale_set_balloons = 1\nlet g:ale_hover_to_preview = 1\nlet g:ale_floating_preview = 1\nset omnifunc=ale#completion#OmniFunc\n",
@@ -17405,13 +17410,13 @@
       "_mod_time": 1783297134.866
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1783383452.941
+      "_mod_time": 1783695137.331
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1783297135.058
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1783472839.163
+      "_mod_time": 1783691349.228
     },
     "zxc.20260429145437.1": {
       "_mod_time": 1783297135.072
@@ -17420,19 +17425,19 @@
       "_mod_time": 1783297135.057
     },
     "zxc.20260427224318.1": {
-      "_mod_time": 1783297135.057
+      "_mod_time": 1783691331.962
     },
     "zxc.20260615224512.2": {
       "_mod_time": 1783297135.057
     },
     "User.20260218142211.1": {
-      "_mod_time": 1783383453.028
+      "_mod_time": 1783695137.348
     },
     "User.20260218142322.1": {
       "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1783472839.177
+      "_mod_time": 1783691349.245
     },
     "zxc.20260429112140.1": {
       "_mod_time": 1777612767.666
@@ -17441,7 +17446,7 @@
       "_mod_time": 1777249737.173
     },
     "zxc.20260427224207.1": {
-      "_mod_time": 1777337709.122
+      "_mod_time": 1783691331.994
     },
     "zxc.20260615224333.1": {
       "_mod_time": 1781590487.338
@@ -18260,7 +18265,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1783643014.457
+      "_mod_time": 1783691332.011
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777106655.378
