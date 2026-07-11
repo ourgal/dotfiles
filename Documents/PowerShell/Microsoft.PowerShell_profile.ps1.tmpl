@@ -231,6 +231,7 @@ carapace _carapace | Out-String | Invoke-Expression
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "zoxide" "opt" (list "shell" "pwsh" "zoxide" "enable") "os" "windows") | trim | atoi -}}
 {{ output "zoxide" "init" "powershell" }}
 {{ end -}}
+{{ if joinPath .chezmoi.homeDir "scoop" "modules" "PsFzf" | stat -}}
 Import-Module PSFzf
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r' -EnableAliasFuzzyKillProcess
 # Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
@@ -242,6 +243,7 @@ Set-PSReadLineKeyHandler -Key Ctrl+o `
     [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Invoke-FuzzyEdit")
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
+{{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "atuin" "opt" (list "shell" "pwsh" "atuin" "enable") "os" "windows") | trim | atoi -}}
 {{ output "atuin" "init" "powershell" "--disable-up-arrow" }}
 {{ end -}}
