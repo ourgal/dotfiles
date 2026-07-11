@@ -8,6 +8,7 @@
 {{ $doom_bin = joinPath $doom_dir "bin" "doom.ps1" -}}
 {{ end -}}
 {{ if stat $doom_bin -}}
+{{ if lookPath "emacs" -}}
 {{ if stat (joinPath .chezmoi.homeDir ".config" "doom" "config.el") -}}
 {{ $sum := list }}
 {{ $homeDir := .chezmoi.homeDir -}}
@@ -18,6 +19,7 @@
 # {{ output "git" "-C" $doom_dir "rev-parse" "HEAD" }}
 # {{ output "emacs" "--version" | trim | splitList "\n" | first }}
 {{ $doom_bin }} sync
+{{ end -}}
 {{ end -}}
 {{ end -}}
 {{ end -}}

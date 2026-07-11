@@ -8,6 +8,7 @@
 {{ $doom_bin = joinPath $doom_dir "bin" "doom.ps1" -}}
 {{ end -}}
 {{ if stat $doom_bin -}}
+{{ if lookPath "git" -}}
 {{ $commit := output "git" "-C" $doom_dir "rev-parse" "HEAD" }}
 {{ if ne $commit .my.doomemacs.commit -}}
 cd {{ $doom_dir | quote }}
@@ -16,6 +17,7 @@ git reset --hard HEAD
 
 git fetch
 git checkout {{ .my.doomemacs.commit }}
+{{ end -}}
 {{ end -}}
 {{ end -}}
 {{ end -}}
