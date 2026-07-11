@@ -9094,10 +9094,6 @@
                                   "vh": "enable developer mode"
                                 },
                                 {
-                                  "gnx": "zxc.20260503115039.1",
-                                  "vh": "set hostname"
-                                },
-                                {
                                   "gnx": "zxc.20260423143729.26",
                                   "vh": "virtual network sound card pre",
                                   "children": [
@@ -16451,7 +16447,6 @@
     "zxc.20260423143729.24": "- name: Optimize powershell\n  tags: optimize-powershell\n  ansible.windows.win_shell: |\n    function Optimize-Assemblies {\n        param (\n            [string]$assemblyFilter = \"Microsoft.PowerShell.\",\n            [string]$activity = \"Native Image Installation\"\n        )\n\n        try {\n            # Get the path to the ngen executable dynamically\n            $ngenPath = [System.IO.Path]::Combine([Runtime.InteropServices.RuntimeEnvironment]::GetRuntimeDirectory(), \"ngen.exe\")\n\n            # Check if ngen.exe exists\n            if (-Not (Test-Path $ngenPath)) {\n                Write-Host \"Ngen.exe not found at $ngenPath. Make sure .NET Framework is installed.\"\n                return\n            }\n\n            # Get a list of loaded assemblies\n            $assemblies = [AppDomain]::CurrentDomain.GetAssemblies()\n\n            # Filter assemblies based on the provided filter\n            $filteredAssemblies = $assemblies | Where-Object { $_.FullName -ilike \"$assemblyFilter*\" }\n\n            if ($filteredAssemblies.Count -eq 0) {\n                Write-Host \"No matching assemblies found for optimization.\"\n                return\n            }\n\n            foreach ($assembly in $filteredAssemblies) {\n                # Get the name of the assembly\n                $name = [System.IO.Path]::GetFileName($assembly.Location)\n\n                # Display progress\n                Write-Progress -Activity $activity -Status \"Optimizing $name\"\n\n                # Use Ngen to install the assembly\n                Start-Process -FilePath $ngenPath -ArgumentList \"install `\"$($assembly.Location)`\"\" -Wait -WindowStyle Hidden\n            }\n\n            Write-Host \"Optimization complete.\"\n        } catch {\n            Write-Host \"An error occurred: $_\"\n        }\n    }\n\n    # Optimize PowerShell assemblies:\n    Optimize-Assemblies -assemblyFilter \"Microsoft.PowerShell.\"\n",
     "zxc.20260423143729.25": "- name: Add game user\n  tags: game-user\n  ansible.windows.win_user:\n    name: Game\n    password_expired: false\n    password_never_expires: true\n    state: present\n    groups:\n      - Users\n      - Administrators\n",
     "zxc.20260516120159.1": "- name: Set Developer Mode registry key\n  ansible.windows.win_regedit:\n    path: HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\AppModelUnlock\n    name: AllowDevelopmentWithoutSponsor\n    data: 1\n    type: dword\n    state: present\n- name: Ensure Developer Mode Group Policy is enabled\n  ansible.windows.win_regedit:\n    path: HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\Appx\n    name: AllowAllTrustedApps\n    data: 1\n    type: dword\n    state: present\n",
-    "zxc.20260503115039.1": "- name: Set hostname\n  ansible.windows.win_hostname:\n    name: nuc-windows\n",
     "zxc.20260423143729.26": "- name: Install scream pre\n  when: ansible_facts.nodename in ['bed', 'nuc']\n  tags: scream-pre\n  block:\n    @others\n",
     "zxc.20260423143729.27": "- name: Check scream driver file\n  ansible.windows.win_stat:\n    path: C:\\windows\\system32\\drivers\\scream.sys\n  register: scream_driver\n",
     "zxc.20260423143729.28": "- name: Scream pre\n  when: scream_driver.stat.exists is false\n  block:\n    @others\n",
@@ -17476,7 +17471,7 @@
       "_mod_time": 1783170265.338
     },
     "zxc.20260427224318.1": {
-      "_mod_time": 1783691331.962
+      "_mod_time": 1783700378.896
     },
     "zxc.20260615224512.2": {
       "_mod_time": 1783170265.315
@@ -17497,7 +17492,7 @@
       "_mod_time": 1777298774.859
     },
     "zxc.20260427224207.1": {
-      "_mod_time": 1783699209.701
+      "_mod_time": 1783700378.908
     },
     "zxc.20260615224333.1": {
       "_mod_time": 1781537291.227
@@ -17518,7 +17513,7 @@
       "_mod_time": 1777713442.466
     },
     "zxc.20260613223245.1": {
-      "_mod_time": 1783777962.063
+      "_mod_time": 1783778797.835
     },
     "zxc.20260615175522.1": {
       "_mod_time": 1781602833.363
@@ -17575,16 +17570,16 @@
       "_mod_time": 1776434513.068
     },
     "User.20260217202401.1": {
-      "_mod_time": 1783778883.86
+      "_mod_time": 1783779104.421
     },
     "User.20260220214558.1": {
-      "_mod_time": 1783778883.872
+      "_mod_time": 1783779104.421
     },
     "zxc.20260530230944.1": {
-      "_mod_time": 1783778916.281
+      "_mod_time": 1783779104.431
     },
     "zxc.20260531001920.1": {
-      "_mod_time": 1783778916.297
+      "_mod_time": 1783779104.431
     },
     "User.20260217214851.1": {
       "_mod_time": 1776851988.666
@@ -17869,7 +17864,7 @@
       "_mod_time": 1782087842.645
     },
     "zxc.20260421145655.1": {
-      "_mod_time": 1783775398.012
+      "_mod_time": 1783775504.334
     },
     "zxc.20260421231645.1": {
       "_mod_time": 1777179946.881
@@ -18178,7 +18173,7 @@
       "_mod_time": 1783765325.318
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1783775057.32
+      "_mod_time": 1783775504.322
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1777713442.482
@@ -18193,7 +18188,7 @@
       "_mod_time": 1783346655.778
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1783774947.342
+      "_mod_time": 1783787241.617
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778855150.568
@@ -18322,7 +18317,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1783775379.767
+      "_mod_time": 1783775504.322
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777298774.844

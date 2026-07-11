@@ -195,9 +195,6 @@
         data: 1
         type: dword
         state: present
-    - name: Set hostname
-      ansible.windows.win_hostname:
-        name: nuc-windows
     - name: Install scream pre
       when: ansible_facts.nodename in ['bed', 'nuc']
       tags: scream-pre
