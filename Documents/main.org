@@ -673,7 +673,7 @@ Import bashrc.
 Set oh-my-posh.
 
 #+begin_src fish
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "zoxide") "opt" (list "shell" "fish" "oh_my_posh" "enable") "os" (list "linux" "android")) | trim | atoi -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "oh-my-posh") "opt" (list "shell" "fish" "oh_my_posh" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "oh-my-posh" "init" "fish" }}
 {{ end -}}
 #+end_src
@@ -681,7 +681,7 @@ Set oh-my-posh.
 Set fzf.
 
 #+begin_src fish
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "zoxide") "opt" (list "shell" "fish" "fzf" "enable") "os" (list "linux" "android")) | trim | atoi -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "fzf") "opt" (list "shell" "fish" "fzf" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ if or (lookPath "mcfly") (lookPath "atuin") -}}
 {{ output "env" "FZF_CTRL_R_COMMAND=" "fzf" "--fish" }}
 {{ else -}}
@@ -693,7 +693,7 @@ Set fzf.
 Set mcfly.
 
 #+begin_src fish
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "zoxide") "opt" (list "shell" "fish" "mcfly" "enable") "os" (list "linux" "android")) | trim | atoi -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "mcfly") "opt" (list "shell" "fish" "mcfly" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "mcfly" "init" "fish" }}
 {{ end -}}
 #+end_src
@@ -701,7 +701,7 @@ Set mcfly.
 Set navi.
 
 #+begin_src fish
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "zoxide") "opt" (list "shell" "fish" "navi" "enable") "os" (list "linux" "android")) | trim | atoi -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "navi") "opt" (list "shell" "fish" "navi" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "navi" "widget" "fish" }}
 {{ end -}}
 #+end_src
@@ -709,7 +709,7 @@ Set navi.
 Set carapace.
 
 #+begin_src fish
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "zoxide") "opt" (list "shell" "fish" "carapace" "enable") "os" (list "linux" "android")) | trim | atoi -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "carapace") "opt" (list "shell" "fish" "carapace" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "carapace" "_carapace" "fish" }}
 {{ end -}}
 #+end_src
