@@ -196,7 +196,7 @@
         type: dword
         state: present
     - name: Set hostname
-      ansible.builtin.win_hostname:
+      ansible.windows.win_hostname:
         name: nuc-windows
     - name: Install scream pre
       when: ansible_facts.nodename in ['bed', 'nuc']
@@ -721,8 +721,6 @@
           retries: 3
           delay: 5
           until: result is not failed
-          loop:
-
         - name: Add ourgal_scoop-bucket bucket
           community.windows.win_scoop_bucket:
             name: ourgal_scoop-bucket
@@ -902,12 +900,12 @@
       tags: user-env
       ansible.windows.win_environment:
         state: present
-        name: "{{ .name }}"
-        value: "{{ .value }}"
+        name: "{{ item.name }}"
+        value: "{{ item.value }}"
         level: user
       loop:
         - name: GO111MODULE
-          value: on
+          value: "on"
         - name: GOPROXY
           value: https://goproxy.cn
     - name: Set rime as default input method
