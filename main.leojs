@@ -15606,14 +15606,14 @@
     "zxc.20260202220046.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"pwsh\" \"current\" \"install-explorer-context.reg\" | quote }}\nreg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"pwsh\" \"current\" \"install-file-context.reg\" | quote }}",
     "zxc.20260202220553.1": "<< dos >>\n{{ if lookPath \"gvim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260202220615.1": "reg import {{ joinPath (env \"userprofile\") \"scoop\" \"apps\" \"vim\" \"current\" \"install-context.reg\" | quote }}",
-    "User.20260217202401.1": "<< dos >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}\n",
+    "User.20260217202401.1": "<< dos >>\n<< doomemacs >>\n{{ if lookPath \"emacs\" -}}\n@others\n{{ end -}}\n{{ end -}}\n{{ end -}}\n",
     "User.20260225205841.1": "{{ $doom_dir := joinPath .chezmoi.homeDir \".config\" \"emacs\" -}}\n{{ if eq .chezmoi.os \"windows\" -}}\n{{ $doom_dir = joinPath .chezmoi.homeDir \".emacs.d\" -}}\n{{ end -}}\n{{ $doom_bin := joinPath $doom_dir \"bin\" \"doom\" -}}\n{{ if eq .chezmoi.os \"windows\" -}}\n{{ $doom_bin = joinPath $doom_dir \"bin\" \"doom.ps1\" -}}\n{{ end -}}\n{{ if stat $doom_bin -}}\n",
     "User.20260217202404.1": "{{ if stat (joinPath .chezmoi.homeDir \".config\" \"doom\" \"config.el\") -}}\n{{ $sum := list }}\n{{ $homeDir := .chezmoi.homeDir -}}\n{{ range (list \"config\" \"packages\" \"init\") -}}\n{{ $sum = include (joinPath $homeDir \".config\" \"doom\" (print . \".el\")) | append $sum -}}\n{{ end -}}\n# {{ $sum | join \"\" | sha256sum }}\n# {{ output \"git\" \"-C\" $doom_dir \"rev-parse\" \"HEAD\" }}\n# {{ output \"emacs\" \"--version\" | trim | splitList \"\\n\" | first }}\n{{ $doom_bin }} sync\n{{ end -}}\n",
-    "User.20260220214558.1": "<< unix >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}\n",
+    "User.20260220214558.1": "<< unix >>\n<< doomemacs >>\n{{ if lookPath \"emacs\" -}}\n@others\n{{ end -}}\n{{ end -}}\n{{ end -}}\n",
     "User.20260220214646.1": "{{ if stat (joinPath .chezmoi.homeDir \".config\" \"doom\" \"config.el\") -}}\n\n{{ $sum := list }}\n{{ $homeDir := .chezmoi.homeDir -}}\n    {{ range (list \"config\" \"packages\" \"init\") -}}\n    {{ $sum = include (joinPath $homeDir \".config\" \"doom\" (print . \".el\")) | append $sum -}}\n    {{ end -}}\n# {{ $sum | join \"\" | sha256sum }}\n# {{ output \"git\" \"-C\" $doom_dir \"rev-parse\" \"HEAD\" }}\n# {{ output \"emacs\" \"--version\" | trim | splitList \"\\n\" | first }}\n{{ $doom_bin }} sync\n\n{{ end -}}\n",
-    "zxc.20260530230944.1": "<< dos >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260530230944.1": "<< dos >>\n<< doomemacs >>\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260530231023.1": "{{ $commit := output \"git\" \"-C\" $doom_dir \"rev-parse\" \"HEAD\" }}\n{{ if ne $commit .my.doomemacs.commit -}}\ncd {{ $doom_dir | quote }}\n\ngit reset --hard HEAD\n\ngit fetch\ngit checkout {{ .my.doomemacs.commit }}\n{{ end -}}\n",
-    "zxc.20260531001920.1": "<< unix >>\n<< doomemacs >>\n@others\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260531001920.1": "<< unix >>\n<< doomemacs >>\n{{ if lookPath \"git\" -}}\n@others\n{{ end -}}\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260531002005.1": "{{ $commit := output \"git\" \"-C\" $doom_dir \"rev-parse\" \"HEAD\" }}\n{{ if ne $commit .my.doomemacs.commit -}}\ncd {{ $doom_dir | quote }}\n\ngit reset --hard HEAD\n\ngit fetch\ngit checkout {{ .my.doomemacs.commit }}\n{{ end -}}\n",
     "User.20260217214851.1": "<< dos >>\n{{ if lookPath \"msys2\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260217214859.1": "# (Get-Item {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"msys2\" \"current\" }}).CreationTime\nmsys2 -c \"sed -i 's#https\\?://mirror.msys2.org/#https://mirror.nju.edu.cn/msys2/#g' /etc/pacman.d/mirrorlist*\"\nmsys2 -c \"yes | pacman -Syu\"\nmsys2 -c \"yes | pacman -S --needed {{ .my.msys2.packages | join \" \" }}\"\nmsys2 -shell fish -c \"curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher\"",
@@ -17575,16 +17575,16 @@
       "_mod_time": 1776434513.068
     },
     "User.20260217202401.1": {
-      "_mod_time": 1783765324.302
+      "_mod_time": 1783778883.86
     },
     "User.20260220214558.1": {
-      "_mod_time": 1783765324.302
+      "_mod_time": 1783778883.872
     },
     "zxc.20260530230944.1": {
-      "_mod_time": 1783765324.318
+      "_mod_time": 1783778916.281
     },
     "zxc.20260531001920.1": {
-      "_mod_time": 1783765324.318
+      "_mod_time": 1783778916.297
     },
     "User.20260217214851.1": {
       "_mod_time": 1776851988.666

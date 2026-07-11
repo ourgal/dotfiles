@@ -8,6 +8,7 @@
 {{ $doom_bin = joinPath $doom_dir "bin" "doom.ps1" -}}
 {{ end -}}
 {{ if stat $doom_bin -}}
+{{ if lookPath "emacs" -}}
 #!{{lookPath "bash"}}
 set -euo pipefail
 {{ if stat (joinPath .chezmoi.homeDir ".config" "doom" "config.el") -}}
@@ -22,6 +23,7 @@ set -euo pipefail
 # {{ output "emacs" "--version" | trim | splitList "\n" | first }}
 {{ $doom_bin }} sync
 
+{{ end -}}
 {{ end -}}
 {{ end -}}
 {{ end -}}
