@@ -46,11 +46,15 @@
     {{ if kindIs "string" .cmd -}}
     {{ $cmd = lookPath .cmd }}
     {{ else if kindIs "slice" .cmd -}}
-        {{ $cmd := list -}}
+        {{ $cmd = list -}}
         {{ range .cmd -}}
-        {{ $cmd = append $cmd (lookPath .) -}}
+            {{ if lookPath . -}}
+                {{ $cmd = append $cmd true -}}
+            {{ else -}}
+                {{ $cmd = append $cmd false -}}
+            {{ end -}}
         {{ end -}}
-    {{ $cmd = all $cmd -}}
+    {{ $cmd = has false $cmd | not -}}
     {{ end -}}
 {{ end -}}
 
@@ -59,11 +63,15 @@
     {{ if kindIs "string" .file -}}
     {{ $file = stat .file }}
     {{ else if kindIs "slice" .file -}}
-        {{ $file := list -}}
+        {{ $file = list -}}
         {{ range .file -}}
-        {{ $file = append $file (stat .) -}}
+            {{ if stat . -}}
+                {{ $file = append $file true -}}
+            {{ else -}}
+                {{ $file = append $file false -}}
+            {{ end -}}
         {{ end -}}
-    {{ $file = all $file -}}
+    {{ $file = has false $file | not -}}
     {{ end -}}
 {{ end -}}
 
@@ -74,7 +82,7 @@
     {{ range .os -}}
     {{ $final_os = append $final_os (eq $os .) -}}
     {{ end -}}
-{{ $final_os = any $final_os -}}
+{{ $final_os = has true $final_os -}}
 {{ end -}}
 
 {{ if and $cmd $file $final_opt $final_os -}}
