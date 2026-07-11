@@ -15322,15 +15322,15 @@
     "zxc.20260125144055.1": "# Get the aliases and functions\n[ -f $HOME/.bashrc ] && . $HOME/.bashrc\n",
     "zxc.20260421145759.1": "if status is-interactive\n@others\nend",
     "zxc.20260620015235.1": "<< android >>\nfish_add_path --append ~/.local/bin\nset -x SSH_AUTH_SOCK $PREFIX/var/run/ssh-agent.socket\n{{ end -}}\n",
-    "zxc.20260424082558.4": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"zoxide\") \"opt\" (list \"shell\" \"fish\" \"oh_my_posh\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"oh-my-posh\" \"init\" \"fish\" }}\n{{ end -}}\n",
-    "zxc.20260424082558.5": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"zoxide\") \"opt\" (list \"shell\" \"fish\" \"fzf\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ if or (lookPath \"mcfly\") (lookPath \"atuin\") -}}\n{{ output \"env\" \"FZF_CTRL_R_COMMAND=\" \"fzf\" \"--fish\" }}\n{{ else -}}\n{{ output \"fzf\" \"--fish\" }}\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260424082558.6": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"zoxide\") \"opt\" (list \"shell\" \"fish\" \"mcfly\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"mcfly\" \"init\" \"fish\" }}\n{{ end -}}\n",
+    "zxc.20260424082558.4": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"fish\" \"oh-my-posh\") \"opt\" (list \"shell\" \"fish\" \"oh_my_posh\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"oh-my-posh\" \"init\" \"fish\" }}\n{{ end -}}\n",
+    "zxc.20260424082558.5": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"fish\" \"fzf\") \"opt\" (list \"shell\" \"fish\" \"fzf\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ if or (lookPath \"mcfly\") (lookPath \"atuin\") -}}\n{{ output \"env\" \"FZF_CTRL_R_COMMAND=\" \"fzf\" \"--fish\" }}\n{{ else -}}\n{{ output \"fzf\" \"--fish\" }}\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260424082558.6": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"fish\" \"mcfly\") \"opt\" (list \"shell\" \"fish\" \"mcfly\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"mcfly\" \"init\" \"fish\" }}\n{{ end -}}\n",
     "user.20260709202748.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"fish\" \"atuin\") \"opt\" (list \"shell\" \"fish\" \"atuin\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"atuin\" \"init\" \"fish\" \"--disable-up-arrow\" }}\n{{ end -}}\n",
-    "zxc.20260424082558.7": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"zoxide\") \"opt\" (list \"shell\" \"fish\" \"navi\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"navi\" \"widget\" \"fish\" }}\n{{ end -}}\n",
-    "zxc.20260424082558.8": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"zoxide\") \"opt\" (list \"shell\" \"fish\" \"carapace\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"carapace\" \"_carapace\" \"fish\" }}\n{{ end -}}\n",
+    "zxc.20260424082558.7": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"fish\" \"navi\") \"opt\" (list \"shell\" \"fish\" \"navi\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"navi\" \"widget\" \"fish\" }}\n{{ end -}}\n",
+    "zxc.20260424082558.8": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"fish\" \"carapace\") \"opt\" (list \"shell\" \"fish\" \"carapace\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"carapace\" \"_carapace\" \"fish\" }}\n{{ end -}}\n",
     "zxc.20260424082558.9": "{{ if lookPath \"eza\" -}}\n{{ $opts := \"--git --icons auto --group --group-directories-first --time-style relative\"}}\nfunction ls\n    eza {{ $opts }} $argv\nend\n\nfunction ll\n    eza -l {{ $opts }} $argv\nend\n{{ end -}}\n",
     "zxc.20260424082558.10": "{{ if lookPath \"nnn\" -}}\n# Rename this file to match the name of the function\n# e.g. ~/.config/fish/functions/n.fish\n# or, add the lines to the 'config.fish' file.\n\nfunction n --wraps nnn --description 'support nnn quit and change directory'\n    # Block nesting of nnn in subshells\n    if test -n \"$NNNLVL\" -a \"$NNNLVL\" -ge 1\n        echo \"nnn is already running\"\n        return\n    end\n\n    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)\n    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to\n    # see. To cd on quit only on ^G, remove the \"-x\" from both lines below,\n    # without changing the paths.\n    if test -n \"$XDG_CONFIG_HOME\"\n        set -x NNN_TMPFILE \"$XDG_CONFIG_HOME/nnn/.lastd\"\n    else\n        set -x NNN_TMPFILE \"$HOME/.config/nnn/.lastd\"\n    end\n\n    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn\n    # stty start undef\n    # stty stop undef\n    # stty lwrap undef\n    # stty lnext undef\n\n    # The command function allows one to alias this function to `nnn` without\n    # making an infinitely recursive alias\n    command nnn $argv\n\n    if test -e $NNN_TMPFILE\n        source $NNN_TMPFILE\n        rm -- $NNN_TMPFILE\n    end\nend\n{{ end -}}\n",
-    "zxc.20260620125318.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"bash\" \"zoxide\") \"opt\" (list \"shell\" \"fish\" \"zoxide\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"zoxide\" \"init\" \"fish\" }}\n{{ end -}}\n",
+    "zxc.20260620125318.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"fish\" \"zoxide\") \"opt\" (list \"shell\" \"fish\" \"zoxide\" \"enable\") \"os\" (list \"linux\" \"android\")) | trim | atoi -}}\n{{ output \"zoxide\" \"init\" \"fish\" }}\n{{ end -}}\n",
     "zxc.20260424082558.12": "atusy/by-binds-yourself\n",
     "zxc.20260605112229.1": "jorgebucaran/fisher\n",
     "zxc.20260605112327.1": "jorgebucaran/autopair.fish\n",
@@ -17869,7 +17869,7 @@
       "_mod_time": 1782087842.645
     },
     "zxc.20260421145655.1": {
-      "_mod_time": 1783765325.318
+      "_mod_time": 1783775398.012
     },
     "zxc.20260421231645.1": {
       "_mod_time": 1777179946.881
@@ -18322,7 +18322,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1783765325.24
+      "_mod_time": 1783775379.767
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777298774.844
