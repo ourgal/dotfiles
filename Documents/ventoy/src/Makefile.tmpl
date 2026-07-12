@@ -1,0 +1,16 @@
+ifeq ($(OS),Windows_NT)
+    SHELL := powershell.exe
+endif
+
+.SHELLFLAGS := -NoProfile -ExecutionPolicy Bypass -Command
+all: ventoy/ventoy_winboot.img Edgeless.vim
+
+ventoy/ventoy_winboot.img:
+	@aria2c https://legacy.edgeless.top/api/v2/info/ventoy_plugin_addr -o $@
+
+Edgeless.vim:
+	@aria2c https://legacy.edgeless.top/api/v2/info/iso_addr -o $$env:TEMP/Edgeless.iso
+	@7z x $$env:TEMP/Edgeless.iso Edgeless
+	@7z e $$env:TEMP/Edgeless.iso sources/boot.wim
+	@mv boot.vim $@
+	@rm $$env:TEMP/Edgeless.iso
