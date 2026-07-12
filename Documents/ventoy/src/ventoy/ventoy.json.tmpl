@@ -1,0 +1,27 @@
+{
+  "auto_install": [
+    {
+      "parent": "/windows10",
+      "template": [
+        "/config/windows10/memstechtips.xml",
+        "/config/windows10/main.xml",
+        "/config/windows10/main-edge.xml",
+        "/config/windows10/UnattendedWinstall.xml"
+      ]
+    },
+    {
+      "parent": "/windows11",
+      "template": [
+        "/config/windows10/memstechtips.xml",
+        "/config/windows10/main.xml",
+        "/config/windows10/main-edge.xml",
+        "/config/windows10/UnattendedWinstall.xml"
+      ]
+    },
+    {{- /* uos not working */}}
+    {
+      "parent": "/uos",
+      "template": ["/config/uos/deepin.ini"]
+    }
+  ]
+}
