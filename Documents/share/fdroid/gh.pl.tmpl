@@ -1,17 +1,13 @@
 use strict;
 use warnings;
 use v5.40;
-
 my $dir = "repo";
-
 my $version = "";
-
 sub latest_version {
   my $output = `gh release list -R @_ --json name,isLatest --jq ".[] | select(.isLatest) | .name"`;
   chomp($output);
   $output;
 }
-
 say "AnimeFlow";
 `gh release download -R openAnimeFlow/AnimeFlow -p "*arm64*.apk" -D $dir`;
 

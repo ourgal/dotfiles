@@ -1,0 +1,37 @@
+use strict;
+use warnings;
+use v5.40;
+use File::Basename;
+my $domain = "https://mirror.nju.edu.cn";
+my $json_url = "$domain/.mirrorz/iso.json";
+my $json_filename = basename $json_url;
+my $jq_filter_filename = "iso.jq";
+sub create_file {
+  my ($filename, $content) = @_;
+  open my $fh, '>', $filename or die $1;
+  print $fh $content;
+  close $fh;
+}
+sub jq {
+  my ($json_filename, $filter) = @_;
+  my $jq_filter_filename = "temp.jq";
+  create_file $jq_filter_filename, $filter;
+  my $result = `jq -f $jq_filter_filename -r $json_filename`;
+  chomp $result;
+  unlink $jq_filter_filename;
+  $result;
+}
+sub fetch {
+  my ($url) = @_;
+  use File::Fetch;
+  my $ff = File::Fetch->new(uri => $url);
+  $ff->fetch() or die $ff->error;
+}
+my $filter = <<END;
+.[] | select(.distro == "Alpine").urls[] | select(.name | match(".*x86_64, standard.*")).url
+END
+`aria2c $json_url`;
+my $path = jq $json_filename, $filter;
+`aria2c $domain/$path`;
+unlink $json_filename;
+
