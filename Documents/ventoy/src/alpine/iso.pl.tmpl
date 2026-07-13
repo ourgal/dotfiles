@@ -1,3 +1,5 @@
+{{ $distro := "Alpine" -}}
+{{ $match := ".*x86_64, standard.*" -}}
 use strict;
 use warnings;
 use v5.40;
@@ -28,10 +30,12 @@ sub fetch {
   $ff->fetch() or die $ff->error;
 }
 my $filter = <<END;
-.[] | select(.distro == "Alpine").urls[] | select(.name | match(".*x86_64, standard.*")).url
+.[] | select(.distro == "{{ $distro }}").urls[] | select(.name | match("{{ $match }}")).url
 END
+
 `aria2c $json_url`;
+
 my $path = jq $json_filename, $filter;
 `aria2c $domain/$path`;
-unlink $json_filename;
 
+unlink $json_filename;
