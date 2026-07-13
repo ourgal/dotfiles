@@ -40,7 +40,13 @@ Invoke-WebRequest -Uri $json_url -OutFile $json_filename
 $iso_json = Get-Content -Raw $json_filename | ConvertFrom-Json
 
 $path = Get-IsoUrl $iso_json "{{ $distro }}" "{{ $like }}"
+$full_url = "$domain$path"
 
-aria2c "$domain/$path"
+aria2c $full_url
 
 Remove-Item $json_filename
+
+$file = Get-UrlBasename $full_url
+if ($file -match ".*\.xz$") {
+    xz -d $file
+}
