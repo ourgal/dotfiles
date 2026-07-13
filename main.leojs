@@ -12180,6 +12180,59 @@
                       ]
                     },
                     {
+                      "gnx": "user.20260713225716.1",
+                      "vh": "@path freebsd",
+                      "children": [
+                        {
+                          "gnx": "user.20260713225806.1",
+                          "vh": "@clean iso.pl.tmpl",
+                          "children": [
+                            {
+                              "gnx": "user.20260713225841.1",
+                              "vh": "template vars"
+                            },
+                            {
+                              "gnx": "user.20260713150837.1"
+                            },
+                            {
+                              "gnx": "user.20260713151553.1"
+                            },
+                            {
+                              "gnx": "user.20260713151614.1"
+                            },
+                            {
+                              "gnx": "user.20260713151626.1"
+                            },
+                            {
+                              "gnx": "user.20260713151720.1"
+                            }
+                          ]
+                        },
+                        {
+                          "gnx": "user.20260713232206.1",
+                          "vh": "@clean iso.ps1.tmpl",
+                          "children": [
+                            {
+                              "gnx": "user.20260713232234.1",
+                              "vh": "template vars"
+                            },
+                            {
+                              "gnx": "zxc.20260323201237.1"
+                            },
+                            {
+                              "gnx": "user.20260713162008.1"
+                            },
+                            {
+                              "gnx": "user.20260713152544.1"
+                            },
+                            {
+                              "gnx": "user.20260713162113.1"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
                       "gnx": "user.20260713170004.1",
                       "vh": "@path windows10",
                       "children": [
@@ -17437,13 +17490,13 @@
     "user.20260713151629.1": "sub create_file {\n  my ($filename, $content) = @_;\n  open my $fh, '>', $filename or die $1;\n  print $fh $content;\n  close $fh;\n}\n",
     "user.20260713151644.1": "sub jq {\n  my ($json_filename, $filter) = @_;\n  my $jq_filter_filename = \"temp.jq\";\n  create_file $jq_filter_filename, $filter;\n  my $result = `jq -f $jq_filter_filename -r $json_filename`;\n  chomp $result;\n  unlink $jq_filter_filename;\n  $result;\n}\n",
     "user.20260713151659.1": "sub fetch {\n  my ($url) = @_;\n  use File::Fetch;\n  my $ff = File::Fetch->new(uri => $url);\n  $ff->fetch() or die $ff->error;\n}\n",
-    "user.20260713151720.1": "my $filter = <<END;\n.[] | select(.distro == \"{{ $distro }}\").urls[] | select(.name | match(\"{{ $match }}\")).url\nEND\n\n`aria2c $json_url`;\n\nmy $path = jq $json_filename, $filter;\n`aria2c $domain/$path`;\n\nunlink $json_filename;\n",
+    "user.20260713151720.1": "my $filter = <<END;\n[.[] | select(.distro == \"{{ $distro }}\").urls[] | select(.name | match(\"{{ $match }}\"))][0].url\nEND\n\n`aria2c $json_url`;\n\nmy $path = jq $json_filename, $filter;\n`aria2c $domain$path`;\n\nunlink $json_filename;\n\nmy $file = basename $path;\n`xz -d $file` if $file =~ /\\.xz$/\n",
     "user.20260713152456.1": "@others\n",
     "user.20260713172946.1": "{{ $distro := \"Alpine\" -}}\n{{ $like := \"*x86_64, standard*\" -}}\n",
     "user.20260713162024.1": "function Get-UrlBasename {\n  [CmdletBinding()]\n  param (\n      [Parameter(Mandatory)]\n      [String]$url\n  )\n  ([uri] $url).Segments[-1]\n}\n",
     "user.20260713162044.1": "function Get-IsoUrl {\n  [CmdletBinding()]\n  param (\n      [Parameter(Mandatory)]\n      [Object[]]$data,\n      [Parameter(Mandatory)]\n      [String]$distro,\n      [Parameter(Mandatory)]\n      [String]$like\n  )\n  foreach ($item in $data){\n    if ($item.distro -eq $distro) {\n      foreach ($url in $item.urls){\n        if ($url.name -like $like) {\n          return $url.url\n        }\n      }\n    }\n  }\n  throw \"Could not find any $distro iso\"\n}\n",
     "user.20260713152544.1": "$domain = \"https://mirror.nju.edu.cn\"\n$json_url = \"$domain/.mirrorz/iso.json\"\n$json_filename = Get-UrlBasename $json_url\n",
-    "user.20260713162113.1": "Invoke-WebRequest -Uri $json_url -OutFile $json_filename\n\n$iso_json = Get-Content -Raw $json_filename | ConvertFrom-Json\n\n$path = Get-IsoUrl $iso_json \"{{ $distro }}\" \"{{ $like }}\"\n\naria2c \"$domain/$path\"\n\nRemove-Item $json_filename\n",
+    "user.20260713162113.1": "Invoke-WebRequest -Uri $json_url -OutFile $json_filename\n\n$iso_json = Get-Content -Raw $json_filename | ConvertFrom-Json\n\n$path = Get-IsoUrl $iso_json \"{{ $distro }}\" \"{{ $like }}\"\n$full_url = \"$domain$path\"\n\naria2c $full_url\n\nRemove-Item $json_filename\n\n$file = Get-UrlBasename $full_url\nif ($file -match \".*\\.xz$\") {\n    xz -d $file\n}\n",
     "user.20260713151812.1": "@others\n",
     "user.20260713172820.1": "{{ $distro := \"Arch Linux\" -}}\n{{ $match := \".*x86_64, CLI-only.*\" -}}\n",
     "user.20260713172225.1": "@others\n",
@@ -17456,6 +17509,10 @@
     "user.20260713223352.1": "{{ $distro := \"CachyOS\" -}}\n{{ $like := \"*x86_64, handheld*\" -}}\n",
     "user.20260713222929.1": "$domain = \"https://mirrors.ustc.edu.cn\"\n$json_url = \"$domain/static/json/mirrorz.json\"\n$json_filename = Get-UrlBasename $json_url\n",
     "user.20260713223136.1": "Invoke-WebRequest -Uri $json_url -OutFile $json_filename\n\n$iso_json = Get-Content -Raw $json_filename | ConvertFrom-Json\n\n$path = Get-IsoUrl $iso_json.info \"{{ $distro }}\" \"{{ $like }}\"\n\naria2c \"$domain/$path\"\n\nRemove-Item $json_filename\n",
+    "user.20260713225806.1": "@others\n",
+    "user.20260713225841.1": "{{ $distro := \"FreeBSD\" -}}\n{{ $match := \".*amd64, bootonly iso.xz.*\" -}}\n",
+    "user.20260713232206.1": "@others\n",
+    "user.20260713232234.1": "{{ $distro := \"FreeBSD\" -}}\n{{ $like := \"*amd64, bootonly iso.xz*\" -}}\n",
     "user.20260713170045.1": "# Windows 10\n\n## MAS\n\nhttps://massgrave.dev/windows_ltsc_links\n\nen-us_windows_10_iot_enterprise_ltsc_2021_x64_dvd\n\n## tiny 10\n\nhttps://archive.org/details/tiny-10-23-h2\n",
     "user.20260712225119.1": "@others\n",
     "user.20260712221731.1": "ifeq ($(OS),Windows_NT)\n    SHELL := powershell.exe\nendif\n\n.SHELLFLAGS := -NoProfile -ExecutionPolicy Bypass -Command\n",
@@ -18695,25 +18752,31 @@
       "_mod_time": 1783904024.186
     },
     "user.20260713151405.1": {
-      "_mod_time": 1783940771.689
+      "_mod_time": 1783956024.272
     },
     "user.20260713152456.1": {
-      "_mod_time": 1783944682.501
+      "_mod_time": 1783956599.031
     },
     "user.20260713151812.1": {
-      "_mod_time": 1783940771.705
+      "_mod_time": 1783956024.291
     },
     "user.20260713172225.1": {
-      "_mod_time": 1783944740.569
+      "_mod_time": 1783956599.05
     },
     "user.20260713200607.1": {
-      "_mod_time": 1783944482.095
+      "_mod_time": 1783956024.307
     },
     "user.20260713200827.1": {
-      "_mod_time": 1783944682.527
+      "_mod_time": 1783956599.069
     },
     "user.20260713222812.1": {
       "_mod_time": 1783953678.974
+    },
+    "user.20260713225806.1": {
+      "_mod_time": 1783956024.323
+    },
+    "user.20260713232206.1": {
+      "_mod_time": 1783956599.087
     },
     "user.20260713170045.1": {
       "_mod_time": 1783933604.202

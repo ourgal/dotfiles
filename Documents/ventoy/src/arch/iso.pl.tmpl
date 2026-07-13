@@ -30,12 +30,15 @@ sub fetch {
   $ff->fetch() or die $ff->error;
 }
 my $filter = <<END;
-.[] | select(.distro == "{{ $distro }}").urls[] | select(.name | match("{{ $match }}")).url
+[.[] | select(.distro == "{{ $distro }}").urls[] | select(.name | match("{{ $match }}"))][0].url
 END
 
 `aria2c $json_url`;
 
 my $path = jq $json_filename, $filter;
-`aria2c $domain/$path`;
+`aria2c $domain$path`;
 
 unlink $json_filename;
+
+my $file = basename $path;
+`xz -d $file` if $file =~ /\.xz$/
