@@ -12233,6 +12233,59 @@
                       ]
                     },
                     {
+                      "gnx": "user.20260713233818.1",
+                      "vh": "@path netbsd",
+                      "children": [
+                        {
+                          "gnx": "user.20260713233825.1",
+                          "vh": "@clean iso.pl.tmpl",
+                          "children": [
+                            {
+                              "gnx": "user.20260713233957.1",
+                              "vh": "template vars"
+                            },
+                            {
+                              "gnx": "user.20260713150837.1"
+                            },
+                            {
+                              "gnx": "user.20260713151553.1"
+                            },
+                            {
+                              "gnx": "user.20260713151614.1"
+                            },
+                            {
+                              "gnx": "user.20260713151626.1"
+                            },
+                            {
+                              "gnx": "user.20260713151720.1"
+                            }
+                          ]
+                        },
+                        {
+                          "gnx": "user.20260713234055.1",
+                          "vh": "@clean iso.ps1.tmpl",
+                          "children": [
+                            {
+                              "gnx": "user.20260713234127.1",
+                              "vh": "template vars"
+                            },
+                            {
+                              "gnx": "zxc.20260323201237.1"
+                            },
+                            {
+                              "gnx": "user.20260713162008.1"
+                            },
+                            {
+                              "gnx": "user.20260713152544.1"
+                            },
+                            {
+                              "gnx": "user.20260713162113.1"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
                       "gnx": "user.20260713170004.1",
                       "vh": "@path windows10",
                       "children": [
@@ -17513,6 +17566,10 @@
     "user.20260713225841.1": "{{ $distro := \"FreeBSD\" -}}\n{{ $match := \".*amd64, bootonly iso.xz.*\" -}}\n",
     "user.20260713232206.1": "@others\n",
     "user.20260713232234.1": "{{ $distro := \"FreeBSD\" -}}\n{{ $like := \"*amd64, bootonly iso.xz*\" -}}\n",
+    "user.20260713233825.1": "@others\n",
+    "user.20260713233957.1": "{{ $distro := \"NetBSD\" -}}\n{{ $match := \".*amd64, iso.*\" -}}\n",
+    "user.20260713234055.1": "@others\n",
+    "user.20260713234127.1": "{{ $distro := \"NetBSD\" -}}\n{{ $like := \"*amd64, iso*\" -}}\n",
     "user.20260713170045.1": "# Windows 10\n\n## MAS\n\nhttps://massgrave.dev/windows_ltsc_links\n\nen-us_windows_10_iot_enterprise_ltsc_2021_x64_dvd\n\n## tiny 10\n\nhttps://archive.org/details/tiny-10-23-h2\n",
     "user.20260712225119.1": "@others\n",
     "user.20260712221731.1": "ifeq ($(OS),Windows_NT)\n    SHELL := powershell.exe\nendif\n\n.SHELLFLAGS := -NoProfile -ExecutionPolicy Bypass -Command\n",
@@ -18773,10 +18830,16 @@
       "_mod_time": 1783953678.974
     },
     "user.20260713225806.1": {
-      "_mod_time": 1783956024.323
+      "_mod_time": 1783957382.14
     },
     "user.20260713232206.1": {
       "_mod_time": 1783956599.087
+    },
+    "user.20260713233825.1": {
+      "_mod_time": 1783957242.883
+    },
+    "user.20260713234055.1": {
+      "_mod_time": 1783957341.3
     },
     "user.20260713170045.1": {
       "_mod_time": 1783933604.202
