@@ -12150,6 +12150,36 @@
                       ]
                     },
                     {
+                      "gnx": "user.20260713205007.1",
+                      "vh": "@path cachyos",
+                      "children": [
+                        {
+                          "gnx": "user.20260713222812.1",
+                          "vh": "@clean iso.ps1.tmpl",
+                          "children": [
+                            {
+                              "gnx": "user.20260713223352.1",
+                              "vh": "template vars"
+                            },
+                            {
+                              "gnx": "zxc.20260323201237.1"
+                            },
+                            {
+                              "gnx": "user.20260713162008.1"
+                            },
+                            {
+                              "gnx": "user.20260713222929.1",
+                              "vh": "vars"
+                            },
+                            {
+                              "gnx": "user.20260713223136.1",
+                              "vh": "main"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
                       "gnx": "user.20260713170004.1",
                       "vh": "@path windows10",
                       "children": [
@@ -17422,6 +17452,10 @@
     "user.20260713200616.1": "{{ $distro := \"NixOS\" -}}\n{{ $match := \".*x86_64, minimal iso.*\" -}}\n",
     "user.20260713200827.1": "@others\n",
     "user.20260713200834.1": "{{ $distro := \"NixOS\" -}}\n{{ $like := \"*x86_64, minimal iso*\" -}}\n",
+    "user.20260713222812.1": "{{- /* not working, js needed */ -}}\n@others\n",
+    "user.20260713223352.1": "{{ $distro := \"CachyOS\" -}}\n{{ $like := \"*x86_64, handheld*\" -}}\n",
+    "user.20260713222929.1": "$domain = \"https://mirrors.ustc.edu.cn\"\n$json_url = \"$domain/static/json/mirrorz.json\"\n$json_filename = Get-UrlBasename $json_url\n",
+    "user.20260713223136.1": "Invoke-WebRequest -Uri $json_url -OutFile $json_filename\n\n$iso_json = Get-Content -Raw $json_filename | ConvertFrom-Json\n\n$path = Get-IsoUrl $iso_json.info \"{{ $distro }}\" \"{{ $like }}\"\n\naria2c \"$domain/$path\"\n\nRemove-Item $json_filename\n",
     "user.20260713170045.1": "# Windows 10\n\n## MAS\n\nhttps://massgrave.dev/windows_ltsc_links\n\nen-us_windows_10_iot_enterprise_ltsc_2021_x64_dvd\n\n## tiny 10\n\nhttps://archive.org/details/tiny-10-23-h2\n",
     "user.20260712225119.1": "@others\n",
     "user.20260712221731.1": "ifeq ($(OS),Windows_NT)\n    SHELL := powershell.exe\nendif\n\n.SHELLFLAGS := -NoProfile -ExecutionPolicy Bypass -Command\n",
@@ -18677,6 +18711,9 @@
     },
     "user.20260713200827.1": {
       "_mod_time": 1783944682.527
+    },
+    "user.20260713222812.1": {
+      "_mod_time": 1783953678.974
     },
     "user.20260713170045.1": {
       "_mod_time": 1783933604.202
