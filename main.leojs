@@ -10882,10 +10882,6 @@
                                 {
                                   "gnx": "zxc.20260423143729.424",
                                   "vh": "ad"
-                                },
-                                {
-                                  "gnx": "zxc.20260620023925.1",
-                                  "vh": "ansible"
                                 }
                               ]
                             }
@@ -17336,7 +17332,6 @@
     "zxc.20260423143729.422": "- copyparty\n",
     "zxc.20260423143729.423": "- mdformat\n",
     "zxc.20260423143729.424": "- advance-touch\n",
-    "zxc.20260620023925.1": "- ansible-core\n- ansible\n",
     "zxc.20260423143729.426": "<< delimiter >>\n@language yaml\n@tabwidth -2\n---\n@\ndisable power saving\nenable password ssh login and start ssh\nchange uos password, current password is emtpy\nssh-copy-id\n@c\n- name: Install uos\n  hosts: uos-live\n  vars:\n    << vars >>\n  tasks:\n    @others",
     "zxc.20260423143729.427": "user: zxc\ndufs_url: http://192.168.1.110:6500",
     "zxc.20260423143729.428": "- name: Debug variables\n  ansible.builtin.debug:\n    var: ansible_facts",
@@ -18772,7 +18767,7 @@
       "_mod_time": 1778855150.573
     },
     "zxc.20260423143729.353": {
-      "_mod_time": 1783765325.24
+      "_mod_time": 1783993312.2868512
     },
     "zxc.20260423143729.426": {
       "_mod_time": 1778855150.568
