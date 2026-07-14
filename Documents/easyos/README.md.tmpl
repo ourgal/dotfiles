@@ -1,0 +1,19 @@
+# Easy OS
+
+## Donwload
+
+```powershell
+aria2c https://distro.ibiblio.org/easyos/amd64/releases/excalibur/2026/7.4.4/easy-7.4.4-amd64.img
+```
+
+## Check usb device
+
+```powershell
+dd --list
+```
+
+## Fiash to usb
+
+```powershell
+dd if=c:\Users\user\Download\easy-7.4.4-amd64.img if=\\?\Device\Harddisk1\Partition0 bs=1M --size --progress
+```
