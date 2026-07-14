@@ -16666,7 +16666,7 @@
     "zxc.20260614001152.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"brave\" \"opt\" (list \"windows\" \"startup\" \"brave\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun {{ joinPath (env \"AppData\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Scoop Apps\" \"Brave.lnk\" | quote }}, , \"Max\"\nWinWait(\"ahk_exe brave.exe\")\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"glazewm\" \"opt\" (list \"windows\" \"startup\" \"glazewm\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nWinActivate \"ahk_exe brave.exe\"\nRun \"glazewm command move --workspace 2\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
     "user.20260701202533.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"brave\" \"opt\" (list \"windows\" \"startup\" \"chromium\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun {{ joinPath (env \"AppData\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Scoop Apps\" \"Chromium.lnk\" | quote }}, , \"Max\"\nWinWait(\"ahk_exe chrome.exe\")\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"glazewm\" \"opt\" (list \"windows\" \"startup\" \"glazewm\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nWinActivate \"ahk_exe chrome.exe\"\nRun \"glazewm command move --workspace 2\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260614001309.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"code\" \"opt\" (list \"windows\" \"startup\" \"vscode\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\n{{ $vscode := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscode\" \"current\" \"Code.exe\" -}}\nRun({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait \"ahk_exe Code.exe\"\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"glazewm\" \"opt\" (list \"windows\" \"startup\" \"glazewm\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nWinActivate \"ahk_exe Code.exe\"\nRun \"glazewm command move --workspace 3\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260614001457.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"vscodium\" \"opt\" (list \"windows\" \"startup\" \"vscodium\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\n{{ $vscodium := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscodium\" \"current\" \"VSCodium.exe\" -}}\nRun({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait(\"ahk_exe VSCodium.exe\")\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"glazewm\" \"opt\" (list \"windows\" \"startup\" \"glazewm\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nWinActivate \"ahk_exe VSCodium.exe\"\nRun \"glazewm command move --workspace 3\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
+    "zxc.20260614001457.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"vscodium\" \"opt\" (list \"windows\" \"startup\" \"vscodium\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\r\n{{ $vscodium := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscodium\" \"current\" \"VSCodium.exe\" -}}\r\nRun({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\r\nWinWait(\"ahk_exe VSCodium.exe\")\r\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"glazewm\" \"opt\" (list \"windows\" \"startup\" \"glazewm\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\r\nWinActivate \"ahk_exe VSCodium.exe\"\r\nRun \"glazewm command move --workspace 3\", ,\"Hide\"\r\n{{ end -}}\r\n{{ end -}}\r\n",
     "zxc.20260502015606.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"leo\" \"opt\" (list \"windows\" \"startup\" \"leo\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"leo\", , \"Max\"\n{{ end -}}\n",
     "zxc.20260315173154.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"everything\" \"opt\" (list \"windows\" \"startup\" \"everything\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"everything\", , \"Hide\"\n{{ end -}}\n",
     "User.20260302135935.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"wt\" \"pwsh\") \"opt\" (list \"windows\" \"startup\" \"wt\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"windows-terminal\" \"current\" \"wt.exe\" | quote }}, ,\"Max\"\nWinWait \"ahk_exe WindowsTerminal.exe\"\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"glazewm\" \"opt\" (list \"windows\" \"startup\" \"glazewm\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nWinActivate \"ahk_exe WindowsTerminal.exe\"\nRun \"glazewm command move --workspace 1\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
@@ -17045,7 +17045,7 @@
     "zxc.20260423143729.97": "- main/dog\n- main/nali\n- main/nmap\n- main/q-dns\n- main/tcping\n",
     "zxc.20260423143729.98": "- main/scoop-search\n",
     "zxc.20260423143729.99": "- main/everything-cli\n",
-    "zxc.20260622225803.1": "- main/termscp\n",
+    "zxc.20260622225803.1": "- main/termscp\r\n- main/ttyd\r\n",
     "user.20260701152716.1": "- main/qr\n- main/qrcp\n",
     "zxc.20260423143729.100": "- main/croc\n- main/cwrsync\n- main/dufs\n- main/miniserve\n- main/portal\n- main/rclone\n- main/syncthing\n- main/alist\n- main/serve\n- main/simple-http-server\n- main/git-annex",
     "zxc.20260423143729.101": "# hash check filed\n# - main/ffsend\n",
@@ -18776,7 +18776,7 @@
       "_mod_time": 1783346655.778
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1784044334.7963428
+      "_mod_time": 1784045251.1672745
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778855150.568
@@ -18995,7 +18995,7 @@
       "_mod_time": 1777385863.235
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1783346655.778
+      "_mod_time": 1784044893.0211008
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1777382331.981
