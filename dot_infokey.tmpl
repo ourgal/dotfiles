@@ -1,0 +1,6 @@
+{{ if eq .chezmoi.os "linux" "android" -}}
+{{ if lookPath "info" -}}
+# info
+\r select-reference-this-line
+{{ end -}}
+{{ end -}}
