@@ -16205,7 +16205,7 @@
     "zxc.20260503010044.1": "[my.modules]\n@others\n\n[my.modules.nuc.windows]\ndeskflow_client = true\n\n[my.modules.bed.windows.windows.startup]\njellyfin_mpv_shim.enable = true\n\n[my.modules.work.windows.windows.startup]\ndeskflow_server.enable = true\n\n[my.modules.surface.void]\n\n[my.modules.surface.void.mpv.plugins]\nanilist_updater = false\n\n[my.modules.localhost.android]\n",
     "zxc.20260613235707.1": "[my.modules.windows.startup]\nglazewm.enable = false\ndeskflow_client.enable = false\ndeskflow_server.enable = false\naria2.enable = true\ntransmission.enable = true\nespanso.enable = true\nalist.enable = true\nmpd.enable = true\ngpg_agent.enable = true\nkde_connect.enable = true\nwezterm.enable = false\nfirefox.enable = false\nbrave.enable = true\nchromium.enable = false\nvscode.enable = false\nvscodium.enable = false\nleo.enable = false\neverything.enable = true\nautohotkey.enable = false\npowertoys.enable = false\ndufs.enable = true\ncopyparty.enable = true\naltrun.enable = false\nnavidrome.enable = true\njellyfin_mpv_shim.enable = false\nemacs.enable = true\nemacs_daemon.enable = false\nwt.enable = true\nsyncthing.enable = true\ntorrserver.enable = false\nflameshot.enable = true\nseanime.enable = true\nrclone.enable = false\n",
     "zxc.20260614011525.1": "[my.modules.shell.pwsh]\nstarship.enable = false\noh_my_posh.enable = true\nsfsu.enable = false\nzoxide.enable = true\natuin.enable = true\nmcfly.enable = false\nnavi.enable = true\n",
-    "zxc.20260614121829.1": "[my.modules.shell.clink]\nstarship.enable = false\noh_my_posh.enable = true\nzoxide.enable = true\n",
+    "zxc.20260614121829.1": "[my.modules.shell.clink]\nstarship.enable = true\noh_my_posh.enable = false\nzoxide.enable = true\n",
     "zxc.20260614123554.1": "[my.modules.shell.bash]\nble_sh.enable = true\nfzf.enable = true\nstarship.enable = false\noh_my_posh.enable = true\natuin.enable = false\nmcfly.enable = true\nzoxide.enable = true\npay_respects.enable = true\n",
     "zxc.20260620125523.1": "[my.modules.shell.fish]\noh_my_posh.enable = true\nfzf.enable = true\nmcfly.enable = false\natuin.enable = true\nnavi.enable = true\ncarapace.enable = true\nzoxide.enable = true\n",
     "zxc.20260613164155.1": "[my.modules.mpv]\nenable = true\n\n[my.modules.mpv.plugins]\nuosc = true\nsmartskip = true\nthumbfast = true\nmanga_reader = true\nM_x = true\nleader = true\nsponsorblock_minimal = true\nquality_menu = true\ntorrserver_hook = true\nytdlautoformat = false\nclipshot = true\nfile_browser = true\nanilist_updater = true\nsmart_copy_paste = true\nbetterchapters = true\ncostum = false\nautocrop = true\n",
@@ -17006,7 +17006,7 @@
     "zxc.20260423143729.53": "- main/shellcheck\n- main/shfmt\n",
     "zxc.20260423143729.54": "- main/binutils\n",
     "zxc.20260423143729.55": "- main/clangd\n",
-    "user.20260715205049.1": "- main/scriptcs",
+    "user.20260715205049.1": "- main/scriptcs\n",
     "zxc.20260423143729.56": "- main/make\n- main/task\n- main/cmake\n",
     "zxc.20260423143729.57": "- main/msys2\n- main/direnv\n- main/tree-sitter\n- main/dirhash\n",
     "zxc.20260423143729.58": "- main/haskell\n- main/haskell-cabal\n- main/haskell-language-server\n- main/stack\n",
@@ -17059,12 +17059,12 @@
     "zxc.20260423143729.100": "- main/croc\n- main/cwrsync\n- main/dufs\n- main/miniserve\n- main/portal\n- main/rclone\n- main/syncthing\n- main/alist\n- main/serve\n- main/simple-http-server\n- main/git-annex\n",
     "zxc.20260423143729.101": "# hash check filed\n# - main/ffsend\n",
     "zxc.20260423143729.103": "- main/clink\n- main/clink-completions\n- main/cmder-full\n- main/pwsh\n- main/nu\n- main/yori\n",
-    "user.20260715210311.1": "- main/rainbow\r\n",
+    "user.20260715210311.1": "- main/rainbow\n",
     "zxc.20260423143729.111": "- main/zoxide\n",
     "zxc.20260423143729.118": "- main/duf\n",
     "zxc.20260423143729.114": "- main/dua\n- main/dust\n",
     "zxc.20260423143729.107": "- main/fd\n",
-    "zxc.20260423143729.113": "- main/grep\r\n- main/ripgrep\r\n- main/gawk\r\n- main/igrep\r\n",
+    "zxc.20260423143729.113": "- main/grep\n- main/ripgrep\n- main/gawk\n- main/igrep\n",
     "zxc.20260423143729.121": "- main/mcfly\n- main/atuin\n",
     "zxc.20260423143729.108": "- main/bat\n- main/less\n",
     "zxc.20260423143729.117": "- main/eza\n",
@@ -18252,7 +18252,7 @@
       "_mod_time": 1783733569.4272282
     },
     "User.20260226001402.1": {
-      "_mod_time": 1783852954.616
+      "_mod_time": 1784164503.5362525
     },
     "zxc.20260317002829.1": {
       "_mod_time": 1781442394.083
@@ -18519,7 +18519,7 @@
       "_mod_time": 1783904024.2443979
     },
     "user.20260704002025.1": {
-      "_mod_time": 1784118108.70214
+      "_mod_time": 1784164502.9865644
     },
     "zxc.20260502183455.1": {
       "_mod_time": 1783297135.1308718
@@ -18786,7 +18786,7 @@
       "_mod_time": 1783346655.778
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1784121244.1988328
+      "_mod_time": 1784164502.981508
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778855150.568
@@ -18996,7 +18996,7 @@
       "_mod_time": 1777179946.836245
     },
     "zxc.20260529091145.1": {
-      "_mod_time": 1784118108.955933
+      "_mod_time": 1784164502.981508
     },
     "zxc.20260201140523.1": {
       "_mod_time": 1777179946.85
