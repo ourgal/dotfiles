@@ -17606,14 +17606,14 @@
     "user.20260713233957.1": "{{ $distro := \"NetBSD\" -}}\n{{ $match := \".*amd64, iso.*\" -}}\n",
     "user.20260713234055.1": "@others\n",
     "user.20260713234127.1": "{{ $distro := \"NetBSD\" -}}\n{{ $like := \"*amd64, iso*\" -}}\n",
-    "user.20260713170045.1": "# Windows 10\n\n## MAS\n\nhttps://massgrave.dev/windows_ltsc_links\n\npick en-us windows 10 iot enterprise ltsc 2021 x64 dvd\n\n## tiny 10\n\nhttps://archive.org/details/tiny-10-23-h2\n",
+    "user.20260713170045.1": "@language md\n# Windows 10\n\n## MAS\n\n[massgrave](https://massgrave.dev/windows_ltsc_links)\n\npick en-us windows 10 iot enterprise ltsc 2021 x64 dvd\n\n## tiny 10\n\nhttps://archive.org/details/tiny-10-23-h2",
     "user.20260712225119.1": "@others\n",
     "user.20260712221731.1": "ifeq ($(OS),Windows_NT)\n    SHELL := powershell.exe\nendif\n\n.SHELLFLAGS := -NoProfile -ExecutionPolicy Bypass -Command\n",
     "user.20260712225201.1": "all: ventoy/ventoy_winboot.img Edgeless.vim\n\nventoy/ventoy_winboot.img:\n\t@aria2c https://legacy.edgeless.top/api/v2/info/ventoy_plugin_addr -o $@\n\nEdgeless.vim:\n\t@aria2c https://legacy.edgeless.top/api/v2/info/iso_addr -o $$env:TEMP/Edgeless.iso\n\t@7z x $$env:TEMP/Edgeless.iso Edgeless\n\t@7z e $$env:TEMP/Edgeless.iso sources/boot.wim\n\t@mv boot.vim $@\n\t@rm $$env:TEMP/Edgeless.iso\n",
     "user.20260712221650.1": "@others\n",
     "user.20260712221752.1": "usb_letter := $(shell (Get-Volume | Where-Object { $$_.DriveType -eq \"Removable\" -and $$_.Size -gt 1GB }).DriveLetter)\n",
     "user.20260712221804.1": "all:\n\t@rsync -avP src $(usb_letter):\n",
-    "user.20260714084324.1": "# Easy OS\n\n## Donwload\n\n```powershell\naria2c https://distro.ibiblio.org/easyos/amd64/releases/excalibur/2026/7.4.4/easy-7.4.4-amd64.img\n```\n\n## Check usb device\n\n```powershell\ndd --list\n```\n\n## Fiash to usb\n\n```powershell\ndd if=c:\\Users\\user\\Download\\easy-7.4.4-amd64.img if=\\\\?\\Device\\Harddisk1\\Partition0 bs=1M --size --progress\n```",
+    "user.20260714084324.1": "@language md\n# Easy OS\n\n## Donwload\n\n```powershell\naria2c https://distro.ibiblio.org/easyos/amd64/releases/excalibur/2026/7.4.4/easy-7.4.4-amd64.img\n```\n\n## Check usb device\n\n```powershell\ndd --list\n```\n\n## Fiash to usb\n\n```powershell\ndd if=c:\\Users\\user\\Download\\easy-7.4.4-amd64.img if=\\\\?\\Device\\Harddisk1\\Partition0 bs=1M --size --progress\n```",
     "user.20260702164727.1": "{\n  @others\n}\n",
     "user.20260702164955.1": "@\nmyPkgs = \"aicommit2\";\n@c\n",
     "user.20260702164805.1": "nixPkgs = [\n  \"aichat\"\n  @others\n];\n",
@@ -18882,7 +18882,7 @@
       "_mod_time": 1783988836.8424244
     },
     "user.20260713170045.1": {
-      "_mod_time": 1784044334.8105118
+      "_mod_time": 1784170516.4380817
     },
     "user.20260712225119.1": {
       "_mod_time": 1783904024.18
@@ -18891,7 +18891,7 @@
       "_mod_time": 1783904024.173
     },
     "user.20260714084324.1": {
-      "_mod_time": 1784044334.8035114
+      "_mod_time": 1783989991.1257813
     },
     "user.20260702164727.1": {
       "_mod_time": 1783140836.845
