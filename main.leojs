@@ -2130,6 +2130,10 @@
                             {
                               "gnx": "user.20260710235318.1",
                               "vh": "stardict"
+                            },
+                            {
+                              "gnx": "user.20260717084221.1",
+                              "vh": "info_manuals"
                             }
                           ]
                         }
@@ -4759,6 +4763,10 @@
                                   "gnx": "User.20260225204449.1"
                                 }
                               ]
+                            },
+                            {
+                              "gnx": "user.20260717082713.1",
+                              "vh": "info dir"
                             }
                           ]
                         },
@@ -6006,6 +6014,10 @@
                     {
                       "gnx": "user.20260709095628.1",
                       "vh": "xapk2apk"
+                    },
+                    {
+                      "gnx": "user.20260717083212.1",
+                      "vh": "info_manuals"
                     }
                   ]
                 },
@@ -16058,7 +16070,8 @@
     "zxc.20260619235746.1": "<< android >>\n[\".local/share/repos/termux-nf\"]\n    type = \"git-repo\"\n    url = \"https://github.com/arnavgr/termux-nf\"\n    refreshPeriod = \"168h\"\n{{ end -}}\n",
     "user.20260701164019.1": "[\".local/share/repos/youtube-auto-like\"]\n    type = \"git-repo\"\n    url = \"https://github.com/austencm/youtube-auto-like\"\n    refreshPeriod = \"168h\"\n",
     "user.20260709095546.1": "[\".local/share/repos/xapk2apk\"]\n    type = \"git-repo\"\n    url = \"https://github.com/Ccccccccvvm/xapk2apk\"\n    refreshPeriod = \"168h\"\n",
-    "user.20260710235318.1": "[\".local/share/repos/stardict\"]\n    type = \"git-repo\"\n    url = \"https://gitee.com/{{ includeTemplate \"my_gitee_username.key\" | trim }}/stardict\"\n    refreshPeriod = \"168h\"\n",
+    "user.20260710235318.1": "[\".local/share/repos/stardict\"]\n    type = \"git-repo\"\n    url = \"git@gitee.com:{{ includeTemplate \"my_gitee_username.key\" | trim }}/stardict.git\"\n    refreshPeriod = \"168h\"\n",
+    "user.20260717084221.1": "[\".local/share/repos/info_manuals\"]\n    type = \"git-repo\"\n    url = \"git@gitee.com:{{ includeTemplate \"my_gitee_username.key\" | trim }}/info_manuals.git\"\n    refreshPeriod = \"168h\"\n",
     "zxc.20260202203521.17": "<< dos >>\n{{ template \"checkPath\" (list \"dirhash\" \"go\") -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260323201237.1": "Set-StrictMode -Version Latest\n$ErrorActionPreference = \"Stop\"\n$PSNativeCommandUseErrorActionPreference = $true\n",
     "zxc.20260202203521.18": "# {{ output \"dirhash\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"uosc\" \"src\" \"ziggy\") \"-quiet\" \"-nowait\" }}\ncd ~/.local/share/repos/uosc\n./tools/build.ps1 ziggy placeholder\n\n{{ $sources := list (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"mpv\" \"portable_config\" \"scripts\" \"uosc\") (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"mpv\" \"portable_config\" \"fonts\") -}}\n{{ $targets := list (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"uosc\" \"src\" \"uosc\") (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"uosc\" \"src\" \"fonts\") -}}\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"uosc\") \"os\" \"windows\") | trim | atoi -}}\n{{ template \"powershell_junction\" dict \"source\" $sources \"target\" $targets }}\n{{ else -}}\n    {{ range $sources -}}\n        {{ if stat . -}}\n        rm -force {{ . }}\n        {{ end -}}\n    {{ end -}}\n{{ end -}}\n",
@@ -16417,6 +16430,7 @@
     "zxc.20260531010146.1": "(after! org\n  (setq org-agenda-files '(\"~/org/agenda.org\"))\n  (org-babel-do-load-languages\n    org-babel-load-languages\n    '((dot . t))))\n",
     "zxc.20260612234219.1": "(after! emms\n  (setq emms-source-file-default-directory \"~/Music\")\n  (add-hook 'emms-playlist-mode-hook #'turn-on-evil-mode))\n",
     "user.20260704223557.1": "<< android >>\n(setq overriding-text-conversion-style nil)\n{{ end -}}\n",
+    "user.20260717082713.1": "(after! info\n    (add-to-list 'Info-directory-list \"~/.local/share/repos/info_manuals\"))\n",
     "User.20260218124824.1": "(map! :n \"C-w o\" #'delete-other-windows\n      :n \"C-w z\" #'doom/window-enlargen)\n",
     "User.20260218124950.1": "(map! :leader\n      :desc \"Kill other buffer\" \"b o\" #'doom/kill-other-buffers)\n(map! :leader\n      :desc \"Kill other buffer\" \"b 0\" nil)\n",
     "user.20260709233750.1": "(map! :map Info-mode-map\n      \"C-c C-c\" #'gt-translate)\n\n(map! :map eww-mode-map\n      \"C-c C-c\" #'gt-translate)\n",
@@ -16630,6 +16644,7 @@
     "user.20260702235838.1": "playwright_ritdon:\n  path: Documents/my_repos/playwright_ritdon\n  url: myg:playwright_ritdon\n  desc: playwright ritdon\n",
     "user.20260702235937.1": "playwright_yamibo:\n  path: Documents/my_repos/playwright_yamibo\n  url: myg:playwright_yamibo\n  desc: playwright yamibo\n",
     "user.20260709095628.1": "xapk2apk:\n  path: \".local/share/repos/xapk2apk\"\n  url: \"https://github.com/Ccccccccvvm/xapk2apk\"\n  desc: xapk to apk script\n",
+    "user.20260717083212.1": "info_manuals:\n  path: \".local/share/repos/info_manuals\"\n  url: \"git@gitee.com:{{ includeTemplate \"my_gitee_username.key\" | trim }}/info_manuals.git\"\n  desc: emacs info manuals\n",
     "zxc.20260608212902.1": "specs:\n  @others\n",
     "zxc.20260608212920.1": "custom:\n  output: table\n  parallel: true\n  forks: 8\n",
     "zxc.20260608212949.1": "targets:\n  @others\n",
@@ -18117,7 +18132,7 @@
       "_mod_time": 1782087842.583
     },
     "User.20260226000855.1": {
-      "_mod_time": 1783733569.416
+      "_mod_time": 1784249020.516
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1782695824.4734561
@@ -18291,7 +18306,7 @@
       "_mod_time": 1781484842.615
     },
     "zxc.20260327184129.1": {
-      "_mod_time": 1783765325.318
+      "_mod_time": 1784248861.595
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1783297134.9051366
@@ -18369,7 +18384,7 @@
       "_mod_time": 1784247256.85
     },
     "User.20260217223030.1": {
-      "_mod_time": 1783643014.4661043
+      "_mod_time": 1784248078.507
     },
     "User.20260217223035.1": {
       "_mod_time": 1783765325.318

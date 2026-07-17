@@ -140,6 +140,8 @@
 {{ if eq .chezmoi.os "android" -}}
 (setq overriding-text-conversion-style nil)
 {{ end -}}
+(after! info
+    (add-to-list 'Info-directory-list "~/.local/share/repos/info_manuals"))
 (map! :n "C-w o" #'delete-other-windows
       :n "C-w z" #'doom/window-enlargen)
 (map! :leader
