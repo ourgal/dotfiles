@@ -1,0 +1,36 @@
+{{ if ne .chezmoi.hostname "home" -}}
+{{ if lookPath "pipewire" -}}
+{{ $username := dict -}}
+{{ $username = set $username "windows" "user" -}}
+{{ $username = set $username "linux" "zxc" -}}
+{{ $termux := dict -}}
+{{ $termux = set $termux "note20" (dict "port" 8022 "user" "u0_a650" "ip" (ternary "192.168.1.106" "192.168.123.232" (eq .chezmoi.hostname "work" "work2"))) -}}
+{{ $termux = set $termux "note20_adb" (dict "port" 8023 "user" $termux.note20.user "ip" "localhost") -}}
+{{ $termux = set $termux "m6" (dict "port" 8022 "user" "u0_a556" "ip" (ternary "192.168.1.103" "192.168.123.191" (eq .chezmoi.hostname "work" "work2"))) -}}
+{{ $termux = set $termux "m6_adb" (dict "port" 8022 "user" $termux.m6.user "ip" "localhost") -}}
+{{ $termux_home := "/data/data/com.termux/files/home" -}}
+{{ $windows_home := print "/C:/Users/" $username.windows -}}
+{{ $linux_home := print "/home/" $username.linux -}}
+{{ $ip := dict -}}
+{{ $ip = set $ip "brix" (dict "ip" "192.168.123.206" "port" "22" "user" $username.linux) -}}
+{{ $ip = set $ip "home" (dict "ip" "192.168.123.100" "port" "22" "user" $username.linux) -}}
+{{ $ip = set $ip "soft" (dict "ip" "192.168.123.206" "port" "23231" "user" $username.linux) -}}
+{{ $ip = set $ip "nuc" (dict "ip" "192.168.123.123" "port" "22" "user" $username.windows) -}}
+{{ $ip = set $ip "work2" (dict "ip" "192.168.1.107" "port" "22" "user" $username.linux) -}}
+{{ $ip = set $ip "office2043" (dict "ip" "192.168.1.104" "port" "22" "user" $username.linux) -}}
+context.modules = [
+  {   name = libpipewire-module-roc-sink
+      args = {
+          fec.code = rs8m
+          remote.ip = {{ $ip.home }}
+          remote.source.port = 10001
+          remote.repair.port = 10002
+          sink.name = "Roc Sink"
+          sink.props = {
+             node.name = "roc-sink"
+          }
+      }
+  }
+]
+{{ end -}}
+{{ end -}}
