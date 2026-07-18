@@ -1,5 +1,5 @@
-{{ if eq .chezmoi.os "windows" "linux" "android" -}}
-{{ if lookPath "ssh" -}}
+{{ if ne .chezmoi.hostname "home" -}}
+{{ if lookPath "pipewire" -}}
 {{ $username := dict -}}
 {{ $username = set $username "windows" "user" -}}
 {{ $username = set $username "linux" "zxc" -}}
@@ -18,52 +18,19 @@
 {{ $ip = set $ip "nuc" (dict "ip" "192.168.123.123" "port" "22" "user" $username.windows) -}}
 {{ $ip = set $ip "work2" (dict "ip" "192.168.1.107" "port" "22" "user" $username.linux) -}}
 {{ $ip = set $ip "office2043" (dict "ip" "192.168.1.104" "port" "22" "user" $username.linux) -}}
-Host soft
-  Port {{ $ip.soft.port }}
-  HostName {{ $ip.soft.ip }}
-Host nuc
-  Port {{ $ip.nuc.port }}
-  User {{ $ip.nuc.user }}
-  HostName {{ $ip.nuc.ip }}
-Host github.com
-  HostName ssh.github.com
-  Port 443
-  User git
-Host note20-adb
-  Port {{ $termux.note20_adb.port }}
-  User {{ $termux.note20_adb.user }}
-  HostName {{ $termux.note20_adb.ip }}
-Host note20
-  Port {{ $termux.note20.port }}
-  User {{ $termux.note20.user }}
-  HostName {{ $termux.note20.ip }}
-Host m6
-  Port {{ $termux.m6.port }}
-  User {{ $termux.m6.user }}
-  HostName {{ $termux.m6.ip }}
-Host m6-adb
-  Port {{ $termux.m6_adb.port }}
-  User {{ $termux.m6_adb.user }}
-  HostName {{ $termux.m6_adb.ip }}
-{{ if ne .chezmoi.hostname "localhost" -}}
-Host gogs-m6
-  Port 23231
-  User {{ $termux.m6.user }}
-  HostName {{ template "ipM6" .chezmoi.hostname }}
-{{ end -}}
-{{ if eq .chezmoi.hostname "work" "work2" -}}
-Host work2
-  Port {{ $ip.work2.port }}
-  User {{ $ip.work2.user }}
-  HostName {{ $ip.work2.ip }}
-{{ end -}}
-{{ if eq .chezmoi.hostname "work" "work2" -}}
-Host office2043
-  Port {{ $ip.office2043.port }}
-  User {{ $ip.office2043.user }}
-  HostName {{ $ip.office2043.ip }}
-{{ end -}}
-Host *
-  AddKeysToAgent yes
+context.modules = [
+  {   name = libpipewire-module-roc-sink
+      args = {
+          fec.code = rs8m
+          remote.ip = {{ $ip.home }}
+          remote.source.port = 10001
+          remote.repair.port = 10002
+          sink.name = "Roc Sink"
+          sink.props = {
+             node.name = "roc-sink"
+          }
+      }
+  }
+]
 {{ end -}}
 {{ end -}}

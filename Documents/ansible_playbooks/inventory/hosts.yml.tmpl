@@ -12,6 +12,7 @@
 {{ $linux_home := print "/home/" $username.linux -}}
 {{ $ip := dict -}}
 {{ $ip = set $ip "brix" (dict "ip" "192.168.123.206" "port" "22" "user" $username.linux) -}}
+{{ $ip = set $ip "home" (dict "ip" "192.168.123.100" "port" "22" "user" $username.linux) -}}
 {{ $ip = set $ip "soft" (dict "ip" "192.168.123.206" "port" "23231" "user" $username.linux) -}}
 {{ $ip = set $ip "nuc" (dict "ip" "192.168.123.123" "port" "22" "user" $username.windows) -}}
 {{ $ip = set $ip "work2" (dict "ip" "192.168.1.107" "port" "22" "user" $username.linux) -}}
