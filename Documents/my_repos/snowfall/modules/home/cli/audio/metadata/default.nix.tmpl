@@ -1,0 +1,19 @@
+{
+  pyPkgs = "mutagen";
+  nixPkgs = p: with p; [
+    id3
+    id3v2
+    muso
+    picard
+    python3Packages.beets.override {
+      pluginOverrides = {
+        fromfilename.enable = true;
+        chroma.enable = true;
+        lyrics.enable = true;
+        fish.enable = true;
+        convert.enable = true;
+        fetchart.enable = true;
+      };
+    }
+  ];
+}
