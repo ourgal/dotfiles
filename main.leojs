@@ -13331,6 +13331,24 @@
                     {
                       "gnx": "user.20260701154149.1",
                       "vh": "@clean Makefile.tmpl"
+                    },
+                    {
+                      "gnx": "user.20260719153921.1",
+                      "vh": "@clean dot_gitignore.tmpl",
+                      "children": [
+                        {
+                          "gnx": "user.20260719153936.1",
+                          "vh": "playwright"
+                        },
+                        {
+                          "gnx": "user.20260719154006.1",
+                          "vh": "output"
+                        },
+                        {
+                          "gnx": "user.20260719154022.1",
+                          "vh": "7z"
+                        }
+                      ]
                     }
                   ]
                 }
@@ -17983,7 +18001,7 @@
     "user.20260628173753.1": "@others\n\n",
     "user.20260628173805.1": "const HOME_PAGE = \"https://ritdon.com/epub_library.php\"\n",
     "user.20260628173844.1": "const currentDir = import.meta.dirname;\n",
-    "user.20260628182854.1": "dotenv.config();\n\nconst BOOK_INDEX = parseInt(process.env.BOOK_INDEX, 10);\nconst PAGE = parseInt(process.env.PAGE, 10);\nconst SEARCH_KEYWORD = process.env.SEARCH_KEYWORD;\nconst DOWNLOAD_FULL_PAGE = parseInt(process.env.DOWNLOAD_FULL_PAGE, 10);\n",
+    "user.20260628182854.1": "dotenv.config();\n\nconst BOOK_INDEX = parseInt(process.env.BOOK_INDEX, 10) || 0;\nconst PAGE = parseInt(process.env.PAGE, 10) || 0;\nconst SEARCH_KEYWORD = process.env.SEARCH_KEYWORD;\nconst DOWNLOAD_FULL_PAGE = parseInt(process.env.DOWNLOAD_FULL_PAGE, 10) || 0;\n",
     "user.20260628172146.1": "async function saveContent(page: Page, title: string, img_index: number) {\n  await verify(page);\n\n  await page.waitForLoadState('networkidle');\n  await expect(page.locator('button#btnPanel')).toBeVisible({ timeout: 60000 });\n  const body = await page.locator('div.content-area').innerHTML();\n\n  const matches = body.match(/\"(data:image\\/jpeg;base64,.*?)\"/g) || [];\n\n  let tmpBody = body;\n  for (const match of matches) {\n    const res = await saveBase64(match, title, img_index);\n    img_index = res.img_index\n    tmpBody = tmpBody.replace(match, res.path)\n  }\n\n  const content = tmpBody.replace(/<meta.*?>/g, '').replace(/<style.*?>[\\s\\S]*?<\\/style>/g, '').replace(/<title.*?>.*?<\\/title>/g, '').replace(/<div.*?>/g, '').replace(/<\\/div>/g, '').replace(/^\\s*[\\r\\n]$/gm, '');\n\n  const dir = path.join(...[currentDir, '../output', title]);\n  const file = path.join(dir, 'output.html');\n\n  await mkdir(dir, { recursive: true });\n  await appendFile(file, content, 'utf-8');\n\n  const progress = await getSpineIndex(page);\n  console.log(`${title} ${progress}`);\n\n  return img_index;\n}\n\n",
     "user.20260708102058.1": "async function verify(page: Page) {\n  await page.waitForLoadState('networkidle');\n\n  const btn = page.getByRole('button', { name: '验证' });\n  const count = await btn.count();\n  if (count > 0) {\n    await page.locator(\"input[name='antispider_captcha']\").fill(\"0\");\n    await btn.click();\n    return true;\n  } else {\n    return false;\n  }\n}\n\n",
     "user.20260708102251.1": "async function nextPage(page: Page) {\n  const btn = page.locator('a#btnNext');\n  const count = await btn.count();\n  if (count > 0) {\n    await btn.click();\n    return true;\n  } else {\n    return false;\n  }\n}\n\n",
@@ -18013,7 +18031,11 @@
     "user.20260701153626.1": "@others\n",
     "user.20260701153916.1": "const title_file = path.join(currentDir, '../titles', 'titles_other.txt');\n",
     "user.20260718114024.1": "import { defineConfig, devices } from 'patchright/test';\n\n/**\n * Read environment variables from file.\n * https://github.com/motdotla/dotenv\n */\n// import dotenv from 'dotenv';\n// import path from 'path';\n// dotenv.config({ path: path.resolve(__dirname, '.env') });\n\n/**\n * See https://playwright.dev/docs/test-configuration.\n */\nexport default defineConfig({\n  timeout: 600000000,\n\n  testDir: './tests',\n  /* Run tests in files in parallel */\n  fullyParallel: true,\n  /* Fail the build on CI if you accidentally left test.only in the source code. */\n  forbidOnly: !!process.env.CI,\n  /* Retry on CI only */\n  retries: process.env.CI ? 2 : 0,\n  /* Opt out of parallel tests on CI. */\n  workers: process.env.CI ? 1 : undefined,\n  /* Reporter to use. See https://playwright.dev/docs/test-reporters */\n  reporter: [\n    ['list'],\n    ['html', { open: 'never' }]\n  ],\n  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */\n  use: {\n    /* Base URL to use in actions like `await page.goto('')`. */\n    // baseURL: 'http://localhost:3000',\n\n    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */\n    trace: 'on-first-retry',\n  },\n\n  /* Configure projects for major browsers */\n  projects: [\n    { name: 'setup', testMatch: /.*\\.setup\\.ts/ },\n    {\n      name: 'chromium',\n      use: { ...devices['Desktop Chrome'], storageState: 'playwright/.auth/user.json', },\n      // dependencies: ['setup'],\n    },\n\n    // {\n    //   name: 'firefox',\n    //   use: { ...devices['Desktop Firefox'] },\n    // },\n\n    // {\n    //   name: 'webkit',\n    //   use: { ...devices['Desktop Safari'] },\n    // },\n\n    /* Test against mobile viewports. */\n    // {\n    //   name: 'Mobile Chrome',\n    //   use: { ...devices['Pixel 5'] },\n    // },\n    // {\n    //   name: 'Mobile Safari',\n    //   use: { ...devices['iPhone 12'] },\n    // },\n\n    /* Test against branded browsers. */\n    // {\n    //   name: 'Microsoft Edge',\n    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },\n    // },\n    // {\n    //   name: 'Google Chrome',\n    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },\n    // },\n  ],\n\n  /* Run your local dev server before starting the tests */\n  // webServer: {\n  //   command: 'npm run start',\n  //   url: 'http://localhost:3000',\n  //   reuseExistingServer: !process.env.CI,\n  // },\n});\n",
-    "user.20260701154149.1": "DIRS := $(wildcard output/*/)\nFILES := $(patsubst %, %temp.md, $(DIRS))\ntitle := titles/titles\n\nall:\n\t@pnpm exec patchright test --headed tests/main.spec.ts\n\ntitles: pull title title_zht title_other\n\ntitle:\n\t@-rm $(title).txt\n\t@pnpm exec patchright test --headed tests/title.spec.ts\n\t@pwsh -c \"cat $(title).txt | sort > $(title)_sorted.txt\"\n\ntitle_zht:\n\t@-rm $(title)_zht.txt\n\t@pnpm exec patchright test --headed tests/title_zht.spec.ts\n\t@pwsh -c \"cat $(title)_zht.txt | sort > $(title)_zht_sorted.txt\"\n\ntitle_other:\n\t@-rm $(title)_other.txt\n\t@pnpm exec patchright test --headed tests/title_other.spec.ts\n\t@pwsh -c \"cat $(title)_other.txt | sort > $(title)_other_sorted.txt\"\n\nPHONY: auth\nauth:\n\t@pnpm exec patchright test --headed tests/auth.setup.ts\n\nPHONY: install\ninstall:\n\t@pnpm exec patchright install chromium\n\nmd: ${FILES}\n\n${FILES}:\n\tpandoc -f html $(dir $@)output.html -t markdown -o $@ --wrap=none\n\nPHONY: pull\npull:\n\t@git pull origin\n",
+    "user.20260701154149.1": "DIRS := $(wildcard output/*/)\nFILES := $(patsubst %, %temp.md, $(DIRS))\ntitle := titles/titles\nargs := --headed\n\nall:\n\t@pnpm exec patchright test $(args) tests/main.spec.ts\n\ntitles: pull title title_zht title_other\n\ntitle:\n\t@-rm $(title).txt\n\t@pnpm exec patchright test $(args) tests/title.spec.ts\n\t@pwsh -c \"cat $(title).txt | sort > $(title)_sorted.txt\"\n\ntitle_zht:\n\t@-rm $(title)_zht.txt\n\t@pnpm exec patchright test $(args) tests/title_zht.spec.ts\n\t@pwsh -c \"cat $(title)_zht.txt | sort > $(title)_zht_sorted.txt\"\n\ntitle_other:\n\t@-rm $(title)_other.txt\n\t@pnpm exec patchright test $(args) tests/title_other.spec.ts\n\t@pwsh -c \"cat $(title)_other.txt | sort > $(title)_other_sorted.txt\"\n\nPHONY: auth\nauth:\n\t@pnpm exec patchright test $(args) tests/auth.setup.ts\n\nPHONY: install\ninstall:\n\t@pnpm exec patchright install chromium\n\nmd: ${FILES}\n\n${FILES}:\n\tpandoc -f html $(dir $@)output.html -t markdown -o $@ --wrap=none\n\nPHONY: pull\npull:\n\t@git pull origin\n",
+    "user.20260719153921.1": "@others\n",
+    "user.20260719153936.1": "node_modules/\n/test-results/\n/playwright-report/\n/blob-report/\n/playwright/.cache/\n/playwright/.auth/\n/.env\n",
+    "user.20260719154006.1": "/output/\n",
+    "user.20260719154022.1": "*.7z\n",
     "user.20260707170204.1": "@others\n",
     "user.20260713150909.1": "my @apk_ids = (\n    \"org.telegram.messenger\",\n    \"com.gbox.android\",\n    \"org.mozilla.firefox\",\n    \"com.brave.browser\",\n    \"com.microsoft.emmx.canary\",\n    \"com.rookiestudio.perfectviewer\",\n    \"bin.mt.plus\",\n    \"com.dothantech.weidaguoji\",\n);\nmy $repo_dir = \"repo\";\nmy $apkeep_cmd = \"apkeep\";\n",
     "user.20260713150930.1": "sub run_command {\n  my $output = `@_`;\n  my $exit_code = $? >> 8;\n  ($output, $exit_code);\n}\n",
@@ -19266,7 +19288,7 @@
       "_mod_time": 1782087842.598
     },
     "user.20260628171858.1": {
-      "_mod_time": 1784345822.735
+      "_mod_time": 1784447130.663
     },
     "user.20260628172017.1": {
       "_mod_time": 1784345754.329
@@ -19281,7 +19303,10 @@
       "_mod_time": 1784346245.932
     },
     "user.20260701154149.1": {
-      "_mod_time": 1783765325.24
+      "_mod_time": 1784447795.964
+    },
+    "user.20260719153921.1": {
+      "_mod_time": 1784446833.459
     },
     "user.20260707170204.1": {
       "_mod_time": 1783940771.674
