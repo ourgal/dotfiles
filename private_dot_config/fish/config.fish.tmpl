@@ -8,6 +8,9 @@ set -x SSH_AUTH_SOCK $PREFIX/var/run/ssh-agent.socket
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "oh-my-posh") "opt" (list "shell" "fish" "oh_my_posh" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "oh-my-posh" "init" "fish" }}
 {{ end -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "starship") "opt" (list "shell" "fish" "starship" "enable") "os" (list "linux" "android")) | trim | atoi -}}
+{{ output "starship" "init" "fish" }}
+{{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "fzf") "opt" (list "shell" "fish" "fzf" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ if or (lookPath "mcfly") (lookPath "atuin") -}}
 {{ output "env" "FZF_CTRL_R_COMMAND=" "fzf" "--fish" }}
