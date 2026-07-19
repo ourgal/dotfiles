@@ -80,8 +80,8 @@ flameshot.enable = true
 seanime.enable = true
 rclone.enable = false
 [my.modules.shell.pwsh]
-starship.enable = false
-oh_my_posh.enable = true
+starship.enable = true
+oh_my_posh.enable = false
 sfsu.enable = false
 zoxide.enable = true
 atuin.enable = true
@@ -94,14 +94,15 @@ zoxide.enable = true
 [my.modules.shell.bash]
 ble_sh.enable = true
 fzf.enable = true
-starship.enable = false
-oh_my_posh.enable = true
+starship.enable = true
+oh_my_posh.enable = false
 atuin.enable = false
 mcfly.enable = true
 zoxide.enable = true
 pay_respects.enable = true
 [my.modules.shell.fish]
-oh_my_posh.enable = true
+oh_my_posh.enable = false
+starship.enable = true
 fzf.enable = true
 mcfly.enable = false
 atuin.enable = true
