@@ -4351,7 +4351,7 @@
                       "vh": "content",
                       "children": [
                         {
-                          "gnx": "zxc.20260625205223.1"
+                          "gnx": "zxc.20260626155606.1"
                         },
                         {
                           "gnx": "zxc.20260611090945.1",
@@ -4364,6 +4364,10 @@
                         {
                           "gnx": "zxc.20260625205147.1",
                           "vh": "m6"
+                        },
+                        {
+                          "gnx": "user.20260720194109.1",
+                          "vh": "ritdon html to markdown"
                         }
                       ]
                     }
@@ -16677,8 +16681,9 @@
     "zxc.20260611090945.1": "[[Snippets]]\nDescription = \"Remove file from git history\"\nOutput = \"\"\nTag = []\ncommand = \"git filter-repo --path (fzf) --invert-paths\"\n",
     "zxc.20260625205055.1": "[[Snippets]]\nDescription = \"Forward note20 adb port\"\nOutput = \"\"\nTag = [\"termux\"]\ncommand = \"adb forward tcp:{{ $termux.note20_adb.port }} tcp:8022\"\n",
     "zxc.20260625205147.1": "[[Snippets]]\nDescription = \"Forward m6 adb port\"\nOutput = \"\"\nTag = [\"termux\"]\ncommand = \"adb forward tcp:{{ $termux.m6_adb.port }} tcp:8022\"\n",
+    "user.20260720194109.1": "[[Snippets]]\nDescription = \"ritdon html to markdown\"\nOutput = \"\"\nTag = []\ncommand = \"\n{{- /* pandoc convert html to markdown */ -}}\npandoc -f html output.html -o markdown -o temp.md --wrap=none;\n\n{{- /* remove empty lines */ -}}\nsed -i '/^[[:space:]]*$/d' temp.md;\n\n{{- /* remove leading spaces */ -}}\nsed -i 's/^[[:space:]]*//' temp.md;\n\n{{- /* remove tcy tags */ -}}\nperl -pi -e 's/\\\\[(.*?)\\\\]\\\\{\\\\.tcy\\\\}/\\\\1/g' temp.md;\n\n{{- /* remove tcy tags */ -}}\nsed -i 's/{\\\\.fit}//' temp.md;\n\n{{- /* replace gfont tags with bold */ -}}\nperl -pi -e 's/\\\\[(.*?)\\\\]\\\\{\\\\.gfont\\\\}/\\\\*\\\\*\\\\1\\\\*\\\\*/g' temp.md;\n\n{{- /* remove leading backslashes */ -}}\nsed -i 's/^\\\\\\\\$//' temp.md\"\n",
     "zxc.20260611091111.1": "[GHEGist]\n  Public = false\n  access_token = \"\"\n  auto_sync = false\n  base_url = \"\"\n  file_name = \"\"\n  gist_id = \"\"\n  upload_url = \"\"\n\n",
-    "zxc.20260611091148.1": "[General]\n  Backend = \"gist\"\n  Cmd = []\n  Color = false\n  Column = 40\n  Editor = \"{{ template \"editor\" }}\"\n  Format = \"[$description]: $command $tags\"\n  SelectCmd = \"fzf --ansi --layout=reverse --border --height=90% --pointer=* --cycle --prompt=Snippets:\"\n  SnippetDirs = []\n  SnippetFile = {{ joinPath .chezmoi.homeDir \"AppData\" \"Roaming\" \"pet\" \"snippet.toml\" | quote }}\n  SortBy = \"\"\n\n",
+    "zxc.20260611091148.1": "[General]\n  Backend = \"gist\"\n  {{ if eq .chezmoi.os \"windows\" -}}\n  Cmd = [\"powershell\", \"-c\"]\n  {{ else -}}\n  Cmd = []\n  {{ end -}}\n  Color = false\n  Column = 40\n  Editor = \"{{ template \"editor\" }}\"\n  Format = \"[$description]: $command $tags\"\n  SelectCmd = \"fzf --ansi --layout=reverse --border --height=90% --pointer=* --cycle --prompt=Snippets:\"\n  SnippetDirs = []\n  SnippetFile = {{ joinPath .chezmoi.homeDir \"AppData\" \"Roaming\" \"pet\" \"snippet.toml\" | quote }}\n  SortBy = \"\"\n\n",
     "zxc.20260611091202.1": "[Gist]\n  Public = false\n  access_token = \"\"\n  auto_sync = false\n  file_name = \"pet-snippet.toml\"\n  gist_id = \"\"\n\n",
     "zxc.20260611091214.1": "[GitLab]\n  ID = \"\"\n  Url = \"\"\n  Visibility = \"private\"\n  access_token = \"\"\n  auto_sync = false\n  file_name = \"pet-snippet.toml\"\n  skip_ssl = false\n\n",
     "User.20260215210053.1": "\"[leojsbody.plain.wrap][leojsbody.julia.wrap][leojsbody.batch.wrap][leojsbody.shell.wrap][leojsbody.python.wrap][leojsbody.javascript.wrap][leojsbody.typescript.wrap][leojsbody.c.wrap][leojsbody.cpp.wrap][leojsbody.css.wrap][leojsbody.fortran.wrap][leojsbody.fortran90.wrap][leojsbody.html.wrap][leojsbody.java.wrap][leojsbody.json.wrap][leojsbody.markdown.wrap][leojsbody.php.wrap][leojsbody.restructuredtext.wrap][leojsbody.rust.wrap][leojsbody.xml.wrap]\": {\n    \"editor.wordWrap\": \"on\"\n},\n\"leojs.defaultReloadIgnore\": \"yes-all\",\n",
@@ -18613,7 +18618,7 @@
       "_mod_time": 1781442394.083
     },
     "zxc.20260201141149.1": {
-      "_mod_time": 1784506446.175
+      "_mod_time": 1784365707.279
     },
     "User.20260215191351.1": {
       "_mod_time": 1782392829.657
@@ -18772,7 +18777,7 @@
       "_mod_time": 1777896430.983
     },
     "zxc.20260625222427.1": {
-      "_mod_time": 1784508986.028
+      "_mod_time": 1784542142.959
     },
     "zxc.20260625222003.1": {
       "_mod_time": 1783297135.114
@@ -18874,7 +18879,7 @@
       "_mod_time": 1784506446.235
     },
     "user.20260718170632.1": {
-      "_mod_time": 1784506446.235
+      "_mod_time": 1784365970.645
     },
     "user.20260718171035.1": {
       "_mod_time": 1784506446.236
@@ -18889,7 +18894,7 @@
       "_mod_time": 1778855150.604
     },
     "zxc.20260125145051.1": {
-      "_mod_time": 1783297135.129
+      "_mod_time": 1783218387.284
     },
     "zxc.20260125152851.2": {
       "_mod_time": 1783297135.13
@@ -19057,7 +19062,7 @@
       "_mod_time": 1777891355.18
     },
     "zxc.20260325223805.1": {
-      "_mod_time": 1784508498.694
+      "_mod_time": 1784542142.966
     },
     "zxc.20260329012003.1": {
       "_mod_time": 1777179946.8943422
@@ -19159,7 +19164,7 @@
       "_mod_time": 1781484842.605
     },
     "zxc.20260423145238.1": {
-      "_mod_time": 1784506446.035
+      "_mod_time": 1784365707.335
     },
     "zxc.20260423143729.3": {
       "_mod_time": 1784506446.035
@@ -19384,7 +19389,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1783904024.167
+      "_mod_time": 1784547643.949
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777298774.844
@@ -19435,7 +19440,7 @@
       "_mod_time": 1777179946.8524327
     },
     "User.20260302211536.1": {
-      "_mod_time": 1784508986.061
+      "_mod_time": 1784542142.937
     },
     "User.20260302211740.1": {
       "_mod_time": 1777179946.836245
@@ -19468,10 +19473,10 @@
       "_mod_time": 1783346655.778
     },
     "zxc.20260611090830.1": {
-      "_mod_time": 1783297134.836
+      "_mod_time": 1784547902.32
     },
     "zxc.20260611091007.1": {
-      "_mod_time": 1781174037.601
+      "_mod_time": 1784547644
     },
     "zxc.20260621234825.1": {
       "_mod_time": 1783904024.148295
