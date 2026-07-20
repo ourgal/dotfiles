@@ -3017,7 +3017,11 @@ Config.
 
 [General]
   Backend = "gist"
+  {{ if eq .chezmoi.os "windows" -}}
+  Cmd = ["powershell", "-c"]
+  {{ else -}}
   Cmd = []
+  {{ end -}}
   Color = false
   Column = 40
   Editor = "{{ template "editor" }}"
