@@ -17538,7 +17538,7 @@
     "zxc.20260423143729.130": "- main/clipboard@0.9.0.1\n",
     "zxc.20260423143729.131": "- main/noti\n",
     "zxc.20260423143729.132": "- main/espanso\n",
-    "zxc.20260423143729.134": "- main/ffmpeg\n",
+    "zxc.20260423143729.134": "- main/ffmpeg\n- main/butterflow\n",
     "zxc.20260423143729.135": "- name: Install nodejs and vscode\n  community.windows.win_scoop:\n    name:\n      - nodejs-lts\n      - vscode\n    state: present\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  notify: Reboot\n",
     "zxc.20260423143729.136": "- name: Install extras packages via scoop\n  tags: scoop-extras\n  community.windows.win_scoop:\n    name:\n      @others\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n",
     "zxc.20260423143729.137": "- extras/kdeconnect\n- extras/apkeep\n",
@@ -19289,7 +19289,7 @@
       "_mod_time": 1784365707.335
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1784506446.035
+      "_mod_time": 1784561890.007
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778855150.568
