@@ -1,0 +1,5 @@
+{{ if eq .chezmoi.os "linux" "android" -}}
+{{ if lookPath "fum" -}}
+{"players":["mpd"],"use_active_player":true}
+{{ end -}}
+{{ end -}}
