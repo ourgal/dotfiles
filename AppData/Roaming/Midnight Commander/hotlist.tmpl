@@ -28,6 +28,9 @@ GROUP "m6"
   ENTRY "m6" URL "sh://m6:{{ $termux_home }}"
   ENTRY "m6 sdcard" URL "sh://m6:/sdcard"
 ENDGROUP
+{{ if eq .chezmoi.hostname "work" -}}
+ENTRY "share_work" URL "{{ .chezmoi.homeDir }}/Syncthing/share_work"
+{{ end -}}
 {{ if eq .chezmoi.hostname "work" "work2" -}}
 ENTRY "work2" URL "sh://work2:{{ $linux_home }}"
 {{ end -}}

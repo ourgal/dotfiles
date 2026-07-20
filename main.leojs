@@ -3471,6 +3471,10 @@
                                 },
                                 {
                                   "gnx": "zxc.20260626151128.1",
+                                  "vh": "work"
+                                },
+                                {
+                                  "gnx": "user.20260720085430.1",
                                   "vh": "work2"
                                 },
                                 {
@@ -8607,6 +8611,10 @@
                                       "gnx": "zxc.20260403101526.1"
                                     },
                                     {
+                                      "gnx": "user.20260720083301.1",
+                                      "vh": "share_work"
+                                    },
+                                    {
                                       "gnx": "zxc.20260329170653.1"
                                     },
                                     {
@@ -8708,6 +8716,9 @@
                                     },
                                     {
                                       "gnx": "zxc.20260403101526.1"
+                                    },
+                                    {
+                                      "gnx": "user.20260720083301.1"
                                     },
                                     {
                                       "gnx": "zxc.20260329170653.1"
@@ -16497,7 +16508,8 @@
     "zxc.20260626000612.1": "ENTRY \"AppData\" URL \"{{ .chezmoi.homeDir }}/AppData/Roaming\"\n",
     "zxc.20260626000547.1": "GROUP \"note20\"\n  ENTRY \"note20\" URL \"sh://note20:{{ $termux_home }}\"\n  ENTRY \"note20 sdcard\" URL \"sh://note20:/sdcard\"\nENDGROUP\n",
     "zxc.20260626000600.1": "GROUP \"m6\"\n  ENTRY \"m6\" URL \"sh://m6:{{ $termux_home }}\"\n  ENTRY \"m6 sdcard\" URL \"sh://m6:/sdcard\"\nENDGROUP\n",
-    "zxc.20260626151128.1": "{{ if eq .chezmoi.hostname \"work\" \"work2\" -}}\nENTRY \"work2\" URL \"sh://work2:{{ $linux_home }}\"\n{{ end -}}\n",
+    "zxc.20260626151128.1": "{{ if eq .chezmoi.hostname \"work\" -}}\nENTRY \"share_work\" URL \"{{ .chezmoi.homeDir }}/Syncthing/share_work\"\n{{ end -}}\n",
+    "user.20260720085430.1": "{{ if eq .chezmoi.hostname \"work\" \"work2\" -}}\nENTRY \"work2\" URL \"sh://work2:{{ $linux_home }}\"\n{{ end -}}\n",
     "user.20260629170732.1": "{{ if eq .chezmoi.hostname \"work\" \"work2\" -}}\nENTRY \"office2043\" URL \"sh://office2043:{{ $linux_home }}\"\n{{ end -}}\n",
     "zxc.20260625233540.1": "<< android >>\n@others\n{{ end -}}\n",
     "zxc.20260625233251.1": "ENTRY \"nuc\" URL \"sh://nuc:{{ $windows_home }}\"\n",
@@ -17172,7 +17184,7 @@
     "zxc.20260403101526.1": "<folder id=\"gc5sz-susp5\" label=\"share\" path=\"{{ joinPath .chezmoi.homeDir \"Syncthing\" \"share\" }}\" type=\"sendreceive\" rescanIntervalS=\"3600\" fsWatcherEnabled=\"true\" fsWatcherDelayS=\"10\" fsWatcherTimeoutS=\"0\" ignorePerms=\"false\" autoNormalize=\"true\">\n    <filesystemType>basic</filesystemType>\n    <device id=\"{{ gopass \"syncthing/nuc/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/bed/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/work/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/s10/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/m6/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/note20/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <minDiskFree unit=\"%\">1</minDiskFree>\n    <versioning>\n        <cleanupIntervalS>3600</cleanupIntervalS>\n        <fsPath></fsPath>\n        <fsType>basic</fsType>\n    </versioning>\n    <copiers>0</copiers>\n    <pullerMaxPendingKiB>0</pullerMaxPendingKiB>\n    <hashers>0</hashers>\n    <order>random</order>\n    <ignoreDelete>false</ignoreDelete>\n    <scanProgressIntervalS>0</scanProgressIntervalS>\n    <pullerPauseS>0</pullerPauseS>\n    <pullerDelayS>1</pullerDelayS>\n    <maxConflicts>10</maxConflicts>\n    <disableSparseFiles>false</disableSparseFiles>\n    <paused>false</paused>\n    <markerName>.stfolder</markerName>\n    <copyOwnershipFromParent>false</copyOwnershipFromParent>\n    <modTimeWindowS>0</modTimeWindowS>\n    <maxConcurrentWrites>16</maxConcurrentWrites>\n    <disableFsync>false</disableFsync>\n    <blockPullOrder>standard</blockPullOrder>\n    <copyRangeMethod>standard</copyRangeMethod>\n    <caseSensitiveFS>false</caseSensitiveFS>\n    <junctionsAsDirs>false</junctionsAsDirs>\n    <syncOwnership>false</syncOwnership>\n    <sendOwnership>false</sendOwnership>\n    <syncXattrs>false</syncXattrs>\n    <sendXattrs>false</sendXattrs>\n    <xattrFilter>\n        <maxSingleEntrySize>1024</maxSingleEntrySize>\n        <maxTotalSize>4096</maxTotalSize>\n    </xattrFilter>\n</folder>",
     "zxc.20260329170653.1": "<folder id=\"htvji-asdsj\" label=\"gpg_keys\" path=\"{{ joinPath .chezmoi.homeDir \"Syncthing\" \"gpg_keys\" }}\" type=\"sendreceive\" rescanIntervalS=\"3600\" fsWatcherEnabled=\"true\" fsWatcherDelayS=\"10\" fsWatcherTimeoutS=\"0\" ignorePerms=\"false\" autoNormalize=\"true\">\n    <filesystemType>basic</filesystemType>\n    <device id=\"{{ gopass \"syncthing/nuc/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/bed/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/work/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/note20/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <minDiskFree unit=\"%\">1</minDiskFree>\n    <versioning>\n        <cleanupIntervalS>3600</cleanupIntervalS>\n        <fsPath></fsPath>\n        <fsType>basic</fsType>\n    </versioning>\n    <copiers>0</copiers>\n    <pullerMaxPendingKiB>0</pullerMaxPendingKiB>\n    <hashers>0</hashers>\n    <order>random</order>\n    <ignoreDelete>false</ignoreDelete>\n    <scanProgressIntervalS>0</scanProgressIntervalS>\n    <pullerPauseS>0</pullerPauseS>\n    <pullerDelayS>1</pullerDelayS>\n    <maxConflicts>10</maxConflicts>\n    <disableSparseFiles>false</disableSparseFiles>\n    <paused>false</paused>\n    <markerName>.stfolder</markerName>\n    <copyOwnershipFromParent>false</copyOwnershipFromParent>\n    <modTimeWindowS>0</modTimeWindowS>\n    <maxConcurrentWrites>16</maxConcurrentWrites>\n    <disableFsync>false</disableFsync>\n    <blockPullOrder>standard</blockPullOrder>\n    <copyRangeMethod>standard</copyRangeMethod>\n    <caseSensitiveFS>false</caseSensitiveFS>\n    <junctionsAsDirs>false</junctionsAsDirs>\n    <syncOwnership>false</syncOwnership>\n    <sendOwnership>false</sendOwnership>\n    <syncXattrs>false</syncXattrs>\n    <sendXattrs>false</sendXattrs>\n    <xattrFilter>\n        <maxSingleEntrySize>1024</maxSingleEntrySize>\n        <maxTotalSize>4096</maxTotalSize>\n    </xattrFilter>\n</folder>",
     "zxc.20260326193841.1": "<folder id=\"y1n6e-yjceb\" label=\"note20-dcim\" path=\"{{ joinPath .chezmoi.homeDir \"Syncthing\" \"note20-dcim\" }}\" type=\"sendreceive\" rescanIntervalS=\"3600\" fsWatcherEnabled=\"true\" fsWatcherDelayS=\"10\" fsWatcherTimeoutS=\"0\" ignorePerms=\"false\" autoNormalize=\"true\">\n    <filesystemType>basic</filesystemType>\n    <device id=\"{{ gopass \"syncthing/nuc/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/bed/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/note20/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <minDiskFree unit=\"%\">1</minDiskFree>\n    <versioning>\n        <cleanupIntervalS>3600</cleanupIntervalS>\n        <fsPath></fsPath>\n        <fsType>basic</fsType>\n    </versioning>\n    <copiers>0</copiers>\n    <pullerMaxPendingKiB>0</pullerMaxPendingKiB>\n    <hashers>0</hashers>\n    <order>random</order>\n    <ignoreDelete>false</ignoreDelete>\n    <scanProgressIntervalS>0</scanProgressIntervalS>\n    <pullerPauseS>0</pullerPauseS>\n    <pullerDelayS>1</pullerDelayS>\n    <maxConflicts>10</maxConflicts>\n    <disableSparseFiles>false</disableSparseFiles>\n    <paused>false</paused>\n    <markerName>.stfolder</markerName>\n    <copyOwnershipFromParent>false</copyOwnershipFromParent>\n    <modTimeWindowS>0</modTimeWindowS>\n    <maxConcurrentWrites>16</maxConcurrentWrites>\n    <disableFsync>false</disableFsync>\n    <blockPullOrder>standard</blockPullOrder>\n    <copyRangeMethod>standard</copyRangeMethod>\n    <caseSensitiveFS>false</caseSensitiveFS>\n    <junctionsAsDirs>false</junctionsAsDirs>\n    <syncOwnership>false</syncOwnership>\n    <sendOwnership>false</sendOwnership>\n    <syncXattrs>false</syncXattrs>\n    <sendXattrs>false</sendXattrs>\n    <xattrFilter>\n        <maxSingleEntrySize>1024</maxSingleEntrySize>\n        <maxTotalSize>4096</maxTotalSize>\n    </xattrFilter>\n</folder>",
-    "zxc.20260328210902.1": "<folder id=\"d69wv-ll51l\" label=\"note20-document\" path=\"{{ joinPath .chezmoi.homeDir \"Syncthing\" \"note20-document\" }}\" type=\"sendreceive\" rescanIntervalS=\"3600\" fsWatcherEnabled=\"true\" fsWatcherDelayS=\"10\" fsWatcherTimeoutS=\"0\" ignorePerms=\"false\" autoNormalize=\"true\">\n    <filesystemType>basic</filesystemType>\n    <device id=\"{{ gopass \"syncthing/nuc/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/bed/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/note20/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <minDiskFree unit=\"%\">1</minDiskFree>\n    <versioning>\n        <cleanupIntervalS>3600</cleanupIntervalS>\n        <fsPath></fsPath>\n        <fsType>basic</fsType>\n    </versioning>\n    <copiers>0</copiers>\n    <pullerMaxPendingKiB>0</pullerMaxPendingKiB>\n    <hashers>0</hashers>\n    <order>random</order>\n    <ignoreDelete>false</ignoreDelete>\n    <scanProgressIntervalS>0</scanProgressIntervalS>\n    <pullerPauseS>0</pullerPauseS>\n    <pullerDelayS>1</pullerDelayS>\n    <maxConflicts>10</maxConflicts>\n    <disableSparseFiles>false</disableSparseFiles>\n    <paused>false</paused>\n    <markerName>.stfolder</markerName>\n    <copyOwnershipFromParent>false</copyOwnershipFromParent>\n    <modTimeWindowS>0</modTimeWindowS>\n    <maxConcurrentWrites>16</maxConcurrentWrites>\n    <disableFsync>false</disableFsync>\n    <blockPullOrder>standard</blockPullOrder>\n    <copyRangeMethod>standard</copyRangeMethod>\n    <caseSensitiveFS>false</caseSensitiveFS>\n    <junctionsAsDirs>false</junctionsAsDirs>\n    <syncOwnership>false</syncOwnership>\n    <sendOwnership>false</sendOwnership>\n    <syncXattrs>false</syncXattrs>\n    <sendXattrs>false</sendXattrs>\n    <xattrFilter>\n        <maxSingleEntrySize>1024</maxSingleEntrySize>\n        <maxTotalSize>4096</maxTotalSize>\n    </xattrFilter>\n</folder>",
+    "zxc.20260328210902.1": "<folder id=\"d69wv-ll51l\" label=\"note20-document\" path=\"{{ joinPath .chezmoi.homeDir \"Syncthing\" \"note20-document\" }}\" type=\"sendreceive\" rescanIntervalS=\"3600\" fsWatcherEnabled=\"true\" fsWatcherDelayS=\"10\" fsWatcherTimeoutS=\"0\" ignorePerms=\"false\" autoNormalize=\"true\">\n    <filesystemType>basic</filesystemType>\n    <device id=\"{{ gopass \"syncthing/nuc/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/bed/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/note20/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <minDiskFree unit=\"%\">1</minDiskFree>\n    <versioning>\n        <cleanupIntervalS>3600</cleanupIntervalS>\n        <fsPath></fsPath>\n        <fsType>basic</fsType>\n    </versioning>\n    <copiers>0</copiers>\n    <pullerMaxPendingKiB>0</pullerMaxPendingKiB>\n    <hashers>0</hashers>\n    <order>random</order>\n    <ignoreDelete>false</ignoreDelete>\n    <scanProgressIntervalS>0</scanProgressIntervalS>\n    <pullerPauseS>0</pullerPauseS>\n    <pullerDelayS>1</pullerDelayS>\n    <maxConflicts>10</maxConflicts>\n    <disableSparseFiles>false</disableSparseFiles>\n    <paused>false</paused>\n    <markerName>.stfolder</markerName>\n    <copyOwnershipFromParent>false</copyOwnershipFromParent>\n    <modTimeWindowS>0</modTimeWindowS>\n    <maxConcurrentWrites>16</maxConcurrentWrites>\n    <disableFsync>false</disableFsync>\n    <blockPullOrder>standard</blockPullOrder>\n    <copyRangeMethod>standard</copyRangeMethod>\n    <caseSensitiveFS>false</caseSensitiveFS>\n    <junctionsAsDirs>false</junctionsAsDirs>\n    <syncOwnership>false</syncOwnership>\n    <sendOwnership>false</sendOwnership>\n    <syncXattrs>false</syncXattrs>\n    <sendXattrs>false</sendXattrs>\n    <xattrFilter>\n        <maxSingleEntrySize>1024</maxSingleEntrySize>\n        <maxTotalSize>4096</maxTotalSize>\n    </xattrFilter>\n</folder>\n",
     "zxc.20260328185645.1": "<folder id=\"3kcsy-85jjz\" label=\"note20-download\" path=\"{{ joinPath .chezmoi.homeDir \"Syncthing\" \"note20-download\" }}\" type=\"sendreceive\" rescanIntervalS=\"3600\" fsWatcherEnabled=\"true\" fsWatcherDelayS=\"10\" fsWatcherTimeoutS=\"0\" ignorePerms=\"false\" autoNormalize=\"true\">\n    <filesystemType>basic</filesystemType>\n    <device id=\"{{ gopass \"syncthing/nuc/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/bed/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/note20/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <minDiskFree unit=\"%\">1</minDiskFree>\n    <versioning>\n        <cleanupIntervalS>3600</cleanupIntervalS>\n        <fsPath></fsPath>\n        <fsType>basic</fsType>\n    </versioning>\n    <copiers>0</copiers>\n    <pullerMaxPendingKiB>0</pullerMaxPendingKiB>\n    <hashers>0</hashers>\n    <order>random</order>\n    <ignoreDelete>false</ignoreDelete>\n    <scanProgressIntervalS>0</scanProgressIntervalS>\n    <pullerPauseS>0</pullerPauseS>\n    <pullerDelayS>1</pullerDelayS>\n    <maxConflicts>10</maxConflicts>\n    <disableSparseFiles>false</disableSparseFiles>\n    <paused>false</paused>\n    <markerName>.stfolder</markerName>\n    <copyOwnershipFromParent>false</copyOwnershipFromParent>\n    <modTimeWindowS>0</modTimeWindowS>\n    <maxConcurrentWrites>16</maxConcurrentWrites>\n    <disableFsync>false</disableFsync>\n    <blockPullOrder>standard</blockPullOrder>\n    <copyRangeMethod>standard</copyRangeMethod>\n    <caseSensitiveFS>false</caseSensitiveFS>\n    <junctionsAsDirs>false</junctionsAsDirs>\n    <syncOwnership>false</syncOwnership>\n    <sendOwnership>false</sendOwnership>\n    <syncXattrs>false</syncXattrs>\n    <sendXattrs>false</sendXattrs>\n    <xattrFilter>\n        <maxSingleEntrySize>1024</maxSingleEntrySize>\n        <maxTotalSize>4096</maxTotalSize>\n    </xattrFilter>\n</folder>",
     "zxc.20260328201127.2": "<folder id=\"zphn7-tg89f\" label=\"note20-music\" path=\"{{ joinPath .chezmoi.homeDir \"Syncthing\" \"note20-music\" }}\" type=\"sendreceive\" rescanIntervalS=\"3600\" fsWatcherEnabled=\"true\" fsWatcherDelayS=\"10\" fsWatcherTimeoutS=\"0\" ignorePerms=\"false\" autoNormalize=\"true\">\n    <filesystemType>basic</filesystemType>\n    <device id=\"{{ gopass \"syncthing/nuc/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/bed/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/note20/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <minDiskFree unit=\"%\">1</minDiskFree>\n    <versioning>\n        <cleanupIntervalS>3600</cleanupIntervalS>\n        <fsPath></fsPath>\n        <fsType>basic</fsType>\n    </versioning>\n    <copiers>0</copiers>\n    <pullerMaxPendingKiB>0</pullerMaxPendingKiB>\n    <hashers>0</hashers>\n    <order>random</order>\n    <ignoreDelete>false</ignoreDelete>\n    <scanProgressIntervalS>0</scanProgressIntervalS>\n    <pullerPauseS>0</pullerPauseS>\n    <pullerDelayS>1</pullerDelayS>\n    <maxConflicts>10</maxConflicts>\n    <disableSparseFiles>false</disableSparseFiles>\n    <paused>false</paused>\n    <markerName>.stfolder</markerName>\n    <copyOwnershipFromParent>false</copyOwnershipFromParent>\n    <modTimeWindowS>0</modTimeWindowS>\n    <maxConcurrentWrites>16</maxConcurrentWrites>\n    <disableFsync>false</disableFsync>\n    <blockPullOrder>standard</blockPullOrder>\n    <copyRangeMethod>standard</copyRangeMethod>\n    <caseSensitiveFS>false</caseSensitiveFS>\n    <junctionsAsDirs>false</junctionsAsDirs>\n    <syncOwnership>false</syncOwnership>\n    <sendOwnership>false</sendOwnership>\n    <syncXattrs>false</syncXattrs>\n    <sendXattrs>false</sendXattrs>\n    <xattrFilter>\n        <maxSingleEntrySize>1024</maxSingleEntrySize>\n        <maxTotalSize>4096</maxTotalSize>\n    </xattrFilter>\n</folder>",
     "zxc.20260328202206.1": "<folder id=\"k35cr-q06oc\" label=\"note20-picture\" path=\"{{ joinPath .chezmoi.homeDir \"Syncthing\" \"note20-picture\" }}\" type=\"sendreceive\" rescanIntervalS=\"3600\" fsWatcherEnabled=\"true\" fsWatcherDelayS=\"10\" fsWatcherTimeoutS=\"0\" ignorePerms=\"false\" autoNormalize=\"true\">\n    <filesystemType>basic</filesystemType>\n    <device id=\"{{ gopass \"syncthing/nuc/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/bed/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/note20/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <minDiskFree unit=\"%\">1</minDiskFree>\n    <versioning>\n        <cleanupIntervalS>3600</cleanupIntervalS>\n        <fsPath></fsPath>\n        <fsType>basic</fsType>\n    </versioning>\n    <copiers>0</copiers>\n    <pullerMaxPendingKiB>0</pullerMaxPendingKiB>\n    <hashers>0</hashers>\n    <order>random</order>\n    <ignoreDelete>false</ignoreDelete>\n    <scanProgressIntervalS>0</scanProgressIntervalS>\n    <pullerPauseS>0</pullerPauseS>\n    <pullerDelayS>1</pullerDelayS>\n    <maxConflicts>10</maxConflicts>\n    <disableSparseFiles>false</disableSparseFiles>\n    <paused>false</paused>\n    <markerName>.stfolder</markerName>\n    <copyOwnershipFromParent>false</copyOwnershipFromParent>\n    <modTimeWindowS>0</modTimeWindowS>\n    <maxConcurrentWrites>16</maxConcurrentWrites>\n    <disableFsync>false</disableFsync>\n    <blockPullOrder>standard</blockPullOrder>\n    <copyRangeMethod>standard</copyRangeMethod>\n    <caseSensitiveFS>false</caseSensitiveFS>\n    <junctionsAsDirs>false</junctionsAsDirs>\n    <syncOwnership>false</syncOwnership>\n    <sendOwnership>false</sendOwnership>\n    <syncXattrs>false</syncXattrs>\n    <sendXattrs>false</sendXattrs>\n    <xattrFilter>\n        <maxSingleEntrySize>1024</maxSingleEntrySize>\n        <maxTotalSize>4096</maxTotalSize>\n    </xattrFilter>\n</folder>",
@@ -17196,6 +17208,7 @@
     "zxc.20260326102634.1": "<device id=\"{{ gopass \"syncthing/bed/id\" }}\" name=\"bed\" compression=\"metadata\" introducer=\"false\" skipIntroductionRemovals=\"false\" introducedBy=\"\">\n    <address>dynamic</address>\n    <paused>false</paused>\n    <autoAcceptFolders>false</autoAcceptFolders>\n    <maxSendKbps>0</maxSendKbps>\n    <maxRecvKbps>0</maxRecvKbps>\n    <maxRequestKiB>0</maxRequestKiB>\n    <untrusted>false</untrusted>\n    <remoteGUIPort>0</remoteGUIPort>\n    <numConnections>0</numConnections>\n</device>\n<device id=\"{{ gopass \"syncthing/nuc/id\" }}\" name=\"nuc\" compression=\"metadata\" introducer=\"false\" skipIntroductionRemovals=\"false\" introducedBy=\"\">\n    <address>dynamic</address>\n    <paused>false</paused>\n    <autoAcceptFolders>false</autoAcceptFolders>\n    <maxSendKbps>0</maxSendKbps>\n    <maxRecvKbps>0</maxRecvKbps>\n    <maxRequestKiB>0</maxRequestKiB>\n    <untrusted>false</untrusted>\n    <remoteGUIPort>0</remoteGUIPort>\n    <numConnections>0</numConnections>\n</device>\n<device id=\"{{ gopass \"syncthing/work/id\" }}\" name=\"work\" compression=\"metadata\" introducer=\"false\" skipIntroductionRemovals=\"false\" introducedBy=\"\">\n    <address>dynamic</address>\n    <paused>false</paused>\n    <autoAcceptFolders>false</autoAcceptFolders>\n    <maxSendKbps>0</maxSendKbps>\n    <maxRecvKbps>0</maxRecvKbps>\n    <maxRequestKiB>0</maxRequestKiB>\n    <untrusted>false</untrusted>\n    <remoteGUIPort>0</remoteGUIPort>\n    <numConnections>0</numConnections>\n</device>\n<device id=\"{{ gopass \"syncthing/note20/id\" }}\" name=\"note20\" compression=\"metadata\" introducer=\"false\" skipIntroductionRemovals=\"false\" introducedBy=\"\">\n    <address>dynamic</address>\n    <paused>false</paused>\n    <autoAcceptFolders>false</autoAcceptFolders>\n    <maxSendKbps>0</maxSendKbps>\n    <maxRecvKbps>0</maxRecvKbps>\n    <maxRequestKiB>0</maxRequestKiB>\n    <untrusted>false</untrusted>\n    <remoteGUIPort>0</remoteGUIPort>\n    <numConnections>0</numConnections>\n</device>\n<device id=\"{{ gopass \"syncthing/s10/id\" }}\" name=\"s10\" compression=\"metadata\" introducer=\"false\" skipIntroductionRemovals=\"false\" introducedBy=\"\">\n    <address>dynamic</address>\n    <paused>false</paused>\n    <autoAcceptFolders>false</autoAcceptFolders>\n    <maxSendKbps>0</maxSendKbps>\n    <maxRecvKbps>0</maxRecvKbps>\n    <maxRequestKiB>0</maxRequestKiB>\n    <untrusted>false</untrusted>\n    <remoteGUIPort>0</remoteGUIPort>\n    <numConnections>0</numConnections>\n</device>\n<device id=\"{{ gopass \"syncthing/m6/id\" }}\" name=\"m6\" compression=\"metadata\" introducer=\"false\" skipIntroductionRemovals=\"false\" introducedBy=\"\">\n    <address>dynamic</address>\n    <paused>false</paused>\n    <autoAcceptFolders>false</autoAcceptFolders>\n    <maxSendKbps>0</maxSendKbps>\n    <maxRecvKbps>0</maxRecvKbps>\n    <maxRequestKiB>0</maxRequestKiB>\n    <untrusted>false</untrusted>\n    <remoteGUIPort>0</remoteGUIPort>\n    <numConnections>0</numConnections>\n</device>",
     "zxc.20260325234738.1": "<configuration version=\"51\">\n    << folders >>\n    << devices >>\n    << gui >>\n    <ldap></ldap>\n    << options >>\n    << defaults >>\n</configuration>",
     "zxc.20260325234738.2": "@others",
+    "user.20260720083301.1": "<folder id=\"gc5sz-susp4\" label=\"share_work\" path=\"{{ joinPath .chezmoi.homeDir \"Syncthing\" \"share_work\" }}\" type=\"sendreceive\" rescanIntervalS=\"3600\" fsWatcherEnabled=\"true\" fsWatcherDelayS=\"10\" fsWatcherTimeoutS=\"0\" ignorePerms=\"false\" autoNormalize=\"true\">\n    <filesystemType>basic</filesystemType>\n    <device id=\"{{ gopass \"syncthing/nuc/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <device id=\"{{ gopass \"syncthing/work/id\" }}\" introducedBy=\"\">\n        <encryptionPassword></encryptionPassword>\n    </device>\n    <minDiskFree unit=\"%\">1</minDiskFree>\n    <versioning>\n        <cleanupIntervalS>3600</cleanupIntervalS>\n        <fsPath></fsPath>\n        <fsType>basic</fsType>\n    </versioning>\n    <copiers>0</copiers>\n    <pullerMaxPendingKiB>0</pullerMaxPendingKiB>\n    <hashers>0</hashers>\n    <order>random</order>\n    <ignoreDelete>false</ignoreDelete>\n    <scanProgressIntervalS>0</scanProgressIntervalS>\n    <pullerPauseS>0</pullerPauseS>\n    <pullerDelayS>1</pullerDelayS>\n    <maxConflicts>10</maxConflicts>\n    <disableSparseFiles>false</disableSparseFiles>\n    <paused>false</paused>\n    <markerName>.stfolder</markerName>\n    <copyOwnershipFromParent>false</copyOwnershipFromParent>\n    <modTimeWindowS>0</modTimeWindowS>\n    <maxConcurrentWrites>16</maxConcurrentWrites>\n    <disableFsync>false</disableFsync>\n    <blockPullOrder>standard</blockPullOrder>\n    <copyRangeMethod>standard</copyRangeMethod>\n    <caseSensitiveFS>false</caseSensitiveFS>\n    <junctionsAsDirs>false</junctionsAsDirs>\n    <syncOwnership>false</syncOwnership>\n    <sendOwnership>false</sendOwnership>\n    <syncXattrs>false</syncXattrs>\n    <sendXattrs>false</sendXattrs>\n    <xattrFilter>\n        <maxSingleEntrySize>1024</maxSingleEntrySize>\n        <maxTotalSize>4096</maxTotalSize>\n    </xattrFilter>\n</folder>\n",
     "zxc.20260325234738.7": "<options>\n    @others\n</options>\n",
     "zxc.20260325235302.1": "<urUniqueID>pS2Qscaz</urUniqueID>",
     "zxc.20260326100033.1": "<configuration version=\"51\">\n    << folders >>\n    << devices >>\n    << gui >>\n    <ldap></ldap>\n    << options >>\n    << defaults >>\n</configuration>",
@@ -18351,7 +18364,7 @@
       "_mod_time": 1777713442.482
     },
     "user.20260714235518.1": {
-      "_mod_time": 1784044689.205
+      "_mod_time": 1784075075.936
     },
     "User.20260216232855.1": {
       "_mod_time": 1782695824.4951947
@@ -18360,25 +18373,25 @@
       "_mod_time": 1777179946.857029
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1783695137.331
+      "_mod_time": 1783733570.316
     },
     "zxc.20260125164142.1": {
-      "_mod_time": 1783164752.902
+      "_mod_time": 1783297135.058
     },
     "zxc.20260318214950.1": {
       "_mod_time": 1783691349.228
     },
     "zxc.20260429145437.1": {
-      "_mod_time": 1783164752.936
+      "_mod_time": 1783297135.072
     },
     "zxc.20260427000037.1": {
-      "_mod_time": 1783164752.96
+      "_mod_time": 1783297135.057
     },
     "zxc.20260427224318.1": {
       "_mod_time": 1783700378.896
     },
     "zxc.20260615224512.2": {
-      "_mod_time": 1783164752.992
+      "_mod_time": 1783297135.057
     },
     "User.20260218142211.1": {
       "_mod_time": 1783765325.318
@@ -18432,7 +18445,7 @@
       "_mod_time": 1782695824.4734561
     },
     "User.20260220233639.1": {
-      "_mod_time": 1783164753.034
+      "_mod_time": 1783297134.769
     },
     "zxc.20260202203521.20": {
       "_mod_time": 1776434513.068
@@ -18441,7 +18454,7 @@
       "_mod_time": 1778706271.126
     },
     "zxc.20260505221318.1": {
-      "_mod_time": 1783164753.051
+      "_mod_time": 1783297134.75
     },
     "zxc.20260202203521.14": {
       "_mod_time": 1776644732.237
@@ -18459,7 +18472,7 @@
       "_mod_time": 1780272723.738
     },
     "zxc.20260505102132.1": {
-      "_mod_time": 1783164753.067
+      "_mod_time": 1783297134.737
     },
     "zxc.20260202215023.1": {
       "_mod_time": 1776434513.068
@@ -18477,13 +18490,13 @@
       "_mod_time": 1783904024.1262465
     },
     "User.20260220214558.1": {
-      "_mod_time": 1783779104.421
+      "_mod_time": 1783904024.126
     },
     "zxc.20260530230944.1": {
       "_mod_time": 1783904024.1333065
     },
     "zxc.20260531001920.1": {
-      "_mod_time": 1783779104.431
+      "_mod_time": 1783904024.134
     },
     "User.20260217214851.1": {
       "_mod_time": 1776851988.666
@@ -18522,7 +18535,7 @@
       "_mod_time": 1778049436.405
     },
     "zxc.20260505141849.1": {
-      "_mod_time": 1783164753.167
+      "_mod_time": 1783297134.723
     },
     "zxc.20260323195318.1": {
       "_mod_time": 1776434513.068
@@ -18537,46 +18550,46 @@
       "_mod_time": 1780272723.736
     },
     "zxc.20260602152143.1": {
-      "_mod_time": 1783164753.184
+      "_mod_time": 1783297134.679
     },
     "zxc.20260602183356.1": {
-      "_mod_time": 1783164753.206
+      "_mod_time": 1783297134.696
     },
     "zxc.20260603094212.1": {
-      "_mod_time": 1783164753.228
+      "_mod_time": 1783297134.712
     },
     "zxc.20260615003716.1": {
       "_mod_time": 1781602833.363
     },
     "zxc.20260620011448.1": {
-      "_mod_time": 1781889514.981
+      "_mod_time": 1782087842.583
     },
     "user.20260704161622.1": {
-      "_mod_time": 1783610034.21
+      "_mod_time": 1783643014.452
     },
     "user.20260710235840.1": {
       "_mod_time": 1783733569.422078
     },
     "user.20260711000816.1": {
-      "_mod_time": 1783699754.209
+      "_mod_time": 1783733569.427
     },
     "User.20260226001402.1": {
-      "_mod_time": 1784437081.357
+      "_mod_time": 1784506446.035
     },
     "zxc.20260317002829.1": {
       "_mod_time": 1781442394.083
     },
     "zxc.20260201141149.1": {
-      "_mod_time": 1784365707.279
+      "_mod_time": 1784506446.175
     },
     "User.20260215191351.1": {
       "_mod_time": 1782477813.62
     },
     "User.20260220010313.1": {
-      "_mod_time": 1783354758.687
+      "_mod_time": 1783383452.934
     },
     "User.20260220010448.1": {
-      "_mod_time": 1783354775.854
+      "_mod_time": 1783383452.94
     },
     "zxc.20260516111037.1": {
       "_mod_time": 1780748738.608
@@ -18588,7 +18601,7 @@
       "_mod_time": 1784456027.231
     },
     "zxc.20260125143959.1": {
-      "_mod_time": 1783164752.845
+      "_mod_time": 1783297134.866
     },
     "zxc.20260315140713.1": {
       "_mod_time": 1782471000.23
@@ -18603,7 +18616,7 @@
       "_mod_time": 1784283621.297
     },
     "zxc.20260125162740.1": {
-      "_mod_time": 1783164753.243
+      "_mod_time": 1783297134.905
     },
     "zxc.20260126185048.1": {
       "_mod_time": 1777179946.853
@@ -18633,10 +18646,10 @@
       "_mod_time": 1777713442.484
     },
     "zxc.20260620000810.1": {
-      "_mod_time": 1781885505.742
+      "_mod_time": 1782087842.619
     },
     "zxc.20260620000819.1": {
-      "_mod_time": 1781885527.561
+      "_mod_time": 1782087842.618
     },
     "zxc.20260504133747.1": {
       "_mod_time": 1778855150.612
@@ -18645,46 +18658,46 @@
       "_mod_time": 1778855150.612
     },
     "zxc.20260507002719.1": {
-      "_mod_time": 1783164753.26
+      "_mod_time": 1783297134.936
     },
     "zxc.20260507003041.1": {
-      "_mod_time": 1783164753.275
+      "_mod_time": 1783297135.056
     },
     "zxc.20260505181144.1": {
-      "_mod_time": 1783164753.69
+      "_mod_time": 1783297135.074
     },
     "user.20260718133004.1": {
-      "_mod_time": 1784352672.791
+      "_mod_time": 1784506446.185
     },
     "zxc.20260125152704.1": {
       "_mod_time": 1777179946.8764093
     },
     "zxc.20260507000814.1": {
-      "_mod_time": 1783164753.393
+      "_mod_time": 1783297135.107
     },
     "zxc.20260508000348.1": {
-      "_mod_time": 1783164753.411
+      "_mod_time": 1783297135.107
     },
     "zxc.20260529152606.1": {
-      "_mod_time": 1783164753.426
+      "_mod_time": 1783297135.129
     },
     "user.20260718172753.1": {
-      "_mod_time": 1784367246.63
+      "_mod_time": 1784506446.231
     },
     "zxc.20260126154354.1": {
       "_mod_time": 1777179946.8774612
     },
     "zxc.20260505104942.1": {
-      "_mod_time": 1783164753.359
+      "_mod_time": 1783297135.106
     },
     "zxc.20260505105255.1": {
-      "_mod_time": 1783164753.376
+      "_mod_time": 1783297135.105
     },
     "User.20260217223023.1": {
       "_mod_time": 1784247256.85
     },
     "User.20260217223030.1": {
-      "_mod_time": 1784457019.847
+      "_mod_time": 1784506446.231
     },
     "User.20260217223035.1": {
       "_mod_time": 1784457019.862
@@ -18693,10 +18706,10 @@
       "_mod_time": 1783765325.318
     },
     "user.20260702165628.1": {
-      "_mod_time": 1783821544.648
+      "_mod_time": 1783904024.244
     },
     "zxc.20260421145655.1": {
-      "_mod_time": 1784437048.468
+      "_mod_time": 1784506446.231
     },
     "zxc.20260421231645.1": {
       "_mod_time": 1777179946.8812258
@@ -18708,34 +18721,34 @@
       "_mod_time": 1783765325.318
     },
     "zxc.20260504000649.1": {
-      "_mod_time": 1783164753.343
+      "_mod_time": 1783297135.111
     },
     "zxc.20260125161631.1": {
-      "_mod_time": 1783164753.309
+      "_mod_time": 1783297135.111
     },
     "User.20260216185314.1": {
-      "_mod_time": 1783164753.325
+      "_mod_time": 1783297135.112
     },
     "zxc.20260603092509.1": {
-      "_mod_time": 1783164753.442
+      "_mod_time": 1783297135.113
     },
     "zxc.20260503171104.1": {
       "_mod_time": 1778855150.599
     },
     "zxc.20260625222427.1": {
-      "_mod_time": 1784365707.299
+      "_mod_time": 1784508986.028
     },
     "zxc.20260625222003.1": {
-      "_mod_time": 1783164753.474
+      "_mod_time": 1783297135.114
     },
     "zxc.20260625222119.1": {
-      "_mod_time": 1783696240.411
+      "_mod_time": 1783733570.333
     },
     "zxc.20260625222215.1": {
-      "_mod_time": 1783164753.506
+      "_mod_time": 1783297135.128
     },
     "zxc.20260625222255.1": {
-      "_mod_time": 1783164753.532
+      "_mod_time": 1783297135.127
     },
     "User.20260220233323.1": {
       "_mod_time": 1782695824.549
@@ -18822,13 +18835,13 @@
       "_mod_time": 1782087842.645
     },
     "user.20260718170506.1": {
-      "_mod_time": 1784365797.358
+      "_mod_time": 1784506446.235
     },
     "user.20260718170632.1": {
-      "_mod_time": 1784365970.645
+      "_mod_time": 1784506446.235
     },
     "user.20260718171035.1": {
-      "_mod_time": 1784365876.425
+      "_mod_time": 1784506446.236
     },
     "zxc.20260503225115.1": {
       "_mod_time": 1778855150.604
@@ -18840,25 +18853,25 @@
       "_mod_time": 1778855150.604
     },
     "zxc.20260125145051.1": {
-      "_mod_time": 1783218387.284
+      "_mod_time": 1783297135.129
     },
     "zxc.20260125152851.2": {
-      "_mod_time": 1783164753.291
+      "_mod_time": 1783297135.13
     },
     "user.20260718134508.1": {
-      "_mod_time": 1784353610.434
+      "_mod_time": 1784506446.236
     },
     "user.20260704002025.1": {
-      "_mod_time": 1784118108.702
+      "_mod_time": 1784164502.987
     },
     "zxc.20260502183455.1": {
-      "_mod_time": 1783164753.588
+      "_mod_time": 1783297135.131
     },
     "zxc.20260502183056.1": {
-      "_mod_time": 1783355287.883
+      "_mod_time": 1783383452.98
     },
     "zxc.20260502183253.1": {
-      "_mod_time": 1783355377.171
+      "_mod_time": 1783383453.003
     },
     "User.20260215182442.1": {
       "_mod_time": 1777891060.6511226
@@ -18879,7 +18892,7 @@
       "_mod_time": 1777891060.7270746
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1784366222.87
+      "_mod_time": 1784506446.236
     },
     "User.20260215205925.1": {
       "_mod_time": 1780272726.073
@@ -19008,7 +19021,7 @@
       "_mod_time": 1777891355.18
     },
     "zxc.20260325223805.1": {
-      "_mod_time": 1779322339.0771282
+      "_mod_time": 1784508498.694
     },
     "zxc.20260329012003.1": {
       "_mod_time": 1777179946.8943422
@@ -19107,13 +19120,13 @@
       "_mod_time": 1777713442.481
     },
     "zxc.20260413210312.1": {
-      "_mod_time": 1781411092.656
+      "_mod_time": 1781484842.605
     },
     "zxc.20260423145238.1": {
-      "_mod_time": 1784365707.335
+      "_mod_time": 1784506446.035
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1784460939.247
+      "_mod_time": 1784506446.035
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778855150.568
@@ -19224,25 +19237,25 @@
       "_mod_time": 1783140836.845
     },
     "user.20260718133811.1": {
-      "_mod_time": 1784353871.396
+      "_mod_time": 1784506446.115
     },
     "user.20260702165301.1": {
       "_mod_time": 1783140836.847
     },
     "user.20260718172010.1": {
-      "_mod_time": 1784366450.675
+      "_mod_time": 1784506446.165
     },
     "user.20260718172046.1": {
-      "_mod_time": 1784366450.7
+      "_mod_time": 1784506446.165
     },
     "user.20260718172245.1": {
-      "_mod_time": 1784366570.137
+      "_mod_time": 1784506446.174
     },
     "user.20260718170212.1": {
-      "_mod_time": 1784365398.552
+      "_mod_time": 1784506446.165
     },
     "user.20260718172317.1": {
-      "_mod_time": 1784366762.361
+      "_mod_time": 1784506446.174
     },
     "zxc.20260624094647.1": {
       "_mod_time": 1782312757.545
@@ -19257,7 +19270,7 @@
       "_mod_time": 1782477813.617
     },
     "user.20260718132737.1": {
-      "_mod_time": 1784352570.447
+      "_mod_time": 1784506446.175
     },
     "zxc.20260624121722.1": {
       "_mod_time": 1782312757.541
@@ -19272,7 +19285,7 @@
       "_mod_time": 1782087842.608
     },
     "zxc.20260619161421.1": {
-      "_mod_time": 1784352751.667
+      "_mod_time": 1784506446.175
     },
     "zxc.20260619161512.1": {
       "_mod_time": 1782087842.608
@@ -19293,25 +19306,25 @@
       "_mod_time": 1782087842.598
     },
     "user.20260628171858.1": {
-      "_mod_time": 1784469306.501
+      "_mod_time": 1784506446.11
     },
     "user.20260628172017.1": {
-      "_mod_time": 1784345754.329
+      "_mod_time": 1784506446.11
     },
     "user.20260628172043.1": {
-      "_mod_time": 1784345754.349
+      "_mod_time": 1784506446.11
     },
     "user.20260701153620.1": {
-      "_mod_time": 1784345754.37
+      "_mod_time": 1784506446.11
     },
     "user.20260718114024.1": {
-      "_mod_time": 1784346245.932
+      "_mod_time": 1784506446.11
     },
     "user.20260701154149.1": {
-      "_mod_time": 1784447795.964
+      "_mod_time": 1784506446.035
     },
     "user.20260719153921.1": {
-      "_mod_time": 1784446833.459
+      "_mod_time": 1784506446.11
     },
     "user.20260707170204.1": {
       "_mod_time": 1783940771.674
@@ -19332,7 +19345,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1783775504.322
+      "_mod_time": 1783904024.167
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777298774.844
@@ -19383,7 +19396,7 @@
       "_mod_time": 1777179946.8524327
     },
     "User.20260302211536.1": {
-      "_mod_time": 1784365707.353
+      "_mod_time": 1784508986.061
     },
     "User.20260302211740.1": {
       "_mod_time": 1777179946.836245
@@ -19410,13 +19423,13 @@
       "_mod_time": 1777179941.9100215
     },
     "zxc.20260515010901.1": {
-      "_mod_time": 1778778728.929
+      "_mod_time": 1780470637.484
     },
     "zxc.20260518233322.1": {
       "_mod_time": 1783346655.778
     },
     "zxc.20260611090830.1": {
-      "_mod_time": 1783218387.367
+      "_mod_time": 1783297134.836
     },
     "zxc.20260611091007.1": {
       "_mod_time": 1781174037.601
