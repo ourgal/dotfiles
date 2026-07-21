@@ -18184,7 +18184,7 @@
     "user.20260628173844.1": "const currentDir = import.meta.dirname;\n",
     "user.20260628182854.1": "dotenv.config();\n\nconst BOOK_INDEX = parseInt(process.env.BOOK_INDEX, 10) || 0;\nconst PAGE = parseInt(process.env.PAGE, 10) || 0;\nconst SEARCH_KEYWORD = process.env.SEARCH_KEYWORD;\nconst DOWNLOAD_FULL_PAGE = parseInt(process.env.DOWNLOAD_FULL_PAGE, 10) || 0;\n",
     "user.20260628172146.1": "async function saveContent(page: Page, title: string, img_index: number) {\n  await verify(page);\n\n  await page.waitForLoadState('networkidle');\n  await expect(page.locator('button#btnPanel')).toBeVisible({ timeout: 60000 });\n  const body = await page.locator('div.content-area').innerHTML();\n\n  const matches = body.match(/\"(data:image\\/jpeg;base64,.*?)\"/g) || [];\n\n  let tmpBody = body;\n  for (const match of matches) {\n    const res = await saveBase64(match, title, img_index);\n    img_index = res.img_index\n    tmpBody = tmpBody.replace(match, res.path)\n  }\n\n  const content = tmpBody.replace(/<meta.*?>/g, '').replace(/<style.*?>[\\s\\S]*?<\\/style>/g, '').replace(/<title.*?>.*?<\\/title>/g, '').replace(/<div.*?>/g, '').replace(/<\\/div>/g, '').replace(/^\\s*[\\r\\n]$/gm, '');\n\n  const dir = path.join(...[currentDir, '../output', title]);\n  const file = path.join(dir, 'output.html');\n\n  await mkdir(dir, { recursive: true });\n  await appendFile(file, content, 'utf-8');\n\n  const progress = await getSpineIndex(page);\n  console.log(`${title} ${progress} ${content.length}`);\n\n  return img_index;\n}\n\n",
-    "user.20260708102058.1": "async function verify(page: Page, zero: bool = true) {\n  await page.waitForLoadState('networkidle');\n  const btn = page.getByRole('button', { name: '验证' });\n  const count = await btn.count();\n  if (count > 0) {\n    if (zero) {\n      const answer = \"0\";\n    } else {\n      const text = await page.locator(\"p\").innerText();\n      console.log(text);\n      const regex = /\\d+/g;\n      const match = text.match(regex);\n      if (match) {\n        const num1 = parseInt(match[0], 10);\n        const num2 = parseInt(match[1], 10);\n        const answer = (num1 + num2).toString();\n      }\n    }\n    await page.locator(\"input[name='antispider_captcha']\").fill(answer);\n    await btn.click();\n    return true;\n  } else {\n    return false;\n  }\n}\n\n",
+    "user.20260708102058.1": "async function verify(page: Page, zero: bool = true) {\n  await page.waitForLoadState('networkidle');\n  const btn = page.getByRole('button', { name: '验证' });\n  const count = await btn.count();\n  let answer = \"\";\n  if (count > 0) {\n    if (zero) {\n      answer = \"0\";\n    } else {\n      const text = await page.locator(\"p\").innerText();\n      console.log(text);\n      const regex = /\\d+/g;\n      const match = text.match(regex);\n      if (match) {\n        const num1 = parseInt(match[0], 10);\n        const num2 = parseInt(match[1], 10);\n        answer = (num1 + num2).toString();\n      }\n    }\n    await page.locator(\"input[name='antispider_captcha']\").fill(answer);\n    await btn.click();\n    return true;\n  } else {\n    return false;\n  }\n}\n\n",
     "user.20260708102251.1": "async function nextPage(page: Page) {\n  const btn = page.locator('a#btnNext');\n  const count = await btn.count();\n  if (count > 0) {\n    await btn.click();\n    return true;\n  } else {\n    return false;\n  }\n}\n\n",
     "user.20260628172206.1": "async function saveNextPage(page: Page, title: string, img_index: number) {\n  if (await nextPage(page)) {\n    return await saveContent(page, title, img_index);\n  } else {\n    return -1;\n  }\n}\n\n",
     "user.20260628172225.1": "async function loading(page: Page) {\n  await verify(page, false);\n  await expect(page.getByRole('button', { name: '跳转' })).toBeVisible({ timeout: 1200000 });\n}\n\n",
@@ -19499,16 +19499,16 @@
       "_mod_time": 1782087842.598
     },
     "user.20260628171858.1": {
-      "_mod_time": 1784601269.641
+      "_mod_time": 1784601690.072
     },
     "user.20260628172017.1": {
-      "_mod_time": 1784601225.136
+      "_mod_time": 1784601690.119
     },
     "user.20260628172043.1": {
-      "_mod_time": 1784601225.187
+      "_mod_time": 1784601690.167
     },
     "user.20260701153620.1": {
-      "_mod_time": 1784601225.222
+      "_mod_time": 1784601690.202
     },
     "user.20260718114024.1": {
       "_mod_time": 1784506446.11

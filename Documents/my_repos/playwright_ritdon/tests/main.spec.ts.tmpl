@@ -46,9 +46,10 @@ async function verify(page: Page, zero: bool = true) {
   await page.waitForLoadState('networkidle');
   const btn = page.getByRole('button', { name: '验证' });
   const count = await btn.count();
+  let answer = "";
   if (count > 0) {
     if (zero) {
-      const answer = "0";
+      answer = "0";
     } else {
       const text = await page.locator("p").innerText();
       console.log(text);
@@ -57,7 +58,7 @@ async function verify(page: Page, zero: bool = true) {
       if (match) {
         const num1 = parseInt(match[0], 10);
         const num2 = parseInt(match[1], 10);
-        const answer = (num1 + num2).toString();
+        answer = (num1 + num2).toString();
       }
     }
     await page.locator("input[name='antispider_captcha']").fill(answer);
