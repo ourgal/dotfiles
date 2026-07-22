@@ -1952,7 +1952,7 @@ colorscheme catppuccin_mocha
 Netrw config.
 
 #+begin_src vimscript
-nnoremap <bs> <cmd>Explore<cr>
+" nnoremap <bs> <cmd>Explore<cr>
 #+end_src
 
 ******* Lsp
@@ -2076,7 +2076,7 @@ Plug 'markonm/traces.vim'
 Vim-plug.
 
 #+begin_src vimscript
-" Plug 'tpope/vim-eunuch', { 'on': [ 'Remove', 'Delete', 'Move', 'Chmod', 'Mkdir', 'Cfind', 'Clocate', 'Lfind', 'Wall', 'SudoWrite', 'SudoEdit' ] }
+Plug 'tpope/vim-eunuch'
 #+end_src
 
 ******* Vim-mkdir
