@@ -893,6 +893,10 @@
                                         {
                                           "gnx": "user.20260629011025.1",
                                           "vh": "vim explorer"
+                                        },
+                                        {
+                                          "gnx": "user.20260722151706.1",
+                                          "vh": "vim-dispatch"
                                         }
                                       ]
                                     }
@@ -987,6 +991,10 @@
                                         {
                                           "gnx": "zxc.20260318212806.18",
                                           "vh": "vim-ghost"
+                                        },
+                                        {
+                                          "gnx": "user.20260722151604.1",
+                                          "vh": "vim-dispatch"
                                         }
                                       ]
                                     },
@@ -16325,6 +16333,7 @@
     "zxc.20260427221817.1": "\" let lspOpts = #{autoHighlightDiags: v:true}\n\" autocmd User LspSetup call LspOptionsSet(lspOpts)\n\" \n\" let lspServers = [#{\n\" \t\\\t  name: 'yaml-language-server',\n\" \t\\\t  filetype: ['yaml'],\n\" \t\\\t  path: '{{ lookPath \"yaml-language-server\" }}',\n\" \t\\\t  args: ['--stdio']\n\" \t\\ }]\n\" autocmd User LspSetup call LspAddServer(lspServers)\n",
     "zxc.20260428005509.1": "let g:pear_tree_smart_openers = 1\nlet g:pear_tree_smart_closers = 1\nlet g:pear_tree_smart_backspace = 1\n",
     "user.20260629011025.1": "\" nnoremap <bs> <cmd>VimExplorer<cr>\n",
+    "user.20260722151706.1": "nnoremap <leader>cc <cmd>Make<CR>\nnnoremap <leader>cC <cmd>Dispatch<CR>\n",
     "zxc.20260125164142.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125164204.1": "vim9script\n\n# simple fuzzy find finder\n# place into ~/.vim/plugin/fuzzyfind.vim\n\nset wildmode=noselect:lastused,full\nset wildmenu wildoptions=pum,fuzzy pumheight=12\n\n\nvar files_cache: list<string> = []\naugroup CmdComplete\n    au!\n    au CmdlineChanged : wildtrigger()\n    au CmdlineEnter : files_cache = []\naugroup END\n\ndef FindCmd(): string\n    var cmd = ''\n    if executable('fd')\n        cmd = 'fd . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('fdfind')\n        cmd = 'fdfind . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('ugrep')\n        cmd = 'ugrep \"\" -Rl -I --ignore-files'\n    elseif executable('rg')\n        cmd = 'rg --path-separator / --files --hidden --glob !.git'\n    elseif executable('find')\n        cmd = 'find \\! \\( -path \"*/.git\" -prune -o -name \"*.swp\" \\) -type f -follow'\n    endif\n    return cmd\nenddef\n\ndef Find(cmd_arg: string, cmd_complete: bool): list<string>\n    if empty(files_cache)\n        var cmd = FindCmd()\n        # fallback to built-in glob if no fd/rg/ug/find is available\n        # e.g. we are on Windows\n        if empty(cmd)\n            files_cache = globpath('.', '**', 1, 1)\n                ->filter((_, v) => !isdirectory(v))\n                ->mapnew((_, v) => v->substitute('^\\.[\\/]', \"\", \"\"))\n        else\n            files_cache = systemlist(cmd)\n        endif\n    endif\n    if empty(cmd_arg)\n        return files_cache\n    else\n        return files_cache->matchfuzzy(cmd_arg)\n    endif\nenddef\n\nset findfunc=Find\n",
     "zxc.20260318214950.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -16336,6 +16345,7 @@
     "User.20260225204449.1": "{{ if eq .chezmoi.os \"android\" -}}\n",
     "zxc.20260318212806.5": "Plug 'alker0/chezmoi.vim'\n",
     "zxc.20260318212806.18": "\" Plug 'raghur/vim-ghost'\n\" Plug 'roxma/nvim-yarp', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }\n\" Plug 'roxma/vim-hug-neovim-rpc', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }\n",
+    "user.20260722151604.1": "Plug 'tpope/vim-dispatch'\n",
     "zxc.20260318212806.6": "{{ if lookPath \"node\" -}}\n\" Plug 'neoclide/coc.nvim', {'branch': 'release'}\n{{ end -}}\n",
     "zxc.20260427221704.1": "\" Plug 'yegappan/lsp'\n",
     "zxc.20260318212806.2": "Plug 'dense-analysis/ale'\n",
@@ -18541,13 +18551,13 @@
       "_mod_time": 1777179946.857029
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1784703961.738
+      "_mod_time": 1784704728.503
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1783297135.058
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1784703776.652
+      "_mod_time": 1784704711.521
     },
     "zxc.20260429145437.1": {
       "_mod_time": 1783297135.072
@@ -18562,13 +18572,13 @@
       "_mod_time": 1783297135.057
     },
     "User.20260218142211.1": {
-      "_mod_time": 1784703961.787
+      "_mod_time": 1784704728.539
     },
     "User.20260218142322.1": {
       "_mod_time": 1777398596.523044
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1784703776.686
+      "_mod_time": 1784704711.629
     },
     "zxc.20260429112140.1": {
       "_mod_time": 1778855150.612
