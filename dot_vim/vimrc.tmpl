@@ -355,7 +355,7 @@ let g:workspace_session_disable_on_args = 1
 let g:workspace_session_directory = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "sessions" ) "\\" | squote }}
 let g:workspace_autosave = 1
 let g:workspace_autosave_always = 1
-let g:workspace_autosave_ignore = ['gitcommit', 'suprawater']
+let g:workspace_autosave_ignore = ['gitcommit', 'suprawater', 'qf']
 let g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "undo" ) "\\" | squote }}
 nnoremap <silent> <leader> <cmd>WhichKey '<Space>'<CR>
 let g:which_key_map = {}
