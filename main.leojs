@@ -18190,7 +18190,7 @@
     "user.20260628172225.1": "async function loading(page: Page) {\n  await verify(page, false);\n  await expect(page.getByRole('button', { name: '跳转' })).toBeVisible({ timeout: 1200000 });\n}\n\n",
     "user.20260628172245.1": "async function openBook(page: Page, index: number) {\n  await page.locator('div.book-cover').nth(index).locator('a').click();\n}\n\n",
     "user.20260628172304.1": "async function getBookTitle(page: Page, index: number): Promise<string> {\n  try {\n    const title = await page.locator('div.book-title').nth(index).getAttribute('title');\n    if (title) {\n      console.log(`Found title for book at index ${index}: \"${title}\"`);\n      return title.replace(/[\\s\\*\\?]/g, '_');\n    } else {\n      throw new Error(`'title' attribute is null or undefined for book at index ${index}.`);\n    }\n  } catch (error: any) {\n    console.error(`Error getting title for book at index ${index}: ${error.message}`);\n    throw error;\n  }\n}\n\n",
-    "user.20260628172316.1": "async function switchPage(page: Page, page_index: number) {\n  if (page_index <= 0) {\n    return\n  }\n  await page.locator('#page-input').fill(page_index.toString());\n  await page.getByRole('button', { name: '跳转' }).click();\n}\n\n",
+    "user.20260628172316.1": "async function switchPage(page: Page, page_index: number) {\n  if (page_index <= 0) {\n    return\n  }\n  await page.locator('#page-input').fill(page_index.toString());\n  await page.getByRole('button', { name: '跳转' }).click();\n  await page.waitForResponse('**/epub_library.php*');\n  await expect(page.locator('div.book-cover').nth(0)).toBeVisible({ timeout: 60000 });\n}\n\n",
     "user.20260628172340.1": "async function saveBase64(raw: string, title: string, img_index: number) {\n  var base64Data = raw.split(';base64,').pop()\n\n  const dir = path.join(currentDir, '../output', title, 'images');\n  await mkdir(dir, { recursive: true });\n  const img = path.join(dir, `${img_index}.jpg`);\n\n  writeFile(img, base64Data, 'base64', function (err: any) {\n    console.log(err);\n  });\n\n  return { path: path.join('images', `${img_index}.jpg`), img_index: img_index + 1 };\n}\n\n",
     "user.20260628172359.1": "async function search(page: Page, keyword: string) {\n  if (keyword == \"\") {\n    return\n  }\n  await page.getByPlaceholder(\"搜索书籍...\").fill(keyword)\n  await page.getByRole('button', { name: '搜索' }).click();\n  await page.waitForResponse('**/epub_library.php*');\n}\n\n",
     "user.20260708090057.1": "async function getPageNum(page: Page) {\n  const raw = await page.locator('span#bookProgress').innerText();\n  console.log(raw)\n  const regex = /\\d+\\/(\\d+)/;\n  const match = raw.match(regex);\n  if (match) {\n    const num = match[1];\n    return parseInt(num, 10);\n  } else {\n    throw new Error('Page number not found');\n  }\n}\n\n",
@@ -19499,16 +19499,16 @@
       "_mod_time": 1782087842.598
     },
     "user.20260628171858.1": {
-      "_mod_time": 1784601690.072
+      "_mod_time": 1784680196.762
     },
     "user.20260628172017.1": {
-      "_mod_time": 1784601690.119
+      "_mod_time": 1784680196.812
     },
     "user.20260628172043.1": {
-      "_mod_time": 1784601690.167
+      "_mod_time": 1784680196.882
     },
     "user.20260701153620.1": {
-      "_mod_time": 1784601690.202
+      "_mod_time": 1784680196.963
     },
     "user.20260718114024.1": {
       "_mod_time": 1784506446.11
