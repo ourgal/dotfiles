@@ -3815,6 +3815,10 @@
                           "vh": "work2"
                         },
                         {
+                          "gnx": "user.20260724180544.1",
+                          "vh": "work"
+                        },
+                        {
                           "gnx": "user.20260629171015.1",
                           "vh": "office2043"
                         },
@@ -15822,7 +15826,7 @@
     "zxc.20260626154828.1": "{{ $username := dict -}}\n{{ $username = set $username \"windows\" \"user\" -}}\n{{ $username = set $username \"linux\" \"zxc\" -}}\n",
     "zxc.20260625205223.1": "{{ $termux := dict -}}\n{{ $termux = set $termux \"note20\" (dict \"port\" 8022 \"user\" \"u0_a650\" \"ip\" (ternary \"192.168.1.106\" \"192.168.123.232\" (eq .chezmoi.hostname \"work\" \"work2\"))) -}}\n{{ $termux = set $termux \"note20_adb\" (dict \"port\" 8023 \"user\" $termux.note20.user \"ip\" \"localhost\") -}}\n{{ $termux = set $termux \"m6\" (dict \"port\" 8022 \"user\" \"u0_a556\" \"ip\" (ternary \"192.168.1.103\" \"192.168.123.191\" (eq .chezmoi.hostname \"work\" \"work2\"))) -}}\n{{ $termux = set $termux \"m6_adb\" (dict \"port\" 8022 \"user\" $termux.m6.user \"ip\" \"localhost\") -}}\n",
     "zxc.20260626150915.1": "{{ $termux_home := \"/data/data/com.termux/files/home\" -}}\n{{ $windows_home := print \"/C:/Users/\" $username.windows -}}\n{{ $linux_home := print \"/home/\" $username.linux -}}\n",
-    "zxc.20260626153034.1": "{{ $ip := dict -}}\n{{ $ip = set $ip \"brix\" (dict \"ip\" \"192.168.123.206\" \"port\" \"22\" \"user\" $username.linux) -}}\n{{ $ip = set $ip \"home\" (dict \"ip\" \"192.168.123.100\" \"port\" \"22\" \"user\" $username.linux) -}}\n{{ $ip = set $ip \"soft\" (dict \"ip\" \"192.168.123.206\" \"port\" \"23231\" \"user\" $username.linux) -}}\n{{ $ip = set $ip \"nuc\" (dict \"ip\" \"192.168.123.123\" \"port\" \"22\" \"user\" $username.windows) -}}\n\n{{ $work_ip := \"100.127.103.95\" -}}\n{{ if eq .chezmoi.hostname \"work\" \"work2\" -}}\n{{ $work_ip = \"192.168.1.110\" -}}\n{{ end -}}\n\n{{ $ip = set $ip \"work\" (dict \"ip\" $work_ip \"port\" \"22\" \"user\" $username.linux) -}}\n{{ $ip = set $ip \"work2\" (dict \"ip\" \"192.168.1.107\" \"port\" \"22\" \"user\" $username.linux) -}}\n{{ $ip = set $ip \"office2043\" (dict \"ip\" \"192.168.1.104\" \"port\" \"22\" \"user\" $username.linux) -}}\n",
+    "zxc.20260626153034.1": "{{ $ip := dict -}}\n{{ $ip = set $ip \"brix\" (dict \"ip\" \"192.168.123.206\" \"port\" \"22\" \"user\" $username.linux) -}}\n{{ $ip = set $ip \"home\" (dict \"ip\" \"192.168.123.100\" \"port\" \"22\" \"user\" $username.linux) -}}\n{{ $ip = set $ip \"soft\" (dict \"ip\" \"192.168.123.206\" \"port\" \"23231\" \"user\" $username.linux) -}}\n{{ $ip = set $ip \"nuc\" (dict \"ip\" \"192.168.123.123\" \"port\" \"22\" \"user\" $username.windows) -}}\n\n{{ $work_ip := \"100.127.103.95\" -}}\n{{ if eq .chezmoi.hostname \"work\" \"work2\" -}}\n{{ $work_ip = \"192.168.1.110\" -}}\n{{ end -}}\n\n{{ $ip = set $ip \"work\" (dict \"ip\" $work_ip \"port\" \"22\" \"user\" $username.windows) -}}\n{{ $ip = set $ip \"work2\" (dict \"ip\" \"192.168.1.107\" \"port\" \"22\" \"user\" $username.linux) -}}\n{{ $ip = set $ip \"office2043\" (dict \"ip\" \"192.168.1.104\" \"port\" \"22\" \"user\" $username.linux) -}}\n",
     "zxc.20260625233508.1": "<< dos >>\n@others\n{{ end -}}\n",
     "zxc.20260625233129.1": "@others\n",
     "zxc.20260626000612.1": "ENTRY \"AppData\" URL \"{{ .chezmoi.homeDir }}/AppData/Roaming\"\n",
@@ -15874,6 +15878,7 @@
     "user.20260704002653.1": "Host m6-adb\n  Port {{ $termux.m6_adb.port }}\n  User {{ $termux.m6_adb.user }}\n  HostName {{ $termux.m6_adb.ip }}\n",
     "zxc.20260319090429.1": "{{ if ne .chezmoi.hostname \"localhost\" -}}\nHost gogs-m6\n  Port 23231\n  User {{ $termux.m6.user }}\n  HostName {{ template \"ipM6\" .chezmoi.hostname }}\n{{ end -}}\n",
     "zxc.20260626150750.1": "{{ if eq .chezmoi.hostname \"work\" \"work2\" -}}\nHost work2\n  Port {{ $ip.work2.port }}\n  User {{ $ip.work2.user }}\n  HostName {{ $ip.work2.ip }}\n{{ end -}}\n",
+    "user.20260724180544.1": "Host work\n  Port {{ $ip.work.port }}\n  User {{ $ip.work.user }}\n  HostName {{ $ip.work.ip }}\n",
     "user.20260629171015.1": "{{ if eq .chezmoi.hostname \"work\" \"work2\" -}}\nHost office2043\n  Port {{ $ip.office2043.port }}\n  User {{ $ip.office2043.user }}\n  HostName {{ $ip.office2043.ip }}\n{{ end -}}\n",
     "User.20260214222054.1": "Host *\n  AddKeysToAgent yes",
     "User.20260215191351.1": "<< unix dos >>\n{{ if lookPath \"ssh\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -16272,7 +16277,7 @@
     "zxc.20260125163227.1": "#!/usr/bin/env bash\n# https://gitlab.com/wef/dotfiles/-/blob/master/bin/fzf-xbps\nexport TIME_STAMP=\"20260102.103219\"\n# shellcheck disable=SC2034\n\n# Copyright (C) 2020-2025 Bob Hepple <bob dot hepple at gmail dot com>\n\n# This program is free software: you can redistribute it and/or modify\n# it under the terms of the GNU General Public License as published by\n# the Free Software Foundation, either version 3 of the License, or (at\n# your option) any later version.\n# \n# This program is distributed in the hope that it will be useful, but\n# WITHOUT ANY WARRANTY; without even the implied warranty of\n# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU\n# General Public License for more details.\n# \n# You should have received a copy of the GNU General Public License\n# along with this program. If not, see <http://www.gnu.org/licenses/>.\n\nPROG=$( basename \"$0\" )\nTEMP=$( getopt --options hvV --longoptions verbose,version,help -- \"$@\" ) || exit 1\neval set -- \"$TEMP\"\nsudos=\"doas sudo\" # others?\n\nfor sudo in $sudos; do\n    type \"$sudo\" &> /dev/null && break\n    sudo=\"\"\ndone\n\ncolumns=\"$( tput cols )\"\nblue=$( tput setaf 4 )\nnorm=$( tput sgr0 )\n\ninfo_key=\"alt-i\"\nfiles_key=\"alt-f\"\nmanual_key=\"alt-m\"\ndep_key=\"alt-d\"\nrev_key=\"alt-v\"\nurl_key=\"alt-u\"\ntemplate_key=\"alt-t\"\npreview_key=\"alt-?\"\nhelp_key=\"alt-h\"\ntoggle_key=\"ctrl-r\"\nexit_key=\"ctrl-c\"\norphans_key=\"alt-o\"\nextract_key=\"alt-e\"\nREMOVE_ORPHANS_key=\"alt-O\"\nREMOVE_key=\"alt-R\"\nDELETE_key=\"alt-D\"\nINSTALL_key=\"alt-I\"\nCLEAN_key=\"alt-C\"\nUPDATE_key=\"alt-U\"\n\nhelp=\"\\\n$info_key: info\n$files_key: list files in the package\n$manual_key: list top level packages (not dependencies)\n$dep_key: list dependencies of a package\n$rev_key: list packages depending on this package\n$url_key: open package url in browser\n$template_key: open package template in browser\n$orphans_key: list orphan packages\n$REMOVE_ORPHANS_key: remove orphan packages\n$REMOVE_key: delete package+dependencies\n$DELETE_key: delete package\n$INSTALL_key: install package\n$CLEAN_key: clean xbps cache\n$UPDATE_key: update system\nTAB: mark package for install/remove\nENTER: install/delete marked packages\n$exit_key: exit\"\n\npreview_size=$(( $( echo -e \"\\n$help\" | column -c \"$columns\" | wc -l ) + 2 ))\n\nwhile [[ \"$1\" ]]; do\n    case \"$1\" in\n        -h|--help)\n            echo \"Usage: $PROG OPTIONS\"\n            echo\n            echo \"Simple TUI/fzf package manager for xbps-based systems like voidlinux\"\n            echo\n            echo \"Commands are:\"\n            echo -e \"$help\"\n            echo\n            echo \"Note that commands that change the filesystem (and therefore need\"\n            echo \"sudo/doas) are in upper-case\"\n            echo\n            echo \"Use ' in a search to enable fuzzy finding (see man fzf)\"\n            echo \"Use [i as a search pattern to find all installed packages.\"\n            echo \"Installed packages that have updates pending are marked with upper-case [I].\"\n            echo\n            echo \"The 'list files ($files_key) function has a sub-menu to allow you to select a\"\n            echo \"file (or mark a set of files) from the package and view or extract it to the cwd.\" \n            echo\n            echo \"OPTIONS\"\n            echo \"-h|--help                 this help\"\n            echo \"-v|--verbose              be verbose\"\n            exit 0\n            ;;\n        -v|--verbose)\n            verbose=\"set\"\n            shift\n            ;;\n        -V|--version)\n            echo \"$PROG: Version $TIME_STAMP\"\n            exit 0\n            ;;\n        --)\n            shift\n            ;;\n    esac\ndone\n\nif [[ \"$verbose\" ]]; then\n    set -x\nfi\n\ncontinue=\"echo 'Press ENTER to continue'; read\"\n\nlock=\"$( mktemp -d)\"\ntempfile=\"$(mktemp)\"\nupdates=\"$(mktemp)\"\ntrap 'rm $tempfile $updates; rmdir $lock' EXIT\n\n{\n    # this takes a substantial amount of time (0.7s on my system), so do it in background:\n    xbps-install -Sun | awk '{print gensub(\"^(.*)-[^-]+$\",\"\\\\1\",1,$1)}' > \"$updates\"\n    rmdir \"$lock\"\n} &\n\nmapfile -t packages < <(\n    xbps-query -Rs - > \"$tempfile\" # takes about 0.4s\n\n    # wait for updates to be available:\n    while ! mkdir \"$lock\" &>/dev/null ; do\n        sleep .01\n    done\n    \n    # mark packages that have updates available with [I] instead of [i]\n    awk -v updates=\"$updates\" '\nBEGIN {\n    while ((getline update < updates) > 0) updates_map[update] = 1\n}\n\n{\n    flag=$1\n    pkgver=$2\n    pkgname=gensub(\"^(.*)-[^-]+$\",\"\\\\1\",1,$2)\n    if (flag==\"[*]\") flag=\"[i]\"\n    if (updates_map[pkgname]) flag=\"[I]\"\n    $1=\"\"\n    $2=\"\"\n    printf(\"%s %-40s %s\\n\", flag, pkgver, $0)\n}' < \"$tempfile\" |\n    sort -i -k2 | \n    fzf --exact --reverse --wrap \\\n        --marker=\"M\" \\\n        --multi \\\n        --prompt=\"[i]=installed; [I]=upgradable; SEARCH> \" \\\n        --bind \"start:toggle-sort\" \\\n        --bind \"$preview_key:change-preview-window(hidden|)\" \\\n        --bind \"$help_key:execute($PROG --help|less)\" \\\n        --bind \"$DELETE_key:execute($sudo xbps-remove {2}; $continue)+become($PROG)\" \\\n        --bind \"$REMOVE_key:execute($sudo xbps-remove -R {2}; $continue)+become($PROG)\" \\\n        --bind \"$info_key:execute(xbps-query -RS {2} | less)\" \\\n        --bind \"home:first\" --bind \"end:last\" \\\n        --bind \"$manual_key:execute(xbps-query -m | less)\" \\\n        --bind \"$orphans_key:execute(xbps-query -O | less)\" \\\n        --bind \"$REMOVE_ORPHANS_key:execute($sudo xbps-remove -o; $continue)+become($PROG)\" \\\n        --bind \"$dep_key:execute(xbps-query -R -x {2} | less)\" \\\n        --bind \"$rev_key:execute(xbps-query -R -X {2} | less)\" \\\n        --bind \"$INSTALL_key:execute($sudo xbps-install {2}; $continue)+become($PROG)\" \\\n        --bind \"$url_key:execute-silent[ xbps-query -p homepage -R '{2}' | xargs -Iurl xdg-open url & ]\" \\\n        --bind \"$CLEAN_key:execute(echo 'Cleaning cache, please wait ...'; $sudo xbps-remove --clean-cache)\" \\\n        --bind \"$template_key:execute-silent[ xbps-query -p pkgname -R '{2}' | xargs -I pkgname xdg-open https://github.com/void-linux/void-packages/tree/master/srcpkgs/pkgname & ]\" \\\n        --bind \"${UPDATE_key}:execute($sudo xbps-install -Su; $continue)\" \\\n        --bind \"$toggle_key:toggle-sort\" \\\n        --preview-label \"$preview_key=toggle this; $help_key=help; uppercase keys require $sudo\" \\\n        --preview-window=\"down:wrap:${PREVIEW_BORDER:-border-sharp},$preview_size\" \\\n        --preview \"xbps-query -R {2}|awk '/filename-size/ {f=\\$2} /homepage/ {h=\\$2} /installed_size/ {i=\\$2} END { printf(\\\"%s/%s $blue%s$norm\\\\n\\\",f,i,h)}'; echo; echo -e '\\n$help'|column\" \\\n        --bind \"$files_key:execute(\n          xbps-query -R -f {2} \\\n          | fzf \\\n            ${SHOW_HEADER:+--header=\\\"${FHEADER}\\\"} \\\n            --prompt '{2}: TAB=mark/unmark $files_key=toggle preview $extract_key=extract $exit_key=exit $help_key=help > ' \\\n            --marker=\\\"E\\\" \\\n            --multi \\\n            --no-separator \\\n            --border-label=\\\" Package Contents \\\" \\\n            --bind pgup:preview-up,pgdn:preview-down \\\n            --bind \\\"$help_key:execute($PROG --help|less)\\\" \\\n            --preview \\\"xbps-query -R --cat \\{1} {2}\\\" \\\n            --preview-window=\\\"down:hidden:wrap:${PREVIEW_BORDER:-border-sharp}\\\" \\\n            --preview-label=\\\" File Preview TAB=mark/unmark $files_key=toggle preview $extract_key=extract $exit_key=exit\\\" \\\n            --bind \\\"${files_key}:toggle-preview\\\" \\\n            --bind \\\"${extract_key}:execute(clear; \\\n              while IFS= read -r line; do \\\n                tree=\\\"\\\\\\${line%/*}\\\" ;\\\n                mkdir -p \\\"\\\\\\${tree#*/}\\\" ;\\\n                echo Extracting \\\\\\${line} ;\\\n                xbps-query -R --cat \\\"\\\\\\${line}\\\" {2} > \\\"\\\\\\${line#*/}\\\" ;\\\n              done < \\\"\\{+f}\\\"; $continue )\\\" )\" \\\n        )\n\ninstall_list=( )\nremove_list=( )\nfor line in \"${packages[@]}\"; do\n    pkg=\"$( echo \"$line\" | awk '{print $2}' )\"\n    ins=\"$( xbps-query -s \"^$pkg\\$\" --regex )\"\n    pkg=\"${pkg%-*}\" # remove version number\n    if [[ \"$ins\" ]]; then\n        remove_list+=( \"$pkg\" )\n    else\n        install_list+=( \"$pkg\" )\n    fi\ndone\n\nif [[ \"${install_list[*]}\" ]]; then\n    echo \"Installing: ${install_list[*]}\"\n    $sudo xbps-install \"${install_list[@]}\"\nfi\n\nif [[ \"${remove_list[*]}\" ]]; then\n    echo \"Removing ${remove_list[*]}\"\n    $sudo xbps-remove -R \"${remove_list[@]}\"\nfi\n\nif [[ \"${install_list[*]}${remove_list[*]}\" ]]; then\n    # restart to take account of any changes:\n    eval \"$continue\"\n    exec \"$PROG\"\nfi\n\n# Local Variables:\n# mode: shell-script\n# time-stamp-pattern: \"4/TIME_STAMP=\\\"%:y%02m%02d.%02H%02M%02S\\\"\"\n# eval: (add-hook 'before-save-hook 'time-stamp)\n# End:",
     "zxc.20260620000810.1": "<< android >>\n{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"termux-nf\" \"getnf\") }}\n{{ end -}}\n",
     "zxc.20260620000819.1": "<< android >>\n{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"termux-nf\" \"applynf\") }}\n{{ end -}}\n",
-    "zxc.20260128200402.1": "RunScoop(app)\n{\n    appdata_dir := EnvGet(\"AppData\")\n    user_dir := EnvGet(\"userprofile\")\n    scoop_apps_dir := appdata_dir . \"/Microsoft/Windows/Start Menu/Programs/Scoop Apps\"\n    Run(scoop_apps_dir . \"/\" . app . \".lnk\", user_dir, \"Max\")\n}\n\nSetTitleMatchMode(2)",
+    "zxc.20260128200402.1": "RunScoop(app)\n{\n    appdata_dir := EnvGet(\"AppData\")\n    user_dir := EnvGet(\"userprofile\")\n    scoop_apps_dir := appdata_dir . \"/Microsoft/Windows/Start Menu/Programs/Scoop Apps\"\n    Run(scoop_apps_dir . \"/\" . app . \".lnk\", user_dir, \"Max\")\n}\n\nSetTitleMatchMode(2)\n",
     "User.20260302135922.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"glazewm\" \"opt\" (list \"windows\" \"startup\" \"glazewm\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun(\"glazewm\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\nSleep 5000\n{{ end -}}\n",
     "zxc.20260128010842.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"deskflow-core\" \"opt\" (list \"windows\" \"startup\" \"deskflow_client\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"deskflow-core client\", , \"Hide\"\n{{ end -}}\n",
     "zxc.20260317082237.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"deskflow-core\" \"opt\" (list \"windows\" \"startup\" \"deskflow_server\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"deskflow-core server\", , \"Hide\"\n{{ end -}}\n",
@@ -16288,13 +16293,13 @@
     "zxc.20260614001152.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"brave\" \"opt\" (list \"windows\" \"startup\" \"brave\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun {{ joinPath (env \"AppData\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Scoop Apps\" \"Brave.lnk\" | quote }}, , \"Max\"\nWinWait(\"ahk_exe brave.exe\")\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"glazewm\" \"opt\" (list \"windows\" \"startup\" \"glazewm\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nWinActivate \"ahk_exe brave.exe\"\nRun \"glazewm command move --workspace 2\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
     "user.20260701202533.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"brave\" \"opt\" (list \"windows\" \"startup\" \"chromium\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun {{ joinPath (env \"AppData\") \"Microsoft\" \"Windows\" \"Start Menu\" \"Programs\" \"Scoop Apps\" \"Chromium.lnk\" | quote }}, , \"Max\"\nWinWait(\"ahk_exe chrome.exe\")\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"glazewm\" \"opt\" (list \"windows\" \"startup\" \"glazewm\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nWinActivate \"ahk_exe chrome.exe\"\nRun \"glazewm command move --workspace 2\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260614001309.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"code\" \"opt\" (list \"windows\" \"startup\" \"vscode\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\n{{ $vscode := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscode\" \"current\" \"Code.exe\" -}}\nRun({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait \"ahk_exe Code.exe\"\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"glazewm\" \"opt\" (list \"windows\" \"startup\" \"glazewm\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nWinActivate \"ahk_exe Code.exe\"\nRun \"glazewm command move --workspace 3\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260614001457.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"vscodium\" \"opt\" (list \"windows\" \"startup\" \"vscodium\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\r\n{{ $vscodium := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscodium\" \"current\" \"VSCodium.exe\" -}}\r\nRun({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\r\nWinWait(\"ahk_exe VSCodium.exe\")\r\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"glazewm\" \"opt\" (list \"windows\" \"startup\" \"glazewm\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\r\nWinActivate \"ahk_exe VSCodium.exe\"\r\nRun \"glazewm command move --workspace 3\", ,\"Hide\"\r\n{{ end -}}\r\n{{ end -}}\r\n",
+    "zxc.20260614001457.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"vscodium\" \"opt\" (list \"windows\" \"startup\" \"vscodium\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\n{{ $vscodium := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"vscodium\" \"current\" \"VSCodium.exe\" -}}\nRun({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, \"Max\")\nWinWait(\"ahk_exe VSCodium.exe\")\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"glazewm\" \"opt\" (list \"windows\" \"startup\" \"glazewm\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nWinActivate \"ahk_exe VSCodium.exe\"\nRun \"glazewm command move --workspace 3\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260502015606.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"leo\" \"opt\" (list \"windows\" \"startup\" \"leo\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"leo\", , \"Max\"\n{{ end -}}\n",
     "zxc.20260315173154.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"everything\" \"opt\" (list \"windows\" \"startup\" \"everything\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"everything\", , \"Hide\"\n{{ end -}}\n",
     "User.20260302135935.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"wt\" \"pwsh\") \"opt\" (list \"windows\" \"startup\" \"wt\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun {{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"windows-terminal\" \"current\" \"wt.exe\" | quote }}, ,\"Max\"\nWinWait \"ahk_exe WindowsTerminal.exe\"\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"glazewm\" \"opt\" (list \"windows\" \"startup\" \"glazewm\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nWinActivate \"ahk_exe WindowsTerminal.exe\"\nRun \"glazewm command move --workspace 1\", ,\"Hide\"\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260316162805.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"autohotkey\" \"opt\" (list \"windows\" \"startup\" \"autohotkey\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun {{ joinPath .chezmoi.homeDir \"Documents\" \"autohotkey\" \"keybindings.ahk\" | quote }}, , \"Hide\"\n{{ end -}}\n",
     "zxc.20260316162735.1": "{{ $powertoys := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"powertoys\" \"current\" \"powertoys.exe\" -}}\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" $powertoys \"opt\" (list \"windows\" \"startup\" \"powertoys\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun {{ $powertoys | quote }}, {{ .chezmoi.homeDir | quote }}, \"Hide\"\n{{ end -}}\n",
-    "zxc.20260323180658.1": "{{ if lookPath \"autohotkey\" -}}\nRun({{ joinPath .chezmoi.homeDir \"Documents\" \"autohotkey\" \"hide_cursor.ahk\" | quote }}, , \"Hide\")\n{{ end -}}",
+    "zxc.20260323180658.1": "{{ if lookPath \"autohotkey\" -}}\nRun({{ joinPath .chezmoi.homeDir \"Documents\" \"autohotkey\" \"hide_cursor.ahk\" | quote }}, , \"Hide\")\n{{ end -}}\n",
     "zxc.20260317104807.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"dufs\" \"opt\" (list \"windows\" \"startup\" \"dufs\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"dufs --allow-upload --allow-search --allow-symlink --allow-archive -p 6500\", {{ joinPath .chezmoi.homeDir \"Documents\" \"share\" | quote }}, \"Hide\"\n{{ end -}}\n",
     "zxc.20260318093951.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"copyparty\" \"opt\" (list \"windows\" \"startup\" \"copyparty\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"copyparty --no-del -p 6080,6443\", {{ joinPath .chezmoi.homeDir \"Documents\" \"share\" | quote }}, \"Hide\"\n{{ end -}}\n",
     "zxc.20260319002537.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"altrun\" \"opt\" (list \"windows\" \"startup\" \"altrun\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\nRun \"altrun -StartMenu\", , \"Hide\"\n{{ end -}}\n",
@@ -17568,16 +17573,16 @@
       "_mod_time": 1782695824.495
     },
     "User.20260217182613.1": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1777179946.857
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1784793921.826
+      "_mod_time": 1784803101.91
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1783297135.058
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1784792321.506
+      "_mod_time": 1784803101.909
     },
     "zxc.20260429145437.1": {
       "_mod_time": 1783297135.072
@@ -17592,28 +17597,28 @@
       "_mod_time": 1783297135.057
     },
     "User.20260218142211.1": {
-      "_mod_time": 1784793921.857
+      "_mod_time": 1784803101.941
     },
     "User.20260218142322.1": {
-      "_mod_time": 1773571522.686
+      "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1784792321.55
+      "_mod_time": 1784803101.941
     },
     "zxc.20260429112140.1": {
-      "_mod_time": 1777434599.775
+      "_mod_time": 1777612767.666
     },
     "zxc.20260426235942.1": {
       "_mod_time": 1777249737.173
     },
     "zxc.20260427224207.1": {
-      "_mod_time": 1777337709.122
+      "_mod_time": 1783700378.908
     },
     "zxc.20260615224333.1": {
       "_mod_time": 1781590487.338
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1782695824.472
+      "_mod_time": 1783254884.663
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1780748738.606
@@ -17637,7 +17642,7 @@
       "_mod_time": 1782087842.583
     },
     "User.20260226000855.1": {
-      "_mod_time": 1784249020.516
+      "_mod_time": 1784283621.281
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1782695824.473
@@ -17646,10 +17651,10 @@
       "_mod_time": 1783297134.769
     },
     "zxc.20260202203521.20": {
-      "_mod_time": 1774398532.766
+      "_mod_time": 1776434513.068
     },
     "User.20260216114746.1": {
-      "_mod_time": 1778115749.551
+      "_mod_time": 1778706271.126
     },
     "zxc.20260505221318.1": {
       "_mod_time": 1783297134.75
@@ -17661,10 +17666,10 @@
       "_mod_time": 1780272723.742
     },
     "zxc.20260202213444.1": {
-      "_mod_time": 1774398532.779
+      "_mod_time": 1776434513.084
     },
     "User.20260220142155.2": {
-      "_mod_time": 1774398532.778
+      "_mod_time": 1776434513.084
     },
     "User.20260220151435.2": {
       "_mod_time": 1780272723.738
@@ -17673,16 +17678,16 @@
       "_mod_time": 1783297134.737
     },
     "zxc.20260202215023.1": {
-      "_mod_time": 1774398532.686
+      "_mod_time": 1776434513.068
     },
     "zxc.20260202215408.1": {
-      "_mod_time": 1774398532.737
+      "_mod_time": 1781530506.443
     },
     "zxc.20260202220030.1": {
-      "_mod_time": 1774398532.757
+      "_mod_time": 1776434513.068
     },
     "zxc.20260202220553.1": {
-      "_mod_time": 1774398532.766
+      "_mod_time": 1776434513.068
     },
     "User.20260217202401.1": {
       "_mod_time": 1783904024.126
@@ -17697,37 +17702,37 @@
       "_mod_time": 1783904024.134
     },
     "User.20260217214851.1": {
-      "_mod_time": 1776819230.829
+      "_mod_time": 1776851988.666
     },
     "zxc.20260422085228.1": {
-      "_mod_time": 1776819230.912
+      "_mod_time": 1776851988.666
     },
     "User.20260220000301.2": {
-      "_mod_time": 1774398532.729
+      "_mod_time": 1776434513.068
     },
     "User.20260220012738.1": {
       "_mod_time": 1776434513.068
     },
     "User.20260308173318.1": {
-      "_mod_time": 1774398532.712
+      "_mod_time": 1776434513.068
     },
     "User.20260308184128.2": {
-      "_mod_time": 1774398532.686
+      "_mod_time": 1776434513.068
     },
     "User.20260308184713.2": {
       "_mod_time": 1776817843.31
     },
     "User.20260308214701.2": {
-      "_mod_time": 1774398532.701
+      "_mod_time": 1776434513.068
     },
     "zxc.20260328213746.1": {
-      "_mod_time": 1774833042.645
+      "_mod_time": 1776434513.068
     },
     "User.20260308215626.2": {
-      "_mod_time": 1774833042.645
+      "_mod_time": 1776434513.068
     },
     "zxc.20260317085009.1": {
-      "_mod_time": 1774398532.707
+      "_mod_time": 1776434513.068
     },
     "zxc.20260318203351.1": {
       "_mod_time": 1778049436.405
@@ -17736,13 +17741,13 @@
       "_mod_time": 1783297134.723
     },
     "zxc.20260323195318.1": {
-      "_mod_time": 1774398532.733
+      "_mod_time": 1776434513.068
     },
     "zxc.20260329102210.1": {
-      "_mod_time": 1774833042.645
+      "_mod_time": 1776434513.068
     },
     "zxc.20260404153353.1": {
-      "_mod_time": 1775529044.695
+      "_mod_time": 1776434513.068
     },
     "zxc.20260531113237.1": {
       "_mod_time": 1780272723.736
@@ -17757,7 +17762,7 @@
       "_mod_time": 1783297134.712
     },
     "zxc.20260615003716.1": {
-      "_mod_time": 1781594332.834
+      "_mod_time": 1781602833.363
     },
     "zxc.20260620011448.1": {
       "_mod_time": 1782087842.583
@@ -17772,13 +17777,13 @@
       "_mod_time": 1783733569.427
     },
     "User.20260226001402.1": {
-      "_mod_time": 1784875468.759
+      "_mod_time": 1784887378.055
     },
     "zxc.20260317002829.1": {
-      "_mod_time": 1776928456.1
+      "_mod_time": 1781442394.083
     },
     "zxc.20260201141149.1": {
-      "_mod_time": 1784876318.17
+      "_mod_time": 1784887638.997
     },
     "User.20260215191351.1": {
       "_mod_time": 1782439163.182
@@ -17802,25 +17807,25 @@
       "_mod_time": 1783297134.866
     },
     "zxc.20260315140713.1": {
-      "_mod_time": 1782460377.238
+      "_mod_time": 1782471000.23
     },
     "zxc.20260408012432.1": {
-      "_mod_time": 1776644732.259
+      "_mod_time": 1777179946.871
     },
     "User.20260301202336.1": {
       "_mod_time": 1781484842.615
     },
     "zxc.20260327184129.1": {
-      "_mod_time": 1784248861.595
+      "_mod_time": 1784283621.297
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1783297134.905
     },
     "zxc.20260126185048.1": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1777179946.853
     },
     "zxc.20260130225718.1": {
-      "_mod_time": 1774833042.654
+      "_mod_time": 1777179946.861
     },
     "zxc.20260202211707.1": {
       "_mod_time": 1777713442.483
@@ -17868,7 +17873,7 @@
       "_mod_time": 1784506446.185
     },
     "zxc.20260125152704.1": {
-      "_mod_time": 1774833042.659
+      "_mod_time": 1777179946.876
     },
     "zxc.20260507000814.1": {
       "_mod_time": 1783297135.107
@@ -17883,7 +17888,7 @@
       "_mod_time": 1784506446.231
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1776044662.614
+      "_mod_time": 1777179946.877
     },
     "zxc.20260505104942.1": {
       "_mod_time": 1783297135.106
@@ -17898,7 +17903,7 @@
       "_mod_time": 1784506446.231
     },
     "User.20260217223035.1": {
-      "_mod_time": 1783643014.467
+      "_mod_time": 1784457019.862
     },
     "User.20260223014430.1": {
       "_mod_time": 1783643014.466
@@ -17910,16 +17915,16 @@
       "_mod_time": 1784506446.231
     },
     "zxc.20260421231645.1": {
-      "_mod_time": 1776818967.782
+      "_mod_time": 1777179946.881
     },
     "user.20260719233947.1": {
       "_mod_time": 1784600446.907
     },
     "zxc.20260125153131.1": {
-      "_mod_time": 1774833042.661
+      "_mod_time": 1777179946.883
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1783499482.734
+      "_mod_time": 1783509179.513
     },
     "zxc.20260504000649.1": {
       "_mod_time": 1783297135.111
@@ -17937,7 +17942,7 @@
       "_mod_time": 1778049436.438
     },
     "zxc.20260625222427.1": {
-      "_mod_time": 1784876318.206
+      "_mod_time": 1784887639.016
     },
     "zxc.20260625222003.1": {
       "_mod_time": 1783297135.114
@@ -18045,7 +18050,7 @@
       "_mod_time": 1784506446.235
     },
     "user.20260718170632.1": {
-      "_mod_time": 1784876318.241
+      "_mod_time": 1784887639.026
     },
     "user.20260718171035.1": {
       "_mod_time": 1784506446.236
@@ -18072,7 +18077,7 @@
       "_mod_time": 1784164502.987
     },
     "user.20260724150634.1": {
-      "_mod_time": 1784876967.232
+      "_mod_time": 1784887378.134
     },
     "zxc.20260502183455.1": {
       "_mod_time": 1783297135.131
@@ -18084,22 +18089,22 @@
       "_mod_time": 1783383453.003
     },
     "User.20260215182442.1": {
-      "_mod_time": 1773571522.67
+      "_mod_time": 1777891060.651
     },
     "User.20260217022114.1": {
       "_mod_time": 1778049436.442
     },
     "User.20260215182818.1": {
-      "_mod_time": 1773571522.67
+      "_mod_time": 1777891191.634
     },
     "zxc.20260317084145.1": {
       "_mod_time": 1778049436.443
     },
     "zxc.20260201225344.1": {
-      "_mod_time": 1773571522.67
+      "_mod_time": 1777891060.714
     },
     "zxc.20260317082914.1": {
-      "_mod_time": 1773712444.025
+      "_mod_time": 1777891060.727
     },
     "zxc.20260201034331.1": {
       "_mod_time": 1784506446.236
@@ -18108,25 +18113,25 @@
       "_mod_time": 1780272726.073
     },
     "User.20260215210400.1": {
-      "_mod_time": 1773571522.686
+      "_mod_time": 1777179946.904
     },
     "User.20260220151031.5": {
       "_mod_time": 1780272726.072
     },
     "User.20260220151031.28": {
-      "_mod_time": 1773571522.67
+      "_mod_time": 1777179946.902
     },
     "User.20260221175549.1": {
-      "_mod_time": 1779067019.452
+      "_mod_time": 1781411469.833
     },
     "User.20260221194603.1": {
-      "_mod_time": 1773571522.686
+      "_mod_time": 1777179946.906
     },
     "User.20260222211658.1": {
-      "_mod_time": 1775529044.732
+      "_mod_time": 1777179946.899
     },
     "zxc.20260201203241.1": {
-      "_mod_time": 1774225085.298
+      "_mod_time": 1777718155.12
     },
     "zxc.20260201203515.1": {
       "_mod_time": 1783383453.01
@@ -18225,31 +18230,31 @@
       "_mod_time": 1782477813.634
     },
     "zxc.20260325223009.1": {
-      "_mod_time": 1774490258.908
+      "_mod_time": 1777891355.163
     },
     "zxc.20260325223610.1": {
-      "_mod_time": 1774490258.908
+      "_mod_time": 1777891355.18
     },
     "zxc.20260325223805.1": {
-      "_mod_time": 1784508498.694
+      "_mod_time": 1784542142.966
     },
     "zxc.20260329012003.1": {
-      "_mod_time": 1776125926.578
+      "_mod_time": 1777179946.894
     },
     "zxc.20260411192514.1": {
       "_mod_time": 1781484843.619
     },
     "zxc.20260330235722.1": {
-      "_mod_time": 1774916487.394
+      "_mod_time": 1777179946.891
     },
     "zxc.20260609212401.1": {
-      "_mod_time": 1782894992.036
+      "_mod_time": 1782900305.86
     },
     "zxc.20260625230303.1": {
       "_mod_time": 1782439163.199
     },
     "user.20260628104306.1": {
-      "_mod_time": 1784075252.1
+      "_mod_time": 1784117762.014
     },
     "user.20260628110148.1": {
       "_mod_time": 1782695824.55
@@ -18333,10 +18338,10 @@
       "_mod_time": 1781484842.605
     },
     "zxc.20260423145238.1": {
-      "_mod_time": 1784876318.277
+      "_mod_time": 1784887639.051
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1784855686.415
+      "_mod_time": 1784887378.105
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778855150.568
@@ -18462,10 +18467,10 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1784793921.895
+      "_mod_time": 1784803101.908
     },
     "zxc.20260202205715.1": {
-      "_mod_time": 1773571522.67
+      "_mod_time": 1777106655.378
     },
     "zxc.20260426163956.1": {
       "_mod_time": 1782477813.619
@@ -18477,79 +18482,79 @@
       "_mod_time": 1782087842.584
     },
     "zxc.20260408005117.1": {
-      "_mod_time": 1776753962.305
+      "_mod_time": 1777179946.836
     },
     "zxc.20260529091145.1": {
       "_mod_time": 1784164502.982
     },
     "user.20260724150150.1": {
-      "_mod_time": 1784876967.307
+      "_mod_time": 1784887639.067
     },
     "zxc.20260201140523.1": {
-      "_mod_time": 1773571522.639
+      "_mod_time": 1777179946.85
     },
     "zxc.20260130233132.1": {
-      "_mod_time": 1773571522.639
+      "_mod_time": 1777385863.235
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1784875398.814
+      "_mod_time": 1784887378.078
     },
     "zxc.20260214105528.1": {
       "_mod_time": 1777337709.07
     },
     "zxc.20260214142543.1": {
-      "_mod_time": 1776044662.566
+      "_mod_time": 1777179946.851
     },
     "User.20260215234634.1": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1777179946.854
     },
     "User.20260216124226.1": {
-      "_mod_time": 1773571522.639
+      "_mod_time": 1777179946.845
     },
     "User.20260216125422.1": {
-      "_mod_time": 1773571522.639
+      "_mod_time": 1777179946.847
     },
     "User.20260219235648.1": {
-      "_mod_time": 1773571522.639
+      "_mod_time": 1777179946.847
     },
     "User.20260228231944.1": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1777179946.852
     },
     "User.20260302211536.1": {
-      "_mod_time": 1784876318.317
+      "_mod_time": 1784887639.084
     },
     "User.20260302211740.1": {
-      "_mod_time": 1773571522.639
+      "_mod_time": 1777179946.836
     },
     "User.20260302211946.1": {
       "_mod_time": 1783733570.297
     },
     "User.20260302212424.1": {
-      "_mod_time": 1773571522.639
+      "_mod_time": 1777179946.845
     },
     "User.20260302212645.1": {
-      "_mod_time": 1773571522.639
+      "_mod_time": 1777179946.84
     },
     "User.20260303213330.1": {
-      "_mod_time": 1773571522.655
+      "_mod_time": 1777179946.854
     },
     "zxc.20260401221312.1": {
-      "_mod_time": 1775105070.822
+      "_mod_time": 1777179946.849
     },
     "zxc.20260402230727.1": {
-      "_mod_time": 1775176074.543
+      "_mod_time": 1777179946.85
     },
     "zxc.20260417220340.1": {
-      "_mod_time": 1776644732.239
+      "_mod_time": 1777179941.91
     },
     "zxc.20260515010901.1": {
       "_mod_time": 1780470637.484
     },
     "zxc.20260518233322.1": {
-      "_mod_time": 1783328334.426
+      "_mod_time": 1783337931.744
     },
     "zxc.20260611090830.1": {
-      "_mod_time": 1784876318.354
+      "_mod_time": 1784887639.102
     },
     "zxc.20260611091007.1": {
       "_mod_time": 1784600446.774

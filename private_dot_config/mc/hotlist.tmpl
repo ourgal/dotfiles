@@ -22,7 +22,7 @@
 {{ $work_ip = "192.168.1.110" -}}
 {{ end -}}
 
-{{ $ip = set $ip "work" (dict "ip" $work_ip "port" "22" "user" $username.linux) -}}
+{{ $ip = set $ip "work" (dict "ip" $work_ip "port" "22" "user" $username.windows) -}}
 {{ $ip = set $ip "work2" (dict "ip" "192.168.1.107" "port" "22" "user" $username.linux) -}}
 {{ $ip = set $ip "office2043" (dict "ip" "192.168.1.104" "port" "22" "user" $username.linux) -}}
 {{ if eq .chezmoi.os "windows" -}}
