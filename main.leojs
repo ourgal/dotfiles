@@ -16634,7 +16634,7 @@
     "zxc.20260423143729.128": "- main/nssm\n",
     "zxc.20260423143729.129": "- main/pipx\n- main/winget\n- main/topgrade\n- main/meta-package-manager\n",
     "zxc.20260423143729.130": "- main/clipboard@0.9.0.1\n",
-    "zxc.20260423143729.131": "- main/noti\n",
+    "zxc.20260423143729.131": "- main/noti\n- main/gotify-server\n- main/gotify-cli\n",
     "zxc.20260423143729.132": "- main/espanso\n",
     "zxc.20260423143729.134": "- main/ffmpeg\n- main/butterflow\n",
     "zxc.20260423143729.135": "- name: Install nodejs and vscode\n  community.windows.win_scoop:\n    name:\n      - nodejs-lts\n      - vscode\n    state: present\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  notify: Reboot\n",
@@ -18244,7 +18244,7 @@
       "_mod_time": 1784506446.035
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1784616877.082
+      "_mod_time": 1784855686.415
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778855150.568
