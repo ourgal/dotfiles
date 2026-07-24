@@ -16,6 +16,13 @@
 {{ $ip = set $ip "home" (dict "ip" "192.168.123.100" "port" "22" "user" $username.linux) -}}
 {{ $ip = set $ip "soft" (dict "ip" "192.168.123.206" "port" "23231" "user" $username.linux) -}}
 {{ $ip = set $ip "nuc" (dict "ip" "192.168.123.123" "port" "22" "user" $username.windows) -}}
+
+{{ $work_ip := "100.127.103.95" -}}
+{{ if eq .chezmoi.hostname "work" "work2" -}}
+{{ $work_ip = "192.168.1.110" -}}
+{{ end -}}
+
+{{ $ip = set $ip "work" (dict "ip" $work_ip "port" "22" "user" $username.linux) -}}
 {{ $ip = set $ip "work2" (dict "ip" "192.168.1.107" "port" "22" "user" $username.linux) -}}
 {{ $ip = set $ip "office2043" (dict "ip" "192.168.1.104" "port" "22" "user" $username.linux) -}}
 [[Snippets]]

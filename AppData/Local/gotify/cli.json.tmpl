@@ -1,5 +1,5 @@
-{{ if eq .chezmoi.os "linux" "android" -}}
-{{ if lookPath "mc" -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "gotify-cli" -}}
 {{ $username := dict -}}
 {{ $username = set $username "windows" "user" -}}
 {{ $username = set $username "linux" "zxc" -}}
@@ -25,28 +25,11 @@
 {{ $ip = set $ip "work" (dict "ip" $work_ip "port" "22" "user" $username.linux) -}}
 {{ $ip = set $ip "work2" (dict "ip" "192.168.1.107" "port" "22" "user" $username.linux) -}}
 {{ $ip = set $ip "office2043" (dict "ip" "192.168.1.104" "port" "22" "user" $username.linux) -}}
-{{ if eq .chezmoi.os "windows" -}}
-ENTRY "AppData" URL "{{ .chezmoi.homeDir }}/AppData/Roaming"
-GROUP "note20"
-  ENTRY "note20" URL "sh://note20:{{ $termux_home }}"
-  ENTRY "note20 sdcard" URL "sh://note20:/sdcard"
-ENDGROUP
-GROUP "m6"
-  ENTRY "m6" URL "sh://m6:{{ $termux_home }}"
-  ENTRY "m6 sdcard" URL "sh://m6:/sdcard"
-ENDGROUP
-{{ if eq .chezmoi.hostname "work" -}}
-ENTRY "share_work" URL "{{ .chezmoi.homeDir }}/Syncthing/share_work"
-{{ end -}}
-{{ if eq .chezmoi.hostname "work" "work2" -}}
-ENTRY "work2" URL "sh://work2:{{ $linux_home }}"
-{{ end -}}
-{{ if eq .chezmoi.hostname "work" "work2" -}}
-ENTRY "office2043" URL "sh://office2043:{{ $linux_home }}"
-{{ end -}}
-{{ end -}}
-{{ if eq .chezmoi.os "android" -}}
-ENTRY "nuc" URL "sh://nuc:{{ $windows_home }}"
-{{ end -}}
+{{ $gotify_port := "5080" -}}
+{
+  "token": "{{ gopass "gotify/token/ritdon" }}",
+  "url": "http://{{ $ip.work.ip }}:{{ $gotify_port }}",
+  "defaultPriority": 0
+}
 {{ end -}}
 {{ end -}}
