@@ -22,7 +22,7 @@
 {{ $work_ip = "192.168.1.110" -}}
 {{ end -}}
 
-{{ $ip = set $ip "work" (dict "ip" $work_ip "port" "22" "user" $username.linux) -}}
+{{ $ip = set $ip "work" (dict "ip" $work_ip "port" "22" "user" $username.windows) -}}
 {{ $ip = set $ip "work2" (dict "ip" "192.168.1.107" "port" "22" "user" $username.linux) -}}
 {{ $ip = set $ip "office2043" (dict "ip" "192.168.1.104" "port" "22" "user" $username.linux) -}}
 Host soft
@@ -64,6 +64,10 @@ Host work2
   User {{ $ip.work2.user }}
   HostName {{ $ip.work2.ip }}
 {{ end -}}
+Host work
+  Port {{ $ip.work.port }}
+  User {{ $ip.work.user }}
+  HostName {{ $ip.work.ip }}
 {{ if eq .chezmoi.hostname "work" "work2" -}}
 Host office2043
   Port {{ $ip.office2043.port }}
