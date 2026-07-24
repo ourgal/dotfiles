@@ -144,15 +144,18 @@ Run "glazewm command move --workspace 6", ,"Hide"
 Run "runemacs --daemon", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "torrserver" "opt" (list "windows" "startup" "torrserver" "enable") "os" "windows") | trim | atoi -}}
-Run "torrserver", , "Hide"
+Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "torrserver" "current" "torrserver.exe" }}", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "torrserver" "opt" (list "windows" "startup" "flameshot" "enable") "os" "windows") | trim | atoi -}}
-Run "flameshot", , "Hide"
+Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "flameshot" "current" "bin" "flameshot.exe" }}", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "kdeconnect-cli" "opt" (list "windows" "startup" "seanime" "enable") "os" "windows") | trim | atoi -}}
 Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "seanime-server" "current" "seanime.exe" }}", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "rclone" "opt" (list "windows" "startup" "rclone" "enable") "os" "windows") | trim | atoi -}}
 Run "rclone mount --vfs-cache-mode full --network-mode alist:/ z:", {{ .chezmoi.homeDir | quote }}, "Hide"
+{{ end -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "gotify" "opt" (list "windows" "startup" "gotify" "enable") "os" "windows") | trim | atoi -}}
+Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "gotify-server" "current" "gotify.exe" }}", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
 {{ end -}}
