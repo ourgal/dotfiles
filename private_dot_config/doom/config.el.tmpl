@@ -238,9 +238,9 @@
   (elsqlite-enable-auto-open)
   ;; Optional: Evil mode keybindings
   (elsqlite-evil-setup))
-(setq message-send-mail-function 'smtpmail-send-it)
 (setq user-mail-address "ourgal@qq.com")
 (setq user-full-name "ourgal")
+(setq message-send-mail-function 'smtpmail-send-it)
 
 (setq smtpmail-smtp-user "ourgal@qq.com"
       smtpmail-smtp-server "smtp.qq.com"
@@ -251,9 +251,6 @@
 (setq smtpmail-debug-verb t)
 
 (setq auth-sources (expand-file-name "~/.config/doom/.authinfo"))
-(setq user-mail-address "ourgal@qq.com"
-      user-full-name "ourgal")
-
 (setq gnus-select-method '(nnnil nil))
 (setq gnus-secondary-select-methods
       '((nnimap "qq"
