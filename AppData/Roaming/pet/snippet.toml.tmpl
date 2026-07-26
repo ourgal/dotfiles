@@ -55,13 +55,13 @@ sed -i '/^[[:space:]]*$/d' temp.md;
 sed -i 's/^[[:space:]]*//' temp.md;
 
 {{- /* remove tcy tags */ -}}
-perl -pi -e 's/\\[(.*?)\\]\\{\\.tcy\\}/\\1/g' temp.md;
+perl -pi -e 's/\\[([^\\[\\]]*?)\\]\\{\\.tcy\\}/\\1/g' temp.md;
 
 {{- /* remove tcy tags */ -}}
-sed -i 's/{\\.fit}//' temp.md;
+perl -pi -e 's/\\[([^\\[\\]]*?)\\]\\{\\.fit\\}/\\1/g' temp.md;
 
 {{- /* replace gfont tags with bold */ -}}
-perl -pi -e 's/\\[(.*?)\\]\\{\\.gfont\\}/\\*\\*\\1\\*\\*/g' temp.md;
+perl -pi -e 's/\\[([^\\[\\]]*?)\\]\\{\\.(gfont|em-dot)\\}/\\*\\*\\1\\*\\*/g' temp.md;
 
 {{- /* remove leading backslashes */ -}}
 sed -i 's/^\\\\$//' temp.md"
