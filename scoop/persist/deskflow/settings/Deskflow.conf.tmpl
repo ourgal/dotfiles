@@ -2,7 +2,7 @@
 {{ if eq .chezmoi.hostname "nuc" -}}
 [core]
 screenName=nuc
-lastVersion=1.25.0.0
+lastVersion=1.26.0.0
 coreMode=1
 port=24800
 preventSleep=false
@@ -49,6 +49,7 @@ screens\14\name=
 screens\15\name=
 screens\size=15
 hotkeys\size=0
+defaultLockToScreenState=false
 
 [gui]
 logExpanded=true
@@ -57,6 +58,9 @@ autoHide=true
 closeToTray=true
 symbolicTrayIcon=true
 closeReminder=false
+startCoreWithGui=false
+shownFirstConnectedMessage=true
+windowGeometry=@Rect(674 284 572 511)
 
 [log]
 level=4
