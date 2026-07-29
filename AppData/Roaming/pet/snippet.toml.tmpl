@@ -57,8 +57,8 @@ sed -i 's/^[[:space:]]*//' temp.md;
 {{- /* remove tcy tags */ -}}
 perl -pi -e 's/\\[([^\\[\\]]*?)\\]\\{\\.tcy\\}/\\1/g' temp.md;
 
-{{- /* remove tcy tags */ -}}
-perl -pi -e 's/\\[([^\\[\\]]*?)\\]\\{\\.fit\\}/\\1/g' temp.md;
+{{- /* remove fit tags */ -}}
+perl -pi -e 's/\\((.*?)\\)\\{\\.fit\\}/(\\1)/g' temp.md;
 
 {{- /* replace gfont tags with bold */ -}}
 perl -pi -e 's/\\[([^\\[\\]]*?)\\]\\{\\.(gfont|em-dot)\\}/\\*\\*\\1\\*\\*/g' temp.md;
