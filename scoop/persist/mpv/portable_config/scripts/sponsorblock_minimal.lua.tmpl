@@ -1,3 +1,0 @@
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "sponsorblock_minimal") "os" "windows") | trim | atoi -}}
-{{ template "include" (joinPath .chezmoi.homeDir ".local" "share" "repos" "mpv_sponsorblock_minimal" "sponsorblock_minimal.lua") }}
-{{ end -}}
