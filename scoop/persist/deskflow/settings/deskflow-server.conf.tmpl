@@ -15,16 +15,36 @@ section: screens
 		xtestIsXineramaUnaware = false
 		switchCorners = none
 		switchCornerSize = 0
+	work2:
+		halfDuplexCapsLock = false
+		halfDuplexNumLock = false
+		halfDuplexScrollLock = false
+		xtestIsXineramaUnaware = false
+		switchCorners = none
+		switchCornerSize = 0
+	EASYPC6250:
+		halfDuplexCapsLock = false
+		halfDuplexNumLock = false
+		halfDuplexScrollLock = false
+		xtestIsXineramaUnaware = false
+		switchCorners = none
+		switchCornerSize = 0
 end
 
 section: aliases
 end
 
 section: links
-	office2043:
-		left = work
 	work:
+		right = EASYPC6250
+	EASYPC6250:
+		left = work
 		right = office2043
+	office2043:
+		left = EASYPC6250
+		right = work2
+	work2:
+		left = office2043
 end
 
 section: options
@@ -35,7 +55,7 @@ section: options
 	disableLockToScreen = false
 	clipboardSharing = true
 	clipboardSharingSize = 3072
-	switchCorners = none 
+	switchCorners = none
 	switchCornerSize = 0
 end
 {{ end -}}
