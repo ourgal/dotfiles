@@ -406,5 +406,12 @@ let g:pear_tree_smart_backspace = 1
 " nnoremap <bs> <cmd>VimExplorer<cr>
 nnoremap <leader>cc <cmd>Make<CR>
 nnoremap <leader>cC <cmd>Dispatch<CR>
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+command! -nargs=? -complete=dir Explore Dirvish <args>
+command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>
+command! -nargs=? -complete=dir Vexplore leftabove vsplit | silent Dirvish <args>
+
+let g:dirvish_mode = ':sort ,^.*[\/],'
 {{ end -}}
 {{ end -}}
