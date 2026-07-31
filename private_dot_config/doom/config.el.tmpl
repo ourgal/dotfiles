@@ -106,16 +106,8 @@
 {{ $browser := "chromium" -}}
 {{ end -}}
 
-{{ $sponsorblock := joinPath .chezmoi.homeDir "scoop" "persist" "mpv" "portable_config" "scripts" "sponsorblock_minimal.lua" -}}
-
-{{ $script := "" -}}
-
-{{ if and (stat $sponsorblock) (eq .chezmoi.os "windows") -}}
-{{ $script = print " --script=" $sponsorblock -}}
-{{ end -}}
-
 (defun browse-url-mpv (url &optional _new-window)
-  (start-process-shell-command "mpv" (get-buffer-create "*mpv out*") (format {{ print "mpv --load-scripts=no" $script " %s || " $browser " %s" | quote }} url url)))
+  (start-process-shell-command "mpv" (get-buffer-create "*mpv out*") (format {{ print "mpv %s || " $browser " %s" | quote }} url url)))
 
 (setq browse-url-handlers
       '(("\\(vimeo\\.com\\|twitch\\.tv\\)" . browse-url-mpv)

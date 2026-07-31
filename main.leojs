@@ -2069,7 +2069,7 @@
                                     },
                                     {
                                       "gnx": "zxc.20260615163620.1",
-                                      "vh": "mpv sponsorblock minimal"
+                                      "vh": "mpv sponsorblock chapterized"
                                     },
                                     {
                                       "gnx": "zxc.20260615163814.1",
@@ -6020,7 +6020,7 @@
                         },
                         {
                           "gnx": "zxc.20260616203250.6",
-                          "vh": "mpv sponsorblock minimal"
+                          "vh": "mpv sponsorblock chapterized"
                         },
                         {
                           "gnx": "zxc.20260616203250.7",
@@ -7386,7 +7386,7 @@
                         },
                         {
                           "gnx": "zxc.20260613104254.1",
-                          "vh": "@clean sponsorblock_minimal.lua.tmpl",
+                          "vh": "@clean sponsorblock_chapeterized.lua.tmpl",
                           "children": [
                             {
                               "gnx": "zxc.20260613104158.1",
@@ -8351,7 +8351,7 @@
                             },
                             {
                               "gnx": "zxc.20260613104150.1",
-                              "vh": "@clean sponsorblock_minimal.lua.tmpl",
+                              "vh": "@clean mpv_sponsorblock_chapterized.lua.tmpl",
                               "children": [
                                 {
                                   "gnx": "zxc.20260613104158.1"
@@ -15648,7 +15648,7 @@
     "zxc.20260615180653.1": "New-Item -ItemType Junction -Path $source -Target $target\n",
     "zxc.20260615180907.1": "Remove-Item -Path $source -Force\n",
     "zxc.20260615184146.1": "{{ if not (any (kindIs \"string\" .) (kindIs \"slice\" .)) -}}\n{{ fail (print \"Wrong arugment types of include\")}}\n{{ end -}}\n\n{{ if kindIs \"string\" . -}}\n    {{ if not (stat .) -}}\n    {{ warnf (print \"file \" . \" not found\") }}\n    {{ else -}}\n    {{ include . }}\n    {{ end -}}\n{{ else -}}\n    {{ range . -}}\n        {{ if not (stat .) -}}\n        {{ warnf (print \"file \" . \" not found\") }}\n        {{ else -}}\n        {{ include . }}\n        {{ end -}}\n    {{ end -}}\n{{ end -}}\n",
-    "User.20260226000855.1": "@others",
+    "User.20260226000855.1": "@others\n",
     "User.20260226000910.1": "<< unix >>\n{{ if lookPath \"bash\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260126160624.1": "[\".local/lib/ble_sh\"]\n    type = \"git-repo\"\n    url = \"https://github.com/akinomyoga/ble.sh.git\"\n    refreshPeriod = \"168h\"\n    clone.args = [\n        << git update submodule args >>\n    ]\n    pull.args = [\n        << git update submodule args >>\n    ]\n",
     "zxc.20260603085101.1": "\"--recurse-submodules\",\n\"-j8\"\n",
@@ -15674,7 +15674,7 @@
     "zxc.20260615163129.1": "[\".local/share/repos/thumbfast\"]\n    type = \"git-repo\"\n    url = \"https://github.com/po5/thumbfast\"\n    refreshPeriod = \"168h\"\n",
     "zxc.20260615163251.1": "[\".local/share/repos/mpv-manga-reader\"]\n    type = \"git-repo\"\n    url = \"https://github.com/Dudemanguy/mpv-manga-reader\"\n    refreshPeriod = \"168h\"\n",
     "zxc.20260615163442.1": "[\".local/share/repos/Seme4eg_mpv-scripts\"]\n    type = \"git-repo\"\n    url = \"https://github.com/Seme4eg/mpv-scripts\"\n    refreshPeriod = \"168h\"\n",
-    "zxc.20260615163620.1": "[\".local/share/repos/mpv_sponsorblock_minimal\"]\n    type = \"git-repo\"\n    url = \"https://codeberg.org/jouni/mpv_sponsorblock_minimal\"\n    refreshPeriod = \"168h\"\n",
+    "zxc.20260615163620.1": "[\".local/share/repos/mpv_sponsorblock_chapterized\"]\n    type = \"git-repo\"\n    url = \"https://github.com/Deulfi/mpv_sponsorblock_chapterized\"\n    refreshPeriod = \"168h\"\n",
     "zxc.20260615163814.1": "[\".local/share/repos/mpv-quality-menu\"]\n    type = \"git-repo\"\n    url = \"https://github.com/christoph-heinrich/mpv-quality-menu\"\n    refreshPeriod = \"168h\"\n",
     "zxc.20260615163947.1": "[\".local/share/repos/mpv-torrserver-hook\"]\n    type = \"git-repo\"\n    url = \"https://github.com/eNV25/mpv-torrserver-hook\"\n    refreshPeriod = \"168h\"\n",
     "zxc.20260615164116.1": "[\".local/share/repos/mpv-ytdlautoformat\"]\n    type = \"git-repo\"\n    url = \"https://github.com/Samillion/mpv-ytdlautoformat\"\n    refreshPeriod = \"168h\"\n",
@@ -15841,7 +15841,7 @@
     "zxc.20260614121829.1": "[my.modules.shell.clink]\nstarship.enable = true\noh_my_posh.enable = false\nzoxide.enable = true\n",
     "zxc.20260614123554.1": "[my.modules.shell.bash]\nble_sh.enable = true\nfzf.enable = true\nstarship.enable = true\noh_my_posh.enable = false\natuin.enable = false\nmcfly.enable = true\nzoxide.enable = true\npay_respects.enable = true\n",
     "zxc.20260620125523.1": "[my.modules.shell.fish]\noh_my_posh.enable = false\nstarship.enable = true\nfzf.enable = true\nmcfly.enable = false\natuin.enable = true\nnavi.enable = true\ncarapace.enable = true\nzoxide.enable = true\n",
-    "zxc.20260613164155.1": "[my.modules.mpv]\nenable = true\n\n[my.modules.mpv.plugins]\nuosc = true\nsmartskip = true\nthumbfast = true\nmanga_reader = true\nM_x = true\nleader = true\nsponsorblock_minimal = true\nquality_menu = true\ntorrserver_hook = true\nytdlautoformat = false\nclipshot = true\nfile_browser = true\nanilist_updater = true\nsmart_copy_paste = true\nbetterchapters = true\ncostum = false\nautocrop = true\n",
+    "zxc.20260613164155.1": "[my.modules.mpv]\nenable = true\n\n[my.modules.mpv.plugins]\nuosc = true\nsmartskip = true\nthumbfast = true\nmanga_reader = true\nM_x = true\nleader = true\nsponsorblock_chapterized = true\nquality_menu = true\ntorrserver_hook = true\nytdlautoformat = false\nclipshot = true\nfile_browser = true\nanilist_updater = true\nsmart_copy_paste = true\nbetterchapters = true\ncostum = false\nautocrop = true\n",
     "zxc.20260616151751.1": "[my.modules.firefox]\ntheme = \"flexfox\"\n",
     "User.20260302211627.1": "@others\n",
     "zxc.20260626154828.1": "{{ $username := dict -}}\n{{ $username = set $username \"windows\" \"user\" -}}\n{{ $username = set $username \"linux\" \"zxc\" -}}\n",
@@ -16050,7 +16050,7 @@
     "User.20260217235737.1": "(add-hook! 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)\n",
     "User.20260218113718.1": "(add-hook! 'completion-at-point-functions #'cape-dabbrev)\n(add-hook! 'completion-at-point-functions #'cape-file)\n",
     "User.20260218114048.1": "(after! doom-modeline\n  (setq doom-modeline-buffer-file-name-style 'relative-to-project))\n",
-    "zxc.20260517023349.1": "{{ $browser := \"firefox\" -}}\n\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"brave\" \"opt\" (list \"windows\" \"startup\" \"brave\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\n{{ $browser = \"brave\" -}}\n{{ end -}}\n\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"chromium\" \"opt\" (list \"windows\" \"startup\" \"chromium\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\n{{ $browser := \"chromium\" -}}\n{{ end -}}\n\n{{ $sponsorblock := joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"mpv\" \"portable_config\" \"scripts\" \"sponsorblock_minimal.lua\" -}}\n\n{{ $script := \"\" -}}\n\n{{ if and (stat $sponsorblock) (eq .chezmoi.os \"windows\") -}}\n{{ $script = print \" --script=\" $sponsorblock -}}\n{{ end -}}\n\n(defun browse-url-mpv (url &optional _new-window)\n  (start-process-shell-command \"mpv\" (get-buffer-create \"*mpv out*\") (format {{ print \"mpv --load-scripts=no\" $script \" %s || \" $browser \" %s\" | quote }} url url)))\n\n(setq browse-url-handlers\n      '((\"\\\\(vimeo\\\\.com\\\\|twitch\\\\.tv\\\\)\" . browse-url-mpv)\n        (\"\\\\(youtube\\\\.com\\\\)\" . browse-url-mpv)\n        (\"\\\\(bilibili\\\\.com\\\\)\" . browse-url-mpv)\n        (\".\" . {{ if eq .chezmoi.os \"windows\" -}}\n        browse-url-default-windows-browser\n        {{- else -}}\n        browse-url-firefox\n        {{- end }})))\n",
+    "zxc.20260517023349.1": "{{ $browser := \"firefox\" -}}\n\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"brave\" \"opt\" (list \"windows\" \"startup\" \"brave\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\n{{ $browser = \"brave\" -}}\n{{ end -}}\n\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"chromium\" \"opt\" (list \"windows\" \"startup\" \"chromium\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\n{{ $browser := \"chromium\" -}}\n{{ end -}}\n\n(defun browse-url-mpv (url &optional _new-window)\n  (start-process-shell-command \"mpv\" (get-buffer-create \"*mpv out*\") (format {{ print \"mpv %s || \" $browser \" %s\" | quote }} url url)))\n\n(setq browse-url-handlers\n      '((\"\\\\(vimeo\\\\.com\\\\|twitch\\\\.tv\\\\)\" . browse-url-mpv)\n        (\"\\\\(youtube\\\\.com\\\\)\" . browse-url-mpv)\n        (\"\\\\(bilibili\\\\.com\\\\)\" . browse-url-mpv)\n        (\".\" . {{ if eq .chezmoi.os \"windows\" -}}\n        browse-url-default-windows-browser\n        {{- else -}}\n        browse-url-firefox\n        {{- end }})))\n",
     "User.20260217233813.1": ";; If you use `org' and don't want your org files in the default location below,\n;; change `org-directory'. It must be set before org loads!\n(setq org-directory \"~/org/\")\n",
     "zxc.20260531010146.1": "(after! org\n  (setq org-agenda-files '(\"~/org/agenda.org\"))\n  (org-babel-do-load-languages\n    org-babel-load-languages\n    '((dot . t))))\n",
     "zxc.20260612234219.1": "(after! emms\n  (setq emms-source-file-default-directory \"~/Music\")\n  (add-hook 'emms-playlist-mode-hook #'turn-on-evil-mode))\n",
@@ -16257,7 +16257,7 @@
     "zxc.20260616203250.3": "thumbfast:\n  path: \".local/share/repos/thumbfast\"\n  url: \"https://github.com/po5/thumbfast\"\n  dsec: thumbfast\n",
     "zxc.20260616203250.4": "mpv_manga_reader:\n  path: \".local/share/repos/mpv-manga-reader\"\n  url: \"https://github.com/Dudemanguy/mpv-manga-reader\"\n  desc: mpv manga reader\n",
     "zxc.20260616203250.5": "Seme4eg_mpv-scripts:\n  path: \".local/share/repos/Seme4eg_mpv-scripts\"\n  url: \"https://github.com/Seme4eg/mpv-scripts\"\n  desc: Seme4eg mpv-scripts\n",
-    "zxc.20260616203250.6": "mpv_sponsorblock_minimal:\n  path: \".local/share/repos/mpv_sponsorblock_minimal\"\n  url: \"https://codeberg.org/jouni/mpv_sponsorblock_minimal\"\n  desc: mpv sponsorblock minimal\n",
+    "zxc.20260616203250.6": "mpv_sponsorblock_chapterized:\n  path: \".local/share/repos/mpv_sponsorblock_chapterized\"\n  url: \"https://github.com/Deulfi/mpv_sponsorblock_chapterized\"\n  desc: mpv sponsorblock chapterized\n",
     "zxc.20260616203250.7": "mpv-quality-menu:\n  path: \".local/share/repos/mpv-quality-menu\"\n  url: \"https://github.com/christoph-heinrich/mpv-quality-menu\"\n  desc: mpv quality menu\n",
     "zxc.20260616203250.8": "mpv-torrserver-hook:\n  path: \".local/share/repos/mpv-torrserver-hook\"\n  url: \"https://github.com/eNV25/mpv-torrserver-hook\"\n  desc: mpv torrserver hook\n",
     "zxc.20260616203250.9": "mpv-ytdlautoformat:\n  path: \".local/share/repos/mpv-ytdlautoformat\"\n  url: \"https://github.com/Samillion/mpv-ytdlautoformat\"\n  desc: mpv ytdlautoformat\n",
@@ -16410,8 +16410,8 @@
     "zxc.20260613012717.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"Seme4eg_mpv-scripts\" \"M-x.lua\") }}\n",
     "zxc.20260613020836.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"leader\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260613020750.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"Seme4eg_mpv-scripts\" \"leader.lua\") }}\n",
-    "zxc.20260613104254.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"sponsorblock_minimal\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
-    "zxc.20260613104158.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"mpv_sponsorblock_minimal\" \"sponsorblock_minimal.lua\") }}\n",
+    "zxc.20260613104254.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"sponsorblock_chapterized\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
+    "zxc.20260613104158.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"mpv_sponsorblock_chapterized\" \"sponsorblock_chapterized.lua\") }}\n",
     "zxc.20260613110002.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"quality_menu\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260613105929.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"mpv-quality-menu\" \"quality-menu.lua\") }}\n",
     "zxc.20260613121109.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"torrserver_hook\") \"os\" \"linux\") | trim | atoi -}}\n@others\n{{ end -}}\n",
@@ -16507,7 +16507,7 @@
     "zxc.20260613020747.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"leader\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260613105904.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"quality_menu\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260613121020.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"torrserver_hook\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
-    "zxc.20260613104150.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"sponsorblock_minimal\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
+    "zxc.20260613104150.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"sponsorblock_chapterized\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260614145702.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" (list \"mpv\" \"yt-dlp\") \"opt\" (list \"mpv\" \"plugins\" \"ytdlautoformat\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260614154323.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"clipshot\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260614195641.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"smart_copy_paste\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
@@ -17668,7 +17668,7 @@
       "_mod_time": 1782087842.583
     },
     "User.20260226000855.1": {
-      "_mod_time": 1784283621.281
+      "_mod_time": 1785508166.31
     },
     "zxc.20260202203521.17": {
       "_mod_time": 1782695824.473
@@ -17803,7 +17803,7 @@
       "_mod_time": 1783733569.427
     },
     "User.20260226001402.1": {
-      "_mod_time": 1785155653.601
+      "_mod_time": 1785508309.438
     },
     "zxc.20260317002829.1": {
       "_mod_time": 1781442394.083
@@ -17842,7 +17842,7 @@
       "_mod_time": 1781484842.615
     },
     "zxc.20260327184129.1": {
-      "_mod_time": 1784283621.297
+      "_mod_time": 1785508177.728
     },
     "zxc.20260125162740.1": {
       "_mod_time": 1783297134.905
@@ -17923,10 +17923,10 @@
       "_mod_time": 1783297135.105
     },
     "User.20260217223023.1": {
-      "_mod_time": 1785457095.566
+      "_mod_time": 1785492220.745
     },
     "User.20260217223030.1": {
-      "_mod_time": 1785111085.205
+      "_mod_time": 1785509217.194
     },
     "User.20260217223035.1": {
       "_mod_time": 1784984038.047
@@ -18010,7 +18010,7 @@
       "_mod_time": 1782087842.6581175
     },
     "zxc.20260613104254.1": {
-      "_mod_time": 1782087842.6723585
+      "_mod_time": 1785508972.265
     },
     "zxc.20260613110002.1": {
       "_mod_time": 1782087842.671345
@@ -18130,7 +18130,7 @@
       "_mod_time": 1785111085.29
     },
     "zxc.20260317082914.1": {
-      "_mod_time": 1785457537.4
+      "_mod_time": 1785492220.752
     },
     "zxc.20260201034331.1": {
       "_mod_time": 1784506446.236
@@ -18193,7 +18193,7 @@
       "_mod_time": 1781590487.337
     },
     "zxc.20260613104150.1": {
-      "_mod_time": 1781590487.335
+      "_mod_time": 1785508972.281
     },
     "zxc.20260614145702.1": {
       "_mod_time": 1781590487.338
