@@ -2219,7 +2219,6 @@ set showtabline=1
 augroup settings
     autocmd!
     autocmd FocusGained,BufEnter * checktime
-    autocmd FileType qf nnoremap <buffer><silent> q :cclose<bar>lclose<CR>
 augroup END
 
 {{ if lookPath "rg" -}}
@@ -2236,15 +2235,6 @@ set scrolloff=5
 set shortmess-=S " show she search count
 
 set gdefault
-
-set signcolumn=yes
-
-autocmd CmdlineChanged [:\/\?] call wildtrigger()
-set wildmode=noselect:lastused,full
-set wildoptions=pum
-
-autocmd CmdlineEnter [\/\?] set pumheight=8
-autocmd CmdlineLeave [\/\?] set pumheight&
 #+end_src
 
 Auto save.
@@ -2283,6 +2273,13 @@ set completeopt=popup
 
 inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+autocmd CmdlineChanged [:\/\?] call wildtrigger()
+set wildmode=noselect:lastused,full
+set wildoptions=pum
+
+autocmd CmdlineEnter [\/\?] set pumheight=8
+autocmd CmdlineLeave [\/\?] set pumheight&
 #+end_src
 
 ***** Imports

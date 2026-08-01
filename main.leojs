@@ -1043,6 +1043,16 @@
                                       ]
                                     },
                                     {
+                                      "gnx": "user.20260801220452.1",
+                                      "vh": "format",
+                                      "children": [
+                                        {
+                                          "gnx": "user.20260801220459.1",
+                                          "vh": "neoformat"
+                                        }
+                                      ]
+                                    },
+                                    {
                                       "gnx": "zxc.20260426134420.1",
                                       "vh": "theme",
                                       "children": [
@@ -15546,11 +15556,11 @@
     "zxc.20260428151626.1": "function OpenFileOrURL()\n  let cfile = expand('<cfile>')\n  if match(cfile, '^https\\?://') >= 0\n    call system('xdg-open ' . cfile)\n  else\n    normal! gF\n  endif\nendfunction\n\nnnoremap <silent> gf <cmd>call OpenFileOrURL()<CR>\n",
     "zxc.20260428151704.1": "nnoremap g* :%s/<c-r><c-w>/\n",
     "user.20260801101639.1": "nnoremap n nzzzv\nnnoremap N Nzzzv\n",
-    "zxc.20260605221719.1": "set laststatus=2\n\ntry\nset switchbuf=uselast\nset showtabline=2\ncatch\nendtry\n\nset expandtab\nset smarttab\n\nset shiftwidth=4\nset tabstop=4\n\nset cindent\nset wrap\nset clipboard=unnamed\n\nset undodir={{ joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"undo\" }}\nset undofile\n\nset nobackup\nset nowritebackup\n\nset noswapfile\n\" set directory=$HOME/.local/share/vim/swap//\n\nif has('gui_running')\nset guioptions-=T\nset guioptions-=e\nset guioptions-=m\nset t_Co=256\nset guitablabel=%M\\ %t\nendif\n\nset encoding=utf8\nset fileformats=unix,dos,mac\nsyntax enable\n\nset regexpengine=0\n\nset backspace=eol,start,indent\nset whichwrap+=<,>,h,l\n\nset ignorecase\nset smartcase\nset hlsearch\nset incsearch\n\nset lazyredraw\nset magic\nset showmatch\n\nset matchtime=2\n\nset noerrorbells\nset novisualbell\nset t_vb=\nset timeoutlen=500\n\nset foldcolumn=0\n\nlet $LANG = 'en'\nset langmenu=en\n\nset wildmenu\n\nset wildignore=*.o,*~,*.pyc\nif has('win16') || has('win32')\nset wildignore+=.git\\*,.hg\\*,.svn\\*\nelse\nset wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store\nendif\n\nlet &t_SI = \"\\e[6 q\"\nlet &t_EI = \"\\e[2 q\"\n\nset ruler\nset cmdheight=1\nset hidden\nset history=500\nset number relativenumber\n\nfiletype plugin on\nfiletype indent on\n\nset autoread\n\nset updatetime=500\n\nset mouse=a\nset smoothscroll\n\nset showtabline=1\n\naugroup settings\n    autocmd!\n    autocmd FocusGained,BufEnter * checktime\n    autocmd FileType qf nnoremap <buffer><silent> q :cclose<bar>lclose<CR>\naugroup END\n\n{{ if lookPath \"rg\" -}}\nset grepprg=rg\\ --vimgrep\\ --smart-case\\ --hidden\nset grepformat=%f:%l:%c:%m\n{{ end -}}\n\nset signcolumn=auto\nset sessionoptions-=blank\nset foldmethod=marker\nset cursorline\nset scrolloff=5\n\nset shortmess-=S \" show she search count\n\nset gdefault\n\nset signcolumn=yes\n\nautocmd CmdlineChanged [:\\/\\?] call wildtrigger()\nset wildmode=noselect:lastused,full\nset wildoptions=pum\n\nautocmd CmdlineEnter [\\/\\?] set pumheight=8\nautocmd CmdlineLeave [\\/\\?] set pumheight&\n",
+    "zxc.20260605221719.1": "set laststatus=2\n\ntry\nset switchbuf=uselast\nset showtabline=2\ncatch\nendtry\n\nset expandtab\nset smarttab\n\nset shiftwidth=4\nset tabstop=4\n\nset cindent\nset wrap\nset clipboard=unnamed\n\nset undodir={{ joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"undo\" }}\nset undofile\n\nset nobackup\nset nowritebackup\n\nset noswapfile\n\" set directory=$HOME/.local/share/vim/swap//\n\nif has('gui_running')\nset guioptions-=T\nset guioptions-=e\nset guioptions-=m\nset t_Co=256\nset guitablabel=%M\\ %t\nendif\n\nset encoding=utf8\nset fileformats=unix,dos,mac\nsyntax enable\n\nset regexpengine=0\n\nset backspace=eol,start,indent\nset whichwrap+=<,>,h,l\n\nset ignorecase\nset smartcase\nset hlsearch\nset incsearch\n\nset lazyredraw\nset magic\nset showmatch\n\nset matchtime=2\n\nset noerrorbells\nset novisualbell\nset t_vb=\nset timeoutlen=500\n\nset foldcolumn=0\n\nlet $LANG = 'en'\nset langmenu=en\n\nset wildmenu\n\nset wildignore=*.o,*~,*.pyc\nif has('win16') || has('win32')\nset wildignore+=.git\\*,.hg\\*,.svn\\*\nelse\nset wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store\nendif\n\nlet &t_SI = \"\\e[6 q\"\nlet &t_EI = \"\\e[2 q\"\n\nset ruler\nset cmdheight=1\nset hidden\nset history=500\nset number relativenumber\n\nfiletype plugin on\nfiletype indent on\n\nset autoread\n\nset updatetime=500\n\nset mouse=a\nset smoothscroll\n\nset showtabline=1\n\naugroup settings\n    autocmd!\n    autocmd FocusGained,BufEnter * checktime\naugroup END\n\n{{ if lookPath \"rg\" -}}\nset grepprg=rg\\ --vimgrep\\ --smart-case\\ --hidden\nset grepformat=%f:%l:%c:%m\n{{ end -}}\n\nset signcolumn=auto\nset sessionoptions-=blank\nset foldmethod=marker\nset cursorline\nset scrolloff=5\n\nset shortmess-=S \" show she search count\n\nset gdefault\n",
     "zxc.20260427223226.1": "\" set noswapfile\n\" au BufLeave,CursorHold,FocusLost * if(getbufinfo('%')[0].changed) | sil do BufWritePre | sil! up | sil do BufWritePost | endif\n",
     "User.20260218145141.1": "\" Autosession\n\" au VimEnter * nested if (len(v:argv) == 1) | silent! source Session.vim | endif\n\" au VimLeave * if (len(v:argv) == 1) | mksession! | endif\n",
     "zxc.20260320003625.1": "\" autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path \"%\"\n\nfunction Chezmoi()\n  ! chezmoi apply --source-path \"%\"\nendfunction\n\ncommand! Chezmoi call Chezmoi()\n",
-    "zxc.20260427232446.1": "set autocomplete\nset complete=o^5,.^5,w^5,b^5,u^5\nset completeopt=popup\n\ninoremap <silent><expr> <Tab>   pumvisible() ? \"\\<C-n>\" : \"\\<Tab>\"\ninoremap <silent><expr> <S-Tab> pumvisible() ? \"\\<C-p>\" : \"\\<S-Tab>\"\n",
+    "zxc.20260427232446.1": "set autocomplete\nset complete=o^5,.^5,w^5,b^5,u^5\nset completeopt=popup\n\ninoremap <silent><expr> <Tab>   pumvisible() ? \"\\<C-n>\" : \"\\<Tab>\"\ninoremap <silent><expr> <S-Tab> pumvisible() ? \"\\<C-p>\" : \"\\<S-Tab>\"\n\nautocmd CmdlineChanged [:\\/\\?] call wildtrigger()\nset wildmode=noselect:lastused,full\nset wildoptions=pum\n\nautocmd CmdlineEnter [\\/\\?] set pumheight=8\nautocmd CmdlineLeave [\\/\\?] set pumheight&\n",
     "user.20260710215024.1": "{{ if lookPath \"sdcv\" -}}\nset keywordprg=sdcv\\ -n\n{{ end -}}\n",
     "User.20260218141914.1": "<< plugin configs pre >>\n\nimport 'plugins.vim'\n\n<< plugin configs >>\n",
     "zxc.20260427235829.1": "@others\n",
@@ -15596,6 +15606,7 @@
     "zxc.20260318212806.7": "\" Plug 'godlygeek/tabular', { 'on': 'Tabularize' }\n",
     "zxc.20260318212806.11": "\" Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }\n",
     "zxc.20260318212806.3": "\" Plug 'vim-scripts/align', { 'on': 'Align' }\n",
+    "user.20260801220459.1": "Plug 'sbdchd/neoformat'\n",
     "zxc.20260318212806.8": "\" Plug 'ghifarit53/tokyonight-vim'\n",
     "zxc.20260427005654.1": "Plug 'https://codeberg.org/mao-yining/vim-catppuccin'\n",
     "zxc.20260428005420.1": "Plug 'tmsvg/pear-tree'\n",
@@ -17673,13 +17684,13 @@
       "_mod_time": 1777179946.857
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1785558459.518
+      "_mod_time": 1785593102.771
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1783164752.902
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1785512084.117
+      "_mod_time": 1785593102.804
     },
     "zxc.20260429145437.1": {
       "_mod_time": 1783164752.936
@@ -17700,13 +17711,13 @@
       "_mod_time": 1783164752.992
     },
     "User.20260218142211.1": {
-      "_mod_time": 1785558459.542
+      "_mod_time": 1785593102.825
     },
     "User.20260218142322.1": {
       "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1785512084.13
+      "_mod_time": 1785593102.847
     },
     "zxc.20260429112140.1": {
       "_mod_time": 1777612767.666
@@ -18033,7 +18044,7 @@
       "_mod_time": 1777179946.883
     },
     "zxc.20260125153012.2": {
-      "_mod_time": 1783509179.513
+      "_mod_time": 1785587105.016
     },
     "zxc.20260504000649.1": {
       "_mod_time": 1783164753.343
@@ -18576,7 +18587,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1785568696.145
+      "_mod_time": 1785593102.854
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777106655.378
