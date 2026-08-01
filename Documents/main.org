@@ -1515,8 +1515,8 @@ nnoremap <leader>bo <cmd>%bd\|e#\|bd#<CR>
 Exiting vim.
 
 #+begin_src vimscript
-" nnoremap ZZ <cmd>xa<cr>
-" nnoremap ZQ <cmd>qa!<cr>
+nnoremap ZQ <cmd>qa!<cr>
+nnoremap ZX <cmd>xa!<cr>
 #+end_src
 
 Open the file or URL.
@@ -2398,7 +2398,12 @@ let maplocalleader = "\\"
 Help.
 
 #+begin_src vimscript
-map q <cmd>quit<cr>
+nmap <buffer> <CR> <C-]>
+nmap <buffer> <BS> <C-T>
+nnoremap <buffer> o silent! /'[a-z]\{2,\}'<CR>
+nnoremap <buffer> q <cmd>q<cr>
+
+autocmd BufEnter <buffer> silent wincmd T
 #+end_src
 
 **** Helix
