@@ -15505,7 +15505,7 @@
     "zxc.20260125163442.1": "import 'find.vim'\n",
     "zxc.20260428104430.1": "let g:mapleader = ' '\n",
     "zxc.20260428151448.1": "nnoremap <leader>bo <cmd>%bd\\|e#\\|bd#<CR>\n",
-    "zxc.20260428151520.1": "nnoremap ZZ <cmd>xa<cr>\nnnoremap ZQ <cmd>qa!<cr>\n",
+    "zxc.20260428151520.1": "\" nnoremap ZZ <cmd>xa<cr>\n\" nnoremap ZQ <cmd>qa!<cr>\n",
     "zxc.20260428151626.1": "function OpenFileOrURL()\n  let cfile = expand('<cfile>')\n  if match(cfile, '^https\\?://') >= 0\n    call system('xdg-open ' . cfile)\n  else\n    normal! gF\n  endif\nendfunction\n\nnnoremap <silent> gf <cmd>call OpenFileOrURL()<CR>\n",
     "zxc.20260428151704.1": "nnoremap g* :%s/<c-r><c-w>/\n",
     "user.20260801101639.1": "nnoremap n nzzzv\nnnoremap N Nzzzv\n",
@@ -17632,7 +17632,7 @@
       "_mod_time": 1777179946.857
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1785550619.477
+      "_mod_time": 1785551416.312
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1783297135.058
@@ -17653,7 +17653,7 @@
       "_mod_time": 1783297135.057
     },
     "User.20260218142211.1": {
-      "_mod_time": 1785550619.528
+      "_mod_time": 1785551416.344
     },
     "User.20260218142322.1": {
       "_mod_time": 1777398596.523
@@ -18526,7 +18526,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1784803101.908
+      "_mod_time": 1785551416.439
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777106655.378
