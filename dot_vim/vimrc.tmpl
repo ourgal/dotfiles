@@ -412,5 +412,11 @@ command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args
 command! -nargs=? -complete=dir Vexplore leftabove vsplit | silent Dirvish <args>
 
 let g:dirvish_mode = ':sort ,^.*[\/],'
+let g:floaterm_opener = 'edit'
+let g:floaterm_height = 0.999
+let g:floaterm_width = 0.99
+
+command Lazygit FloatermNew lazygit
+command Lf FloatermNew lf
 {{ end -}}
 {{ end -}}
