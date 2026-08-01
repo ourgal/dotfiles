@@ -1,6 +1,6 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "vim" -}}
-nmap <buffer> l <CR>
-nmap <buffer> h -
+nnoremap <buffer> l <CR>
+nnoremap <buffer> h -
 {{ end -}}
 {{ end -}}
