@@ -905,6 +905,10 @@
                                         {
                                           "gnx": "user.20260731233502.1",
                                           "vh": "vim-dirvish"
+                                        },
+                                        {
+                                          "gnx": "user.20260802013341.1",
+                                          "vh": "vim-floaterm"
                                         }
                                       ]
                                     }
@@ -1003,6 +1007,10 @@
                                         {
                                           "gnx": "user.20260722151604.1",
                                           "vh": "vim-dispatch"
+                                        },
+                                        {
+                                          "gnx": "user.20260802001037.1",
+                                          "vh": "vim-floaterm"
                                         }
                                       ]
                                     },
@@ -15600,6 +15608,7 @@
     "user.20260629011025.1": "\" nnoremap <bs> <cmd>VimExplorer<cr>\n",
     "user.20260722151706.1": "nnoremap <leader>cc <cmd>Make<CR>\nnnoremap <leader>cC <cmd>Dispatch<CR>\n",
     "user.20260731233502.1": "let g:loaded_netrw = 1\nlet g:loaded_netrwPlugin = 1\ncommand! -nargs=? -complete=dir Explore Dirvish <args>\ncommand! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>\ncommand! -nargs=? -complete=dir Vexplore leftabove vsplit | silent Dirvish <args>\n\nlet g:dirvish_mode = ':sort ,^.*[\\/],'\n",
+    "user.20260802013341.1": "let g:floaterm_opener = 'edit'\nlet g:floaterm_height = 0.999\nlet g:floaterm_width = 0.99\n\ncommand Lazygit FloatermNew lazygit\ncommand Lf FloatermNew lf\n",
     "zxc.20260125164142.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260125164204.1": "vim9script\n\n# simple fuzzy find finder\n# place into ~/.vim/plugin/fuzzyfind.vim\n\nset wildmode=noselect:lastused,full\nset wildmenu wildoptions=pum,fuzzy pumheight=12\n\n\nvar files_cache: list<string> = []\naugroup CmdComplete\n    au!\n    au CmdlineChanged : wildtrigger()\n    au CmdlineEnter : files_cache = []\naugroup END\n\ndef FindCmd(): string\n    var cmd = ''\n    if executable('fd')\n        cmd = 'fd . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('fdfind')\n        cmd = 'fdfind . --path-separator / --type f --hidden --follow --exclude .git'\n    elseif executable('ugrep')\n        cmd = 'ugrep \"\" -Rl -I --ignore-files'\n    elseif executable('rg')\n        cmd = 'rg --path-separator / --files --hidden --glob !.git'\n    elseif executable('find')\n        cmd = 'find \\! \\( -path \"*/.git\" -prune -o -name \"*.swp\" \\) -type f -follow'\n    endif\n    return cmd\nenddef\n\ndef Find(cmd_arg: string, cmd_complete: bool): list<string>\n    if empty(files_cache)\n        var cmd = FindCmd()\n        # fallback to built-in glob if no fd/rg/ug/find is available\n        # e.g. we are on Windows\n        if empty(cmd)\n            files_cache = globpath('.', '**', 1, 1)\n                ->filter((_, v) => !isdirectory(v))\n                ->mapnew((_, v) => v->substitute('^\\.[\\/]', \"\", \"\"))\n        else\n            files_cache = systemlist(cmd)\n        endif\n    endif\n    if empty(cmd_arg)\n        return files_cache\n    else\n        return files_cache->matchfuzzy(cmd_arg)\n    endif\nenddef\n\nset findfunc=Find\n",
     "zxc.20260318214950.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -15612,6 +15621,7 @@
     "zxc.20260318212806.5": "\" Plug 'alker0/chezmoi.vim'\n",
     "zxc.20260318212806.18": "\" Plug 'raghur/vim-ghost'\n\" Plug 'roxma/nvim-yarp', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }\n\" Plug 'roxma/vim-hug-neovim-rpc', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }\n",
     "user.20260722151604.1": "Plug 'tpope/vim-dispatch'\n",
+    "user.20260802001037.1": "Plug 'voldikss/vim-floaterm'\n",
     "zxc.20260318212806.6": "{{ if lookPath \"node\" -}}\nPlug 'neoclide/coc.nvim', {'branch': 'release'}\n{{ end -}}\n",
     "zxc.20260427221704.1": "\" Plug 'yegappan/lsp'\n",
     "zxc.20260318212806.2": "\" Plug 'dense-analysis/ale'\n",
@@ -17699,13 +17709,13 @@
       "_mod_time": 1777179946.857
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1785593102.771
+      "_mod_time": 1785605777.19
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1783164752.902
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1785598240.169
+      "_mod_time": 1785600683.586
     },
     "zxc.20260429145437.1": {
       "_mod_time": 1783164752.936
@@ -17726,13 +17736,13 @@
       "_mod_time": 1783164752.992
     },
     "User.20260218142211.1": {
-      "_mod_time": 1785593102.825
+      "_mod_time": 1785605777.206
     },
     "User.20260218142322.1": {
       "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1785598240.186
+      "_mod_time": 1785600683.601
     },
     "zxc.20260429112140.1": {
       "_mod_time": 1777612767.666
