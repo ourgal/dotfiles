@@ -1039,6 +1039,10 @@
                                         {
                                           "gnx": "user.20260802151332.1",
                                           "vh": "lisp"
+                                        },
+                                        {
+                                          "gnx": "user.20260802152858.1",
+                                          "vh": "markdown"
                                         }
                                       ]
                                     },
@@ -15636,7 +15640,8 @@
     "zxc.20260427221704.1": "\" Plug 'yegappan/lsp'\n",
     "zxc.20260318212806.2": "\" Plug 'dense-analysis/ale'\n",
     "user.20260802151332.1": "{{ if lookPath \"cargo\" -}}\nPlug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}\n{{ end -}}\n",
-    "zxc.20260318212806.7": "\" Plug 'godlygeek/tabular', { 'on': 'Tabularize' }\n",
+    "user.20260802152858.1": "Plug 'godlygeek/tabular'\nPlug 'preservim/vim-markdown'\n",
+    "zxc.20260318212806.7": "\" Plug 'godlygeek/tabular'\n",
     "zxc.20260318212806.11": "\" Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }\n",
     "zxc.20260318212806.3": "\" Plug 'vim-scripts/align', { 'on': 'Align' }\n",
     "user.20260801220459.1": "Plug 'sbdchd/neoformat'\n",
@@ -17726,7 +17731,7 @@
       "_mod_time": 1783164752.902
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1785654874.296
+      "_mod_time": 1785656712.45
     },
     "zxc.20260429145437.1": {
       "_mod_time": 1783164752.936
@@ -17753,7 +17758,7 @@
       "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1785654874.321
+      "_mod_time": 1785656712.468
     },
     "zxc.20260429112140.1": {
       "_mod_time": 1777612767.666
@@ -18623,7 +18628,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1785598240.202
+      "_mod_time": 1785656712.489
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777106655.378
