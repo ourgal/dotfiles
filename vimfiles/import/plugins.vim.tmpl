@@ -2,45 +2,16 @@
 {{ if lookPath "vim" -}}
 call plug#begin()
 
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'liuchengxu/vim-which-key'
-Plug 'tyru/caw.vim'
-{{ if eq .chezmoi.os "android" -}}
-Plug 'vim-utilities/termux-clipboard'
-{{ end -}}
-" Plug 'alker0/chezmoi.vim'
-" Plug 'raghur/vim-ghost'
-" Plug 'roxma/nvim-yarp', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }
-" Plug 'roxma/vim-hug-neovim-rpc', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }
-Plug 'tpope/vim-dispatch'
-Plug 'voldikss/vim-floaterm'
-{{ if lookPath "node" -}}
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-{{ end -}}
-" Plug 'yegappan/lsp'
-" Plug 'dense-analysis/ale'
-{{ if lookPath "cargo" -}}
-Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
-{{ end -}}
-Plug 'godlygeek/tabular'
-Plug 'preservim/vim-markdown'
-Plug 'zef/vim-cycle'
-Plug 'tommcdo/vim-exchange'
-Plug 'haya14busa/is.vim'
- Plug 'andymass/vim-matchup'
 " Plug 'godlygeek/tabular'
 " Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }
 " Plug 'vim-scripts/align', { 'on': 'Align' }
-Plug 'sbdchd/neoformat'
-" Plug 'ghifarit53/tokyonight-vim'
-Plug 'https://codeberg.org/mao-yining/vim-catppuccin'
 Plug 'tmsvg/pear-tree'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-unimpaired'
-Plug 'nelstrom/vim-visual-star-search'
+{{ if eq .chezmoi.os "android" -}}
+Plug 'vim-utilities/termux-clipboard'
+{{ end -}}
 Plug 'markonm/traces.vim'
+Plug 'tyru/caw.vim'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-eunuch'
 " create non-exist dir when saving file
 " Plug 'pbrisbin/vim-mkdir'
@@ -51,6 +22,9 @@ Plug 'tpope/vim-eunuch'
 " Plug 'tpope/vim-vinegar'
 Plug 'justinmk/vim-dirvish'
 Plug 'roginfarrer/vim-dirvish-dovish'
+Plug 'sbdchd/neoformat'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 {{ if lookPath "git" -}}
 Plug 'tpope/vim-fugitive'
 {{ end -}}
@@ -60,12 +34,39 @@ Plug 'airblade/vim-gitgutter'
 Plug 'rhysd/conflict-marker.vim'
 Plug 'Eliot00/git-lens.vim'
 " Plug 'rhysd/git-messenger.vim'
-Plug 'itchyny/lightline.vim'
+" Plug 'alker0/chezmoi.vim'
+" Plug 'raghur/vim-ghost'
+" Plug 'roxma/nvim-yarp', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }
+" Plug 'roxma/vim-hug-neovim-rpc', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }
+Plug 'tpope/vim-dispatch'
+Plug 'voldikss/vim-floaterm'
+Plug 'tpope/vim-unimpaired'
+Plug 'nelstrom/vim-visual-star-search'
+{{ if lookPath "cargo" -}}
+Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
+{{ end -}}
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
 Plug 'lervag/vimtex', { 'for': 'tex' }
-Plug 'ourgal/vim-workspace'
+{{ if lookPath "node" -}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+{{ end -}}
+" Plug 'yegappan/lsp'
+" Plug 'dense-analysis/ale'
+Plug 'zef/vim-cycle'
+Plug 'tommcdo/vim-exchange'
+Plug 'haya14busa/is.vim'
+ Plug 'andymass/vim-matchup'
+Plug 'svermeulen/vim-subversive'
 Plug 'jceb/vim-orgmode'
 Plug 'tpope/vim-speeddating'
+Plug 'ourgal/vim-workspace'
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-surround'
 Plug 'vim-polyglot/vim-polyglot'
+" Plug 'ghifarit53/tokyonight-vim'
+Plug 'https://codeberg.org/mao-yining/vim-catppuccin'
+Plug 'liuchengxu/vim-which-key'
 
 call plug#end()
 {{ end -}}
