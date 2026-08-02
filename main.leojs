@@ -1221,6 +1221,10 @@
                                         {
                                           "gnx": "user.20260802204815.1",
                                           "vh": "expand region"
+                                        },
+                                        {
+                                          "gnx": "user.20260802221452.1",
+                                          "vh": "multi cursor"
                                         }
                                       ]
                                     },
@@ -1372,6 +1376,19 @@
                                   "gnx": "User.20260225203941.1"
                                 }
                               ]
+                            },
+                            {
+                              "gnx": "user.20260802232257.1",
+                              "vh": "@clean vim.vim.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "user.20260802232139.1",
+                                  "vh": "content"
+                                },
+                                {
+                                  "gnx": "User.20260225203941.1"
+                                }
+                              ]
                             }
                           ]
                         },
@@ -1506,6 +1523,18 @@
                               "children": [
                                 {
                                   "gnx": "user.20260801114801.2"
+                                },
+                                {
+                                  "gnx": "User.20260225204326.1"
+                                }
+                              ]
+                            },
+                            {
+                              "gnx": "user.20260802232119.1",
+                              "vh": "@clean vim.vim.tmpl",
+                              "children": [
+                                {
+                                  "gnx": "user.20260802232139.1"
                                 },
                                 {
                                   "gnx": "User.20260225204326.1"
@@ -15710,10 +15739,11 @@
     "user.20260802170019.1": "Plug 'tommcdo/vim-exchange'\n",
     "user.20260802174411.1": "Plug 'haya14busa/is.vim'\n",
     "user.20260802175818.1": " Plug 'andymass/vim-matchup'\n",
-    "user.20260802193601.1": "Plug 'svermeulen/vim-subversive'\n",
+    "user.20260802193601.1": "Plug 'svermeulen/vim-subversive'\nPlug 'AndrewRadev/switch.vim'\n",
     "user.20260802201730.1": "Plug 'AndrewRadev/splitjoin.vim'\n",
     "user.20260802203155.1": "Plug 'wellle/targets.vim'\n",
     "user.20260802204815.1": "Plug 'terryma/vim-expand-region'\n",
+    "user.20260802221452.1": "Plug 'mg979/vim-visual-multi'\n",
     "zxc.20260426235048.1": "Plug 'jceb/vim-orgmode'\nPlug 'tpope/vim-speeddating'\n",
     "zxc.20260319220325.1": "Plug 'ourgal/vim-workspace'\n",
     "zxc.20260318212806.17": "Plug 'itchyny/lightline.vim'\n",
@@ -15732,6 +15762,8 @@
     "user.20260731234353.2": "nmap <buffer> l <CR>\nnmap <buffer> h -\n",
     "user.20260801115000.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "user.20260801114801.2": "nnoremap <buffer> q <cmd>q<cr>\nnmap <buffer> <tab> =\nxmap <buffer> <tab> =\n\nautocmd BufEnter <buffer> silent wincmd T\n",
+    "user.20260802232257.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "user.20260802232139.1": "let b:switch_custom_definitions = [\n      \\ { '\\<\\([invoxtcl]\\?\\)noremap\\>': '\\1map'},\n      \\ { '\\<\\([invoxtcl]\\?\\)map\\>': '\\1noremap'},\n      \\ { '\\<\\(allowrevins\\|ari\\|autochdir\\|acd\\|arabic\\|arab\\|arabicshape\\|arshape\\|autoindent\\|ai\\|autoread\\|ar\\|autowrite\\|aw\\|autowriteall\\|awa\\|backup\\|bk\\|ballooneval\\|beval\\|binary\\|bin\\|bomb\\|buflisted\\|bl\\|cindent\\|cin\\|confirm\\|cf\\|copyindent\\|ci\\|cscoperelative\\|csre\\|cscopetag\\|cst\\|cursorbind\\|crb\\|cursorcolumn\\|cuc\\|cursorline\\|cul\\|delcombine\\|deco\\|diff\\|digraph\\|dg\\|endofline\\|eol\\|equalalways\\|ea\\|errorbells\\|eb\\|expandtab\\|et\\|fileignorecase\\|fic\\|fixendofline\\|fixeol\\|foldenable\\|fen\\|gdefault\\|gd\\|hidden\\|hid\\|hkmap\\|hk\\|hkmapp\\|hkp\\|hlsearch\\|hls\\|icon\\|ignorecase\\|ic\\|imcmdline\\|imc\\|imdisable\\|imd\\|incsearch\\|is\\|infercase\\|inf\\|insertmode\\|im\\|joinspaces\\|js\\|langremap\\|lrm\\|lazyredraw\\|lz\\|linebreak\\|lbr\\|lisp\\|list\\|lpl\\|loadplugins\\|magic\\|modeline\\|ml\\|modelineexpr\\|mle\\|modifiable\\|ma\\|modified\\|mod\\|more\\|mousefocus\\|mousef\\|mousehide\\|mh\\|number\\|nu\\|opendevice\\|odev\\|paste\\|preserveindent\\|pi\\|previewwindow\\|pvw\\|prompt\\|readonly\\|ro\\|relativenumber\\|rnu\\|remap\\|revins\\|ri\\|rightleft\\|rl\\|ruler\\|ru\\|scrollbind\\|scb\\|secure\\|shellslash\\|ssl\\|shelltemp\\|stmp\\|shiftround\\|sr\\|showcmd\\|sc\\|showfulltag\\|sft\\|showmatch\\|sm\\|showmode\\|smd\\|smartcase\\|scs\\|smartindent\\|si\\|smarttab\\|sta\\|spell\\|splitbelow\\|sb\\|splitright\\|sr\\|startofline\\|sol\\|swapfile\\|swf\\|tagbsearch\\|tbs\\|tagrelative\\|tr\\|tagstack\\|tgst\\|termbidi\\|tbidi\\|terse\\|tildeop\\|top\\|timeout\\|to\\|ttimeout\\|title\\|ttyfast\\|tf\\|undofile\\|udf\\|visualbell\\|vb\\|warn\\|wildignorecase\\|wic\\|wildmenu\\|wmnu\\|winfixheight\\|wfh\\|winfixwidth\\|wfw\\|wrap\\|wrapscan\\|ws\\|write\\|writeany\\|wa\\|writebackup\\|wb\\)\\>': 'no\\1'},\n      \\ { '\\<no\\(allowrevins\\|ari\\|autochdir\\|acd\\|arabic\\|arab\\|arabicshape\\|arshape\\|autoindent\\|ai\\|autoread\\|ar\\|autowrite\\|aw\\|autowriteall\\|awa\\|backup\\|bk\\|ballooneval\\|beval\\|binary\\|bin\\|bomb\\|buflisted\\|bl\\|cindent\\|cin\\|confirm\\|cf\\|copyindent\\|ci\\|cscoperelative\\|csre\\|cscopetag\\|cst\\|cursorbind\\|crb\\|cursorcolumn\\|cuc\\|cursorline\\|cul\\|delcombine\\|deco\\|diff\\|digraph\\|dg\\|endofline\\|eol\\|equalalways\\|ea\\|errorbells\\|eb\\|expandtab\\|et\\|fileignorecase\\|fic\\|fixendofline\\|fixeol\\|foldenable\\|fen\\|gdefault\\|gd\\|hidden\\|hid\\|hkmap\\|hk\\|hkmapp\\|hkp\\|hlsearch\\|hls\\|icon\\|ignorecase\\|ic\\|imcmdline\\|imc\\|imdisable\\|imd\\|incsearch\\|is\\|infercase\\|inf\\|insertmode\\|im\\|joinspaces\\|js\\|langremap\\|lrm\\|lazyredraw\\|lz\\|linebreak\\|lbr\\|lisp\\|list\\|lpl\\|loadplugins\\|magic\\|modeline\\|ml\\|modelineexpr\\|mle\\|modifiable\\|ma\\|modified\\|mod\\|more\\|mousefocus\\|mousef\\|mousehide\\|mh\\|number\\|nu\\|opendevice\\|odev\\|paste\\|preserveindent\\|pi\\|previewwindow\\|pvw\\|prompt\\|readonly\\|ro\\|relativenumber\\|rnu\\|remap\\|revins\\|ri\\|rightleft\\|rl\\|ruler\\|ru\\|scrollbind\\|scb\\|secure\\|shellslash\\|ssl\\|shelltemp\\|stmp\\|shiftround\\|sr\\|showcmd\\|sc\\|showfulltag\\|sft\\|showmatch\\|sm\\|showmode\\|smd\\|smartcase\\|scs\\|smartindent\\|si\\|smarttab\\|sta\\|spell\\|splitbelow\\|sb\\|splitright\\|sr\\|startofline\\|sol\\|swapfile\\|swf\\|tagbsearch\\|tbs\\|tagrelative\\|tr\\|tagstack\\|tgst\\|termbidi\\|tbidi\\|terse\\|tildeop\\|top\\|timeout\\|to\\|ttimeout\\|title\\|ttyfast\\|tf\\|undofile\\|udf\\|visualbell\\|vb\\|warn\\|wildignorecase\\|wic\\|wildmenu\\|wmnu\\|winfixheight\\|wfh\\|winfixwidth\\|wfw\\|wrap\\|wrapscan\\|ws\\|write\\|writeany\\|wa\\|writebackup\\|wb\\)\\>': '\\1'},\n      \\ { '\\<\\(set\\s\\+\\(inccommand\\|icm\\)\\s*=\\s*\\)$': '\\1split' },\n      \\ { '\\<\\(set\\s\\+\\(inccommand\\|icm\\)\\s*=\\s*\\)split\\>': '\\1nosplit' },\n      \\ { '\\<\\(set\\s\\+\\(inccommand\\|icm\\)\\s*=\\s*\\)nosplit\\>': '\\1' },\n      \\ { '\\c<Bar>': '\\\\|' },\n      \\ { '\\\\|': '<Bar>' }\n      \\]\n",
     "zxc.20260615224512.2": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260615224512.3": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"vim-plug\" \"plug.vim\") }}\n",
     "User.20260218142211.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -15742,6 +15774,7 @@
     "zxc.20260427224207.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "user.20260731234353.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "user.20260801114801.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "user.20260802232119.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260615224333.1": "<< dos >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260615224404.1": "{{ template \"include\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"vim-plug\" \"plug.vim\") }}\n",
     "User.20260216220339.1": "{{ $lsp := list -}}\n{{ if lookPath \"simple-completion-language-server\" -}}\n{{ $lsp = append $lsp \"scls\" -}}\n{{ end -}}\n{{ if lookPath \"ansible-language-server\" -}}\n{{ $lsp = append $lsp \"ansible-language-server\" -}}\n{{ end -}}\n[[language]]\nauto-format = true\ncomment-token = \"#\"\ngrammar = \"yaml\"\ninjection-regex = \"ansible\"\nlanguage-servers = [{{- $lsp | quoteList | join \", \" -}}]\nname = \"ansible\"\nscope = \"source.yaml\"\nshebangs = [\"ansible-playbook\"]\n\n[[language.file-types]]\nglob = \"playbooks/*.yaml\"\n\n[[language.file-types]]\nglob = \"playbooks/*.yml\"\n\n[[language.file-types]]\nglob = \"group_vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"group_vars/*.yml\"\n\n[[language.file-types]]\nglob = \"host_vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"host_vars/*.yml\"\n\n[[language.file-types]]\nglob = \"vars/*.yaml\"\n\n[[language.file-types]]\nglob = \"vars/*.yml\"\n\n[[language.file-types]]\nglob = \"defaults/*.yaml\"\n\n[[language.file-types]]\nglob = \"defaults/*.yml\"\n\n[[language.file-types]]\nglob = \"tasks/*.yaml\"\n\n[[language.file-types]]\nglob = \"tasks/*.yml\"\n\n[[language.file-types]]\nglob = \"handlers/*.yaml\"\n\n[[language.file-types]]\nglob = \"handlers/*.yml\"\n\n[[language.file-types]]\nglob = \"meta/*.yaml\"\n\n[[language.file-types]]\nglob = \"meta/*.yml\"",
@@ -17782,7 +17815,7 @@
       "_mod_time": 1783164752.902
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1785674911.352
+      "_mod_time": 1785683517.493
     },
     "zxc.20260429145437.1": {
       "_mod_time": 1783164752.936
@@ -17799,6 +17832,9 @@
     "user.20260801115000.1": {
       "_mod_time": 1785568696.078
     },
+    "user.20260802232257.1": {
+      "_mod_time": 1785684463.495
+    },
     "zxc.20260615224512.2": {
       "_mod_time": 1783164752.992
     },
@@ -17809,7 +17845,7 @@
       "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1785674911.368
+      "_mod_time": 1785683517.513
     },
     "zxc.20260429112140.1": {
       "_mod_time": 1777612767.666
@@ -17825,6 +17861,9 @@
     },
     "user.20260801114801.1": {
       "_mod_time": 1785568696.119
+    },
+    "user.20260802232119.1": {
+      "_mod_time": 1785684463.518
     },
     "zxc.20260615224333.1": {
       "_mod_time": 1781534693.623
