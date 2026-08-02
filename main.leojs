@@ -1033,6 +1033,16 @@
                                       ]
                                     },
                                     {
+                                      "gnx": "user.20260802151328.1",
+                                      "vh": "lang",
+                                      "children": [
+                                        {
+                                          "gnx": "user.20260802151332.1",
+                                          "vh": "lisp"
+                                        }
+                                      ]
+                                    },
+                                    {
                                       "gnx": "zxc.20260426134412.1",
                                       "vh": "align",
                                       "children": [
@@ -15625,6 +15635,7 @@
     "zxc.20260318212806.6": "{{ if lookPath \"node\" -}}\nPlug 'neoclide/coc.nvim', {'branch': 'release'}\n{{ end -}}\n",
     "zxc.20260427221704.1": "\" Plug 'yegappan/lsp'\n",
     "zxc.20260318212806.2": "\" Plug 'dense-analysis/ale'\n",
+    "user.20260802151332.1": "{{ if lookPath \"cargo\" -}}\nPlug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}\n{{ end -}}\n",
     "zxc.20260318212806.7": "\" Plug 'godlygeek/tabular', { 'on': 'Tabularize' }\n",
     "zxc.20260318212806.11": "\" Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }\n",
     "zxc.20260318212806.3": "\" Plug 'vim-scripts/align', { 'on': 'Align' }\n",
@@ -17715,7 +17726,7 @@
       "_mod_time": 1783164752.902
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1785600683.586
+      "_mod_time": 1785654874.296
     },
     "zxc.20260429145437.1": {
       "_mod_time": 1783164752.936
@@ -17742,7 +17753,7 @@
       "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1785600683.601
+      "_mod_time": 1785654874.321
     },
     "zxc.20260429112140.1": {
       "_mod_time": 1777612767.666
