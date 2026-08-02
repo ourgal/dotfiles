@@ -1057,6 +1057,10 @@
                                         {
                                           "gnx": "user.20260802170019.1",
                                           "vh": "exchange"
+                                        },
+                                        {
+                                          "gnx": "user.20260802174411.1",
+                                          "vh": "n"
                                         }
                                       ]
                                     },
@@ -15603,7 +15607,7 @@
     "zxc.20260428151520.1": "nnoremap ZQ <cmd>qa!<cr>\nnnoremap ZX <cmd>xa!<cr>\n",
     "zxc.20260428151626.1": "function OpenFileOrURL()\n  let cfile = expand('<cfile>')\n  if match(cfile, '^https\\?://') >= 0\n    call system('xdg-open ' . cfile)\n  else\n    normal! gF\n  endif\nendfunction\n\nnnoremap <silent> gf <cmd>call OpenFileOrURL()<CR>\n",
     "zxc.20260428151704.1": "nnoremap g* :%s/<c-r><c-w>/\n",
-    "user.20260801101639.1": "nnoremap n nzzzv\nnnoremap N Nzzzv\n",
+    "user.20260801101639.1": "\" nnoremap n nzzzv\n\" nnoremap N Nzzzv\n",
     "zxc.20260605221719.1": "set laststatus=2\n\ntry\nset switchbuf=uselast\nset showtabline=2\ncatch\nendtry\n\nset expandtab\nset smarttab\n\nset shiftwidth=4\nset tabstop=4\n\nset cindent\nset wrap\nset clipboard=unnamed\n\nset undodir={{ joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"undo\" }}\nset undofile\n\nset nobackup\nset nowritebackup\n\nset noswapfile\n\" set directory=$HOME/.local/share/vim/swap//\n\nif has('gui_running')\nset guioptions-=T\nset guioptions-=e\nset guioptions-=m\nset t_Co=256\nset guitablabel=%M\\ %t\nendif\n\nset encoding=utf8\nset fileformats=unix,dos,mac\nsyntax enable\n\nset regexpengine=0\n\nset backspace=eol,start,indent\nset whichwrap+=<,>,h,l\n\nset ignorecase\nset smartcase\nset hlsearch\nset incsearch\n\nset lazyredraw\nset magic\nset showmatch\n\nset matchtime=2\n\nset noerrorbells\nset novisualbell\nset t_vb=\nset timeoutlen=500\n\nset foldcolumn=0\n\nlet $LANG = 'en'\nset langmenu=en\n\nset wildmenu\n\nset wildignore=*.o,*~,*.pyc\nif has('win16') || has('win32')\nset wildignore+=.git\\*,.hg\\*,.svn\\*\nelse\nset wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store\nendif\n\nlet &t_SI = \"\\e[6 q\"\nlet &t_EI = \"\\e[2 q\"\n\nset ruler\nset cmdheight=1\nset hidden\nset history=500\nset number relativenumber\n\nfiletype plugin on\nfiletype indent on\n\nset autoread\n\nset updatetime=500\n\nset mouse=a\nset smoothscroll\n\nset showtabline=1\n\naugroup settings\n    autocmd!\n    autocmd FocusGained,BufEnter * checktime\naugroup END\n\n{{ if lookPath \"rg\" -}}\nset grepprg=rg\\ --vimgrep\\ --smart-case\\ --hidden\nset grepformat=%f:%l:%c:%m\n{{ end -}}\n\nset signcolumn=auto\nset sessionoptions-=blank\nset foldmethod=marker\nset cursorline\nset scrolloff=5\n\nset shortmess-=S \" show she search count\n\nset gdefault\n",
     "zxc.20260427223226.1": "\" set noswapfile\n\" au BufLeave,CursorHold,FocusLost * if(getbufinfo('%')[0].changed) | sil do BufWritePre | sil! up | sil do BufWritePost | endif\n",
     "User.20260218145141.1": "\" Autosession\n\" au VimEnter * nested if (len(v:argv) == 1) | silent! source Session.vim | endif\n\" au VimLeave * if (len(v:argv) == 1) | mksession! | endif\n",
@@ -15657,6 +15661,7 @@
     "user.20260802152858.1": "Plug 'godlygeek/tabular'\nPlug 'preservim/vim-markdown'\n",
     "user.20260802154619.1": "Plug 'zef/vim-cycle'\n",
     "user.20260802170019.1": "Plug 'tommcdo/vim-exchange'\n",
+    "user.20260802174411.1": "Plug 'haya14busa/is.vim'\n",
     "zxc.20260318212806.7": "\" Plug 'godlygeek/tabular'\n",
     "zxc.20260318212806.11": "\" Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }\n",
     "zxc.20260318212806.3": "\" Plug 'vim-scripts/align', { 'on': 'Align' }\n",
@@ -17741,13 +17746,13 @@
       "_mod_time": 1777179946.857
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1785605777.19
+      "_mod_time": 1785664138.671
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1783164752.902
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1785661233.17
+      "_mod_time": 1785663872.111
     },
     "zxc.20260429145437.1": {
       "_mod_time": 1783164752.936
@@ -17768,13 +17773,13 @@
       "_mod_time": 1783164752.992
     },
     "User.20260218142211.1": {
-      "_mod_time": 1785605777.206
+      "_mod_time": 1785664138.688
     },
     "User.20260218142322.1": {
       "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1785661233.195
+      "_mod_time": 1785663872.126
     },
     "zxc.20260429112140.1": {
       "_mod_time": 1777612767.666
