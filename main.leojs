@@ -1053,6 +1053,10 @@
                                         {
                                           "gnx": "user.20260802154619.1",
                                           "vh": "CACX"
+                                        },
+                                        {
+                                          "gnx": "user.20260802170019.1",
+                                          "vh": "exchange"
                                         }
                                       ]
                                     },
@@ -15652,6 +15656,7 @@
     "user.20260802151332.1": "{{ if lookPath \"cargo\" -}}\nPlug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}\n{{ end -}}\n",
     "user.20260802152858.1": "Plug 'godlygeek/tabular'\nPlug 'preservim/vim-markdown'\n",
     "user.20260802154619.1": "Plug 'zef/vim-cycle'\n",
+    "user.20260802170019.1": "Plug 'tommcdo/vim-exchange'\n",
     "zxc.20260318212806.7": "\" Plug 'godlygeek/tabular'\n",
     "zxc.20260318212806.11": "\" Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }\n",
     "zxc.20260318212806.3": "\" Plug 'vim-scripts/align', { 'on': 'Align' }\n",
@@ -17742,7 +17747,7 @@
       "_mod_time": 1783164752.902
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1785656807.484
+      "_mod_time": 1785661233.17
     },
     "zxc.20260429145437.1": {
       "_mod_time": 1783164752.936
@@ -17769,7 +17774,7 @@
       "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1785656807.505
+      "_mod_time": 1785661233.195
     },
     "zxc.20260429112140.1": {
       "_mod_time": 1777612767.666
