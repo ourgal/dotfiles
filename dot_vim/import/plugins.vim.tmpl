@@ -20,6 +20,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 {{ end -}}
 " Plug 'yegappan/lsp'
 " Plug 'dense-analysis/ale'
+{{ if lookPath "cargo" -}}
+Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
+{{ end -}}
 " Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
 " Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }
 " Plug 'vim-scripts/align', { 'on': 'Align' }
