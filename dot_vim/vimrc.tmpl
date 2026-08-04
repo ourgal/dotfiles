@@ -147,12 +147,12 @@ function Chezmoi()
 endfunction
 
 command! Chezmoi call Chezmoi()
-set autocomplete
-set complete=o^5,.^5,w^5,b^5,u^5
-set completeopt=popup
-
-inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" set autocomplete
+" set complete=o^5,.^5,w^5,b^5,u^5
+" set completeopt=popup
+"
+" inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 autocmd CmdlineChanged [:\/\?] call wildtrigger()
 set wildmode=noselect:lastused,full
@@ -391,7 +391,7 @@ colorscheme catppuccin_mocha
 " nnoremap <bs> <cmd>Explore<cr>
 " let lspOpts = #{autoHighlightDiags: v:true}
 " autocmd User LspSetup call LspOptionsSet(lspOpts)
-" 
+"
 " let lspServers = [#{
 " 	\	  name: 'yaml-language-server',
 " 	\	  filetype: ['yaml'],
