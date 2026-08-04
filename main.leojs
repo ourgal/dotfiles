@@ -985,6 +985,10 @@
                                           "vh": "pear-tree"
                                         },
                                         {
+                                          "gnx": "user.20260805013123.1",
+                                          "vh": "lexima vim"
+                                        },
+                                        {
                                           "gnx": "user.20260802235923.1",
                                           "vh": "endwise"
                                         }
@@ -15685,7 +15689,7 @@
     "zxc.20260427003349.1": "\" nnoremap <bs> <cmd>Dir<cr>\n",
     "zxc.20260427005833.1": "set termguicolors\ncolorscheme catppuccin_mocha\n",
     "zxc.20260427161453.1": "\" nnoremap <bs> <cmd>Explore<cr>\n",
-    "zxc.20260427221817.1": "\" let lspOpts = #{autoHighlightDiags: v:true}\n\" autocmd User LspSetup call LspOptionsSet(lspOpts)\n\" \n\" let lspServers = [#{\n\" \t\\\t  name: 'yaml-language-server',\n\" \t\\\t  filetype: ['yaml'],\n\" \t\\\t  path: '{{ lookPath \"yaml-language-server\" }}',\n\" \t\\\t  args: ['--stdio']\n\" \t\\ }]\n\" autocmd User LspSetup call LspAddServer(lspServers)\n",
+    "zxc.20260427221817.1": "\" let lspOpts = #{autoHighlightDiags: v:true}\n\" autocmd User LspSetup call LspOptionsSet(lspOpts)\n\"\n\" let lspServers = [#{\n\" \t\\\t  name: 'yaml-language-server',\n\" \t\\\t  filetype: ['yaml'],\n\" \t\\\t  path: '{{ lookPath \"yaml-language-server\" }}',\n\" \t\\\t  args: ['--stdio']\n\" \t\\ }]\n\" autocmd User LspSetup call LspAddServer(lspServers)\n",
     "zxc.20260428005509.1": "let g:pear_tree_smart_openers = 1\nlet g:pear_tree_smart_closers = 1\nlet g:pear_tree_smart_backspace = 1\n",
     "user.20260629011025.1": "\" nnoremap <bs> <cmd>VimExplorer<cr>\n",
     "user.20260722151706.1": "nnoremap <leader>cc <cmd>Make<CR>\nnnoremap <leader>cC <cmd>Dispatch<CR>\n",
@@ -15700,7 +15704,8 @@
     "zxc.20260318212806.7": "\" Plug 'godlygeek/tabular'\n",
     "zxc.20260318212806.11": "\" Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }\n",
     "zxc.20260318212806.3": "\" Plug 'vim-scripts/align', { 'on': 'Align' }\n",
-    "zxc.20260428005420.1": "Plug 'tmsvg/pear-tree'\n",
+    "zxc.20260428005420.1": "\" Plug 'tmsvg/pear-tree'\n",
+    "user.20260805013123.1": "Plug 'cohama/lexima.vim'\n",
     "user.20260802235923.1": "Plug 'tpope/vim-endwise'\n",
     "user.20260707200235.1": "<< android >>\nPlug 'vim-utilities/termux-clipboard'\n{{ end -}}\n",
     "User.20260225204449.1": "{{ if eq .chezmoi.os \"android\" -}}\n",
@@ -17810,13 +17815,13 @@
       "_mod_time": 1777179946.857
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1785863052.015
+      "_mod_time": 1785864037.145
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1783164752.902
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1785856947.29
+      "_mod_time": 1785864718.21
     },
     "zxc.20260429145437.1": {
       "_mod_time": 1783164752.936
@@ -17840,13 +17845,13 @@
       "_mod_time": 1783164752.992
     },
     "User.20260218142211.1": {
-      "_mod_time": 1785863052.048
+      "_mod_time": 1785864711.253
     },
     "User.20260218142322.1": {
       "_mod_time": 1777398596.523
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1785856947.311
+      "_mod_time": 1785864718.231
     },
     "zxc.20260429112140.1": {
       "_mod_time": 1777612767.666
@@ -18719,7 +18724,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1785863052.065
+      "_mod_time": 1785864718.256
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777106655.378
