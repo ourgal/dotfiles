@@ -1,9 +1,5 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "aichat" -}}
-# see https://github.com/sigoden/aichat/blob/main/config.example.yaml
-model: gemini:gemini-2.5-flash
-clients:
-  - type: gemini
-    api_key: {{ gopass "AI/gemini" }}
+{{ includeTemplate "cli/AI/aichat/gemini" }}
 {{ end -}}
 {{ end -}}

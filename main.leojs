@@ -15493,10 +15493,10 @@
                       "vh": "@clean config.yaml.tmpl",
                       "children": [
                         {
-                          "gnx": "zxc.20260515011023.1"
+                          "gnx": "User.20260225204326.1"
                         },
                         {
-                          "gnx": "User.20260225204326.1"
+                          "gnx": "zxc.20260515011023.1"
                         }
                       ]
                     }
@@ -15581,8 +15581,7 @@
     "zxc.20260421204018.1": "{{ if lookPath \"keepassxc\" -}}\nRun({{ joinPath .chezmoi.homeDir \"Documents\" \"autohotkey\" \"keepassxc.ahk\" | quote }}, , \"Hide\")\n{{ end -}}",
     "zxc.20260125142149.1": "@tabwidth 4\nall:\n\t@others\n",
     "zxc.20260125142255.1": "yes | git magic -ap\n",
-    "zxc.20260515011023.1": "# see https://github.com/sigoden/aichat/blob/main/config.example.yaml\n",
-    "zxc.20260603150605.1": "model: gemini:gemini-2.5-flash\nclients:\n  - type: gemini\n    api_key: {{ gopass \"AI/gemini\" }}\n",
+    "zxc.20260515011023.1": "{{ includeTemplate \"cli/AI/aichat/gemini\" }}\n",
     "zxc.20260621235046.1": "[[repos]]\nenabled = true\nid = \"f-droid\"\nurl = \"https://f-droid.org/repo\"\n",
     "zxc.20260621235106.1": "[[repos]]\nenabled = false\nid = \"f-droid-archive\"\nurl = \"https://f-droid.org/archive\"\n",
     "zxc.20260621235123.1": "[[repos]]\nenabled = false\nid = \"cernet\"\nurl = \"https://mirrors.cernet.edu.cn/fdroid/repo\"\n",
@@ -17826,7 +17825,7 @@
     "zxc.20260417220802.1": "[ui]\ndefault-command = \"log-recent\"",
     "zxc.20260417220651.1": "[user]\nname = \"{{ .my.git.user.name }}\"\nemail = \"{{ .my.git.user.email }}\"\n",
     "zxc.20260417220716.1": "[aliases]\nlog-recent = [ \"log\", \"-r\", \"default() & recent()\" ]\ntug = [\n    \"bookmark\",\n    \"move\",\n    \"--from\",\n    \"heads(::@ & bookmarks())\",\n    \"--to\",\n    \"closest_pushable(@)\",\n]",
-    "zxc.20260515010901.1": "<< dos >>\n{{ if lookPath \"aichat\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260515010901.1": "<< dos >>\n{{ if lookPath \"aichat\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260518233322.1": "<< dos >>\n{{ if lookPath \"ludusavi\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260611090830.1": "<< dos >>\n{{ if lookPath \"pet\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260611091007.1": "<< dos >>\n{{ if lookPath \"pet\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -18158,7 +18157,7 @@
       "_mod_time": 1783164753.69
     },
     "user.20260718133004.1": {
-      "_mod_time": 1784352672.791
+      "_mod_time": 1785858618.328
     },
     "zxc.20260125152704.1": {
       "_mod_time": 1777179946.876
@@ -18755,7 +18754,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1785856242.342
+      "_mod_time": 1785858618.489
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777106655.378
@@ -18836,7 +18835,7 @@
       "_mod_time": 1777179941.91
     },
     "zxc.20260515010901.1": {
-      "_mod_time": 1778778728.929
+      "_mod_time": 1785858092.542
     },
     "zxc.20260518233322.1": {
       "_mod_time": 1783337931.744
