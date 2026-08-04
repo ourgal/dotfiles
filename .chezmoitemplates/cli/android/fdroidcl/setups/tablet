@@ -1,0 +1,32 @@
+[[setups]]
+apps = [
+{{ includeTemplate "cli/android/fdroidcl/setups/wifi/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/music/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/battery/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/video/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/download/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/sync/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/manga/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/proxy/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/anime/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/ebook/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/integration/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/IME/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/termux/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/weather/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/git/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/editor/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/keyboard/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/qr/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/store/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/installer/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/note/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/rss/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/scanner/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/share/default" -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/system/default" -}}
+]
+id = "main_phone"
+repos = ["f-droid"]
+
+
