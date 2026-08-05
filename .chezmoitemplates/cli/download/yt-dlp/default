@@ -1,0 +1,57 @@
+# Video quality
+-f bestvideo[height<=1080]+bestaudio/best[height<=1080]
+
+# Prefer free formats
+--prefer-free-formats
+
+# Merge to mkv
+--merge-output-format mkv
+# Download archive (avoid re-downloading)
+--download-archive ~/.local/share/yt-dlp-archive.txt
+
+# Organized output
+-o "%(uploader)s/%(playlist|)s/%(upload_date>%Y-%m-%d)s - %(title)s [%(id)s].%(ext)s"
+-P "~/Videos/YouTube"
+
+# Write metadata files
+--write-info-json
+--write-description
+--write-thumbnail
+# Concurrent downloads
+--concurrent-fragments 5
+
+# Retry configuration
+--retries 10
+--fragment-retries 10
+
+# Rate limiting (be nice to servers)
+--limit-rate 5M
+
+# Sleep between downloads
+--sleep-interval 3
+--max-sleep-interval 10
+# Download subtitles
+--write-subs
+--write-auto-subs
+
+# Languages (regex supported)
+--sub-langs "zh,en.*,ja"
+
+# Embed in video
+--embed-subs
+
+# Convert format
+--convert-subs srt
+# Embed metadata
+--embed-metadata
+--embed-thumbnail
+--embed-chapters
+
+# SponsorBlock integration
+--sponsorblock-mark all
+--sponsorblock-remove sponsor,intro,outro
+
+# Execute after download
+{{ if lookPath "noti" -}}
+# --exec "noti -t 'Download complete' -m '%(title)s'"
+{{ end -}}
