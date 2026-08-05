@@ -7156,10 +7156,10 @@
                       "vh": "@clean config.toml.tmpl",
                       "children": [
                         {
-                          "gnx": "zxc.20260621234846.1"
+                          "gnx": "User.20260225203941.1"
                         },
                         {
-                          "gnx": "User.20260225203941.1"
+                          "gnx": "zxc.20260621234846.1"
                         }
                       ]
                     }
@@ -9277,10 +9277,10 @@
                       "vh": "@clean audio.conf.tmpl",
                       "children": [
                         {
-                          "gnx": "user.20260628110205.1"
+                          "gnx": "User.20260225204326.1"
                         },
                         {
-                          "gnx": "User.20260225204326.1"
+                          "gnx": "user.20260628110205.1"
                         }
                       ]
                     }
@@ -15090,10 +15090,10 @@
                       "vh": "@clean settings.json.tmpl",
                       "children": [
                         {
-                          "gnx": "zxc.20260529091245.1"
+                          "gnx": "User.20260225204326.1"
                         },
                         {
-                          "gnx": "User.20260225204326.1"
+                          "gnx": "zxc.20260529091245.1"
                         }
                       ]
                     }
@@ -15326,10 +15326,10 @@
                       "vh": "@clean mpd.conf.tmpl",
                       "children": [
                         {
-                          "gnx": "User.20260228232118.1"
+                          "gnx": "User.20260225204326.1"
                         },
                         {
-                          "gnx": "User.20260225204326.1"
+                          "gnx": "User.20260228232118.1"
                         }
                       ]
                     }
@@ -15589,71 +15589,24 @@
     "zxc.20260421204018.1": "{{ if lookPath \"keepassxc\" -}}\nRun({{ joinPath .chezmoi.homeDir \"Documents\" \"autohotkey\" \"keepassxc.ahk\" | quote }}, , \"Hide\")\n{{ end -}}",
     "zxc.20260125142149.1": "@tabwidth 4\nall:\n\t@others\n",
     "zxc.20260125142255.1": "yes | git magic -ap\n",
-    "zxc.20260515011023.1": "{{ includeTemplate \"cli/AI/aichat/gemini\" }}\n",
-    "zxc.20260621235046.1": "{{ includeTemplate \"cli/android/fdroidcl/default\" }}\n",
+    "zxc.20260515011023.1": "{{ includeTemplate \"cli/AI/aichat/gemini\" . -}}\n",
+    "zxc.20260621235046.1": "{{ includeTemplate \"cli/android/fdroidcl/default\" . -}}\n",
     "zxc.20260621235232.1": "  @others\n",
     "zxc.20260621235249.1": "  @others\n",
     "zxc.20260621235304.1": "  @others\n",
-    "User.20260228232118.1": "music_directory {{ joinPath .chezmoi.homeDir \"Music\" | quote }}\nplaylist_directory {{ joinPath (env \"APPDATA\") \"mpd\" \"playlist\" | quote }}\ndb_file {{ joinPath (env \"APPDATA\") \"mpd\" \"tag_cache\" | quote }}\nstate_file {{ joinPath (env \"APPDATA\") \"mpd\" \"state\" | quote }}\nsticker_file {{ joinPath (env \"APPDATA\") \"mpd\" \"sticker.sql\" | quote }}\n\nauto_update \"yes\"\n\naudio_output {\n    type \"winmm\"\n    name \"Windows Speakers\"\n}",
-    "zxc.20260125152851.3": "[display]\ncompact = true\nuse_paper = true\n\n[updates]\nauto_update = true\nauto_update_interval_hours = 720\n",
+    "User.20260228232118.1": "{{ includeTemplate \"cli/audio/mpd/default\" . -}}\n",
+    "zxc.20260125152851.3": "{{ includeTemplate \"cli/audio/tealdeer/default\" . -}}\n",
     "user.20260714235518.1": "<< unix >>\n{{ if lookPath \"info\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "user.20260714235749.1": "# info\n\\r select-reference-this-line",
     "User.20260225203941.1": "{{ if eq .chezmoi.os \"linux\" \"android\" -}}\n",
-    "User.20260216232855.1": "<< dos >>\n{{ if lookPath \"aria2c\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260216232855.1": "<< dos >>\n{{ if lookPath \"aria2c\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260225204326.1": "{{ if eq .chezmoi.os \"windows\" -}}\n",
-    "User.20260216232938.1": "allow-overwrite=false\nallow-piece-length-change=true\nalways-resume=false\nauto-file-renaming=true\nauto-save-interval=20\nbt-detach-seed-only=true\nbt-enable-lpd=true\nbt-force-encryption=true\nbt-hash-check-seed=true\nbt-load-saved-metadata=true\nbt-max-peers=128\nbt-prioritize-piece=head=32M,tail=32M\nbt-remove-unselected-file=true\nbt-request-peer-speed-limit=10M\nbt-save-metadata=true\nbt-seed-unverified=false\nbt-tracker-connect-timeout=10\nbt-tracker-timeout=10\nconnect-timeout=10\nconsole-log-level=warn\ncontent-disposition-default-utf8=true\ncontinue=true\ndht-entry-point=dht.transmissionbt.com:6881\ndht-entry-point6=dht.transmissionbt.com:6881\ndht-file-path={{ env \"userprofile\" }}\\.aria2\\dht.dat\ndht-file-path6={{ env \"userprofile\" }}\\.aria2\\dht6.dat\ndisable-ipv6=true\ndisk-cache=64M\nenable-dht=true\nenable-dht6=false\nenable-http-pipelining=true\nenable-peer-exchange=true\nenable-rpc=false\nfile-allocation=none\nfollow-torrent=true\nforce-save=false\nhttp-accept-gzip=true\nlowest-speed-limit=0\nmax-concurrent-downloads=5\nmax-connection-per-server=16\nmax-download-limit=0\nmax-file-not-found=10\nmax-overall-download-limit=0\nmax-overall-upload-limit=2M\nmax-resume-failure-tries=0\nmax-tries=0\nmax-upload-limit=0\nmin-split-size=4M\nno-file-allocation-limit=64M\nno-netrc=true\npause-metadata=false\npeer-agent=Deluge 1.3.15\npeer-id-prefix=-DE13F0-\npiece-length=1M\nquiet=false\nremote-time=true\nretry-wait=10\nreuse-uri=false\nrpc-allow-origin-all=true\nrpc-listen-all=true\nrpc-listen-port=6800\nrpc-max-request-size=10M\nrpc-save-upload-metadata=true\nsave-session-interval=1\nseed-ratio=1.000000\nseed-time=0\nsplit=64\nsummary-interval=0\ntimeout=10\nuser-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36 Edg/93.0.961.47\n",
+    "User.20260216232938.1": "{{ includeTemplate \"cli/download/aria2/default\" . -}}\n",
     "User.20260217182613.1": "<< dos >>\n{{ if lookPath \"eget\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260217182650.1": "[global]\ntarget = \"~/.local/bin\"\ngithub_token = {{ gopass \"github/ourgal/token\" | quote }}\n",
-    "zxc.20260529091245.1": "{\n    @others\n}\n{{- /* remove new line */ -}}",
-    "zxc.20260529091329.1": "\"alt-speed-down\": 50,\n\"alt-speed-enabled\": false,\n\"alt-speed-time-begin\": 540,\n\"alt-speed-time-day\": 127,\n\"alt-speed-time-enabled\": false,\n\"alt-speed-time-end\": 1020,\n\"alt-speed-up\": 50,",
-    "zxc.20260529091405.1": "\"announce-ip\": \"\",\n\"announce-ip-enabled\": false,",
-    "zxc.20260529091452.1": "\"anti-brute-force-enabled\": false,\n\"anti-brute-force-threshold\": 100,",
-    "zxc.20260529091515.1": "\"bind-address-ipv4\": \"\",\n\"bind-address-ipv6\": \"\",",
-    "zxc.20260529091539.1": "\"blocklist-enabled\": false,\n\"blocklist-url\": \"http://www.example.com/blocklist\",",
-    "zxc.20260529091608.1": "\"cache-size-mb\": 4,",
-    "zxc.20260529091629.1": "\"default-trackers\": \"\",\n",
-    "zxc.20260529091646.1": "\"dht-enabled\": true,",
-    "zxc.20260529091708.1": "\"download-dir\": {{ joinPath .chezmoi.homeDir \"Downloads\" | quote }},\n",
-    "zxc.20260529091722.1": "\"download-queue-enabled\": true,\n\"download-queue-size\": 5,\n",
-    "zxc.20260529091739.1": "\"encryption\": 1,\n",
-    "zxc.20260529091800.1": "\"idle-seeding-limit\": 30,\n\"idle-seeding-limit-enabled\": false,\n",
-    "zxc.20260529091824.1": "\"incomplete-dir\": {{ joinPath .chezmoi.homeDir \"Downloads\" | quote }},\n\"incomplete-dir-enabled\": false,",
-    "zxc.20260529112534.1": "\"lpd-enabled\": true,",
-    "zxc.20260529112604.1": "\"message-level\": 4,\n",
-    "zxc.20260529112634.1": "\"peer-congestion-algorithm\": \"\",\n\"peer-limit-global\": 200,\n\"peer-limit-per-torrent\": 50,\n\"peer-port\": 51413,\n\"peer-port-random-high\": 65535,\n\"peer-port-random-low\": 49152,\n\"peer-port-random-on-start\": false,\n\"peer-socket-tos\": \"le\",\n",
-    "zxc.20260529112704.1": "\"pex-enabled\": true,\n",
-    "zxc.20260529112725.1": "\"pidfile\": \"\",\n",
-    "zxc.20260529112743.1": "\"port-forwarding-enabled\": true,",
-    "zxc.20260529112804.1": "\"preallocation\": 1,",
-    "zxc.20260529112842.1": "\"preferred_transports\": [\n    \"utp\",\n    \"tcp\"\n],",
-    "zxc.20260529112919.1": "\"proxy_url\": null,",
-    "zxc.20260529113000.1": "\"queue-stalled-enabled\": true,\n\"queue-stalled-minutes\": 30,\n",
-    "zxc.20260529113033.1": "\"ratio-limit\": 2.0,\n\"ratio-limit-enabled\": true,\n",
-    "zxc.20260529113056.1": "\"rename-partial-files\": true,\n",
-    "zxc.20260529113208.1": "\"reqq\": 2000,\n",
-    "zxc.20260529113357.1": "\"rpc-authentication-required\": false,\n\"rpc-bind-address\": \"0.0.0.0\",\n\"rpc-enabled\": true,\n\"rpc-host-whitelist\": \"\",\n\"rpc-host-whitelist-enabled\": true,\n\"rpc-password\": \"{8bfa8c62da3c6ec1265b76ddc2edc4f7ad6e8610C1RKvxcL\",\n\"rpc-port\": 9091,\n\"rpc-socket-mode\": \"0750\",\n\"rpc-url\": \"/transmission/\",\n\"rpc-username\": \"\",\n\"rpc-whitelist\": \"*,127.0.0.1,::1\",\n\"rpc-whitelist-enabled\": true,\n",
-    "zxc.20260529113429.1": "\"scrape-paused-torrents-enabled\": true,",
-    "zxc.20260529113523.1": "\"script-torrent-added-enabled\": false,\n\"script-torrent-added-filename\": \"\",\n\"script-torrent-done-enabled\": false,\n\"script-torrent-done-filename\": \"\",\n\"script-torrent-done-seeding-enabled\": false,\n\"script-torrent-done-seeding-filename\": \"\",\n",
-    "zxc.20260529113620.1": "\"seed-queue-enabled\": false,\n\"seed-queue-size\": 10,\n",
-    "zxc.20260529113647.1": "\"sequential_download\": false,",
-    "zxc.20260529113723.1": "\"sleep-per-seconds-during-verify\": 100,",
-    "zxc.20260529113749.1": "\"speed-limit-down\": 100,\n\"speed-limit-down-enabled\": false,\n\"speed-limit-up\": 100,\n\"speed-limit-up-enabled\": false,\n",
-    "zxc.20260529113903.1": "\"start-added-torrents\": true,",
-    "zxc.20260529113924.1": "\"start_paused\": false,",
-    "zxc.20260529114003.1": "\"tcp-enabled\": true,",
-    "zxc.20260529114031.1": "\"torrent-added-verify-mode\": \"fast\",",
-    "zxc.20260529114123.1": "\"torrent_complete_verify_enabled\": false,",
-    "zxc.20260529114213.1": "\"trash-original-torrent-files\": false,",
-    "zxc.20260529114249.1": "\"umask\": \"022\",",
-    "zxc.20260529114310.1": "\"upload-slots-per-torrent\": 8,",
-    "zxc.20260529114344.1": "\"utp-enabled\": true,",
-    "zxc.20260529114434.1": "\"watch-dir\": \"\",\n\"watch-dir-enabled\": false,\n\"watch-dir-force-generic\": false",
-    "user.20260628104448.1": "# Video quality\n-f bestvideo[height<=1080]+bestaudio/best[height<=1080]\n\n# Prefer free formats\n--prefer-free-formats\n\n# Merge to mkv\n--merge-output-format mkv\n",
-    "user.20260628104616.1": "# Download archive (avoid re-downloading)\n--download-archive ~/.local/share/yt-dlp-archive.txt\n\n# Organized output\n-o \"%(uploader)s/%(playlist|)s/%(upload_date>%Y-%m-%d)s - %(title)s [%(id)s].%(ext)s\"\n-P \"~/Videos/YouTube\"\n\n# Write metadata files\n--write-info-json\n--write-description\n--write-thumbnail\n",
-    "user.20260628104700.1": "# Concurrent downloads\n--concurrent-fragments 5\n\n# Retry configuration\n--retries 10\n--fragment-retries 10\n\n# Rate limiting (be nice to servers)\n--limit-rate 5M\n\n# Sleep between downloads\n--sleep-interval 3\n--max-sleep-interval 10\n",
-    "user.20260628104722.1": "# Download subtitles\n--write-subs\n--write-auto-subs\n\n# Languages (regex supported)\n--sub-langs \"zh,en.*,ja\"\n\n# Embed in video\n--embed-subs\n\n# Convert format\n--convert-subs srt\n",
-    "user.20260628104845.1": "# Embed metadata\n--embed-metadata\n--embed-thumbnail\n--embed-chapters\n\n# SponsorBlock integration\n--sponsorblock-mark all\n--sponsorblock-remove sponsor,intro,outro\n\n# Execute after download\n{{ if lookPath \"noti\" -}}\n# --exec \"noti -t 'Download complete' -m '%(title)s'\"\n",
-    "user.20260628110205.1": "# In ~/.config/yt-dlp/audio.conf\n-x\n--audio-format opus\n--audio-quality 0\n-o \"~/Music/%(artist|uploader)s - %(title)s.%(ext)s\"\n--embed-thumbnail\n--embed-metadata\n\n# Use with:\n# yt-dlp --config-locations ~/.config/yt-dlp/audio.conf URL\n",
+    "zxc.20260529091245.1": "{{ includeTemplate \"cli/download/transmission/default\" . -}}\n    @others\n",
+    "user.20260628104448.1": "{{ includeTemplate \"cli/download/yt-dlp/default\" . -}}\n",
+    "user.20260628110205.1": "{{ includeTemplate \"cli/download/yt-dlp/audio\" . -}}\n",
     "zxc.20260125163416.1": "<< unix >>\n{{ if lookPath \"vim\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260605220435.1": "packadd! hlyank\n",
     "zxc.20260605213845.1": "\" packadd! comment\n",
@@ -15682,7 +15635,7 @@
     "User.20260218141914.23": "\" let g:suda_smart_edit = 1\n",
     "User.20260218143021.1": "let g:lightline = {\n      \\ 'colorscheme': 'catppuccin_mocha',\n      \\ 'active': {\n      \\   'left': [ [ 'mode', 'paste' ],\n      \\             [ 'readonly', 'filename', 'modified' ] ],\n      \\   'right': [ [ 'lineinfo' ],\n      \\              [ 'percent' ],\n      \\              [ 'zoomed', 'fileformat', 'fileencoding', 'filetype' ] ]\n      \\ },\n      \\ 'inactive': {\n      \\   'left': [ [ 'mode', 'paste' ],\n      \\             [ 'readonly', 'filename', 'modified' ] ],\n      \\   'right': [ [ 'lineinfo' ],\n      \\              [ 'percent' ],\n      \\              [ 'fileformat', 'fileencoding', 'filetype' ] ]\n      \\ },\n      \\ 'component_function': {\n      \\   'filename': 'LightlineTruncatedFileName',\n      \\   'zoomed': 'zoom#statusline'\n      \\ }\n      \\ }\n\nfunction! LightlineTruncatedFileName()\nlet l:filePath = expand('%')\n    if winwidth(0) > 100\n        return l:filePath\n    else\n        return pathshorten(l:filePath)\n    endif\nendfunction\n",
     "User.20260227211108.1": "\" let g:python3_host_prog = {{ lookPath \"python\" | squote }}\n",
-    "zxc.20260319224134.1": "let g:workspace_autocreate = 1\nlet g:workspace_session_disable_on_args = 1\nlet g:workspace_session_directory = {{ print (joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"sessions\" ) \"\\\\\" | squote }}\nlet g:workspace_autosave = 1\nlet g:workspace_autosave_always = 1\nlet g:workspace_autosave_ignore = ['gitcommit', 'suprawater', 'qf']\nlet g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"undo\" ) \"\\\\\" | squote }}\n",
+    "zxc.20260319224134.1": "let g:workspace_autocreate = 1\nlet g:workspace_session_disable_on_args = 1\nlet g:workspace_session_directory = '~/.local/share/vim/sessions'\nlet g:workspace_autosave = 1\nlet g:workspace_autosave_always = 1\nlet g:workspace_autosave_ignore = ['gitcommit', 'suprawater', 'qf']\nlet g:workspace_undodir = '~/.local/share/vim/undo'\n",
     "zxc.20260606101656.1": "nnoremap <silent> <leader> <cmd>WhichKey '<Space>'<CR>\n",
     "zxc.20260426141355.1": "@others\n",
     "zxc.20260606101722.1": "let g:which_key_map = {}\n",
@@ -16685,7 +16638,7 @@
     "zxc.20260503215955.1": "{{ if lookPath \"kmonad\" -}}\n<< shebang >>\n@others\n{{ end -}}\n",
     "zxc.20260503220138.1": "exec kmonad $HOME/.config/kmonad/miryoku.kbd\n",
     "zxc.20260125145051.1": "<< unix dos >>\n{{ if lookPath \"starship\" -}}\n@others\n{{ end -}}\n{{ end -}}",
-    "zxc.20260125152851.2": "<< unix >>\n{{ if lookPath \"tldr\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "zxc.20260125152851.2": "<< unix >>\n{{ if lookPath \"tldr\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "user.20260718134508.1": "<< unix >>\n{{ if lookPath \"trackma-curses\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "user.20260718134531.1": "{\n  \"auto_date_change\": true,\n  \"auto_status_change\": true,\n  \"auto_status_change_if_scored\": true,\n  \"autoretrieve\": \"days\",\n  \"autoretrieve_days\": 3,\n  \"autosend\": \"minutes\",\n  \"autosend_at_exit\": true,\n  \"autosend_minutes\": 60,\n  \"autosend_size\": 5,\n  \"debug_disable_lock\": true,\n  \"jellyfin_api_key\": \"\",\n  \"jellyfin_host\": \"localhost\",\n  \"jellyfin_port\": \"8096\",\n  \"jellyfin_user\": \"\",\n  \"kodi_host\": \"localhost\",\n  \"kodi_obey_update_wait_s\": false,\n  \"kodi_passwd\": \"\",\n  \"kodi_port\": \"8080\",\n  \"kodi_user\": \"\",\n  \"library_autoscan\": true,\n  \"library_full_path\": false,\n  \"player\": \"mpv\",\n  \"plex_host\": \"localhost\",\n  \"plex_obey_update_wait_s\": false,\n  \"plex_passwd\": \"\",\n  \"plex_port\": \"32400\",\n  \"plex_ssl\": false,\n  \"plex_user\": \"\",\n  \"plex_uuid\": \"4fd8d779-1f67-11ef-9af3-08bfb888ec3a\",\n  \"redirections_time\": 1,\n  \"redirections_url\": \"https://raw.githubusercontent.com/erengy/anime-relations/master/anime-relations.txt\",\n  \"scan_whole_list\": false,\n  \"searchdir\": [\n    \"~/Videos\"\n  ],\n  \"tracker_enabled\": true,\n  \"tracker_ignore_not_next\": true,\n  \"tracker_interval\": 10,\n  \"tracker_not_found_prompt\": false,\n  \"tracker_process\": \"mplayer|mplayer2|mpv\",\n  \"tracker_type\": \"auto\",\n  \"tracker_update_close\": false,\n  \"tracker_update_prompt\": false,\n  \"tracker_update_wait_s\": 1200,\n  \"use_hooks\": true\n}\n",
     "user.20260704002025.1": "@language json\n<< unix >>\n{{ if lookPath \"transmission-daemon\" -}}\n@others\n{{ end -}}\n{{ end -}}\n\n",
@@ -16803,7 +16756,7 @@
     "zxc.20260609212435.1": "user_pref(\"browser.search.region\", \"US\");\nuser_pref(\"sidebar.visibility\", \"hide-sidebar\");\n\n{{ if eq .my.modules.firefox.theme \"shyfox\" -}}\n{{ template \"include\" (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" \"shyfox\" \"user.js\") }}\n{{ else if eq .my.modules.firefox.theme \"flexfox\" -}}\n{{ template \"include\" (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"firefox\" \"flexfox\" \"user.js\") }}\n{{ end -}}\n",
     "zxc.20260625230303.1": "<< dos >>\n{{ if lookPath \"syncthing\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260625230340.1": "browsercache\ncache\n",
-    "user.20260628104306.1": "<< dos >>\n{{ if lookPath \"yt-dlp\" -}}\n@others\n{{ end -}}\n{{ end -}}\n{{ end -}}\n",
+    "user.20260628104306.1": "<< dos >>\n{{ if lookPath \"yt-dlp\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "user.20260628110148.1": "<< dos >>\n{{ if lookPath \"yt-dlp\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260518220745.1": "{\n    \"version\": \"1.1.15.1\",\n    \"description\": \"A spaceship from Potato World crashes onto an alien planet. The sole survivor: Brotato, the only potato capable of handling 6 weapons at the same time. Waiting to be rescued by his mates, Brotato must survive in this hostile environment.\",\n    \"homepage\": \"https://freegogpcgames.com/32560/brotato/\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.dufs.bucket.host }}/bucket/games/brotato.7z\",\n            \"hash\": \"1b23c8a3db488d7c6cf68750f0b7a8c6260daea2c6e6bfc5b208ae2641cc7eb7\"\n        }\n    },\n    \"post_install\": [\n        \"$name = \\\"brotato\\\"\",\n        \"$path = \\\"${env:APPDATA}\\\\brotato\\\\GOG-saves\\\"\",\n        \"$saves = if ($env:game_saves) { $env:game_saves } else { \\\"$env:USERPROFILE\\\\Documents\\\\game_saves\\\" }\",\n        \"mkdir -p $saves\\\\$name >$null 2>$null\",\n        \"New-Item -ItemType Junction -Path $path -Target $saves\\\\$name >$null\"\n    ],\n    \"shortcuts\": [\n        [\n            \"Brotato.exe\",\n            \"Brotato\"\n        ]\n    ]\n}",
     "zxc.20260521181617.1": "{\n    \"version\": \"1.1.1a\",\n    \"description\": \"Click, craft and collect your way to alchemical mastery. Progress through a branching skill tree and explore the forbidden woods. Collect resources and build machines of magic. Slay monsters, farm crops and automate your production to become the all-powerful Forage Wizard!\",\n    \"homepage\": \"https://byrutgame.org/54765-forage-wizard.html\",\n    \"architecture\": {\n        \"64bit\": {\n            \"url\": \"{{ .my.dufs.bucket.host }}/bocket/games/forage_wizard.7z\",\n            \"hash\": \"becc8887850006439631ec02c728f31d6da3911586717cd90a2e42cfb3000884\"\n        }\n    },\n    \"post_install\": [\n        \"$name = \\\"forage_wizard\\\"\",\n        \"$path = \\\"${env:USERPROFILE}\\\\AppData\\\\LocalLow\\\\Lost Maxim\\\\Forage Wizard\\\"\",\n        \"$saves = if ($env:game_saves) { $env:game_saves } else { \\\"$env:USERPROFILE\\\\Documents\\\\game_saves\\\" }\",\n        \"mkdir -p $saves\\\\$name >$null 2>$null\",\n        \"New-Item -ItemType Junction -Path $path -Target $saves\\\\$name >$null\"\n    ],\n    \"shortcuts\": [\n        [\n            \"Forage Wizard.exe\",\n            \"Forage Wizard\"\n        ]\n    ]\n}",
@@ -17774,7 +17727,7 @@
     "zxc.20260407232538.1": "<< dos >>\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260408005117.1": "<< dos >>\n{{ if lookPath \"clink\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260408005117.2": "ll=eza --long --icons=auto --group --group-directories-first --time-style relative $*\nls=eza --icons=auto $*\nreboot=shutdown /t 0 /r $*\npoweroff=shutdown /t 0 /s $*\n{{ if lookPath \"nircmd\" -}}\nscroff=nircmd monitor off $*\n{{ end -}}\nscoop-update=scoop update * && scoop cache remove * && scoop cleanup *\nunlock-keepassxc=sh -c \"gopass show -o keepassxc/main | keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir \"syncthing\" \"keepassxc\" \"main.kdbx\" | replace \"\\\\\" \"/\" }} &\"",
-    "zxc.20260529091145.1": "<< dos >>\n{{ if lookPath \"transmission-daemon\" -}}\n@others\n{{ end -}}\n{{ end -}}\n@language json",
+    "zxc.20260529091145.1": "<< dos >>\n{{ if lookPath \"transmission-daemon\" -}}\n@others\n{{ end -}}\n{{ end -}}\n@language json\n",
     "user.20260724150150.1": "<< dos >>\n{{ if lookPath \"gotify-cli\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260201140523.1": "<< dos >>\n{{ if lookPath \"gitui\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260130233132.1": "<< dos >>\n{{ if lookPath \"alacritty\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -17786,7 +17739,7 @@
     "User.20260216124226.1": "<< dos >>\n{{ if stat \"C:/Program Files/Rime\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260216125422.1": "<< dos >>\n{{ if stat \"C:/Program Files/Rime\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260219235648.1": "<< dos >>\n{{ if lookPath \"zed\" -}}\n// Zed settings\n//\n// For information on how to configure Zed, see the Zed\n// documentation: https://zed.dev/docs/configuring-zed\n//\n// To see all of Zed's default settings without changing your\n// custom settings, run `zed: open default settings` from the\n// command palette (cmd-shift-p / ctrl-shift-p)\n{\n  @others\n}\n{{ end -}}\n{{ end -}}",
-    "User.20260228231944.1": "<< dos >>\n{{ if lookPath \"mpd\" -}}\n@others\n{{ end -}}\n{{ end -}}",
+    "User.20260228231944.1": "<< dos >>\n{{ if lookPath \"mpd\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260302211536.1": "<< dos >>\n{{ if lookPath \"mc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260302211740.1": "<< dos >>\n{{ if lookPath \"mc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260302211946.1": "<< dos >>\n{{ if lookPath \"mc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -17815,13 +17768,13 @@
       "_mod_time": 1784044689.205
     },
     "User.20260216232855.1": {
-      "_mod_time": 1782585609.009
+      "_mod_time": 1785926872.089
     },
     "User.20260217182613.1": {
       "_mod_time": 1777179946.857
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1785886505.758
+      "_mod_time": 1785927751.957
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1783164752.902
@@ -17851,7 +17804,7 @@
       "_mod_time": 1783164752.992
     },
     "User.20260218142211.1": {
-      "_mod_time": 1785886505.79
+      "_mod_time": 1785927751.984
     },
     "User.20260218142322.1": {
       "_mod_time": 1777398596.523
@@ -18133,7 +18086,7 @@
       "_mod_time": 1783164753.69
     },
     "user.20260718133004.1": {
-      "_mod_time": 1785858618.328
+      "_mod_time": 1785927752.007
     },
     "zxc.20260125152704.1": {
       "_mod_time": 1777179946.876
@@ -18172,7 +18125,7 @@
       "_mod_time": 1783643014.466
     },
     "user.20260702165628.1": {
-      "_mod_time": 1785862873.257
+      "_mod_time": 1785926872.089
     },
     "zxc.20260421145655.1": {
       "_mod_time": 1784506446.231
@@ -18331,13 +18284,13 @@
       "_mod_time": 1783297135.129
     },
     "zxc.20260125152851.2": {
-      "_mod_time": 1783164753.291
+      "_mod_time": 1785926872.09
     },
     "user.20260718134508.1": {
       "_mod_time": 1784353610.434
     },
     "user.20260704002025.1": {
-      "_mod_time": 1784118108.702
+      "_mod_time": 1785927752.033
     },
     "user.20260724150634.1": {
       "_mod_time": 1784887378.134
@@ -18517,10 +18470,10 @@
       "_mod_time": 1782399873.228
     },
     "user.20260628104306.1": {
-      "_mod_time": 1784117762.014
+      "_mod_time": 1785926872.091
     },
     "user.20260628110148.1": {
-      "_mod_time": 1782617873.327
+      "_mod_time": 1785926872.091
     },
     "zxc.20260518220745.1": {
       "_mod_time": 1780748738.611
@@ -18730,7 +18683,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1785886505.821
+      "_mod_time": 1785927752.056
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777106655.378
@@ -18748,7 +18701,7 @@
       "_mod_time": 1777179946.836
     },
     "zxc.20260529091145.1": {
-      "_mod_time": 1784118108.956
+      "_mod_time": 1785926872.086
     },
     "user.20260724150150.1": {
       "_mod_time": 1784887639.067
@@ -18781,7 +18734,7 @@
       "_mod_time": 1777179946.847
     },
     "User.20260228231944.1": {
-      "_mod_time": 1777179946.852
+      "_mod_time": 1785926872.088
     },
     "User.20260302211536.1": {
       "_mod_time": 1784887639.084
@@ -18811,7 +18764,7 @@
       "_mod_time": 1777179941.91
     },
     "zxc.20260515010901.1": {
-      "_mod_time": 1785858092.542
+      "_mod_time": 1785926872.087
     },
     "zxc.20260518233322.1": {
       "_mod_time": 1783337931.744
@@ -18823,7 +18776,7 @@
       "_mod_time": 1784547644
     },
     "zxc.20260621234825.1": {
-      "_mod_time": 1785862109.258
+      "_mod_time": 1785926872.088
     }
   }
 }

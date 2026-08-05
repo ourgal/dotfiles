@@ -1463,13 +1463,7 @@ records = true
 Config file.
 
 #+begin_src toml
-[display]
-compact = true
-use_paper = true
-
-[updates]
-auto_update = true
-auto_update_interval_hours = 720
+{{ includeTemplate "cli/audio/tealdeer/default" . -}}
 #+end_src
 
 *** Editor
@@ -1833,11 +1827,11 @@ Vim-workspace config.
 #+begin_src vimscript
 let g:workspace_autocreate = 1
 let g:workspace_session_disable_on_args = 1
-let g:workspace_session_directory = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "sessions" ) "\\" | squote }}
+let g:workspace_session_directory = '~/.local/share/vim/sessions'
 let g:workspace_autosave = 1
 let g:workspace_autosave_always = 1
 let g:workspace_autosave_ignore = ['gitcommit', 'suprawater', 'qf']
-let g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "undo" ) "\\" | squote }}
+let g:workspace_undodir = '~/.local/share/vim/undo'
 #+end_src
 
 ******* Vim-which-key
@@ -2881,18 +2875,7 @@ sub-shadow-offset=1
 Config.
 
 #+begin_src
-music_directory {{ joinPath .chezmoi.homeDir "Music" | quote }}
-playlist_directory {{ joinPath (env "APPDATA") "mpd" "playlist" | quote }}
-db_file {{ joinPath (env "APPDATA") "mpd" "tag_cache" | quote }}
-state_file {{ joinPath (env "APPDATA") "mpd" "state" | quote }}
-sticker_file {{ joinPath (env "APPDATA") "mpd" "sticker.sql" | quote }}
-
-auto_update "yes"
-
-audio_output {
-    type "winmm"
-    name "Windows Speakers"
-}
+{{ includeTemplate "cli/audio/mpd/default" . -}}
 #+end_src
 
 *** File Manager
