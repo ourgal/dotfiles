@@ -15595,7 +15595,7 @@
     "zxc.20260428151704.1": "nnoremap g* :%s/<c-r><c-w>/\n",
     "user.20260801101639.1": "\" nnoremap n nzzzv\n\" nnoremap N Nzzzv\n",
     "user.20260803000948.1": "nnoremap <leader><space> :find<space>\n",
-    "zxc.20260605221719.1": "set laststatus=2\n\ntry\nset switchbuf=uselast\nset showtabline=2\ncatch\nendtry\n\nset expandtab\nset smarttab\n\nset shiftwidth=4\nset tabstop=4\n\nset cindent\nset wrap\nset clipboard=unnamed\n\nset undodir={{ joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"undo\" }}\nset undofile\n\nset nobackup\nset nowritebackup\n\nset noswapfile\n\" set directory=$HOME/.local/share/vim/swap//\n\nif has('gui_running')\nset guioptions-=T\nset guioptions-=e\nset guioptions-=m\nset t_Co=256\nset guitablabel=%M\\ %t\nendif\n\nset encoding=utf8\nset fileformats=unix,dos,mac\nsyntax enable\n\nset regexpengine=0\n\nset backspace=eol,start,indent\nset whichwrap+=<,>,h,l\n\nset ignorecase\nset smartcase\nset hlsearch\nset incsearch\n\nset lazyredraw\nset magic\nset showmatch\n\nset matchtime=2\n\nset noerrorbells\nset novisualbell\nset t_vb=\nset timeoutlen=500\n\nset foldcolumn=0\n\nlet $LANG = 'en'\nset langmenu=en\n\nset wildmenu\n\nset wildignore=*.o,*~,*.pyc\nif has('win16') || has('win32')\nset wildignore+=.git\\*,.hg\\*,.svn\\*\nelse\nset wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store\nendif\n\nlet &t_SI = \"\\e[6 q\"\nlet &t_EI = \"\\e[2 q\"\n\nset ruler\nset cmdheight=1\nset hidden\nset history=500\nset number relativenumber\n\nfiletype plugin on\nfiletype indent on\n\nset autoread\n\nset updatetime=500\n\nset mouse=a\nset smoothscroll\n\nset showtabline=1\n\naugroup settings\n    autocmd!\n    autocmd FocusGained,BufEnter * checktime\naugroup END\n\n{{ if lookPath \"rg\" -}}\nset grepprg=rg\\ --vimgrep\\ --smart-case\\ --hidden\nset grepformat=%f:%l:%c:%m\n{{ end -}}\n\nset signcolumn=auto\nset sessionoptions-=blank\nset foldmethod=marker\nset cursorline\nset scrolloff=5\n\nset shortmess-=S \" show she search count\n\nset gdefault\n",
+    "zxc.20260605221719.1": "set laststatus=2\n\ntry\nset switchbuf=uselast\nset showtabline=2\ncatch\nendtry\n\nset expandtab\nset smarttab\n\nset shiftwidth=4\nset tabstop=4\n\nset cindent\nset wrap\n{{ if eq .chezmoi.os \"android\" -}}\nset clipboard=unnamedplus\n{{ else -}}\nset clipboard=unnamed\n{{ end -}}\n\nset undodir={{ joinPath .chezmoi.homeDir \".local\" \"share\" \"vim\" \"undo\" }}\nset undofile\n\nset nobackup\nset nowritebackup\n\nset noswapfile\n\" set directory=$HOME/.local/share/vim/swap//\n\nif has('gui_running')\nset guioptions-=T\nset guioptions-=e\nset guioptions-=m\nset t_Co=256\nset guitablabel=%M\\ %t\nendif\n\nset encoding=utf8\nset fileformats=unix,dos,mac\nsyntax enable\n\nset regexpengine=0\n\nset backspace=eol,start,indent\nset whichwrap+=<,>,h,l\n\nset ignorecase\nset smartcase\nset hlsearch\nset incsearch\n\nset lazyredraw\nset magic\nset showmatch\n\nset matchtime=2\n\nset noerrorbells\nset novisualbell\nset t_vb=\nset timeoutlen=500\n\nset foldcolumn=0\n\nlet $LANG = 'en'\nset langmenu=en\n\nset wildmenu\n\nset wildignore=*.o,*~,*.pyc\nif has('win16') || has('win32')\nset wildignore+=.git\\*,.hg\\*,.svn\\*\nelse\nset wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store\nendif\n\nlet &t_SI = \"\\e[6 q\"\nlet &t_EI = \"\\e[2 q\"\n\nset ruler\nset cmdheight=1\nset hidden\nset history=500\nset number relativenumber\n\nfiletype plugin on\nfiletype indent on\n\nset autoread\n\nset updatetime=500\n\nset mouse=a\nset smoothscroll\n\nset showtabline=1\n\naugroup settings\n    autocmd!\n    autocmd FocusGained,BufEnter * checktime\naugroup END\n\n{{ if lookPath \"rg\" -}}\nset grepprg=rg\\ --vimgrep\\ --smart-case\\ --hidden\nset grepformat=%f:%l:%c:%m\n{{ end -}}\n\nset signcolumn=auto\nset sessionoptions-=blank\nset foldmethod=marker\nset cursorline\nset scrolloff=5\n\nset shortmess-=S \" show she search count\n\nset gdefault\n",
     "zxc.20260427223226.1": "\" set noswapfile\n\" au BufLeave,CursorHold,FocusLost * if(getbufinfo('%')[0].changed) | sil do BufWritePre | sil! up | sil do BufWritePost | endif\n",
     "User.20260218145141.1": "\" Autosession\n\" au VimEnter * nested if (len(v:argv) == 1) | silent! source Session.vim | endif\n\" au VimLeave * if (len(v:argv) == 1) | mksession! | endif\n",
     "zxc.20260320003625.1": "\" autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path \"%\"\n\nfunction Chezmoi()\n  ! chezmoi apply --source-path \"%\"\nendfunction\n\ncommand! Chezmoi call Chezmoi()\n",
@@ -17749,7 +17749,7 @@
       "_mod_time": 1777179946.857
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1785927751.957
+      "_mod_time": 1785928780.813
     },
     "zxc.20260125164142.1": {
       "_mod_time": 1783164752.902
@@ -17779,7 +17779,7 @@
       "_mod_time": 1783164752.992
     },
     "User.20260218142211.1": {
-      "_mod_time": 1785927751.984
+      "_mod_time": 1785928780.835
     },
     "User.20260218142322.1": {
       "_mod_time": 1777398596.523
@@ -18655,7 +18655,7 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260603145336.1": {
-      "_mod_time": 1785928590.025
+      "_mod_time": 1785928780.859
     },
     "zxc.20260202205715.1": {
       "_mod_time": 1777106655.378
