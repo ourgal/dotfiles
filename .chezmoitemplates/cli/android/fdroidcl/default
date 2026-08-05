@@ -1,2 +1,2 @@
-{{ includeTemplate "cli/android/fdroidcl/repos/default" }}
-{{ includeTemplate "cli/android/fdroidcl/setups/default" }}
+{{ includeTemplate "cli/android/fdroidcl/repos/default.tmpl" . -}}
+{{ includeTemplate "cli/android/fdroidcl/setups/default" . -}}
