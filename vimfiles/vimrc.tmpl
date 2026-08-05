@@ -37,7 +37,11 @@ set tabstop=4
 
 set cindent
 set wrap
+{{ if eq .chezmoi.os "android" -}}
+set clipboard=unnamedplus
+{{ else -}}
 set clipboard=unnamed
+{{ end -}}
 
 set undodir={{ joinPath .chezmoi.homeDir ".local" "share" "vim" "undo" }}
 set undofile
