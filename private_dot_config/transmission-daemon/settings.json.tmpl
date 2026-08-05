@@ -1,5 +1,6 @@
-{{ if eq .chezmoi.os "windows" -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 {{ if lookPath "transmission-daemon" -}}
 {{ includeTemplate "cli/download/transmission/default" . -}}
 {{ end -}}
 {{ end -}}
+
