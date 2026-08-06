@@ -1,5 +1,10 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "yt-dlp" -}}
-{{ includeTemplate "cli/download/yt-dlp/audio" . -}}
-{{ end -}}
-{{ end -}}
+# In ~/.config/yt-dlp/audio.conf
+-x
+--audio-format opus
+--audio-quality 0
+-o "~/Music/%(artist|uploader)s - %(title)s.%(ext)s"
+--embed-thumbnail
+--embed-metadata
+
+# Use with:
+# yt-dlp --config-locations ~/.config/yt-dlp/audio.conf URL
