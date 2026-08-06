@@ -1,3 +1,1 @@
-{{ if lookPath "fdroidcl" -}}
-{{ includeTemplate "cli/android/fdroidcl/default" . -}}
-{{ end -}}
+{{ includeTemplate (joinPath .chezmoi.sourceDir "private_dot_config" "fdroidcl" "config.toml.tmpl") . -}}
