@@ -54,28 +54,6 @@
       "vh": "cli",
       "children": [
         {
-          "gnx": "zxc.20260515011152.1",
-          "vh": "AI",
-          "children": [
-            {
-              "gnx": "zxc.20260515011155.1",
-              "vh": "aichat",
-              "children": [
-                {
-                  "gnx": "zxc.20260515011023.1",
-                  "vh": "content",
-                  "children": [
-                    {
-                      "gnx": "zxc.20260603150605.1",
-                      "vh": "gemini 2.5 flash"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
           "gnx": "zxc.20260622210213.1",
           "vh": "android",
           "children": [
@@ -1812,16 +1790,6 @@
           "gnx": "zxc.20260423154615.1",
           "vh": "encrypt",
           "children": [
-            {
-              "gnx": "zxc.20260201203400.1",
-              "vh": "gnupg",
-              "children": [
-                {
-                  "gnx": "zxc.20260201203315.1",
-                  "vh": "content"
-                }
-              ]
-            },
             {
               "gnx": "zxc.20260201203500.1",
               "vh": "gpg-agent",
@@ -6880,30 +6848,6 @@
           "vh": "@path private_dot_config",
           "children": [
             {
-              "gnx": "user.20260718132952.1",
-              "vh": "aichat",
-              "children": [
-                {
-                  "gnx": "user.20260718132958.1",
-                  "vh": "@path aichat",
-                  "children": [
-                    {
-                      "gnx": "user.20260718133004.1",
-                      "vh": "@clean config.yaml.tmpl",
-                      "children": [
-                        {
-                          "gnx": "User.20260225203941.1"
-                        },
-                        {
-                          "gnx": "zxc.20260515011023.1"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
               "gnx": "zxc.20260125152649.1",
               "vh": "atuin",
               "children": [
@@ -8048,18 +7992,6 @@
           "vh": "@path private_dot_gnupg",
           "children": [
             {
-              "gnx": "zxc.20260502183455.1",
-              "vh": "@clean gpg.conf.tmpl",
-              "children": [
-                {
-                  "gnx": "User.20260225203941.1"
-                },
-                {
-                  "gnx": "zxc.20260201203315.1"
-                }
-              ]
-            },
-            {
               "gnx": "zxc.20260502183056.1",
               "vh": "@clean gpg-agent.conf.tmpl",
               "children": [
@@ -8404,18 +8336,6 @@
                       "gnx": "zxc.20260320223118.1",
                       "vh": "@path home",
                       "children": [
-                        {
-                          "gnx": "zxc.20260201203241.1",
-                          "vh": "@clean gpg.conf.tmpl",
-                          "children": [
-                            {
-                              "gnx": "User.20260225204326.1"
-                            },
-                            {
-                              "gnx": "zxc.20260201203315.1"
-                            }
-                          ]
-                        },
                         {
                           "gnx": "zxc.20260201203515.1",
                           "vh": "@clean gpg-agent.conf.tmpl",
@@ -10083,6 +10003,10 @@
                                             {
                                               "gnx": "user.20260726153959.1",
                                               "vh": "ps"
+                                            },
+                                            {
+                                              "gnx": "user.20260806150224.1",
+                                              "vh": "rm"
                                             }
                                           ]
                                         },
@@ -13565,24 +13489,6 @@
                   ]
                 },
                 {
-                  "gnx": "zxc.20260515010857.1",
-                  "vh": "@path aichat",
-                  "children": [
-                    {
-                      "gnx": "zxc.20260515010901.1",
-                      "vh": "@clean config.yaml.tmpl",
-                      "children": [
-                        {
-                          "gnx": "User.20260225204326.1"
-                        },
-                        {
-                          "gnx": "zxc.20260515011023.1"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
                   "gnx": "zxc.20260518233302.1",
                   "vh": "@path ludusavi",
                   "children": [
@@ -13661,7 +13567,6 @@
     "zxc.20260421204018.1": "{{ if lookPath \"keepassxc\" -}}\nRun({{ joinPath .chezmoi.homeDir \"Documents\" \"autohotkey\" \"keepassxc.ahk\" | quote }}, , \"Hide\")\n{{ end -}}",
     "zxc.20260125142149.1": "@tabwidth 4\nall:\n\t@others\n",
     "zxc.20260125142255.1": "yes | git magic -ap\n",
-    "zxc.20260515011023.1": "{{ includeTemplate \"cli/AI/aichat/gemini\" . -}}\n",
     "zxc.20260621235046.1": "{{ includeTemplate \"cli/android/fdroidcl/default\" . -}}\n",
     "zxc.20260621235232.1": "  @others\n",
     "zxc.20260621235249.1": "  @others\n",
@@ -13842,7 +13747,6 @@
     "zxc.20260125162220.1": "[keys.normal.Z]\nQ = \":qa!\"\nZ = \":xa\"",
     "zxc.20260125162302.1": "[keys.normal.space.l]\nf = \":fmt\"",
     "zxc.20260125162324.1": "[keys.select.g]\nc = \"toggle_comments\"\nz = [\"split_selection_on_newline\", \":sort\", \"keep_primary_selection\"]\n",
-    "zxc.20260201203315.1": "{{ includeTemplate \"cli/encrypt/gnupg/default.tmpl\" . -}}\n",
     "zxc.20260201203539.1": "{{ if .my.git.sign.gpg -}}\n\n{{ if eq .chezmoi.os \"windows\" -}}\nenable-win32-openssh-support\n{{ end -}}\n\n{{ if ne .chezmoi.os \"android\" -}}\nenable-ssh-support\n{{ end -}}\n\n{{ end -}}\ngrab\n\n{{ if lookPath \"pinentry-gtk-2\" -}}\npinentry-program {{ lookPath \"pinentry-gtk-2\" }}\n{{ end -}}\n",
     "zxc.20260402230749.1": "[mounts]\n\tpath = {{ env \"LOCALAPPDATA\" }}\\gopass\\stores\\root\n[core]\n\tautosync = false",
     "User.20260214200035.1": "encryption = \"age\"\n[age]\n    identity = \"~/.ssh/id_ed25519\"\n    symmetric = true",
@@ -13854,34 +13758,34 @@
     "zxc.20260126154820.1": "[cd]\n    command = \"{{ .my.shell.windows }}\"",
     "zxc.20260320003721.1": "[edit]\n    hardlink = false",
     "zxc.20260331222155.1": "{{ if lookPath \"delta\" -}}\n[diff]\n    command = \"delta\"\n    args = [\"-s\", \"{{ \"{{\" }} .Destination {{ \"}}\" }}\", \"{{ \"{{\" }} .Target {{ \"}}\" }}\"]\n{{ else if lookPath \"difft\" -}}\n[diff]\n    command = \"difft\"\n    args = [\"{{ \"{{\" }} .Destination {{ \"}}\" }}\", \"{{ \"{{\" }} .Target {{ \"}}\" }}\"]\n{{ else if lookPath \"meld\" -}}\n[diff]\n    command = \"meld\"\n    args = [\"--diff\", \"{{ \"{{\" }} .Destination {{ \"}}\" }}\", \"{{ \"{{\" }} .Target {{ \"}}\" }}\"]\n{{ end -}}",
-    "zxc.20260125144442.1": "@others",
+    "zxc.20260125144442.1": "@others\n",
     "zxc.20260125144515.1": "Makefile\nmain.leojs\n\n{{ if not (stat (joinPath .chezmoi.homeDir \"Documents\" \"my_repos\" \"snowfall\")) -}}\nDocuments/my_repos/snowfall/\nDocuments/my_repos/snowfall/**\n{{ end -}}\n\n{{ if not (stat (joinPath .chezmoi.homeDir \"Documents\" \"my_repos\" \"playwright_ritdon\")) -}}\nDocuments/my_repos/playwright_ritdon/\nDocuments/my_repos/playwright_ritdon/**\n{{ end -}}\n",
-    "zxc.20260125144547.1": "<< linux >>\n@others\n{{ end -}}",
+    "zxc.20260125144547.1": "<< linux >>\n@others\n{{ end -}}\n",
     "User.20260225204416.1": "{{ if eq .chezmoi.os \"linux\" -}}\n",
-    "zxc.20260127232118.1": "Documents/autohotkey/\nDocuments/autohotkey/**\nDocuments/PowerToys/\nDocuments/PowerToys/**\nDocuments/PowerShell/\nDocuments/PowerShell/**",
-    "User.20260214200912.1": "scoop/\nscoop/**",
-    "zxc.20260128003657.1": "AppData/\nAppData/**",
-    "User.20260220191553.1": "vimfiles/\nvimfiles/**",
-    "User.20260301202425.1": ".glzr/\n.glzr/**",
-    "zxc.20260520205947.1": "Documents/game_saves/\nDocuments/game_saves/**",
+    "zxc.20260127232118.1": "Documents/autohotkey/\nDocuments/autohotkey/**\nDocuments/PowerToys/\nDocuments/PowerToys/**\nDocuments/PowerShell/\nDocuments/PowerShell/**\n",
+    "User.20260214200912.1": "scoop/\nscoop/**\n",
+    "zxc.20260128003657.1": "AppData/\nAppData/**\n",
+    "User.20260220191553.1": "vimfiles/\nvimfiles/**\n",
+    "User.20260301202425.1": ".glzr/\n.glzr/**\n",
+    "zxc.20260520205947.1": "Documents/game_saves/\nDocuments/game_saves/**\n",
     "zxc.20260503214529.1": "<< not void >>\nservice/\nservice/**\n.config/sv/\n.config/sv/**\n{{ end -}}\n",
-    "zxc.20260503215107.1": "{{ if and (hasKey .chezmoi.osRelease \"name\") (ne .chezmoi.osRelease.name \"Void\") -}}",
-    "zxc.20260507002350.1": "{{ if not (lookPath \"flatpak\") -}}\n@others\n{{ end -}}",
-    "zxc.20260507002246.1": ".var/\n.var/**",
-    "User.20260224001419.1": "<< android >>\n@others\n{{ end -}}",
+    "zxc.20260503215107.1": "{{ if and (hasKey .chezmoi.osRelease \"name\") (ne .chezmoi.osRelease.name \"Void\") -}}\n",
+    "zxc.20260507002350.1": "{{ if not (lookPath \"flatpak\") -}}\n@others\n{{ end -}}\n",
+    "zxc.20260507002246.1": ".var/\n.var/**\n",
+    "User.20260224001419.1": "<< android >>\n@others\n{{ end -}}\n",
     "zxc.20260504130849.1": ".local/share/applications/\n.local/share/applications/**\n",
     "zxc.20260503214440.1": "service/\nservice/**\n",
-    "zxc.20260507103353.1": ".config/Code OSS/\n.config/Code OSS/**",
-    "zxc.20260507103217.1": ".config/sv/\n.config/sv/**",
-    "zxc.20260507092620.1": ".config/autostart/\n.config/autostart/**",
-    "zxc.20260125144606.1": "<< dos >>\n@others\n{{ end -}}\n",
-    "zxc.20260125144639.1": ".vim/\n.vim/**",
-    "zxc.20260126193455.1": ".pip/\n.pip/**",
-    "zxc.20260125144753.1": ".bash_profile\n.bashrc",
-    "zxc.20260125144810.1": ".xinitrc",
-    "zxc.20260502183801.1": ".gnupg\n.gnupg/**",
+    "zxc.20260507103353.1": ".config/Code OSS/\n.config/Code OSS/**\n",
+    "zxc.20260507103217.1": ".config/sv/\n.config/sv/**\n",
+    "zxc.20260507092620.1": ".config/autostart/\n.config/autostart/**\n",
+    "zxc.20260125144606.1": "<< dos >>\n@others\n{{ end -}}\n\n{{/* {{{ aichat */ -}}\n{{ if eq .chezmoi.os \"windows\" | not -}}\n{{ if lookPath \"aichat\" | not -}}\nAppData/Roaming/aichat/\nAppData/Roaming/aichat/**\n{{ end -}}\n{{ end -}}\n{{ if eq .chezmoi.os \"linux\" \"android\" | not -}}\n{{ if lookPath \"aichat\" | not -}}\n.config/aichat/\n.config/aichat/**\n{{ end -}}\n{{ end -}}\n{{/* }}} */ -}}\n\n{{/* {{{ gnupg */ -}}\n{{ if eq .chezmoi.os \"windows\" | not -}}\n{{ if lookPath \"gpg\" | not -}}\nscoop/persist/gpg/home/\nscoop/persist/gpg/home/**\n{{ end -}}\n{{ end -}}\n{{ if eq .chezmoi.os \"linux\" \"android\" | not -}}\n{{ if lookPath \"gpg\" | not -}}\n.gnupg/\n.gnupg/**\n{{ end -}}\n{{ end -}}\n{{/* }}} */ -}}\n",
+    "zxc.20260125144639.1": ".vim/\n.vim/**\n",
+    "zxc.20260126193455.1": ".pip/\n.pip/**\n",
+    "zxc.20260125144753.1": ".bash_profile\n.bashrc\n",
+    "zxc.20260125144810.1": ".xinitrc\n",
+    "zxc.20260502183801.1": ".gnupg\n.gnupg/**\n",
     "zxc.20260504130800.1": ".local/share/applications/\n.local/share/applications/**\n",
-    "zxc.20260507103507.1": ".config/nnn/\n.config/nnn/**",
+    "zxc.20260507103507.1": ".config/nnn/\n.config/nnn/**\n",
     "zxc.20260615210239.1": "scoop/persist/mpv/portable_config/scripts/mpv-anilist-updater/anilistToken.key\n",
     "zxc.20260125172659.1": "{{ if lookPath \"hx\" -}}\nhx\n{{- else if lookPath \"vim\" -}}\nvim\n{{- else if lookPath \"nvim\" -}}\nnvim\n{{- else if lookPath \"vi\" -}}\nvi\n{{- else if lookPath \"nano\" -}}\nnano\n{{- end -}}",
     "zxc.20260319091259.1": "{{ if eq . nil -}}\n{{ fail \"pass hostname to ipM6 template\" -}}\n{{ end -}}\n{{ if eq . \"work\" \"work2\" -}}\n192.168.1.103\n{{- else if  eq . \"nuc\" \"bed\" \"surface\" -}}\n192.168.123.191\n{{- else if  eq . \"localhost\" -}}\n{{- else -}}\n{{ fail (printf \"unknown hostname %s for ipM6 template\" .) -}}\n{{- end -}}",
@@ -14591,9 +14495,8 @@
     "zxc.20260505181312.4": "export PATH=~/.local/bin:$PATH",
     "zxc.20260505181312.5": "export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)\n",
     "zxc.20260505223347.1": "export GTK_IM_MODULE=fcitx\nexport QT_IM_MODULE=fcitx\nexport XMODIFIERS=\"@im=fcitx\"",
-    "user.20260718133004.1": "<< unix >>\n{{ if lookPath \"aichat\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260125152704.1": "<< unix dos >>\n{{ if lookPath \"atuin\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260507000814.1": "<< unix >>\n{{ if not (lookPath \"fcitx5\") -}}\n{{ joinPath .chezmoi.homeDir \".local\" \"share\" \"flatpak\" \"exports\" \"share\" \"applications\" \"org.fcitx.Fcitx5.desktop\" }}\n{{ end -}}\n{{ end -}}",
+    "zxc.20260507000814.1": "<< unix >>\n{{ if not (lookPath \"fcitx5\") -}}\n{{ joinPath .chezmoi.homeDir \".local\" \"share\" \"flatpak\" \"exports\" \"share\" \"applications\" \"org.fcitx.Fcitx5.desktop\" }}\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260508000348.1": "<< unix >>\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260508000437.1": "[Desktop Entry]\nEncoding=UTF-8\nVersion=0.9.4\nType=Application\nName=gpg-agent\nComment=\nExec=gpg-connect-agent /bye\nOnlyShowIn=XFCE;\nRunHook=0\nStartupNotify=false\nTerminal=false\nHidden=true",
     "zxc.20260529152606.1": "<< unix >>\n{{ if lookPath \"awesome\" -}}\n{{ joinPath .chezmoi.homeDir \".config\" \"awesome-copycats\" }}\n{{ end -}}\n{{ end -}}\n",
@@ -14714,7 +14617,6 @@
     "user.20260724150634.1": "<< unix dos >>\n{{ if lookPath \"gotify\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "user.20260724150823.1": "{{ $gotify_port := \"5080\" -}}\n",
     "user.20260724150746.1": "# Example environment variables for the server.\n# Save as `gotify-server.env` (or export the variables) when edited.\n#\n# If $GOTIFY_CONFIG_FILE is set, that file is loaded exclusively and none of\n# the files below are tried. Otherwise the first existing file from the search\n# order is loaded. Absent or commented out settings fall back to the default\n# (shown after the =). Variables already exported in the process environment\n# always take precedence over the loaded file.\n#\n# Config file search order (used only when $GOTIFY_CONFIG_FILE is unset):\n#   1. gotify-server.env                       (in the working directory)\n#   2. $XDG_CONFIG_HOME/gotify/gotify-server.env\n#      ($XDG_CONFIG_HOME falls back to $HOME/.config when unset)\n#   3. /etc/gotify/server.env\n#\n# Value types used below:\n#   text       a plain string value.\n#   number     an integer value.\n#   boolean    `true` or `false`.\n#   text-list  comma-separated list of strings, parsed as a single CSV line.\n#              A comma can be escaped by wrapping the value in quotes.\n#              Example: a,b,c\n#              Example: \"a,b\",c  -> entries: `a,b` and `c`\n#   json-map   a JSON object mapping string keys to string values.\n#              Example: {\"X-Foo\":\"bar\",\"X-Baz\":\"qux\"}\n#\n# Every variable also supports a \"_FILE\" suffix that reads the value from a\n# file at the given path (useful for Docker / Kubernetes secrets), e.g.:\n#   GOTIFY_DEFAULTUSER_PASS_FILE=/run/secrets/admin_pass\n\n# Minimum severity of log messages to emit.\n# Values: trace, debug, info, warn, error, fatal, panic\n# GOTIFY_LOGLEVEL=info\n\n# Interval in seconds between TCP keepalive probes on accepted connections. !! Only change this if you know what you are doing.\n#\n# Example: 0 uses the Go default (15s)\n# Example: -1 disables keepalives entirely.\n# Type: number\n# GOTIFY_SERVER_KEEPALIVEPERIODSECONDS=0\n\n# The network address the HTTP server binds to. Leave empty to listen on all\n# interfaces (both IPv4 and IPv6). Prefix with \"unix:\" to listen on a Unix\n# domain socket instead of a TCP port.\n#\n# Type: text\n# Example: 192.168.178.2\n# Example: unix:/tmp/gotify.sock\n# GOTIFY_SERVER_LISTENADDR=\n\n# Port the HTTP server listens on.\n# Type: number\nGOTIFY_SERVER_PORT={{ $gotify_port }}\n\n# Enable the HTTPS listener. Requires either CERTFILE+CERTKEY or LETSENCRYPT_ENABLED=true.\n# Type: boolean\n# GOTIFY_SERVER_SSL_ENABLED=false\n\n# Redirect plain HTTP requests to HTTPS. Only effective when SSL_ENABLED=true.\n# Type: boolean\n# GOTIFY_SERVER_SSL_REDIRECTTOHTTPS=true\n\n# The network address the HTTPS server binds to. Leave empty to listen on all\n# interfaces (both IPv4 and IPv6). Prefix with \"unix:\" to listen on a Unix\n# domain socket instead of a TCP port.\n#\n# Type: text\n# Example: 192.168.178.2\n# Example: unix:/tmp/gotify-ssl.sock\n# GOTIFY_SERVER_SSL_LISTENADDR=\n\n# Port the HTTPS server listens on.\n# Type: number\n# GOTIFY_SERVER_SSL_PORT=443\n\n# Path to the TLS certificate.\n# Type: text\n# Example: /etc/ssl/certs/gotify.crt\n# GOTIFY_SERVER_SSL_CERTFILE=\n\n# Path to the TLS private key.\n# Type: text\n# Example: /etc/ssl/private/gotify.key\n# GOTIFY_SERVER_SSL_CERTKEY=\n\n# Obtain the TLS certificate automatically from Let's Encrypt.\n# Requires SSL_ENABLED=true and LETSENCRYPT_ACCEPTTOS=true.\n# Type: boolean\n# GOTIFY_SERVER_SSL_LETSENCRYPT_ENABLED=false\n\n# Accept the Let's Encrypt Terms of Service.\n# Type: boolean\n# GOTIFY_SERVER_SSL_LETSENCRYPT_ACCEPTTOS=false\n\n# Directory where issued certificates and ACME account data are persisted. Must\n# be writable by the server.\n#\n# Type: text\n# Example: /var/lib/gotify/certs\n# GOTIFY_SERVER_SSL_LETSENCRYPT_CACHE=data/certs\n\n# Override the ACME directory URL. Leave empty to use the Let's Encrypt\n# production server. The staging server has higher rate limits useful for\n# testing but issues certificates that are not publicly trusted.\n#\n# Type: text\n# Example: https://acme-staging-v02.api.letsencrypt.org/directory\n# GOTIFY_SERVER_SSL_LETSENCRYPT_DIRECTORYURL=\n\n# Hosts Let's Encrypt should issue certificates for. Each host must resolve\n# publicly to this server.\n#\n# Type: text-list\n# Example: mydomain.tld,myotherdomain.tld\n# GOTIFY_SERVER_SSL_LETSENCRYPT_HOSTS=\n\n# Extra HTTP headers attached to every response.\n# Type: json-map\n# Example: {\"X-Custom-Header\":\"custom value\"}\n# GOTIFY_SERVER_RESPONSEHEADERS=\n\n# IPs or CIDR ranges of proxies whose X-Forwarded-For header is trusted to\n# determine the real client IP. Include 127.0.0.1 when terminating TLS in a\n# sidecar on the same host.\n#\n# Type: text-list\n# Example: 127.0.0.1/32,::1\n# GOTIFY_SERVER_TRUSTEDPROXIES=\n\n# Set the Secure flag on session cookies, restricting them to HTTPS\n# connections. Enable when the server is reachable over HTTPS.\n#\n# Type: boolean\n# GOTIFY_SERVER_SECURECOOKIE=false\n\n# Allowed origins (regex) for cross-origin requests. Setting any CORS_* value\n# enables CORS handling.\n#\n# Type: text-list\n# Example: .+\\.example\\.com,otherdomain\\.com\n# GOTIFY_SERVER_CORS_ALLOWORIGINS=\n\n# HTTP methods permitted in cross-origin requests.\n# Type: text-list\n# Example: GET,POST\n# GOTIFY_SERVER_CORS_ALLOWMETHODS=\n\n# Request headers permitted in cross-origin requests.\n# Type: text-list\n# Example: Authorization,content-type\n# GOTIFY_SERVER_CORS_ALLOWHEADERS=\n\n# Interval in seconds between WebSocket ping frames sent to streaming clients.\n# Only change this if you know what you are doing.\n#\n# Type: number\n# GOTIFY_SERVER_STREAM_PINGPERIODSECONDS=45\n\n# Allowed origins (regex) for WebSocket upgrade requests. Same-origin\n# connections are always permitted regardless of this setting.\n#\n# Type: text-list\n# Example: .+\\.example\\.com,otherdomain\\.com\n# GOTIFY_SERVER_STREAM_ALLOWEDORIGINS=\n\n# Enable OpenID Connect Single Sign-On, allowing users to authenticate via an\n# external identity provider (e.g. Authelia, Dex, Keycloak). The provider must\n# support PKCE (https://oauth.net/2/pkce/); IdPs without PKCE support are\n# currently unsupported.\n#\n# Type: boolean\n# GOTIFY_OIDC_ENABLED=false\n\n# Base URL of the identity provider. It will be used to discover OIDC endpoints\n# via /.well-known/openid-configuration.\n#\n# Type: text\n# Example: https://auth.example.com/realms/myrealm\n# GOTIFY_OIDC_ISSUER=\n\n# Client ID registered with the identity provider for this application.\n# Type: text\n# Example: gotify\n# GOTIFY_OIDC_CLIENTID=\n\n# Client secret paired with the client ID.\n# Type: text\n# Example: super-secret\n# GOTIFY_OIDC_CLIENTSECRET=\n\n# Callback URL the identity provider redirects to after authentication. Must\n# end with `/auth/oidc/callback` and match exactly what is registered at the\n# provider. When Gotify is served on a sub-path behind a reverse proxy, include\n# it (e.g. https://example.org/gotify/auth/oidc/callback). To support OIDC\n# login in the Android app, also register `gotify://oidc/callback` as an\n# additional redirect URL at the provider.\n#\n# Type: text\n# Example: https://gotify.example.org/auth/oidc/callback\n# GOTIFY_OIDC_REDIRECTURL=\n\n# Automatically create a local user on first OIDC login. When disabled, only\n# users that already exist in Gotify can sign in via OIDC.\n#\n# Type: boolean\n# GOTIFY_OIDC_AUTOREGISTER=true\n\n# Bind an OIDC identity to a pre-existing local user with a matching username\n# on first login. When disabled (default), existing local users are never\n# claimed by an OIDC login and an identity whose username is already taken is\n# rejected\n#\n# Type: boolean\n# GOTIFY_OIDC_LINK_BY_USERNAME=false\n\n# OIDC ID-token claim used as the local username. Common values are\n# preferred_username or email.\n#\n# Type: text\n# Example: email\n# GOTIFY_OIDC_USERNAMECLAIM=preferred_username\n\n# OIDC scopes to request from the identity provider.\n# Type: text-list\n# GOTIFY_OIDC_SCOPES=openid,profile,email\n\n# Database driver to use. For mysql and postgres the target database must\n# already exist and the configured user must have sufficient permissions.\n#\n# Type: one of sqlite3, mysql, postgres\n# GOTIFY_DATABASE_DIALECT=sqlite3\n\n# Database connection string. Format depends on the dialect.\n# Type: text\n# Example:\n#   sqlite3: path/to/database.db\n#   mysql: gotify:secret@tcp(localhost:3306)/gotifydb?charset=utf8&parseTime=True&loc=Local\n#   postgres: host=localhost port=5432 user=gotify dbname=gotifydb password=secret\n# When using postgres without SSL, append `sslmode=disable` (see https://github.com/gotify/server/issues/90).\n# GOTIFY_DATABASE_CONNECTION=data/gotify.db\n\n# Username for the initial admin account. Only applied when the database is\n# first created; later changes must be made through the WebUI.\n#\n# Type: text\n# Example: myadmin\n# GOTIFY_DEFAULTUSER_NAME=admin\n\n# Password for the initial admin account. Only applied when the database is\n# first created.\n#\n# Type: text\n# Example: super-secret-password\n# GOTIFY_DEFAULTUSER_PASS=admin\n\n# Bcrypt cost factor for password hashes. Higher values are more secure but slower.\n# Type: number\n# GOTIFY_PASSSTRENGTH=10\n\n# Directory where application icons and other uploaded images are stored. Must\n# be writable by the server.\n#\n# Type: text\n# Example: /var/lib/gotify/images\n# GOTIFY_UPLOADEDIMAGESDIR=data/images\n\n# Directory scanned for plugin shared libraries on startup. Leave empty to\n# disable plugin loading.\n#\n# Type: text\n# Example: /var/lib/gotify/plugins\n# GOTIFY_PLUGINSDIR=data/plugins\n\n# Allow unauthenticated users to register new user accounts via the public\n# registration endpoint.\n#\n# Type: boolean\n# GOTIFY_REGISTRATION=false\n\n# Disable colored log output. Set to \"1\" to force-disable colors regardless of\n# whether stdout is a terminal. When unset, colors are emitted only if stdout\n# is a TTY. See https://no-color.org/.\n#\n# Type: text\n# NOCOLOR=\n",
-    "zxc.20260502183455.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260502183056.1": "<< unix >>\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260502183253.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n{{ if .my.git.sign.gpg -}}\n{{ if ne .chezmoi.os \"android\" -}}\n66E220F513E05B9F44D77B9B15F629D7C1270868\n{{ end -}}\n{{ end -}}\n{{ end -}}\n{{ end -}}\n",
     "User.20260215182442.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
@@ -14736,7 +14638,6 @@
     "User.20260221194708.1": "{{ $gpg := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"gpg\" \"current\" -}}\n{{ $gpg_home := joinPath $gpg \"home\" -}}\n{{ $gpg_sock := joinPath $gpg \"gnupg\" -}}\ngpg:\n  install_path: {{ $gpg | quote }}\n  # Before gnupg 2.3.2 release home directory could be properly link-ed\n  #   homedir: {{ $gpg_home | quote }}\n  # With gnupg 2.3.3 release (due to the changes in T5537) use this instead\n  #   homedir: {{ $gpg_home | quote }}\n  #   socketdir: \"\"\n  # After gnupg 2.3.4 release we have to switch to\n  homedir: {{ $gpg_home | quote }}\n  socketdir: {{ $gpg_sock | quote }}\ngui:\n  debug: false\n  setenv: true\n  # Use line below to enable SSH_AUTH_SOCK to point to cygwin socket\n  #   openssh: cygwin",
     "User.20260222211658.1": "<< dos >>\n{{ if lookPath \"rclone\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260222211658.2": "{{- /* chezmoi:modify-template */ -}}\n{{ $origin := fromIni .chezmoi.stdin -}}\n{{ $origin = $origin | setValueAtPath \"mega_a.type\" \"mega\" -}}\n{{ $origin = $origin | setValueAtPath \"mega_a.user\" (gopass \"rclone/mega_a/user\") -}}\n{{ $origin = $origin | setValueAtPath \"mega_a.pass\" (gopass \"rclone/mega_a/pass\") -}}\n{{ $origin = $origin | setValueAtPath \"mega_a.session_id\" (gopass \"rclone/mega_a/session_id\") -}}\n{{ $origin = $origin | setValueAtPath \"mega_a.master_key\" (gopass \"rclone/mega_a/master_key\") -}}\n{{ $origin = $origin | setValueAtPath \"alist.type\" \"webdav\" -}}\n{{ $origin = $origin | setValueAtPath \"alist.url\" \"http://localhost:5244/dav/\" -}}\n{{ $origin = $origin | setValueAtPath \"alist.vendor\" \"other\" -}}\n{{ $origin = $origin | setValueAtPath \"alist.user\" \"admin\" -}}\n{{ $origin = $origin | setValueAtPath \"alist.pass\" (gopass \"rclone/alist/local\" | output \"rclone\" \"obscure\" | trim ) -}}\n{{ $origin | toIni -}}",
-    "zxc.20260201203241.1": "<< dos >>\n{{ if lookPath \"gpg\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260201203515.1": "<< dos >>\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260201214114.1": "<< dos >>\n{{ if lookPath \"gpg\" -}}\n{{ if .my.git.sign.gpg -}}\n66E220F513E05B9F44D77B9B15F629D7C1270868\n{{ end -}}\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260202195207.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
@@ -14995,6 +14896,7 @@
     "zxc.20260423143729.130": "- main/clipboard@0.9.0.1\n",
     "zxc.20260423143729.131": "- main/noti\n- main/gotify-server\n- main/gotify-cli\n",
     "user.20260726153959.1": "- main/witr\n",
+    "user.20260806150224.1": "- main/trashy\n",
     "zxc.20260423143729.132": "- main/espanso\n",
     "zxc.20260423143729.134": "- main/ffmpeg\n- main/butterflow\n",
     "zxc.20260423143729.135": "- name: Install nodejs and vscode\n  community.windows.win_scoop:\n    name:\n      - nodejs-lts\n      - vscode\n    state: present\n    global: false\n    no_cache: true\n  register: result\n  retries: 3\n  delay: 5\n  until: result is not failed\n  notify: Reboot\n",
@@ -15588,7 +15490,6 @@
     "zxc.20260417220802.1": "[ui]\ndefault-command = \"log-recent\"",
     "zxc.20260417220651.1": "[user]\nname = \"{{ .my.git.user.name }}\"\nemail = \"{{ .my.git.user.email }}\"\n",
     "zxc.20260417220716.1": "[aliases]\nlog-recent = [ \"log\", \"-r\", \"default() & recent()\" ]\ntug = [\n    \"bookmark\",\n    \"move\",\n    \"--from\",\n    \"heads(::@ & bookmarks())\",\n    \"--to\",\n    \"closest_pushable(@)\",\n]",
-    "zxc.20260515010901.1": "<< dos >>\n{{ if lookPath \"aichat\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260518233322.1": "<< dos >>\n{{ if lookPath \"ludusavi\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260611090830.1": "<< dos >>\n{{ if lookPath \"pet\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260611091007.1": "<< dos >>\n{{ if lookPath \"pet\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -15599,76 +15500,76 @@
       "_mod_time": 1785689602.727
     },
     "user.20260714235518.1": {
-      "_mod_time": 1784044689.205
+      "_mod_time": 1785999472.479
     },
     "User.20260216232855.1": {
-      "_mod_time": 1785926872.089
+      "_mod_time": 1785999472.477
     },
     "User.20260217182613.1": {
-      "_mod_time": 1777179946.857
+      "_mod_time": 1785999472.478
     },
     "zxc.20260125163416.1": {
-      "_mod_time": 1785936208.585
+      "_mod_time": 1785999472.487
     },
     "zxc.20260125164142.1": {
-      "_mod_time": 1783164752.902
+      "_mod_time": 1785999472.486
     },
     "zxc.20260318214950.1": {
-      "_mod_time": 1785932867.528
+      "_mod_time": 1785999472.486
     },
     "zxc.20260429145437.1": {
-      "_mod_time": 1783164752.936
+      "_mod_time": 1785999472.487
     },
     "zxc.20260427000037.1": {
-      "_mod_time": 1783164752.96
+      "_mod_time": 1785999472.485
     },
     "zxc.20260427224318.1": {
-      "_mod_time": 1785568696.052
+      "_mod_time": 1785999472.485
     },
     "user.20260801114922.1": {
-      "_mod_time": 1785556314.633
+      "_mod_time": 1785999472.484
     },
     "user.20260801115000.1": {
-      "_mod_time": 1785568696.078
+      "_mod_time": 1785999472.484
     },
     "user.20260802232257.1": {
-      "_mod_time": 1785684463.495
+      "_mod_time": 1785999472.485
     },
     "zxc.20260615224512.2": {
-      "_mod_time": 1783164752.992
+      "_mod_time": 1785999472.483
     },
     "User.20260218142211.1": {
-      "_mod_time": 1785936208.609
+      "_mod_time": 1785999472.561
     },
     "User.20260218142322.1": {
-      "_mod_time": 1777398596.523
+      "_mod_time": 1785999472.558
     },
     "zxc.20260318212653.1": {
-      "_mod_time": 1785932867.55
+      "_mod_time": 1785999472.559
     },
     "zxc.20260429112140.1": {
-      "_mod_time": 1777612767.666
+      "_mod_time": 1785999472.56
     },
     "zxc.20260426235942.1": {
-      "_mod_time": 1777219283.757
+      "_mod_time": 1785999472.534
     },
     "zxc.20260427224207.1": {
-      "_mod_time": 1785568696.099
+      "_mod_time": 1785999472.533
     },
     "user.20260731234353.1": {
-      "_mod_time": 1785556066.849
+      "_mod_time": 1785999472.532
     },
     "user.20260801114801.1": {
-      "_mod_time": 1785568696.119
+      "_mod_time": 1785999472.532
     },
     "user.20260802232119.1": {
-      "_mod_time": 1785684463.518
+      "_mod_time": 1785999472.535
     },
     "zxc.20260615224333.1": {
-      "_mod_time": 1781534693.623
+      "_mod_time": 1785999472.531
     },
     "zxc.20260125144442.1": {
-      "_mod_time": 1783254884.663
+      "_mod_time": 1785999472.367
     },
     "zxc.20260125172659.1": {
       "_mod_time": 1780748738.606
@@ -15692,127 +15593,127 @@
       "_mod_time": 1782087842.583
     },
     "User.20260226000855.1": {
-      "_mod_time": 1785508166.31
+      "_mod_time": 1785999472.367
     },
     "zxc.20260202203521.17": {
-      "_mod_time": 1782490333.255
+      "_mod_time": 1785999472.396
     },
     "User.20260220233639.1": {
-      "_mod_time": 1783164753.034
+      "_mod_time": 1785999472.407
     },
     "zxc.20260202203521.20": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1785999472.409
     },
     "User.20260216114746.1": {
-      "_mod_time": 1778706271.126
+      "_mod_time": 1785999472.403
     },
     "zxc.20260505221318.1": {
-      "_mod_time": 1783164753.051
+      "_mod_time": 1785999472.403
     },
     "zxc.20260202203521.14": {
-      "_mod_time": 1776614192.458
+      "_mod_time": 1785999472.404
     },
     "zxc.20260202203521.3": {
-      "_mod_time": 1780117762.444
+      "_mod_time": 1785999472.412
     },
     "zxc.20260202213444.1": {
-      "_mod_time": 1776434513.084
+      "_mod_time": 1785999472.413
     },
     "User.20260220142155.2": {
-      "_mod_time": 1776434513.084
+      "_mod_time": 1785999472.412
     },
     "User.20260220151435.2": {
-      "_mod_time": 1780117762.459
+      "_mod_time": 1785999472.4
     },
     "zxc.20260505102132.1": {
-      "_mod_time": 1783164753.067
+      "_mod_time": 1785999472.401
     },
     "zxc.20260202215023.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1785999472.368
     },
     "zxc.20260202215408.1": {
-      "_mod_time": 1781530506.443
+      "_mod_time": 1785999472.405
     },
     "zxc.20260202220030.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1785999472.408
     },
     "zxc.20260202220553.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1785999472.411
     },
     "User.20260217202401.1": {
-      "_mod_time": 1783779104.421
+      "_mod_time": 1785999472.398
     },
     "User.20260220214558.1": {
-      "_mod_time": 1783779104.421
+      "_mod_time": 1785999472.399
     },
     "zxc.20260530230944.1": {
-      "_mod_time": 1783779104.431
+      "_mod_time": 1785999472.402
     },
     "zxc.20260531001920.1": {
-      "_mod_time": 1783779104.431
+      "_mod_time": 1785999472.402
     },
     "User.20260217214851.1": {
-      "_mod_time": 1776851988.666
+      "_mod_time": 1785999472.408
     },
     "zxc.20260422085228.1": {
-      "_mod_time": 1776851988.666
+      "_mod_time": 1785999472.397
     },
     "User.20260220000301.2": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1785999472.398
     },
     "User.20260220012738.1": {
       "_mod_time": 1776434513.068
     },
     "User.20260308173318.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1785999472.391
     },
     "User.20260308184128.2": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1785999472.369
     },
     "User.20260308184713.2": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1785999472.397
     },
     "User.20260308214701.2": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1785999472.388
     },
     "zxc.20260328213746.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1785999472.395
     },
     "User.20260308215626.2": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1785999472.395
     },
     "zxc.20260317085009.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1785999472.39
     },
     "zxc.20260318203351.1": {
-      "_mod_time": 1777967012.401
+      "_mod_time": 1785999472.393
     },
     "zxc.20260505141849.1": {
-      "_mod_time": 1783164753.167
+      "_mod_time": 1785999472.394
     },
     "zxc.20260323195318.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1785999472.405
     },
     "zxc.20260329102210.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1785999472.41
     },
     "zxc.20260404153353.1": {
-      "_mod_time": 1776434513.068
+      "_mod_time": 1785999472.41
     },
     "zxc.20260531113237.1": {
-      "_mod_time": 1780230892.19
+      "_mod_time": 1785999472.387
     },
     "zxc.20260602152143.1": {
-      "_mod_time": 1783164753.184
+      "_mod_time": 1785999472.386
     },
     "zxc.20260602183356.1": {
-      "_mod_time": 1783164753.206
+      "_mod_time": 1785999472.389
     },
     "zxc.20260603094212.1": {
-      "_mod_time": 1783164753.228
+      "_mod_time": 1785999472.393
     },
     "zxc.20260615003716.1": {
-      "_mod_time": 1781602833.363
+      "_mod_time": 1785999472.392
     },
     "zxc.20260620011448.1": {
       "_mod_time": 1782087842.583
@@ -15821,16 +15722,16 @@
       "_mod_time": 1783643014.452
     },
     "user.20260710235840.1": {
-      "_mod_time": 1783699604.594
+      "_mod_time": 1785999472.399
     },
     "user.20260711000816.1": {
-      "_mod_time": 1783699754.209
+      "_mod_time": 1785999472.4
     },
     "User.20260226001402.1": {
-      "_mod_time": 1785508309.438
+      "_mod_time": 1785739487.179
     },
     "zxc.20260317002829.1": {
-      "_mod_time": 1781442394.083
+      "_mod_time": 1785999472.481
     },
     "zxc.20260201141149.1": {
       "_mod_time": 1785111085.195
@@ -15848,31 +15749,31 @@
       "_mod_time": 1780748738.608
     },
     "zxc.20260423154131.2": {
-      "_mod_time": 1782233227.429
+      "_mod_time": 1785999472.48
     },
     "zxc.20260125143007.1": {
-      "_mod_time": 1784456027.231
+      "_mod_time": 1785999472.478
     },
     "zxc.20260125143959.1": {
-      "_mod_time": 1783164752.845
+      "_mod_time": 1785999472.477
     },
     "zxc.20260315140713.1": {
       "_mod_time": 1782471000.23
     },
     "zxc.20260408012432.1": {
-      "_mod_time": 1777179946.871
+      "_mod_time": 1785999472.488
     },
     "User.20260301202336.1": {
-      "_mod_time": 1781422707.612
+      "_mod_time": 1785999472.479
     },
     "zxc.20260327184129.1": {
-      "_mod_time": 1785508177.728
+      "_mod_time": 1785999472.5
     },
     "zxc.20260125162740.1": {
-      "_mod_time": 1783164753.243
+      "_mod_time": 1785999472.481
     },
     "zxc.20260126185048.1": {
-      "_mod_time": 1777179946.853
+      "_mod_time": 1785999472.463
     },
     "zxc.20260130225718.1": {
       "_mod_time": 1777179946.861
@@ -15911,55 +15812,52 @@
       "_mod_time": 1778855150.612
     },
     "zxc.20260507002719.1": {
-      "_mod_time": 1783164753.26
+      "_mod_time": 1785999472.482
     },
     "zxc.20260507003041.1": {
-      "_mod_time": 1783164753.275
+      "_mod_time": 1785999472.483
     },
     "zxc.20260505181144.1": {
-      "_mod_time": 1783164753.69
-    },
-    "user.20260718133004.1": {
-      "_mod_time": 1785928192.412
+      "_mod_time": 1785999472.488
     },
     "zxc.20260125152704.1": {
       "_mod_time": 1777179946.876
     },
     "zxc.20260507000814.1": {
-      "_mod_time": 1783164753.393
+      "_mod_time": 1785999472.503
     },
     "zxc.20260508000348.1": {
-      "_mod_time": 1783164753.411
+      "_mod_time": 1785999472.502
     },
     "zxc.20260529152606.1": {
-      "_mod_time": 1783164753.426
+      "_mod_time": 1785999472.512
     },
     "user.20260718172753.1": {
       "_mod_time": 1784506446.231
     },
     "zxc.20260126154354.1": {
-      "_mod_time": 1777179946.877
+      "_mod_time": 1785999472.503
     },
     "zxc.20260505104942.1": {
-      "_mod_time": 1783164753.359
+      "_mod_time": 1785999472.501
     },
     "zxc.20260505105255.1": {
-      "_mod_time": 1783164753.376
+      "_mod_time": 1785999472.5
     },
     "User.20260217223023.1": {
       "_mod_time": 1785492220.745
     },
     "User.20260217223030.1": {
-      "_mod_time": 1785940300.697
+      "_mod_time": 1785976200.722
     },
     "User.20260217223035.1": {
-      "_mod_time": 1785940300.728
+      "_mod_time": 1785976200.723
     },
     "User.20260223014430.1": {
       "_mod_time": 1783643014.466
     },
     "user.20260702165628.1": {
-      "_mod_time": 1785926872.089
+      "_mod_time": 1785999472.504
     },
     "zxc.20260421145655.1": {
       "_mod_time": 1784506446.231
@@ -15968,7 +15866,7 @@
       "_mod_time": 1777179946.881
     },
     "user.20260719233947.1": {
-      "_mod_time": 1784475727.427
+      "_mod_time": 1785999472.504
     },
     "zxc.20260125153131.1": {
       "_mod_time": 1777179946.883
@@ -15977,40 +15875,40 @@
       "_mod_time": 1785587105.016
     },
     "zxc.20260504000649.1": {
-      "_mod_time": 1783164753.343
+      "_mod_time": 1785999472.505
     },
     "zxc.20260125161631.1": {
-      "_mod_time": 1783164753.309
+      "_mod_time": 1785999472.506
     },
     "User.20260216185314.1": {
-      "_mod_time": 1783164753.325
+      "_mod_time": 1785999472.507
     },
     "zxc.20260603092509.1": {
-      "_mod_time": 1783164753.442
+      "_mod_time": 1785999472.508
     },
     "zxc.20260503171104.1": {
       "_mod_time": 1778049436.438
     },
     "zxc.20260625222427.1": {
-      "_mod_time": 1784887639.016
+      "_mod_time": 1785999472.508
     },
     "zxc.20260625222003.1": {
-      "_mod_time": 1783164753.474
+      "_mod_time": 1785999472.509
     },
     "zxc.20260625222119.1": {
-      "_mod_time": 1783696240.411
+      "_mod_time": 1785999472.51
     },
     "zxc.20260625222215.1": {
-      "_mod_time": 1783164753.506
+      "_mod_time": 1785999472.51
     },
     "zxc.20260625222255.1": {
-      "_mod_time": 1783164753.532
+      "_mod_time": 1785999472.509
     },
     "user.20260720225145.1": {
-      "_mod_time": 1784559158.749
+      "_mod_time": 1785999472.511
     },
     "user.20260720225301.1": {
-      "_mod_time": 1784559214.936
+      "_mod_time": 1785999472.511
     },
     "User.20260220233323.1": {
       "_mod_time": 1782695824.549
@@ -16034,7 +15932,7 @@
       "_mod_time": 1782087842.6581175
     },
     "zxc.20260613104254.1": {
-      "_mod_time": 1785508972.265
+      "_mod_time": 1785739487.203
     },
     "zxc.20260613110002.1": {
       "_mod_time": 1782087842.671345
@@ -16118,73 +16016,67 @@
       "_mod_time": 1783297135.129
     },
     "zxc.20260125152851.2": {
-      "_mod_time": 1785928536.305
+      "_mod_time": 1785999472.513
     },
     "user.20260718134508.1": {
-      "_mod_time": 1784353610.434
+      "_mod_time": 1785999472.513
     },
     "user.20260724150634.1": {
       "_mod_time": 1784887378.134
     },
-    "zxc.20260502183455.1": {
-      "_mod_time": 1785937878.515
-    },
     "zxc.20260502183056.1": {
-      "_mod_time": 1783355287.883
+      "_mod_time": 1785999472.514
     },
     "zxc.20260502183253.1": {
-      "_mod_time": 1783355377.171
+      "_mod_time": 1785999472.515
     },
     "User.20260215182442.1": {
-      "_mod_time": 1777891060.651
+      "_mod_time": 1785999472.517
     },
     "User.20260217022114.1": {
-      "_mod_time": 1777891191.612
+      "_mod_time": 1785999472.516
     },
     "User.20260215182818.1": {
-      "_mod_time": 1777891191.634
+      "_mod_time": 1785999472.518
     },
     "zxc.20260317084145.1": {
-      "_mod_time": 1777891060.7
+      "_mod_time": 1785999472.517
     },
     "zxc.20260201225344.1": {
-      "_mod_time": 1785555493.072
+      "_mod_time": 1785999472.515
     },
     "zxc.20260317082914.1": {
-      "_mod_time": 1785492220.752
+      "_mod_time": 1785999472.516
     },
     "zxc.20260201034331.1": {
-      "_mod_time": 1784366222.87
+      "_mod_time": 1785999472.53
     },
     "User.20260215205925.1": {
-      "_mod_time": 1780230892.216
+      "_mod_time": 1785999472.529
     },
     "User.20260215210400.1": {
-      "_mod_time": 1777179946.904
+      "_mod_time": 1785999472.528
     },
     "User.20260220151031.5": {
-      "_mod_time": 1780230892.215
+      "_mod_time": 1785999472.527
     },
     "User.20260220151031.28": {
-      "_mod_time": 1777179946.902
+      "_mod_time": 1785999472.527
     },
     "User.20260221175549.1": {
-      "_mod_time": 1781411469.833
+      "_mod_time": 1785999472.519
     },
     "User.20260221194603.1": {
-      "_mod_time": 1777179946.906
+      "_mod_time": 1785999472.529
     },
     "User.20260222211658.1": {
-      "_mod_time": 1777179946.899
-    },
-    "zxc.20260201203241.1": {
-      "_mod_time": 1785937878.524
+      "_mod_time": 1785999472.523
     },
     "zxc.20260201203515.1": {
-      "_mod_time": 1783355287.907
+      "_mod_time": 1785999472.52
     },
     "zxc.20260201214114.1": {
-      "_mod_time": 1778939057.595
+      "_mod_time": 1785999472.521
     },
     "zxc.20260202195207.1": {
       "_mod_time": 1782695824.5503738
@@ -16214,7 +16106,7 @@
       "_mod_time": 1781590487.337
     },
     "zxc.20260613104150.1": {
-      "_mod_time": 1785508972.281
+      "_mod_time": 1785739487.204
     },
     "zxc.20260614145702.1": {
       "_mod_time": 1781590487.338
@@ -16277,34 +16169,34 @@
       "_mod_time": 1782477813.634
     },
     "zxc.20260325223009.1": {
-      "_mod_time": 1777891355.163
+      "_mod_time": 1785999472.524
     },
     "zxc.20260325223610.1": {
-      "_mod_time": 1777891355.18
+      "_mod_time": 1785999472.525
     },
     "zxc.20260325223805.1": {
-      "_mod_time": 1784542142.966
+      "_mod_time": 1785999472.525
     },
     "zxc.20260329012003.1": {
-      "_mod_time": 1777179946.894
+      "_mod_time": 1785999472.521
     },
     "zxc.20260411192514.1": {
-      "_mod_time": 1781287296.273
+      "_mod_time": 1785999472.522
     },
     "zxc.20260330235722.1": {
-      "_mod_time": 1777179946.891
+      "_mod_time": 1785999472.518
     },
     "zxc.20260609212401.1": {
-      "_mod_time": 1782900305.86
+      "_mod_time": 1785999472.52
     },
     "zxc.20260625230303.1": {
-      "_mod_time": 1782399873.228
+      "_mod_time": 1785999472.522
     },
     "user.20260628104306.1": {
-      "_mod_time": 1785926872.091
+      "_mod_time": 1785999472.531
     },
     "user.20260628110148.1": {
-      "_mod_time": 1785926872.091
+      "_mod_time": 1785999472.53
     },
     "zxc.20260518220745.1": {
       "_mod_time": 1780748738.611
@@ -16373,7 +16265,7 @@
       "_mod_time": 1783765325.318
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1783775504.322
+      "_mod_time": 1785999472.465
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1777713442.482
@@ -16388,7 +16280,7 @@
       "_mod_time": 1785111084.005
     },
     "zxc.20260423143729.3": {
-      "_mod_time": 1785111084.016
+      "_mod_time": 1785999751.505
     },
     "zxc.20260423143729.302": {
       "_mod_time": 1778855150.568
@@ -16514,97 +16406,94 @@
       "_mod_time": 1777713442.482
     },
     "zxc.20260202205715.1": {
-      "_mod_time": 1777106655.378
+      "_mod_time": 1785999472.476
     },
     "zxc.20260426163956.1": {
       "_mod_time": 1782477813.619
     },
     "User.20260302151947.1": {
-      "_mod_time": 1781863634.272
+      "_mod_time": 1785999472.415
     },
     "zxc.20260407232538.1": {
-      "_mod_time": 1782049349.424
+      "_mod_time": 1785999472.415
     },
     "zxc.20260408005117.1": {
-      "_mod_time": 1777179946.836
+      "_mod_time": 1785999472.414
     },
     "zxc.20260529091145.1": {
-      "_mod_time": 1785926872.086
+      "_mod_time": 1785999472.417
     },
     "user.20260724150150.1": {
-      "_mod_time": 1784887639.067
+      "_mod_time": 1785999472.416
     },
     "zxc.20260201140523.1": {
-      "_mod_time": 1777179946.85
+      "_mod_time": 1785999472.456
     },
     "zxc.20260130233132.1": {
-      "_mod_time": 1777385863.235
+      "_mod_time": 1785999472.454
     },
     "zxc.20260128002742.1": {
-      "_mod_time": 1784887378.078
+      "_mod_time": 1785999472.418
     },
     "zxc.20260214105528.1": {
-      "_mod_time": 1777302969.518
+      "_mod_time": 1785999472.458
     },
     "zxc.20260214142543.1": {
-      "_mod_time": 1777179946.851
+      "_mod_time": 1785999472.459
     },
     "User.20260215234634.1": {
-      "_mod_time": 1777179946.854
+      "_mod_time": 1785999472.464
     },
     "User.20260216124226.1": {
-      "_mod_time": 1777179946.845
+      "_mod_time": 1785999472.451
     },
     "User.20260216125422.1": {
-      "_mod_time": 1777179946.847
+      "_mod_time": 1785999472.452
     },
     "User.20260219235648.1": {
-      "_mod_time": 1777179946.847
+      "_mod_time": 1785999472.453
     },
     "User.20260228231944.1": {
-      "_mod_time": 1785926872.088
+      "_mod_time": 1785999472.461
     },
     "User.20260302211536.1": {
-      "_mod_time": 1784887639.084
+      "_mod_time": 1785999472.418
     },
     "User.20260302211740.1": {
-      "_mod_time": 1777179946.836
+      "_mod_time": 1785999472.419
     },
     "User.20260302211946.1": {
-      "_mod_time": 1783696240.426
+      "_mod_time": 1785999472.45
     },
     "User.20260302212424.1": {
-      "_mod_time": 1777179946.845
+      "_mod_time": 1785999472.451
     },
     "User.20260302212645.1": {
-      "_mod_time": 1777179946.84
+      "_mod_time": 1785999472.449
     },
     "User.20260303213330.1": {
-      "_mod_time": 1777179946.854
+      "_mod_time": 1785999472.464
     },
     "zxc.20260401221312.1": {
-      "_mod_time": 1777179946.849
+      "_mod_time": 1785999472.455
     },
     "zxc.20260402230727.1": {
-      "_mod_time": 1777179946.85
+      "_mod_time": 1785999472.457
     },
     "zxc.20260417220340.1": {
-      "_mod_time": 1777179941.91
-    },
-    "zxc.20260515010901.1": {
-      "_mod_time": 1785928192.425
+      "_mod_time": 1785999472.459
     },
     "zxc.20260518233322.1": {
-      "_mod_time": 1783337931.744
+      "_mod_time": 1785999472.46
     },
     "zxc.20260611090830.1": {
-      "_mod_time": 1785323176.725
+      "_mod_time": 1785999472.462
     },
     "zxc.20260611091007.1": {
-      "_mod_time": 1784547644
+      "_mod_time": 1785999472.462
     },
     "zxc.20260621234825.1": {
-      "_mod_time": 1785926872.088
+      "_mod_time": 1785976200.706
     }
   }
 }
