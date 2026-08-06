@@ -115,3 +115,18 @@ AppData/Roaming/aichat/**
 {{ end -}}
 {{ end -}}
 {{/* }}} */ -}}
+
+{{/* {{{ gnupg */ -}}
+{{ if eq .chezmoi.os "windows" | not -}}
+{{ if lookPath "gpg" | not -}}
+scoop/persist/gpg/home/
+scoop/persist/gpg/home/**
+{{ end -}}
+{{ end -}}
+{{ if eq .chezmoi.os "linux" "android" | not -}}
+{{ if lookPath "gpg" | not -}}
+.gnupg/
+.gnupg/**
+{{ end -}}
+{{ end -}}
+{{/* }}} */ -}}
