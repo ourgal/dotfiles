@@ -1,5 +1,7 @@
-{{ if eq .chezmoi.os "linux" "android" -}}
-{{ if lookPath "tldr" -}}
-{{ includeTemplate "cli/doc/tealdeer/default" . -}}
+{{ $cfg := dict -}}
+{{ $cfg = set $cfg "display" (dict "compact" true "use_paper" true) -}}
+{{ $cfg = set $cfg "updates" (dict "auto_update" true "auto_update_interval_hours" 720) -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ $cfg = set $cfg "directories" (dict "cache_dir" (joinPath .chezmoi.homeDir "scoop" "persist" "tealdeer" "cache") "custom_pages_dir" (joinPath .chezmoi.homeDir "scoop" "persist" "tealdeer" "custom_pages")) -}}
 {{ end -}}
-{{ end -}}
+{{ $cfg | toToml -}}

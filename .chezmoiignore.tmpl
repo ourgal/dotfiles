@@ -169,3 +169,18 @@ AppData/Roaming/mpd/**
 {{ end -}}
 {{ end -}}
 {{/* }}} */ -}}
+
+{{/* {{{ tealdeer */ -}}
+{{ if eq .chezmoi.os "windows" | not -}}
+{{ if lookPath "mpd" | not -}}
+scoop/persist/tealdeer/
+scoop/persist/tealdeer/**
+{{ end -}}
+{{ end -}}
+{{ if eq .chezmoi.os "linux" "android" | not -}}
+{{ if lookPath "tldr" | not -}}
+.config/tealdeer/
+.config/tealdeer/**
+{{ end -}}
+{{ end -}}
+{{/* }}} */ -}}
