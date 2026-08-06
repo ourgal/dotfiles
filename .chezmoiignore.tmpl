@@ -145,3 +145,18 @@ AppData/Roaming/fdroidcl/**
 {{ end -}}
 {{ end -}}
 {{/* }}} */ -}}
+
+{{/* {{{ aria2 */ -}}
+{{ if eq .chezmoi.os "windows" | not -}}
+{{ if lookPath "aria2c" | not -}}
+.aria2/
+.aria2/**
+{{ end -}}
+{{ end -}}
+{{ if eq .chezmoi.os "linux" "android" | not -}}
+{{ if lookPath "aria2c" | not -}}
+.config/aria2/
+.config/aria2/**
+{{ end -}}
+{{ end -}}
+{{/* }}} */ -}}
