@@ -138,8 +138,68 @@
 {{ $wifi = append $wifi "de.srlabs.snoopsnitch" -}}
 
 {{ $setups := list -}}
-{{ $setups = append $setups (dict "apps" (concat $anime $battery $chat $download $ebook $email $IME $installer $integration $keyboard $manga $music $phone $proxy $qr $store $sync $termux $video $IOT $weather) "id" "phone" "repos" (list "f-droid")) -}}
-{{ $setups = append $setups (dict "apps" (concat $battery $IME $installer $integration $keyboard $qr $store $sync $system $video $weather) "id" "sub_phone" "repos" (list "f-droid")) -}}
-{{ $setups = append $setups (dict "apps" (concat $anime $battery $download $ebook $git $IME $installer $integration $keyboard $manga $music $note $proxy $qr $rss $scanner $share $store $sync $media $headphone $pass $termux $video $weather) "id" "tablet" "repos" (list "f-droid")) -}}
+{{ $setups = append $setups (dict "apps" (concat
+      $IME
+      $IOT
+      $anime
+      $battery
+      $chat
+      $download
+      $ebook
+      $email
+      $installer
+      $integration
+      $keyboard
+      $manga
+      $music
+      $phone
+      $proxy
+      $qr
+      $store
+      $sync
+      $termux
+      $video
+      $weather
+      ) "id" "phone" "repos" (list "f-droid")) -}}
+{{ $setups = append $setups (dict "apps" (concat
+      $IME
+      $battery
+      $installer
+      $integration
+      $keyboard
+      $qr
+      $store
+      $sync
+      $system
+      $video
+      $weather
+      ) "id" "sub_phone" "repos" (list "f-droid")) -}}
+{{ $setups = append $setups (dict "apps" (concat
+      $IME
+      $anime
+      $battery
+      $download
+      $ebook
+      $git
+      $headphone
+      $installer
+      $integration
+      $keyboard
+      $manga
+      $media
+      $music
+      $note
+      $pass
+      $proxy
+      $qr
+      $rss
+      $scanner
+      $share
+      $store
+      $sync
+      $termux
+      $video
+      $weather
+      ) "id" "tablet" "repos" (list "f-droid")) -}}
 
 {{ dict "repos" $repos "setups" $setups | toToml -}}
