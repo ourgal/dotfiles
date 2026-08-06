@@ -130,3 +130,18 @@ scoop/persist/gpg/home/**
 {{ end -}}
 {{ end -}}
 {{/* }}} */ -}}
+
+{{/* {{{ fdroidcl */ -}}
+{{ if eq .chezmoi.os "windows" | not -}}
+{{ if lookPath "fdroidcl" | not -}}
+AppData/Roaming/fdroidcl/
+AppData/Roaming/fdroidcl/**
+{{ end -}}
+{{ end -}}
+{{ if eq .chezmoi.os "linux" "android" | not -}}
+{{ if lookPath "fdroidcl" | not -}}
+.config/fdroidcl/
+.config/fdroidcl/**
+{{ end -}}
+{{ end -}}
+{{/* }}} */ -}}

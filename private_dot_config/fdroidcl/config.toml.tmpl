@@ -1,5 +1,145 @@
-{{ if eq .chezmoi.os "linux" "android" -}}
-{{ if lookPath "fdroidcl" -}}
-{{ includeTemplate "cli/android/fdroidcl/default" . -}}
-{{ end -}}
-{{ end -}}
+{{ $repos := list -}}
+{{ $repos = append $repos (dict "enabled" true "id" "f-droid" "url" "https://f-droid.org/repo") -}}
+{{ $repos = append $repos (dict "enabled" false "id" "f-droid-archive" "url" "https://f-droid.org/archive") -}}
+{{ $repos = append $repos (dict "enabled" true "id" "cernet" "url" "https://mirrors.cernet.edu.cn/fdroid/repo") -}}
+{{ $repos = append $repos (dict "enabled" true "id" "nju" "url" "https://mirror.nju.edu.cn/fdroid/repo") -}}
+{{ $repos = append $repos (dict "enabled" true "id" "lzzy" "url" "https://apt.izzysoft.de/fdroid/repo") -}}
+
+{{ $anime := list -}}
+{{ $anime = append $anime "com.axiel7.anihyou" -}}
+{{ $anime = append $anime "com.predidit.kazumi" -}}
+{{ $anime = append $anime "com.example.knkpanime" -}}
+{{ $anime = append $anime "org.github.henryquan.animeone" -}}
+{{ $anime = append $anime "io.github.jica98" -}}
+
+{{ $battery := list -}}
+{{ $battery = append $battery "biz.binarysolutions.healthybatterycharging" -}}
+
+{{ $chat := list -}}
+{{ $chat = append $chat "org.forkgram.messenger" -}}
+{{ $chat = append $chat "chat.simplex.app" -}}
+
+{{ $download := list -}}
+{{ $download = append $download "com.gianlu.aria2app" -}}
+{{ $download = append $download "com.prajwalch.torrentsearch" -}}
+{{ $download = append $download "org.equeim.tremotesf" -}}
+
+{{ $ebook := list -}}
+{{ $ebook = append $ebook "org.koreader.launcher.fdroid" -}}
+{{ $ebook = append $ebook "indi.dmzz_yyhyy.lightnovelreader" -}}
+
+{{ $editor := list -}}
+{{ $editor = append $editor "com.droidvim" -}}
+
+{{ $email := list -}}
+{{ $email = append $email "eu.faircode.email" -}}
+
+{{ $git := list -}}
+{{ $git = append $git "com.catpuppyapp.puppygit.play.pro" -}}
+
+{{ $IME := list -}}
+{{ $IME = append $IME "com.osfans.trime" -}}
+
+{{ $installer := list -}}
+{{ $installer = append $installer "app.pwhs.universalinstaller" -}}
+
+{{ $integration := list -}}
+{{ $integration = append $integration "org.kde.kdeconnect_tp" -}}
+
+{{ $keyboard := list -}}
+{{ $keyboard = append $keyboard "inc.flide.vi8" -}}
+
+{{ $manga := list -}}
+{{ $manga = append $manga "io.github.landwarderer.futon" -}}
+
+{{ $music := list -}}
+{{ $music = append $music "org.moire.ultrasonic" -}}
+{{ $music = append $music "org.oxycblt.auxio" -}}
+{{ $music = append $music "org.gateshipone.malp" -}}
+{{ $music = append $music "de.badaix.snapcast" -}}
+{{ $music = append $music "me.echeung.moemoekyun.fdroid" -}}
+{{ $music = append $music "github.paroj.dsub2000" -}}
+
+{{ $note := list -}}
+{{ $note = append $note "net.cozic.joplin" -}}
+{{ $note = append $note "com.streetwriters.notesnook" -}}
+{{ $note = append $note "org.b3log.siyuan" -}}
+
+{{ $phone := list -}}
+{{ $phone = append $phone "me.hackerchick.raisetoanswer" -}}
+{{ $phone = append $phone "spam.blocker" -}}
+
+{{ $proxy := list -}}
+{{ $proxy = append $proxy "ch.protonvpn.android" -}}
+{{ $proxy = append $proxy "com.tailscale.ipn" -}}
+
+{{ $qr := list -}}
+{{ $qr = append $qr "com.secuso.privacyFriendlyCodeScanner" -}}
+
+{{ $rss := list -}}
+{{ $rss = append $rss "de.circle_dev.flux_news" -}}
+
+{{ $scanner := list -}}
+{{ $scanner = append $scanner "de.schliweb.makeacopy" -}}
+
+{{ $share := list -}}
+{{ $share = append $share "com.dking.crocapp" -}}
+{{ $share = append $share "com.ismartcoding.plain" -}}
+
+{{ $store := list -}}
+{{ $store = append $store "com.machiav3lli.fdroid" -}}
+{{ $store = append $store "org.fdroid.fdroid" -}}
+{{ $store = append $store "zed.rainxch.githubstore" -}}
+{{ $store = append $store "com.aurora.store" -}}
+
+{{ $sync := list -}}
+{{ $sync = append $sync "com.github.catfriend1.syncthingfork" -}}
+{{ $sync = append $sync "de.felixnuesse.extract" -}}
+
+{{ $media := list -}}
+{{ $media = append $media "deckers.thibault.aves.libre" -}}
+
+{{ $headphone := list -}}
+{{ $headphone = append $headphone "eu.darken.capod" -}}
+
+{{ $pass := list -}}
+{{ $pass = append $pass "com.kunzisoft.keepass.libre" -}}
+
+{{ $system := list -}}
+{{ $system = append $system "com.aistra.hail" -}}
+{{ $system = append $system "com.arslan.shizuwall" -}}
+{{ $system = append $system "com.leekleak.trafficlight" -}}
+
+{{ $termux := list -}}
+{{ $termux = append $termux "com.termux" -}}
+{{ $termux = append $termux "com.termux.api" -}}
+
+{{ $todo := list -}}
+{{ $todo = append $todo "de.tnmgl.ntodotxt" -}}
+{{ $todo = append $todo "org.tasks" -}}
+
+{{ $video := list -}}
+{{ $video = append $video "org.videolan.vlc" -}}
+{{ $video = append $video "dev.jdtech.jellyfin" -}}
+{{ $video = append $video "com.github.libretube" -}}
+{{ $video = append $video "is.xyz.mpv" -}}
+{{ $video = append $video "org.jellyfin.mobile" -}}
+{{ $video = append $video "org.schabi.newpipe" -}}
+{{ $video = append $video "InfinityLoop1309.NewPipeEnhanced" -}}
+
+{{ $IOT := list -}}
+{{ $IOT = append $IOT "nodomain.freeyourgadget.gadgetbridge" -}}
+
+{{ $weather := list -}}
+{{ $weather = append $weather "org.breezyweather" -}}
+
+{{ $wifi := list -}}
+{{ $wifi = append $wifi "com.vrem.wifianalyzer" -}}
+{{ $wifi = append $wifi "de.srlabs.snoopsnitch" -}}
+
+{{ $setups := list -}}
+{{ $setups = append $setups (dict "apps" (concat $anime $battery $chat $download $ebook $email $IME $installer $integration $keyboard $manga $music $phone $proxy $qr $store $sync $termux $video $IOT $weather) "id" "phone" "repos" (list "f-droid")) -}}
+{{ $setups = append $setups (dict "apps" (concat $battery $IME $installer $integration $keyboard $qr $store $sync $system $video $weather) "id" "sub_phone" "repos" (list "f-droid")) -}}
+{{ $setups = append $setups (dict "apps" (concat $anime $battery $download $ebook $git $IME $installer $integration $keyboard $manga $music $note $proxy $qr $rss $scanner $share $store $sync $media $headphone $pass $termux $video $weather) "id" "tablet" "repos" (list "f-droid")) -}}
+
+{{ dict "repos" $repos "setups" $setups | toToml -}}
