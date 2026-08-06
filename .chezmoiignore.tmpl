@@ -193,3 +193,18 @@ scoop/persist/yt-dlp/**
 {{ end -}}
 {{ end -}}
 {{/* }}} */ -}}
+
+{{/* {{{ transmission */ -}}
+{{ if eq .chezmoi.os "windows" | not -}}
+{{ if lookPath "transmission-daemon" | not -}}
+AppData/Local/transmission-daemon/
+AppData/Local/transmission-daemon/**
+{{ end -}}
+{{ end -}}
+{{ if eq .chezmoi.os "linux" "android" | not -}}
+{{ if lookPath "transmission-daemon" | not -}}
+.config/transmission-daemon/
+.config/transmission-daemon/**
+{{ end -}}
+{{ end -}}
+{{/* }}} */ -}}

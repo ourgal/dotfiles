@@ -1,5 +1,132 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "transmission-daemon" -}}
-{{ includeTemplate "cli/download/transmission/default" . -}}
-{{ end -}}
-{{ end -}}
+{{ $cfg := dict -}}
+{{ $cfg = set $cfg "alt-speed-down" 50 -}}
+{{ $cfg = set $cfg "alt-speed-enabled" false -}}
+{{ $cfg = set $cfg "alt-speed-time-begin" 540 -}}
+{{ $cfg = set $cfg "alt-speed-time-day" 127 -}}
+{{ $cfg = set $cfg "alt-speed-time-enabled" false -}}
+{{ $cfg = set $cfg "alt-speed-time-end" 1020 -}}
+{{ $cfg = set $cfg "alt-speed-up" 50 -}}
+
+{{ $cfg = set $cfg "announce-ip" "" -}}
+{{ $cfg = set $cfg "announce-ip-enabled" false -}}
+
+{{ $cfg = set $cfg "anti-brute-force-enabled" false -}}
+{{ $cfg = set $cfg "anti-brute-force-threshold" 100 -}}
+
+{{ $cfg = set $cfg "bind-address-ipv4" "" -}}
+{{ $cfg = set $cfg "bind-address-ipv6" "" -}}
+
+{{ $cfg = set $cfg "blocklist-enabled" false -}}
+{{ $cfg = set $cfg "blocklist-url" "http://www.example.com/blocklist" -}}
+
+{{ $cfg = set $cfg "cache-size-mb" 4 -}}
+
+{{ $cfg = set $cfg "default-trackers" "" -}}
+
+{{ $cfg = set $cfg "dht-enabled" true -}}
+
+{{ $cfg = set $cfg "download-dir" (joinPath .chezmoi.homeDir "Downloads" | quote) -}}
+
+{{ $cfg = set $cfg "download-queue-enabled" true -}}
+{{ $cfg = set $cfg "download-queue-size" 5 -}}
+
+{{ $cfg = set $cfg "encryption" 1 -}}
+
+{{ $cfg = set $cfg "idle-seeding-limit" 30 -}}
+{{ $cfg = set $cfg "idle-seeding-limit-enabled" false -}}
+
+{{ $cfg = set $cfg "incomplete-dir" (joinPath .chezmoi.homeDir "Downloads" | quote) -}}
+{{ $cfg = set $cfg "incomplete-dir-enabled" false -}}
+
+{{ $cfg = set $cfg "lpd-enabled" true -}}
+
+{{ $cfg = set $cfg "message-level" 4 -}}
+
+{{ $cfg = set $cfg "peer-congestion-algorithm" "" -}}
+{{ $cfg = set $cfg "peer-limit-global" 200 -}}
+{{ $cfg = set $cfg "peer-limit-per-torrent" 50 -}}
+{{ $cfg = set $cfg "peer-port" 51413 -}}
+{{ $cfg = set $cfg "peer-port-random-high" 65535 -}}
+{{ $cfg = set $cfg "peer-port-random-low" 49152 -}}
+{{ $cfg = set $cfg "peer-port-random-on-start" false -}}
+{{ $cfg = set $cfg "peer-socket-tos" "le" -}}
+
+{{ $cfg = set $cfg "pex-enabled" true -}}
+
+{{ $cfg = set $cfg "pidfile" "" -}}
+
+{{ $cfg = set $cfg "port-forwarding-enabled" true -}}
+
+{{ $cfg = set $cfg "preallocation" 1 -}}
+
+{{ $cfg = set $cfg "preferred_transports" (list "utp" "tcp") -}}
+
+{{ $cfg = set $cfg "proxy_url" "" -}}
+
+{{ $cfg = set $cfg "queue-stalled-enabled" true -}}
+{{ $cfg = set $cfg "queue-stalled-minutes" 30 -}}
+
+{{ $cfg = set $cfg "ratio-limit" 2.0 -}}
+{{ $cfg = set $cfg "ratio-limit-enabled" true -}}
+
+{{ $cfg = set $cfg "rename-partial-files" true -}}
+
+{{ $cfg = set $cfg "reqq" 2000 -}}
+
+{{ $cfg = set $cfg "rpc-authentication-required" false -}}
+{{ $cfg = set $cfg "rpc-bind-address" "0.0.0.0" -}}
+{{ $cfg = set $cfg "rpc-enabled" true -}}
+{{ $cfg = set $cfg "rpc-host-whitelist" "" -}}
+{{ $cfg = set $cfg "rpc-host-whitelist-enabled" true -}}
+{{ $cfg = set $cfg "rpc-password" "{8bfa8c62da3c6ec1265b76ddc2edc4f7ad6e8610C1RKvxcL" -}}
+{{ $cfg = set $cfg "rpc-port" 9091 -}}
+{{ $cfg = set $cfg "rpc-socket-mode" "0750" -}}
+{{ $cfg = set $cfg "rpc-url" "/transmission/" -}}
+{{ $cfg = set $cfg "rpc-username" "" -}}
+{{ $cfg = set $cfg "rpc-whitelist" "*,127.0.0.1,::1" -}}
+{{ $cfg = set $cfg "rpc-whitelist-enabled" true -}}
+
+{{ $cfg = set $cfg "scrape-paused-torrents-enabled" true -}}
+
+{{ $cfg = set $cfg "script-torrent-added-enabled" false -}}
+{{ $cfg = set $cfg "script-torrent-added-filename" "" -}}
+{{ $cfg = set $cfg "script-torrent-done-enabled" false -}}
+{{ $cfg = set $cfg "script-torrent-done-filename" "" -}}
+{{ $cfg = set $cfg "script-torrent-done-seeding-enabled" false -}}
+{{ $cfg = set $cfg "script-torrent-done-seeding-filename" "" -}}
+
+{{ $cfg = set $cfg "seed-queue-enabled" false -}}
+{{ $cfg = set $cfg "seed-queue-size" 10 -}}
+
+{{ $cfg = set $cfg "sequential_download" false -}}
+
+{{ $cfg = set $cfg "sleep-per-seconds-during-verify" 100 -}}
+
+{{ $cfg = set $cfg "speed-limit-down" 100 -}}
+{{ $cfg = set $cfg "speed-limit-down-enabled" false -}}
+{{ $cfg = set $cfg "speed-limit-up" 100 -}}
+{{ $cfg = set $cfg "speed-limit-up-enabled" false -}}
+
+{{ $cfg = set $cfg "start-added-torrents" true -}}
+
+{{ $cfg = set $cfg "start_paused" false -}}
+
+{{ $cfg = set $cfg "tcp-enabled" true -}}
+
+{{ $cfg = set $cfg "torrent-added-verify-mode" "fast" -}}
+
+{{ $cfg = set $cfg "torrent_complete_verify_enabled" false -}}
+
+{{ $cfg = set $cfg "trash-original-torrent-files" false -}}
+
+{{ $cfg = set $cfg "umask" "022" -}}
+
+{{ $cfg = set $cfg "upload-slots-per-torrent" 8 -}}
+
+{{ $cfg = set $cfg "utp-enabled" true -}}
+
+{{ $cfg = set $cfg "watch-dir" "" -}}
+{{ $cfg = set $cfg "watch-dir-enabled" false -}}
+{{ $cfg = set $cfg "watch-dir-force-generic" false -}}
+
+{{ $cfg | toJson -}}
