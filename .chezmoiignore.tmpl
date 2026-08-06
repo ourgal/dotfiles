@@ -184,3 +184,12 @@ scoop/persist/tealdeer/**
 {{ end -}}
 {{ end -}}
 {{/* }}} */ -}}
+
+{{/* {{{ yt-dlp */ -}}
+{{ if eq .chezmoi.os "windows" | not -}}
+{{ if lookPath "yt-dlp" | not -}}
+scoop/persist/yt-dlp/
+scoop/persist/yt-dlp/**
+{{ end -}}
+{{ end -}}
+{{/* }}} */ -}}
