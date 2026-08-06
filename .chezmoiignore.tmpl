@@ -160,3 +160,12 @@ AppData/Roaming/fdroidcl/**
 {{ end -}}
 {{ end -}}
 {{/* }}} */ -}}
+
+{{/* {{{ mpd */ -}}
+{{ if eq .chezmoi.os "windows" | not -}}
+{{ if lookPath "mpd" | not -}}
+AppData/Roaming/mpd/
+AppData/Roaming/mpd/**
+{{ end -}}
+{{ end -}}
+{{/* }}} */ -}}
