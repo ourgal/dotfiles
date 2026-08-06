@@ -1,5 +1,4 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "aichat" -}}
-{{ includeTemplate "cli/AI/aichat/gemini" . -}}
-{{ end -}}
-{{ end -}}
+{{ $cfg := dict -}}
+{{ $cfg = set $cfg "model" "gemini:gemini-2.5-flash" -}}
+{{ $cfg = set $cfg "clients" (list (dict "type" "gemini" "api_key" (gopass "AI/gemini"))) -}}
+{{ $cfg | toYaml -}}
