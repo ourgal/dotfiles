@@ -100,3 +100,18 @@ service/**
 .config/autostart/**
 scoop/persist/mpv/portable_config/scripts/mpv-anilist-updater/anilistToken.key
 {{ end -}}
+
+{{/* {{{ aichat */ -}}
+{{ if eq .chezmoi.os "windows" | not -}}
+{{ if lookPath "aichat" | not -}}
+AppData/Roaming/aichat/
+AppData/Roaming/aichat/**
+{{ end -}}
+{{ end -}}
+{{ if eq .chezmoi.os "linux" "android" | not -}}
+{{ if lookPath "aichat" | not -}}
+.config/aichat/
+.config/aichat/**
+{{ end -}}
+{{ end -}}
+{{/* }}} */ -}}
