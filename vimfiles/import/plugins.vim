@@ -16,7 +16,7 @@ Plug gh_proxy . 'tpope/vim-endwise'
 "}}}
 "{{{ termux
 if g:is_android
-    Plug gh_proxy . 'https://gitclone.com/github.com/vim-utilities/termux-clipboard'
+    Plug gh_proxy . 'vim-utilities/termux-clipboard'
 endif
 "}}}
 "{{{ command preview
