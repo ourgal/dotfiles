@@ -1,4 +1,4 @@
-let gh_proxy = 'https://gh-proxy.com/https://github.com/'
+let gh_proxy = 'https://jiashu.1win.eu.org/https://github.com/'
 "{{{ plugins
 call plug#begin()
 "{{{ align
