@@ -1,5 +1,1 @@
-{{ if eq .chezmoi.os "linux" "android" -}}
-{{ if lookPath "vim" -}}
-let maplocalleader = "\\"
-{{ end -}}
-{{ end -}}
+{{ include (joinPath .chezmoi.sourceDir "vimfiles" "ftplugin" "org.vim") -}}
