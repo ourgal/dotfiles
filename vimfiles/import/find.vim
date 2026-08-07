@@ -1,5 +1,3 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "vim" -}}
 vim9script
 
 # simple fuzzy find finder
@@ -53,5 +51,3 @@ def Find(cmd_arg: string, cmd_complete: bool): list<string>
 enddef
 
 set findfunc=Find
-{{ end -}}
-{{ end -}}

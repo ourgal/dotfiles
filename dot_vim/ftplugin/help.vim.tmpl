@@ -1,10 +1,1 @@
-{{ if eq .chezmoi.os "linux" "android" -}}
-{{ if lookPath "vim" -}}
-nmap <buffer> <CR> <C-]>
-nmap <buffer> <BS> <C-T>
-nnoremap <buffer> o silent! /'[a-z]\{2,\}'<CR>
-nnoremap <buffer> q <cmd>q<cr>
-
-autocmd BufEnter <buffer> silent wincmd T
-{{ end -}}
-{{ end -}}
+{{ include (joinPath .chezmoi.sourceDir "vimfiles" "ftplugin" "help.vim") -}}

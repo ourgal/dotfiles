@@ -1,6 +1,1 @@
-{{ if eq .chezmoi.os "linux" "android" -}}
-{{ if lookPath "vim" -}}
-nmap <buffer> l <CR>
-nmap <buffer> h -
-{{ end -}}
-{{ end -}}
+{{ include (joinPath .chezmoi.sourceDir "vimfiles" "ftplugin" "dirvish.vim") -}}

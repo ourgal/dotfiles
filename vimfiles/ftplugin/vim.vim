@@ -1,5 +1,3 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "vim" -}}
 let b:switch_custom_definitions = [
       \ { '\<\([invoxtcl]\?\)noremap\>': '\1map'},
       \ { '\<\([invoxtcl]\?\)map\>': '\1noremap'},
@@ -11,5 +9,3 @@ let b:switch_custom_definitions = [
       \ { '\c<Bar>': '\\|' },
       \ { '\\|': '<Bar>' }
       \]
-{{ end -}}
-{{ end -}}

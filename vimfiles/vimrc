@@ -1,149 +1,127 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "vim" -}}
+"{{{ options
+" yank highlight plugin
 packadd! hlyank
-" packadd! comment
-packadd! editorconfig
-import 'find.vim'
-let g:mapleader = ' '
-nnoremap <leader>bo <cmd>%bd\|e#\|bd#<CR>
-nnoremap ZX <cmd>xa!<cr>
-function OpenFileOrURL()
-  let cfile = expand('<cfile>')
-  if match(cfile, '^https\?://') >= 0
-    call system('xdg-open ' . cfile)
-  else
-    normal! gF
-  endif
-endfunction
 
-nnoremap <silent> gf <cmd>call OpenFileOrURL()<CR>
-nnoremap g* :%s/<c-r><c-w>/
+" comment plugin
+" packadd! comment
+
+" editorconfig plugin
+packadd! editorconfig
+
+" file picker
+import 'find.vim'
+
+" leader key
+let g:mapleader = ' '
+
+" close other buffers
+nnoremap <leader>bo <cmd>%bd\|e#\|bd#<CR>
+
+" save all and exit
+nnoremap ZX <cmd>xa!<cr>
+
+" center line when searching
 " nnoremap n nzzzv
 " nnoremap N Nzzzv
+
+" file picker
 nnoremap <leader><space> :find<space>
-set laststatus=2
 
-try
-set switchbuf=uselast
-set showtabline=2
-catch
-endtry
+set laststatus=2 " always show status line
 
+" tab to space
 set expandtab
 set smarttab
 
-set shiftwidth=4
-set tabstop=4
+" highlight search
+set incsearch
+set hlsearch
 
-set cindent
-set wrap
-{{ if eq .chezmoi.os "android" -}}
-set clipboard=unnamedplus
-{{ else -}}
-set clipboard=unnamed
-{{ end -}}
+set autoindent " indent besed on previous line
 
-set undodir={{ joinPath .chezmoi.homeDir ".local" "share" "vim" "undo" }}
+set wrap " wrap line
+
+" Check if environment variable PREFIX contains com.termux
+let g:is_android = !empty($PREFIX) && $PREFIX =~# 'com\.termux'
+
+if g:is_android
+    set clipboard=unnamedplus
+else
+    set clipboard=unnamed
+endif
+
+" save undo history
+set undodir=~/.local/share/vim/undo
 set undofile
 
 set nobackup
 set nowritebackup
 
-set noswapfile
-" set directory=$HOME/.local/share/vim/swap//
+set noswapfile " swapfile
 
 if has('gui_running')
-set guioptions-=T
-set guioptions-=e
-set guioptions-=m
-set t_Co=256
-set guitablabel=%M\ %t
+    " disable toolbar
+    set guioptions-=T
+    " disable menu bar
+    set guioptions-=m
+    " number of colors
+    set t_Co=256
+    " tab label
+    set guitablabel=%M\ %t
 endif
 
-set encoding=utf8
-set fileformats=unix,dos,mac
 syntax enable
 
-set regexpengine=0
-
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
-
-set ignorecase
-set smartcase
-set hlsearch
-set incsearch
+set smartcase " ignore case when searching
 
 set lazyredraw
 set magic
-set showmatch
 
-set matchtime=2
-
-set noerrorbells
-set novisualbell
-set t_vb=
-set timeoutlen=500
-
-set foldcolumn=0
-
-let $LANG = 'en'
-set langmenu=en
-
-set wildmenu
+set timeoutlen=500 " time for key sequence
 
 set wildignore=*.o,*~,*.pyc
 if has('win16') || has('win32')
-set wildignore+=.git\*,.hg\*,.svn\*
+    set wildignore+=.git\*,.hg\*,.svn\*
 else
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 endif
 
+" curso sharp
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
-set ruler
-set cmdheight=1
-set hidden
-set history=500
-set number relativenumber
+set hidden " hidden buffer
+
+set history=500 " command history
+
+set number relativenumber " line number
 
 filetype plugin on
 filetype indent on
 
-set autoread
-
 set updatetime=500
 
+" mouse support
 set mouse=a
 set smoothscroll
 
-set showtabline=1
+if executable('rg')
+    set grepprg=rg\ --vimgrep\ --no-hidden\ --no-heading\
+endif
 
-augroup settings
-    autocmd!
-    autocmd FocusGained,BufEnter * checktime
-augroup END
-
-{{ if lookPath "rg" -}}
-set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
-set grepformat=%f:%l:%c:%m
-{{ end -}}
-
-set signcolumn=auto
-set sessionoptions-=blank
 set foldmethod=marker
-set cursorline
-set scrolloff=5
 
 set shortmess-=S " show she search count
 
-set gdefault
-" set noswapfile
+set gdefault " substitute all matches
+
+" auto auto
 " au BufLeave,CursorHold,FocusLost * if(getbufinfo('%')[0].changed) | sil do BufWritePre | sil! up | sil do BufWritePost | endif
+
 " Autosession
 " au VimEnter * nested if (len(v:argv) == 1) | silent! source Session.vim | endif
 " au VimLeave * if (len(v:argv) == 1) | mksession! | endif
+
 " autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
 
 function Chezmoi()
@@ -151,6 +129,7 @@ function Chezmoi()
 endfunction
 
 command! Chezmoi call Chezmoi()
+
 " set autocomplete
 " set complete=o^5,.^5,w^5,b^5,u^5
 " set completeopt=popup
@@ -158,24 +137,155 @@ command! Chezmoi call Chezmoi()
 " inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 " inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+" command completion
 autocmd CmdlineChanged [:\/\?] call wildtrigger()
 set wildmode=noselect:lastused,full
 set wildoptions=pum
-
 autocmd CmdlineEnter [\/\?] set pumheight=8
 autocmd CmdlineLeave [\/\?] set pumheight&
-{{ if lookPath "sdcv" -}}
-set keywordprg=sdcv\ -n
-{{ end -}}
+
+if executable('sdcv')
+    set keywordprg=sdcv\ -n
+endif
+"}}}
+"{{{ ale config
 let g:ale_completion_enabled = 0
 let g:ale_set_balloons = 1
 let g:ale_hover_to_preview = 1
 let g:ale_floating_preview = 1
 " set omnifunc=ale#completion#OmniFunc
+"}}}
+"{{{ plugins
+call plug#begin()
+"{{{ align
+" Plug 'godlygeek/tabular'
+" Plug 'junegunn/vim-easy-align', { 'on': [ '<Plug>(EasyAlign)', 'EasyAlign' ] }
+" Plug 'vim-scripts/align', { 'on': 'Align' }
+"}}}
+"{{{ auto pair
+" Plug 'tmsvg/pear-tree'
+" Plug 'cohama/lexima.vim'
+" Plug 'Raimondi/delimitMate'
+"}}}
+"{{{ pair
+Plug 'tpope/vim-endwise'
+"}}}
+"{{{ termux
+if g:is_android
+    Plug 'vim-utilities/termux-clipboard'
+endif
+"}}}
+"{{{ command preview
+Plug 'markonm/traces.vim'
+"}}}
+"{{{ comment
+Plug 'tyru/caw.vim'
+"}}}
+"{{{ dot repeat
+Plug 'tpope/vim-repeat'
+"}}}
+"{{{ file support
+Plug 'tpope/vim-eunuch' " file command
+" Plug 'pbrisbin/vim-mkdir' " auto create dir
+" Plug 'lambdalisue/vim-suda' " auto sudo when write
+"}}}
+"{{{ file manager
+" Plug 'habamax/vim-dir'
+" Plug 'nda-cunh/SupraWater'
+" Plug 'Ashik80/VimExplorer'
+" Plug 'tpope/vim-vinegar'
 
-import 'plugins.vim'
+Plug 'justinmk/vim-dirvish'
+Plug 'roginfarrer/vim-dirvish-dovish'
+"}}}
+"{{{ format
+Plug 'sbdchd/neoformat'
+"}}}
+"{{{ file picker
+Plug 'junegunn/fzf.vim'
+"}}}
+"{{{ git
+if executable('git')
+    Plug 'tpope/vim-fugitive'
+    Plug 'airblade/vim-gitgutter'
+endif
+Plug 'rhysd/conflict-marker.vim'
+Plug 'Eliot00/git-lens.vim'
+" Plug 'rhysd/git-messenger.vim'
+"}}}
+"{{{ integration
+Plug 'alker0/chezmoi.vim' " chezmoi
 
-let g:coc_node_path = {{ lookPath "node" | squote }}
+" Plug 'raghur/vim-ghost' " browser text input
+" Plug 'roxma/nvim-yarp', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }
+" Plug 'roxma/vim-hug-neovim-rpc', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }
+"
+Plug 'tpope/vim-dispatch' " async make
+Plug 'voldikss/vim-floaterm' " terminal
+"}}}
+"{{{ enhance
+Plug 'tpope/vim-unimpaired'
+Plug 'nelstrom/vim-visual-star-search'
+Plug 'zef/vim-cycle' " C-A C-X
+Plug 'tommcdo/vim-exchange' " cx exchange text
+Plug 'haya14busa/is.vim' " auto nohlsearch
+Plug 'andymass/vim-matchup' " enhance asterrisk
+Plug 'svermeulen/vim-subversive' " substitute motion
+Plug 'AndrewRadev/switch.vim' " regex replace motion
+Plug 'AndrewRadev/splitjoin.vim' " gS gJ list split and join
+Plug 'wellle/targets.vim' " enhance targets
+Plug 'terryma/vim-expand-region' " + expand region
+Plug 'mg979/vim-visual-multi' " multiple cursor
+Plug 'tpope/vim-surround' " pair markers
+" Plug 'vim-polyglot/vim-polyglot' " syntax highlight, conflicts with auto session
+Plug 'liuchengxu/vim-which-key' " menu
+"}}}
+"{{{ lisp
+if executable('cargo')
+    Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
+endif
+"}}}
+"{{{ markdown
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
+"}}}
+"{{{ latex
+Plug 'lervag/vimtex', { 'for': 'tex' }
+"}}}
+"{{{ lsp
+if executable('node')
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+endif
+" Plug 'yegappan/lsp'
+"}}}
+"{{{ lint
+" Plug 'dense-analysis/ale'
+"}}}
+"{{{ org
+Plug 'jceb/vim-orgmode'
+Plug 'tpope/vim-speeddating'
+"}}}
+"{{{ snippet
+Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+"}}}
+"{{{ template
+Plug 'aperezdc/vim-template'
+"}}}
+"{{{ session
+Plug 'ourgal/vim-workspace'
+"}}}
+"{{{ status line
+Plug 'itchyny/lightline.vim'
+"}}}
+"{{{ theme
+" Plug 'ghifarit53/tokyonight-vim'
+Plug 'https://codeberg.org/mao-yining/vim-catppuccin'
+"}}}
+call plug#end()
+"}}}
+"{{{ coc config
+let g:coc_node_path = exepath('node')
 
 " coc.nvim
 " Use tab for trigger completion with characters ahead and navigate
@@ -305,8 +415,10 @@ command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.org
 " provide custom statusline: lightline.vim, vim-airline
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function',''\'''\')}
 
-let g:coc_global_extensions = ['coc-fish', '@yaegassy/coc-marksman', 'coc-emoji', 'coc-dash-complete', 'coc-just-complete', 'coc-translator', 'coc-perl', 'coc-go', 'coc-json', 'coc-prettier', 'coc-basedpyright', 'coc-r-lsp', {{ if ne .chezmoi.os "windows" }}'coc-sh', {{ end }}'coc-sumneko-lua', 'coc-texlab', 'coc-toml', 'coc-vimlsp', 'coc-yaml', 'coc-pairs', 'coc-snippets', 'coc-marketplace', 'coc-translator' ]
-" nnoremap <leader>e <Cmd>CocCommand explorer --quit-on-open<CR>
+let g:coc_global_extensions = ['coc-fish', '@yaegassy/coc-marksman', 'coc-emoji', 'coc-dash-complete', 'coc-just-complete', 'coc-translator', 'coc-perl', 'coc-go', 'coc-json', 'coc-prettier', 'coc-basedpyright', 'coc-r-lsp', 'coc-sumneko-lua', 'coc-texlab', 'coc-toml', 'coc-vimlsp', 'coc-yaml', 'coc-pairs', 'coc-snippets', 'coc-marketplace', 'coc-translator' ]
+if !has('win32')
+    let g:coc_global_extensions += ['coc-sh']
+endif
 
 " limit completion item
 let g:coc_filetype_map = { 'yaml.ansible': 'ansible', }
@@ -317,14 +429,21 @@ vmap <Leader>K <Plug>(coc-translator-pv)
 
 " coc snippets
 imap <C-j> <Plug>(coc-snippets-expand-jump)
+"}}}
+"{{{ tokyonight config
 " set termguicolors
 " let g:tokyonight_style = 'night' " available: night, storm
 " let g:tokyonight_enable_italic = 1
 " colorscheme tokyonight
-" vim-easy-align
+"}}}
+"{{{ vim easy align config
 " xmap ga <Plug>(EasyAlign)
 " nmap ga <Plug>(EasyAlign)
+"}}}
+"{{{ suda config
 " let g:suda_smart_edit = 1
+"}}}
+"{{{ lightline config
 let g:lightline = {
       \ 'colorscheme': 'catppuccin_mocha',
       \ 'active': {
@@ -355,22 +474,17 @@ let l:filePath = expand('%')
         return pathshorten(l:filePath)
     endif
 endfunction
-" let g:python3_host_prog = {{ lookPath "python" | squote }}
+"}}}
+"{{{ vim workspace config
 let g:workspace_autocreate = 1
 let g:workspace_session_disable_on_args = 1
-{{ if eq .chezmoi.os "windows" -}}
-let g:workspace_session_directory = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "sessions") "\\" | squote }}
-{{ else -}}
-let g:workspace_session_directory = {{ joinPath .chezmoi.homeDir ".local" "share" "vim" "sessions" | squote }}
-{{ end -}}
+let g:workspace_session_directory = expand('~') . '/.local/share/vim/sessions/'
 let g:workspace_autosave = 1
 let g:workspace_autosave_always = 1
 let g:workspace_autosave_ignore = ['gitcommit', 'suprawater', 'qf']
-{{ if eq .chezmoi.os "windows" -}}
-let g:workspace_undodir = {{ print (joinPath .chezmoi.homeDir ".local" "share" "vim" "undo") "\\" | squote }}
-{{ else -}}
-let g:workspace_undodir = {{ joinPath .chezmoi.homeDir ".local" "share" "vim" "undo" | squote }}
-{{ end -}}
+let g:workspace_undodir = expand('~') . '/.local/share/vim/undo/'
+"}}}
+"{{{ which key config
 nnoremap <silent> <leader> <cmd>WhichKey '<Space>'<CR>
 let g:which_key_map = {}
 let g:which_key_map['f'] = {
@@ -399,45 +513,66 @@ let g:which_key_map['w'] = {
       \ '?'   : ['Windows'    , 'fzf-window'],
       \ }
 call which_key#register('<Space>', "g:which_key_map")
-let g:org_export_emacs = "~/scoop/apps/emacs/current/bin/emacs.exe"
+"}}}
+"{{{ org config
+let g:org_export_emacs = exepath('emacs')
+"}}}
+"{{{ vim dir config
 " nnoremap <bs> <cmd>Dir<cr>
+"}}}
+"{{{ catppuccin config
 set termguicolors
 colorscheme catppuccin_mocha
+"}}}
+"{{{ netrw config
 " nnoremap <bs> <cmd>Explore<cr>
+"}}}
+"{{{ lsp config
 " let lspOpts = #{autoHighlightDiags: v:true}
 " autocmd User LspSetup call LspOptionsSet(lspOpts)
 "
 " let lspServers = [#{
 " 	\	  name: 'yaml-language-server',
 " 	\	  filetype: ['yaml'],
-" 	\	  path: '{{ lookPath "yaml-language-server" }}',
+" 	\	  path: exepath('yaml-language-serever')
 " 	\	  args: ['--stdio']
 " 	\ }]
 " autocmd User LspSetup call LspAddServer(lspServers)
+"}}}
+"{{{ pear tree config
 let g:pear_tree_smart_openers = 1
 let g:pear_tree_smart_closers = 1
 let g:pear_tree_smart_backspace = 1
+"}}}
+"{{{ vim exlporer config
 " nnoremap <bs> <cmd>VimExplorer<cr>
+"}}}
+"{{{ vim dispatch config
 nnoremap <leader>cc <cmd>Make<CR>
 nnoremap <leader>cC <cmd>Dispatch<CR>
+"}}}
+"{{{ vim dirvish config
 let g:loaded_netrw = 1
 let g:loaded_netrwPlugin = 1
 command! -nargs=? -complete=dir Explore Dirvish <args>
 command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>
 command! -nargs=? -complete=dir Vexplore leftabove vsplit | silent Dirvish <args>
-
 let g:dirvish_mode = ':sort ,^.*[\/],'
+"}}}
+"{{{ floaterm config
 let g:floaterm_opener = 'edit'
 let g:floaterm_height = 0.999
 let g:floaterm_width = 0.99
-
 command Lazygit FloatermNew lazygit
 command Lf FloatermNew lf
+"}}}
+"{{{ vim subversive config
 nnoremap s <plug>(SubversiveSubstitute)
 nnoremap ss <plug>(SubversiveSubstituteLine)
 nnoremap S <plug>(SubversiveSubstituteToEndOfLine)
+"}}}
+"{{{ ultisnips config
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-{{ end -}}
-{{ end -}}
+"}}}

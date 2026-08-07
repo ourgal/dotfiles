@@ -208,3 +208,20 @@ AppData/Local/transmission-daemon/**
 {{ end -}}
 {{ end -}}
 {{/* }}} */ -}}
+
+{{/* {{{ vim */ -}}
+{{ if eq .chezmoi.os "windows" | not -}}
+{{ if lookPath "vim" | not -}}
+vimfiles/
+vimfiles/**
+{{ end -}}
+{{ end -}}
+{{ if eq .chezmoi.os "linux" "android" | not -}}
+{{ if lookPath "vim" | not -}}
+.vim/
+.vim/**
+.config/vim/
+.config/vim/**
+{{ end -}}
+{{ end -}}
+{{/* }}} */ -}}
