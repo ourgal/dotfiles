@@ -42,16 +42,6 @@
           "vh": "encrypt",
           "children": [
             {
-              "gnx": "zxc.20260201203500.1",
-              "vh": "gpg-agent",
-              "children": [
-                {
-                  "gnx": "zxc.20260201203539.1",
-                  "vh": "content"
-                }
-              ]
-            },
-            {
               "gnx": "zxc.20260402230843.1",
               "vh": "gopass",
               "children": [
@@ -5527,33 +5517,6 @@
               ]
             }
           ]
-        },
-        {
-          "gnx": "zxc.20260502182830.1",
-          "vh": "@path private_dot_gnupg",
-          "children": [
-            {
-              "gnx": "zxc.20260502183056.1",
-              "vh": "@clean gpg-agent.conf.tmpl",
-              "children": [
-                {
-                  "gnx": "User.20260225203941.1"
-                },
-                {
-                  "gnx": "zxc.20260201203539.1"
-                }
-              ]
-            },
-            {
-              "gnx": "zxc.20260502183253.1",
-              "vh": "@clean sshcontrol.tmpl",
-              "children": [
-                {
-                  "gnx": "User.20260225203941.1"
-                }
-              ]
-            }
-          ]
         }
       ]
     },
@@ -5864,39 +5827,6 @@
                         {
                           "gnx": "User.20260222211658.2",
                           "vh": "content"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "gnx": "zxc.20260320223114.1",
-                  "vh": "@path gpg",
-                  "children": [
-                    {
-                      "gnx": "zxc.20260320223118.1",
-                      "vh": "@path home",
-                      "children": [
-                        {
-                          "gnx": "zxc.20260201203515.1",
-                          "vh": "@clean gpg-agent.conf.tmpl",
-                          "children": [
-                            {
-                              "gnx": "User.20260225204326.1"
-                            },
-                            {
-                              "gnx": "zxc.20260201203539.1"
-                            }
-                          ]
-                        },
-                        {
-                          "gnx": "zxc.20260201214114.1",
-                          "vh": "@clean sshcontrol.tmpl",
-                          "children": [
-                            {
-                              "gnx": "User.20260225204326.1"
-                            }
-                          ]
                         }
                       ]
                     }
@@ -10995,7 +10925,6 @@
     "zxc.20260316152403.1": "{{ $flow := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"flow-launcher\" \"current\" \"Flow.Launcher.exe\" -}}\n{{ if stat $flow -}}\nRun({{ $flow | quote }}, {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
     "zxc.20260421204007.1": "{{ if stat (joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"copyq\" \"current\" \"copyq.exe\") -}}\nSleep 45*1000\nRun(\"{{ joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"copyq\" \"current\" \"copyq.exe\" }}\", {{ .chezmoi.homeDir | quote }}, \"Hide\")\n{{ end -}}",
     "zxc.20260421204018.1": "{{ if lookPath \"keepassxc\" -}}\nRun({{ joinPath .chezmoi.homeDir \"Documents\" \"autohotkey\" \"keepassxc.ahk\" | quote }}, , \"Hide\")\n{{ end -}}",
-    "zxc.20260201203539.1": "{{ if .my.git.sign.gpg -}}\n\n{{ if eq .chezmoi.os \"windows\" -}}\nenable-win32-openssh-support\n{{ end -}}\n\n{{ if ne .chezmoi.os \"android\" -}}\nenable-ssh-support\n{{ end -}}\n\n{{ end -}}\ngrab\n\n{{ if lookPath \"pinentry-gtk-2\" -}}\npinentry-program {{ lookPath \"pinentry-gtk-2\" }}\n{{ end -}}\n",
     "zxc.20260402230749.1": "[mounts]\n\tpath = {{ env \"LOCALAPPDATA\" }}\\gopass\\stores\\root\n[core]\n\tautosync = false",
     "zxc.20260125172659.1": "{{ if lookPath \"hx\" -}}\nhx\n{{- else if lookPath \"vim\" -}}\nvim\n{{- else if lookPath \"nvim\" -}}\nnvim\n{{- else if lookPath \"vi\" -}}\nvi\n{{- else if lookPath \"nano\" -}}\nnano\n{{- end -}}",
     "zxc.20260319091259.1": "{{ if eq . nil -}}\n{{ fail \"pass hostname to ipM6 template\" -}}\n{{ end -}}\n{{ if eq . \"work\" \"work2\" -}}\n192.168.1.103\n{{- else if  eq . \"nuc\" \"bed\" \"surface\" -}}\n192.168.123.191\n{{- else if  eq . \"localhost\" -}}\n{{- else -}}\n{{ fail (printf \"unknown hostname %s for ipM6 template\" .) -}}\n{{- end -}}",
@@ -11754,8 +11683,6 @@
     "user.20260724150634.1": "<< unix dos >>\n{{ if lookPath \"gotify\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "user.20260724150823.1": "{{ $gotify_port := \"5080\" -}}\n",
     "user.20260724150746.1": "# Example environment variables for the server.\n# Save as `gotify-server.env` (or export the variables) when edited.\n#\n# If $GOTIFY_CONFIG_FILE is set, that file is loaded exclusively and none of\n# the files below are tried. Otherwise the first existing file from the search\n# order is loaded. Absent or commented out settings fall back to the default\n# (shown after the =). Variables already exported in the process environment\n# always take precedence over the loaded file.\n#\n# Config file search order (used only when $GOTIFY_CONFIG_FILE is unset):\n#   1. gotify-server.env                       (in the working directory)\n#   2. $XDG_CONFIG_HOME/gotify/gotify-server.env\n#      ($XDG_CONFIG_HOME falls back to $HOME/.config when unset)\n#   3. /etc/gotify/server.env\n#\n# Value types used below:\n#   text       a plain string value.\n#   number     an integer value.\n#   boolean    `true` or `false`.\n#   text-list  comma-separated list of strings, parsed as a single CSV line.\n#              A comma can be escaped by wrapping the value in quotes.\n#              Example: a,b,c\n#              Example: \"a,b\",c  -> entries: `a,b` and `c`\n#   json-map   a JSON object mapping string keys to string values.\n#              Example: {\"X-Foo\":\"bar\",\"X-Baz\":\"qux\"}\n#\n# Every variable also supports a \"_FILE\" suffix that reads the value from a\n# file at the given path (useful for Docker / Kubernetes secrets), e.g.:\n#   GOTIFY_DEFAULTUSER_PASS_FILE=/run/secrets/admin_pass\n\n# Minimum severity of log messages to emit.\n# Values: trace, debug, info, warn, error, fatal, panic\n# GOTIFY_LOGLEVEL=info\n\n# Interval in seconds between TCP keepalive probes on accepted connections. !! Only change this if you know what you are doing.\n#\n# Example: 0 uses the Go default (15s)\n# Example: -1 disables keepalives entirely.\n# Type: number\n# GOTIFY_SERVER_KEEPALIVEPERIODSECONDS=0\n\n# The network address the HTTP server binds to. Leave empty to listen on all\n# interfaces (both IPv4 and IPv6). Prefix with \"unix:\" to listen on a Unix\n# domain socket instead of a TCP port.\n#\n# Type: text\n# Example: 192.168.178.2\n# Example: unix:/tmp/gotify.sock\n# GOTIFY_SERVER_LISTENADDR=\n\n# Port the HTTP server listens on.\n# Type: number\nGOTIFY_SERVER_PORT={{ $gotify_port }}\n\n# Enable the HTTPS listener. Requires either CERTFILE+CERTKEY or LETSENCRYPT_ENABLED=true.\n# Type: boolean\n# GOTIFY_SERVER_SSL_ENABLED=false\n\n# Redirect plain HTTP requests to HTTPS. Only effective when SSL_ENABLED=true.\n# Type: boolean\n# GOTIFY_SERVER_SSL_REDIRECTTOHTTPS=true\n\n# The network address the HTTPS server binds to. Leave empty to listen on all\n# interfaces (both IPv4 and IPv6). Prefix with \"unix:\" to listen on a Unix\n# domain socket instead of a TCP port.\n#\n# Type: text\n# Example: 192.168.178.2\n# Example: unix:/tmp/gotify-ssl.sock\n# GOTIFY_SERVER_SSL_LISTENADDR=\n\n# Port the HTTPS server listens on.\n# Type: number\n# GOTIFY_SERVER_SSL_PORT=443\n\n# Path to the TLS certificate.\n# Type: text\n# Example: /etc/ssl/certs/gotify.crt\n# GOTIFY_SERVER_SSL_CERTFILE=\n\n# Path to the TLS private key.\n# Type: text\n# Example: /etc/ssl/private/gotify.key\n# GOTIFY_SERVER_SSL_CERTKEY=\n\n# Obtain the TLS certificate automatically from Let's Encrypt.\n# Requires SSL_ENABLED=true and LETSENCRYPT_ACCEPTTOS=true.\n# Type: boolean\n# GOTIFY_SERVER_SSL_LETSENCRYPT_ENABLED=false\n\n# Accept the Let's Encrypt Terms of Service.\n# Type: boolean\n# GOTIFY_SERVER_SSL_LETSENCRYPT_ACCEPTTOS=false\n\n# Directory where issued certificates and ACME account data are persisted. Must\n# be writable by the server.\n#\n# Type: text\n# Example: /var/lib/gotify/certs\n# GOTIFY_SERVER_SSL_LETSENCRYPT_CACHE=data/certs\n\n# Override the ACME directory URL. Leave empty to use the Let's Encrypt\n# production server. The staging server has higher rate limits useful for\n# testing but issues certificates that are not publicly trusted.\n#\n# Type: text\n# Example: https://acme-staging-v02.api.letsencrypt.org/directory\n# GOTIFY_SERVER_SSL_LETSENCRYPT_DIRECTORYURL=\n\n# Hosts Let's Encrypt should issue certificates for. Each host must resolve\n# publicly to this server.\n#\n# Type: text-list\n# Example: mydomain.tld,myotherdomain.tld\n# GOTIFY_SERVER_SSL_LETSENCRYPT_HOSTS=\n\n# Extra HTTP headers attached to every response.\n# Type: json-map\n# Example: {\"X-Custom-Header\":\"custom value\"}\n# GOTIFY_SERVER_RESPONSEHEADERS=\n\n# IPs or CIDR ranges of proxies whose X-Forwarded-For header is trusted to\n# determine the real client IP. Include 127.0.0.1 when terminating TLS in a\n# sidecar on the same host.\n#\n# Type: text-list\n# Example: 127.0.0.1/32,::1\n# GOTIFY_SERVER_TRUSTEDPROXIES=\n\n# Set the Secure flag on session cookies, restricting them to HTTPS\n# connections. Enable when the server is reachable over HTTPS.\n#\n# Type: boolean\n# GOTIFY_SERVER_SECURECOOKIE=false\n\n# Allowed origins (regex) for cross-origin requests. Setting any CORS_* value\n# enables CORS handling.\n#\n# Type: text-list\n# Example: .+\\.example\\.com,otherdomain\\.com\n# GOTIFY_SERVER_CORS_ALLOWORIGINS=\n\n# HTTP methods permitted in cross-origin requests.\n# Type: text-list\n# Example: GET,POST\n# GOTIFY_SERVER_CORS_ALLOWMETHODS=\n\n# Request headers permitted in cross-origin requests.\n# Type: text-list\n# Example: Authorization,content-type\n# GOTIFY_SERVER_CORS_ALLOWHEADERS=\n\n# Interval in seconds between WebSocket ping frames sent to streaming clients.\n# Only change this if you know what you are doing.\n#\n# Type: number\n# GOTIFY_SERVER_STREAM_PINGPERIODSECONDS=45\n\n# Allowed origins (regex) for WebSocket upgrade requests. Same-origin\n# connections are always permitted regardless of this setting.\n#\n# Type: text-list\n# Example: .+\\.example\\.com,otherdomain\\.com\n# GOTIFY_SERVER_STREAM_ALLOWEDORIGINS=\n\n# Enable OpenID Connect Single Sign-On, allowing users to authenticate via an\n# external identity provider (e.g. Authelia, Dex, Keycloak). The provider must\n# support PKCE (https://oauth.net/2/pkce/); IdPs without PKCE support are\n# currently unsupported.\n#\n# Type: boolean\n# GOTIFY_OIDC_ENABLED=false\n\n# Base URL of the identity provider. It will be used to discover OIDC endpoints\n# via /.well-known/openid-configuration.\n#\n# Type: text\n# Example: https://auth.example.com/realms/myrealm\n# GOTIFY_OIDC_ISSUER=\n\n# Client ID registered with the identity provider for this application.\n# Type: text\n# Example: gotify\n# GOTIFY_OIDC_CLIENTID=\n\n# Client secret paired with the client ID.\n# Type: text\n# Example: super-secret\n# GOTIFY_OIDC_CLIENTSECRET=\n\n# Callback URL the identity provider redirects to after authentication. Must\n# end with `/auth/oidc/callback` and match exactly what is registered at the\n# provider. When Gotify is served on a sub-path behind a reverse proxy, include\n# it (e.g. https://example.org/gotify/auth/oidc/callback). To support OIDC\n# login in the Android app, also register `gotify://oidc/callback` as an\n# additional redirect URL at the provider.\n#\n# Type: text\n# Example: https://gotify.example.org/auth/oidc/callback\n# GOTIFY_OIDC_REDIRECTURL=\n\n# Automatically create a local user on first OIDC login. When disabled, only\n# users that already exist in Gotify can sign in via OIDC.\n#\n# Type: boolean\n# GOTIFY_OIDC_AUTOREGISTER=true\n\n# Bind an OIDC identity to a pre-existing local user with a matching username\n# on first login. When disabled (default), existing local users are never\n# claimed by an OIDC login and an identity whose username is already taken is\n# rejected\n#\n# Type: boolean\n# GOTIFY_OIDC_LINK_BY_USERNAME=false\n\n# OIDC ID-token claim used as the local username. Common values are\n# preferred_username or email.\n#\n# Type: text\n# Example: email\n# GOTIFY_OIDC_USERNAMECLAIM=preferred_username\n\n# OIDC scopes to request from the identity provider.\n# Type: text-list\n# GOTIFY_OIDC_SCOPES=openid,profile,email\n\n# Database driver to use. For mysql and postgres the target database must\n# already exist and the configured user must have sufficient permissions.\n#\n# Type: one of sqlite3, mysql, postgres\n# GOTIFY_DATABASE_DIALECT=sqlite3\n\n# Database connection string. Format depends on the dialect.\n# Type: text\n# Example:\n#   sqlite3: path/to/database.db\n#   mysql: gotify:secret@tcp(localhost:3306)/gotifydb?charset=utf8&parseTime=True&loc=Local\n#   postgres: host=localhost port=5432 user=gotify dbname=gotifydb password=secret\n# When using postgres without SSL, append `sslmode=disable` (see https://github.com/gotify/server/issues/90).\n# GOTIFY_DATABASE_CONNECTION=data/gotify.db\n\n# Username for the initial admin account. Only applied when the database is\n# first created; later changes must be made through the WebUI.\n#\n# Type: text\n# Example: myadmin\n# GOTIFY_DEFAULTUSER_NAME=admin\n\n# Password for the initial admin account. Only applied when the database is\n# first created.\n#\n# Type: text\n# Example: super-secret-password\n# GOTIFY_DEFAULTUSER_PASS=admin\n\n# Bcrypt cost factor for password hashes. Higher values are more secure but slower.\n# Type: number\n# GOTIFY_PASSSTRENGTH=10\n\n# Directory where application icons and other uploaded images are stored. Must\n# be writable by the server.\n#\n# Type: text\n# Example: /var/lib/gotify/images\n# GOTIFY_UPLOADEDIMAGESDIR=data/images\n\n# Directory scanned for plugin shared libraries on startup. Leave empty to\n# disable plugin loading.\n#\n# Type: text\n# Example: /var/lib/gotify/plugins\n# GOTIFY_PLUGINSDIR=data/plugins\n\n# Allow unauthenticated users to register new user accounts via the public\n# registration endpoint.\n#\n# Type: boolean\n# GOTIFY_REGISTRATION=false\n\n# Disable colored log output. Set to \"1\" to force-disable colors regardless of\n# whether stdout is a terminal. When unset, colors are emitted only if stdout\n# is a TTY. See https://no-color.org/.\n#\n# Type: text\n# NOCOLOR=\n",
-    "zxc.20260502183056.1": "<< unix >>\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260502183253.1": "<< unix >>\n{{ if lookPath \"gpg\" -}}\n{{ if .my.git.sign.gpg -}}\n{{ if ne .chezmoi.os \"android\" -}}\n66E220F513E05B9F44D77B9B15F629D7C1270868\n{{ end -}}\n{{ end -}}\n{{ end -}}\n{{ end -}}\n",
     "User.20260215182442.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"nuc\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "User.20260215182554.1": "{{ if eq .chezmoi.hostname \"nuc\" -}}\nv2:sha256:f190ead5021be718ae1001570b620a363a3aa0c685fb15a276d8456d436944e5\n{{ end -}}",
     "User.20260217022114.1": "<< dos >>\n{{ if eq .chezmoi.hostname \"nuc\" \"work\" -}}\n{{ gopassRaw (printf \"deskflow/%s/cert\" .chezmoi.hostname) -}}\n{{ end -}}\n{{ end -}}\n",
@@ -11775,8 +11702,6 @@
     "User.20260221194708.1": "{{ $gpg := joinPath .chezmoi.homeDir \"scoop\" \"apps\" \"gpg\" \"current\" -}}\n{{ $gpg_home := joinPath $gpg \"home\" -}}\n{{ $gpg_sock := joinPath $gpg \"gnupg\" -}}\ngpg:\n  install_path: {{ $gpg | quote }}\n  # Before gnupg 2.3.2 release home directory could be properly link-ed\n  #   homedir: {{ $gpg_home | quote }}\n  # With gnupg 2.3.3 release (due to the changes in T5537) use this instead\n  #   homedir: {{ $gpg_home | quote }}\n  #   socketdir: \"\"\n  # After gnupg 2.3.4 release we have to switch to\n  homedir: {{ $gpg_home | quote }}\n  socketdir: {{ $gpg_sock | quote }}\ngui:\n  debug: false\n  setenv: true\n  # Use line below to enable SSH_AUTH_SOCK to point to cygwin socket\n  #   openssh: cygwin",
     "User.20260222211658.1": "<< dos >>\n{{ if lookPath \"rclone\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "User.20260222211658.2": "{{- /* chezmoi:modify-template */ -}}\n{{ $origin := fromIni .chezmoi.stdin -}}\n{{ $origin = $origin | setValueAtPath \"mega_a.type\" \"mega\" -}}\n{{ $origin = $origin | setValueAtPath \"mega_a.user\" (gopass \"rclone/mega_a/user\") -}}\n{{ $origin = $origin | setValueAtPath \"mega_a.pass\" (gopass \"rclone/mega_a/pass\") -}}\n{{ $origin = $origin | setValueAtPath \"mega_a.session_id\" (gopass \"rclone/mega_a/session_id\") -}}\n{{ $origin = $origin | setValueAtPath \"mega_a.master_key\" (gopass \"rclone/mega_a/master_key\") -}}\n{{ $origin = $origin | setValueAtPath \"alist.type\" \"webdav\" -}}\n{{ $origin = $origin | setValueAtPath \"alist.url\" \"http://localhost:5244/dav/\" -}}\n{{ $origin = $origin | setValueAtPath \"alist.vendor\" \"other\" -}}\n{{ $origin = $origin | setValueAtPath \"alist.user\" \"admin\" -}}\n{{ $origin = $origin | setValueAtPath \"alist.pass\" (gopass \"rclone/alist/local\" | output \"rclone\" \"obscure\" | trim ) -}}\n{{ $origin | toIni -}}\n",
-    "zxc.20260201203515.1": "<< dos >>\n{{ if lookPath \"gpg-agent\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
-    "zxc.20260201214114.1": "<< dos >>\n{{ if lookPath \"gpg\" -}}\n{{ if .my.git.sign.gpg -}}\n66E220F513E05B9F44D77B9B15F629D7C1270868\n{{ end -}}\n{{ end -}}\n{{ end -}}\n",
     "zxc.20260202195207.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260614184825.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"enable\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
     "zxc.20260322192157.1": "{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"smartskip\") \"os\" \"windows\") | trim | atoi -}}\n@others\n{{ end -}}\n",
@@ -12579,7 +12504,7 @@
     "user.20260703171153.1": "pkg i python python-apt openssh\n",
     "user.20260703221159.1": "curl -L https://github.com/ourgal.keys > .ssh/authorized_keys\n",
     "user.20260703223446.1": "sshd\n",
-    "user.20260705105204.1": "echo \"{{ includeTemplate \"gopass\" \"password/linux/user\" }}\\n{{ gopass \"password/linux/user\" }}\" | passwd\n",
+    "user.20260705105204.1": "echo \"{{ includeTemplate \"gopass\" \"password/linux/user\" }}\\n{{ includeTemplate \"gopass\" \"password/linux/user\" }}\" | passwd\n",
     "user.20260703171318.1": "whoami\n",
     "zxc.20260409214651.1": "# --- Configuration ---\n\n# Set the path to pdftk.exe if it's not in your system's PATH\n# Example: $pdftkPath = \"C:\\Program Files (x86)\\PDFtk\\bin\\pdftk.exe\"\n$pdftkPath = \"pdftk\" # Assumes pdftk is in your PATH\n\n# Define the output filename for the merged PDF\n$outputPdfName = \"output.pdf\"\n\n# --- Script Logic ---\n\n# Get today's date in YYYYMMDD format\n$today = Get-Date -Format \"yyyyMMdd\"\n\n# Define the file pattern to search for\n# This pattern looks for files like IMG_20260409_0001.pdf\n$filePattern = \"IMG_${today}_*.pdf\"\n\n# Get all PDF files matching the pattern in the current directory\n$pdfFiles = Get-ChildItem -Path . -Filter $filePattern -File\n\n# Check if any files were found\nif ($pdfFiles.Count -eq 0) {\n    Write-Host \"No PDF files found matching the pattern 'IMG_${today}_*.pdf' in the current directory.\"\n    exit\n}\n\n# Sort the files by name to ensure correct order\n# The default sorting of Get-ChildItem should be alphabetical, which works for IMG_..._0001.pdf, IMG_..._0002.pdf etc.\n$sortedPdfFiles = $pdfFiles | Sort-Object Name\n\n# Construct the list of files for pdftk\n$pdftkInputFiles = $sortedPdfFiles | ForEach-Object { $_.FullName }\n\n# Construct the pdftk command\n# The 'cat' operation merges the files. 'output' specifies the output file.\n$pdftkCommand = \"$pdftkPath $($pdftkInputFiles -join ' ') cat output $outputPdfName\"\n\nWrite-Host \"Merging the following files:\"\n$sortedPdfFiles | ForEach-Object { Write-Host \"- $($_.Name)\" }\nWrite-Host \"Output file: $outputPdfName\"\n\n# Execute the pdftk command\ntry {\n    # Use Invoke-Expression to execute the command string\n    Invoke-Expression $pdftkCommand\n    Write-Host \"Successfully merged PDF files.\"\n\n    # Delete the original files after successful merge\n    Write-Host \"Deleting original PDF files...\"\n    $sortedPdfFiles | ForEach-Object {\n        $fileName = $_.Name\n        $filePath = $_.FullName\n        try {\n            Remove-Item -Path $filePath -Force -ErrorAction Stop\n            Write-Host \"Deleted: $fileName\"\n        } catch {\n            Write-Error \"Failed to delete '$fileName': $($_.Exception.Message)\"\n        }\n    }\n    Write-Host \"All original PDF files have been deleted.\"\n\n} catch {\n    Write-Error \"An error occurred during PDF merging: $($_.Exception.Message)\"\n    Write-Error \"Please ensure pdftk is installed and in your PATH, or update the `$pdftkPath` variable.\"\n}\n",
     "zxc.20260202205715.1": "<< dos >>\n@others\n{{ end -}}",
@@ -12789,7 +12714,7 @@
       "_mod_time": 1782392829.657
     },
     "User.20260220010313.1": {
-      "_mod_time": 1786179510.411
+      "_mod_time": 1786187956.725
     },
     "User.20260220010448.1": {
       "_mod_time": 1786179105.819
@@ -12894,13 +12819,13 @@
       "_mod_time": 1785492220.745
     },
     "User.20260217223030.1": {
-      "_mod_time": 1786179735.086
+      "_mod_time": 1786187956.736
     },
     "User.20260217223035.1": {
       "_mod_time": 1785940300.728
     },
     "User.20260223014430.1": {
-      "_mod_time": 1786179510.714
+      "_mod_time": 1786187956.736
     },
     "zxc.20260421145655.1": {
       "_mod_time": 1784437048.468
@@ -13058,12 +12983,6 @@
     "user.20260724150634.1": {
       "_mod_time": 1784887378.134
     },
-    "zxc.20260502183056.1": {
-      "_mod_time": 1786122356
-    },
-    "zxc.20260502183253.1": {
-      "_mod_time": 1786122356
-    },
     "User.20260215182442.1": {
       "_mod_time": 1777891060.651
     },
@@ -13105,12 +13024,6 @@
     },
     "User.20260222211658.1": {
       "_mod_time": 1786177341.979
-    },
-    "zxc.20260201203515.1": {
-      "_mod_time": 1783355287.907
-    },
-    "zxc.20260201214114.1": {
-      "_mod_time": 1778939057.595
     },
     "zxc.20260202195207.1": {
       "_mod_time": 1782695824.5503738
@@ -13209,7 +13122,7 @@
       "_mod_time": 1786179105.836
     },
     "zxc.20260325223805.1": {
-      "_mod_time": 1786179515.051
+      "_mod_time": 1786187956.737
     },
     "zxc.20260329012003.1": {
       "_mod_time": 1777179946.894
@@ -13293,7 +13206,7 @@
       "_mod_time": 1783765325.318
     },
     "zxc.20260125211938.1": {
-      "_mod_time": 1786179609.968
+      "_mod_time": 1786193070.802
     },
     "zxc.20260316162600.1": {
       "_mod_time": 1777713442.482
@@ -13305,13 +13218,13 @@
       "_mod_time": 1786177334.066
     },
     "zxc.20260423145238.1": {
-      "_mod_time": 1786179508.09
+      "_mod_time": 1786187956.716
     },
     "zxc.20260423143729.3": {
       "_mod_time": 1786177334.066
     },
     "zxc.20260423143729.302": {
-      "_mod_time": 1786179508.386
+      "_mod_time": 1786187956.716
     },
     "zxc.20260423143729.304": {
       "_mod_time": 1778855150.568
@@ -13356,16 +13269,16 @@
       "_mod_time": 1783904024.2182207
     },
     "user.20260712223118.1": {
-      "_mod_time": 1786179697.307
+      "_mod_time": 1786187956.723
     },
     "user.20260712223741.1": {
-      "_mod_time": 1786179660.399
+      "_mod_time": 1786187956.721
     },
     "user.20260712223952.1": {
       "_mod_time": 1783904024.2102215
     },
     "user.20260712224038.1": {
-      "_mod_time": 1786179509.73
+      "_mod_time": 1786187956.719
     },
     "user.20260712224215.1": {
       "_mod_time": 1783904024.186
@@ -13428,7 +13341,7 @@
       "_mod_time": 1783765325.24
     },
     "user.20260703171055.1": {
-      "_mod_time": 1786179508.729
+      "_mod_time": 1786187956.785
     },
     "zxc.20260409214651.1": {
       "_mod_time": 1777713442.482
@@ -13449,7 +13362,7 @@
       "_mod_time": 1786177303.992
     },
     "user.20260724150150.1": {
-      "_mod_time": 1786179507.956
+      "_mod_time": 1786187956.715
     },
     "zxc.20260201140523.1": {
       "_mod_time": 1777179946.85
