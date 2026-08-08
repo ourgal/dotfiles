@@ -1,105 +1,145 @@
 Makefile
 main.leojs
-
-{{ if not (stat (joinPath .chezmoi.homeDir "Documents" "my_repos" "snowfall")) -}}
-Documents/my_repos/snowfall/
-Documents/my_repos/snowfall/**
-{{ end -}}
-
-{{ if not (stat (joinPath .chezmoi.homeDir "Documents" "my_repos" "playwright_ritdon")) -}}
-Documents/my_repos/playwright_ritdon/
-Documents/my_repos/playwright_ritdon/**
-{{ end -}}
+# [[[ linux
 {{ if eq .chezmoi.os "linux" -}}
+# autohotkey
 Documents/autohotkey/
 Documents/autohotkey/**
+
+# powertoys
 Documents/PowerToys/
 Documents/PowerToys/**
+
+# powershell
 Documents/PowerShell/
 Documents/PowerShell/**
+
+# scoop
 scoop/
 scoop/**
+
 AppData/
 AppData/**
-vimfiles/
-vimfiles/**
+
+# glazewm
 .glzr/
 .glzr/**
+
+# windows game save
 Documents/game_saves/
 Documents/game_saves/**
+
 {{ if and (hasKey .chezmoi.osRelease "name") (ne .chezmoi.osRelease.name "Void") -}}
+# runit
 service/
 service/**
 .config/sv/
 .config/sv/**
 {{ end -}}
+
 {{ if not (lookPath "flatpak") -}}
 .var/
 .var/**
 {{ end -}}
+
 {{ end -}}
+# ]]]
+# [[[ android
 {{ if eq .chezmoi.os "android" -}}
+# autohotkey
 Documents/autohotkey/
 Documents/autohotkey/**
+
+# powertoys
 Documents/PowerToys/
 Documents/PowerToys/**
+
+# powershell
 Documents/PowerShell/
 Documents/PowerShell/**
+
+# scoop
 scoop/
 scoop/**
+
 AppData/
 AppData/**
-vimfiles/
-vimfiles/**
+
+# glazewm
 .glzr/
 .glzr/**
+
+# windows game save
 Documents/game_saves/
 Documents/game_saves/**
+
 {{ if and (hasKey .chezmoi.osRelease "name") (ne .chezmoi.osRelease.name "Void") -}}
+# runit
 service/
 service/**
 .config/sv/
 .config/sv/**
 {{ end -}}
+
+# linux desktop files
 .local/share/applications/
 .local/share/applications/**
-service/
-service/**
+
+# code oss config
 .config/Code OSS/
 .config/Code OSS/**
-.config/sv/
-.config/sv/**
+
+# flatpak
 .var/
 .var/**
+
+# desktop autostart files
 .config/autostart/
 .config/autostart/**
 {{ end -}}
+# ]]]
+# [[[ windows
 {{ if eq .chezmoi.os "windows" -}}
-.vim/
-.vim/**
+
+# pip config
 .pip/
 .pip/**
+
+# bash
 .bash_profile
 .bashrc
+
+# xinit
 .xinitrc
-.gnupg
-.gnupg/**
+
+
+# runit
 service/
 service/**
 .config/sv/
 .config/sv/**
+
+# code oss config
 .config/Code OSS/
 .config/Code OSS/**
+
+# linux desktop files
 .local/share/applications/
 .local/share/applications/**
+
+# nnn config
 .config/nnn/
 .config/nnn/**
+
+# flatpak
 .var/
 .var/**
+
+# linux autostart files
 .config/autostart/
 .config/autostart/**
-scoop/persist/mpv/portable_config/scripts/mpv-anilist-updater/anilistToken.key
 {{ end -}}
+# ]]]
 # [[[ aichat
 {{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "aichat" | not -}}
