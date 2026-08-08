@@ -270,4 +270,11 @@ vimfiles/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ chezmoi
+{{ if eq .chezmoi.os "windows" "linux" "android" | not -}}
+{{ if lookPath "chezmoi" | not -}}
+.config/chezmoi/chezmoi.toml
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
