@@ -141,114 +141,100 @@ service/**
 {{ end -}}
 # ]]]
 # [[[ aichat
-{{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "aichat" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
 AppData/Roaming/aichat/
 AppData/Roaming/aichat/**
 {{ end -}}
-{{ end -}}
-{{ if eq .chezmoi.os "linux" "android" | not -}}
-{{ if lookPath "aichat" | not -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 .config/aichat/
 .config/aichat/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ gnupg
-{{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "gpg" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
 scoop/persist/gpg/home/
 scoop/persist/gpg/home/**
 {{ end -}}
-{{ end -}}
-{{ if eq .chezmoi.os "linux" "android" | not -}}
-{{ if lookPath "gpg" | not -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 .gnupg/
 .gnupg/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ fdroidcl
-{{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "fdroidcl" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
 AppData/Roaming/fdroidcl/
 AppData/Roaming/fdroidcl/**
 {{ end -}}
-{{ end -}}
-{{ if eq .chezmoi.os "linux" "android" | not -}}
-{{ if lookPath "fdroidcl" | not -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 .config/fdroidcl/
 .config/fdroidcl/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ aria2
-{{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "aria2c" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
 .aria2/
 .aria2/**
 {{ end -}}
-{{ end -}}
-{{ if eq .chezmoi.os "linux" "android" | not -}}
-{{ if lookPath "aria2c" | not -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 .config/aria2/
 .config/aria2/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ mpd
-{{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "mpd" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
 AppData/Roaming/mpd/
 AppData/Roaming/mpd/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ tldr
-{{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "tldr" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
 scoop/persist/tealdeer/
 scoop/persist/tealdeer/**
 {{ end -}}
-{{ end -}}
-{{ if eq .chezmoi.os "linux" "android" | not -}}
-{{ if lookPath "tldr" | not -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 .config/tealdeer/
 .config/tealdeer/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ yt-dlp
-{{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "yt-dlp" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
 scoop/persist/yt-dlp/
 scoop/persist/yt-dlp/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ transmission
-{{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "transmission-daemon" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
 AppData/Local/transmission-daemon/
 AppData/Local/transmission-daemon/**
 {{ end -}}
-{{ end -}}
-{{ if eq .chezmoi.os "linux" "android" | not -}}
-{{ if lookPath "transmission-daemon" | not -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 .config/transmission-daemon/
 .config/transmission-daemon/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ vim
-{{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "vim" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
 vimfiles/
 vimfiles/**
 {{ end -}}
-{{ end -}}
-{{ if eq .chezmoi.os "linux" "android" | not -}}
-{{ if lookPath "vim" | not -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 .vim/
 .vim/**
 .config/vim/
@@ -257,96 +243,92 @@ vimfiles/**
 {{ end -}}
 # ]]]
 # [[[ info
-{{ if eq .chezmoi.os "linux" "android" -}}
 {{ if lookPath "info" -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 .infokey
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ eget
-{{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "eget" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
 .eget.toml
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ chezmoi
-{{ if eq .chezmoi.os "windows" "linux" "android" | not -}}
 {{ if lookPath "chezmoi" | not -}}
+{{ if eq .chezmoi.os "windows" "linux" "android" -}}
 .config/chezmoi/chezmoi.toml
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ helix
-{{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "hx" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
 AppData/Roaming/helix/
 AppData/Roaming/helix/**
 {{ end -}}
 {{ end -}}
-{{ if eq .chezmoi.os "linux" "android" | not -}}
 {{ $arch_helix := and  (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "arch") (lookPath "helix") -}}
 {{ if or (lookPath "hx") $arch_helix -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 .config/helix/
 .config/helix/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ gopass
-{{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "gopass" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
 AppData/Roaming/gopass/
 AppData/Roaming/gopass/**
 {{ end -}}
-{{ end -}}
-{{ if eq .chezmoi.os "linux" "android" | not -}}
-{{ if lookPath "gopass" | not -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 .config/gopass/
 .config/gopass/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ mc
-{{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "mc" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
 AppData/Roaming/Midnight Commander/
 AppData/Roaming/Midnight Commander/**
 {{ end -}}
-{{ end -}}
-{{ if eq .chezmoi.os "linux" "android" | not -}}
-{{ if lookPath "mc" | not -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 .config/mc/
 .config/mc/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ home-manager
-{{ if eq .chezmoi.os "linux" "android" | not -}}
 {{ if lookPath "home-manager" | not -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 .config/home-manager/
 .config/home-manager/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ atuin
-{{ if eq .chezmoi.os "linux" "android" | not -}}
 {{ if lookPath "atuin" | not -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 .config/atuin/
 .config/atuin/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ kmonad
-{{ if eq .chezmoi.os "windows" "linux" "android" | not -}}
 {{ if lookPath "kmonad" | not -}}
+{{ if eq .chezmoi.os "windows" "linux" "android" -}}
 .config/kmonad/
 .config/kmonad/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ psmux
-{{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "psmux" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
 .psmux.conf
 .psmux/
 .psmux/**
@@ -354,8 +336,8 @@ AppData/Roaming/Midnight Commander/**
 {{ end -}}
 # ]]]
 # [[[ starship
-{{ if eq .chezmoi.os "windows" "linux" "android" | not -}}
 {{ if lookPath "starship" | not -}}
+{{ if eq .chezmoi.os "windows" "linux" "android" -}}
 .config/starship.toml
 {{ end -}}
 {{ end -}}
