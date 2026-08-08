@@ -277,4 +277,19 @@ vimfiles/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ helix
+{{ if eq .chezmoi.os "windows" | not -}}
+{{ if lookPath "hx" | not -}}
+AppData/Roaming/helix/
+AppData/Roaming/helix/**
+{{ end -}}
+{{ end -}}
+{{ if eq .chezmoi.os "linux" "android" | not -}}
+{{ $arch_helix := and  (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "arch") (lookPath "helix") -}}
+{{ if or (lookPath "hx") $arch_helix -}}
+.config/helix/
+.config/helix/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:

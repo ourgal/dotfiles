@@ -1,6 +1,3 @@
-{{ if eq .chezmoi.os "linux" "android" -}}
-{{ $arch_helix := and  (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "arch") (lookPath "helix") -}}
-{{ if or (lookPath "hx") $arch_helix -}}
 theme = "catppuccin_mocha"
 [editor]
 bufferline = "multiple"
@@ -55,5 +52,3 @@ f = ":fmt"
 [keys.select.g]
 c = "toggle_comments"
 z = ["split_selection_on_newline", ":sort", "keep_primary_selection"]
-{{ end -}}
-{{ end -}}
