@@ -36,11 +36,13 @@
 {{ end -}}
 
 {{ if eq .chezmoi.os "linux" "android" -}}
-[".local/share/fonts/maple"]
-    type = "archive"
-    url = {{ print $mirror "https://github.com/subframe7536/maple-font/releases/download/v7.9/MapleMono-NF-CN.zip" | quote }}
-    exact = true
-    include = [ "*.ttf" ]
+
+{{ range (list "Bold" "BoldItalic" "ExtraBold" "Italic" "ExtraBoldItalic" "ExtraLightItalic" "Medium" "ExtraLight" "SemiBold" "LightItalic" "Light" "SemiBoldItalic" "Regular" "MediumItalic" "Thin" "ThinItalic") }}
+[".local/share/fonts/maple/MapleMono-NF-CN-{{ . }}.ttf"]
+    type = "file"
+    url = "https://gitee.com/subframe7536/Maple/releases/download/v7.3/MapleMono-NF-CN-{{ . }}.ttf"
+{{ end -}}
+
 {{ end -}}
 
 {{ if eq .chezmoi.os "windows" -}}
