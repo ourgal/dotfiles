@@ -1,52 +1,25 @@
-{{ if eq .chezmoi.os "linux" "android" -}}
-{{ if lookPath "mc" -}}
-{{ $username := dict -}}
-{{ $username = set $username "windows" "user" -}}
-{{ $username = set $username "linux" "zxc" -}}
-{{ $termux := dict -}}
-{{ $termux = set $termux "note20" (dict "port" 8022 "user" "u0_a650" "ip" (ternary "192.168.1.106" "192.168.123.232" (eq .chezmoi.hostname "work" "work2"))) -}}
-{{ $termux = set $termux "note20_adb" (dict "port" 8023 "user" $termux.note20.user "ip" "localhost") -}}
-{{ $termux = set $termux "m6" (dict "port" 8022 "user" "u0_a556" "ip" (ternary "192.168.1.103" "192.168.123.191" (eq .chezmoi.hostname "work" "work2"))) -}}
-{{ $termux = set $termux "m6_adb" (dict "port" 8022 "user" $termux.m6.user "ip" "localhost") -}}
-{{ $termux_home := "/data/data/com.termux/files/home" -}}
-{{ $windows_home := print "/C:/Users/" $username.windows -}}
-{{ $linux_home := print "/home/" $username.linux -}}
-{{ $ip := dict -}}
-{{ $ip = set $ip "brix" (dict "ip" "192.168.123.206" "port" "22" "user" $username.linux) -}}
-{{ $ip = set $ip "home" (dict "ip" "192.168.123.100" "port" "22" "user" $username.linux) -}}
-{{ $ip = set $ip "soft" (dict "ip" "192.168.123.206" "port" "23231" "user" $username.linux) -}}
-{{ $ip = set $ip "nuc" (dict "ip" "192.168.123.123" "port" "22" "user" $username.windows) -}}
-
-{{ $work_ip := "100.127.103.95" -}}
-{{ if eq .chezmoi.hostname "work" "work2" -}}
-{{ $work_ip = "192.168.1.110" -}}
-{{ end -}}
-
-{{ $ip = set $ip "work" (dict "ip" $work_ip "port" "22" "user" $username.windows) -}}
-{{ $ip = set $ip "work2" (dict "ip" "192.168.1.107" "port" "22" "user" $username.linux) -}}
-{{ $ip = set $ip "office2043" (dict "ip" "192.168.1.104" "port" "22" "user" $username.linux) -}}
 {{ if eq .chezmoi.os "windows" -}}
 ENTRY "AppData" URL "{{ .chezmoi.homeDir }}/AppData/Roaming"
 GROUP "note20"
-  ENTRY "note20" URL "sh://note20:{{ $termux_home }}"
+  ENTRY "note20" URL "sh://note20:/data/data/com.termux/files/home"
   ENTRY "note20 sdcard" URL "sh://note20:/sdcard"
 ENDGROUP
 GROUP "m6"
-  ENTRY "m6" URL "sh://m6:{{ $termux_home }}"
+  ENTRY "m6" URL "sh://m6:/data/data/com.termux/files/home"
   ENTRY "m6 sdcard" URL "sh://m6:/sdcard"
 ENDGROUP
+
 {{ if eq .chezmoi.hostname "work" -}}
 ENTRY "share_work" URL "{{ .chezmoi.homeDir }}/Syncthing/share_work"
 {{ end -}}
+
 {{ if eq .chezmoi.hostname "work" "work2" -}}
-ENTRY "work2" URL "sh://work2:{{ $linux_home }}"
+ENTRY "work2" URL "sh://work2:/home/zxc"
+ENTRY "office2043" URL "sh://office2043:/home/zxc"
 {{ end -}}
-{{ if eq .chezmoi.hostname "work" "work2" -}}
-ENTRY "office2043" URL "sh://office2043:{{ $linux_home }}"
+
 {{ end -}}
-{{ end -}}
+
 {{ if eq .chezmoi.os "android" -}}
-ENTRY "nuc" URL "sh://nuc:{{ $windows_home }}"
-{{ end -}}
-{{ end -}}
+ENTRY "nuc" URL "sh://nuc:/C:/Users/User"
 {{ end -}}
