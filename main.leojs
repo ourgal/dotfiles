@@ -1473,148 +1473,6 @@
                       ]
                     }
                   ]
-                },
-                {
-                  "gnx": "User.20260217125229.1",
-                  "vh": "data",
-                  "children": [
-                    {
-                      "gnx": "User.20260217125240.1",
-                      "vh": "@path .chezmoidata",
-                      "children": [
-                        {
-                          "gnx": "User.20260226001402.1",
-                          "vh": "@clean main.toml",
-                          "children": [
-                            {
-                              "gnx": "User.20260226001414.1",
-                              "vh": "msys"
-                            },
-                            {
-                              "gnx": "User.20260226001424.1",
-                              "vh": "font"
-                            },
-                            {
-                              "gnx": "User.20260226001439.1",
-                              "vh": "git"
-                            },
-                            {
-                              "gnx": "zxc.20260409142917.1",
-                              "vh": "shell"
-                            },
-                            {
-                              "gnx": "zxc.20260409143158.1",
-                              "vh": "terminal"
-                            },
-                            {
-                              "gnx": "User.20260303224633.1",
-                              "vh": "pip"
-                            },
-                            {
-                              "gnx": "zxc.20260505221529.1",
-                              "vh": "sbsrf"
-                            },
-                            {
-                              "gnx": "zxc.20260518221501.1",
-                              "vh": "alist"
-                            },
-                            {
-                              "gnx": "zxc.20260522233054.1",
-                              "vh": "dufs"
-                            },
-                            {
-                              "gnx": "zxc.20260530231715.1",
-                              "vh": "doom emacs"
-                            },
-                            {
-                              "gnx": "zxc.20260601195307.1",
-                              "vh": "browser"
-                            },
-                            {
-                              "gnx": "zxc.20260329193242.1",
-                              "vh": "ssh",
-                              "children": [
-                                {
-                                  "gnx": "zxc.20260329194301.1",
-                                  "vh": "home"
-                                },
-                                {
-                                  "gnx": "zxc.20260329194332.1",
-                                  "vh": "soft"
-                                },
-                                {
-                                  "gnx": "zxc.20260329193635.1",
-                                  "vh": "brix"
-                                },
-                                {
-                                  "gnx": "zxc.20260504001723.1",
-                                  "vh": "surface"
-                                },
-                                {
-                                  "gnx": "zxc.20260329194446.1",
-                                  "vh": "m6"
-                                },
-                                {
-                                  "gnx": "zxc.20260625210558.1",
-                                  "vh": "note20"
-                                },
-                                {
-                                  "gnx": "zxc.20260329193440.1",
-                                  "vh": "github"
-                                }
-                              ]
-                            },
-                            {
-                              "gnx": "zxc.20260503010044.1",
-                              "vh": "modules",
-                              "children": [
-                                {
-                                  "gnx": "zxc.20260613235659.1",
-                                  "vh": "windows",
-                                  "children": [
-                                    {
-                                      "gnx": "zxc.20260613235707.1",
-                                      "vh": "startup"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "gnx": "zxc.20260503010044.3",
-                                  "vh": "shell",
-                                  "children": [
-                                    {
-                                      "gnx": "zxc.20260614011525.1",
-                                      "vh": "pwsh"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260614121829.1",
-                                      "vh": "clink"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260614123554.1",
-                                      "vh": "bash"
-                                    },
-                                    {
-                                      "gnx": "zxc.20260620125523.1",
-                                      "vh": "fish"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "gnx": "zxc.20260613164155.1",
-                                  "vh": "mpv"
-                                },
-                                {
-                                  "gnx": "zxc.20260616151751.1",
-                                  "vh": "firefox"
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
                 }
               ]
             },
@@ -11584,34 +11442,6 @@
     "user.20260710235929.1": "{{ if and (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"stardict\" | stat) (joinPath .chezmoi.homeDir \".stardict\" \"dic\" \"stardict-langdao-ce-gb-2.4.2\" | stat | not) -}}\n7z x {{ joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"stardict\" \"stardict-langdao-ce-gb-2.4.2.7z\" }} -o{{ joinPath .chezmoi.homeDir \".stardict\" \"dic\" }}\n{{ end -}}\n\n{{ if and (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"stardict\" | stat) (joinPath .chezmoi.homeDir \".stardict\" \"dic\" \"stardict-langdao-ec-gb-2.4.2\" | stat | not) -}}\n7z x {{ joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"stardict\" \"stardict-langdao-ec-gb-2.4.2.7z\" }} -o{{ joinPath .chezmoi.homeDir \".stardict\" \"dic\" }}\n{{ end -}}\n",
     "user.20260711000816.1": "<< unix >>\n{{ if lookPath \"sdcv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
     "user.20260711000816.4": "{{ if and (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"stardict\" | stat) (joinPath .chezmoi.homeDir \".stardict\" \"dic\" \"stardict-langdao-ce-gb-2.4.2\" | stat | not) -}}\n7z x {{ joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"stardict\" \"stardict-langdao-ce-gb-2.4.2.7z\" }} -o{{ joinPath .chezmoi.homeDir \".stardict\" \"dic\" }}\n{{ end -}}\n\n{{ if and (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"stardict\" | stat) (joinPath .chezmoi.homeDir \".stardict\" \"dic\" \"stardict-langdao-ec-gb-2.4.2\" | stat | not) -}}\n7z x {{ joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"stardict\" \"stardict-langdao-ec-gb-2.4.2.7z\" }} -o{{ joinPath .chezmoi.homeDir \".stardict\" \"dic\" }}\n{{ end -}}\n",
-    "User.20260226001402.1": "@others\n",
-    "User.20260226001414.1": "[my.msys2]\npackages = [\"fish\", \"nnn\", \"atool\", \"libarchive\", \"tmux\", \"zsh\"]\n",
-    "User.20260226001424.1": "[my.font]\nmonospace = \"IosevkaTerm NFM\"\nsans = \"Noto Sans CJK SC\"\n",
-    "User.20260226001439.1": "[my.git.sign]\nssh = false\ngpg = true\n\n[my.git.user]\nname = \"fairever\"\nemail = \"git@fairever.aleeas.com\"\n",
-    "zxc.20260409142917.1": "[my.shell]\nwindows = \"pwsh\"\n",
-    "zxc.20260409143158.1": "[my.terminal]\nwindows = \"wt\"\n",
-    "User.20260303224633.1": "[my.pip]\nmirror = \"https://mirrors.nju.edu.cn/pypi/web/simple/\"\n",
-    "zxc.20260505221529.1": "[my.sbsrf]\nurl=\"https://github.com/sbsrf/sbsrf/releases/download/20260425/sbsrf.zip\"\n",
-    "zxc.20260518221501.1": "[my.alist.local]\nhost = \"http://localhost:5244\"\n",
-    "zxc.20260522233054.1": "[my.dufs.bucket]\nhost = \"http://localhost:5000\"\n",
-    "zxc.20260530231715.1": "[my.doomemacs]\ncommit = \"d8d75443d39d95f3c5256504eb838e0acc62ef44\"\nelfeed_protocol = true\nelfeed_org = false\nelfeed_youtube = false\n",
-    "zxc.20260601195307.1": "[my.browser]\ndefault = \"firefox\"\n",
-    "zxc.20260329193242.1": "[my.ssh]\nknown_hosts = [\n    @others\n]\n",
-    "zxc.20260329194301.1": "\"home.local,192.168.123.100 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOKREEGtjhZmTsIruPjBmBp0fPHKxfUSbUilpIzVMoBF\",\n",
-    "zxc.20260329194332.1": "\"[brix.local]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqhuTozhEUlnOCkH1LXw55IUaZHzcO4IKmr1uPOT41u\",\n\"[192.168.123.206]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqhuTozhEUlnOCkH1LXw55IUaZHzcO4IKmr1uPOT41u\",\n",
-    "zxc.20260329193635.1": "\"brix.local,192.168.123.206 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJADK7A2hbOUUfvCxe2xNhkVpEHIy3CKK0+bkTE5Uqur\",\n",
-    "zxc.20260504001723.1": "\"surface.local ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHVX0quUeLWv/vQZ528bsWAqYB+uaVC5o/SMmgtnjPkD\",\n",
-    "zxc.20260329194446.1": "\"[192.168.1.103]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n\"[192.168.123.191]:23231 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n\"[localhost]:8022 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+SAtnk+RxrEzSgeZU7MyFAubqR0Mp5wnu5YvH5mpqn\",\n",
-    "zxc.20260625210558.1": "\"[localhost]:8023 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBM+qtBP8Hw2P2GiZ8UWOFQ6ca/INlOsRxDwVl1U7Th4Kddl2gXkwrJMWgZMBlX0ynoeSN6eN/1fAamufbMgcZbs=\",\n",
-    "zxc.20260329193440.1": "\"[ssh.github.com]:443 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl\",\n\"[ssh.github.com]:443 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=\",\n\"[ssh.github.com]:443 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=\"\n",
-    "zxc.20260503010044.1": "[my.modules]\n@others\n\n[my.modules.nuc.windows.windows.startup]\ndeskflow_client.enable = true\n\n[my.modules.bed.windows.windows.startup]\njellyfin_mpv_shim.enable = true\n\n[my.modules.work.windows.windows.startup]\ndeskflow_server.enable = true\ngotify.enable = true\n\n[my.modules.surface.void]\n\n[my.modules.surface.void.mpv.plugins]\nanilist_updater = false\n\n[my.modules.localhost.android]\n",
-    "zxc.20260613235707.1": "[my.modules.windows.startup]\nglazewm.enable = false\ndeskflow_client.enable = false\ndeskflow_server.enable = false\naria2.enable = true\ntransmission.enable = true\nespanso.enable = true\nalist.enable = true\nmpd.enable = true\ngpg_agent.enable = true\nkde_connect.enable = true\nwezterm.enable = false\nfirefox.enable = false\nbrave.enable = true\nchromium.enable = false\nvscode.enable = false\nvscodium.enable = false\nleo.enable = false\neverything.enable = true\nautohotkey.enable = false\npowertoys.enable = false\ndufs.enable = true\ncopyparty.enable = true\naltrun.enable = false\nnavidrome.enable = true\njellyfin_mpv_shim.enable = false\nemacs.enable = true\nemacs_daemon.enable = false\nwt.enable = true\nsyncthing.enable = true\ntorrserver.enable = false\nflameshot.enable = true\nseanime.enable = true\nrclone.enable = false\ngotify.enable = false\n",
-    "zxc.20260614011525.1": "[my.modules.shell.pwsh]\nstarship.enable = true\noh_my_posh.enable = false\nsfsu.enable = false\nzoxide.enable = true\natuin.enable = true\nmcfly.enable = false\nnavi.enable = true\n",
-    "zxc.20260614121829.1": "[my.modules.shell.clink]\nstarship.enable = true\noh_my_posh.enable = false\nzoxide.enable = true\n",
-    "zxc.20260614123554.1": "[my.modules.shell.bash]\nble_sh.enable = true\nfzf.enable = true\nstarship.enable = true\noh_my_posh.enable = false\natuin.enable = false\nmcfly.enable = true\nzoxide.enable = true\npay_respects.enable = true\n",
-    "zxc.20260620125523.1": "[my.modules.shell.fish]\noh_my_posh.enable = false\nstarship.enable = true\nfzf.enable = true\nmcfly.enable = false\natuin.enable = true\nnavi.enable = true\ncarapace.enable = true\nzoxide.enable = true\n",
-    "zxc.20260613164155.1": "[my.modules.mpv]\nenable = true\n\n[my.modules.mpv.plugins]\nuosc = true\nsmartskip = true\nthumbfast = true\nmanga_reader = true\nM_x = true\nleader = true\nsponsorblock_chapterized = true\nquality_menu = true\ntorrserver_hook = true\nytdlautoformat = false\nclipshot = true\nfile_browser = true\nanilist_updater = true\nsmart_copy_paste = true\nbetterchapters = true\ncostum = false\nautocrop = true\n",
-    "zxc.20260616151751.1": "[my.modules.firefox]\ntheme = \"flexfox\"\n",
     "User.20260302211627.1": "@others\n",
     "zxc.20260626154828.1": "{{ $username := dict -}}\n{{ $username = set $username \"windows\" \"user\" -}}\n{{ $username = set $username \"linux\" \"zxc\" -}}\n",
     "zxc.20260625205223.1": "{{ $termux := dict -}}\n{{ $termux = set $termux \"note20\" (dict \"port\" 8022 \"user\" \"u0_a650\" \"ip\" (ternary \"192.168.1.106\" \"192.168.123.232\" (eq .chezmoi.hostname \"work\" \"work2\"))) -}}\n{{ $termux = set $termux \"note20_adb\" (dict \"port\" 8023 \"user\" $termux.note20.user \"ip\" \"localhost\") -}}\n{{ $termux = set $termux \"m6\" (dict \"port\" 8022 \"user\" \"u0_a556\" \"ip\" (ternary \"192.168.1.103\" \"192.168.123.191\" (eq .chezmoi.hostname \"work\" \"work2\"))) -}}\n{{ $termux = set $termux \"m6_adb\" (dict \"port\" 8022 \"user\" $termux.m6.user \"ip\" \"localhost\") -}}\n",
@@ -13265,9 +13095,6 @@
     },
     "user.20260711000816.1": {
       "_mod_time": 1786122355.964
-    },
-    "User.20260226001402.1": {
-      "_mod_time": 1785739487.179
     },
     "zxc.20260317002829.1": {
       "_mod_time": 1781442394.083
