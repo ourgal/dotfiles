@@ -223,3 +223,11 @@ vimfiles/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ eget
+{{ if eq .chezmoi.os "windows" | not -}}
+{{ if lookPath "eget" | not -}}
+.eget.toml
+{{ end -}}
+{{ end -}}
+# ]]]
+# vim: set foldmarker=[[[,]]]:
