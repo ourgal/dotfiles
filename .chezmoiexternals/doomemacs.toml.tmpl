@@ -1,0 +1,37 @@
+{{ $doom_repo := "https://mirror.nju.edu.cn/git/doom-emacs.git/" -}}
+
+{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+{{ if lookPath "emacs" -}}
+
+{{ if eq .chezmoi.os "linux" "android" -}}
+[".config/emacs"]
+    type = "git-repo"
+    url = "{{ $doom_repo }}"
+{{ end -}}
+
+{{ if eq .chezmoi.os "windows" -}}
+[".emacs.d"]
+    type = "git-repo"
+    url = "{{ $doom_repo }}"
+{{ end -}}
+
+{{ end -}}
+{{ end -}}
+
+{{ if eq .chezmoi.os "android" -}}
+{{ if stat "/data/data/org.gnu.emacs/files" -}}
+
+{{ if eq .chezmoi.os "linux" "android" -}}
+[".config/emacs"]
+    type = "git-repo"
+    url = "{{ $doom_repo }}"
+{{ end -}}
+
+{{ if eq .chezmoi.os "windows" -}}
+[".emacs.d"]
+    type = "git-repo"
+    url = "{{ $doom_repo }}"
+{{ end -}}
+
+{{ end -}}
+{{ end -}}

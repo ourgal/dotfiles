@@ -1,8 +1,10 @@
+{{ $mirror := "https://jiashu.1win.eu.org/" -}}
+
 {{ if eq .chezmoi.os "linux" "android" -}}
 {{ if lookPath "bash" -}}
 [".local/lib/ble_sh"]
     type = "git-repo"
-    url = "https://github.com/akinomyoga/ble.sh.git"
+    url = "https://gitcode.com/gh_mirrors/bl/ble.sh"
     refreshPeriod = "168h"
     clone.args = [
         "--recurse-submodules",
@@ -14,86 +16,60 @@
     ]
 {{ end -}}
 {{ end -}}
+
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "codium" -}}
 [".cache/vscodium/extensions/vsnetrw.vsix"]
     type = "file"
-    url = "https://github.com/danprince/vsnetrw/releases/download/v0.3.2/vsnetrw-0.3.2.vsix"
-{{ end -}}
-{{ end -}}
-{{ $doom_repo := "https://mirror.nju.edu.cn/git/doom-emacs.git/" -}}
-{{ if eq .chezmoi.os "windows" "linux" "android" -}}
-{{ if lookPath "emacs" -}}
-{{ if eq .chezmoi.os "linux" "android" -}}
-[".config/emacs"]
-    type = "git-repo"
-    url = "{{ $doom_repo }}"
-{{ end -}}
-
-{{ if eq .chezmoi.os "windows" -}}
-[".emacs.d"]
-    type = "git-repo"
-    url = "{{ $doom_repo }}"
-{{ end -}}
+    url = {{ print $mirror "https://github.com/danprince/vsnetrw/releases/download/v0.3.2/vsnetrw-0.3.2.vsix" | quote }}
 {{ end -}}
 {{ end -}}
 
-{{ if eq .chezmoi.os "android" -}}
-{{ if stat "/data/data/org.gnu.emacs/files" -}}
-{{ if eq .chezmoi.os "linux" "android" -}}
-[".config/emacs"]
-    type = "git-repo"
-    url = "{{ $doom_repo }}"
-{{ end -}}
-
-{{ if eq .chezmoi.os "windows" -}}
-[".emacs.d"]
-    type = "git-repo"
-    url = "{{ $doom_repo }}"
-{{ end -}}
-{{ end -}}
-{{ end -}}
 {{ if eq .chezmoi.os "linux" "android" -}}
 {{ if and (hasKey .chezmoi.osRelease "name") (ne .chezmoi.osRelease.name "Void") -}}
 [".local/share/fonts/nerdsymbols"]
     type = "archive"
-    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdFontsSymbolsOnly.tar.xz"
+    url = {{ print $mirror "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdFontsSymbolsOnly.tar.xz" | quote }}
     exact = true
     include = [ "*.ttf" ]
 {{ end -}}
 {{ end -}}
+
 {{ if eq .chezmoi.os "linux" "android" -}}
 [".local/share/fonts/maple"]
     type = "archive"
-    url = "https://github.com/subframe7536/maple-font/releases/download/v7.9/MapleMono-NF-CN.zip"
+    url = {{ print $mirror "https://github.com/subframe7536/maple-font/releases/download/v7.9/MapleMono-NF-CN.zip" | quote }}
     exact = true
     include = [ "*.ttf" ]
 {{ end -}}
+
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "psmux" -}}
 [".psmux/plugins"]
     type = "git-repo"
-    url = "https://github.com/psmux/psmux-plugins"
+    url = {{ print $mirror "https://github.com/psmux/psmux-plugins" | quote }}
 {{ end -}}
 {{ end -}}
+
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "clink" -}}
 ["AppData/Local/clink/clink-gizmos"]
     type = "git-repo"
-    url = "https://github.com/chrisant996/clink-gizmos"
+    url = {{ print $mirror "https://github.com/chrisant996/clink-gizmos" | quote }}
     refreshPeriod = "168h"
 
 ["AppData/Local/clink/clink-completions"]
     type = "git-repo"
-    url = "https://github.com/vladimir-kotikov/clink-completions"
+    url = {{ print $mirror "https://github.com/vladimir-kotikov/clink-completions" | quote }}
     refreshPeriod = "168h"
 {{ end -}}
 {{ end -}}
+
 {{ if eq .chezmoi.os "linux" "android" -}}
 {{ if lookPath "awesome" -}}
 [".config/awesome-copycats"]
     type = "git-repo"
-    url = "https://github.com/lcpz/awesome-copycats"
+    url = {{ print $mirror "https://github.com/lcpz/awesome-copycats" | quote }}
     clone.args = [
         "--recurse-submodules",
         "-j8"
@@ -104,107 +80,110 @@
     ]
 {{ end -}}
 {{ end -}}
+
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
 {{ if lookPath "mpv" -}}
 [".local/share/repos/Eisa01_mpv-scripts"]
     type = "git-repo"
-    url = "https://github.com/Eisa01/mpv-scripts"
+    url = "https://gitcode.com/gh_mirrors/mpvscript/mpv-scripts"
     refreshPeriod = "168h"
 [".local/share/repos/thumbfast"]
     type = "git-repo"
-    url = "https://github.com/po5/thumbfast"
+    url = "https://gitcode.com/gh_mirrors/th/thumbfast"
     refreshPeriod = "168h"
 [".local/share/repos/mpv-manga-reader"]
     type = "git-repo"
-    url = "https://github.com/Dudemanguy/mpv-manga-reader"
+    url = {{ print $mirror "https://github.com/Dudemanguy/mpv-manga-reader" | quote }}
     refreshPeriod = "168h"
 [".local/share/repos/Seme4eg_mpv-scripts"]
     type = "git-repo"
-    url = "https://github.com/Seme4eg/mpv-scripts"
+    url = {{ print $mirror "https://github.com/Seme4eg/mpv-scripts" | quote }}
     refreshPeriod = "168h"
 [".local/share/repos/mpv_sponsorblock_chapterized"]
     type = "git-repo"
-    url = "https://github.com/Deulfi/mpv_sponsorblock_chapterized"
+    url = {{ print $mirror "https://github.com/Deulfi/mpv_sponsorblock_chapterized" | quote }}
     refreshPeriod = "168h"
 [".local/share/repos/mpv-quality-menu"]
     type = "git-repo"
-    url = "https://github.com/christoph-heinrich/mpv-quality-menu"
+    url = {{ print $mirror "https://github.com/christoph-heinrich/mpv-quality-menu" | quote }}
     refreshPeriod = "168h"
 [".local/share/repos/mpv-torrserver-hook"]
     type = "git-repo"
-    url = "https://github.com/eNV25/mpv-torrserver-hook"
+    url = {{ print $mirror "https://github.com/eNV25/mpv-torrserver-hook" | quote }}
     refreshPeriod = "168h"
 [".local/share/repos/mpv-ytdlautoformat"]
     type = "git-repo"
-    url = "https://github.com/Samillion/mpv-ytdlautoformat"
+    url = {{ print $mirror "https://github.com/Samillion/mpv-ytdlautoformat" | quote }}
     refreshPeriod = "168h"
 [".local/share/repos/ObserverOfTime_mpv-scripts"]
     type = "git-repo"
-    url = "https://github.com/ObserverOfTime/mpv-scripts"
+    url = {{ print $mirror "https://github.com/ObserverOfTime/mpv-scripts" | quote }}
     refreshPeriod = "168h"
 [".local/share/repos/uosc"]
     type = "git-repo"
-    url = "https://github.com/tomasklaen/uosc"
+    url = "https://gitcode.com/gh_mirrors/uo/uosc"
     refreshPeriod = "168h"
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "anilist_updater") "os" (list "linux" "windows")) | trim | atoi -}}
 [".local/share/repos/mpv-anilist-updater"]
     type = "git-repo"
-    url = "https://github.com/AzuredBlue/mpv-anilist-updater"
+    url = {{ print $mirror "https://github.com/AzuredBlue/mpv-anilist-updater" | quote }}
     refreshPeriod = "168h"
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "file_browser") "os" "windows") | trim | atoi -}}
 ["scoop/persist/mpv/portable_config/scripts/mpv-file-browser"]
     type = "git-repo"
-    url = "https://github.com/CogentRedTester/mpv-file-browser"
+    url = {{ print $mirror "https://github.com/CogentRedTester/mpv-file-browser" | quote }}
     refreshPeriod = "168h"
 {{ end -}}
 
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "file_browser") "os" "linux") | trim | atoi -}}
 [".config/mpv/scripts/mpv-file-browser"]
     type = "git-repo"
-    url = "https://github.com/CogentRedTester/mpv-file-browser"
+    url = {{ print $mirror "https://github.com/CogentRedTester/mpv-file-browser" | quote }}
     refreshPeriod = "168h"
 {{ end -}}
 {{ end -}}
 {{ end -}}
+
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
 {{ if lookPath "vim" -}}
 [".local/share/repos/vim-plug"]
     type = "git-repo"
-    url = "https://github.com/junegunn/vim-plug"
+    url = "https://gitcode.com/gh_mirrors/vi/vim-plug"
     refreshPeriod = "168h"
 {{ end -}}
 {{ end -}}
+
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "firefox" -}}
 ["scoop/persist/firefox/shyfox"]
     type = "git-repo"
-    url = "https://github.com/Naezr/ShyFox"
+    url = {{ print $mirror "https://github.com/Naezr/ShyFox" | quote }}
     refreshPeriod = "168h"
-
 ["scoop/persist/firefox/flexfox"]
     type = "git-repo"
-    url = "https://github.com/yuuqilin/FlexFox"
+    url = {{ print $mirror "https://github.com/yuuqilin/FlexFox" | quote }}
     refreshPeriod = "168h"
 {{ end -}}
 {{ end -}}
+
 [".local/share/repos/neturl"]
     type = "git-repo"
-    url = "https://github.com/golgote/neturl"
+    url = {{ print $mirror "https://github.com/golgote/neturl" | quote }}
     refreshPeriod = "168h"
 {{ if eq .chezmoi.os "android" -}}
 [".local/share/repos/termux-nf"]
     type = "git-repo"
-    url = "https://github.com/arnavgr/termux-nf"
+    url = {{ print $mirror "https://github.com/arnavgr/termux-nf" | quote }}
     refreshPeriod = "168h"
 {{ end -}}
 [".local/share/repos/youtube-auto-like"]
     type = "git-repo"
-    url = "https://github.com/austencm/youtube-auto-like"
+    url = {{ print $mirror "https://github.com/austencm/youtube-auto-like" | quote }}
     refreshPeriod = "168h"
 [".local/share/repos/xapk2apk"]
     type = "git-repo"
-    url = "https://github.com/Ccccccccvvm/xapk2apk"
+    url = {{ print $mirror "https://github.com/Ccccccccvvm/xapk2apk" | quote }}
     refreshPeriod = "168h"
 [".local/share/repos/stardict"]
     type = "git-repo"
