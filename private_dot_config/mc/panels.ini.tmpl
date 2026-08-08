@@ -1,5 +1,3 @@
-{{ if eq .chezmoi.os "linux" "android" -}}
-{{ if lookPath "mc" -}}
 [New Left Panel]
 display=listing
 reverse=false
@@ -27,5 +25,3 @@ list_format=full
 [Dirs]
 current_is_left=false
 other_dir={{ .chezmoi.homeDir }}
-{{ end -}}
-{{ end -}}

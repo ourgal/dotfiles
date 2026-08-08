@@ -306,4 +306,18 @@ AppData/Roaming/gopass/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ mc
+{{ if eq .chezmoi.os "windows" | not -}}
+{{ if lookPath "mc" | not -}}
+AppData/Roaming/Midnight Commander/
+AppData/Roaming/Midnight Commander/**
+{{ end -}}
+{{ end -}}
+{{ if eq .chezmoi.os "linux" "android" | not -}}
+{{ if lookPath "mc" | not -}}
+.config/mc/
+.config/mc/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
