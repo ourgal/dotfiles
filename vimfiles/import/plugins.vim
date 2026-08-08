@@ -23,7 +23,7 @@ endif
 Plug 'https://gitcode.com/gh_mirrors/tr/traces.vim'
 "}}}
 "{{{ comment
-Plug gh_proxy . 'tyru/caw.vim'
+" Plug gh_proxy . 'tyru/caw.vim'
 "}}}
 "{{{ dot repeat
 Plug gh_proxy . 'tpope/vim-repeat'
