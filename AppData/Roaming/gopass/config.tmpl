@@ -1,8 +1,1 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "gopass" -}}
-[mounts]
-	path = {{ env "LOCALAPPDATA" }}\gopass\stores\root
-[core]
-	autosync = false
-{{ end -}}
-{{ end -}}
+{{ includeTemplate (joinPath .chezmoi.sourceDir "private_dot_config" "gopass" "config.tmpl") . -}}
