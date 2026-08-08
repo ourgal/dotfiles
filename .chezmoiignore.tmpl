@@ -320,4 +320,12 @@ AppData/Roaming/Midnight Commander/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ home-manager
+{{ if eq .chezmoi.os "linux" "android" | not -}}
+{{ if lookPath "home-manager" | not -}}
+.config/home-manager/
+.config/home-manager/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
