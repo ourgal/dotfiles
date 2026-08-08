@@ -328,4 +328,12 @@ AppData/Roaming/Midnight Commander/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ atuin
+{{ if eq .chezmoi.os "linux" "android" | not -}}
+{{ if lookPath "atuin" | not -}}
+.config/atuin/
+.config/atuin/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
