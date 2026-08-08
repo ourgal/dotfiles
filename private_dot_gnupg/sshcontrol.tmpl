@@ -1,9 +1,5 @@
-{{ if eq .chezmoi.os "linux" "android" -}}
-{{ if lookPath "gpg" -}}
 {{ if .my.git.sign.gpg -}}
 {{ if ne .chezmoi.os "android" -}}
 66E220F513E05B9F44D77B9B15F629D7C1270868
-{{ end -}}
-{{ end -}}
 {{ end -}}
 {{ end -}}

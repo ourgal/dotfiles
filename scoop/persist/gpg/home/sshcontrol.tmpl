@@ -1,7 +1,1 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "gpg" -}}
-{{ if .my.git.sign.gpg -}}
-66E220F513E05B9F44D77B9B15F629D7C1270868
-{{ end -}}
-{{ end -}}
-{{ end -}}
+{{ includeTemplate (joinPath .chezmoi.sourceDir "private_dot_gnupg" "sshcontrol.tmpl") . -}}
