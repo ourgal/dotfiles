@@ -1,0 +1,10 @@
+{{ $mount := "" -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ $mount = joinPath (env "LOCALAPPDATA") "gopass" "stores" "root" -}}
+{{ else if eq .chezmoi.os "linux" "android" -}}
+{{ $mount = joinPath .chezmoi.homeDir ".local" "share" "gopass" "stores" "root" -}}
+{{ end -}}
+[mounts]
+	path = {{ $mount }}
+[core]
+	autosync = false

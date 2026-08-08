@@ -292,4 +292,18 @@ AppData/Roaming/helix/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ gopass
+{{ if eq .chezmoi.os "windows" | not -}}
+{{ if lookPath "gopass" | not -}}
+AppData/Roaming/gopass/
+AppData/Roaming/gopass/**
+{{ end -}}
+{{ end -}}
+{{ if eq .chezmoi.os "linux" "android" | not -}}
+{{ if lookPath "gopass" | not -}}
+.config/gopass/
+.config/gopass/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
