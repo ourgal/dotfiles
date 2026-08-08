@@ -353,4 +353,11 @@ AppData/Roaming/Midnight Commander/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ starship
+{{ if eq .chezmoi.os "windows" "linux" "android" | not -}}
+{{ if lookPath "starship" | not -}}
+.config/starship.toml
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:

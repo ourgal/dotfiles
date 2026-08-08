@@ -1,22 +1,15 @@
-{{ if eq .chezmoi.os "windows" "linux" "android" -}}
-{{ if lookPath "starship" -}}
-{{ $termux := dict -}}
-{{ $termux = set $termux "note20" (dict "port" 8022 "user" "u0_a650" "ip" (ternary "192.168.1.106" "192.168.123.232" (eq .chezmoi.hostname "work" "work2"))) -}}
-{{ $termux = set $termux "note20_adb" (dict "port" 8023 "user" $termux.note20.user "ip" "localhost") -}}
-{{ $termux = set $termux "m6" (dict "port" 8022 "user" "u0_a556" "ip" (ternary "192.168.1.103" "192.168.123.191" (eq .chezmoi.hostname "work" "work2"))) -}}
-{{ $termux = set $termux "m6_adb" (dict "port" 8022 "user" $termux.m6.user "ip" "localhost") -}}
-{{ $is_note20 := eq (output "whoami" | trim) $termux.note20.user -}}
+{{ $is_android := eq .chezmoi.os "android" -}}
 add_newline = true
 format = "$directory$cmd_duration$hostname$localip$shlvl$shell$env_var$username$sudo$character"
 palette = "base16"
-right_format = "$singularity$kubernetes$vcsh$fossil_branch$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$package$c$cmake$cobol$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$golang$guix_shell$haskell$haxe$helm$java$julia$kotlin$gradle$lua$nim$nodejs$ocaml$opa$perl$php$pulumi$purescript$python$raku$rlang$red$ruby$rust$scala$solidity$swift$terraform$vlang$vagrant$zig$buf$nix_shell$conda$meson$spack$memory_usage$aws$gcloud$openstack$azure$crystal$custom$jobs$status$os$container{{ if not $is_note20 }}$battery{{ end }}$time"
+right_format = "$singularity$kubernetes$vcsh$fossil_branch$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$package$c$cmake$cobol$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$golang$guix_shell$haskell$haxe$helm$java$julia$kotlin$gradle$lua$nim$nodejs$ocaml$opa$perl$php$pulumi$purescript$python$raku$rlang$red$ruby$rust$scala$solidity$swift$terraform$vlang$vagrant$zig$buf$nix_shell$conda$meson$spack$memory_usage$aws$gcloud$openstack$azure$crystal$custom$jobs$status$os$container{{ if not $is_android }}$battery{{ end }}$time"
 
 [aws]
 format = " aws [$symbol $profile $region]($style)"
 style = "italic blue"
 symbol = "▲ "
 
-{{ if not $is_note20 -}}
+{{ if not $is_android -}}
 [battery]
 charging_symbol = "[↑](italic green)"
 discharging_symbol = "[↓](italic)"
@@ -280,5 +273,3 @@ disabled = false
 format = " [$user]($style) ▻ "
 style_root = "purple bold italic"
 style_user = "yellow bold"
-{{ end -}}
-{{ end -}}
