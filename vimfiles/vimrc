@@ -452,3 +452,12 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 "}}}
+"{{{ vim-qf config
+nmap <Home> <Plug>(qf_qf_previous)
+nmap <End>  <Plug>(qf_qf_next)
+nmap <C-Home> <Plug>(qf_loc_previous)
+nmap <C-End>  <Plug>(qf_loc_next)
+nmap <F5> <Plug>(qf_qf_toggle)
+nmap <F6> <Plug>(qf_loc_toggle)
+let g:qf_mapping_ack_style = 1
+"}}}
