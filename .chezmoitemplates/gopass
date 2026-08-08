@@ -1,0 +1,6 @@
+{{ if exec "gopass" "list" . -}}
+{{ gopass . }}
+{{ else -}}
+{{ warnf (print "gopass entry " . " not found") -}}
+{{ "" -}}
+{{ end -}}
