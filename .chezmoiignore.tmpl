@@ -100,8 +100,7 @@ service/**
 .config/autostart/**
 scoop/persist/mpv/portable_config/scripts/mpv-anilist-updater/anilistToken.key
 {{ end -}}
-
-{{/* {{{ aichat */ -}}
+# [[[ aichat
 {{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "aichat" | not -}}
 AppData/Roaming/aichat/
@@ -114,9 +113,8 @@ AppData/Roaming/aichat/**
 .config/aichat/**
 {{ end -}}
 {{ end -}}
-{{/* }}} */ -}}
-
-{{/* {{{ gnupg */ -}}
+# ]]]
+# [[[ gnupg
 {{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "gpg" | not -}}
 scoop/persist/gpg/home/
@@ -129,9 +127,8 @@ scoop/persist/gpg/home/**
 .gnupg/**
 {{ end -}}
 {{ end -}}
-{{/* }}} */ -}}
-
-{{/* {{{ fdroidcl */ -}}
+# ]]]
+# [[[ fdroidcl
 {{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "fdroidcl" | not -}}
 AppData/Roaming/fdroidcl/
@@ -144,9 +141,8 @@ AppData/Roaming/fdroidcl/**
 .config/fdroidcl/**
 {{ end -}}
 {{ end -}}
-{{/* }}} */ -}}
-
-{{/* {{{ aria2 */ -}}
+# ]]]
+# [[[ aria2
 {{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "aria2c" | not -}}
 .aria2/
@@ -159,20 +155,18 @@ AppData/Roaming/fdroidcl/**
 .config/aria2/**
 {{ end -}}
 {{ end -}}
-{{/* }}} */ -}}
-
-{{/* {{{ mpd */ -}}
+# ]]]
+# [[[ mpd
 {{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "mpd" | not -}}
 AppData/Roaming/mpd/
 AppData/Roaming/mpd/**
 {{ end -}}
 {{ end -}}
-{{/* }}} */ -}}
-
-{{/* {{{ tealdeer */ -}}
+# ]]]
+# [[[ tldr
 {{ if eq .chezmoi.os "windows" | not -}}
-{{ if lookPath "mpd" | not -}}
+{{ if lookPath "tldr" | not -}}
 scoop/persist/tealdeer/
 scoop/persist/tealdeer/**
 {{ end -}}
@@ -183,18 +177,16 @@ scoop/persist/tealdeer/**
 .config/tealdeer/**
 {{ end -}}
 {{ end -}}
-{{/* }}} */ -}}
-
-{{/* {{{ yt-dlp */ -}}
+# ]]]
+# [[[ yt-dlp
 {{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "yt-dlp" | not -}}
 scoop/persist/yt-dlp/
 scoop/persist/yt-dlp/**
 {{ end -}}
 {{ end -}}
-{{/* }}} */ -}}
-
-{{/* {{{ transmission */ -}}
+# ]]]
+# [[[ transmission
 {{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "transmission-daemon" | not -}}
 AppData/Local/transmission-daemon/
@@ -207,9 +199,8 @@ AppData/Local/transmission-daemon/**
 .config/transmission-daemon/**
 {{ end -}}
 {{ end -}}
-{{/* }}} */ -}}
-
-{{/* {{{ vim */ -}}
+# ]]]
+# [[[ vim
 {{ if eq .chezmoi.os "windows" | not -}}
 {{ if lookPath "vim" | not -}}
 vimfiles/
@@ -224,4 +215,4 @@ vimfiles/**
 .config/vim/**
 {{ end -}}
 {{ end -}}
-{{/* }}} */ -}}
+# }}}
