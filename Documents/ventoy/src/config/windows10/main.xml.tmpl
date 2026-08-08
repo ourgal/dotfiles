@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <unattend xmlns="urn:schemas-microsoft-com:unattend" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State">
-	<!--https://schneegans.de/windows/unattend-generator/?LanguageMode=Unattended&UILanguage=en-US&Locale=en-US&Keyboard=00000409&GeoLocation=244&ProcessorArchitecture=x86&ProcessorArchitecture=amd64&ProcessorArchitecture=arm64&BypassRequirementsCheck=true&UseConfigurationSet=true&ComputerNameMode=Script&ComputerNameScript=return+Read-Host+-Prompt+%27Enter+computer+name%27%3B&CompactOsMode=Always&TimeZoneMode=Explicit&TimeZone=China+Standard+Time&PartitionMode=Unattended&PartitionLayout=GPT&EspSize=300&RecoveryMode=Partition&RecoverySize=1000&DiskAssertionMode=Script&DiskAssertionScript=On+Error+Resume+Next%0D%0ASet+wmi+%3D+GetObject%28%22winmgmts%3A%5C%5C.%5Croot%5Ccimv2%22%29%0D%0ASet+drive+%3D+wmi.Get%28%22Win32_DiskDrive.DeviceID%3D%27%5C%5C.%5CPHYSICALDRIVE0%27%22%29%0D%0AIf+Err.Number+%3C%3E+0+Then%0D%0A++++Msgbox+Err.Description%0D%0A++++WScript.Quit+1%0D%0AEnd+If%0D%0AIf+drive.InterfaceType+%3D+%22IDE%22+Or+drive.InterfaceType+%3D+%22SCSI%22+Then%0D%0A++++WScript.Quit+0%0D%0AElse%0D%0A++++MsgBox+%22Assertion+failed.%22%0D%0A++++WScript.Quit+1%0D%0AEnd+If&WindowsEditionMode=Firmware&InstallFromMode=Index&InstallFromIndex=2&PEMode=Default&UserAccountMode=Unattended&AccountName0=Admin&AccountDisplayName0=&AccountPassword0={{ gopass "password/windows/admin" }}&AccountGroup0=Administrators&AccountName1=User&AccountDisplayName1=zxc&AccountPassword1={{ gopass "password/windows/user" }}&AccountGroup1=Users&AccountName2=Game&AccountDisplayName2=&AccountPassword2={{ gopass "password/windows/user" }}&AccountGroup2=Administrators&AutoLogonMode=Own&PasswordExpirationMode=Unlimited&LockoutMode=Default&HideFiles=Hidden&ShowFileExtensions=true&ClassicContextMenu=true&LaunchToThisPC=true&ShowEndTask=true&TaskbarSearch=Hide&TaskbarIconsMode=Default&DisableWidgets=true&HideTaskViewButton=true&DisableBingResults=true&StartTilesMode=Default&StartPinsMode=Empty&DisableWindowsUpdate=true&DisableUac=true&DisableSac=true&DisableSmartScreen=true&EnableRemoteDesktop=true&HardenSystemDriveAcl=true&DeleteJunctions=true&AllowPowerShellScripts=true&DisableLastAccess=true&PreventAutomaticReboot=true&TurnOffSystemSounds=true&DisableAppSuggestions=true&PreventDeviceEncryption=true&HideEdgeFre=true&DisableEdgeStartupBoost=true&MakeEdgeUninstallable=true&DeleteWindowsOld=true&DisableAutomaticRestartSignOn=true&EffectsMode=Performance&DeleteEdgeDesktopIcon=true&DesktopIconsMode=Custom&IconControlPanel=true&IconDocuments=true&IconDownloads=true&IconHome=true&IconMusic=true&IconPictures=true&IconThisPC=true&IconVideos=true&StartFoldersMode=Default&WifiMode=Interactive&ExpressSettings=DisableAll&LockKeysMode=Skip&StickyKeysMode=Disabled&ColorMode=Custom&SystemColorTheme=Dark&AppsColorTheme=Dark&AccentColor=%230078d4&AccentColorOnStart=true&AccentColorOnBorders=true&EnableTransparency=true&WallpaperMode=Default&LockScreenMode=Default&Remove3DViewer=true&RemoveBingSearch=true&RemoveCalculator=true&RemoveCamera=true&RemoveClipchamp=true&RemoveClock=true&RemoveCopilot=true&RemoveCortana=true&RemoveDevHome=true&RemoveWindowsHello=true&RemoveFamily=true&RemoveFeedbackHub=true&RemoveGameAssist=true&RemoveGetHelp=true&RemoveHandwriting=true&RemoveInternetExplorer=true&RemoveMailCalendar=true&RemoveMaps=true&RemoveMathInputPanel=true&RemoveMediaFeatures=true&RemoveMixedReality=true&RemoveZuneVideo=true&RemoveNews=true&RemoveOffice365=true&RemoveOneDrive=true&RemoveOneNote=true&RemoveOneSync=true&RemoveOutlook=true&RemovePaint=true&RemovePaint3D=true&RemovePeople=true&RemovePhotos=true&RemovePowerAutomate=true&RemovePowerShell2=true&RemovePowerShellISE=true&RemoveQuickAssist=true&RemoveRecall=true&RemoveSkype=true&RemoveSnippingTool=true&RemoveSolitaire=true&RemoveSpeech=true&RemoveStepsRecorder=true&RemoveStickyNotes=true&RemoveTeams=true&RemoveGetStarted=true&RemoveToDo=true&RemoveVoiceRecorder=true&RemoveWallet=true&RemoveWeather=true&RemoveFaxAndScan=true&RemoveWindowsMediaPlayer=true&RemoveZuneMusic=true&RemoveWindowsTerminal=true&RemoveWordPad=true&RemoveXboxApps=true&RemoveYourPhone=true&SystemScript0=%3C%21%5BCDATA%5B%0D%0A%3C%3C+system+ps1+%3E%3E%0D%0A%5D%5D%3E&SystemScriptType0=Ps1&SystemScript1=%3C%3C+system+cmd+%3E%3E&SystemScriptType1=Cmd&SystemScript2=%3C%3C+system+ps1+post+%3E%3E&SystemScriptType2=Ps1&SystemScript3=%3C%3C+system+reg+%3E%3E&SystemScriptType3=Reg&SystemScript4=%3C%3C+system+vbs+%3E%3E&SystemScriptType4=Vbs&FirstLogonScript0=%3C%3C+first+logon+reg+%3E%3E&FirstLogonScriptType0=Reg&FirstLogonScript1=%3C%3C+first+logon+ps1+%3E%3E&FirstLogonScriptType1=Ps1&FirstLogonScript2=%3C%3C+first+logon+cmd+%3E%3E&FirstLogonScriptType2=Cmd&FirstLogonScript3=%3C%3C+first+logon+ps1+post+%3E%3E&FirstLogonScriptType3=Ps1&FirstLogonScript4=%3C%3C+first+logon+reg+post+%3E%3E&FirstLogonScriptType4=Reg&FirstLogonScript5=%3C%3C+first+logon+vbs+%3E%3E&FirstLogonScriptType5=Vbs&UserOnceScript0=%3C%3C+user+once+cmd+%3E%3E&UserOnceScriptType0=Cmd&UserOnceScript1=%3C%3C+user+once+ps1+%3E%3E&UserOnceScriptType1=Ps1&UserOnceScript2=%3C%3C+user+once+reg+%3E%3E&UserOnceScriptType2=Reg&UserOnceScript3=%3C%3C+user+once+vbs+%3E%3E&UserOnceScriptType3=Vbs&WdacMode=Skip&AppLockerMode=Skip-->
+	<!--https://schneegans.de/windows/unattend-generator/?LanguageMode=Unattended&UILanguage=en-US&Locale=en-US&Keyboard=00000409&GeoLocation=244&ProcessorArchitecture=x86&ProcessorArchitecture=amd64&ProcessorArchitecture=arm64&BypassRequirementsCheck=true&UseConfigurationSet=true&ComputerNameMode=Script&ComputerNameScript=return+Read-Host+-Prompt+%27Enter+computer+name%27%3B&CompactOsMode=Always&TimeZoneMode=Explicit&TimeZone=China+Standard+Time&PartitionMode=Unattended&PartitionLayout=GPT&EspSize=300&RecoveryMode=Partition&RecoverySize=1000&DiskAssertionMode=Script&DiskAssertionScript=On+Error+Resume+Next%0D%0ASet+wmi+%3D+GetObject%28%22winmgmts%3A%5C%5C.%5Croot%5Ccimv2%22%29%0D%0ASet+drive+%3D+wmi.Get%28%22Win32_DiskDrive.DeviceID%3D%27%5C%5C.%5CPHYSICALDRIVE0%27%22%29%0D%0AIf+Err.Number+%3C%3E+0+Then%0D%0A++++Msgbox+Err.Description%0D%0A++++WScript.Quit+1%0D%0AEnd+If%0D%0AIf+drive.InterfaceType+%3D+%22IDE%22+Or+drive.InterfaceType+%3D+%22SCSI%22+Then%0D%0A++++WScript.Quit+0%0D%0AElse%0D%0A++++MsgBox+%22Assertion+failed.%22%0D%0A++++WScript.Quit+1%0D%0AEnd+If&WindowsEditionMode=Firmware&InstallFromMode=Index&InstallFromIndex=2&PEMode=Default&UserAccountMode=Unattended&AccountName0=Admin&AccountDisplayName0=&AccountPassword0={{ includeTemplate "gopass" "password/windows/admin" }}&AccountGroup0=Administrators&AccountName1=User&AccountDisplayName1=zxc&AccountPassword1={{ includeTemplate "gopass" "password/windows/user" }}&AccountGroup1=Users&AccountName2=Game&AccountDisplayName2=&AccountPassword2={{ includeTemplate "gopass" "password/windows/user" }}&AccountGroup2=Administrators&AutoLogonMode=Own&PasswordExpirationMode=Unlimited&LockoutMode=Default&HideFiles=Hidden&ShowFileExtensions=true&ClassicContextMenu=true&LaunchToThisPC=true&ShowEndTask=true&TaskbarSearch=Hide&TaskbarIconsMode=Default&DisableWidgets=true&HideTaskViewButton=true&DisableBingResults=true&StartTilesMode=Default&StartPinsMode=Empty&DisableWindowsUpdate=true&DisableUac=true&DisableSac=true&DisableSmartScreen=true&EnableRemoteDesktop=true&HardenSystemDriveAcl=true&DeleteJunctions=true&AllowPowerShellScripts=true&DisableLastAccess=true&PreventAutomaticReboot=true&TurnOffSystemSounds=true&DisableAppSuggestions=true&PreventDeviceEncryption=true&HideEdgeFre=true&DisableEdgeStartupBoost=true&MakeEdgeUninstallable=true&DeleteWindowsOld=true&DisableAutomaticRestartSignOn=true&EffectsMode=Performance&DeleteEdgeDesktopIcon=true&DesktopIconsMode=Custom&IconControlPanel=true&IconDocuments=true&IconDownloads=true&IconHome=true&IconMusic=true&IconPictures=true&IconThisPC=true&IconVideos=true&StartFoldersMode=Default&WifiMode=Interactive&ExpressSettings=DisableAll&LockKeysMode=Skip&StickyKeysMode=Disabled&ColorMode=Custom&SystemColorTheme=Dark&AppsColorTheme=Dark&AccentColor=%230078d4&AccentColorOnStart=true&AccentColorOnBorders=true&EnableTransparency=true&WallpaperMode=Default&LockScreenMode=Default&Remove3DViewer=true&RemoveBingSearch=true&RemoveCalculator=true&RemoveCamera=true&RemoveClipchamp=true&RemoveClock=true&RemoveCopilot=true&RemoveCortana=true&RemoveDevHome=true&RemoveWindowsHello=true&RemoveFamily=true&RemoveFeedbackHub=true&RemoveGameAssist=true&RemoveGetHelp=true&RemoveHandwriting=true&RemoveInternetExplorer=true&RemoveMailCalendar=true&RemoveMaps=true&RemoveMathInputPanel=true&RemoveMediaFeatures=true&RemoveMixedReality=true&RemoveZuneVideo=true&RemoveNews=true&RemoveOffice365=true&RemoveOneDrive=true&RemoveOneNote=true&RemoveOneSync=true&RemoveOutlook=true&RemovePaint=true&RemovePaint3D=true&RemovePeople=true&RemovePhotos=true&RemovePowerAutomate=true&RemovePowerShell2=true&RemovePowerShellISE=true&RemoveQuickAssist=true&RemoveRecall=true&RemoveSkype=true&RemoveSnippingTool=true&RemoveSolitaire=true&RemoveSpeech=true&RemoveStepsRecorder=true&RemoveStickyNotes=true&RemoveTeams=true&RemoveGetStarted=true&RemoveToDo=true&RemoveVoiceRecorder=true&RemoveWallet=true&RemoveWeather=true&RemoveFaxAndScan=true&RemoveWindowsMediaPlayer=true&RemoveZuneMusic=true&RemoveWindowsTerminal=true&RemoveWordPad=true&RemoveXboxApps=true&RemoveYourPhone=true&SystemScript0=%3C%21%5BCDATA%5B%0D%0A%3C%3C+system+ps1+%3E%3E%0D%0A%5D%5D%3E&SystemScriptType0=Ps1&SystemScript1=%3C%3C+system+cmd+%3E%3E&SystemScriptType1=Cmd&SystemScript2=%3C%3C+system+ps1+post+%3E%3E&SystemScriptType2=Ps1&SystemScript3=%3C%3C+system+reg+%3E%3E&SystemScriptType3=Reg&SystemScript4=%3C%3C+system+vbs+%3E%3E&SystemScriptType4=Vbs&FirstLogonScript0=%3C%3C+first+logon+reg+%3E%3E&FirstLogonScriptType0=Reg&FirstLogonScript1=%3C%3C+first+logon+ps1+%3E%3E&FirstLogonScriptType1=Ps1&FirstLogonScript2=%3C%3C+first+logon+cmd+%3E%3E&FirstLogonScriptType2=Cmd&FirstLogonScript3=%3C%3C+first+logon+ps1+post+%3E%3E&FirstLogonScriptType3=Ps1&FirstLogonScript4=%3C%3C+first+logon+reg+post+%3E%3E&FirstLogonScriptType4=Reg&FirstLogonScript5=%3C%3C+first+logon+vbs+%3E%3E&FirstLogonScriptType5=Vbs&UserOnceScript0=%3C%3C+user+once+cmd+%3E%3E&UserOnceScriptType0=Cmd&UserOnceScript1=%3C%3C+user+once+ps1+%3E%3E&UserOnceScriptType1=Ps1&UserOnceScript2=%3C%3C+user+once+reg+%3E%3E&UserOnceScriptType2=Reg&UserOnceScript3=%3C%3C+user+once+vbs+%3E%3E&UserOnceScriptType3=Vbs&WdacMode=Skip&AppLockerMode=Skip-->
 	<settings pass="offlineServicing"></settings>
 	<settings pass="windowsPE">
 		<component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
@@ -327,7 +327,7 @@
 						<DisplayName></DisplayName>
 						<Group>Administrators</Group>
 						<Password>
-							<Value>{{ gopass "password/windows/admin" }}</Value>
+							<Value>{{ includeTemplate "gopass" "password/windows/admin" }}</Value>
 							<PlainText>true</PlainText>
 						</Password>
 					</LocalAccount>
@@ -336,7 +336,7 @@
 						<DisplayName>zxc</DisplayName>
 						<Group>Users</Group>
 						<Password>
-							<Value>{{ gopass "password/windows/user" }}</Value>
+							<Value>{{ includeTemplate "gopass" "password/windows/user" }}</Value>
 							<PlainText>true</PlainText>
 						</Password>
 					</LocalAccount>
@@ -345,7 +345,7 @@
 						<DisplayName></DisplayName>
 						<Group>Administrators</Group>
 						<Password>
-							<Value>{{ gopass "password/windows/user" }}</Value>
+							<Value>{{ includeTemplate "gopass" "password/windows/user" }}</Value>
 							<PlainText>true</PlainText>
 						</Password>
 					</LocalAccount>
@@ -356,7 +356,7 @@
 				<Enabled>true</Enabled>
 				<LogonCount>1</LogonCount>
 				<Password>
-					<Value>{{ gopass "password/windows/admin" }}</Value>
+					<Value>{{ includeTemplate "gopass" "password/windows/admin" }}</Value>
 					<PlainText>true</PlainText>
 				</Password>
 			</AutoLogon>
@@ -381,7 +381,7 @@
 						<DisplayName></DisplayName>
 						<Group>Administrators</Group>
 						<Password>
-							<Value>{{ gopass "password/windows/admin" }}</Value>
+							<Value>{{ includeTemplate "gopass" "password/windows/admin" }}</Value>
 							<PlainText>true</PlainText>
 						</Password>
 					</LocalAccount>
@@ -390,7 +390,7 @@
 						<DisplayName>zxc</DisplayName>
 						<Group>Users</Group>
 						<Password>
-							<Value>{{ gopass "password/windows/user" }}</Value>
+							<Value>{{ includeTemplate "gopass" "password/windows/user" }}</Value>
 							<PlainText>true</PlainText>
 						</Password>
 					</LocalAccount>
@@ -399,7 +399,7 @@
 						<DisplayName></DisplayName>
 						<Group>Administrators</Group>
 						<Password>
-							<Value>{{ gopass "password/windows/user" }}</Value>
+							<Value>{{ includeTemplate "gopass" "password/windows/user" }}</Value>
 							<PlainText>true</PlainText>
 						</Password>
 					</LocalAccount>
@@ -410,7 +410,7 @@
 				<Enabled>true</Enabled>
 				<LogonCount>1</LogonCount>
 				<Password>
-					<Value>{{ gopass "password/windows/admin" }}</Value>
+					<Value>{{ includeTemplate "gopass" "password/windows/admin" }}</Value>
 					<PlainText>true</PlainText>
 				</Password>
 			</AutoLogon>
@@ -435,7 +435,7 @@
 						<DisplayName></DisplayName>
 						<Group>Administrators</Group>
 						<Password>
-							<Value>{{ gopass "password/windows/admin" }}</Value>
+							<Value>{{ includeTemplate "gopass" "password/windows/admin" }}</Value>
 							<PlainText>true</PlainText>
 						</Password>
 					</LocalAccount>
@@ -444,7 +444,7 @@
 						<DisplayName>zxc</DisplayName>
 						<Group>Users</Group>
 						<Password>
-							<Value>{{ gopass "password/windows/user" }}</Value>
+							<Value>{{ includeTemplate "gopass" "password/windows/user" }}</Value>
 							<PlainText>true</PlainText>
 						</Password>
 					</LocalAccount>
@@ -453,7 +453,7 @@
 						<DisplayName></DisplayName>
 						<Group>Administrators</Group>
 						<Password>
-							<Value>{{ gopass "password/windows/user" }}</Value>
+							<Value>{{ includeTemplate "gopass" "password/windows/user" }}</Value>
 							<PlainText>true</PlainText>
 						</Password>
 					</LocalAccount>
@@ -464,7 +464,7 @@
 				<Enabled>true</Enabled>
 				<LogonCount>1</LogonCount>
 				<Password>
-					<Value>{{ gopass "password/windows/admin" }}</Value>
+					<Value>{{ includeTemplate "gopass" "password/windows/admin" }}</Value>
 					<PlainText>true</PlainText>
 				</Password>
 			</AutoLogon>

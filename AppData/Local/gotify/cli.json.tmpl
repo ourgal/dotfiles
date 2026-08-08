@@ -27,7 +27,7 @@
 {{ $ip = set $ip "office2043" (dict "ip" "192.168.1.104" "port" "22" "user" $username.linux) -}}
 {{ $gotify_port := "5080" -}}
 {
-  "token": "{{ gopass "gotify/token/ritdon" }}",
+  "token": "{{ includeTemplate "gopass" "gotify/token/ritdon" }}",
   "url": "http://{{ $ip.work.ip }}:{{ $gotify_port }}",
   "defaultPriority": 0
 }

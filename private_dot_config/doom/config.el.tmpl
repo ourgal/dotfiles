@@ -214,7 +214,7 @@
   (elfeed-protocol-fever-fetch-category-as-tag t)
   (elfeed-protocol-feeds '(("fever+{{ $protocol }}://miniflux@{{ $domain }}"
                                  :api-url "{{ $protocol }}://{{ $domain }}/fever/"
-                                 :password "{{ gopass "miniflux/fever" | trim }}")))
+                                 :password "{{ includeTemplate "gopass" "miniflux/fever" | trim }}")))
   :config
   (elfeed-set-timeout 36000)
   (setq elfeed-search-filter "@2-weeks-ago +unread !Commit ")
