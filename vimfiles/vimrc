@@ -107,6 +107,9 @@ set updatetime=500
 set mouse=a
 set smoothscroll
 
+" 24-bit color TUI
+set termguicolors
+
 if executable('rg')
     set grepprg=rg\ --vimgrep\ --no-hidden\ --no-heading\
 endif
@@ -307,7 +310,6 @@ vmap <Leader>K <Plug>(coc-translator-pv)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 "}}}
 "{{{ tokyonight config
-" set termguicolors
 " let g:tokyonight_style = 'night' " available: night, storm
 " let g:tokyonight_enable_italic = 1
 " colorscheme tokyonight
@@ -321,7 +323,7 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 "}}}
 "{{{ lightline config
 let g:lightline = {
-      \ 'colorscheme': 'catppuccin_mocha',
+      \ 'colorscheme': 'embark',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'filename', 'modified' ] ],
@@ -397,8 +399,7 @@ let g:org_export_emacs = exepath('emacs')
 " nnoremap <bs> <cmd>Dir<cr>
 "}}}
 "{{{ catppuccin config
-set termguicolors
-colorscheme catppuccin_mocha
+" colorscheme catppuccin_mocha
 "}}}
 "{{{ netrw config
 " nnoremap <bs> <cmd>Explore<cr>
@@ -463,4 +464,7 @@ let g:qf_mapping_ack_style = 1
 "}}}
 "{{{ fugitive config
 nmap <leader>gg <cmd>G<cr>
+"}}}
+"{{{ embark config
+colorscheme embark
 "}}}
