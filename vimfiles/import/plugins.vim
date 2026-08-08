@@ -127,7 +127,8 @@ Plug 'https://gitcode.com/gh_mirrors/li/lightline.vim'
 "{{{ theme
 " Plug 'ghifarit53/tokyonight-vim'
 " Plug 'https://codeberg.org/mao-yining/vim-catppuccin'
-Plug 'https://gitcode.com/gh_mirrors/vim17/vim', { 'as': 'embark', 'branch': 'main' }
+" Plug 'https://gitcode.com/gh_mirrors/vim17/vim', { 'as': 'embark', 'branch': 'main' }
+Plug 'https://gitcode.com/gh_mirrors/on/onedark.vim'
 "}}}
 call plug#end()
 "}}}
