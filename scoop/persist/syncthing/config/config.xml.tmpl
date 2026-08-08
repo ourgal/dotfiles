@@ -4,16 +4,16 @@
 <configuration version="51">
     <folder id="gsqw5-i57xh" label="keepassxc" path="{{ joinPath .chezmoi.homeDir "Syncthing" "keepassxc" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -53,16 +53,16 @@
     </folder>
     <folder id="z9um9-3ktne" label="playnite" path="{{ joinPath .chezmoi.homeDir "scoop" "persist" "playnite" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -102,16 +102,16 @@
     </folder>
     <folder id="rjrxe-9sugq" label="ludusavi" path="{{ joinPath .chezmoi.homeDir "ludusavi-backup" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -151,16 +151,16 @@
     </folder>
     <folder id="u5dje-5hvnn" label="game_saves" path="{{ joinPath .chezmoi.homeDir "Documents" "game_saves" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -200,16 +200,16 @@
     </folder>
     <folder id="oxjez-pxtna" label="ludusaviRestic" path="{{ joinPath .chezmoi.homeDir "Documents" "PlayniteBackups" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -249,22 +249,22 @@
     </folder>
     <folder id="gc5sz-susp5" label="share" path="{{ joinPath .chezmoi.homeDir "Syncthing" "share" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/s10/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/s10/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/m6/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/m6/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -304,16 +304,16 @@
     </folder>
     <folder id="htvji-asdsj" label="gpg_keys" path="{{ joinPath .chezmoi.homeDir "Syncthing" "gpg_keys" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -353,13 +353,13 @@
     </folder>
     <folder id="y1n6e-yjceb" label="note20-dcim" path="{{ joinPath .chezmoi.homeDir "Syncthing" "note20-dcim" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -399,13 +399,13 @@
     </folder>
     <folder id="d69wv-ll51l" label="note20-document" path="{{ joinPath .chezmoi.homeDir "Syncthing" "note20-document" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -445,13 +445,13 @@
     </folder>
     <folder id="3kcsy-85jjz" label="note20-download" path="{{ joinPath .chezmoi.homeDir "Syncthing" "note20-download" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -491,13 +491,13 @@
     </folder>
     <folder id="zphn7-tg89f" label="note20-music" path="{{ joinPath .chezmoi.homeDir "Syncthing" "note20-music" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -537,13 +537,13 @@
     </folder>
     <folder id="k35cr-q06oc" label="note20-picture" path="{{ joinPath .chezmoi.homeDir "Syncthing" "note20-picture" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -583,13 +583,13 @@
     </folder>
     <folder id="77uex-q9hva" label="note20-movie" path="{{ joinPath .chezmoi.homeDir "Syncthing" "note20-movie" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -629,16 +629,16 @@
     </folder>
     <folder id="16ktr-vt585" label="s10-dcim" path="{{ joinPath .chezmoi.homeDir "Syncthing" "s10-dcim" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/s10/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/s10/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -678,13 +678,13 @@
     </folder>
     <folder id="4oepn-2l586" label="s10-download" path="{{ joinPath .chezmoi.homeDir "Syncthing" "s10-download" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/s10/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/s10/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -724,13 +724,13 @@
     </folder>
     <folder id="n2177-ugn6u" label="s10-document" path="{{ joinPath .chezmoi.homeDir "Syncthing" "s10-document" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/s10/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/s10/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -770,13 +770,13 @@
     </folder>
     <folder id="2846b-kv95o" label="s10-music" path="{{ joinPath .chezmoi.homeDir "Syncthing" "s10-music" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/s10/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/s10/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -816,13 +816,13 @@
     </folder>
     <folder id="mf954-uhywx" label="s10-picture" path="{{ joinPath .chezmoi.homeDir "Syncthing" "s10-picture" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/s10/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/s10/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -862,13 +862,13 @@
     </folder>
     <folder id="51ty8-f968l" label="s10-movie" path="{{ joinPath .chezmoi.homeDir "Syncthing" "s10-movie" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/s10/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/s10/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -908,13 +908,13 @@
     </folder>
     <folder id="czmc9-3xr2o" label="m6-dcim" path="{{ joinPath .chezmoi.homeDir "Syncthing" "m6-dcim" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/m6/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/m6/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -954,13 +954,13 @@
     </folder>
     <folder id="wrau5-k51de" label="m6-download" path="{{ joinPath .chezmoi.homeDir "Syncthing" "m6-download" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/m6/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/m6/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -1000,13 +1000,13 @@
     </folder>
     <folder id="b5ivh-mtvk2" label="m6-music" path="{{ joinPath .chezmoi.homeDir "Syncthing" "m6-music" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/m6/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/m6/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -1046,13 +1046,13 @@
     </folder>
     <folder id="nxrzw-lqfil" label="m6-picture" path="{{ joinPath .chezmoi.homeDir "Syncthing" "m6-picture" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/m6/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/m6/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -1092,13 +1092,13 @@
     </folder>
     <folder id="jlf00-6rk6u" label="m6-movie" path="{{ joinPath .chezmoi.homeDir "Syncthing" "m6-movie" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/m6/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/m6/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -1136,7 +1136,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <device id="{{ gopass "syncthing/bed/id" }}" name="bed" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+    <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" name="bed" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
@@ -1147,7 +1147,7 @@
         <remoteGUIPort>0</remoteGUIPort>
         <numConnections>0</numConnections>
     </device>
-    <device id="{{ gopass "syncthing/nuc/id" }}" name="nuc" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+    <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" name="nuc" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
@@ -1158,7 +1158,7 @@
         <remoteGUIPort>0</remoteGUIPort>
         <numConnections>0</numConnections>
     </device>
-    <device id="{{ gopass "syncthing/work/id" }}" name="work" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+    <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" name="work" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
@@ -1169,7 +1169,7 @@
         <remoteGUIPort>0</remoteGUIPort>
         <numConnections>0</numConnections>
     </device>
-    <device id="{{ gopass "syncthing/note20/id" }}" name="note20" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+    <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" name="note20" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
@@ -1180,7 +1180,7 @@
         <remoteGUIPort>0</remoteGUIPort>
         <numConnections>0</numConnections>
     </device>
-    <device id="{{ gopass "syncthing/s10/id" }}" name="s10" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+    <device id="{{ includeTemplate "gopass" "syncthing/s10/id" }}" name="s10" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
@@ -1191,7 +1191,7 @@
         <remoteGUIPort>0</remoteGUIPort>
         <numConnections>0</numConnections>
     </device>
-    <device id="{{ gopass "syncthing/m6/id" }}" name="m6" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+    <device id="{{ includeTemplate "gopass" "syncthing/m6/id" }}" name="m6" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
@@ -1205,7 +1205,7 @@
     <gui enabled="true" tls="false" sendBasicAuthPrompt="false">
         <address>127.0.0.1:8384</address>
         <metricsWithoutAuth>false</metricsWithoutAuth>
-        <apikey>{{ gopass (printf "syncthing/%s/api" .chezmoi.hostname) }}</apikey>
+        <apikey>{{ includeTemplate "gopass" (printf "syncthing/%s/api" .chezmoi.hostname) }}</apikey>
         <theme>default</theme>
     </gui>
     <ldap></ldap>
@@ -1268,7 +1268,7 @@
     <defaults>
         <folder id="" label="" path="{{ joinPath .chezmoi.homeDir "Syncthing" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
             <filesystemType>basic</filesystemType>
-            <device id="{{ gopass (printf "syncthing/%s/id" .chezmoi.hostname) }}" introducedBy="">
+            <device id="{{ includeTemplate "gopass" (printf "syncthing/%s/id" .chezmoi.hostname) }}" introducedBy="">
                 <encryptionPassword></encryptionPassword>
             </device>
             <minDiskFree unit="%">1</minDiskFree>
@@ -1325,16 +1325,16 @@
 <configuration version="51">
     <folder id="gsqw5-i57xh" label="keepassxc" path="{{ joinPath .chezmoi.homeDir "Syncthing" "keepassxc" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -1374,16 +1374,16 @@
     </folder>
     <folder id="z9um9-3ktne" label="playnite" path="{{ joinPath .chezmoi.homeDir "scoop" "persist" "playnite" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -1423,16 +1423,16 @@
     </folder>
     <folder id="rjrxe-9sugq" label="ludusavi" path="{{ joinPath .chezmoi.homeDir "ludusavi-backup" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -1472,16 +1472,16 @@
     </folder>
     <folder id="u5dje-5hvnn" label="game_saves" path="{{ joinPath .chezmoi.homeDir "Documents" "game_saves" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -1521,16 +1521,16 @@
     </folder>
     <folder id="oxjez-pxtna" label="ludusaviRestic" path="{{ joinPath .chezmoi.homeDir "Documents" "PlayniteBackups" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -1570,22 +1570,22 @@
     </folder>
     <folder id="gc5sz-susp5" label="share" path="{{ joinPath .chezmoi.homeDir "Syncthing" "share" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/s10/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/s10/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/m6/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/m6/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -1625,10 +1625,10 @@
     </folder>
     <folder id="gc5sz-susp4" label="share_work" path="{{ joinPath .chezmoi.homeDir "Syncthing" "share_work" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -1668,16 +1668,16 @@
     </folder>
     <folder id="htvji-asdsj" label="gpg_keys" path="{{ joinPath .chezmoi.homeDir "Syncthing" "gpg_keys" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -1717,13 +1717,13 @@
     </folder>
     <folder id="y1n6e-yjceb" label="note20-dcim" path="{{ joinPath .chezmoi.homeDir "Syncthing" "note20-dcim" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -1763,13 +1763,13 @@
     </folder>
     <folder id="3kcsy-85jjz" label="note20-download" path="{{ joinPath .chezmoi.homeDir "Syncthing" "note20-download" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -1809,13 +1809,13 @@
     </folder>
     <folder id="d69wv-ll51l" label="note20-document" path="{{ joinPath .chezmoi.homeDir "Syncthing" "note20-document" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -1855,13 +1855,13 @@
     </folder>
     <folder id="zphn7-tg89f" label="note20-music" path="{{ joinPath .chezmoi.homeDir "Syncthing" "note20-music" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -1901,13 +1901,13 @@
     </folder>
     <folder id="k35cr-q06oc" label="note20-picture" path="{{ joinPath .chezmoi.homeDir "Syncthing" "note20-picture" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -1947,13 +1947,13 @@
     </folder>
     <folder id="77uex-q9hva" label="note20-movie" path="{{ joinPath .chezmoi.homeDir "Syncthing" "note20-movie" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -1993,16 +1993,16 @@
     </folder>
     <folder id="16ktr-vt585" label="s10-dcim" path="{{ joinPath .chezmoi.homeDir "Syncthing" "s10-dcim" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/s10/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/s10/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -2042,13 +2042,13 @@
     </folder>
     <folder id="4oepn-2l586" label="s10-download" path="{{ joinPath .chezmoi.homeDir "Syncthing" "s10-download" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/s10/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/s10/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -2088,13 +2088,13 @@
     </folder>
     <folder id="n2177-ugn6u" label="s10-document" path="{{ joinPath .chezmoi.homeDir "Syncthing" "s10-document" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/s10/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/s10/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -2134,13 +2134,13 @@
     </folder>
     <folder id="2846b-kv95o" label="s10-music" path="{{ joinPath .chezmoi.homeDir "Syncthing" "s10-music" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/s10/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/s10/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -2180,13 +2180,13 @@
     </folder>
     <folder id="mf954-uhywx" label="s10-picture" path="{{ joinPath .chezmoi.homeDir "Syncthing" "s10-picture" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/s10/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/s10/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -2226,13 +2226,13 @@
     </folder>
     <folder id="51ty8-f968l" label="s10-movie" path="{{ joinPath .chezmoi.homeDir "Syncthing" "s10-movie" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/s10/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/s10/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -2272,13 +2272,13 @@
     </folder>
     <folder id="czmc9-3xr2o" label="m6-dcim" path="{{ joinPath .chezmoi.homeDir "Syncthing" "m6-dcim" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/m6/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/m6/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -2318,13 +2318,13 @@
     </folder>
     <folder id="wrau5-k51de" label="m6-download" path="{{ joinPath .chezmoi.homeDir "Syncthing" "m6-download" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/m6/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/m6/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -2364,13 +2364,13 @@
     </folder>
     <folder id="b5ivh-mtvk2" label="m6-music" path="{{ joinPath .chezmoi.homeDir "Syncthing" "m6-music" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/m6/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/m6/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -2410,13 +2410,13 @@
     </folder>
     <folder id="nxrzw-lqfil" label="m6-picture" path="{{ joinPath .chezmoi.homeDir "Syncthing" "m6-picture" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/m6/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/m6/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -2456,13 +2456,13 @@
     </folder>
     <folder id="jlf00-6rk6u" label="m6-movie" path="{{ joinPath .chezmoi.homeDir "Syncthing" "m6-movie" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/m6/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/m6/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -2500,7 +2500,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <device id="{{ gopass "syncthing/bed/id" }}" name="bed" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+    <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" name="bed" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
@@ -2511,7 +2511,7 @@
         <remoteGUIPort>0</remoteGUIPort>
         <numConnections>0</numConnections>
     </device>
-    <device id="{{ gopass "syncthing/nuc/id" }}" name="nuc" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+    <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" name="nuc" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
@@ -2522,7 +2522,7 @@
         <remoteGUIPort>0</remoteGUIPort>
         <numConnections>0</numConnections>
     </device>
-    <device id="{{ gopass "syncthing/work/id" }}" name="work" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+    <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" name="work" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
@@ -2533,7 +2533,7 @@
         <remoteGUIPort>0</remoteGUIPort>
         <numConnections>0</numConnections>
     </device>
-    <device id="{{ gopass "syncthing/note20/id" }}" name="note20" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+    <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" name="note20" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
@@ -2544,7 +2544,7 @@
         <remoteGUIPort>0</remoteGUIPort>
         <numConnections>0</numConnections>
     </device>
-    <device id="{{ gopass "syncthing/s10/id" }}" name="s10" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+    <device id="{{ includeTemplate "gopass" "syncthing/s10/id" }}" name="s10" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
@@ -2555,7 +2555,7 @@
         <remoteGUIPort>0</remoteGUIPort>
         <numConnections>0</numConnections>
     </device>
-    <device id="{{ gopass "syncthing/m6/id" }}" name="m6" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+    <device id="{{ includeTemplate "gopass" "syncthing/m6/id" }}" name="m6" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
@@ -2569,7 +2569,7 @@
     <gui enabled="true" tls="false" sendBasicAuthPrompt="false">
         <address>127.0.0.1:8384</address>
         <metricsWithoutAuth>false</metricsWithoutAuth>
-        <apikey>{{ gopass (printf "syncthing/%s/api" .chezmoi.hostname) }}</apikey>
+        <apikey>{{ includeTemplate "gopass" (printf "syncthing/%s/api" .chezmoi.hostname) }}</apikey>
         <theme>default</theme>
     </gui>
     <ldap></ldap>
@@ -2632,7 +2632,7 @@
     <defaults>
         <folder id="" label="" path="{{ joinPath .chezmoi.homeDir "Syncthing" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
             <filesystemType>basic</filesystemType>
-            <device id="{{ gopass (printf "syncthing/%s/id" .chezmoi.hostname) }}" introducedBy="">
+            <device id="{{ includeTemplate "gopass" (printf "syncthing/%s/id" .chezmoi.hostname) }}" introducedBy="">
                 <encryptionPassword></encryptionPassword>
             </device>
             <minDiskFree unit="%">1</minDiskFree>
@@ -2689,16 +2689,16 @@
 <configuration version="51">
     <folder id="z9um9-3ktne" label="playnite" path="{{ joinPath .chezmoi.homeDir "scoop" "persist" "playnite" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -2738,16 +2738,16 @@
     </folder>
     <folder id="rjrxe-9sugq" label="ludusavi" path="{{ joinPath .chezmoi.homeDir "ludusavi-backup" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -2787,16 +2787,16 @@
     </folder>
     <folder id="oxjez-pxtna" label="ludusaviRestic" path="{{ joinPath .chezmoi.homeDir "Documents" "PlayniteBackups" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -2836,16 +2836,16 @@
     </folder>
     <folder id="u5dje-5hvnn" label="game_saves" path="{{ joinPath .chezmoi.homeDir "Documents" "game_saves" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -2885,22 +2885,22 @@
     </folder>
     <folder id="gc5sz-susp5" label="share" path="{{ joinPath .chezmoi.homeDir "Syncthing" "share" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/s10/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/s10/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/m6/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/m6/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -2940,10 +2940,10 @@
     </folder>
     <folder id="gc5sz-susp4" label="share_work" path="{{ joinPath .chezmoi.homeDir "Syncthing" "share_work" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -2983,16 +2983,16 @@
     </folder>
     <folder id="htvji-asdsj" label="gpg_keys" path="{{ joinPath .chezmoi.homeDir "Syncthing" "gpg_keys" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -3032,16 +3032,16 @@
     </folder>
     <folder id="16ktr-vt585" label="s10-dcim" path="{{ joinPath .chezmoi.homeDir "Syncthing" "s10-dcim" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/s10/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/s10/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -3081,16 +3081,16 @@
     </folder>
     <folder id="gsqw5-i57xh" label="keepassxc" path="{{ joinPath .chezmoi.homeDir "Syncthing" "keepassxc" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="{{ gopass "syncthing/nuc/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/bed/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/work/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-        <device id="{{ gopass "syncthing/note20/id" }}" introducedBy="">
+        <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
         <minDiskFree unit="%">1</minDiskFree>
@@ -3128,7 +3128,7 @@
             <maxTotalSize>4096</maxTotalSize>
         </xattrFilter>
     </folder>
-    <device id="{{ gopass "syncthing/bed/id" }}" name="bed" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+    <device id="{{ includeTemplate "gopass" "syncthing/bed/id" }}" name="bed" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
@@ -3139,7 +3139,7 @@
         <remoteGUIPort>0</remoteGUIPort>
         <numConnections>0</numConnections>
     </device>
-    <device id="{{ gopass "syncthing/nuc/id" }}" name="nuc" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+    <device id="{{ includeTemplate "gopass" "syncthing/nuc/id" }}" name="nuc" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
@@ -3150,7 +3150,7 @@
         <remoteGUIPort>0</remoteGUIPort>
         <numConnections>0</numConnections>
     </device>
-    <device id="{{ gopass "syncthing/work/id" }}" name="work" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+    <device id="{{ includeTemplate "gopass" "syncthing/work/id" }}" name="work" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
@@ -3161,7 +3161,7 @@
         <remoteGUIPort>0</remoteGUIPort>
         <numConnections>0</numConnections>
     </device>
-    <device id="{{ gopass "syncthing/note20/id" }}" name="note20" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+    <device id="{{ includeTemplate "gopass" "syncthing/note20/id" }}" name="note20" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
@@ -3172,7 +3172,7 @@
         <remoteGUIPort>0</remoteGUIPort>
         <numConnections>0</numConnections>
     </device>
-    <device id="{{ gopass "syncthing/s10/id" }}" name="s10" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+    <device id="{{ includeTemplate "gopass" "syncthing/s10/id" }}" name="s10" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
@@ -3183,7 +3183,7 @@
         <remoteGUIPort>0</remoteGUIPort>
         <numConnections>0</numConnections>
     </device>
-    <device id="{{ gopass "syncthing/m6/id" }}" name="m6" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+    <device id="{{ includeTemplate "gopass" "syncthing/m6/id" }}" name="m6" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
@@ -3197,7 +3197,7 @@
     <gui enabled="true" tls="false" sendBasicAuthPrompt="false">
         <address>127.0.0.1:8384</address>
         <metricsWithoutAuth>false</metricsWithoutAuth>
-        <apikey>{{ gopass (printf "syncthing/%s/api" .chezmoi.hostname) }}</apikey>
+        <apikey>{{ includeTemplate "gopass" (printf "syncthing/%s/api" .chezmoi.hostname) }}</apikey>
         <theme>default</theme>
     </gui>
     <ldap></ldap>
@@ -3260,7 +3260,7 @@
     <defaults>
         <folder id="" label="" path="{{ joinPath .chezmoi.homeDir "Syncthing" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
             <filesystemType>basic</filesystemType>
-            <device id="{{ gopass (printf "syncthing/%s/id" .chezmoi.hostname) }}" introducedBy="">
+            <device id="{{ includeTemplate "gopass" (printf "syncthing/%s/id" .chezmoi.hostname) }}" introducedBy="">
                 <encryptionPassword></encryptionPassword>
             </device>
             <minDiskFree unit="%">1</minDiskFree>

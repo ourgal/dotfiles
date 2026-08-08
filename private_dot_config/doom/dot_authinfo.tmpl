@@ -8,10 +8,10 @@
 {{ $doom_bin = joinPath $doom_dir "bin" "doom.ps1" -}}
 {{ end -}}
 {{ if stat $doom_bin -}}
-machine smtp.qq.com port 465 login ourgal@qq.com password {{ gopass "email/qq/main" }}
-machine imap.qq.com port 993 login ourgal@qq.com password {{ gopass "email/qq/main" }}
-machine imap.163.com port 993 login fairever01@163.com password {{ gopass "email/163/main" }}
-machine pop3.163.com port 995 login fairever01@163.com password {{ gopass "email/163/main" }}
-machine imap.yandex.com port 993 login airever@yandex.com password {{ gopass "email/yandex/main" }}
+machine smtp.qq.com port 465 login ourgal@qq.com password {{ includeTemplate "gopass" "email/qq/main" }}
+machine imap.qq.com port 993 login ourgal@qq.com password {{ includeTemplate "gopass" "email/qq/main" }}
+machine imap.163.com port 993 login fairever01@163.com password {{ includeTemplate "gopass" "email/163/main" }}
+machine pop3.163.com port 995 login fairever01@163.com password {{ includeTemplate "gopass" "email/163/main" }}
+machine imap.yandex.com port 993 login airever@yandex.com password {{ includeTemplate "gopass" "email/yandex/main" }}
 {{ end -}}
 {{ end -}}

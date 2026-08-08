@@ -3,5 +3,5 @@ pkg update && pkg upgrade
 pkg i python python-apt openssh
 curl -L https://github.com/ourgal.keys > .ssh/authorized_keys
 sshd
-echo "{{ gopass "password/linux/user" }}\n{{ gopass "password/linux/user" }}" | passwd
+echo "{{ includeTemplate "gopass" "password/linux/user" }}\n{{ includeTemplate "gopass" "password/linux/user" }}" | passwd
 whoami
