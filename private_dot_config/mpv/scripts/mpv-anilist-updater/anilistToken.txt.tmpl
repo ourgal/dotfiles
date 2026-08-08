@@ -1,3 +1,0 @@
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "anilist_updater") "os" "linux") | trim | atoi -}}
-{{ includeTemplate "include" (joinPath .chezmoi.homeDir ".local" "share" "chezmoi" "scoop" "persist" "mpv" "portable_config" "scripts" "mpv-anilist-updater" "anilistToken.key" ) | trim }}
-{{ end -}}
