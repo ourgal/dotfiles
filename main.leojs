@@ -292,60 +292,6 @@
               "vh": "chezmoi",
               "children": [
                 {
-                  "gnx": "zxc.20260201142826.1",
-                  "vh": "config",
-                  "children": [
-                    {
-                      "gnx": "zxc.20260126154557.1",
-                      "vh": "content",
-                      "children": [
-                        {
-                          "gnx": "User.20260214200035.1",
-                          "vh": "encryption"
-                        },
-                        {
-                          "gnx": "User.20260214200002.1",
-                          "vh": "git"
-                        },
-                        {
-                          "gnx": "User.20260217023028.1",
-                          "vh": "gopass"
-                        },
-                        {
-                          "gnx": "User.20260217122736.1",
-                          "vh": "progress"
-                        },
-                        {
-                          "gnx": "zxc.20260126154722.1",
-                          "vh": "windows",
-                          "children": [
-                            {
-                              "gnx": "User.20260225204326.1",
-                              "vh": "<< dos >>"
-                            },
-                            {
-                              "gnx": "zxc.20260126154908.1",
-                              "vh": "interpreter"
-                            },
-                            {
-                              "gnx": "zxc.20260126154820.1",
-                              "vh": "cd"
-                            }
-                          ]
-                        },
-                        {
-                          "gnx": "zxc.20260320003721.1",
-                          "vh": "edit"
-                        },
-                        {
-                          "gnx": "zxc.20260331222155.1",
-                          "vh": "diff"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
                   "gnx": "zxc.20260125172630.1",
                   "vh": "templates",
                   "children": [
@@ -412,7 +358,8 @@
                               "vh": "@clean run_onchange_after_mpv_uosc.ps1.tmpl",
                               "children": [
                                 {
-                                  "gnx": "User.20260225204326.1"
+                                  "gnx": "User.20260225204326.1",
+                                  "vh": "<< dos >>"
                                 },
                                 {
                                   "gnx": "zxc.20260323201237.1",
@@ -4983,24 +4930,6 @@
                           "vh": "contents"
                         }
                       ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "gnx": "zxc.20260126154334.1",
-              "vh": "chezmoi",
-              "children": [
-                {
-                  "gnx": "zxc.20260126154354.1",
-                  "vh": "@clean chezmoi/chezmoi.toml.tmpl",
-                  "children": [
-                    {
-                      "gnx": "User.20260225204914.1"
-                    },
-                    {
-                      "gnx": "zxc.20260126154557.1"
                     }
                   ]
                 }
@@ -11520,16 +11449,6 @@
     "zxc.20260125162324.1": "[keys.select.g]\nc = \"toggle_comments\"\nz = [\"split_selection_on_newline\", \":sort\", \"keep_primary_selection\"]\n",
     "zxc.20260201203539.1": "{{ if .my.git.sign.gpg -}}\n\n{{ if eq .chezmoi.os \"windows\" -}}\nenable-win32-openssh-support\n{{ end -}}\n\n{{ if ne .chezmoi.os \"android\" -}}\nenable-ssh-support\n{{ end -}}\n\n{{ end -}}\ngrab\n\n{{ if lookPath \"pinentry-gtk-2\" -}}\npinentry-program {{ lookPath \"pinentry-gtk-2\" }}\n{{ end -}}\n",
     "zxc.20260402230749.1": "[mounts]\n\tpath = {{ env \"LOCALAPPDATA\" }}\\gopass\\stores\\root\n[core]\n\tautosync = false",
-    "User.20260214200035.1": "encryption = \"age\"\n[age]\n    identity = \"~/.ssh/id_ed25519\"\n    symmetric = true",
-    "User.20260214200002.1": "[git]\n    autoCommit = false\n    autoPush = false",
-    "User.20260217023028.1": "[gopass]\n    mode = \"builtin\"",
-    "User.20260217122736.1": "progress = true",
-    "zxc.20260126154722.1": "<< dos >>\n@others\n{{ end -}}\n",
-    "User.20260225204326.1": "{{ if eq .chezmoi.os \"windows\" -}}\n",
-    "zxc.20260126154908.1": "[interpreter.ps1]\n    command = \"powershell\"\n    args = []",
-    "zxc.20260126154820.1": "[cd]\n    command = \"{{ .my.shell.windows }}\"",
-    "zxc.20260320003721.1": "[edit]\n    hardlink = false",
-    "zxc.20260331222155.1": "{{ if lookPath \"delta\" -}}\n[diff]\n    command = \"delta\"\n    args = [\"-s\", \"{{ \"{{\" }} .Destination {{ \"}}\" }}\", \"{{ \"{{\" }} .Target {{ \"}}\" }}\"]\n{{ else if lookPath \"difft\" -}}\n[diff]\n    command = \"difft\"\n    args = [\"{{ \"{{\" }} .Destination {{ \"}}\" }}\", \"{{ \"{{\" }} .Target {{ \"}}\" }}\"]\n{{ else if lookPath \"meld\" -}}\n[diff]\n    command = \"meld\"\n    args = [\"--diff\", \"{{ \"{{\" }} .Destination {{ \"}}\" }}\", \"{{ \"{{\" }} .Target {{ \"}}\" }}\"]\n{{ end -}}",
     "zxc.20260125172659.1": "{{ if lookPath \"hx\" -}}\nhx\n{{- else if lookPath \"vim\" -}}\nvim\n{{- else if lookPath \"nvim\" -}}\nnvim\n{{- else if lookPath \"vi\" -}}\nvi\n{{- else if lookPath \"nano\" -}}\nnano\n{{- end -}}",
     "zxc.20260319091259.1": "{{ if eq . nil -}}\n{{ fail \"pass hostname to ipM6 template\" -}}\n{{ end -}}\n{{ if eq . \"work\" \"work2\" -}}\n192.168.1.103\n{{- else if  eq . \"nuc\" \"bed\" \"surface\" -}}\n192.168.123.191\n{{- else if  eq . \"localhost\" -}}\n{{- else -}}\n{{ fail (printf \"unknown hostname %s for ipM6 template\" .) -}}\n{{- end -}}",
     "User.20260221004652.1": "{{ if eq . nil -}}\n{{ fail \"pass pathes to checkPath template\" -}}\n{{ end -}}\n{{ if kindIs \"slice\" . -}}\n    {{ range . -}}\n    {{ template \"_checkPath\" . -}}\n    {{ end -}}\n{{ else if kindIs \"string\" . -}}\n    {{ template \"_checkPath\" . -}}\n{{ else -}}\n    {{ fail (printf \"checkPath: %s unsupported type %s\" . (kindOf .)) -}}\n{{ end -}}\n",
@@ -11540,6 +11459,7 @@
     "zxc.20260615180907.1": "Remove-Item -Path $source -Force\n",
     "zxc.20260615184146.1": "{{ if not (any (kindIs \"string\" .) (kindIs \"slice\" .)) -}}\n{{ fail (print \"Wrong arugment types of include\")}}\n{{ end -}}\n\n{{ if kindIs \"string\" . -}}\n    {{ if not (stat .) -}}\n    {{ warnf (print \"file \" . \" not found\") }}\n    {{ else -}}\n    {{ include . }}\n    {{ end -}}\n{{ else -}}\n    {{ range . -}}\n        {{ if not (stat .) -}}\n        {{ warnf (print \"file \" . \" not found\") }}\n        {{ else -}}\n        {{ include . }}\n        {{ end -}}\n    {{ end -}}\n{{ end -}}\n",
     "zxc.20260202203521.17": "<< dos >>\n{{ template \"checkPath\" (list \"dirhash\" \"go\") -}}\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
+    "User.20260225204326.1": "{{ if eq .chezmoi.os \"windows\" -}}\n",
     "zxc.20260323201237.1": "Set-StrictMode -Version Latest\n$ErrorActionPreference = \"Stop\"\n$PSNativeCommandUseErrorActionPreference = $true\n",
     "zxc.20260202203521.18": "# {{ output \"dirhash\" (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"uosc\" \"src\" \"ziggy\") \"-quiet\" \"-nowait\" }}\ncd ~/.local/share/repos/uosc\n./tools/build.ps1 ziggy placeholder\n\n{{ $sources := list (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"mpv\" \"portable_config\" \"scripts\" \"uosc\") (joinPath .chezmoi.homeDir \"scoop\" \"persist\" \"mpv\" \"portable_config\" \"fonts\") -}}\n{{ $targets := list (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"uosc\" \"src\" \"uosc\") (joinPath .chezmoi.homeDir \".local\" \"share\" \"repos\" \"uosc\" \"src\" \"fonts\") -}}\n{{ if includeTemplate \"opt\" (dict \"chezmoi\" .chezmoi \"my\" .my \"cmd\" \"mpv\" \"opt\" (list \"mpv\" \"plugins\" \"uosc\") \"os\" \"windows\") | trim | atoi -}}\n{{ template \"powershell_junction\" dict \"source\" $sources \"target\" $targets }}\n{{ else -}}\n    {{ range $sources -}}\n        {{ if stat . -}}\n        rm -force {{ . }}\n        {{ end -}}\n    {{ end -}}\n{{ end -}}\n",
     "User.20260220233639.1": "<< unix >>\n{{ if lookPath \"mpv\" -}}\n@others\n{{ end -}}\n{{ end -}}\n",
@@ -12204,7 +12124,6 @@
     "zxc.20260529152606.1": "<< unix >>\n{{ if lookPath \"awesome\" -}}\n{{ joinPath .chezmoi.homeDir \".config\" \"awesome-copycats\" }}\n{{ end -}}\n{{ end -}}\n",
     "user.20260718172753.1": "{{ if lookPath \"beets\" -}}\n@others\n{{ end -}}\n@language yaml\n",
     "user.20260718173149.1": "convert:\n  command: bash -c \"ffmpeg -i \\\"$source\\\" -f wav - | lame -V 2 --noreplaygain - \\\"$dest\\\"\"\n  extension: mp3\ndirectory: {{ joinPath .chezmoi.homeDir \"Music\" }}\nlyrics:\n  synced: 'yes'\nplugins: mpdupdate fromfilename chroma lryics fish convert fetchart embedart\n",
-    "zxc.20260126154354.1": "<< unix dos >>\n{{ if lookPath \"chezmoi\" -}}\n@others\n{{ end -}}\n{{ end -}}",
     "zxc.20260505104942.1": "<< unix >>\n{{ if lookPath \"code-oss\" -}}\n{\n    << code-oss >>\n    @others\n}\n{{ end -}}\n{{ end -}}",
     "zxc.20260505105120.1": "\"extensions.verifySignature\": false,\n\"magit.code-path\": \"code-oss\",",
     "zxc.20260505105255.1": "<< unix >>\n{{ if lookPath \"code-oss\" -}}\n[\n    @others\n]\n{{ end -}}\n{{ end -}}",
@@ -13454,9 +13373,6 @@
     },
     "user.20260718172753.1": {
       "_mod_time": 1784506446.231
-    },
-    "zxc.20260126154354.1": {
-      "_mod_time": 1777179946.877
     },
     "zxc.20260505104942.1": {
       "_mod_time": 1786122355.986

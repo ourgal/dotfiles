@@ -1,5 +1,3 @@
-{{ if eq .chezmoi.os "windows" "linux" "android" -}}
-{{ if lookPath "chezmoi" -}}
 encryption = "age"
 [age]
     identity = "~/.ssh/id_ed25519"
@@ -15,7 +13,7 @@ progress = true
     command = "powershell"
     args = []
 [cd]
-    command = "{{ .my.shell.windows }}"
+    command = {{ .my.shell.windows | quote }}
 {{ end -}}
 [edit]
     hardlink = false
@@ -31,6 +29,4 @@ progress = true
 [diff]
     command = "meld"
     args = ["--diff", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]
-{{ end -}}
-{{ end -}}
 {{ end -}}
