@@ -215,4 +215,11 @@ vimfiles/**
 .config/vim/**
 {{ end -}}
 {{ end -}}
-# }}}
+# ]]]
+# [[[ info
+{{ if eq .chezmoi.os "linux" "android" -}}
+{{ if lookPath "info" -}}
+.infokey
+{{ end -}}
+{{ end -}}
+# ]]]
