@@ -344,4 +344,13 @@ AppData/Roaming/Midnight Commander/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ psmux
+{{ if eq .chezmoi.os "windows" | not -}}
+{{ if lookPath "psmux" | not -}}
+.psmux.conf
+.psmux/
+.psmux/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
