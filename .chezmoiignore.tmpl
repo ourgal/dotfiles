@@ -336,4 +336,12 @@ AppData/Roaming/Midnight Commander/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ kmonad
+{{ if eq .chezmoi.os "windows" "linux" "android" | not -}}
+{{ if lookPath "kmonad" | not -}}
+.config/kmonad/
+.config/kmonad/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
