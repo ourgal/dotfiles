@@ -366,4 +366,12 @@ Documents/PowerShell/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ fish
+{{ if and (lookPath "msys2" | not) (lookPath "fish" | not) -}}
+{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+.config/fish/
+.config/fish/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:

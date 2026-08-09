@@ -1,16 +1,21 @@
-{{ if eq .chezmoi.os "windows" "linux" "android" -}}
-{{ if or (lookPath "msys2") (lookPath "fish") -}}
 if status is-interactive
+# [[[ termux
 {{ if eq .chezmoi.os "android" -}}
 fish_add_path --append ~/.local/bin
 set -x SSH_AUTH_SOCK $PREFIX/var/run/ssh-agent.socket
 {{ end -}}
+# ]]]
+# [[[ oh my posh
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "oh-my-posh") "opt" (list "shell" "fish" "oh_my_posh" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "oh-my-posh" "init" "fish" }}
 {{ end -}}
+# ]]]
+# [[[ starship
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "starship") "opt" (list "shell" "fish" "starship" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "starship" "init" "fish" }}
 {{ end -}}
+# ]]]
+# [[[ fzf
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "fzf") "opt" (list "shell" "fish" "fzf" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ if or (lookPath "mcfly") (lookPath "atuin") -}}
 {{ output "env" "FZF_CTRL_R_COMMAND=" "fzf" "--fish" }}
@@ -18,18 +23,28 @@ set -x SSH_AUTH_SOCK $PREFIX/var/run/ssh-agent.socket
 {{ output "fzf" "--fish" }}
 {{ end -}}
 {{ end -}}
+# ]]]
+# [[[ mcfly
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "mcfly") "opt" (list "shell" "fish" "mcfly" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "mcfly" "init" "fish" }}
 {{ end -}}
+# ]]]
+# [[[ atuin
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "atuin") "opt" (list "shell" "fish" "atuin" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "atuin" "init" "fish" "--disable-up-arrow" }}
 {{ end -}}
+# ]]]
+# [[[ navi
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "navi") "opt" (list "shell" "fish" "navi" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "navi" "widget" "fish" }}
 {{ end -}}
+# ]]]
+# [[[ carapace
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "carapace") "opt" (list "shell" "fish" "carapace" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "carapace" "_carapace" "fish" }}
 {{ end -}}
+# ]]]
+# [[[ eza
 {{ if lookPath "eza" -}}
 {{ $opts := "--git --icons auto --group --group-directories-first --time-style relative"}}
 function ls
@@ -40,6 +55,8 @@ function ll
     eza -l {{ $opts }} $argv
 end
 {{ end -}}
+# ]]]
+# [[[ nnn
 {{ if lookPath "nnn" -}}
 # Rename this file to match the name of the function
 # e.g. ~/.config/fish/functions/n.fish
@@ -78,9 +95,11 @@ function n --wraps nnn --description 'support nnn quit and change directory'
     end
 end
 {{ end -}}
+# ]]]
+# [[[ zoxide
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "zoxide") "opt" (list "shell" "fish" "zoxide" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 {{ output "zoxide" "init" "fish" }}
 {{ end -}}
+# ]]]
 end
-{{ end -}}
-{{ end -}}
+# vim: set foldmarker=[[[,]]]:
