@@ -406,4 +406,12 @@ scoop/persist/vscode/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ doom emacs
+{{ if lookPath "emacs" | not -}}
+{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+.config/doom/
+.config/doom/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:

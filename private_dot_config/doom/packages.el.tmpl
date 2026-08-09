@@ -1,13 +1,3 @@
-{{ if eq .chezmoi.os "windows" "linux" "android" -}}
-{{ $doom_dir := joinPath .chezmoi.homeDir ".config" "emacs" -}}
-{{ if eq .chezmoi.os "windows" -}}
-{{ $doom_dir = joinPath .chezmoi.homeDir ".emacs.d" -}}
-{{ end -}}
-{{ $doom_bin := joinPath $doom_dir "bin" "doom" -}}
-{{ if eq .chezmoi.os "windows" -}}
-{{ $doom_bin = joinPath $doom_dir "bin" "doom.ps1" -}}
-{{ end -}}
-{{ if stat $doom_bin -}}
 ;; -*- no-byte-compile: t; -*-
 ;;; $DOOMDIR/packages.el
 
@@ -84,5 +74,3 @@
 (package! ob-async)
 ;; (package! bing-dict)
 (package! gt)
-{{ end -}}
-{{ end -}}
