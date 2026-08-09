@@ -422,4 +422,12 @@ AppData/Roaming/Zed/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ leo
+{{ if lookPath "leo" | not -}}
+{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+.leo/
+.leo/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
