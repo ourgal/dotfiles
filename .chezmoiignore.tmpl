@@ -390,4 +390,12 @@ AppData/Local/gotify/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ vscodium
+{{ if lookPath "vscodium" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
+scoop/persist/vscodium/
+scoop/persist/vscodium/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:

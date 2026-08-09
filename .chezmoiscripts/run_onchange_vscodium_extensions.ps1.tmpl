@@ -1,33 +1,60 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "codium" -}}
-Set-StrictMode -Version Latest
-$ErrorActionPreference = "Stop"
-$PSNativeCommandUseErrorActionPreference = $true
+{{ template "powershell_strict" }}
 codium --update-extensions
 $extensions = @(
-    "EditorConfig.EditorConfig"
-    "tamasfe.even-better-toml"
-    "carlos-algms.make-task-provider"
-    "vscodevim.vim"
-    "vspacecode.vspacecode"
-    "jnoortheen.nix-ide"
-    "boltex.leojs"
-    "redhat.ansible"
-    "ms-python.python"
-    "redhat.vscode-yaml"
-    "MattiasBaake.vscode-snippets-for-ansible"
-    "kahole.magit"
-    "PKief.material-icon-theme"
-    "mark-wiemer.vscode-autohotkey-plus-plus"
-    "Chouzz.vscode-better-align"
-    {{ $vsnetrw := (joinPath .chezmoi.homeDir ".cache/vscodium/extensions/vsnetrw.vsix") }}
-    {{ if stat $vsnetrw -}}
-    "{{ $vsnetrw }}"
-    {{ end -}}
-    )
+  # common
+  "EditorConfig.EditorConfig"
+
+  # toml
+  "tamasfe.even-better-toml"
+
+  # make
+  "carlos-algms.make-task-provider"
+
+  # vim
+  "vscodevim.vim"
+
+  # which key
+  "vspacecode.vspacecode"
+
+  # nix
+  "jnoortheen.nix-ide"
+
+  # leojs
+  "boltex.leojs"
+
+  # ansible
+  "redhat.ansible"
+  "MattiasBaake.vscode-snippets-for-ansible"
+
+  # python
+  "ms-python.python"
+
+  # yaml
+  "redhat.vscode-yaml"
+
+  # magit
+  "kahole.magit"
+
+  # theme
+  "PKief.material-icon-theme"
+
+  # autohotkey
+  "mark-wiemer.vscode-autohotkey-plus-plus"
+
+  # align
+  "Chouzz.vscode-better-align"
+
+  # netrw
+  {{ $vsnetrw := (joinPath .chezmoi.homeDir ".cache/vscodium/extensions/vsnetrw.vsix") }}
+  {{ if stat $vsnetrw -}}
+  "{{ $vsnetrw }}"
+  {{ end -}}
+  )
 foreach ($e in $extensions) {
-    Write-Host "Install vscodium extension $e"
-    codium --install-extension $e
+  Write-Host "Install vscodium extension $e"
+  codium --install-extension $e
 }
 {{ end -}}
 {{ end -}}
