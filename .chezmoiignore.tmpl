@@ -414,4 +414,12 @@ scoop/persist/vscode/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ zed
+{{ if lookPath "zed" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
+AppData/Roaming/Zed/
+AppData/Roaming/Zed/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
