@@ -1,4 +1,4 @@
-{{ if or ( eq .chezmoi.os "linux" ) ( eq .chezmoi.os "windows" ) -}}
+{{ if eq .chezmoi.os "linux" "windows" "android" -}}
 {{ if lookPath "editorconfig" -}}
 root=true
 
