@@ -1,12 +1,17 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "pwsh" -}}
+# [[[ variable
 $env:EDITOR = "{{ template "editor" }}"
-$env:shell_startup = "~\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
+$env:shell_startup = {{ joinPath .chezmoi.homeDir "AppData" "Roaming" "Microsoft" "Windows" "Start Menu" "Programs" "Startup" | quote }}
+# ]]]
+# [[[ sfsu
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "sfsu" "opt" (list "shell" "pwsh" "sfsu" "enable") "os" "windows") | atoi -}}
 {{ output "sfsu" "hook" }}
 {{ end -}}
+# ]]]
+# [[[ alias
 New-Alias reboot Restart-Computer
 New-Alias poweroff Stop-Computer
+# ]]]
+# [[[ PSReadLine
 Import-Module PSReadLine
 Set-PSReadLineKeyHandler -Key Tab -Function Complete
 #region Smart Insert/Delete
@@ -132,6 +137,9 @@ Set-PSReadLineKeyHandler -Key Alt+e -Function ViEditVisually
 # parameter color
 Set-PSReadLineOption -Colors @{ "parameter"="Blue"; "operator"="DarkMagenta" }
 Set-PSReadlineKeyHandler -Key Ctrl+d -Function DeleteCharOrExit
+# ]]]
+# [[[ functions
+# [[[ eza
 {{ if lookPath "eza" -}}
 function ll {
   Param
@@ -152,15 +160,18 @@ function lla {
   eza --long --all --icons=auto --group --group-directories-first --time-style relative $Path
 }
 {{ end -}}
+# ]]]
+# [[[ bd
 function bd {
   cd ..
 }
+# ]]]
+# [[[ git add all, commit and push shortcut
 function _git_commit_and_push {
   git add .
   git commit
   git push
 }
-
 Set-PSReadLineKeyHandler -Key Alt+x `
                          -BriefDescription git_update `
                          -LongDescription "Git commit and push" `
@@ -169,17 +180,23 @@ Set-PSReadLineKeyHandler -Key Alt+x `
     [Microsoft.PowerShell.PSConsoleReadLine]::Insert("_git_commit_and_push")
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
+# ]]]
+# [[[ scroff
 {{ if lookPath "nircmd" -}}
 # turn off monitor
 function scroff {
   nircmd monitor off
 }
 {{ end -}}
+# ]]]
+# [[[ yt
 {{ if lookPath "yt-dlp" -}}
 function yt {
     yt-dlp -f "bestvideo[height<=1080]+bestaudio/best[height<=1080]" (cb) && mpv (ls | sort LastWriteTime -Descending)[0].Name
 }
 {{ end -}}
+# ]]]
+# [[[ scoop-update
 {{ if lookPath "scoop" -}}
 function scoop-update {
     scoop update *
@@ -187,11 +204,15 @@ function scoop-update {
     scoop cleanup *
 }
 {{ end -}}
+# ]]]
+# [[[ unlock-keepassxc
 {{ if and ( lookPath "scoop" ) (lookPath "KeePassXc") -}}
 function unlock-keepassxc {
     gopass show -o keepassxc/main | & keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir "syncthing" "keepassxc" "main.kdbx" | quote }}
 }
 {{ end -}}
+# ]]]
+# [[[ Get-Fonts
 function Get-Fonts {
     param (
         $regex
@@ -203,6 +224,9 @@ function Get-Fonts {
     }
     return $AllFonts
 }
+# ]]]
+# ]]]
+# [[[ choco
 {{ if lookPath "choco" -}}
 # Import the Chocolatey Profile that contains the necessary code to enable
 # tab-completions to function for `choco`.
@@ -215,6 +239,8 @@ if (Test-Path($ChocolateyProfile)) {
   Import-Module "$ChocolateyProfile"
 }
 {{ end -}}
+# ]]]
+# [[[ carapace
 {{ if lookPath "carapace" -}}
 # carapace
 $env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense,powershell' # optional
@@ -222,15 +248,23 @@ Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 carapace _carapace | Out-String | Invoke-Expression
 {{ end -}}
+# ]]]
+# [[[ starship
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "starship" "opt" (list "shell" "pwsh" "starship" "enable") "os" "windows") | trim | atoi -}}
 {{ output "starship" "init" "powershell" }}
 {{ end -}}
+# ]]]
+# [[[ oh my posh
 {{ if (includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "oh-my-posh" "opt" (list "shell" "pwsh" "oh_my_posh" "enable") "os" "windows") | trim | atoi) -}}
 {{ output "oh-my-posh" "init" "pwsh" }}
 {{ end -}}
+# ]]]
+# [[[ zoxide
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "zoxide" "opt" (list "shell" "pwsh" "zoxide" "enable") "os" "windows") | trim | atoi -}}
 {{ output "zoxide" "init" "powershell" }}
 {{ end -}}
+# ]]]
+# [[[ PsFzf
 {{ if joinPath .chezmoi.homeDir "scoop" "modules" "PsFzf" | stat -}}
 Import-Module PSFzf
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r' -EnableAliasFuzzyKillProcess
@@ -244,12 +278,18 @@ Set-PSReadLineKeyHandler -Key Ctrl+o `
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
 {{ end -}}
+# ]]]
+# [[[ atuin
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "atuin" "opt" (list "shell" "pwsh" "atuin" "enable") "os" "windows") | trim | atoi -}}
 {{ output "atuin" "init" "powershell" "--disable-up-arrow" }}
 {{ end -}}
+# ]]]
+# [[[ mcfly
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mcfly" "opt" (list "shell" "pwsh" "mcfly" "enable") "os" "windows") | trim | atoi -}}
 {{ output "mcfly" "init" "powershell" }}
 {{ end -}}
+# ]]]
+# [[[ navi
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "navi" "opt" (list "shell" "pwsh" "navi" "enable") "os" "windows") | trim | atoi -}}
 function Invoke-Navi {
     $startArgs = @{
@@ -267,7 +307,6 @@ function Invoke-Navi {
 
     $result
 }
-
 
 ### Initial code from @lurebat (https://github.com/lurebat/)
 ### See #570 (https://github.com/denisidoro/navi/issues/570) for its original contribution
@@ -302,5 +341,5 @@ function Invoke-NaviWidget {
 
 Set-PSReadlineKeyHandler -BriefDescription "A keybinding to open Navi Widget" -Chord Ctrl+g -ScriptBlock { Invoke-NaviWidget }
 {{ end -}}
-{{ end -}}
-{{ end -}}
+# ]]]
+# vim: set foldmarker=[[[,]]]:

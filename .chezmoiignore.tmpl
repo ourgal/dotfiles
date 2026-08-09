@@ -350,4 +350,12 @@ AppData/Roaming/Midnight Commander/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ pwsh
+{{ if lookPath "pwsh" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
+Documents/PowerShell/
+Documents/PowerShell/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
