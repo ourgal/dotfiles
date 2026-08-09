@@ -359,11 +359,10 @@ Documents/PowerShell/**
 {{ end -}}
 # ]]]
 # [[[ clink
-{{ if lookPath "clink" | not -}}
-{{ if eq .chezmoi.os "windows" -}}
-.inputrc
-AppData/clink/
-AppData/clink/**
+{{ if lookPath "bash" | not -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+.bashrc
+.bash_profile
 {{ end -}}
 {{ end -}}
 # ]]]
