@@ -374,11 +374,19 @@ Documents/PowerShell/**
 {{ end -}}
 {{ end -}}
 # ]]]
-# [[[ pet
-{{ if lookPath "pet" | not -}}
+# [[[ gotify server
+{{ if lookPath "gotify" | not -}}
+{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+.config/gotify/
+.config/gotify/**
+{{ end -}}
+{{ end -}}
+# ]]]
+# [[[ gotify cli
+{{ if lookPath "gotify-cli" | not -}}
 {{ if eq .chezmoi.os "windows" -}}
-AppData/Roaming/pet/
-AppData/Roaming/pet/**
+AppData/Local/gotify/
+AppData/Local/gotify/**
 {{ end -}}
 {{ end -}}
 # ]]]
