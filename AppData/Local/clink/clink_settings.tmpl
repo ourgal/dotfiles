@@ -1,5 +1,3 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "clink" -}}
 # name: Show input hints from argmatchers
 # type: boolean
 argmatcher.show_hints = True
@@ -550,6 +548,3 @@ zoxide.promptfilter_prio = -50
 # name: Use clink promptfilter to hook even if onbegined
 # type: boolean
 zoxide.usepromptfilter = False
-
-{{ end -}}
-{{ end -}}
