@@ -398,4 +398,12 @@ scoop/persist/vscodium/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ vscode
+{{ if lookPath "vscode" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
+scoop/persist/vscode/
+scoop/persist/vscode/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
