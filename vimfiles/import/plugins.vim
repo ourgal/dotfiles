@@ -16,7 +16,7 @@ Plug gh_proxy . 'tpope/vim-endwise'
 "}}}
 "{{{ termux
 if g:is_android
-    Plug gh_proxy . 'vim-utilities/termux-clipboard'
+  Plug gh_proxy . 'vim-utilities/termux-clipboard'
 endif
 "}}}
 "{{{ command preview
@@ -50,8 +50,8 @@ Plug 'https://gitcode.com/gh_mirrors/fz/fzf.vim'
 "}}}
 "{{{ git
 if executable('git')
-    Plug gh_proxy . 'tpope/vim-fugitive'
-    Plug 'https://gitcode.com/gh_mirrors/vi/vim-gitgutter'
+  Plug gh_proxy . 'tpope/vim-fugitive'
+  Plug 'https://gitcode.com/gh_mirrors/vi/vim-gitgutter'
 endif
 Plug gh_proxy . 'rhysd/conflict-marker.vim'
 Plug gh_proxy . 'Eliot00/git-lens.vim'
@@ -87,8 +87,8 @@ Plug 'https://gitcode.com/gh_mirrors/vi/vimcdoc' " vim chinese doc
 Plug 'https://gitcode.com/gh_mirrors/vi/vim-qf' " quickfix
 "}}}
 "{{{ lisp
-if executable('cargo')
-    Plug 'https://gitcode.com/gh_mirrors/pa/parinfer-rust', {'do': 'cargo build --release'}
+if executable('cargo') && !g:is_android
+  Plug 'https://gitcode.com/gh_mirrors/pa/parinfer-rust', {'do': 'cargo build --release'}
 endif
 "}}}
 "{{{ markdown
@@ -100,7 +100,7 @@ Plug 'https://gitcode.com/gh_mirrors/vi/vimtex', { 'for': 'tex' }
 "}}}
 "{{{ lsp
 if executable('node')
-    Plug 'https://gitcode.com/gh_mirrors/co/coc.nvim', {'branch': 'release'}
+  Plug 'https://gitcode.com/gh_mirrors/co/coc.nvim', {'branch': 'release'}
 endif
 " Plug 'yegappan/lsp'
 "}}}
