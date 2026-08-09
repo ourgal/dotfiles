@@ -342,4 +342,12 @@ AppData/Roaming/Midnight Commander/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ ssh
+{{ if lookPath "ssh" | not -}}
+{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+.ssh/
+.ssh/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
