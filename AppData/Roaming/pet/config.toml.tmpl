@@ -1,5 +1,3 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "pet" -}}
 [GHEGist]
   Public = false
   access_token = ""
@@ -22,7 +20,11 @@
   Format = "[$description]: $command $tags"
   SelectCmd = "fzf --ansi --layout=reverse --border --height=90% --pointer=* --cycle --prompt=Snippets:"
   SnippetDirs = []
+  {{ if eq .chezmoi.os "windows" -}}
   SnippetFile = {{ joinPath .chezmoi.homeDir "AppData" "Roaming" "pet" "snippet.toml" | quote }}
+  {{ else -}}
+  SnippetFile = ""
+  {{ end -}}
   SortBy = ""
 
 [Gist]
@@ -40,6 +42,3 @@
   auto_sync = false
   file_name = "pet-snippet.toml"
   skip_ssl = false
-
-{{ end -}}
-{{ end -}}
