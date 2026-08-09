@@ -1,12 +1,14 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "clink" -}}
-load(io.popen('starship init cmd'):read("*a"))()
+-- [[[ starship
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "starship" "clink") "opt" (list "shell" "clink" "starship" "enable") "os" "windows") | trim | atoi -}}
 {{ output "starship" "init" "cmd" }}
 {{ end -}}
+-- ]]]
+-- [[[ oh my posh
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "oh-my-posh" "clink") "opt" (list "shell" "clink" "oh_my_posh" "enable") "os" "windows") | trim | atoi -}}
 {{ output "oh-my-posh" "init" "cmd" }}
 {{ end -}}
+-- ]]]
+-- [[[ zoxide
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "zoxide" "clink") "opt" (list "shell" "clink" "zoxide" "enable") "os" "windows") | trim | atoi -}}
 -- =============================================================================
 --
@@ -226,7 +228,8 @@ end
 -- To initalize zoxide, add this script to one of clink's lua script locations (e.g. zoxide.lua)
 -- (see https://chrisant996.github.io/clink/clink.html#location-of-lua-scripts)
 {{ end -}}
-settings.set('zoxide.cmd', 'z', 'Changes the prefix of the aliases')
+-- ]]]
+-- [[[ clink gizmos
 clink_gizmos_command_substitution = true
-{{ end -}}
-{{ end -}}
+-- ]]]
+-- vim: set foldmarker=[[[,]]]:

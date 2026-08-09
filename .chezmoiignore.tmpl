@@ -358,4 +358,13 @@ Documents/PowerShell/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ clink
+{{ if lookPath "clink" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
+.inputrc
+AppData/clink/
+AppData/clink/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
