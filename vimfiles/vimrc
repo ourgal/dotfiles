@@ -52,11 +52,6 @@ else
     set clipboard=unnamed
 endif
 
-" save undo history
-set undodir=~/.local/share/vim/undo
-set undofile
-
-set nobackup
 set nowritebackup
 
 if has('gui_running')
