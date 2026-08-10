@@ -119,7 +119,7 @@ Plug 'https://gitcode.com/gh_mirrors/vi/vim-snippets'
 Plug gh_proxy . 'aperezdc/vim-template'
 "}}}
 "{{{ session
-Plug gh_proxy . 'ourgal/vim-workspace'
+" Plug gh_proxy . 'ourgal/vim-workspace'
 "}}}
 "{{{ status line
 Plug 'https://gitcode.com/gh_mirrors/li/lightline.vim'
@@ -129,6 +129,9 @@ Plug 'https://gitcode.com/gh_mirrors/li/lightline.vim'
 " Plug 'https://codeberg.org/mao-yining/vim-catppuccin'
 Plug 'https://gitcode.com/gh_mirrors/vim17/vim', { 'as': 'embark', 'branch': 'main' }
 " Plug 'https://gitcode.com/gh_mirrors/on/onedark.vim'
+"}}}
+"{{{ start screen
+Plug 'https://gitcode.com/gh_mirrors/vi/vim-startify'
 "}}}
 call plug#end()
 "}}}
