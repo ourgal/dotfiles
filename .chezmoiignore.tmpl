@@ -498,4 +498,12 @@ AppData/Roaming/flameshot/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ keepassxc
+{{ if lookPath "keepassxc" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
+scoop/persist/keepassxc/
+scoop/persist/keepassxc/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
