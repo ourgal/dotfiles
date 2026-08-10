@@ -1,536 +1,471 @@
-Makefile
-main.leojs
-# [[[ linux
-{{ if eq .chezmoi.os "linux" -}}
-# autohotkey
-Documents/autohotkey/
-Documents/autohotkey/**
-
+*
+# [[[ windows
+{{ if eq .chezmoi.os "windows" -}}
 # powertoys
-Documents/PowerToys/
-Documents/PowerToys/**
-
-# powershell
-Documents/PowerShell/
-Documents/PowerShell/**
-
-# scoop
-scoop/
-scoop/**
-
-AppData/
-AppData/**
-
-# glazewm
-.glzr/
-.glzr/**
+!Documents/PowerToys/
+!Documents/PowerToys/**
 
 # windows game save
-Documents/game_saves/
-Documents/game_saves/**
+!Documents/game_saves/
+!Documents/game_saves/**
 
-{{ if and (hasKey .chezmoi.osRelease "name") (ne .chezmoi.osRelease.name "Void") -}}
+{{ end -}}
+# ]]]
+# [[[ linux
+{{ if eq .chezmoi.os "linux" -}}
+
+{{ if and (hasKey .chezmoi.osRelease "name") (eq .chezmoi.osRelease.name "Void") -}}
 # runit
-service/
-service/**
-.config/sv/
-.config/sv/**
+!service/
+!service/**
+!.config/sv/
+!.config/sv/**
 {{ end -}}
 
-{{ if not (lookPath "flatpak") -}}
-.var/
-.var/**
+{{ if lookPath "flatpak" -}}
+!.var/
+!.var/**
 {{ end -}}
 
 {{ end -}}
 # ]]]
 # [[[ android
 {{ if eq .chezmoi.os "android" -}}
-# autohotkey
-Documents/autohotkey/
-Documents/autohotkey/**
 
-# powertoys
-Documents/PowerToys/
-Documents/PowerToys/**
-
-# powershell
-Documents/PowerShell/
-Documents/PowerShell/**
-
-# scoop
-scoop/
-scoop/**
-
-AppData/
-AppData/**
-
-# glazewm
-.glzr/
-.glzr/**
-
-# windows game save
-Documents/game_saves/
-Documents/game_saves/**
-
-{{ if and (hasKey .chezmoi.osRelease "name") (ne .chezmoi.osRelease.name "Void") -}}
+{{ if and (hasKey .chezmoi.osRelease "name") (eq .chezmoi.osRelease.name "Void") -}}
 # runit
-service/
-service/**
-.config/sv/
-.config/sv/**
+!service/
+!service/**
+!.config/sv/
+!.config/sv/**
 {{ end -}}
 
 # linux desktop files
-.local/share/applications/
-.local/share/applications/**
+!.local/share/applications/
+!.local/share/applications/**
 
+{{ if lookPath "code-oss" -}}
 # code oss config
-.config/Code OSS/
-.config/Code OSS/**
-
-# flatpak
-.var/
-.var/**
-
-# desktop autostart files
-.config/autostart/
-.config/autostart/**
+!.config/Code OSS/
+!.config/Code OSS/**
 {{ end -}}
-# ]]]
-# [[[ windows
-{{ if eq .chezmoi.os "windows" -}}
 
-# pip config
-.pip/
-.pip/**
-
-# bash
-.bash_profile
-.bashrc
-
-# xinit
-.xinitrc
-
-
-# runit
-service/
-service/**
-.config/sv/
-.config/sv/**
-
-# code oss config
-.config/Code OSS/
-.config/Code OSS/**
-
-# linux desktop files
-.local/share/applications/
-.local/share/applications/**
-
-# nnn config
-.config/nnn/
-.config/nnn/**
-
-# flatpak
-.var/
-.var/**
-
-# linux autostart files
-.config/autostart/
-.config/autostart/**
 {{ end -}}
 # ]]]
 # [[[ aichat
-{{ if lookPath "aichat" | not -}}
+{{ if lookPath "aichat" -}}
 {{ if eq .chezmoi.os "windows" -}}
-AppData/Roaming/aichat/
-AppData/Roaming/aichat/**
+!AppData/Roaming/aichat/
+!AppData/Roaming/aichat/**
 {{ end -}}
 {{ if eq .chezmoi.os "linux" "android" -}}
-.config/aichat/
-.config/aichat/**
+!.config/aichat/
+!.config/aichat/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ gnupg
-{{ if lookPath "gpg" | not -}}
+{{ if lookPath "gpg" -}}
 {{ if eq .chezmoi.os "windows" -}}
-scoop/persist/gpg/home/
-scoop/persist/gpg/home/**
+!scoop/persist/gpg/home/
+!scoop/persist/gpg/home/**
 {{ end -}}
 {{ if eq .chezmoi.os "linux" "android" -}}
-.gnupg/
-.gnupg/**
+!.gnupg/
+!.gnupg/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ fdroidcl
-{{ if lookPath "fdroidcl" | not -}}
+{{ if lookPath "fdroidcl" -}}
 {{ if eq .chezmoi.os "windows" -}}
-AppData/Roaming/fdroidcl/
-AppData/Roaming/fdroidcl/**
+!AppData/Roaming/fdroidcl/
+!AppData/Roaming/fdroidcl/**
 {{ end -}}
 {{ if eq .chezmoi.os "linux" "android" -}}
-.config/fdroidcl/
-.config/fdroidcl/**
+!.config/fdroidcl/
+!.config/fdroidcl/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ aria2
-{{ if lookPath "aria2c" | not -}}
+{{ if lookPath "aria2c" -}}
 {{ if eq .chezmoi.os "windows" -}}
-.aria2/
-.aria2/**
+!.aria2/
+!.aria2/**
 {{ end -}}
 {{ if eq .chezmoi.os "linux" "android" -}}
-.config/aria2/
-.config/aria2/**
+!.config/aria2/
+!.config/aria2/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ mpd
-{{ if lookPath "mpd" | not -}}
+{{ if lookPath "mpd" -}}
 {{ if eq .chezmoi.os "windows" -}}
-AppData/Roaming/mpd/
-AppData/Roaming/mpd/**
+!AppData/Roaming/mpd/
+!AppData/Roaming/mpd/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ tldr
-{{ if lookPath "tldr" | not -}}
+{{ if lookPath "tldr" -}}
 {{ if eq .chezmoi.os "windows" -}}
-scoop/persist/tealdeer/
-scoop/persist/tealdeer/**
+!scoop/persist/tealdeer/
+!scoop/persist/tealdeer/**
 {{ end -}}
 {{ if eq .chezmoi.os "linux" "android" -}}
-.config/tealdeer/
-.config/tealdeer/**
+!.config/tealdeer/
+!.config/tealdeer/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ yt-dlp
-{{ if lookPath "yt-dlp" | not -}}
+{{ if lookPath "yt-dlp" -}}
 {{ if eq .chezmoi.os "windows" -}}
-scoop/persist/yt-dlp/
-scoop/persist/yt-dlp/**
+!scoop/persist/yt-dlp/
+!scoop/persist/yt-dlp/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ transmission
-{{ if lookPath "transmission-daemon" | not -}}
+{{ if lookPath "transmission-daemon" -}}
 {{ if eq .chezmoi.os "windows" -}}
-AppData/Local/transmission-daemon/
-AppData/Local/transmission-daemon/**
+!AppData/Local/transmission-daemon/
+!AppData/Local/transmission-daemon/**
 {{ end -}}
 {{ if eq .chezmoi.os "linux" "android" -}}
-.config/transmission-daemon/
-.config/transmission-daemon/**
+!.config/transmission-daemon/
+!.config/transmission-daemon/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ vim
-{{ if lookPath "vim" | not -}}
+{{ if lookPath "vim" -}}
 {{ if eq .chezmoi.os "windows" -}}
-vimfiles/
-vimfiles/**
+!vimfiles/
+!vimfiles/**
 {{ end -}}
 {{ if eq .chezmoi.os "linux" "android" -}}
-.vim/
-.vim/**
-.config/vim/
-.config/vim/**
+!.vim/
+!.vim/**
+!.config/vim/
+!.config/vim/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ info
 {{ if lookPath "info" -}}
 {{ if eq .chezmoi.os "linux" "android" -}}
-.infokey
+!.infokey
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ eget
-{{ if lookPath "eget" | not -}}
+{{ if lookPath "eget" -}}
 {{ if eq .chezmoi.os "windows" -}}
-.eget.toml
+!.eget.toml
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ chezmoi
-{{ if lookPath "chezmoi" | not -}}
+{{ if lookPath "chezmoi" -}}
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
-.config/chezmoi/chezmoi.toml
+!.config/chezmoi/chezmoi.toml
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ helix
-{{ if lookPath "hx" | not -}}
+{{ if lookPath "hx" -}}
 {{ if eq .chezmoi.os "windows" -}}
-AppData/Roaming/helix/
-AppData/Roaming/helix/**
+!AppData/Roaming/helix/
+!AppData/Roaming/helix/**
 {{ end -}}
 {{ end -}}
 {{ $arch_helix := and  (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "arch") (lookPath "helix") -}}
 {{ if or (lookPath "hx") $arch_helix -}}
 {{ if eq .chezmoi.os "linux" "android" -}}
-.config/helix/
-.config/helix/**
+!.config/helix/
+!.config/helix/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ gopass
-{{ if lookPath "gopass" | not -}}
+{{ if lookPath "gopass" -}}
 {{ if eq .chezmoi.os "windows" -}}
-AppData/Roaming/gopass/
-AppData/Roaming/gopass/**
+!AppData/Roaming/gopass/
+!AppData/Roaming/gopass/**
 {{ end -}}
 {{ if eq .chezmoi.os "linux" "android" -}}
-.config/gopass/
-.config/gopass/**
+!.config/gopass/
+!.config/gopass/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ mc
-{{ if lookPath "mc" | not -}}
+{{ if lookPath "mc" -}}
 {{ if eq .chezmoi.os "windows" -}}
-AppData/Roaming/Midnight Commander/
-AppData/Roaming/Midnight Commander/**
+!AppData/Roaming/Midnight Commander/
+!AppData/Roaming/Midnight Commander/**
 {{ end -}}
 {{ if eq .chezmoi.os "linux" "android" -}}
-.config/mc/
-.config/mc/**
+!.config/mc/
+!.config/mc/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ home-manager
-{{ if lookPath "home-manager" | not -}}
+{{ if lookPath "home-manager" -}}
 {{ if eq .chezmoi.os "linux" "android" -}}
-.config/home-manager/
-.config/home-manager/**
+!.config/home-manager/
+!.config/home-manager/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ atuin
-{{ if lookPath "atuin" | not -}}
+{{ if lookPath "atuin" -}}
 {{ if eq .chezmoi.os "linux" "android" -}}
-.config/atuin/
-.config/atuin/**
+!.config/atuin/
+!.config/atuin/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ kmonad
-{{ if lookPath "kmonad" | not -}}
+{{ if lookPath "kmonad" -}}
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
-.config/kmonad/
-.config/kmonad/**
+!.config/kmonad/
+!.config/kmonad/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ psmux
-{{ if lookPath "psmux" | not -}}
+{{ if lookPath "psmux" -}}
 {{ if eq .chezmoi.os "windows" -}}
-.psmux.conf
-.psmux/
-.psmux/**
+!.psmux.conf
+!.psmux/
+!.psmux/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ starship
-{{ if lookPath "starship" | not -}}
+{{ if lookPath "starship" -}}
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
-.config/starship.toml
+!.config/starship.toml
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ ssh
-{{ if lookPath "ssh" | not -}}
+{{ if lookPath "ssh" -}}
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
-.ssh/
-.ssh/**
-{{ end -}}
-{{ end -}}
-# ]]]
-# [[[ pwsh
-{{ if lookPath "pwsh" | not -}}
-{{ if eq .chezmoi.os "windows" -}}
-Documents/PowerShell/
-Documents/PowerShell/**
+!.ssh/
+!.ssh/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ clink
-{{ if lookPath "bash" | not -}}
+{{ if lookPath "bash" -}}
 {{ if eq .chezmoi.os "linux" "android" -}}
-.bashrc
-.bash_profile
+!.bashrc
+!.bash_profile
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ fish
-{{ if and (lookPath "msys2" | not) (lookPath "fish" | not) -}}
+{{ if and (lookPath "msys2") (lookPath "fish") -}}
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
-.config/fish/
-.config/fish/**
+!.config/fish/
+!.config/fish/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ gotify server
-{{ if lookPath "gotify" | not -}}
+{{ if lookPath "gotify" -}}
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
-.config/gotify/
-.config/gotify/**
+!.config/gotify/
+!.config/gotify/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ gotify cli
-{{ if lookPath "gotify-cli" | not -}}
+{{ if lookPath "gotify-cli" -}}
 {{ if eq .chezmoi.os "windows" -}}
-AppData/Local/gotify/
-AppData/Local/gotify/**
+!AppData/Local/gotify/
+!AppData/Local/gotify/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ vscodium
-{{ if lookPath "vscodium" | not -}}
+{{ if lookPath "vscodium" -}}
 {{ if eq .chezmoi.os "windows" -}}
-scoop/persist/vscodium/
-scoop/persist/vscodium/**
+!scoop/persist/vscodium/
+!scoop/persist/vscodium/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ vscode
-{{ if lookPath "vscode" | not -}}
+{{ if lookPath "vscode" -}}
 {{ if eq .chezmoi.os "windows" -}}
-scoop/persist/vscode/
-scoop/persist/vscode/**
+!scoop/persist/vscode/
+!scoop/persist/vscode/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ doom emacs
-{{ if lookPath "emacs" | not -}}
+{{ if lookPath "emacs" -}}
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
-.config/doom/
-.config/doom/**
+!.config/doom/
+!.config/doom/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ zed
-{{ if lookPath "zed" | not -}}
+{{ if lookPath "zed" -}}
 {{ if eq .chezmoi.os "windows" -}}
-AppData/Roaming/Zed/
-AppData/Roaming/Zed/**
+!AppData/Roaming/Zed/
+!AppData/Roaming/Zed/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ leo
-{{ if lookPath "leo" | not -}}
+{{ if lookPath "leo" -}}
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
-.leo/
-.leo/**
+!.leo/
+!.leo/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ deskflow
-{{ if lookPath "deskflow" | not -}}
+{{ if lookPath "deskflow" -}}
 {{ if eq .chezmoi.os "windows" -}}
-scoop/persist/deskflow/
-scoop/persist/deskflow/**
+!scoop/persist/deskflow/
+!scoop/persist/deskflow/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ alacritty
-{{ if lookPath "alacritty" | not -}}
+{{ if lookPath "alacritty" -}}
 {{ if eq .chezmoi.os "windows" -}}
-AppData/Roaming/alacritty/
-AppData/Roaming/alacritty/**
+!AppData/Roaming/alacritty/
+!AppData/Roaming/alacritty/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ wezterm
-{{ if lookPath "wezterm" | not -}}
+{{ if lookPath "wezterm" -}}
 {{ if eq .chezmoi.os "windows" -}}
-.wezterm.lua
+!.wezterm.lua
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ windows terminal
-{{ if lookPath "wt" | not -}}
+{{ if lookPath "wt" -}}
 {{ if eq .chezmoi.os "windows" -}}
-.wezterm.lua
+!scoop/persist/windows-terminal/
+!scoop/persist/windows-terminal/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ rime
-{{ if stat "C:/Program Files/Rime" | not -}}
+{{ if stat "C:/Program Files/Rime" -}}
 {{ if eq .chezmoi.os "windows" -}}
-AppData/Roaming/Rime/
-AppData/Roaming/Rime/**
+!AppData/Roaming/Rime/
+!AppData/Roaming/Rime/**
 {{ end -}}
 {{ end -}}
-{{ if stat (joinPath .chezmoi.homeDir ".local" "share" "flatpak" "exports" "share" "applications" "org.fcitx.Fcitx5.desktop") | not -}}
+{{ if stat (joinPath .chezmoi.homeDir ".local" "share" "flatpak" "exports" "share" "applications" "org.fcitx.Fcitx5.desktop") -}}
 {{ if eq .chezmoi.os "linux" "android" -}}
-.var/app/org.fcitx.Fcitx5/data/fcitx5/rime/
-.var/app/org.fcitx.Fcitx5/data/fcitx5/rime/**
+!.var/app/org.fcitx.Fcitx5/data/fcitx5/rime/
+!.var/app/org.fcitx.Fcitx5/data/fcitx5/rime/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ espanso
-{{ if lookPath "espanso" | not -}}
+{{ if lookPath "espanso" -}}
 {{ if eq .chezmoi.os "windows" -}}
-scoop/persist/espanso/
-scoop/persist/espanso/**
-{{ end -}}
-{{ end -}}
-# ]]]
-# [[[ glazewm
-{{ if lookPath "glazewm" | not -}}
-{{ if eq .chezmoi.os "windows" -}}
-.glzr/
-.glzr/**
+!scoop/persist/espanso/
+!scoop/persist/espanso/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ flameshot
-{{ if lookPath "flameshot" | not -}}
+{{ if lookPath "flameshot" -}}
 {{ if eq .chezmoi.os "windows" -}}
-AppData/Roaming/flameshot/
-AppData/Roaming/flameshot/**
+!AppData/Roaming/flameshot/
+!AppData/Roaming/flameshot/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ keepassxc
-{{ if lookPath "keepassxc" | not -}}
+{{ if lookPath "keepassxc" -}}
 {{ if eq .chezmoi.os "windows" -}}
-scoop/persist/keepassxc/
-scoop/persist/keepassxc/**
+!scoop/persist/keepassxc/
+!scoop/persist/keepassxc/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ ludusavi
-{{ if lookPath "ludusavi" | not -}}
+{{ if lookPath "ludusavi" -}}
 {{ if eq .chezmoi.os "windows" -}}
-AppData/Roaming/ludusavi/
-AppData/Roaming/ludusavi/**
+!AppData/Roaming/ludusavi/
+!AppData/Roaming/ludusavi/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ vlc
-{{ if lookPath "vlc" | not -}}
+{{ if lookPath "vlc" -}}
 {{ if eq .chezmoi.os "windows" -}}
-scoop/persist/vlc/
-scoop/persist/vlc/**
+!scoop/persist/vlc/
+!scoop/persist/vlc/**
 {{ end -}}
 {{ end -}}
 # ]]]
 # [[[ mpv
-{{ if lookPath "mpv" | not -}}
+{{ if lookPath "mpv" -}}
 {{ if eq .chezmoi.os "windows" -}}
-scoop/persist/mpv/
-scoop/persist/mpv/**
+!scoop/persist/mpv/
+!scoop/persist/mpv/**
 {{ end -}}
 {{ if eq .chezmoi.os "linux" "android" -}}
-.config/mpv/
-.config/mpv/**
+!.config/mpv/
+!.config/mpv/**
+{{ end -}}
+{{ end -}}
+# ]]]
+# [[[ pip
+{{ if lookPath "pip" -}}
+!.pip/
+!.pip/**
+{{ end -}}
+# ]]]
+# [[[ pwsh
+{{ if lookPath "pwsh" -}}
+{{ if eq .chezmoi.os "windows" -}}
+!Documents/PowerShell/
+!Documents/PowerShell/**
+{{ end -}}
+{{ end -}}
+# ]]]
+# [[[ scoop
+{{ if lookPath "scoop" -}}
+{{ if eq .chezmoi.os "windows" -}}
+!scoop/buckets/
+!scoop/buckets/**
+{{ end -}}
+{{ end -}}
+# ]]]
+# [[[ autohotkey
+{{ if lookPath "autohotkey" -}}
+{{ if eq .chezmoi.os "windows" -}}
+!Documents/autohotkey/
+!Documents/autohotkey/**
+{{ end -}}
+{{ end -}}
+# ]]]
+# [[[ glazewm
+{{ if lookPath "glazewm" -}}
+{{ if eq .chezmoi.os "windows" -}}
+!.glzr/
+!.glzr/**
 {{ end -}}
 {{ end -}}
 # ]]]
