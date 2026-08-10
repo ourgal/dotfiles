@@ -490,4 +490,12 @@ scoop/persist/espanso/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ flameshot
+{{ if lookPath "flameshot" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
+AppData/Roaming/flameshot/
+AppData/Roaming/flameshot/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
