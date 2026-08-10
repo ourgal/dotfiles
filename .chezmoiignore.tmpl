@@ -514,4 +514,12 @@ AppData/Roaming/ludusavi/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ vlc
+{{ if lookPath "vlc" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
+scoop/persist/vlc/
+scoop/persist/vlc/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
