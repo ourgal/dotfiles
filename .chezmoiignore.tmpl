@@ -522,4 +522,16 @@ scoop/persist/vlc/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ mpv
+{{ if lookPath "mpv" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
+scoop/persist/mpv/
+scoop/persist/mpv/**
+{{ end -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+.config/mpv/
+.config/mpv/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:

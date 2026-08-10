@@ -1,8 +1,10 @@
 [my.msys2]
 packages = ["fish", "nnn", "atool", "libarchive", "tmux", "zsh"]
+
 [my.font]
 monospace = "IosevkaTerm NFM"
 sans = "Noto Sans CJK SC"
+
 [my.git.sign]
 ssh = false
 gpg = true
@@ -10,25 +12,34 @@ gpg = true
 [my.git.user]
 name = "fairever"
 email = "git@fairever.aleeas.com"
+
 [my.shell]
 windows = "pwsh"
+
 [my.terminal]
 windows = "wt"
+
 [my.pip]
 mirror = "https://mirrors.nju.edu.cn/pypi/web/simple/"
+
 [my.sbsrf]
 url="https://github.com/sbsrf/sbsrf/releases/download/20260425/sbsrf.zip"
+
 [my.alist.local]
 host = "http://localhost:5244"
+
 [my.dufs.bucket]
 host = "http://localhost:5000"
+
 [my.doomemacs]
 commit = "d8d75443d39d95f3c5256504eb838e0acc62ef44"
 elfeed_protocol = true
 elfeed_org = false
 elfeed_youtube = false
+
 [my.browser]
 default = "firefox"
+
 [my.ssh]
 known_hosts = [
     "home.local,192.168.123.100 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOKREEGtjhZmTsIruPjBmBp0fPHKxfUSbUilpIzVMoBF",
@@ -44,7 +55,9 @@ known_hosts = [
     "[ssh.github.com]:443 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=",
     "[ssh.github.com]:443 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg="
 ]
+
 [my.modules]
+
 [my.modules.windows.startup]
 glazewm.enable = false
 deskflow_client.enable = false
@@ -80,6 +93,7 @@ flameshot.enable = true
 seanime.enable = true
 rclone.enable = false
 gotify.enable = false
+
 [my.modules.shell.pwsh]
 starship.enable = true
 oh_my_posh.enable = false
@@ -88,10 +102,12 @@ zoxide.enable = true
 atuin.enable = true
 mcfly.enable = false
 navi.enable = true
+
 [my.modules.shell.clink]
 starship.enable = true
 oh_my_posh.enable = false
 zoxide.enable = true
+
 [my.modules.shell.bash]
 ble_sh.enable = true
 fzf.enable = true
@@ -101,6 +117,7 @@ atuin.enable = false
 mcfly.enable = true
 zoxide.enable = true
 pay_respects.enable = true
+
 [my.modules.shell.fish]
 oh_my_posh.enable = false
 starship.enable = true
@@ -110,8 +127,6 @@ atuin.enable = true
 navi.enable = true
 carapace.enable = true
 zoxide.enable = true
-[my.modules.mpv]
-enable = true
 
 [my.modules.mpv.plugins]
 uosc = true
@@ -131,6 +146,7 @@ smart_copy_paste = true
 betterchapters = true
 costum = false
 autocrop = true
+
 [my.modules.firefox]
 theme = "flexfox"
 
