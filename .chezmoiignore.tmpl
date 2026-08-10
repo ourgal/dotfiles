@@ -446,4 +446,11 @@ AppData/Roaming/alacritty/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ wezterm
+{{ if lookPath "wezterm" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
+.wezterm.lua
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:

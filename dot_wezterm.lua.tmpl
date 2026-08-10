@@ -1,5 +1,3 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "wezterm" -}}
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
 
@@ -32,5 +30,3 @@ config.window_background_opacity = 0.9
 config.window_decorations = "RESIZE"
 config.default_prog = { '{{ .my.shell.windows }}' }
 return config
-{{ end -}}
-{{ end -}}
