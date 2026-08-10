@@ -506,4 +506,12 @@ scoop/persist/keepassxc/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ ludusavi
+{{ if lookPath "ludusavi" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
+AppData/Roaming/ludusavi/
+AppData/Roaming/ludusavi/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
