@@ -482,4 +482,12 @@ scoop/persist/espanso/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ glazewm
+{{ if lookPath "glazewm" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
+.glzr/
+.glzr/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
