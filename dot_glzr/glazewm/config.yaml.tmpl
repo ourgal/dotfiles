@@ -1,5 +1,3 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "glazewm" -}}
 general:
   # Commands to run when the WM has started. This is useful for running a
   # script or launching another application.
@@ -319,5 +317,3 @@ keybindings:
     bindings: ['f24+shift+8']
   - commands: ['move --workspace 9', 'focus --workspace 9']
     bindings: ['f24+shift+9']
-{{ end -}}
-{{ end -}}
