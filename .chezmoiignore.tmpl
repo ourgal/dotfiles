@@ -438,4 +438,12 @@ scoop/persist/deskflow/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ alacritty
+{{ if lookPath "alacritty" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
+AppData/Roaming/alacritty/
+AppData/Roaming/alacritty/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
