@@ -1,5 +1,3 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if stat "C:/Program Files/Rime" -}}
 patch:
   switches:
     - name: ascii_mode
@@ -52,5 +50,3 @@ patch:
       Eisu_toggle: noop
       Shift_L: noop
       Shift_R: noop
-{{ end -}}
-{{ end -}}

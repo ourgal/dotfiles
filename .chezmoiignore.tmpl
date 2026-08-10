@@ -460,4 +460,18 @@ AppData/Roaming/alacritty/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ rime
+{{ if stat "C:/Program Files/Rime" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
+AppData/Roaming/Rime/
+AppData/Roaming/Rime/**
+{{ end -}}
+{{ end -}}
+{{ if stat (joinPath .chezmoi.homeDir ".local" "share" "flatpak" "exports" "share" "applications" "org.fcitx.Fcitx5.desktop") | not -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+.var/app/org.fcitx.Fcitx5/data/fcitx5/rime/
+.var/app/org.fcitx.Fcitx5/data/fcitx5/rime/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
