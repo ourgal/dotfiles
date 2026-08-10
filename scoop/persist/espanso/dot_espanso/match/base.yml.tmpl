@@ -1,5 +1,3 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "espanso" -}}
 matches:
 - replace: '{{ `{{` }}mydate{{ `}}` }}'
   trigger: :date
@@ -309,5 +307,3 @@ matches:
   replace: <!--- $|$ -->
   trigger: ':comment:'
 {{ template "espanso_email.key" }}
-{{ end -}}
-{{ end -}}

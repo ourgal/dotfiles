@@ -474,4 +474,12 @@ AppData/Roaming/Rime/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ espanso
+{{ if lookPath "espanso" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
+scoop/persist/espanso/
+scoop/persist/espanso/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
