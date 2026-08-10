@@ -1,4 +1,3 @@
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "enable") "os" "linux") | trim | atoi -}}
 af=%11%scaletempo2
 alang=%16%ja,jp,jpn,en,eng
 audio-file-auto=%5%fuzzy
@@ -38,4 +37,3 @@ profile-restore=copy
 profile-cond=path:find('bilibili%.com')
 ytdl-raw-options=cookies-from-browser=firefox:~/scoop/persist/firefox
 profile-restore=copy
-{{ end -}}
