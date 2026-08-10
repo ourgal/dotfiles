@@ -51,7 +51,8 @@ Plug 'https://gitcode.com/gh_mirrors/fz/fzf.vim'
 "{{{ git
 if executable('git')
   Plug gh_proxy . 'tpope/vim-fugitive'
-  Plug 'https://gitcode.com/gh_mirrors/vi/vim-gitgutter'
+  " Plug 'https://gitcode.com/gh_mirrors/vi/vim-gitgutter'
+  Plug 'mhinz/vim-signify'
 endif
 Plug gh_proxy . 'rhysd/conflict-marker.vim'
 Plug gh_proxy . 'Eliot00/git-lens.vim'

@@ -476,3 +476,10 @@ let g:startify_change_to_vcs_root = 1
 let g:startify_session_persistence = 1
 let g:startify_enable_special = 0
 "}}}
+"{{{ signify config
+let g:signify_line_highlight = 1
+let g:signify_number_highlight = 1
+highlight SignifySignAdd    ctermfg=green  guifg=#00ff00 cterm=NONE gui=NONE
+highlight SignifySignDelete ctermfg=red    guifg=#ff0000 cterm=NONE gui=NONE
+highlight SignifySignChange ctermfg=yellow guifg=#ffff00 cterm=NONE gui=NONE
+"}}}
