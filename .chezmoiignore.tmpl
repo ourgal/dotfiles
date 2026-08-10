@@ -430,4 +430,12 @@ AppData/Roaming/Zed/**
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ deskflow
+{{ if lookPath "deskflow" | not -}}
+{{ if eq .chezmoi.os "windows" -}}
+scoop/persist/deskflow/
+scoop/persist/deskflow/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
