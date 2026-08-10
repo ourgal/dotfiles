@@ -1,5 +1,5 @@
 {{ if exec "gopass" "list" . -}}
-{{ gopass . }}
+{{ gopass . -}}
 {{ else -}}
 {{ warnf (print "gopass entry " . " not found") -}}
 {{ "" -}}
