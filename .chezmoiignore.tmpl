@@ -540,4 +540,10 @@
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ termux-nf
+{{ if eq .chezmoi.os "android" -}}
+!.local/bin/applynf
+!.local/bin/getnf
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
