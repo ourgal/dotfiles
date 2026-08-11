@@ -1,4 +1,3 @@
-{{ if lookPath "mani" -}}
 projects:
   snowfall:
     path: Documents/my_repos/snowfall
@@ -20,13 +19,13 @@ projects:
     path: .local/share/chezmoi
     url: soft:dotfiles
     desc: chezmoi dotfiles
-  {{ if eq .chezmoi.os "windows" -}}
+  {{ if lookPath "psmux" -}}
   psmux_plugins:
     path: .psmux/plugins
     url: https://github.com/psmux/psmux-plugins
     desc: psmux plugins
   {{ end -}}
-  {{ if eq .chezmoi.os "windows" -}}
+  {{ if lookPath "clink" -}}
   clink_scripts:
     path: AppData/Local/clink/clink-gizmos
     url: https://github.com/chrisant996/clink-gizmos
@@ -142,4 +141,3 @@ tasks:
     spec: custom
     target: all
     cmd: git pull origin
-{{ end -}}
