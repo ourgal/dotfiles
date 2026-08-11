@@ -608,4 +608,12 @@
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ firefox
+{{ if lookPath "firefox" -}}
+{{ if eq .chezmoi.os "windows" -}}
+!scoop/persist/firefox/
+!scoop/persist/firefox/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:

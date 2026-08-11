@@ -1,5 +1,3 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "firefox" -}}
 user_pref("browser.search.region", "US");
 user_pref("sidebar.visibility", "hide-sidebar");
 
@@ -7,6 +5,4 @@ user_pref("sidebar.visibility", "hide-sidebar");
 {{ template "include" (joinPath .chezmoi.homeDir "scoop" "persist" "firefox" "shyfox" "user.js") }}
 {{ else if eq .my.modules.firefox.theme "flexfox" -}}
 {{ template "include" (joinPath .chezmoi.homeDir "scoop" "persist" "firefox" "flexfox" "user.js") }}
-{{ end -}}
-{{ end -}}
 {{ end -}}
