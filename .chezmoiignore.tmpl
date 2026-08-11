@@ -433,8 +433,14 @@
 # ]]]
 # [[[ pip
 {{ if lookPath "pip" -}}
+{{ if eq .chezmoi.os "windows" -}}
+!AppData/Roaming/pip/
+!AppData/Roaming/pip/**
+{{ end -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 !.pip/
 !.pip/**
+{{ end -}}
 {{ end -}}
 # ]]]
 # [[[ pwsh
