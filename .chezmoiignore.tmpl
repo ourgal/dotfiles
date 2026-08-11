@@ -484,4 +484,16 @@
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ gitui
+{{ if lookPath "gitui" -}}
+{{ if eq .chezmoi.os "windows" -}}
+!AppData/Roaming/gitui/
+!AppData/Roaming/gitui/**
+{{ end -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+!.config/gitui/
+!.config/gitui/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
