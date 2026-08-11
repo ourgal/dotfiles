@@ -592,4 +592,12 @@
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ pyradio
+{{ if lookPath "pyradio" -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+!.config/pyradio/
+!.config/pyradio/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
