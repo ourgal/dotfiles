@@ -584,4 +584,12 @@
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ pipewire
+{{ if lookPath "pipewire" -}}
+{{ if eq .chezmoi.os "linux" -}}
+!.config/pipewire/
+!.config/pipewire/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:

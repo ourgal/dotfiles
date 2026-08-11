@@ -1,5 +1,4 @@
 {{ if ne .chezmoi.hostname "home" -}}
-{{ if lookPath "pipewire" -}}
 {{ $username := dict -}}
 {{ $username = set $username "windows" "user" -}}
 {{ $username = set $username "linux" "zxc" -}}
@@ -39,5 +38,4 @@ context.modules = [
       }
   }
 ]
-{{ end -}}
 {{ end -}}

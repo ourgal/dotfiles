@@ -1,5 +1,4 @@
 {{ if eq .chezmoi.hostname "home" -}}
-{{ if lookPath "pipewire" -}}
 context.modules = [
   {   name = libpipewire-module-roc-source
       args = {
@@ -16,5 +15,4 @@ context.modules = [
       }
   }
 ]
-{{ end -}}
 {{ end -}}
