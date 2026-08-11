@@ -1,6 +1,3 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ $win_gpg_agent := joinPath .chezmoi.homeDir "scoop" "apps" "win-gpg-agent" "current" "agent-gui.exe" }}
-{{ if stat $win_gpg_agent -}}
 {{ $gpg := joinPath .chezmoi.homeDir "scoop" "apps" "gpg" "current" -}}
 {{ $gpg_home := joinPath $gpg "home" -}}
 {{ $gpg_sock := joinPath $gpg "gnupg" -}}
@@ -19,5 +16,3 @@ gui:
   setenv: true
   # Use line below to enable SSH_AUTH_SOCK to point to cygwin socket
   #   openssh: cygwin
-{{ end -}}
-{{ end -}}

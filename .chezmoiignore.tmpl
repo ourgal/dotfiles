@@ -639,4 +639,12 @@
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ win-gpg-agent
+{{ if joinPath .chezmoi.homeDir "scoop" "apps" "win-gpg-agent" "current" "agent-gui.exe" | stat -}}
+{{ if eq .chezmoi.os "windows" -}}
+!scoop/persist/win-gpg-agent/
+!scoop/persist/win-gpg-agent/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
