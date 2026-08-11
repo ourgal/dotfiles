@@ -507,4 +507,11 @@
 !mani.yaml
 {{ end -}}
 # ]]]
+# [[[ npm
+{{ if lookPath "npm" -}}
+{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+!.npmrc
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
