@@ -476,4 +476,12 @@
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ git
+{{ if lookPath "git" -}}
+{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+!.config/git/
+!.config/git/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
