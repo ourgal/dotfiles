@@ -469,4 +469,11 @@
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ wakatime
+{{ if lookPath "wakatime-cli" -}}
+{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+!.wakatime.cfg
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
