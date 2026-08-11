@@ -1,8 +1,1 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "pip" -}}
-[global]
-index-url = {{ .my.pip.mirror }}
-[install]
-trusted-host = {{ get (urlParse .my.pip.mirror) "host" }}
-{{ end -}}
-{{ end -}}
+{{ include (joinPath .chezmoi.sourceDir "dot_pip" "pip.conf.tmpl") -}}

@@ -1,8 +1,4 @@
-{{ if eq .chezmoi.os "linux" "android" -}}
-{{ if lookPath "pip" -}}
 [global]
 index-url = {{ .my.pip.mirror }}
 [install]
 trusted-host = {{ get (urlParse .my.pip.mirror) "host" }}
-{{ end -}}
-{{ end -}}
