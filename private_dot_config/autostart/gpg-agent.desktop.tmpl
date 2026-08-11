@@ -1,5 +1,3 @@
-{{ if eq .chezmoi.os "linux" "android" -}}
-{{ if lookPath "gpg-agent" -}}
 [Desktop Entry]
 Encoding=UTF-8
 Version=0.9.4
@@ -12,5 +10,3 @@ RunHook=0
 StartupNotify=false
 Terminal=false
 Hidden=true
-{{ end -}}
-{{ end -}}

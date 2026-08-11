@@ -1,5 +1,1 @@
-{{ if eq .chezmoi.os "linux" "android" -}}
-{{ if not (lookPath "fcitx5") -}}
 {{ joinPath .chezmoi.homeDir ".local" "share" "flatpak" "exports" "share" "applications" "org.fcitx.Fcitx5.desktop" }}
-{{ end -}}
-{{ end -}}
