@@ -173,12 +173,14 @@
     type = "git-repo"
     url = {{ print $mirror "https://github.com/golgote/neturl" | quote }}
     refreshPeriod = "168h"
+
 {{ if eq .chezmoi.os "android" -}}
 [".local/share/repos/termux-nf"]
     type = "git-repo"
     url = {{ print $mirror "https://github.com/arnavgr/termux-nf" | quote }}
     refreshPeriod = "168h"
 {{ end -}}
+
 [".local/share/repos/youtube-auto-like"]
     type = "git-repo"
     url = {{ print $mirror "https://github.com/austencm/youtube-auto-like" | quote }}
