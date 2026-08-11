@@ -564,4 +564,10 @@
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ beets
+{{ if lookPath "beets" -}}
+!.config/beets/
+!.config/beets/**
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
