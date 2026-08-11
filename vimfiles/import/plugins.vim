@@ -87,6 +87,7 @@ Plug 'https://gitcode.com/gh_mirrors/vi/vim-which-key' " menu
 Plug 'https://gitcode.com/gh_mirrors/vi/vimcdoc' " vim chinese doc
 Plug 'https://gitcode.com/gh_mirrors/vi/vim-qf' " quickfix
 Plug gh_proxy . 'her/central.vim' " undo backup and swap
+Plug 'https://gitcode.com/gh_mirrors/ta/tagbar' " ctags
 "}}}
 "{{{ lisp
 if executable('cargo') && !g:is_android
