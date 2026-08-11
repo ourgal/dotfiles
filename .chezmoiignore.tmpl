@@ -616,4 +616,11 @@
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ playnite
+{{ if lookPath "syncthing" -}}
+{{ if eq .chezmoi.os "windows" -}}
+!scoop/persist/plyanite/.stignore
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
