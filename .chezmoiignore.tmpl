@@ -600,4 +600,12 @@
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ trackma
+{{ if lookPath "trackma-curses" -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+!.config/trackma/
+!.config/trackma/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
