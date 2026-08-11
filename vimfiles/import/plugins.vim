@@ -136,5 +136,8 @@ Plug 'https://gitcode.com/gh_mirrors/vim17/vim', { 'as': 'embark', 'branch': 'ma
 "{{{ start screen
 Plug 'https://gitcode.com/gh_mirrors/vi/vim-startify'
 "}}}
+"{{{ time tracking
+Plug 'https://gitcode.com/gh_mirrors/vi/vim-wakatime'
+"}}}
 call plug#end()
 "}}}
