@@ -514,4 +514,12 @@
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ ansbile
+{{ if lookPath "ansible" -}}
+{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+!Documents/ansible_playbooks/
+!Documents/ansible_playbooks/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
