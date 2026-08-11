@@ -576,4 +576,12 @@
 !.config/chzemoi/**
 {{ end -}}
 # ]]]
+# [[[ fum
+{{ if lookPath "fum" -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+!.config/fum/
+!.config/fum/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
