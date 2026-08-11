@@ -1,5 +1,3 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "syncthing" -}}
 {{ if eq .chezmoi.hostname "bed" -}}
 <configuration version="51">
     <folder id="gsqw5-i57xh" label="keepassxc" path="{{ joinPath .chezmoi.homeDir "Syncthing" "keepassxc" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
@@ -3312,6 +3310,4 @@
         <ignores></ignores>
     </defaults>
 </configuration>
-{{ end -}}
-{{ end -}}
 {{ end -}}
