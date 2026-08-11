@@ -623,4 +623,12 @@
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ rclone
+{{ if lookPath "rclone" -}}
+{{ if eq .chezmoi.os "windows" -}}
+!scoop/persist/rclone/
+!scoop/persist/rclone/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
