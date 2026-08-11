@@ -551,4 +551,17 @@
 !.local/bin/fzf-xbps
 {{ end -}}
 # ]]]
+# [[[ autostart
+{{ if eq .chezmoi.os "linux" "android" -}}
+{{ if lookPath "gpg-agent" -}}
+!.config/autostart/gpg-agent.desktop
+{{ end -}}
+{{ end -}}
+
+{{ if eq .chezmoi.os "linux" "android" -}}
+{{ if not (lookPath "fcitx5") -}}
+!.config/autostart/fcitx5.desktop
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
