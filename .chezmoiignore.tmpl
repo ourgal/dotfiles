@@ -546,4 +546,9 @@
 !.local/bin/getnf
 {{ end -}}
 # ]]]
+# [[[ fzf-xbps
+{{ if and (lookPath "bash") (lookPath "fzf") (lookPath "xbps-install") -}}
+!.local/bin/fzf-xbps
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
