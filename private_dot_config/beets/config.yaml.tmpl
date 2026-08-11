@@ -1,4 +1,3 @@
-{{ if lookPath "beets" -}}
 convert:
   command: bash -c "ffmpeg -i \"$source\" -f wav - | lame -V 2 --noreplaygain - \"$dest\""
   extension: mp3
@@ -6,4 +5,3 @@ directory: {{ joinPath .chezmoi.homeDir "Music" }}
 lyrics:
   synced: 'yes'
 plugins: mpdupdate fromfilename chroma lryics fish convert fetchart embedart
-{{ end -}}
