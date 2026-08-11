@@ -631,4 +631,12 @@
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ syncthing
+{{ if lookPath "syncthing" -}}
+{{ if eq .chezmoi.os "windows" -}}
+!scoop/persist/syncthing/
+!scoop/persist/syncthing/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
