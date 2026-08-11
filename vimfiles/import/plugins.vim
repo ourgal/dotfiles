@@ -46,6 +46,7 @@ Plug gh_proxy . 'roginfarrer/vim-dirvish-dovish'
 Plug 'https://gitcode.com/gh_mirrors/ne/neoformat'
 "}}}
 "{{{ file picker
+Plug 'https://gitcode.com/GitHub_Trending/fz/fzf'
 Plug 'https://gitcode.com/gh_mirrors/fz/fzf.vim'
 "}}}
 "{{{ git

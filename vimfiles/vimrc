@@ -27,7 +27,7 @@ nmap <Enter> :
 " nnoremap N Nzzzv
 
 " file picker
-nnoremap <leader><space> :find<space>
+nnoremap <leader><space> <cmd>FZF<cr>
 
 set laststatus=2 " always show status line
 
