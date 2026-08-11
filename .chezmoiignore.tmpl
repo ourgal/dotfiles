@@ -1,4 +1,11 @@
 *
+
+!Documents/easyos/
+!Documents/easyos/**
+
+!Music/
+!Music/**
+
 # [[[ windows
 {{ if eq .chezmoi.os "windows" -}}
 # powertoys
@@ -9,6 +16,15 @@
 !Documents/game_saves/
 !Documents/game_saves/**
 
+# ventoy
+!Documents/ventoy/
+!Documents/ventoy/**
+
+!Documents/merge_pdf.ps1
+
+# for wsl
+!Documents/ansible_playbooks/
+!Documents/ansible_playbooks/**
 {{ end -}}
 # ]]]
 # [[[ linux
@@ -142,6 +158,8 @@
 # ]]]
 # [[[ vim
 {{ if lookPath "vim" -}}
+!.lcoal/share/vim/
+!.lcoal/share/vim/**
 {{ if eq .chezmoi.os "windows" -}}
 !vimfiles/
 !vimfiles/**
