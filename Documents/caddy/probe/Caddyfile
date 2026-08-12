@@ -1,5 +1,13 @@
 http://:8080 {
-    header Content-Type text/plain
-    respond "{{.RemoteIP}}"
+    header Content-Type "text/html; charset=utf-8"
+    respond <<HTML
+      <!DOCTYPE html>
+      <html>
+      <body>
+          <h1>您的 IP 地址是: {{.RemoteIP}}</h1>
+      </body>
+      </html>
+      HTML 200
     templates
 }
+
