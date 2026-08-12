@@ -1,6 +1,6 @@
 {{ $mirror := "https://jiashu.1win.eu.org/" -}}
 
-{{ if eq .chezmoi.os "linux" "android" -}}
+{{ if eq .chezmoi.os "linux" -}}
 {{ if lookPath "bash" -}}
 [".local/lib/ble_sh"]
     type = "git-repo"
