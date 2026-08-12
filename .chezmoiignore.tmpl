@@ -1,5 +1,8 @@
 *
 
+!Documents/
+Documents/*
+
 !Documents/easyos/
 !Documents/easyos/**
 
@@ -8,6 +11,24 @@
 
 # [[[ windows
 {{ if eq .chezmoi.os "windows" -}}
+
+!AppData/
+AppData/*
+
+!AppData/Roaming/
+AppData/Roaming/*
+
+!AppData/Local/
+AppData/Local/*
+
+!.config/
+.config/*
+
+!scoop/
+scoop/*
+!scoop/persist/
+scoop/persist/*
+
 # powertoys
 !Documents/PowerToys/
 !Documents/PowerToys/**
@@ -30,6 +51,16 @@
 # [[[ linux
 {{ if eq .chezmoi.os "linux" -}}
 
+!.config/
+.config/*
+
+!.local/
+.local/*
+
+!.local/bin/
+.local/bin/*
+
+
 {{ if and (hasKey .chezmoi.osRelease "name") (eq .chezmoi.osRelease.name "Void") -}}
 # runit
 !service/
@@ -47,6 +78,15 @@
 # ]]]
 # [[[ android
 {{ if eq .chezmoi.os "android" -}}
+
+!.config/
+.config/*
+
+!.local/
+.local/*
+
+!.local/bin/
+.local/bin/*
 
 {{ if and (hasKey .chezmoi.osRelease "name") (eq .chezmoi.osRelease.name "Void") -}}
 # runit
@@ -651,6 +691,11 @@
 {{ if lookPath "caddy" -}}
 !Documents/caddy/
 !Documents/caddy/**
+{{ end -}}
+# ]]]
+# [[[ editorconfig
+{{ if lookPath "editorconfig" -}}
+!.editorconfig
 {{ end -}}
 # ]]]
 # vim: set foldmarker=[[[,]]]:
