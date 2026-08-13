@@ -140,5 +140,8 @@ Plug 'https://gitcode.com/gh_mirrors/vi/vim-startify'
 "{{{ time tracking
 Plug 'https://gitcode.com/gh_mirrors/vi/vim-wakatime'
 "}}}
+"{{{ ansible
+Plug 'https://gitcode.com/gh_mirrors/an/ansible-vim'
+"}}}
 call plug#end()
 "}}}
