@@ -70,6 +70,7 @@ if has('gui_running')
     set guitablabel=%M\ %t
     " font
     set guifont=IosevkaTerm\ NFM
+    set guifontwide=Maple\ Mono\ NF\ CN
 endif
 
 nmap <expr> <F11> &go =~# 's' ? ":se go-=s<CR>" : ":se go+=s<CR>"
