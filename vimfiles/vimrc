@@ -59,6 +59,11 @@ if has('gui_running')
     set guioptions-=T
     " disable menu bar
     set guioptions-=m
+    " remove scrollbars
+    set guioptions-=r
+    set guioptions-=L
+    " full screen
+    set guioptions+=s
     " number of colors
     set t_Co=256
     " tab label
@@ -66,6 +71,8 @@ if has('gui_running')
     " font
     set guifont=IosevkaTerm\ NFM
 endif
+
+nmap <expr> <F11> &go =~# 's' ? ":se go-=s<CR>" : ":se go+=s<CR>"
 
 syntax enable
 
