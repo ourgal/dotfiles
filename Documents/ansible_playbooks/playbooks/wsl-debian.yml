@@ -1,4 +1,3 @@
-# chezmoi:template:left-delimiter=[[ right-delimiter=]]
 ---
 - name: Configure wsl debian
   hosts: nuc-windows-wsl-debian
@@ -24,26 +23,40 @@
     - name: Install apt packages
       ansible.builtin.apt:
         name:
+          # git
           - git
           - lazygit
+          # editor
           - emacs
           - vim-gtk3
           - hx
+          # video viewer
           - mpv
+          # download
           - curl
           - wget
+          # shell
           - fish
+          # prompt
           - starship
+          # system
           - xclip
           - dos2unix
+          # fuzzy
           - fzf
+          # ls
           - eza
+          # cd
           - zoxide
+          # less
           - bat
+          # top
           - btop
+          # encypt
           - gnupg
           - scdaemon
           - pcscd
+          # nodejs
           - nodejs
     - name: Install xz-utils
       ansible.builtin.apt:

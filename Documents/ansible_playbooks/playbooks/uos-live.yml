@@ -1,4 +1,3 @@
-# chezmoi:template:left-delimiter=[[ right-delimiter=]]
 ---
 # disable power saving
 # enable password ssh login and start ssh
@@ -42,7 +41,7 @@
       become: true
       ansible.builtin.copy:
         dest: /target/etc/apt/sources.list.d/linglong.list
-        content: deb [trusted=yes] https://ci.deepin.com/repo/obs/linglong:/CI:/release/uos_1070/ ./ 
+        content: deb [trusted=yes] https://ci.deepin.com/repo/obs/linglong:/CI:/release/uos_1070/ ./
     - name: Download wps 365
       become: true
       ansible.builtin.get_url:
