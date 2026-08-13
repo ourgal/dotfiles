@@ -63,6 +63,8 @@ if has('gui_running')
     set t_Co=256
     " tab label
     set guitablabel=%M\ %t
+    " font
+    set guifont=IosevkaTerm\ NFM
 endif
 
 syntax enable
