@@ -1,5 +1,3 @@
-# chezmoi:template:left-delimiter=[[ right-delimiter=]]
----
 - name: Configure windows admin
   hosts: windows
   remote_user: admin
@@ -357,116 +355,176 @@
       tags: scoop-main
       community.windows.win_scoop:
         name:
+          # AI
           - main/aichat
+          # android
           - main/adb
           - main/scrcpy
+          # audio
           - main/mpd
           - main/navidrome
+          # backup
           - main/restic
           - main/resticprofile
           - main/rdiff-backup
           - main/kage
+          # CA
           - main/cacert
+          # CMS
           - main/hugo
+          # dev
           - main/chsrc
           - main/editorconfig
           - main/dprint
           - main/aspell
           - main/diffutils
+          # bash
           - main/shellcheck
           - main/shfmt
+          # binary
           - main/binutils
+          # c
           - main/clangd
+          # csharp
           - main/scriptcs
+          # compile
           - main/make
+          # environment
           - main/task
           - main/cmake
           - main/msys2
           - main/direnv
           - main/tree-sitter
           - main/dirhash
+          # haskell
           - main/haskell
           - main/haskell-cabal
           - main/haskell-language-server
           - main/stack
+          # go
           - main/go
+          # json
           - main/jq
+          # latex
           - main/texlab
           - main/tectonic
+          # lua
           - main/lua-language-server
           - main/stylua
+          # markdown
           - main/autocorrect
           - main/marksman
+          # nodejs
           - main/yarn
           - main/pnpm
+          # perl
           - main/perl
+          # powershell
           - main/powershelleditorservices
+          # python
           - main/ruff
           - main/ty
           - main/uv
+          # rust
           - main/rust
           - main/cargo-binstall
+          # sql
           - main/sqlite
+          # toml
           - main/taplo
           - main/tombi
+          # web
           - main/static-web-server
+          # yaml
           - main/yamlfmt
+          # disk
           - main/smartmontools
           - main/dd
+          # document
           - main/pandoc
+          # dotfile manager
           - main/chezmoi
+          # downloader
           - main/gallery-dl
           - main/yt-dlp
           - main/pget
           - main/wget2
           - main/wget
           - main/aria2
+          # editor
           - main/vim
           - main/helix
           - main/neovim
           - main/fresh
+          # email
           - main/mailsend
+          # encrypt
           - main/gpg
           - main/openssl
           - main/gopass
           - main/gopass-jsonapi
           - main/sops
+          # file manager
           - main/lf
           - main/yazi
           - main/superfile
+          # fuzzy finder
           - main/broot
           - main/fzf
+          # git
           - main/jj
+          # git auto
           - main/gitomatic
+          # git bug
           - main/git-bug
+          # git github
           - main/gh
+          # git push
           - main/mob
           - main/legit
+          # git lfs
           - main/git-lfs
+          # git fixup
           - main/git-absorb
+          # git diff
           - main/diff-so-fancy
           - main/delta
           - main/difftastic
+          # git encrypt
           - main/git-crypt
+          # git tui
           - main/gitui
+          # git gui
           - extras/git-cola
+          # git server
           - main/gogs
+          # git search
           - main/gitql
+          # git hook
           - main/lefthook
+          # image
           - main/gnuplot
+          # image info
           - main/exiftool
+          # image edit
           - main/imagemagick
+          # network
           - main/dog
           - main/nali
           - main/nmap
           - main/q-dns
           - main/tcping
+          # scoop helper
           - main/scoop-search
+          # search
           - main/everything-cli
+          # remote
           - main/termscp
           - main/ttyd
+          # qr code
           - main/qr
           - main/qrcp
+          # share
           - main/croc
           - main/cwrsync
           - main/dufs
@@ -478,71 +536,103 @@
           - main/serve
           - main/simple-http-server
           - main/git-annex
-          # hash check filed
-          # - main/ffsend
+          # shell
           - main/clink
           - main/clink-completions
           - main/cmder-full
           - main/pwsh
           - main/nu
           - main/yori
+          # ascii art
           - main/rainbow
+          # cd
           - main/zoxide
+          # df
           - main/duf
+          # du
           - main/dua
           - main/dust
+          # find
           - main/fd
+          # grep
           - main/grep
           - main/ripgrep
           - main/gawk
           - main/igrep
+          # history
           - main/mcfly
           - main/atuin
+          # less
           - main/bat
           - main/less
+          # ls
           - main/eza
+          # man
           - main/tealdeer
+          # prompt
           - main/starship
           - main/oh-my-posh
+          # rename
           - main/rnr
+          # sed
           - main/sd
           - main/sed
+          # shasum
           - main/shasum
+          # snippets
           - main/navi
+          # system info
           - main/fastfetch
           - main/ntop
           - main/btop
           - main/bottom
+          # tmux
           - main/psmux
           - main/zellij
+          # typing
           - main/ttyper
+          # unrar
           - main/unrar
           - main/unzip
+          # utils
           - main/coreutils
           - main/nircmd
+          # which
           - main/which
+          # system
           - main/dos2unix
           - main/goodbyedpi
           - main/file
+          # archive
           - main/zip
           - main/bzip2
+          # unpack
           - main/innounp
           - main/gzip
           - main/innoextract
           - main/xz
+          # sudo
           - main/gsudo
+          # service
           - main/nssm
+          # package manager
           - main/pipx
           - main/winget
           - main/topgrade
           - main/meta-package-manager
+          # clipboard
           - main/clipboard@0.9.0.1
+          # notification
           - main/noti
           - main/gotify-server
           - main/gotify-cli
+          # ps
           - main/witr
+          # rm
           - main/trashy
+          # text expander
           - main/espanso
+          # video editor
           - main/ffmpeg
           - main/butterflow
         state: present
@@ -569,127 +659,183 @@
       tags: scoop-extras
       community.windows.win_scoop:
         name:
+          # android
           - extras/kdeconnect
           - extras/apkeep
+          # anime
           - extras/filebot
+          # audio
           - extras/ab-av1
           - extras/mplayer
           - extras/musikcube
+          # mpd
           - extras/mpc
           - extras/ncmpc
+          # automation
           - extras/autohotkey
           - extras/autoclicker
+          # browser
           - extras/firefox
           - extras/brave
           - extras/qutebrowser
           - extras/ungoogled-chromium
           - extras/librewolf
+          # book
           - extras/kavita
+          # chat
           - extras/telegram
+          # sql
           - extras/beekeeper-studio
+          # document
           - extras/sioyek
           - extras/sumatrapdf
           - extras/zeal
           - extras/libreoffice
           - extras/wpsoffice
+          # download
           - extras/aria-ng-gui
           - extras/eget
           - extras/transmission
           - extras/transgui
           - extras/qbittorrent
+          # editor
           - extras/notepadplusplus
           - extras/vscodium
           - extras/emacs
           - extras/zed
           - extras/flow-control
+          # lunarvim
           - extras/lunarvim
           - main/gcc
+          # education
           - extras/anki
+          # encrypt
           - extras/cfssl
           - extras/age
           - extras/keepassxc
           - extras/win-gpg-agent
+          # file manager
           - extras/mc
           - extras/vifm
           - extras/doublecmd
           - extras/totalcommander
+          # game
           - extras/locale-emulator
           - extras/ludusavi
           - extras/playnite
           - extras/sunshine
+          # git
           - extras/lazygit
           - extras/gitu
           - extras/sourcegit
+          # diff
           - extras/meld
+          # image viewer
           - extras/nomacs
           - extras/qview
           - extras/oculante
           - extras/fsviewer
           - extras/yacreader
+          # image edit
           - extras/gimp
           - extras/photodemon
           - extras/photoflare
+          # keyboard
           - extras/qmk-toolbox
           - extras/vial
           - extras/kanata
           - extras/komokana
+          # math
           - extras/qalculate
+          # network
           - extras/fiddler
+          # note
           - extras/siyuan-note
+          # qr code
           - extras/qrscan
+          # remote control
           - extras/rustdesk
           - extras/tightvnc
+          # screen shot
           - extras/flameshot
+          # fuzzy finder
           - extras/television
+          # completion
           - extras/carapace-bin
+          # todo
           - extras/ttdl
+          # scoop helper
           - extras/sfsu
+          # snippets
           - extras/pet
+          # powershell module
           - extras/psfzf
           - extras/psreadline
+          # paper
           - extras/moor
+          # utils
           - extras/util-linux-ng
+          # system
           - extras/winspy
           - extras/windhawk
           - extras/powertoys
+          # window manager
           - extras/glazewm
           - extras/zebar
           - extras/komorebi
           - extras/yasb
           - extras/whkd
+          # proxy
           - extras/flclash
+          # disk
           - extras/diskgenius
           - extras/crystaldiskinfo
           - extras/wiztree
           - extras/windirstat
+          # launcher
           - extras/flow-launcher
+          # package manager
           - extras/unigetui
+          # dhcp
           - extras/dhcp-server
+          # timer
           - extras/hourglass
+          # clipboard
           - extras/copyq
           - extras/ditto
+          # cleaner
           - extras/bleachbit
+          # search
           - extras/everything
+          # kvm
           - extras/deskflow
+          # temperature
           - extras/coretemp
+          # uninstall
           - extras/bulk-crap-uninstaller
+          # window
           - extras/altsnap
+          # terminal
           - extras/windows-terminal
           - extras/alacritty
           - extras/wezterm
+          # translation
           - extras/copytranslator
+          # usb driver
           - extras/rufus
           - extras/ventoy
+          # video
           - extras/ani-cli
+          # video player
           - extras/jellyfin-mpv-shim
           - extras/vlc
-          # install failed
-          # - miru
           - extras/mpv
           - extras/fladder
           - extras/gridplayer
           - extras/webtorrent
+          # video edit
           - extras/handbrake
+          # whiteboard
           - extras/openboard
         global: false
         no_cache: true

@@ -1,4 +1,3 @@
-# chezmoi:template:left-delimiter=[[ right-delimiter=]]
 ---
 - name: Configure wsl arch
   hosts: wsl-arch
@@ -21,28 +20,45 @@
     - name: Install pacman packages
       community.general.pacman:
         name:
+          # git
           - git
           - lazygit
+          # editor
           - emacs
           - helix
           - gvim
+          # download
           - curl
           - wget
+          # dotfiles
           - chezmoi
+          # video
           - pipewire
           - mpv
+          # shell
           - fish
+          # prompt
           - starship
+          # system
           - xclip
           - openssh
           - dos2unix
           - unzip
+          # fuzzy
           - fzf
+          # ls
           - eza
+          # cd
           - zoxide
+          # less
           - bat
+          # top
           - btop
+          # stats
           - fastfetch
+          # python
           - uv
+          # nodesj
           - nodejs
+          # ansible
           - ansible

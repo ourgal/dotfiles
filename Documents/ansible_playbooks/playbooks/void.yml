@@ -25,101 +25,152 @@
         XBPS_ARCH: "{{ ansible_facts.machine }}"
       community.general.xbps:
         name:
-          - git
+          # download
           - curl
           - aria2
-          - grep
-          - fzf
           - yt-dlp
+          - transmission
+          # grep
+          - grep
+          - ripgrep
+          # video edit
           - ffmpeg
+          # archive
           - 7zip
           - atool
           - unzip
+          # bookmark
           - buku
+          # clipboard
           - Clipboard
           - xclip
           - xsel
-          - aria2
-          - transmission
-          - yt-dlp
+          # editor
           - gvim-huge
           - helix
           - kakoune
           - neovim
+          # dotfiles
           - chezmoi
+          # file manager
           - lf
           - nnn
           - ranger
           - yazi
+          # git
           - git
+          # git annex
           - git-annex
+          # git encrypt
           - git-crypt
+          # git script
           - git-extras
+          # git tui
           - lazygit
           - gitui
+          # git diff
           - delta
           - difftastic
+          # jj
           - jujutsu
+          # github
           - github-cli
+          # screen
           - tmux
           - zellij
+          # share
           - dufs
           - miniserve
           - rclone
+          # image edit
           - ImageMagick
+          # shell
           - fish-shell
+          # fuzzy finder
           - fzf
           - broot
+          # history
           - atuin
+          # prompt
           - starship
+          # cp
           - rsync
+          # sync
           - syncthing
           - stc
+          # system
           - xtools
           - kmonad
           - psmisc
-          - ripgrep
+          # cd
           - zoxide
+          # rename
           - mmv
+          # find
           - fd
+          # ls
           - eza
           - tree
+          # du
           - duf
           - dua-cli
+          # top
           - btop
           - htop
+          # less
           - bat
+          # encrypt
           - gopass
           - keepassxc
+          # video player
           - mpv
+          # browser
           - firefox
           - chromium
+          # terminal
           - kitty
           - alacritty
+          # editor
           - emacs-gtk3
           - vscode
+          # document
           - sioyek
           - zeal
+          # chat
           - telegram-desktop
+          # dev
           - editorconfig
+          # ansible
           - ansible
+          # bash
           - shellcheck
+          # nodejs
           - nodejs
+          # python
           - uv
+          # desktop environment
           - xfce4
           - xfce4-battery-plugin
           - xorg
+          # display manager
           - lemurs
           - lightdm
+          # font
           - noto-fonts-ttf
           - noto-fonts-cjk
           - nerd-fonts-symbols-ttf
           - noto-fonts-emoji
+          # video driver
           - intel-video-accel
+          # firmware
           - intel-ucode
+          # VA
           - libva-utils
+          # python
           - python3-pipx
+          # flatpak
           - flatpak
+          # fcitx5
           - fcitx5-gtk+2
           - fcitx5-gtk+3
           - fcitx5-gtk4
