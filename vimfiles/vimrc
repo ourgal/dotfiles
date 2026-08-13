@@ -154,6 +154,8 @@ set wildoptions=pum
 autocmd CmdlineEnter [\/\?] set pumheight=8
 autocmd CmdlineLeave [\/\?] set pumheight&
 
+autocmd FileType gitcommit wincmd L
+
 if executable('sdcv')
     set keywordprg=sdcv\ -n
 endif
