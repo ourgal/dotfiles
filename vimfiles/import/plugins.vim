@@ -44,7 +44,7 @@ Plug gh_proxy . 'roginfarrer/vim-dirvish-dovish'
 " Plug gh_proxy . 'ptzz/lf.vim' " not start at current buffer path on windows
 "}}}
 "{{{ format
-Plug 'https://gitcode.com/gh_mirrors/ne/neoformat'
+" Plug 'https://gitcode.com/gh_mirrors/ne/neoformat'
 "}}}
 "{{{ file picker
 Plug 'https://gitcode.com/GitHub_Trending/fz/fzf'
