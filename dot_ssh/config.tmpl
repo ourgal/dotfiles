@@ -52,21 +52,23 @@ Host m6-adb
   Port {{ $termux.m6_adb.port }}
   User {{ $termux.m6_adb.user }}
   HostName {{ $termux.m6_adb.ip }}
+Host work
+  Port {{ $ip.work.port }}
+  User {{ $ip.work.user }}
+  HostName {{ $ip.work.ip }}
+
 {{ if ne .chezmoi.hostname "localhost" -}}
 Host gogs-m6
   Port 23231
   User {{ $termux.m6.user }}
   HostName {{ template "ipM6" .chezmoi.hostname }}
 {{ end -}}
+
 {{ if eq .chezmoi.hostname "work" "work2" -}}
 Host work2
   Port {{ $ip.work2.port }}
   User {{ $ip.work2.user }}
   HostName {{ $ip.work2.ip }}
-Host work
-  Port {{ $ip.work.port }}
-  User {{ $ip.work.user }}
-  HostName {{ $ip.work.ip }}
 Host office2043
   Port {{ $ip.office2043.port }}
   User {{ $ip.office2043.user }}
