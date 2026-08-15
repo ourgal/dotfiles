@@ -233,6 +233,17 @@
     - name: Debug variables
       ansible.builtin.debug:
         var: ansible_facts
+    - name: Install scoop-proxy-cn
+      block:
+        - name: Check scoop file
+          ansible.windows.win_stat:
+            path: "{{ ansible_facts.user_dir }}/scoop/apps/scoop/current/bin/scoop.ps1"
+          register: scoop_file_stat
+        - name: Install scoop-proxy-cn
+          ansible.windows.win_shell: |
+            Set-ExecutionPolicy RemoteSigned -scope CurrentUser -Force
+            iwr -useb scoop.201704.xyz | iex
+          when: scoop_file_stat.stat.exists is false
     - name: Install aria2 and lessmsi via scoop
       community.windows.win_scoop:
         name:
