@@ -61,25 +61,25 @@
   retries: 3
   delay: 5
   until: result is not failed
-- name: Remove gh proxy
+- name: Set scoop config
   vars:
     config:
-      URL_PROXY:
+      use_lessmsi: true
+      aria2-enabled: false
+      aria2-warning-enabled: false
+      use_sqlite_cache: true
+      force_update: true
+      use_external_7zip: true
+      gh_token: "{{ lookup('gopass', 'github/ourgal/token') | trim }}"
   ansible.windows.win_copy:
     dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
-    content: "{{ scoop_config_content.content | b64decode | from_json | combine(config) | to_json }}"
+    content: "{{ config | to_json }}"
 - name: Add extras bucket
-  community.windows.win_scoop_bucket:
-    name: extras
-    state: present
+  ansible.windows.win_shell: scoop bucket add extras
 - name: Add nerd-fonts bucket
-  community.windows.win_scoop_bucket:
-    name: nerd-fonts
-    state: present
+  ansible.windows.win_shell: scoop bucket add nerd-fonts
 - name: Add nonportable bucket
-  community.windows.win_scoop_bucket:
-    name: nonportable
-    state: present
+  ansible.windows.win_shell: scoop bucket add nonportable
 - name: Add gh proxy
   vars:
     config:
