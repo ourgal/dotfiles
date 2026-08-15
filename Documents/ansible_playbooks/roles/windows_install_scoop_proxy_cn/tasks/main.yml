@@ -64,15 +64,12 @@
 - name: Add extras bucket
   community.windows.win_scoop_bucket:
     name: extras
-    repo: https://gitee.com/scoop-installer/Extras
     state: present
 - name: Add nerd-fonts bucket
   community.windows.win_scoop_bucket:
     name: nerd-fonts
-    repo: https://gitee.com/scoop-installer/scoop-nerd-fonts
     state: present
 - name: Add nonportable bucket
   community.windows.win_scoop_bucket:
     name: nonportable
-    repo: https://gitee.com/scoop-installer/Nonportable
     state: present
