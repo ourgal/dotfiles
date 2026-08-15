@@ -1,0 +1,10 @@
+- name: Set rime as default input method
+  ansible.windows.win_regedit:
+    path: HKCU:\Keyboard Layout\Preload
+    name: 1
+    data: 00000804
+- name: Set en as second input method
+  ansible.windows.win_regedit:
+    path: HKCU:\Keyboard Layout\Preload
+    name: 2
+    data: 00000409

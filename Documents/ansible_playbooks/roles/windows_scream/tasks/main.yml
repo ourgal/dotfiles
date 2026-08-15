@@ -1,0 +1,48 @@
+- name: Install scream pre
+  block:
+    - name: Check scream driver file
+      ansible.windows.win_stat:
+        path: C:\windows\system32\drivers\scream.sys
+      register: scream_driver
+    - name: Scream pre
+      when: scream_driver.stat.exists is false
+      block:
+        - name: Enable testing mode
+          ansible.windows.win_command: Bcdedit.exe -set TESTSIGNING ON
+        - name: Reboot
+          ansible.windows.win_reboot:
+        - name: Download file
+          ansible.windows.win_get_url:
+            url: https://github.com/duncanthrax/scream/releases/download/4.0/Scream4.0.zip
+            dest: C:\Scream.zip
+        - name: Unzip file
+          community.windows.win_unzip:
+            src: C:\Scream.zip
+            dest: C:\Scream
+            force: true
+        - name: Run installer
+          ansible.windows.win_command: C:\Scream\Install\Install-x64.bat
+- name: Install scream post
+  block:
+    - name: Delete files
+      ansible.windows.win_file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - C:\Scream.zip
+        - C:\Scream
+    - name: Disable testing mode
+      ansible.windows.win_command: Bcdedit.exe -set TESTSIGNING OFF
+    - name: Reboot
+      ansible.windows.win_reboot:
+    - name: Unicast options
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\Services\Scream\Options
+        name: UnicastIPv4
+        data: 192.168.123.100
+    - name: Unicast options
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\Services\Scream\Options
+        name: UnicastPort
+        data: 4011
+        type: dword

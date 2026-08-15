@@ -1,0 +1,5 @@
+- name: Set user rights
+  ansible.windows.win_user_right:
+    name: "{{ windows_user_right_name }}"
+    users: "{{ windows_user_right_users }}"
+    action: "{{ windows_user_right_action }}"

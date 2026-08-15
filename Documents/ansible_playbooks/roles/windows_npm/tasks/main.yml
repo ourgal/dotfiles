@@ -1,0 +1,18 @@
+- name: Check npm config file
+  ansible.windows.win_stat:
+    path: "{{ ansible_facts.user_dir }}\\.npmrc"
+  register: npm_config_stat
+- name: Set npm config
+  ansible.windows.win_copy:
+    dest: "{{ ansible_facts.user_dir }}\\.npmrc"
+    content: |
+      registry = https://registry.npmmirror.com
+  when: npm_config_stat.stat.exists is false
+- name: Install npm packages
+  ansible.windows.win_shell: npm install -g "{{ item }}"
+  loop: "{{ windows_npm_packages }}"
+- name: Remove npm config
+  ansible.windows.win_file:
+    path: "{{ ansible_facts.user_dir }}\\.npmrc"
+    state: absent
+  when: npm_config_stat.stat.exists is false

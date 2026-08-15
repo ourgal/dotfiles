@@ -1,0 +1,14 @@
+- name: Set Developer Mode registry key
+  ansible.windows.win_regedit:
+    path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock
+    name: AllowDevelopmentWithoutSponsor
+    data: 1
+    type: dword
+    state: present
+- name: Ensure Developer Mode Group Policy is enabled
+  ansible.windows.win_regedit:
+    path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Appx
+    name: AllowAllTrustedApps
+    data: 1
+    type: dword
+    state: present

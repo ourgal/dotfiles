@@ -1,0 +1,7 @@
+- name: Choco pacakges
+  chocolatey.chocolatey.win_chocolatey:
+    name: "{{ item.name if item.name is defined else item }}"
+    state: "{{ item.state if item.state is defined else windows_choco_state }}"
+    allow_prerelease: "{{ item.allow_prerelease if item.allow_prerelease is defined else windows_choco_allow_prerelease }}"
+    package_params: "{{ item.package_params if item.package_params is defined else windows_choco_package_params }}"
+  loop: "{{ windows_choco_packages }}"
