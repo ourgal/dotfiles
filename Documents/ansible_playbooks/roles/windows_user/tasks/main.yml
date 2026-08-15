@@ -1,6 +1,6 @@
 - name: Set user groups
   ansible.windows.win_user:
-    name: "{{ windows_user_user }}"
+    name: "{{ windows_user_name }}"
     state: "{{ windows_user_state }}"
     groups: "{{ windows_user_groups }}"
     password_expired: "{{ windows_user_password_expired }}"
