@@ -50,6 +50,9 @@
   tags: user
   vars:
     ansible_ssh_pass: "{{ lookup('gopass', 'password/windows/user') | trim }}"
+  pre_tasks:
+    - name: Gather facts
+      ansible.builtin.gather_facts:
   roles:
     - role: windows_install_scoop_proxy_cn
     - role: windows_scoop_update
@@ -119,6 +122,9 @@
   tags: game
   vars:
     ansible_ssh_pass: "{{ lookup('gopass', 'password/windows/user') | trim }}"
+  pre_tasks:
+    - name: Gather facts
+      ansible.builtin.gather_facts:
   roles:
     - role: windows_install_scoop_proxy_cn
     - role: windows_scoop_bucket
@@ -137,6 +143,9 @@
   tags: admin
   vars:
     ansible_ssh_pass: "{{ lookup('gopass', 'password/windows/admin') | trim }}"
+  pre_tasks:
+    - name: Gather facts
+      ansible.builtin.gather_facts:
   roles:
     - role: windows_firewall
     - role: windows_hostname
