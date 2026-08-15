@@ -7,33 +7,6 @@
     Set-ExecutionPolicy RemoteSigned -scope CurrentUser -Force
     iwr -useb scoop.201704.xyz | iex
   when: scoop_file_stat.stat.exists is false
-- name: Install base packages via scoop
-  community.windows.win_scoop:
-    name:
-      - main/lessmsi
-      - main/aria2
-      - main/7zip
-      - main/git
-    global: false
-  register: result
-  retries: 3
-  delay: 5
-  until: result is not failed
-- name: Add extras bucket
-  community.windows.win_scoop_bucket:
-    name: extras
-    repo: https://gitee.com/scoop-installer/Extras
-    state: present
-- name: Add nerd-fonts bucket
-  community.windows.win_scoop_bucket:
-    name: nerd-fonts
-    repo: https://gitee.com/scoop-installer/scoop-nerd-fonts
-    state: present
-- name: Add nonportable bucket
-  community.windows.win_scoop_bucket:
-    name: nonportable
-    repo: https://gitee.com/scoop-installer/Nonportable
-    state: present
 - name: Update scoop config
   tags: scoop-config
   block:
@@ -76,3 +49,30 @@
         dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
         content: "{{ config | to_json }}"
       when: scoop_config_stat.stat.exists is false
+- name: Install base packages via scoop
+  community.windows.win_scoop:
+    name:
+      - main/lessmsi
+      - main/aria2
+      - main/7zip
+      - main/git
+    global: false
+  register: result
+  retries: 3
+  delay: 5
+  until: result is not failed
+- name: Add extras bucket
+  community.windows.win_scoop_bucket:
+    name: extras
+    repo: https://gitee.com/scoop-installer/Extras
+    state: present
+- name: Add nerd-fonts bucket
+  community.windows.win_scoop_bucket:
+    name: nerd-fonts
+    repo: https://gitee.com/scoop-installer/scoop-nerd-fonts
+    state: present
+- name: Add nonportable bucket
+  community.windows.win_scoop_bucket:
+    name: nonportable
+    repo: https://gitee.com/scoop-installer/Nonportable
+    state: present
