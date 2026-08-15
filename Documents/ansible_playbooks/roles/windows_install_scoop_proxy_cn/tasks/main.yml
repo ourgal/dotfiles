@@ -10,10 +10,10 @@
 - name: Install base packages via scoop
   community.windows.win_scoop:
     name:
-      - main/git
       - main/lessmsi
       - main/aria2
       - main/7zip
+      - main/git
     global: false
   register: result
   retries: 3
