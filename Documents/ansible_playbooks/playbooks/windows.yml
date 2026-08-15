@@ -3,6 +3,8 @@
   remote_user: admin
   ignore_unreachable: true
   tags: admin
+  vars:
+    ansible_ssh_pass: "{{ lookup('gopass', 'password/windows/admin') | trim }}"
   roles:
     - role: windows_choco
       windows_choco_packages:
@@ -46,6 +48,8 @@
   remote_user: user
   ignore_unreachable: true
   tags: user
+  vars:
+    ansible_ssh_pass: "{{ lookup('gopass', 'password/windows/user') | trim }}"
   roles:
     - role: windows_install_scoop_proxy_cn
     - role: windows_scoop_update
@@ -113,6 +117,8 @@
   remote_user: game
   ignore_unreachable: true
   tags: game
+  vars:
+    ansible_ssh_pass: "{{ lookup('gopass', 'password/windows/user') | trim }}"
   roles:
     - role: windows_install_scoop_proxy_cn
     - role: windows_scoop_bucket
@@ -129,6 +135,8 @@
   remote_user: admin
   ignore_unreachable: true
   tags: admin
+  vars:
+    ansible_ssh_pass: "{{ lookup('gopass', 'password/windows/admin') | trim }}"
   roles:
     - role: windows_firewall
     - role: windows_hostname
