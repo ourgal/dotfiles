@@ -18,7 +18,7 @@
         - name: openssh
           allow_prerelease: true
           package_params: /SSHServerFeature
-    - role: windows_install_scoop_proxy_cn
+    - role: windows_install_scoop
     - role: windows_scoop
       windows_scoop_global: true
       windows_scoop_packages:
@@ -54,7 +54,7 @@
     - name: Gather facts
       ansible.builtin.gather_facts:
   roles:
-    - role: windows_install_scoop_proxy_cn
+    - role: windows_install_scoop
     - role: windows_scoop_update
     - role: windows_scoop
       windows_scoop_packages: "{{ windows_scoop_packages_main_all }}"
@@ -126,7 +126,7 @@
     - name: Gather facts
       ansible.builtin.gather_facts:
   roles:
-    - role: windows_install_scoop_proxy_cn
+    - role: windows_install_scoop
     - role: windows_scoop_bucket
       windows_scoop_bucket_name: aki
       windows_scoop_bucket_repo: https://gh-proxy.org/https://github.com/akirco/aki-apps
