@@ -61,6 +61,13 @@
   retries: 3
   delay: 5
   until: result is not failed
+- name: Remove gh proxy
+  vars:
+    config:
+      URL_PROXY:
+  ansible.windows.win_copy:
+    dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+    content: "{{ scoop_config_content.content | b64decode | from_json | combine(config) | to_json }}"
 - name: Add extras bucket
   community.windows.win_scoop_bucket:
     name: extras
@@ -73,3 +80,10 @@
   community.windows.win_scoop_bucket:
     name: nonportable
     state: present
+- name: Add gh proxy
+  vars:
+    config:
+      URL_PROXY: https://gh.felicity.ac.cn
+  ansible.windows.win_copy:
+    dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+    content: "{{ scoop_config_content.content | b64decode | from_json | combine(config) | to_json }}"
