@@ -29,7 +29,7 @@
           force_update: true
           use_external_7zip: true
           gh_token: "{{ lookup('gopass', 'github/ourgal/token') | trim }}"
-          URL_PROXY: https://jiashu.1win.eu.org
+          URL_PROXY: https://gh.felicity.ac.cn
       ansible.windows.win_copy:
         dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
         content: "{{ scoop_config_content.content | b64decode | from_json | combine(config) | to_json }}"
@@ -44,7 +44,7 @@
           force_update: true
           use_external_7zip: true
           gh_token: "{{ lookup('gopass', 'github/ourgal/token') | trim }}"
-          URL_PROXY: https://jiashu.1win.eu.org
+          URL_PROXY: https://gh.felicity.ac.cn
       ansible.windows.win_copy:
         dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
         content: "{{ config | to_json }}"
