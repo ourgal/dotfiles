@@ -61,24 +61,21 @@
   retries: 3
   delay: 5
   until: result is not failed
-- name: Stat extras bucket
-  ansible.windows.win_stat:
-    path: "{{ ansible_facts.user_dir }}\\scoop\\buckets\\extras"
-  register: scoop_extras_stat
 - name: Add extras bucket
-  ansible.windows.win_shell: "git clone https://gitee.com/scoop-installer/Extras {{ ansible_facts.user_dir }}\\scoop\\buckets\\extras"
-  when: scoop_extras_stat.stat.exists is false
-- name: Stat nerd-fonts bucket
-  ansible.windows.win_stat:
-    path: "{{ ansible_facts.user_dir }}\\scoop\\buckets\\nerd-fonts"
-  register: scoop_nerd_fonts_stat
+  ansible.windows.win_shell: |
+    cd ~/scoop/buckets
+    if (-not (Test-Path -Path extras)) {
+      git clone https://gitee.com/scoop-installer/Extras extras
+    }
 - name: Add nerd-fonts bucket
-  ansible.windows.win_shell: "git clone https://gitee.com/scoop-installer/scoop-nerd-fonts {{ ansible_facts.user_dir }}\\scoop\\buckets\\nerd-fonts"
-  when: scoop_nerd_fonts_stat.stat.exists is false
-- name: Stat nonportable bucket
-  ansible.windows.win_stat:
-    path: "{{ ansible_facts.user_dir }}\\scoop\\buckets\\nonportable"
-  register: scoop_nonportable_fonts_stat
+  ansible.windows.win_shell: |
+    cd ~/scoop/buckets
+    if (-not (Test-Path -Path nerd-fonts)) {
+      git clone https://gitee.com/scoop-installer/scoop-nerd-fonts nerd-fonts
+    }
 - name: Add nonportable bucket
-  ansible.windows.win_shell: "git clone https://gitee.com/scoop-installer/Nonportable {{ ansible_facts.user_dir }}\\scoop\\buckets\\nonportable"
-  when: scoop_nonportable_fonts_stat.stat.exists is false
+  ansible.windows.win_shell: |
+    cd ~/scoop/buckets
+    if (-not (Test-Path -Path nonportable)) {
+      git clone https://gitee.com/scoop-installer/Nonportable nonportable
+    }
