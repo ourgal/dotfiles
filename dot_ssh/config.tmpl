@@ -1,78 +1,51 @@
-{{ $username := dict -}}
-{{ $username = set $username "windows" "user" -}}
-{{ $username = set $username "linux" "zxc" -}}
-
-{{ $termux := dict -}}
-{{ $termux = set $termux "note20" (dict "port" 8022 "user" "u0_a650" "ip" (ternary "192.168.0.105" "192.168.123.232" (eq .chezmoi.hostname "work" "work2"))) -}}
-{{ $termux = set $termux "note20_adb" (dict "port" 8023 "user" $termux.note20.user "ip" "localhost") -}}
-{{ $termux = set $termux "m6" (dict "port" 8022 "user" "u0_a556" "ip" (ternary "192.168.0.107" "192.168.123.191" (eq .chezmoi.hostname "work" "work2"))) -}}
-{{ $termux = set $termux "m6_adb" (dict "port" 8022 "user" $termux.m6.user "ip" "localhost") -}}
-{{ $termux_home := "/data/data/com.termux/files/home" -}}
-{{ $windows_home := print "/C:/Users/" $username.windows -}}
-{{ $linux_home := print "/home/" $username.linux -}}
-
-{{ $ip := dict -}}
-{{ $ip = set $ip "brix" (dict "ip" "192.168.123.206" "port" "22" "user" $username.linux) -}}
-{{ $ip = set $ip "home" (dict "ip" "192.168.123.100" "port" "22" "user" $username.linux) -}}
-{{ $ip = set $ip "soft" (dict "ip" "192.168.123.206" "port" "23231" "user" $username.linux) -}}
-{{ $ip = set $ip "nuc" (dict "ip" "192.168.123.123" "port" "22" "user" $username.windows) -}}
-
-{{ $work_ip := "100.127.103.95" -}}
-{{ if eq .chezmoi.hostname "work" "work2" -}}
-{{ $work_ip = "192.168.0.102" -}}
-{{ end -}}
-
-{{ $ip = set $ip "work" (dict "ip" $work_ip "port" "22" "user" $username.windows) -}}
-{{ $ip = set $ip "work2" (dict "ip" "192.168.1.107" "port" "22" "user" $username.linux) -}}
-{{ $ip = set $ip "office2043" (dict "ip" "192.168.1.104" "port" "22" "user" $username.linux) -}}
 Host soft
-  Port {{ $ip.soft.port }}
-  HostName {{ $ip.soft.ip }}
+  Port 23231
+  HostName 192.168.123.206
 Host nuc
-  Port {{ $ip.nuc.port }}
-  User {{ $ip.nuc.user }}
-  HostName {{ $ip.nuc.ip }}
+  Port 22
+  User user
+  HostName 192.168.123.123
 Host github.com
   HostName ssh.github.com
   Port 443
   User git
 Host note20-adb
-  Port {{ $termux.note20_adb.port }}
-  User {{ $termux.note20_adb.user }}
-  HostName {{ $termux.note20_adb.ip }}
+  Port 8023
+  User u0_a650
+  HostName localhost
 Host note20
-  Port {{ $termux.note20.port }}
-  User {{ $termux.note20.user }}
-  HostName {{ $termux.note20.ip }}
+  Port 8022
+  User u0_a650
+  HostName {{ eq .chezmoi.hostname "work" "work2" | ternary "192.168.0.105" "192.168.123.232"  }}
 Host m6
-  Port {{ $termux.m6.port }}
-  User {{ $termux.m6.user }}
-  HostName {{ $termux.m6.ip }}
+  Port 8022
+  User u0_a556
+  HostName {{ eq .chezmoi.hostname "work" "work2" | ternary "192.168.0.107" "192.168.123.191" }}
 Host m6-adb
-  Port {{ $termux.m6_adb.port }}
-  User {{ $termux.m6_adb.user }}
-  HostName {{ $termux.m6_adb.ip }}
+  Port 8022
+  User u0_a556
+  HostName localhost
 Host work
-  Port {{ $ip.work.port }}
-  User {{ $ip.work.user }}
-  HostName {{ $ip.work.ip }}
+  Port 22
+  User user
+  HostName {{ eq .chezmoi.hostname "work" "work2" | ternary "192.168.0.102" "100.127.103.95" }}
 
 {{ if ne .chezmoi.hostname "localhost" -}}
 Host gogs-m6
   Port 23231
-  User {{ $termux.m6.user }}
+  User u0_a556
   HostName {{ template "ipM6" .chezmoi.hostname }}
 {{ end -}}
 
 {{ if eq .chezmoi.hostname "work" "work2" -}}
 Host work2
-  Port {{ $ip.work2.port }}
-  User {{ $ip.work2.user }}
-  HostName {{ $ip.work2.ip }}
+  Port 22
+  User zxc
+  HostName 192.168.1.107
 Host office2043
-  Port {{ $ip.office2043.port }}
-  User {{ $ip.office2043.user }}
-  HostName {{ $ip.office2043.ip }}
+  Port 22
+  User zxc
+  HostName 192.168.1.104
 {{ end -}}
 Host *
   AddKeysToAgent yes
