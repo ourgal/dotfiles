@@ -1,0 +1,30 @@
+- name: Add pipx bin path to PATH
+  ansible.windows.win_path:
+    state: present
+    scope: user
+    elements: '%userprofile%\.local\bin'
+- name: Create .pip folder
+  ansible.windows.win_file:
+    dest: "{{ ansible_facts.env.APPDATA }}\\.pip"
+    state: directory
+- name: Check pip config file
+  ansible.windows.win_stat:
+    path: "{{ ansible_facts.env.APPDATA }}\\.pip\\pip.ini"
+  register: pip_config_stat
+- name: Set pip config
+  ansible.windows.win_copy:
+    dest: "{{ ansible_facts.env.APPDATA }}\\.pip\\pip.ini"
+    content: |
+      [global]
+      index-url = https://mirrors.cernet.edu.cn/pypi/web/simple/
+      [install]
+      trusted-host = mirrors.cernet.edu.cn
+  when: pip_config_stat.stat.exists is false
+- name: Install pipx packages
+  ansible.windows.win_shell: "pipx install {{ item }}"
+  loop: "{{ windows_pipx_packages }}"
+- name: Remove pip config
+  ansible.windows.win_file:
+    path: "{{ ansible_facts.env.APPDATA }}\\.pip\\pip.ini"
+    state: absent
+  when: pip_config_stat.stat.exists is false

@@ -1,0 +1,35 @@
+- name: Add cargo bin path to PATH
+  ansible.windows.win_path:
+    state: present
+    scope: user
+    elements: '%userprofile%\.cargo\bin'
+- name: Create .cargo folder
+  ansible.windows.win_file:
+    dest: "{{ ansible_facts.user_dir }}\\.cargo"
+    state: directory
+- name: Check cargo config file
+  ansible.windows.win_stat:
+    path: "{{ ansible_facts.user_dir }}\\.cargo\\config.toml"
+  register: cargo_config_stat
+- name: Set cargo config
+  ansible.windows.win_copy:
+    dest: "{{ ansible_facts.user_dir }}\\.cargo\\config.toml"
+    content: |
+      [source.crates-io]
+      replace-with = 'mirror'
+
+      [source.mirror]
+      registry = "sparse+https://mirrors.cernet.edu.cn/crates.io-index/"
+
+      [registries.mirror]
+      index = "sparse+https://mirrors.cernet.edu.cn/crates.io-index/"
+  when: cargo_config_stat.stat.exists is false
+- name: Install cargo packages
+  tags: cargo-install
+  ansible.windows.win_shell: "cargo install {{ item }}"
+  loop: "{{ windows_cargo_packages }}"
+- name: Remove cargo config
+  ansible.windows.win_file:
+    path: "{{ ansible_facts.user_dir }}\\.cargo\\config.toml"
+    state: absent
+  when: cargo_config_stat.stat.exists is false

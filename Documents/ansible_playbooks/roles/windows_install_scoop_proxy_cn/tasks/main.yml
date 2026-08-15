@@ -1,0 +1,76 @@
+- name: Check scoop file
+  ansible.windows.win_stat:
+    path: "{{ ansible_facts.user_dir }}/scoop/apps/scoop/current/bin/scoop.ps1"
+  register: scoop_file_stat
+- name: Install scoop-proxy-cn
+  ansible.windows.win_shell: |
+    Set-ExecutionPolicy RemoteSigned -scope CurrentUser -Force
+    iwr -useb scoop.201704.xyz | iex
+  when: scoop_file_stat.stat.exists is false
+- name: Install base packages via scoop
+  community.windows.win_scoop:
+    name:
+      - main/git
+      - main/lessmsi
+      - main/aria2
+      - main/7zip
+    global: false
+  register: result
+  retries: 3
+  delay: 5
+  until: result is not failed
+- name: Add extras bucket
+  community.windows.win_scoop_bucket:
+    name: extras
+    repo: https://gitee.com/scoop-installer/Extras
+    state: present
+- name: Add nerd-fonts bucket
+  community.windows.win_scoop_bucket:
+    name: nerd-fonts
+    repo: https://gitee.com/scoop-installer/scoop-nerd-fonts
+    state: present
+- name: Add nonportable bucket
+  community.windows.win_scoop_bucket:
+    name: nonportable
+    repo: https://gitee.com/scoop-installer/Nonportable
+    state: present
+- name: Update scoop config
+  tags: scoop-config
+  block:
+    - name: Check scoop config file
+      ansible.windows.win_stat:
+        path: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+      register: scoop_config_stat
+    - name: Get scoop config content
+      ansible.windows.slurp:
+        src: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+      register: scoop_config_content
+      when: scoop_config_stat.stat.exists is true
+    - name: Set scoop config
+      vars:
+        config:
+          use_lessmsi: true
+          aria2-enabled: false
+          aria2-warning-enabled: false
+          use_sqlite_cache: true
+          force_update: true
+          use_external_7zip: true
+          gh_token: "{{ lookup('gopass', 'github/ourgal/token') | trim }}"
+      ansible.windows.win_copy:
+        dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+        content: "{{ scoop_config_content.content | b64decode | from_json | combine(config) | to_json }}"
+      when: scoop_config_stat.stat.exists is true
+    - name: Set scoop config
+      vars:
+        config:
+          use_lessmsi: true
+          aria2-enabled: false
+          aria2-warning-enabled: false
+          use_sqlite_cache: true
+          force_update: true
+          use_external_7zip: true
+          gh_token: "{{ lookup('gopass', 'github/ourgal/token') | trim }}"
+      ansible.windows.win_copy:
+        dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+        content: "{{ config | to_json }}"
+      when: scoop_config_stat.stat.exists is false

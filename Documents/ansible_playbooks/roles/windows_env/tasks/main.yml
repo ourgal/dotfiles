@@ -1,0 +1,27 @@
+- name: Set home environment variable
+  ansible.windows.win_environment:
+    state: present
+    name: HOME
+    value: "{{ ansible_facts.user_dir }}"
+    level: user
+- name: Add doom bin path to PATH
+  ansible.windows.win_path:
+    state: present
+    scope: user
+    elements: '%userprofile%\.emacs.d\bin'
+- name: Set go environment variable
+  ansible.windows.win_environment:
+    state: present
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    level: user
+  loop:
+    - name: GO111MODULE
+      value: "on"
+    - name: GOPROXY
+      value: https://goproxy.cn
+- name: Add msys bin path to PATH
+  ansible.windows.win_path:
+    state: present
+    scope: user
+    elements: '%userprofile%\scoop\apps\msys2\current\mingw64\bin'

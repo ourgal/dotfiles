@@ -1,0 +1,13 @@
+- name: Check path exists
+  ansible.windows.win_stat:
+    path: "{{ windows_service_path }}"
+  register: path_stat
+  when: windows_service_path is defined
+- name: Disable ssh-agent service
+  ansible.windows.win_service:
+    name: "{{ windows_service_name }}"
+    path: "{{ windows_service_cmd if windows_service_cmd is defined else omit }}"
+    state: "{{ windows_srevice_state }}"
+    start_mode: "{{ windows_srevice_start_mode }}"
+  when: windows_service_path if windows_service_path is defined else true
+
