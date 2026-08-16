@@ -6,14 +6,14 @@
     {{ if not (stat .) -}}
     {{ warnf (print "file " . " not found") }}
     {{ else -}}
-    {{ include . }}
+    {{ include . -}}
     {{ end -}}
 {{ else -}}
     {{ range . -}}
         {{ if not (stat .) -}}
         {{ warnf (print "file " . " not found") }}
         {{ else -}}
-        {{ include . }}
+        {{ include . -}}
         {{ end -}}
     {{ end -}}
 {{ end -}}
