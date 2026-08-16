@@ -370,9 +370,14 @@ scoop/persist/*
 # ]]]
 # [[[ doom emacs
 {{ if lookPath "emacs" -}}
-{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 !.config/doom/
 !.config/doom/**
+{{ end -}}
+
+{{ if eq .chezmoi.os "windows" -}}
+!.emacs.d/
+!.emacs.d/**
 {{ end -}}
 {{ end -}}
 # ]]]
