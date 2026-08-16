@@ -41,6 +41,10 @@
       windows_service_name: ssh-agent
       windows_srevice_state: stopped
       windows_srevice_start_mode: disabled
+    - role: windows_service
+      windows_service_name: wsearch
+      windows_srevice_state: stopped
+      windows_srevice_start_mode: disabled
     - role: windows_optimize_powershell
     - role: windows_developer_mode
 - name: Configure windows user
