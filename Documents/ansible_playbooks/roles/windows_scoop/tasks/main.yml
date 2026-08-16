@@ -1,14 +1,9 @@
-- name: "{{ windows_scoop_state }} packages via scoop"
+- name: Scoop packages
   tags: admin-scoop-nonportable
   community.windows.win_scoop:
-    name: "{{ item }}"
+    name: "{{ windows_scoop_packages }}"
     global: "{{ windows_scoop_global }}"
     state: "{{ windows_scoop_state }}"
-  register: result
-  retries: 3
-  delay: 5
-  until: result is not failed
-  loop: "{{ windows_scoop_packages }}"
 - name: Reboot
   ansible.windows.win_reboot:
   when: "{{ windows_scoop_reboot }}"
