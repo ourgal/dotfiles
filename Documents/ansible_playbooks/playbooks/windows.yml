@@ -66,7 +66,24 @@
       windows_scoop_packages:
         - nodejs-lts
         - vscode
-      windows_scoop_reboot: true
+- name: Configure windows admin
+  hosts: windows
+  remote_user: admin
+  ignore_unreachable: true
+  tags: admin
+  vars:
+    ansible_ssh_pass: "{{ lookup('gopass', 'password/windows/admin') | trim }}"
+  tasks:
+    - name: Reboot
+      ansible.windows.win_reboot:
+- name: Configure windows user
+  hosts: windows
+  remote_user: user
+  ignore_unreachable: true
+  tags: user
+  vars:
+    ansible_ssh_pass: "{{ lookup('gopass', 'password/windows/user') | trim }}"
+  roles:
     - role: windows_scoop
       windows_scoop_packages: "{{ windows_scoop_packages_extras_all }}"
     - role: windows_scoop
