@@ -9,4 +9,4 @@
     path: "{{ windows_service_cmd if windows_service_cmd is defined else omit }}"
     state: "{{ windows_srevice_state }}"
     start_mode: "{{ windows_srevice_start_mode }}"
-  when: windows_service_path if windows_service_path is defined else true
+  when: true if windows_service_path is defined else false
