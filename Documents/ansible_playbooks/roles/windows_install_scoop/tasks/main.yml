@@ -1,6 +1,10 @@
 - name: Update scoop config
   tags: scoop-config
   block:
+    - name: Create scoop config folder
+      ansible.windows.win_file:
+        dest: "{{ ansible_facts.user_dir }}\\.config\\scoop"
+        state: directory
     - name: Check scoop config file
       ansible.windows.win_stat:
         path: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
