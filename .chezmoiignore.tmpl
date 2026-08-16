@@ -401,7 +401,7 @@ scoop/persist/*
 {{ end -}}
 # ]]]
 # [[[ deskflow
-{{ if lookPath "deskflow" -}}
+{{ if lookPath "deskflow-core" -}}
 {{ if eq .chezmoi.os "windows" -}}
 !scoop/persist/deskflow/
 !scoop/persist/deskflow/**
