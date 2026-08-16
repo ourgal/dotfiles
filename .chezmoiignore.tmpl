@@ -126,8 +126,8 @@ scoop/persist/*
 # [[[ gnupg
 {{ if lookPath "gpg" -}}
 {{ if eq .chezmoi.os "windows" -}}
-!scoop/persist/gpg/home/
-!scoop/persist/gpg/home/**
+!scoop/persist/gpg/
+!scoop/persist/gpg/**
 {{ end -}}
 {{ if eq .chezmoi.os "linux" "android" -}}
 !.gnupg/
