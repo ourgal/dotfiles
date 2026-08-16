@@ -31,7 +31,7 @@
 {{ $_ = set $_ "preloadindex" true -}}
 {{ $_ = set $_ "untrackedCache" true -}}
 {{ $_ = set $_ "whitespace" "error" -}}
-{{ $_ = set $_ "autocrlf" "input" -}}
+{{ $_ = set $_ "autocrlf" (eq .chezmoi.os "windows" | ternary true "input") -}}
 	{{- if eq .chezmoi.os "windows" -}}
 	{{ $_ = set $_ "sshCommand" (lookPath "ssh" | squote) -}}
 	{{ $_ = set $_ "symlinks" true -}}
