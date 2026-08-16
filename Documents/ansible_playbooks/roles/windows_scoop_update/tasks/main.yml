@@ -3,6 +3,6 @@
 - name: Update scoop packages
   ansible.windows.win_shell: "{{ ansible_facts.user_dir }}/scoop/apps/scoop/current/bin/scoop.ps1 update --all"
 - name: Remove scoop cache
-  ansible.windows.win_shell: "{{ ansible_facts.user_dir }}/scoop/apps/scoop/current/bin/scoop.ps1 cache remove *"
+  ansible.windows.win_shell: "{{ ansible_facts.user_dir }}/scoop/apps/scoop/current/bin/scoop.ps1 cache rm --all"
 - name: Clean up scoop packages
   ansible.windows.win_shell: "{{ ansible_facts.user_dir }}/scoop/apps/scoop/current/bin/scoop.ps1 cleanup --all"
