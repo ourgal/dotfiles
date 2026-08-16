@@ -3,7 +3,7 @@
     path: "{{ windows_service_path }}"
   register: path_stat
   when: windows_service_path is defined
-- name: Disable ssh-agent service
+- name: "{{ windows_service_name }} service"
   ansible.windows.win_service:
     name: "{{ windows_service_name }}"
     path: "{{ windows_service_cmd if windows_service_cmd is defined else omit }}"
