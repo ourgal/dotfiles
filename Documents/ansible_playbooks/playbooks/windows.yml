@@ -156,7 +156,7 @@
         - aki/wegame
     - role: windows_scoop_bucket
       windows_scoop_bucket_name: aki
-      windows_scoop_bucket_state: abent
+      windows_scoop_bucket_state: absent
 - name: Configure windows admin
   hosts: windows
   remote_user: admin
