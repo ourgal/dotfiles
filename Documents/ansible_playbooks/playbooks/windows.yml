@@ -173,9 +173,9 @@
       windows_hostname_name: "{{ my_hostname if my_hostname is defined else 'nuc' }}"
     - role: windows_service
       windows_service_name: Everything
-      windows_srevice_state: started
-      windows_srevice_path: C:\Users\User\scoop\apps\everything\current\everything.exe
-      windows_srevice_cmd: "{{ windows_srevice_path }} -svc"
+      windows_service_state: started
+      windows_service_path: C:\Users\User\scoop\apps\everything\current\everything.exe
+      windows_service_cmd: C:\Users\User\scoop\apps\everything\current\everything.exe -svc
     - role: windows_user_right
       windows_user_right_name: SeRemoteInteractiveLogonRight
       windows_user_right_users: User
