@@ -527,6 +527,13 @@ scoop/persist/*
 {{ if eq .chezmoi.os "windows" -}}
 !Documents/autohotkey/
 !Documents/autohotkey/**
+
+!AppData/Roaming/Microsoft/
+!AppData/Roaming/Microsoft/Windows/
+!AppData/Roaming/Microsoft/Windows/Start Menu/
+!AppData/Roaming/Microsoft/Windows/Start Menu/Programs/
+!AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/
+!AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/**
 {{ end -}}
 {{ end -}}
 # ]]]
