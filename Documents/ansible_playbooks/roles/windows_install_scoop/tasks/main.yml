@@ -56,13 +56,8 @@
   until: result is not failed
 - name: Add scoop buckets
   community.windows.win_scoop_bucket:
-    name: "{{ item }}"
+    name:
+      - extras
+      - nerd-fonts
+      - nonportable
     state: present
-  register: result
-  retries: 3
-  delay: 5
-  until: result is not failed
-  loop:
-    - extras
-    - nerd-fonts
-    - nonportable
