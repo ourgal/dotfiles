@@ -73,14 +73,14 @@
       windows_scoop_packages: "{{ windows_scoop_packages_nerd_fonts }}"
     - role: windows_scoop_bucket
       windows_scoop_bucket_name: extras-cn
-      windows_scoop_bucket_repo: https://gh-proxy.org/https://github.com/Scoopforge/Extras-CN
+      windows_scoop_bucket_repo: https://github.com/Scoopforge/Extras-CN
     - role: windows_scoop
       windows_scoop_packages:
         - extras-cn/neteasemusic
         - extras-cn/goldendict-ng
     - role: windows_scoop_bucket
       windows_scoop_bucket_name: ourgal_scoop-bucket
-      windows_scoop_bucket_repo: https://gh-proxy.org/https://github.com/ourgal/scoop-bucket
+      windows_scoop_bucket_repo: https://github.com/ourgal/scoop-bucket
     - role: windows_scoop
       windows_scoop_packages:
         - ourgal_scoop-bucket/dockfmt
@@ -105,13 +105,13 @@
         - ourgal_scoop-bucket/install-nothing
     - role: windows_scoop_bucket
       windows_scoop_bucket_name: Rinkerbel_scooped
-      windows_scoop_bucket_repo: https://gh-proxy.org/https://github.com/Rinkerbel/scooped
+      windows_scoop_bucket_repo: https://github.com/Rinkerbel/scooped
     - role: windows_scoop
       windows_scoop_packages:
         - Rinkerbel_scooped/seanime-server
     - role: windows_scoop_bucket
       windows_scoop_bucket_name: java
-      windows_scoop_bucket_repo: https://gh-proxy.org/https://gitee.com/scoop-installer/Java
+      windows_scoop_bucket_repo: https://gitee.com/scoop-installer/Java
     - role: windows_scoop
       windows_scoop_packages:
         - java/openjdk17
@@ -133,7 +133,7 @@
     - role: windows_install_scoop
     - role: windows_scoop_bucket
       windows_scoop_bucket_name: aki
-      windows_scoop_bucket_repo: https://gh-proxy.org/https://github.com/akirco/aki-apps
+      windows_scoop_bucket_repo: https://github.com/akirco/aki-apps
     - role: windows_scoop
       windows_scoop_packages:
         - aki/wegame
