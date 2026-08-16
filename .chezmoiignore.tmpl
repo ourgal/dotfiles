@@ -232,7 +232,8 @@ scoop/persist/*
 # [[[ chezmoi
 {{ if lookPath "chezmoi" -}}
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
-!.config/chezmoi/chezmoi.toml
+!.config/chezmoi/
+!.config/chezmoi/**
 {{ end -}}
 {{ end -}}
 # ]]]
