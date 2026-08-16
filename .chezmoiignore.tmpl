@@ -672,6 +672,8 @@ scoop/persist/*
 {{ if lookPath "syncthing" -}}
 {{ if eq .chezmoi.os "windows" -}}
 !scoop/persist/plyanite/.stignore
+!scoop/persist/syncthing/
+!scoop/persist/syncthing/**
 {{ end -}}
 {{ end -}}
 # ]]]
