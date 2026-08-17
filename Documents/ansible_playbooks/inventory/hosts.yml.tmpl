@@ -30,7 +30,7 @@ all:
       ansible_user: user
       ansible_host: chromebit.local
       ansible_become_method: doas
-      ansible_become_pass: "{{ includeTemplate "gopass" "password/linux/user" }}"
+      ansible_become_pass: {{ includeTemplate "gopass" "password/linux/user" }}
 windows:
   vars:
     ansible_connection: ssh
@@ -94,22 +94,28 @@ uos:
     work2:
       ansible_host: 192.168.1.107
       ansible_user: zxc
-      ansible_become_pass: "{{ includeTemplate "gopass" "password/linux/user" }}"
+      ansible_become_pass: {{ includeTemplate "gopass" "password/linux/user" }}
 macos:
   hosts:
     macmini:
       ansible_host: 192.168.123.117
-      ansible_become_pass: "{{ includeTemplate "gopass" "password/linux/user" }}"
+      ansible_become_pass: {{ includeTemplate "gopass" "password/linux/user" }}
 void:
   hosts:
     surface:
       ansible_user: zxc
       ansible_host: surface.local
-      ansible_become_pass: "{{ includeTemplate "gopass" "password/linux/user" }}"
+      ansible_become_pass: {{ includeTemplate "gopass" "password/linux/user" }}
 void-live:
   hosts:
     void-live:
       ansible_user: anon
       ansible_ssh_pass: voidlinux
       ansible_host: 192.168.123.221
-      ansible_become_pass: "{{ includeTemplate "gopass" "password/linux/user" }}"
+      ansible_become_pass: {{ includeTemplate "gopass" "password/linux/user" }}
+easyos:
+  hosts:
+    easy1:
+      ansible_user: root
+      ansible_host: 192.168.123.123
+      ansible_ssh_pass: {{ includeTemplate "gopass" "password/linux/user" }}
