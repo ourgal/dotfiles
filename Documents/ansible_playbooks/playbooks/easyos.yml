@@ -32,6 +32,7 @@
           - htop
           # dev
           - git
+          - lazygit
     - name: Download chezmoi
       ansible.builtin.get_url:
         url: https://github.com/twpayne/chezmoi/releases/download/v2.72.0/chezmoi_2.72.0_linux_amd64.deb
