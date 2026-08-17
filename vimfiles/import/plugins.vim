@@ -86,7 +86,7 @@ Plug 'https://gitcode.com/gh_mirrors/vi/vim-visual-multi' " multiple cursor
 Plug gh_proxy . 'tpope/vim-surround' " pair markers
 " Plug 'vim-polyglot/vim-polyglot' " syntax highlight, conflicts with auto session
 Plug 'https://gitcode.com/gh_mirrors/vi/vim-which-key' " menu
-Plug 'https://gitcode.com/gh_mirrors/vi/vimcdoc' " vim chinese doc
+" Plug 'https://gitcode.com/gh_mirrors/vi/vimcdoc' " vim chinese doc
 Plug 'https://gitcode.com/gh_mirrors/vi/vim-qf' " quickfix
 Plug gh_proxy . 'ourgal/central.vim' " undo backup and swap
 Plug 'https://gitcode.com/gh_mirrors/ta/tagbar' " ctags
