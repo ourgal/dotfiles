@@ -29,11 +29,10 @@
 	{{ $_ = set $_ "paper" "diff-so-fancy | less '--tabs=4' -RFX" -}}
 	{{ end -}}
 {{ $_ = set $_ "preloadindex" true -}}
-{{ $_ = set $_ "untrackedCache" true -}}
 {{ $_ = set $_ "whitespace" "error" -}}
 {{ $_ = set $_ "autocrlf" (eq .chezmoi.os "windows" | ternary true "input") -}}
 	{{- if eq .chezmoi.os "windows" -}}
-	{{ $_ = set $_ "sshCommand" ("C:\\Program Files\\OpenSSH-Win64\\ssh.EXE" | squote) -}}
+	{{ $_ = set $_ "sshCommand" (lookPath "ssh"| replace "\\" "/") -}}
 	{{ $_ = set $_ "symlinks" true -}}
 	{{- end -}}
 {{ $cfg = set $cfg "core" $_ -}}
