@@ -1,0 +1,26 @@
+---
+- name: Easyos
+  hosts: easyos
+  ignore_unreachable: true
+  tasks:
+    - name: Update apt cache
+      tags: apt
+      ansible.builtin.apt:
+        update_cache: true
+    - name: Install apt packages
+      ansible.builtin.apt:
+        name:
+          # system
+          - aptitude
+          # editor
+          - vim
+          - vim-gtk3
+          - vim-gui-common
+          - emacs
+          # ansible
+          - ansible
+          - ansible-core
+          # download
+          - aria2
+          # dotfile
+          - https://github.com/twpayne/chezmoi/releases/download/v2.72.0/chezmoi_2.72.0_linux_amd64.deb
