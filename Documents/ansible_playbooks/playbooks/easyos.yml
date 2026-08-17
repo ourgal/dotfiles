@@ -22,5 +22,19 @@
           - ansible-core
           # download
           - aria2
-          # dotfile
-          - https://github.com/twpayne/chezmoi/releases/download/v2.72.0/chezmoi_2.72.0_linux_amd64.deb
+          # nodejs
+          - nodejs
+          - npm
+          # shell
+          - fish
+          # top
+          - btop
+          - htop
+    - name: Download chezmoi
+      ansible.builtin.get_url:
+        url: https://github.com/twpayne/chezmoi/releases/download/v2.72.0/chezmoi_2.72.0_linux_amd64.deb
+        dest: /tmp/chezmoi.deb
+        mode: '0644'
+    - name: Install chezmoi
+      ansible.builtin.apt:
+        deb: /tmp/chezmoi.deb
