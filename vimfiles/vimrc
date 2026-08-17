@@ -8,8 +8,10 @@ packadd! comment
 " editorconfig plugin
 packadd! editorconfig
 
+if exists('*wildtrigger')
 " file picker
 import 'find.vim'
+endif
 
 " leader key
 let g:mapleader = ' '
@@ -147,12 +149,14 @@ command! Chezmoi call Chezmoi()
 " inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 " inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+if exists('*wildtrigger')
 " command completion
 autocmd CmdlineChanged [:\/\?] call wildtrigger()
 set wildmode=noselect:lastused,full
 set wildoptions=pum
 autocmd CmdlineEnter [\/\?] set pumheight=8
 autocmd CmdlineLeave [\/\?] set pumheight&
+endif
 
 if executable('sdcv')
     set keywordprg=sdcv\ -n
