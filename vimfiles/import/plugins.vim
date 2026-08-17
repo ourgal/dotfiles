@@ -19,6 +19,11 @@ if g:is_android
   Plug gh_proxy . 'vim-utilities/termux-clipboard'
 endif
 "}}}
+"{{{ command completion
+if !exists('*wildtrigger')
+Plug gh_proxy . 'girishji/vimsuggest'
+endif
+"}}}
 "{{{ command preview
 Plug 'https://gitcode.com/gh_mirrors/tr/traces.vim'
 "}}}
