@@ -1,6 +1,11 @@
-{{ if exec "gopass" "list" . -}}
-{{ gopass . -}}
+{{ if lookPath "gopass" -}}
+  {{ if exec "gopass" "list" . -}}
+    {{ gopass . -}}
+  {{ else -}}
+    {{ warnf (print "gopass entry " . " not found") -}}
+    {{ "" -}}
+  {{ end -}}
 {{ else -}}
-{{ warnf (print "gopass entry " . " not found") -}}
-{{ "" -}}
+    {{ warnf "gopass not found" -}}
+    {{ "" -}}
 {{ end -}}
