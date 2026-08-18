@@ -399,7 +399,12 @@ let g:which_key_map['w'] = {
       \ 'v'   : ['<C-W>v'     , 'split-window-below'],
       \ '?'   : ['Windows'    , 'fzf-window'],
       \ }
-call which_key#register('<Space>', "g:which_key_map")
+try
+    call which_key#register('<Space>', "g:which_key_map")
+catch /^Vim\%((\a\+)\)\=:E117:/
+    " E117 is the 'Unknown function' error code in Vim
+    echo "Autoload function is missing or plugin is not installed."
+endtry
 "}}}
 "{{{ org config
 let g:org_export_emacs = exepath('emacs')
@@ -475,7 +480,11 @@ let g:qf_mapping_ack_style = 1
 nmap <leader>gg <cmd>G<cr>
 "}}}
 "{{{ embark config
-colorscheme embark
+try
+    colorscheme embark
+catch /^Vim\%((\a\+)\)\=:E185/
+    colorscheme evening
+endtry
 "}}}
 "{{{ onedark config
 " colorscheme onedark
