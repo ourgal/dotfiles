@@ -21,21 +21,22 @@
           - xsel
           # remote
           - deskflow
+          # encrypt
+          - keepassxc
           # editor
           - vim
           - vim-gtk3
           - vim-gui-common
           - emacs
-          # ansible
-          - ansible
-          - ansible-core
+          - kakoune
+          - neovim
           # download
           - aria2
-          # nodejs
-          - nodejs
-          - npm
+          - transmission-cli
           # shell
           - fish
+          # archive
+          - atool
           # fuzzy finder
           - fzf
           # file manager
@@ -45,21 +46,42 @@
           - mc
           # terminal
           - kitty
+          # share
+          - rclone
           # cd
           - zoxide
           # prompt
           - starship
           # less
           - bat
+          # grep
+          - ripgrep
+          # fetch
+          - fastfetch 
+          # screen
+          - tmux 
           # top
           - btop
           - htop
+          # mv
+          - mmv
+          # du
+          - duf
           # dev
           - make
           - git
           - lazygit
+          - editorconfig
+          # ansible
+          - ansible
+          - ansible-core
+          # diff
+          - delta
           # python
           - pipx
+          # nodejs
+          - nodejs
+          - npm
     - name: Download chezmoi
       ansible.builtin.get_url:
         url: "{{ gh_proxy }}https://github.com/twpayne/chezmoi/releases/download/v2.72.0/chezmoi_2.72.0_linux_amd64.deb"
