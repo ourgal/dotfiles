@@ -200,10 +200,18 @@
 
 {{ if lookPath "ssh-add" -}}
 {{ if output "ssh-add" "-L" | contains "AAAAC3NzaC1lZDI1NTE5AAAAICnoHXc9ZcB45TDAxfEcIvIW+otg+gAwGG/J2t8fFRuv" -}}
+{{ if eq chezmoi.os "linux" "android" -}}
 [".local/share/gopass/stores/root"]
     type = "git-repo"
     url = "git@gitee.com:fairever/gopass.git"
     refreshPeriod = "168h"
+{{ end -}}
+{{ if eq chezmoi.os "windows" -}}
+["AppData/Local/gopass/stores/root"]
+    type = "git-repo"
+    url = "git@gitee.com:fairever/gopass.git"
+    refreshPeriod = "168h"
+{{ end -}}
 {{ end -}}
 {{ end -}}
 
