@@ -29,7 +29,7 @@
 {{ if and (hasKey .chezmoi.osRelease "name") (ne .chezmoi.osRelease.name "Void") -}}
 [".local/share/fonts/nerdsymbols"]
     type = "archive"
-    url = {{ print $mirror "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdFontsSymbolsOnly.tar.xz" | quote }}
+    url = {{ print $mirror .my.font.nerdsymbols_url | quote }}
     exact = true
     include = [ "*.ttf" ]
 {{ end -}}

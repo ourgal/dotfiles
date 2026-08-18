@@ -69,3 +69,23 @@
     - name: Install chezmoi
       ansible.builtin.apt:
         deb: /tmp/gopass.deb
+    - name: Ensure the target font directory exists
+      ansible.builtin.file:
+        path: /usr/local/share/fonts/nerdsymbols/
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+    - name: Download and extract font archive
+      ansible.builtin.unarchive:
+        src: [[ .my.font.nerdsymbols_url | quote ]]
+        dest: /usr/local/share/fonts/nerdsymbols/
+        remote_src: true
+        owner: root
+        group: root
+        mode: '0644'
+      notify: Refresh font cache
+  handlers:
+    - name: Refresh font cache
+      ansible.builtin.command:
+        cmd: fc-cache -f
