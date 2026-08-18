@@ -74,7 +74,9 @@ scoop/persist/*
 
 {{ if lookPath "flatpak" -}}
 !.var/
-!.var/**
+.var/*
+!.var/app/
+.var/app/*
 {{ end -}}
 
 {{ end -}}
@@ -441,8 +443,8 @@ scoop/persist/*
 {{ end -}}
 {{ if stat (joinPath .chezmoi.homeDir ".local" "share" "flatpak" "exports" "share" "applications" "org.fcitx.Fcitx5.desktop") -}}
 {{ if eq .chezmoi.os "linux" "android" -}}
-!.var/app/org.fcitx.Fcitx5/data/fcitx5/rime/
-!.var/app/org.fcitx.Fcitx5/data/fcitx5/rime/**
+!.var/app/org.fcitx.Fcitx5/
+!.var/app/org.fcitx.Fcitx5/**
 {{ end -}}
 {{ end -}}
 # ]]]
