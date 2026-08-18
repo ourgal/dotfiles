@@ -339,8 +339,12 @@ scoop/persist/*
 {{ end -}}
 # ]]]
 # [[[ fish
-{{ if and (lookPath "msys2") (lookPath "fish") -}}
-{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+{{ if lookPath "fish" -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+!.config/fish/
+!.config/fish/**
+{{ end -}}
+{{ if and (eq .chezmoi.os "windows") (lookPath "msys2") -}}
 !.config/fish/
 !.config/fish/**
 {{ end -}}
