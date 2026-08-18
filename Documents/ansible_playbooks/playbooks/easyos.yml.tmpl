@@ -1,9 +1,10 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
 ---
 - name: Easyos
   hosts: easyos
   ignore_unreachable: true
   vars:
-    gh_proxy: https://github.nswrz.cn/
+    gh_proxy: [[ .my.gh_proxy ]]/
   tasks:
     - name: Update apt cache
       tags: apt

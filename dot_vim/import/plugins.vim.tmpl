@@ -1,1 +1,1 @@
-{{ include (joinPath .chezmoi.sourceDir "vimfiles" "import" "plugins.vim") -}}
+{{ includeTemplate (joinPath .chezmoi.sourceDir "vimfiles" "import" "plugins.vim.tmpl") . -}}

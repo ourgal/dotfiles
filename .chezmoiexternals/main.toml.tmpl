@@ -1,4 +1,4 @@
-{{ $mirror := "https://gh.idayer.com/" -}}
+{{ $mirror := (print .my.gh_proxy "/" ) -}}
 
 {{ if eq .chezmoi.os "linux" -}}
 {{ if lookPath "bash" -}}
