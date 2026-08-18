@@ -5,6 +5,7 @@
   ignore_unreachable: true
   vars:
     gh_proxy: [[ .my.gh_proxy ]]/
+    tmp: /root/.cache/
   tasks:
     - name: Update apt cache
       tags: apt
@@ -86,19 +87,21 @@
     - name: Download chezmoi
       ansible.builtin.get_url:
         url: "{{ gh_proxy }}https://github.com/twpayne/chezmoi/releases/download/v2.72.0/chezmoi_2.72.0_linux_amd64.deb"
-        dest: /tmp/chezmoi.deb
+        dest: "{{ tmp }}/chezmoi.deb"
+        checksum: "sha256:6023435f5393553345ec10c75cd8160658c415f2bf9c3d8def3e120c92faf629"
         mode: "0644"
     - name: Install chezmoi
       ansible.builtin.apt:
-        deb: /tmp/chezmoi.deb
+        deb: "{{ tmp }}/chezmoi.deb"
     - name: Download gopass
       ansible.builtin.get_url:
         url: "{{ gh_proxy }}https://github.com/gopasspw/gopass/releases/download/v1.16.1/gopass_1.16.1_linux_amd64.deb"
-        dest: /tmp/gopass.deb
+        dest: "{{ tmp }}/gopass.deb"
+        checksum: "sha256:c96b0e10813598799f2154f22456501ec190f45eaa7fead7beba21f17993a514"
         mode: '0644'
     - name: Install chezmoi
       ansible.builtin.apt:
-        deb: /tmp/gopass.deb
+        deb: "{{ tmp }}/gopass.deb"
     - name: Ensure the target font directory exists
       ansible.builtin.file:
         path: /usr/local/share/fonts/nerdsymbols/
@@ -109,16 +112,30 @@
     - name: Download nerdsymbols
       ansible.builtin.get_url:
         url: "{{ gh_proxy }}[[ .my.font.nerdsymbols_url ]]"
-        dest: /tmp/NerdFontsSymbolsOnly.tar.xz
+        dest: "{{ tmp }}/NerdFontsSymbolsOnly.tar.xz"
+        checksum: "sha256:b7ef2283462b435f1fe91d729dc412d5dbe34269dd2c7f4e1d803e4105c8d883"
         mode: '0644'
     - name: Download and extract font archive
       ansible.builtin.unarchive:
-        src: /tmp/NerdFontsSymbolsOnly.tar.xz
+        src: "{{ tmp }}/NerdFontsSymbolsOnly.tar.xz"
         dest: /usr/local/share/fonts/nerdsymbols/
         owner: root
         group: root
         mode: '0644'
       notify: Refresh font cache
+    - name: Download seanime
+      ansible.builtin.get_url:
+        url: "{{ gh_proxy }}https://github.com/5rahim/seanime/releases/download/v3.10.2/seanime-3.10.2_Linux_x86_64.tar.gz"
+        dest: "{{ tmp }}/seanime.tar.gz"
+        checksum: "sha256:c5359806c69aa8b3073b09192d8dde0cc66c03a9481ee48ac37c463246f29ffd"
+        mode: '0644'
+    - name: Install seanime
+      ansible.builtin.unarchive:
+        src: "{{ tmp }}/seanime.tar.gz"
+        dest: /usr/local/bin/
+        owner: root
+        group: root
+        mode: '0755'
   handlers:
     - name: Refresh font cache
       ansible.builtin.command:
