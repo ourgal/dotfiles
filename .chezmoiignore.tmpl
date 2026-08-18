@@ -650,6 +650,14 @@ AppData/Roaming/Microsoft/Windows/Start Menu/Programs/*
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ kitty
+{{ if lookPath "kitty" -}}
+{{ if eq .chezmoi.os "linux" -}}
+!.config/kitty/
+!.config/kitty/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # [[[ pipewire
 {{ if lookPath "pipewire" -}}
 {{ if eq .chezmoi.os "linux" -}}
