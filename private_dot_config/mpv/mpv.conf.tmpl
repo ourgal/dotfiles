@@ -35,5 +35,7 @@ ytdl-raw-options=write-auto-sub=
 profile-restore=copy
 [bilibili]
 profile-cond=path:find('bilibili%.com')
-ytdl-raw-options=cookies-from-browser=firefox:~/scoop/persist/firefox
+{{ if eq .chezmoi.os "windows" -}}
+# ytdl-raw-options=cookies-from-browser=firefox:~/scoop/persist/firefox
+{{ end -}}
 profile-restore=copy
