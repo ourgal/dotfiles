@@ -1,4 +1,11 @@
 if status is-interactive
+# [[[ easy1
+{{ if eq .chezmoi.hostname "easy1" -}}
+set -x GPG_TTY $(tty)
+set -x SSH_AUTH_SOCK $(gpgconf --list-dirs agent-ssh-socket)
+gpg-connect-agent /bye
+{{ end -}}
+# ]]]
 # [[[ termux
 {{ if eq .chezmoi.os "android" -}}
 fish_add_path --append ~/.local/bin
