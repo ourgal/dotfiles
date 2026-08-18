@@ -3,7 +3,7 @@ if status is-interactive
 {{ if eq .chezmoi.hostname "easy1" -}}
 set -x GPG_TTY $(tty)
 set -x SSH_AUTH_SOCK $(gpgconf --list-dirs agent-ssh-socket)
-gpg-connect-agent /bye
+gpg-connect-agent updatestartuptty /bye > /dev/null
 {{ end -}}
 # ]]]
 # [[[ termux
