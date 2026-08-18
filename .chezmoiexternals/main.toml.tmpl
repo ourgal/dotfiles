@@ -206,3 +206,19 @@
     refreshPeriod = "168h"
 {{ end -}}
 {{ end -}}
+
+{{ $doom_repo := "https://mirror.nju.edu.cn/git/doom-emacs.git/" -}}
+
+{{ if lookPath "emacs" -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+[".config/emacs"]
+    type = "git-repo"
+    url = "{{ $doom_repo }}"
+{{ end -}}
+
+{{ if eq .chezmoi.os "windows" -}}
+[".emacs.d"]
+    type = "git-repo"
+    url = "{{ $doom_repo }}"
+{{ end -}}
+{{ end -}}
