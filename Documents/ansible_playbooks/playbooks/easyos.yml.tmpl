@@ -53,6 +53,8 @@
           - make
           - git
           - lazygit
+          # python
+          - pipx
     - name: Download chezmoi
       ansible.builtin.get_url:
         url: "{{ gh_proxy }}https://github.com/twpayne/chezmoi/releases/download/v2.72.0/chezmoi_2.72.0_linux_amd64.deb"
@@ -78,7 +80,7 @@
         mode: '0755'
     - name: Download and extract font archive
       ansible.builtin.unarchive:
-        src: [[ .my.font.nerdsymbols_url | quote ]]
+        src: "{{ gh_proxy }}[[ .my.font.nerdsymbols_url ]]"
         dest: /usr/local/share/fonts/nerdsymbols/
         remote_src: true
         owner: root
