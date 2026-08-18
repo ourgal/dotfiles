@@ -45,6 +45,12 @@
 
 {{ end -}}
 
+[".local/share/fonts/IosevkaTerm"]
+    type = "archive"
+    url = {{ print "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.0/IosevkaTerm.tar.xz" | quote }}
+    exact = true
+    include = [ "*.ttf" ]
+
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "psmux" -}}
 [".psmux/plugins"]
