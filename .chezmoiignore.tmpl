@@ -746,4 +746,10 @@ AppData/Roaming/Microsoft/Windows/Start Menu/Programs/*
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ pet
+{{ if lookPath "pet" -}}
+!AppData/Roaming/pet/
+!AppData/Roaming/pet/**
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
