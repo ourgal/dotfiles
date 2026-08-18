@@ -65,7 +65,9 @@ if has('gui_running')
     set guioptions-=r
     set guioptions-=L
     " full screen
-    set guioptions+=s
+    if has('win32')
+        set guioptions+=s
+    endif
     " number of colors
     set t_Co=256
     " tab label
