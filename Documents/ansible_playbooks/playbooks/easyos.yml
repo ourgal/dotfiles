@@ -2,6 +2,8 @@
 - name: Easyos
   hosts: easyos
   ignore_unreachable: true
+  vars:
+    gh_proxy: https://github.nswrz.cn/
   tasks:
     - name: Update apt cache
       tags: apt
@@ -38,9 +40,17 @@
           - lazygit
     - name: Download chezmoi
       ansible.builtin.get_url:
-        url: https://github.com/twpayne/chezmoi/releases/download/v2.72.0/chezmoi_2.72.0_linux_amd64.deb
+        url: "{{ gh_proxy }}https://github.com/twpayne/chezmoi/releases/download/v2.72.0/chezmoi_2.72.0_linux_amd64.deb"
         dest: /tmp/chezmoi.deb
         mode: "0644"
     - name: Install chezmoi
       ansible.builtin.apt:
         deb: /tmp/chezmoi.deb
+    - name: Download gopass
+      ansible.builtin.get_url:
+        url: "{{ gh_proxy }}https://github.com/gopasspw/gopass/releases/download/v1.16.1/gopass_1.16.1_linux_amd64.deb"
+        dest: /tmp/gopass.deb
+        mode: '0644'
+    - name: Install chezmoi
+      ansible.builtin.apt:
+        deb: /tmp/gopass.deb
