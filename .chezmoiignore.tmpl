@@ -1,4 +1,7 @@
 *
+.bashrc
+.bash_profile
+.npmrc
 
 !Documents/
 Documents/*
@@ -327,10 +330,11 @@ scoop/persist/*
 {{ end -}}
 # ]]]
 # [[[ clink
-{{ if lookPath "bash" -}}
-{{ if eq .chezmoi.os "linux" "android" -}}
-!.bashrc
-!.bash_profile
+{{ if lookPath "clink" -}}
+{{ if eq .chezmoi.os "windows" -}}
+!.inputrc
+!AppData/Local/clink/
+!AppData/Local/clink/**
 {{ end -}}
 {{ end -}}
 # ]]]
@@ -720,6 +724,14 @@ AppData/Roaming/Microsoft/Windows/Start Menu/Programs/*
 # [[[ editorconfig
 {{ if lookPath "editorconfig" -}}
 !.editorconfig
+{{ end -}}
+# ]]]
+# [[[ bash
+{{ if lookPath "bash" -}}
+{{ if eq .chezmoi.hostname "easy1" | not -}}
+!.bash
+!.bash_profile
+{{ end -}}
 {{ end -}}
 # ]]]
 # vim: set foldmarker=[[[,]]]:
