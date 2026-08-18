@@ -20,7 +20,7 @@
 
 {{ $_ = dict -}}
 {{ $_ = set $_ "compression" 9 -}}
-{{ $_ = set $_ "editor" "hx" -}}
+{{ $_ = set $_ "editor" (includeTemplate "editor") -}}
 {{ $_ = set $_ "excludesfile" "~/.gitignore" -}}
 {{ $_ = set $_ "fsmonitor" false -}}
 	{{- if lookPath "delta" -}}
