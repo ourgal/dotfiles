@@ -80,11 +80,15 @@
         owner: root
         group: root
         mode: '0755'
+    - name: Download nerdsymbols
+      ansible.builtin.get_url:
+        url: "{{ gh_proxy }}[[ .my.font.nerdsymbols_url ]]"
+        dest: /tmp/NerdFontsSymbolsOnly.tar.xz
+        mode: '0644'
     - name: Download and extract font archive
       ansible.builtin.unarchive:
-        src: "{{ gh_proxy }}[[ .my.font.nerdsymbols_url ]]"
+        src: /tmp/NerdFontsSymbolsOnly.tar.xz
         dest: /usr/local/share/fonts/nerdsymbols/
-        remote_src: true
         owner: root
         group: root
         mode: '0644'
