@@ -117,5 +117,5 @@ easyos:
   hosts:
     easy1:
       ansible_user: root
-      ansible_host: 192.168.123.123
+      ansible_host: {{ eq .chezmoi.hostname "easy1" | ternary "localhost" "192.168.123.123" }}
       ansible_ssh_pass: {{ includeTemplate "gopass" "password/linux/user" }}
