@@ -5,7 +5,7 @@
   ignore_unreachable: true
   vars:
     gh_proxy: [[ .my.gh_proxy ]]/
-    tmp: /root/.cache/
+    tmp: /root/.cache
   tasks:
     - name: Update apt cache
       tags: apt
@@ -139,6 +139,12 @@
         owner: root
         group: root
         mode: '0755'
+    - name: Add Flathub repository remote
+      community.general.flatpak_remote:
+        name: flathub
+        state: present
+        flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+        method: system
   handlers:
     - name: Refresh font cache
       ansible.builtin.command:
