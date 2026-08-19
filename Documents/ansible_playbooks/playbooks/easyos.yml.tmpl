@@ -91,24 +91,37 @@
           # nodejs
           - nodejs
           - npm
-    - name: Download chezmoi
-      ansible.builtin.get_url:
-        url: "{{ gh_proxy }}https://github.com/twpayne/chezmoi/releases/download/v2.72.0/chezmoi_2.72.0_linux_amd64.deb"
-        dest: "{{ tmp }}/chezmoi.deb"
-        checksum: "sha256:6023435f5393553345ec10c75cd8160658c415f2bf9c3d8def3e120c92faf629"
-        mode: "0644"
-    - name: Install chezmoi
-      ansible.builtin.apt:
-        deb: "{{ tmp }}/chezmoi.deb"
-    - name: Download gopass
-      ansible.builtin.get_url:
-        url: "{{ gh_proxy }}https://github.com/gopasspw/gopass/releases/download/v1.16.1/gopass_1.16.1_linux_amd64.deb"
-        dest: "{{ tmp }}/gopass.deb"
-        checksum: "sha256:c96b0e10813598799f2154f22456501ec190f45eaa7fead7beba21f17993a514"
-        mode: '0644'
-    - name: Install chezmoi
-      ansible.builtin.apt:
-        deb: "{{ tmp }}/gopass.deb"
+    - name: Gather package facts
+      ansible.builtin.package_facts:
+        manager: auto
+    - name: Chezmoi
+      vars:
+        v: 2.72.0
+      block:
+        - name: Download chezmoi
+          ansible.builtin.get_url:
+            url: "{{ gh_proxy }}https://github.com/twpayne/chezmoi/releases/download/v{{ v }}/chezmoi_{{ v }}_linux_amd64.deb"
+            dest: "{{ tmp }}/chezmoi.deb"
+            checksum: "sha256:6023435f5393553345ec10c75cd8160658c415f2bf9c3d8def3e120c92faf629"
+            mode: "0644"
+        - name: Install chezmoi
+          ansible.builtin.apt:
+            deb: "{{ tmp }}/chezmoi.deb"
+      when: ansible_facts.packages['chezmoi'][0].version != v
+    - name: Gopass
+      vars:
+        v: 1.16.1
+      block:
+        - name: Download gopass
+          ansible.builtin.get_url:
+            url: "{{ gh_proxy }}https://github.com/gopasspw/gopass/releases/download/v{{ v }}/gopass_{{ v }}_linux_amd64.deb"
+            dest: "{{ tmp }}/gopass.deb"
+            checksum: "sha256:c96b0e10813598799f2154f22456501ec190f45eaa7fead7beba21f17993a514"
+            mode: '0644'
+        - name: Install gopass
+          ansible.builtin.apt:
+            deb: "{{ tmp }}/gopass.deb"
+      when: ansible_facts.packages['gopass'][0].version != v
     - name: Ensure the target font directory exists
       ansible.builtin.file:
         path: /usr/local/share/fonts/nerdsymbols/
