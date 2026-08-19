@@ -107,7 +107,7 @@
         - name: Install chezmoi
           ansible.builtin.apt:
             deb: "{{ tmp }}/chezmoi.deb"
-      when: ansible_facts.packages['chezmoi'][0].version != v
+      when: "'chezmoi' not in ansible_facts.packages or ansible_facts.packages['chezmoi'][0].version != v"
     - name: Gopass
       vars:
         v: 1.16.1
@@ -121,7 +121,28 @@
         - name: Install gopass
           ansible.builtin.apt:
             deb: "{{ tmp }}/gopass.deb"
-      when: ansible_facts.packages['gopass'][0].version != v
+      when: "'gopass' not in ansible_facts.packages or ansible_facts.packages['gopass'][0].version != v"
+    - name: Ensure the target font directory exists
+      ansible.builtin.file:
+        path: /usr/local/share/fonts/nerdsymbols/
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+    - name: Dae
+      vars:
+        v: 2.0.0
+      block:
+        - name: Download dae
+          ansible.builtin.get_url:
+            url: "{{ gh_proxy }}https://github.com/daeuniverse/dae/releases/download/v{{ v }}/dae-linux-x86_64.deb"
+            dest: "{{ tmp }}/dae.deb"
+            checksum: "sha256:055adbda152f2d28f9190caff515fbecec86f5fd94a94844c15a1dea45d9ec75"
+            mode: '0644'
+        - name: Install dae
+          ansible.builtin.apt:
+            deb: "{{ tmp }}/dae.deb"
+      when: "'dae' not in ansible_facts.packages or ansible_facts.packages['dae'][0].version != v"
     - name: Ensure the target font directory exists
       ansible.builtin.file:
         path: /usr/local/share/fonts/nerdsymbols/
