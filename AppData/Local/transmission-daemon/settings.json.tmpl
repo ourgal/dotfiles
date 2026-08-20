@@ -25,7 +25,7 @@
 
 {{ $cfg = set $cfg "dht-enabled" true -}}
 
-{{ $cfg = set $cfg "download-dir" (joinPath .chezmoi.homeDir "Downloads" | quote) -}}
+{{ $cfg = set $cfg "download-dir" (joinPath .chezmoi.homeDir "Downloads" | replace "\\" "/") -}}
 
 {{ $cfg = set $cfg "download-queue-enabled" true -}}
 {{ $cfg = set $cfg "download-queue-size" 5 -}}
@@ -35,7 +35,7 @@
 {{ $cfg = set $cfg "idle-seeding-limit" 30 -}}
 {{ $cfg = set $cfg "idle-seeding-limit-enabled" false -}}
 
-{{ $cfg = set $cfg "incomplete-dir" (joinPath .chezmoi.homeDir "Downloads" | quote) -}}
+{{ $cfg = set $cfg "incomplete-dir" (joinPath .chezmoi.homeDir "Downloads" | replace "\\" "/") -}}
 {{ $cfg = set $cfg "incomplete-dir-enabled" false -}}
 
 {{ $cfg = set $cfg "lpd-enabled" true -}}
