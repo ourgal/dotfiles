@@ -20,7 +20,7 @@ command = "adb forward tcp:8022 tcp:8022"
 Description = "ritdon html to markdown"
 Output = ""
 Tag = []
-command = "
+command = """
 # pandoc convert html to markdown
 pandoc -f html output.html -o markdown -o temp.md --wrap=none;
 
@@ -40,4 +40,5 @@ perl -pi -e 's/\\((.*?)\\)\\{\\.fit\\}/(\\1)/g' temp.md;
 perl -pi -e 's/\\[([^\\[\\]]*?)\\]\\{\\.(gfont|em-dot)\\}/\\*\\*\\1\\*\\*/g' temp.md;
 
 # remove leading backslashes
-sed -i 's/^\\\\$//' temp.md"
+sed -i 's/^\\\\$//' temp.md
+"""
