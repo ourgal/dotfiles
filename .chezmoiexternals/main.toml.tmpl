@@ -45,11 +45,13 @@
 
 {{ end -}}
 
+{{ if eq .chezmoi.os "linux" -}}
 [".local/share/fonts/IosevkaTerm"]
     type = "archive"
-    url = {{ print "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.0/IosevkaTerm.tar.xz" | quote }}
+    url = {{ print $mirror "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.0/IosevkaTerm.tar.xz" | quote }}
     exact = true
     include = [ "*.ttf" ]
+{{ end -}}
 
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "psmux" -}}
