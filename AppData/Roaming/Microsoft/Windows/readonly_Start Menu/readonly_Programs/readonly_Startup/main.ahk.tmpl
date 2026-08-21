@@ -23,7 +23,7 @@ Run "deskflow-core client", , "Hide"
 Run "deskflow-core server", , "Hide"
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "aria2c" "opt" (list "windows" "startup" "aria2" "enable") "os" "windows") | trim | atoi -}}
-Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "aria2" "current" "aria2c.exe" }} --enable-rpc", {{ joinPath .chezmoi.homeDir "Downloads" | quote }}, "Hide"
+Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "aria2" "current" "aria2c.exe" }} --enable-rpc --rpc-listen-all", {{ joinPath .chezmoi.homeDir "Downloads" | quote }}, "Hide"
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "transmission-daemon" "opt" (list "windows" "startup" "transmission" "enable") "os" "windows") | trim | atoi -}}
 Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "transmission" "current" "transmission-daemon.exe" }} --foreground", {{ joinPath .chezmoi.homeDir "Downloads" | quote }}, "Hide"
