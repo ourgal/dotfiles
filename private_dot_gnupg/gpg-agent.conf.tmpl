@@ -13,4 +13,6 @@ grab
 
 {{ if lookPath "pinentry-gtk-2" -}}
 pinentry-program {{ lookPath "pinentry-gtk-2" }}
+{{ else if eq .chezmoi.os "android" -}}
+pinentry-program {{ lookPath "pinentry-tty" }}
 {{ end -}}
