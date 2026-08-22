@@ -1,5 +1,3 @@
-{{ if eq .chezmoi.os "linux" "android" -}}
-{{ if lookPath "code-oss" -}}
 {
     "extensions.verifySignature": false,
     "magit.code-path": "code-oss",
@@ -147,7 +145,6 @@
     "editor.linkedEditing": true,
     "editor.tabCompletion": "on",
     "editor.wordWrap": "on",
-    "extensions.autoCheckUpdates": false,
     "update.enableWindowsBackgroundUpdates": false,
     "editor.lineNumbers": "relative",
     "workbench.editor.closeEmptyGroups": false,
@@ -156,5 +153,3 @@
     "explorer.confirmDragAndDrop": false,
     "window.confirmBeforeClose": "always"
 }
-{{ end -}}
-{{ end -}}
