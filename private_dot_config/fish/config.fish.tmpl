@@ -9,7 +9,9 @@ gpg-connect-agent updatestartuptty /bye > /dev/null
 # [[[ termux
 {{ if eq .chezmoi.os "android" -}}
 fish_add_path --append ~/.local/bin
-set -x SSH_AUTH_SOCK $PREFIX/var/run/ssh-agent.socket
+set -x GPG_TTY $(tty)
+set -x SSH_AUTH_SOCK $(gpgconf --list-dirs agent-ssh-socket)
+gpg-connect-agent updatestartuptty /bye > /dev/null
 {{ end -}}
 # ]]]
 # [[[ oh my posh
