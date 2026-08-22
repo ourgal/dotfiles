@@ -2,9 +2,10 @@
 ---
 - name: Configure void linux
   hosts: void
+  ignore_unreachable: true
   vars:
-    username: zxc
-    hostname: surface
+    xbps_mirror: https://mirror.nju.edu.cn/voidlinux/current
+    xbps_nonfree_mirror: https://mirror.nju.edu.cn/voidlinux/current/nonfree
   tasks:
     - name: Debug variables
       ansible.builtin.debug:
@@ -16,6 +17,9 @@
       become: true
       community.general.xbps:
         upgrade: true
+        repositories:
+          - "{{ xbps_mirror }}"
+          - "{{ xbps_nonfree_mirror }}"
     - name: Install packages
       tags:
         - pkg
@@ -102,6 +106,7 @@
           - xtools
           - kmonad
           - psmisc
+          - os-prober
           # cd
           - zoxide
           # rename
@@ -176,6 +181,9 @@
           - fcitx5-gtk4
           - fcitx5-qt5
           - fcitx5-qt6
+        repositories:
+          - "{{ xbps_mirror }}"
+          - "{{ xbps_nonfree_mirror }}"
     - name: Uninstall packages
       tags:
         - pkg
@@ -194,6 +202,9 @@
           - dot-xsession
           - ansible-language-server
           - python3-ansible-lint
+        repositories:
+          - "{{ xbps_mirror }}"
+          - "{{ xbps_nonfree_mirror }}"
     - name: Setup pip mirror
       block:
         - name: Create .pip folder
@@ -243,18 +254,18 @@
       block:
         - name: Create per user service folder
           ansible.builtin.file:
-            dest: "/etc/sv/runsvdir-{{ username }}"
+            dest: "/etc/sv/runsvdir-{{ ansible_user }}"
             state: directory
             mode: "0755"
         - name: Create run script
           ansible.builtin.copy:
-            dest: "/etc/sv/runsvdir-{{ username }}/run"
+            dest: "/etc/sv/runsvdir-{{ ansible_user }}/run"
             mode: "0755"
             content: |
               #!/bin/sh
 
-              export USER="{{ username }}"
-              export HOME="/home/{{ username }}"
+              export USER="{{ ansible_user }}"
+              export HOME="/home/{{ ansible_user }}"
 
               groups="$(id -Gn "$USER" | tr ' ' ':')"
               svdir="$HOME/service"
@@ -298,7 +309,7 @@
         dest: "/var/service/{{ item }}"
         state: link
       loop:
-        - "runsvdir-{{ username }}"
+        - "runsvdir-{{ ansible_user }}"
         - lightdm
     - name: Disable services
       become: true
@@ -367,11 +378,11 @@
     - name: Set the system hostname
       become: true
       ansible.builtin.hostname:
-        name: "{{ hostname }}"
+        name: "{{ inventory_hostname }}"
     - name: Set user groups
       become: true
       ansible.builtin.user:
-        name: "{{ username }}"
+        name: "{{ ansible_user }}"
         groups:
           - '{{ "input" if ansible_facts.os_family == "Void" else omit }}'
         append: true
@@ -384,3 +395,13 @@
       changed_when: true
       ansible.builtin.command:
         cmd: xlocate -S
+    - name: Enable os-prober
+      become: true
+      ansible.builtin.lineinfile:
+        path: /etc/default/grub
+        line: GRUB_DISABLE_OS_PROBER=false
+    - name: Generate grub config
+      become: true
+      ansible.builtin.command:
+        cmd: grub-mkconfig -o /boot/grub/grub.cfg
+      changed_when: true
