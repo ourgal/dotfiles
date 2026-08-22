@@ -13,7 +13,7 @@
         - winfsp # rclone
         - steam
         - epicgameslauncher
-        - "{{ 'tailscale' if ansible_facts.nodename == 'work' else omit }}"
+        - "{{ 'tailscale' if inventory_hostname == 'work' else omit }}"
         - directx
         - name: openssh
           allow_prerelease: true
@@ -25,7 +25,7 @@
         - nonportable/files-np
         - nonportable/virtualbox-with-extension-pack-np
     - role: windows_install_wsl
-      when: ansible_facts.nodename == 'work'
+      when: inventory_hostname == 'work'
     - role: windows_hide_user
       windows_hide_user_name: Admin
     - role: windows_user
