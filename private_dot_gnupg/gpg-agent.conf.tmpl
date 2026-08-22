@@ -4,7 +4,7 @@
 enable-win32-openssh-support
 {{ end -}}
 
-{{ if ne .chezmoi.os "android" -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
 enable-ssh-support
 {{ end -}}
 
