@@ -45,6 +45,9 @@
           - unzip
           # bookmark
           - buku
+          # gpg
+          - pcsclite
+          - pcsc-ccid
           # clipboard
           - Clipboard
           - xclip
@@ -311,6 +314,7 @@
       loop:
         - "runsvdir-{{ ansible_user }}"
         - lightdm
+        - pcscd
     - name: Disable services
       become: true
       ansible.builtin.file:
