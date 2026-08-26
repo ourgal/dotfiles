@@ -1,2 +1,2 @@
 #!/data/data/com.termux/files/usr/bin/sh
-am start --user 0 -a android.intent.action.VIEW -d "file:///sdcard/Movies/$1" -n is.xyz.mpv/.MPVActivity
+am start --user 0 -a android.intent.action.VIEW -d "file://$(pwd)/$1" -p org.videolan.vlc
