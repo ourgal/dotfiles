@@ -1,0 +1,8 @@
+#!/data/data/com.termux/files/usr/bin/bash
+url=$1
+if [[ $url =~ ^192\.168\.* ]]; then
+  url="http://$url"
+elif [[ ! $url =~ ^https?://* ]]; then
+  url="https://$url"
+fi
+am start -a android.intent.action.VIEW -d "$url" -p com.microsoft.emmx.canary

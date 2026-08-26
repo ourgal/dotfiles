@@ -96,6 +96,9 @@ scoop/persist/*
 !.local/bin/
 .local/bin/*
 
+!.local/bin/mpv
+!.local/bin/web
+
 {{ if and (hasKey .chezmoi.osRelease "name") (eq .chezmoi.osRelease.name "Void") -}}
 # runit
 !service/
