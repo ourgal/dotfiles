@@ -16,7 +16,7 @@
 {{ $cfg = set $cfg (print "color " ("branch" | quote)) (dict "current" "magenta" "local" "default" "plain" "blue" "remote" "yellow" "upstream" "green") -}}
 
 {{ $cfg = set $cfg "column" (dict "ui" "auto") -}}
-{{ $cfg = set $cfg "commit" (dict "template" "~/.config/git/template" "gpgsign" true "verbose" true) -}}
+{{ $cfg = set $cfg "commit" (dict "template" "~/.config/git/template" "gpgsign" false "verbose" true) -}}
 
 {{ $_ = dict -}}
 {{ $_ = set $_ "compression" 9 -}}
