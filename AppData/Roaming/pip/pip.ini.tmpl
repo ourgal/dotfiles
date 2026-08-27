@@ -1,1 +1,1 @@
-{{ include (joinPath .chezmoi.sourceDir "dot_pip" "pip.conf.tmpl") -}}
+{{ includeTemplate (joinPath .chezmoi.sourceDir "dot_pip" "pip.conf.tmpl") . -}}
