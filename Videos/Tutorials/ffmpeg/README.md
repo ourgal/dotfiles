@@ -24,7 +24,7 @@ p32
 ```sh
 clang -g -o ff_log ff_log.c -I/usr/local/ffmpeg/include -L/usr/local/ffmpeg/lib -lavutil
 
-# =>
+=>
 
 clang -g -o ff_log ff_log.c `pkg-config --cflags --libs libavutil` -lavutil
 ```
@@ -73,6 +73,7 @@ int main(int avgc, char* argv[]){
 
     if(ret < 0) {
       av_log(NULL, AV_LOG_ERROR, "Can't read dir %s\n", av_err2str(ret));
+      goto __fail;
       return -1;
     }
 
@@ -83,6 +84,13 @@ int main(int avgc, char* argv[]){
 
   av_log(NULL, AV_LOG_INFO, "%12"PRId64" %s \n", entry->size, entry->name);
 
+  avio_free_directory_entry(&entry);
+
+  __fail:
+  avio_close_dir(&ctx)
+
   return 0;
 }
 ```
+
+clang -g -o list ffmpeg_list.c `pkg-config --list libavformat libavutil`
