@@ -191,23 +191,6 @@
 {{ template "folder" (dict "id" "gc5sz-susp5" "label" "share" "path" (joinPath .chezmoi.homeDir "Syncthing" "share") "devices" (list "nuc" "bed" "work" "s10" "m6" "note20") "hostname" .chezmoi.hostname) -}}
 {{ template "folder" (dict "id" "gc5sz-susp4" "label" "share_work" "path" (joinPath .chezmoi.homeDir "Syncthing" "share_work") "devices" (list "nuc" "work") "hostname" .chezmoi.hostname) -}}
 {{ template "folder" (dict "id" "htvji-asdsj" "label" "gpg_keys" "path" (joinPath .chezmoi.homeDir "Syncthing" "gpg_keys") "devices" (list "nuc" "bed" "work" "note20") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "y1n6e-yjceb" "label" "note20-dcim" "path" (joinPath .chezmoi.homeDir "Syncthing" "note20-dcim") "devices" (list "nuc" "bed" "note20") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "d69wv-ll51l" "label" "note20-document" "path" (joinPath .chezmoi.homeDir "Syncthing" "note20-document") "devices" (list "nuc" "bed" "note20") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "3kcsy-85jjz" "label" "note20-download" "path" (joinPath .chezmoi.homeDir "Syncthing" "note20-download") "devices" (list "nuc" "bed" "note20") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "zphn7-tg89f" "label" "note20-music" "path" (joinPath .chezmoi.homeDir "Syncthing" "note20-music") "devices" (list "nuc" "bed" "note20") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "k35cr-q06oc" "label" "note20-picture" "path" (joinPath .chezmoi.homeDir "Syncthing" "note20-picture") "devices" (list "nuc" "bed" "note20") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "77uex-q9hva" "label" "note20-movie" "path" (joinPath .chezmoi.homeDir "Syncthing" "note20-movie") "devices" (list "nuc" "bed" "note20") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "16ktr-vt585" "label" "s10-dcim" "path" (joinPath .chezmoi.homeDir "Syncthing" "s10-dcim") "devices" (list "nuc" "bed" "work" "s10") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "4oepn-2l586" "label" "s10-download" "path" (joinPath .chezmoi.homeDir "Syncthing" "s10-download") "devices" (list "nuc" "bed" "s10") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "n2177-ugn6u" "label" "s10-document" "path" (joinPath .chezmoi.homeDir "Syncthing" "s10-document") "devices" (list "nuc" "bed" "s10") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "2846b-kv95o" "label" "s10-music" "path" (joinPath .chezmoi.homeDir "Syncthing" "s10-music") "devices" (list "nuc" "bed" "s10") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "mf954-uhywx" "label" "s10-picture" "path" (joinPath .chezmoi.homeDir "Syncthing" "s10-picture") "devices" (list "nuc" "bed" "s10") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "51ty8-f968l" "label" "s10-movie" "path" (joinPath .chezmoi.homeDir "Syncthing" "s10-movie") "devices" (list "nuc" "bed" "s10") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "czmc9-3xr2o" "label" "m6-dcim" "path" (joinPath .chezmoi.homeDir "Syncthing" "m6-dcim") "devices" (list "nuc" "bed" "s10") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "wrau5-k51de" "label" "m6-download" "path" (joinPath .chezmoi.homeDir "Syncthing" "m6-download") "devices" (list "nuc" "bed" "m6") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "b5ivh-mtvk2" "label" "m6-music" "path" (joinPath .chezmoi.homeDir "Syncthing" "m6-music") "devices" (list "nuc" "bed" "m6") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "nxrzw-lqfil" "label" "m6-picture" "path" (joinPath .chezmoi.homeDir "Syncthing" "m6-picture") "devices" (list "nuc" "bed" "m6") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "jlf00-6rk6u" "label" "m6-movie" "path" (joinPath .chezmoi.homeDir "Syncthing" "m6-movie") "devices" (list "nuc" "bed" "m6") "hostname" .chezmoi.hostname) -}}
 {{ range (list "bed" "nuc" "work" "note20" "s10" "m6") -}}
 {{ template "device" . -}}
 {{ end -}}
