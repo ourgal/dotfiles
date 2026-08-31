@@ -163,6 +163,24 @@ endif
 if executable('sdcv')
     set keywordprg=sdcv\ -n
 endif
+
+if !exists('$VIMHOME')
+    if has('nvim')
+        let $VIMHOME=stdpath('data')
+    elseif has('win32') || has ('win64')
+        let $VIMHOME=$HOME.'/vimfiles'
+    else
+        let $VIMHOME=$HOME.'/.vim'
+    endif
+endif
+
+set undodir=$VIMHOME/undo//
+set undofile
+for s:dir in [ &undodir ]
+  if !isdirectory(s:dir)
+    call mkdir(s:dir, 'p')
+  endif
+endfor
 "}}}
 "{{{ ale config
 let g:ale_completion_enabled = 0
