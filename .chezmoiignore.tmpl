@@ -770,4 +770,12 @@ AppData/Roaming/Microsoft/Windows/Start Menu/Programs/*
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ seanime
+{{ if joinPath .chezmoi.homeDir "scoop" "apps" "seanime-server" | stat -}}
+{{ if eq .chezmoi.os "windows" -}}
+!AppData/Roaming/Seanime/
+!AppData/Roaming/Seanime/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
