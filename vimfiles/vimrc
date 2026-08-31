@@ -129,8 +129,9 @@ set shortmess-=S " show she search count
 
 " set gdefault " substitute all matches
 
-" auto auto
-" au BufLeave,CursorHold,FocusLost * if(getbufinfo('%')[0].changed) | sil do BufWritePre | sil! up | sil do BufWritePost | endif
+" Autosave
+set noswapfile
+au BufLeave,CursorHold,FocusLost * if(getbufinfo('%')[0].changed) | do BufWritePre | sil! up | do BufWritePost | endif
 
 " Autosession
 " au VimEnter * nested if (len(v:argv) == 1) | silent! source Session.vim | endif
