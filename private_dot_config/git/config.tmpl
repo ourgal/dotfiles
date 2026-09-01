@@ -111,6 +111,8 @@
 
 {{ $cfg = set $cfg (print "url " ("git@github.com:ourgal/" | quote)) (dict "insteadOf" "myg:") -}}
 
+{{ $cfg = set $cfg (print "url " ("git@gitee.com:fairever/" | quote)) (dict "insteadOf" "myge:") -}}
+
 {{ $cfg = set $cfg (print "url " ("git@github.com:" | quote)) (dict "insteadOf" "gh:") -}}
 
 {{ $_ = dict -}}
