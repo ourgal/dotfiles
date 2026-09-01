@@ -1,0 +1,23 @@
+{{ if eq .chezmoi.os "android" -}}
+{{ if lookPath "pipx" -}}
+#!/data/data/com.termux/files/usr/bin/bash
+
+# Package hash: {{ .my.termux.pipx.packages.install | join "" | sha256sum }}
+
+{{ $found := false -}}
+
+{{ $installed := output "pipx" "list" "--json" | fromJson -}}
+{{ range $i, $target := .my.termux.pipx.packages.install -}}
+  {{ $found = false -}}
+
+  {{ if and (hasKey $installed "venvs") (hasKey $installed.venvs $target) -}}
+  {{ continue -}}
+  {{ end -}}
+
+  pipx install {{ $target }}
+{{ end -}}
+
+{{ end -}}
+{{ end -}}
+
+
