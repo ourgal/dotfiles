@@ -1,0 +1,11 @@
+{{ if eq .chezmoi.os "android" -}}
+{{ if lookPath "pip" -}}
+#!/data/data/com.termux/files/usr/bin/bash
+
+# Package hash: {{ .my.termux.pip.packages.install | join "" | sha256sum }}
+
+pip install {{ range .my.termux.pip.packages.install }}{{ . }} {{end}}
+
+{{ end -}}
+{{ end -}}
+
