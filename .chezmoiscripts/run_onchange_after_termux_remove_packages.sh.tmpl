@@ -1,0 +1,16 @@
+{{- if eq .chezmoi.os "android" -}}
+#!/data/data/com.termux/files/usr/bin/bash
+
+# Package hash: {{ .my.termux.packages.uninstall | join "" | sha256sum }}
+
+mapfile -t installed < <(dpkg-query -W -f='${binary:package}\n')
+list=({{ range .my.termux.packages.uninstall }}{{ . }} {{ end }})
+
+for pkg in "${list[@]}"; do
+  if grep -q "\b$pkg\b" <(echo "${installed[@]}"); then
+    echo "uninstall $pkg"
+    pkg uninstall -y $pkg
+  fi
+done
+
+{{- end -}}
