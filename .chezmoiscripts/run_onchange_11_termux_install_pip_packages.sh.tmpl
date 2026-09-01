@@ -4,7 +4,23 @@
 
 # Package hash: {{ .my.termux.pip.packages.install | join "" | sha256sum }}
 
-pip install {{ range .my.termux.pip.packages.install }}{{ . }} {{end}}
+{{ $found := false -}}
+
+{{ $installed := output "pip" "list" "--format" "json" | fromJson -}}
+{{ range $i, $target := .my.termux.pip.packages.install -}}
+  {{ $found = false -}}
+
+  {{ range $j, $item := $installed -}}
+    {{ if eq $item.name $target -}}
+      {{ $found = true -}}
+      {{ break -}}
+    {{ end -}}
+  {{ end -}}
+
+  {{ if not $found -}}
+    pip install {{ $target }}
+  {{ end -}}
+{{ end -}}
 
 {{ end -}}
 {{ end -}}
