@@ -9,14 +9,22 @@
 {{ $final_opt := "" -}}
 {{ if kindIs "string" .opt -}}
 {{ $global_opt = index .my.modules .opt -}}
-{{ $host_opt = index .my.modules .chezmoi.hostname $os .opt -}}
+
+  {{ if and (hasKey .my.modules .chezmoi.hostname) (hasKey (index .my.modules .chezmoi.hostname) $os) -}}
+    {{ $host_opt = index .my.modules .chezmoi.hostname $os .opt -}}
+  {{ end -}}
+
 {{ else if kindIs "slice" .opt -}}
 {{ $global_opt = .my.modules -}}
 
     {{ if eq $os "linux" -}}
-    {{ $host_opt = index .my.modules .chezmoi.hostname $linux -}}
+      {{ if hasKey .my.modules .chezmoi.hostname -}}
+      {{ $host_opt = index .my.modules .chezmoi.hostname $linux -}}
+      {{ end -}}
     {{ else -}}
-    {{ $host_opt = index .my.modules .chezmoi.hostname $os -}}
+      {{ if hasKey .my.modules .chezmoi.hostname -}}
+      {{ $host_opt = index .my.modules .chezmoi.hostname $os -}}
+      {{ end -}}
     {{ end -}}
 
     {{ range .opt -}}
@@ -25,7 +33,7 @@
         {{ else -}}
         {{ fail (print $global_opt " unknow opt value: " .) -}}
         {{ end -}}
-        {{ if hasKey $host_opt . -}}
+        {{ if and (kindIs "dict" $host_opt) (hasKey $host_opt .) -}}
         {{ $host_opt = index $host_opt . -}}
         {{ else -}}
         {{ $host_opt = dict -}}
