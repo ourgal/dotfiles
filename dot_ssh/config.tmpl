@@ -34,7 +34,7 @@ Host work
 Host gogs-m6
   Port 23231
   User u0_a556
-  HostName {{ template "ipM6" .chezmoi.hostname }}
+  HostName {{ if eq .chezmoi.hostname "work" "work2" }}192.168.1.103{{ else if eq .chezmoi.hostname "nuc" "bed" "surface" "easy1" }}192.168.123.191{{ end }}
 {{ end -}}
 
 {{ if eq .chezmoi.hostname "work" "work2" -}}
