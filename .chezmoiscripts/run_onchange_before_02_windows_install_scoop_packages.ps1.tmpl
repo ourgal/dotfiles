@@ -1,8 +1,10 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "scoop" -}}
 
+{{ $homeDir := .chezmoi.homeDir -}}
+
 {{ range .my.buckets.add -}}
-  {{ if joinPath .chezmoi.homeDir "scoop" "buckets" . | stat | not -}}
+  {{ if joinPath $homeDir "scoop" "buckets" . | stat | not -}}
     {{ warnf (print "Adding scoop bucket " .) -}}
     scoop bucket add {{ . }}
   {{ end -}}
@@ -15,8 +17,9 @@
 
 {{ $all_package := list -}}
 {{ $categories := keys .my.scoop.packages.install -}}
+{{ $packages_root := .my.scoop.packages.install -}}
 {{ range $_, $c := $categories -}}
-{{ $all_package = concat $all_package (index .my.scoop.packages.install $c) -}}
+{{ $all_package = concat $all_package (index $packages_root $c) -}}
 {{ end -}}
 
 {{ range $all_package -}}
@@ -25,16 +28,16 @@
   {{ fail (print "Not a valid scoop package name: " .) -}}
   {{ end -}}
 
-  {{ $b = index (split "/" .) 0 }}
-  {{ $p = index (split "/" .) 1 }}
+  {{ $b = index (splitList "/" .) 0 }}
+  {{ $p = index (splitList "/" .) 1 }}
 
   {{ if $p | contains "@" -}}
-  {{ $p = index (split "@" .) 0 }}
+  {{ $p = index (splitList "@" $p) 0 }}
   {{ end -}}
 
-  {{ if joinPath .chezmoi.homeDir "scoop" "apps" $p "current" | stat | not -}}
-    {{ $j = joinPath .chezmoi.homeDir "scoop" "buckets" $b "bucket" (print $p ".json") | fromJson }}
-    {{ if and (hasKey $j "architecture") (hasKey $j.architecture "64bit") (contains $j.architecture.64bit "https://github.com") }}
+  {{ if joinPath $homeDir "scoop" "apps" $p "current" | stat | not -}}
+    {{ $j = joinPath $homeDir "scoop" "buckets" $b "bucket" (print $p ".json") | include | fromJson }}
+    {{ if and (hasKey $j "architecture") (hasKey $j.architecture "64bit") (contains (index (index $j.architecture "64bit" ) "url") "https://github.com") }}
       scoop config url_proxy {{ .my.gh_proxy }}
       scoop install {{ . }}
     {{ else -}}
