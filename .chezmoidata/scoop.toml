@@ -2,301 +2,165 @@
 offical = false
 scoop_proxy_cn = true
 
-[my.scoop.packages]
-install = [
-  # AI
-  "aichat",
-  # android
-  "adb",
-  "scrcpy",
-  # audio
-  "navidrome",
-  "cliamp",
-  # CMS
-  "hugo",
-  "cobalt",
-  # dev
-  "chsrc",
-  "dprint",
-  "wakatime-cli",
-  "cloc",
-  # bash
-  "shellcheck",
-  "shfmt",
-  # c
-  "clangd",
-  # csharp
-  "bflat",
-  # environment
-  "task",
-  "cmake",
-  "msys2",
-  "direnv",
-  "tree-sitter",
-  "dirhash",
-  # haskell
-  "haskell-language-server",
-  "stack",
-  # go
-  "go",
-  # json
-  "jq",
-  # latex
-  "texlab",
-  "tectonic",
-  # lua
-  "lua-language-server",
-  "stylua",
-  # markdown
-  "autocorrect",
-  "marksman",
-  # nodejs
-  "yarn",
-  "pnpm",
-  # perl
-  "perl",
-  # powershell
-  "powershelleditorservices",
-  # python
-  "ruff",
-  "ty",
-  "uv",
-  # rust
-  "rust",
-  "cargo-binstall",
-  # sql
-  "sqlite",
-  # toml
-  "taplo",
-  "tombi",
-  # web
-  "static-web-server",
-  # yaml
-  "yamlfmt",
-  # disk
-  "smartmontools",
-  "dd",
-  # document
-  "pandoc",
-  "cht",
-  # dotfile_manager
-  "chezmoi",
-  # downloader
-  "gallery-dl",
-  "yt-dlp",
-  "pget",
-  "wget2",
-  "wget",
-  "aria2",
-  # editor
-  "vim",
-  "helix",
-  "neovim",
-  "fresh",
-  # email
-  "mailsend",
-  # encrypt
-  "gpg",
-  "openssl",
-  "gopass",
-  "gopass-jsonapi",
-  "sops",
-  # file_manager
-  "lf",
-  "yazi",
-  "superfile",
-  # fuzzy_finder
-  "broot",
-  "fzf",
-  # git
-  "jj",
-  # git_auto
-  "gitomatic",
-  # git_bug
-  "git-bug",
-  # git_github
-  "gh",
-  # git_push
-  "mob",
-  "legit",
-  # git_lfs
-  "git-lfs",
-  # git_fixup
-  "git-absorb",
-  # git_diff
-  "diff-so-fancy",
-  "delta",
-  "difftastic",
-  # git_encrypt
-  "git-crypt",
-  # git_tui
-  "gitui",
-  # git_gui
-  "git-cola",
-  # git_server
-  "gogs",
-  # git_search
-  "gitql",
-  # git_hook
-  "lefthook",
-  # image
-  "gnuplot",
-  # image_info
-  "exiftool",
-  # image_edit
-  "imagemagick",
-  # network
-  "dog",
-  "nali",
-  "nmap",
-  "q-dns",
-  "tcping",
-  # proxy
-  "connect",
-  # scoop_helper
-  "scoop-search",
-  # search
-  "everything-cli",
-  # remote
-  "termscp",
-  "ttyd",
-  # qr_code
-  "qr",
-  "qrcp",
-  # share
-  "croc",
-  "dufs",
-  "miniserve",
-  "portal",
-  "rclone",
-  "syncthing",
-  "alist",
-  "serve",
-  "simple-http-server",
-  "git-annex",
-  # shell
-  "clink",
-  "clink-completions",
-  "cmder-full",
-  "pwsh",
-  "nu",
-  "yori",
-  # ascii_art
-  "rainbow",
-  # cd
-  "zoxide",
-  # df
-  "duf",
-  # du
-  "dua",
-  "dust",
-  # find
-  "fd",
-  # grep
-  "grep",
-  "ripgrep",
-  "gawk",
-  "igrep",
-  # history
-  "mcfly",
-  "atuin",
-  # less
-  "bat",
-  "less",
-  # ls
-  "eza",
-  # man
-  "tealdeer",
-  # prompt
-  "starship",
-  "oh-my-posh",
-  # rename
-  "rnr",
-  # sed
-  "sd",
-  "sed",
-  # shasum
-  "shasum",
-  # snippets
-  "navi",
-  # system_info
-  "fastfetch",
-  "ntop",
-  "btop",
-  "bottom",
-  "cpufetch",
-  # tmux
-  "psmux",
-  "zellij",
-  # typing
-  "ttyper",
-  # unrar
-  "unrar",
-  "unzip",
-  # utils
-  "coreutils",
-  "nircmd",
-  # mv
-  "brename",
-  # which
-  "which",
-  # system
-  "dos2unix",
-  "goodbyedpi",
-  "file",
-  "cyme",
-  # archive
-  "zip",
-  "bzip2",
-  # unpack
-  "innounp",
-  "gzip",
-  "innoextract",
-  "xz",
-  # sudo
-  "gsudo",
-  # service
-  "nssm",
-  # package_manager
-  "pipx",
-  "winget",
-  "topgrade",
-  "meta-package-manager",
-  # clipboard
-  "clipboard@0.9.0.1",
-  # notification
-  "noti",
-  "gotify-server",
-  "gotify-cli",
-  # ps
-  "witr",
-  # rm
-  "trashy",
-  # text_expander
-  "espanso",
-  # video_editor
-  "ffmpeg",
-  "butterflow",
-  # nerd fonts
-  "JetBrainsMono-NF"
+[my.scoop.packages.install]
+AI = ["main/aichat"]
+android = ["main/adb", "main/scrcpy"]
+audio = ["main/mpd", "main/navidrome", "main/cliamp"]
+CA = ["main/cacert"]
+CMS = ["main/hugo", "main/cobalt"]
+dev = [
+  "main/editorconfig",
+  "main/aspell",
+  "main/diffutils",
+  "main/chsrc",
+  "main/dprint",
+  "main/wakatime-cli",
+  "main/cloc"
 ]
+compile = ["main/make"]
+bash = ["main/shellcheck", "main/shfmt"]
+c = ["main/clangd"]
+csharp = ["main/scriptcs", "main/bflat"]
+environment = [
+  "main/task",
+  "main/cmake",
+  "main/msys2",
+  "main/direnv",
+  "main/tree-sitter",
+  "main/dirhash"
+]
+haskell = [
+  "main/haskell",
+  "main/haskell-cabal",
+  "main/haskell-language-server",
+  "main/stack"
+]
+go = ["main/go"]
+json = ["main/jq"]
+latex = ["main/texlab", "main/tectonic"]
+lua = ["main/lua-language-server", "main/stylua"]
+markdown = ["main/autocorrect", "main/marksman"]
+nodejs = ["main/yarn", "main/pnpm"]
+perl = ["main/perl"]
+powershell = ["main/powershelleditorservices"]
+python = ["main/ruff", "main/ty", "main/uv"]
+rust = ["main/rust", "main/cargo-binstall"]
+sql = ["main/sqlite"]
+toml = ["main/taplo", "main/tombi"]
+web = ["main/static-web-server"]
+yaml = ["main/yamlfmt"]
+disk = ["main/smartmontools", "main/dd"]
+document = ["main/pandoc", "main/cht"]
+dotfile_manager = ["main/chezmoi"]
+downloader = [
+  "main/gallery-dl",
+  "main/yt-dlp",
+  "main/pget",
+  "main/wget2",
+  "main/wget",
+  "main/aria2"
+]
+editor = ["main/vim", "main/helix", "main/neovim", "main/fresh"]
+email = ["main/mailsend"]
+encrypt = [
+  "main/gpg",
+  "main/openssl",
+  "main/gopass",
+  "main/gopass-jsonapi",
+  "main/sops"
+]
+file_manager = ["main/lf", "main/yazi", "main/superfile"]
+fuzzy_finder = ["main/broot", "main/fzf"]
+git = ["main/jj"]
+git_auto = ["main/gitomatic"]
+git_bug = ["main/git-bug"]
+git_github = ["main/gh"]
+git_push = ["main/mob", "main/legit"]
+git_lfs = ["main/git-lfs"]
+git_fixup = ["main/git-absorb"]
+git_diff = ["main/diff-so-fancy", "main/delta", "main/difftastic"]
+git_encrypt = ["main/git-crypt"]
+git_tui = ["main/gitui"]
+git_gui = ["main/git-cola"]
+git_server = ["main/gogs"]
+git_search = ["main/gitql"]
+git_hook = ["main/lefthook"]
+image = ["main/gnuplot"]
+image_info = ["main/exiftool"]
+image_edit = ["main/imagemagick"]
+network = ["main/dog", "main/nali", "main/nmap", "main/q-dns", "main/tcping"]
+proxy = ["main/connect"]
+scoop_helper = ["main/scoop-search"]
+search = ["main/everything-cli"]
+remote = ["main/termscp", "main/ttyd"]
+qr_code = ["main/qr", "main/qrcp"]
+share = [
+  "main/croc",
+  "main/dufs",
+  "main/miniserve",
+  "main/portal",
+  "main/rclone",
+  "main/syncthing",
+  "main/alist",
+  "main/serve",
+  "main/simple-http-server",
+  "main/git-annex"
+]
+shell = [
+  "main/clink",
+  "main/clink-completions",
+  "main/cmder-full",
+  "main/pwsh",
+  "main/nu",
+  "main/yori"
+]
+ascii_art = ["main/rainbow"]
+cd = ["main/zoxide"]
+df = ["main/duf"]
+du = ["main/dua", "main/dust"]
+find = ["main/fd"]
+grep = ["main/grep", "main/ripgrep", "main/gawk", "main/igrep"]
+history = ["main/mcfly", "main/atuin"]
+less = ["main/bat", "main/less"]
+ls = ["main/eza"]
+man = ["main/tealdeer"]
+prompt = ["main/starship", "main/oh-my-posh"]
+rename = ["main/rnr"]
+sed = ["main/sd", "main/sed"]
+shasum = ["main/shasum"]
+snippets = ["main/navi"]
+system_info = [
+  "main/fastfetch",
+  "main/ntop",
+  "main/btop",
+  "main/bottom",
+  "main/cpufetch"
+]
+tmux = ["main/psmux", "main/zellij"]
+typing = ["main/ttyper"]
+unrar = ["main/unrar", "main/unzip"]
+utils = ["main/coreutils", "main/nircmd"]
+binary = ["main/binutils"]
+mv = ["main/brename"]
+which = ["main/which"]
+system = ["main/dos2unix", "main/goodbyedpi", "main/file", "main/cyme"]
+archive = ["main/zip", "main/bzip2"]
+unpack = ["main/innounp", "main/gzip", "main/innoextract", "main/xz"]
+sudo = ["main/gsudo"]
+service = ["main/nssm"]
+package_manager = [
+  "main/pipx",
+  "main/winget",
+  "main/topgrade",
+  "main/meta-package-manager"
+]
+clipboard = ["main/clipboard@0.9.0.1"]
+notification = ["main/noti", "main/gotify-server", "main/gotify-cli"]
+ps = ["main/witr"]
+rm = ["main/trashy"]
+text_expander = ["main/espanso"]
+video_editor = ["main/ffmpeg", "main/butterflow"]
+nerd_fonts = ["nerd-fonts/JetBrainsMono-NF"]
 
-install_without_proxy = [
-  # audio
-  "mpd",
-  # dev
-  "editorconfig",
-  "aspell",
-  "diffutils",
-  # CA
-  "cacert",
-  # binary
-  "binutils",
-  # csharp
-  "scriptcs",
-  # compile
-  "make",
-  # haskell
-  "haskell",
-  "haskell-cabal",
-]
+[my.buckets]
+add = ["extras", "nerd-fonts"]
