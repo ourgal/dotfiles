@@ -1,0 +1,43 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "scoop" -}}
+
+$buckets = @(
+    "extras",
+    "nerd-fonts"
+)
+
+$bucket_list = $(scoop bucket list)
+
+foreach ($bucket in $buckets) {
+    if (-not ($bucket_list | where name -eq $bucket)) {
+        Write-Host "Adding bucket: $bucket" -ForegroundColor Cyan
+        scoop bucket add $bucket
+    }
+}
+
+{{ if .my.scoop.scoop_proxy_cn -}}
+scoop config url_proxy {{ .my.gh_proxy }}
+{{ end -}}
+
+
+$packages = @(
+    "git",
+    "neovim",
+    "7zip",
+    "fzf",
+    "JetBrainsMono-NF"
+)
+
+$package_list = $(scoop list)
+
+foreach ($pkg in $packages) {
+    if (-not ($package_list | where name -eq $pkg)) {
+        Write-Host "Installing $pkg..." -ForegroundColor Green
+        scoop install $pkg
+    } else {
+        Write-Host "$pkg is already installed." -ForegroundColor Gray
+    }
+}
+
+{{ end -}}
+{{ end -}}
