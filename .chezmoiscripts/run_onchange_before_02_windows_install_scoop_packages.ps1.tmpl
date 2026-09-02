@@ -3,7 +3,7 @@
 
 {{ range .my.buckets.add -}}
   {{ if joinPath .chezmoi.homeDir "scoop" "buckets" . | stat | not -}}
-    {{ writeToStdout (print "Adding scoop bucket " .) -}}
+    {{ warnf (print "Adding scoop bucket " .) -}}
     scoop bucket add {{ . }}
   {{ end -}}
 {{ end -}}
