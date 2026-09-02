@@ -1,0 +1,4 @@
+{{- /* chezmoi:modify-template */ -}}
+{{ $origin := fromToml .chezmoi.stdin -}}
+{{ $origin = $origin | setValueAtPath "server.host" "0.0.0.0" -}}
+{{ $origin | toToml -}}
