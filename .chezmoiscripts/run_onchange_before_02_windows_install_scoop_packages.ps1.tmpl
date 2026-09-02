@@ -20,13 +20,7 @@ scoop config url_proxy {{ .my.gh_proxy }}
 {{ end -}}
 
 
-$packages = @(
-    "git",
-    "neovim",
-    "7zip",
-    "fzf",
-    "JetBrainsMono-NF"
-)
+$packages = @({{ range .my.scoop.packages.install }}{{ . | quote }}, {{ end }})
 
 $package_list = $(scoop list)
 
