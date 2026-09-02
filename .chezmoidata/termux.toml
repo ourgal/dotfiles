@@ -1,0 +1,197 @@
+[my.termux.packages]
+install = [
+  # AI
+  "aichat",
+  # anime
+  "ani-cli",
+  # book
+  "bk",
+  # chat
+  "weechat",
+  # dev
+  "direnv",
+  "editorconfig-core-c-static",
+  "editorconfig-core-c",
+  "just",
+  "make",
+  "termux-apt-repo",
+  "termux-create-package",
+  "wakatime-cli",
+  # sqlite
+  "sqlite",
+  # nodejs
+  "nodejs-lts",
+  # rust
+  "rust",
+  # markdown
+  "marksman",
+  # json
+  "jq",
+  # go
+  "golang",
+  # haskell
+  "ghc",
+  # toml
+  "taplo",
+  # latex
+  "tectonic",
+  "texlab",
+  "texlive-bin",
+  # python
+  "python",
+  # document
+  "pandoc",
+  "texinfo",
+  # download
+  "aria2",
+  "axel",
+  "cloneit",
+  "python-yt-dlp",
+  "transmission",
+  # database
+  "recutils",
+  # editor
+  "helix",
+  "helix-grammars",
+  "neovim",
+  "python-pynvim",
+  "vim",
+  "kakoune",
+  "kakoune-lsp",
+  "emacs",
+  # encrypt
+  "gopass",
+  # image
+  "gnuplot",
+  # image edit
+  "imagemagick",
+  # math
+  "qalc",
+  # ascii art
+  "figlet",
+  "toilet",
+  # dotfiles
+  "chezmoi",
+  # file manage
+  "lf",
+  "clifm",
+  "nnn",
+  "ranger",
+  "vifm",
+  "yazi",
+  "mc",
+  # git
+  "gh",
+  "git",
+  # git stats
+  "onefetch",
+  # git tui
+  "gitui",
+  "lazygit",
+  "tig",
+  # git diff
+  "diff-so-fancy",
+  "git-delta",
+  # git encrypt
+  "git-crypt",
+  # git script
+  "git-extras",
+  # git lfs
+  "git-lfs",
+  # translation
+  "translate-shell",
+  # typing
+  "ttyper",
+  # share
+  "croc",
+  "dufs",
+  "miniserve",
+  "rclone",
+  "ttyd",
+  # shell
+  "fish",
+  # which
+  "which",
+  # screen
+  "tmux",
+  "zellij",
+  # cd
+  "zoxide",
+  # man
+  "tealdeer",
+  # prompt
+  "starship",
+  "oh-my-posh",
+  # cp
+  "rsync",
+  # rename
+  "rnr",
+  # snippets
+  "navi",
+  "pet",
+  # grep
+  "ripgrep",
+  # fuzzy
+  "broot",
+  "fzf",
+  # completion
+  "carapace",
+  # history
+  "atuin",
+  "mcfly",
+  # paper
+  "bat",
+  "moor",
+  # utils
+  "moreutils",
+  # system
+  "termux-api",
+  # package manager
+  "oma",
+  "nala",
+  # network
+  "iproute2",
+  # ping
+  "gping",
+  # font
+  "fontconfig-utils",
+  # dns
+  "doge",
+  "q-dns-client",
+  # ls
+  "eza",
+  "tree",
+  # stats
+  "fastfetch",
+  "cpufetch",
+  # top
+  "htop",
+  # find
+  "fd",
+  # du
+  "diskus",
+  "dua",
+  "duc",
+  "dust",
+  "gdu",
+  # df
+  "duf",
+  # archive
+  "atool",
+  "unrar",
+  # services
+  "termux-services",
+  # ssh
+  "openssh",
+  # rss
+  "newsboat",
+  # video edit
+  "ffmpeg",
+]
+uninstall = []
+
+[my.termux.pip.packages]
+install = ["pipx"]
+
+[my.termux.pipx.packages]
+install = ["copyparty", "mdformat", "advance-touch", "aria2p[tui]"]
