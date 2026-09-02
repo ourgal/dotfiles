@@ -1,52 +1,49 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "scoop" -}}
 
-$buckets = @(
-    "extras",
-    "nerd-fonts"
-)
-
-$bucket_list = $(scoop bucket list)
-
-foreach ($bucket in $buckets) {
-    if (-not ($bucket_list | where name -eq $bucket)) {
-        Write-Host "Adding bucket: $bucket" -ForegroundColor Cyan
-        scoop bucket add $bucket
-    }
-}
-
-$packages = @({{ .my.scoop.packages.install | quoteList | join ", " }})
-
-$packages_without_proxy = @({{ .my.scoop.packages.install_without_proxy | quoteList | join ", " }})
-
-$package_list = $(scoop list)
-
-{{ if .my.scoop.scoop_proxy_cn -}}
-scoop config rm url_proxy
+{{ range .my.buckets.add -}}
+  {{ if joinPath .chezmoi.homeDir "scoop" "buckets" . | stat | not -}}
+    {{ writeToStdout (print "Adding scoop bucket " .) -}}
+    scoop bucket add {{ . }}
+  {{ end -}}
 {{ end -}}
 
-foreach ($pkg in $packages_without_proxy) {
-    if (-not ($package_list | where { $_.name -eq $pkg -and $_.info -ne "Install failed" })) {
-        Write-Host "Installing $pkg..." -ForegroundColor Green
-        scoop install $pkg
-    } else {
-        Write-Host "$pkg is already installed." -ForegroundColor Gray
-    }
-}
+{{ $b := "" -}}
+{{ $p := "" -}}
+{{ $u := "" -}}
+{{ $j := dict -}}
 
-{{ if .my.scoop.scoop_proxy_cn -}}
-scoop config url_proxy {{ .my.gh_proxy }}
+{{ $all_package := list -}}
+{{ $categories := keys .my.scoop.packages.install -}}
+{{ range $_, $c := $categories -}}
+{{ $all_package = concat $all_package (index .my.scoop.packages.install $c) -}}
 {{ end -}}
 
+{{ range $all_package -}}
 
-foreach ($pkg in $packages) {
-    if (-not ($package_list | where { $_.name -eq $pkg -and $_.info -ne "Install failed" })) {
-        Write-Host "Installing $pkg..." -ForegroundColor Green
-        scoop install $pkg
-    } else {
-        Write-Host "$pkg is already installed." -ForegroundColor Gray
-    }
-}
+  {{ if . | contains "/" | not -}}
+  {{ fail (print "Not a valid scoop package name: " .) -}}
+  {{ end -}}
+
+  {{ $b = index (split "/" .) 0 }}
+  {{ $p = index (split "/" .) 1 }}
+
+  {{ if $p | contains "@" -}}
+  {{ $p = index (split "@" .) 0 }}
+  {{ end -}}
+
+  {{ if joinPath .chezmoi.homeDir "scoop" "apps" $p "current" | stat | not -}}
+    {{ $j = joinPath .chezmoi.homeDir "scoop" "buckets" $b "bucket" (print $p ".json") | fromJson }}
+    {{ if and (hasKey $j "architecture") (hasKey $j.architecture "64bit") (contains $j.architecture.64bit "https://github.com") }}
+      scoop config url_proxy {{ .my.gh_proxy }}
+      scoop install {{ . }}
+    {{ else -}}
+      scoop config rm url_proxy
+      scoop install {{ . }}
+    {{ end -}}
+  {{ end -}}
+
+{{ end -}}
 
 {{ end -}}
 {{ end -}}
