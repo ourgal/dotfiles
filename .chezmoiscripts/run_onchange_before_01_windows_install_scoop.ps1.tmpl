@@ -8,7 +8,7 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 irm get.scoop.sh | iex
 {{ end -}}
 
-{{ if .my.scoop.scoop-proxy-cn -}}
+{{ if .my.scoop.scoop_proxy_cn -}}
 iwr -useb scoop.201704.xyz | iex
 {{ end -}}
 
