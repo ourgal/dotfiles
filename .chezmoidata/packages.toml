@@ -201,4 +201,294 @@ offical = false
 scoop_proxy_cn = true
 
 [my.scoop.packages]
-install = ["git", "neovim", "7zip", "fzf", "dirhash", "JetBrainsMono-NF"]
+install = [
+  # AI
+  "aichat",
+  # android
+  "adb",
+  "scrcpy",
+  # audio
+  "mpd",
+  "navidrome",
+  "cliamp",
+
+  # CA
+  "cacert",
+  # CMS
+  "hugo",
+  "cobalt",
+  # dev
+  "chsrc",
+  "editorconfig",
+  "dprint",
+  "aspell",
+  "diffutils",
+  "wakatime-cli",
+  "cloc",
+  # bash
+  "shellcheck",
+  "shfmt",
+  # binary
+  "binutils",
+  # c
+  "clangd",
+  # csharp
+  "scriptcs",
+  "bflat",
+  # compile
+  "make",
+  # environment
+  "task",
+  "cmake",
+  "msys2",
+  "direnv",
+  "tree-sitter",
+  "dirhash",
+  # haskell
+  "haskell",
+  "haskell-cabal",
+  "haskell-language-server",
+  "stack",
+  # go
+  "go",
+  # json
+  "jq",
+  # latex
+  "texlab",
+  "tectonic",
+  # lua
+  "lua-language-server",
+  "stylua",
+  # markdown
+  "autocorrect",
+  "marksman",
+  # nodejs
+  "yarn",
+  "pnpm",
+  # perl
+  "perl",
+  # powershell
+  "powershelleditorservices",
+  # python
+  "ruff",
+  "ty",
+  "uv",
+  # rust
+  "rust",
+  "cargo-binstall",
+  # sql
+  "sqlite",
+  # toml
+  "taplo",
+  "tombi",
+  # web
+  "static-web-server",
+  # yaml
+  "yamlfmt",
+  # disk
+  "smartmontools",
+  "dd",
+  # document
+  "pandoc",
+  "cht",
+  # dotfile_manager
+  "chezmoi",
+  # downloader
+  "gallery-dl",
+  "yt-dlp",
+  "pget",
+  "wget2",
+  "wget",
+  "aria2",
+  # editor
+  "vim",
+  "helix",
+  "neovim",
+  "fresh",
+  # email
+  "mailsend",
+  # encrypt
+  "gpg",
+  "openssl",
+  "gopass",
+  "gopass-jsonapi",
+  "sops",
+  # file_manager
+  "lf",
+  "yazi",
+  "superfile",
+  # fuzzy_finder
+  "broot",
+  "fzf",
+  # git
+  "jj",
+  # git_auto
+  "gitomatic",
+  # git_bug
+  "git-bug",
+  # git_github
+  "gh",
+  # git_push
+  "mob",
+  "legit",
+  # git_lfs
+  "git-lfs",
+  # git_fixup
+  "git-absorb",
+  # git_diff
+  "diff-so-fancy",
+  "delta",
+  "difftastic",
+  # git_encrypt
+  "git-crypt",
+  # git_tui
+  "gitui",
+  # git_gui
+  "git-cola",
+  # git_server
+  "gogs",
+  # git_search
+  "gitql",
+  # git_hook
+  "lefthook",
+  # image
+  "gnuplot",
+  # image_info
+  "exiftool",
+  # image_edit
+  "imagemagick",
+  # network
+  "dog",
+  "nali",
+  "nmap",
+  "q-dns",
+  "tcping",
+  # proxy
+  "connect",
+  # scoop_helper
+  "scoop-search",
+  # search
+  "everything-cli",
+  # remote
+  "termscp",
+  "ttyd",
+  # qr_code
+  "qr",
+  "qrcp",
+  # share
+  "croc",
+  "dufs",
+  "miniserve",
+  "portal",
+  "rclone",
+  "syncthing",
+  "alist",
+  "serve",
+  "simple-http-server",
+  "git-annex",
+  # shell
+  "clink",
+  "clink-completions",
+  "cmder-full",
+  "pwsh",
+  "nu",
+  "yori",
+  # ascii_art
+  "rainbow",
+  # cd
+  "zoxide",
+  # df
+  "duf",
+  # du
+  "dua",
+  "dust",
+  # find
+  "fd",
+  # grep
+  "grep",
+  "ripgrep",
+  "gawk",
+  "igrep",
+  # history
+  "mcfly",
+  "atuin",
+  # less
+  "bat",
+  "less",
+  # ls
+  "eza",
+  # man
+  "tealdeer",
+  # prompt
+  "starship",
+  "oh-my-posh",
+  # rename
+  "rnr",
+  # sed
+  "sd",
+  "sed",
+  # shasum
+  "shasum",
+  # snippets
+  "navi",
+  # system_info
+  "fastfetch",
+  "ntop",
+  "btop",
+  "bottom",
+  "cpufetch",
+  # tmux
+  "psmux",
+  "zellij",
+  # typing
+  "ttyper",
+  # unrar
+  "unrar",
+  "unzip",
+  # utils
+  "coreutils",
+  "nircmd",
+  # mv
+  "brename",
+  # which
+  "which",
+  # system
+  "dos2unix",
+  "goodbyedpi",
+  "file",
+  "cyme",
+  # archive
+  "zip",
+  "bzip2",
+  # unpack
+  "innounp",
+  "gzip",
+  "innoextract",
+  "xz",
+  # sudo
+  "gsudo",
+  # service
+  "nssm",
+  # package_manager
+  "pipx",
+  "winget",
+  "topgrade",
+  "meta-package-manager",
+  # clipboard
+  "clipboard@0.9.0.1",
+  # notification
+  "noti",
+  "gotify-server",
+  "gotify-cli",
+  # ps
+  "witr",
+  # rm
+  "trashy",
+  # text_expander
+  "espanso",
+  # video_editor
+  "ffmpeg",
+  "butterflow",
+  # nerd fonts
+  "JetBrainsMono-NF"
+]
