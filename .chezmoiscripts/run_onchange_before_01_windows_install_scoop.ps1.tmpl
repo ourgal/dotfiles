@@ -1,0 +1,16 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if or (lookPath "scoop" | not) (joinPath .chezmoi.homeDir "scoop" "apps" "scoop" "current" "bin" "scoop.ps1"| stat | not) -}}
+
+Write-Host "Scoop not found. Installing Scoop..." -ForegroundColor Cyan
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+{{ if .my.scoop.offical -}}
+irm get.scoop.sh | iex
+{{ end -}}
+
+{{ if .my.scoop.scoop-proxy-cn -}}
+iwr -useb scoop.201704.xyz | iex
+{{ end -}}
+
+{{ end -}}
+{{ end -}}
