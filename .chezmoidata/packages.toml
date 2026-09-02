@@ -208,10 +208,8 @@ install = [
   "adb",
   "scrcpy",
   # audio
-  "mpd",
   "navidrome",
   "cliamp",
-
   # CA
   "cacert",
   # CMS
@@ -491,4 +489,9 @@ install = [
   "butterflow",
   # nerd fonts
   "JetBrainsMono-NF"
+]
+
+install_without_proxy = [
+  # audio
+  "mpd"
 ]
