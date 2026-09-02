@@ -15,14 +15,29 @@ foreach ($bucket in $buckets) {
     }
 }
 
+$packages = @({{ .my.scoop.packages.install | quoteList | join ", " }})
+
+$packages_without_proxy = @({{ .my.scoop.packages.install_without_proxy | quoteList | join ", " }})
+
+$package_list = $(scoop list)
+
+{{ if .my.scoop.scoop_proxy_cn -}}
+scoop config rm url_proxy
+{{ end -}}
+
+foreach ($pkg in $packages_without_proxy) {
+    if (-not ($package_list | where name -eq $pkg)) {
+        Write-Host "Installing $pkg..." -ForegroundColor Green
+        scoop install $pkg
+    } else {
+        Write-Host "$pkg is already installed." -ForegroundColor Gray
+    }
+}
+
 {{ if .my.scoop.scoop_proxy_cn -}}
 scoop config url_proxy {{ .my.gh_proxy }}
 {{ end -}}
 
-
-$packages = @({{ .my.scoop.packages.install | quoteList | join ", " }})
-
-$package_list = $(scoop list)
 
 foreach ($pkg in $packages) {
     if (-not ($package_list | where name -eq $pkg)) {
