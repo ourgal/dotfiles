@@ -20,7 +20,7 @@ scoop config url_proxy {{ .my.gh_proxy }}
 {{ end -}}
 
 
-$packages = @({{ range .my.scoop.packages.install }}{{ . | quote }}, {{ end }})
+$packages = @({{ .my.scoop.packages.install | quoteList | join ", " }})
 
 $package_list = $(scoop list)
 
