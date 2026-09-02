@@ -4,9 +4,16 @@
 {{ $homeDir := .chezmoi.homeDir -}}
 
 {{ range .my.buckets.add -}}
-  {{ if joinPath $homeDir "scoop" "buckets" . | stat | not -}}
-    {{ warnf (print "Adding scoop bucket " .) -}}
-    scoop bucket add {{ . }}
+  {{ if kindIs "string" . -}}
+    {{ if joinPath $homeDir "scoop" "buckets" . | stat | not -}}
+      {{ warnf (print "Adding scoop bucket " .) -}}
+      scoop bucket add {{ . }}
+    {{ end -}}
+  {{ else -}}
+    {{ if joinPath $homeDir "scoop" "buckets" .name | stat | not -}}
+      {{ warnf (print "Adding scoop bucket " .name) -}}
+      scoop bucket add {{ .name }} {{ .url }}
+    {{ end -}}
   {{ end -}}
 {{ end -}}
 
@@ -44,6 +51,32 @@
       scoop config rm url_proxy
       scoop install {{ . }}
     {{ end -}}
+  {{ end -}}
+
+{{ end -}}
+
+{{ $uninstall_packages := list -}}
+{{ $categories = keys .my.scoop.packages.uninstall -}}
+{{ $uninstall_packages_root := .my.scoop.packages.uninstall -}}
+{{ range $_, $c := $categories -}}
+{{ $uninstall_packages = concat $uninstall_packages (index $uninstall_packages_root $c) -}}
+{{ end -}}
+
+{{ range $uninstall_packages -}}
+
+  {{ if . | contains "/" | not -}}
+  {{ fail (print "Not a valid scoop package name: " .) -}}
+  {{ end -}}
+
+  {{ $b = index (splitList "/" .) 0 }}
+  {{ $p = index (splitList "/" .) 1 }}
+
+  {{ if $p | contains "@" -}}
+  {{ $p = index (splitList "@" $p) 0 }}
+  {{ end -}}
+
+  {{ if joinPath $homeDir "scoop" "apps" $p "current" | stat -}}
+    scoop uninstall {{ . }}
   {{ end -}}
 
 {{ end -}}
