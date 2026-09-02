@@ -26,7 +26,7 @@ scoop config rm url_proxy
 {{ end -}}
 
 foreach ($pkg in $packages_without_proxy) {
-    if (-not ($package_list | where name -eq $pkg)) {
+    if (-not ($package_list | where { $_.name -eq $pkg -and $_.info -ne "Install failed" })) {
         Write-Host "Installing $pkg..." -ForegroundColor Green
         scoop install $pkg
     } else {
@@ -40,7 +40,7 @@ scoop config url_proxy {{ .my.gh_proxy }}
 
 
 foreach ($pkg in $packages) {
-    if (-not ($package_list | where name -eq $pkg)) {
+    if (-not ($package_list | where { $_.name -eq $pkg -and $_.info -ne "Install failed" })) {
         Write-Host "Installing $pkg..." -ForegroundColor Green
         scoop install $pkg
     } else {
