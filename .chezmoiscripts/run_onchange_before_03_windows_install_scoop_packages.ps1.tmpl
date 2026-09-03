@@ -77,7 +77,7 @@
 
 {{ $categories = keys $packages_root.uninstall -}}
 {{ range $_, $c := $categories -}}
-{{ $uninstall_packages = concat $uninstall_packages (index $packages_root $c) -}}
+{{ $uninstall_packages = concat $uninstall_packages (index $packages_root.uninstall $c) -}}
 {{ end -}}
 
 {{ range $uninstall_packages -}}
