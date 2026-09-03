@@ -41,9 +41,6 @@
 {{ if lookPath "git-credential-gopass" -}}
 {{ $cfg = set $cfg "credential" (dict "helper" "gopass") -}}
 {{ $cfg = set $cfg (print "credential " ("helperselector" | quote)) (dict "selected" "gopass") -}}
-{{ else -}}
-{{ $cfg = set $cfg "credential" (printf "!%s/scoop/apps/git/current/mingw64/bin/git-credential-manager.exe" .chezmoi.homeDir) -}}
-{{ $cfg = set $cfg (print "credential " ("helperselector" | quote)) (dict "selected" "manager") -}}
 {{ end -}}
 {{ end -}}
 
