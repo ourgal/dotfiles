@@ -1,0 +1,38 @@
+{{ if eq .chezmoi.os "windows" -}}
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
+
+# Run on every chezmoi apply - random seed: {{ randInt 0 999999999 }}
+
+$apiUrl = "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1"
+try {
+    $response = Invoke-RestMethod -Uri $apiUrl -Method Get -TimeoutSec 10
+    if ($response.images -and $response.images[0].url) {
+        $imageUrl = "https://www.bing.com" + $response.images[0].url
+        $tempDir = Join-Path $env:TEMP "chezmoi_wallpapers"
+        if (-not (Test-Path $tempDir)) {
+            New-Item -ItemType Directory -Path $tempDir | Out-Null
+        }
+        $tempFile = Join-Path $tempDir ("wallpaper_" + (Get-Date -Format "yyyyMMdd_HHmmss") + ".jpg")
+
+        Invoke-WebRequest -Uri $imageUrl -OutFile $tempFile -TimeoutSec 30
+
+        if (Test-Path $tempFile) {
+            $code = @"
+using System;
+using System.Runtime.InteropServices;
+public class WallpaperSetter {
+    [DllImport("user32.dll", CharSet = CharSet.Auto)]
+    public static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
+}
+"@
+            Add-Type -TypeDefinition $code -ErrorAction SilentlyContinue
+            [WallpaperSetter]::SystemParametersInfo(20, 0, $tempFile, 3)
+            Write-Output "Successfully updated Windows wallpaper to: $imageUrl"
+        }
+    }
+} catch {
+    Write-Warning "Failed to update Windows wallpaper: $_"
+}
+{{ end -}}
