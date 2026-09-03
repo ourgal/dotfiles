@@ -6,7 +6,7 @@ $PSNativeCommandUseErrorActionPreference = $true
 # --- Configuration ---
 
 # 1. Define the source URL
-$DownloadUrl = "{{ .my.sbsrf.url }}"
+$DownloadUrl = "{{ print .my.gh_proxy "/" .my.sbsrf.url }}"
 
 # 2. Define the target directory using the built-in environment variable $env:APPDATA
 # Note: $env:APPDATA resolves to C:\Users\<Username>\AppData\Roaming
@@ -48,7 +48,7 @@ try {
     # Use Expand-Archive (available in PS 5.0+)
     # -Force overwrites existing files in the destination folder without prompting
     Expand-Archive -Path $TempZipPath -DestinationPath $TargetFolder -Force
-    
+
     Write-Host "Extraction complete. Files are now in: $TargetFolder"
 }
 catch {

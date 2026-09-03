@@ -5,7 +5,7 @@ set -euo pipefail
 {{ $flatpak := joinPath .chezmoi.homeDir ".local" "share" "flatpak" "exports" "share" "applications" "org.fcitx.Fcitx5.desktop" -}}
 {{ template "checkPath" (list "curl" "unzip") -}}
 {{ if or (lookPath "fcitx5") (stat $flatpak) }}
-url="{{ .my.sbsrf.url }}"
+url="{{ print .my.gh_proxy "/" .my.sbsrf.url }}"
 {{ if lookPath "fcitx5" -}}
 dir=~/.local/share/fcitx5/rime
 {{ else if stat $flatpak -}}
