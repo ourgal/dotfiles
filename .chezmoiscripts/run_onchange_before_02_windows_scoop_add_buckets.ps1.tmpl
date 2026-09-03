@@ -4,7 +4,15 @@
 {{ $homeDir := .chezmoi.homeDir -}}
 {{ $gh_proxy := .my.gh_proxy -}}
 
-{{ range .my.buckets.add -}}
+{{ $type := "other" -}}
+
+{{ if eq .chezmoi.hostname "nuc" "bed" -}}
+{{ $type = "home" -}}
+{{ else if eq .chezmoi.hostname "work" "work2" -}}
+{{ $type = "work" -}}
+{{ end -}}
+
+{{ range (index .my.buckets $type).add -}}
   {{ if kindIs "string" . -}}
     {{ if joinPath $homeDir "scoop" "buckets" . | stat | not -}}
       {{ warnf (print "Adding scoop bucket " .) -}}
@@ -20,4 +28,3 @@
 
 {{ end -}}
 {{ end -}}
-

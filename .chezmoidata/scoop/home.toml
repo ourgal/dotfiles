@@ -1,8 +1,4 @@
-[my.scoop]
-offical = false
-scoop_proxy_cn = true
-
-[my.scoop.packages.install]
+[my.scoop.packages.home.install]
 AI = ["main/aichat"]
 android = ["main/adb", "main/scrcpy", "extras/kdeconnect", "extras/apkeep", "ourgal_scoop-bucket/fdroidcl"]
 audio = ["main/mpd", "main/navidrome", "main/cliamp", "extras/ab-av1", "extras/mplayer", "extras/musikcube", "extras/mpc", "extras/ncmpc"]
@@ -136,8 +132,8 @@ video_editor = ["main/ffmpeg", "main/butterflow", "extras/handbrake"]
 whiteboard = ["extras/openboard"]
 nerd_fonts = ["nerd-fonts/JetBrainsMono-NF", "nerd-fonts/Maple-Mono-NF-CN", "nerd-fonts/NerdFontsSymbolsOnly", "nerd-fonts/FiraCode-NF-Mono", "nerd-fonts/Noto-CJK-Mega-OTC", "nerd-fonts/IosevkaTerm-NF-Mono", "nerd-fonts/SarasaGothic-ttc"]
 
-[my.scoop.packages.uninstall]
+[my.scoop.packages.home.uninstall]
 editor = ["ourgal_scoop-bucket/emacs-lsp-booster"]
 
-[my.buckets]
+[my.buckets.home]
 add = ["extras", "nerd-fonts", "java", { name = "ourgal_scoop-bucket", url = "https://github.com/ourgal/scoop-bucket" }, { name = "extras-cn", url = "https://github.com/Scoopforge/Extras-CN" }, { name = "Rinkerbel_scooped", url = "https://github.com/Rinkerbel/scooped" }]
