@@ -5,6 +5,7 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 $PSNativeCommandUseErrorActionPreference = $true
 # {{ output "dirhash" (joinPath .chezmoi.homeDir ".local" "share" "repos" "uosc" "src" "ziggy") "-quiet" "-nowait" }}
+Set-Item -Path Env:\GOPROXY -Value "{{ .my.go_proxy}},direct"
 cd ~/.local/share/repos/uosc
 ./tools/build.ps1 ziggy placeholder
 

@@ -3,7 +3,6 @@
 
 {{ if env "GOPROXY" | not -}}
 [System.Environment]::SetEnvironmentVariable("GOPROXY", "{{ .my.go_proxy}},direct", "User")
-Set-Item -Path Env:\GOPROXY -Value "{{ .my.go_proxy}},direct"
 {{ end -}}
 
 {{ end -}}
