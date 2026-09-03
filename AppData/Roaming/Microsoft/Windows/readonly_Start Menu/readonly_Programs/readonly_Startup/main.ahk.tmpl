@@ -110,7 +110,7 @@ Run {{ joinPath .chezmoi.homeDir "Documents" "autohotkey" "keybindings.ahk" | qu
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $powertoys "opt" (list "windows" "startup" "powertoys" "enable") "os" "windows") | trim | atoi -}}
 Run {{ $powertoys | quote }}, {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
-{{ if lookPath "autohotkey" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "autohotkey" "opt" (list "windows" "startup" "hide_cursor" "enable") "os" "windows") | trim | atoi -}}
 Run({{ joinPath .chezmoi.homeDir "Documents" "autohotkey" "hide_cursor.ahk" | quote }}, , "Hide")
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "dufs" "opt" (list "windows" "startup" "dufs" "enable") "os" "windows") | trim | atoi -}}
