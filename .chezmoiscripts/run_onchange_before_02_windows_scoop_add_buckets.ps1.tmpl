@@ -1,0 +1,23 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "scoop" -}}
+
+{{ $homeDir := .chezmoi.homeDir -}}
+{{ $gh_proxy := .my.gh_proxy -}}
+
+{{ range .my.buckets.add -}}
+  {{ if kindIs "string" . -}}
+    {{ if joinPath $homeDir "scoop" "buckets" . | stat | not -}}
+      {{ warnf (print "Adding scoop bucket " .) -}}
+      scoop bucket add {{ . }}
+    {{ end -}}
+  {{ else -}}
+    {{ if joinPath $homeDir "scoop" "buckets" .name | stat | not -}}
+      {{ warnf (print "Adding scoop bucket " .name) -}}
+      scoop bucket add {{ .name }} {{ $gh_proxy }}/{{ .url }}
+    {{ end -}}
+  {{ end -}}
+{{ end -}}
+
+{{ end -}}
+{{ end -}}
+
