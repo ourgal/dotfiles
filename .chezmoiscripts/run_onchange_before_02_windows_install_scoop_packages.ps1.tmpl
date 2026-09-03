@@ -2,6 +2,7 @@
 {{ if lookPath "scoop" -}}
 
 {{ $homeDir := .chezmoi.homeDir -}}
+{{ $gh_proxy := .my.gh_proxy -}}
 
 {{ range .my.buckets.add -}}
   {{ if kindIs "string" . -}}
@@ -21,6 +22,7 @@
 {{ $p := "" -}}
 {{ $u := "" -}}
 {{ $j := dict -}}
+{{ $url := "" -}}
 
 {{ $all_package := list -}}
 {{ $categories := keys .my.scoop.packages.install -}}
@@ -31,21 +33,41 @@
 
 {{ range $all_package -}}
 
-  {{ if . | contains "/" | not -}}
+  {{ if  contains "/" . | not -}}
   {{ fail (print "Not a valid scoop package name: " .) -}}
   {{ end -}}
 
   {{ $b = index (splitList "/" .) 0 }}
   {{ $p = index (splitList "/" .) 1 }}
 
-  {{ if $p | contains "@" -}}
+  {{ if contains "@" $p -}}
   {{ $p = index (splitList "@" $p) 0 }}
   {{ end -}}
 
   {{ if joinPath $homeDir "scoop" "apps" $p "current" | stat | not -}}
     {{ $j = joinPath $homeDir "scoop" "buckets" $b "bucket" (print $p ".json") | include | fromJson }}
-    {{ if and (hasKey $j "architecture") (hasKey $j.architecture "64bit") (contains (index (index $j.architecture "64bit" ) "url") "https://github.com") }}
-      scoop config url_proxy {{ .my.gh_proxy }}
+    {{ if hasKey $j "url" -}}
+      {{ if kindIs "string" $j.url -}}
+        {{ $url = $j.url -}}
+      {{ else -}}
+        {{ $url = index $j.url 0 -}}
+      {{ end -}}
+    {{ else if hasKey $j "architecture" -}}
+      {{ if hasKey $j.architecture "64bit" -}}
+        {{ if kindIs "string" (index $j.architecture "64bit" ).url -}}
+          {{ $url = (index $j.architecture "64bit" ).url -}}
+        {{ else -}}
+          {{ $url = index (index $j.architecture "64bit" ).url 0 -}}
+        {{ end -}}
+      {{ else -}}
+        {{ fail (print "Url is not found " .) -}}
+      {{ end -}}
+    {{ else -}}
+      {{ fail (print "Url is not found " .) -}}
+    {{ end -}}
+
+    {{ if or (contains "https://github.com" $url) (contains "https://raw.githubusercontent.com" $url) -}}
+      scoop config url_proxy {{ $gh_proxy }}
       scoop install {{ . }}
     {{ else -}}
       scoop config rm url_proxy
@@ -64,14 +86,14 @@
 
 {{ range $uninstall_packages -}}
 
-  {{ if . | contains "/" | not -}}
+  {{ if  contains "/" . | not -}}
   {{ fail (print "Not a valid scoop package name: " .) -}}
   {{ end -}}
 
   {{ $b = index (splitList "/" .) 0 }}
   {{ $p = index (splitList "/" .) 1 }}
 
-  {{ if $p | contains "@" -}}
+  {{ if contains "@" $p -}}
   {{ $p = index (splitList "@" $p) 0 }}
   {{ end -}}
 
