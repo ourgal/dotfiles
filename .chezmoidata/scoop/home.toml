@@ -1,24 +1,70 @@
 [my.scoop.packages.home.install]
 AI = ["main/aichat"]
-android = ["main/adb", "main/scrcpy", "extras/kdeconnect", "extras/apkeep", "ourgal_scoop-bucket/fdroidcl"]
-audio = ["main/mpd", "main/navidrome", "main/cliamp", "extras/ab-av1", "extras/mplayer", "extras/musikcube", "extras/mpc", "extras/ncmpc"]
+android = [
+  "main/adb",
+  "main/scrcpy",
+  "extras/kdeconnect",
+  "extras/apkeep",
+  "ourgal_scoop-bucket/fdroidcl",
+]
+audio = [
+  "main/mpd",
+  "main/navidrome",
+  "main/cliamp",
+  "extras/ab-av1",
+  "extras/mplayer",
+  "extras/musikcube",
+  "extras/mpc",
+  "extras/ncmpc",
+]
 automation = ["extras/autohotkey", "extras/autoclicker"]
 anime = ["extras/filebot", "extras/ani-cli", "Rinkerbel_scooped/seanime-server"]
-browser = ["extras/firefox", "extras/brave", "extras/qutebrowser", "extras/ungoogled-chromium", "extras/librewolf"]
+browser = [
+  "extras/firefox",
+  "extras/brave",
+  "extras/qutebrowser",
+  "extras/ungoogled-chromium",
+  "extras/librewolf",
+]
 book = ["extras/kavita"]
 chat = ["extras/telegram"]
 sql = ["extras/beekeeper-studio", "main/sqlite", "ourgal_scoop-bucket/dbgate"]
-document = ["main/pandoc", "main/cht", "extras/sioyek", "extras/sumatrapdf", "extras/zeal", "extras/libreoffice", "extras/wpsoffice"]
+document = [
+  "main/pandoc",
+  "main/cht",
+  "extras/sioyek",
+  "extras/sumatrapdf",
+  "extras/zeal",
+  "extras/libreoffice",
+  "extras/wpsoffice",
+]
 CA = ["main/cacert"]
 CMS = ["main/hugo", "main/cobalt"]
-dev = ["main/editorconfig", "main/aspell", "main/diffutils", "main/chsrc", "main/dprint", "main/wakatime-cli", "main/cloc", "extras/universal-ctags", "ourgal_scoop-bucket/keep-sorted"]
+dev = [
+  "main/editorconfig",
+  "main/aspell",
+  "main/diffutils",
+  "main/chsrc",
+  "main/dprint",
+  "main/wakatime-cli",
+  "main/cloc",
+  "extras/universal-ctags",
+  "ourgal_scoop-bucket/keep-sorted",
+]
 dict = ["ourgal_scoop-bucket/sdcv"]
 docker = ["ourgal_scoop-bucket/dockfmt"]
 compile = ["main/make"]
 bash = ["main/shellcheck", "main/shfmt"]
 c = ["main/clangd"]
 csharp = ["main/scriptcs", "main/bflat"]
-environment = ["main/task", "main/cmake", "main/msys2", "main/direnv", "main/tree-sitter", "main/dirhash"]
+environment = [
+  "main/task",
+  "main/cmake",
+  "main/msys2",
+  "main/direnv",
+  "main/tree-sitter",
+  "main/dirhash",
+]
 # haskell = ["main/haskell", "main/haskell-cabal", "main/haskell-language-server", "main/stack"]
 java = ["java/openjdk17"]
 go = ["main/go"]
@@ -28,28 +74,108 @@ lua = ["main/lua-language-server", "main/stylua"]
 markdown = ["main/autocorrect", "main/marksman"]
 nodejs = ["main/yarn", "main/pnpm"]
 perl = ["main/perl"]
-powershell = ["main/powershelleditorservices", "extras/psfzf", "extras/psreadline"]
+powershell = [
+  "main/powershelleditorservices",
+  "extras/psfzf",
+  "extras/psreadline",
+]
 python = ["main/ruff", "main/ty", "main/uv"]
 rust = ["main/rust", "main/cargo-binstall"]
 toml = ["main/taplo", "main/tombi"]
 web = ["main/static-web-server"]
 yaml = ["main/yamlfmt"]
-disk = ["main/smartmontools", "main/dd", "extras/diskgenius", "extras/crystaldiskinfo", "extras/wiztree", "extras/windirstat"]
-launcher = ["extras/flow-launcher", "ourgal_scoop-bucket/altrun", "ourgal_scoop-bucket/runany"]
-package_manager = ["main/pipx", "main/winget", "main/topgrade", "main/meta-package-manager", "extras/unigetui", "ourgal_scoop-bucket/cargo-update", "ourgal_scoop-bucket/Github-Store"]
+disk = [
+  "main/smartmontools",
+  "main/dd",
+  "extras/diskgenius",
+  "extras/crystaldiskinfo",
+  "extras/wiztree",
+  "extras/windirstat",
+]
+launcher = [
+  "extras/flow-launcher",
+  "ourgal_scoop-bucket/altrun",
+  "ourgal_scoop-bucket/runany",
+]
+package_manager = [
+  "main/pipx",
+  "main/winget",
+  "main/topgrade",
+  "main/meta-package-manager",
+  "extras/unigetui",
+  "ourgal_scoop-bucket/cargo-update",
+  "ourgal_scoop-bucket/Github-Store",
+]
 dhcp = ["extras/dhcp-server"]
 gesture = ["ourgal_scoop-bucket/gesturesign"]
 timer = ["extras/hourglass"]
 dotfile_manager = ["main/chezmoi"]
-download = ["main/gallery-dl", "main/yt-dlp", "main/pget", "main/wget2", "main/wget", "main/aria2", "extras/aria-ng-gui", "extras/eget", "extras/transmission", "extras/transgui", "extras/qbittorrent", "ourgal_scoop-bucket/pikpak", "ourgal_scoop-bucket/torrserver"]
-editor = ["main/vim", "main/helix", "main/neovim", "main/fresh", "extras/notepadplusplus", "extras/vscodium", "extras/emacs", "extras/zed", "extras/flow-control", "extras/lunarvim", "main/gcc", "ourgal_scoop-bucket/helix-ghost"]
+download = [
+  "main/gallery-dl",
+  "main/yt-dlp",
+  "main/pget",
+  "main/wget2",
+  "main/wget",
+  "main/aria2",
+  "extras/aria-ng-gui",
+  "extras/eget",
+  "extras/transmission",
+  "extras/transgui",
+  "extras/qbittorrent",
+  "ourgal_scoop-bucket/pikpak",
+  "ourgal_scoop-bucket/torrserver",
+]
+editor = [
+  "main/vim",
+  "main/helix",
+  "main/neovim",
+  "main/fresh",
+  "extras/notepadplusplus",
+  "extras/vscodium",
+  "extras/emacs",
+  "extras/zed",
+  "extras/flow-control",
+  "extras/lunarvim",
+  "main/gcc",
+  "ourgal_scoop-bucket/helix-ghost",
+]
 education = ["extras/anki"]
 email = ["main/mailsend"]
-encrypt = ["main/gpg", "main/openssl", "main/gopass", "main/gopass-jsonapi", "main/sops", "extras/cfssl", "extras/age", "extras/keepassxc", "extras/win-gpg-agent", "ourgal_scoop-bucket/git-credential-gopass"]
-file_manager = ["main/lf", "main/yazi", "main/superfile", "extras/mc", "extras/vifm", "extras/doublecmd", "extras/totalcommander"]
-game = ["extras/locale-emulator", "extras/ludusavi", "extras/playnite", "extras/sunshine"]
+encrypt = [
+  "main/gpg",
+  "main/openssl",
+  "main/gopass",
+  "main/gopass-jsonapi",
+  "main/sops",
+  "extras/cfssl",
+  "extras/age",
+  "extras/keepassxc",
+  "extras/win-gpg-agent",
+  "ourgal_scoop-bucket/git-credential-gopass",
+]
+file_manager = [
+  "main/lf",
+  "main/yazi",
+  "main/superfile",
+  "extras/mc",
+  "extras/vifm",
+  "extras/doublecmd",
+  "extras/totalcommander",
+]
+game = [
+  "extras/locale-emulator",
+  "extras/ludusavi",
+  "extras/playnite",
+  "extras/sunshine",
+]
 fuzzy_finder = ["main/broot", "main/fzf", "extras/television"]
-git = ["main/jj", "main/git", "extras/lazygit", "extras/gitu", "extras/sourcegit"]
+git = [
+  "main/jj",
+  "main/git",
+  "extras/lazygit",
+  "extras/gitu",
+  "extras/sourcegit",
+]
 git_auto = ["main/gitomatic"]
 git_repo = ["ourgal_scoop-bucket/mani"]
 git_bug = ["main/git-bug"]
@@ -57,7 +183,12 @@ git_github = ["main/gh"]
 git_push = ["main/mob", "main/legit"]
 git_lfs = ["main/git-lfs"]
 git_fixup = ["main/git-absorb"]
-git_diff = ["main/diff-so-fancy", "main/delta", "main/difftastic", "extras/meld"]
+git_diff = [
+  "main/diff-so-fancy",
+  "main/delta",
+  "main/difftastic",
+  "extras/meld",
+]
 git_encrypt = ["main/git-crypt"]
 git_tui = ["main/gitui"]
 git_gui = ["extras/git-cola"]
@@ -65,12 +196,35 @@ git_server = ["main/gogs"]
 git_search = ["main/gitql"]
 git_hook = ["main/lefthook"]
 image = ["main/gnuplot"]
-image_viewer = ["extras/nomacs", "extras/qview", "extras/oculante", "extras/fsviewer", "extras/yacreader"]
+image_viewer = [
+  "extras/nomacs",
+  "extras/qview",
+  "extras/oculante",
+  "extras/fsviewer",
+  "extras/yacreader",
+]
 image_info = ["main/exiftool"]
-image_edit = ["main/imagemagick", "extras/gimp", "extras/photodemon", "extras/photoflare"]
-keyboard = ["extras/qmk-toolbox", "extras/vial", "extras/kanata", "extras/komokana"]
+image_edit = [
+  "main/imagemagick",
+  "extras/gimp",
+  "extras/photodemon",
+  "extras/photoflare",
+]
+keyboard = [
+  "extras/qmk-toolbox",
+  "extras/vial",
+  "extras/kanata",
+  "extras/komokana",
+]
 math = ["extras/qalculate"]
-network = ["main/dog", "main/nali", "main/nmap", "main/q-dns", "main/tcping", "extras/fiddler"]
+network = [
+  "main/dog",
+  "main/nali",
+  "main/nmap",
+  "main/q-dns",
+  "main/tcping",
+  "extras/fiddler",
+]
 proxy = ["main/connect", "extras/flclash"]
 scoop_helper = ["main/scoop-search", "extras/sfsu"]
 search = ["main/everything-cli", "extras/everything"]
@@ -83,8 +237,26 @@ remote = ["main/termscp", "main/ttyd", "extras/rustdesk", "extras/tightvnc"]
 qr_code = ["main/qr", "main/qrcp", "extras/qrscan"]
 translation = ["extras/copytranslator", "ourgal_scoop-bucket/mtranserver"]
 usb_driver = ["extras/rufus", "extras/ventoy"]
-share = ["main/croc", "main/dufs", "main/miniserve", "main/portal", "main/rclone", "main/syncthing", "main/alist", "main/serve", "main/simple-http-server", "main/git-annex"]
-shell = ["main/clink", "main/clink-completions", "main/cmder-full", "main/pwsh", "main/nu", "main/yori"]
+share = [
+  "main/croc",
+  "main/dufs",
+  "main/miniserve",
+  "main/portal",
+  "main/rclone",
+  "main/syncthing",
+  "main/alist",
+  "main/serve",
+  "main/simple-http-server",
+  "main/git-annex",
+]
+shell = [
+  "main/clink",
+  "main/clink-completions",
+  "main/cmder-full",
+  "main/pwsh",
+  "main/nu",
+  "main/yori",
+]
 ascii_art = ["main/rainbow", "ourgal_scoop-bucket/install-nothing"]
 cd = ["main/zoxide"]
 df = ["main/duf"]
@@ -100,7 +272,13 @@ rename = ["main/rnr"]
 sed = ["main/sd", "main/sed"]
 shasum = ["main/shasum"]
 snippets = ["main/navi"]
-system_info = ["main/fastfetch", "main/ntop", "main/btop", "main/bottom", "main/cpufetch"]
+system_info = [
+  "main/fastfetch",
+  "main/ntop",
+  "main/btop",
+  "main/bottom",
+  "main/cpufetch",
+]
 completion = ["extras/carapace-bin"]
 todo = ["extras/ttdl"]
 tmux = ["main/psmux", "main/zellij"]
@@ -111,8 +289,23 @@ utils = ["main/coreutils", "main/nircmd", "extras/util-linux-ng"]
 binary = ["main/binutils"]
 mv = ["main/brename", "ourgal_scoop-bucket/mmv"]
 which = ["main/which"]
-system = ["main/dos2unix", "main/goodbyedpi", "main/file", "main/cyme", "extras/winspy", "extras/windhawk", "extras/powertoys"]
-window_manager = ["extras/glazewm", "extras/zebar", "extras/komorebi", "extras/yasb", "extras/whkd"]
+system = [
+  "main/dos2unix",
+  "main/goodbyedpi",
+  "main/file",
+  "main/cyme",
+  "extras/winspy",
+  "extras/windhawk",
+  "extras/powertoys",
+  "ourgal_scoop-bucket/setuserfta",
+]
+window_manager = [
+  "extras/glazewm",
+  "extras/zebar",
+  "extras/komorebi",
+  "extras/yasb",
+  "extras/whkd",
+]
 archive = ["main/zip", "main/bzip2"]
 unpack = ["main/innounp", "main/gzip", "main/innoextract", "main/xz"]
 sudo = ["main/gsudo"]
@@ -127,13 +320,35 @@ paper = ["extras/moor"]
 ps = ["main/witr"]
 rm = ["main/trashy"]
 text_expander = ["main/espanso"]
-video_player = ["extras/jellyfin-mpv-shim", "extras/vlc", "extras/mpv", "extras/fladder", "extras/gridplayer", "extras/webtorrent"]
+video_player = [
+  "extras/jellyfin-mpv-shim",
+  "extras/vlc",
+  "extras/mpv",
+  "extras/fladder",
+  "extras/gridplayer",
+  "extras/webtorrent",
+]
 video_editor = ["main/ffmpeg", "main/butterflow", "extras/handbrake"]
 whiteboard = ["extras/openboard"]
-nerd_fonts = ["nerd-fonts/JetBrainsMono-NF", "nerd-fonts/Maple-Mono-NF-CN", "nerd-fonts/NerdFontsSymbolsOnly", "nerd-fonts/FiraCode-NF-Mono", "nerd-fonts/Noto-CJK-Mega-OTC", "nerd-fonts/IosevkaTerm-NF-Mono", "nerd-fonts/SarasaGothic-ttc"]
+nerd_fonts = [
+  "nerd-fonts/JetBrainsMono-NF",
+  "nerd-fonts/Maple-Mono-NF-CN",
+  "nerd-fonts/NerdFontsSymbolsOnly",
+  "nerd-fonts/FiraCode-NF-Mono",
+  "nerd-fonts/Noto-CJK-Mega-OTC",
+  "nerd-fonts/IosevkaTerm-NF-Mono",
+  "nerd-fonts/SarasaGothic-ttc",
+]
 
 [my.scoop.packages.home.uninstall]
 editor = ["ourgal_scoop-bucket/emacs-lsp-booster"]
 
 [my.buckets.home]
-add = ["extras", "nerd-fonts", "java", { name = "ourgal_scoop-bucket", url = "https://github.com/ourgal/scoop-bucket" }, { name = "extras-cn", url = "https://github.com/Scoopforge/Extras-CN" }, { name = "Rinkerbel_scooped", url = "https://github.com/Rinkerbel/scooped" }]
+add = [
+  "extras",
+  "nerd-fonts",
+  "java",
+  { name = "ourgal_scoop-bucket", url = "https://github.com/ourgal/scoop-bucket" },
+  { name = "extras-cn", url = "https://github.com/Scoopforge/Extras-CN" },
+  { name = "Rinkerbel_scooped", url = "https://github.com/Rinkerbel/scooped" },
+]
