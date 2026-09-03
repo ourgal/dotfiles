@@ -11,10 +11,20 @@
 {{ $url := "" -}}
 
 {{ $all_package := list -}}
-{{ $categories := keys .my.scoop.packages.install -}}
-{{ $packages_root := .my.scoop.packages.install -}}
+
+{{ $type := "other" -}}
+
+{{ if eq .chezmoi.hostname "nuc" "bed" -}}
+{{ $type = "home" -}}
+{{ else if eq .chezmoi.hostname "work" "work2" -}}
+{{ $type = "work" -}}
+{{ end -}}
+
+{{ $packages_root := (index .my.scoop.packages $type) -}}
+{{ $categories := keys $packages_root.install -}}
+
 {{ range $_, $c := $categories -}}
-{{ $all_package = concat $all_package (index $packages_root $c) -}}
+{{ $all_package = concat $all_package (index $packages_root.install $c) -}}
 {{ end -}}
 
 {{ range $all_package -}}
@@ -64,10 +74,10 @@
 {{ end -}}
 
 {{ $uninstall_packages := list -}}
-{{ $categories = keys .my.scoop.packages.uninstall -}}
-{{ $uninstall_packages_root := .my.scoop.packages.uninstall -}}
+
+{{ $categories = keys $packages_root.uninstall -}}
 {{ range $_, $c := $categories -}}
-{{ $uninstall_packages = concat $uninstall_packages (index $uninstall_packages_root $c) -}}
+{{ $uninstall_packages = concat $uninstall_packages (index $packages_root $c) -}}
 {{ end -}}
 
 {{ range $uninstall_packages -}}
