@@ -2,7 +2,6 @@
 AI = ["main/aichat"]
 android = [
   "main/adb",
-  "main/scrcpy",
   "extras/kdeconnect",
   "extras/apkeep",
   "ourgal_scoop-bucket/fdroidcl",
@@ -11,29 +10,23 @@ audio = [
   "main/mpd",
   "main/navidrome",
   "main/cliamp",
-  "extras/ab-av1",
-  "extras/mplayer",
-  "extras/musikcube",
   "extras/mpc",
   "extras/ncmpc",
 ]
-automation = ["extras/autohotkey", "extras/autoclicker"]
-anime = ["extras/filebot", "extras/ani-cli", "Rinkerbel_scooped/seanime-server"]
+automation = ["extras/autohotkey" ]
+anime = [ "extras/ani-cli", "Rinkerbel_scooped/seanime-server"]
 browser = [
   "extras/firefox",
   "extras/brave",
   "extras/qutebrowser",
   "extras/ungoogled-chromium",
-  "extras/librewolf",
 ]
-book = ["extras/kavita"]
 chat = ["extras/telegram"]
-sql = ["extras/beekeeper-studio", "main/sqlite", "ourgal_scoop-bucket/dbgate"]
+sql = [ "main/sqlite" ]
 document = [
   "main/pandoc",
   "main/cht",
   "extras/sioyek",
-  "extras/sumatrapdf",
   "extras/zeal",
   "extras/libreoffice",
   "extras/wpsoffice",
