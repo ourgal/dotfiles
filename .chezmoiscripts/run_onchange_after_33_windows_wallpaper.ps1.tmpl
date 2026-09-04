@@ -1,38 +1,55 @@
 {{ if eq .chezmoi.os "windows" -}}
+
+{{ $scriptPath := joinPath .chezmoi.homeDir ".local" "bin" "update-bing-wallpaper.ps1" -}}
+{{ $taskName := "BingWallpaperDaily" -}}
+
+{{ if exec "powershell" "-command" (print "Get-ScheduledTask -TaskName " $taskName) | not -}}
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 $PSNativeCommandUseErrorActionPreference = $true
 
-# Run on every chezmoi apply - random seed: {{ randInt 0 999999999 }}
+if (-not (Test-Path -LiteralPath {{ $scriptPath | quote }})) {
+    Write-Warning "Wallpaper script not found at {{ $scriptPath }}"
+    exit 0
+}
 
-$apiUrl = "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1"
+$existing = Get-ScheduledTask -TaskName {{ $taskName | quote }} -ErrorAction SilentlyContinue
+if ($existing) {
+    Write-Output "Scheduled task '{{ $taskName }}' already registered; skipping."
+    exit 0
+}
+
+$action = New-ScheduledTaskAction `
+    -Execute powershell `
+    -Argument "-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File `"{{ $scriptPath }}`"" `
+    -WorkingDirectory (Split-Path -Parent {{ $scriptPath | quote }})
+
+$trigger = New-ScheduledTaskTrigger -Daily -At "08:00"
+
+$principal = New-ScheduledTaskPrincipal `
+    -UserId $env:USERNAME `
+    -LogonType Interactive `
+    -RunLevel Limited
+
+$settings = New-ScheduledTaskSettingsSet `
+    -AllowStartIfOnBatteries `
+    -DontStopIfGoingOnBatteries `
+    -StartWhenAvailable `
+    -ExecutionTimeLimit (New-TimeSpan -Minutes 5)
+
 try {
-    $response = Invoke-RestMethod -Uri $apiUrl -Method Get -TimeoutSec 10
-    if ($response.images -and $response.images[0].url) {
-        $imageUrl = "https://www.bing.com" + $response.images[0].url
-        $tempDir = Join-Path $env:TEMP "chezmoi_wallpapers"
-        if (-not (Test-Path $tempDir)) {
-            New-Item -ItemType Directory -Path $tempDir | Out-Null
-        }
-        $tempFile = Join-Path $tempDir ("wallpaper_" + (Get-Date -Format "yyyyMMdd_HHmmss") + ".jpg")
-
-        Invoke-WebRequest -Uri $imageUrl -OutFile $tempFile -TimeoutSec 30
-
-        if (Test-Path $tempFile) {
-            $code = @"
-using System;
-using System.Runtime.InteropServices;
-public class WallpaperSetter {
-    [DllImport("user32.dll", CharSet = CharSet.Auto)]
-    public static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
-}
-"@
-            Add-Type -TypeDefinition $code -ErrorAction SilentlyContinue
-            [WallpaperSetter]::SystemParametersInfo(20, 0, $tempFile, 3)
-            Write-Output "Successfully updated Windows wallpaper to: $imageUrl"
-        }
-    }
+    Register-ScheduledTask `
+        -TaskName {{ $taskName | quote }} `
+        -Action $action `
+        -Trigger $trigger `
+        -Principal $principal `
+        -Settings $settings `
+        -Force `
+        -ErrorAction Stop | Out-Null
+    Write-Output "Registered scheduled task '{{ $taskName }}' to run daily at 08:00."
 } catch {
-    Write-Warning "Failed to update Windows wallpaper: $_"
+    Write-Warning "Failed to register scheduled task '{{ $taskName }}': $_"
 }
+{{ end -}}
+
 {{ end -}}
