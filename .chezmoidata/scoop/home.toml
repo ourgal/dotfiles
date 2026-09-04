@@ -50,7 +50,6 @@ environment = [
   "main/tree-sitter",
   "main/dirhash",
 ]
-# haskell = ["main/haskell", "main/haskell-cabal", "main/haskell-language-server", "main/stack"]
 java = ["java/openjdk17"]
 go = ["main/go"]
 json = ["main/jq"]
@@ -161,9 +160,12 @@ scoop_helper = ["extras/sfsu"]
 search = ["main/everything-cli", "extras/everything"]
 kvm = ["extras/deskflow"]
 terminal = ["extras/windows-terminal", "extras/alacritty"]
-remote = ["main/termscp", "main/ttyd" ]
-qr_code = ["main/qr", "main/qrcp", ]
-usb_driver = [ "extras/ventoy"]
+remote = ["main/termscp", "main/ttyd"]
+qr_code = [
+  "main/qr",
+  "main/qrcp",
+]
+usb_driver = ["extras/ventoy"]
 share = [
   "main/croc",
   "main/dufs",
@@ -217,18 +219,12 @@ system = [
 window_manager = [
   "extras/glazewm",
   "extras/zebar",
-  "extras/komorebi",
-  "extras/yasb",
-  "extras/whkd",
 ]
 archive = ["main/zip", "main/bzip2"]
 unpack = ["main/innounp", "main/gzip", "main/innoextract", "main/xz"]
-sudo = ["main/gsudo"]
 service = ["main/nssm"]
 clipboard = ["main/clipboard@0.9.0.1", "extras/copyq", "extras/ditto"]
-cleaner = ["extras/bleachbit"]
 notification = ["main/noti", "main/gotify-server", "main/gotify-cli"]
-note = ["extras/siyuan-note"]
 screen_shot = ["extras/flameshot"]
 snippet = ["extras/pet"]
 paper = ["extras/moor"]
@@ -240,12 +236,9 @@ video_player = [
   "extras/vlc",
   "extras/mpv",
   "extras/fladder",
-  "extras/gridplayer",
-  "extras/webtorrent",
 ]
-video_editor = ["main/ffmpeg"  ]
+video_editor = ["main/ffmpeg"]
 nerd_fonts = [
-  "nerd-fonts/JetBrainsMono-NF",
   "nerd-fonts/Maple-Mono-NF-CN",
   "nerd-fonts/NerdFontsSymbolsOnly",
   "nerd-fonts/FiraCode-NF-Mono",
