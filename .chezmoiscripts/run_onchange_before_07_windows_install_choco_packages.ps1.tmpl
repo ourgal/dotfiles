@@ -1,0 +1,79 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if eq .chezmoi.hostname "nuc" "bed" "work" "work2" -}}
+
+{{ $ssh_user := "admin@localhost" -}}
+{{ $choco_lib := joinPath (env "ProgramData") "chocolatey" "lib" -}}
+
+{{ if not $ssh_user -}}
+{{ fail (printf "No choco ssh_user configured for hostname %s in .chezmoidata/main.toml [my.choco.ssh_user]" .chezmoi.hostname) -}}
+{{ end -}}
+
+{{ $type := "" -}}
+{{ if eq .chezmoi.hostname "nuc" "bed" -}}
+{{ $type = "home" -}}
+{{ else if eq .chezmoi.hostname "work" "work2" -}}
+{{ $type = "work" -}}
+{{ end -}}
+
+{{ if not (index .my.choco.packages $type) -}}
+{{ fail (printf "No choco package data found for hostname %s in .chezmoidata/choco/%s.toml" .chezmoi.hostname $type) -}}
+{{ end -}}
+
+{{ $packages_root := (index .my.choco.packages $type) -}}
+
+$ErrorActionPreference = "Stop"
+$WarningPreference = "Continue"
+
+$sshUser = {{ $ssh_user | quote }}
+$type = {{ $type | quote }}
+
+Write-Host "Checking SSH connectivity to $sshUser ..."
+& ssh -o BatchMode=yes -o ConnectTimeout=5 "$sshUser" "exit 0" 2>$null
+if ($LASTEXITCODE -ne 0) {
+    Write-Warning "Cannot SSH into $sshUser. Ensure key-based auth is configured. Skipping choco management."
+    exit 0
+}
+
+Write-Host "Verifying choco is available on $sshUser ..."
+& ssh -o BatchMode=yes "$sshUser" "choco --version" 2>$null | Out-Null
+if ($LASTEXITCODE -ne 0) {
+    Write-Warning "choco is not installed on $sshUser. Skipping choco management."
+    exit 0
+}
+
+{{ $install_categories := keys $packages_root.install -}}
+{{ $install_packages := list -}}
+{{ range $_, $c := $install_categories -}}
+{{ $install_packages = concat $install_packages (index $packages_root.install $c) -}}
+{{ end -}}
+
+{{ range $install_packages -}}
+  {{ if joinPath $choco_lib . | stat | not -}}
+    $pkg = {{ . | quote }}
+    Write-Host "Installing choco package: $pkg"
+    & ssh -o BatchMode=yes "$sshUser" "choco install -y $pkg" 2>$null
+    if ($LASTEXITCODE -ne 0) {
+        Write-Warning "Failed to install choco package: $pkg"
+    }
+  {{ end -}}
+{{ end -}}
+
+{{ $uninstall_categories := keys $packages_root.uninstall -}}
+{{ $uninstall_packages := list -}}
+{{ range $_, $c := $uninstall_categories -}}
+{{ $uninstall_packages = concat $uninstall_packages (index $packages_root.uninstall $c) -}}
+{{ end -}}
+
+{{ range $uninstall_packages -}}
+  {{ if joinPath $choco_lib . | stat -}}
+    $pkg = {{ . | quote }}
+    Write-Host "Uninstalling choco package: $pkg"
+    & ssh -o BatchMode=yes "$sshUser" "choco uninstall -y $pkg" 2>$null
+    if ($LASTEXITCODE -ne 0) {
+        Write-Warning "Failed to uninstall choco package: $pkg"
+    }
+  {{ end -}}
+{{ end -}}
+
+{{ end -}}
+{{ end -}}
