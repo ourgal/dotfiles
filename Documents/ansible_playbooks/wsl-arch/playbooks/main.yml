@@ -1,6 +1,6 @@
 ---
 - name: Configure wsl arch
-  hosts: wsl-arch
+  hosts: all
   ignore_unreachable: true
   tasks:
     - name: Debug variables

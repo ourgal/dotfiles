@@ -1,6 +1,6 @@
 ---
 - name: Install uos via nixos live cd
-  hosts: nixos-live
+  hosts: all
   tasks:
     - name: Ansible facts
       ansible.builtin.debug:

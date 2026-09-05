@@ -1,6 +1,6 @@
 ---
 - name: Configure termux
-  hosts: termux
+  hosts: all
   vars:
     ansible_remote_tmp: /data/data/com.termux/files/home/.ansible/tmp
   tasks:

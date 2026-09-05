@@ -1,6 +1,6 @@
 ---
 - name: Install void linux
-  hosts: void-live
+  hosts: all
   vars:
     xbps_mirror: https://mirror.nju.edu.cn/voidlinux/current
     xbps_nonfree_mirror: https://mirror.nju.edu.cn/voidlinux/current/nonfree
