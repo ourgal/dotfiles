@@ -111,6 +111,7 @@ scoop/persist/*
 
 !.local/bin/vid
 !.local/bin/web
+!.local/bin/crush
 
 {{ if and (hasKey .chezmoi.osRelease "name") (eq .chezmoi.osRelease.name "Void") -}}
 # runit
