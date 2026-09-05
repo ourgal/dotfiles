@@ -35,6 +35,7 @@ $settings = New-ScheduledTaskSettingsSet `
     -AllowStartIfOnBatteries `
     -DontStopIfGoingOnBatteries `
     -StartWhenAvailable `
+    -RunOnlyIfNetworkAvailable `
     -ExecutionTimeLimit (New-TimeSpan -Minutes 5)
 
 try {
