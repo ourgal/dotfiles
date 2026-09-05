@@ -1,6 +1,6 @@
 ---
 - name: Configure macos
-  hosts: macos
+  hosts: all
   roles:
     - role: geerlingguy.mac.homebrew
       vars:

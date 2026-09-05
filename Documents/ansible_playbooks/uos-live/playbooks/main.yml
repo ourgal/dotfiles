@@ -4,7 +4,7 @@
 # change uos password, current password is emtpy
 # ssh-copy-id
 - name: Install uos
-  hosts: uos-live
+  hosts: all
   vars:
     user: zxc
     dufs_url: http://192.168.1.110:6500

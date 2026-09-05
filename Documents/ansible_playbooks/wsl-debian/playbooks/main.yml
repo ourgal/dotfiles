@@ -1,6 +1,6 @@
 ---
 - name: Configure wsl debian
-  hosts: nuc-windows-wsl-debian
+  hosts: all
   tasks:
     - name: Debug variables
       ansible.builtin.debug:

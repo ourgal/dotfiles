@@ -1,7 +1,7 @@
 # chezmoi:template:left-delimiter=[[ right-delimiter=]]
 ---
 - name: Configure void linux
-  hosts: void
+  hosts: all
   ignore_unreachable: true
   vars:
     xbps_mirror: https://mirror.nju.edu.cn/voidlinux/current
