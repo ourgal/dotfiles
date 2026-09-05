@@ -1,9 +1,0 @@
-{{ if eq .chezmoi.os "android" -}}
-{{ if lookPath "fish" -}}
-#!{{lookPath "bash"}}
-set -euo pipefail
-{{ if eq (env "SHELL" | splitList "/" | last) "bash" -}}
-chsh -s fish
-{{ end -}}
-{{ end -}}
-{{ end -}}
