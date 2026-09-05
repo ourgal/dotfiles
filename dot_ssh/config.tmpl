@@ -20,11 +20,23 @@ Host note20-adb
 Host note20
   Port 8022
   User u0_a650
-  HostName {{ eq .chezmoi.hostname "work" "work2" | ternary "192.168.0.105" "192.168.123.232"  }}
+  {{ if eq .chezmoi.hostname "work" "work2" -}}
+  HostName 192.168.0.105
+  {{ else if and (eq .chezmoi.hostname "localhost") (output "whoami" | trim | eq "u0_a650") -}}
+  HostName localhost
+  {{ else -}}
+  HostName 192.168.123.232
+  {{ end -}}
 Host m6
   Port 8022
   User u0_a556
-  HostName {{ eq .chezmoi.hostname "work" "work2" | ternary "192.168.0.107" "192.168.123.191" }}
+  {{ if eq .chezmoi.hostname "work" "work2" -}}
+  HostName 192.168.0.107
+  {{ else if and (eq .chezmoi.hostname "localhost") (output "whoami" | trim | eq "u0_a556") -}}
+  HostName localhost
+  {{ else -}}
+  HostName 192.168.123.191
+  {{ end -}}
 Host m6-adb
   Port 8022
   User u0_a556
