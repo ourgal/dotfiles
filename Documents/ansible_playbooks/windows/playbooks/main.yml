@@ -176,7 +176,7 @@
   roles:
     - role: windows_firewall
     - role: windows_hostname
-      windows_hostname_name: "{{ my_hostname if my_hostname is defined else 'nuc' }}"
+      windows_hostname_name: "{{ inventory_hostname if inventory_hostname is defined else 'nuc' }}"
     - role: windows_service
       windows_service_name: Everything
       windows_service_state: started
