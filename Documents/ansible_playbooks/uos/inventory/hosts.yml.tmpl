@@ -1,0 +1,7 @@
+---
+all:
+  hosts:
+    work2:
+      ansible_host: 192.168.1.107
+      ansible_user: zxc
+      ansible_become_pass: {{ includeTemplate "gopass" "password/linux/user" }}
