@@ -187,6 +187,13 @@
     type = "git-repo"
     url = {{ print $mirror "https://github.com/arnavgr/termux-nf" | quote }}
     refreshPeriod = "168h"
+{{ $crush_url := gitHubLatestReleaseAssetURL "charmbracelet/crush" (printf "crush_*_Android_%s.tar.gz" .chezmoi.arch) -}}
+{{ $crush_path := printf "%s/crush" (trimSuffix ".tar.gz" (last (splitList "/" $crush_url))) -}}
+[".local/bin/crush"]
+    type = "archive-file"
+    url = {{ print $mirror $crush_url | quote }}
+    path = {{ $crush_path | quote }}
+    executable = true
 {{ end -}}
 
 [".local/share/repos/youtube-auto-like"]
