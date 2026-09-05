@@ -4,10 +4,4 @@ all:
     ansible_ssh_port: 8022
   hosts:
     note20:
-      ansible_host: {{ $termux.note20.ip }}
-      ansible_user: {{ $termux.note20.user }}
-      ansible_ssh_pass: {{ includeTemplate "gopass" "password/linux/user" }}
     m6:
-      ansible_host: {{ $termux.m6.ip }}
-      ansible_user: {{ $termux.m6.user }}
-      ansible_ssh_pass: {{ includeTemplate "gopass" "password/linux/user" }}
