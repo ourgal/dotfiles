@@ -1,15 +1,8 @@
 ---
 all:
   vars:
-    ansible_connection: ssh
     ansible_shell_type: cmd
   hosts:
     nuc:
-      ansible_host: nuc.local
-      my_hostname: nuc
     bed:
-      ansible_host: bed.local
-      my_hostname: bed
     work:
-      ansible_host: 192.168.1.110
-      my_hostname: work
