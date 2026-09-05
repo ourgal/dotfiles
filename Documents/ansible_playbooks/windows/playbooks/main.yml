@@ -132,6 +132,12 @@
     - role: windows_scoop
       windows_scoop_packages:
         - java/openjdk17
+    - role: windows_scoop_bucket
+      windows_scoop_bucket_name: charm
+      windows_scoop_bucket_repo: https://github.com/charmbracelet/scoop-bucket
+    - role: windows_scoop
+      windows_scoop_packages:
+        - charm/crush
     - role: windows_pipx
     - role: windows_cargo
     - role: windows_npm
