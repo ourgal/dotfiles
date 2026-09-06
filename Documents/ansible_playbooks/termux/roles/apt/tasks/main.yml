@@ -1,0 +1,11 @@
+---
+- name: Update all packages
+  tags: "{{ apt_tags }}"
+  ansible.builtin.apt:
+    update_cache: true
+    upgrade: true
+
+- name: Install all packages
+  tags: "{{ apt_tags }}"
+  ansible.builtin.apt:
+    name: "{{ apt_packages }}"
