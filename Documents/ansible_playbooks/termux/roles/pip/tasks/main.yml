@@ -1,0 +1,6 @@
+---
+- name: Install Pip packages
+  tags: "{{ pip_tags }}"
+  ansible.builtin.pip:
+    name: "{{ pip_packages }}"
+    state: present

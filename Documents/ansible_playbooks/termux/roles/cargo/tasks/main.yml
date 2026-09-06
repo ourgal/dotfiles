@@ -1,0 +1,20 @@
+---
+- name: Create cargo folder
+  ansible.builtin.file:
+    path: .cargo
+    state: directory
+    mode: "0755"
+
+- name: Set cargo config
+  ansible.builtin.copy:
+    content: |
+      [source.crates-io]
+      replace-with = 'mirror'
+
+      [source.mirror]
+      registry = "sparse+https://mirrors.nju.edu.cn/crates.io-index/"
+
+      [registries.mirror]
+      index = "sparse+https://mirrors.nju.edu.cn/crates.io-index/"
+    dest: .cargo/config.toml
+    mode: "0600"
