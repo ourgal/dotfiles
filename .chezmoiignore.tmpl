@@ -785,4 +785,11 @@ AppData/Roaming/Microsoft/Windows/Start Menu/Programs/*
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ crush
+{{ if lookPath "crush" -}}
+!.config/crush
+.config/crush/*
+!.config/crush/crushrc
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
