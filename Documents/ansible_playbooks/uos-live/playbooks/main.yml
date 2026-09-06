@@ -10,59 +10,91 @@
     dufs_url: http://192.168.1.110:6500
   tasks:
     - name: Debug variables
+      tags:
+        - debug
       ansible.builtin.debug:
         var: ansible_facts
     - name: Enable developer mode
+      tags:
+        - setup
       become: true
       block:
         - name: Create folder
+          tags:
+            - setup
           ansible.builtin.file:
             path: /target/var/lib/deepin/developer-mode
             state: directory
             mode: "0755"
         - name: Create enabled file
+          tags:
+            - setup
           ansible.builtin.copy:
             dest: /target/var/lib/deepin/developer-mode/enabled
             content: 1
             mode: "0644"
     - name: Copy resolv.conf
+      tags:
+        - network
+        - config
       become: true
       ansible.builtin.copy:
         src: /etc/resolv.conf
         dest: /target/etc/resolv.conf
         remote_src: true
     - name: Copy apt auth file
+      tags:
+        - apt
+        - config
       become: true
       ansible.builtin.copy:
         src: /etc/apt/auth.conf.d/uos.conf
         dest: /target/etc/apt/auth.conf.d/uos.conf
         remote_src: true
     - name: Add linglong repo
+      tags:
+        - apt
+        - repo
       become: true
       ansible.builtin.copy:
         dest: /target/etc/apt/sources.list.d/linglong.list
         content: deb [trusted=yes] https://ci.deepin.com/repo/obs/linglong:/CI:/release/uos_1070/ ./
     - name: Download wps 365
+      tags:
+        - pkg
+        - download
       become: true
       ansible.builtin.get_url:
         url: https://pubwps-wps365-obs.wpscdn.cn/download/Linux/24730/wps-office_12.1.2.24730.AK.preread.sw_644358_arm64.deb
         dest: /target/tmp/wps.deb
         mode: "0644"
     - name: Download windows fonts
+      tags:
+        - font
+        - download
       become: true
       ansible.builtin.unarchive:
         src: "{{ dufs_url }}/fonts/windows.zip"
         dest: /target/usr/share/fonts/
         remote_src: yes
     - name: Copy apt auth file
+      tags:
+        - user
+        - config
       become: true
       block:
         - name: Create .ssh folder
+          tags:
+            - user
+            - config
           ansible.builtin.file:
             path: "/target/home/{{ user }}/.ssh"
             state: directory
             mode: "0755"
         - name: Copy authorized_keys
+          tags:
+            - user
+            - config
           ansible.builtin.copy:
             src: /home/uos/.ssh/authorized_keys
             dest: "/target/home/{{ user }}/.ssh/authorized_keys"

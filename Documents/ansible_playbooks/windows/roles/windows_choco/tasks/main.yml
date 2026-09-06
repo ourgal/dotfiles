@@ -1,4 +1,7 @@
 - name: Choco pacakges
+  tags:
+    - choco
+    - pkg
   chocolatey.chocolatey.win_chocolatey:
     name: "{{ item.name if item.name is defined else item }}"
     state: "{{ item.state if item.state is defined else windows_choco_state }}"

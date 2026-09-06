@@ -1,4 +1,7 @@
 - name: Hide admin account
+  tags:
+    - user
+    - regedit
   ansible.windows.win_regedit:
     path: HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\SpecialAccounts\UserList
     type: dword
