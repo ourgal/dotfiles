@@ -1,34 +1,59 @@
 - name: Enable Virtual Machine Platform
+  tags:
+    - wsl
+    - features
   ansible.windows.win_optional_feature:
     name: VirtualMachinePlatform
     state: present
   register: vmp_status
 - name: Enable hyper-v
+  tags:
+    - wsl
+    - features
   ansible.windows.win_shell: bcdedit /set hypersivoralaunchtype auto
   when: vmp_status is failed
 - name: Reboot for hyper-v
+  tags:
+    - wsl
+    - reboot
   ansible.windows.win_reboot:
   when: vmp_status is failed
 - name: Enable Virtual Machine Platform again
+  tags:
+    - wsl
+    - features
   ansible.windows.win_optional_feature:
     name: VirtualMachinePlatform
     state: present
   register: vmp_again_status
   when: vmp_status is failed
 - name: Install Microsoft Subsystem for Linux
+  tags:
+    - wsl
+    - features
   ansible.windows.win_optional_feature:
     name: Microsoft-Windows-Subsystem-Linux
     state: present
   register: wsl_status
 - name: Reboot if installing Linux Subsytem as feature requires it
+  tags:
+    - wsl
+    - reboot
   ansible.windows.win_reboot:
   when: >
     (wsl_status.reboot_required is defined and wsl_status.reboot_required) or
     (vmp_status.reboot_required is defined and vmp_status.reboot_required) or
     (vmp_again_status.reboot_required is defined and vmp_again_status.reboot_required)
 - name: Update wsl
+  tags:
+    - wsl
   ansible.windows.win_command: wsl --update
 - name: Set WSL default version to 2
+  tags:
+    - wsl
   ansible.windows.win_command: wsl --set-default-version 2
 - name: Install arch linux
+  tags:
+    - wsl
+    - pkg
   ansible.windows.win_command: wsl --install archlinux --no-launch

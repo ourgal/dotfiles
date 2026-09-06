@@ -4,9 +4,14 @@
   ignore_unreachable: true
   tasks:
     - name: Debug variables
+      tags:
+        - debug
       ansible.builtin.debug:
         var: ansible_facts
     - name: Set mirror
+      tags:
+        - mirror
+        - pacman
       ansible.builtin.copy:
         content: |
           Server = https://mirror.nju.edu.cn/archlinux/$repo/os/$arch
@@ -14,10 +19,16 @@
         dest: /etc/pacman.d/mirrorlist
         mode: "0644"
     - name: Update system
+      tags:
+        - pkg
+        - pacman
       community.general.pacman:
         update_cache: true
         upgrade: true
     - name: Install pacman packages
+      tags:
+        - pkg
+        - pacman
       community.general.pacman:
         name:
           # git

@@ -5,6 +5,8 @@
     user: zxc
   tasks:
     - name: Debug variables
+      tags:
+        - debug
       ansible.builtin.debug:
         var: ansible_facts
     - name: Nix
@@ -13,32 +15,56 @@
         - nix
       block:
         - name: Nix folder stat
+          tags:
+            - pkg
+            - nix
           ansible.builtin.stat:
             path: /nix
           register: nix_stat
         - name: Install nix
+          tags:
+            - pkg
+            - nix
           become: true
           ansible.builtin.shell: curl -sSfL https://artifacts.nixos.org/nix-installer | sh -s -- install --enable-flakes --no-confirm
           when: not nix_stat.stat.exists
         - name: Add trusted-users to nix config
+          tags:
+            - pkg
+            - nix
           become: true
           ansible.builtin.lineinfile:
             path: /etc/nix/nix.conf
             line: trusted-users = {{ user }}
         - name: Home-manager stat
+          tags:
+            - pkg
+            - nix
           ansible.builtin.stat:
             path: "{{ ansible_facts.user_dir }}/.nix-profile/bin/home-manager"
           register: home_manager_stat
         - name: Install home-manager channel
+          tags:
+            - pkg
+            - nix
           ansible.builtin.shell: nix-channel --add https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz home-manager
           when: not home_manager_stat.stat.exists
         - name: Update channels
+          tags:
+            - pkg
+            - nix
           ansible.builtin.shell: nix-channel --update
           when: not home_manager_stat.stat.exists
         - name: Install home-manager
+          tags:
+            - pkg
+            - nix
           ansible.builtin.shell: nix-shell '<home-manager>' -A install
           when: not home_manager_stat.stat.exists
     - name: Fix etc profile PATH
+      tags:
+        - profile
+        - config
       become: true
       ansible.builtin.template:
         src: templates/uos_etc_profile.j2

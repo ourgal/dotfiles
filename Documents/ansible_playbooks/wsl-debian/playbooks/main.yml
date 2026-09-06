@@ -3,11 +3,19 @@
   hosts: all
   tasks:
     - name: Debug variables
+      tags:
+        - debug
       ansible.builtin.debug:
         var: ansible_facts
     - name: Set mirror
+      tags:
+        - mirror
+        - apt
       block:
         - name: First mirror url
+          tags:
+            - mirror
+            - apt
           ansible.builtin.replace:
             path: /etc/apt/sources.list
             regexp: http://deb.debian.org/
@@ -18,9 +26,14 @@
             regexp: http://security.debian.org/
             replace: https://mirrors.aliyun.com/
     - name: Update apt
+      tags:
+        - apt
       ansible.builtin.apt:
         update_cache: true
     - name: Install apt packages
+      tags:
+        - apt
+        - pkg
       ansible.builtin.apt:
         name:
           # git
@@ -59,8 +72,14 @@
           # nodejs
           - nodejs
     - name: Install xz-utils
+      tags:
+        - apt
+        - pkg
       ansible.builtin.apt:
         name: xz-utils
     - name: Install chezmoi
+      tags:
+        - apt
+        - pkg
       ansible.builtin.apt:
         deb: https://github.com/twpayne/chezmoi/releases/download/v2.69.4/chezmoi_2.69.4_linux_amd64.deb

@@ -36,7 +36,9 @@
       ansible.builtin.debug:
         var: ansible_facts
     - name: Install pipx packages
-      tags: pipx
+      tags:
+        - pipx
+        - install
       community.general.pipx:
         name: "{{ item }}"
         executable: /opt/homebrew/bin/pipx
