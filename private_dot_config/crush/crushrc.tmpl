@@ -1,0 +1,7 @@
+provider add ollama --name Ollama --type ollama --base-url "http://192.168.123.117:11434/v1/" --discover-models true
+
+permissions allow view ls grep edit
+
+{{ if and (lookPath "tsserver") (lookPath "typescript-language-server") -}}
+lsp add typescript --command "typescript-language-server" --args --stdio
+{{ end -}}
