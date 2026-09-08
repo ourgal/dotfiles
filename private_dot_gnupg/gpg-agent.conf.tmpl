@@ -1,10 +1,10 @@
 {{ if .my.git.sign.gpg -}}
 
-{{ if eq .chezmoi.os "windows" -}}
+{{ if and (eq .chezmoi.os "windows") .my.gpg.agent.ssh -}}
 enable-win32-openssh-support
 {{ end -}}
 
-{{ if eq .chezmoi.os "linux" "android" -}}
+{{ if and (eq .chezmoi.os "linux" "android") .my.gpg.agent.ssh -}}
 enable-ssh-support
 {{ end -}}
 
