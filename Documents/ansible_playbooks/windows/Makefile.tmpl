@@ -1,13 +1,19 @@
-FILES := $(basename $(wildcard playbooks/*.yml))
-TARGETS := $(FILES:playbooks/%=%)
-.PHONY: all ${TARGETS}
-all: ${TARGETS}
-{{ $env_var := "" }}
+TAGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+$(eval $(TAGS):;@:)
+.PHONY: all run ${TAGS}
+
+{{ $env_var := "" -}}
 {{ if eq .chezmoi.os "windows" -}}
-{{ $env_var = "LC_ALL=C.UTF-8 ANSIBLE_CONFIG=ansible.cfg " }}
+{{ $env_var = "LC_ALL=C.UTF-8 ANSIBLE_CONFIG=ansible.cfg " -}}
 {{ end -}}
-${TARGETS}:
+
+all: lint
+	{{ $env_var }}ansible-playbook -i inventory/hosts.yml playbooks/main.yml $(if $(TAGS),--tags $(TAGS),)
+
+run: lint
+	{{ $env_var }}ansible-playbook -i inventory/hosts.yml playbooks/main.yml $(if $(TAGS),--tags $(TAGS),)
+
+lint:
 	{{ if and (lookPath "ansible-lint") (not (eq .chezmoi.os "windows")) -}}
-	ansible-lint playbooks/$@.yml
+	ansible-lint playbooks/main.yml
 	{{ end -}}
-	{{ $env_var }}ansible-playbook -i inventory/hosts.yml playbooks/$@.yml
