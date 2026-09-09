@@ -10,7 +10,7 @@ gpg-connect-agent updatestartuptty /bye > /dev/null
 {{ if eq .chezmoi.os "android" -}}
 fish_add_path --append ~/.local/bin
 set -x GPG_TTY $(tty)
-set -x SSH_AUTH_SOCK $(gpgconf --list-dirs agent-ssh-socket)
+eval (ssh-agent -c)
 gpg-connect-agent updatestartuptty /bye > /dev/null
 {{ end -}}
 # ]]]
