@@ -129,7 +129,9 @@ Plug 'https://gitcode.com/gh_mirrors/vi/vim-snippets'
 Plug gh_proxy . 'aperezdc/vim-template'
 "]]]
 "[[[ session
-" Plug gh_proxy . 'ourgal/vim-workspace'
+if !has('gui_running')
+Plug gh_proxy . 'ourgal/vim-workspace'
+endif
 "]]]
 "[[[ status line
 Plug 'https://gitcode.com/gh_mirrors/li/lightline.vim'
@@ -144,7 +146,9 @@ Plug 'https://gitcode.com/gh_mirrors/vim17/vim', { 'as': 'embark', 'branch': 'ma
 " Plug 'https://gitcode.com/gh_mirrors/on/onedark.vim'
 "]]]
 "[[[ start screen
+if has('gui_running')
 Plug 'https://gitcode.com/gh_mirrors/vi/vim-startify'
+endif
 "]]]
 "[[[ time tracking
 Plug 'https://gitcode.com/gh_mirrors/vi/vim-wakatime'
