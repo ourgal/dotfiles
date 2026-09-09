@@ -1,0 +1,6 @@
+{{- /*{ chezmoi:modify-template */ -}}
+{{ $origin := fromJson .chezmoi.stdin -}}
+{{ $origin = $origin | setValueAtPath "providers.openrouter.api_key" (includeTemplate "gopass" "AI/openrouter") -}}
+{{ $origin = $origin | setValueAtPath "providers.gemini.api_key" (includeTemplate "gopass" "AI/gemini") -}}
+{{ $origin | toJson }}
+
