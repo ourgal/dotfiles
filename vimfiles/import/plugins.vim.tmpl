@@ -25,7 +25,7 @@ Plug gh_proxy . 'girishji/vimsuggest'
 endif
 "]]]
 "[[[ command preview
-Plug 'https://gitcode.com/gh_mirrors/tr/traces.vim'
+Plug gh_proxy . 'markonm/traces.vim'
 "]]]
 "[[[ comment
 " Plug gh_proxy . 'tyru/caw.vim'
@@ -44,22 +44,22 @@ Plug gh_proxy . 'tpope/vim-eunuch' " file command
 " Plug 'Ashik80/VimExplorer'
 " Plug 'tpope/vim-vinegar'
 
-Plug 'https://gitcode.com/gh_mirrors/vi/vim-dirvish'
+Plug gh_proxy . 'justinmk/vim-dirvish'
 Plug gh_proxy . 'roginfarrer/vim-dirvish-dovish'
 " Plug gh_proxy . 'ptzz/lf.vim' " not start at current buffer path on windows
 "]]]
 "[[[ format
-" Plug 'https://gitcode.com/gh_mirrors/ne/neoformat'
+" Plug gh_proxy . 'sbdchd/neoformat'
 "]]]
 "[[[ file picker
-Plug 'https://gitcode.com/GitHub_Trending/fz/fzf'
-Plug 'https://gitcode.com/gh_mirrors/fz/fzf.vim'
+Plug gh_proxy . 'junegunn/fzf'
+Plug gh_proxy . 'junegunn/fzf.vim'
 "]]]
 "[[[ git
 if executable('git')
   Plug gh_proxy . 'tpope/vim-fugitive'
-  " Plug 'https://gitcode.com/gh_mirrors/vi/vim-gitgutter'
-  Plug 'https://gitcode.com/gh_mirrors/vi/vim-signify'
+  " Plug gh_proxy . 'airblade/vim-gitgutter'
+  Plug gh_proxy . 'mhinz/vim-signify'
 endif
 Plug gh_proxy . 'rhysd/conflict-marker.vim'
 Plug gh_proxy . 'Eliot00/git-lens.vim'
@@ -73,44 +73,44 @@ Plug gh_proxy . 'alker0/chezmoi.vim' " chezmoi
 " Plug 'roxma/vim-hug-neovim-rpc', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }
 "
 Plug gh_proxy . 'tpope/vim-dispatch' " async make
-Plug 'https://gitcode.com/gh_mirrors/vi/vim-floaterm' " terminal
+Plug gh_proxy . 'voldikss/vim-floaterm' " terminal
 "]]]
 "[[[ enhance
 Plug gh_proxy . 'tpope/vim-unimpaired'
 Plug gh_proxy . 'nelstrom/vim-visual-star-search'
 Plug gh_proxy . 'zef/vim-cycle' " C-A C-X
-Plug 'https://gitcode.com/gh_mirrors/vi/vim-exchange' " cx exchange text
+Plug gh_proxy . 'tommcdo/vim-exchange' " cx exchange text
 Plug gh_proxy . 'haya14busa/is.vim' " auto nohlsearch
-Plug 'https://gitcode.com/gh_mirrors/vi/vim-matchup' " enhance asterrisk
+Plug gh_proxy . 'andymass/vim-matchup' " enhance asterrisk
 Plug gh_proxy . 'svermeulen/vim-subversive' " substitute motion
-Plug 'https://gitcode.com/gh_mirrors/sw/switch.vim' " regex replace motion
-Plug 'https://gitcode.com/gh_mirrors/sp/splitjoin.vim' " gS gJ list split and join
-Plug 'https://gitcode.com/gh_mirrors/ta/targets.vim' " enhance targets
-Plug 'https://gitcode.com/gh_mirrors/vi/vim-expand-region' " + expand region
-Plug 'https://gitcode.com/gh_mirrors/vi/vim-visual-multi' " multiple cursor
+Plug gh_proxy . 'AndrewRadev/switch.vim' " regex replace motion
+Plug gh_proxy . 'AndrewRadev/splitjoin.vim' " gS gJ list split and join
+Plug gh_proxy . 'wellle/targets.vim' " enhance targets
+Plug gh_proxy . 'terryma/vim-expand-region' " + expand region
+Plug gh_proxy . 'mg979/vim-visual-multi' " multiple cursor
 Plug gh_proxy . 'tpope/vim-surround' " pair markers
 " Plug 'vim-polyglot/vim-polyglot' " syntax highlight, conflicts with auto session
-Plug 'https://gitcode.com/gh_mirrors/vi/vim-which-key' " menu
-" Plug 'https://gitcode.com/gh_mirrors/vi/vimcdoc' " vim chinese doc
-Plug 'https://gitcode.com/gh_mirrors/vi/vim-qf' " quickfix
+Plug gh_proxy . 'liuchengxu/vim-which-key' " menu
+" Plug gh_proxy . 'yianwillis/vimcdoc' " vim chinese doc
+Plug gh_proxy . 'romainl/vim-qf' " quickfix
 " Plug gh_proxy . 'ourgal/central.vim' " undo backup and swap
-Plug 'https://gitcode.com/gh_mirrors/ta/tagbar' " ctags
+Plug gh_proxy . 'preservim/tagbar' " ctags
 "]]]
 "[[[ lisp
 if executable('cargo') && !g:is_android
-  Plug 'https://gitcode.com/gh_mirrors/pa/parinfer-rust', {'do': 'cargo build --release'}
+  Plug gh_proxy . 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 endif
 "]]]
 "[[[ markdown
-Plug 'https://gitcode.com/gh_mirrors/ta/tabular'
+Plug gh_proxy . 'godlygeek/tabular'
 Plug gh_proxy . 'preservim/vim-markdown'
 "]]]
 "[[[ latex
-Plug 'https://gitcode.com/gh_mirrors/vi/vimtex', { 'for': 'tex' }
+Plug gh_proxy . 'lervag/vimtex', { 'for': 'tex' }
 "]]]
 "[[[ lsp
 if executable('node')
-  Plug 'https://gitcode.com/gh_mirrors/co/coc.nvim', {'branch': 'release'}
+  Plug gh_proxy . 'neoclide/coc.nvim', {'branch': 'release'}
 endif
 " Plug 'yegappan/lsp'
 "]]]
@@ -118,11 +118,11 @@ endif
 " Plug 'dense-analysis/ale'
 "]]]
 "[[[ org
-Plug 'https://gitcode.com/gh_mirrors/vi/vim-orgmode'
+Plug gh_proxy . 'jceb/vim-orgmode'
 Plug gh_proxy . 'tpope/vim-speeddating'
 "]]]
 "[[[ snippet
-Plug 'https://gitcode.com/gh_mirrors/vi/vim-snippets'
+Plug gh_proxy . 'honza/vim-snippets'
 " Plug 'SirVer/ultisnips'
 "]]]
 "[[[ template
@@ -134,27 +134,27 @@ Plug gh_proxy . 'ourgal/vim-workspace'
 endif
 "]]]
 "[[[ status line
-Plug 'https://gitcode.com/gh_mirrors/li/lightline.vim'
+Plug gh_proxy . 'itchyny/lightline.vim'
 "]]]
 "[[[ indent
-Plug 'https://gitcode.com/gh_mirrors/in/indentLine'
+Plug gh_proxy . 'Yggdroot/indentLine'
 "]]]
 "[[[ theme
 " Plug 'ghifarit53/tokyonight-vim'
 " Plug 'https://codeberg.org/mao-yining/vim-catppuccin'
-Plug 'https://gitcode.com/gh_mirrors/vim17/vim', { 'as': 'embark', 'branch': 'main' }
-" Plug 'https://gitcode.com/gh_mirrors/on/onedark.vim'
+Plug gh_proxy . 'embark-theme/vim', { 'as': 'embark', 'branch': 'main' }
+" Plug gh_proxy . 'joshdick/onedark.vim'
 "]]]
 "[[[ start screen
 if has('gui_running')
-Plug 'https://gitcode.com/gh_mirrors/vi/vim-startify'
+Plug gh_proxy . 'mhinz/vim-startify'
 endif
 "]]]
 "[[[ time tracking
-Plug 'https://gitcode.com/gh_mirrors/vi/vim-wakatime'
+Plug gh_proxy . 'wakatime/vim-wakatime'
 "]]]
 "[[[ ansible
-Plug 'https://gitcode.com/gh_mirrors/an/ansible-vim'
+Plug gh_proxy . 'pearofducks/ansible-vim'
 "]]]
 call plug#end()
 "]]]
