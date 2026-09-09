@@ -1,0 +1,7 @@
+---
+- name: Install go packages
+  tags:
+    - go
+    - install
+  community.general.golang_package:
+    name: "{{ go_packages }}"
