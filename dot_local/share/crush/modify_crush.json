@@ -1,2 +1,0 @@
-{{- /*{ chezmoi:modify-template */ -}}
-{{ includeTemplate (joinPath .chezmoi.sourceDir "Appdata" "Local" "crush" "modify_crush.json") . -}}
