@@ -64,6 +64,8 @@ scoop/persist/*
 .local/*
 !.local/bin
 .local/bin/*
+!.local/share/
+.local/share/*
 !.local/bin/update-bing-wallpaper.ps1
 {{ end -}}
 # ]]]
@@ -226,8 +228,10 @@ scoop/persist/*
 # ]]]
 # [[[ vim
 {{ if lookPath "vim" -}}
-!.lcoal/share/vim/
-!.lcoal/share/vim/**
+!.local/share/vim/
+.local/share/vim/*
+!.local/share/vim/sessions/
+!.local/share/vim/undo/
 {{ if eq .chezmoi.os "windows" -}}
 !vimfiles/
 !vimfiles/**
