@@ -14,6 +14,7 @@ fish_add_path --append ~/go/bin
 set -x GPG_TTY $(tty)
 eval (ssh-agent -c)
 gpg-connect-agent updatestartuptty /bye > /dev/null
+set -gx EDITOR "{{ includeTemplate "editor" }}"
 {{ end -}}
 # ]]]
 # [[[ oh my posh
