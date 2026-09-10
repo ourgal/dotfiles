@@ -38,8 +38,11 @@ separator = "│"
 insert = "INSERT"
 normal = "NORMAL"
 select = "SELECT"
+[keys.normal]
+"ret" = "command_mode"
 [keys.normal.g]
 z = ["split_selection_on_newline", ":sort", "keep_primary_selection"]
+"*" = ["search_selection", "select_all", "select_regex", "select_mode"]
 [keys.normal.g.c]
 b = "toggle_block_comments"
 c = "toggle_comments"
