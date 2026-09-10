@@ -1,0 +1,31 @@
+colorscheme tomorrow-night
+add-highlighter global/ number-lines -relative -hlcursor
+add-highlighter global/ wrap -word
+
+hook global BufOpenFile .* editorconfig-load
+hook global BufNewFile .* editorconfig-load
+
+# Map tab to cycle down and shift-tab to cycle up when completions show
+hook global InsertCompletionShow .* %{
+    map window insert <tab> <c-n>
+    map window insert <s-tab> <c-p>
+}
+
+# Restore default tab behavior when the completion window hides
+hook global InsertCompletionHide .* %{
+    map window insert <tab> <tab>
+    map window insert <s-tab> <s-tab>
+}
+
+map global normal <ret> :
+map global user c :comment-line<ret> -docstring "Comment line"
+
+declare-user-mode git
+map global user g ':enter-user-mode git<ret>' -docstring "Git"
+map global git a ':git add . <ret>' -docstring "Git add all"
+map global git A ':git commit --amend<ret>' -docstring "Git amend"
+map global git c ':git commit<ret>' -docstring "Git commit"
+map global git l ':git log<ret>' -docstring "Git log"
+
+map global user x ':db<ret>' -docstring "Delete buffer"
+map global user <space> '<esc>:prompt -menu -shell-script-candidates %{ git ls-files -c -m -o } git-file: %{ edit %val{text} }<ret>' -docstring "git file..."
