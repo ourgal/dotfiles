@@ -196,6 +196,7 @@
     url = {{ print $mirror $crush_url | quote }}
     path = {{ $crush_path | quote }}
     executable = true
+    refreshPeriod = "168h"
 {{ end -}}
 
 [".local/share/repos/youtube-auto-like"]
