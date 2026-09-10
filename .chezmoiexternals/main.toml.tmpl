@@ -97,11 +97,11 @@
 {{ if lookPath "mpv" -}}
 [".local/share/repos/Eisa01_mpv-scripts"]
     type = "git-repo"
-    url = "https://gitcode.com/gh_mirrors/mpvscript/mpv-scripts"
+    url = "https://github.com/Eisa01/mpv-scripts"
     refreshPeriod = "168h"
 [".local/share/repos/thumbfast"]
     type = "git-repo"
-    url = "https://gitcode.com/gh_mirrors/th/thumbfast"
+    url = "https://github.com/po5/thumbfast"
     refreshPeriod = "168h"
 [".local/share/repos/mpv-manga-reader"]
     type = "git-repo"
@@ -133,7 +133,7 @@
     refreshPeriod = "168h"
 [".local/share/repos/uosc"]
     type = "git-repo"
-    url = "https://gitcode.com/gh_mirrors/uo/uosc"
+    url = "https://github.com/tomasklaen/uosc"
     refreshPeriod = "168h"
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "anilist_updater") "os" (list "linux" "windows")) | trim | atoi -}}
 [".local/share/repos/mpv-anilist-updater"]
@@ -161,7 +161,7 @@
 {{ if lookPath "vim" -}}
 [".local/share/repos/vim-plug"]
     type = "git-repo"
-    url = "https://gitcode.com/gh_mirrors/vi/vim-plug"
+    url = "https://github.com/junegunn/vim-plug"
     refreshPeriod = "168h"
 {{ end -}}
 {{ end -}}
