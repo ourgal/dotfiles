@@ -1,4 +1,6 @@
-{{ if lookPath "hx" -}}
+{{ if lookPath "kak" -}}
+kak
+{{ else if lookPath "hx" -}}
 hx
 {{- else if lookPath "vim" -}}
 vim
