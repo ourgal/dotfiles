@@ -812,4 +812,13 @@ AppData/Local/crush/*
 
 {{ end -}}
 # ]]]
+# [[[ kakoune
+{{ if lookPath "kak" -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+!.config/kak/
+.config/kak/*
+!.config/kak/kakrc
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:

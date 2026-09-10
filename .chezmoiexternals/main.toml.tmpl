@@ -230,4 +230,11 @@
     type = "git-repo"
     url = "{{ $doom_repo }}"
 {{ end -}}
+
+{{ if lookPath "kak" -}}
+[".config/kak/plugins/fzf.kak"]
+    type = "git-repo"
+    url = "{{ print $mirror "https://github.com/andreyorst/fzf.kak" }}"
+{{ end -}}
+
 {{ end -}}
