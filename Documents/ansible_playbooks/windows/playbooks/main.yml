@@ -19,6 +19,7 @@
           allow_prerelease: true
           package_params: /SSHServerFeature
     - role: windows_install_scoop
+      windows_install_scoop_is_admin: true
     - role: windows_scoop
       windows_scoop_global: true
       windows_scoop_packages:
@@ -154,6 +155,7 @@
       ansible.builtin.gather_facts:
   roles:
     - role: windows_install_scoop
+      windows_install_scoop_is_admin: true
     - role: windows_scoop_bucket
       windows_scoop_bucket_name: aki
       windows_scoop_bucket_repo: https://github.com/akirco/aki-apps

@@ -24,6 +24,7 @@
           force_update: true
           use_external_7zip: true
           gh_token: "{{ lookup('gopass', 'github/ourgal/token') | trim }}"
+          url_proxy: https://v6.gh-porxy.org
       ansible.windows.win_copy:
         dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
         content: "{{ scoop_config_content.content | b64decode | from_json | combine(config) | to_json }}"
@@ -38,22 +39,45 @@
           force_update: true
           use_external_7zip: true
           gh_token: "{{ lookup('gopass', 'github/ourgal/token') | trim }}"
+          url_proxy: https://v6.gh-porxy.org
       ansible.windows.win_copy:
         dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
         content: "{{ config | to_json }}"
       when: scoop_config_stat.stat.exists is false
+- name: Install scoop-proxy-cn
+  ansible.windows.win_shell: iwr -useb https://scoop.201704.xyz | iex
+  when:
+    - windows_install_scoop_is_admin is false
+    - windows_install_scoop_proxy_cn is true
+- name: Install scoop-proxy-cn
+  ansible.windows.win_shell: iex "& {$(iwr -useb https://scoop.201704.xyz)} -RunAsAdmin"
+  when:
+    - windows_install_scoop_is_admin is true
+    - windows_install_scoop_proxy_cn is true
+- name: Install scoop
+  ansible.windows.win_shell: iwr https://get.scoop.sh | iex
+  when:
+    - windows_install_scoop_is_admin is false
+    - windows_install_scoop_proxy_cn is false
+- name: Install scoop
+  ansible.windows.win_shell: iex "& {$(iwr https://get.scoop.sh)} -RunAsAdmin"
+  when:
+    - windows_install_scoop_is_admin is true
+    - windows_install_scoop_proxy_cn is false
 - name: Install base packages via scoop
+  tags: scoop
   community.windows.win_scoop:
-    name:
-      - main/lessmsi
-      - main/aria2
-      - main/7zip
-      - main/git
+    name: "{{ item }}"
     global: false
   register: result
   retries: 3
   delay: 5
   until: result is not failed
+  loop:
+    - main/lessmsi
+    - main/aria2
+    - main/7zip
+    - main/git
 - name: Add scoop buckets
   community.windows.win_scoop_bucket:
     name:
@@ -61,3 +85,11 @@
       - nerd-fonts
       - nonportable
     state: present
+  when: windows_install_scoop_proxy_cn is false
+- name: Add scoop buckets
+  ansible.windows.win_shell: "if (!($(scoop bucket list).name -contains '{{ item }}' )) { scoop bucket add {{ item }} }"
+  when: windows_install_scoop_proxy_cn is true
+  loop:
+    - extras
+    - nerd-fonts
+    - nonportable
