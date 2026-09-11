@@ -28,7 +28,7 @@ map global git c ':git commit<ret>' -docstring "Git commit"
 map global git l ':git log<ret>' -docstring "Git log"
 
 map global user x ':db<ret>' -docstring "Delete buffer"
-map global user <space> '<esc>:prompt -menu -shell-script-candidates %{ git ls-files -c -m -o } git-file: %{ edit %val{text} }<ret>' -docstring "git file..."
+map global user <space> '<esc>:prompt -menu -shell-script-candidates %{ fd -t file } git-file: %{ edit %val{text} }<ret>' -docstring "file..."
 
 define-command -override lookup_word -docstring "Lookup word under selection" -params 0..1 %{
   evaluate-commands %sh{
