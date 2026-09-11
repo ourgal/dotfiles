@@ -1,5 +1,5 @@
 colorscheme tomorrow-night
-add-highlighter global/ number-lines -relative -hlcursor
+add-highlighter global/ number-lines -full-relative -hlcursor
 add-highlighter global/ wrap -word
 
 hook global BufOpenFile .* editorconfig-load
@@ -29,3 +29,23 @@ map global git l ':git log<ret>' -docstring "Git log"
 
 map global user x ':db<ret>' -docstring "Delete buffer"
 map global user <space> '<esc>:prompt -menu -shell-script-candidates %{ git ls-files -c -m -o } git-file: %{ edit %val{text} }<ret>' -docstring "git file..."
+
+define-command -override lookup_word -docstring "Lookup word under selection" -params 0..1 %{
+  evaluate-commands %sh{
+    if [ -n "$1" ]; then
+      WORD="$1"
+    else
+      WORD="$kak_selection"
+    fi # Fetch the definition and remove noise
+    definition=$(
+      curl "dict://dict.org/d:$WORD" 2>/dev/null \
+      | tr -d '\r' \
+      | grep -v '^[0-9]' \
+      | sed '/^\.$/d'
+    )
+    printf "info -title Definition %%{%s%%}" "$definition"
+  }
+}
+
+# example binding
+map -docstring "Lookup word under selection" global user K ":lookup_word<ret>"
