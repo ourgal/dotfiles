@@ -44,25 +44,10 @@
         dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
         content: "{{ config | to_json }}"
       when: scoop_config_stat.stat.exists is false
-- name: Install scoop-proxy-cn
-  ansible.windows.win_shell: iwr -useb https://scoop.201704.xyz | iex
-  when:
-    - windows_install_scoop_is_admin is false
-    - windows_install_scoop_proxy_cn is true
-- name: Install scoop-proxy-cn
-  ansible.windows.win_shell: |
-    irm https://scoop.201704.xyz -outfile 'install.ps1'
-    .\install.ps1 -RunAsAdmin
-    rm .\install.ps1
-  when:
-    - windows_install_scoop_is_admin is true
-    - windows_install_scoop_proxy_cn is true
 - name: Install scoop
   ansible.windows.win_shell: iwr -useb https://get.scoop.sh | iex
   when:
     - windows_install_scoop_is_admin is false
-    - windows_install_scoop_proxy_cn is false
-    - windows_install_scoop_cn is false
 - name: Install scoop
   ansible.windows.win_shell: |
     irm https://get.scoop.sh -outfile 'install.ps1'
@@ -70,23 +55,7 @@
     rm .\install.ps1
   when:
     - windows_install_scoop_is_admin is true
-    - windows_install_scoop_proxy_cn is false
-    - windows_install_scoop_cn is false
-- name: Install scoop-cn
-  ansible.windows.win_shell: iwr -useb https://v6.gh-proxy.org/https://raw.githubusercontent.com/duzyn/scoop-cn/master/install.ps1 | iex
-  when:
-    - windows_install_scoop_is_admin is false
-    - windows_install_scoop_cn is true
-- name: Install scoop-cn
-  ansible.windows.win_shell: |
-    irm https://v6.gh-proxy.org/https://raw.githubusercontent.com/duzyn/scoop-cn/master/install.ps1 -outfile 'install.ps1'
-    .\install.ps1 -RunAsAdmin
-    rm .\install.ps1
-  when:
-    - windows_install_scoop_is_admin is true
-    - windows_install_scoop_cn is true
 - name: Install base packages via scoop
-  tags: scoop
   community.windows.win_scoop:
     name: "{{ item | basename }}"
     global: false
@@ -99,21 +68,39 @@
     - main/aria2
     - main/7zip
     - main/git
-- name: Add scoop buckets
+- name: Add scoop-cn bucket
   community.windows.win_scoop_bucket:
-    name: "{{ item }}"
+    name: scoop-cn
+    repo: https://v6.gh-proxy.org/https://github.com/duzyn/scoop-cn
     state: present
+- name: Remove main bucket
+  community.windows.win_scoop_bucket:
+    name: main
+    state: absent
+- name: Remmove base packages
+  community.windows.win_scoop:
+    name: "{{ item | basename }}"
+    global: false
+    state: absent
+  register: result
+  retries: 3
+  delay: 5
+  until: result is not failed
   loop:
-    - extras
-    - nerd-fonts
-    - nonportable
-  when:
-    - windows_install_scoop_proxy_cn is false
-    - windows_install_scoop_cn is false
-- name: Add scoop buckets
-  ansible.windows.win_shell: "if (!($(scoop bucket list).name -contains '{{ item }}' )) { scoop bucket add {{ item }} }"
-  when: windows_install_scoop_proxy_cn is true
+    - main/lessmsi
+    - main/aria2
+    - main/7zip
+    - main/git
+- name: Install base packages via scoop-cn
+  community.windows.win_scoop:
+    name: "{{ item | basename }}"
+    global: false
+  register: result
+  retries: 3
+  delay: 5
+  until: result is not failed
   loop:
-    - extras
-    - nerd-fonts
-    - nonportable
+    - main/lessmsi
+    - main/aria2
+    - main/7zip
+    - main/git
