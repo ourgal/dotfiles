@@ -50,24 +50,45 @@
     - windows_install_scoop_is_admin is false
     - windows_install_scoop_proxy_cn is true
 - name: Install scoop-proxy-cn
-  ansible.windows.win_shell: iex "& {$(iwr -useb https://scoop.201704.xyz)} -RunAsAdmin"
+  ansible.windows.win_shell: |
+    irm https://scoop.201704.xyz -outfile 'install.ps1'
+    .\install.ps1 -RunAsAdmin
+    rm .\install.ps1
   when:
     - windows_install_scoop_is_admin is true
     - windows_install_scoop_proxy_cn is true
 - name: Install scoop
-  ansible.windows.win_shell: iwr https://get.scoop.sh | iex
+  ansible.windows.win_shell: iwr -useb https://get.scoop.sh | iex
   when:
     - windows_install_scoop_is_admin is false
     - windows_install_scoop_proxy_cn is false
+    - windows_install_scoop_cn is false
 - name: Install scoop
-  ansible.windows.win_shell: iex "& {$(iwr https://get.scoop.sh)} -RunAsAdmin"
+  ansible.windows.win_shell: |
+    irm https://get.scoop.sh -outfile 'install.ps1'
+    .\install.ps1 -RunAsAdmin
+    rm .\install.ps1
   when:
     - windows_install_scoop_is_admin is true
     - windows_install_scoop_proxy_cn is false
+    - windows_install_scoop_cn is false
+- name: Install scoop-cn
+  ansible.windows.win_shell: iwr -useb https://v6.gh-proxy.org/https://raw.githubusercontent.com/duzyn/scoop-cn/master/install.ps1 | iex
+  when:
+    - windows_install_scoop_is_admin is false
+    - windows_install_scoop_cn is true
+- name: Install scoop-cn
+  ansible.windows.win_shell: |
+    irm https://v6.gh-proxy.org/https://raw.githubusercontent.com/duzyn/scoop-cn/master/install.ps1 -outfile 'install.ps1'
+    .\install.ps1 -RunAsAdmin
+    rm .\install.ps1
+  when:
+    - windows_install_scoop_is_admin is true
+    - windows_install_scoop_cn is true
 - name: Install base packages via scoop
   tags: scoop
   community.windows.win_scoop:
-    name: "{{ item }}"
+    name: "{{ item | basename }}"
     global: false
   register: result
   retries: 3
@@ -85,7 +106,9 @@
       - nerd-fonts
       - nonportable
     state: present
-  when: windows_install_scoop_proxy_cn is false
+  when:
+    - windows_install_scoop_proxy_cn is false
+    - windows_install_scoop_cn is false
 - name: Add scoop buckets
   ansible.windows.win_shell: "if (!($(scoop bucket list).name -contains '{{ item }}' )) { scoop bucket add {{ item }} }"
   when: windows_install_scoop_proxy_cn is true
