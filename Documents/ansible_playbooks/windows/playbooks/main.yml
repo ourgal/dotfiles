@@ -18,13 +18,6 @@
         - name: openssh
           allow_prerelease: true
           package_params: /SSHServerFeature
-    - role: windows_install_scoop
-      windows_install_scoop_is_admin: true
-    - role: windows_scoop
-      windows_scoop_global: true
-      windows_scoop_packages:
-        - nonportable/files-np
-        - nonportable/virtualbox-with-extension-pack-np
     - role: windows_install_wsl
       when: inventory_hostname == 'work'
     - role: windows_hide_user
