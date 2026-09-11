@@ -48,7 +48,7 @@
     - windows_install_scoop_is_admin is false
 - name: Install scoop
   ansible.windows.win_shell: |
-    irm https://get.scoop.sh -outfile 'install.ps1'
+    irm -useb https://get.scoop.sh -outfile 'install.ps1'
     .\install.ps1 -RunAsAdmin
     rm .\install.ps1
   when:
