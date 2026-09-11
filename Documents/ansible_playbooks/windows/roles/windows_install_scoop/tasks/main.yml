@@ -68,7 +68,7 @@
     - main/git
 - name: Check if the Scoop scoop-cn bucket directory exists
   ansible.windows.win_stat:
-    path: "{{ ansible_env.USERPROFILE }}\\scoop\\buckets\\scoop-cn"
+    path: "{{ ansible_facts.user_dir }}\\scoop\\buckets\\scoop-cn"
   register: scoop_cn_bucket
 - name: Add scoop-cn bucket
   community.windows.win_scoop_bucket:
