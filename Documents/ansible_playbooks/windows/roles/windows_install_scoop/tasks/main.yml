@@ -101,11 +101,12 @@
     - main/git
 - name: Add scoop buckets
   community.windows.win_scoop_bucket:
-    name:
-      - extras
-      - nerd-fonts
-      - nonportable
+    name: "{{ item }}"
     state: present
+  loop:
+    - extras
+    - nerd-fonts
+    - nonportable
   when:
     - windows_install_scoop_proxy_cn is false
     - windows_install_scoop_cn is false
