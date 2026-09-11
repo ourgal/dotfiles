@@ -298,20 +298,13 @@ windows_scoop_packages_main_all: >-
     windows_scoop_packages_main_AI
     + windows_scoop_packages_main_android
     + windows_scoop_packages_main_audio
-    + windows_scoop_packages_main_backup
-    + windows_scoop_packages_main_CA
-    + windows_scoop_packages_main_CMS
     + windows_scoop_packages_main_dev
     + windows_scoop_packages_main_bash
     + windows_scoop_packages_main_binary
-    + windows_scoop_packages_main_c
-    + windows_scoop_packages_main_csharp
     + windows_scoop_packages_main_compile
     + windows_scoop_packages_main_environment
     + windows_scoop_packages_main_go
     + windows_scoop_packages_main_json
-    + windows_scoop_packages_main_latex
-    + windows_scoop_packages_main_lua
     + windows_scoop_packages_main_markdown
     + windows_scoop_packages_main_nodejs
     + windows_scoop_packages_main_perl
@@ -320,73 +313,48 @@ windows_scoop_packages_main_all: >-
     + windows_scoop_packages_main_rust
     + windows_scoop_packages_main_sql
     + windows_scoop_packages_main_toml
-    + windows_scoop_packages_main_web
     + windows_scoop_packages_main_yaml
-    + windows_scoop_packages_main_disk
     + windows_scoop_packages_main_document
     + windows_scoop_packages_main_dotfile_manager
     + windows_scoop_packages_main_downloader
     + windows_scoop_packages_main_editor
-    + windows_scoop_packages_main_email
     + windows_scoop_packages_main_encrypt
     + windows_scoop_packages_main_file_manager
     + windows_scoop_packages_main_fuzzy_finder
     + windows_scoop_packages_main_git
-    + windows_scoop_packages_main_git_auto
-    + windows_scoop_packages_main_git_bug
     + windows_scoop_packages_main_git_github
-    + windows_scoop_packages_main_git_push
-    + windows_scoop_packages_main_git_lfs
-    + windows_scoop_packages_main_git_fixup
     + windows_scoop_packages_main_git_diff
     + windows_scoop_packages_main_git_encrypt
     + windows_scoop_packages_main_git_tui
-    + windows_scoop_packages_main_git_gui
-    + windows_scoop_packages_main_git_server
-    + windows_scoop_packages_main_git_search
-    + windows_scoop_packages_main_git_hook
-    + windows_scoop_packages_main_image
-    + windows_scoop_packages_main_image_info
     + windows_scoop_packages_main_image_edit
-    + windows_scoop_packages_main_network
-    + windows_scoop_packages_main_proxy
-    + windows_scoop_packages_main_scoop_helper
-    + windows_scoop_packages_main_search
     + windows_scoop_packages_main_remote
     + windows_scoop_packages_main_qr_code
     + windows_scoop_packages_main_share
     + windows_scoop_packages_main_shell
-    + windows_scoop_packages_main_ascii_art
     + windows_scoop_packages_main_cd
     + windows_scoop_packages_main_df
     + windows_scoop_packages_main_du
-    + windows_scoop_packages_main_find
     + windows_scoop_packages_main_grep
     + windows_scoop_packages_main_history
     + windows_scoop_packages_main_less
     + windows_scoop_packages_main_ls
     + windows_scoop_packages_main_man
     + windows_scoop_packages_main_prompt
-    + windows_scoop_packages_main_rename
     + windows_scoop_packages_main_sed
     + windows_scoop_packages_main_shasum
     + windows_scoop_packages_main_snippets
     + windows_scoop_packages_main_system_info
     + windows_scoop_packages_main_tmux
-    + windows_scoop_packages_main_typing
     + windows_scoop_packages_main_unrar
     + windows_scoop_packages_main_utils
-    + windows_scoop_packages_main_mv
     + windows_scoop_packages_main_which
     + windows_scoop_packages_main_system
     + windows_scoop_packages_main_archive
     + windows_scoop_packages_main_unpack
-    + windows_scoop_packages_main_sudo
     + windows_scoop_packages_main_service
     + windows_scoop_packages_main_package_manager
     + windows_scoop_packages_main_clipboard
     + windows_scoop_packages_main_notification
-    + windows_scoop_packages_main_ps
     + windows_scoop_packages_main_rm
     + windows_scoop_packages_main_text_expander
     + windows_scoop_packages_main_video_editor
@@ -574,18 +542,13 @@ windows_scoop_packages_extras_whiteboard:
 windows_scoop_packages_extras_all: >-
   {{
     windows_scoop_packages_extras_android
-    + windows_scoop_packages_extras_anime
-    + windows_scoop_packages_extras_audio
     + windows_scoop_packages_extras_mpd
     + windows_scoop_packages_extras_automation
     + windows_scoop_packages_extras_browser
-    + windows_scoop_packages_extras_book
     + windows_scoop_packages_extras_chat
-    + windows_scoop_packages_extras_sql
     + windows_scoop_packages_extras_document
     + windows_scoop_packages_extras_download
     + windows_scoop_packages_extras_editor
-    + windows_scoop_packages_extras_lunarvim
     + windows_scoop_packages_extras_education
     + windows_scoop_packages_extras_encrypt
     + windows_scoop_packages_extras_file_manager
@@ -594,44 +557,22 @@ windows_scoop_packages_extras_all: >-
     + windows_scoop_packages_extras_git
     + windows_scoop_packages_extras_diff
     + windows_scoop_packages_extras_image_viewer
-    + windows_scoop_packages_extras_image_edit
-    + windows_scoop_packages_extras_keyboard
     + windows_scoop_packages_extras_math
-    + windows_scoop_packages_extras_network
-    + windows_scoop_packages_extras_note
-    + windows_scoop_packages_extras_qr_code
-    + windows_scoop_packages_extras_remote_control
     + windows_scoop_packages_extras_screen_shot
     + windows_scoop_packages_extras_fuzzy_finder
     + windows_scoop_packages_extras_completion
-    + windows_scoop_packages_extras_todo
     + windows_scoop_packages_extras_scoop_helper
     + windows_scoop_packages_extras_snippets
     + windows_scoop_packages_extras_powershell_module
-    + windows_scoop_packages_extras_paper
     + windows_scoop_packages_extras_utils
-    + windows_scoop_packages_extras_system
-    + windows_scoop_packages_extras_window_manager
     + windows_scoop_packages_extras_proxy
-    + windows_scoop_packages_extras_disk
-    + windows_scoop_packages_extras_launcher
-    + windows_scoop_packages_extras_package_manager
-    + windows_scoop_packages_extras_dhcp
-    + windows_scoop_packages_extras_timer
     + windows_scoop_packages_extras_clipboard
-    + windows_scoop_packages_extras_cleaner
     + windows_scoop_packages_extras_search
     + windows_scoop_packages_extras_kvm
-    + windows_scoop_packages_extras_temperature
-    + windows_scoop_packages_extras_uninstall
-    + windows_scoop_packages_extras_window
     + windows_scoop_packages_extras_terminal
-    + windows_scoop_packages_extras_translation
     + windows_scoop_packages_extras_usb_driver
     + windows_scoop_packages_extras_video
     + windows_scoop_packages_extras_video_player
-    + windows_scoop_packages_extras_video_edit
-    + windows_scoop_packages_extras_whiteboard
   }}
 windows_scoop_packages_nerd_fonts:
   - nerd-fonts/Maple-Mono-NF-CN
