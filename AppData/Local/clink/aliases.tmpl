@@ -3,9 +3,7 @@ ls=eza --icons=auto $*
 reboot=shutdown /t 0 /r $*
 poweroff=shutdown /t 0 /s $*
 
-{{ if lookPath "nircmd" -}}
-scroff=nircmd monitor off $*
-{{ end -}}
+scroff=powershell.exe -NoProfile -Command "(Add-Type '[DllImport(\"user32.dll\")]public static extern int PostMessage(int h,int m,int w,int l);' -Name a -Pas)::PostMessage(-1,0x0112,0xF170,2)" $*
 
 scoop-update=scoop update * && scoop cache remove * && scoop cleanup *
 unlock-keepassxc=sh -c "gopass show -o keepassxc/main | keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir "syncthing" "keepassxc" "main.kdbx" | replace "\\" "/" }} &"

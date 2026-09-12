@@ -63,7 +63,7 @@ Set-PSReadLineKeyHandler -Key '(','{','[' `
     $line = $null
     $cursor = $null
     [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)
-    
+
     if ($selectionStart -ne -1)
     {
       # Text is selected, wrap it in brackets
@@ -182,12 +182,10 @@ Set-PSReadLineKeyHandler -Key Alt+x `
 }
 # ]]]
 # [[[ scroff
-{{ if lookPath "nircmd" -}}
 # turn off monitor
 function scroff {
-  nircmd monitor off
+  (Add-Type '[DllImport("user32.dll")]public static extern int PostMessage(int h,int m,int w,int l);' -Name a -Pas)::PostMessage(-1,0x0112,0xF170,2)
 }
-{{ end -}}
 # ]]]
 # [[[ yt
 {{ if lookPath "yt-dlp" -}}
