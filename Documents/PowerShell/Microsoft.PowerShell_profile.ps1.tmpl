@@ -210,6 +210,13 @@ function unlock-keepassxc {
 }
 {{ end -}}
 # ]]]
+# [[[ gopass-login-gh
+{{ if and ( lookPath "scoop" ) (lookPath "KeePassXc") -}}
+function gopass-login-gh {
+    gopass github/ourgal/token | gh auth login --hostname github.com --with-token
+}
+{{ end -}}
+# ]]]
 # [[[ Get-Fonts
 function Get-Fonts {
     param (

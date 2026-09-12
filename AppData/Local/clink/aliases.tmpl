@@ -7,3 +7,5 @@ scroff=powershell.exe -NoProfile -Command "(Add-Type '[DllImport(\"user32.dll\")
 
 scoop-update=scoop update * && scoop cache remove * && scoop cleanup *
 unlock-keepassxc=sh -c "gopass show -o keepassxc/main | keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir "syncthing" "keepassxc" "main.kdbx" | replace "\\" "/" }} &"
+
+gopass-login-gh=gopass github/ourgal/token | gh auth login --hostname github.com --with-token $*
