@@ -56,20 +56,7 @@
       windows_scoop_packages:
         - nodejs-lts
         - vscode
-- name: Configure windows admin
-  hosts: all
-  remote_user: admin
-  ignore_unreachable: true
-  tags: admin
-  tasks:
-    - name: Reboot
-      ansible.windows.win_reboot:
-- name: Configure windows user
-  hosts: all
-  remote_user: user
-  ignore_unreachable: true
-  tags: user
-  roles:
+      windows_scoop_reboot: true
     - role: windows_scoop
       windows_scoop_packages: "{{ windows_scoop_packages_extras_all }}"
     - role: windows_scoop
