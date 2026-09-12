@@ -1,4 +1,4 @@
 {{ $cfg := dict -}}
 {{ $cfg = set $cfg "model" "gemini:gemini-3.5-flash-lite" -}}
-{{ $cfg = set $cfg "clients" (list (dict "type" "gemini" "api_key" (gopass "AI/gemini"))) -}}
+{{ $cfg = set $cfg "clients" (list (dict "type" "gemini" "api_key" (includeTemplate "gopass" "AI/gemini"))) -}}
 {{ $cfg | toYaml -}}
