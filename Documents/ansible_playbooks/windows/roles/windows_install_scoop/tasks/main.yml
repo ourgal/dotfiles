@@ -66,39 +66,12 @@
     - main/aria2
     - main/7zip
     - main/git
-- name: Add scoop-cn bucket
-  community.windows.win_scoop_bucket:
-    name: scoop-cn
-    repo: https://v6.gh-proxy.org/https://github.com/duzyn/scoop-cn
-    state: present
 - name: Remove main bucket
   community.windows.win_scoop_bucket:
     name: main
     state: absent
-- name: Remmove base packages
-  community.windows.win_scoop:
-    name: "{{ item | basename }}"
-    global: false
-    state: absent
-  register: result
-  retries: 3
-  delay: 5
-  until: result is not failed
-  loop:
-    - main/lessmsi
-    - main/aria2
-    - main/7zip
-    - main/git
-- name: Install base packages via scoop-cn
-  community.windows.win_scoop:
-    name: "{{ item | basename }}"
-    global: false
-  register: result
-  retries: 3
-  delay: 5
-  until: result is not failed
-  loop:
-    - main/lessmsi
-    - main/aria2
-    - main/7zip
-    - main/git
+- name: Add scoop-cn bucket
+  community.windows.win_scoop_bucket:
+    name: main
+    repo: https://v6.gh-proxy.org/https://github.com/duzyn/scoop-cn
+    state: present
