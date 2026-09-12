@@ -19,7 +19,7 @@
 
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "codium" -}}
-{{ $vsnetrw_url := gitHubLatestReleaseAssetURL "danprince/vsnetrw" "vsnetrw-*.vsix" -}}
+{{ $vsnetrw_url := "https://github.com/danprince/vsnetrw/releases/download/v0.3.2/vsnetrw-0.3.2.vsix" -}}
 [".cache/vscodium/extensions/vsnetrw.vsix"]
     type = "file"
     url = {{ print $mirror $vsnetrw_url | quote }}
@@ -47,7 +47,7 @@
 {{ end -}}
 
 {{ if eq .chezmoi.os "linux" -}}
-{{ $iosevkaterm_url := gitHubLatestReleaseAssetURL "ryanoasis/nerd-fonts" "IosevkaTerm.tar.xz" -}}
+{{ $iosevkaterm_url := "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/IosevkaTerm.tar.xz" -}}
 [".local/share/fonts/IosevkaTerm"]
     type = "archive"
     url = {{ print $mirror $iosevkaterm_url | quote }}
@@ -189,7 +189,8 @@
     type = "git-repo"
     url = {{ print $mirror "https://github.com/arnavgr/termux-nf" | quote }}
     refreshPeriod = "168h"
-{{ $crush_url := gitHubLatestReleaseAssetURL "charmbracelet/crush" (printf "crush_*_Android_%s.tar.gz" .chezmoi.arch) -}}
+{{ $crush_version := "0.94.1" -}}
+{{ $crush_url := printf "https://github.com/charmbracelet/crush/releases/download/v%s/crush_%s_Android_%s.tar.gz" $crush_version $crush_version .chezmoi.arch -}}
 {{ $crush_path := printf "%s/crush" (trimSuffix ".tar.gz" (last (splitList "/" $crush_url))) -}}
 [".local/bin/crush"]
     type = "archive-file"
