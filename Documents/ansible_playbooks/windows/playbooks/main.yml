@@ -3,8 +3,6 @@
   remote_user: admin
   ignore_unreachable: true
   tags: admin
-  vars:
-    ansible_ssh_pass: "{{ lookup('gopass', 'password/windows/admin') | trim }}"
   roles:
     - role: windows_choco
       windows_choco_packages:
@@ -46,8 +44,6 @@
   remote_user: user
   ignore_unreachable: true
   tags: user
-  vars:
-    ansible_ssh_pass: "{{ lookup('gopass', 'password/windows/user') | trim }}"
   pre_tasks:
     - name: Gather facts
       ansible.builtin.gather_facts:
@@ -65,8 +61,6 @@
   remote_user: admin
   ignore_unreachable: true
   tags: admin
-  vars:
-    ansible_ssh_pass: "{{ lookup('gopass', 'password/windows/admin') | trim }}"
   tasks:
     - name: Reboot
       ansible.windows.win_reboot:
@@ -75,8 +69,6 @@
   remote_user: user
   ignore_unreachable: true
   tags: user
-  vars:
-    ansible_ssh_pass: "{{ lookup('gopass', 'password/windows/user') | trim }}"
   roles:
     - role: windows_scoop
       windows_scoop_packages: "{{ windows_scoop_packages_extras_all }}"
@@ -141,8 +133,6 @@
   remote_user: game
   ignore_unreachable: true
   tags: game
-  vars:
-    ansible_ssh_pass: "{{ lookup('gopass', 'password/windows/user') | trim }}"
   pre_tasks:
     - name: Gather facts
       ansible.builtin.gather_facts:
@@ -163,8 +153,6 @@
   remote_user: admin
   ignore_unreachable: true
   tags: admin
-  vars:
-    ansible_ssh_pass: "{{ lookup('gopass', 'password/windows/admin') | trim }}"
   pre_tasks:
     - name: Gather facts
       ansible.builtin.gather_facts:
