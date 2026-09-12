@@ -66,12 +66,9 @@
     - main/aria2
     - main/7zip
     - main/git
-- name: Remove main bucket
+- name: Add scoop buckets
   community.windows.win_scoop_bucket:
-    name: main
-    state: absent
-- name: Add scoop-cn bucket
-  community.windows.win_scoop_bucket:
-    name: main
-    repo: https://v6.gh-proxy.org/https://github.com/duzyn/scoop-cn
-    state: present
+    name: "{{ item }}"
+  loop:
+    - extras
+    - nerd-fonts
