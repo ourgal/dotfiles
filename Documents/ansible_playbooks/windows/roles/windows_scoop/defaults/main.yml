@@ -246,9 +246,6 @@ windows_scoop_packages_main_tmux:
   - main/zellij
 windows_scoop_packages_main_typing:
   # - main/ttyper
-windows_scoop_packages_main_unrar:
-  - main/unrar
-  - main/unzip
 windows_scoop_packages_main_utils:
   - main/coreutils
   - main/nircmd
@@ -262,6 +259,8 @@ windows_scoop_packages_main_system:
   - main/file
   # - main/cyme
 windows_scoop_packages_main_archive:
+  # - main/unrar
+  - main/unzip
   - main/zip
   - main/bzip2
 windows_scoop_packages_main_unpack:
@@ -346,7 +345,6 @@ windows_scoop_packages_main_all: >-
     + windows_scoop_packages_main_snippets
     + windows_scoop_packages_main_system_info
     + windows_scoop_packages_main_tmux
-    + windows_scoop_packages_main_unrar
     + windows_scoop_packages_main_utils
     + windows_scoop_packages_main_which
     + windows_scoop_packages_main_system
