@@ -5,9 +5,3 @@
     global: "{{ windows_scoop_global }}"
     state: "{{ windows_scoop_state }}"
   loop: "{{ windows_scoop_packages }}"
-  register: windows_scoop_install
-- name: Reboot
-  ansible.windows.win_reboot:
-  when:
-    - "{{ windows_scoop_reboot }}"
-    - windows_scoop_install is changed
