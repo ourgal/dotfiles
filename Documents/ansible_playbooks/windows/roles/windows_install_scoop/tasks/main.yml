@@ -23,7 +23,6 @@
           use_sqlite_cache: true
           force_update: true
           use_external_7zip: true
-          gh_token: "{{ lookup('gopass', 'github/ourgal/token') | trim }}"
       ansible.windows.win_copy:
         dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
         content: "{{ scoop_config_content.content | b64decode | from_json | combine(config) | to_json }}"
@@ -37,11 +36,23 @@
           use_sqlite_cache: true
           force_update: true
           use_external_7zip: true
-          gh_token: "{{ lookup('gopass', 'github/ourgal/token') | trim }}"
       ansible.windows.win_copy:
         dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
         content: "{{ config | to_json }}"
       when: scoop_config_stat.stat.exists is false
+    - name: Get scoop config content
+      ansible.windows.slurp:
+        src: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+      register: scoop_config_content
+      when: scoop_config_gh_token is true
+    - name: Set scoop gh_token config
+      vars:
+        config:
+          gh_token: "{{ lookup('gopass', 'github/ourgal/token') | trim }}"
+      ansible.windows.win_copy:
+        dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
+        content: "{{ scoop_config_content.content | b64decode | from_json | combine(config) | to_json }}"
+      when: scoop_config_gh_token is true
 - name: Install scoop
   ansible.windows.win_shell: iwr -useb https://get.scoop.sh | iex
   when:
