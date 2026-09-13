@@ -47,7 +47,7 @@
     - role: windows_developer_mode
 - name: Configure windows user
   hosts: all
-  remote_user: user
+  remote_user: zxc
   ignore_unreachable: true
   tags: user
   pre_tasks:
