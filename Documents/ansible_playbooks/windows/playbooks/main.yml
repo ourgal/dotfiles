@@ -117,6 +117,8 @@
       windows_scoop_packages:
         - charm/crush
     - role: windows_pipx
+      tags:
+        - pipx
     - role: windows_cargo
     - role: windows_npm
     - role: windows_env

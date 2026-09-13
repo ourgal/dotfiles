@@ -21,7 +21,7 @@
       trusted-host = mirrors.cernet.edu.cn
   when: pip_config_stat.stat.exists is false
 - name: Install pipx packages
-  ansible.windows.win_shell: "{{ ansible_facts.user_dir }}\\scoop\\shims\\pipx install {{ item }}"
+  ansible.windows.win_shell: "{{ ansible_facts.user_dir }}\\scoop\\apps\\pipx\\current\\pipx.bat install {{ item }}"
   loop: "{{ windows_pipx_packages }}"
 - name: Remove pip config
   ansible.windows.win_file:
