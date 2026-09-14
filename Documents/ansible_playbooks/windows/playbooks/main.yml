@@ -21,7 +21,7 @@
     - role: windows_hide_user
       windows_hide_user_name: Admin
     - role: windows_user
-      windows_user_name: User
+      windows_user_name: zxc
       windows_user_groups:
         - Users
     - role: windows_user
@@ -157,8 +157,8 @@
     - role: windows_service
       windows_service_name: Everything
       windows_service_state: started
-      windows_service_path: C:\Users\User\scoop\apps\everything\current\everything.exe
-      windows_service_cmd: C:\Users\User\scoop\apps\everything\current\everything.exe -svc
+      windows_service_path: C:\Users\zxc\scoop\apps\everything\current\everything.exe
+      windows_service_cmd: C:\Users\zxc\scoop\apps\everything\current\everything.exe -svc
     - role: windows_user_right
       windows_user_right_name: SeRemoteInteractiveLogonRight
-      windows_user_right_users: User
+      windows_user_right_users: zxc
