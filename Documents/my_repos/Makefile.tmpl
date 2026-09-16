@@ -1,0 +1,21 @@
+{{ $urls := list
+  (dict "url" "soft:snowfall" "name" "snowfall")
+  (dict "url" "soft:tutorial" "name" "tutorial")
+  (dict "url" "myg:scoop-bucket" "name" "scoop-bucket")
+  (dict "url" "myg:playwright_yamibo" "name" "playwright_yamibo")
+  (dict "url" "myg:playwright_ritdon" "name" "playwright_ritdon")
+  (dict "url" "soft:windows_unattend" "name" "windows_unattend")
+-}}
+
+all: {{ range $urls }}{{ .name }} {{ end }} pull
+
+{{ range $urls -}}
+{{ .name }}:
+	git clone {{ .url }} {{ .name }}
+{{ end -}}
+
+.PHONY: pull
+pull:
+	{{ range $urls -}}
+	git -C {{ .name }} pull
+	{{ end -}}
