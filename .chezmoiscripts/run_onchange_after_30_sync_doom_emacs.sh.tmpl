@@ -13,12 +13,10 @@
 set -euo pipefail
 {{ if stat (joinPath .chezmoi.homeDir ".config" "doom" "config.el") -}}
 
-{{ $sum := list }}
 {{ $homeDir := .chezmoi.homeDir -}}
-    {{ range (list "config" "packages" "init") -}}
-    {{ $sum = include (joinPath $homeDir ".config" "doom" (print . ".el")) | append $sum -}}
+    {{ range (glob (joinPath $homeDir ".config" "doom" "**" "*.el")) -}}
+#   {{ include . | sha256sum }}
     {{ end -}}
-# {{ $sum | join "" | sha256sum }}
 # {{ output "git" "-C" $doom_dir "rev-parse" "HEAD" }}
 # {{ output "emacs" "--version" | trim | splitList "\n" | first }}
 {{ $doom_bin }} sync

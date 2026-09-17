@@ -10,15 +10,15 @@
 {{ if stat $doom_bin -}}
 {{ if lookPath "emacs" -}}
 {{ if stat (joinPath .chezmoi.homeDir ".config" "doom" "config.el") -}}
-{{ $sum := list }}
+
 {{ $homeDir := .chezmoi.homeDir -}}
-{{ range (list "config" "packages" "init") -}}
-{{ $sum = include (joinPath $homeDir ".config" "doom" (print . ".el")) | append $sum -}}
-{{ end -}}
-# {{ $sum | join "" | sha256sum }}
+    {{ range (glob (joinPath $homeDir ".config" "doom" "**" "*.el")) -}}
+#   {{ include . | sha256sum }}
+    {{ end -}}
 # {{ output "git" "-C" $doom_dir "rev-parse" "HEAD" }}
 # {{ output "emacs" "--version" | trim | splitList "\n" | first }}
 {{ $doom_bin }} sync
+
 {{ end -}}
 {{ end -}}
 {{ end -}}
