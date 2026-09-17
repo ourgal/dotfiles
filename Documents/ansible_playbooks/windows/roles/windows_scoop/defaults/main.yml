@@ -46,7 +46,7 @@ windows_scoop_packages_main_environment:
   # - main/msys2
   # - main/direnv
   # - main/tree-sitter
-  - main/dirhash
+  # - main/dirhash
 windows_scoop_packages_main_haskell:
   # - main/haskell
   # - main/haskell-cabal
@@ -301,7 +301,6 @@ windows_scoop_packages_main_all: >-
     + windows_scoop_packages_main_bash
     + windows_scoop_packages_main_binary
     + windows_scoop_packages_main_compile
-    + windows_scoop_packages_main_environment
     + windows_scoop_packages_main_go
     + windows_scoop_packages_main_json
     + windows_scoop_packages_main_markdown

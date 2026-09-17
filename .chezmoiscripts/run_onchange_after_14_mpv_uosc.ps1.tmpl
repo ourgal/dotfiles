@@ -1,10 +1,11 @@
 {{ if eq .chezmoi.os "windows" -}}
-{{ template "checkPath" (list "dirhash" "go") -}}
-{{ if lookPath "mpv" -}}
+{{ if and (lookPath "mpv") (lookPath "go") -}}
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 $PSNativeCommandUseErrorActionPreference = $true
-# {{ output "dirhash" (joinPath .chezmoi.homeDir ".local" "share" "repos" "uosc" "src" "ziggy") "-quiet" "-nowait" }}
+{{ range (glob (joinPath .chezmoi.homeDir ".local" "share" "repos" "uosc" "src" "ziggy" "**" "*.go")) -}}
+# {{ include . | sha256sum | quote }}
+{{ end -}}
 Set-Item -Path Env:\GOPROXY -Value "{{ .my.go_proxy}},direct"
 cd ~/.local/share/repos/uosc
 ./tools/build.ps1 ziggy placeholder
