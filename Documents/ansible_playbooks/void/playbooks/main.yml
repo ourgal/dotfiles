@@ -343,46 +343,6 @@
         path: /etc/lemurs/config.toml
         regexp: '^tty ='
         line: tty = 7
-    - name: LinuxBrew
-      tags:
-        - pkg
-        - brew
-      environment:
-        PATH: "/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
-        HOMEBREW_BREW_GIT_REMOTE: "https://mirror.nju.edu.cn/git/homebrew/brew.git"
-      block:
-        - name: Check if Homebrew is installed
-          ansible.builtin.stat:
-            path: "/home/linuxbrew/.linuxbrew/bin/brew"
-          register: brew_stat
-        - name: Create Homebrew directory
-          ansible.builtin.file:
-            path: "/home/linuxbrew/.linuxbrew"
-            state: directory
-            owner: "{{ ansible_env.USER }}"
-            group: "{{ ansible_env.USER }}"
-            mode: '0755'
-          become: true
-          when: not brew_stat.stat.exists
-        - name: Install Homebrew
-          ansible.builtin.shell: |
-            curl -fsSL https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C /home/linuxbrew/.linuxbrew
-          when: not brew_stat.stat.exists
-        - name: Install linuxbrew packages
-          tags:
-            - pkg
-            - linuxbrew
-            - homebrew
-          community.general.homebrew:
-            name:
-              - mani
-              - ansible-language-server
-              - ansible-lint
-              - mcfly
-              - oh-my-posh
-            state: latest
-            update_homebrew: true
-            upgrade: true
     - name: Set the system hostname
       become: true
       ansible.builtin.hostname:
