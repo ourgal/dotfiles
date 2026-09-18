@@ -48,6 +48,7 @@
           # gpg
           - pcsclite
           - pcsc-ccid
+          - gnupg2-scdaemon
           # clipboard
           - Clipboard
           - xclip
@@ -373,3 +374,15 @@
       ansible.builtin.command:
         cmd: grub-mkconfig -o /boot/grub/grub.cfg
       changed_when: true
+    - name: Disable gnupg ccid
+      block:
+        - name: Create .gnupg folder
+          ansible.builtin.file:
+            dest: "{{ ansible_facts.user_dir }}/.gnupg"
+            mode: "0700"
+            state: directory
+        - name: Set scdaemon config
+          ansible.builtin.copy:
+            dest: "{{ ansible_facts.user_dir }}/.gnupg/scdaemon.confg"
+            content: |
+              disable-ccid
