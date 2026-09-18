@@ -86,6 +86,8 @@ scoop/persist/*
 !.local/bin/
 .local/bin/*
 
+!.local/share/
+.local/share/*
 
 {{ if and (hasKey .chezmoi.osRelease "name") (eq .chezmoi.osRelease.name "Void") -}}
 # runit
