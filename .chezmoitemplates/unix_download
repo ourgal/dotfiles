@@ -1,0 +1,48 @@
+{{ if dig "url" "" . | not -}}
+{{ fail "no url found" }}
+{{ end -}}
+
+{{ $url := .url -}}
+{{ $ext := ext $url -}}
+{{ $filename := base $url -}}
+{{ $basename := splitList "." $filename | first -}}
+
+{{ if dig "output" "" . | not -}}
+{{ fail "no output found" }}
+{{ end -}}
+
+{{ $output_dir := .output -}}
+{{ $sub_dir := dig "sub_dir" false . -}}
+{{ if $sub_dir -}}
+{{ $output_dir := joinPath $output_dir $basename -}}
+{{ end -}}
+
+{{ if dig "extract" false . -}}
+
+TEMP_DIR=$(mktemp -d)
+
+{{ if lookPath "aria2c" -}}
+aria2c {{ $url | quote }} -o $TEMP_DIR/{{ $filename }}
+{{ else -}}
+curl -L {{ $url | quote }} -o $TEMP_DIR/{{ $filename }}
+{{ end -}}
+
+mkdir -p {{ $output_dir | quote }}
+
+{{ if eq $ext "xz" -}}
+  {{ if dig "include" "" . -}}
+  tar zxvf $TEMP_DIR/{{ $filename }} --wildcards '{{ $include }}' -C {{ $output_dir | quote }}
+  {{ else -}}
+  tar zxvf $TEMP_DIR/{{ $filename }} -C {{ $output_dir | quote }}
+  {{ end -}}
+{{ end -}}
+
+{{ else -}}
+
+{{ if lookPath "aria2c" -}}
+aria2c {{ $url | quote }} -o {{ joinPath $output_dir $filename }}
+{{ else -}}
+curl -L {{ $url | quote }} -o {{ joinPath $output_dir $filename }}
+{{ end -}}
+
+{{ end -}}

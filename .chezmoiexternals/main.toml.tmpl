@@ -27,16 +27,6 @@
 {{ end -}}
 
 {{ if eq .chezmoi.os "linux" "android" -}}
-{{ if and (hasKey .chezmoi.osRelease "name") (ne .chezmoi.osRelease.name "Void") -}}
-[".local/share/fonts/nerdsymbols"]
-    type = "archive"
-    url = {{ print $mirror .my.font.nerdsymbols_url | quote }}
-    exact = true
-    include = [ "*.ttf" ]
-{{ end -}}
-{{ end -}}
-
-{{ if eq .chezmoi.os "linux" "android" -}}
 
 {{ range (list "Bold" "BoldItalic" "ExtraBold" "Italic" "ExtraBoldItalic" "ExtraLightItalic" "Medium" "ExtraLight" "SemiBold" "LightItalic" "Light" "SemiBoldItalic" "Regular" "MediumItalic" "Thin" "ThinItalic") }}
 [".local/share/fonts/maple/MapleMono-NF-CN-{{ . }}.ttf"]
