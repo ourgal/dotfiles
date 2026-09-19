@@ -1,4 +1,4 @@
 {{ if lookPath "seanime" -}}
 #!/bin/sh
-exec {{ lookPath "seanime" }}
+DISPLAY={{ env "DISPLAY"}} exec {{ lookPath "seanime" }}
 {{ end -}}
