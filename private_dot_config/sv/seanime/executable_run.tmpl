@@ -1,4 +1,4 @@
 {{ if lookPath "seanime" -}}
 #!/bin/sh
-exec seanime
+exec {{ lookPath "seanime" }}
 {{ end -}}

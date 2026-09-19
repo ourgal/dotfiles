@@ -92,6 +92,9 @@ scoop/persist/*
 !.local/share/
 .local/share/*
 
+!Videos/
+Videos/*
+
 {{ if eq "Void" (dig "chezmoi" "osRelease" "name" "" .) -}}
 # runit
 !service/
@@ -799,6 +802,12 @@ AppData/Roaming/Microsoft/Windows/Start Menu/Programs/*
 {{ if eq .chezmoi.os "windows" -}}
 !AppData/Roaming/Seanime/
 !AppData/Roaming/Seanime/**
+{{ end -}}
+{{ end -}}
+{{ if lookPath "seanime" -}}
+{{ if eq .chezmoi.os "linux" -}}
+!Videos/Seanime/
+!Videos/Seanime/**
 {{ end -}}
 {{ end -}}
 # ]]]
