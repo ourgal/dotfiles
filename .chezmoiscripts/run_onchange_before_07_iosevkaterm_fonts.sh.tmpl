@@ -1,0 +1,13 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!{{ lookPath "bash" }}
+
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/IosevkaTerm.tar.xz")
+  "output" (joinPath .chezmoi.homeDir ".local" "share" "fonts" | printf "%s/")
+  "extract" true
+  "sub_dir" true
+  "include" "*.ttf"
+  "chezmoi" .chezmoi
+)}}
+
+{{ end -}}
