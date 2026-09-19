@@ -76,9 +76,9 @@ curl -L {{ $url | quote }} -o "$TEMP_DIR/{{ $filename }}"
 
 mkdir -p {{ $output_dir | quote }}
 
-{{ if eq $ext ".xz" -}}
+{{ if eq $ext ".xz" ".gz" -}}
   {{ if dig "include" "" . -}}
-  $(cd {{ $output_dir | quote }} && tar -xf "$TEMP_DIR/{{ $filename }}" --wildcards {{ .include }})
+  $(cd {{ $output_dir | quote }} && tar -xf "$TEMP_DIR/{{ $filename }}" --transform='s:.*/::' --wildcards {{ .include }})
   {{ else -}}
   tar -xf "$TEMP_DIR/{{ $filename }}" -C {{ $output_dir | quote }}
   {{ end -}}
