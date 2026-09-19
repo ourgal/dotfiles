@@ -384,13 +384,19 @@
       changed_when: true
     - name: Disable gnupg ccid
       block:
+        - name: Check scdaemon config
+          ansible.builtin.stat:
+            path: "{{ [ ansible_facts.user_dir, '.gnupg', 'scdaemon.conf' ] | path_join }}"
+          register: scdaemon_conf_stat
         - name: Create .gnupg folder
           ansible.builtin.file:
             dest: "{{ [ ansible_facts.user_dir, '.gnupg' ] | path_join }}"
             mode: "0700"
             state: directory
+          when: scdaemon_conf_stat.stat.exists is false
         - name: Set scdaemon config
           ansible.builtin.copy:
             dest: "{{ [ ansible_facts.user_dir, '.gnupg', 'scdaemon.conf' | path_join ] }}"
             content: |
               disable-ccid
+          when: scdaemon_conf_stat.stat.exists is false
