@@ -22,7 +22,25 @@
 {{ $output_dir = joinPath $output_dir $basename -}}
 {{ end -}}
 
-{{ if dig "extract" false . -}}
+{{ if or (eq $ext ".git") (dig "git" false .) -}}
+
+{{ if stat .output | not -}}
+
+  {{ if dig "clone_args" (list) . -}}
+  git clone {{ join " " .clone_args }} {{ $url }} {{ .output | quote }}
+  {{ else -}}
+  git clone {{ $url }} {{ .output | quote }}
+  {{ end -}}
+
+{{ else if eq 0 (mod (now | date "__2") 7) -}}
+
+  # {{ now | date "__2" }}
+
+  git -C {{ .output | quote }} pull
+
+{{ end -}}
+
+{{ else if dig "extract" false . -}}
 
 {{ if eq .chezmoi.os "windows" -}}
 

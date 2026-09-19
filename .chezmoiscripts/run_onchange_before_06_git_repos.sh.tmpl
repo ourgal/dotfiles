@@ -1,0 +1,167 @@
+{{ if eq .chezmoi.os "linux" "android" -}}
+
+{{ if eq .chezmoi.os "android" -}}
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/arnavgr/termux-nf.git")
+  "output" (joinPath .chezmoi.homeDir ".local" "share" "repos" "termux-nf")
+  "chezmoi" .chezmoi
+)}}
+{{ end -}}
+
+{{ if eq .chezmoi.os "linux" "android" -}}
+{{ if lookPath "awesome" -}}
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/lcpz/awesome-copycats.git")
+  "output" (joinPath .chezmoi.homeDir ".config" "awesome-copycats")
+  "clone_args" (list "--recurse-submodules" "-j8")
+  "chezmoi" .chezmoi
+)}}
+{{ end -}}
+{{ end -}}
+
+{{ if eq .chezmoi.os "linux" -}}
+{{ if lookPath "bash" -}}
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/akinomyoga/ble.sh.git")
+  "output" (joinPath .chezmoi.homeDir ".local" "lib" "ble_sh")
+  "clone_args" (list "--recurse-submodules" "-j8")
+  "chezmoi" .chezmoi
+)}}
+{{ end -}}
+{{ end -}}
+
+{{ if lookPath "emacs" -}}
+{{ $doom_repo := "https://mirror.nju.edu.cn/git/doom-emacs.git" -}}
+
+{{ if eq .chezmoi.os "linux" "android" -}}
+{{ includeTemplate "download" (dict
+  "url" $doom_repo
+  "output" (joinPath .chezmoi.homeDir ".config" "emacs")
+  "chezmoi" .chezmoi
+)}}
+{{ end -}}
+
+{{ end -}}
+
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/golgote/neturl.git")
+  "output" (joinPath .chezmoi.homeDir ".local" "share" "repos" "neturl")
+  "chezmoi" .chezmoi
+)}}
+
+{{ if eq .chezmoi.os "linux" -}}
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/austencm/youtube-auto-like.git")
+  "output" (joinPath .chezmoi.homeDir ".local" "share" "repos" "youtube-auto-like")
+  "chezmoi" .chezmoi
+)}}
+{{ end -}}
+
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/Ccccccccvvm/xapk2apk.git")
+  "output" (joinPath .chezmoi.homeDir ".local" "share" "repos" "xapk2apk")
+  "chezmoi" .chezmoi
+)}}
+
+{{ includeTemplate "download" (dict
+  "url" "https://gitee.com/fairever/stardict.git"
+  "output" (joinPath .chezmoi.homeDir ".local" "share" "repos" "stardict")
+  "chezmoi" .chezmoi
+)}}
+
+{{ includeTemplate "download" (dict
+  "url" "https://gitee.com/fairever/info_manuals.git"
+  "output" (joinPath .chezmoi.homeDir ".local" "share" "repos" "info_manuals")
+  "chezmoi" .chezmoi
+)}}
+
+{{ if lookPath "vim" -}}
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/junegunn/vim-plug.git")
+  "output" (joinPath .chezmoi.homeDir ".local" "share" "repos" "vim-plug")
+  "chezmoi" .chezmoi
+)}}
+{{ end -}}
+
+{{ if eq .chezmoi.os "linux" -}}
+{{ if lookPath "mpv" -}}
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/Eisa01/mpv-scripts.git")
+  "output" (joinPath .chezmoi.homeDir ".local" "share" "repos" "Eisa01_mpv-scripts")
+  "chezmoi" .chezmoi
+)}}
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/po5/thumbfast.git")
+  "output" (joinPath .chezmoi.homeDir ".local" "share" "repos" "thumbfast")
+  "chezmoi" .chezmoi
+)}}
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/Dudemanguy/mpv-manga-reader.git")
+  "output" (joinPath .chezmoi.homeDir ".local" "share" "repos" "mpv-manga-reader")
+  "chezmoi" .chezmoi
+)}}
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/Seme4eg/mpv-scripts.git")
+  "output" (joinPath .chezmoi.homeDir ".local" "share" "repos" "Seme4eg_mpv-scripts")
+  "chezmoi" .chezmoi
+)}}
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/Seme4eg/mpv-scripts.git")
+  "output" (joinPath .chezmoi.homeDir ".local" "share" "repos" "Seme4eg_mpv-scripts")
+  "chezmoi" .chezmoi
+)}}
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/Deulfi/mpv_sponsorblock_chapterized.git")
+  "output" (joinPath .chezmoi.homeDir ".local" "share" "repos" "mpv_sponsorblock_chapterized")
+  "chezmoi" .chezmoi
+)}}
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/christoph-heinrich/mpv-quality-menu.git")
+  "output" (joinPath .chezmoi.homeDir ".local" "share" "repos" "mpv-quality-menu")
+  "chezmoi" .chezmoi
+)}}
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/eNV25/mpv-torrserver-hook.git")
+  "output" (joinPath .chezmoi.homeDir ".local" "share" "repos" "mpv-torrserver-hook")
+  "chezmoi" .chezmoi
+)}}
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/Samillion/mpv-ytdlautoformat.git")
+  "output" (joinPath .chezmoi.homeDir ".local" "share" "repos" "mpv-ytdlautoformat")
+  "chezmoi" .chezmoi
+)}}
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/ObserverOfTime/mpv-scripts.git")
+  "output" (joinPath .chezmoi.homeDir ".local" "share" "repos" "ObserverOfTime_mpv-scripts")
+  "chezmoi" .chezmoi
+)}}
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/tomasklaen/uosc.git")
+  "output" (joinPath .chezmoi.homeDir ".local" "share" "repos" "uosc")
+  "chezmoi" .chezmoi
+)}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "anilist_updater") "os" (list "linux" "windows")) | trim | atoi -}}
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/AzuredBlue/mpv-anilist-updater.git")
+  "output" (joinPath .chezmoi.homeDir ".local" "share" "repos" "mpv-anilist-updater")
+  "chezmoi" .chezmoi
+)}}
+{{ end -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "file_browser") "os" "windows") | trim | atoi -}}
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/CogentRedTester/mpv-file-browser.git")
+  "output" (joinPath .chezmoi.homeDir "scoop" "persist" "mpv" "portable_config" "scripts" "mpv-file-browser")
+  "chezmoi" .chezmoi
+)}}
+{{ end -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "file_browser") "os" "linux") | trim | atoi -}}
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/CogentRedTester/mpv-file-browser.git")
+  "output" (joinPath .chezmoi.homeDir ".config" "mpv" "scripts" "mpv-file-browser")
+  "chezmoi" .chezmoi
+)}}
+{{ end -}}
+{{ end -}}
+{{ end -}}
+
+{{ end -}}
