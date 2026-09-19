@@ -1,4 +1,5 @@
 {{ if eq .chezmoi.os "linux" "android" -}}
+#!{{ lookPath "bash" }}
 
 {{ if eq .chezmoi.os "android" -}}
 {{ includeTemplate "download" (dict
