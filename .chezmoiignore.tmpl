@@ -89,7 +89,7 @@ scoop/persist/*
 !.local/share/
 .local/share/*
 
-{{ if and (hasKey .chezmoi.osRelease "name") (eq .chezmoi.osRelease.name "Void") -}}
+{{ if ne "Void" (dig "chezmoi" "osRelease" "name" "" .) -}}
 # runit
 !service/
 !service/**
@@ -125,7 +125,7 @@ scoop/persist/*
 !.local/bin/web
 !.local/bin/crush
 
-{{ if and (hasKey .chezmoi.osRelease "name") (eq .chezmoi.osRelease.name "Void") -}}
+{{ if ne "Void" (dig "chezmoi" "osRelease" "name" "" .) -}}
 # runit
 !service/
 !service/**

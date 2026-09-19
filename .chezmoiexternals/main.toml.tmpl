@@ -26,16 +26,6 @@
 {{ end -}}
 {{ end -}}
 
-{{ if eq .chezmoi.os "linux" "android" -}}
-
-{{ range (list "Bold" "BoldItalic" "ExtraBold" "Italic" "ExtraBoldItalic" "ExtraLightItalic" "Medium" "ExtraLight" "SemiBold" "LightItalic" "Light" "SemiBoldItalic" "Regular" "MediumItalic" "Thin" "ThinItalic") }}
-[".local/share/fonts/maple/MapleMono-NF-CN-{{ . }}.ttf"]
-    type = "file"
-    url = "https://gitee.com/subframe7536/Maple/releases/download/v7.3/MapleMono-NF-CN-{{ . }}.ttf"
-{{ end -}}
-
-{{ end -}}
-
 {{ if eq .chezmoi.os "linux" -}}
 {{ $iosevkaterm_url := "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/IosevkaTerm.tar.xz" -}}
 [".local/share/fonts/IosevkaTerm"]

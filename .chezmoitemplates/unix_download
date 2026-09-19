@@ -11,38 +11,54 @@
 {{ fail "no output found" }}
 {{ end -}}
 
-{{ $output_dir := .output -}}
+{{ $output := .output -}}
+{{ $output_dir := dir .output -}}
+{{ if splitList "/" .output | last | not -}}
+{{ $output = joinPath $output $filename -}}
+{{ end -}}
+
 {{ $sub_dir := dig "sub_dir" false . -}}
 {{ if $sub_dir -}}
-{{ $output_dir := joinPath $output_dir $basename -}}
+{{ $output_dir = joinPath $output_dir $basename -}}
 {{ end -}}
 
 {{ if dig "extract" false . -}}
 
 TEMP_DIR=$(mktemp -d)
 
-{{ if lookPath "aria2c" -}}
-aria2c {{ $url | quote }} -o $TEMP_DIR/{{ $filename }}
+cleanup() {
+  # Check if the directory variable is not empty and actually exists
+  if [[ -n "$TEMP_DIR" && -d "$TEMP_DIR" ]]; then
+    rm -rf "$TEMP_DIR"
+  fi
+}
+
+trap cleanup EXIT
+
+echo "{{ $url }} -> {{ $output }}"
+{{ if and (lookPath "aria2c") (dig "curl" false . | not) -}}
+aria2c {{ $url | quote }} -d "$TEMP_DIR" -o {{ $filename | quote }}
 {{ else -}}
-curl -L {{ $url | quote }} -o $TEMP_DIR/{{ $filename }}
+curl -L {{ $url | quote }} -o "$TEMP_DIR/{{ $filename }}"
 {{ end -}}
 
 mkdir -p {{ $output_dir | quote }}
 
-{{ if eq $ext "xz" -}}
+{{ if eq $ext ".xz" -}}
   {{ if dig "include" "" . -}}
-  tar zxvf $TEMP_DIR/{{ $filename }} --wildcards '{{ $include }}' -C {{ $output_dir | quote }}
+  $(cd {{ $output_dir | quote }} && tar -xf "$TEMP_DIR/{{ $filename }}" --wildcards {{ .include }})
   {{ else -}}
-  tar zxvf $TEMP_DIR/{{ $filename }} -C {{ $output_dir | quote }}
+  tar -xf "$TEMP_DIR/{{ $filename }}" -C {{ $output_dir | quote }}
   {{ end -}}
 {{ end -}}
 
 {{ else -}}
 
-{{ if lookPath "aria2c" -}}
-aria2c {{ $url | quote }} -o {{ joinPath $output_dir $filename }}
+echo "{{ $url }} -> {{ $output }}"
+{{ if and (lookPath "aria2c") (dig "curl" false . | not) -}}
+aria2c {{ $url | quote }} -d {{ $output_dir | quote }} -o {{ $filename | quote }}
 {{ else -}}
-curl -L {{ $url | quote }} -o {{ joinPath $output_dir $filename }}
+curl -L {{ $url | quote }} -o {{ $output | quote }}
 {{ end -}}
 
 {{ end -}}

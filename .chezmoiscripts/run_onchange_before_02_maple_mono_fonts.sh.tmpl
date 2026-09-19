@@ -1,0 +1,14 @@
+{{ if eq .chezmoi.os "linux" "android" -}}
+#!{{ lookPath "bash" }}
+
+{{ $homeDir := .chezmoi.homeDir -}}
+{{ range (list "Bold" "BoldItalic" "ExtraBold" "Italic" "ExtraBoldItalic" "ExtraLightItalic" "Medium" "ExtraLight" "SemiBold" "LightItalic" "Light" "SemiBoldItalic" "Regular" "MediumItalic" "Thin" "ThinItalic") }}
+
+{{ includeTemplate "unix_download" (dict
+  "url" (printf "https://gitee.com/subframe7536/Maple/releases/download/v7.3/MapleMono-NF-CN-%s.ttf" .)
+  "output" (joinPath $homeDir ".local" "share" "fonts" "maple" (printf "MapleMono-NF-CN-%s.ttf" .))
+  "curl" true
+)}}
+
+{{ end -}}
+{{ end -}}

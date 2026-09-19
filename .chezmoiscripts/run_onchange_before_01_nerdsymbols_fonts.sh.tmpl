@@ -1,9 +1,10 @@
 {{ if eq .chezmoi.os "linux" "android" -}}
-{{ if and (hasKey .chezmoi.osRelease "name") (ne .chezmoi.osRelease.name "Void") -}}
+{{ if ne "Void" (dig "chezmoi" "osRelease" "name" "" .) -}}
+#!{{ lookPath "bash" }}
 
 {{ includeTemplate "unix_download" (dict
-  "url" (print $mirror .my.font.nerdsymbols_url)
-  "output" (joinPath .chezmoi.homeDir ".local" "share" "fonts")
+  "url" (print .my.gh_proxy "/" .my.font.nerdsymbols_url)
+  "output" (joinPath .chezmoi.homeDir ".local" "share" "fonts" | printf "%s/")
   "extract" true
   "sub_dir" true
   "include" "*.ttf"
