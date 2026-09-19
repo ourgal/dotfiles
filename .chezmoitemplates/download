@@ -3,8 +3,8 @@
 {{ end -}}
 
 {{ $url := .url -}}
-{{ $ext := ext $url -}}
-{{ $filename := base $url -}}
+{{ $ext := osExt $url -}}
+{{ $filename := osBase $url -}}
 {{ $basename := splitList "." $filename | first -}}
 
 {{ if dig "output" "" . | not -}}
@@ -12,7 +12,7 @@
 {{ end -}}
 
 {{ $output := .output -}}
-{{ $output_dir := dir .output -}}
+{{ $output_dir := osDir .output -}}
 {{ if splitList "/" .output | last | not -}}
 {{ $output = joinPath $output $filename -}}
 {{ end -}}
@@ -24,6 +24,19 @@
 
 {{ if dig "extract" false . -}}
 
+{{ if eq .chezmoi.os "windows" -}}
+
+$TEMP_DIR = Join-Path $env:TEMP ([Guid]::NewGuid().ToString("N"))
+New-Item -ItemType Directory -Path $TempDir
+
+$TargetEvent = Register-EngineEvent -SourceIdentifier PowerShell.Exiting -Action {
+    if (Test-Path $Event.MessageData) {
+        Remove-Item -Path $Event.MessageData -Recurse -Force -ErrorAction SilentlyContinue
+    }
+} -MessageData $TempDir | Out-Null
+
+{{ else -}}
+
 TEMP_DIR=$(mktemp -d)
 
 cleanup() {
@@ -34,6 +47,7 @@ cleanup() {
 }
 
 trap cleanup EXIT
+{{ end -}}
 
 echo "{{ $url }} -> {{ $output }}"
 {{ if and (lookPath "aria2c") (dig "curl" false . | not) -}}

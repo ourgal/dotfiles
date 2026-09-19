@@ -2,12 +2,13 @@
 {{ if ne "Void" (dig "chezmoi" "osRelease" "name" "" .) -}}
 #!{{ lookPath "bash" }}
 
-{{ includeTemplate "unix_download" (dict
+{{ includeTemplate "download" (dict
   "url" (print .my.gh_proxy "/" .my.font.nerdsymbols_url)
   "output" (joinPath .chezmoi.homeDir ".local" "share" "fonts" | printf "%s/")
   "extract" true
   "sub_dir" true
   "include" "*.ttf"
+  "chezmoi" .chezmoi
 )}}
 
 {{ end -}}

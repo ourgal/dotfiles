@@ -17,15 +17,6 @@
 {{ end -}}
 {{ end -}}
 
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "codium" -}}
-{{ $vsnetrw_url := "https://github.com/danprince/vsnetrw/releases/download/v0.3.2/vsnetrw-0.3.2.vsix" -}}
-[".cache/vscodium/extensions/vsnetrw.vsix"]
-    type = "file"
-    url = {{ print $mirror $vsnetrw_url | quote }}
-{{ end -}}
-{{ end -}}
-
 {{ if eq .chezmoi.os "linux" -}}
 {{ $iosevkaterm_url := "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/IosevkaTerm.tar.xz" -}}
 [".local/share/fonts/IosevkaTerm"]

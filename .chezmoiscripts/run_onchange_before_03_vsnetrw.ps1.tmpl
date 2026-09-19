@@ -1,0 +1,16 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "codium" -}}
+
+{{ $output := joinPath .chezmoi.homeDir ".cache" "vscodium" "extensions" "vsnetrw.vsix" -}}
+{{ if stat $output | not -}}
+
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/danprince/vsnetrw/releases/download/v0.3.2/vsnetrw-0.3.2.vsix")
+  "output" $output
+  "chezmoi" .chezmoi
+)}}
+
+{{ end -}}
+
+{{ end -}}
+{{ end -}}
