@@ -92,7 +92,7 @@ scoop/persist/*
 !.local/share/
 .local/share/*
 
-{{ if ne "Void" (dig "chezmoi" "osRelease" "name" "" .) -}}
+{{ if eq "Void" (dig "chezmoi" "osRelease" "name" "" .) -}}
 # runit
 !service/
 !service/**
