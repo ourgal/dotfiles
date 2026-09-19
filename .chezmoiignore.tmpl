@@ -77,8 +77,11 @@ scoop/persist/*
 # [[[ linux
 {{ if eq .chezmoi.os "linux" -}}
 
+!.xprofile
+
 !.config/
 .config/*
+!.config/autostart/
 
 !.local/
 .local/*
