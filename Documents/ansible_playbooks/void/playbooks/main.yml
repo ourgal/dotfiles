@@ -241,23 +241,20 @@
         - flatpak
       block:
         - name: Add the flathub flatpak repository remote to the user installation
-          become: true
           community.general.flatpak_remote:
             name: flathub
             state: present
             flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-            method: system
+            method: user
         - name: Set mirror
-          become: true
-          ansible.builtin.command: flatpak remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub
+          ansible.builtin.command: flatpak --user remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub
         - name: Install flatpak packages
-          become: true
           community.general.flatpak:
             name:
               - org.fcitx.Fcitx5
               - org.fcitx.Fcitx5.Addon.Rime
             state: present
-            method: system
+            method: user
     - name: Services
       become: true
       block:
