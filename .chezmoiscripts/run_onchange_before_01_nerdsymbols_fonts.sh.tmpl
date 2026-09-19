@@ -1,5 +1,4 @@
 {{ if eq .chezmoi.os "linux" "android" -}}
-{{ if ne "Void" (dig "chezmoi" "osRelease" "name" "" .) -}}
 #!{{ lookPath "bash" }}
 
 {{ includeTemplate "download" (dict
@@ -11,5 +10,4 @@
   "chezmoi" .chezmoi
 )}}
 
-{{ end -}}
 {{ end -}}
