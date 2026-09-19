@@ -3,8 +3,8 @@ Host soft
   HostName 192.168.123.206
 Host nuc
   Port 22
-  User user
-  HostName 192.168.123.123
+  User zxc
+  HostName {{ if eq .chezmoi.hostname "nuc" }}localhost{{ else }}192.168.123.123{{ end }}
 Host bed
   Port 22
   User user
