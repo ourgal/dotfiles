@@ -74,11 +74,19 @@ aria2c {{ $url | quote }} -d "$TEMP_DIR" -o {{ $filename | quote }}
 curl -L {{ $url | quote }} -o "$TEMP_DIR/{{ $filename }}"
 {{ end -}}
 
+{{ if eq .chezmoi.os "windows" -}}
+New-Item -ItemType Directory -Path {{ $output_dir | quote }} -Force
+{{ else -}}
 mkdir -p {{ $output_dir | quote }}
+{{ end -}}
 
 {{ if eq $ext ".xz" ".gz" -}}
   {{ if dig "include" "" . -}}
-  $(cd {{ $output_dir | quote }} && tar -xf "$TEMP_DIR/{{ $filename }}" --transform='s:.*/::' --wildcards {{ .include }})
+    {{ if eq .chezmoi.os "windows" -}}
+    $(cd {{ $output_dir | quote }} && tar -xf "$TEMP_DIR/{{ $filename }}")
+    {{ else -}}
+    $(cd {{ $output_dir | quote }} && tar -xf "$TEMP_DIR/{{ $filename }}" --transform='s:.*/::' --wildcards {{ .include }})
+    {{ end -}}
   {{ else -}}
   tar -xf "$TEMP_DIR/{{ $filename }}" -C {{ $output_dir | quote }}
   {{ end -}}

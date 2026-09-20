@@ -65,8 +65,6 @@
       windows_scoop_reboot: true
     - role: windows_scoop
       windows_scoop_packages: "{{ windows_scoop_packages_extras_all }}"
-    - role: windows_scoop
-      windows_scoop_packages: "{{ windows_scoop_packages_nerd_fonts }}"
     - role: windows_scoop_bucket
       windows_scoop_bucket_name: extras-cn
       windows_scoop_bucket_repo: https://github.com/Scoopforge/Extras-CN
