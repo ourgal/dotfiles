@@ -83,7 +83,7 @@ mkdir -p {{ $output_dir | quote }}
 {{ if eq $ext ".xz" ".gz" -}}
   {{ if dig "include" "" . -}}
     {{ if eq .chezmoi.os "windows" -}}
-    $(cd {{ $output_dir | quote }} && tar -xf "$TEMP_DIR/{{ $filename }}")
+    $(cd {{ $output_dir | quote }} && 7z x -so "$TEMP_DIR/{{ $filename }}" | 7z x -si -ttar {{ .include | quote }})
     {{ else -}}
     $(cd {{ $output_dir | quote }} && tar -xf "$TEMP_DIR/{{ $filename }}" --transform='s:.*/::' --wildcards {{ .include }})
     {{ end -}}
