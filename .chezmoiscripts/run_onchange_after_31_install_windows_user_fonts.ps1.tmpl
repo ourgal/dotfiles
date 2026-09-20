@@ -11,4 +11,8 @@ Get-ChildItem $dir -Filter '*.ttf' -recurse | ForEach-Object {
     New-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.FullName -Force | Out-Null
 }
 
+Get-ChildItem $dir -Filter '*.otf' -recurse | ForEach-Object {
+    New-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (OpenType)') -Value $_.FullName -Force | Out-Null
+}
+
 {{ end -}}

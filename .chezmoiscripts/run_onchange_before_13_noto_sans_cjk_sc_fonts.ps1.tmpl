@@ -1,0 +1,12 @@
+{{ if eq .chezmoi.os "windows" -}}
+
+{{ includeTemplate "download" (dict
+  "url" "https://mirror.nju.edu.cn/github-release/googlefonts/noto-cjk/Noto%20Sans%20CJK%20Version%202.004%20(OTF,%20OTC,%20Super%20OTC,%20Subset%20OTF,%20Variable%20OTF_TTF)/08_NotoSansCJKsc.zip"
+  "output" (joinPath .chezmoi.homeDir "AppData" "Local" "Microsoft" "Windows" "Fonts" | printf "%s/")
+  "extract" true
+  "sub_dir" true
+  "include" "*.otf"
+  "chezmoi" .chezmoi
+)}}
+
+{{ end -}}
