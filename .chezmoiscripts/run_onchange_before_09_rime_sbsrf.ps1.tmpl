@@ -3,7 +3,7 @@
 
 {{ includeTemplate "download" (dict
   "url" (print .my.gh_proxy "/" .my.sbsrf.url)
-  "output" (joinPath .chezmoi.homeDir "AppData" "Roaming" "rime")
+  "output" (joinPath .chezmoi.homeDir "AppData" "Roaming" "rime" | printf "%s/")
   "extract" true
   "chezmoi" .chezmoi
 )}}
