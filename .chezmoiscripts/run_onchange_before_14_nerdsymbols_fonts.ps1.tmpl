@@ -1,0 +1,12 @@
+{{ if eq .chezmoi.os "windows" -}}
+
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" .my.font.nerdsymbols_url)
+  "output" (joinPath .chezmoi.homeDir "AppData" "Local" "Microsoft" "Windows" "Fonts" | printf "%s/")
+  "extract" true
+  "sub_dir" true
+  "include" "*.ttf"
+  "chezmoi" .chezmoi
+)}}
+
+{{ end -}}
