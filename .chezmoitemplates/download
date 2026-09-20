@@ -45,13 +45,13 @@
 {{ if eq .chezmoi.os "windows" -}}
 
 $TEMP_DIR = Join-Path $env:TEMP ([Guid]::NewGuid().ToString("N"))
-New-Item -ItemType Directory -Path $TempDir
+New-Item -ItemType Directory -Path $TEMP_DIR
 
 $TargetEvent = Register-EngineEvent -SourceIdentifier PowerShell.Exiting -Action {
     if (Test-Path $Event.MessageData) {
         Remove-Item -Path $Event.MessageData -Recurse -Force -ErrorAction SilentlyContinue
     }
-} -MessageData $TempDir | Out-Null
+} -MessageData $TEMP_DIR | Out-Null
 
 {{ else -}}
 
