@@ -83,16 +83,20 @@ mkdir -p {{ $output_dir | quote }}
 {{ if eq $ext ".xz" ".gz" -}}
   {{ if dig "include" "" . -}}
     {{ if eq .chezmoi.os "windows" -}}
-    $(cd {{ $output_dir | quote }} && 7z x -so "$TEMP_DIR/{{ $filename }}" | 7z x -si -ttar {{ .include | quote }})
+    $(cd {{ $output_dir | quote }} && 7z x -so "$TEMP_DIR/{{ $filename }}" | 7z e -si -ttar {{ .include | quote }})
     {{ else -}}
     $(cd {{ $output_dir | quote }} && tar -xf "$TEMP_DIR/{{ $filename }}" --transform='s:.*/::' --wildcards {{ .include }})
     {{ end -}}
   {{ else -}}
-  tar -xf "$TEMP_DIR/{{ $filename }}" -C {{ $output_dir | quote }}
+    {{ if eq .chezmoi.os "windows" -}}
+    $(cd {{ $output_dir | quote }} && 7z x -so "$TEMP_DIR/{{ $filename }}" | 7z e -si -ttar)
+    {{ else -}}
+    tar -xf "$TEMP_DIR/{{ $filename }}" -C {{ $output_dir | quote }}
+    {{ end -}}
   {{ end -}}
 {{ else if eq $ext ".zip" -}}
   {{ if lookPath "7z" -}}
-  7z x "$TEMP_DIR/{{ $filename }}" -aoa -o{{ $output_dir }}
+  7z e "$TEMP_DIR/{{ $filename }}" -aoa -o{{ $output_dir }}
   {{ else -}}
   tar -xf "$TEMP_DIR/{{ $filename }}" -C {{ $output_dir | quote }}
   {{ end -}}
