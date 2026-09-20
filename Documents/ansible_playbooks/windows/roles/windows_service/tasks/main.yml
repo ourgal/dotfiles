@@ -1,10 +1,6 @@
-- name: Check service exists
-  ansible.windows.win_service_info:
-    name: "{{ windows_service_name }}"
-  register: svc_info
 - name: "{{ windows_service_name }} service"
   ansible.windows.win_service:
     name: "{{ windows_service_name }}"
-    state: "{{ windows_srevice_state }}"
-    start_mode: "{{ windows_srevice_start_mode }}"
-  when: svc_info.services | length > 0
+    state: "{{ windows_service_state }}"
+    start_mode: "{{ windows_service_start_mode }}"
+    path: "{{ windows_service_path if windows_service_path is defined else omit }}"

@@ -154,8 +154,10 @@
     - role: windows_service
       windows_service_name: Everything
       windows_service_state: started
-      windows_service_path: C:\Users\zxc\scoop\apps\everything\current\everything.exe
-      windows_service_cmd: C:\Users\zxc\scoop\apps\everything\current\everything.exe -svc
+      windows_service_path: C:\Users\zxc\scoop\apps\everything\current\everything.exe -svc
+      tags:
+        - service
+        - everything
     - role: windows_user_right
       windows_user_right_name: SeRemoteInteractiveLogonRight
       windows_user_right_users: zxc
