@@ -83,13 +83,17 @@ mkdir -p {{ $output_dir | quote }}
 {{ if eq $ext ".xz" ".gz" -}}
   {{ if dig "include" "" . -}}
     {{ if eq .chezmoi.os "windows" -}}
-    $(cd {{ $output_dir | quote }} && 7z x -so "$TEMP_DIR/{{ $filename }}" | 7z e -si -ttar {{ .include | quote }})
+    cd {{ $output_dir | quote }}
+    7z x -aoa "$TEMP_DIR/{{ $filename }}"
+    7z e -aoa {{ splitList "." $filename | initial | join "." }} {{ .include | quote }}
     {{ else -}}
     $(cd {{ $output_dir | quote }} && tar -xf "$TEMP_DIR/{{ $filename }}" --transform='s:.*/::' --wildcards {{ .include }})
     {{ end -}}
   {{ else -}}
     {{ if eq .chezmoi.os "windows" -}}
-    $(cd {{ $output_dir | quote }} && 7z x -so "$TEMP_DIR/{{ $filename }}" | 7z e -si -ttar)
+    cd {{ $output_dir | quote }}
+    7z x -aoa "$TEMP_DIR/{{ $filename }}"
+    7z e -aoa {{ splitList "." $filename | initial | join "." }}
     {{ else -}}
     tar -xf "$TEMP_DIR/{{ $filename }}" -C {{ $output_dir | quote }}
     {{ end -}}
@@ -104,11 +108,19 @@ mkdir -p {{ $output_dir | quote }}
 
 {{ else -}}
 
+{{ if eq .chezmoi.os "windows" -}}
+New-Item -ItemType Directory -Path {{ $output_dir | quote }} -Force
+{{ else -}}
+mkdir -p {{ $output_dir | quote }}
+{{ end -}}
+
 echo "{{ $url }} -> {{ $output }}"
 {{ if and (lookPath "aria2c") (dig "curl" false . | not) -}}
-aria2c {{ $url | quote }} -d {{ $output_dir | quote }} -o {{ $filename | quote }}
+cd "{{ $output_dir }}"
+aria2c {{ $url | quote }} -o {{ $filename | quote }}
 {{ else -}}
-curl -L {{ $url | quote }} -o {{ $output | quote }}
+cd "{{ $output_dir }}"
+curl -L {{ $url | quote }} -o {{ $filename | quote }}
 {{ end -}}
 
 {{ end -}}

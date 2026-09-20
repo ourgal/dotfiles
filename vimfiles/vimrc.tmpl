@@ -1,3 +1,4 @@
+" chezmoi:template:left-delimiter=[[ right-delimiter=]]
 "{{{ options
 " yank highlight plugin
 packadd! hlyank
@@ -73,7 +74,7 @@ if has('gui_running')
     " tab label
     set guitablabel=%M\ %t
     " font
-    set guifont=IosevkaTerm\ NFM
+    set guifont=[[ .my.font.monospace | replace " " "\\ " ]]
     set guifontwide=Maple\ Mono\ NF\ CN
 endif
 
