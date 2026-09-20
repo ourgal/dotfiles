@@ -1,0 +1,14 @@
+{{ if eq .chezmoi.os "windows" -}}
+
+{{ range (glob (joinPath .chezmoi.homeDir "AppData" "Local" "Microsoft" "Windows" "Fonts" "**" "*.ttf")) -}}
+# {{ include . | sha256sum }}
+{{ end -}}
+
+$dir = "$env:LOCALAPPDATA\Microsoft\Windows\Fonts"
+$registryRoot = "HKCU"
+$registryKey = "${registryRoot}:\SOFTWARE\Microsoft\\Windows NT\CurrentVersion\Fonts"
+Get-ChildItem $dir -Filter '*.ttf' -recurse | ForEach-Object {
+    New-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.FullName -Force | Out-Null
+}
+
+{{ end -}}
