@@ -45,7 +45,7 @@
 {{ if eq .chezmoi.os "windows" -}}
 
 $TEMP_DIR = Join-Path $env:TEMP ([Guid]::NewGuid().ToString("N"))
-New-Item -ItemType Directory -Path $TEMP_DIR
+New-Item -ItemType Directory -Path $TEMP_DIR -Force
 
 $TargetEvent = Register-EngineEvent -SourceIdentifier PowerShell.Exiting -Action {
     if (Test-Path $Event.MessageData) {
@@ -84,7 +84,7 @@ mkdir -p {{ $output_dir | quote }}
   {{ end -}}
 {{ else if eq $ext ".zip" -}}
   {{ if lookPath "7z" -}}
-  7z x "$TEMP_DIR/{{ $filename }}" -aoa -o{{ $output_dir | quote }}
+  7z x "$TEMP_DIR/{{ $filename }}" -aoa -o{{ $output_dir }}
   {{ else -}}
   tar -xf "$TEMP_DIR/{{ $filename }}" -C {{ $output_dir | quote }}
   {{ end -}}
