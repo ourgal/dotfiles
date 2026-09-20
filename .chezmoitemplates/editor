@@ -1,6 +1,4 @@
-{{ if lookPath "kak" -}}
-kak
-{{ else if lookPath "hx" -}}
+{{ if lookPath "hx" -}}
 hx
 {{- else if lookPath "vim" -}}
 vim
@@ -8,6 +6,8 @@ vim
 nvim
 {{- else if lookPath "vi" -}}
 vi
+{{ else if lookPath "kak" -}}
+kak
 {{- else if lookPath "nano" -}}
 nano
 {{- end -}}
