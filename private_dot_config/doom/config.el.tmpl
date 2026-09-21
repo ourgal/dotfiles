@@ -56,9 +56,9 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-(setq package-archives '(("gnu"    . "https://mirror.nju.edu.cn/elpa/gnu/")
-                         ("nongnu" . "https://mirror.nju.edu.cn/elpa/nongnu/")
-                         ("melpa"  . "https://mirror.nju.edu.cn/elpa/melpa/")))
+(setq package-archives '( ("gnu"    . "https://mirror.nju.edu.cn/elpa/gnu/")
+                          ("nongnu" . "https://mirror.nju.edu.cn/elpa/nongnu/")
+                          ("melpa"  . "https://mirror.nju.edu.cn/elpa/melpa/")))
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
@@ -75,8 +75,8 @@
 {{ else if eq .chezmoi.os "windows" -}}
 {{ $font = "IosevkaTerm NFM" -}}
 {{ end -}}
-(setq doom-font (font-spec :family "{{ $font }}" :size {{ $size }})
-      doom-variable-pitch-font (font-spec :family "{{ $font }}" :size {{ $size }}))
+(setq doom-font (font-spec :family "{{ $font }}" :size {{ $size}})
+      doom-variable-pitch-font (font-spec :family "{{ $font }}" :size {{ $size}}))
 
 (setq doom-themes-enable-bold t
       doom-themes-enable-italic t)
@@ -102,22 +102,18 @@
   (start-process-shell-command "mpv" (get-buffer-create "*mpv out*") (format {{ print "mpv %s || " $browser " %s" | quote }} url url)))
 
 (setq browse-url-handlers
-      '(("\\(vimeo\\.com\\|twitch\\.tv\\)" . browse-url-mpv)
-        ("\\(youtube\\.com\\)" . browse-url-mpv)
-        ("\\(bilibili\\.com\\)" . browse-url-mpv)
-        ("." . {{ if eq .chezmoi.os "windows" -}}
-        browse-url-default-windows-browser
-        {{- else -}}
-        browse-url-firefox
-        {{- end }})))
+      '( ("\\(vimeo\\.com\\|twitch\\.tv\\)" . browse-url-mpv)
+         ("\\(youtube\\.com\\)" . browse-url-mpv)
+         ("\\(bilibili\\.com\\)" . browse-url-mpv)
+         ("." . {{ if eq .chezmoi.os "windows" }}browse-url-default-windows-browser{{ else }}browse-url-firefox{{ end}})))
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 (after! org
   (setq org-agenda-files '("~/org/agenda.org"))
   (org-babel-do-load-languages
-    org-babel-load-languages
-    '((dot . t))))
+   org-babel-load-languages
+   '((dot . t))))
 (after! emms
   (setq emms-source-file-default-directory "~/Music")
   (add-hook 'emms-playlist-mode-hook #'turn-on-evil-mode))
@@ -125,7 +121,7 @@
 (setq overriding-text-conversion-style nil)
 {{ end -}}
 (after! info
-    (add-to-list 'Info-directory-list "~/.local/share/repos/info_manuals"))
+  (add-to-list 'Info-directory-list "~/.local/share/repos/info_manuals"))
 (map! :n "C-w o" #'delete-other-windows
       :n "C-w z" #'doom/window-enlargen)
 (map! :leader
@@ -148,9 +144,9 @@
 (set-formatter! 'taplo '("taplo" "fmt" "-") :modes '(conf-toml-mode))
 (set-formatter! 'yamlfix '("yamlfix" "-") :modes '(yaml-mode))
 ;; (use-package! bing-dict)
-;; (use-package! chezmoi)
-;; (map! :leader
-;;       :desc "Chezmoi find" "f z" #'chezmoi-find)
+(use-package! chezmoi)
+(map! :leader
+      :desc "Chezmoi find" "f z" #'chezmoi-find)
 (after! dirvish
   (dirvish-side-follow-mode))
 (map! :n "-" #'dirvish)
@@ -204,9 +200,9 @@
   (elfeed-protocol-enabled-protocols '(fever))
   (elfeed-protocol-fever-update-unread-only nil)
   (elfeed-protocol-fever-fetch-category-as-tag t)
-  (elfeed-protocol-feeds '(("fever+{{ $protocol }}://miniflux@{{ $domain }}"
-                                 :api-url "{{ $protocol }}://{{ $domain }}/fever/"
-                                 :password "{{ includeTemplate "gopass" "miniflux/fever" | trim }}")))
+  (elfeed-protocol-feeds '( ("fever+{{ $protocol }}://miniflux@{{ $domain }}"
+                             :api-url "{{ $protocol }}://{{ $domain }}/fever/"
+                             :password "{{ includeTemplate "gopass" "miniflux/fever" | trim }}")))
   :config
   (elfeed-set-timeout 36000)
   (setq elfeed-search-filter "@2-weeks-ago +unread !Commit ")
@@ -234,27 +230,27 @@
 (setq auth-sources (expand-file-name "~/.config/doom/.authinfo"))
 (setq gnus-select-method '(nnnil nil))
 (setq gnus-secondary-select-methods
-      '((nnimap "qq"
-                (nnimap-address "imap.qq.com")
-                (nnimap-index "nnimap+qq:INDEX")
-                (nnmail-expiry-target "nnimap+qq:Deleted Messages")
-                (nnimap-expunge t)
-                (nnimap-server-port 993)
-                (nnimap-stream ssl))
-        (nnimap "163"
-                (nnimap-address "imap.163.com")
-                (nnimap-index "nnimap+163:INDEX")
-                (nnmail-expiry-target "nnimap+163:已删除")
-                (nnimap-expunge t)
-                (nnimap-server-port 993)
-                (nnimap-stream ssl))
-        (nnimap "yandex"
-                (nnimap-address "imap.yandex.com")
-                (nnimap-index "nnimap+yandex:INDEX")
-                (nnmail-expiry-target "nnimap+yandex:Trash")
-                (nnimap-expunge t)
-                (nnimap-server-port 993)
-                (nnimap-stream ssl))))
+      '( (nnimap "qq"
+                 (nnimap-address "imap.qq.com")
+                 (nnimap-index "nnimap+qq:INDEX")
+                 (nnmail-expiry-target "nnimap+qq:Deleted Messages")
+                 (nnimap-expunge t)
+                 (nnimap-server-port 993)
+                 (nnimap-stream ssl))
+         (nnimap "163"
+                 (nnimap-address "imap.163.com")
+                 (nnimap-index "nnimap+163:INDEX")
+                 (nnmail-expiry-target "nnimap+163:已删除")
+                 (nnimap-expunge t)
+                 (nnimap-server-port 993)
+                 (nnimap-stream ssl))
+         (nnimap "yandex"
+                 (nnimap-address "imap.yandex.com")
+                 (nnimap-index "nnimap+yandex:INDEX")
+                 (nnmail-expiry-target "nnimap+yandex:Trash")
+                 (nnimap-expunge t)
+                 (nnimap-server-port 993)
+                 (nnimap-stream ssl))))
 
 (setq gnus-thread-sort-functions '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date)))
 (use-package! evil
@@ -295,10 +291,10 @@
   (gt-langs '(en zh))
   :config
   (setq gt-default-translator
-      (gt-translator
-       :taker   (gt-taker :text 'buffer :pick 'paragraph)       ; 配置拾取器
-       :engines (list (gt-bing-engine) (gt-youdao-dict-engine)) ; 指定多引擎
-       :render  (gt-buffer-render))))
+        (gt-translator
+         :taker   (gt-taker :text 'buffer :pick 'paragraph)       ; 配置拾取器
+         :engines (list (gt-bing-engine) (gt-youdao-dict-engine)) ; 指定多引擎
+         :render  (gt-buffer-render))))
 (use-package! magit-delta
   :hook (magit-mode . magit-delta-mode))
 (use-package! magit-stats)
@@ -334,29 +330,29 @@
 [\"repo\", \"desc\", \"https://…\", Categories.SYSTEM, \"MM/DD/YYYY\", None, Waiting_Status.WAITING, Types.PACKAGE],"
   (interactive)
   ;; 1. 取剪贴板内容
-  (let* ((clip (if (fboundp 'gui-get-selection)
-                   (gui-get-selection 'CLIPBOARD)
-                 (current-kill 0)))
-         (url  (and clip (string-trim clip)))
-         ;; 2. 提取 repo 全路径 user/repo 及 repo 名
-         (m    (and url (string-match "github\\.com/\\([^/]+/[^/]+\\)" url)))
-         (full (and m (match-string 1 url)))
-         (repo (and full (file-name-nondirectory full))))
+  (let* ( (clip (if (fboundp 'gui-get-selection)
+                    (gui-get-selection 'CLIPBOARD)
+                  (current-kill 0)))
+          (url  (and clip (string-trim clip)))
+          ;; 2. 提取 repo 全路径 user/repo 及 repo 名
+          (m    (and url (string-match "github\\.com/\\([^/]+/[^/]+\\)" url)))
+          (full (and m (match-string 1 url)))
+          (repo (and full (file-name-nondirectory full))))
     (unless (and url full repo)
       (user-error "剪贴板中没有有效的 GitHub 仓库 URL"))
     ;; 3. 通过 GitHub API 拉 description
-    (let* ((api    (format "https://api.github.com/repos/%s" full))
-           ;; 设置一个简单的 User-Agent 以防被拒
-           (url-request-extra-headers
-            '(("User-Agent" . "emacs-insert-github-package-snippet")))
-           (buf    (url-retrieve-synchronously api))
-           description)
+    (let* ( (api    (format "https://api.github.com/repos/%s" full))
+            ;; 设置一个简单的 User-Agent 以防被拒
+            (url-request-extra-headers
+             '(("User-Agent" . "emacs-insert-github-package-snippet")))
+            (buf    (url-retrieve-synchronously api))
+            description)
       (unless buf (user-error "无法访问 GitHub API"))
       (with-current-buffer buf
         (goto-char (point-min))
         (re-search-forward "^$" nil 'move)  ; 跳过 header
-        (let ((json-object-type 'alist)
-              (json (json-read)))
+        (let ( (json-object-type 'alist)
+               (json (json-read)))
           (setq description (or (alist-get 'description json) ""))))
       (kill-buffer buf)
       ;; 4. 插入结果
