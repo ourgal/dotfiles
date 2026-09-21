@@ -10,7 +10,7 @@ gpg-connect-agent updatestartuptty /bye > /dev/null
 # [[[ termux
 {{ if eq .chezmoi.os "android" -}}
 fish_add_path --append ~/.local/bin
-{{ if joinPath .chzemoi.homeDir "go" "bin" | stat -}}
+{{ if joinPath .chezmoi.homeDir "go" "bin" | stat -}}
 fish_add_path --append ~/go/bin
 {{ end -}}
 set -x GPG_TTY $(tty)
