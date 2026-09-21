@@ -72,6 +72,8 @@
 {{ if eq .chezmoi.os "android" -}}
 {{ $font = "IosevkaTerm Nerd Font" -}}
 {{ $size = 30 -}}
+{{ else if eq .chezmoi.os "windows" -}}
+{{ $font = "IosevkaTerm NFM" -}}
 {{ end -}}
 (setq doom-font (font-spec :family "{{ $font }}" :size {{ $size }})
       doom-variable-pitch-font (font-spec :family "{{ $font }}" :size {{ $size }}))
@@ -366,3 +368,12 @@
                url
                ;; 用今天的日期
                (format-time-string "%m/%d/%Y"))))))
+
+{{ if eq .chezmoi.os "windows" -}}
+;; speed up windows emacs
+(setq exec-suffixes '("" ".exe" ".bat"))
+(setq shell-command-guess-open nil)
+(remove-hook 'find-file-hook #'vc-refresh-state)
+(remove-hook 'before-save-hook #'vc-before-save t)
+(remove-hook 'find-file-hook #'epa-file-find-file-hook)
+{{ end -}}
