@@ -1,4 +1,4 @@
-{{ if and (lookPath "yt-dlp") (lookPath "ffmpeg") (lookPath "mid3v2") -}}
+{{ if and (lookPath "yt-dlp") (lookPath "ffmpeg") (lookPath "mid3v2") (lookPath "perl") (lookPath "rm") -}}
 {{ $data := list -}}
 {{ $data = append $data (dict "artist" "Outlaw (feat. Miss Mary)" "title" "it's different" "album" "NCS" "url" "https://www.bilibili.com/video/BV1nx411m7Rd") -}}
 {{ $data = append $data (dict "artist" "山口リサ" "title" "明日へと…" "album" "Nightcore" "url" "https://www.bilibili.com/video/BV1654y1n7UT") -}}
@@ -547,31 +547,36 @@
 {{ $data = append $data (dict "artist" "香月ゆか" "title" "Every moment with you" "album" "東方弦奏歌-MESSIAH-" "url" "https://music.163.com/#/song?id=495848447") -}}
 {{ $data = append $data (dict "artist" "CHIHIRO" "title" "Ex-Boyfriend" "album" "RESET～また、恋したくなるように～" "url" "https://music.163.com/#/song?id=29378998") -}}
 
-{{ $check := list -}}
+{{ $checked := list -}}
 {{ range $index, $song := $data -}}
-	{{ range $check -}}
+	{{ range $checked -}}
 	{{ if eq .url $song.url -}}
-	{{ fail (printf "Net music url %s is duplicated" .url)}}
+	{{ fail (printf "Net music url %s is duplicated" .url) -}}
 	{{ end -}}
 	{{ if and (eq .artist $song.artist) (eq .title $song.title) -}}
-	{{ fail (printf "Net music url %s %s is duplicated" .artist .title)}}
+	{{ fail (printf "Net music url %s %s is duplicated" .artist .title) -}}
 	{{ end -}}
 	{{ end -}}
-{{ $check = append $check $song -}}
+{{ $song = set $song "artist_sanitized" ($song.artist | replace " " "_" | replace "'" "" | replace ":" "_" | replace "/" "_" | replace "*" "_" | replace "?" "_") -}}
+{{ $song = set $song "title_sanitized" ($song.title | replace " " "_" | replace "'" "" | replace ":" "_" | replace "/" "_" | replace "*" "_" | replace "?" "_") -}}
+{{ $song = set $song "filename" (print $song.artist_sanitized "-" $song.title_sanitized ".mp3") -}}
+{{ $checked = append $checked $song -}}
 {{ end -}}
 
 temp := temp.mp3
 silenceremove := -af silenceremove=start_periods=1:start_duration=0:start_threshold=-50dB:start_silence=1,areverse,silenceremove=start_periods=1:start_duration=0:start_threshold=-50dB:start_silence=1,areverse
+DURATION := ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1
 
 .PHONY: all clean test
-all:{{ range $data }} {{ .artist | replace " " "_" | replace "'" "" | replace ":" "_" | replace "/" "_" | replace "*" "_" | replace "?" "_" }}-{{ .title | replace " " "_" | replace "'" "" | replace ":" "_" | replace "/" "_" | replace "*" "_" | replace "?" "_" }}.mp3{{ end }}
+all:{{ range $checked }} {{ .filename }}{{ end }}
 
-{{ range $data -}}
-{{ .artist | replace " " "_" | replace "'" "" | replace ":" "_" | replace "/" "_" | replace "*" "_" | replace "?" "_" }}-{{ .title | replace " " "_" | replace "'" "" | replace ":" "_" | replace "/" "_" | replace "*" "_" | replace "?" "_" }}.mp3:
+{{ range $checked -}}
+{{ .filename }}:
 	yt-dlp -t mp3 {{ .url }} -o $(temp)
 	ffmpeg -i $(temp) $(silenceremove) "$@"
 	rm $(temp)
 	mid3v2 --song "{{ .title }}" --artist "{{ .artist }}" --album "{{ .album }}" "$@"
+	$(DURATION) "{{ .filename }}" | perl -le 'my $$num = <>; chomp $$num; print "{{ .url }}\n" && unlink "{{ .filename }}" if $$num < 60;'
 
 {{ end -}}
 
