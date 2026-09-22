@@ -370,3 +370,5 @@
 (remove-hook 'before-save-hook #'vc-before-save t)
 (remove-hook 'find-file-hook #'epa-file-find-file-hook)
 {{ end -}}
+
+(map! :n "RET" #'evil-ex)
