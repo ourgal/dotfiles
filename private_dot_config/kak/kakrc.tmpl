@@ -49,3 +49,11 @@ define-command -override lookup_word -docstring "Lookup word under selection" -p
 
 # example binding
 map -docstring "Lookup word under selection" global user K ":lookup_word<ret>"
+
+define-command x -docstring "save and exit" %{
+	wq
+}
+
+define-command xa -docstring "save all and exit" %{
+	waq
+}
