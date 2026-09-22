@@ -120,6 +120,9 @@
     - role: windows_cargo
     - role: windows_npm
     - role: windows_env
+  tasks:
+    - name: Exclude scoop folder
+      ansible.windows.win_shell: "Add-MpPreference -ExclusionPath {{ [ ansible_facts.user_dir, 'scoop' ] | path_join }}"
 - name: Configure windows game user
   hosts: all
   remote_user: game
