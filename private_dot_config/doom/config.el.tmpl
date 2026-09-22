@@ -144,9 +144,6 @@
 (set-formatter! 'taplo '("taplo" "fmt" "-") :modes '(conf-toml-mode))
 (set-formatter! 'yamlfix '("yamlfix" "-") :modes '(yaml-mode))
 ;; (use-package! bing-dict)
-(use-package! chezmoi)
-(map! :leader
-      :desc "Chezmoi find" "f z" #'chezmoi-find)
 (after! dirvish
   (dirvish-side-follow-mode))
 (map! :n "-" #'dirvish)
