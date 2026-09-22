@@ -73,7 +73,7 @@
 {{ $font = "IosevkaTerm Nerd Font" -}}
 {{ $size = 30 -}}
 {{ else if eq .chezmoi.os "windows" -}}
-{{ $font = "IosevkaTerm NFM" -}}
+{{ $font = .my.font.windows.monospace -}}
 {{ end -}}
 (setq doom-font (font-spec :family "{{ $font }}" :size {{ $size}})
       doom-variable-pitch-font (font-spec :family "{{ $font }}" :size {{ $size}}))
