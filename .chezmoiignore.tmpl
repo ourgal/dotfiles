@@ -844,4 +844,18 @@ AppData/Local/crush/*
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ herdr
+{{ if lookPath "herdr" -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+!.config/herdr/
+.config/herdr/*
+!.config/herdr/config.toml
+{{ end -}}
+{{ if eq .chezmoi.os "windows" -}}
+!AppData/Roaming/herdr/
+AppData/Roaming/herdr/*
+!AppData/Roaming/herdr/config.toml
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
