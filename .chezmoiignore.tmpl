@@ -858,4 +858,11 @@ AppData/Roaming/herdr/*
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ opencode
+{{ if lookPath "opencode" -}}
+!.config/opencode/
+.config/opencode/*
+!.config/opencode/opencode.jsonc
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
