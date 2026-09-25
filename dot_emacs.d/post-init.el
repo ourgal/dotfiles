@@ -66,6 +66,11 @@
   (setq evil-search-module 'evil-search)
   (evil-select-search-module 'evil-search-module 'evil-search))
 
+;; Give Emacs tab-bar a style similar to Vim's
+(use-package vim-tab-bar
+  :init
+  (vim-tab-bar-mode 1))
+
 (use-package evil-collection
   :after evil
   :init
