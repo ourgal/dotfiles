@@ -1276,3 +1276,39 @@ This is useful in graphical Emacs sessions where tooltips can appear near the cu
 (setq tooltip-short-delay 0.08) ; Delay before showing a short tooltip (Default: 0.1)
 (tooltip-mode 1)
 #+end_src
+
+** Buffer guardian
+
+The buffer-guardian Emacs package provides buffer-guardian-mode, a global mode that automatically saves buffers without requiring manual intervention.
+
+By default, buffer-guardian-mode saves file-visiting buffers when:
+
+Switching to another buffer.
+Switching to another window or frame.
+The window configuration changes (e.g., window splits).
+The minibuffer is opened.
+Emacs loses focus.
+
+#+begin_src emacs-lisp
+(use-package buffer-guardian
+  :init
+  ;; When non-nil, include remote files in the auto-save process
+  (setq buffer-guardian-inhibit-saving-remote-files t)
+
+  ;; When non-nil, buffers visiting nonexistent files are not saved
+  (setq buffer-guardian-inhibit-saving-nonexistent-files nil)
+
+  ;; Save the buffer even if the window change results in the same buffer
+  (setq buffer-guardian-save-on-same-buffer-window-change t)
+
+  ;; Non-nil to enable verbose mode to log when a buffer is automatically saved
+  (setq buffer-guardian-verbose nil)
+
+  ;; Save all buffers after N seconds of user idle time. (Disabled by default)
+  ;; (setq buffer-guardian-save-all-buffers-idle 30)
+
+  ;; Save all buffers every N seconds. (Disabled by default)
+  ;; (setq buffer-guardian-save-all-buffers-interval (* 60 30))
+
+  (buffer-guardian-mode 1))
+#+end_src
