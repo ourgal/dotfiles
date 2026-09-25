@@ -1354,3 +1354,12 @@ for any unsupported languages.
     (evilmi-load-plugin-rules '(python-ts-mode) '(simple python))
     (evilmi-load-plugin-rules '(yaml-ts-mode) '(simple yaml))))
 #+end_src
+
+** Tmpl
+
+#+begin_src emacs-lisp
+(use-package tmpl
+  :vc (:url "https://github.com/Lindydancer/tmpl-mode")
+  :init
+  (tmpl-global-mode))
+#+end_src
