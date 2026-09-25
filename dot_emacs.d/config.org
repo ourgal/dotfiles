@@ -1148,7 +1148,6 @@ Helpful is an alternative to the built-in Emacs help that provides much more con
 
 #+begin_src emacs-lisp
 (editorconfig-mode 1)
-(put 'evil-shift-width 'safe-local-variable #'integerp) ; https://www.reddit.com/r/emacs/comments/1gjrozn/about_builtin_editorconfigmode_in_emacs_30092/
 #+end_src
 
 ** Paredit
@@ -1247,4 +1246,13 @@ https://www.gnu.org/software/emacs/manual/html_node/emacs/Window-Dividers.html
 
 #+begin_src emacs-lisp
 (window-divider-mode 1)
+#+end_src
+
+** Remove unsafe warning
+
+Automatically apply verified, safe file-local variables.
+This eliminates confirmation prompts when loading files, while ensuring that unauthorized or risky configurations are silently ignored.
+
+#+begin_src emacs-lisp
+(setq enable-local-variables :safe)
 #+end_src
