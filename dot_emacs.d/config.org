@@ -1197,3 +1197,15 @@ the terminal process.
   ;; Defer starting the server until after Emacs has finished initializing
   (add-hook 'emacs-startup-hook #'my-server-start))
 #+end_src
+
+** Electric pair
+
+Enable automatic insertion and management of matching pairs of characters
+(e.g., (), {}, "") globally using `electric-pair-mode'.
+
+#+begin_src emacs-lisp
+(use-package elec-pair
+  :ensure nil
+  :init
+  (electric-pair-mode 1))
+#+end_src
