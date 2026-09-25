@@ -96,6 +96,28 @@
 
 (global-visual-line-mode 1)
 
+;; The evil-surround package simplifies handling surrounding characters, such as
+;; parentheses, brackets, quotes, etc. It provides key bindings to easily add,
+;; change, or delete these surrounding characters in pairs. For instance, you
+;; can surround the currently selected text with double quotes in visual state
+;; using S" or gS".
+(use-package evil-surround
+  :after evil
+  :init
+  (setq evil-surround-pairs-alist
+        '((?\( . ("(" . ")"))
+          (?\[ . ("[" . "]"))
+          (?\{ . ("{" . "}"))
+
+          (?\) . ("(" . ")"))
+          (?\] . ("[" . "]"))
+          (?\} . ("{" . "}"))
+
+          (?< . ("<" . ">"))
+          (?> . ("<" . ">"))))
+  :config
+  (global-evil-surround-mode 1))
+
 (when (eq system-type 'windows-nt)
     (setq exec-suffixes '("" ".exe" ".bat"))
     (setq shell-command-guess-open nil)
