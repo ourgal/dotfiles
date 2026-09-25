@@ -1,2 +1,2 @@
 all:
-	yes | git magic -ap
+	chezmoi apply
