@@ -1264,3 +1264,15 @@ Configure Emacs to ask for confirmation before exiting
 #+begin_src emacs-lisp
 (setq confirm-kill-emacs 'y-or-n-p)
 #+end_src
+
+** Tooltip
+
+When tooltip-mode is enabled, certain UI elements (e.g., help text, mouse-hover hints) will appear as native system tooltips (pop-up windows), rather than as echo area messages.
+This is useful in graphical Emacs sessions where tooltips can appear near the cursor.
+
+#+begin_src emacs-lisp :tangle no
+(setq tooltip-hide-delay 20)    ; Time in seconds before a tooltip disappears (default: 10)
+(setq tooltip-delay 0.4)        ; Delay before showing a tooltip after mouse hover (default: 0.7)
+(setq tooltip-short-delay 0.08) ; Delay before showing a short tooltip (Default: 0.1)
+(tooltip-mode 1)
+#+end_src
