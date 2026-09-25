@@ -759,7 +759,7 @@ Apheleia is an Emacs package designed to run code formatters (e.g., Shfmt, Black
 ** Relative line numbers
 
 #+BEGIN_SRC emacs-lisp
-(setq display-line-numbers-type 'relative)
+(setq-default display-line-numbers-type 'relative)
 (global-display-line-numbers-mode 1)
 #+END_SRC
 
