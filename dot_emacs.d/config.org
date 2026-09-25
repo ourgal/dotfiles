@@ -1171,3 +1171,29 @@ Helpful is an alternative to the built-in Emacs help that provides much more con
 ;; when multiple tabs are open:
 (setopt tab-bar-show 1)
 #+end_src
+
+** Server
+
+The Emacs server allows external programs such as `emacsclient' to connect to
+a single running instance of Emacs. This makes it possible to open files in
+the existing session rather than starting a new Emacs process each time.
+
+Once the server is running, the `emacsclient' command can be used in the
+terminal to open files in the active Emacs session. For example, running the
+following command opens the file in the existing Emacs frame without blocking
+the terminal process.
+  emacsclient -n filename.txt
+
+#+begin_src emacs-lisp
+(use-package server
+  :ensure nil
+  :if (not (daemonp))
+  :preface
+  (defun my-server-start ()
+    "Start the Emacs server if no server process is currently active."
+    (unless (server-running-p)
+      (server-start)))
+  :init
+  ;; Defer starting the server until after Emacs has finished initializing
+  (add-hook 'emacs-startup-hook #'my-server-start))
+#+end_src
