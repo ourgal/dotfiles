@@ -1239,3 +1239,12 @@ fringe is wide enough, scaling dynamically with the current font size.
   (setq pixel-scroll-precision-use-momentum nil) ; Precise/smoother scrolling
   (pixel-scroll-precision-mode 1))
 #+end_src
+
+** Window divider
+
+Window dividers separate windows visually. Window dividers are bars that can be dragged with the mouse, thus allowing you to easily resize adjacent windows.
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Window-Dividers.html
+
+#+begin_src emacs-lisp
+(window-divider-mode 1)
+#+end_src
