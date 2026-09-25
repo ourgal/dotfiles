@@ -881,7 +881,7 @@ Org mode is a major mode designed for organizing notes, planning, task managemen
                                   (lambda (c)
                                     (if (char-equal c ?<)
                                         t
-                                      (electric-pair-default-inhibit c)))))))
+                                      (electric-pair-default-inhibit c))))))
   :init
   (setq org-hide-leading-stars t)
   (setq org-startup-indented t)
@@ -1311,4 +1311,46 @@ Emacs loses focus.
   ;; (setq buffer-guardian-save-all-buffers-interval (* 60 30))
 
   (buffer-guardian-mode 1))
+#+end_src
+
+** Evil matchit
+
+The `evil-matchit' package is a extensible package that allows jumping
+between matching syntactic pairs. It provides out-of-the-box support for a
+wide array of syntaxes, ranging from Python indentation blocks and Bash shell
+scripting constructs to Git merge conflicts.
+
+Although designed to integrate cleanly with `evil-mode', the package operates
+entirely independently and offers native commands for standard usage.
+Additionally, it features an accessible Elisp API, enabling developers to
+quickly write custom matching rules and integrate third-party jump functions
+for any unsupported languages.
+
+#+begin_src emacs-lisp
+(use-package evil-matchit
+  :commands turn-on-evil-matchit-mode
+  :hook (prog-mode . turn-on-evil-matchit-mode)
+
+  :init
+  ;; Setting this to t disables the advanced Python matching algorithm.
+  ;; Set to nil if you prefer the advanced block-matching behavior in Python.
+  (setq evilmi-always-simple-jump t)
+
+  ;; Uncomment the following if you are an `evil-mode' user:
+  (with-eval-after-load 'evil
+    (require 'evil-matchit-evil-setup))
+
+  :config
+  ;; Because evil-matchit maps its rules to traditional major modes by default,
+  ;; we must manually associate the new tree-sitter modes with their respective
+  ;; matching rules until the package incorporates them natively.
+  (when (fboundp 'evilmi-load-plugin-rules)
+    (evilmi-load-plugin-rules '(cmake-ts-mode) '(cmake))
+    (evilmi-load-plugin-rules '(c-ts-mode c++-ts-mode) '(c simple))
+    (evilmi-load-plugin-rules '(bash-ts-mode) '(simple sh))
+    (evilmi-load-plugin-rules '(css-ts-mode) '(simple))
+    (evilmi-load-plugin-rules '(php-ts-mode) '(simple template html))
+    (evilmi-load-plugin-rules '(lua-ts-mode) '(simple script))
+    (evilmi-load-plugin-rules '(python-ts-mode) '(simple python))
+    (evilmi-load-plugin-rules '(yaml-ts-mode) '(simple yaml))))
 #+end_src
