@@ -461,3 +461,7 @@
   ;;   `server-after-make-frame-hook' when running in daemon mode.
   ;; - To save the session at regular intervals, and when Emacs exits.
   (easysession-setup))
+
+;; Set the default font to DejaVu Sans Mono with specific size and weight
+(set-face-attribute 'default nil
+                    :height 130 :weight 'normal :family "IosevkaTerm NFM")
