@@ -886,3 +886,11 @@ Org mode is a major mode designed for organizing notes, planning, task managemen
   ;; (setq org-fontify-quote-and-verse-blocks t)
   (setq org-startup-truncated t))
 #+end_src
+
+*** Org appear
+
+#+begin_src emacs-lisp
+(use-package org-appear
+  :commands org-appear-mode
+  :hook (org-mode . org-appear-mode))
+#+end_src
