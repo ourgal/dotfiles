@@ -1144,3 +1144,22 @@ Helpful is an alternative to the built-in Emacs help that provides much more con
 (editorconfig-mode 1)
 (put 'evil-shift-width 'safe-local-variable #'integerp) ; https://www.reddit.com/r/emacs/comments/1gjrozn/about_builtin_editorconfigmode_in_emacs_30092/
 #+end_src
+
+** Paredit
+
+#+begin_src emacs-lisp
+;; Prevent parenthesis imbalance
+(use-package paredit
+  :commands paredit-mode
+  :hook
+  (emacs-lisp-mode . paredit-mode)
+  :config
+  (define-key paredit-mode-map (kbd "RET") nil))
+
+;; For paredit+Evil mode users: enhances paredit with Evil mode compatibility
+;; --------------------------------------------------------------------------
+(use-package enhanced-evil-paredit
+  :commands enhanced-evil-paredit-mode
+  :hook
+  (paredit-mode . enhanced-evil-paredit-mode))
+#+end_src
