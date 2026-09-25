@@ -267,7 +267,7 @@ Enable `auto-save-mode' to prevent data loss. Use `recover-file' or `recover-ses
 (setq auto-save-timeout 30)
 #+END_SRC
 
-**  Corfu
+** Corfu
 
 Corfu enhances in-buffer completion by displaying a compact popup with current candidates, positioned either below or above the point. Candidates can be selected by navigating up or down.
 
@@ -602,4 +602,39 @@ Automatically generate a table of contents when editing Markdown files
              markdown-toc--toc-already-present-p)
   :init
   (setq markdown-toc-header-toc-title "**Table of Contents**"))
+#+END_SRC
+
+** Kirigami
+
+The kirigami package provides a unified method to fold and unfold text in Emacs across a diverse set of Emacs modes.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package kirigami
+    :commands (kirigami-open-fold
+               kirigami-open-fold-rec
+               kirigami-close-fold
+               kirigami-toggle-fold
+               kirigami-open-folds
+               kirigami-close-folds-except-current
+               kirigami-close-folds)
+
+    :bind
+    (("C-c z o" . kirigami-open-fold)      ; Open fold at point
+     ("C-c z O" . kirigami-open-fold-rec)  ; Open fold recursively
+     ("C-c z r" . kirigami-open-folds)     ; Open all folds
+     ("C-c z c" . kirigami-close-fold)     ; Close fold at point
+     ("C-c z m" . kirigami-close-folds)    ; Close all folds
+     ("C-c z a" . kirigami-toggle-fold))   ; Toggle fold at point
+
+    :init
+    (kirigami-global-mode 1))
+
+  ;; Uncomment the following if you are an `evil-mode' user:
+  (with-eval-after-load 'evil
+    (define-key evil-normal-state-map "zo" 'kirigami-open-fold)
+    (define-key evil-normal-state-map "zO" 'kirigami-open-fold-rec)
+    (define-key evil-normal-state-map "zc" 'kirigami-close-fold)
+    (define-key evil-normal-state-map "za" 'kirigami-toggle-fold)
+    (define-key evil-normal-state-map "zr" 'kirigami-open-folds)
+    (define-key evil-normal-state-map "zm" 'kirigami-close-folds))
 #+END_SRC
