@@ -638,3 +638,32 @@ The kirigami package provides a unified method to fold and unfold text in Emacs 
     (define-key evil-normal-state-map "zr" 'kirigami-open-folds)
     (define-key evil-normal-state-map "zm" 'kirigami-close-folds))
 #+END_SRC
+
+** Outline minor mode
+
+The built-in outline-minor-mode provides structured code folding in modes such as Emacs Lisp and Python, allowing users to collapse and expand sections based on headings or indentation levels.
+This feature enhances navigation and improves the management of large files with hierarchical structures.
+
+#+BEGIN_SRC emacs-lisp
+(use-package outline
+  :ensure nil
+  :commands outline-minor-mode
+  :hook
+  (;; Use " ▼" instead of the default ellipsis "..." for folded text to make
+   ;; folds more visually distinctive and readable.
+   (outline-minor-mode
+    .
+    (lambda()
+      (let* ((display-table (or buffer-display-table (make-display-table)))
+             (face-offset (* (face-id 'shadow) (ash 1 22)))
+             (value (vconcat (mapcar (lambda (c) (+ face-offset c)) " ▼"))))
+        (set-display-table-slot display-table 'selective-display value)
+        (setq buffer-display-table display-table))))))
+
+;; Enable the mode
+(add-hook 'emacs-lisp-mode-hook #'outline-minor-mode)
+(add-hook 'lisp-mode-hook #'outline-minor-mode)
+(add-hook 'conf-mode-hook #'outline-minor-mode)
+(add-hook 'markdown-mode-hook #'outline-minor-mode)
+(add-hook 'diff-mode-hook #'outline-minor-mode)
+#+END_SRC
