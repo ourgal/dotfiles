@@ -1,3 +1,5 @@
+;;; post-init.el --- post init -*- no-byte-compile: t; lexical-binding: t; -*-
+
 ;; The undo-fu package is a lightweight wrapper around Emacs' built-in undo
 ;; system, providing more convenient undo/redo functionality.
 (use-package undo-fu
