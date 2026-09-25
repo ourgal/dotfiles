@@ -149,7 +149,7 @@ using S" or gS".
 
 Give Emacs tab-bar a style similar to Vim's
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle no
 (use-package vim-tab-bar
   :init
   (vim-tab-bar-mode 1))
@@ -1162,4 +1162,12 @@ Helpful is an alternative to the built-in Emacs help that provides much more con
   :commands enhanced-evil-paredit-mode
   :hook
   (paredit-mode . enhanced-evil-paredit-mode))
+#+end_src
+
+** Tab bar mode
+
+#+begin_src emacs-lisp
+;; Configure the `tab-bar-show` variable to 1 to display the tab bar exclusively
+;; when multiple tabs are open:
+(setopt tab-bar-show 1)
 #+end_src
