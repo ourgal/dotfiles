@@ -1209,3 +1209,12 @@ Enable automatic insertion and management of matching pairs of characters
   :init
   (electric-pair-mode 1))
 #+end_src
+
+** Fringe
+
+Set the fringes to match the pixel height of a character. This ensures the
+fringe is wide enough, scaling dynamically with the current font size.
+
+#+begin_src emacs-lisp
+(fringe-mode (frame-char-width))
+#+end_src
