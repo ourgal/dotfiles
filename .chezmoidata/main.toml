@@ -44,10 +44,14 @@ host = "http://localhost:5244"
 host = "http://localhost:5000"
 
 [my.doomemacs]
+enable = false
 commit = "d8d75443d39d95f3c5256504eb838e0acc62ef44"
 elfeed_protocol = true
 elfeed_org = false
 elfeed_youtube = false
+
+[my.minimal_emacs]
+enable = true
 
 [my.browser]
 default = "firefox"
@@ -96,7 +100,7 @@ altrun.enable = false
 navidrome.enable = false
 jellyfin_mpv_shim.enable = false
 emacs.enable = false
-emacs_daemon.enable = false
+emacs_daemon.enable = true
 wt.enable = true
 syncthing.enable = true
 torrserver.enable = false

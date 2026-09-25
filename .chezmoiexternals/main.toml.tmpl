@@ -172,7 +172,7 @@
 
 {{ $doom_repo := "https://mirror.nju.edu.cn/git/doom-emacs.git/" -}}
 
-{{ if lookPath "emacs" -}}
+{{ if and .my.doomemacs.enable (lookPath "emacs") }}
 {{ if eq .chezmoi.os "linux" "android" -}}
 [".config/emacs"]
     type = "git-repo"
@@ -184,5 +184,11 @@
     type = "git-repo"
     url = "{{ $doom_repo }}"
 {{ end -}}
+{{ end -}}
 
+{{ if and .my.minimal_emacs.enable (lookPath "emacs") }}
+[".local/share/repos/minimal-emacs.d"]
+    type = "git-repo"
+    url = "{{ print $mirror "https://github.com/jamescherti/minimal-emacs.d" }}"
+    refreshPeriod = "168h"
 {{ end -}}

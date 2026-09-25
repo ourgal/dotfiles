@@ -425,14 +425,20 @@ Videos/*
 {{ end -}}
 {{ end -}}
 # ]]]
-# [[[ doom emacs
-{{ if lookPath "emacs" -}}
+# [[[ emacs
+{{ if and .my.doomemacs.enable (lookPath "emacs") }}
 !.config/doom/
 !.config/doom/**
+{{ end -}}
 
+{{ if lookPath "emacs" -}}
 {{ if eq .chezmoi.os "windows" -}}
 !.emacs.d/
 !.emacs.d/**
+{{ end -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+!.config/emacs/
+!.config/emacs/**
 {{ end -}}
 {{ end -}}
 # ]]]
