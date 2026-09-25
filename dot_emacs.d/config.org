@@ -1256,3 +1256,11 @@ This eliminates confirmation prompts when loading files, while ensuring that una
 #+begin_src emacs-lisp
 (setq enable-local-variables :safe)
 #+end_src
+
+** Confirmation before exiting
+
+Configure Emacs to ask for confirmation before exiting
+
+#+begin_src emacs-lisp
+(setq confirm-kill-emacs 'y-or-n-p)
+#+end_src
