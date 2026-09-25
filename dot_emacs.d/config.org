@@ -1068,3 +1068,25 @@ It functions as a sidebar in the left window, providing a persistent view of fil
 ;;
 ;; (treemacs-start-on-boot)
 #+end_src
+
+** Helpful
+
+Helpful is an alternative to the built-in Emacs help that provides much more contextual information.
+
+#+begin_src emacs-lisp
+(use-package helpful
+  :commands (helpful-callable
+             helpful-variable
+             helpful-key
+             helpful-command
+             helpful-at-point
+             helpful-function)
+  :bind
+  ([remap describe-command] . helpful-command)
+  ([remap describe-function] . helpful-callable)
+  ([remap describe-key] . helpful-key)
+  ([remap describe-symbol] . helpful-symbol)
+  ([remap describe-variable] . helpful-variable)
+  :init
+  (setq helpful-max-buffers 7))
+#+end_src
