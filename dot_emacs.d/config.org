@@ -755,3 +755,10 @@ Apheleia is an Emacs package designed to run code formatters (e.g., Shfmt, Black
              apheleia-global-mode)
   :hook ((prog-mode . apheleia-mode)))
 #+END_SRC
+
+** Relative line numbers
+
+#+BEGIN_SRC emacs-lisp
+(setq display-line-numbers-type 'relative)
+(global-display-line-numbers-mode 1)
+#+END_SRC
