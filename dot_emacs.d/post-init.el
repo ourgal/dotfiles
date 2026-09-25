@@ -160,3 +160,13 @@
   :init
   (setq save-place-limit 400)
   (save-place-mode 1))
+
+;; Enable `auto-save-mode' to prevent data loss. Use `recover-file' or
+;; `recover-session' to restore unsaved changes.
+(setq auto-save-default t)
+
+;; Trigger an auto-save after 300 keystrokes
+(setq auto-save-interval 300)
+
+;; Trigger an auto-save 30 seconds of idle time.
+(setq auto-save-timeout 30)
