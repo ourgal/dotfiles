@@ -1508,3 +1508,15 @@ NOTE: Prefer the tree-sitter-based yaml-ts-mode over yaml-mode when available, a
   :mode (("\\.yaml\\'" . yaml-mode)
          ("\\.yml\\'" . yaml-mode)))
 #+end_src
+
+** Dockerfile mode
+
+Support for Dockerfile files.
+
+NOTE: Prefer the tree-sitter-based dockerfile-ts-mode over dockerfile-mode when available, as it provides more accurate syntax parsing and enhanced editing features.
+
+#+begin_src emacs-lisp
+(use-package dockerfile-mode
+  :commands dockerfile-mode
+  :mode ("Dockerfile\\'" . dockerfile-mode))
+#+end_src
