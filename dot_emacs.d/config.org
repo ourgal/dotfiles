@@ -1792,3 +1792,11 @@ Support for Jenkinsfile files
  ;; Format single-quoted S-expressions (set to nil to only keep indentation)
  (setq elisp-autofmt-format-quoted t))
 #+end_src
+
+** Rainbow delimiters
+
+#+begin_src emacs-lisp
+(use-package rainbow-delimiters
+  :ensure t
+  :hook (prog-mode . rainbow-delimiters-mode))
+#+end_src

@@ -1218,3 +1218,7 @@
 
  ;; Format single-quoted S-expressions (set to nil to only keep indentation)
  (setq elisp-autofmt-format-quoted t))
+
+(use-package rainbow-delimiters
+  :ensure t
+  :hook (prog-mode . rainbow-delimiters-mode))
