@@ -385,6 +385,29 @@ Vertico provides a vertical completion interface, making it easier to navigate a
  (vertico-mode 1))
 #+END_SRC
 
+*** Vertico posframe
+
+Moves the candidate selection menu out of the traditional minibuffer and into a neat, floating child frame.
+
+#+begin_src emacs-lisp
+(use-package vertico-posframe
+  :ensure t
+  :after vertico
+  :init
+  (vertico-posframe-mode 1))
+  ;; :config
+  ;; Optional: Customize the position of the popup frame
+  ;; Options include: posframe-poshandler-frame-center (default),
+  ;; posframe-poshandler-frame-top-center, etc.
+  ;; (setq vertico-posframe-poshandler #'posframe-poshandler-frame-top-center)
+
+  ;; Optional: Adjust parameters like borders or dimensions
+  ;; (setq vertico-posframe-parameters
+  ;;       '((left-fringe . 8)
+  ;;         (right-fringe . 8)
+  ;;         (border-width . 2))))
+#+end_src
+
 ** Orderless
 
 Vertico leverages Orderless' flexible matching capabilities, allowing users to input multiple patterns separated by spaces, which Orderless then matches in any order against the candidates.
