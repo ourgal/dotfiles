@@ -1616,3 +1616,13 @@ Major mode for editing Nginx configuration files
   :mode (("nginx\\.conf\\'" . nginx-mode)
          ("/nginx/.+\\.conf\\'" . nginx-mode)))
 #+end_src
+
+** Hcl mode
+
+Major mode for HashiCorp Configuration Language (HCL) files
+
+#+begin_src emacs-lisp
+(use-package hcl-mode
+  :commands hcl-mode
+  :mode ("\\.hcl\\'" . hcl-mode))
+#+end_src
