@@ -1542,3 +1542,14 @@ Prefer the tree-sitter-based lua-ts-mode over lua-mode when available, as it pro
   :commands lua-mode
   :mode ("\\.lua\\'" . lua-mode))
 #+end_src
+
+** Jinja mode
+
+Jinja2 template support for files commonly used in configuration management systems and web frameworks.
+This mode enables syntax highlighting and basic editing facilities for templates written using the Jinja2 templating language.
+
+#+begin_src emacs-lisp
+(use-package jinja2-mode
+  :commands jinja2-mode
+  :mode ("\\.j2\\'" . jinja2-mode))
+#+end_src
