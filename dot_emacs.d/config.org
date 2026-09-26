@@ -1889,3 +1889,9 @@ Errors on installation.
     "bb"  '(switch-to-buffer :wk "switch buffer")
     "bk"  '(kill-current-buffer :wk "kill buffer")))
 #+end_src
+
+** Transmission
+
+#+begin_src emacs-lisp
+(use-package transmission :defer t :custom (transmission-host "192.168.0.108"))
+#+end_src
