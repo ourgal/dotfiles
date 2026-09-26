@@ -1131,3 +1131,15 @@
 (use-package jenkinsfile-mode
   :commands jenkinsfile-mode
   :mode ("Jenkinsfile\\'" . jenkinsfile-mode))
+
+(use-package indent-bars
+  :ensure t
+  :hook ((prog-mode . indent-bars-mode))
+  :custom
+  ;; Optional: Customize style presets
+  (indent-bars-width-frac 0.15)              ; Width of the bar relative to a character width
+  (indent-bars-pad-frac 0.1)                ; Offset padding inside the character space
+
+  ;; Optional: Better compatibility for terminal/certain windows
+  ;; (indent-bars-prefer-character t)        ; Force char-based display instead of stipples
+  )
