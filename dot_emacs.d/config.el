@@ -1237,3 +1237,8 @@
    (face-remap-add-relative 'default :family "Maple Mono NF CN" :height 120))
 
  (add-hook 'nov-mode-hook 'my-nov-font-setup))
+
+(use-package
+ doom-modeline
+ :ensure t
+ :init (doom-modeline-mode 1))
