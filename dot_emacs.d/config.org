@@ -1646,3 +1646,13 @@ Major mode for editing Fish shell scripts
   :commands fish-mode
   :mode ("\\.fish\\'" . fish-mode))
 #+end_src
+
+** Vimrc mode
+
+Vim configuration file support. This mode provides syntax highlighting and editing support for various Vim configuration files, including vimrc, gvimrc, local overrides, and project-specific configuration files.
+
+#+begin_src emacs-lisp
+(use-package vimrc-mode
+  :commands vimrc-mode
+  :mode ("\\.vim\\(rc\\)?\\'" . vimrc-mode))
+#+end_src
