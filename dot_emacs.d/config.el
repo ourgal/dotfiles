@@ -1065,6 +1065,10 @@
 ;; Customize the pop-up behavior and layout
 (setq which-key-idle-delay 0.3) ;; Pop up after 0.3 seconds of hesitation
 
+(setq which-key-enable-extended-define-key t)
+
+(evil-define-key 'normal 'global (kbd "SPC SPC") '("Find file" . project-find-file))
+
 (use-package
  magit
  :ensure t
