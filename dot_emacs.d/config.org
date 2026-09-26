@@ -1656,3 +1656,13 @@ Vim configuration file support. This mode provides syntax highlighting and editi
   :commands vimrc-mode
   :mode ("\\.vim\\(rc\\)?\\'" . vimrc-mode))
 #+end_src
+
+** Jenkinsfile mode
+
+Support for Jenkinsfile files
+
+#+begin_src emacs-lisp
+(use-package jenkinsfile-mode
+  :commands jenkinsfile-mode
+  :mode ("Jenkinsfile\\'" . jenkinsfile-mode))
+#+end_src
