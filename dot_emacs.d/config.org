@@ -1899,5 +1899,13 @@ Errors on installation.
 ** VC
 
 #+begin_src emacs-lisp
+;; insert mode for vc-log-edit
 (evil-set-initial-state 'log-edit-mode 'insert)
+
+(defun my/vc-dir-refresh-on-window-change (window)
+  "Automatically refresh `vc-dir` when its window becomes active."
+  (when (eq major-mode 'vc-dir-mode)
+    (vc-dir-refresh)))
+
+(add-hook 'window-selection-change-functions #'my/vc-dir-refresh-on-window-change)
 #+end_src

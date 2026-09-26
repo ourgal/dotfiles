@@ -1238,4 +1238,12 @@
 
 (use-package transmission :defer t :custom (transmission-host "192.168.0.108"))
 
+;; insert mode for vc-log-edit
 (evil-set-initial-state 'log-edit-mode 'insert)
+
+(defun my/vc-dir-refresh-on-window-change (window)
+  "Automatically refresh `vc-dir` when its window becomes active."
+  (when (eq major-mode 'vc-dir-mode)
+    (vc-dir-refresh)))
+
+(add-hook 'window-selection-change-functions #'my/vc-dir-refresh-on-window-change)
