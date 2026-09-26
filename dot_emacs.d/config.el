@@ -231,23 +231,6 @@
  ;; (setq vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
  (vertico-mode 1))
 
-(use-package vertico-posframe
-  :ensure t
-  :after vertico
-  :init
-  (vertico-posframe-mode 1))
-  ;; :config
-  ;; Optional: Customize the position of the popup frame
-  ;; Options include: posframe-poshandler-frame-center (default),
-  ;; posframe-poshandler-frame-top-center, etc.
-  ;; (setq vertico-posframe-poshandler #'posframe-poshandler-frame-top-center)
-
-  ;; Optional: Adjust parameters like borders or dimensions
-  ;; (setq vertico-posframe-parameters
-  ;;       '((left-fringe . 8)
-  ;;         (right-fringe . 8)
-  ;;         (border-width . 2))))
-
 (use-package
  orderless
  :init

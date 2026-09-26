@@ -389,7 +389,9 @@ Vertico provides a vertical completion interface, making it easier to navigate a
 
 Moves the candidate selection menu out of the traditional minibuffer and into a neat, floating child frame.
 
-#+begin_src emacs-lisp
+It's buggy on termux.
+
+#+begin_src emacs-lisp :tangle no
 (use-package vertico-posframe
   :ensure t
   :after vertico
