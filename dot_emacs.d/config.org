@@ -165,7 +165,7 @@ Give Emacs tab-bar a style similar to Vim's
 
 ** Windows improvement
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle no
 (when (eq system-type 'windows-nt)
   (setq exec-suffixes '("" ".exe" ".bat"))
   (setq shell-command-guess-open nil)

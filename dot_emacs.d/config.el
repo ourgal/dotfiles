@@ -93,13 +93,6 @@
 
 (global-visual-line-mode 1)
 
-(when (eq system-type 'windows-nt)
-  (setq exec-suffixes '("" ".exe" ".bat"))
-  (setq shell-command-guess-open nil)
-  (remove-hook 'find-file-hook #'vc-refresh-state)
-  (remove-hook 'before-save-hook #'vc-before-save t)
-  (remove-hook 'find-file-hook #'epa-file-find-file-hook))
-
 (let ((inhibit-redisplay t))
   ;; Disable all active themes
   (mapc #'disable-theme custom-enabled-themes)
