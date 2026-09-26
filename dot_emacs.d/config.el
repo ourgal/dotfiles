@@ -1247,3 +1247,5 @@
     (vc-dir-refresh)))
 
 (add-hook 'window-selection-change-functions #'my/vc-dir-refresh-on-window-change)
+
+(evil-define-key 'normal 'global (kbd "SPC g g") 'project-vc-dir)
