@@ -1238,31 +1238,3 @@
  doom-modeline
  :ensure t
  :init (doom-modeline-mode 1))
-
-(use-package general
-  :config
-  (general-evil-setup t) ; Optional: Only include if using evil-mode
-
-  ;; Create your custom leader key definer
- (general-create-definer
-  my/leader-keys
-  :states '(normal insert visual emacs) ; States where leader works
-  :keymaps 'override ; Prevents major-modes from stealing SPC
-  :prefix "SPC" ; The primary leader key
-  :global-prefix "M-SPC") ; Fallback to access leader from insert mode
-
-  ;; 3. Define your keybindings and which-key descriptions
-  (my/leader-keys
-    ;; Single actions
-    "SPC" '(project-find-file :wk "Project find file")
-    "u"   '(universal-argument :wk "universal prefix")
-
-    ;; Nested Group: Files ("f")
-    "f"   '(:ignore t :wk "file") ; Tells which-key "f" is a category label
-    "ff"  '(find-file :wk "find file")
-    "fs"  '(save-buffer :wk "save file")
-
-    ;; Nested Group: Buffers ("b")
-    "b"   '(:ignore t :wk "buffer")
-    "bb"  '(switch-to-buffer :wk "switch buffer")
-    "bk"  '(kill-current-buffer :wk "kill buffer")))

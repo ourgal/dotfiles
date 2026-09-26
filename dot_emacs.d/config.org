@@ -1854,7 +1854,9 @@ Support for Jenkinsfile files
 
 The package general.el is the industry standard for creating Spacemacs/Doom-style leader keys.
 
-#+begin_src emacs-lisp
+Errors on installation.
+
+#+begin_src emacs-lisp :tangle no
 (use-package general
   :config
   (general-evil-setup t) ; Optional: Only include if using evil-mode
