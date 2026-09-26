@@ -273,6 +273,21 @@ Corfu enhances in-buffer completion by displaying a compact popup with current c
 
 #+BEGIN_SRC emacs-lisp
 (use-package corfu
+  :custom
+  (corfu-auto t)                 ; Enable auto-completion
+  (corfu-auto-prefix 2)          ; Minimum characters before popup appears (default is 3)
+  (corfu-auto-delay 0.2)         ; Delay before popup appears
+  (corfu-cycle t)                ; Enable cycling through candidates
+  (corfu-quit-no-match 'separator) ; Keep popup open when using a separator
+  ;; Keybindings specific to the completion popup menu
+  :bind (:map corfu-map
+              ("TAB" . corfu-next)
+              ([tab] . corfu-next)
+              ("S-TAB" . corfu-previous)
+              ([backtab] . corfu-previous)
+              ("RET" . corfu-insert)    ; Insert selected candidate
+              ("M-d" . corfu-popupinfo-toggle) ; Toggle documentation popup
+              ("M-l" . corfu-popupinfo-location)) ; Jump to source code of candidate
   :init
   (setq text-mode-ispell-word-completion nil)
   ;; Hide commands in M-x which do not apply to the current mode.
@@ -280,12 +295,14 @@ Corfu enhances in-buffer completion by displaying a compact popup with current c
   ;; Disable Ispell completion function. As an alternative try `cape-dict'.
   (setq tab-always-indent 'complete)
 
-  (global-corfu-mode 1))
+  (global-corfu-mode 1)          ; Enable Corfu globally
+  (corfu-popupinfo-mode)         ; Enable info/documentation popup
+  (corfu-history-mode))          ; Sort candidates based on history
 #+END_SRC
 
 *** set corfu-auto
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle no
 ;; Define your list of trusted parent directories
 (defvar my-trusted-directories
   '("~/.local/share/chezmoi")
