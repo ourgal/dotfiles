@@ -330,6 +330,14 @@ Corfu enhances in-buffer completion by displaying a compact popup with current c
 (add-hook 'corfu-mode-hook #'my-corfu-auto-if-trusted)
 #+END_SRC
 
+*** Nerd icons corfu
+
+#+begin_src emacs-lisp
+(use-package nerd-icons-corfu
+  :after corfu
+  :init (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+#+end_src
+
 ** Cape
 
 Cape, or Completion At Point Extensions, extends the capabilities of in-buffer completion. It integrates with Corfu or the default completion UI, by providing additional backends through completion-at-point-functions.

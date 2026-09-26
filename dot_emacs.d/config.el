@@ -190,6 +190,10 @@
   (corfu-popupinfo-mode)         ; Enable info/documentation popup
   (corfu-history-mode))          ; Sort candidates based on history
 
+(use-package nerd-icons-corfu
+  :after corfu
+  :init (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+
 (use-package cape
   :commands (cape-dabbrev cape-file cape-elisp-block)
   :bind ("C-c p" . cape-prefix-map)
