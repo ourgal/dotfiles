@@ -1595,3 +1595,13 @@ Support for Rust
   :init
   (setq rust-indent-offset 2))
 #+end_src
+
+** Crontab mode
+
+Major mode for editing crontab files
+
+#+begin_src emacs-lisp
+(use-package crontab-mode
+  :commands crontab-mode
+  :mode ("/crontab\\(\\.X*[[:alnum:]]+\\)?\\'"  . crontab-mode))
+#+end_src
