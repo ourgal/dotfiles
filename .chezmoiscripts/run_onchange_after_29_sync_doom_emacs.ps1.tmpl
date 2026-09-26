@@ -1,3 +1,5 @@
+{{ if .my.doomemacs.enable -}}
+
 {{ if eq .chezmoi.os "windows" -}}
 {{ $doom_dir := joinPath .chezmoi.homeDir ".config" "emacs" -}}
 {{ if eq .chezmoi.os "windows" -}}
@@ -22,4 +24,6 @@
 {{ end -}}
 {{ end -}}
 {{ end -}}
+{{ end -}}
+
 {{ end -}}
