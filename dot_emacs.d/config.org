@@ -1464,3 +1464,10 @@ for any unsupported languages.
                                                "-c" "gc.auto=256")))))
   (setq magit-format-file-function #'magit-format-file-nerd-icons)
 #+end_src
+
+** Nerd icons
+
+#+begin_src emacs-lisp :tangle no
+(use-package nerd-icons
+  :ensure t)
+#+end_src
