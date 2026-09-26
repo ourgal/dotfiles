@@ -1626,3 +1626,13 @@ Major mode for HashiCorp Configuration Language (HCL) files
   :commands hcl-mode
   :mode ("\\.hcl\\'" . hcl-mode))
 #+end_src
+
+** Nix mode
+
+Major mode for Nix expression language files
+
+#+begin_src emacs-lisp
+(use-package nix-mode
+  :commands nix-mode
+  :mode ("\\.nix\\'" . nix-mode))
+#+end_src
