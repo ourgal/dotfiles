@@ -1895,3 +1895,9 @@ Errors on installation.
 #+begin_src emacs-lisp
 (use-package transmission :defer t :custom (transmission-host "192.168.0.108"))
 #+end_src
+
+** VC
+
+#+begin_src emacs-lisp
+(evil-set-initial-state 'log-edit-mode 'insert)
+#+end_src

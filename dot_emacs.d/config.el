@@ -1237,3 +1237,5 @@
  :init (doom-modeline-mode 1))
 
 (use-package transmission :defer t :custom (transmission-host "192.168.0.108"))
+
+(evil-set-initial-state 'log-edit-mode 'insert)
