@@ -1583,3 +1583,15 @@ NOTE: Prefer the tree-sitter-based go-ts-mode over go-mode when available, as it
   :commands go-mode
   :mode ("\\.go\\'" . go-mode))
 #+end_src
+
+** Rust mode
+
+Support for Rust
+
+#+begin_src emacs-lisp
+(use-package rust-mode
+  :commands rust-mode
+  :mode ("\\.rs\\'" . rust-mode)
+  :init
+  (setq rust-indent-offset 2))
+#+end_src
