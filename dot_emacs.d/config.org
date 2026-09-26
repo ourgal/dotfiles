@@ -1553,3 +1553,21 @@ This mode enables syntax highlighting and basic editing facilities for templates
   :commands jinja2-mode
   :mode ("\\.j2\\'" . jinja2-mode))
 #+end_src
+
+** Csv mode
+
+CSV file support with automatic column alignment.
+This configuration enables csv-align-mode whenever a CSV file is opened, improving readability by keeping columns visually aligned according to a configurable maximum width and a set of recognized field separators.
+
+#+begin_src emacs-lisp
+(use-package csv-mode
+  :commands (csv-mode
+             csv-align-mode
+             csv-guess-set-separator)
+  :mode ("\\.csv\\'" . csv-mode)
+  :hook ((csv-mode . csv-align-mode)
+         (csv-mode . csv-guess-set-separator))
+  :init
+  (setq csv-align-max-width 100)
+  (setq csv-separators '("," ";" " " "|" "\t")))
+#+end_src
