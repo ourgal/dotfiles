@@ -1571,3 +1571,15 @@ This configuration enables csv-align-mode whenever a CSV file is opened, improvi
   (setq csv-align-max-width 100)
   (setq csv-separators '("," ";" " " "|" "\t")))
 #+end_src
+
+** Go mode
+
+Support for Go
+
+NOTE: Prefer the tree-sitter-based go-ts-mode over go-mode when available, as it provides more accurate syntax parsing and enhanced editing features.
+
+#+begin_src emacs-lisp
+(use-package go-mode
+  :commands go-mode
+  :mode ("\\.go\\'" . go-mode))
+#+end_src
