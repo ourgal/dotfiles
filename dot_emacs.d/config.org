@@ -1530,3 +1530,15 @@ Support for Gnuplot files
   :commands gnuplot-mode
   :mode ("\\.gp\\'" . gnuplot-mode))
 #+end_src
+
+** Lua mode
+
+Support for *.lua files.
+
+Prefer the tree-sitter-based lua-ts-mode over lua-mode when available, as it provides more accurate syntax parsing and enhanced editing features.
+
+#+begin_src emacs-lisp
+(use-package lua-mode
+  :commands lua-mode
+  :mode ("\\.lua\\'" . lua-mode))
+#+end_src
