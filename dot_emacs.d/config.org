@@ -1447,6 +1447,14 @@ for any unsupported languages.
 (evil-define-key 'normal 'global (kbd "-") 'dired-jump)
 #+end_src
 
+*** Nerd icons
+
+#+begin_src emacs-lisp
+(use-package nerd-icons-dired
+  :hook
+  (dired-mode . nerd-icons-dired-mode))
+#+end_src
+
 ** Which key
 
 #+begin_src emacs-lisp

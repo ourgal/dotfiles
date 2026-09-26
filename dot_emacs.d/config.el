@@ -1002,6 +1002,10 @@
 
 (evil-define-key 'normal 'global (kbd "-") 'dired-jump)
 
+(use-package nerd-icons-dired
+  :hook
+  (dired-mode . nerd-icons-dired-mode))
+
 (use-package which-key
   :ensure nil
   :init
