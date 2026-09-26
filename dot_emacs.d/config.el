@@ -1219,22 +1219,21 @@
  ;; Format single-quoted S-expressions (set to nil to only keep indentation)
  (setq elisp-autofmt-format-quoted t))
 
-(use-package rainbow-delimiters
-  :ensure t
-  :hook (prog-mode . rainbow-delimiters-mode))
+(use-package
+ rainbow-delimiters
+ :ensure t
+ :hook (prog-mode . rainbow-delimiters-mode))
 
-(use-package nov
-  :ensure t
-  :mode ("\\.epub\\'" . nov-mode)
-  :config
-  ;; Adjust text width for comfortable reading
-  (setq nov-text-width 80)
+(use-package
+ nov
+ :ensure t
+ :mode ("\\.epub\\'" . nov-mode)
+ :config
+ ;; Adjust text width for comfortable reading
+ (setq nov-text-width 80)
 
-  ;; Use a clean, variable-pitch font for the book text
-  (defun my-nov-font-setup ()
-    (face-remap-add-relative 'default :family "Maple Mono NF CN" :height 120))
+ ;; Use a clean, variable-pitch font for the book text
+ (defun my-nov-font-setup ()
+   (face-remap-add-relative 'default :family "Maple Mono NF CN" :height 120))
 
-  (add-hook 'nov-mode-hook 'my-nov-font-setup)
-
-  ;; Optional: Enable visual-line-mode for soft wrapping
-  (add-hook 'nov-mode-hook 'visual-line-mode))
+ (add-hook 'nov-mode-hook 'my-nov-font-setup))
