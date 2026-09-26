@@ -1430,3 +1430,37 @@ for any unsupported languages.
   (setq which-key-max-description-length 40)
   (which-key-mode 1))
 #+end_src
+
+** Magit
+
+#+begin_src emacs-lisp
+(use-package magit
+  :ensure t
+  :bind (;; Global entry points into Magit
+         ("C-x g"   . magit-status)
+         ("C-c g g" . magit-status)
+         ("C-c g d" . magit-dispatch)
+         ("C-c g f" . magit-file-dispatch))
+
+  :config
+  ;; 1. Window Management (Open magit-status in full screen)
+  (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
+
+  ;; 2. Automatic Reverts
+  ;; Also automatically refresh Magit when local Git states alter
+  (setq magit-auto-revert-mode t)
+
+  ;; 3. Better Defaults & Layouts
+  ;; Hide the VC mode-line indicator to keep the bar clean
+  (setq vc-handled-backends nil)
+  ;; Don't ask to save modified file buffers before running status
+  (setq magit-save-repository-buffers 'dontask)
+
+  ;; 4. Windows Performance Tweaks (Only runs on MS Windows)
+  (when (eq system-type 'windows-nt)
+    (setq magit-git-global-arguments
+          (append magit-git-global-arguments '("-c" "core.preloadindex=true"
+                                               "-c" "core.fscache=true"
+                                               "-c" "gc.auto=256")))))
+  (setq magit-format-file-function #'magit-format-file-nerd-icons)
+#+end_src
