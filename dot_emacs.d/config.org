@@ -1495,3 +1495,16 @@ for any unsupported languages.
          ("/info/attributes\\'" . gitattributes-mode)
          ("/git/attributes\\'" . gitattributes-mode)))
 #+end_src
+
+** Yaml mode
+
+Support for YAML files.
+
+NOTE: Prefer the tree-sitter-based yaml-ts-mode over yaml-mode when available, as it provides more accurate syntax parsing and enhanced editing features.
+
+#+begin_src emacs-lisp
+(use-package yaml-mode
+  :commands yaml-mode
+  :mode (("\\.yaml\\'" . yaml-mode)
+         ("\\.yml\\'" . yaml-mode)))
+#+end_src
