@@ -1674,3 +1674,15 @@ Support for Jenkinsfile files
   :commands jenkinsfile-mode
   :mode ("Jenkinsfile\\'" . jenkinsfile-mode))
 #+end_src
+
+** Org auto tangle
+
+#+begin_src emacs-lisp
+(use-package org-auto-tangle
+  :ensure t
+  :defer t
+  :hook (org-mode . org-auto-tangle-mode)
+  :config
+  ;; Optional: Set to t if you want ALL org files to auto-tangle by default
+  (setq org-auto-tangle-default t))
+#+end_src
