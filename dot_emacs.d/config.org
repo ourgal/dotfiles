@@ -1605,3 +1605,14 @@ Major mode for editing crontab files
   :commands crontab-mode
   :mode ("/crontab\\(\\.X*[[:alnum:]]+\\)?\\'"  . crontab-mode))
 #+end_src
+
+** Ngnix mode
+
+Major mode for editing Nginx configuration files
+
+#+begin_src emacs-lisp
+(use-package nginx-mode
+  :commands nginx-mode
+  :mode (("nginx\\.conf\\'" . nginx-mode)
+         ("/nginx/.+\\.conf\\'" . nginx-mode)))
+#+end_src
