@@ -1076,15 +1076,11 @@
 
 (use-package nerd-icons-dired :hook (dired-mode . nerd-icons-dired-mode))
 
-(use-package
- which-key
- :ensure nil
- :init
- (setq which-key-idle-delay 1.5)
- (setq which-key-idle-secondary-delay 0.25)
- (setq which-key-add-column-padding 1)
- (setq which-key-max-description-length 40)
- (which-key-mode 1))
+;; Enable the built-in which-key mode
+(which-key-mode 1)
+
+;; Customize the pop-up behavior and layout
+(setq which-key-idle-delay 0.3) ;; Pop up after 0.3 seconds of hesitation
 
 (use-package
  magit
