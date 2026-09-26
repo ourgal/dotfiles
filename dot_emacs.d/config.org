@@ -1,4 +1,5 @@
 * Emacs config
+#+PROPERTY: header-args :tangle yes
 
 ** Lexical binding
 
@@ -927,6 +928,18 @@ Org mode is a major mode designed for organizing notes, planning, task managemen
   :hook (org-mode . org-appear-mode))
 #+end_src
 
+** Org auto tangle
+
+#+begin_src emacs-lisp
+(use-package org-auto-tangle
+  :ensure t
+  :defer t
+  :hook (org-mode . org-auto-tangle-mode)
+  :config
+  ;; Optional: Set to t if you want ALL org files to auto-tangle by default
+  (setq org-auto-tangle-default t))
+#+end_src
+
 ** Eglot
 
 Set up the Language Server Protocol (LSP) servers using Eglot.
@@ -1673,16 +1686,4 @@ Support for Jenkinsfile files
 (use-package jenkinsfile-mode
   :commands jenkinsfile-mode
   :mode ("Jenkinsfile\\'" . jenkinsfile-mode))
-#+end_src
-
-** Org auto tangle
-
-#+begin_src emacs-lisp
-(use-package org-auto-tangle
-  :ensure t
-  :defer t
-  :hook (org-mode . org-auto-tangle-mode)
-  :config
-  ;; Optional: Set to t if you want ALL org files to auto-tangle by default
-  (setq org-auto-tangle-default t))
 #+end_src
