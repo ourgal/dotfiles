@@ -1471,3 +1471,27 @@ for any unsupported languages.
 (use-package nerd-icons
   :ensure t)
 #+end_src
+
+** Git mode
+
+#+begin_src emacs-lisp
+;; Support for Git files (.gitconfig, .gitignore, .gitattributes...)
+(use-package git-modes
+  :commands (gitattributes-mode
+             gitconfig-mode
+             gitignore-mode)
+  :mode (("/\\.gitignore\\'" . gitignore-mode)
+         ("/info/exclude\\'" . gitignore-mode)
+         ("/git/ignore\\'" . gitignore-mode)
+
+         ("/\\.gitconfig\\'" . gitconfig-mode)
+         ("/\\.git/config\\'" . gitconfig-mode)
+         ("/modules/.*/config\\'" . gitconfig-mode)
+         ("/git/config\\'" . gitconfig-mode)
+         ("/\\.gitmodules\\'" . gitconfig-mode)
+         ("/etc/gitconfig\\'" . gitconfig-mode)
+
+         ("/\\.gitattributes\\'" . gitattributes-mode)
+         ("/info/attributes\\'" . gitattributes-mode)
+         ("/git/attributes\\'" . gitattributes-mode)))
+#+end_src
