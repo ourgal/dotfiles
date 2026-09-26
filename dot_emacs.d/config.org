@@ -1636,3 +1636,13 @@ Major mode for Nix expression language files
   :commands nix-mode
   :mode ("\\.nix\\'" . nix-mode))
 #+end_src
+
+** Fish mode
+
+Major mode for editing Fish shell scripts
+
+#+begin_src emacs-lisp
+(use-package fish-mode
+  :commands fish-mode
+  :mode ("\\.fish\\'" . fish-mode))
+#+end_src
