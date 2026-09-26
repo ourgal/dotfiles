@@ -3,3 +3,4 @@ machine imap.qq.com port 993 login ourgal@qq.com password {{ includeTemplate "go
 machine imap.163.com port 993 login fairever01@163.com password {{ includeTemplate "gopass" "email/163/main" }}
 machine pop3.163.com port 995 login fairever01@163.com password {{ includeTemplate "gopass" "email/163/main" }}
 machine imap.yandex.com port 993 login airever@yandex.com password {{ includeTemplate "gopass" "email/yandex/main" }}
+machine smtp.yandex.com port 465 login airever@yandex.com password {{ includeTemplate "gopass" "email/yandex/main" }}

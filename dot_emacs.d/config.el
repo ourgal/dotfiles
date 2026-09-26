@@ -498,14 +498,14 @@
  :ensure nil
  :commands outline-minor-mode
  :hook
- ( ;; Use " â¼" instead of the default ellipsis "..." for folded text to make
+ ( ;; Use " ▼" instead of the default ellipsis "..." for folded text to make
   ;; folds more visually distinctive and readable.
   (outline-minor-mode
    .
    (lambda ()
      (let* ((display-table (or buffer-display-table (make-display-table)))
             (face-offset (* (face-id 'shadow) (ash 1 22)))
-            (value (vconcat (mapcar (lambda (c) (+ face-offset c)) " â¼"))))
+            (value (vconcat (mapcar (lambda (c) (+ face-offset c)) " ▼"))))
        (set-display-table-slot display-table 'selective-display value)
        (setq buffer-display-table display-table))))))
 
@@ -525,7 +525,7 @@
 (use-package
  outline-indent
  :commands outline-indent-minor-mode
- :init (setq outline-indent-ellipsis " â¼"))
+ :init (setq outline-indent-ellipsis " ▼"))
 
 ;; Python
 (add-hook 'python-mode-hook #'outline-indent-minor-mode)
@@ -553,7 +553,7 @@
 
  :init
  (setq treesit-fold-line-count-show t)
- (setq treesit-fold-line-count-format " â¼")
+ (setq treesit-fold-line-count-format " ▼")
 
  :config
  (set-face-attribute 'treesit-fold-replacement-face nil
@@ -1249,3 +1249,55 @@
 (add-hook 'window-selection-change-functions #'my/vc-dir-refresh-on-window-change)
 
 (evil-define-key 'normal 'global (kbd "SPC g g") 'project-vc-dir)
+
+(setq user-mail-address "ourgal@qq.com")
+(setq user-full-name "ourgal")
+(setq message-send-mail-function 'smtpmail-send-it)
+
+(setq smtpmail-smtp-user "ourgal@qq.com"
+      smtpmail-smtp-server "smtp.qq.com"
+      smtpmail-smtp-service 465
+      smtpmail-stream-type 'ssl)
+
+(setq smtpmail-debug-info t)
+(setq smtpmail-debug-verb t)
+
+(add-to-list 'auth-sources (expand-file-name ".authinfo" user-emacs-directory))
+(setq gnus-select-method '(nnnil nil))
+(setq gnus-secondary-select-methods
+      '( (nnimap "qq"
+                 (nnimap-address "imap.qq.com")
+                 (nnimap-index "nnimap+qq:INDEX")
+                 (nnmail-expiry-target "nnimap+qq:Deleted Messages")
+                 (nnimap-expunge t)
+                 (nnimap-server-port 993)
+                 (nnimap-stream ssl))
+         (nnimap "163"
+                 (nnimap-address "imap.163.com")
+                 (nnimap-index "nnimap+163:INDEX")
+                 (nnmail-expiry-target "nnimap+163:已删除")
+                 (nnimap-expunge t)
+                 (nnimap-server-port 993)
+                 (nnimap-stream ssl))
+         (nnimap "yandex"
+                 (nnimap-address "imap.yandex.com")
+                 (nnimap-index "nnimap+yandex:INDEX")
+                 (nnmail-expiry-target "nnimap+yandex:Trash")
+                 (nnimap-expunge t)
+                 (nnimap-server-port 993)
+                 (nnimap-stream ssl))))
+
+(setq gnus-thread-sort-functions '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date)))
+
+(with-eval-after-load 'gnus-sum
+  ;; Set font family and size for read messages in the summary
+  (set-face-attribute 'gnus-summary-normal-read nil
+                      :family "Maple Mono NF CN"
+                      :height 120
+                      :weight 'normal)
+
+  ;; Set font family and size for unread messages in the summary
+  (set-face-attribute 'gnus-summary-normal-unread nil
+                      :family "Maple Mono NF CN"
+                      :height 120
+                      :weight 'bold))
