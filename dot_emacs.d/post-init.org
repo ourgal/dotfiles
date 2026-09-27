@@ -664,7 +664,7 @@ Set the default font to DejaVu Sans Mono with specific size and weight.
 (set-face-attribute 'default nil
                     :height 130
                     :weight 'normal
-                    :family "IosevkaTerm NFM")
+                    :family "Maple Mono NF CN")
 #+END_SRC
 
 ** Markdown mode
@@ -1992,4 +1992,23 @@ Errors on installation.
  :config
  ;; Report Eglot's LSP diagnostics through Flycheck
  (global-flycheck-eglot-mode 1))
+#+end_src
+
+** Elfeed
+
+#+begin_src emacs-lisp
+(use-package elfeed
+  :ensure t
+  :bind ("C-x E" . elfeed)
+  :config
+  (setq elfeed-db-directory "~/.emacs.d/elfeeddb/")
+  (setq elfeed-search-filter "@2-weeks-ago +unread")) ; Default search filter
+
+(use-package elfeed-org
+  :ensure t
+  :after elfeed
+  :config
+  (elfeed-org)
+  ;; Define the location of your Org file containing the feeds
+  (setq rmh-elfeed-org-files '("~/org/elfeed.org")))
 #+end_src

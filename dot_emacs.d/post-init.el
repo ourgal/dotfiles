@@ -443,7 +443,7 @@
 (set-face-attribute 'default nil
                     :height 130
                     :weight 'normal
-                    :family "IosevkaTerm NFM")
+                    :family "Maple Mono NF CN")
 
 (use-package
  markdown-mode
@@ -1322,3 +1322,18 @@
  :config
  ;; Report Eglot's LSP diagnostics through Flycheck
  (global-flycheck-eglot-mode 1))
+
+(use-package elfeed
+  :ensure t
+  :bind ("C-x E" . elfeed)
+  :config
+  (setq elfeed-db-directory "~/.emacs.d/elfeeddb/")
+  (setq elfeed-search-filter "@2-weeks-ago +unread")) ; Default search filter
+
+(use-package elfeed-org
+  :ensure t
+  :after elfeed
+  :config
+  (elfeed-org)
+  ;; Define the location of your Org file containing the feeds
+  (setq rmh-elfeed-org-files '("~/org/elfeed.org")))
