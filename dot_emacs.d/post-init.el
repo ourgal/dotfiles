@@ -51,14 +51,14 @@
  (setq evil-want-Y-yank-to-eol t)
 
  ;; Start `evil-mode'
- (evil-mode 1)
+ (evil-mode 1))
 
- :config
+ ;; :config
  ;; Occasionally, `evil' fails to respect `evil-search-module' when it is
  ;; defined inside the :custom block. This fix ensures the search module
  ;; is correctly set to `evil-search'.
- (setq evil-search-module 'evil-search)
- (evil-select-search-module 'evil-search-module 'evil-search))
+ ;; (setq evil-search-module 'evil-search)
+ ;; (evil-select-search-module 'evil-search-module 'evil-search))
 
 (use-package
  evil-collection
