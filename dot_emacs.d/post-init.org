@@ -1381,7 +1381,7 @@ This eliminates confirmation prompts when loading files, while ensuring that una
 
 Configure Emacs to ask for confirmation before exiting
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (setq confirm-kill-emacs 'y-or-n-p)
 #+end_src
 

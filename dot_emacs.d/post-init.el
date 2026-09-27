@@ -959,8 +959,6 @@
 
 (setq enable-local-variables :safe)
 
-(setq confirm-kill-emacs 'y-or-n-p)
-
 (use-package
  buffer-guardian
  :init
