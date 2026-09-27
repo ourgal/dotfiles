@@ -1311,3 +1311,14 @@
                       :family "Maple Mono NF CN"
                       :height 120
                       :weight 'bold))
+
+(use-package
+ flycheck
+ :ensure t
+ :hook
+ ((after-init . global-flycheck-mode)
+  ;; Show diagnostics inline, next to the code (Error Lens style)
+  (after-init . global-flycheck-annotate-mode))
+ :config
+ ;; Report Eglot's LSP diagnostics through Flycheck
+ (global-flycheck-eglot-mode 1))

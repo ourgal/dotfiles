@@ -1978,3 +1978,18 @@ Errors on installation.
                       :height 120
                       :weight 'bold))
 #+end_src
+
+** Flycheck
+
+#+begin_src emacs-lisp
+(use-package
+ flycheck
+ :ensure t
+ :hook
+ ((after-init . global-flycheck-mode)
+  ;; Show diagnostics inline, next to the code (Error Lens style)
+  (after-init . global-flycheck-annotate-mode))
+ :config
+ ;; Report Eglot's LSP diagnostics through Flycheck
+ (global-flycheck-eglot-mode 1))
+#+end_src
