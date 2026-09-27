@@ -475,6 +475,18 @@ Videos/*
 !.config/emacs/lisp/**
 {{ end -}}
 {{ end -}}
+{{ if and .my.emacs_kick.enable (lookPath "emacs") -}}
+{{ if eq .chezmoi.os "windows" -}}
+!.emacs.d/
+.emacs.d/*
+!.emacs.d/init.el
+{{ end -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+!.config/emacs/
+.config/emacs/*
+!.config/emacs/init.el
+{{ end -}}
+{{ end -}}
 # ]]]
 # [[[ zed
 {{ if lookPath "zed" -}}

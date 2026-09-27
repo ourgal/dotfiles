@@ -199,3 +199,10 @@
     url = "{{ print $mirror "https://github.com/LionyxML/emacs-solo" }}"
     refreshPeriod = "168h"
 {{ end -}}
+
+{{ if and .my.emacs_kick.enable (lookPath "emacs") }}
+[".local/share/repos/emacs-kick"]
+    type = "git-repo"
+    url = "{{ print $mirror "https://github.com/LionyxML/emacs-kick" }}"
+    refreshPeriod = "168h"
+{{ end -}}

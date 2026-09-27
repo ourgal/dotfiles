@@ -2,4 +2,6 @@
 {{ includeTemplate "include" (joinPath .chezmoi.homeDir ".local" "share" "repos" "minimal-emacs.d" "init.el") -}}
 {{ else if .my.emacs_solo.enable -}}
 {{ includeTemplate "include" (joinPath .chezmoi.homeDir ".local" "share" "repos" "emacs-solo" "init.el") -}}
+{{ else if .my.emacs_kick.enable -}}
+{{ includeTemplate "include" (joinPath .chezmoi.homeDir ".local" "share" "repos" "emacs-kick" "init.el") -}}
 {{ end -}}
