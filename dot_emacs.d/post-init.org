@@ -4,9 +4,8 @@
 ** Lexical binding
 
 #+begin_src emacs-lisp
-;;; config.el --- config -*- no-byte-compile: t; lexical-binding: t; -*-
+;;; post-init.el --- post init -*- no-byte-compile: t; lexical-binding: t; -*-
 #+end_src
-
 
 ** Undo-fu
 
@@ -31,7 +30,6 @@ The undo-fu-session package complements undo-fu by enabling the saving and resto
 #+END_SRC
 
 ** Evil
-
 *** Undo-fu
 
 using undo-fu
@@ -135,18 +133,18 @@ The evil-surround package simplifies handling surrounding characters, such as pa
 using S" or gS".
 
 #+BEGIN_SRC emacs-lisp
-(use-package evil-surround
-  :after evil
-  :init
-  (setq evil-surround-pairs-alist
-        '((?\( . ("(" . ")"))
+(use-package
+ evil-surround
+ :after evil
+ :init
+ (setq evil-surround-pairs-alist
+       '((?\( . ("(" . ")"))
          (?\[ . ("[" . "]")) (?\{ . ("{" . "}"))
 
          (?\) . ("(" . ")")) (?\] . ("[" . "]")) (?\} . ("{" . "}"))
 
          (?< . ("<" . ">")) (?> . ("<" . ">"))))
-  :config
-  (global-evil-surround-mode 1))
+ :config (global-evil-surround-mode 1))
 #+END_SRC
 
 ** Vim-bar
@@ -1251,7 +1249,6 @@ Helpful is an alternative to the built-in Emacs help that provides much more con
  (setq bufferfile-delete-switch-to 'parent-directory))
 #+end_src
 
-
 ** Better elisp
 
 #+begin_src emacs-lisp
@@ -1919,10 +1916,11 @@ Errors on installation.
 (setq user-full-name "ourgal")
 (setq message-send-mail-function 'smtpmail-send-it)
 
-(setq smtpmail-smtp-user "ourgal@qq.com"
-      smtpmail-smtp-server "smtp.qq.com"
-      smtpmail-smtp-service 465
-      smtpmail-stream-type 'ssl)
+(setq
+ smtpmail-smtp-user "ourgal@qq.com"
+ smtpmail-smtp-server "smtp.qq.com"
+ smtpmail-smtp-service 465
+ smtpmail-stream-type 'ssl)
 
 (setq smtpmail-debug-info t)
 (setq smtpmail-debug-verb t)
@@ -1930,29 +1928,33 @@ Errors on installation.
 (add-to-list 'auth-sources (expand-file-name ".authinfo" user-emacs-directory))
 (setq gnus-select-method '(nnnil nil))
 (setq gnus-secondary-select-methods
-      '( (nnimap "qq"
-                 (nnimap-address "imap.qq.com")
-                 (nnimap-index "nnimap+qq:INDEX")
-                 (nnmail-expiry-target "nnimap+qq:Deleted Messages")
-                 (nnimap-expunge t)
-                 (nnimap-server-port 993)
-                 (nnimap-stream ssl))
-         (nnimap "163"
-                 (nnimap-address "imap.163.com")
-                 (nnimap-index "nnimap+163:INDEX")
-                 (nnmail-expiry-target "nnimap+163:已删除")
-                 (nnimap-expunge t)
-                 (nnimap-server-port 993)
-                 (nnimap-stream ssl))
-         (nnimap "yandex"
-                 (nnimap-address "imap.yandex.com")
-                 (nnimap-index "nnimap+yandex:INDEX")
-                 (nnmail-expiry-target "nnimap+yandex:Trash")
-                 (nnimap-expunge t)
-                 (nnimap-server-port 993)
-                 (nnimap-stream ssl))))
+      '((nnimap
+         "qq"
+         (nnimap-address "imap.qq.com")
+         (nnimap-index "nnimap+qq:INDEX")
+         (nnmail-expiry-target "nnimap+qq:Deleted Messages")
+         (nnimap-expunge t)
+         (nnimap-server-port 993)
+         (nnimap-stream ssl))
+        (nnimap
+         "163"
+         (nnimap-address "imap.163.com")
+         (nnimap-index "nnimap+163:INDEX")
+         (nnmail-expiry-target "nnimap+163:已删除")
+         (nnimap-expunge t)
+         (nnimap-server-port 993)
+         (nnimap-stream ssl))
+        (nnimap
+         "yandex"
+         (nnimap-address "imap.yandex.com")
+         (nnimap-index "nnimap+yandex:INDEX")
+         (nnmail-expiry-target "nnimap+yandex:Trash")
+         (nnimap-expunge t)
+         (nnimap-server-port 993)
+         (nnimap-stream ssl))))
 
-(setq gnus-thread-sort-functions '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date)))
+(setq gnus-thread-sort-functions
+      '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date)))
 
 (with-eval-after-load 'gnus-sum
   ;; Set font family and size for read messages in the summary
