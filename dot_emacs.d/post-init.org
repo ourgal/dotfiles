@@ -1763,6 +1763,15 @@ Vim configuration file support. This mode provides syntax highlighting and editi
  :mode ("\\.vim\\(rc\\)?\\'" . vimrc-mode))
 #+end_src
 
+** Json mode
+
+#+begin_src emacs-lisp
+(use-package
+  json-mode
+  :commands json-mode
+  :mode ("\\.json\\(c\\)\\'" . json-mode))
+#+end_src
+
 ** Jenkinsfile mode
 
 Support for Jenkinsfile files

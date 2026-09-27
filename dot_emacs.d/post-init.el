@@ -1175,6 +1175,11 @@
  :mode ("\\.vim\\(rc\\)?\\'" . vimrc-mode))
 
 (use-package
+  json-mode
+  :commands json-mode
+  :mode ("\\.json\\(c\\)\\'" . json-mode))
+
+(use-package
  jenkinsfile-mode
  :commands jenkinsfile-mode
  :mode ("Jenkinsfile\\'" . jenkinsfile-mode))
