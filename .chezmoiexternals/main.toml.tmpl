@@ -192,3 +192,10 @@
     url = "{{ print $mirror "https://github.com/jamescherti/minimal-emacs.d" }}"
     refreshPeriod = "168h"
 {{ end -}}
+
+{{ if and .my.emacs_solo.enable (lookPath "emacs") }}
+[".local/share/repos/emacs-solo"]
+    type = "git-repo"
+    url = "{{ print $mirror "https://github.com/LionyxML/emacs-solo" }}"
+    refreshPeriod = "168h"
+{{ end -}}

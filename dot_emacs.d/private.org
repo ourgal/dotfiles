@@ -1,0 +1,25 @@
+* Emacs config
+#+PROPERTY: header-args :tangle yes
+
+** Lexical binding
+
+#+begin_src emacs-lisp
+  ;;; private.el --- private config -*- lexical-binding: t; -*-
+  ;;; Commentary:
+  ;;; Code:
+
+#+end_src
+
+** Auto save
+
+#+begin_src emacs-lisp
+  (auto-save-mode 1)
+  (auto-save-visited-mode 1)
+#+end_src
+
+** Provide
+
+#+begin_src emacs-lisp
+  (provide 'private)
+  ;;; private.el ends here
+#+end_src

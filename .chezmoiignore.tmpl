@@ -431,14 +431,48 @@ Videos/*
 !.config/doom/**
 {{ end -}}
 
-{{ if lookPath "emacs" -}}
+{{ if and .my.minimal_emacs.enable (lookPath "emacs") -}}
 {{ if eq .chezmoi.os "windows" -}}
 !.emacs.d/
-!.emacs.d/**
+.emacs.d/*
+!.emacs.d/.authinfo
+!.emacs.d/early-init.el
+!.emacs.d/init.el
+!.emacs.d/post-init.el
+!.emacs.d/pre-eraly-init.el
+!.emacs.d/pre-init.el
 {{ end -}}
 {{ if eq .chezmoi.os "linux" "android" -}}
 !.config/emacs/
-!.config/emacs/**
+.config/emacs/*
+!.config/emacs/.authinfo
+!.config/emacs/early-init.el
+!.config/emacs/init.el
+!.config/emacs/post-init.el
+!.config/emacs/pre-eraly-init.el
+!.config/emacs/pre-init.el
+{{ end -}}
+{{ end -}}
+{{ if and .my.emacs_solo.enable (lookPath "emacs") -}}
+{{ if eq .chezmoi.os "windows" -}}
+!.emacs.d/
+.emacs.d/*
+!.emacs.d/early-init.el
+!.emacs.d/init.el
+!.emacs.d/private.el
+!.emacs.d/private-early-init.el
+!.emacs.d/lisp/
+!.emacs.d/lisp/**
+{{ end -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+!.config/emacs/
+.config/emacs/*
+!.config/emacs/early-init.el
+!.config/emacs/init.el
+!.config/emacs/private.el
+!.config/emacs/private-early-init.el
+!.config/emacs/lisp/
+!.config/emacs/lisp/**
 {{ end -}}
 {{ end -}}
 # ]]]
