@@ -196,7 +196,8 @@
 
  (global-corfu-mode 1) ; Enable Corfu globally
  (corfu-popupinfo-mode) ; Enable info/documentation popup
- (corfu-history-mode)) ; Sort candidates based on history
+ (corfu-history-mode) ; Sort candidates based on history
+ (global-completion-preview-mode 1)) ; Enable globally or via hook in your programming modes
 
 (use-package
  nerd-icons-corfu
