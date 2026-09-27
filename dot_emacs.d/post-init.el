@@ -1099,6 +1099,8 @@
             "gc.auto=256")))))
 (setq magit-format-file-function #'magit-format-file-nerd-icons)
 
+(evil-define-key 'normal 'global (kbd "SPC g g") 'magit-status)
+
 ;; Support for Git files (.gitconfig, .gitignore, .gitattributes...)
 (use-package
  git-modes
@@ -1252,8 +1254,6 @@
     (vc-dir-refresh)))
 
 (add-hook 'window-selection-change-functions #'my/vc-dir-refresh-on-window-change)
-
-(evil-define-key 'normal 'global (kbd "SPC g g") 'project-vc-dir)
 
 (setq user-mail-address "ourgal@qq.com")
 (setq user-full-name "ourgal")

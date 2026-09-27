@@ -1582,6 +1582,8 @@ for any unsupported languages.
             "-c"
             "gc.auto=256")))))
 (setq magit-format-file-function #'magit-format-file-nerd-icons)
+
+(evil-define-key 'normal 'global (kbd "SPC g g") 'magit-status)
 #+end_src
 
 ** Nerd icons
@@ -1914,8 +1916,6 @@ Errors on installation.
     (vc-dir-refresh)))
 
 (add-hook 'window-selection-change-functions #'my/vc-dir-refresh-on-window-change)
-
-(evil-define-key 'normal 'global (kbd "SPC g g") 'project-vc-dir)
 #+end_src
 
 ** Gnus
