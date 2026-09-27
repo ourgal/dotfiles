@@ -661,7 +661,8 @@
  (setq diff-hl-flydiff-delay 0.4) ; Faster
  (setq diff-hl-show-staged-changes nil) ; Realtime feedback
  (setq diff-hl-update-async t) ; Do not block Emacs
- (setq diff-hl-global-modes '(not pdf-view-mode image-mode)))
+ (setq diff-hl-global-modes '(not pdf-view-mode image-mode))
+ (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh))
 
 (use-package
  org
