@@ -2028,3 +2028,17 @@ Errors on installation.
   ;; Define the location of your Org file containing the feeds
   (setq rmh-elfeed-org-files '("~/org/elfeed.org")))
 #+end_src
+
+** Shrface
+
+#+begin_src emacs-lisp :tangle no
+(use-package
+ shrface
+ :ensure t
+ :hook ((nov-mode . shrface-mode))
+ :config
+ (shrface-basic)
+ (shrface-trial)
+ (shrface-default-keybindings)
+ (setq shrface-href-versatile t))
+#+end_src
