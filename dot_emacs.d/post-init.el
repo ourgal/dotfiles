@@ -700,8 +700,15 @@
 
 (use-package
  org-appear
+ :ensure t
  :commands org-appear-mode
  :hook (org-mode . org-appear-mode))
+
+(use-package
+ org-modern
+ :ensure t
+ :hook
+ ((org-mode . org-modern-mode) (org-agenda-finalize . org-modern-agenda)))
 
 (use-package
  org-auto-tangle

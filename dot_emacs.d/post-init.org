@@ -1017,8 +1017,19 @@ Org mode is a major mode designed for organizing notes, planning, task managemen
 #+begin_src emacs-lisp
 (use-package
  org-appear
+ :ensure t
  :commands org-appear-mode
  :hook (org-mode . org-appear-mode))
+#+end_src
+
+*** Org modern
+
+#+begin_src emacs-lisp
+(use-package
+ org-modern
+ :ensure t
+ :hook
+ ((org-mode . org-modern-mode) (org-agenda-finalize . org-modern-agenda)))
 #+end_src
 
 ** Org auto tangle
