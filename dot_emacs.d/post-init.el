@@ -2,56 +2,53 @@
 
 (use-package
  undo-fu
+ :bind (("C-z" . undo-fu-only-undo) ("C-S-z" . undo-fu-only-redo))
  :commands
  (undo-fu-only-undo
-  undo-fu-only-redo undo-fu-only-redo-all undo-fu-disable-checkpoint)
- :init
- (global-unset-key (kbd "C-z"))
- (global-set-key (kbd "C-z") 'undo-fu-only-undo)
- (global-set-key (kbd "C-S-z") 'undo-fu-only-redo))
+  undo-fu-only-redo undo-fu-only-redo-all undo-fu-disable-checkpoint))
 
-(use-package undo-fu-session :init (undo-fu-session-global-mode 1))
+(use-package undo-fu-session :hook (after-init . undo-fu-session-global-mode))
 
-;; Uncomment the following if you are using undo-fu
-(setq evil-undo-system 'undo-fu)
+(setq evil-mode-buffers '())
 
 (use-package
  evil
- :init
+ :custom
  ;; It has to be defined before evil
- (defvar evil-mode-buffers '())
- (setq evil-want-integration t)
- (setq evil-want-keybinding nil)
+ (evil-want-integration t)
+ (evil-want-keybinding nil)
+ (evil-undo-system 'undo-fu)
 
  ;; Make :s in visual mode operate only on the actual visual selection
  ;; (character or block), instead of the full lines covered by the selection
- (setq evil-ex-visual-char-range t)
+ (evil-ex-visual-char-range t)
  ;; Use Vim-style regular expressions in search and substitute commands,
  ;; allowing features like \v (very magic), \zs, and \ze for precise matches
- (setq evil-ex-search-vim-style-regexp t)
+ (evil-ex-search-vim-style-regexp t)
  ;; Enable automatic horizontal split below
- (setq evil-split-window-below t)
+ (evil-split-window-below t)
  ;; Enable automatic vertical split to the right
- (setq evil-vsplit-window-right t)
+ (evil-vsplit-window-right t)
  ;; Disable echoing Evil state to avoid replacing eldoc
- (setq evil-echo-state nil)
+ (evil-echo-state nil)
  ;; Do not move cursor back when exiting insert state
- (setq evil-move-cursor-back nil)
+ (evil-move-cursor-back nil)
  ;; Make `v$` exclude the final newline
- (setq evil-v$-excludes-newline t)
+ (evil-v$-excludes-newline t)
  ;; Enable fine-grained undo behavior
- (setq evil-want-fine-undo t)
+ (evil-want-fine-undo t)
  ;; Disable wrapping of search around buffer
- (setq evil-search-wrap nil)
+ (evil-search-wrap nil)
  ;; Allow C-h to delete in insert state
- (setq evil-want-C-h-delete t)
+ (evil-want-C-h-delete t)
  ;; Enable C-u to delete back to indentation in insert state
- (setq evil-want-C-u-delete t)
+ (evil-want-C-u-delete t)
  ;; Whether Y yanks to the end of the line
- (setq evil-want-Y-yank-to-eol t)
+ (evil-want-Y-yank-to-eol t)
 
  ;; Start `evil-mode'
- (evil-mode 1))
+ :init
+ (evil-mode))
 
  ;; :config
  ;; Occasionally, `evil' fails to respect `evil-search-module' when it is
@@ -63,9 +60,10 @@
 (use-package
  evil-collection
  :after evil
- :init
+ :custom (evil-collection-setup-minibuffer t)
+ :hook
  ;; It has to be defined before evil-collection
- (setq evil-collection-setup-minibuffer t) (evil-collection-init))
+ (after-init . evil-collection-init))
 
 (use-package goto-chg :commands (goto-last-change goto-last-change-reverse))
 
@@ -79,28 +77,19 @@
   (evil-define-key 'normal 'global (kbd "gc") 'my-evil-comment-or-uncomment))
 
 (use-package
- evil-surround
- :after evil
- :init
- (setq evil-surround-pairs-alist
-       '((?\( . ("(" . ")"))
-         (?\[ . ("[" . "]")) (?\{ . ("{" . "}"))
+  evil-surround
+  :after evil
+  :custom
+  (evil-surround-pairs-alist
+   '((?\( . ("(" . ")"))
+     (?\[ . ("[" . "]")) (?\{ . ("{" . "}"))
 
-         (?\) . ("(" . ")")) (?\] . ("[" . "]")) (?\} . ("{" . "}"))
+     (?\) . ("(" . ")")) (?\] . ("[" . "]")) (?\} . ("{" . "}"))
 
-         (?< . ("<" . ">")) (?> . ("<" . ">"))))
- :config (global-evil-surround-mode 1))
+     (?< . ("<" . ">")) (?> . ("<" . ">"))))
+  :hook (after-init . global-evil-surround-mode))
 
-(use-package
- evil-numbers
- :ensure t
- :bind
- (("C-c C-a" . evil-numbers/inc-at-pt)
-  ("C-c C-x" . evil-numbers/dec-at-pt)
-  ("C-c g C-a" . evil-numbers/inc-at-pt-incremental)
-  ("C-c g C-x" . evil-numbers/dec-at-pt-incremental)))
-
-(global-visual-line-mode 1)
+(add-hook 'after-init-hook #'global-visual-line-mode)
 
 (let ((inhibit-redisplay t))
   ;; Disable all active themes
@@ -109,66 +98,68 @@
   (load-theme 'modus-vivendi t))
 
 (use-package
- autorevert
- :ensure nil
- :init
- ;; (setq auto-revert-verbose t)
- (setq auto-revert-interval 3)
- (setq auto-revert-remote-files nil)
- (setq auto-revert-use-notify t)
- (setq auto-revert-avoid-polling nil)
- (global-auto-revert-mode 1))
+  autorevert
+  :ensure nil
+  :custom
+  ;; (auto-revert-verbose t)
+  (auto-revert-interval 3)
+  (auto-revert-remote-files nil)
+  (auto-revert-use-notify t)
+  (auto-revert-avoid-polling nil)
+  :hook
+  (after-init . global-auto-revert-mode))
 
 (use-package
  recentf
  :ensure nil
- :init
- (setq recentf-auto-cleanup
-       (if (daemonp)
-           300
-         'never))
- (setq recentf-exclude
-       (list
-        "\\.tar$"
-        "\\.tbz2$"
-        "\\.tbz$"
-        "\\.tgz$"
-        "\\.bz2$"
-        "\\.bz$"
-        "\\.gz$"
-        "\\.gzip$"
-        "\\.xz$"
-        "\\.zip$"
-        "\\.7z$"
-        "\\.rar$"
-        "COMMIT_EDITMSG\\'"
-        "\\.\\(?:gz\\|gif\\|svg\\|png\\|jpe?g\\|bmp\\|xpm\\)$"
-        "-autoloads\\.el$"
-        "autoload\\.el$"))
- ;; Enable `recentf-mode'
- (recentf-mode 1)
+ :custom
+ (recentf-auto-cleanup
+  (if (daemonp)
+      300
+    'never))
+ (recentf-exclude
+  (list
+   "\\.tar$"
+   "\\.tbz2$"
+   "\\.tbz$"
+   "\\.tgz$"
+   "\\.bz2$"
+   "\\.bz$"
+   "\\.gz$"
+   "\\.gzip$"
+   "\\.xz$"
+   "\\.zip$"
+   "\\.7z$"
+   "\\.rar$"
+   "COMMIT_EDITMSG\\'"
+   "\\.\\(?:gz\\|gif\\|svg\\|png\\|jpe?g\\|bmp\\|xpm\\)$"
+   "-autoloads\\.el$"
+   "autoload\\.el$"))
 
- :config
+ :hook
  ;; A cleanup depth of -90 ensures that `recentf-cleanup' runs before
  ;; `recentf-save-list', allowing stale entries to be removed before the list
  ;; is saved by `recentf-save-list', which is automatically added to
  ;; `kill-emacs-hook' by `recentf-mode'.
- (add-hook 'kill-emacs-hook #'recentf-cleanup -90))
+ (after-init . recentf-mode)
+ :init (add-hook 'kill-emacs-hook #'recentf-cleanup -90))
 
 (use-package
- savehist
- :ensure nil
- :init
- (setq history-length 300)
- (setq savehist-autosave-interval 600)
- (savehist-mode 1))
+  savehist
+  :ensure nil
+  :custom
+  (history-length 300)
+  (savehist-autosave-interval 600)
+  :hook
+  (after-init . savehist-mode))
 
 (use-package
- saveplace
- :ensure nil
- :init
- (setq save-place-limit 400)
- (save-place-mode 1))
+  saveplace
+  :ensure nil
+  :custom
+  (save-place-limit 400)
+  :hook
+  (after-init . save-place-mode))
 
 (setq auto-save-default t)
 
@@ -186,6 +177,11 @@
  (corfu-auto-delay 0.2) ; Delay before popup appears
  (corfu-cycle t) ; Enable cycling through candidates
  (corfu-quit-no-match 'separator) ; Keep popup open when using a separator
+ (text-mode-ispell-word-completion nil)
+ ;; Hide commands in M-x which do not apply to the current mode.
+ (read-extended-command-predicate #'command-completion-default-include-p)
+ ;; Disable Ispell completion function. As an alternative try `cape-dict'.
+ (tab-always-indent 'complete)
  ;; Keybindings specific to the completion popup menu
  :bind
  (:map
@@ -197,16 +193,11 @@
   ("RET" . corfu-insert) ; Insert selected candidate
   ("M-d" . corfu-popupinfo-toggle) ; Toggle documentation popup
   ("M-l" . corfu-popupinfo-location)) ; Jump to source code of candidate
- :init (setq text-mode-ispell-word-completion nil)
- ;; Hide commands in M-x which do not apply to the current mode.
- (setq read-extended-command-predicate #'command-completion-default-include-p)
- ;; Disable Ispell completion function. As an alternative try `cape-dict'.
- (setq tab-always-indent 'complete)
-
- (global-corfu-mode 1) ; Enable Corfu globally
- (corfu-popupinfo-mode) ; Enable info/documentation popup
- (corfu-history-mode) ; Sort candidates based on history
- (global-completion-preview-mode 1)) ; Enable globally or via hook in your programming modes
+ :hook
+ ((after-init . global-corfu-mode) ; Enable Corfu globally
+  (after-init . corfu-popupinfo-mode) ; Enable info/documentation popup
+  (after-init . corfu-history-mode) ; Sort candidates based on history
+  (after-init . global-completion-preview-mode))) ; Enable globally or via hook in your programming modes
 
 (use-package
  nerd-icons-corfu
@@ -226,69 +217,67 @@
  (add-hook 'completion-at-point-functions #'cape-elisp-block))
 
 (use-package
- vertico
- :init
- ;; (setq vertico-scroll-margin 0) ;; Different scroll margin
- ;; (setq vertico-count 20) ;; Show more candidates
- ;; (setq vertico-resize t) ;; Grow and shrink the Vertico minibuffer
- ;; (setq vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
- (vertico-mode 1))
+  vertico
+  :hook
+  ;; (setq vertico-scroll-margin 0) ;; Different scroll margin
+  ;; (setq vertico-count 20) ;; Show more candidates
+  ;; (setq vertico-resize t) ;; Grow and shrink the Vertico minibuffer
+  ;; (setq vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
+  (after-init . vertico-mode))
 
 (use-package
- orderless
- :init
- (setq completion-styles '(orderless basic))
- (setq completion-category-overrides '((file (styles partial-completion))))
- ;; Emacs 31: partial-completion behaves like substring
- (setq completion-pcm-leading-wildcard t))
+  orderless
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles partial-completion))))
+  ;; Emacs 31: partial-completion behaves like substring
+  (completion-pcm-leading-wildcard t))
 
 (use-package
- marginalia
- ;; Bind `marginalia-cycle' locally in the minibuffer.  To make the binding
- ;; available in the *Completions* buffer, add it to the
- ;; `completion-list-mode-map'.
- :bind (:map minibuffer-local-map ("M-A" . marginalia-cycle))
+  marginalia
+  ;; Bind `marginalia-cycle' locally in the minibuffer.  To make the binding
+  ;; available in the *Completions* buffer, add it to the
+  ;; `completion-list-mode-map'.
+  :bind (:map minibuffer-local-map ("M-A" . marginalia-cycle))
 
- ;; The :init section is always executed.
- :init
-
- ;; Marginalia must be activated in the :init section of use-package such that
- ;; the mode gets enabled right away. Note that this forces loading the
- ;; package.
- (marginalia-mode 1))
+  :hook
+  ;; Marginalia must be activated in the :init section of use-package such that
+  ;; the mode gets enabled right away. Note that this forces loading the
+  ;; package.
+  (after-init . marginalia-mode))
 
 (use-package
- embark
- :bind
- (("C-." . embark-act) ;; pick some comfortable binding
-  ("C-;" . embark-dwim) ;; good alternative: M-.
-  ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+  embark
+  :bind
+  (("C-." . embark-act) ;; pick some comfortable binding
+   ("C-;" . embark-dwim) ;; good alternative: M-.
+   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
 
- :init
+  :custom
 
- ;; Optionally replace the key help with a completing-read interface
- (setq prefix-help-command #'embark-prefix-help-command)
+  ;; Optionally replace the key help with a completing-read interface
+  (prefix-help-command #'embark-prefix-help-command)
 
- ;; Show the Embark target at point via Eldoc. You may adjust the
- ;; Eldoc strategy, if you want to see the documentation from
- ;; multiple providers. Beware that using this can be a little
- ;; jarring since the message shown in the minibuffer can be more
- ;; than one line, causing the modeline to move up and down:
+  ;; Show the Embark target at point via Eldoc. You may adjust the
+  ;; Eldoc strategy, if you want to see the documentation from
+  ;; multiple providers. Beware that using this can be a little
+  ;; jarring since the message shown in the minibuffer can be more
+  ;; than one line, causing the modeline to move up and down:
 
- ;; (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
- ;; (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
+  ;; (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
+  ;; (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
 
- ;; Add Embark to the mouse context menu. Also enable `context-menu-mode'.
- ;; (context-menu-mode 1)
- ;; (add-hook 'context-menu-functions #'embark-context-menu 100)
+  ;; Add Embark to the mouse context menu. Also enable `context-menu-mode'.
+  ;; (context-menu-mode 1)
+  ;; (add-hook 'context-menu-functions #'embark-context-menu 100)
 
- :config
- ;; Hide the mode line of the Embark live/completions buffers
- (add-to-list
-  'display-buffer-alist
-  '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-    nil
-    (window-parameters (mode-line-format . none)))))
+  :config
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list
+   'display-buffer-alist
+   '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+     nil
+     (window-parameters (mode-line-format . none)))))
 
 ;; overlap vim default C-. keybinding
 (with-eval-after-load 'evil-maps
@@ -465,34 +454,34 @@
  :bind (:map markdown-mode-map ("C-c C-e" . markdown-do)))
 
 (use-package
- markdown-toc
- :commands
- (markdown-toc-generate-toc
-  markdown-toc-generate-or-refresh-toc
-  markdown-toc-delete-toc
-  markdown-toc--toc-already-present-p)
- :init (setq markdown-toc-header-toc-title "**Table of Contents**"))
+  markdown-toc
+  :commands
+  (markdown-toc-generate-toc
+   markdown-toc-generate-or-refresh-toc
+   markdown-toc-delete-toc
+   markdown-toc--toc-already-present-p)
+  :custom (markdown-toc-header-toc-title "**Table of Contents**"))
 
 (use-package
- kirigami
- :commands
- (kirigami-open-fold
-  kirigami-open-fold-rec
-  kirigami-close-fold
-  kirigami-toggle-fold
-  kirigami-open-folds
-  kirigami-close-folds-except-current
-  kirigami-close-folds)
+  kirigami
+  :commands
+  (kirigami-open-fold
+   kirigami-open-fold-rec
+   kirigami-close-fold
+   kirigami-toggle-fold
+   kirigami-open-folds
+   kirigami-close-folds-except-current
+   kirigami-close-folds)
 
- :bind
- (("C-c z o" . kirigami-open-fold) ; Open fold at point
-  ("C-c z O" . kirigami-open-fold-rec) ; Open fold recursively
-  ("C-c z r" . kirigami-open-folds) ; Open all folds
-  ("C-c z c" . kirigami-close-fold) ; Close fold at point
-  ("C-c z m" . kirigami-close-folds) ; Close all folds
-  ("C-c z a" . kirigami-toggle-fold)) ; Toggle fold at point
+  :bind
+  (("C-c z o" . kirigami-open-fold) ; Open fold at point
+   ("C-c z O" . kirigami-open-fold-rec) ; Open fold recursively
+   ("C-c z r" . kirigami-open-folds) ; Open all folds
+   ("C-c z c" . kirigami-close-fold) ; Close fold at point
+   ("C-c z m" . kirigami-close-folds) ; Close all folds
+   ("C-c z a" . kirigami-toggle-fold)) ; Toggle fold at point
 
- :init (kirigami-global-mode 1))
+  :hook (after-init . kirigami-global-mode))
 
 ;; Uncomment the following if you are an `evil-mode' user:
 (with-eval-after-load 'evil
@@ -504,27 +493,26 @@
   (define-key evil-normal-state-map "zm" 'kirigami-close-folds))
 
 (use-package
- outline
- :ensure nil
- :commands outline-minor-mode
- :hook
- ( ;; Use " ▼" instead of the default ellipsis "..." for folded text to make
-  ;; folds more visually distinctive and readable.
-  (outline-minor-mode
-   .
-   (lambda ()
-     (let* ((display-table (or buffer-display-table (make-display-table)))
-            (face-offset (* (face-id 'shadow) (ash 1 22)))
-            (value (vconcat (mapcar (lambda (c) (+ face-offset c)) " ▼"))))
-       (set-display-table-slot display-table 'selective-display value)
-       (setq buffer-display-table display-table))))))
-
-;; Enable the mode
-(add-hook 'emacs-lisp-mode-hook #'outline-minor-mode)
-(add-hook 'lisp-mode-hook #'outline-minor-mode)
-(add-hook 'conf-mode-hook #'outline-minor-mode)
-(add-hook 'markdown-mode-hook #'outline-minor-mode)
-(add-hook 'diff-mode-hook #'outline-minor-mode)
+  outline
+  :ensure nil
+  :commands outline-minor-mode
+  :hook
+  ( ;; Use " ▼" instead of the default ellipsis "..." for folded text to make
+   ;; folds more visually distinctive and readable.
+   (outline-minor-mode
+    .
+    (lambda ()
+      (let* ((display-table (or buffer-display-table (make-display-table)))
+             (face-offset (* (face-id 'shadow) (ash 1 22)))
+             (value (vconcat (mapcar (lambda (c) (+ face-offset c)) " ▼"))))
+        (set-display-table-slot display-table 'selective-display value)
+        (setq buffer-display-table display-table)))))
+  (emacs-lisp-mode . outline-minor-mode)
+  (lisp-mode . outline-minor-mode)
+  (conf-mode . outline-minor-mode)
+  (markdown-mode . outline-minor-mode)
+  (diff-mode . outline-minor-mode)
+  (org-mode . outline-minor-mode))
 
 (add-hook 'c-mode-hook #'hs-minor-mode)
 (add-hook 'c++-mode-hook #'hs-minor-mode)
@@ -535,18 +523,18 @@
 (use-package
  outline-indent
  :commands outline-indent-minor-mode
- :init (setq outline-indent-ellipsis " ▼"))
+ :custom (outline-indent-ellipsis " ▼")
+ :hook
+ ( ;; Python
+  (python-mode . outline-indent-minor-mode)
+  (python-ts-mode . outline-indent-minor-mode)
 
-;; Python
-(add-hook 'python-mode-hook #'outline-indent-minor-mode)
-(add-hook 'python-ts-mode-hook #'outline-indent-minor-mode)
+  ;; Yaml
+  (yaml-mode . outline-indent-minor-mode)
+  (yaml-ts-mode . outline-indent-minor-mode)
 
-;; Yaml
-(add-hook 'yaml-mode-hook #'outline-indent-minor-mode)
-(add-hook 'yaml-ts-mode-hook #'outline-indent-minor-mode)
-
-;; Haskell
-(add-hook 'haskell-mode-hook #'outline-indent-minor-mode)
+  ;; Haskell
+  (haskell-mode . outline-indent-minor-mode)))
 
 (use-package
  treesit-fold
@@ -561,23 +549,21 @@
   treesit-fold-open-recursively
   treesit-fold-line-comment-mode)
 
- :init
- (setq treesit-fold-line-count-show t)
- (setq treesit-fold-line-count-format " ▼")
+ :custom (treesit-fold-line-count-show t) (treesit-fold-line-count-format " ▼")
+
+ :hook
+ ((c-ts-mode . treesit-fold-mode)
+  (c++-ts-mode . treesit-fold-mode)
+  (php-ts-mode . treesit-fold-mode)
+  (css-ts-mode . treesit-fold-mode)
+  (html-ts-mode . treesit-fold-mode)
+  (bash-ts-mode . treesit-fold-mode))
 
  :config
  (set-face-attribute 'treesit-fold-replacement-face nil
                      :foreground "#808080"
                      :box nil
                      :weight 'bold))
-
-;; A few examples
-(add-hook 'c-ts-mode-hook #'treesit-fold-mode)
-(add-hook 'c++-ts-mode-hook #'treesit-fold-mode)
-(add-hook 'php-ts-mode-hook #'treesit-fold-mode)
-(add-hook 'css-ts-mode-hook #'treesit-fold-mode)
-(add-hook 'html-ts-mode-hook #'treesit-fold-mode)
-(add-hook 'bash-ts-mode-hook #'treesit-fold-mode)
 
 (use-package
  apheleia
@@ -624,55 +610,54 @@
 (use-package
  yasnippet
  :after yasnippet-snippets
- :init
- (setq yas-also-auto-indent-first-line t) ; Indent first line of snippet
- (setq yas-also-indent-empty-lines t)
- (setq yas-snippet-revival nil) ; Setting this to t causes issues with undo
- (setq yas-wrap-around-region nil) ; Do not wrap region when expanding snippets
- (setq yas-indent-line 'fixed) ; Do not auto-indent snippet content
- ;; (setq yas-triggers-in-field nil)  ; Disable nested snippet expansion
- ;; (setq yas-prompt-functions '(yas-no-prompt))  ; No prompt for snippet choices
+ :custom
+ (yas-also-auto-indent-first-line t) ; Indent first line of snippet
+ (yas-also-indent-empty-lines t)
+ (yas-snippet-revival nil) ; Setting this to t causes issues with undo
+ (yas-wrap-around-region nil) ; Do not wrap region when expanding snippets
+ (yas-indent-line 'fixed) ; Do not auto-indent snippet content
+ ;; (yas-triggers-in-field nil)  ; Disable nested snippet expansion
+ ;; (yas-prompt-functions '(yas-no-prompt))  ; No prompt for snippet choices
 
  ;; Suppress verbose messages
- (setq yas-verbosity 0)
-
- (yas-global-mode 1))
+ (yas-verbosity 0)
+ :hook (after-init . yas-global-mode))
 
 (use-package
- stripspace
- :commands stripspace-local-mode
+  stripspace
+  :commands stripspace-local-mode
 
- ;; Enable for prog-mode-hook, text-mode-hook, conf-mode-hook
- :hook
- ((prog-mode . stripspace-local-mode)
-  (text-mode . stripspace-local-mode)
-  (conf-mode . stripspace-local-mode))
+  ;; Enable for prog-mode-hook, text-mode-hook, conf-mode-hook
+  :hook
+  ((prog-mode . stripspace-local-mode)
+   (text-mode . stripspace-local-mode)
+   (conf-mode . stripspace-local-mode))
 
- :init
- ;; The `stripspace-only-if-initially-clean' option:
- ;; - nil to always delete trailing whitespace.
- ;; - Non-nil to only delete whitespace when the buffer is clean initially.
- ;; (The initial cleanliness check is performed when `stripspace-local-mode'
- ;; is enabled.)
- (setq stripspace-only-if-initially-clean nil)
+  :custom
+  ;; The `stripspace-only-if-initially-clean' option:
+  ;; - nil to always delete trailing whitespace.
+  ;; - Non-nil to only delete whitespace when the buffer is clean initially.
+  ;; (The initial cleanliness check is performed when `stripspace-local-mode'
+  ;; is enabled.)
+  (stripspace-only-if-initially-clean nil)
 
- ;; Enabling `stripspace-restore-column' preserves the cursor's column position
- ;; even after stripping spaces. This is useful in scenarios where you add
- ;; extra spaces and then save the file. Although the spaces are removed in the
- ;; saved file, the cursor remains in the same position, ensuring a consistent
- ;; editing experience without affecting cursor placement.
- (setq stripspace-restore-column t))
+  ;; Enabling `stripspace-restore-column' preserves the cursor's column position
+  ;; even after stripping spaces. This is useful in scenarios where you add
+  ;; extra spaces and then save the file. Although the spaces are removed in the
+  ;; saved file, the cursor remains in the same position, ensuring a consistent
+  ;; editing experience without affecting cursor placement.
+  (stripspace-restore-column t))
 
 (use-package
  diff-hl
  :commands (diff-hl-mode global-diff-hl-mode)
  :hook ((prog-mode . diff-hl-mode) (org-mode . diff-hl-mode))
- :init
- (setq diff-hl-flydiff-delay 0.4) ; Faster
- (setq diff-hl-show-staged-changes nil) ; Realtime feedback
- (setq diff-hl-update-async t) ; Do not block Emacs
- (setq diff-hl-global-modes '(not pdf-view-mode image-mode))
- (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh))
+ :custom
+ (diff-hl-flydiff-delay 0.4) ; Faster
+ (diff-hl-show-staged-changes nil) ; Realtime feedback
+ (diff-hl-update-async t) ; Do not block Emacs
+ (diff-hl-global-modes '(not pdf-view-mode image-mode))
+ :hook (magit-post-refresh . diff-hl-magit-post-refresh))
 
 (use-package
  org
@@ -687,16 +672,16 @@
                   (if (char-equal c ?<)
                       t
                     (electric-pair-default-inhibit c))))))
- :init
- (setq org-hide-leading-stars t)
- (setq org-startup-indented t)
- (setq org-adapt-indentation nil)
- (setq org-edit-src-content-indentation 0)
- ;; (setq org-fontify-done-headline t)
- ;; (setq org-fontify-todo-headline t)
- ;; (setq org-fontify-whole-heading-line t)
- ;; (setq org-fontify-quote-and-verse-blocks t)
- (setq org-startup-truncated t))
+ :custom
+ (org-hide-leading-stars t)
+ (org-startup-indented t)
+ (org-adapt-indentation nil)
+ (org-edit-src-content-indentation 0)
+ ;; (org-fontify-done-headline t)
+ ;; (org-fontify-todo-headline t)
+ ;; (org-fontify-whole-heading-line t)
+ ;; (org-fontify-quote-and-verse-blocks t)
+ (org-startup-truncated t))
 
 (use-package
  org-appear
@@ -715,9 +700,9 @@
  :ensure t
  :defer t
  :hook (org-mode . org-auto-tangle-mode)
- :config
+ :custom
  ;; Optional: Set to t if you want ALL org files to auto-tangle by default
- (setq org-auto-tangle-default t))
+ (org-auto-tangle-default t))
 
 (use-package
  eglot
@@ -747,19 +732,19 @@
 
 (use-package
  buffer-terminator
- :init
+ :custom
  ;; Enable/Disable verbose mode to log buffer cleanup events
- (setq buffer-terminator-verbose nil)
+ (buffer-terminator-verbose nil)
 
  ;; Set the inactivity timeout (in seconds) after which buffers are considered
  ;; inactive (default is 30 minutes):
- (setq buffer-terminator-inactivity-timeout (* 30 60)) ; 30 minutes
+ (buffer-terminator-inactivity-timeout (* 30 60)) ; 30 minutes
 
  ;; Define how frequently the cleanup process should run (default is every 10
  ;; minutes):
- (setq buffer-terminator-interval (* 10 60)) ; 10 minutes
+ (buffer-terminator-interval (* 10 60)) ; 10 minutes
 
- (buffer-terminator-mode 1))
+ :hook (after-init . buffer-terminator-mode))
 
 (use-package
  treemacs
@@ -877,39 +862,39 @@
 ;; (treemacs-start-on-boot)
 
 (use-package
- helpful
- :commands
- (helpful-callable
-  helpful-variable
-  helpful-key
-  helpful-command
-  helpful-at-point
-  helpful-function)
- :bind
- ([remap describe-command] . helpful-command)
- ([remap describe-function] . helpful-callable)
- ([remap describe-key] . helpful-key)
- ([remap describe-symbol] . helpful-symbol)
- ([remap describe-variable] . helpful-variable)
- :init (setq helpful-max-buffers 7))
+  helpful
+  :commands
+  (helpful-callable
+   helpful-variable
+   helpful-key
+   helpful-command
+   helpful-at-point
+   helpful-function)
+  :bind
+  ([remap describe-command] . helpful-command)
+  ([remap describe-function] . helpful-callable)
+  ([remap describe-key] . helpful-key)
+  ([remap describe-symbol] . helpful-symbol)
+  ([remap describe-variable] . helpful-variable)
+  :custom (helpful-max-buffers 7))
 
 (use-package
- avy
- :commands (avy-goto-char avy-goto-char-2 avy-next)
- :init (global-set-key (kbd "C-'") 'avy-goto-char-2))
+  avy
+  :commands (avy-goto-char avy-goto-char-2 avy-next)
+  :bind ("C-'" . avy-goto-char-2))
 
 (use-package
- bufferfile
- :commands (bufferfile-copy bufferfile-rename bufferfile-delete)
- :init
- ;; If non-nil, display messages during file renaming operations
- (setq bufferfile-verbose nil)
+  bufferfile
+  :commands (bufferfile-copy bufferfile-rename bufferfile-delete)
+  :custom
+  ;; If non-nil, display messages during file renaming operations
+  (bufferfile-verbose nil)
 
- ;; If non-nil, enable using version control (VC) when available
- (setq bufferfile-use-vc nil)
+  ;; If non-nil, enable using version control (VC) when available
+  (bufferfile-use-vc nil)
 
- ;; Specifies the action taken after deleting a file and killing its buffer.
- (setq bufferfile-delete-switch-to 'parent-directory))
+  ;; Specifies the action taken after deleting a file and killing its buffer.
+  (bufferfile-delete-switch-to 'parent-directory))
 
 ;; Enables automatic indentation of code while typing
 (use-package
@@ -923,7 +908,7 @@
  :commands highlight-defined-mode
  :hook (emacs-lisp-mode . highlight-defined-mode))
 
-(editorconfig-mode 1)
+(add-hook 'after-init-hook #'editorconfig-mode)
 
 ;; Prevent parenthesis imbalance
 (use-package
@@ -956,9 +941,9 @@
  ;; Defer starting the server until after Emacs has finished initializing
  (add-hook 'emacs-startup-hook #'my-server-start))
 
-(use-package elec-pair :ensure nil :init (electric-pair-mode 1))
+(use-package elec-pair :ensure nil :hook (after-init . electric-pair-mode))
 
-(fringe-mode (frame-char-width))
+(add-hook 'after-init-hook #'fringe-mode (frame-char-width))
 
 (unless (and (eq window-system 'mac)
              (bound-and-true-p mac-carbon-version-string))
@@ -971,32 +956,33 @@
   (setq pixel-scroll-precision-use-momentum nil) ; Precise/smoother scrolling
   (pixel-scroll-precision-mode 1))
 
-(window-divider-mode 1)
+(add-hook 'after-init-hook #'window-divider-mode)
 
 (setq enable-local-variables :safe)
 
 (use-package
- buffer-guardian
- :init
- ;; When non-nil, include remote files in the auto-save process
- (setq buffer-guardian-inhibit-saving-remote-files t)
+  buffer-guardian
+  :custom
+  ;; When non-nil, include remote files in the auto-save process
+  (buffer-guardian-inhibit-saving-remote-files t)
 
- ;; When non-nil, buffers visiting nonexistent files are not saved
- (setq buffer-guardian-inhibit-saving-nonexistent-files nil)
+  ;; When non-nil, buffers visiting nonexistent files are not saved
+  (buffer-guardian-inhibit-saving-nonexistent-files nil)
 
- ;; Save the buffer even if the window change results in the same buffer
- (setq buffer-guardian-save-on-same-buffer-window-change t)
+  ;; Save the buffer even if the window change results in the same buffer
+  (buffer-guardian-save-on-same-buffer-window-change t)
 
- ;; Non-nil to enable verbose mode to log when a buffer is automatically saved
- (setq buffer-guardian-verbose nil)
+  ;; Non-nil to enable verbose mode to log when a buffer is automatically saved
+  (buffer-guardian-verbose nil)
 
- ;; Save all buffers after N seconds of user idle time. (Disabled by default)
- ;; (setq buffer-guardian-save-all-buffers-idle 30)
+  ;; Save all buffers after N seconds of user idle time. (Disabled by default)
+  ;; (buffer-guardian-save-all-buffers-idle 30)
 
- ;; Save all buffers every N seconds. (Disabled by default)
- ;; (setq buffer-guardian-save-all-buffers-interval (* 60 30))
+  ;; Save all buffers every N seconds. (Disabled by default)
+  ;; (buffer-guardian-save-all-buffers-interval (* 60 30))
 
- (buffer-guardian-mode 1))
+  :hook
+  (after-init . buffer-guardian-mode))
 
 (use-package
  evil-matchit
@@ -1027,9 +1013,9 @@
    (evilmi-load-plugin-rules '(yaml-ts-mode) '(simple yaml))))
 
 (use-package
- tmpl-mode
- :vc (:url "https://v6.gh-proxy.org/https://github.com/Lindydancer/tmpl-mode")
- :init (tmpl-global-mode))
+  tmpl-mode
+  :vc (:url "https://v6.gh-proxy.org/https://github.com/Lindydancer/tmpl-mode")
+  :hook (after-init . tmpl-global-mode))
 
 ;; Constrain vertical cursor movement to lines within the buffer
 (setq dired-movement-style 'bounded-files)
@@ -1069,7 +1055,7 @@
 (use-package nerd-icons-dired :hook (dired-mode . nerd-icons-dired-mode))
 
 ;; Enable the built-in which-key mode
-(which-key-mode 1)
+(add-hook 'after-init-hook #'which-key-mode)
 
 ;; Customize the pop-up behavior and layout
 (setq which-key-idle-delay 0.3) ;; Pop up after 0.3 seconds of hesitation
@@ -1154,13 +1140,13 @@
 (use-package jinja2-mode :commands jinja2-mode :mode ("\\.j2\\'" . jinja2-mode))
 
 (use-package
- csv-mode
- :commands (csv-mode csv-align-mode csv-guess-set-separator)
- :mode ("\\.csv\\'" . csv-mode)
- :hook ((csv-mode . csv-align-mode) (csv-mode . csv-guess-set-separator))
- :init
- (setq csv-align-max-width 100)
- (setq csv-separators '("," ";" " " "|" "\t")))
+  csv-mode
+  :commands (csv-mode csv-align-mode csv-guess-set-separator)
+  :mode ("\\.csv\\'" . csv-mode)
+  :hook ((csv-mode . csv-align-mode) (csv-mode . csv-guess-set-separator))
+  :custom
+  (csv-align-max-width 100)
+  (csv-separators '("," ";" " " "|" "\t")))
 
 (use-package go-mode :commands go-mode :mode ("\\.go\\'" . go-mode))
 
@@ -1168,7 +1154,7 @@
  rust-mode
  :commands rust-mode
  :mode ("\\.rs\\'" . rust-mode)
- :init (setq rust-indent-offset 2))
+ :custom (rust-indent-offset 2))
 
 (use-package
  crontab-mode
@@ -1216,24 +1202,23 @@
  )
 
 (use-package
- elisp-autofmt
- :ensure t
- :commands (elisp-autofmt-mode elisp-autofmt-buffer)
- :hook (emacs-lisp-mode . elisp-autofmt-mode)
- :init
- ;; By default, the minor mode only formats on save if an empty `.elisp-autofmt`
- ;; file exists in the project root. Change to 'always to format all elisp files.
- (setq elisp-autofmt-on-save-p 'always)
+  elisp-autofmt
+  :ensure t
+  :commands (elisp-autofmt-mode elisp-autofmt-buffer)
+  :hook (emacs-lisp-mode . elisp-autofmt-mode)
+  :custom
+  ;; By default, the minor mode only formats on save if an empty `.elisp-autofmt`
+  ;; file exists in the project root. Change to 'always to format all elisp files.
+  (elisp-autofmt-on-save-p 'always)
 
- :config
- ;; Style customization ('native uses standard Emacs indentation rules)
- (setq elisp-autofmt-style 'native)
+  ;; Style customization ('native uses standard Emacs indentation rules)
+  (elisp-autofmt-style 'native)
 
- ;; Keep a maximum of 2 consecutive empty lines
- (setq elisp-autofmt-empty-line-max 2)
+  ;; Keep a maximum of 2 consecutive empty lines
+  (elisp-autofmt-empty-line-max 2)
 
- ;; Format single-quoted S-expressions (set to nil to only keep indentation)
- (setq elisp-autofmt-format-quoted t))
+  ;; Format single-quoted S-expressions (set to nil to only keep indentation)
+  (elisp-autofmt-format-quoted t))
 
 (use-package
  rainbow-delimiters
@@ -1244,20 +1229,20 @@
  nov
  :ensure t
  :mode ("\\.epub\\'" . nov-mode)
- :config
+ :custom
  ;; Adjust text width for comfortable reading
- (setq nov-text-width 80)
+ (nov-text-width 80)
 
- ;; Use a clean, variable-pitch font for the book text
- (defun my-nov-font-setup ()
-   (face-remap-add-relative 'default :family "Maple Mono NF CN" :height 120))
-
- (add-hook 'nov-mode-hook 'my-nov-font-setup))
+ :hook
+ (nov-mode
+  .
+  (lambda ()
+    (face-remap-add-relative 'default :family "Maple Mono NF CN" :height 120))))
 
 (use-package
  doom-modeline
  :ensure t
- :init (doom-modeline-mode 1))
+ :hook (after-init . doom-modeline-mode))
 
 (use-package transmission :defer t :custom (transmission-host "192.168.0.108"))
 
@@ -1334,17 +1319,15 @@
  :hook
  ((after-init . global-flycheck-mode)
   ;; Show diagnostics inline, next to the code (Error Lens style)
-  (after-init . global-flycheck-annotate-mode))
- :config
- ;; Report Eglot's LSP diagnostics through Flycheck
- (global-flycheck-eglot-mode 1))
+  (after-init . global-flycheck-annotate-mode)
+  (after-init . global-flycheck-eglot-mode)))
 
 (use-package elfeed
   :ensure t
   :bind ("C-x E" . elfeed)
-  :config
-  (setq elfeed-db-directory "~/.emacs.d/elfeeddb/")
-  (setq elfeed-search-filter "@2-weeks-ago +unread")) ; Default search filter
+  :custom
+  (elfeed-db-directory "~/.emacs.d/elfeeddb/")
+  (elfeed-search-filter "@2-weeks-ago +unread")) ; Default search filter
 
 (use-package elfeed-org
   :ensure t
@@ -1352,4 +1335,5 @@
   :config
   (elfeed-org)
   ;; Define the location of your Org file containing the feeds
-  (setq rmh-elfeed-org-files '("~/org/elfeed.org")))
+  :custom
+  (rmh-elfeed-org-files '("~/org/elfeed.org")))
