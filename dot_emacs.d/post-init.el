@@ -91,6 +91,15 @@
          (?< . ("<" . ">")) (?> . ("<" . ">"))))
  :config (global-evil-surround-mode 1))
 
+(use-package
+ evil-numbers
+ :ensure t
+ :bind
+ (("C-c C-a" . evil-numbers/inc-at-pt)
+  ("C-c C-x" . evil-numbers/dec-at-pt)
+  ("C-c g C-a" . evil-numbers/inc-at-pt-incremental)
+  ("C-c g C-x" . evil-numbers/dec-at-pt-incremental)))
+
 (global-visual-line-mode 1)
 
 (let ((inhibit-redisplay t))
@@ -1012,7 +1021,7 @@
 
 (use-package
  tmpl-mode
- :vc (:url "https://github.com/Lindydancer/tmpl-mode")
+ :vc (:url "https://v6.gh-proxy.org/https://github.com/Lindydancer/tmpl-mode")
  :init (tmpl-global-mode))
 
 ;; Constrain vertical cursor movement to lines within the buffer

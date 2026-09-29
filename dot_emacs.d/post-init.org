@@ -147,6 +147,20 @@ using S" or gS".
  :config (global-evil-surround-mode 1))
 #+END_SRC
 
+*** Numbers
+
+#+begin_src emacs-lisp
+(use-package
+ evil-numbers
+ :ensure t
+ :bind
+ (("C-c C-a" . evil-numbers/inc-at-pt)
+  ("C-c C-x" . evil-numbers/dec-at-pt)
+  ("C-c g C-a" . evil-numbers/inc-at-pt-incremental)
+  ("C-c g C-x" . evil-numbers/dec-at-pt-incremental)))
+#+end_src
+
+
 ** Vim-bar
 
 Give Emacs tab-bar a style similar to Vim's
@@ -1482,7 +1496,7 @@ for any unsupported languages.
 #+begin_src emacs-lisp
 (use-package
  tmpl-mode
- :vc (:url "https://github.com/Lindydancer/tmpl-mode")
+ :vc (:url "https://v6.gh-proxy.org/https://github.com/Lindydancer/tmpl-mode")
  :init (tmpl-global-mode))
 #+end_src
 
