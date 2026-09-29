@@ -56,8 +56,6 @@
 ;; (setq evil-search-module 'evil-search)
 ;; (evil-select-search-module 'evil-search-module 'evil-search))
 
-(evil-define-key 'normal 'global (kbd "SPC p p") 'project-switch-project)
-
 (use-package
  evil-collection
  :after evil
@@ -1072,8 +1070,6 @@
 
 (setq which-key-enable-extended-define-key t)
 
-(evil-define-key 'normal 'global (kbd "SPC SPC") '("Find file" . project-find-file))
-
 (use-package
  magit
  :ensure t
@@ -1110,8 +1106,6 @@
             "-c"
             "gc.auto=256")))))
 (setq magit-format-file-function #'magit-format-file-nerd-icons)
-
-(evil-define-key 'normal 'global (kbd "SPC g g") 'magit-status)
 
 ;; Support for Git files (.gitconfig, .gitignore, .gitattributes...)
 (use-package
@@ -1253,6 +1247,104 @@
  doom-modeline
  :ensure t
  :hook (after-init . doom-modeline-mode))
+
+;; Doom-style leader key (SPC) with Evil
+;; (global-set-key (kbd "SPC") nil) ; Clear SPC binding first
+
+;; Define SPC as a prefix key
+(define-key evil-normal-state-map (kbd "SPC") (make-sparse-keymap "SPC Leader"))
+
+;; Files
+(define-key
+ evil-normal-state-map (kbd "SPC f") (make-sparse-keymap "SPC f Files"))
+(define-key evil-normal-state-map (kbd "SPC f f") #'find-file)
+(define-key evil-normal-state-map (kbd "SPC f s") #'save-buffer)
+(define-key evil-normal-state-map (kbd "SPC f d") #'dired)
+(define-key evil-normal-state-map (kbd "SPC f r") #'recentf)
+
+(defun kill-other-buffers ()
+  "Kill all buffers except the current one."
+  (interactive)
+  (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
+
+;; Buffers
+(define-key
+ evil-normal-state-map (kbd "SPC b") (make-sparse-keymap "SPC b Buffers"))
+(define-key evil-normal-state-map (kbd "SPC b b") #'switch-to-buffer)
+(define-key evil-normal-state-map (kbd "SPC b k") #'kill-this-buffer)
+(define-key evil-normal-state-map (kbd "SPC b o") #'kill-other-buffers)
+
+;; Windows
+(define-key
+ evil-normal-state-map (kbd "SPC w") (make-sparse-keymap "SPC c Windows"))
+(define-key evil-normal-state-map (kbd "SPC w l") #'windmove-right)
+(define-key evil-normal-state-map (kbd "SPC w h") #'windmove-left)
+(define-key evil-normal-state-map (kbd "SPC w j") #'windmove-down)
+(define-key evil-normal-state-map (kbd "SPC w k") #'windmove-up)
+(define-key evil-normal-state-map (kbd "SPC w d") #'delete-window)
+(define-key evil-normal-state-map (kbd "SPC w w") #'other-window)
+(define-key evil-normal-state-map (kbd "SPC w s") #'split-window-below)
+(define-key evil-normal-state-map (kbd "SPC w v") #'split-window-right)
+(define-key evil-normal-state-map (kbd "SPC w =") #'balance-windows)
+
+;; Search
+(define-key
+ evil-normal-state-map (kbd "SPC s") (make-sparse-keymap "SPC s Search"))
+(define-key evil-normal-state-map (kbd "SPC s f") #'isearch-forward)
+(define-key evil-normal-state-map (kbd "SPC s b") #'ibuffer)
+
+;; Git / Magit
+(define-key
+ evil-normal-state-map (kbd "SPC g") (make-sparse-keymap "SPC g Git"))
+(define-key evil-normal-state-map (kbd "SPC g g") #'magit-status)
+(define-key evil-normal-state-map (kbd "SPC g d") #'magit-dispatch)
+(define-key evil-normal-state-map (kbd "SPC g f") #'magit-file-dispatch)
+(define-key evil-normal-state-map (kbd "SPC g l") #'magit-log)
+(define-key evil-normal-state-map (kbd "SPC g b") #'magit-blame)
+(define-key evil-normal-state-map (kbd "SPC g c") #'magit-commit)
+(define-key evil-normal-state-map (kbd "SPC g p") #'magit-push)
+(define-key evil-normal-state-map (kbd "SPC g P") #'magit-pull)
+(define-key evil-normal-state-map (kbd "SPC g D") #'magit-diff)
+(define-key evil-normal-state-map (kbd "SPC g w") #'magit-worktree)
+
+;; Project
+(define-key
+ evil-normal-state-map (kbd "SPC p") (make-sparse-keymap "SPC p Project"))
+(define-key evil-normal-state-map (kbd "SPC p p") #'project-switch-project)
+(define-key evil-normal-state-map (kbd "SPC p f") #'project-find-file)
+(define-key evil-normal-state-map (kbd "SPC p g") #'project-or-external-find-regexp)
+(define-key evil-normal-state-map (kbd "SPC p d") #'project-dired)
+(define-key evil-normal-state-map (kbd "SPC p s") #'project-search)
+(define-key evil-normal-state-map (kbd "SPC p v") #'project-vc-dir)
+(define-key evil-normal-state-map (kbd "SPC p k") #'project-kill-buffers)
+(define-key evil-normal-state-map (kbd "SPC p /") #'project-query-replace-regexp)
+
+;; Help
+(define-key
+ evil-normal-state-map (kbd "SPC h") (make-sparse-keymap "SPC h Help"))
+(define-key evil-normal-state-map (kbd "SPC h c") #'describe-command)
+(define-key evil-normal-state-map (kbd "SPC h f") #'describe-function)
+(define-key evil-normal-state-map (kbd "SPC h v") #'describe-variable)
+(define-key evil-normal-state-map (kbd "SPC h k") #'describe-key)
+(define-key evil-normal-state-map (kbd "SPC h p") #'describe-package)
+
+;; Quit
+(define-key
+ evil-normal-state-map (kbd "SPC q") (make-sparse-keymap "SPC q Quit"))
+(define-key evil-normal-state-map (kbd "SPC q q") #'kill-emacs)
+(define-key evil-normal-state-map (kbd "SPC q r") #'restart-emacs)
+
+;; Toggles
+(define-key
+ evil-normal-state-map (kbd "SPC t t") #'global-display-line-numbers-mode)
+(define-key evil-normal-state-map (kbd "SPC t m") #'tool-bar-mode)
+(define-key evil-normal-state-map (kbd "SPC t b") #'menu-bar-mode)
+(define-key evil-normal-state-map (kbd "SPC t f") #'fringe-mode)
+(define-key evil-normal-state-map (kbd "SPC t s") #'scroll-bar-mode)
+(define-key evil-normal-state-map (kbd "SPC t w") #'whitespace-mode)
+
+;; Use SPC SPC for find-file (Doom style)
+(define-key evil-normal-state-map (kbd "SPC SPC") #'project-find-file)
 
 (use-package transmission :defer t :custom (transmission-host "192.168.0.108"))
 
