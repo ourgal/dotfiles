@@ -47,15 +47,16 @@
  (evil-want-Y-yank-to-eol t)
 
  ;; Start `evil-mode'
- :init
- (evil-mode))
+ :init (evil-mode))
 
- ;; :config
- ;; Occasionally, `evil' fails to respect `evil-search-module' when it is
- ;; defined inside the :custom block. This fix ensures the search module
- ;; is correctly set to `evil-search'.
- ;; (setq evil-search-module 'evil-search)
- ;; (evil-select-search-module 'evil-search-module 'evil-search))
+;; :config
+;; Occasionally, `evil' fails to respect `evil-search-module' when it is
+;; defined inside the :custom block. This fix ensures the search module
+;; is correctly set to `evil-search'.
+;; (setq evil-search-module 'evil-search)
+;; (evil-select-search-module 'evil-search-module 'evil-search))
+
+(evil-define-key 'normal 'global (kbd "SPC p p") 'project-switch-project)
 
 (use-package
  evil-collection
@@ -88,6 +89,15 @@
 
      (?< . ("<" . ">")) (?> . ("<" . ">"))))
   :hook (after-init . global-evil-surround-mode))
+
+(use-package
+ evil-numbers
+ :ensure t
+ :bind
+ (("C-c C-a" . evil-numbers/inc-at-pt)
+  ("C-c C-x" . evil-numbers/dec-at-pt)
+  ("C-c g C-a" . evil-numbers/inc-at-pt-incremental)
+  ("C-c g C-x" . evil-numbers/dec-at-pt-incremental)))
 
 (add-hook 'after-init-hook #'global-visual-line-mode)
 
