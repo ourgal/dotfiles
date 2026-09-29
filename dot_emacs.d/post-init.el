@@ -181,8 +181,8 @@
  corfu
  :custom
  (corfu-auto t) ; Enable auto-completion
- (corfu-auto-prefix 2) ; Minimum characters before popup appears (default is 3)
- (corfu-auto-delay 0.2) ; Delay before popup appears
+ (corfu-auto-prefix 3) ; Minimum characters before popup appears (default is 3)
+ (corfu-auto-delay 0.5) ; Delay before popup appears
  (corfu-cycle t) ; Enable cycling through candidates
  (corfu-quit-no-match 'separator) ; Keep popup open when using a separator
  (text-mode-ispell-word-completion nil)
