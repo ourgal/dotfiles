@@ -1058,6 +1058,17 @@ The org-download package allows dragging and dropping images (or pasting them fr
   (org-download-heading-lvl nil))
 #+end_src
 
+*** Org rich yank
+
+#+begin_src emacs-lisp
+(use-package
+  org-rich-yank
+  :ensure t
+  :demand t
+  :after org
+  :bind (:map org-mode-map ("C-M-y" . org-rich-yank)))
+#+end_src
+
 ** Eglot
 
 Set up the Language Server Protocol (LSP) servers using Eglot.
