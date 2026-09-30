@@ -713,6 +713,25 @@
  (org-auto-tangle-default t))
 
 (use-package
+  org-download
+  :ensure t
+  :after org
+  :bind
+  (:map
+   org-mode-map
+   ("C-c d i" . org-download-image)
+   ("C-c d s" . org-download-screenshot)
+   ("C-c d y" . org-download-yank)
+   ("C-c d c" . org-download-clipboard)
+   ("C-c d d" . org-download-delete))
+  :hook
+  ((dired-mode org-mode) . org-download-enable)
+  :custom
+  (org-download-method 'directory)
+  (org-download-image-dir "images")
+  (org-download-heading-lvl nil))
+
+(use-package
  eglot
  :ensure nil
  :commands (eglot-ensure eglot-rename eglot-format-buffer))

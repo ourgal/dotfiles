@@ -1019,7 +1019,7 @@ Org mode is a major mode designed for organizing notes, planning, task managemen
  ((org-mode . org-modern-mode) (org-agenda-finalize . org-modern-agenda)))
 #+end_src
 
-** Org auto tangle
+*** Org auto tangle
 
 #+begin_src emacs-lisp
 (use-package
@@ -1030,6 +1030,31 @@ Org mode is a major mode designed for organizing notes, planning, task managemen
  :custom
  ;; Optional: Set to t if you want ALL org files to auto-tangle by default
  (org-auto-tangle-default t))
+#+end_src
+
+*** Org download
+
+The org-download package allows dragging and dropping images (or pasting them from the clipboard) into Emacs Org mode files.
+
+#+begin_src emacs-lisp
+(use-package
+  org-download
+  :ensure t
+  :after org
+  :bind
+  (:map
+   org-mode-map
+   ("C-c d i" . org-download-image)
+   ("C-c d s" . org-download-screenshot)
+   ("C-c d y" . org-download-yank)
+   ("C-c d c" . org-download-clipboard)
+   ("C-c d d" . org-download-delete))
+  :hook
+  ((dired-mode org-mode) . org-download-enable)
+  :custom
+  (org-download-method 'directory)
+  (org-download-image-dir "images")
+  (org-download-heading-lvl nil))
 #+end_src
 
 ** Eglot
