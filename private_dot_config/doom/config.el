@@ -56,86 +56,69 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
 (setq package-archives '( ("gnu"    . "https://mirror.nju.edu.cn/elpa/gnu/")
                           ("nongnu" . "https://mirror.nju.edu.cn/elpa/nongnu/")
                           ("melpa"  . "https://mirror.nju.edu.cn/elpa/melpa/")))
+
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-tokyo-night)
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
+
 (setq display-line-numbers-type 'relative)
+
 (setq user-full-name "zxc")
-{{ $size := 15 -}}
-{{ $font := .my.font.monospace -}}
-{{ if eq .chezmoi.os "android" -}}
-{{ $font = "IosevkaTerm Nerd Font" -}}
-{{ $size = 30 -}}
-{{ else if eq .chezmoi.os "windows" -}}
-{{ $font = .my.font.windows.monospace -}}
-{{ end -}}
-(setq doom-font (font-spec :family "{{ $font }}" :size {{ $size}})
-      doom-variable-pitch-font (font-spec :family "{{ $font }}" :size {{ $size}}))
+
+(let ((font (if (eq system-type 'android) "IosevkaTerm Nerd Font" "IosevkaTerm NFM"))
+      (size (if (eq system-type 'android) 30 15)))
+    (setq doom-font (font-spec :family font :size size)
+            doom-variable-pitch-font (font-spec :family font :size size)))
 
 (setq doom-themes-enable-bold t
       doom-themes-enable-italic t)
-(+global-word-wrap-mode +1)
-(global-visual-line-mode t)
-(setq select-enable-clipboard nil)
-(add-hook! 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
+
+(+global-word-wrap-mode)
+
+(global-visual-line-mode)
+
+(when (not (eq system-type 'windows-nt))
+    (add-hook! 'after-save-hook #'executable-make-buffer-file-executable-if-script-p))
+
 (add-hook! 'completion-at-point-functions #'cape-dabbrev)
 (add-hook! 'completion-at-point-functions #'cape-file)
+
 (after! doom-modeline
   (setq doom-modeline-buffer-file-name-style 'relative-to-project))
-{{ $browser := "firefox" -}}
 
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "brave" "opt" (list "windows" "startup" "brave" "enable") "os" "windows") | trim | atoi -}}
-{{ $browser = "brave" -}}
-{{ end -}}
-
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "chromium" "opt" (list "windows" "startup" "chromium" "enable") "os" "windows") | trim | atoi -}}
-{{ $browser := "chromium" -}}
-{{ end -}}
-
-(defun browse-url-mpv (url &optional _new-window)
-  (start-process-shell-command "mpv" (get-buffer-create "*mpv out*") (format {{ print "mpv %s || " $browser " %s" | quote }} url url)))
-
-(setq browse-url-handlers
-      '( ("\\(vimeo\\.com\\|twitch\\.tv\\)" . browse-url-mpv)
-         ("\\(youtube\\.com\\)" . browse-url-mpv)
-         ("\\(bilibili\\.com\\)" . browse-url-mpv)
-         ("." . {{ if eq .chezmoi.os "windows" }}browse-url-default-windows-browser{{ else }}browse-url-firefox{{ end}})))
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
-(after! org
-  (setq org-agenda-files '("~/org/agenda.org"))
-  (org-babel-do-load-languages
-   org-babel-load-languages
-   '((dot . t))))
-(after! emms
-  (setq emms-source-file-default-directory "~/Music")
-  (add-hook 'emms-playlist-mode-hook #'turn-on-evil-mode))
-{{ if eq .chezmoi.os "android" -}}
-(setq overriding-text-conversion-style nil)
-{{ end -}}
-(after! info
-  (add-to-list 'Info-directory-list "~/.local/share/repos/info_manuals"))
-(map! :n "C-w o" #'delete-other-windows
-      :n "C-w z" #'doom/window-enlargen)
-(map! :leader
-      :desc "Kill other buffer" "b o" #'doom/kill-other-buffers)
-(map! :leader
-      :desc "Kill other buffer" "b 0" nil)
-(map! :map Info-mode-map
-      "C-c C-c" #'gt-translate)
 
-(map! :map eww-mode-map
-      "C-c C-c" #'gt-translate)
+(setq org-agenda-files '("~/org/agenda.org"))
+
+(use-package! org-auto-tangle
+  :hook org-mode
+  :custom
+  (org-auto-tangle-default t))
+
+(setq emms-source-file-default-directory "~/Music")
+(add-hook 'emms-playlist-mode-hook #'turn-on-evil-mode)
+
+(when (eq system-type 'android)
+    (setq overriding-text-conversion-style nil))
+
+;; (map! :n "C-w o" #'delete-other-windows
+;;       :n "C-w z" #'doom/window-enlargen)
+
+;; (map! :map Info-mode-map
+;;       "C-c C-c" #'gt-translate)
+;; (map! :map eww-mode-map
+;;       "C-c C-c" #'gt-translate)
+
+(map! :n "RET" #'evil-ex)
+
 (use-package! ahk-mode
-  :mode "\\.ahk$"
-  :defer t)
+  :mode "\\.ahk\\'")
+
 (set-formatter! 'prettier-markdown '("prettier" "--parser" "markdown") :modes '(markdown-mode))
 (set-formatter! 'shfmt '("shfmt") :modes '(sh-mode))
 (set-formatter! 'ruff '("ruff" "format" "-") :modes '(python-mode))
@@ -143,12 +126,13 @@
 (set-formatter! 'nixfmt '("nixfmt" "--strict" "-") :modes '(nix-mode))
 (set-formatter! 'taplo '("taplo" "fmt" "-") :modes '(conf-toml-mode))
 (set-formatter! 'yamlfix '("yamlfix" "-") :modes '(yaml-mode))
-;; (use-package! bing-dict)
+
 (after! dirvish
   (dirvish-side-follow-mode))
+
 (map! :n "-" #'dirvish)
 (map! :map 'dirvish-mode-map :n "a" #'dired-create-empty-file)
-;; (map! :n "-" #'dired-jump)
+
 (after! eglot
   (add-to-list 'eglot-server-programs
                '(fennel-mode . ("fennel-ls")))
@@ -164,54 +148,13 @@
   (add-hook 'just-ts-mode-hook 'eglot-ensure)
   (add-to-list 'eglot-server-programs
                '(makefile-gmake-mode . ("make-language-server")))
-  (add-hook 'makefile-gmake-mode-hook 'eglot-ensure)
-  (setq lua-lsp-dir (expand-file-name "~/.local/share/lua-language-server/")))
-(map! :after elfeed
-      :leader
-      :desc "Elfeed" "o e" #'elfeed)
-(map! :after elfeed
-      :map elfeed-show-mode-map
-      :n "y" #'elfeed-show-yank)
-{{ if .my.doomemacs.elfeed_org -}}
-(add-hook 'elfeed-search-mode-hook #'elfeed-update)
-;; Update hourly
-(run-at-time nil (* 60 60) #'elfeed-update)
-(after! elfeed
-  (setq rmh-elfeed-org-files (list "~/org/elfeed.org"))
-  (setq elfeed-search-filter "@2-weeks-ago +unread ")
-  (elfeed-set-timeout 120))
-{{ end -}}
-{{ if .my.doomemacs.elfeed_protocol -}}
-(add-hook 'elfeed-search-mode-hook #'elfeed-update)
-;; Update hourly
-(run-at-time nil (* 15 60) #'elfeed-update)
-{{ $domain := "miniflux.zxc.cn" -}}
-{{ $protocol := "http" -}}
-{{ if eq .chezmoi.hostname "localhost" -}}
-{{ $domain = print "miniflux." ((includeTemplate "my_domain.key") | trim ) -}}
-{{ $protocol = "https" -}}
-{{ end -}}
-(use-package! elfeed-protocol
-  :custom
-  (elfeed-use-curl t)
-  (elfeed-protocol-enabled-protocols '(fever))
-  (elfeed-protocol-fever-update-unread-only nil)
-  (elfeed-protocol-fever-fetch-category-as-tag t)
-  (elfeed-protocol-feeds '( ("fever+{{ $protocol }}://miniflux@{{ $domain }}"
-                             :api-url "{{ $protocol }}://{{ $domain }}/fever/"
-                             :password "{{ includeTemplate "gopass" "miniflux/fever" | trim }}")))
-  :config
-  (elfeed-set-timeout 36000)
-  (setq elfeed-search-filter "@2-weeks-ago +unread !Commit ")
-  (elfeed-protocol-enable))
-{{ end -}}
-(use-package! elsqlite
-  :commands (elsqlite elsqlite-browser)
-  :config
-  ;; Optional: Auto-open .db files in ELSQLite
-  (elsqlite-enable-auto-open)
-  ;; Optional: Evil mode keybindings
-  (elsqlite-evil-setup))
+  (add-hook 'makefile-gmake-mode-hook 'eglot-ensure))
+
+(setq lua-lsp-dir (expand-file-name "~/.local/share/lua-language-server/"))
+
+(setq rmh-elfeed-org-files (list "~/org/elfeed.org"))
+(setq elfeed-search-filter "@2-weeks-ago +unread ")
+
 (setq user-mail-address "ourgal@qq.com")
 (setq user-full-name "ourgal")
 (setq message-send-mail-function 'smtpmail-send-it)
@@ -250,6 +193,7 @@
                  (nnimap-stream ssl))))
 
 (setq gnus-thread-sort-functions '(gnus-thread-sort-by-number (not gnus-thread-sort-by-date)))
+
 (use-package! evil
   :defer t
   :custom
@@ -258,66 +202,12 @@
   (+evil-want-o/O-to-continue-comments nil)
   (evil-ex-substitute-global t))
 
-(map! :leader
-      :prefix "b"
-      "q" #'evil-quick-diff
-      "Q" #'evil-quick-diff-cancel)
-
-(after! evil-snipe
-  (setq evil-snipe-scope 'whole-buffer))
-{{ if ne .chezmoi.os "windows" -}}
-(use-package! fzf
-  :config
-  (setq fzf/args "-x --print-query --margin=1,0 --no-hscroll"
-        fzf/executable "fzf"
-        fzf/git-grep-args "-i --line-number %s"
-        ;; command used for `fzf-grep-*` functions
-        ;; example usage for ripgrep:
-        ;; fzf/grep-command "rg --no-heading -nH"
-        fzf/grep-command "grep -nrH"
-        ;; If nil, the fzf buffer will appear at the top of the window
-        fzf/position-bottom t
-        fzf/window-height 15))
-
-(map! :leader
-      :desc "fzf" "f SPC" #'fzf)
-{{ end -}}
-(use-package! gt
-  :ensure t
-  :custom
-  (gt-langs '(en zh))
-  :config
-  (setq gt-default-translator
-        (gt-translator
-         :taker   (gt-taker :text 'buffer :pick 'paragraph)       ; 配置拾取器
-         :engines (list (gt-bing-engine) (gt-youdao-dict-engine)) ; 指定多引擎
-         :render  (gt-buffer-render))))
-(use-package! magit-delta
-  :hook (magit-mode . magit-delta-mode))
-(use-package! magit-stats)
-(use-package! magit-todos
-  :after magit
-  :config (magit-todos-mode 1))
 (use-package! nov
-  :mode ("\\.epub$" . nov-mode)
-  :defer t)
-(use-package! org-auto-tangle
-  :defer t
-  :hook (org-mode . org-auto-tangle-mode))
-;; (add-hook 'org-mode-hook #'org-modern-mode)
-;; (add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
+  :mode "\\.epub\\'")
+
 (use-package! pangu-spacing
-  :config (add-hook 'markdown-mode-hook 'pangu-spacing-mode))
-(use-package! super-save
-  :ensure t
-  :custom
-  (super-save-silent t)
-  :config
-  (super-save-mode +1)
-  (auto-save-visited-mode +1))
-(use-package! zeal-at-point)
-(map! :leader
-      :desc "Zeal" "h z" #'zeal-at-point)
+  :hook markdown-mode)
+
 (require 'url)
 (require 'json)
 
@@ -361,14 +251,3 @@
                url
                ;; 用今天的日期
                (format-time-string "%m/%d/%Y"))))))
-
-{{ if eq .chezmoi.os "windows" -}}
-;; speed up windows emacs
-(setq exec-suffixes '("" ".exe" ".bat"))
-(setq shell-command-guess-open nil)
-(remove-hook 'find-file-hook #'vc-refresh-state)
-(remove-hook 'before-save-hook #'vc-before-save t)
-(remove-hook 'find-file-hook #'epa-file-find-file-hook)
-{{ end -}}
-
-(map! :n "RET" #'evil-ex)

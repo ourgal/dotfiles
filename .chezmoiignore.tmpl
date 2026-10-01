@@ -428,7 +428,11 @@ Videos/*
 # [[[ emacs
 {{ if and .my.doomemacs.enable (lookPath "emacs") }}
 !.config/doom/
-!.config/doom/**
+.config/doom/*
+!.config/doom/.authinfo
+!.config/doom/config.el
+!.config/doom/init.el
+!.config/doom/packages.el
 {{ end -}}
 
 {{ if and .my.minimal_emacs.enable (lookPath "emacs") -}}

@@ -52,24 +52,11 @@
 ;; (unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
-(package! ahk-mode)
-{{ if ne .chezmoi.os "windows" -}}
-(package! fzf)
-{{ end -}}
-(package! magit-delta)
-(package! magit-stats)
-(package! magit-todos)
-(package! nov
-  :recipe (:host github :repo "wasamasa/nov.el"))
-(package! pangu-spacing)
-(package! zeal-at-point)
-{{ if .my.doomemacs.elfeed_protocol -}}
-(package! elfeed-protocol :pin "3cb69a7757addb57317bb9fdcd84bea091b0846c")
-{{ end -}}
-(package! elsqlite)
-(package! super-save)
+
 (package! org-auto-tangle)
-;; (package! org-modern)
-(package! ob-async)
-;; (package! bing-dict)
-(package! gt)
+
+(package! ahk-mode)
+
+(package! nov)
+
+(package! pangu-spacing)
