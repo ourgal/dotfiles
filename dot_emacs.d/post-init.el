@@ -1060,6 +1060,20 @@
   :vc (:url "https://v6.gh-proxy.org/https://github.com/Lindydancer/tmpl-mode")
   :hook (after-init . tmpl-global-mode))
 
+(use-package
+  popper
+  :ensure t ; or :straight t
+  :bind (("C-`" . popper-toggle) ("M-`" . popper-cycle) ("C-M-`" . popper-toggle-type))
+  :init
+  (setq popper-reference-buffers
+        '("\\*Messages\\*"
+          "Output\\*$"
+          "\\*Async Shell Command\\*"
+          help-mode
+          helpful-mode
+          compilation-mode))
+  (popper-mode +1) (popper-echo-mode +1))
+
 ;; Constrain vertical cursor movement to lines within the buffer
 (setq dired-movement-style 'bounded-files)
 
