@@ -1107,7 +1107,7 @@
 ;; Dired buffers: Automatically hide file details (permissions, size,
 ;; modification date, etc.) and all the files in the `dired-omit-files' regular
 ;; expression for a cleaner display.
-(add-hook 'dired-mode-hook #'dired-hide-details-mode)
+;; (add-hook 'dired-mode-hook #'dired-hide-details-mode)
 
 ;; Hide files from dired
 (setq dired-omit-files
