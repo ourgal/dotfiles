@@ -752,6 +752,28 @@
   :after org
   :bind (:map org-mode-map ("C-M-y" . org-rich-yank)))
 
+(use-package org-remoteimg
+  :ensure t
+  :after org
+  :vc (:url "https://v6.gh-proxy.org/https://github.com/gaoDean/org-remoteimg")
+  :custom
+  ;; optional: set this to wherever you want the cache to be stored
+  ;; (setq url-cache-directory "~/.cache/emacs/url")
+
+  (org-display-remote-inline-images 'cache) ;; enable caching
+
+  ;; or this if you don't want caching
+  ;; (setq org-display-remote-inline-images 'download)
+
+  ;; or this if you want to disable this plugin
+  ;; (setq org-display-remote-inline-images 'skip)
+  )
+
+(use-package org-imgtog
+  :ensure t
+  :vc (:url "https://v6.gh-proxy.org/https://github.com/gaoDean/org-imgtog")
+  :hook org-mode)
+
 (use-package
  eglot
  :ensure nil

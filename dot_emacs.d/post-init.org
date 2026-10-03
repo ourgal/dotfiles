@@ -1075,6 +1075,37 @@ The org-download package allows dragging and dropping images (or pasting them fr
   :bind (:map org-mode-map ("C-M-y" . org-rich-yank)))
 #+end_src
 
+*** Org remoteimg
+
+#+begin_src emacs-lisp
+(use-package org-remoteimg
+  :ensure t
+  :after org
+  :vc (:url "https://v6.gh-proxy.org/https://github.com/gaoDean/org-remoteimg")
+  :custom
+  ;; optional: set this to wherever you want the cache to be stored
+  ;; (setq url-cache-directory "~/.cache/emacs/url")
+
+  (org-display-remote-inline-images 'cache) ;; enable caching
+
+  ;; or this if you don't want caching
+  ;; (setq org-display-remote-inline-images 'download)
+
+  ;; or this if you want to disable this plugin
+  ;; (setq org-display-remote-inline-images 'skip)
+  )
+#+end_src
+
+*** Org imgtog
+
+#+begin_src emacs-lisp
+(use-package org-imgtog
+  :ensure t
+  :vc (:url "https://v6.gh-proxy.org/https://github.com/gaoDean/org-imgtog")
+  :hook org-mode)
+#+end_src
+
+
 ** Eglot
 
 Set up the Language Server Protocol (LSP) servers using Eglot.
