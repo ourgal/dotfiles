@@ -704,6 +704,11 @@
  org-appear
  :ensure t
  :commands org-appear-mode
+ :custom
+ (org-appear-autoemphasis t)
+ (org-appear-autolinks t)
+ (org-appear-autosubmarkers t)
+ (org-appear-inside-latex t)
  :hook (org-mode . org-appear-mode))
 
 (use-package
