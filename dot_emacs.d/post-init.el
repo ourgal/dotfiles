@@ -676,29 +676,31 @@
  :hook (magit-post-refresh . diff-hl-magit-post-refresh))
 
 (use-package
- org
- :commands (org-mode org-version)
- :mode ("\\.org\\'" . org-mode)
- :hook
- (org-mode
-  .
-  (lambda ()
-    (setq-local electric-pair-inhibit-predicate
-                (lambda (c)
-                  (if (char-equal c ?<)
-                      t
-                    (electric-pair-default-inhibit c))))))
- :custom
- (org-hide-leading-stars t)
- (org-startup-indented t)
- (org-adapt-indentation nil)
- (org-edit-src-content-indentation 0)
- (org-startup-with-inline-images t)
- ;; (org-fontify-done-headline t)
- ;; (org-fontify-todo-headline t)
- ;; (org-fontify-whole-heading-line t)
- ;; (org-fontify-quote-and-verse-blocks t)
- (org-startup-truncated t))
+  org
+  :commands (org-mode org-version)
+  :mode ("\\.org\\'" . org-mode)
+  :hook
+  (org-mode
+   .
+   (lambda ()
+     (setq-local electric-pair-inhibit-predicate
+                 (lambda (c)
+                   (if (char-equal c ?<)
+                       t
+                     (electric-pair-default-inhibit c))))))
+  :custom
+  (org-hide-leading-stars t)
+  (org-startup-indented t)
+  (org-adapt-indentation nil)
+  (org-edit-src-content-indentation 0)
+  (org-startup-with-inline-images t)
+  ;; (org-fontify-done-headline t)
+  ;; (org-fontify-todo-headline t)
+  ;; (org-fontify-whole-heading-line t)
+  ;; (org-fontify-quote-and-verse-blocks t)
+  )
+
+(setq org-startup-with-inline-images t)
 
 (use-package
  org-appear
