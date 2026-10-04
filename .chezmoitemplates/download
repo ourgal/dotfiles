@@ -10,6 +10,7 @@
 {{ end -}}
 
 {{ $filename := osBase $url -}}
+{{ $url_filename := $filename -}}
 
 {{ $output := .output -}}
 {{ $output_dir := osDir .output -}}
@@ -74,9 +75,9 @@ trap cleanup EXIT
 
 echo "{{ $url }} -> {{ $output }}"
 {{ if and (lookPath "aria2c") (dig "curl" false . | not) -}}
-aria2c {{ $url | quote }} -d "$TEMP_DIR" -o {{ $filename | quote }}
+aria2c {{ $url | quote }} -d "$TEMP_DIR" -o {{ $url_filename | quote }}
 {{ else -}}
-curl -L {{ $url | quote }} -o "$TEMP_DIR/{{ $filename }}"
+curl -L {{ $url | quote }} -o "$TEMP_DIR/{{ $url_filename }}"
 {{ end -}}
 
 {{ if eq .chezmoi.os "windows" -}}
@@ -89,25 +90,25 @@ mkdir -p {{ $output_dir | quote }}
   {{ if dig "include" "" . -}}
     {{ if eq .chezmoi.os "windows" -}}
     cd {{ $output_dir | quote }}
-    7z x -aoa "$TEMP_DIR/{{ $filename }}"
-    7z e -aoa {{ splitList "." $filename | initial | join "." }} {{ .include | quote }}
+    7z x -aoa "$TEMP_DIR/{{ $url_filename }}"
+    7z e -aoa {{ splitList "." $url_filename | initial | join "." }} {{ .include | quote }}
     {{ else -}}
-    $(cd {{ $output_dir | quote }} && tar -xf "$TEMP_DIR/{{ $filename }}" --transform='s:.*/::' --wildcards {{ .include }})
+    $(cd {{ $output_dir | quote }} && tar -xf "$TEMP_DIR/{{ $url_filename }}" --transform='s:.*/::' --wildcards {{ .include }})
     {{ end -}}
   {{ else -}}
     {{ if eq .chezmoi.os "windows" -}}
     cd {{ $output_dir | quote }}
-    7z x -aoa "$TEMP_DIR/{{ $filename }}"
-    7z e -aoa {{ splitList "." $filename | initial | join "." }}
+    7z x -aoa "$TEMP_DIR/{{ $url_filename }}"
+    7z e -aoa {{ splitList "." $url_filename | initial | join "." }}
     {{ else -}}
-    tar -xf "$TEMP_DIR/{{ $filename }}" -C {{ $output_dir | quote }}
+    tar -xf "$TEMP_DIR/{{ $url_filename }}" -C {{ $output_dir | quote }}
     {{ end -}}
   {{ end -}}
 {{ else if eq $ext ".zip" -}}
   {{ if lookPath "7z" -}}
-  7z e "$TEMP_DIR/{{ $filename }}" -aoa -o{{ $output_dir }}
+  7z e "$TEMP_DIR/{{ $url_filename }}" -aoa -o{{ $output_dir }}
   {{ else -}}
-  tar -xf "$TEMP_DIR/{{ $filename }}" -C {{ $output_dir | quote }}
+  tar -xf "$TEMP_DIR/{{ $url_filename }}" -C {{ $output_dir | quote }}
   {{ end -}}
 {{ end -}}
 
