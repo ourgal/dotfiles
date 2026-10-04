@@ -1309,15 +1309,13 @@
 ;; (global-set-key (kbd "SPC") nil) ; Clear SPC binding first
 
 ;; Define SPC as a prefix key
-(define-key evil-normal-state-map (kbd "SPC") (make-sparse-keymap "SPC Leader"))
+;; (define-key evil-normal-state-map (kbd "SPC") (make-sparse-keymap "SPC Leader"))
 
 ;; Files
 (define-key
  evil-normal-state-map (kbd "SPC f") (make-sparse-keymap "SPC f Files"))
-(define-key evil-normal-state-map (kbd "SPC f f") #'find-file)
 (define-key evil-normal-state-map (kbd "SPC f s") #'save-buffer)
 (define-key evil-normal-state-map (kbd "SPC f d") #'dired)
-(define-key evil-normal-state-map (kbd "SPC f r") #'recentf)
 
 (defun kill-other-buffers ()
   "Kill all buffers except the current one."
@@ -1399,9 +1397,6 @@
 (define-key evil-normal-state-map (kbd "SPC t f") #'fringe-mode)
 (define-key evil-normal-state-map (kbd "SPC t s") #'scroll-bar-mode)
 (define-key evil-normal-state-map (kbd "SPC t w") #'whitespace-mode)
-
-;; Use SPC SPC for find-file (Doom style)
-(define-key evil-normal-state-map (kbd "SPC SPC") #'project-find-file)
 
 (use-package transmission :defer t :custom (transmission-host "192.168.0.108"))
 
@@ -1496,3 +1491,24 @@
   ;; Define the location of your Org file containing the feeds
   :custom
   (rmh-elfeed-org-files '("~/org/elfeed.org")))
+
+(use-package
+  fzf
+  :bind
+  (:map
+   evil-normal-state-map
+   ("SPC SPC" . fzf-git)
+   ("SPC f f" . fzf)
+   ("SPC f r" . fzf-recentf))
+  :config
+  (setq
+   fzf/args "-x --color bw --print-query --margin=1,0 --no-hscroll"
+   fzf/executable "fzf"
+   fzf/git-grep-args "-i --line-number %s"
+   ;; command used for `fzf-grep-*` functions
+   ;; example usage for ripgrep:
+   ;; fzf/grep-command "rg --no-heading -nH"
+   fzf/grep-command "grep -nrH"
+   ;; If nil, the fzf buffer will appear at the top of the window
+   fzf/position-bottom t
+   fzf/window-height 15))
