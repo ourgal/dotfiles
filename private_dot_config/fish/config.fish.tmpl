@@ -1,119 +1,121 @@
 if status is-interactive
-set -gx GOPROXY "https://goproxy.io,direct"
-# [[[ easy1
-{{ if eq .chezmoi.hostname "easy1" -}}
-set -x GPG_TTY $(tty)
-set -x SSH_AUTH_SOCK $(gpgconf --list-dirs agent-ssh-socket)
-gpg-connect-agent updatestartuptty /bye > /dev/null
-{{ end -}}
-# ]]]
-# [[[ termux
-{{ if eq .chezmoi.os "android" -}}
-fish_add_path --append ~/.local/bin
-{{ if joinPath .chezmoi.homeDir "go" "bin" | stat -}}
-fish_add_path --append ~/go/bin
-{{ end -}}
-set -x GPG_TTY $(tty)
-eval (ssh-agent -c)
-gpg-connect-agent updatestartuptty /bye > /dev/null
-set -gx EDITOR "{{ includeTemplate "editor" }}"
-{{ end -}}
-# ]]]
-# [[[ oh my posh
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "oh-my-posh") "opt" (list "shell" "fish" "oh_my_posh" "enable") "os" (list "linux" "android")) | trim | atoi -}}
-{{ output "oh-my-posh" "init" "fish" }}
-{{ end -}}
-# ]]]
-# [[[ starship
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "starship") "opt" (list "shell" "fish" "starship" "enable") "os" (list "linux" "android")) | trim | atoi -}}
-{{ output "starship" "init" "fish" }}
-{{ end -}}
-# ]]]
-# [[[ fzf
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "fzf") "opt" (list "shell" "fish" "fzf" "enable") "os" (list "linux" "android")) | trim | atoi -}}
-{{ if or (lookPath "mcfly") (lookPath "atuin") -}}
-{{ output "env" "FZF_CTRL_R_COMMAND=" "fzf" "--fish" }}
-{{ else -}}
-{{ output "fzf" "--fish" }}
-{{ end -}}
-{{ end -}}
-# ]]]
-# [[[ mcfly
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "mcfly") "opt" (list "shell" "fish" "mcfly" "enable") "os" (list "linux" "android")) | trim | atoi -}}
-{{ output "mcfly" "init" "fish" }}
-{{ end -}}
-# ]]]
-# [[[ atuin
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "atuin") "opt" (list "shell" "fish" "atuin" "enable") "os" (list "linux" "android")) | trim | atoi -}}
-{{ output "atuin" "init" "fish" "--disable-up-arrow" }}
-{{ end -}}
-# ]]]
-# [[[ navi
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "navi") "opt" (list "shell" "fish" "navi" "enable") "os" (list "linux" "android")) | trim | atoi -}}
-{{ output "navi" "widget" "fish" }}
-{{ end -}}
-# ]]]
-# [[[ carapace
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "carapace") "opt" (list "shell" "fish" "carapace" "enable") "os" (list "linux" "android")) | trim | atoi -}}
-{{ output "carapace" "_carapace" "fish" }}
-{{ end -}}
-# ]]]
-# [[[ eza
-{{ if lookPath "eza" -}}
-{{ $opts := "--git --icons auto --group --group-directories-first --time-style relative"}}
-function ls
-    eza {{ $opts }} $argv
-end
-
-function ll
-    eza -l {{ $opts }} $argv
-end
-{{ end -}}
-# ]]]
-# [[[ nnn
-{{ if lookPath "nnn" -}}
-# Rename this file to match the name of the function
-# e.g. ~/.config/fish/functions/n.fish
-# or, add the lines to the 'config.fish' file.
-
-function n --wraps nnn --description 'support nnn quit and change directory'
-    # Block nesting of nnn in subshells
-    if test -n "$NNNLVL" -a "$NNNLVL" -ge 1
-        echo "nnn is already running"
-        return
+    set -gx GOPROXY "https://goproxy.io,direct"
+    set -gx EDITOR "{{ includeTemplate "editor" }}"
+    {{ if joinPath .chezmoi.homeDir ".local" "bin" | stat -}}
+    fish_add_path --append ~/.local/bin
+    {{ end -}}
+    {{ if joinPath .chezmoi.homeDir "go" "bin" | stat -}}
+    fish_add_path --append ~/go/bin
+    {{ end -}}
+    # [[[ easy1
+    {{ if eq .chezmoi.hostname "easy1" -}}
+    set -x GPG_TTY $(tty)
+    set -x SSH_AUTH_SOCK $(gpgconf --list-dirs agent-ssh-socket)
+    gpg-connect-agent updatestartuptty /bye >/dev/null
+    {{ end -}}
+    # ]]]
+    # [[[ termux
+    {{ if eq .chezmoi.os "android" -}}
+    set -x GPG_TTY $(tty)
+    eval (ssh-agent -c)
+    gpg-connect-agent updatestartuptty /bye >/dev/null
+    {{ end -}}
+    # ]]]
+    # [[[ oh my posh
+    {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "oh-my-posh") "opt" (list "shell" "fish" "oh_my_posh" "enable") "os" (list "linux" "android")) | trim | atoi -}}
+    {{ output "oh-my-posh" "init" "fish" }}
+    {{ end -}}
+    # ]]]
+    # [[[ starship
+    {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "starship") "opt" (list "shell" "fish" "starship" "enable") "os" (list "linux" "android")) | trim | atoi -}}
+    {{ output "starship" "init" "fish" }}
+    {{ end -}}
+    # ]]]
+    # [[[ fzf
+    {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "fzf") "opt" (list "shell" "fish" "fzf" "enable") "os" (list "linux" "android")) | trim | atoi -}}
+    {{ if or (lookPath "mcfly") (lookPath "atuin") -}}
+    {{ output "env" "FZF_CTRL_R_COMMAND=" "fzf" "--fish" }}
+    {{ else -}}
+    {{ output "fzf" "--fish" }}
+    {{ end -}}
+    {{ end -}}
+    # ]]]
+    # [[[ mcfly
+    {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "mcfly") "opt" (list "shell" "fish" "mcfly" "enable") "os" (list "linux" "android")) | trim | atoi -}}
+    {{ output "mcfly" "init" "fish" }}
+    {{ end -}}
+    # ]]]
+    # [[[ atuin
+    {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "atuin") "opt" (list "shell" "fish" "atuin" "enable") "os" (list "linux" "android")) | trim | atoi -}}
+    {{ output "atuin" "init" "fish" "--disable-up-arrow" }}
+    {{ end -}}
+    # ]]]
+    # [[[ navi
+    {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "navi") "opt" (list "shell" "fish" "navi" "enable") "os" (list "linux" "android")) | trim | atoi -}}
+    {{ output "navi" "widget" "fish" }}
+    {{ end -}}
+    # ]]]
+    # [[[ carapace
+    {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "carapace") "opt" (list "shell" "fish" "carapace" "enable") "os" (list "linux" "android")) | trim | atoi -}}
+    {{ output "carapace" "_carapace" "fish" }}
+    {{ end -}}
+    # ]]]
+    # [[[ eza
+    {{ if lookPath "eza" -}}
+    {{ $opts := "--git --icons auto --group --group-directories-first --time-style relative"}}
+    function ls
+        eza {{ $opts }} $argv
     end
 
-    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
-    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to
-    # see. To cd on quit only on ^G, remove the "-x" from both lines below,
-    # without changing the paths.
-    if test -n "$XDG_CONFIG_HOME"
-        set -x NNN_TMPFILE "$XDG_CONFIG_HOME/nnn/.lastd"
-    else
-        set -x NNN_TMPFILE "$HOME/.config/nnn/.lastd"
+    function ll
+        eza -l {{ $opts }} $argv
     end
+    {{ end -}}
+    # ]]]
+    # [[[ nnn
+    {{ if lookPath "nnn" -}}
+    # Rename this file to match the name of the function
+    # e.g. ~/.config/fish/functions/n.fish
+    # or, add the lines to the 'config.fish' file.
 
-    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-    # stty start undef
-    # stty stop undef
-    # stty lwrap undef
-    # stty lnext undef
+    function n --wraps nnn --description 'support nnn quit and change directory'
+        # Block nesting of nnn in subshells
+        if test -n "$NNNLVL" -a "$NNNLVL" -ge 1
+            echo "nnn is already running"
+            return
+        end
 
-    # The command function allows one to alias this function to `nnn` without
-    # making an infinitely recursive alias
-    command nnn $argv
+        # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
+        # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to
+        # see. To cd on quit only on ^G, remove the "-x" from both lines below,
+        # without changing the paths.
+        if test -n "$XDG_CONFIG_HOME"
+            set -x NNN_TMPFILE "$XDG_CONFIG_HOME/nnn/.lastd"
+        else
+            set -x NNN_TMPFILE "$HOME/.config/nnn/.lastd"
+        end
 
-    if test -e $NNN_TMPFILE
-        source $NNN_TMPFILE
-        rm -- $NNN_TMPFILE
+        # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+        # stty start undef
+        # stty stop undef
+        # stty lwrap undef
+        # stty lnext undef
+
+        # The command function allows one to alias this function to `nnn` without
+        # making an infinitely recursive alias
+        command nnn $argv
+
+        if test -e $NNN_TMPFILE
+            source $NNN_TMPFILE
+            rm -- $NNN_TMPFILE
+        end
     end
-end
-{{ end -}}
-# ]]]
-# [[[ zoxide
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "zoxide") "opt" (list "shell" "fish" "zoxide" "enable") "os" (list "linux" "android")) | trim | atoi -}}
-{{ output "zoxide" "init" "fish" }}
-{{ end -}}
-# ]]]
+    {{ end -}}
+    # ]]]
+    # [[[ zoxide
+    {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "zoxide") "opt" (list "shell" "fish" "zoxide" "enable") "os" (list "linux" "android")) | trim | atoi -}}
+    {{ output "zoxide" "init" "fish" }}
+    {{ end -}}
+    # ]]]
 end
 # vim: set foldmarker=[[[,]]]:
