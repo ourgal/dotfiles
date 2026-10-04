@@ -1,6 +1,11 @@
 if status is-interactive
     set -gx GOPROXY "https://goproxy.io,direct"
     set -gx EDITOR "{{ includeTemplate "editor" }}"
+
+    {{ if lookPath "batcat" -}}
+    alias bat="batcat"
+    {{ end -}}
+
     {{ if joinPath .chezmoi.homeDir ".local" "bin" | stat -}}
     fish_add_path --append ~/.local/bin
     {{ end -}}
