@@ -130,6 +130,13 @@
         state: present
         flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
         method: system
+    - name: Install pipx packages
+      tags:
+        - pipx
+      community.general.pipx:
+        name: "{{ item }}"
+      loop:
+        - uv
   handlers:
     - name: Refresh font cache
       ansible.builtin.command:
