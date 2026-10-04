@@ -56,6 +56,8 @@
 ;; (setq evil-search-module 'evil-search)
 ;; (evil-select-search-module 'evil-search-module 'evil-search))
 
+(evil-define-key 'normal 'global (kbd "RET") 'evil-ex)
+
 (use-package
  evil-collection
  :after evil
@@ -1088,7 +1090,7 @@
 ;; Dired buffers: Automatically hide file details (permissions, size,
 ;; modification date, etc.) and all the files in the `dired-omit-files' regular
 ;; expression for a cleaner display.
-;; (add-hook 'dired-mode-hook #'dired-hide-details-mode)
+(add-hook 'dired-mode-hook #'dired-hide-details-mode)
 
 ;; Hide files from dired
 (setq dired-omit-files
@@ -1113,7 +1115,9 @@
           (setq insert-directory-program gls)
         (setq args nil)))
     (when args
-      (setq dired-listing-switches args))))
+      (setq dired-listing-switches args)))
+  (evil-define-key 'normal dired-mode-map (kbd "h") #'dired-up-directory)
+  (evil-define-key 'normal dired-mode-map (kbd "l") #'dired-find-file))
 
 (evil-define-key 'normal 'global (kbd "-") 'dired-jump)
 
