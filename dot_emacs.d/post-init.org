@@ -2240,3 +2240,17 @@ Support for Jenkinsfile files
 (use-package consult-gh
   :ensure t)
 #+end_src
+
+** Parinfer
+
+#+begin_src emacs-lisp :tangle no
+(use-package
+  parinfer-rust-mode
+  :hook
+  ((clojure-mode ; Enable for Clojure
+    emacs-lisp-mode ; Enable for Emacs Lisp
+    lisp-mode ; Enable for Common Lisp
+    scheme-mode) ; Enable for Scheme
+   . parinfer-rust-mode)
+  :custom (parinfer-rust-preferred-mode "smart"))
+#+end_src
