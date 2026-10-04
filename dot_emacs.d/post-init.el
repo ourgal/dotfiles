@@ -718,13 +718,9 @@
  ((org-mode . org-modern-mode) (org-agenda-finalize . org-modern-agenda)))
 
 (use-package
- org-auto-tangle
- :ensure t
- :defer t
- :hook (org-mode . org-auto-tangle-mode)
- :custom
- ;; Optional: Set to t if you want ALL org files to auto-tangle by default
- (org-auto-tangle-default t))
+  org-auto-tangle
+  :ensure t
+  :hook (org-mode . org-auto-tangle-mode))
 
 (use-package
   org-download
@@ -752,27 +748,9 @@
   :after org
   :bind (:map org-mode-map ("C-M-y" . org-rich-yank)))
 
-(use-package org-remoteimg
+(use-package valign
   :ensure t
-  :after org
-  :vc (:url "https://v6.gh-proxy.org/https://github.com/gaoDean/org-remoteimg")
-  :custom
-  ;; optional: set this to wherever you want the cache to be stored
-  ;; (setq url-cache-directory "~/.cache/emacs/url")
-
-  (org-display-remote-inline-images 'cache) ;; enable caching
-
-  ;; or this if you don't want caching
-  ;; (setq org-display-remote-inline-images 'download)
-
-  ;; or this if you want to disable this plugin
-  ;; (setq org-display-remote-inline-images 'skip)
-  )
-
-(use-package org-imgtog
-  :ensure t
-  :vc (:url "https://v6.gh-proxy.org/https://github.com/gaoDean/org-imgtog")
-  :hook org-mode)
+  :hook (org-mode . valign-mode))
 
 (use-package
  eglot

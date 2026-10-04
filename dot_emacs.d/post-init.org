@@ -1,5 +1,6 @@
 * Emacs config
 #+PROPERTY: header-args :tangle yes
+#+auto_tangle: t
 
 ** Lexical binding
 
@@ -1030,13 +1031,9 @@ Org mode is a major mode designed for organizing notes, planning, task managemen
 
 #+begin_src emacs-lisp
 (use-package
- org-auto-tangle
- :ensure t
- :defer t
- :hook (org-mode . org-auto-tangle-mode)
- :custom
- ;; Optional: Set to t if you want ALL org files to auto-tangle by default
- (org-auto-tangle-default t))
+  org-auto-tangle
+  :ensure t
+  :hook (org-mode . org-auto-tangle-mode))
 #+end_src
 
 *** Org download
@@ -1077,7 +1074,7 @@ The org-download package allows dragging and dropping images (or pasting them fr
 
 *** Org remoteimg
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package org-remoteimg
   :ensure t
   :after org
@@ -1094,17 +1091,31 @@ The org-download package allows dragging and dropping images (or pasting them fr
   ;; or this if you want to disable this plugin
   ;; (setq org-display-remote-inline-images 'skip)
   )
+
+;; (defun my/org-show-inline-images ()
+;;   "Show remote inline images"
+;;   (org-display-user-inline-images))
+
+;; Add the function to the org-mode hook
+;; (add-hook 'org-mode-hook #'my/org-show-inline-images)
 #+end_src
 
 *** Org imgtog
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package org-imgtog
   :ensure t
   :vc (:url "https://v6.gh-proxy.org/https://github.com/gaoDean/org-imgtog")
   :hook org-mode)
 #+end_src
 
+*** Valign
+
+#+begin_src emacs-lisp
+(use-package valign
+  :ensure t
+  :hook (org-mode . valign-mode))
+#+end_src
 
 ** Eglot
 
