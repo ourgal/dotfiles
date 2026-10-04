@@ -4,18 +4,23 @@
 
 {{ $url := .url -}}
 {{ $ext := osExt $url -}}
-{{ $filename := osBase $url -}}
-{{ $basename := splitList "." $filename | first -}}
 
 {{ if dig "output" "" . | not -}}
 {{ fail "no output found" }}
 {{ end -}}
 
+{{ $filename := osBase $url -}}
+
 {{ $output := .output -}}
 {{ $output_dir := osDir .output -}}
-{{ if splitList "/" .output | last | not -}}
+{{ $output_is_dir := splitList "/" .output | last | not }}
+{{ if $output_is_dir -}}
 {{ $output = joinPath $output $filename -}}
+{{ else -}}
+{{ $filename = osBase $output -}}
 {{ end -}}
+
+{{ $basename := splitList "." $filename | first -}}
 
 {{ $sub_dir := dig "sub_dir" false . -}}
 {{ if $sub_dir -}}
@@ -121,6 +126,10 @@ aria2c {{ $url | quote }} -o {{ $filename | quote }}
 {{ else -}}
 cd "{{ $output_dir }}"
 curl -L {{ $url | quote }} -o {{ $filename | quote }}
+{{ end -}}
+
+{{ if and (not $output_is_dir) (ne .chezmoi.os "windows") (lookPath "chmod") (dig "executable" false .) -}}
+chmod u+x {{ $output }}
 {{ end -}}
 
 {{ end -}}

@@ -1,0 +1,11 @@
+{{ if dig "osRelease" "id" "" .chezmoi | eq "devuan" -}}
+#!{{ lookPath "bash" }}
+
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" "https://github.com/herdrdev/herdr/releases/download/v0.9.3/herdr-linux-x86_64")
+  "output" (joinPath .chezmoi.homeDir ".local" "bin" "herdr")
+  "executable" true
+  "chezmoi" .chezmoi
+)}}
+
+{{ end -}}
