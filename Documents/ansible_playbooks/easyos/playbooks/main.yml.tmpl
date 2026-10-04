@@ -124,6 +124,20 @@
           ansible.builtin.apt:
             deb: "{{ tmp }}/gopass.deb"
       when: "'gopass' not in ansible_facts.packages or ansible_facts.packages['gopass'][0].version != v"
+    - name: Helix
+      vars:
+        v: 25.07.1
+      block:
+        - name: Download helix
+          ansible.builtin.get_url:
+            url: "{{ gh_proxy }}https://github.com/helix-editor/helix/releases/download/{{ v }}/helix_25.7.1-1_amd64.deb"
+            dest: "{{ tmp }}/helix.deb"
+            checksum: "sha256:c9ff7ee3113f039c21c3ff31e8e2b71d1cc51a2c3e6c39face36e3cf25fe8788"
+            mode: '0644'
+        - name: Install helix
+          ansible.builtin.apt:
+            deb: "{{ tmp }}/helix.deb"
+      when: "'helix' not in ansible_facts.packages or ansible_facts.packages['helix'][0].version != '25.7.1-1'"
     - name: Add Flathub repository remote
       community.general.flatpak_remote:
         name: flathub
