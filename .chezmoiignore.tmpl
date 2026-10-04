@@ -921,4 +921,11 @@ AppData/Roaming/herdr/*
 !.config/opencode/opencode.jsonc
 {{ end -}}
 # ]]]
+# [[[ jwm
+{{ if and (lookPath "jwm") (joinPath .chezmoi.homeDir ".jwmrc" | stat) (dig "osRelease" "id" "" .chezmoi | eq "devuan") -}}
+!.jwm/
+.jwm/*
+!.jwm/jwmrc-personal
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:

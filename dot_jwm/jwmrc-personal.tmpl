@@ -1,0 +1,114 @@
+<!-- Personally configurable options for JWM: these override default settings and theme settings -->
+
+<JWM>
+
+<!-- Virtual desktops. -->
+<!--STARTDESKTOPS-->
+<Desktops width="3" height="1">
+ <Background type="image">/usr/share/backgrounds/177/default.jpg</Background>
+</Desktops>
+<!--ENDDESKTOPS-->
+
+<!-- Double click speed (in milliseconds) -->
+<DoubleClickSpeed>400</DoubleClickSpeed>
+
+<!-- Double click delta (in pixels) -->
+<DoubleClickDelta>3</DoubleClickDelta>
+
+<!-- The focus model (sloppy or click) -->
+<FocusModel>click</FocusModel>
+
+<!-- The snap mode (none, screen, or border) -->
+<SnapMode distance="10">none</SnapMode>
+
+<!-- The move mode (outline or opaque) -->
+<MoveMode>outline</MoveMode>
+
+<!-- The resize mode (outline or opaque) -->
+<ResizeMode>outline</ResizeMode>
+
+<!--STARTWINDOWSTYLE-->
+<!--ENDWINDOWSTYLE-->
+
+<!--STARTTASKLISTSTYLE-->
+{{ if lookPath "seanime" -}}
+<StartupCommand>{{ lookPath "seanime" }}  &amp;</StartupCommand>
+{{ end -}}
+{{ if lookPath "defaultbrowser" -}}
+<StartupCommand>{{ lookPath "defaultbrowser" }}  &amp;</StartupCommand>
+{{ end -}}
+{{ if lookPath "emacs" -}}
+<StartupCommand>{{ lookPath "emacs" }}  &amp;</StartupCommand>
+{{ end -}}
+{{ if lookPath "kitty" -}}
+<StartupCommand>{{ lookPath "kitty" }}  &amp;</StartupCommand>
+{{ end -}}
+<!--ENDTASKLISTSTYLE-->
+
+<!--STARTTRAYSTYLE-->
+<!--ENDTRAYSTYLE-->
+
+<!--STARTPAGERSTYLE-->
+<!--ENDPAGERSTYLE-->
+
+<!--STARTPOPUPSTYLE-->
+<!--ENDPOPUPSTYLE-->
+
+<!--STARTMENUSTYLE-->
+<!--ENDMENUSTYLE-->
+
+<!-- Key bindings -->
+<!--STARTKEYBINDINGS-->
+<Key key="Up">up</Key>
+<Key key="Down">down</Key>
+<Key key="Right">right</Key>
+<Key key="Left">left</Key>
+<Key key="h">left</Key>
+<Key key="j">down</Key>
+<Key key="k">up</Key>
+<Key key="l">right</Key>
+<Key key="Return">select</Key>
+<Key key="Escape">escape</Key>
+
+<Key mask="4" key="Tab">nextstacked</Key>
+<Key mask="4S" key="c">close</Key>
+<Key mask="4" key="m">minimize</Key>
+<Key mask="4" key="a">maximize</Key>
+<Key mask="4" key="f">fullscreen</Key>
+<Key mask="4" key="d">desktop#</Key>
+<Key mask="4" key="r">root:3</Key>
+<Key mask="A" key="F2">window</Key>
+
+<Key mask="4" key="l">maxright</Key>
+<Key mask="4" key="h">maxleft</Key>
+<Key mask="4" key="k">maxtop</Key>
+<Key mask="4" key="j">maxbottom</Key>
+
+<Key mask="A" key="F7">root:2</Key>
+<Key mask="A" key="F8">root:4</Key>
+
+<Key mask="4" key="1">exec:wmctrl -x -a kitty</Key>
+<Key mask="4" key="2">exec:wmctrl -x -a chromium</Key>
+<Key mask="4" key="3">exec:wmctrl -x -a emacs</Key>
+
+<Key keycode="160">exec:amixer sset Master toggle</Key>
+<Key keycode="176">exec:amixer sset Master 1+,1+</Key>
+<Key keycode="174">exec:amixer sset Master 1-,1-</Key>
+<Key keycode="178">exec:defaultbrowser</Key>
+<Key keycode="236">exec:defaultbrowser</Key>
+<!--ENDKEYBINDINGS-->
+
+<!-- for rox-filer ref: https://forum.puppylinux.com/viewtopic.php?t=6493 -->
+<Group>
+	<Class>Savebox</Class>
+	<Option>width:500</Option>
+	<Option>constrain</Option>
+</Group>
+
+<Group>
+<Name>xvkbd</Name>
+<Option>icon:mini-keyboard.xpm</Option>
+<Option>noborder</Option>
+<Option>nofocus</Option>
+</Group>
+</JWM>
