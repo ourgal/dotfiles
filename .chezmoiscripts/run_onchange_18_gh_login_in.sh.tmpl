@@ -1,0 +1,11 @@
+{{ $config_file := joinPath .chezmoi.homeDir ".confg" "gh" "hosts.yml" -}}
+{{ $data := dict -}}
+{{ if stat $config_file -}}
+{{ $data = include $config_file | fromYaml -}}
+{{ end -}}
+{{ if dig "github.com" "oauth_token" "" $data | not -}}
+    {{ if includeTemplate "gopass" "github/ourgal/token" -}}
+#!{{ lookPath "bash" }}
+    gopass "github/ourgal/token" | gh auth login --hostname github.com --with-token
+    {{- end -}}
+{{ end -}}
