@@ -7,11 +7,10 @@ if status is-interactive
     {{ if joinPath .chezmoi.homeDir "go" "bin" | stat -}}
     fish_add_path --append ~/go/bin
     {{ end -}}
-    # [[[ easy1
-    {{ if eq .chezmoi.hostname "easy1" -}}
+    # [[[ devuan / easyos
+    {{ if dig "osRelease" "id" "" .chezmoi | eq "devuan" -}}
     set -x GPG_TTY $(tty)
-    set -x SSH_AUTH_SOCK $(gpgconf --list-dirs agent-ssh-socket)
-    gpg-connect-agent updatestartuptty /bye >/dev/null
+    eval (ssh-agent -c)
     {{ end -}}
     # ]]]
     # [[[ termux
