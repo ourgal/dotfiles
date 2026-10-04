@@ -79,6 +79,7 @@
           # dev
           - make
           - git
+          - git-crypt
           - lazygit
           - editorconfig
           # ansible
@@ -122,47 +123,6 @@
           ansible.builtin.apt:
             deb: "{{ tmp }}/gopass.deb"
       when: "'gopass' not in ansible_facts.packages or ansible_facts.packages['gopass'][0].version != v"
-    - name: Ensure the target font directory exists
-      ansible.builtin.file:
-        path: /usr/local/share/fonts/nerdsymbols/
-        state: directory
-        owner: root
-        group: root
-        mode: '0755'
-    - name: Ensure the target font directory exists
-      ansible.builtin.file:
-        path: /usr/local/share/fonts/nerdsymbols/
-        state: directory
-        owner: root
-        group: root
-        mode: '0755'
-    - name: Download nerdsymbols
-      ansible.builtin.get_url:
-        url: "{{ gh_proxy }}[[ .my.font.nerdsymbols_url ]]"
-        dest: "{{ tmp }}/NerdFontsSymbolsOnly.tar.xz"
-        checksum: "sha256:b7ef2283462b435f1fe91d729dc412d5dbe34269dd2c7f4e1d803e4105c8d883"
-        mode: '0644'
-    - name: Download and extract font archive
-      ansible.builtin.unarchive:
-        src: "{{ tmp }}/NerdFontsSymbolsOnly.tar.xz"
-        dest: /usr/local/share/fonts/nerdsymbols/
-        owner: root
-        group: root
-        mode: '0644'
-      notify: Refresh font cache
-    - name: Download seanime
-      ansible.builtin.get_url:
-        url: "{{ gh_proxy }}https://github.com/5rahim/seanime/releases/download/v3.10.2/seanime-3.10.2_Linux_x86_64.tar.gz"
-        dest: "{{ tmp }}/seanime.tar.gz"
-        checksum: "sha256:c5359806c69aa8b3073b09192d8dde0cc66c03a9481ee48ac37c463246f29ffd"
-        mode: '0644'
-    - name: Install seanime
-      ansible.builtin.unarchive:
-        src: "{{ tmp }}/seanime.tar.gz"
-        dest: /usr/local/bin/
-        owner: root
-        group: root
-        mode: '0755'
     - name: Add Flathub repository remote
       community.general.flatpak_remote:
         name: flathub
