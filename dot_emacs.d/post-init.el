@@ -1512,3 +1512,6 @@
    ;; If nil, the fzf buffer will appear at the top of the window
    fzf/position-bottom t
    fzf/window-height 15))
+
+(use-package consult-gh
+  :ensure t)

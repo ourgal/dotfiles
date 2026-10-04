@@ -2229,3 +2229,10 @@ Support for Jenkinsfile files
    fzf/position-bottom t
    fzf/window-height 15))
 #+end_src
+
+** Consult gh
+
+#+begin_src emacs-lisp
+(use-package consult-gh
+  :ensure t)
+#+end_src
