@@ -6,6 +6,10 @@ if status is-interactive
     alias bat="batcat"
     {{ end -}}
 
+    {{ if lookPath "xset" -}}
+    alias scroff="xset dpms force off"
+    {{ end -}}
+
     {{ if joinPath .chezmoi.homeDir ".local" "bin" | stat -}}
     fish_add_path --append ~/.local/bin
     {{ end -}}
