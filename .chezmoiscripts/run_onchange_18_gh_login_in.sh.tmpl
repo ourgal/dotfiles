@@ -1,3 +1,5 @@
+{{ if and (ne .chezmoi.os "windows") (lookPath "gh") -}}
+
 {{ $config_file := joinPath .chezmoi.homeDir ".confg" "gh" "hosts.yml" -}}
 {{ $data := dict -}}
 {{ if stat $config_file -}}
@@ -8,4 +10,6 @@
 #!{{ lookPath "bash" }}
     gopass "github/ourgal/token" | gh auth login --hostname github.com --with-token
     {{- end -}}
+{{ end -}}
+
 {{ end -}}

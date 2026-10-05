@@ -1,0 +1,14 @@
+{{ if and (eq .chezmoi.os "windows") (lookPath "gh") -}}
+
+{{ $config_file := joinPath .chezmoi.homeDir "AppData" "Roaming" "GitHub CLI" "hosts.yml" -}}
+{{ $data := dict -}}
+{{ if stat $config_file -}}
+{{ $data = include $config_file | fromYaml -}}
+{{ end -}}
+{{ if dig "github.com" "oauth_token" "" $data | not -}}
+    {{ if includeTemplate "gopass" "github/ourgal/token" -}}
+    gopass "github/ourgal/token" | gh auth login --hostname github.com --with-token
+    {{- end -}}
+{{ end -}}
+
+{{ end -}}
