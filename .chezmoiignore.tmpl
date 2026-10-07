@@ -928,4 +928,12 @@ AppData/Roaming/herdr/*
 !.jwm/jwmrc-personal
 {{ end -}}
 # ]]]
+# [[[ buku
+{{ if and (lookPath "python") (lookPath "uv") (lookPath "buku") -}}
+!.local/share/buku
+.local/share/buku/*
+!.local/share/buku/pyproject.toml
+!.local/share/buku/db.key
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:

@@ -1,0 +1,9 @@
+{{ if ne .chezmoi.os "windows" -}}
+{{ if and (lookPath "buku") (lookPath "uv") (lookPath "python") -}}
+#!{{ lookPath "bash" }}
+# {{ include (joinPath .chezmoi.homeDir ".local" "share" "buku" "db.key") | sha256sum }}
+cd ~/.local/share/buku
+[[ -f bookmarks.db ]] && rm bookmarks.db
+uv run python db.key
+{{ end -}}
+{{ end -}}
