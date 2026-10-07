@@ -158,4 +158,7 @@ Run "rclone mount --vfs-cache-mode full --network-mode alist:/ z:", {{ .chezmoi.
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "gotify" "opt" (list "windows" "startup" "gotify" "enable") "os" "windows") | trim | atoi -}}
 Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "gotify-server" "current" "gotify.exe" }}", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "kmonad" "opt" (list "windows" "startup" "kmonad" "enable") "os" "windows") | trim | atoi -}}
+Run "{{ lookPath "kmonad" }} {{ joinPath .chezmoi.homeDir ".config" "kmonad" "miryoku.kbd" }}", {{ .chezmoi.homeDir | quote }}, "Hide"
+{{ end -}}
 {{ end -}}

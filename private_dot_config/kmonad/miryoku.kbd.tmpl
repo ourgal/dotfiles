@@ -6,10 +6,16 @@
 
 
 (defcfg
-{{ if eq .chezmoi.hostname "surface" -}}
+{{ if eq .chezmoi.hostname "surface" }}
   input (device-file "/dev/input/by-id/usb-Microsoft_Surface_Type_Cover-event-kbd")
-{{ end -}}
+{{ else if eq .chezmoi.os "windows" }}
+  input (low-level-hook)
+{{ end }}
+{{ if eq .chezmoi.os "windows" }}
+  output (send-event-sink)
+{{ else }}
   output (uinput-sink "Miryoku KMonad output")
+{{ end }}
   fallthrough false
 )
 (defsrc
