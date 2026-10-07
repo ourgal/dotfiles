@@ -1,7 +1,3 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "uv" -}}
 [[index]]
 url = {{ .my.pip.mirror | quote }}
 default = true
-{{ end -}}
-{{ end -}}

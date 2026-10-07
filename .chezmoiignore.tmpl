@@ -936,4 +936,17 @@ AppData/Roaming/herdr/*
 !.local/share/buku/db.key
 {{ end -}}
 # ]]]
+# [[[ uv
+{{ if lookPath "uv" -}}
+{{ if ne .chezmoi.os "windows" -}}
+!.config/uv/
+.config/uv/*
+!.config/uv/uv.toml
+{{ else -}}
+!AppData/Roaming/uv/
+AppData/Roaming/uv/*
+!AppData/Roaming/uv/uv.toml
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
