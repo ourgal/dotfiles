@@ -60,3 +60,5 @@
 (package! nov)
 
 (package! pangu-spacing)
+
+(package! buffer-guardian)
