@@ -55,6 +55,8 @@
 
 (package! org-auto-tangle)
 
+(package! org-appear)
+
 (package! ahk-mode)
 
 (package! nov)

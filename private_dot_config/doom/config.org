@@ -433,6 +433,25 @@
 (package! org-auto-tangle)
 #+end_src
 
+*** Org appear
+
+#+begin_src emacs-lisp
+(use-package!
+ org-appear
+ :ensure t
+ :commands org-appear-mode
+ :custom
+ (org-appear-autoemphasis t)
+ (org-appear-autolinks t)
+ (org-appear-autosubmarkers t)
+ (org-appear-inside-latex t)
+ :hook org-mode)
+#+end_src
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! org-appear)
+#+end_src
+
 ** Emms
 
 #+begin_src emacs-lisp

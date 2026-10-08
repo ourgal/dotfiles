@@ -100,6 +100,17 @@
   :custom
   (org-auto-tangle-default t))
 
+(use-package!
+ org-appear
+ :ensure t
+ :commands org-appear-mode
+ :custom
+ (org-appear-autoemphasis t)
+ (org-appear-autolinks t)
+ (org-appear-autosubmarkers t)
+ (org-appear-inside-latex t)
+ :hook org-mode)
+
 (setq emms-source-file-default-directory "~/Music")
 (add-hook 'emms-playlist-mode-hook #'turn-on-evil-mode)
 
