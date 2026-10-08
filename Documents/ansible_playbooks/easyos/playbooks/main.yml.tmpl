@@ -157,6 +157,51 @@
         name: "{{ item }}"
       loop:
         - uv
+    - name: Set emacs desktop file
+      ansible.builtin.copy:
+        dest: /usr/share/applications/emacs_simple.desktop
+        content: |
+          [Desktop Entry]
+          Version=1.0
+          Name=Emacs
+          GenericName=Text Editor
+          Comment=GNU Emacs is an extensible, customizable text editor - and more
+          MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
+          TryExec=/usr/bin/emacs
+          Exec=/usr/bin/emacs
+          Icon=emacs
+          Type=Application
+          Terminal=false
+          Categories=Utility;Development;TextEditor;
+          StartupNotify=true
+          StartupWMClass=Emacs
+          Keywords=Text;Editor;
+    - name: Set emacs client desktop file
+      ansible.builtin.copy:
+        dest: /usr/share/applications/emacsclient_simple.desktop
+        content: |
+          [Desktop Entry]
+          Name=Emacs Client
+          GenericName=Text Editor
+          Comment=Edit text
+          MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;x-scheme-handler/org-protocol;
+          Exec=/usr/bin/emacsclient --alternate-editor= --create-frame
+          Icon=emacs
+          Type=Application
+          Terminal=false
+          Categories=Development;TextEditor;
+          StartupNotify=true
+          StartupWMClass=Emacs
+          Keywords=emacsclient;
+          Actions=new-window;new-instance;
+
+          [Desktop Action new-window]
+          Name=New Window
+          Exec=/usr/bin/emacsclient --alternate-editor= --create-frame %F
+
+          [Desktop Action new-instance]
+          Name=New Instance
+          Exec=emacs %F
   handlers:
     - name: Refresh font cache
       ansible.builtin.command:
