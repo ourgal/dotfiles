@@ -289,6 +289,32 @@ Set-PSReadLineKeyHandler -Key Ctrl+o `
 {{ output "atuin" "init" "powershell" "--disable-up-arrow" }}
 {{ end -}}
 # ]]]
+# [[[ broot
+{{ if lookPath "broot" -}}
+# https://github.com/Canop/broot/issues/460#issuecomment-1303005689
+Function br {
+  $args = $args -join ' '
+  $cmd_file = New-TemporaryFile
+
+  try {
+    $process = Start-Process -FilePath 'broot.exe' `
+                            -ArgumentList "--outcmd `"$($cmd_file.FullName)`" $args" `
+                            -NoNewWindow -PassThru -WorkingDirectory $PWD
+
+    Wait-Process -InputObject $process #Faster than Start-Process -Wait
+    If ($process.ExitCode -eq 0) {
+        $cmd = Get-Content $cmd_file
+        If ($cmd -ne $null) { Invoke-Expression -Command $cmd }
+    } Else {
+        Write-Host "`n" # Newline to tidy up broot unexpected termination
+        Write-Error "broot.exe exited with error code $($process.ExitCode)"
+    }
+  } finally {
+    Remove-Item $cmd_file
+  }
+}
+{{ end -}}
+# ]]]
 # [[[ mcfly
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mcfly" "opt" (list "shell" "pwsh" "mcfly" "enable") "os" "windows") | trim | atoi -}}
 {{ output "mcfly" "init" "powershell" }}
