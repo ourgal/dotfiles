@@ -138,12 +138,6 @@
 (set-formatter! 'taplo '("taplo" "fmt" "-") :modes '(conf-toml-mode))
 (set-formatter! 'yamlfix '("yamlfix" "-") :modes '(yaml-mode))
 
-(after! dirvish
-  (dirvish-side-follow-mode))
-
-(map! :n "-" #'dirvish)
-(map! :map 'dirvish-mode-map :n "a" #'dired-create-empty-file)
-
 (after! eglot
   (add-to-list 'eglot-server-programs
                '(fennel-mode . ("fennel-ls")))
