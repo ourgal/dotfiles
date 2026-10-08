@@ -452,6 +452,20 @@
 (package! org-appear)
 #+end_src
 
+*** Org modern
+
+#+begin_src emacs-lisp :tangle no
+(use-package
+ org-modern
+ :ensure t
+ :hook
+ ((org-mode . org-modern-mode) (org-agenda-finalize . org-modern-agenda)))
+#+end_src
+
+#+begin_src emacs-lisp :tangle no
+(package! org-modern)
+#+end_src
+
 ** Emms
 
 #+begin_src emacs-lisp
