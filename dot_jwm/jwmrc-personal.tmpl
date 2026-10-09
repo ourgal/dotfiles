@@ -32,16 +32,16 @@
 
 <!--STARTTASKLISTSTYLE-->
 {{ if lookPath "seanime" -}}
-<StartupCommand>{{ lookPath "seanime" }}  &amp;</StartupCommand>
+<StartupCommand>{{ lookPath "seanime" }} &amp;</StartupCommand>
 {{ end -}}
 {{ if lookPath "defaultbrowser" -}}
-<StartupCommand>{{ lookPath "defaultbrowser" }}  &amp;</StartupCommand>
+<StartupCommand>{{ lookPath "defaultbrowser" }} &amp;</StartupCommand>
 {{ end -}}
 {{ if lookPath "emacs" -}}
-<StartupCommand>{{ lookPath "emacs" }}  &amp;</StartupCommand>
+<StartupCommand>{{ lookPath "emacs" }} --daemon &amp;</StartupCommand>
 {{ end -}}
 {{ if lookPath "kitty" -}}
-<StartupCommand>{{ lookPath "kitty" }}  &amp;</StartupCommand>
+<StartupCommand>{{ lookPath "kitty" }} &amp;</StartupCommand>
 {{ end -}}
 <!--ENDTASKLISTSTYLE-->
 
