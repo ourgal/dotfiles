@@ -878,3 +878,16 @@ Emacs loses focus.
 (remove-hook 'before-save-hook #'vc-before-save t)
 (remove-hook 'find-file-hook #'epa-file-find-file-hook)
 #+end_src
+
+** Tmpl
+
+#+begin_src emacs-lisp
+(use-package!
+  tmpl-mode
+  :hook (after-init . tmpl-global-mode))
+#+end_src
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! tmpl-mode
+  :recipe (:host nil :type git :repo "https://v6.gh-proxy.org/https://github.com/Lindydancer/tmpl-mode"))
+#+end_src

@@ -64,3 +64,6 @@
 (package! pangu-spacing)
 
 (package! buffer-guardian)
+
+(package! tmpl-mode
+  :recipe (:host nil :type git :repo "https://v6.gh-proxy.org/https://github.com/Lindydancer/tmpl-mode"))

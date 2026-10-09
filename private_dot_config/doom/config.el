@@ -280,3 +280,7 @@
                url
                ;; 用今天的日期
                (format-time-string "%m/%d/%Y"))))))
+
+(use-package!
+  tmpl-mode
+  :hook (after-init . tmpl-global-mode))
