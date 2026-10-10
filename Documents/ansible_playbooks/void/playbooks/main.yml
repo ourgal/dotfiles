@@ -10,6 +10,21 @@
     - name: Debug variables
       ansible.builtin.debug:
         var: ansible_facts
+    - name: Xbps settings
+      become: true
+      block:
+        - name: Set xbps mirror
+          ansible.builtin.copy:
+            dest: /etc/xbps.d/00-repository-main.conf
+            content: |
+              repository={{ xbps_mirror }}
+            mode: "0644"
+        - name: Set xbps nonfree mirror
+          ansible.builtin.copy:
+            dest: /etc/xbps.d/01-repository-nonfree.conf
+            content: |
+              repository={{ xbps_nonfree_mirror }}
+            mode: "0644"
     - name: Upgrade system
       tags:
         - pkg
@@ -154,8 +169,6 @@
           - editorconfig
           # ansible
           - ansible
-          - python3-ansible-lint
-          - ansible-language-server
           # bash
           - shellcheck
           # toml
@@ -211,8 +224,8 @@
           - fcitx5-lua
           - fcitx5-configtool
           - dot-xsession
-          - ansible-language-server
-          - python3-ansible-lint
+          - ansible-language-server # broken
+          - python3-ansible-lint # broken
         repositories:
           - "{{ xbps_mirror }}"
           - "{{ xbps_nonfree_mirror }}"
