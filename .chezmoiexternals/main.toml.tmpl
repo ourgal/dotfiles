@@ -173,17 +173,14 @@
 {{ $doom_repo := "https://mirror.nju.edu.cn/git/doom-emacs.git/" -}}
 
 {{ if and .my.doomemacs.enable (lookPath "emacs") }}
-{{ if eq .chezmoi.os "linux" "android" -}}
-[".config/emacs"]
-    type = "git-repo"
-    url = "{{ $doom_repo }}"
+{{ $emacs_dir := ".config/emacs" -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ $emacs_dir = ".emacs.d" -}}
 {{ end -}}
 
-{{ if eq .chezmoi.os "windows" -}}
-[".emacs.d"]
+[{{ $emacs_dir | quote }}]
     type = "git-repo"
     url = "{{ $doom_repo }}"
-{{ end -}}
 {{ end -}}
 
 {{ if and .my.minimal_emacs.enable (lookPath "emacs") }}
