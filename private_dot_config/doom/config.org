@@ -891,3 +891,12 @@ Emacs loses focus.
 (package! tmpl-mode
   :recipe (:host nil :type git :repo "https://v6.gh-proxy.org/https://github.com/Lindydancer/tmpl-mode"))
 #+end_src
+
+** Fix void yaml-indent-line
+
+#+begin_src emacs-lisp
+(add-hook 'yaml-ts-mode-hook
+          (lambda ()
+            (require 'yaml-mode) ; Ensures yaml-indent-line is loaded and available
+            (setq-local indent-line-function #'yaml-indent-line)))
+#+end_src

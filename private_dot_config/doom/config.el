@@ -284,3 +284,8 @@
 (use-package!
   tmpl-mode
   :hook (after-init . tmpl-global-mode))
+
+(add-hook 'yaml-ts-mode-hook
+          (lambda ()
+            (require 'yaml-mode) ; Ensures yaml-indent-line is loaded and available
+            (setq-local indent-line-function #'yaml-indent-line)))
