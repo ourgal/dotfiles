@@ -642,6 +642,8 @@ Sqlite browser
   (evil-ex-search-persistent-highlight nil)
   (+evil-want-o/O-to-continue-comments nil)
   (evil-ex-substitute-global t))
+
+(map! :n "-" #'dired-jump)
 #+end_src
 
 *** Evil snipe

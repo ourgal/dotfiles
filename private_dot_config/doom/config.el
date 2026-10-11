@@ -207,6 +207,8 @@
   (+evil-want-o/O-to-continue-comments nil)
   (evil-ex-substitute-global t))
 
+(map! :n "-" #'dired-jump)
+
 (use-package! nov
   :mode "\\.epub\\'")
 
