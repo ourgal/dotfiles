@@ -1,11 +1,1 @@
-[Desktop Entry]
-Encoding=UTF-8
-Type=Application
-Name=Eemacs daemon
-Comment=
-Exec={{ lookPath "emacs" }} --daemon
-OnlyShowIn=XFCE;
-RunHook=0
-StartupNotify=false
-Terminal=false
-Hidden=false
+{{ includeTemplate "autostart_desktop" (dict "exec" (lookPath "seanime" | printf "%s --daemon") "name" "Eemacs daemon") }}

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name={{ dig "name" (splitList " " .exec | first | title) . }}
+Comment=
+Exec={{ .exec }}
+OnlyShowIn={{ dig "de" "XFCE" . }};
+RunHook=0
+StartupNotify=false
+Terminal=false
+Hidden=false
