@@ -57,6 +57,8 @@
 
 (package! org-appear)
 
+(package! org-rich-yank)
+
 (package! ahk-mode)
 
 (package! nov)

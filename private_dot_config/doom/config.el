@@ -111,6 +111,11 @@
  (org-appear-inside-latex t)
  :hook org-mode)
 
+(use-package!
+  org-rich-yank
+  :after org
+  :bind (:map org-mode-map ("C-M-y" . org-rich-yank)))
+
 (setq emms-source-file-default-directory "~/Music")
 (add-hook 'emms-playlist-mode-hook #'turn-on-evil-mode)
 

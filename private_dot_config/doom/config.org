@@ -466,6 +466,19 @@
 (package! org-modern)
 #+end_src
 
+*** Org rich yank
+
+#+begin_src emacs-lisp
+(use-package!
+  org-rich-yank
+  :after org
+  :bind (:map org-mode-map ("C-M-y" . org-rich-yank)))
+#+end_src
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! org-rich-yank)
+#+end_src
+
 ** Emms
 
 #+begin_src emacs-lisp
