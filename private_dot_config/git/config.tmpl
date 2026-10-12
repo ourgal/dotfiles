@@ -29,6 +29,7 @@
 	{{ $_ = set $_ "paper" "diff-so-fancy | less '--tabs=4' -RFX" -}}
 	{{ end -}}
 {{ $_ = set $_ "preloadindex" true -}}
+{{ $_ = set $_ "fscache" true -}}
 {{ $_ = set $_ "whitespace" "error" -}}
 {{ $_ = set $_ "autocrlf" (eq .chezmoi.os "windows" | ternary true "input") -}}
 	{{- if eq .chezmoi.os "windows" -}}
