@@ -1,0 +1,5 @@
+{{ if and (eq .chezmoi.os "windows") (lookPath "corepack") -}}
+{{ if joinPath .chezmoi.homeDir ".local" "bin" "yarn" | stat | not -}}
+{{ lookPath "corepack" }} enable --install-directory {{ joinPath .chezmoi.homeDir ".local" "bin" }}
+{{ end -}}
+{{ end -}}
