@@ -960,3 +960,46 @@ When called from Lisp, if FILENAME is given, open that."
             (require 'yaml-mode) ; Ensures yaml-indent-line is loaded and available
             (setq-local indent-line-function #'yaml-indent-line)))
 #+end_src
+
+** Magit fast
+
+#+begin_src emacs-lisp :tangle no
+(after! magit
+  (magit-auto-revert-mode -1)
+  (setq with-editor-emacsclient-executable (executable-find "emacsclient")
+        magit-log-section-commit-count 5
+        magit-process-connection-type nil
+        magit-refresh-verbose nil
+        magit-refresh-status-buffer nil
+        magit-revision-insert-related-refs nil
+        magit-save-repository-buffers nil
+        magit-uniquify-buffer-names nil
+        magit-status-sections-hook
+        '(magit-insert-error-header
+                magit-insert-untracked-files
+                magit-insert-unstaged-changes
+                magit-insert-staged-changes
+                magit-insert-recent-commits)))
+#+end_src
+
+#+begin_src emacs-lisp :tangle no
+(use-package! magit-fast
+  :after magit
+  :bind
+  (:map magit-status-mode-map
+   ("<tab>" . my-magit-fast-diff))
+  :init
+  (remove-hook 'server-switch-hook 'magit-commit-diff)
+  (remove-hook 'magit-pre-start-git-hook #'magit-maybe-save-repository-buffers)
+  (magit-fast-mode)
+
+  (defun my-magit-fast-diff ()
+    (interactive)
+    (when-let* ((file (magit-file-at-point)))
+      (magit-diff-dwim nil `(,file)))))
+#+end_src
+
+#+begin_src emacs-lisp :tangle no
+(package! magit-fast
+  :recipe (:host nil :type git :repo "https://v6.gh-proxy.org/https://github.com/zHaOdANiuu/magit-fast"))
+#+end_src
