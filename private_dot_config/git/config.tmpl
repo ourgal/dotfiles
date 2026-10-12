@@ -22,7 +22,8 @@
 {{ $_ = set $_ "compression" 9 -}}
 {{ $_ = set $_ "editor" (includeTemplate "editor") -}}
 {{ $_ = set $_ "excludesfile" "~/.gitignore" -}}
-{{ $_ = set $_ "fsmonitor" false -}}
+{{ $_ = set $_ "fsmonitor" true -}}
+{{ $_ = set $_ "untrackedCache" true -}}
 	{{- if lookPath "delta" -}}
 	{{ $_ = set $_ "paper" "delta" -}}
 	{{- else if lookPath "diff-so-fancy" -}}
@@ -37,6 +38,12 @@
 	{{ $_ = set $_ "symlinks" true -}}
 	{{- end -}}
 {{ $cfg = set $cfg "core" $_ -}}
+
+{{ $_ = dict -}}
+{{ $_ = set $_ "threads" 0 -}}
+{{ $_ = set $_ "windowMemory" "256m" -}}
+{{ $_ = set $_ "deltaCacheSize" "256m" -}}
+{{ $cfg = set $cfg "pick" $_ -}}
 
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "git-credential-gopass" -}}
@@ -60,7 +67,11 @@
 
 {{ $cfg = set $cfg "diff-so-fancy" (dict "changeHunkIndicators" true "markEmptyLines" false "stripLeadingSymbols" true "useUnicodeRuler" true) -}}
 
-{{ $cfg = set $cfg "fetch" (dict "all" true "prune" true "pruneTags" true) -}}
+{{ $cfg = set $cfg "fetch" (dict "all" true "prune" true "pruneTags" true "writeCommitGraph" true "parallel" 4) -}}
+
+{{ $cfg = set $cfg "index" (dict "version" 4) -}}
+
+{{ $cfg = set $cfg "feature" (dict "manyFiles" true) -}}
 
 {{ $cfg = set $cfg (print "filter " ("lfs" | quote)) (dict "clean" "git-lfs clean -- %f" "process" "git-lfs filter-process" "required" true "smudge" "git-lfs smudge -- %f") -}}
 
@@ -127,5 +138,5 @@
 
 {{ $cfg = set $cfg "git-extras" (dict "default-branch" $cfg.init.defaultBranch "get" (dict "clone-path" "~/src")) -}}
 
-{{ $cfg = set $cfg "merge" (dict "conflictstyle" "zdiff3") -}}
+{{ $cfg = set $cfg "merge" (dict "conflictstyle" "zdiff3" "renameLimit" 10000) -}}
 {{ $cfg | toIni -}}
