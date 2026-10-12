@@ -7,6 +7,36 @@
 {{ $_ = set $_ "unpublish" (printf "!%s/scoop/apps/legit/current/legit.exe unpublish" .chezmoi.homeDir) -}}
 {{ $_ = set $_ "undo" (printf "!%s/scoop/apps/legit/current/legit.exe undo" .chezmoi.homeDir) -}}
 {{ $_ = set $_ "branches" (printf "!%s/scoop/apps/legit/current/legit.exe branches" .chezmoi.homeDir) -}}
+
+{{ $_ = set $_ "up" "pull --rebase --autostash" -}}
+{{ $_ = set $_ "s" "show" -}}
+{{ $_ = set $_ "cia" "commit -a" -}}
+{{ $_ = set $_ "rc" "rebase --continue" -}}
+{{ $_ = set $_ "amend" "commit --amend" -}}
+{{ $_ = set $_ "commend" "commit --amend --no-edit" -}}
+{{ $_ = set $_ "p" "push" -}}
+{{ $_ = set $_ "pf" "push --force" -}}
+{{ $_ = set $_ "a" "add" -}}
+{{ $_ = set $_ "aa" "add -A" -}}
+{{ $_ = set $_ "st" "status -s" -}}
+{{ $_ = set $_ "co" "checkout" -}}
+{{ $_ = set $_ "b" "branch" -}}
+{{ $_ = set $_ "rh" "reset --hard HEAD" -}}
+{{ $_ = set $_ "pl" "pull" -}}
+{{ $_ = set $_ "d" "diff HEAD" -}}
+{{ $_ = set $_ "dc" "diff --cached" -}}
+{{ $_ = set $_ "dt" "difftool" -}}
+{{ $_ = set $_ "dw" "diff --color-words HEAD" -}}
+{{ $_ = set $_ "sw" "show --color-words" -}}
+{{ $_ = set $_ "l" "log" -}}
+{{ $_ = set $_ "logs" "log --show-signature --stat" -}}
+{{ $_ = set $_ "lp" "log -p" -}}
+{{ $_ = set $_ "chp" "cherry-pick" -}}
+{{ $_ = set $_ "chpa" "cherry-pick --abort" -}}
+{{ $_ = set $_ "chpc" "cherry-pick --continue" -}}
+{{ $_ = set $_ "chpq" "cherry-pick --quit" -}}
+{{ $_ = set $_ "chps" "cherry-pick --skip" -}}
+
 {{ $cfg = set $cfg "alias" $_ -}}
 
 {{ $cfg = set $cfg "branch" (dict "sort" "-committerdate") -}}
