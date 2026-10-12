@@ -1,0 +1,6 @@
+---
+all:
+  vars:
+    ansible_become_pass: {{ gopass "password/linux/user" }}
+  hosts:
+    t430:

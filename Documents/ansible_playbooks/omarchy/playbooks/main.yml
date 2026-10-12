@@ -1,0 +1,29 @@
+---
+- name: Configure uos
+  hosts: all
+  tasks:
+    - name: Pacman
+      become: true
+      block:
+        - name: Update system
+          tags:
+            - pkg
+            - pacman
+          community.general.pacman:
+            update_cache: true
+            upgrade: true
+        - name: Install pacman packages
+          tags:
+            - pkg
+            - pacman
+          community.general.pacman:
+            name:
+              # du
+              - duf
+              # dotfiles
+              - chezmoi
+              # editor
+              - helix
+              - emacs
+              # shell
+              - fish
