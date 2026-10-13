@@ -961,4 +961,33 @@ AppData/Roaming/uv/*
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ neovim
+{{ if lookPath "nvim" -}}
+{{ if ne .chezmoi.os "windows" -}}
+!.config/nvim/
+.config/nvim/*
+!.config/nvim/init.lua
+!.config/nvim/lua/
+.config/nvim/lua/*
+!.config/nvim/lua/config/
+.config/nvim/lua/config/*
+!.config/nvim/lua/config/lazy.lua
+!.config/nvim/lua/plugins/
+.config/nvim/lua/plugins/*
+!.config/nvim/lua/plugins/example.lua
+{{ else -}}
+!AppData/Local/nvim/
+AppData/Local/nvim/*
+!AppData/Local/nvim/init.lua
+!AppData/Local/nvim/lua/
+AppData/Local/nvim/lua/*
+!AppData/Local/nvim/lua/config/
+AppData/Local/nvim/lua/config/*
+!AppData/Local/nvim/lua/config/lazy.lua
+!AppData/Local/nvim/lua/plugins/
+AppData/Local/nvim/lua/plugins/*
+!AppData/Local/nvim/lua/plugins/example.lua
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
