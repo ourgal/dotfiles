@@ -74,8 +74,8 @@ if has('gui_running')
     " tab label
     set guitablabel=%M\ %t
     " font
-    set guifont=[[ .my.font.windows.monospace | replace " " "\\ " ]]
-    set guifontwide=[[ .my.font.windows.monospace_cn | replace " " "\\ " ]]
+    set guifont=[[ if eq .chezmoi.os "windows" ]][[ .my.font.windows.monospace | replace " " "\\ " ]][[ else ]][[ .my.font.monospace | replace " " "\\ " ]][[ end ]]
+    set guifontwide=[[ if eq .chezmoi.os "windows" ]][[ .my.font.windows.monospace_cn | replace " " "\\ " ]][[ else ]][[ .my.font.monospace_cn | replace " " "\\ " ]][[ end ]]
     " auto save
     au BufLeave,CursorHold,FocusLost * if(getbufinfo('%')[0].changed) | do BufWritePre | sil! up | do BufWritePost | endif
 endif
