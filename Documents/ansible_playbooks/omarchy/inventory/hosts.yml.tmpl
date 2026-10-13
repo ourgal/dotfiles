@@ -1,6 +1,6 @@
 ---
 all:
   vars:
-    ansible_become_pass: {{ gopass "password/linux/user" }}
+    ansible_become_pass: {{ includeTemplate "gopass" "password/linux/user" }}
   hosts:
     t430:
