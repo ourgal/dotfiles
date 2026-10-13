@@ -1,1 +1,1 @@
-{{ joinPath .chezmoi.homeDir ".local" "share" "repos" "lazyvim" "init.lua" | include }}
+{{ includeTemplate "include" (joinPath .chezmoi.homeDir ".local" "share" "repos" "lazyvim" "init.lua") }}
