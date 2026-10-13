@@ -43,6 +43,9 @@ host = "http://localhost:5244"
 [my.dufs.bucket]
 host = "http://localhost:5000"
 
+[my.emacs_daemon]
+enable = false
+
 [my.doomemacs]
 enable = true
 commit = "d8d75443d39d95f3c5256504eb838e0acc62ef44"
@@ -106,7 +109,7 @@ altrun.enable = false
 navidrome.enable = false
 jellyfin_mpv_shim.enable = false
 emacs.enable = false
-emacs_daemon.enable = true
+emacs_daemon.enable = false
 wt.enable = true
 syncthing.enable = true
 torrserver.enable = false

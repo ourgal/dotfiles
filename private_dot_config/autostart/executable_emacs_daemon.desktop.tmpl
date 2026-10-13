@@ -1,1 +1,3 @@
+{{ if .my.emacs_daemon.enable -}}
 {{ includeTemplate "autostart_desktop" (dict "exec" (lookPath "seanime" | printf "%s --daemon") "name" "Eemacs daemon") }}
+{{ end -}}
