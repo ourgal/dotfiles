@@ -1,0 +1,3 @@
+{{ if .my.emacs_daemon.enable -}}
+{{ includeTemplate "autostart_desktop" (dict "exec" (lookPath "emacsclient" | printf "%s --alternate-editor= --create-frame") "name" "Eemacs client") }}
+{{ end -}}
