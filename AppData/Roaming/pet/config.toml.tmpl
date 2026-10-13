@@ -16,14 +16,14 @@
   {{ end -}}
   Color = false
   Column = 40
-  Editor = "{{ template "editor" }}"
+  Editor = "{{ includeTemplate "editor" . }}"
   Format = "[$description]: $command $tags"
   SelectCmd = "fzf --ansi --layout=reverse --border --height=90% --pointer=* --cycle --prompt=Snippets:"
   SnippetDirs = []
   {{ if eq .chezmoi.os "windows" -}}
   SnippetFile = {{ joinPath .chezmoi.homeDir "AppData" "Roaming" "pet" "snippet.toml" | quote }}
   {{ else -}}
-  SnippetFile = ""
+  SnippetFile = {{ joinPath .chezmoi.homeDir ".config" "pet" "snippet.toml" | quote }}
   {{ end -}}
   SortBy = ""
 
