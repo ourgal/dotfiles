@@ -108,7 +108,7 @@ mkdir -p {{ $output_dir | quote }}
   {{ if lookPath "7z" -}}
   7z e "$TEMP_DIR/{{ $url_filename }}" -aoa -o{{ $output_dir }}
   {{ else -}}
-  tar -xf "$TEMP_DIR/{{ $url_filename }}" -C {{ $output_dir | quote }}
+  unzip "$TEMP_DIR/{{ $url_filename }}" -d {{ $output_dir | quote }}
   {{ end -}}
 {{ end -}}
 
