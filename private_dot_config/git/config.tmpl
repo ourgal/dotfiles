@@ -154,6 +154,8 @@
 
 {{ $cfg = set $cfg (print "url " ("git@github.com:" | quote)) (dict "insteadOf" "gh:") -}}
 
+{{ $cfg = set $cfg (print "url " ("https://v6.gh-proxy.org/https://github.com/" | quote)) (dict "insteadOf" "ghp:") -}}
+
 {{ $_ = dict -}}
 {{ $_ = set $_ "email" .my.git.user.email -}}
 {{ $_ = set $_ "name" .my.git.user.name -}}
