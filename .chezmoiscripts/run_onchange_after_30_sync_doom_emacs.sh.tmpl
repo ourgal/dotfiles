@@ -21,7 +21,11 @@ set -euo pipefail
     {{ end -}}
 # {{ output "git" "-C" $doom_dir "rev-parse" "HEAD" }}
 # {{ output "emacs" "--version" | trim | splitList "\n" | first }}
+{{ if joinPath .chezmoi.homeDir ".config" "emacs" ".local" | stat | not }}
+{{ $doom_bin }} install
+{{ else -}}
 {{ $doom_bin }} sync
+{{ end -}}
 
 {{ end -}}
 {{ end -}}

@@ -173,14 +173,12 @@
 {{ $doom_repo := "https://mirror.nju.edu.cn/git/doom-emacs.git/" -}}
 
 {{ if and .my.doomemacs.enable (lookPath "emacs") }}
-{{ $emacs_dir := ".config/emacs" -}}
-{{ if eq .chezmoi.os "windows" -}}
-{{ $emacs_dir = ".emacs.d" -}}
-{{ end -}}
+{{ $emacs_dir := ".emacs.d" -}}
 
 [{{ $emacs_dir | quote }}]
     type = "git-repo"
     url = "{{ $doom_repo }}"
+    refreshPeriod = "168h"
 {{ end -}}
 
 {{ if and .my.minimal_emacs.enable (lookPath "emacs") }}
