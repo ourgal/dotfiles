@@ -1,3 +1,4 @@
+{{ if ne .chezmoi.os "windows" -}}
 {{ if and .my.doomemacs.enable (lookPath "emacs") -}}
 #!{{ lookPath "bash" }}
 
@@ -8,4 +9,5 @@
   "chezmoi" .chezmoi
 )}}
 
+{{ end -}}
 {{ end -}}

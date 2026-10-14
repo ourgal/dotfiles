@@ -1,3 +1,4 @@
+{{ if eq .chezmoi.os "windows" -}}
 {{ if and .my.doomemacs.enable (lookPath "emacs") -}}
 
 {{ includeTemplate "download" (dict
@@ -7,4 +8,5 @@
   "chezmoi" .chezmoi
 )}}
 
+{{ end -}}
 {{ end -}}
