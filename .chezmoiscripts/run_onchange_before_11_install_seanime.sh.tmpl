@@ -1,7 +1,7 @@
 {{ if eq .chezmoi.os "linux" -}}
 #!{{ lookPath "bash" }}
 
-{{ $ver := "3.10.2" -}}
+{{ $ver := "3.10.4" -}}
 {{ $arch := "x86_64" -}}
 
 {{ includeTemplate "download" (dict
