@@ -8,4 +8,4 @@
 - name: Install all packages
   tags: "{{ apt_tags }}"
   ansible.builtin.apt:
-    name: "{{ apt_packages }}"
+    name: "{{ apt_packages.values() | list | flatten(1) }}"
