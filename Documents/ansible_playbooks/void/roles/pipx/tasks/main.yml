@@ -1,0 +1,7 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+- name: Install pipx packages
+  tags: pipx
+  community.general.pipx:
+    name: "{{ item }}"
+  loop: "{{ pipx_packages }}"

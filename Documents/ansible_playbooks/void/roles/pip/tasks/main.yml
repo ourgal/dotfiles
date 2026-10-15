@@ -1,0 +1,17 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+- name: Setup pip mirror
+  tags: pip
+  block:
+    - name: Create .pip folder
+      ansible.builtin.file:
+        dest: "{{ ansible_facts.user_dir }}/.pip"
+        state: directory
+    - name: Set pip config
+      ansible.builtin.copy:
+        dest: "{{ ansible_facts.user_dir }}/.pip/pip.ini"
+        content: |
+          [global]
+          index-url = {{ pip_index_url }}
+          [install]
+          trusted-host = {{ pip_mirror_host }}

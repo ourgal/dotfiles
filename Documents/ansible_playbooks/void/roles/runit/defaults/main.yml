@@ -1,0 +1,9 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+runit_enabled_services:
+  - "runsvdir-{{ ansible_facts.user_id }}"
+  - lightdm
+  - pcscd
+
+runit_disabled_services:
+  - lemurs

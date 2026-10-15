@@ -1,0 +1,20 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+- name: Set the system hostname
+  become: true
+  ansible.builtin.hostname:
+    name: "{{ inventory_hostname }}"
+
+- name: Set user groups
+  become: true
+  ansible.builtin.user:
+    name: "{{ ansible_facts.user_id }}"
+    groups:
+      - '{{ "input" if ansible_facts.os_family == "Void" else omit }}'
+    append: true
+
+- name: Regenerate initramfs
+  become: true
+  ansible.builtin.command:
+    cmd: "xbps-reconfigure --force linux{{ ansible_facts.kernel | regex_search('\\d+\\.\\d+') }}"
+  changed_when: true

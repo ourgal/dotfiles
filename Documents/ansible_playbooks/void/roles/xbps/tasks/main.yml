@@ -1,0 +1,49 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+- name: Xbps settings
+  become: true
+  block:
+    - name: Set xbps mirror
+      ansible.builtin.copy:
+        dest: /etc/xbps.d/00-repository-main.conf
+        content: |
+          repository={{ xbps_mirror }}
+        mode: "0644"
+    - name: Set xbps nonfree mirror
+      ansible.builtin.copy:
+        dest: /etc/xbps.d/01-repository-nonfree.conf
+        content: |
+          repository={{ xbps_nonfree_mirror }}
+        mode: "0644"
+
+- name: Upgrade system
+  tags:
+    - pkg
+    - xbps
+  become: true
+  community.general.xbps:
+    upgrade: true
+    repositories: "{{ xbps_repositories }}"
+
+- name: Install packages
+  tags:
+    - pkg
+    - xbps
+  become: true
+  environment:
+    XBPS_ARCH: "{{ ansible_facts.machine }}"
+  community.general.xbps:
+    name: "{{ xbps_packages }}"
+    repositories: "{{ xbps_repositories }}"
+
+- name: Uninstall packages
+  tags:
+    - pkg
+    - xbps
+  become: true
+  environment:
+    XBPS_ARCH: "{{ ansible_facts.machine }}"
+  community.general.xbps:
+    state: absent
+    name: "{{ xbps_removed_packages }}"
+    repositories: "{{ xbps_repositories }}"

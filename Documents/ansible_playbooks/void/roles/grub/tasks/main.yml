@@ -1,0 +1,15 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+- name: Enable os-prober
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/default/grub
+    line: GRUB_DISABLE_OS_PROBER=false
+  register: grub_config
+
+- name: Generate grub config
+  become: true
+  ansible.builtin.command:
+    cmd: grub-mkconfig -o /boot/grub/grub.cfg
+  when: grub_config is changed
+  changed_when: true
