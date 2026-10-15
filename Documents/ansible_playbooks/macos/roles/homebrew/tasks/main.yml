@@ -1,0 +1,7 @@
+---
+- name: Run geerlingguy.mac.homebrew
+  ansible.builtin.import_role:
+    name: geerlingguy.mac.homebrew
+  vars:
+    homebrew_installed_packages: "{{ homebrew_packages }}"
+    homebrew_cask_apps: "{{ homebrew_casks }}"

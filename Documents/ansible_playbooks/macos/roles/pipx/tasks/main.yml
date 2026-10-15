@@ -1,0 +1,9 @@
+---
+- name: Install pipx packages
+  tags:
+    - pipx
+    - install
+  community.general.pipx:
+    name: "{{ item }}"
+    executable: "{{ pipx_executable }}"
+  loop: "{{ pipx_packages }}"
