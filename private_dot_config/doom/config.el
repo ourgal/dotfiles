@@ -70,7 +70,10 @@
 
 (setq user-full-name "zxc")
 
-(let ((font (if (eq system-type 'android) "IosevkaTerm Nerd Font" "IosevkaTerm NFM"))
+(let ((font (pcase system-type
+              ('android "IosevkaTerm Nerd Font")
+              ('gnu/linux "monospace")
+              (_ "IosevkaTerm NFM")))
       (size (if (eq system-type 'android) 30 15)))
     (setq doom-font (font-spec :family font :size size)
             doom-variable-pitch-font (font-spec :family font :size size)))
