@@ -1019,3 +1019,14 @@ When called from Lisp, if FILENAME is given, open that."
 (package! magit-fast
   :recipe (:host nil :type git :repo "https://v6.gh-proxy.org/https://github.com/zHaOdANiuu/magit-fast"))
 #+end_src
+
+** Rainbow brackets
+
+#+begin_src emacs-lisp
+(use-package! rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+#+end_src
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! rainbow-delimiters)
+#+end_src

@@ -363,3 +363,6 @@ When called from Lisp, if FILENAME is given, open that."
           (lambda ()
             (require 'yaml-mode) ; Ensures yaml-indent-line is loaded and available
             (setq-local indent-line-function #'yaml-indent-line)))
+
+(use-package! rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
