@@ -213,7 +213,8 @@
   (evil-cross-lines t)
   (evil-ex-search-persistent-highlight nil)
   (+evil-want-o/O-to-continue-comments nil)
-  (evil-ex-substitute-global t))
+  (evil-ex-substitute-global t)
+  (evil-move-cursor-back nil)) ;; fixing corfu moving cursor back
 
 (map! :n "-" #'dired-jump)
 
