@@ -8,4 +8,7 @@ export PATH=~/.local/bin:$PATH
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
+{{ if and (eq .chezmoi.hostname "surface") (lookPath "xrandr") -}}
+xrandr --output eDP-1 --scale 1.7x1.7
+{{ end -}}
 {{ end -}}

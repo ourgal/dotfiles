@@ -20,7 +20,24 @@
     content: |
       #!/bin/sh
       # greetd leaves the VT number in XDG_VTNR; pass it to the X server
-      exec startx /usr/bin/awesome -- vt${XDG_VTNR}
+      exec startx /usr/local/bin/awesome-client -- vt${XDG_VTNR}
+- name: Create awesome xinit client
+  become: true
+  vars:
+    scale_f: "{{ awesome_scales[inventory_hostname] | default(1) | float }}"
+    transform: "{{ (1.0 / scale_f) | round(4) }}"
+  ansible.builtin.copy:
+    dest: /usr/local/bin/awesome-client
+    mode: "0755"
+    content: |
+      #!/bin/sh
+      {% if scale_f | float != 1.0 %}
+      # fractional scaling: down-scale the CRTC and compensate font DPI
+      output=$(xrandr | awk '/ connected primary/ {print $1; exit}')
+      xrandr --output "$output" --scale {{ transform }}x{{ transform }}
+      echo 'Xft.dpi: {{ ((96 * (scale_f | float)) | round(0, 'ceil')) | int }}' | xrdb -merge
+      {% endif %}
+      exec awesome
 - name: Write greetd config
   become: true
   ansible.builtin.copy:
