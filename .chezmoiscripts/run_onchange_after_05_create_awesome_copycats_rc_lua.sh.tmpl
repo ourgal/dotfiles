@@ -3,6 +3,7 @@
 #!{{lookPath "bash"}}
 set -euo pipefail
 {{ $path := (joinPath .chezmoi.homeDir ".config" "awesome-copycats" "rc.lua") -}}
+{{ if stat $path -}}
 cat << EOF > {{ $path }}
 
 --[[
@@ -790,5 +791,6 @@ client.connect_signal("unmanage", backham)
 -- ensure there is always a selected client during tag switching or logins
 tag.connect_signal("property::selected", backham)
 EOF
+{{ end -}}
 {{ end -}}
 {{ end -}}
