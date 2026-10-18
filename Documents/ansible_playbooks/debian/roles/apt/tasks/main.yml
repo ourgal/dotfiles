@@ -13,8 +13,10 @@
     - pkg
     - apt
   become: true
+  vars:
+    host_pkgs: "{{ apt_host_packages[inventory_hostname] | default({}, true) }}"
   ansible.builtin.apt:
-    name: "{{ apt_packages.values() | flatten | list }}"
+    name: "{{ (apt_packages.values() | list + host_pkgs.values() | list) | flatten }}"
 
 - name: Uninstall packages
   tags:

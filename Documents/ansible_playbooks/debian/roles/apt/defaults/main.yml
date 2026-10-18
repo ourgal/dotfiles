@@ -32,7 +32,7 @@ apt_packages:
     - chromium
     - firefox-esr
   kvm:
-    deskflow
+    - deskflow
   dev:
     - git
     - git-crypt
@@ -43,5 +43,10 @@ apt_packages:
     - nodejs
   rust:
     - rust-all
+
+apt_host_packages:
+  surface:
+    firmware:
+      - firmware-libertas
 
 apt_removed_packages: {}
