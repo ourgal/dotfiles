@@ -1,0 +1,13 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+- name: Ensure bash is installed
+  become: true
+  ansible.builtin.apt:
+    name: bash
+
+- name: Set default shell
+  become: true
+  ansible.builtin.user:
+    name: "{{ item }}"
+    shell: "{{ bash_shell }}"
+  loop: "{{ bash_users }}"
