@@ -1,0 +1,21 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+- name: Gather package facts
+  ansible.builtin.package_facts:
+    manager: apt
+
+- name: Install gopass
+  become: true
+  when: >-
+    'gopass' not in ansible_facts.packages
+    or ansible_facts.packages.gopass[0].version != gopass_version
+  block:
+    - name: Download gopass
+      ansible.builtin.get_url:
+        url: "{{ gh_proxy }}https://github.com/gopasspw/gopass/releases/download/v{{ gopass_version }}/gopass_{{ gopass_version }}_linux_amd64.deb"
+        dest: /tmp/gopass.deb
+        checksum: "{{ gopass_checksum }}"
+        mode: "0644"
+    - name: Install gopass deb
+      ansible.builtin.apt:
+        deb: /tmp/gopass.deb
