@@ -24,8 +24,8 @@
       - network-manager
       - chrony
       - btrfs-progs
-      # - firmware-misc-nonfree
-    extra_packages: []
+    extra_packages:
+      - python3
   tasks:
     - name: Debug variables
       tags:
