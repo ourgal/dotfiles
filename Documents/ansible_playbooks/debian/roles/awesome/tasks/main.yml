@@ -5,6 +5,13 @@
   ansible.builtin.apt:
     update_cache: true
     pkg: "{{ awesome_packages + greetd_packages }}"
+- name: Ensure greeter user exists
+  become: true
+  ansible.builtin.user:
+    name: "{{ greetd_greeter_user }}"
+    system: true
+    shell: /usr/sbin/nologin
+    create_home: false
 - name: Create awesome session wrapper
   become: true
   ansible.builtin.copy:
