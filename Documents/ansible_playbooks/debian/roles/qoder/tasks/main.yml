@@ -1,0 +1,14 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+- name: Gather package facts
+  ansible.builtin.package_facts:
+    manager: apt
+
+- name: Install qoder desktop
+  become: true
+  tags:
+    - pkg
+    - qoder
+  when: qoder_package not in ansible_facts.packages
+  ansible.builtin.apt:
+    deb: "{{ qoder_deb_url }}"
