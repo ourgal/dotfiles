@@ -1,0 +1,21 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+- name: Gather package facts
+  ansible.builtin.package_facts:
+    manager: apt
+
+- name: Install chezmoi
+  become: true
+  when: >-
+    'chezmoi' not in ansible_facts.packages
+    or ansible_facts.packages.chezmoi[0].version != chezmoi_version
+  block:
+    - name: Download chezmoi
+      ansible.builtin.get_url:
+        url: "{{ gh_proxy }}https://github.com/twpayne/chezmoi/releases/download/v{{ chezmoi_version }}/chezmoi_{{ chezmoi_version }}_linux_amd64.deb"
+        dest: /tmp/chezmoi.deb
+        checksum: "{{ chezmoi_checksum }}"
+        mode: "0644"
+    - name: Install chezmoi deb
+      ansible.builtin.apt:
+        deb: /tmp/chezmoi.deb

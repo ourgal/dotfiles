@@ -2,7 +2,10 @@
 ---
 - name: Configure debian
   hosts: all
+  vars:
+    gh_proxy: [[ .my.gh_proxy ]]/
   roles:
     - role: awesome
     - role: apt
     - role: bash
+    - role: chezmoi
