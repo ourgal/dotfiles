@@ -1,0 +1,27 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+- name: Update apt cache
+  tags:
+    - pkg
+    - apt
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Install packages
+  tags:
+    - pkg
+    - apt
+  become: true
+  ansible.builtin.apt:
+    name: "{{ apt_packages.values() | flatten | list }}"
+
+- name: Uninstall packages
+  tags:
+    - pkg
+    - apt
+  become: true
+  ansible.builtin.apt:
+    state: absent
+    purge: true
+    name: "{{ apt_removed_packages.values() | flatten | list }}"

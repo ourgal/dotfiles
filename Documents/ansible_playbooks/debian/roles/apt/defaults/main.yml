@@ -1,0 +1,12 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+apt_packages:
+  firmware:
+    - firmware-misc-nonfree
+    - firmware-iwlwifi
+    - firmware-intel-graphics
+    - firmware-realtek
+  microcode:
+    - intel-microcode
+
+apt_removed_packages: {}
