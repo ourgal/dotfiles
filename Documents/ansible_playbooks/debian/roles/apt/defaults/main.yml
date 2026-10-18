@@ -14,9 +14,12 @@ apt_packages:
     - btop
   du:
     - duf
+  cat:
+    - bat
   editor:
     - vim-gtk3
     - emacs
+    - neovim
   shell:
     - fish
   shell_prompt:
@@ -32,6 +35,7 @@ apt_packages:
     deskflow
   dev:
     - git
+    - git-crypt
   ansible:
     - ansible
     - ansible-core
