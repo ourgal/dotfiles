@@ -31,7 +31,7 @@
       vt = {{ greetd_vt }}
 
       [default_session]
-      command = "agreety --cmd {{ greetd_session_cmd }}"
+      command = "tuigreet --time --remember --update-pass --cmd {{ greetd_session_cmd }}"
       user = "{{ greetd_greeter_user }}"
 - name: Enable and start greetd
   become: true
