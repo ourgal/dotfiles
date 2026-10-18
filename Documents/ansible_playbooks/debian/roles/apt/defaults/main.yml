@@ -8,5 +8,36 @@ apt_packages:
     - firmware-realtek
   microcode:
     - intel-microcode
+  package_manager:
+    - aptitude
+  top:
+    - btop
+  du:
+    - duf
+  editor:
+    - vim-gtk3
+    - emacs
+  shell:
+    - fish
+  shell_prompt:
+    - starship
+  terminal:
+    - kitty
+  screen:
+    - tmux
+  browser:
+    - chromium
+    - firefox-esr
+  kvm:
+    deskflow
+  dev:
+    - git
+  ansible:
+    - ansible
+    - ansible-core
+  nodejs:
+    - nodejs
+  rust:
+    - rust-all
 
 apt_removed_packages: {}
