@@ -22,6 +22,8 @@ apt_packages:
     - vim-gtk3
     - emacs
     - neovim
+  fuzzy_finder:
+    - fzf
   shell:
     - fish
   shell_prompt:
@@ -44,6 +46,7 @@ apt_packages:
     - ansible-core
   nodejs:
     - nodejs
+    - npm
   rust:
     - rust-all
 
