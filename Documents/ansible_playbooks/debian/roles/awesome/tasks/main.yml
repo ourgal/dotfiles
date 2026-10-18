@@ -1,0 +1,34 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+- name: Install awesome and greetd
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+    pkg: "{{ awesome_packages + greetd_packages }}"
+- name: Create awesome session wrapper
+  become: true
+  ansible.builtin.copy:
+    dest: /usr/local/bin/{{ greetd_session_cmd }}
+    mode: "0755"
+    content: |
+      #!/bin/sh
+      # greetd leaves the VT number in XDG_VTNR; pass it to the X server
+      exec startx /usr/bin/awesome -- vt${XDG_VTNR}
+- name: Write greetd config
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/greetd/config.toml
+    mode: "0644"
+    content: |
+      [terminal]
+      vt = {{ greetd_vt }}
+
+      [default_session]
+      command = "agreety --cmd {{ greetd_session_cmd }}"
+      user = "{{ greetd_greeter_user }}"
+- name: Enable and start greetd
+  become: true
+  ansible.builtin.systemd_service:
+    name: greetd
+    enabled: true
+    state: started

@@ -1,0 +1,6 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+- name: Configure debian
+  hosts: all
+  roles:
+    - role: awesome
