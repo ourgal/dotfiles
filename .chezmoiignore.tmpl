@@ -990,4 +990,11 @@ AppData/Local/nvim/lua/plugins/*
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ awesome
+{{ if lookPath "awesome" -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+!.config/awesome/
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
