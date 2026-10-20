@@ -18,10 +18,11 @@
         "/config/windows10/UnattendedWinstall.xml"
       ]
     },
-    {{- /* uos not working */}}
     {
-      "parent": "/uos",
-      "template": ["/config/uos/deepin.ini"]
+      "parent": "/debian",
+      "template": [
+        "/config/debian/preseed.cfg"
+      ]
     }
   ]
 }
