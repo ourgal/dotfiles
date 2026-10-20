@@ -32,6 +32,17 @@
         - debug
       ansible.builtin.debug:
         var: ansible_facts
+    - name: Set apt mirror on live system
+      become: true
+      tags:
+        - setup
+      ansible.builtin.copy:
+        dest: /etc/apt/sources.list
+        mode: "0644"
+        content: |
+          deb {{ mirror }} {{ ansible_distribution_release }} main contrib non-free non-free-firmware
+          deb {{ mirror }} {{ ansible_distribution_release }}-updates main contrib non-free non-free-firmware
+          deb {{ mirror }} {{ ansible_distribution_release }}-backports main contrib non-free non-free-firmware
     - name: Install live prerequisites
       become: true
       tags:
