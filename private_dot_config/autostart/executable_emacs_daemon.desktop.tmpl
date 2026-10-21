@@ -1,3 +1,16 @@
 {{ if .my.emacs_daemon.enable -}}
-{{ includeTemplate "autostart_desktop" (dict "exec" (lookPath "emacs" | printf "%s --daemon") "name" "Eemacs daemon") }}
+{{ $init_dir := joinPath .chezmoi.homeDir ".config" "emacs" -}}
+{{ if .my.doomemacs.enable -}}
+{{ $init_dir = joinPath .chezmoi.homeDir ".config" "doom-emacs" -}}
+{{ end -}}
+{{ if .my.emacs_kick.enable -}}
+{{ $init_dir = joinPath .chezmoi.homeDir ".config" "emacs-kick" -}}
+{{ end -}}
+{{ if .my.emacs_solo.enable -}}
+{{ $init_dir = joinPath .chezmoi.homeDir ".config" "emacs-solo" -}}
+{{ end -}}
+{{ if .my.minimal_emacs.enable -}}
+{{ $init_dir = joinPath .chezmoi.homeDir ".config" "minimal-emacs" -}}
+{{ end -}}
+{{ includeTemplate "autostart_desktop" (dict "exec" (printf "%s --init-directory=%s --daemon" (lookPath "emacs") $init_dir) "name" "Emacs daemon") }}
 {{ end -}}

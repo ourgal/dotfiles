@@ -1,16 +1,10 @@
 {{ if .my.doomemacs.enable -}}
+{{ if eq .chezmoi.os "windows" -}}
 
-{{ if eq .chezmoi.os "windows" -}}
-{{ $doom_dir := joinPath .chezmoi.homeDir ".config" "emacs" -}}
-{{ if eq .chezmoi.os "windows" -}}
-{{ $doom_dir = joinPath .chezmoi.homeDir ".emacs.d" -}}
-{{ end -}}
-{{ $doom_bin := joinPath $doom_dir "bin" "doom" -}}
-{{ if eq .chezmoi.os "windows" -}}
-{{ $doom_bin = joinPath $doom_dir "bin" "doom.ps1" -}}
-{{ end -}}
+{{ $doom_dir := joinPath .chezmoi.homeDir ".config" "doom-emacs" -}}
+{{ $doom_bin := joinPath $doom_dir "bin" "doom.ps1" -}}
+
 {{ if stat $doom_bin -}}
-{{ if lookPath "emacs" -}}
 {{ if stat (joinPath .chezmoi.homeDir ".config" "doom" "config.el") -}}
 
 {{ $homeDir := .chezmoi.homeDir -}}
@@ -19,7 +13,7 @@
     {{ end -}}
 # {{ output "git" "-C" $doom_dir "rev-parse" "HEAD" }}
 # {{ output "emacs" "--version" | trim | splitList "\n" | first }}
-{{ if joinPath .chezmoi.homeDir ".emacs.d" ".local" | stat | not }}
+{{ if joinPath $doom_dir ".local" | stat | not }}
 {{ $doom_bin }} install
 {{ else -}}
 {{ $doom_bin }} sync
@@ -27,7 +21,6 @@
 
 {{ end -}}
 {{ end -}}
-{{ end -}}
-{{ end -}}
 
+{{ end -}}
 {{ end -}}

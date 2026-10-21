@@ -1,16 +1,9 @@
 {{ if .my.doomemacs.enable -}}
 
 {{ if eq .chezmoi.os "linux" "android" -}}
-{{ $doom_dir := joinPath .chezmoi.homeDir ".config" "emacs" -}}
-{{ if eq .chezmoi.os "windows" -}}
-{{ $doom_dir = joinPath .chezmoi.homeDir ".emacs.d" -}}
-{{ end -}}
+{{ $doom_dir := joinPath .chezmoi.homeDir ".config" "doom-emacs" -}}
 {{ $doom_bin := joinPath $doom_dir "bin" "doom" -}}
-{{ if eq .chezmoi.os "windows" -}}
-{{ $doom_bin = joinPath $doom_dir "bin" "doom.ps1" -}}
-{{ end -}}
 {{ if stat $doom_bin -}}
-{{ if lookPath "emacs" -}}
 #!{{lookPath "bash"}}
 set -euo pipefail
 {{ if stat (joinPath .chezmoi.homeDir ".config" "doom" "config.el") -}}
@@ -21,13 +14,12 @@ set -euo pipefail
     {{ end -}}
 # {{ output "git" "-C" $doom_dir "rev-parse" "HEAD" }}
 # {{ output "emacs" "--version" | trim | splitList "\n" | first }}
-{{ if joinPath .chezmoi.homeDir ".config" "emacs" ".local" | stat | not }}
+{{ if joinPath $doom_dir ".local" | stat | not }}
 {{ $doom_bin }} install
 {{ else -}}
 {{ $doom_bin }} sync
 {{ end -}}
 
-{{ end -}}
 {{ end -}}
 {{ end -}}
 {{ end -}}

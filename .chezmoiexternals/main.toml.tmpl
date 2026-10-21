@@ -172,30 +172,28 @@
 
 {{ $doom_repo := "https://mirror.nju.edu.cn/git/doom-emacs.git/" -}}
 
-{{ if and .my.doomemacs.enable (lookPath "emacs") }}
-{{ $emacs_dir := ".emacs.d" -}}
-
-[{{ $emacs_dir | quote }}]
+{{ if .my.doomemacs.enable }}
+[".config/doom-emacs"]
     type = "git-repo"
     url = "{{ $doom_repo }}"
     refreshPeriod = "168h"
 {{ end -}}
 
-{{ if and .my.minimal_emacs.enable (lookPath "emacs") }}
+{{ if .my.minimal_emacs.enable }}
 [".local/share/repos/minimal-emacs.d"]
     type = "git-repo"
     url = "{{ print $mirror "https://github.com/jamescherti/minimal-emacs.d" }}"
     refreshPeriod = "168h"
 {{ end -}}
 
-{{ if and .my.emacs_solo.enable (lookPath "emacs") }}
+{{ if .my.emacs_solo.enable }}
 [".local/share/repos/emacs-solo"]
     type = "git-repo"
     url = "{{ print $mirror "https://github.com/LionyxML/emacs-solo" }}"
     refreshPeriod = "168h"
 {{ end -}}
 
-{{ if and .my.emacs_kick.enable (lookPath "emacs") }}
+{{ if .my.emacs_kick.enable }}
 [".local/share/repos/emacs-kick"]
     type = "git-repo"
     url = "{{ print $mirror "https://github.com/LionyxML/emacs-kick" }}"

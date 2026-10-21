@@ -426,70 +426,32 @@ Videos/*
 {{ end -}}
 # ]]]
 # [[[ emacs
-{{ if and .my.doomemacs.enable (lookPath "emacs") }}
+{{ if lookPath "emacs" -}}
 !.config/doom/
 .config/doom/*
 !.config/doom/.authinfo
 !.config/doom/config.el
 !.config/doom/init.el
 !.config/doom/packages.el
-{{ end -}}
-
-{{ if and .my.minimal_emacs.enable (lookPath "emacs") -}}
-{{ if eq .chezmoi.os "windows" -}}
-!.emacs.d/
-.emacs.d/*
-!.emacs.d/.authinfo
-!.emacs.d/early-init.el
-!.emacs.d/init.el
-!.emacs.d/post-init.el
-!.emacs.d/pre-eraly-init.el
-!.emacs.d/pre-init.el
-{{ end -}}
-{{ if eq .chezmoi.os "linux" "android" -}}
-!.config/emacs/
-.config/emacs/*
-!.config/emacs/.authinfo
-!.config/emacs/early-init.el
-!.config/emacs/init.el
-!.config/emacs/post-init.el
-!.config/emacs/pre-eraly-init.el
-!.config/emacs/pre-init.el
-{{ end -}}
-{{ end -}}
-{{ if and .my.emacs_solo.enable (lookPath "emacs") -}}
-{{ if eq .chezmoi.os "windows" -}}
-!.emacs.d/
-.emacs.d/*
-!.emacs.d/early-init.el
-!.emacs.d/init.el
-!.emacs.d/private.el
-!.emacs.d/private-early-init.el
-!.emacs.d/lisp/
-!.emacs.d/lisp/**
-{{ end -}}
-{{ if eq .chezmoi.os "linux" "android" -}}
-!.config/emacs/
-.config/emacs/*
-!.config/emacs/early-init.el
-!.config/emacs/init.el
-!.config/emacs/private.el
-!.config/emacs/private-early-init.el
-!.config/emacs/lisp/
-!.config/emacs/lisp/**
-{{ end -}}
-{{ end -}}
-{{ if and .my.emacs_kick.enable (lookPath "emacs") -}}
-{{ if eq .chezmoi.os "windows" -}}
-!.emacs.d/
-.emacs.d/*
-!.emacs.d/init.el
-{{ end -}}
-{{ if eq .chezmoi.os "linux" "android" -}}
-!.config/emacs/
-.config/emacs/*
-!.config/emacs/init.el
-{{ end -}}
+!.config/minimal-emacs/
+.config/minimal-emacs/*
+!.config/minimal-emacs/.authinfo
+!.config/minimal-emacs/early-init.el
+!.config/minimal-emacs/init.el
+!.config/minimal-emacs/post-init.el
+!.config/minimal-emacs/pre-early-init.el
+!.config/minimal-emacs/pre-init.el
+!.config/emacs-solo/
+.config/emacs-solo/*
+!.config/emacs-solo/.authinfo
+!.config/emacs-solo/early-init.el
+!.config/emacs-solo/init.el
+!.config/emacs-solo/private.el
+!.config/emacs-solo/private-early-init.el
+!.config/emacs-solo/lisp
+!.config/emacs-kick/
+.config/emacs-kick/*
+!.config/emacs-kick/init.el
 {{ end -}}
 # ]]]
 # [[[ zed

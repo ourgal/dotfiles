@@ -12,7 +12,7 @@
   ansible.windows.win_path:
     state: present
     scope: user
-    elements: '%userprofile%\.emacs.d\bin'
+    elements: '%userprofile%\.config\doom-emacs\bin'
 - name: Set go environment variable
   tags:
     - env
