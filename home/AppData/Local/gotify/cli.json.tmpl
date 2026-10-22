@@ -1,5 +1,5 @@
 {
-  "token": "{{ includeTemplate "gopass" "gotify/token/ritdon" }}",
+  "token": "{{ includeTemplate "secrets" . | fromToml | dig "gotify" "token" "ritdon" "" }}",
   "url": "http://100.127.103.95:5080",
   "defaultPriority": 0
 }

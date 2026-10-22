@@ -6,8 +6,9 @@
 {{ $data = include $config_file | fromYaml -}}
 {{ end -}}
 {{ if dig "github.com" "oauth_token" "" $data | not -}}
-    {{ if includeTemplate "gopass" "github/ourgal/token" -}}
-    gopass "github/ourgal/token" | gh auth login --hostname github.com --with-token
+    {{ $token := includeTemplate "secrets" . | fromToml | dig "github" "ourgal" "token" "" -}}
+    {{ if $token -}}
+    gh auth login --hostname github.com --with-token "{{ $token }}"
     {{- end -}}
 {{ end -}}
 

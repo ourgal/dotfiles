@@ -3,6 +3,6 @@
 {{ if .chezmoi.stdin -}}
 {{ $origin = fromJson .chezmoi.stdin -}}
 {{ end -}}
-{{ $origin = $origin | setValueAtPath "providers.openrouter.api_key" (includeTemplate "gopass" "AI/openrouter") -}}
-{{ $origin = $origin | setValueAtPath "providers.gemini.api_key" (includeTemplate "gopass" "AI/gemini") -}}
+{{ $origin = $origin | setValueAtPath "providers.openrouter.api_key" (includeTemplate "secrets" . | fromToml | dig "AI" "openrouter" "") -}}
+{{ $origin = $origin | setValueAtPath "providers.gemini.api_key" (includeTemplate "secrets" . | fromToml | dig "AI" "gemini" "") -}}
 {{ $origin | toJson }}

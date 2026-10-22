@@ -8,13 +8,19 @@ $PSNativeCommandUseErrorActionPreference = $true
 {{ $cert := joinPath $scoop_persist "settings" "tls" "deskflow.pem" -}}
 {{ $trusted := joinPath $scoop_persist "settings" "tls" "trusted-client" -}}
 
-# {{ include $conf | sha256sum }}
-# {{ include $cert | sha256sum }}
-# {{ include $trusted | sha256sum }}
+# {{ includeTemplate "include" $conf | sha256sum }}
+# {{ includeTemplate "include" $cert | sha256sum }}
+# {{ includeTemplate "include" $trusted | sha256sum }}
 
 mkdir "C:/ProgramData/Deskflow/tls" -ErrorAction SilentlyContinue
+{{ if stat $conf -}}
 cp {{ $conf }} "C:/ProgramData/Deskflow/"
+{{ end -}}
+{{ if stat $cert -}}
 cp {{ $cert }} "C:/ProgramData/Deskflow/tls/"
+{{ end -}}
+{{ if stat $trusted -}}
 cp {{ $trusted }} "C:/ProgramData/Deskflow/tls/"
+{{ end -}}
 {{ end -}}
 {{ end -}}

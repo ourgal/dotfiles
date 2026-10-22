@@ -1,9 +1,10 @@
 {{ $unique_id := dict "bed" "zKw6d9Pv" "nuc" "pS2Qscaz" "work" "KCCpjZMF" -}}
 
 {{ define "folder" -}}
+{{ $origin := . -}}
 {{ if has .hostname .devices }}    <folder id="{{ .id }}" label="{{ .label }}" path="{{ .path }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-{{ range .devices }}        <device id="{{ includeTemplate "gopass" (printf "syncthing/%s/id" .) }}" introducedBy="">
+{{ range .devices }}        <device id="{{ includeTemplate "secrets" $origin | fromToml | dig "syncthing" . "id" "" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
 {{ end }}        <minDiskFree unit="%">1</minDiskFree>
@@ -45,7 +46,7 @@
 {{ end -}}
 {{ end -}}
 
-{{ define "device" }}    <device id="{{ includeTemplate "gopass" (printf "syncthing/%s/id" .) }}" name="{{ . }}" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+{{ define "device" }}    <device id="{{ includeTemplate "secrets" . | fromToml | dig "syncthing" .device "id" "" }}" name="{{ .device }}" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
@@ -61,7 +62,7 @@
 {{ define "gui" }}    <gui enabled="true" tls="false" sendBasicAuthPrompt="false">
         <address>127.0.0.1:8384</address>
         <metricsWithoutAuth>false</metricsWithoutAuth>
-        <apikey>{{ includeTemplate "gopass" (printf "syncthing/%s/api" .) }}</apikey>
+        <apikey>{{ includeTemplate "secrets" . | fromToml | dig "syncthing" .chezmoi.hostname "api" "" }}</apikey>
         <theme>default</theme>
         <sessionCookieDurationS>604800</sessionCookieDurationS>
         <sessionCookiePath>/</sessionCookiePath>
@@ -183,18 +184,19 @@
     </defaults>
 {{ end -}}
 <configuration version="52">
-{{ template "folder" (dict "id" "gsqw5-i57xh" "label" "keepassxc" "path" (joinPath .chezmoi.homeDir "Syncthing" "keepassxc") "devices" (list "nuc" "bed" "work" "note20") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "z9um9-3ktne" "label" "playnite" "path" (joinPath .chezmoi.homeDir "scoop" "persist" "playnite") "devices" (list "nuc" "bed" "work" "note20") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "rjrxe-9sugq" "label" "ludusavi" "path" (joinPath .chezmoi.homeDir "ludusavi-backup") "devices" (list "nuc" "bed" "work" "note20") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "u5dje-5hvnn" "label" "game_saves" "path" (joinPath .chezmoi.homeDir "Documents" "game_saves") "devices" (list "nuc" "bed" "work" "note20") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "oxjez-pxtna" "label" "ludusaviRestic" "path" (joinPath .chezmoi.homeDir "Documents" "PlayniteBackups") "devices" (list "nuc" "bed" "work" "note20") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "gc5sz-susp5" "label" "share" "path" (joinPath .chezmoi.homeDir "Syncthing" "share") "devices" (list "nuc" "bed" "work" "s10" "m6" "note20") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "gc5sz-susp4" "label" "share_work" "path" (joinPath .chezmoi.homeDir "Syncthing" "share_work") "devices" (list "nuc" "work") "hostname" .chezmoi.hostname) -}}
-{{ template "folder" (dict "id" "htvji-asdsj" "label" "gpg_keys" "path" (joinPath .chezmoi.homeDir "Syncthing" "gpg_keys") "devices" (list "nuc" "bed" "work" "note20") "hostname" .chezmoi.hostname) -}}
+{{ template "folder" (dict "id" "gsqw5-i57xh" "label" "keepassxc" "path" (joinPath .chezmoi.homeDir "Syncthing" "keepassxc") "devices" (list "nuc" "bed" "work" "note20") "hostname" .chezmoi.hostname "chezmoi" .chezmoi "my" .my) -}}
+{{ template "folder" (dict "id" "z9um9-3ktne" "label" "playnite" "path" (joinPath .chezmoi.homeDir "scoop" "persist" "playnite") "devices" (list "nuc" "bed" "work" "note20") "hostname" .chezmoi.hostname "chezmoi" .chezmoi "my" .my) -}}
+{{ template "folder" (dict "id" "rjrxe-9sugq" "label" "ludusavi" "path" (joinPath .chezmoi.homeDir "ludusavi-backup") "devices" (list "nuc" "bed" "work" "note20") "hostname" .chezmoi.hostname "chezmoi" .chezmoi "my" .my) -}}
+{{ template "folder" (dict "id" "u5dje-5hvnn" "label" "game_saves" "path" (joinPath .chezmoi.homeDir "Documents" "game_saves") "devices" (list "nuc" "bed" "work" "note20") "hostname" .chezmoi.hostname "chezmoi" .chezmoi "my" .my) -}}
+{{ template "folder" (dict "id" "oxjez-pxtna" "label" "ludusaviRestic" "path" (joinPath .chezmoi.homeDir "Documents" "PlayniteBackups") "devices" (list "nuc" "bed" "work" "note20") "hostname" .chezmoi.hostname "chezmoi" .chezmoi "my" .my) -}}
+{{ template "folder" (dict "id" "gc5sz-susp5" "label" "share" "path" (joinPath .chezmoi.homeDir "Syncthing" "share") "devices" (list "nuc" "bed" "work" "s10" "m6" "note20") "hostname" .chezmoi.hostname "chezmoi" .chezmoi "my" .my) -}}
+{{ template "folder" (dict "id" "gc5sz-susp4" "label" "share_work" "path" (joinPath .chezmoi.homeDir "Syncthing" "share_work") "devices" (list "nuc" "work") "hostname" .chezmoi.hostname "chezmoi" .chezmoi "my" .my) -}}
+{{ template "folder" (dict "id" "htvji-asdsj" "label" "gpg_keys" "path" (joinPath .chezmoi.homeDir "Syncthing" "gpg_keys") "devices" (list "nuc" "bed" "work" "note20") "hostname" .chezmoi.hostname "chezmoi" .chezmoi "my" .my) -}}
+{{ $origin := . -}}
 {{ range (list "bed" "nuc" "work" "note20" "s10" "m6") -}}
-{{ template "device" . -}}
+{{ template "device" (dict "device" . "chezmoi" $origin.chezmoi "my" $origin.my) -}}
 {{ end -}}
-{{ template "gui" .chezmoi.hostname }}    <ldap></ldap>
+{{ template "gui" . }}    <ldap></ldap>
 {{ template "options" (index $unique_id .chezmoi.hostname) -}}
-{{ template "defaults" (dict "id" (includeTemplate "gopass" (printf "syncthing/%s/id" .chezmoi.hostname)) "path" (joinPath .chezmoi.homeDir "Syncthing")) -}}
+{{ template "defaults" (dict "id" (includeTemplate "secrets" . | fromToml | dig "syncthing" .chezmoi.hostname "id" "") "path" (joinPath .chezmoi.homeDir "Syncthing")) -}}
 </configuration>
