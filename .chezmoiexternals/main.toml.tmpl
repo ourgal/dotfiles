@@ -170,35 +170,25 @@
     url = "https://gitee.com/fairever/info_manuals"
     refreshPeriod = "168h"
 
-{{ $doom_repo := "https://mirror.nju.edu.cn/git/doom-emacs.git/" -}}
-
-{{ if .my.doomemacs.enable }}
 [".config/doom-emacs"]
     type = "git-repo"
-    url = "{{ $doom_repo }}"
+    url = "https://mirror.nju.edu.cn/git/doom-emacs.git/"
     refreshPeriod = "168h"
-{{ end -}}
 
-{{ if .my.minimal_emacs.enable }}
 [".local/share/repos/minimal-emacs.d"]
     type = "git-repo"
     url = "{{ print $mirror "https://github.com/jamescherti/minimal-emacs.d" }}"
     refreshPeriod = "168h"
-{{ end -}}
 
-{{ if .my.emacs_solo.enable }}
 [".local/share/repos/emacs-solo"]
     type = "git-repo"
     url = "{{ print $mirror "https://github.com/LionyxML/emacs-solo" }}"
     refreshPeriod = "168h"
-{{ end -}}
 
-{{ if .my.emacs_kick.enable }}
 [".local/share/repos/emacs-kick"]
     type = "git-repo"
     url = "{{ print $mirror "https://github.com/LionyxML/emacs-kick" }}"
     refreshPeriod = "168h"
-{{ end -}}
 
 [".local/share/repos/lazyvim"]
     type = "git-repo"
