@@ -1,0 +1,14 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+- name: Gather package facts
+  ansible.builtin.package_facts:
+    manager: apt
+
+- name: Install trae ide
+  become: true
+  tags:
+    - pkg
+    - trae
+  when: trae_package not in ansible_facts.packages
+  ansible.builtin.apt:
+    deb: "{{ trae_deb_url }}"
