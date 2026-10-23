@@ -1,10 +1,10 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ if and (lookPath "buku") (lookPath "uv") (lookPath "python") -}}
-# {{ include (joinPath .chezmoi.homeDir ".local" "share" "buku" "db.key") | sha256sum }}
+# {{ include (joinPath .chezmoi.homeDir ".local" "share" "buku" "db.py") | sha256sum }}
 cd $HOME/.local/share/buku
 if (Test-Path -Path "bookmarks.db") {
     rm bookmarks.db
 }
-uv run python db.key
+uv run python db.py
 {{ end -}}
 {{ end -}}
