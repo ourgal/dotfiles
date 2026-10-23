@@ -6,11 +6,11 @@
 {{ $data = include $config_file | fromYaml -}}
 {{ end -}}
 {{ if dig "github.com" "oauth_token" "" $data | not -}}
-    {{ $token := includeTemplate "secrets" . | fromToml | dig "github" "ourgal" "token" "" }}
-    {{ if $token -}}
+{{ $token := includeTemplate "secrets" . | fromToml | dig "github" "ourgal" "token" "" -}}
+{{ if $token -}}
 #!{{ lookPath "bash" }}
-    gh auth login --hostname github.com --with-token "{{ $token }}"
-    {{- end -}}
+echo "{{ $token }}" | gh auth login --hostname github.com --with-token
+{{ end -}}
 {{ end -}}
 
 {{ end -}}
