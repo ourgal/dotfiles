@@ -1,4 +1,8 @@
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "anilist_updater") "os" "windows") | trim | atoi -}}
+# anilistUpdater Configuration
+# For detailed explanations of all available options, see:
+# https://github.com/AzuredBlue/mpv-anilist-updater?tab=readme-ov-file#configuration-anilistupdaterconf
+
 # Use 'yes' or 'no' for boolean options below
 # Example for multiple directories (comma or semicolon separated):
 # DIRECTORIES=D:/Torrents,D:/Anime
@@ -15,4 +19,5 @@ ADD_ENTRY_IF_MISSING=no
 CACHE_REFRESH_RATE=24
 CACHE_MODE=NORMAL
 SILENT_MODE=yes
+SHOW_DETECTED_ANIME=no
 {{ end -}}

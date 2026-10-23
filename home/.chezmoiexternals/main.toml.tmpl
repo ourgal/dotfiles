@@ -97,8 +97,15 @@
     type = "git-repo"
     url = {{ print $mirror "https://github.com/tomasklaen/uosc" | quote }}
     refreshPeriod = "168h"
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "anilist_updater") "os" (list "linux" "windows")) | trim | atoi -}}
-[".local/share/repos/mpv-anilist-updater"]
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "anilist_updater") "os" "windows") | trim | atoi -}}
+["scoop/persist/mpv/portable_config/scripts/mpv-anilist-updater"]
+    type = "git-repo"
+    url = {{ print $mirror "https://github.com/AzuredBlue/mpv-anilist-updater" | quote }}
+    refreshPeriod = "168h"
+{{ end -}}
+
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "mpv" "opt" (list "mpv" "plugins" "anilist_updater") "os" "linux") | trim | atoi -}}
+[".config/mpv/scripts/mpv-anilist-updater"]
     type = "git-repo"
     url = {{ print $mirror "https://github.com/AzuredBlue/mpv-anilist-updater" | quote }}
     refreshPeriod = "168h"
