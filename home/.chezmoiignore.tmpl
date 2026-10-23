@@ -473,8 +473,9 @@ Videos/*
 # [[[ deskflow
 {{ if lookPath "deskflow-core" -}}
 {{ if eq .chezmoi.os "windows" -}}
-!scoop/persist/deskflow/
-!scoop/persist/deskflow/**
+!AppData/Roaming/Deskflow/
+AppData/Roaming/Deskflow/*
+!AppData/Roaming/Deskflow/Deskflow.conf
 {{ end -}}
 {{ end -}}
 # ]]]
