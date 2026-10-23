@@ -3,6 +3,10 @@
   remote_user: admin
   ignore_unreachable: true
   tags: admin
+  pre_tasks:
+      - name: Load encrypted credentials
+        community.sops.load_vars:
+          file: secrets.sops.yml
   roles:
     - role: windows_choco
       windows_choco_packages:

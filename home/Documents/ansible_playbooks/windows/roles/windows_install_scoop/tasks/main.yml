@@ -48,7 +48,7 @@
     - name: Set scoop gh_token config
       vars:
         config:
-          gh_token: "{{ lookup('gopass', 'github/ourgal/token') | trim }}"
+          gh_token: "{{ gh_token | trim }}"
       ansible.windows.win_copy:
         dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
         content: "{{ scoop_config_content.content | b64decode | from_json | combine(config) | to_json }}"
