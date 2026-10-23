@@ -39,7 +39,7 @@ Host m6
   {{ else if and (eq .chezmoi.hostname "localhost") (output "whoami" | trim | eq "u0_a556") -}}
   HostName localhost
   {{ else -}}
-  HostName 192.168.123.191
+  HostName 192.168.123.201
   {{ end -}}
 Host m6-adb
   Port 8022
