@@ -2,9 +2,9 @@ TAGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
 $(eval $(TAGS):;@:)
 .PHONY: all run ${TAGS}
 
-{{ $env_var := "" -}}
+{{ $env_var := print "SOPS_AGE_KEY_FILE=" (joinPath .chezmoi.homeDir ".config" "age" "ansible.key") " " -}}
 {{ if eq .chezmoi.os "windows" -}}
-{{ $env_var = print "LC_ALL=C.UTF-8 ANSIBLE_CONFIG=ansible.cfg SOPS_AGE_KEY_FILE=" (joinPath .chezmoi.homeDir ".config" "age" "ansible.key") " " -}}
+{{ $env_var = print "LC_ALL=C.UTF-8 ANSIBLE_CONFIG=ansible.cfg " -}}
 {{ end -}}
 
 all: lint

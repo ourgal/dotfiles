@@ -4,12 +4,17 @@
   hosts: all
   vars:
     gh_proxy: [[ .my.gh_proxy ]]/
+  pre_tasks:
+      - name: Load encrypted credentials
+        community.sops.load_vars:
+          file: secrets.sops.yml
   roles:
     - role: hostname
     - role: hosts
     - role: awesome
     - role: apt
     - role: bash
+    - role: user_password
     - role: chezmoi
     - role: gopass
     - role: pcscd

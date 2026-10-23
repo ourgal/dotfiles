@@ -1,0 +1,7 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+- name: Set the user password
+  become: true
+  ansible.builtin.user:
+    name: "{{ user_password_user }}"
+    password: $6$TpEpsuyPQcCwrNCl$oQI5WRqpvuDOBSDudeoKfvMJTL2iHZngiPUvmYkvPPOE8Zg.g5kQyo9O4YJ9WWJAhSlj5pprtwv6Q4NTNPhP40
