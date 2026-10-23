@@ -52,6 +52,9 @@ apt_packages:
     - npm
   rust:
     - rust-all
+  download:
+    - curl
+    - aria2
 
 apt_host_packages:
   surface:
