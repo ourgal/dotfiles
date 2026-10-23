@@ -106,7 +106,7 @@ mkdir -p {{ $output_dir | quote }}
   {{ end -}}
 {{ else if eq $ext ".zip" -}}
   {{ if lookPath "7z" -}}
-  7z e "$TEMP_DIR/{{ $url_filename }}" -aoa -o{{ $output_dir }}
+  7z x "$TEMP_DIR/{{ $url_filename }}" -aoa -o{{ $output_dir }}
   {{ else -}}
   unzip "$TEMP_DIR/{{ $url_filename }}" -d {{ $output_dir | quote }}
   {{ end -}}
