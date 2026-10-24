@@ -1,7 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Type=Application
-Name={{ dig "name" (splitList " " .exec | first | title) . }}
+Name={{ dig "name" (splitList " " .exec | first | splitList "/" | last | title) . }}
 Comment=
 Exec={{ .exec }}
 OnlyShowIn={{ dig "de" "XFCE" . }};
