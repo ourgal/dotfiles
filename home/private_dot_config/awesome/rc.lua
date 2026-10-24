@@ -540,7 +540,7 @@ globalkeys = mytable.join(
     -- rofi
     awful.key({ modkey }, "d", function ()
             os.execute(string.format("rofi -show %s -theme %s",
-            'run', 'dmenu'))
+            'drun', 'dmenu'))
         end,
         {description = "show rofi", group = "launcher"}),
     -- Prompt
