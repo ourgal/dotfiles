@@ -1,6 +1,7 @@
 - name: Scoop packages
   tags: admin-scoop-nonportable
   community.windows.win_scoop:
-    name: "{{ windows_scoop_packages | flatten | map('basename') | list }}"
+    name: "{{ item }}"
     global: "{{ windows_scoop_global }}"
     state: "{{ windows_scoop_state }}"
+  loop: "{{ windows_scoop_packages | flatten | map('basename') | list }}"
