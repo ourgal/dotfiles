@@ -1,0 +1,10 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+lightdm_packages:
+  - lightdm
+  - lightdm-gtk-greeter
+lightdm_greeter_session: lightdm-gtk-greeter
+lightdm_user_session: awesome
+lightdm_removed_packages:
+  - greetd
+  - tuigreet

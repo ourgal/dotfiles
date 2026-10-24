@@ -1,0 +1,43 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+- name: Gather package facts
+  ansible.builtin.package_facts:
+    manager: apt
+
+- name: Install lightdm
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+    pkg: "{{ lightdm_packages }}"
+
+- name: Write lightdm config
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/lightdm/lightdm.conf
+    mode: "0644"
+    content: |
+      [Seat:*]
+      greeter-session={{ lightdm_greeter_session }}
+      user-session={{ lightdm_user_session }}
+
+- name: Stop and disable greetd
+  become: true
+  when: '"greetd" in ansible_facts.packages'
+  ansible.builtin.systemd_service:
+    name: greetd
+    enabled: false
+    state: stopped
+
+- name: Remove greetd
+  become: true
+  ansible.builtin.apt:
+    state: absent
+    purge: true
+    pkg: "{{ lightdm_removed_packages }}"
+
+- name: Enable and start lightdm
+  become: true
+  ansible.builtin.systemd_service:
+    name: lightdm
+    enabled: true
+    state: started

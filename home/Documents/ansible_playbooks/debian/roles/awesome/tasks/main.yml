@@ -1,33 +1,18 @@
 # chezmoi:template:left-delimiter=[[ right-delimiter=]]
 ---
-- name: Install awesome and greetd
+- name: Install awesome
   become: true
   ansible.builtin.apt:
     update_cache: true
-    pkg: "{{ awesome_packages + greetd_packages }}"
-- name: Ensure greeter user exists
-  become: true
-  ansible.builtin.user:
-    name: "{{ greetd_greeter_user }}"
-    system: true
-    shell: /usr/sbin/nologin
-    create_home: false
+    pkg: "{{ awesome_packages }}"
+
 - name: Create awesome session wrapper
-  become: true
-  ansible.builtin.copy:
-    dest: /usr/local/bin/{{ greetd_session_cmd }}
-    mode: "0755"
-    content: |
-      #!/bin/sh
-      # greetd leaves the VT number in XDG_VTNR; pass it to the X server
-      exec startx /usr/local/bin/awesome-client -- vt${XDG_VTNR}
-- name: Create awesome xinit client
-  become: true
   vars:
     scale_f: "{{ awesome_scales[inventory_hostname] | default(1) | float }}"
     transform: "{{ (1.0 / scale_f) | round(4) }}"
+  become: true
   ansible.builtin.copy:
-    dest: /usr/local/bin/awesome-client
+    dest: "{{ awesome_session_cmd }}"
     mode: "0755"
     content: |
       #!/bin/sh
@@ -38,21 +23,24 @@
       echo 'Xft.dpi: {{ ((96 * (scale_f | float)) | round(0, 'ceil')) | int }}' | xrdb -merge
       {% endif %}
       exec awesome
-- name: Write greetd config
+
+- name: Write awesome session
   become: true
   ansible.builtin.copy:
-    dest: /etc/greetd/config.toml
+    dest: /usr/share/xsessions/awesome.desktop
     mode: "0644"
     content: |
-      [terminal]
-      vt = {{ greetd_vt }}
+      [Desktop Entry]
+      Name=awesome
+      Comment=Highly configurable framework window manager
+      TryExec=awesome
+      Exec={{ awesome_session_cmd }}
+      Type=Application
+      Icon=/usr/share/pixmaps/awesome.xpm
+      Keywords=Window manager
 
-      [default_session]
-      command = "tuigreet --time --remember --cmd {{ greetd_session_cmd }}"
-      user = "{{ greetd_greeter_user }}"
-- name: Enable and start greetd
+- name: Remove greetd startx wrapper
   become: true
-  ansible.builtin.systemd_service:
-    name: greetd
-    enabled: true
-    state: started
+  ansible.builtin.file:
+    path: /usr/local/bin/awesome-session
+    state: absent

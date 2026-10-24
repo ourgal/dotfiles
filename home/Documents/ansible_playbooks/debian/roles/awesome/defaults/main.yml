@@ -1,8 +1,5 @@
 # chezmoi:template:left-delimiter=[[ right-delimiter=]]
 ---
-greetd_vt: 2
-greetd_greeter_user: greeter
-greetd_session_cmd: awesome-session
 awesome_scales:
   surface: 2
 awesome_packages:
@@ -11,6 +8,4 @@ awesome_packages:
   - xterm
   - xorg
   - x11-xserver-utils
-greetd_packages:
-  - greetd
-  - tuigreet
+awesome_session_cmd: /usr/local/bin/awesome-client
