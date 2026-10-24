@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name={{ .name }}
+GenericName=Text Editor
+Comment={{ dig "comment" "Edit with Emacs" . }}
+Exec={{ .exec }} %F
+Icon={{ dig "icon" "emacs" . }}
+Terminal=false
+StartupNotify=true
+StartupWMClass=Emacs
+Categories=Utility;TextEditor;Development;
+Keywords=emacs;editor;

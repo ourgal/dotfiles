@@ -98,6 +98,12 @@ scoop/persist/*
 !.local/share/
 .local/share/*
 
+!.local/share/applications/
+.local/share/applications/*
+{{ if lookPath "emacs" -}}
+!.local/share/applications/emacs_*.desktop
+{{ end -}}
+
 !Videos/
 Videos/*
 

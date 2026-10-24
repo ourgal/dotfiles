@@ -1,0 +1,6 @@
+{{ if lookPath "emacs" -}}
+{{ $init_dir := joinPath .chezmoi.homeDir ".config" "emacs-kick" -}}
+{{ if stat $init_dir -}}
+{{ includeTemplate "emacs_app_desktop" (dict "exec" (printf "%s --init-directory=%s" (lookPath "emacs") $init_dir) "name" "Emacs (Kick)" "comment" "Emacs Kick start kit") }}
+{{ end -}}
+{{ end -}}

@@ -1,0 +1,6 @@
+{{ if lookPath "emacs" -}}
+{{ $init_dir := joinPath .chezmoi.homeDir ".config" "minimal-emacs" -}}
+{{ if stat $init_dir -}}
+{{ includeTemplate "emacs_app_desktop" (dict "exec" (printf "%s --init-directory=%s" (lookPath "emacs") $init_dir) "name" "Emacs (Minimal)" "comment" "minimal-emacs.d") }}
+{{ end -}}
+{{ end -}}
