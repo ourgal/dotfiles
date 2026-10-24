@@ -146,10 +146,11 @@ Run "runemacs --daemon", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "torrserver" "opt" (list "windows" "startup" "torrserver" "enable") "os" "windows") | trim | atoi -}}
 Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "torrserver" "current" "torrserver.exe" }}", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "torrserver" "opt" (list "windows" "startup" "flameshot" "enable") "os" "windows") | trim | atoi -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "flameshot" "opt" (list "windows" "startup" "flameshot" "enable") "os" "windows") | trim | atoi -}}
 Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "flameshot" "current" "bin" "flameshot.exe" }}", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "kdeconnect-cli" "opt" (list "windows" "startup" "seanime" "enable") "os" "windows") | trim | atoi -}}
+{{ $seanime_server := joinPath .chezmoi.homeDir "scoop" "apps" "seanime-server" "current" "seanime.exe" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $seanime_server "opt" (list "windows" "startup" "seanime" "enable") "os" "windows") | trim | atoi -}}
 Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "seanime-server" "current" "seanime.exe" }}", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "rclone" "opt" (list "windows" "startup" "rclone" "enable") "os" "windows") | trim | atoi -}}
