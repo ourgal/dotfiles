@@ -1,0 +1,20 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+- name: Gather package facts
+  ansible.builtin.package_facts:
+    manager: apt
+
+- name: Install sops
+  become: true
+  when: >-
+    'sops' not in ansible_facts.packages
+    or not ansible_facts.packages.sops[0].version.startswith(sops_version)
+  block:
+    - name: Download sops
+      ansible.builtin.get_url:
+        url: "{{ gh_proxy }}https://github.com/getsops/sops/releases/download/v{{ sops_version }}/sops_{{ sops_version }}_amd64.deb"
+        dest: /tmp/sops.deb
+        mode: "0644"
+    - name: Install sops deb
+      ansible.builtin.apt:
+        deb: /tmp/sops.deb
