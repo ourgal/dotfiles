@@ -522,6 +522,13 @@ AppData/Roaming/Deskflow/*
 !.var/app/org.fcitx.Fcitx5/**
 {{ end -}}
 {{ end -}}
+{{ if or (lookPath "fcitx5") (stat (joinPath .chezmoi.homeDir ".local" "share" "flatpak" "exports" "share" "applications" "org.fcitx.Fcitx5.desktop")) -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+!.local/share/fcitx5/
+!.local/share/fcitx5/rime/
+!.local/share/fcitx5/rime/**
+{{ end -}}
+{{ end -}}
 # ]]]
 # [[[ espanso
 {{ if lookPath "espanso" -}}

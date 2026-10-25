@@ -1,0 +1,37 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+- name: Install fcitx5 input method framework
+  become: true
+  tags:
+    - pkg
+    - fcitx5
+  ansible.builtin.apt:
+    update_cache: true
+    pkg: "{{ fcitx5_packages }}"
+
+- name: Select fcitx5 as the default input method
+  become: true
+  ansible.builtin.command:
+    cmd: im-config -n fcitx5
+    creates: /etc/X11/xinit/xinputrc
+
+- name: Restart fcitx5 to apply configuration
+  become: true
+  become_user: "{{ fcitx5_user }}"
+  ansible.builtin.command:
+    cmd: fcitx5-remote -r
+  register: fcitx5_restart
+  failed_when: false
+  changed_when: fcitx5_restart.rc == 0
+
+- name: Configure input method environment variables
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/profile.d/fcitx5-im.sh
+    mode: "0644"
+    content: |
+      export GTK_IM_MODULE=fcitx
+      export QT_IM_MODULE=fcitx
+      export XMODIFIERS="@im=fcitx"
+      export SDL_IM_MODULE=fcitx
+      export GLFW_IM_MODULE=ibus

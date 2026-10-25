@@ -1,0 +1,15 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+fcitx5_packages:
+  - fcitx5
+  - fcitx5-rime
+  - fcitx5-module-lua
+  - fcitx5-frontend-all
+  - fcitx5-configtool
+  - librime-plugin-lua
+  - im-config
+  # CJK fonts so the input method has glyphs to display
+  - fonts-noto-cjk
+
+# The role is applied for the user running the playbook
+fcitx5_user: "{{ ansible_facts.user_id }}"
