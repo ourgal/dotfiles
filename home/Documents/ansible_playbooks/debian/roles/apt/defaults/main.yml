@@ -33,7 +33,6 @@ apt_packages:
   editor:
     - vim-gtk3
     - emacs
-    - neovim
     - hx
   video:
     - mpv
@@ -79,4 +78,6 @@ apt_host_packages:
     firmware:
       - firmware-libertas
 
-apt_removed_packages: {}
+apt_removed_packages:
+  editor:
+    - neovim

@@ -1,0 +1,51 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+- name: Install appimage runtime dependencies
+  become: true
+  tags:
+    - pkg
+    - neovim
+  ansible.builtin.apt:
+    name:
+      - libfuse2t64
+      - fuse3
+
+- name: Check installed neovim appimage
+  ansible.builtin.stat:
+    path: "{{ neovim_appimage_path }}"
+    checksum_algorithm: sha256
+  register: neovim_appimage_stat
+
+- name: Install neovim appimage
+  become: true
+  tags:
+    - pkg
+    - neovim
+  when: >-
+    not neovim_appimage_stat.stat.exists
+    or neovim_appimage_stat.stat.checksum | default('')
+    != neovim_checksum | regex_replace('^sha256:', '')
+  block:
+    - name: Download neovim appimage
+      ansible.builtin.get_url:
+        url: "{{ gh_proxy }}https://github.com/neovim/neovim/releases/download/v{{ neovim_version }}/{{ neovim_appimage }}"
+        dest: "/tmp/{{ neovim_appimage }}"
+        checksum: "{{ neovim_checksum }}"
+        mode: "0755"
+    - name: Install neovim appimage
+      ansible.builtin.copy:
+        src: "/tmp/{{ neovim_appimage }}"
+        dest: "{{ neovim_appimage_path }}"
+        remote_src: true
+        mode: "0755"
+
+- name: Link neovim
+  become: true
+  tags:
+    - pkg
+    - neovim
+  ansible.builtin.file:
+    src: "{{ neovim_appimage_path }}"
+    dest: "{{ neovim_bin }}"
+    state: link
+    force: true
