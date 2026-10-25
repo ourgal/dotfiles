@@ -1,0 +1,194 @@
+{
+    "app_config": {
+        "audio_config": {
+            "audio": "pipewire"
+        },
+        "firewall_config": {
+            "firewall": "ufw"
+        },
+        "fonts_config": {
+            "fonts": [
+                "noto-fonts-emoji",
+                "noto-fonts-cjk"
+            ]
+        },
+        "power_management_config": {
+            "power_management": "power-profiles-daemon"
+        }
+    },
+    "archinstall_language": "English",
+    "auth_config": {},
+    "bootloader_config": {
+        "bootloader": "Systemd-boot",
+        "removable": false,
+        "uki": true
+    },
+    "custom_commands": [],
+    "disk_config": {
+        "config_type": "default_layout",
+        "device_modifications": [
+            {
+                "device": "/dev/nvme0n1",
+                "partitions": [
+                    {
+                        "btrfs": [],
+                        "dev_path": null,
+                        "flags": [
+                            "boot",
+                            "esp"
+                        ],
+                        "fs_type": "fat32",
+                        "mount_options": [],
+                        "mountpoint": "/boot",
+                        "obj_id": "e4af3a7f-a6a7-42e8-a4fb-e06cc758c139",
+                        "size": {
+                            "sector_size": {
+                                "unit": "B",
+                                "value": 512
+                            },
+                            "unit": "GiB",
+                            "value": 1
+                        },
+                        "start": {
+                            "sector_size": {
+                                "unit": "B",
+                                "value": 512
+                            },
+                            "unit": "MiB",
+                            "value": 1
+                        },
+                        "status": "create",
+                        "type": "primary"
+                    },
+                    {
+                        "btrfs": [
+                            {
+                                "mountpoint": "/",
+                                "name": "@"
+                            },
+                            {
+                                "mountpoint": "/home",
+                                "name": "@home"
+                            },
+                            {
+                                "mountpoint": "/var/log",
+                                "name": "@log"
+                            },
+                            {
+                                "mountpoint": "/var/cache/pacman/pkg",
+                                "name": "@pkg"
+                            }
+                        ],
+                        "dev_path": null,
+                        "flags": [],
+                        "fs_type": "btrfs",
+                        "mount_options": [
+                            "compress=zstd"
+                        ],
+                        "mountpoint": null,
+                        "obj_id": "b62048de-8941-40f1-9b75-b820da952082",
+                        "size": {
+                            "sector_size": {
+                                "unit": "B",
+                                "value": 512
+                            },
+                            "unit": "B",
+                            "value": 254984323072
+                        },
+                        "start": {
+                            "sector_size": {
+                                "unit": "B",
+                                "value": 512
+                            },
+                            "unit": "B",
+                            "value": 1074790400
+                        },
+                        "status": "create",
+                        "type": "primary"
+                    }
+                ],
+                "wipe": true
+            }
+        ]
+    },
+    "firmware_optdeps": [
+        "linux-firmware-marvell"
+    ],
+    "hostname": "surface",
+    "kernels": [
+        "linux"
+    ],
+    "locale_config": {
+        "console_font": "default8x16",
+        "kb_layout": "us",
+        "sys_enc": "UTF-8",
+        "sys_lang": "en_US.UTF-8"
+    },
+    "mirror_config": {
+        "custom_repositories": [],
+        "custom_servers": [],
+        "mirror_regions": {
+            "China": [
+                "http://mirrors.163.com/archlinux/$repo/os/$arch",
+                "http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch",
+                "https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch",
+                "http://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch",
+                "https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch",
+                "http://mirrors.hust.edu.cn/archlinux/$repo/os/$arch",
+                "https://mirrors.hust.edu.cn/archlinux/$repo/os/$arch",
+                "http://mirrors.zju.edu.cn/archlinux/$repo/os/$arch",
+                "http://mirror.lzu.edu.cn/archlinux/$repo/os/$arch",
+                "https://mirrors.xjtu.edu.cn/archlinux/$repo/os/$arch",
+                "https://mirrors.sjtug.sjtu.edu.cn/archlinux/$repo/os/$arch",
+                "http://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch",
+                "https://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch",
+                "http://mirrors.nju.edu.cn/archlinux/$repo/os/$arch",
+                "https://mirrors.nju.edu.cn/archlinux/$repo/os/$arch",
+                "http://mirrors.hit.edu.cn/archlinux/$repo/os/$arch",
+                "https://mirrors.hit.edu.cn/archlinux/$repo/os/$arch",
+                "http://mirrors.wsyu.edu.cn/archlinux/$repo/os/$arch",
+                "https://mirrors.wsyu.edu.cn/archlinux/$repo/os/$arch",
+                "http://mirrors.aliyun.com/archlinux/$repo/os/$arch",
+                "https://mirrors.aliyun.com/archlinux/$repo/os/$arch",
+                "http://mirrors.jlu.edu.cn/archlinux/$repo/os/$arch",
+                "https://mirrors.jlu.edu.cn/archlinux/$repo/os/$arch",
+                "http://mirror.nyist.edu.cn/archlinux/$repo/os/$arch",
+                "https://mirror.nyist.edu.cn/archlinux/$repo/os/$arch",
+                "https://mirrors.qlu.edu.cn/archlinux/$repo/os/$arch"
+            ]
+        },
+        "optional_repositories": []
+    },
+    "network_config": {
+        "type": "nm"
+    },
+    "ntp": true,
+    "packages": [
+        "openssh"
+    ],
+    "pacman_config": {
+        "color": true,
+        "parallel_downloads": 5
+    },
+    "profile_config": {
+        "gfx_driver": "Intel (open-source)",
+        "greeter": "ly",
+        "profile": {
+            "custom_settings": {
+                "Awesome": {}
+            },
+            "details": [
+                "Awesome"
+            ],
+            "main": "Desktop"
+        }
+    },
+    "script": null,
+    "services": [],
+    "swap": {
+        "algorithm": "zstd",
+        "enabled": true
+    },
+    "timezone": "Asia/Taipei",
+    "version": "4.5"
+}
