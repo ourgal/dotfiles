@@ -1,0 +1,6 @@
+---
+all:
+  vars:
+    ansible_become_pass: {{ includeTemplate "secrets" . | fromToml | dig "password" "linux" "user" "" }}
+  hosts:
+    surface:

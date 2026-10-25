@@ -1,0 +1,12 @@
+---
+- name: Write /etc/hosts
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/hosts
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      127.0.0.1 localhost
+      127.0.1.1 {{ inventory_hostname }}
+      ::1 localhost ip6-localhost ip6-loopback

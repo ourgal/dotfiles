@@ -1,0 +1,13 @@
+---
+- name: Configure arch linux
+  hosts: all
+  ignore_unreachable: true
+  roles:
+    - role: pacman
+    - role: hostname
+    - role: hosts
+    - role: sudoers
+    - role: ufw
+    - role: services
+    - role: pcscd
+    - role: fcitx5

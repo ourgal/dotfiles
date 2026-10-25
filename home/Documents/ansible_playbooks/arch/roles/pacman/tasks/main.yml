@@ -1,0 +1,18 @@
+---
+- name: Update system
+  become: true
+  tags:
+    - pkg
+    - pacman
+  community.general.pacman:
+    update_cache: true
+    upgrade: true
+
+- name: Install pacman packages
+  become: true
+  tags:
+    - pkg
+    - pacman
+  community.general.pacman:
+    name: "{{ pacman_packages.values() | list | flatten }}"
+    state: present

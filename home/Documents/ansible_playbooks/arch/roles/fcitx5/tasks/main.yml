@@ -1,0 +1,21 @@
+---
+- name: Install fcitx5 input method framework
+  become: true
+  tags:
+    - pkg
+    - fcitx5
+  community.general.pacman:
+    name: "{{ fcitx5_packages }}"
+    state: present
+
+- name: Configure input method environment variables
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/profile.d/fcitx5.sh
+    mode: "0644"
+    content: |
+      export GTK_IM_MODULE=fcitx
+      export QT_IM_MODULE=fcitx
+      export XMODIFIERS="@im=fcitx"
+      export SDL_IM_MODULE=fcitx
+      export GLFW_IM_MODULE=ibus

@@ -1,0 +1,36 @@
+---
+- name: Install pcsc packages
+  become: true
+  tags:
+    - pkg
+    - pcscd
+  community.general.pacman:
+    name:
+      - gnupg
+      - pcsclite
+      - ccid
+      - pcsc-tools
+
+- name: Create gnupg dir
+  ansible.builtin.file:
+    path: "{{ [ ansible_facts.user_dir, '.gnupg' ] | path_join }}"
+    state: directory
+    owner: "{{ ansible_facts.user_id }}"
+    group: "{{ ansible_facts.user_id }}"
+    mode: "0700"
+
+- name: Disable scdaemon
+  ansible.builtin.copy:
+    dest: "{{ [ ansible_facts.user_dir, '.gnupg', 'scdaemon.conf' ] | path_join }}"
+    content: |
+      disable-ccid
+    owner: "{{ ansible_facts.user_id }}"
+    group: "{{ ansible_facts.user_id }}"
+    mode: "0600"
+
+- name: Enable pcscd
+  become: true
+  ansible.builtin.systemd_service:
+    name: pcscd
+    state: started
+    enabled: true

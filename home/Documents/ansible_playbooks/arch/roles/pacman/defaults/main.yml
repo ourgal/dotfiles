@@ -1,0 +1,113 @@
+---
+pacman_packages:
+  dotfile:
+    - chezmoi
+  system:
+    - base-devel
+    - sudo
+    - openssh
+    - networkmanager
+    - ufw
+    - bluez
+    - bluez-utils
+    - power-profiles-daemon
+    - btrfs-progs
+    - dosfstools
+    - exfatprogs
+    - ntfs-3g
+    - man-db
+    - man-pages
+    - bash-completion
+  audio:
+    - pipewire
+    - pipewire-alsa
+    - pipewire-pulse
+    - wireplumber
+    - sof-firmware
+  graphics:
+    - intel-media-driver
+    - libva-intel-driver
+    - libva-utils
+    - vulkan-intel
+  download:
+    - curl
+    - wget
+    - aria2
+    - yt-dlp
+  archive:
+    - 7zip
+    - unzip
+    - zip
+    - xz
+    - zstd
+  git:
+    - git
+    - git-crypt
+    - git-delta
+    - lazygit
+    - github-cli
+  dotfiles:
+    - chezmoi
+    - gopass
+    - gnupg
+  editor:
+    - helix
+    - neovim
+    - emacs
+  shell:
+    - fish
+    - starship
+    - tmux
+    - zellij
+    - kitty
+  search:
+    - fzf
+    - fd
+    - ripgrep
+    - tree
+  terminal_utils:
+    - eza
+    - bat
+    - zoxide
+    - btop
+    - htop
+    - duf
+    - fastfetch
+    - file
+    - psmisc
+    - xdg-utils
+  sync:
+    - rsync
+    - rclone
+    - syncthing
+  browser:
+    - firefox
+    - chromium
+  media:
+    - mpv
+    - ffmpeg
+    - imagemagick
+  document:
+    - pandoc
+    - zathura
+    - zathura-pdf-mupdf
+  desktop:
+    - awesome
+    - dex
+    - ly
+    - xorg-server
+    - xorg-xinit
+    - xorg-xrandr
+    - xorg-xrdb
+    - noto-fonts
+    - noto-fonts-cjk
+    - noto-fonts-emoji
+  dev:
+    - make
+    - cmake
+    - pkgconf
+    - nodejs
+    - npm
+    - python
+    - uv
+    - ansible
