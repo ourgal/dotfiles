@@ -1,0 +1,93 @@
+---
+- name: Check whether paru works
+  ansible.builtin.command:
+    cmd: paru --version
+  register: paru_version
+  changed_when: false
+  failed_when: false
+
+- name: Install paru from the AUR
+  when: paru_version.rc != 0
+  block:
+    - name: Install build dependencies
+      become: true
+      community.general.pacman:
+        name:
+          - base-devel
+          - git
+          - sudo
+        state: present
+
+    - name: Remove the prebuilt paru-bin package
+      become: true
+      community.general.pacman:
+        name: paru-bin
+        state: absent
+
+    - name: Create paru build group
+      become: true
+      ansible.builtin.group:
+        name: "{{ paru_build_user }}"
+        system: true
+
+    - name: Create paru build user
+      become: true
+      ansible.builtin.user:
+        name: "{{ paru_build_user }}"
+        group: "{{ paru_build_user }}"
+        home: "{{ paru_build_home }}"
+        create_home: true
+        shell: /bin/bash
+        system: true
+
+    - name: Allow the build user to run pacman without a password
+      become: true
+      community.general.sudoers:
+        name: "{{ paru_sudoers_name }}"
+        state: present
+        user: "{{ paru_build_user }}"
+        commands: /usr/bin/pacman
+        nopassword: true
+
+    - name: Clone the paru AUR package
+      become: true
+      ansible.builtin.git:
+        repo: "{{ paru_git_url }}"
+        dest: "{{ paru_source_dir }}"
+        version: HEAD
+
+    - name: Give the build user ownership of the source
+      become: true
+      ansible.builtin.file:
+        path: "{{ paru_source_dir }}"
+        state: directory
+        recurse: true
+        owner: "{{ paru_build_user }}"
+        group: "{{ paru_build_user }}"
+
+    - name: Build and install paru
+      become: true
+      become_user: "{{ paru_build_user }}"
+      ansible.builtin.command:
+        cmd: makepkg --syncdeps --install --noconfirm
+        chdir: "{{ paru_source_dir }}"
+      changed_when: true
+  always:
+    - name: Remove the paru build sudoers rule
+      become: true
+      community.general.sudoers:
+        name: "{{ paru_sudoers_name }}"
+        state: absent
+
+    - name: Remove the paru build user
+      become: true
+      ansible.builtin.user:
+        name: "{{ paru_build_user }}"
+        state: absent
+        remove: true
+
+    - name: Remove the paru build group
+      become: true
+      ansible.builtin.group:
+        name: "{{ paru_build_user }}"
+        state: absent

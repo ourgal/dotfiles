@@ -1,0 +1,9 @@
+---
+# Build from source so paru links against the installed libalpm ABI.
+paru_aur_package: paru
+paru_git_url: "https://aur.archlinux.org/{{ paru_aur_package }}.git"
+paru_binary: /usr/bin/paru
+paru_build_user: paru-builder
+paru_build_home: /var/tmp/paru-build
+paru_source_dir: "{{ paru_build_home }}/{{ paru_aur_package }}"
+paru_sudoers_name: paru-build

@@ -4,6 +4,9 @@
   ignore_unreachable: true
   roles:
     - role: pacman
+    - role: paru
+      tags:
+        - paru
     - role: hostname
     - role: hosts
     - role: sudoers
