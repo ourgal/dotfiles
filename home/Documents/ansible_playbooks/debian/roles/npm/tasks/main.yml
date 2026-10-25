@@ -1,0 +1,34 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+- name: Ensure nodejs and npm are installed
+  tags:
+    - pkg
+    - npm
+  become: true
+  ansible.builtin.package:
+    name:
+      - nodejs
+      - npm
+    state: present
+
+- name: Install global npm packages
+  tags:
+    - pkg
+    - npm
+  become: true
+  community.general.npm:
+    name: "{{ item }}"
+    global: true
+    state: present
+  loop: "{{ npm_packages }}"
+
+- name: Remove global npm packages
+  tags:
+    - pkg
+    - npm
+  become: true
+  community.general.npm:
+    name: "{{ item }}"
+    global: true
+    state: absent
+  loop: "{{ npm_removed_packages }}"
