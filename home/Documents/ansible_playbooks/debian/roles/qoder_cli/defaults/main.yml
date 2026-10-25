@@ -1,0 +1,4 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+qoder_cli_install_url: https://qoder.com.cn/install
+qoder_cli_bin: "{{ ansible_facts.user_dir }}/.local/bin/qoderclicn"

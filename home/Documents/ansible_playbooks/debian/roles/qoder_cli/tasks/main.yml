@@ -1,0 +1,9 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+- name: Install qoder cli cn
+  tags:
+    - pkg
+    - qoder_cli
+  ansible.builtin.shell:
+    cmd: curl -fsSL {{ qoder_cli_install_url }} | bash
+    creates: "{{ qoder_cli_bin }}"
