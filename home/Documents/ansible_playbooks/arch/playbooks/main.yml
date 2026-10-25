@@ -5,8 +5,8 @@
   roles:
     - role: pacman
     - role: paru
-      tags:
-        - paru
+    - role: surface_touch
+      when: ansible_facts.hostname == "surface"
     - role: hostname
     - role: hosts
     - role: sudoers
