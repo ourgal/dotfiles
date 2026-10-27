@@ -1,0 +1,6 @@
+---
+- name: Configure Alpine Linux
+  hosts: all
+  ignore_unreachable: true
+  roles:
+    - role: mihomo

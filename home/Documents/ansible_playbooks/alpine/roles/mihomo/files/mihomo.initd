@@ -1,0 +1,21 @@
+#!/sbin/openrc-run
+
+name="mihomo"
+description="Mihomo proxy core"
+
+command="/usr/local/bin/mihomo"
+command_args="-d /etc/mihomo"
+command_background="true"
+pidfile="/run/${RC_SVCNAME}.pid"
+output_log="/var/log/mihomo.log"
+error_log="/var/log/mihomo.log"
+
+depend() {
+	need net
+	after firewall
+}
+
+start_pre() {
+	checkpath --directory --owner root:root --mode 0700 /etc/mihomo
+	modprobe tun 2>/dev/null
+}

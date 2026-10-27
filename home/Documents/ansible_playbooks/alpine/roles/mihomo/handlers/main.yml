@@ -1,0 +1,6 @@
+---
+- name: Restart mihomo
+  become: true
+  ansible.builtin.service:
+    name: mihomo
+    state: restarted

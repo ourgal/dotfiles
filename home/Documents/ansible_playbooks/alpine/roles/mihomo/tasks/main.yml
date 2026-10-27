@@ -1,0 +1,74 @@
+---
+- name: Install mihomo dependencies
+  become: true
+  community.general.apk:
+    name: "{{ mihomo_packages }}"
+    state: present
+    update_cache: true
+
+- name: Create the mihomo configuration directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ mihomo_config_dir }}"
+    state: directory
+    mode: '0700'
+
+- name: Deploy the mihomo configuration
+  become: true
+  ansible.builtin.copy:
+    src: config.yaml
+    dest: "{{ mihomo_config_dir }}/config.yaml"
+    mode: '0600'
+  notify: Restart mihomo
+
+- name: Check the installed mihomo version
+  ansible.builtin.command:
+    cmd: "{{ mihomo_binary }} -v"
+  register: mihomo_installed_version
+  changed_when: false
+  failed_when: false
+
+- name: Install mihomo
+  when: mihomo_version not in mihomo_installed_version.stdout
+  block:
+    - name: Download mihomo
+      become: true
+      ansible.builtin.get_url:
+        url: "{{ mihomo_download_url }}"
+        dest: "{{ mihomo_archive }}"
+        mode: '0600'
+
+    - name: Decompress mihomo
+      become: true
+      ansible.builtin.command:
+        cmd: "gzip -df {{ mihomo_archive }}"
+        creates: "{{ mihomo_unpacked }}"
+
+    - name: Install the mihomo binary
+      become: true
+      ansible.builtin.copy:
+        src: "{{ mihomo_unpacked }}"
+        dest: "{{ mihomo_binary }}"
+        remote_src: true
+        mode: '0755'
+
+    - name: Remove the mihomo download
+      become: true
+      ansible.builtin.file:
+        path: "{{ mihomo_unpacked }}"
+        state: absent
+
+- name: Install the mihomo OpenRC service
+  become: true
+  ansible.builtin.copy:
+    src: mihomo.initd
+    dest: /etc/init.d/mihomo
+    mode: '0755'
+  notify: Restart mihomo
+
+- name: Enable and start mihomo
+  become: true
+  ansible.builtin.service:
+    name: mihomo
+    enabled: true
+    state: started
