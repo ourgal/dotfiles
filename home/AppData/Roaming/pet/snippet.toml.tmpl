@@ -15,30 +15,3 @@ Description = "Forward m6 adb port"
 Output = ""
 Tag = ["termux"]
 command = "adb forward tcp:8022 tcp:8022"
-
-[[Snippets]]
-Description = "ritdon html to markdown"
-Output = ""
-Tag = []
-command = """
-# pandoc convert html to markdown
-pandoc -f html output.html -o markdown -o temp.md --wrap=none;
-
-# remove empty lines
-sed -i '/^[[:space:]]*$/d' temp.md;
-
-# remove leading spaces
-sed -i 's/^[[:space:]]*//' temp.md;
-
-# remove tcy tags
-perl -pi -e 's/\\[([^\\[\\]]*?)\\]\\{\\.tcy\\}/\\1/g' temp.md;
-
-# remove fit tags
-perl -pi -e 's/\\((.*?)\\)\\{\\.fit\\}/(\\1)/g' temp.md;
-
-# replace gfont tags with bold
-perl -pi -e 's/\\[([^\\[\\]]*?)\\]\\{\\.(gfont|em-dot)\\}/\\*\\*\\1\\*\\*/g' temp.md;
-
-# remove leading backslashes
-sed -i 's/^\\\\$//' temp.md
-"""
