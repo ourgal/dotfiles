@@ -1,0 +1,31 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "emacs" -}}
+{{ template "powershell_strict" }}
+$programs = Join-Path $env:APPDATA "Microsoft\Windows\Start Menu\Programs"
+$launcher = Get-Command runemacs -ErrorAction SilentlyContinue
+if (-not $launcher) { $launcher = Get-Command emacs }
+$launcher = $launcher.Source
+$icon = Join-Path $env:USERPROFILE "scoop\apps\emacs\current\bin\runemacs.exe"
+if (-not (Test-Path $icon)) { $icon = $launcher }
+$ws = New-Object -ComObject WScript.Shell
+$configs = @()
+{{ range $c := (list (dict "name" "Doom" "dir" "doom-emacs") (dict "name" "Kick" "dir" "emacs-kick") (dict "name" "Minimal" "dir" "minimal-emacs") (dict "name" "Solo" "dir" "emacs-solo")) -}}
+$configs += @{ Name = "Emacs ({{ $c.name }})"; Dir = "{{ $c.dir }}" }
+{{ end -}}
+foreach ($c in $configs) {
+    $lnk = Join-Path $programs "$($c.Name).lnk"
+    $initDir = Join-Path $env:USERPROFILE ".config\$($c.Dir)"
+    if (-not (Test-Path $initDir)) {
+        Remove-Item $lnk -Force -ErrorAction SilentlyContinue
+        continue
+    }
+    $shortcut = $ws.CreateShortcut($lnk)
+    $shortcut.TargetPath = $launcher
+    $shortcut.Arguments = "--init-directory=`"$initDir`""
+    $shortcut.WorkingDirectory = $env:USERPROFILE
+    $shortcut.IconLocation = "$icon,0"
+    $shortcut.Description = "Emacs with --init-directory=$initDir"
+    $shortcut.Save()
+}
+{{ end -}}
+{{ end -}}
