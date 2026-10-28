@@ -5,4 +5,6 @@
   roles:
     - role: network
     - role: tailscale
+      when: tailscale_enabled | default(false) | bool
     - role: mihomo
+      when: mihomo_enabled | default(false) | bool
