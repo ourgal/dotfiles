@@ -1,0 +1,18 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+tailscale_packages:
+  - tailscale
+  - tailscale-openrc
+
+# Optional pre-auth key for unattended joins; leave empty to log in manually.
+tailscale_auth_key: "[[ includeTemplate "secrets" . | fromToml | dig "tailscale" "work2" "" ]]"
+
+tailscale_lan_subnet: >-
+  {{ (ansible_facts.get('default_ipv4', {}).get('address', '192.168.0.101') ~ '/' ~
+      ansible_facts.get('default_ipv4', {}).get('netmask', '255.255.255.0'))
+     | ansible.utils.ipaddr('network/prefix') }}
+
+tailscale_up_args:
+  - --accept-routes
+  - --advertise-exit-node
+  - "--advertise-routes={{ tailscale_lan_subnet }}"
