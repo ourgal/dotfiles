@@ -1,4 +1,5 @@
 ---
+network_enabled: false
 network_interface: "{{ ansible_facts.get('default_ipv4', {}).get('interface', 'eth0') }}"
 network_address: "{{ ansible_facts.get('default_ipv4', {}).get('address', '192.168.0.101') }}"
 network_netmask: "{{ ansible_facts.get('default_ipv4', {}).get('netmask', '255.255.255.0') }}"
