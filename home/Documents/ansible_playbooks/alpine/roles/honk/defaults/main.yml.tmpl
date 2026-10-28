@@ -21,8 +21,8 @@ honk_data_dir: /var/lib/honk
 honk_packages:
   - ca-certificates
 
-# Leave empty to intercept only locally originated traffic.
-honk_lan_interface: ""
+# LAN interface whose forwarded traffic is intercepted, taken from the default route.
+honk_lan_interface: "{{ ansible_facts.get('default_ipv4', {}).get('interface', 'eth0') }}"
 honk_bootstrap_resolver: 119.29.29.29:53
 honk_log_level: info
 honk_native_api_listen: 0.0.0.0:9090
