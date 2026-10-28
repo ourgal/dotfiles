@@ -183,7 +183,7 @@ dns:
   respect-rules: true
   nameserver-policy: {'rule-set:cn': [ 223.5.5.5, 1.2.4.8 ]}
   proxy-server-nameserver : [ 223.5.5.5, 2400:3200::1 ]
-  nameserver: [ 1.1.1.1, 8.8.8.8, ts://tailscale ]
+  nameserver: [ 1.1.1.1, 8.8.8.8 ]
 use-system-hosts: true
 hosts:
   'time.android.com': 203.107.6.88
@@ -245,7 +245,7 @@ proxy-groups:
 proxy-providers:
   nano:
     type: http
-    url: (includeTemplate "secrets" . | fromToml | dig "subs" "nano" "" | quote)
+    url: {{ includeTemplate "secrets" . | fromToml | dig "subs" "nano" "" | quote }}
     path: "./providers/nano.yaml"
     interval: 43200
     health-check:
@@ -258,7 +258,7 @@ proxy-providers:
       skip-cert-verify: true
   knjc:
     type: http
-    url: (includeTemplate "secrets" . | fromToml | dig "subs" "knjc" "" | quote)
+    url: {{ includeTemplate "secrets" . | fromToml | dig "subs" "knjc" "" | quote }}
     path: "./providers/knjc.yaml"
     interval: 43200
     health-check:
@@ -274,8 +274,6 @@ rules:
   - PROCESS-NAME,tailscaled,DIRECT
   - PROCESS-NAME,tailscale,DIRECT
   - PROCESS-NAME,tailscale.exe,DIRECT  # For Windows environments
-  - IP-CIDR,100.64.0.0/10,Tailscale-Out
-  - IP-CIDR,192.168.123.0/24,Tailscale-Out
 
   - DST-PORT,1-79,DIRECT
   - DST-PORT,81-442,DIRECT
