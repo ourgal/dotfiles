@@ -1,0 +1,107 @@
+---
+- name: Install honk dependencies
+  become: true
+  community.general.apk:
+    name: "{{ honk_packages }}"
+    state: present
+    update_cache: true
+
+- name: Check whether bpffs is mounted
+  ansible.builtin.command:
+    cmd: grep -q ' /sys/fs/bpf ' /proc/mounts
+  register: honk_bpffs_mounted
+  changed_when: false
+  failed_when: false
+
+- name: Mount bpffs
+  become: true
+  ansible.builtin.command:
+    cmd: mount -t bpf bpf /sys/fs/bpf
+  when: honk_bpffs_mounted.rc != 0
+  changed_when: true
+
+- name: Persist the bpffs mount
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/fstab
+    regexp: '^\s*bpf\s+/sys/fs/bpf\s'
+    line: "bpf /sys/fs/bpf bpf defaults 0 0"
+    state: present
+
+- name: Create the honk directories
+  become: true
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0700'
+  loop:
+    - "{{ honk_config_dir }}"
+    - "{{ honk_data_dir }}"
+
+- name: Check the installed honk version
+  ansible.builtin.command:
+    cmd: "{{ honk_binary }} --version"
+  register: honk_installed_version
+  changed_when: false
+  failed_when: false
+
+- name: Install honk
+  when: honk_version not in honk_installed_version.stdout
+  block:
+    - name: Download honk
+      become: true
+      ansible.builtin.get_url:
+        url: "{{ honk_download_url }}"
+        dest: "{{ honk_archive }}"
+        mode: '0600'
+
+    - name: Extract honk
+      become: true
+      ansible.builtin.command:
+        cmd: "tar -xzf {{ honk_archive }} -C /tmp"
+        creates: "{{ honk_source_dir }}/honk-core"
+
+    - name: Install the honk binary
+      become: true
+      ansible.builtin.copy:
+        src: "{{ honk_source_dir }}/honk-core"
+        dest: "{{ honk_binary }}"
+        remote_src: true
+        mode: '0755'
+      notify: Restart honk
+
+    - name: Remove the honk download
+      become: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - "{{ honk_archive }}"
+        - "{{ honk_source_dir }}"
+
+- name: Deploy the honk configuration
+  become: true
+  ansible.builtin.template:
+    src: config.dae.j2
+    dest: "{{ honk_config_dir }}/config.dae"
+    owner: root
+    group: root
+    mode: '0600'
+  notify: Restart honk
+
+- name: Install the honk OpenRC service
+  become: true
+  ansible.builtin.copy:
+    src: honk.initd
+    dest: /etc/init.d/honk
+    mode: '0755'
+  notify: Restart honk
+
+- name: Enable and start honk
+  become: true
+  ansible.builtin.service:
+    name: honk
+    enabled: true
+    state: started

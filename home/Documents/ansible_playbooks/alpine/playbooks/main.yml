@@ -8,3 +8,27 @@
       when: tailscale_enabled | default(false) | bool
     - role: mihomo
       when: mihomo_enabled | default(false) | bool
+    - role: honk
+      when: honk_enabled | default(false) | bool
+  post_tasks:
+    - name: Check whether the proxy services are installed
+      ansible.builtin.stat:
+        path: "/etc/init.d/{{ item }}"
+      loop:
+        - tailscale
+        - mihomo
+        - honk
+      register: proxy_services
+
+    - name: Stop and disable proxy services whose switch is off
+      become: true
+      ansible.builtin.service:
+        name: "{{ item.item }}"
+        enabled: false
+        state: stopped
+      loop: "{{ proxy_services.results }}"
+      loop_control:
+        label: "{{ item.item }}"
+      when:
+        - item.stat.exists
+        - not (vars[item.item ~ '_enabled'] | default(false) | bool)

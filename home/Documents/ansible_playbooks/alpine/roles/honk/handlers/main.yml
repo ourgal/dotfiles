@@ -1,0 +1,6 @@
+---
+- name: Restart honk
+  become: true
+  ansible.builtin.service:
+    name: honk
+    state: restarted
