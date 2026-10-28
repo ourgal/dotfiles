@@ -31,4 +31,4 @@
         label: "{{ item.item }}"
       when:
         - item.stat.exists
-        - not (vars[item.item ~ '_enabled'] | default(false) | bool)
+        - not (lookup('vars', item.item ~ '_enabled', default=false) | bool)

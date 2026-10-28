@@ -2,12 +2,12 @@
 # 订阅支持V2ray/URL、mihomo等格式。
 {% if honk_subscription_nano_url or honk_subscription_knjc_url %}
 subscription {
-    {%- if honk_subscription_nano_url %}
+    {% if honk_subscription_nano_url %}
     nano: '{{ honk_subscription_nano_url }}'
-    {%- endif %}
-    {%- if honk_subscription_knjc_url %}
+    {% endif %}
+    {% if honk_subscription_knjc_url %}
     knjc: '{{ honk_subscription_knjc_url }}'
-    {%- endif %}
+    {% endif %}
 }
 {% endif %}
 
