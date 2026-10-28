@@ -65,15 +65,13 @@ Host gogs-m6
   HostName {{ if eq .chezmoi.hostname "work" "work2" }}192.168.1.103{{ else if eq .chezmoi.hostname "nuc" "bed" "surface" "easy1" }}192.168.123.191{{ else }}none{{ end }}
 {{ end -}}
 
-{{ if eq .chezmoi.hostname "work" "work2" -}}
 Host work2
   Port 22
   User zxc
-  HostName 192.168.1.107
+  HostName 192.168.0.101
 Host office2043
   Port 22
   User zxc
   HostName 192.168.1.104
-{{ end -}}
 Host *
   AddKeysToAgent yes
