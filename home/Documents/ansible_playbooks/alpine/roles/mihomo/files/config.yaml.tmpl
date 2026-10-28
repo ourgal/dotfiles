@@ -274,6 +274,11 @@ rules:
   - PROCESS-NAME,tailscaled,DIRECT
   - PROCESS-NAME,tailscale,DIRECT
   - PROCESS-NAME,tailscale.exe,DIRECT  # For Windows environments
+  - DOMAIN-SUFFIX,tailscale.com,DIRECT
+  - DOMAIN-SUFFIX,tailscale.io,DIRECT
+  - DOMAIN-SUFFIX,ts.net,DIRECT
+  - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
+  - IP-CIDR6,fd7a:115c:a1e0::/48,DIRECT,no-resolve
 
   - DST-PORT,1-79,DIRECT
   - DST-PORT,81-442,DIRECT
