@@ -1,0 +1,38 @@
+# Seanime library maintenance
+#
+#   make empty   - list empty directories (dry run, deepest first)
+#   make prune   - delete empty directories (deepest first; only truly empty dirs are touched)
+#   make status  - counts: top-level dirs / videos / .part files / empty dirs
+#
+# Windows + Windows PowerShell 5.1+ (GNU Make 4.4.1 here).
+# Two editing rules that matter:
+#   1. Make expands "$", so every PowerShell variable is written "$$".
+#   2. Each recipe line is its own powershell process, so a target must fit on one line.
+
+SHELL         := powershell.exe
+.SHELLFLAGS   := -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command
+.DEFAULT_GOAL := help
+
+LIB ?= {{ joinPath .chezmoi.homeDir "Videos" "Seanime" }}
+
+# "Empty" includes hidden/system entries, and a directory holding a .part download is never empty.
+isempty = (Get-ChildItem -LiteralPath $(1).FullName -Force -ErrorAction SilentlyContinue).Count -eq 0
+ISEMPTY = $(call isempty,$$PSItem)
+DEEPEST = Sort-Object { $$PSItem.FullName.Length } -Descending
+
+.PHONY: help empty prune status
+
+help:
+	@Write-Output 'seanime library Makefile   (LIB = $(LIB))'; Write-Output '  make empty    list empty directories'; Write-Output '  make prune    delete empty directories, deepest first'; Write-Output '  make status   counts: top dirs / videos / .part / empty'
+
+empty:
+	@$$e = @(Get-ChildItem -LiteralPath '$(LIB)' -Recurse -Directory | Where-Object { $(ISEMPTY) }); $$e | $(DEEPEST) | ForEach-Object { $$PSItem.FullName }; Write-Output ('--- empty directories: ' + $$e.Count)
+
+# Snapshot the tree first, then peel deepest-first: removing "<show>/<release folder>"
+# makes "<show>" empty in the same pass, so one run collapses the whole chain.
+# (Seanime's own /api/v1/library/empty-directories only goes one level per call.)
+prune:
+	@$$all = @(Get-ChildItem -LiteralPath '$(LIB)' -Recurse -Directory); $$n = 0; foreach ($$d in ($$all | Sort-Object { $$PSItem.FullName.Length } -Descending)) { if ((Test-Path -LiteralPath $$d.FullName) -and ($(call isempty,$$d))) { Remove-Item -LiteralPath $$d.FullName -Force; $$n++; Write-Output ('removed ' + $$d.FullName) } }; Write-Output ('--- removed: ' + $$n)
+
+status:
+	@Write-Output ('top-level dirs : ' + @(Get-ChildItem -LiteralPath '$(LIB)' -Directory).Count); Write-Output ('video files    : ' + @(Get-ChildItem -LiteralPath '$(LIB)' -Recurse -File | Where-Object { $$PSItem.Extension -in '.mkv', '.mp4', '.webm' }).Count); Write-Output ('.part in-flight: ' + @(Get-ChildItem -LiteralPath '$(LIB)' -Recurse -File -Filter '*.part' -ErrorAction SilentlyContinue).Count); Write-Output ('empty dirs     : ' + @(Get-ChildItem -LiteralPath '$(LIB)' -Recurse -Directory | Where-Object { $(ISEMPTY) }).Count)
