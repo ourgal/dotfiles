@@ -21,3 +21,9 @@ Description = "Download anime into Seanime (blank title = clipboard)"
 Output = ""
 Tag = ["anime", "seanime"]
 command = 'uv run --project "{{ joinPath .chezmoi.homeDir "Documents" "scripts" "anime-fetch" }}" anime-fetch "<title>"'
+
+[[Snippets]]
+Description = "Convert YouTube URL to uploads RSS feed (blank URL = clipboard)"
+Output = ""
+Tag = ["youtube", "rss"]
+command = 'make -C "{{ joinPath .chezmoi.homeDir "Documents" "scripts" "youtube-rss" }}" URL="<url>"'
