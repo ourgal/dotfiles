@@ -17,7 +17,7 @@ subscription {
 
 group {
     Proxy {
-        filter: name(regex: '🇭🇰|HK|hk|香港|港|HongKong') && !name(regex: '排除')
+        filter: !name(regex: '官网|剩余|流量|套餐|免费|订阅|到期时间|直连|Expire Date|Traffic|ExpireDate')
         final: Final
         interrupt_connections: true
     }
@@ -27,22 +27,25 @@ group {
         interrupt_connections: true
     }
     YouTube {
-        filter: name(regex: '🇭🇰|HK|hk|香港|港|HongKong') && !name(regex: '排除')
+        filter: !name(regex: '官网|剩余|流量|套餐|免费|订阅|到期时间|直连|Expire Date|Traffic|ExpireDate')
         final: Final
         interrupt_connections: true
     }
     Google {
-        filter: name(regex: '🇭🇰|HK|hk|香港|港|HongKong') && !name(regex: '排除')
+        filter: !name(regex: '官网|剩余|流量|套餐|免费|订阅|到期时间|直连|Expire Date|Traffic|ExpireDate')
+        policy: score
         final: Final
         interrupt_connections: true
     }
     Github {
-        filter: name(regex: '🇯🇵|JP|jp|日本|日|Japan') && !name(regex: '排除')
+        filter: !name(regex: '官网|剩余|流量|套餐|免费|订阅|到期时间|直连|Expire Date|Traffic|ExpireDate')
+        policy: score
         final: Final
         interrupt_connections: true
     }
     Telegram {
-        filter: name(regex: '🇭🇰|HK|hk|香港|港|HongKong') && !name(regex: '排除')
+        filter: !name(regex: '官网|剩余|流量|套餐|免费|订阅|到期时间|直连|Expire Date|Traffic|ExpireDate')
+        policy: score
         final: Final
         interrupt_connections: true
     }
@@ -113,6 +116,7 @@ routing {
     dip(geoip: private, geoip: cn) && !dport(53, 853) -> direct(must)
     dport(853) -> block
     l4proto(udp) && dport(443) -> block
+    !dport(53, 80, 443) -> direct(must)
     domain(suffix: googleapis.cn, suffix: xn--ngstr-lra8j.com) -> Google
     domain(suffix: withgoogle.com, suffix: notebooklm.google, geosite: category-ai-!cn) -> AI
     domain(geosite: youtube) -> YouTube
