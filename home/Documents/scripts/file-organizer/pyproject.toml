@@ -1,0 +1,19 @@
+[project]
+name = "file-organizer"
+version = "0.1.0"
+description = "Organize downloaded files into format-based folders"
+readme = "README.md"
+authors = [
+    { name = "fairever", email = "git@fairever.aleeas.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "rich>=15.0.0",
+]
+
+[project.scripts]
+file-organizer = "file_organizer.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.12.15,<0.13.0"]
+build-backend = "uv_build"
