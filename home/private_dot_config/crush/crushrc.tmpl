@@ -1,5 +1,3 @@
-provider add ollama --name Ollama --type ollama --base-url "http://192.168.123.117:11434/v1/" --discover-models true
-
 permissions allow view ls grep edit
 
 option request-timeout 0
@@ -7,3 +5,24 @@ option request-timeout 0
 {{ if and (lookPath "tsserver") (lookPath "typescript-language-server") -}}
 lsp add typescript --command "typescript-language-server" --args --stdio
 {{ end -}}
+
+provider add 10router \
+  --name "10Route" \
+  --type openai-compat \
+  --base-url "http://192.168.123.123:20128/v1" \
+  --api-key "{{ includeTemplate "secrets" . | fromToml | dig "AI" "10router" "" }}"
+
+model add 10router/gemini/gemini-3.5-flash-lite \
+  --name "10router gemini 3.5 flash lite" \
+  --context-window 1048576 \
+  --default-max-tokens 65536
+
+model add 10router/qdc/dfmodel \
+  --name "Qoder DeepSeek-V4.1-Flash" \
+  --context-window 1000000 \
+  --default-max-tokens 65536
+
+model add 10router/qdc/qfmodel \
+  --name "Qoder Qwen3.8-Flash" \
+  --context-window 1000000 \
+  --default-max-tokens 65536
