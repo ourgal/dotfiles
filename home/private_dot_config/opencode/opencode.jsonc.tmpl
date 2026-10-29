@@ -17,6 +17,37 @@
           }
         }
       }
+    },
+    "10router": {
+      "name": "10router",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://192.168.123.123:20128/v1",
+        "apiKey": "{{ includeTemplate "secrets" . | fromToml | dig "AI" "10router" "" }}"
+      },
+      "models": {
+        "zcode-free/glm-5.3-flash": {
+          "name": "zcode-free glm-5.3-flash",
+          "limit": {
+            "context": 1000000,
+            "output": 131072
+          }
+        },
+        "qdc/qfmodel": {
+          "name": "Qoder Qwen3.8-Flash",
+          "limit": {
+            "context": 1000000,
+            "output": 65536
+          }
+        },
+        "qdc/dfmodel": {
+          "name": "Qoder DeepSeek-V4.1-Flash",
+          "limit": {
+            "context": 1000000,
+            "output": 65536
+          }
+        }
+      }
     }
   }
 }
