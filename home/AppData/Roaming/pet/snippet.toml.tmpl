@@ -15,3 +15,9 @@ Description = "Forward m6 adb port"
 Output = ""
 Tag = ["termux"]
 command = "adb forward tcp:8022 tcp:8022"
+
+[[Snippets]]
+Description = "Download anime into Seanime (blank title = clipboard)"
+Output = ""
+Tag = ["anime", "seanime"]
+command = 'uv run --project "{{ joinPath .chezmoi.homeDir "Documents" "scripts" "anime-fetch" }}" anime-fetch "<title>"'
