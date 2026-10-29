@@ -17,3 +17,9 @@ packages = ["src/anime_fetch"]
 
 [tool.uv]
 package = true
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

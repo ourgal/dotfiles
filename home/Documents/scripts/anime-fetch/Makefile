@@ -7,6 +7,9 @@
 ARGS          ?=
 .DEFAULT_GOAL := run
 
-.PHONY: run
+.PHONY: run test
 run:
 	uv run anime-fetch $(ARGS)
+
+test:
+	uv run pytest
