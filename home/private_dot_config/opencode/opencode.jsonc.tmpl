@@ -1,0 +1,22 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "qiniu": {
+      "name": "qiniu",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.qnaigc.com/v1",
+        "apiKey": "{{ includeTemplate "secrets" . | fromToml | dig "AI" "qiniu" "" }}"
+      },
+      "models": {
+        "conatus-free": {
+          "name": "Conatus Free",
+          "limit": {
+            "context": 1000000,
+            "output": 128000
+          }
+        }
+      }
+    }
+  }
+}
