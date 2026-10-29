@@ -8,6 +8,10 @@ Standard workflow (matches the user's rules):
      Judas-style batch, then DKB/EMBER/ASW-style x265 groups, then AV1;
   5. if any episode has no acceptable release, download nothing;
   6. otherwise add the torrents and put the title on the AniList Planning list.
+
+With no title argument the query is read from the system clipboard. The match
+and the selected releases are printed first; nothing is downloaded or added to
+AniList until the user confirms.
 """
 
 from __future__ import annotations
@@ -15,7 +19,10 @@ from __future__ import annotations
 import argparse
 import os
 import re
+import shutil
+import subprocess
 import sys
+import urllib.parse
 from pathlib import Path
 from typing import Any
 
@@ -69,6 +76,78 @@ def titles_of(media: dict[str, Any]) -> list[str]:
 
 def normalize(text: str) -> str:
     return " ".join(re.findall(r"[a-z0-9]+", text.lower()))
+
+
+# ---------------------------------------------------------------------- clipboard
+_URL = re.compile(r"https?://[^\s<>\"']+")
+
+
+def clipboard_text() -> str | None:
+    """Read the system clipboard with the first available native utility."""
+    if sys.platform == "win32":
+        commands = [["powershell", "-NoProfile", "-Command",
+                     "[Console]::OutputEncoding=[Text.Encoding]::UTF8; Get-Clipboard -Raw"]]
+    elif sys.platform == "darwin":
+        commands = [["pbpaste"]]
+    else:
+        commands = [["termux-clipboard-get"]] if os.environ.get("TERMUX_VERSION") else []
+        commands += [
+            ["wl-paste", "--no-newline"],
+            ["xclip", "-selection", "clipboard", "-o"],
+            ["xsel", "--clipboard", "--output"],
+        ]
+    for command in commands:
+        if shutil.which(command[0]) is None:
+            continue
+        try:
+            result = subprocess.run(command, capture_output=True, timeout=10)
+        except (OSError, subprocess.SubprocessError):
+            continue
+        text = result.stdout.decode("utf-8", "replace").strip()
+        if result.returncode == 0 and text:
+            return text
+    return None
+
+
+def query_from_text(text: str) -> str:
+    """Turn clipboard contents into a query: the first text line, or a URL slug."""
+    first = next((line.strip() for line in text.splitlines() if line.strip()), "")
+    match = _URL.search(first)
+    if match is None:
+        return first
+    before = first[: match.start()].strip(" \t-|·:")
+    if re.search(r"[A-Za-z0-9]", before):
+        return before
+    path = urllib.parse.urlparse(match.group(0)).path
+    segments = [urllib.parse.unquote(seg) for seg in path.split("/") if seg]
+    # AniList/MAL URLs look like /anime/<id>/<slug>; a bare trailing ID is not
+    # searchable, so refuse it instead of searching for "anime".
+    if not segments or segments[-1].isdigit():
+        return ""
+    return re.sub(r"[-_]+", " ", segments[-1]).strip()
+
+
+def confirm(question: str) -> bool:
+    if not sys.stdin.isatty():
+        print("Confirm  : no interactive terminal; re-run with --yes to skip the prompt",
+              file=sys.stderr)
+        return False
+    try:
+        answer = input(f"{question} [y/N] ")
+    except (EOFError, KeyboardInterrupt):
+        print()
+        return False
+    return answer.strip().lower() in {"y", "yes"}
+
+
+def describe_media(media: dict[str, Any]) -> str:
+    bits = [f"id {media['id']}", str(media.get("format") or "?")]
+    if media.get("seasonYear"):
+        bits.append(str(media["seasonYear"]))
+    if media.get("meanScore"):
+        bits.append(f"score {media['meanScore']}")
+    bits += [g for g in (media.get("genres") or []) if isinstance(g, str)][:3]
+    return ", ".join(bits)
 
 
 # ---------------------------------------------------------------------- title pick
@@ -237,13 +316,16 @@ def build_parser() -> argparse.ArgumentParser:
         prog="anime-fetch",
         description="Download a HEVC/AV1 anime release into the Seanime library.",
     )
-    parser.add_argument("query", nargs="+", help="anime title (romaji, English or native)")
+    parser.add_argument("query", nargs="*",
+                        help="anime title (romaji, English or native); omit to read the clipboard")
     parser.add_argument("--provider", action="append", metavar="NAME",
                         help=f"torrent provider (repeatable or comma separated); default {DEFAULT_PROVIDER}")
     parser.add_argument("--lib", default=DEFAULT_LIB, help=f"library root (default {DEFAULT_LIB})")
     parser.add_argument("--base", default=DEFAULT_BASE, help=f"Seanime base URL (default {DEFAULT_BASE})")
     parser.add_argument("--pick", type=int, metavar="N", help="pick the Nth AniList search result")
     parser.add_argument("--dry-run", action="store_true", help="search and select, but do not download")
+    parser.add_argument("-y", "--yes", action="store_true",
+                        help="download without asking for confirmation")
     parser.add_argument("--ignore-library", action="store_true",
                         help="select releases even when the title is already in the library")
     parser.add_argument("--no-planning", action="store_true", help="do not touch the AniList Planning list")
@@ -256,6 +338,18 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     query = " ".join(args.query).strip()
+    if not query:
+        text = clipboard_text()
+        if text is None:
+            print("error: no title given and the system clipboard is empty", file=sys.stderr)
+            return EXIT_ERROR
+        query = query_from_text(text)
+        if not query:
+            snippet = " ".join(text.split())[:100]
+            print(f"error: cannot derive a title from the clipboard ({snippet!r}); "
+                  "pass the title as an argument", file=sys.stderr)
+            return EXIT_ERROR
+        print(f"Clipboard: {query}")
 
     providers: list[str] = []
     for raw in args.provider or [DEFAULT_PROVIDER]:
@@ -275,7 +369,7 @@ def main(argv: list[str] | None = None) -> int:
 
     romaji = (media.get("title") or {}).get("romaji") or (media.get("title") or {}).get("english") or query
     total = media.get("episodes")
-    print(f"AniList  : {romaji} (id {media['id']}, {media.get('format')}, {total or '?'} episodes)")
+    print(f"AniList  : {romaji} ({describe_media(media)}, {total or '?'} episodes)")
     if not isinstance(total, int) or total <= 0:
         print("error: episode count is unknown, cannot verify coverage", file=sys.stderr)
         return EXIT_ERROR
@@ -354,6 +448,14 @@ def main(argv: list[str] | None = None) -> int:
     if args.dry_run:
         print("Dry run  : no torrent added, AniList untouched")
         return EXIT_OK
+
+    status = ((entry or {}).get("listData") or {}).get("status")
+    actions = [f"download {len(plan.torrents)} torrent(s)"]
+    if not args.no_planning and not status:
+        actions.append("add to AniList Planning")
+    if not args.yes and not confirm(f"Confirm  : {' and '.join(actions)}?"):
+        print("Cancelled: nothing downloaded, AniList untouched")
+        return EXIT_SKIP
 
     episodes = sorted(set(plan.episodes))
     try:
