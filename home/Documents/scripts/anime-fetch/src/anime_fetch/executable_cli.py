@@ -1,0 +1,376 @@
+"""anime-fetch: check the Seanime library, then download a HEVC/AV1 release.
+
+Standard workflow (matches the user's rules):
+  1. resolve the title on AniList through Seanime;
+  2. if the library already has files, stop;
+  3. search torrents (batch first, then per episode);
+  4. accept only HEVC/x265 or AV1 1080p releases, preferring a complete
+     Judas-style batch, then DKB/EMBER/ASW-style x265 groups, then AV1;
+  5. if any episode has no acceptable release, download nothing;
+  6. otherwise add the torrents and put the title on the AniList Planning list.
+"""
+
+from __future__ import annotations
+
+import argparse
+import os
+import re
+import sys
+from pathlib import Path
+from typing import Any
+
+from . import pick
+from .net import HttpError
+from .seanime import DEFAULT_BASE, DEFAULT_PROVIDER, Seanime, SeanimeError
+
+DEFAULT_LIB = "C:/Users/User/Videos/Seanime"
+
+EXIT_OK = 0
+EXIT_ERROR = 1
+EXIT_AMBIGUOUS = 2
+EXIT_SKIP = 3
+
+
+# --------------------------------------------------------------------------- utils
+def human_size(num: int) -> str:
+    value = float(num)
+    for unit in ("B", "KiB", "MiB", "GiB", "TiB"):
+        if value < 1024 or unit == "TiB":
+            return f"{value:.2f} {unit}" if unit != "B" else f"{int(value)} B"
+        value /= 1024
+    return f"{num} B"
+
+
+def safe_folder(name: str) -> str:
+    # "Mushoku Tensei III: Isekai Ittara Honki Dasu" -> "Mushoku Tensei III"
+    # (a one-word prefix such as "Re:Zero" keeps its colon part).
+    prefix, sep, _rest = name.partition(":")
+    if sep and len(prefix.split()) >= 2:
+        name = prefix
+    cleaned = re.sub(r'[<>:"/\\|?*\x00-\x1f]', "", name).strip(" .")
+    return cleaned or "Untitled"
+
+
+def count_videos(folder: Path) -> int:
+    if not folder.is_dir():
+        return 0
+    total = 0
+    for root, _dirs, files in os.walk(folder):
+        total += sum(1 for f in files if Path(f).suffix.lower() in pick.VIDEO_EXTS)
+    return total
+
+
+def titles_of(media: dict[str, Any]) -> list[str]:
+    title = media.get("title") or {}
+    ordered = [title.get("romaji"), title.get("english"), title.get("native")]
+    ordered += list(media.get("synonyms") or [])
+    return [t for t in ordered if isinstance(t, str) and t.strip()]
+
+
+def normalize(text: str) -> str:
+    return " ".join(re.findall(r"[a-z0-9]+", text.lower()))
+
+
+# ---------------------------------------------------------------------- title pick
+def resolve_media(client: Seanime, query: str, pick_index: int | None) -> dict[str, Any]:
+    results = client.search_anime(query, per_page=10)
+    results = [m for m in results if (m.get("format") or "") != "MUSIC" and not m.get("isAdult")]
+    if not results:
+        raise SeanimeError(f"AniList has no result for {query!r}")
+
+    if pick_index is not None:
+        if not 1 <= pick_index <= len(results):
+            raise SeanimeError(f"--pick must be between 1 and {len(results)}")
+        return results[pick_index - 1]
+
+    wanted = normalize(query)
+    scored: list[tuple[int, float, dict[str, Any]]] = []
+    for media in results:
+        best = 0
+        qwords = wanted.split()
+        for title in titles_of(media):
+            candidate = normalize(title)
+            if not candidate:
+                continue
+            cwords = candidate.split()
+            if candidate == wanted:
+                best = max(best, 100)
+            elif cwords[: len(qwords)] == qwords or qwords[: len(cwords)] == cwords:
+                # word-boundary prefix only: "yani" must not match "YaniSuu"
+                ratio = min(len(cwords), len(qwords)) / max(len(cwords), len(qwords))
+                best = max(best, 80 + int(10 * ratio))
+            else:
+                # Loose word overlap is only trusted for longer queries;
+                # a one-word query would match unrelated titles ("yani").
+                if len(qwords) >= 3:
+                    overlap = len(set(qwords) & set(cwords)) / len(qwords)
+                    if overlap >= 0.6:
+                        best = max(best, int(60 * overlap))
+        scored.append((best, float(media.get("meanScore") or 0), media))
+
+    scored.sort(key=lambda item: (item[0], item[1]), reverse=True)
+    top_score, _, top = scored[0]
+    if top_score < 60:
+        listing = "\n".join(
+            f"  {i + 1}. {m['title'].get('romaji')} (id {m['id']}, {m.get('format')}, {m.get('episodes') or '?'} eps)"
+            for i, (_s, _ms, m) in enumerate(scored)
+        )
+        raise Ambiguous(f"no confident match for {query!r}; use --pick N:\n{listing}")
+    if len(scored) > 1 and scored[1][0] == top_score:
+        listing = "\n".join(
+            f"  {i + 1}. {m['title'].get('romaji')} (id {m['id']}, {m.get('format')}, {m.get('episodes') or '?'} eps)"
+            for i, (_s, _ms, m) in enumerate(scored)
+        )
+        raise Ambiguous(f"several equally good matches for {query!r}; use --pick N:\n{listing}")
+    return top
+
+
+class Ambiguous(RuntimeError):
+    pass
+
+
+# ------------------------------------------------------------------- torrent find
+def gather(
+    clients: list[Seanime],
+    media: dict[str, Any],
+    queries: list[str],
+    *,
+    batch: bool | None,
+    episode: int | None,
+    titles: list[str],
+    hint: int | None,
+    found: dict[str, dict[str, Any]],
+) -> None:
+    for client in clients:
+        for query in queries:
+            for torrent in client.search_torrents(media, query, batch=batch, episode=episode):
+                name = torrent.get("name") or ""
+                if not pick.acceptable_release(name):
+                    continue
+                if not pick.mentions_title(name, titles):
+                    continue
+                if not pick.matches_season(name, hint):
+                    continue
+                key = (torrent.get("infoHash") or name).lower()
+                found.setdefault(key, torrent)
+
+
+def build_candidates(
+    client: Seanime,
+    torrents: list[dict[str, Any]],
+    total: int,
+    *,
+    max_probes: int,
+    verbose: bool,
+) -> list[pick.Candidate]:
+    """Attach episode coverage to every torrent (probing batches via get-files)."""
+    singles: list[pick.Candidate] = []
+    batches: list[pick.Candidate] = []
+    for torrent in torrents:
+        name = torrent.get("name") or ""
+        codec = pick.codec_of(name) or ""
+        if pick.is_batch(torrent):
+            batches.append(pick.Candidate(torrent=torrent, codec=codec))
+        else:
+            number = pick.episode_of(name) or (1 if total == 1 else None)
+            if number is None or not 1 <= number <= total:
+                continue
+            singles.append(pick.Candidate(torrent=torrent, episodes={number}, codec=codec))
+
+    batches.sort(key=lambda c: c.sort_key())
+    probed = 0
+    for cand in batches:
+        if probed >= max_probes:
+            break
+        probed += 1
+        try:
+            files = client.torrent_files(cand.torrent)
+        except SeanimeError as exc:
+            if verbose:
+                print(f"  ! could not inspect {cand.torrent.get('name')}: {exc}", file=sys.stderr)
+            continue
+        cand.files = len(files)
+        cand.episodes = pick.coverage_from_files(files, total)
+        if verbose:
+            print(f"  · {cand.group}: {sorted(cand.episodes)} from {cand.files} files")
+    return [c for c in batches if c.episodes] + singles
+
+
+# ------------------------------------------------------------------------ reporting
+def print_plan(plan: pick.Plan, total: int, destination: Path) -> None:
+    episodes = plan.episodes
+    print(f"Selected : {plan.strategy} ({len(plan.torrents)} torrent(s), {len(episodes)}/{total} episodes)")
+    for cand in plan.torrents:
+        print(f"  [{cand.group}] {cand.torrent.get('name')}")
+        print(
+            f"      {human_size(cand.size)}, {cand.seeders} seeds, "
+            f"episodes {sorted(cand.episodes) if len(cand.episodes) <= 12 else f'{min(cand.episodes)}-{max(cand.episodes)}'}"
+        )
+    print(f"Destination: {destination}")
+    print(f"Total size : {human_size(plan.size)}")
+
+
+def ensure_planning(
+    client: Seanime,
+    media: dict[str, Any],
+    entry: dict[str, Any] | None,
+    *,
+    dry_run: bool,
+) -> None:
+    status = ((entry or {}).get("listData") or {}).get("status")
+    if status == "PLANNING":
+        print("AniList  : already on Planning")
+        return
+    if status:
+        print(f"AniList  : left as {status} (not downgraded to Planning)")
+        return
+    if dry_run:
+        print("AniList  : would be added to Planning (dry run)")
+        return
+    client.set_planning(media["id"])
+    print("AniList  : added to Planning")
+
+
+# ----------------------------------------------------------------------------- main
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog="anime-fetch",
+        description="Download a HEVC/AV1 anime release into the Seanime library.",
+    )
+    parser.add_argument("query", nargs="+", help="anime title (romaji, English or native)")
+    parser.add_argument("--provider", action="append", metavar="NAME",
+                        help=f"torrent provider (repeatable or comma separated); default {DEFAULT_PROVIDER}")
+    parser.add_argument("--lib", default=DEFAULT_LIB, help=f"library root (default {DEFAULT_LIB})")
+    parser.add_argument("--base", default=DEFAULT_BASE, help=f"Seanime base URL (default {DEFAULT_BASE})")
+    parser.add_argument("--pick", type=int, metavar="N", help="pick the Nth AniList search result")
+    parser.add_argument("--dry-run", action="store_true", help="search and select, but do not download")
+    parser.add_argument("--ignore-library", action="store_true",
+                        help="select releases even when the title is already in the library")
+    parser.add_argument("--no-planning", action="store_true", help="do not touch the AniList Planning list")
+    parser.add_argument("--max-batch-probes", type=int, default=20,
+                        help="how many batch torrents to inspect for episode coverage (default 20)")
+    parser.add_argument("-v", "--verbose", action="store_true")
+    return parser
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
+    query = " ".join(args.query).strip()
+
+    providers: list[str] = []
+    for raw in args.provider or [DEFAULT_PROVIDER]:
+        providers += [p.strip() for p in raw.split(",") if p.strip()]
+    providers = list(dict.fromkeys(providers))
+    clients = [Seanime(args.base, provider) for provider in providers]
+    client = clients[0]
+
+    try:
+        media = resolve_media(client, query, args.pick)
+    except Ambiguous as exc:
+        print(exc, file=sys.stderr)
+        return EXIT_AMBIGUOUS
+    except (SeanimeError, HttpError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return EXIT_ERROR
+
+    romaji = (media.get("title") or {}).get("romaji") or (media.get("title") or {}).get("english") or query
+    total = media.get("episodes")
+    print(f"AniList  : {romaji} (id {media['id']}, {media.get('format')}, {total or '?'} episodes)")
+    if not isinstance(total, int) or total <= 0:
+        print("error: episode count is unknown, cannot verify coverage", file=sys.stderr)
+        return EXIT_ERROR
+
+    destination = Path(args.lib) / safe_folder(romaji)
+
+    collection: dict[str, Any] = {}
+    entry: dict[str, Any] | None = None
+    try:
+        collection = client.collection()
+        entry = Seanime.find_entry(collection, media["id"])
+    except (SeanimeError, HttpError) as exc:
+        if args.verbose:
+            print(f"warning: could not read the library collection: {exc}", file=sys.stderr)
+
+    main_files = int(((entry or {}).get("libraryData") or {}).get("mainFileCount") or 0)
+    on_disk = count_videos(destination)
+    if not args.ignore_library and (main_files > 0 or on_disk > 0):
+        where = destination if on_disk else "library entry"
+        print(f"Library  : already downloaded ({max(main_files, on_disk)} video files, {where})")
+        print("Nothing to do.")
+        if not args.no_planning:
+            ensure_planning(client, media, entry, dry_run=args.dry_run)
+        return EXIT_OK
+
+    titles = titles_of(media)[:3] or [query]
+    hint = pick.season_hint(titles[0]) if titles else None
+    quoted = [t for t in (titles + [query]) if t and len(t) > 2]
+    queries = list(dict.fromkeys(quoted))[:4]
+
+    found: dict[str, dict[str, Any]] = {}
+    try:
+        gather(clients, media, queries, batch=True, episode=None,
+               titles=titles, hint=hint, found=found)
+        if len(found) <= 1 or total == 1:
+            gather(clients, media, queries, batch=None, episode=1,
+                   titles=titles, hint=hint, found=found)
+    except (SeanimeError, HttpError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return EXIT_ERROR
+
+    print(f"Search   : {len(found)} candidate release(s) with HEVC/AV1")
+    candidates = build_candidates(client, list(found.values()), total,
+                                  max_probes=args.max_batch_probes, verbose=args.verbose)
+
+    plan = pick.choose(candidates, total)
+    if plan is None and total > 1:
+        # Batch search was incomplete: look for one release per episode.
+        missing = pick.missing_episodes(candidates, total)
+        if missing:
+            print(f"Search   : per-episode fallback for {len(missing)} episode(s)")
+        extra: dict[str, dict[str, Any]] = {}
+        try:
+            for episode in missing:
+                gather(clients, media, queries[:2], batch=False, episode=episode,
+                       titles=titles, hint=hint, found=extra)
+        except (SeanimeError, HttpError) as exc:
+            print(f"error: {exc}", file=sys.stderr)
+            return EXIT_ERROR
+        new_items = [t for k, t in extra.items() if k not in found]
+        if new_items:
+            candidates += build_candidates(client, new_items, total,
+                                           max_probes=args.max_batch_probes, verbose=args.verbose)
+        plan = pick.choose(candidates, total)
+
+    if plan is None:
+        missing = pick.missing_episodes(candidates, total)
+        if missing:
+            print(f"Skip     : no HEVC/AV1 release covers episode(s) {missing}; nothing downloaded")
+        else:
+            print("Skip     : no HEVC/AV1 release found; nothing downloaded")
+        return EXIT_SKIP
+
+    print_plan(plan, total, destination)
+
+    if args.dry_run:
+        print("Dry run  : no torrent added, AniList untouched")
+        return EXIT_OK
+
+    episodes = sorted(set(plan.episodes))
+    try:
+        client.download([c.torrent for c in plan.torrents], str(destination), media, episodes)
+    except (SeanimeError, HttpError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return EXIT_ERROR
+    print(f"Download : queued {len(plan.torrents)} torrent(s) to {destination}")
+
+    if not args.no_planning:
+        try:
+            ensure_planning(client, media, entry, dry_run=False)
+        except (SeanimeError, HttpError) as exc:
+            print(f"warning: download queued but AniList update failed: {exc}", file=sys.stderr)
+            return EXIT_ERROR
+    return EXIT_OK
+
+
+if __name__ == "__main__":  # pragma: no cover
+    raise SystemExit(main())
