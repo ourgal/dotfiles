@@ -14,37 +14,5 @@ providers:
     baseUrl: "http://192.168.123.123:20128/v1"
     api: "openai-completions"
     apiKey: "{{ includeTemplate "secrets" . | fromToml | dig "AI" "10router" "" }}"
-
-    models:
-      - id: zcode-free/glm-5.3-flash
-        name: "glm 5.3 flash"
-        contextWindow: 1000000
-        maxTokens: 131072
-      - id: zcode-free/glm-5.3
-        name: "glm 5.3"
-        contextWindow: 1000000
-        maxTokens: 131072
-      - id: qdc/qfmodel
-        name: "Qoder Qwen3.8-Flash"
-        contextWindow: 1000000
-        maxTokens: 65536
-      - id: qdc/dfmodel
-        name: "Qoder DeepSeek-V4.1-Flash"
-        contextWindow: 1000000
-        maxTokens: 65536
-      - id: gemini/gemini-3.5-flash-lite
-        name: "gemini 3.5 flash lite"
-        contextWindow: 1048576
-        maxTokens: 65536
-      - id: gemini/gemini-3.6-flash
-        name: "gemini 3.6 flash"
-        contextWindow: 1048576
-        maxTokens: 65536
-      - id: gemini/gemini-3.1-flash-lite
-        name: "gemini 3.1 flash lite"
-        contextWindow: 1048576
-        maxTokens: 65536
-      - id: ollama/beam
-        name: "Beam"
-        contextWindow: 1000000
-        maxTokens: 65536
+    discovery:
+       type: openai-models-list

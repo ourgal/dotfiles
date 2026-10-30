@@ -1,5 +1,8 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "plugin": [
+    "opencode-models-discovery@2.1.0"
+  ],
   "provider": {
     "qiniu": {
       "name": "qiniu",
@@ -23,57 +26,9 @@
       "npm": "@ai-sdk/openai-compatible",
       "options": {
         "baseURL": "http://192.168.123.123:20128/v1",
-        "apiKey": "{{ includeTemplate "secrets" . | fromToml | dig "AI" "10router" "" }}"
-      },
-      "models": {
-        "zcode-free/glm-5.3-flash": {
-          "name": "zcode-free glm-5.3-flash",
-          "limit": {
-            "context": 1000000,
-            "output": 131072
-          }
-        },
-        "qdc/qfmodel": {
-          "name": "Qoder Qwen3.8-Flash",
-          "limit": {
-            "context": 1000000,
-            "output": 65536
-          }
-        },
-        "qdc/dfmodel": {
-          "name": "Qoder DeepSeek-V4.1-Flash",
-          "limit": {
-            "context": 1000000,
-            "output": 65536
-          }
-        },
-        "gemini/gemini-3.5-flash-lite": {
-          "name": "gemini-3.5-flash-lite",
-          "limit": {
-            "context": 1048576,
-            "output": 65536
-          }
-        },
-        "gemini/gemini-3.6-flash": {
-          "name": "gemini-3.6-flash",
-          "limit": {
-            "context": 1048576,
-            "output": 65536
-          }
-        },
-        "gemini/gemini-3.1-flash-lite": {
-          "name": "gemini-3.1-flash-lite",
-          "limit": {
-            "context": 1048576,
-            "output": 65536
-          }
-        },
-        "ollama/beam": {
-          "name": "Beam",
-          "limit": {
-            "context": 1000000,
-            "output": 65536
-          }
+        "apiKey": "{{ includeTemplate "secrets" . | fromToml | dig "AI" "10router" "" }}",
+        "modelsDiscovery": {
+          "enabled": true
         }
       }
     }

@@ -18,47 +18,8 @@ model add qiniu/qiniu/conatus-free \
   --default-max-tokens 128000
 
 provider add 10router \
-  --name "10Route" \
+  --name "10Router" \
   --type openai-compat \
   --base-url "http://192.168.123.123:20128/v1" \
   --api-key "{{ includeTemplate "secrets" . | fromToml | dig "AI" "10router" "" }}"
 
-model add 10router/gemini/gemini-3.5-flash-lite \
-  --name "10router gemini 3.5 flash lite" \
-  --context-window 1048576 \
-  --default-max-tokens 65536
-
-model add 10router/gemini/gemini-3.6-flash \
-  --name "10router gemini 3.6 flash" \
-  --context-window 1048576 \
-  --default-max-tokens 65536
-
-model add 10router/gemini/gemini-3.1-flash-lite \
-  --name "10router gemini 3.1 flash lite" \
-  --context-window 1048576 \
-  --default-max-tokens 65536
-
-model add 10router/qdc/dfmodel \
-  --name "Qoder DeepSeek-V4.1-Flash" \
-  --context-window 1000000 \
-  --default-max-tokens 65536
-
-model add 10router/qdc/qfmodel \
-  --name "Qoder Qwen3.8-Flash" \
-  --context-window 1000000 \
-  --default-max-tokens 65536
-
-model add 10router/zcode-free/glm-5.3-flash \
-  --name "zcode-free glm-5.3-flash" \
-  --context-window 1000000 \
-  --default-max-tokens 131072
-
-model add 10router/zcode-free/glm-5.3 \
-  --name "zcode-free glm-5.3" \
-  --context-window 1000000 \
-  --default-max-tokens 131072
-
-model add 10router/ollama/beam \
-  --name "Beam" \
-  --context-window 1000000 \
-  --default-max-tokens 65536
