@@ -12,6 +12,9 @@ URL ?=
 URL_ARG = $(if $(strip $(URL)),"$(URL)")
 .DEFAULT_GOAL := run
 
-.PHONY: run
+.PHONY: run test
 run:
 	@$(PYTHON) youtube_rss.py $(URL_ARG)
+
+test:
+	@$(PYTHON) -m unittest discover -s .
