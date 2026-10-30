@@ -6,6 +6,17 @@ option request-timeout 0
 lsp add typescript --command "typescript-language-server" --args --stdio
 {{ end -}}
 
+provider add qiniu \
+  --name "Qiniu" \
+  --type openai-compat \
+  --base-url "https://api.qnaigc.com/v1" \
+  --api-key "{{ includeTemplate "secrets" . | fromToml | dig "AI" "qiniu" "" }}"
+
+model add qiniu/qiniu/conatus-free \
+  --name "Conatus free" \
+  --context-window 1000000 \
+  --default-max-tokens 128000
+
 provider add 10router \
   --name "10Route" \
   --type openai-compat \

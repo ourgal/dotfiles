@@ -9,7 +9,7 @@
         "apiKey": "{{ includeTemplate "secrets" . | fromToml | dig "AI" "qiniu" "" }}"
       },
       "models": {
-        "conatus-free": {
+        "qiniu/conatus-free": {
           "name": "Conatus Free",
           "limit": {
             "context": 1000000,
