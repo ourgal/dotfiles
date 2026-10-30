@@ -57,6 +57,10 @@ Host t430
   Port 22
   User zxc
   HostName {{ if eq .chezmoi.hostname "t430" }}localhost{{ else }}192.168.0.106{{ end }}
+Host uos
+  Port 22
+  User user
+  HostName {{ if eq .chezmoi.hostname "uos" }}localhost{{ else }}192.168.0.106{{ end }}
 
 {{ if ne .chezmoi.hostname "localhost" -}}
 Host gogs-m6
