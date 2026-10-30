@@ -17,6 +17,11 @@ model add qiniu/qiniu/conatus-free \
   --context-window 1000000 \
   --default-max-tokens 128000
 
+model add qiniu/nvidia/nemotron-3-ultra-550b-a55b0-free \
+  --name "Nemotron 3 Ultra 550b a55b Free" \
+  --context-window 1000000 \
+  --default-max-tokens 128000
+
 provider add 10router \
   --name "10Router" \
   --type openai-compat \
