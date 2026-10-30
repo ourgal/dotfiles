@@ -977,4 +977,13 @@ AppData/Local/nvim/lua/plugins/*
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ omp
+{{ if lookPath "omp" -}}
+!.omp/
+.omp/*
+!.omp/agent/
+.omp/agent/*
+!.omp/agent/models.yml
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
