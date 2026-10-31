@@ -1012,4 +1012,19 @@ AppData/Roaming/maki/*
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ tmux
+{{ if lookPath "tmux" -}}
+!.tmux.conf
+!.config/tmux/
+!.config/tmux/**
+!.config/sesh/
+!.config/sesh/**
+!.config/tms/
+!.config/tms/**
+!.gitmux.conf
+!.local/bin/tmux-sesh
+!.local/bin/moxide-session.sh
+!.local/bin/termsand-sand.sh
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:

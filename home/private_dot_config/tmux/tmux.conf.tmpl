@@ -1,0 +1,212 @@
+# ~/.config/tmux/tmux.conf
+#
+# Converted from the NixOS modules in ~/Documents/my_repos/snowfall:
+#   modules/home/cli/multiplexer/tmux/{base,autostart,plugins,themes,resurrect,moxide}
+# Plugin management is TPM (https://github.com/tmux-plugins/tpm).
+#   install plugins : prefix + I
+#   reload config   : prefix + Space then c r   (which-key menu)
+#                     or `tmux source-file ~/.config/tmux/tmux.conf`
+
+# ============================================================================
+# CORE
+# ============================================================================
+set -g default-terminal "tmux-256color"
+set -ag terminal-overrides ",xterm-256color:RGB"
+{{ if lookPath "fish" -}}
+set -g default-shell "{{ lookPath "fish" }}"
+{{ end -}}
+set -g history-limit 20000
+
+set -g buffer-limit 20
+set -sg escape-time 0
+set -g display-time 1500
+set -g remain-on-exit off
+set -g repeat-time 300
+set -g focus-events on
+setw -g aggressive-resize on
+setw -g allow-rename off
+setw -g automatic-rename on
+set -g automatic-rename-format "#{?#{||:#{==:#{pane_current_command},zsh},#{==:#{pane_current_command},fish}},#{b:pane_current_path},#{pane_current_command}}"
+
+set -gq allow-passthrough on
+set -ga update-environment TERM
+set -ga update-environment TERM_PROGRAM
+
+# parent terminal title reflects the current window
+set -g set-titles on
+set -g set-titles-string "#I:#W"
+
+# humans count from 1
+set -g base-index 1
+setw -g pane-base-index 1
+set -g clock-mode-style 24
+
+set -g mouse on
+set -g detach-on-destroy off
+set -g @copy_use_osc52_fallback on
+setw -g mode-keys vi
+
+# ============================================================================
+# PLUGINS (TPM)
+# ============================================================================
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+
+# session/pane management
+set -g @plugin 'ourgal/tmux-continuum'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'joshmedeski/sesh'
+set -g @plugin 'omerxx/tmux-sessionx'
+set -g @plugin 'rickstaa/tmux-session-wizard'
+set -g @plugin 'T1erno/tmux-auto-renumber-session'
+set -g @plugin 'jaclu/tmux-mouse-swipe'
+set -g @plugin 'jaclu/tmux-power-zoom'
+
+# copy/paste and text objects
+set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'tmux-plugins/tmux-copycat'
+set -g @plugin 'fcsonline/tmux-thumbs'
+set -g @plugin 'laktak/extrakto'
+set -g @plugin 'rolv-apneseth/tmux-fuzzback'
+set -g @plugin 'jkhas8/tmux-paste-image'
+
+# navigation and search
+set -g @plugin 'schasse/tmux-jump'
+set -g @plugin 'sainnhe/tmux-fzf'
+set -g @plugin 'wfxr/tmux-fzf-url'
+set -g @plugin 'tmux-plugins/tmux-fpp'
+set -g @plugin 'tmux-plugins/tmux-open'
+
+# misc
+set -g @plugin 'laktak/tome'
+set -g @plugin 'ourgal/tmux-tea'
+set -g @plugin 'ourgal/tmux-ssh-split'
+set -g @plugin 'kristopolous/tmux-gentrify'
+set -g @plugin 'alexwforsythe/tmux-which-key'
+
+# status bar theme
+set -g @plugin 'fabioluciano/tmux-powerkit'
+
+# --- resurrect / continuum -------------------------------------------------
+set -g @resurrect-capture-pane-contents 'on'
+set -g @resurrect-processes 'lazygit newsboat clifm "devbox shell" "hx *" ncmpcpp "~nnn-wrapped->nnn" lf rmpc "~ranger->ranger-cd" "yazi->yy"'
+set -g @continuum-restore 'on'
+set -g @continuum-boot 'on'
+set -g @continuum-save-interval '10'
+
+# --- yank ------------------------------------------------------------------
+set -g @yank_action 'copy-pipe'
+
+# --- extrakto --------------------------------------------------------------
+set -g @extrakto_key 'i'
+
+# --- thumbs ----------------------------------------------------------------
+set -g @thumbs-key '.'
+set -g @thumbs-osc52 1
+set -g @thumbs-command 'tmux set-buffer -- {} && echo -n {} | xsel -ib && tmux display-message "Copied {}"'
+
+# --- session pickers -------------------------------------------------------
+set -g @session-wizard 'k'
+set -g @sessionx-bind 'o'
+
+# --- tea / tome / paste-image ---------------------------------------------
+set -g @tea-bind 'T'
+set -g @tome_key 'a'
+set -g @tome_scratch_key 'A'
+set -g @tome_playbook '.playbook.fish'
+set -g @paste-image-key 'P'
+
+# --- ssh-split -------------------------------------------------------------
+set -g @ssh-split-keep-cwd 'true'
+set -g @ssh-split-keep-remote-cwd 'true'
+set -g @ssh-split-fail 'false'
+set -g @ssh-split-no-env 'false'
+set -g @ssh-split-no-shell 'false'
+set -g @ssh-split-strip-cmd 'true'
+set -g @ssh-split-verbose 'true'
+set -g @ssh-split-debug 'false'
+set -g @ssh-split-h-key 'v'
+set -g @ssh-split-v-key 's'
+set -g @ssh-split-w-key 'c'
+
+# --- which-key -------------------------------------------------------------
+# menu lives in ~/.config/tmux/plugins/tmux-which-key/config.yaml
+set -g @tmux-which-key-xdg-enable 1
+
+# --- powerkit theme --------------------------------------------------------
+set -g @powerkit_theme 'tokyo-night'
+set -g @powerkit_theme_variant 'night'
+set -g @powerkit_plugins 'git,battery,loadavg,datetime'
+set -g @powerkit_plugin_cache_clear_key ''
+set -g @powerkit_plugin_kubernetes_context_selector_key ''
+set -g @powerkit_plugin_kubernetes_namespace_selector_key ''
+set -g @powerkit_plugin_microphone_mute_key ''
+set -g @powerkit_helper_key ''
+set -g status-position top
+
+# ============================================================================
+# KEY BINDINGS
+# ============================================================================
+# ssh-split owns c/v/s on this setup, so the stock new-window/split bindings
+# for those keys are left untouched.
+
+# new session, paste, rename
+bind n new-session
+bind p paste-buffer
+bind r command-prompt -I "#{window_name}" "rename-window '%%'"
+bind R command-prompt -I "#{session_name}" "rename-session '%%'"
+
+bind w choose-session
+bind = command-prompt -I "#{move-window}" "move-window '%%'"
+
+# reorder windows
+bind-key -r "<" swap-window -d -t -1
+bind-key -r ">" swap-window -d -t +1
+
+# full-size splits
+bind-key "V" split-window -fh -c "#{pane_current_path}"
+bind-key "S" split-window -fv -c "#{pane_current_path}"
+
+# kill
+bind x kill-window
+bind C-x confirm-before -p "kill other windows? (y/n)" "kill-window -a"
+bind X confirm-before -p "kill-session #S? (y/n)" kill-session
+
+# detach
+bind d detach
+bind D if -F '#{session_many_attached}' \
+    'confirm-before -p "Detach other clients? (y/n)" "detach -a"' \
+    'display "Session has only 1 client attached"'
+
+# zellij-like navigation
+bind -n M-j if -F "#{pane_at_bottom}" "switch-client -n" "select-pane -D"
+bind -n M-k if -F "#{pane_at_top}" "switch-client -p" "select-pane -U"
+bind -n M-l if -F "#{pane_at_right}" "next-window" "select-pane -R"
+bind -n M-h if -F "#{pane_at_left}" "previous-window" "select-pane -L"
+
+# copy mode
+bind b copy-mode
+
+# ============================================================================
+# EXTRA BINDINGS (from the nix plugin modules)
+# ============================================================================
+# moxide session picker
+bind m display-popup -B -E -w 40% -h 13 "~/.local/bin/moxide-session.sh"
+
+# sesh (fzf session switcher)
+bind t run-shell -b "~/.local/bin/tmux-sesh"
+
+# termsand (turn the pane into a colour-annotated sandbox popup)
+bind E run-shell -b "~/.local/bin/termsand-sand.sh"
+
+# tmux-power-zoom
+bind Z run-shell -b "~/.tmux/plugins/tmux-power-zoom/scripts/power_zoom.sh"
+
+# tmux-fzf-url
+bind u run-shell -b '~/.tmux/plugins/tmux-fzf-url/fzf-url.sh "" screen ""'
+
+# ============================================================================
+# TPM BOOTSTRAP — must stay at the very bottom
+# ============================================================================
+set-environment -g TMUX_PLUGIN_MANAGER_PATH '~/.tmux/plugins/'
+run '~/.tmux/plugins/tpm/tpm'
