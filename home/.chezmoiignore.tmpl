@@ -995,4 +995,14 @@ AppData/Local/tuios/*
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ maki
+{{ if lookPath "maki" -}}
+{{ if eq .chezmoi.os "windows" -}}
+!AppData/Roaming/maki/
+AppData/Roaming/maki/*
+!AppData/Roaming/maki/permissions.toml
+!AppData/Roaming/maki/providers.toml
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
