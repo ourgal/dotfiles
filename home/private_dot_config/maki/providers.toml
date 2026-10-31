@@ -1,0 +1,13 @@
+[qiniu]
+display_name = "Custom (qiniu)"
+protocol = "openai"
+base_url = "https://api.qnaigc.com/v1"
+api_key_env = "QINIU_API_KEY"
+discover_models = true
+
+[10router]
+display_name = "Custom (10router)"
+protocol = "openai"
+base_url = "http://192.168.123.123:20128/v1"
+api_key_env = "10ROUTER_API_KEY"
+discover_models = true
