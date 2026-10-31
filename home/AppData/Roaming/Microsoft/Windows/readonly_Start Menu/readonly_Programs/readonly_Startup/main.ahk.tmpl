@@ -166,4 +166,8 @@ Run "{{ lookPath "kmonad" }} {{ joinPath .chezmoi.homeDir ".config" "kmonad" "mi
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "scoop" "file" $creditdaddy "opt" (list "windows" "startup" "creditdaddy" "enable") "os" "windows") | trim | atoi -}}
 Run {{ $creditdaddy | quote }}, {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
+{{ $10router := joinPath (env "AppData") "Microsoft" "Windows" "Start Menu" "Programs" "Scoop Apps" "10router.lnk" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "scoop" "file" $10router "opt" (list "windows" "startup" "10router" "enable") "os" "windows") | trim | atoi -}}
+Run {{ $10router | quote }}, {{ .chezmoi.homeDir | quote }}, "Hide"
+{{ end -}}
 {{ end -}}
