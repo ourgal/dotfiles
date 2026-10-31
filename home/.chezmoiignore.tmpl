@@ -986,4 +986,13 @@ AppData/Local/nvim/lua/plugins/*
 !.omp/agent/models.yml
 {{ end -}}
 # ]]]
+# [[[ tuios
+{{ if lookPath "tuios" -}}
+{{ if eq .chezmoi.os "windows" -}}
+!AppData/Local/tuios/
+AppData/Local/tuios/*
+!AppData/Local/tuios/config.toml
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
