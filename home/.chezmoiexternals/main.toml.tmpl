@@ -201,3 +201,10 @@
     type = "git-repo"
     url = "{{ print $mirror "https://github.com/LazyVim/starter" }}"
     refreshPeriod = "168h"
+
+{{ if lookPath "tmux" -}}
+[".tmux/plugins/tpm"]
+    type = "git-repo"
+    url = {{ print $mirror "https://github.com/tmux-plugins/tpm" | quote }}
+    refreshPeriod = "168h"
+{{ end -}}
