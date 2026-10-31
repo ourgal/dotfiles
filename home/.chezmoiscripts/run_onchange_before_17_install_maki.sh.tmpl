@@ -1,0 +1,19 @@
+{{ if eq .chezmoi.os "android" -}}
+#!/{{ lookPath "bash" }}
+
+{{ $maki_version := "0.7.0" -}}
+{{ $arch := "x86_64" -}}
+{{ if eq .chezmoi.arch "arm64" -}}
+{{ $arch = "aarch64" -}}
+{{ end -}}
+{{ $maki_url := printf "https://github.com/tontinton/maki/releases/download/v%s/maki-v%s-%s-unknown-linux-musl.tar.gz" $maki_version $maki_version $arch -}}
+
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" $maki_url)
+  "output" (joinPath .chezmoi.homeDir ".local" "bin" | printf "%s/")
+  "extract" true
+  "include" "maki"
+  "chezmoi" .chezmoi
+)}}
+
+{{ end -}}
