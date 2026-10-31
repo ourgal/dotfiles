@@ -1000,13 +1000,11 @@ AppData/Local/tuios/*
 {{ if eq .chezmoi.os "windows" -}}
 !AppData/Roaming/maki/
 AppData/Roaming/maki/*
-!AppData/Roaming/maki/model
 !AppData/Roaming/maki/permissions.toml
 !AppData/Roaming/maki/providers.toml
 {{ else -}}
 !.config/maki/
 .config/maki/*
-!.config/maki/model
 !.config/maki/permissions.toml
 !.config/maki/providers.toml
 {{ end -}}
