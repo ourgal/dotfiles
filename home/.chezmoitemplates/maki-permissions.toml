@@ -17,4 +17,16 @@ allow = [
     "which *",
     "tail *",
     "wc *",
+    "where *",
+    "curl *",
+    "mkdir *",
+    "cp *",
+    "diff *",
+    "cmp *",
+    "printf *",
+]
+
+[webfetch]
+allow = [
+    "https://api.github.com/repos/tontinton/maki/releases/latest",
 ]
