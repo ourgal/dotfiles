@@ -33,7 +33,7 @@
         {{ else -}}
         {{ fail (print $global_opt " unknow opt value: " .) -}}
         {{ end -}}
-        {{ if and (kindIs "dict" $host_opt) (hasKey $host_opt .) -}}
+        {{ if and (kindIs "map" $host_opt) (hasKey $host_opt .) -}}
         {{ $host_opt = index $host_opt . -}}
         {{ else -}}
         {{ $host_opt = dict -}}
