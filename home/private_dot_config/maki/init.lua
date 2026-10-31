@@ -1,5 +1,5 @@
 maki.setup({
-  completion = {
-    enabled = true
-  }
+  plugins = {
+    completion = { enabled = true },
+  },
 })
