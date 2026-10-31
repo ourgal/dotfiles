@@ -24,9 +24,17 @@ allow = [
     "diff *",
     "cmp *",
     "printf *",
+    "webfetch *",
+    "tr *",
+    "xargs *",
 ]
 
 [webfetch]
 allow = [
     "https://api.github.com/repos/tontinton/maki/releases/latest",
+]
+
+[websearch]
+allow = [
+    "chezmoi .chezmoiignore apply to externals git-repo .chezmoiexternal ignore patterns",
 ]
