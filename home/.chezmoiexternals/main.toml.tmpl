@@ -208,3 +208,10 @@
     url = {{ print $mirror "https://github.com/tmux-plugins/tpm" | quote }}
     refreshPeriod = "168h"
 {{ end -}}
+
+{{ if lookPath "tmux" -}}
+[".tmux/plugins/tmux-powerkit"]
+    type = "git-repo"
+    url = {{ print $mirror "https://github.com/fabioluciano/tmux-powerkit" | quote }}
+    refreshPeriod = "168h"
+{{ end -}}
