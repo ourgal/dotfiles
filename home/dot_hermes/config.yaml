@@ -1,0 +1,15 @@
+# Hermes Agent configuration (Telegram gateway)
+# Source: https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/messaging/telegram.md
+
+gateway:
+  platforms:
+    telegram:
+      extra:
+        # Online/Offline status indicator.
+        # Sets the bot's short description to "🟢 Online" on connect and
+        # "🔴 Offline" on a clean shutdown (/stop / disconnect).
+        status_indicator: true
+
+        # Optional custom strings (defaults: "Online" / "Offline"):
+        status_online: "🟢 Online"
+        status_offline: "🔴 Offline"
