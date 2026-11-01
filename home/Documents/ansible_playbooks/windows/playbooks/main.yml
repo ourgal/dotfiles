@@ -123,9 +123,6 @@
         - pipx
     - role: windows_cargo
     - role: windows_npm
-    - role: windows_winget
-      windows_winget_packages:
-        - ByteDance.Trae.CN
     - role: windows_env
 - name: Configure windows game user
   hosts: all
