@@ -170,4 +170,7 @@ Run {{ $creditdaddy | quote }}, {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "scoop" "file" $10router "opt" (list "windows" "startup" "10router" "enable") "os" "windows") | trim | atoi -}}
 Run {{ $10router | quote }}, {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "hermes" "opt" (list "windows" "startup" "hermes_dashboard" "enable") "os" "windows") | trim | atoi -}}
+Run "hermes dashboard", {{ .chezmoi.homeDir | quote }}, "Hide"
+{{ end -}}
 {{ end -}}
