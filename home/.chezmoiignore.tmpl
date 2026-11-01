@@ -1,7 +1,8 @@
 *
+{{ if lookPath "hermes" }}
 # Enable the Hercules (hermes) folder so ~/.hermes/config.yaml is managed by chezmoi.
-!dot_hermes
-!dot_hermes/config.yaml
+!.hermes/
+{{ end }}
 .bashrc
 .bash_profile
 .npmrc
