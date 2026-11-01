@@ -1017,7 +1017,7 @@ AppData/Roaming/maki/*
 {{ end -}}
 # ]]]
 # [[[ tmux
-{{ if lookPath "tmux" -}}
+{{ if and (ne .chezmoi.os "windows") (lookPath "tmux") -}}
 !.tmux.conf
 !.config/tmux/
 !.config/tmux/**
