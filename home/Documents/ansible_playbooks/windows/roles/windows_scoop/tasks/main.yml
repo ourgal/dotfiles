@@ -5,3 +5,8 @@
     global: "{{ windows_scoop_global }}"
     state: "{{ windows_scoop_state }}"
   loop: "{{ windows_scoop_packages | flatten | map('basename') | list }}"
+  register: windows_scoop_result
+
+- name: Reboot Windows if scoop packages changed
+  when: windows_scoop_reboot | bool and (windows_scoop_result.results | selectattr('changed') | list | length > 0)
+  ansible.windows.win_reboot:
