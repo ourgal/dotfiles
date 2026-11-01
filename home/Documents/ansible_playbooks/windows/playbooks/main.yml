@@ -62,8 +62,10 @@
     - role: windows_scoop
       windows_scoop_packages:
         - nodejs-lts
-        - vscode
       windows_scoop_reboot: true
+    - role: windows_scoop
+      windows_scoop_packages:
+        - vscode
     - role: windows_scoop
       windows_scoop_packages: "{{ windows_scoop_packages_extras_all }}"
     - role: windows_scoop_bucket
