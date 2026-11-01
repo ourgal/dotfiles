@@ -399,6 +399,17 @@
     (add-hook! 'after-save-hook #'executable-make-buffer-file-executable-if-script-p))
 #+end_src
 
+** Default shell
+
+#+begin_src emacs-lisp
+;; Use niubash (`niu') as the default shell.
+(when-let* ((shell (executable-find "niu")))
+  (setq-default shell-file-name shell
+                explicit-shell-file-name shell
+                vterm-shell shell
+                term-shell shell))
+#+end_src
+
 ** Cape
 
 #+begin_src emacs-lisp

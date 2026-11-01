@@ -88,6 +88,13 @@
 (when (not (eq system-type 'windows-nt))
     (add-hook! 'after-save-hook #'executable-make-buffer-file-executable-if-script-p))
 
+;; Use niubash (`niu') as the default shell.
+(when-let* ((shell (executable-find "niu")))
+  (setq-default shell-file-name shell
+                explicit-shell-file-name shell
+                vterm-shell shell
+                term-shell shell))
+
 (add-hook! 'completion-at-point-functions #'cape-dabbrev)
 (add-hook! 'completion-at-point-functions #'cape-file)
 
