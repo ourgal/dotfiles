@@ -1,0 +1,18 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "hermes" -}}
+{{ template "powershell_strict" }}
+$programs = Join-Path $env:APPDATA "Microsoft\Windows\Start Menu\Programs"
+$launcher = Get-Command hermes -ErrorAction SilentlyContinue
+if (-not $launcher) { return }
+$launcher = $launcher.Source
+$lnk = Join-Path $programs "Hermes Desktop.lnk"
+$ws = New-Object -ComObject WScript.Shell
+$shortcut = $ws.CreateShortcut($lnk)
+$shortcut.TargetPath = $launcher
+$shortcut.Arguments = "desktop"
+$shortcut.WorkingDirectory = $env:USERPROFILE
+$shortcut.IconLocation = "$launcher,0"
+$shortcut.Description = "Hermes Agent desktop app"
+$shortcut.Save()
+{{ end -}}
+{{ end -}}
