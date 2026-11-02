@@ -162,9 +162,8 @@ Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "gotify-server" "current" "goti
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "kmonad" "opt" (list "windows" "startup" "kmonad" "enable") "os" "windows") | trim | atoi -}}
 Run "{{ lookPath "kmonad" }} {{ joinPath .chezmoi.homeDir ".config" "kmonad" "miryoku.kbd" }}", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
-{{ $creditdaddy := joinPath (env "AppData") "Microsoft" "Windows" "Start Menu" "Programs" "Scoop Apps" "CreditDaddy.lnk" -}}
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "scoop" "file" $creditdaddy "opt" (list "windows" "startup" "creditdaddy" "enable") "os" "windows") | trim | atoi -}}
-Run {{ $creditdaddy | quote }}, {{ .chezmoi.homeDir | quote }}, "Hide"
+{{ if lookPath "creditdaddy" -}}
+Run "{{ lookPath "creditdaddy" }}", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
 {{ $10router := joinPath (env "AppData") "Microsoft" "Windows" "Start Menu" "Programs" "Scoop Apps" "10router.lnk" -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "scoop" "file" $10router "opt" (list "windows" "startup" "10router" "enable") "os" "windows") | trim | atoi -}}
