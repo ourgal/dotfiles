@@ -1023,4 +1023,9 @@ AppData/Roaming/maki/*
 !.config/tmux/**
 {{ end -}}
 # ]]]
+# [[[ niu
+{{ if lookPath "niu" -}}
+!.niubashrc
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
