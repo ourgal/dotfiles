@@ -1030,8 +1030,13 @@ AppData/Roaming/maki/*
 # ]]]
 # [[[ lazygit
 {{ if lookPath "lazygit" -}}
+{{ if eq .chezmoi.os "windows" -}}
 !AppData/Local/lazygit/
 !AppData/Local/lazygit/config.yml
+{{ else if eq .chezmoi.os "linux" "android" -}}
+!private_dot_config/lazygit/
+!private_dot_config/lazygit/config.yml
+{{ end -}}
 {{ end -}}
 # ]]]
 # vim: set foldmarker=[[[,]]]:
