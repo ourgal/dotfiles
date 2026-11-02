@@ -1,3 +1,16 @@
 {{ if lookPath "zoxide" -}}
 eval "$(zoxide init bash)"
 {{ end -}}
+{{ if lookPath "eza" -}}
+alias ls='eza --icons auto --group-directories-first'
+alias ll='eza --long --git --icons auto --group --group-directories-first --time-style relative'
+alias la='eza --long --all --git --icons auto --group --group-directories-first --time-style relative'
+alias l='eza'
+alias tree='eza --tree --icons auto --group-directories-first'
+{{ end -}}
+{{ if lookPath "bat" -}}
+alias cat='bat --paging=never'
+{{ end -}}
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
