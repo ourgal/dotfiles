@@ -40,7 +40,7 @@ CHANNEL_FEED_LINK_RE = re.compile(
     rf"https?://(?:www\.)?youtube\.com/feeds/videos\.xml"
     rf"\?channel_id=({CHANNEL_ID_PATTERN})(?![A-Za-z0-9_-])"
 )
-PATH_NAME_RE = re.compile(r"^[A-Za-z0-9._-]+$")
+PATH_NAME_RE = re.compile(r"^[\w.\-]+$", re.UNICODE)
 LINK_TAG_RE = re.compile(r"<link\b[^>]*>", re.IGNORECASE)
 CANONICAL_RE = re.compile(r"""\brel=["']canonical["']""", re.IGNORECASE)
 HREF_RE = re.compile(r"""\bhref=["']([^"']+)["']""", re.IGNORECASE)
