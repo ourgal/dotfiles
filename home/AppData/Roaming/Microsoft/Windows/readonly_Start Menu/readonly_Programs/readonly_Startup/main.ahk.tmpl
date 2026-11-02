@@ -162,7 +162,7 @@ Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "gotify-server" "current" "goti
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "kmonad" "opt" (list "windows" "startup" "kmonad" "enable") "os" "windows") | trim | atoi -}}
 Run "{{ lookPath "kmonad" }} {{ joinPath .chezmoi.homeDir ".config" "kmonad" "miryoku.kbd" }}", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
-{{ if lookPath "creditdaddy" -}}
+{{ if and (lookPath "creditdaddy") (includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "creditdaddy" "opt" (list "windows" "startup" "creditdaddy" "enable") "os" "windows") | trim | atoi) -}}
 Run "{{ lookPath "creditdaddy" }} start --host 0.0.0.0", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
 {{ $10router := joinPath (env "AppData") "Microsoft" "Windows" "Start Menu" "Programs" "Scoop Apps" "10router.lnk" -}}
