@@ -163,7 +163,7 @@ Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "gotify-server" "current" "goti
 Run "{{ lookPath "kmonad" }} {{ joinPath .chezmoi.homeDir ".config" "kmonad" "miryoku.kbd" }}", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
 {{ if lookPath "creditdaddy" -}}
-Run "{{ lookPath "creditdaddy" }}", {{ .chezmoi.homeDir | quote }}, "Hide"
+Run "{{ lookPath "creditdaddy" }} start --host 0.0.0.0", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
 {{ $10router := joinPath (env "AppData") "Microsoft" "Windows" "Start Menu" "Programs" "Scoop Apps" "10router.lnk" -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "scoop" "file" $10router "opt" (list "windows" "startup" "10router" "enable") "os" "windows") | trim | atoi -}}
