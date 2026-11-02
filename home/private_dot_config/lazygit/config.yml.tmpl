@@ -1,1 +1,1 @@
-{{- includeTemplate "lazygit-config" . -}}
+{{ includeTemplate (joinPath .chezmoi.sourceDir "AppData" "Local" "lazygit" "config.yml") . -}}
