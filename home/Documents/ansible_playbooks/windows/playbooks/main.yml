@@ -130,6 +130,8 @@
         - pipx
     - role: windows_cargo
     - role: windows_npm
+      tags:
+        - npm
     - role: windows_env
 - name: Configure windows game user
   hosts: all
