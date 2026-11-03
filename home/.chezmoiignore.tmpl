@@ -1028,6 +1028,17 @@ AppData/Roaming/maki/*
 !.niubashrc
 {{ end -}}
 # ]]]
+# [[[ elvish
+{{ if lookPath "elvish" -}}
+{{ if eq .chezmoi.os "windows" -}}
+!AppData/Roaming/elvish/
+!AppData/Roaming/elvish/rc.elv
+{{ else -}}
+!.config/elvish/
+!.config/elvish/rc.elv
+{{ end -}}
+{{ end -}}
+# ]]]
 # [[[ lazygit
 {{ if lookPath "lazygit" -}}
 {{ if eq .chezmoi.os "windows" -}}
