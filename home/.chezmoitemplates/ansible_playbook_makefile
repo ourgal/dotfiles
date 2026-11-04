@@ -1,0 +1,26 @@
+TAGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+$(eval $(TAGS):;@:)
+.PHONY: all run ${TAGS}
+
+{{ $env_var := print "SOPS_AGE_KEY_FILE=" (joinPath .chezmoi.homeDir ".config" "age" "ansible.key") -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ $env_var = print "LC_ALL=C.UTF-8 ANSIBLE_CONFIG=ansible.cfg" -}}
+{{ end -}}
+
+ANSIBLE_ENV := {{ $env_var }}
+INVENTORY := inventory/hosts.yml
+PLAYBOOK := playbooks/main.yml
+
+all: lint
+	$(ANSIBLE_ENV) ansible-playbook -i $(INVENTORY) $(PLAYBOOK) $(if $(TAGS),--tags $(TAGS),)
+
+run: lint
+	$(ANSIBLE_ENV) ansible-playbook -i $(INVENTORY) $(PLAYBOOK) $(if $(TAGS),--tags $(TAGS),)
+
+lint:
+	{{ if and (lookPath "ansible-lint") (not (eq .chezmoi.os "windows")) -}}
+	ansible-lint $(PLAYBOOK)
+	{{ end }}
+
+install:
+	ansible-galaxy collection install -r requirements.yml
