@@ -8,7 +8,7 @@ external-controller: :9999
 external-ui: ui
 external-ui-url: "https://v6.gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist-cdn-fonts.zip"
 secret:
-experimental: {ignore-resolve-fail: true, interface-name: en0}
+experimental: {ignore-resolve-fail: true}  # interface-name removed: en0 is macOS-only; tun.auto-detect-interface handles outbound on Linux
 
 tun:
   enable: true
@@ -17,6 +17,10 @@ tun:
   auto-route: true
   auto-redirect: true
   auto-detect-interface: true
+  stack: mixed          # system+gvisor: best compat/perf for TUN on Linux (mihomo wiki)
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
   # 1. Stop Mihomo from hijacking the Tailscale interface
   exclude-interface:
     - Tailscale
@@ -29,6 +33,7 @@ tun:
 
 profile:
   store-selected: true
+  store-fake-ip: true    # persist fake-ip mappings across restarts
 
 sniffer:
   enable: true
@@ -53,9 +58,22 @@ dns:
   ipv6: true
   default-nameserver: [ 223.5.5.5, 2400:3200::1 ]
   direct-nameserver: [ https://dns.alidns.com/dns-query, https://doh.pub/dns-query ]
-  enhanced-mode: redir-host
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-range6: fdfe:dcba:9876::1/64
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - '*.lan'
+    - '*.local'
+    - localhost
+    - '*.my.domain'
+    - 'time.android.com'
+    - 'time.facebook.com'
+    - '*.googleapis.cn'
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
   nameserver-policy: {'rule-set:cn': [ https://dns.alidns.com/dns-query, https://doh.pub/dns-query ]}
-  proxy-server-nameserver : [ 223.5.5.5, 2400:3200::1 ]
+  proxy-server-nameserver: [ 223.5.5.5, 2400:3200::1 ]
   fallback: [ https://1.1.1.1/dns-query, https://8.8.8.8/dns-query ]
   nameserver: [ https://dns.alidns.com/dns-query, https://doh.pub/dns-query ]
   respect-rules: true
@@ -95,7 +113,7 @@ proxy-groups:
   - {name: ↔️ 直连软件, type: select, proxies: [🎯 本地直连, 🚀 节点选择, ♻️ 自动选择, 🛠️ 手动切换, nano, knjc]}
   - {name: 🀄️ 国内流量, type: select, proxies: [🎯 本地直连, 🚀 节点选择, ♻️ 自动选择, 🛠️ 手动切换, nano, knjc]}
 
-  - {name: 🐟 漏网之鱼, type: select, proxies: [🚀 节点选择, 🎯 本地直连, ♻️ 自动选择, 🛠️ 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇪🇺 欧洲节点, 🇰🇷 韩国节点, 🇸🇬 狮城节点, 👑 高级节点, 📉 省流节点, nano, knjc]}
+  - {name: 🐟 漏网之鱼, type: select, proxies: [🎯 本地直连, 🚀 节点选择, ♻️ 自动选择, 🛠️ 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇪🇺 欧洲节点, 🇰🇷 韩国节点, 🇸🇬 狮城节点, 👑 高级节点, 📉 省流节点, nano, knjc]}
 
   - {name: 🛑 广告拦截, type: select, proxies: [🔴 拦截, 🟢 放行]}
   - {name: 🔒 私有网络, type: select, proxies: [DIRECT], hidden: true}
@@ -155,9 +173,9 @@ rules:
   - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
   - IP-CIDR6,fd7a:115c:a1e0::/48,DIRECT,no-resolve
 
-  - DST-PORT,1-79,DIRECT
-  - DST-PORT,81-442,DIRECT
-  - DST-PORT,444-65535,DIRECT
+  # DST-PORT catch-all rules removed: they forced every non-80/443 port to DIRECT,
+  # which made the 🎮 外服游戏 / 🧲 BT下载 / 📲 电报消息 groups unreachable.
+  # Routing now follows the rule-sets below (cn/cnip -> DIRECT, the rest per group).
   - IP-CIDR,1.1.1.1/32,🌐 国际流量
   - IP-CIDR,8.8.8.8/32,🌐 国际流量
 
