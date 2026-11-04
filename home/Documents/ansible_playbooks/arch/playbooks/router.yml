@@ -1,0 +1,45 @@
+---
+- name: Configure Arch Linux router
+  hosts: routers
+  ignore_unreachable: true
+  vars:
+    router_proxy_services:
+      tailscale:
+        service: tailscaled
+        binary: /usr/bin/tailscale
+      mihomo:
+        service: mihomo
+        binary: /usr/local/bin/mihomo
+      honk:
+        service: honk
+        binary: /usr/local/bin/honk-core
+  roles:
+    - role: network
+      when: network_enabled | default(false) | bool
+    - role: tailscale
+      when: tailscale_enabled | default(false) | bool
+    - role: mihomo
+      when: mihomo_enabled | default(false) | bool
+    - role: honk
+      when: honk_enabled | default(false) | bool
+  post_tasks:
+    - name: Check whether the proxy services are installed
+      ansible.builtin.stat:
+        path: "{{ item.value.binary }}"
+      loop: "{{ router_proxy_services | dict2items }}"
+      loop_control:
+        label: "{{ item.key }}"
+      register: proxy_binaries
+
+    - name: Stop and disable proxy services whose switch is off
+      become: true
+      ansible.builtin.service:
+        name: "{{ item.item.value.service }}"
+        enabled: false
+        state: stopped
+      loop: "{{ proxy_binaries.results }}"
+      loop_control:
+        label: "{{ item.item.key }}"
+      when:
+        - item.stat.exists
+        - not (lookup('vars', item.item.key ~ '_enabled', default=false) | bool)

@@ -1,6 +1,6 @@
 ---
 - name: Configure arch linux
-  hosts: all
+  hosts: all:!routers
   ignore_unreachable: true
   roles:
     - role: pacman

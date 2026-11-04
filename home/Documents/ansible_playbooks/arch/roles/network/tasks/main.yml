@@ -1,0 +1,26 @@
+---
+- name: Enable the systemd-networkd service
+  become: true
+  ansible.builtin.service:
+    name: systemd-networkd
+    enabled: true
+    state: started
+
+- name: Configure the static network interface
+  become: true
+  ansible.builtin.template:
+    src: static.network.j2
+    dest: "/etc/systemd/network/20-{{ network_interface }}.network"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart networking
+
+- name: Configure DNS resolvers
+  become: true
+  ansible.builtin.template:
+    src: resolv.conf.j2
+    dest: /etc/resolv.conf
+    owner: root
+    group: root
+    mode: '0644'

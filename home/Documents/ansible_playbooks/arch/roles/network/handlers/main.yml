@@ -1,0 +1,10 @@
+---
+# Restart in the background so a changed address cannot hang the play if
+# Ansible is connected over the interface being reconfigured.
+- name: Restart networking
+  become: true
+  ansible.builtin.command:
+    cmd: systemctl restart systemd-networkd
+  changed_when: true
+  async: 10
+  poll: 0

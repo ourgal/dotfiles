@@ -1,0 +1,31 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+honk_enabled: false
+honk_version: "0.1.0-beta.3"
+honk_variant: full
+
+honk_arch_map:
+  x86_64: x86_64
+  aarch64: aarch64
+honk_arch: "{{ honk_arch_map[ansible_facts.architecture] }}"
+honk_target: "{{ honk_arch }}-unknown-linux-musl"
+honk_package: "honk-core-v{{ honk_version }}-{{ honk_target }}-{{ honk_variant }}"
+honk_download_url: "https://v6.gh-proxy.org/https://github.com/daeuniverse/honk/releases/download/v{{ honk_version }}/{{ honk_package }}.tar.gz"
+honk_archive: "/tmp/{{ honk_package }}.tar.gz"
+honk_source_dir: "/tmp/{{ honk_package }}"
+
+honk_binary: /usr/local/bin/honk-core
+honk_config_dir: /etc/honk
+honk_data_dir: /var/lib/honk
+
+honk_packages:
+  - ca-certificates
+
+# LAN interface whose forwarded traffic is intercepted, taken from the default route.
+honk_lan_interface: "{{ ansible_facts.get('default_ipv4', {}).get('interface', 'eth0') }}"
+honk_bootstrap_resolver: 119.29.29.29:53
+honk_log_level: info
+honk_native_api_listen: 0.0.0.0:9090
+
+honk_subscription_nano_url: '[[ includeTemplate "secrets" . | fromToml | dig "subs" "nano" "" ]]'
+honk_subscription_knjc_url: '[[ includeTemplate "secrets" . | fromToml | dig "subs" "knjc" "" ]]'

@@ -1,0 +1,18 @@
+[Unit]
+Description=Honk transparent proxy core
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory={{ honk_data_dir }}
+ExecStartPre=-/usr/bin/modprobe tun
+ExecStartPre=/bin/sh -c "grep -q ' /sys/fs/bpf ' /proc/mounts || mount -t bpf bpf /sys/fs/bpf"
+ExecStart={{ honk_binary }} --disable-timestamp -c {{ honk_config_dir }}/config.dae
+ExecReload={{ honk_binary }} reload
+Restart=always
+RestartSec=5
+LimitNOFILE=1048576
+
+[Install]
+WantedBy=multi-user.target
