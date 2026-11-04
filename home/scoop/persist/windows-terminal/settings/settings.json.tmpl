@@ -35,7 +35,8 @@
         "closeOnExit": "graceful",
         "name": "PowerShell",
         "source": "Windows.Terminal.PowershellCore"
-      },
+      }
+{{- if lookPath "cmd" }},
       {
         "commandline": "%SystemRoot%\\System32\\cmd.exe",
         "cursorShape": "filledBox",
@@ -48,7 +49,9 @@
         "closeOnExit": "graceful",
         "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
         "name": "Command Prompt"
-      },
+      }
+{{- end }}
+{{- if lookPath "powershell" }},
       {
         "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
         "cursorShape": "filledBox",
@@ -61,7 +64,9 @@
         "closeOnExit": "graceful",
         "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
         "name": "Windows PowerShell"
-      },
+      }
+{{- end }}
+{{- if lookPath "xonsh" }},
       {
         "commandline": "%USERPROFILE%\\.local\\bin\\xonsh.exe",
         "cursorShape": "filledBox",
@@ -74,7 +79,9 @@
         "closeOnExit": "graceful",
         "guid": "{1039824d-f5da-468d-856d-d7373d40325e}",
         "name": "Xonsh"
-      },
+      }
+{{- end }}
+{{- if lookPath "bash" }},
       {
         "commandline": "%USERPROFILE%\\scoop\\apps\\git\\current\\bin\\bash.exe -i -l",
         "cursorShape": "filledBox",
@@ -87,7 +94,9 @@
         "closeOnExit": "graceful",
         "guid": "{8f5e00bb-5ac4-4e63-8538-5bcbbf827559}",
         "name": "Git Bash"
-      },
+      }
+{{- end }}
+{{- if lookPath "msys2" }},
       {
         "commandline": "%USERPROFILE%\\scoop\\shims\\msys2.cmd -use-full-path -shell fish",
         "cursorShape": "filledBox",
@@ -100,7 +109,9 @@
         "closeOnExit": "graceful",
         "guid": "{f60ba69c-a957-410c-a1c6-8b7484ee591c}",
         "name": "MSYS"
-      },
+      }
+{{- end }}
+{{- if lookPath "nu" }},
       {
         "commandline": "%USERPROFILE%\\scoop\\shims\\nu.exe",
         "cursorShape": "filledBox",
@@ -113,7 +124,9 @@
         "closeOnExit": "graceful",
         "guid": "{2a38cb46-e594-415f-9cce-1e3d1b313ee9}",
         "name": "Nu shell"
-      },
+      }
+{{- end }}
+{{- if lookPath "yori" }},
       {
         "commandline": "%USERPROFILE%\\scoop\\shims\\yori.exe",
         "cursorShape": "filledBox",
@@ -126,33 +139,9 @@
         "closeOnExit": "graceful",
         "guid": "{90a23420-d58c-4627-9e4d-6ab897661ef7}",
         "name": "Yori"
-      },
-      {
-        "cursorShape": "filledBox",
-        "font": {
-          "face": "{{ .my.font.monospace }}"
-        },
-        "startingDirectory": "%USERPROFILE%",
-        "opacity": 90,
-        "hidden": false,
-        "closeOnExit": "graceful",
-        "guid": "{c0d3ee5c-ec30-5776-a372-7005244e2d95}",
-        "name": "Debian",
-        "source": "Microsoft.WSL"
-      },
-      {
-        "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
-        "cursorShape": "filledBox",
-        "font": {
-          "face": "{{ .my.font.monospace }}"
-        },
-        "startingDirectory": "%USERPROFILE%",
-        "opacity": 90,
-        "hidden": false,
-        "closeOnExit": "graceful",
-        "name": "Azure Cloud Shell",
-        "source": "Windows.Terminal.Azure"
-      },
+      }
+{{- end }}
+{{- if lookPath "niu" }},
       {
         "commandline": "%USERPROFILE%\\scoop\\shims\\niu.exe",
         "cursorShape": "filledBox",
@@ -165,7 +154,39 @@
         "closeOnExit": "graceful",
         "guid": "{d0b19fe1-e0f9-4679-b502-e7d94ddfb0c3}",
         "name": "Niubash"
-      },
+      }
+{{- end }}
+{{- if lookPath "wsl" }},
+      {
+        "cursorShape": "filledBox",
+        "font": {
+          "face": "{{ .my.font.monospace }}"
+        },
+        "startingDirectory": "%USERPROFILE%",
+        "opacity": 90,
+        "hidden": false,
+        "closeOnExit": "graceful",
+        "guid": "{c0d3ee5c-ec30-5776-a372-7005244e2d95}",
+        "name": "Debian",
+        "source": "Microsoft.WSL"
+      }
+{{- end }}
+{{- if lookPath "cmd" }},
+      {
+        "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+        "cursorShape": "filledBox",
+        "font": {
+          "face": "{{ .my.font.monospace }}"
+        },
+        "startingDirectory": "%USERPROFILE%",
+        "opacity": 90,
+        "hidden": false,
+        "closeOnExit": "graceful",
+        "name": "Azure Cloud Shell",
+        "source": "Windows.Terminal.Azure"
+      }
+{{- end }}
+{{- if lookPath "elvish" }},
       {
         "commandline": "%USERPROFILE%\\scoop\\shims\\elvish.exe",
         "cursorShape": "filledBox",
@@ -179,6 +200,7 @@
         "guid": "{000ac1c8-963e-474d-9a72-8658c09502a1}",
         "name": "Elvish"
       }
+{{- end }}
     ]
   },
   "schemes": [],
