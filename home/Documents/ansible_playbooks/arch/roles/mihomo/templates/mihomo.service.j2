@@ -1,0 +1,15 @@
+[Unit]
+Description=Mihomo proxy core
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStartPre=-/usr/bin/modprobe tun
+ExecStart={{ mihomo_binary }} -d {{ mihomo_config_dir }}
+Restart=on-failure
+RestartSec=2
+LimitNOFILE=1048576
+
+[Install]
+WantedBy=multi-user.target

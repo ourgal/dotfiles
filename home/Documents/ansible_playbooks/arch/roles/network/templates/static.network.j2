@@ -1,0 +1,6 @@
+[Match]
+Name={{ network_interface }}
+
+[Network]
+Address={{ network_address }}/{{ network_netmask | ansible.utils.ipaddr('prefix') }}
+Gateway={{ network_gateway }}

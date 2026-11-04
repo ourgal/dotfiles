@@ -1,1 +1,7 @@
 {{ includeTemplate "ansible_playbook_makefile" . -}}
+
+ROUTER_PLAYBOOK := playbooks/router.yml
+.PHONY: router
+
+router: lint
+	$(ANSIBLE_ENV) ansible-playbook -i $(INVENTORY) $(ROUTER_PLAYBOOK) $(if $(TAGS),--tags $(TAGS),)
