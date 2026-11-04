@@ -1,0 +1,19 @@
+{{ if and (eq .chezmoi.os "linux") (not (lookPath "gh")) -}}
+#!{{ lookPath "bash" }}
+
+{{ $gh_version := "2.103.3" -}}
+{{ $arch := "amd64" -}}
+{{ if eq .chezmoi.arch "arm64" -}}
+{{ $arch = "arm64" -}}
+{{ end -}}
+{{ $gh_url := printf "https://github.com/cli/cli/releases/download/v%s/gh_%s_linux_%s.tar.gz" $gh_version $gh_version $arch -}}
+
+{{ includeTemplate "download" (dict
+  "url" (print .my.gh_proxy "/" $gh_url)
+  "output" (joinPath .chezmoi.homeDir ".local" "bin" | printf "%s/")
+  "extract" true
+  "include" "*/bin/gh"
+  "chezmoi" .chezmoi
+)}}
+
+{{ end -}}
