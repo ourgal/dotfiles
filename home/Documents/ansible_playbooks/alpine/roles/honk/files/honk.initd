@@ -5,9 +5,13 @@ description="Honk transparent proxy core"
 
 supervisor="supervise-daemon"
 command="/usr/local/bin/honk-core"
-command_args="--disable-timestamp -c /etc/honk/config.dae"
+# --config / --disable-timestamp match the upstream honk-core.service ExecStart.
+command_args="--disable-timestamp --config /etc/honk/config.dae"
 directory="/var/lib/honk"
-rc_ulimit="-n 1048576"
+# nofile: high FD ceiling for many concurrent flows.
+# -l unlimited: eBPF programs and pinned maps must be lockable in memory
+#   (systemd equivalent: LimitMEMLOCK=infinity); without it honk fails to load.
+rc_ulimit="-n 1048576 -l unlimited"
 respawn_delay=5
 output_log="/var/log/honk.log"
 error_log="/var/log/honk.log"
@@ -23,6 +27,31 @@ start_pre() {
 	if ! grep -q ' /sys/fs/bpf ' /proc/mounts; then
 		mount -t bpf bpf /sys/fs/bpf
 	fi
+
+	# Kernel prerequisites for the eBPF datapath (honk requires Linux 6.12+,
+	# BTF, and cgroup v2). Fail early with a clear message instead of letting
+	# the engine crash mid-startup.
+	local kv
+	kv=$(uname -r)
+	kv=${kv%%-*}
+	if ! awk -F. -v v="$kv" 'BEGIN{split(v,a,"."); exit !((a[1]+0)>6 || ((a[1]+0)==6 && (a[2]+0)>=12))}'; then
+		eerror "honk requires Linux 6.12+, found $(uname -r)"
+		return 1
+	fi
+	if [ ! -e /sys/kernel/btf/vmlinux ]; then
+		eerror "honk requires kernel BTF at /sys/kernel/btf/vmlinux (enable CONFIG_DEBUG_INFO_BTF)"
+		return 1
+	fi
+	if [ ! -f /sys/fs/cgroup/cgroup.controllers ]; then
+		eerror "honk requires cgroup v2 (CONFIG_CGROUP_BPF)"
+		return 1
+	fi
+
+	# honk-modules.conf: required for NFQUEUE operation.
+	local m
+	for m in nfnetlink_queue nft_ct nft_queue; do
+		modprobe "$m" 2>/dev/null || true
+	done
 }
 
 reload() {
