@@ -29,6 +29,7 @@ tun:
   # 2. Exclude Tailscale IP subnets from Mihomo's global route handling
   route-exclude-address:
     - 100.64.0.0/10
+    - 192.168.123.0/24
     - fd7a:115c:a1e0::/48
 
 profile:
@@ -72,6 +73,7 @@ dns:
     - '*.googleapis.cn'
     - '+.stun.*.*'
     - '+.stun.*.*.*'
+    - '*.tailscale.com'
   nameserver-policy: {'rule-set:cn': [ https://dns.alidns.com/dns-query, https://doh.pub/dns-query ]}
   proxy-server-nameserver: [ 223.5.5.5, 2400:3200::1 ]
   fallback: [ https://1.1.1.1/dns-query, https://8.8.8.8/dns-query ]
