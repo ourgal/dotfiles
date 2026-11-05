@@ -6,7 +6,6 @@ fn l {|@a| exa -la $@a }
 fn cat {|@a| bat $@a }
 fn grep {|@a| rg $@a }
 fn find {|@a| fd $@a }
-fn cd {|@a| z $@a }
 fn mv {|@a| (external mv) -i $@a }
 fn cp {|@a| (external cp) -i $@a }
 fn rm {|@a| (external rm) -i $@a }
