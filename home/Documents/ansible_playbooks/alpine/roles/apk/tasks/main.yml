@@ -1,0 +1,10 @@
+---
+- name: Install apk packages
+  become: true
+  tags:
+    - pkg
+    - apk
+  community.general.apk:
+    name: "{{ apk_packages.values() | list | flatten }}"
+    state: present
+    update_cache: true

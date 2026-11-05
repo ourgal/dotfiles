@@ -1,0 +1,61 @@
+---
+apk_packages:
+  system:
+    - sudo
+    - openssh
+    - ca-certificates
+    - bash-completion
+    - man-pages
+    - doas
+  archive:
+    - tar
+    - unzip
+    - zip
+    - xz
+    - zstd
+    - p7zip
+  download:
+    - curl
+    - wget
+    - aria2
+    - yt-dlp
+  git:
+    - git
+    - git-crypt
+    - lazygit
+  shell:
+    - fish
+    - starship
+    - tmux
+  search:
+    - fzf
+    - fd
+    - ripgrep
+    - tree
+  terminal_utils:
+    - eza
+    - bat
+    - zoxide
+    - btop
+    - htop
+    - duf
+    - fastfetch
+    - file
+    - psmisc
+  sync:
+    - rsync
+    - rclone
+  editor:
+    - helix
+    - neovim
+    - vim
+  dev:
+    - make
+    - cmake
+    - build-base
+    - pkgconf
+    - nodejs
+    - npm
+    - python3
+    - py3-pip
+    - ansible
