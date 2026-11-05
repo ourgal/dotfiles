@@ -1,0 +1,9 @@
+---
+rsshub_enabled: false
+rsshub_image: v6.gh-proxy.org/docker/diygod/rsshub
+rsshub_redis_image: redis:alpine
+rsshub_dir: /opt/rsshub
+
+rsshub_http_port: 1200
+# Seconds a fetched feed stays in redis.
+rsshub_cache_expire: 3600

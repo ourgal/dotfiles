@@ -1,0 +1,32 @@
+services:
+  rsshub:
+    image: {{ rsshub_image }}
+    container_name: rsshub
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - CACHE_TYPE=redis
+      - CACHE_EXPIRE={{ rsshub_cache_expire }}
+      - REDIS_URL=redis://redis:6379/
+    ports:
+      - "{{ rsshub_http_port }}:1200"
+    networks:
+      - rsshub
+    depends_on:
+      - redis
+
+  redis:
+    image: {{ rsshub_redis_image }}
+    container_name: rsshub-redis
+    restart: unless-stopped
+    volumes:
+      - redis-data:/data
+    networks:
+      - rsshub
+
+volumes:
+  redis-data:
+
+networks:
+  rsshub:
+    name: rsshub
