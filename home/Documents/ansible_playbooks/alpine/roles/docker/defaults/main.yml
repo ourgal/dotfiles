@@ -1,0 +1,10 @@
+---
+docker_enabled: true
+docker_packages:
+  - docker
+  - docker-openrc
+  - docker-cli-compose
+  - docker-cli-buildx
+
+# Extra users allowed to talk to the Docker socket without sudo.
+docker_users: []
