@@ -122,7 +122,7 @@ source ~/.local/lib/ble_sh/out/ble.sh
 {{ end -}}
 # ]]]
 # [[[ fzf
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "fzf") "opt" (list "shell" "bash" "fzf" "enable") "os" (list "linux" "android")) | trim | atoi -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "fzf") "opt" (list "shell" "bash" "fzf" "enable") "os" (list "linux" "android" "windows")) | trim | atoi -}}
 {{ if or (lookPath "mcfly") (lookPath "atuin") -}}
 {{ output "env" "FZF_CTRL_R_COMMAND=" "fzf" "--bash" }}
 {{ else -}}
@@ -156,7 +156,7 @@ alias ll='eza --long --git --icons auto --group --group-directories-first --time
 {{ end -}}
 # ]]]
 # [[[ zoxide
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "zoxide") "opt" (list "shell" "bash" "zoxide" "enable") "os" (list "linux" "android")) | trim | atoi -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "zoxide") "opt" (list "shell" "bash" "zoxide" "enable") "os" (list "linux" "android" "windows")) | trim | atoi -}}
 # zoxdie is needed be the end of bashrc
 {{ output "zoxide" "init" "bash" }}
 {{ end -}}

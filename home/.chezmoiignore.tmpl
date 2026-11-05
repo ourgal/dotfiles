@@ -3,8 +3,12 @@
 # Enable the Hercules (hermes) folder so ~/.hermes/config.yaml is managed by chezmoi.
 !.hermes/
 {{ end }}
-.bashrc
-.bash_profile
+
+{{ if or (lookPath "bash") (lookPath "git-bash") }}
+!.bashrc
+!.bash_profile
+{{ end }}
+
 .npmrc
 
 !Documents/
