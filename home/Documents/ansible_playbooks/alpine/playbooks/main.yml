@@ -7,6 +7,8 @@
       when: network_enabled | default(false) | bool
     - role: docker
       when: docker_enabled | default(false) | bool
+    - role: gitea
+      when: gitea_enabled | default(false) | bool
     - role: tailscale
       when: tailscale_enabled | default(false) | bool
     - role: mihomo

@@ -1,0 +1,13 @@
+---
+gitea_enabled: true
+gitea_image: v6.gh-proxy.org/docker/gitea/gitea:1.22-rootless
+gitea_dir: /opt/gitea
+
+# Address users reach the web UI on; override in inventory for a real hostname.
+gitea_domain: "{{ ansible_facts.get('default_ipv4', {}).get('address', 'localhost') }}"
+gitea_http_port: 3000
+gitea_ssh_port: 2222
+gitea_root_url: "http://{{ gitea_domain }}:{{ gitea_http_port }}/"
+
+gitea_uid: 1000
+gitea_gid: 1000
