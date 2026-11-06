@@ -1,0 +1,46 @@
+services:
+  miniflux:
+    image: {{ miniflux_image }}
+    container_name: miniflux
+    restart: unless-stopped
+    environment:
+      - "DATABASE_URL=postgres://miniflux:{{ miniflux_db_password }}@db/miniflux?sslmode=disable"
+      - RUN_MIGRATIONS=1
+      - CREATE_ADMIN=1
+      - "ADMIN_USERNAME={{ miniflux_admin_username }}"
+      - "ADMIN_PASSWORD={{ miniflux_admin_password }}"
+      - "BASE_URL={{ miniflux_root_url }}"
+      - LISTEN_ADDR=0.0.0.0:8080
+    ports:
+      - "{{ miniflux_http_port }}:8080"
+    networks:
+      - miniflux
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: {{ miniflux_db_image }}
+    container_name: miniflux-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=miniflux
+      - "POSTGRES_PASSWORD={{ miniflux_db_password }}"
+      - POSTGRES_DB=miniflux
+    volumes:
+      - miniflux-db:/var/lib/postgresql/data
+    networks:
+      - miniflux
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "miniflux"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  miniflux-db:
+
+networks:
+  miniflux:
+    name: miniflux

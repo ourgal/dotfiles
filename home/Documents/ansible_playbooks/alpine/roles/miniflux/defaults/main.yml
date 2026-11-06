@@ -1,0 +1,20 @@
+---
+miniflux_enabled: false
+miniflux_image: v6.gh-proxy.org/docker/miniflux/miniflux:latest
+miniflux_db_image: postgres:17-alpine
+miniflux_dir: /opt/miniflux
+
+# Address users reach the web UI on; override in inventory for a real hostname.
+miniflux_domain: "{{ ansible_facts.get('default_ipv4', {}).get('address', 'localhost') }}"
+miniflux_http_port: 5000
+miniflux_root_url: "http://{{ miniflux_domain }}:{{ miniflux_http_port }}/"
+
+# Credentials live in inventory/group_vars/secrets.sops.yml (age-encrypted, loaded by
+# the playbook's community.sops.load_vars pre_task): `make sops`.
+# CREATE_ADMIN only applies on first run; later changes go through the web UI.
+miniflux_admin_username: admin
+miniflux_admin_password: ""
+miniflux_db_password: ""
+
+miniflux_uid: 1000
+miniflux_gid: 1000
