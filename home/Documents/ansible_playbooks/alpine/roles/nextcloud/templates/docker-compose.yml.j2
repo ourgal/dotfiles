@@ -9,7 +9,7 @@ services:
       - "MYSQL_USER={{ nextcloud_db_username }}"
       - "MYSQL_PASSWORD={{ nextcloud_db_password }}"
       - REDIS_HOST=redis
-      - "NEXTCLOUD_TRUSTED_DOMAINS={{ nextcloud_domain }}"
+      - "NEXTCLOUD_TRUSTED_DOMAINS={{ nextcloud_domain }} localhost"
       - "NEXTCLOUD_ADMIN_USER={{ nextcloud_admin_username }}"
       - "NEXTCLOUD_ADMIN_PASSWORD={{ nextcloud_admin_password }}"
     ports:

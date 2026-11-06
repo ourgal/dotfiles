@@ -6,7 +6,10 @@ nextcloud_redis_image: redis:alpine
 nextcloud_dir: /opt/nextcloud
 
 # Address users reach the web UI on; override in inventory for a real hostname.
-# Nextcloud rejects requests from hosts missing here (untrusted domain warning).
+# Do NOT rely on this fact alone when a transparent proxy owns the default route:
+# mihomo's TUN (`Meta`, 198.18.0.1/30) wins default_ipv4 and Nextcloud then
+# rejects the LAN address. `nextcloud_domain` is pinned in group_vars/all.yml;
+# localhost is always trusted so `docker exec ... occ` keeps working.
 nextcloud_domain: "{{ ansible_facts.get('default_ipv4', {}).get('address', 'localhost') }}"
 nextcloud_http_port: 8080
 

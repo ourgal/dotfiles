@@ -4,5 +4,8 @@ miniflux_enabled: false
 mihomo_enabled: true
 gitea_enabled: true
 nextcloud_enabled: true
+# Pinned: mihomo's TUN owns the default route, so default_ipv4 resolves to
+# 198.18.0.1 and Nextcloud would reject http://192.168.0.101:8080.
+nextcloud_domain: 192.168.0.101
 docker_enabled: true
 
