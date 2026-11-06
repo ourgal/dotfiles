@@ -1066,4 +1066,18 @@ AppData/Roaming/maki/*
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ nom
+{{ if joinPath .chezmoi.homeDir "scoop" "apps" "nom" | stat -}}
+{{ if eq .chezmoi.os "windows" -}}
+!AppData/Roaming/nom/
+!AppData/Roaming/nom/**
+{{ end -}}
+{{ end -}}
+{{ if lookPath "nom" -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+!.config/nom/
+!.config/nom/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:

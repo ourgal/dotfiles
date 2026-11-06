@@ -1,0 +1,12 @@
+# nom — terminal RSS reader (https://github.com/guyfedwards/nom)
+# Feeds live in Miniflux; this only wires the backend.
+backends:
+  miniflux:
+    - host: http://192.168.0.101:5000
+      api_key: "{{ includeTemplate "secrets" . | fromToml | dig "miniflux" "api_key" "" }}"
+
+refreshinterval: 15
+showread: false
+ordering: desc
+theme:
+  glamour: dark
