@@ -9,6 +9,8 @@ services:
       - GITEA__server__DOMAIN={{ gitea_domain }}
       - GITEA__server__ROOT_URL={{ gitea_root_url }}
       - GITEA__server__SSH_PORT={{ gitea_ssh_port }}
+      - GITEA__repository__ENABLE_PUSH_CREATE_USER=true
+      - GITEA__repository__ENABLE_PUSH_CREATE_ORG=true
     ports:
       - "{{ gitea_http_port }}:3000"
       - "{{ gitea_ssh_port }}:2222"
