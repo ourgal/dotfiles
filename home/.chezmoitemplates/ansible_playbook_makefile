@@ -4,7 +4,7 @@ $(eval $(TAGS):;@:)
 
 {{ $env_var := print "SOPS_AGE_KEY_FILE=" (joinPath .chezmoi.homeDir ".config" "age" "ansible.key") -}}
 {{ if eq .chezmoi.os "windows" -}}
-{{ $env_var = print "LC_ALL=C.UTF-8 ANSIBLE_CONFIG=ansible.cfg" -}}
+{{ $env_var = print $env_var " " "LC_ALL=C.UTF-8 ANSIBLE_CONFIG=ansible.cfg" -}}
 {{ end -}}
 
 ANSIBLE_ENV := {{ $env_var }}
