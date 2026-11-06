@@ -8,6 +8,9 @@ services:
       - CACHE_TYPE=redis
       - CACHE_EXPIRE={{ rsshub_cache_expire }}
       - REDIS_URL=redis://redis:6379/
+{% for uid, cookie in rsshub_bilibili_cookies.items() %}
+      - "BILIBILI_COOKIE_{{ uid }}={{ cookie }}"
+{% endfor %}
     ports:
       - "{{ rsshub_http_port }}:1200"
     networks:

@@ -1,9 +1,17 @@
 ---
 rsshub_enabled: false
-rsshub_image: v6.gh-proxy.org/docker/diygod/rsshub
+rsshub_image: v6.gh-proxy.org/docker/diygod/rsshub:chromium-bundled
 rsshub_redis_image: redis:alpine
 rsshub_dir: /opt/rsshub
 
 rsshub_http_port: 1200
 # Seconds a fetched feed stays in redis.
 rsshub_cache_expire: 3600
+
+# Bilibili route cookies: {uid: cookie}. Needed by /bilibili/user/dynamic/:uid and
+# recommended for /bilibili/user/video/:uid (SESSDATA alone is enough for both).
+# If a route complains about a missing browser (docs mark it "依赖 Puppeteer"),
+# switch rsshub_image to the `:chromium-bundled` tag instead of adding Playwright.
+# Never commit the value; pass it at deploy time:
+#   ansible-playbook playbooks/main.yml -e '{"rsshub_bilibili_cookies":{"2267573":"SESSDATA=..."}}'
+rsshub_bilibili_cookies: {}
