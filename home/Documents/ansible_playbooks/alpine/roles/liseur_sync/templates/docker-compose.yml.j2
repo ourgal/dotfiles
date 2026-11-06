@@ -1,0 +1,25 @@
+# SQLite posture from upstream compose.yaml (single replica; TLS belongs at a
+# reverse proxy). Bind mounts replace its named volumes, so the ownership
+# one-shot busybox container upstream ships is not needed.
+services:
+  liseur-sync:
+    image: {{ liseur_sync_image }}
+    container_name: liseur-sync
+    restart: unless-stopped
+    # Upgrades are `up -d`, which only replaces the container if the tag is
+    # re-resolved first.
+    pull_policy: always
+    command: ["serve"]
+    environment:
+      - LISEUR_LISTEN_ADDR=0.0.0.0:8585
+      - LISEUR_DATABASE_DRIVER=sqlite
+      - LISEUR_DATABASE_URL=/data/liseur-sync.db
+      - LISEUR_CACHE_DIR=/data/cache
+      # Bounds which paths an admin may register in the UI; matches the mount.
+      - LISEUR_FOLDER_ROOTS=/books
+      - LISEUR_INSECURE_HTTP={{ liseur_sync_insecure_http | bool | lower }}
+    ports:
+      - "{{ liseur_sync_bind_address }}{{ liseur_sync_http_port }}:8585"
+    volumes:
+      - "{{ liseur_sync_dir }}/data:/data"
+      - "{{ liseur_sync_books_dir }}:/books"

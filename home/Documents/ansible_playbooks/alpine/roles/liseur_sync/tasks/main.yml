@@ -1,0 +1,39 @@
+---
+- name: Create the liseur-sync stack directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ liseur_sync_dir }}"
+    state: directory
+    mode: '0700'
+
+- name: Create the liseur-sync data directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ liseur_sync_dir }}/data"
+    state: directory
+    owner: "{{ liseur_sync_uid }}"
+    group: "{{ liseur_sync_gid }}"
+    mode: '0700'
+
+- name: Create the books directory placeholder
+  become: true
+  ansible.builtin.file:
+    path: "{{ liseur_sync_books_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: Deploy the liseur-sync compose file
+  become: true
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ liseur_sync_dir }}/docker-compose.yml"
+    mode: '0600'
+
+# No community.docker dependency on purpose: the CLI is idempotent here.
+# pull_policy in the compose file re-resolves the tag, so this also upgrades.
+- name: Start the liseur-sync stack
+  become: true
+  ansible.builtin.command:
+    cmd: docker compose up -d --remove-orphans
+    chdir: "{{ liseur_sync_dir }}"
+  changed_when: false

@@ -1,0 +1,25 @@
+---
+liseur_sync_enabled: false
+liseur_sync_image: ghcr.io/chmouel/liseur-sync:latest
+liseur_sync_dir: /opt/liseur-sync
+liseur_sync_http_port: 8585
+
+# Host directory holding the library: a plain EPUB folder or a Calibre library.
+# Mounted read-write because a folder marked "accepts uploads" (and a Calibre
+# metadata.db) gets written; the server itself only ever creates files.
+# Point this at the real collection, or the UI indexes an empty shelf.
+liseur_sync_books_dir: /srv/books
+
+# Empty string publishes on every interface; set 127.0.0.1 when a reverse proxy
+# on the same host terminates TLS.
+liseur_sync_bind_address: ""
+
+# The image runs as uid/gid 65532; the data dir must be owned by it or SQLite
+# cannot create the database.
+liseur_sync_uid: 65532
+liseur_sync_gid: 65532
+
+# LAN-only install: the server refuses credential traffic over plain http
+# (whole /ui surface, Secure session cookie) until this is on. Turn it off when
+# a TLS proxy fronts the container.
+liseur_sync_insecure_http: true
