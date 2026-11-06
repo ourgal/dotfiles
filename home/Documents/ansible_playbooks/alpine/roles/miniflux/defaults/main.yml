@@ -18,3 +18,7 @@ miniflux_db_password: ""
 
 miniflux_uid: 1000
 miniflux_gid: 1000
+
+# Miniflux >= 2.2.18 blocks fetcher requests to private/RFC1918 addresses (SSRF guard).
+# Required here so feeds can point at rsshub on the LAN (e.g. http://<lan-ip>:1200/...).
+miniflux_allow_private_networks: true
