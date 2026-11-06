@@ -1,0 +1,18 @@
+[api]
+baseurl = ''
+key = '{{ includeTemplate "secrets" . | fromToml | dig "AI" "gemini" "" }}'
+model = 'gemini-3.1-flash-lite'
+
+[behavior]
+auto_select = false
+dry_run = false
+no_confirm = false
+no_verify = false
+push = false
+quiet = false
+show_diff = false
+stage_all = false
+
+[commit]
+language = 'english'
+max_length = 72

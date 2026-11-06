@@ -1058,4 +1058,12 @@ AppData/Roaming/maki/*
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ geminicommit
+{{ if joinPath .chezmoi.homeDir "scoop" "apps" "geminicommit" | stat -}}
+{{ if eq .chezmoi.os "windows" -}}
+!AppData/Roaming/geminicommit/
+!AppData/Roaming/geminicommit/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
