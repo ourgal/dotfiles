@@ -148,6 +148,8 @@
 
 {{ $cfg = set $cfg (print "url " ("ssh://192.168.123.206:23231/" | quote)) (dict "insteadOf" "soft:") -}}
 
+{{ $cfg = set $cfg (print "url " ("ssh://192.168.0.101:2222/" | quote)) (dict "insteadOf" "gitea:") -}}
+
 {{ $cfg = set $cfg (print "url " ("git@github.com:ourgal/" | quote)) (dict "insteadOf" "myg:") -}}
 
 {{ $cfg = set $cfg (print "url " ("git@gitee.com:fairever/" | quote)) (dict "insteadOf" "myge:") -}}
