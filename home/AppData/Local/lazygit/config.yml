@@ -2,3 +2,9 @@ git:
   diffRenderers:
     - colorArg: always
       command: diff-so-fancy
+customCommands:
+  - key: 'G'
+    command: 'gmc -apy'
+    context: 'global'
+    loadingText: 'Running gmc -apy'
+    output: log
