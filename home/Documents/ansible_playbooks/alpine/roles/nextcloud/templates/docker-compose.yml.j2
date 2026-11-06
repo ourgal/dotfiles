@@ -1,0 +1,79 @@
+services:
+  app:
+    image: {{ nextcloud_image }}
+    container_name: nextcloud
+    restart: unless-stopped
+    environment:
+      - "MYSQL_HOST=db"
+      - "MYSQL_DATABASE={{ nextcloud_db_name }}"
+      - "MYSQL_USER={{ nextcloud_db_username }}"
+      - "MYSQL_PASSWORD={{ nextcloud_db_password }}"
+      - REDIS_HOST=redis
+      - "NEXTCLOUD_TRUSTED_DOMAINS={{ nextcloud_domain }}"
+      - "NEXTCLOUD_ADMIN_USER={{ nextcloud_admin_username }}"
+      - "NEXTCLOUD_ADMIN_PASSWORD={{ nextcloud_admin_password }}"
+    ports:
+      - "{{ nextcloud_http_port }}:80"
+    volumes:
+      # Must match the cron container's volume list; both mount the same volume.
+      - nextcloud:/var/www/html
+    networks:
+      - nextcloud
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+  # Background jobs. nextcloud:cron is unsupported; keep the image's /cron.sh.
+  cron:
+    image: {{ nextcloud_image }}
+    container_name: nextcloud-cron
+    restart: unless-stopped
+    entrypoint: /cron.sh
+    volumes:
+      - nextcloud:/var/www/html
+    networks:
+      - nextcloud
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: {{ nextcloud_db_image }}
+    container_name: nextcloud-db
+    restart: unless-stopped
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    environment:
+      - "MARIADB_ROOT_PASSWORD={{ nextcloud_db_root_password }}"
+      - "MARIADB_DATABASE={{ nextcloud_db_name }}"
+      - "MARIADB_USER={{ nextcloud_db_username }}"
+      - "MARIADB_PASSWORD={{ nextcloud_db_password }}"
+      - MARIADB_AUTO_UPGRADE=1
+      - MARIADB_DISABLE_UPGRADE_BACKUP=1
+    volumes:
+      - nextcloud-db:/var/lib/mysql
+    networks:
+      - nextcloud
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # Reached only on the compose network, so no password until a port is published.
+  redis:
+    image: {{ nextcloud_redis_image }}
+    container_name: nextcloud-redis
+    restart: unless-stopped
+    networks:
+      - nextcloud
+
+volumes:
+  nextcloud:
+  nextcloud-db:
+
+networks:
+  nextcloud:
+    name: nextcloud

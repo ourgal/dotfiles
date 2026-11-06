@@ -1,0 +1,22 @@
+---
+nextcloud_enabled: false
+nextcloud_image: v6.gh-proxy.org/docker/library/nextcloud:apache
+nextcloud_db_image: mariadb:lts
+nextcloud_redis_image: redis:alpine
+nextcloud_dir: /opt/nextcloud
+
+# Address users reach the web UI on; override in inventory for a real hostname.
+# Nextcloud rejects requests from hosts missing here (untrusted domain warning).
+nextcloud_domain: "{{ ansible_facts.get('default_ipv4', {}).get('address', 'localhost') }}"
+nextcloud_http_port: 8080
+
+# Credentials live in inventory/group_vars/secrets.sops.yml (age-encrypted, loaded by
+# the playbook's community.sops.load_vars pre_task): `make sops`.
+# NEXTCLOUD_ADMIN_* only applies while the instance is uninstalled; later changes
+# (and extra users) go through the web UI.
+nextcloud_admin_username: admin
+nextcloud_admin_password: ""
+nextcloud_db_name: nextcloud
+nextcloud_db_username: nextcloud
+nextcloud_db_password: ""
+nextcloud_db_root_password: ""

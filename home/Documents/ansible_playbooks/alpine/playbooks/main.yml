@@ -25,6 +25,8 @@
       when: rsshub_enabled | default(false) | bool
     - role: miniflux
       when: miniflux_enabled | default(false) | bool
+    - role: nextcloud
+      when: nextcloud_enabled | default(false) | bool
   post_tasks:
     - name: Check whether the proxy services are installed
       ansible.builtin.stat:
