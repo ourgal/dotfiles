@@ -2,9 +2,11 @@ git:
   diffRenderers:
     - colorArg: always
       command: diff-so-fancy
+{{ if lookPath "gmc" -}}
 customCommands:
   - key: 'G'
     command: 'gmc -apy'
     context: 'global'
     loadingText: 'Running gmc -apy'
     output: log
+{{- end }}
