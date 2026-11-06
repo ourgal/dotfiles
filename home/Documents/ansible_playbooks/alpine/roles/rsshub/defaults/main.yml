@@ -15,3 +15,7 @@ rsshub_cache_expire: 3600
 # If a route complains about a missing browser (docs mark it "依赖 Puppeteer"),
 # switch rsshub_image to the `:chromium-bundled` tag instead of adding Playwright.
 rsshub_bilibili_cookies: {}
+
+# Any other RSSHub env var (WENKU8_COOKIE, DOUBAN_COOKIE, ...): {NAME: value}.
+# Sourced from secrets.sops.yml next to rsshub_bilibili_cookies; empty values skipped.
+rsshub_env: {}
