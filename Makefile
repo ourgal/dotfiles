@@ -6,3 +6,6 @@ config:
 
 hermes-tui:
 	hermes --tui --continue chezmoi
+
+geminicommit:
+	gmc -ap
