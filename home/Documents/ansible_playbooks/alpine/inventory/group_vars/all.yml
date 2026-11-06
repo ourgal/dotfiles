@@ -10,3 +10,6 @@ liseur_sync_enabled: true
 nextcloud_domain: 192.168.0.101
 docker_enabled: true
 
+# Needs hindsight_llm_api_key + hindsight_db_password in secrets.sops.yml first.
+hindsight_enabled: false
+

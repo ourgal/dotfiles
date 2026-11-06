@@ -1,0 +1,25 @@
+---
+hindsight_enabled: false
+hindsight_image: ghcr.io/vectorize-io/hindsight:latest
+hindsight_dir: /opt/hindsight
+
+# API (:8888) and the bundled control-plane UI (:9999).
+hindsight_api_port: 8888
+hindsight_ui_port: 9999
+
+# pgvector image; the volume path below is pinned to the 18 layout on purpose.
+hindsight_db_image: pgvector/pgvector:pg18
+hindsight_db_name: hindsight_db
+hindsight_db_user: hindsight_user
+
+# LLM: any of Hindsight's 25+ providers (openai, anthropic, deepseek, ollama, ...).
+# Empty model/base_url fall back to the server defaults.
+hindsight_llm_provider: openai
+hindsight_llm_model: ""
+hindsight_llm_base_url: ""
+
+# Credentials live in inventory/group_vars/secrets.sops.yml (age-encrypted, loaded by
+# the playbook's community.sops.load_vars pre_task): `make sops`.
+# The DB password ends up inside a DSN — keep it alphanumeric.
+hindsight_llm_api_key: ""
+hindsight_db_password: ""
