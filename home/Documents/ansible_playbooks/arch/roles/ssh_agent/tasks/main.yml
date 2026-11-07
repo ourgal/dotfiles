@@ -8,6 +8,19 @@
     name: "{{ ssh_agent_packages }}"
     state: present
 
+# /etc/environment.d is read by the systemd user manager; the dir is not shipped by any package.
+- name: Create environment.d
+  become: true
+  tags:
+    - config
+    - ssh_agent
+  ansible.builtin.file:
+    path: /etc/environment.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
 # Read by the systemd user manager (not by sshd logins), so agent forwarding over SSH keeps its own socket.
 - name: Point SSH_AUTH_SOCK at the packaged agent socket
   become: true
