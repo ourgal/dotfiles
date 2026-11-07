@@ -1073,6 +1073,12 @@ AppData/Roaming/maki/*
 !AppData/Roaming/geminicommit/**
 {{ end -}}
 {{ end -}}
+{{ if lookPath "gmc" -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+!.config/geminicommit/
+!.config/geminicommit/**
+{{ end -}}
+{{ end -}}
 # ]]]
 # [[[ nom
 {{ if joinPath .chezmoi.homeDir "scoop" "apps" "nom" | stat -}}
