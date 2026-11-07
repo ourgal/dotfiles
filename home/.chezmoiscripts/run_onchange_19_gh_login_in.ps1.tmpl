@@ -5,10 +5,10 @@
 {{ if stat $config_file -}}
 {{ $data = include $config_file | fromYaml -}}
 {{ end -}}
-{{ if dig "github.com" "oauth_token" "" $data | not -}}
+{{ if dig "github.com" "user" "" $data | not -}}
     {{ $token := includeTemplate "secrets" . | fromToml | dig "github" "ourgal" "token" "" -}}
     {{ if $token -}}
-    gh auth login --hostname github.com --with-token "{{ $token }}"
+     "{{ $token }}" | gh auth login --hostname github.com --with-token
     {{- end -}}
 {{ end -}}
 
