@@ -8,12 +8,23 @@
     name: "{{ ly_packages }}"
     state: present
 
+# Arch's ly package ships ly@.service (template unit) — there is no ly.service.
+- name: Free tty for ly
+  become: true
+  tags:
+    - service
+    - ly
+  ansible.builtin.systemd_service:
+    name: "getty@tty{{ ly_tty }}.service"
+    enabled: false
+    state: stopped
+
 - name: Enable ly display manager
   become: true
   tags:
     - service
     - ly
   ansible.builtin.systemd_service:
-    name: ly
+    name: "ly@tty{{ ly_tty }}.service"
     enabled: true
     state: started

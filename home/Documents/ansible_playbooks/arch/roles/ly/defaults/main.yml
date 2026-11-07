@@ -1,6 +1,9 @@
 ---
 ly_enabled: true
+ly_tty: 2
+# xorg-xauth: needed for X sessions (awesome here).
 ly_packages:
   - ly
-# Config left at package defaults (/etc/ly/config.ini, tty 2).
+  - xorg-xauth
+# Config left at package defaults (/etc/ly/config.ini). Its `tty` must match ly_tty.
 # Add a ly_config dict + community.general.ini_file task when a value must change.
