@@ -1,12 +1,12 @@
 ---
-- name: Update system
+- name: Update system through omarchy
+  # pacman -Syu is blocked by the omarchy guard hook; -y because ansible has no TTY
   become: true
   tags:
     - pkg
     - pacman
-  community.general.pacman:
-    update_cache: true
-    upgrade: true
+  ansible.builtin.command: omarchy update -y
+  changed_when: false
 - name: Install pacman packages
   become: true
   tags:
