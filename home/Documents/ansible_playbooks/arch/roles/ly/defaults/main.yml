@@ -5,5 +5,10 @@ ly_tty: 2
 ly_packages:
   - ly
   - xorg-xauth
-# Config left at package defaults (/etc/ly/config.ini). Its `tty` must match ly_tty.
-# Add a ly_config dict + community.general.ini_file task when a value must change.
+# Config left at package defaults except the keys below (matrix background).
+# ly 1.4.1 ships built-in animations: none|doom|matrix|colormix|gameoflife|dur_file
+ly_config:
+  animation: matrix
+  animation_frame_delay: 40
+  cmatrix_fg: "0x0000FF00"
+  cmatrix_head_col: "0x01FFFFFF"

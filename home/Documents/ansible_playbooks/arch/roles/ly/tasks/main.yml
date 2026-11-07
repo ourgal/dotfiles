@@ -9,6 +9,21 @@
     state: present
 
 # Arch's ly package ships ly@.service (template unit) — there is no ly.service.
+- name: Apply ly config keys
+  become: true
+  tags:
+    - config
+    - ly
+  ansible.builtin.lineinfile:
+    path: /etc/ly/config.ini
+    regexp: '^{{ item.key }}\s*='
+    line: '{{ item.key }} = {{ item.value }}'
+    owner: root
+    group: root
+    mode: "0644"
+  loop: "{{ ly_config | dict2items }}"
+  notify: Restart ly
+
 - name: Free tty for ly
   become: true
   tags:
