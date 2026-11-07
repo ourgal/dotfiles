@@ -1,7 +1,15 @@
+{{ if lookPath "diff-so-fancy" -}}
 git:
   diffRenderers:
     - colorArg: always
       command: diff-so-fancy
+{{ else if lookPath "delta" -}}
+git:
+  diffRenderers:
+    - colorArg: always
+      command: delta --paging=never
+{{ else -}}
+{{ end -}}
 {{ if lookPath "gmc" -}}
 customCommands:
   - key: 'G'
@@ -9,4 +17,4 @@ customCommands:
     context: 'global'
     loadingText: 'Running gmc -apy'
     output: log
-{{- end }}
+{{ end -}}
