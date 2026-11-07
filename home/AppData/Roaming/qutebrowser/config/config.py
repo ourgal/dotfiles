@@ -1,5 +1,3 @@
-{{ if eq .chezmoi.os "windows" -}}
-{{ if lookPath "qutebrowser" -}}
 config.load_autoconfig(False)
 config.set("auto_save.session", True)
 config.set("content.blocking.method", "both")
@@ -50,5 +48,3 @@ config.bind("w", "scroll-page 0 -1", mode="normal")
 config.bind("x", "tab-close", mode="normal")
 config.bind("ya", "hint links yank", mode="normal")
 config.bind("z", "undo", mode="normal")
-{{ end -}}
-{{ end -}}

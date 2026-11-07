@@ -776,6 +776,14 @@ AppData/Roaming/Microsoft/Windows/Start Menu/Programs/*
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ qutebrowser
+{{ if lookPath "qutebrowser" -}}
+{{ if eq .chezmoi.os "windows" -}}
+!AppData/Roaming/qutebrowser/
+!AppData/Roaming/qutebrowser/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # [[[ playnite
 {{ if lookPath "syncthing" -}}
 {{ if eq .chezmoi.os "windows" -}}
