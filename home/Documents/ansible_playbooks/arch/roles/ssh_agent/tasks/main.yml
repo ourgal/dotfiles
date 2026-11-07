@@ -1,0 +1,39 @@
+---
+- name: Install openssh
+  become: true
+  tags:
+    - pkg
+    - ssh_agent
+  community.general.pacman:
+    name: "{{ ssh_agent_packages }}"
+    state: present
+
+# Read by the systemd user manager (not by sshd logins), so agent forwarding over SSH keeps its own socket.
+- name: Point SSH_AUTH_SOCK at the packaged agent socket
+  become: true
+  tags:
+    - config
+    - ssh_agent
+  ansible.builtin.copy:
+    dest: /etc/environment.d/10-ssh-agent.conf
+    content: |
+      SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/ssh-agent.socket
+    owner: root
+    group: root
+    mode: "0644"
+
+# Socket activation: the agent starts on first ssh/ssh-add, no lingering session needed.
+- name: Enable ssh-agent user socket
+  become: true
+  become_user: "{{ ssh_agent_user }}"
+  tags:
+    - service
+    - ssh_agent
+  ansible.builtin.systemd_service:
+    scope: user
+    name: "{{ ssh_agent_socket }}"
+    enabled: true
+    state: started
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ ansible_user_uid }}"
+    DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/{{ ansible_user_uid }}/bus"

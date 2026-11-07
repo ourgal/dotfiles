@@ -27,3 +27,5 @@
       when: plymouth_enabled | default(true) | bool
     - role: ly
       when: ly_enabled | default(true) | bool
+    - role: ssh_agent
+      when: ssh_agent_enabled | default(true) | bool

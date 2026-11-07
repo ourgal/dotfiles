@@ -1,0 +1,7 @@
+---
+ssh_agent_enabled: true
+# openssh ships the user units ssh-agent.service + ssh-agent.socket (since 9.4p1-3).
+ssh_agent_packages:
+  - openssh
+ssh_agent_socket: ssh-agent.socket
+ssh_agent_user: "{{ ansible_facts.user_id }}"
