@@ -12,7 +12,7 @@ Host bed
 Host surface
   Port 22
   User zxc
-  HostName {{ if eq .chezmoi.hostname "surface" }}localhost{{ else }}192.168.123.197{{ end }}
+  HostName {{ if eq .chezmoi.hostname "surface" }}localhost{{ else }}192.168.123.181{{ end }}
 Host github.com
   HostName ssh.github.com
   Port 443
@@ -39,7 +39,7 @@ Host m6
   {{ else if and (eq .chezmoi.hostname "localhost") (output "whoami" | trim | eq "u0_a556") -}}
   HostName localhost
   {{ else -}}
-  HostName 192.168.123.201
+  HostName 192.168.123.191
   {{ end -}}
 Host m6-adb
   Port 8022
