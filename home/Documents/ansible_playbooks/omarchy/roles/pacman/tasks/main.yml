@@ -1,11 +1,19 @@
 ---
 - name: Update system through omarchy
-  # pacman -Syu is blocked by the omarchy guard hook; -y because ansible has no TTY
+  # pacman -Syu is blocked by the omarchy guard hook. Shell env matters twice:
+  # non-login shells have no OMARCHY_PATH (omarchy-update-stay-awake rejects
+  # that), and -y is needed because ansible has no TTY for the confirm prompt.
   become: true
   tags:
     - pkg
     - pacman
-  ansible.builtin.command: omarchy update -y
+  ansible.builtin.shell:
+    cmd: |
+      if [ -f /etc/profile.d/omarchy.sh ]; then . /etc/profile.d/omarchy.sh; fi
+      export OMARCHY_PATH="${OMARCHY_PATH:-/usr/share/omarchy}"
+      exec omarchy update -y
+  args:
+    executable: /bin/bash
   changed_when: false
 - name: Install pacman packages
   become: true
