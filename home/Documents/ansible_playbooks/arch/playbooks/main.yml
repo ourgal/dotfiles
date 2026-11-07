@@ -14,3 +14,5 @@
     - role: services
     - role: pcscd
     - role: fcitx5
+    - role: ly
+      when: ly_enabled | default(true) | bool

@@ -1,0 +1,19 @@
+---
+- name: Install ly display manager
+  become: true
+  tags:
+    - pkg
+    - ly
+  community.general.pacman:
+    name: "{{ ly_packages }}"
+    state: present
+
+- name: Enable ly display manager
+  become: true
+  tags:
+    - service
+    - ly
+  ansible.builtin.systemd_service:
+    name: ly
+    enabled: true
+    state: started
