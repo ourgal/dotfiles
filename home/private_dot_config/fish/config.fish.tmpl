@@ -3,6 +3,10 @@ if status is-interactive
     set -gx GOPROXY "https://goproxy.io,direct"
     set -gx EDITOR "{{ includeTemplate "editor" }}"
 
+    {{ if eq (dig "osRelease" "id" "" .chezmoi) "arch" -}}
+    set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
+    {{ end -}}
+
     {{ if lookPath "batcat" -}}
     alias bat="batcat"
     {{ end -}}
