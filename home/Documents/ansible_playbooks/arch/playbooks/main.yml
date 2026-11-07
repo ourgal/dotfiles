@@ -23,5 +23,7 @@
       when: pcscd_enabled | default(true) | bool
     - role: fcitx5
       when: fcitx5_enabled | default(true) | bool
+    - role: plymouth
+      when: plymouth_enabled | default(true) | bool
     - role: ly
       when: ly_enabled | default(true) | bool

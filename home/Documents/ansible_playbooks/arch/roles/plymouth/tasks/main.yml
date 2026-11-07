@@ -1,0 +1,64 @@
+---
+- name: Install plymouth
+  become: true
+  tags:
+    - pkg
+    - plymouth
+  community.general.pacman:
+    name: "{{ plymouth_packages }}"
+    state: present
+
+- name: Read mkinitcpio config
+  become: true
+  ansible.builtin.slurp:
+    src: /etc/mkinitcpio.conf
+  register: plymouth_mkinitcpio
+
+# Wiki: plymouth goes before encrypt/sd-encrypt and always after the systemd hook.
+- name: Add plymouth hook to initramfs
+  become: true
+  tags:
+    - config
+    - plymouth
+  when: "'plymouth' not in (plymouth_mkinitcpio.content | b64decode)"
+  ansible.builtin.replace:
+    path: /etc/mkinitcpio.conf
+    regexp: '^HOOKS=\((.*?)\s*\b(sd-encrypt|encrypt|filesystems)\b(.*)\)'
+    replace: 'HOOKS=(\1 plymouth \2\3)'
+  notify: Rebuild initramfs
+
+# UKI hosts carry the kernel cmdline here; grub/syslinux hosts are configured elsewhere.
+- name: Read kernel cmdline
+  become: true
+  ansible.builtin.slurp:
+    src: /etc/kernel/cmdline
+  register: plymouth_cmdline
+  failed_when: false
+
+- name: Add splash to the kernel cmdline
+  become: true
+  tags:
+    - config
+    - plymouth
+  when: plymouth_cmdline.content is defined
+  ansible.builtin.copy:
+    dest: /etc/kernel/cmdline
+    mode: "0644"
+    content: >-
+      {{ ((plymouth_cmdline.content | b64decode).split() +
+          (plymouth_kernel_params | difference((plymouth_cmdline.content | b64decode).split())))
+         | join(' ') }}
+  notify: Rebuild initramfs
+
+- name: Set plymouth theme
+  become: true
+  tags:
+    - config
+    - plymouth
+  community.general.ini_file:
+    path: /etc/plymouth/plymouthd.conf
+    section: Daemon
+    option: Theme
+    value: "{{ plymouth_theme }}"
+    mode: "0644"
+  notify: Rebuild initramfs

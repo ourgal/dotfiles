@@ -1,0 +1,10 @@
+---
+plymouth_enabled: true
+plymouth_packages:
+  - plymouth
+# Arch default is bgrt (keeps OEM logo). Others: spinner, spinfinity, fade-in, glow, script, solar, tribar, text, details
+plymouth_theme: bgrt
+# Appended to /etc/kernel/cmdline (UKI hosts). `splash` shows the theme, `quiet` silences boot log.
+plymouth_kernel_params:
+  - splash
+  - quiet
