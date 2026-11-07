@@ -4,8 +4,3 @@ all:
     ansible_become_pass: {{ includeTemplate "secrets" . | fromToml | dig "password" "linux" "user" "" }}
   hosts:
     surface:
-  children:
-    routers:
-      hosts:
-        work2:
-
