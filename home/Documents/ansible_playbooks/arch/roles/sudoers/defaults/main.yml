@@ -1,3 +1,4 @@
 ---
+sudoers_enabled: true
 sudoers_user: "{{ ansible_facts.user_id }}"
 sudoers_group: wheel

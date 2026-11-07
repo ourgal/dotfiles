@@ -1,5 +1,7 @@
 ---
-services_enabled:
+services_enabled: true
+# Units to enable; kept separate from services_enabled so the gate stays a bool.
+services_units:
   - NetworkManager
   - bluetooth
   - power-profiles-daemon

@@ -7,4 +7,4 @@
     name: "{{ item }}"
     enabled: true
     state: started
-  loop: "{{ services_enabled }}"
+  loop: "{{ services_units }}"
