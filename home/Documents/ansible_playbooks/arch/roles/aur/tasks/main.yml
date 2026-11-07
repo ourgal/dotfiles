@@ -1,0 +1,51 @@
+---
+- name: Prepare the AUR builder
+  when: aur_packages | length > 0
+  block:
+    - name: Create the AUR builder group
+      become: true
+      tags:
+        - pkg
+        - aur
+      ansible.builtin.group:
+        name: "{{ aur_builder_user }}"
+        system: true
+
+    - name: Create the AUR builder user
+      become: true
+      tags:
+        - pkg
+        - aur
+      ansible.builtin.user:
+        name: "{{ aur_builder_user }}"
+        group: "{{ aur_builder_user }}"
+        home: "{{ aur_builder_home }}"
+        create_home: true
+        shell: /bin/bash
+        system: true
+
+    # Persistent: the module shells out to `sudo pacman` on every run and
+    # there is no tty to answer a prompt.
+    - name: Allow the AUR builder to run pacman without a password
+      become: true
+      tags:
+        - pkg
+        - aur
+      community.general.sudoers:
+        name: "{{ aur_sudoers_name }}"
+        state: present
+        user: "{{ aur_builder_user }}"
+        commands: /usr/bin/pacman
+        nopassword: true
+
+- name: Install AUR packages
+  become: true
+  become_user: "{{ aur_builder_user }}"
+  tags:
+    - pkg
+    - aur
+  when: aur_packages | length > 0
+  kewlfft.aur.aur:
+    name: "{{ aur_packages }}"
+    use: "{{ aur_helper }}"
+    state: present
