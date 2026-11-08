@@ -114,13 +114,6 @@ export PATH=$PATH:$HOME/.local/bin
 export SSH_AUTH_SOCK=$PREFIX/var/run/ssh-agent.socket
 {{ end -}}
 # ]]]
-# [[[ ble_sh
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "bash" "file" (joinPath .chezmoi.homeDir ".local" "lib" "ble_sh" "out" "ble.sh") "opt" (list "shell" "bash" "ble_sh" "enable") "os" (list "linux" "android")) | trim | atoi -}}
-{{ if and (hasKey .chezmoi.kernel "osrelease") (not (mustRegexMatch ".*WSL.*" .chezmoi.kernel.osrelease)) -}}
-source ~/.local/lib/ble_sh/out/ble.sh
-{{ end -}}
-{{ end -}}
-# ]]]
 # [[[ fzf
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "bash" "fzf") "opt" (list "shell" "bash" "fzf" "enable") "os" (list "linux" "android" "windows")) | trim | atoi -}}
 {{ if or (lookPath "mcfly") (lookPath "atuin") -}}
