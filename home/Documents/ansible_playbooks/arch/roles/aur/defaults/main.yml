@@ -4,6 +4,7 @@ aur_enabled: true
 # Empty list is a no-op: the builder user is only created when there is work.
 aur_packages:
   - geminicommit-bin
+  - seanime-bin
 # Helper the module drives; must already be installed (paru role).
 aur_helper: paru
 aur_builder_user: aur-builder

@@ -1,4 +1,5 @@
 {{ if eq .chezmoi.os "linux" -}}
+{{ if ne (dig "osRelease" "id" "" .chezmoi) "arch" -}}
 #!{{ lookPath "bash" }}
 
 {{ $ver := "3.10.4" -}}
@@ -12,4 +13,5 @@
   "chezmoi" .chezmoi
 )}}
 
+{{ end -}}
 {{ end -}}
