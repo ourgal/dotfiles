@@ -34,8 +34,8 @@
       exit "$missing"
   args:
     executable: /bin/bash
-    chdir: "{{ ansible_facts.user_home }}"
+    chdir: "{{ ansible_facts.user_dir }}"
   environment:
-    HOME: "{{ ansible_facts.user_home }}"
+    HOME: "{{ ansible_facts.user_dir }}"
   register: default_apps_result
   changed_when: "'changed=1' in default_apps_result.stdout"
