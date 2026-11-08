@@ -1,4 +1,4 @@
-{{ $mirror := (print .my.gh_proxy "/" ) -}}
+{{ $mirror := "" -}}
 
 {{ if eq .chezmoi.os "windows" -}}
 {{ if lookPath "psmux" -}}
