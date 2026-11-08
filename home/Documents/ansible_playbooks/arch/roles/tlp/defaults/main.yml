@@ -1,0 +1,8 @@
+---
+tlp_enabled: true
+tlp_packages:
+  - tlp
+# Masked so TLP owns radio device switching (ArchWiki TLP#Installation).
+tlp_masked_units:
+  - systemd-rfkill.service
+  - systemd-rfkill.socket

@@ -1,0 +1,28 @@
+---
+- name: Install TLP
+  become: true
+  tags:
+    - pkg
+    - tlp
+  community.general.pacman:
+    name: "{{ tlp_packages }}"
+    state: present
+    update_cache: true
+
+- name: Mask systemd-rfkill units
+  become: true
+  tags:
+    - tlp
+  ansible.builtin.systemd_service:
+    name: "{{ item }}"
+    masked: true
+  loop: "{{ tlp_masked_units }}"
+
+- name: Enable and start TLP
+  become: true
+  tags:
+    - tlp
+  ansible.builtin.systemd_service:
+    name: tlp
+    state: started
+    enabled: true
