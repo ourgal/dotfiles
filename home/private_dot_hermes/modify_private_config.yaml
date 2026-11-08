@@ -1,0 +1,19 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- /*
+  Only the keys below are managed here (values recommended by the hermes
+  Telegram gateway docs). Everything else in ~/.hermes/config.yaml — model,
+  providers, telemetry, toolset lists — is written by hermes itself and is
+  preserved as-is. Managed keys win over whatever is already in the file.
+*/ -}}
+{{- $managed := dict
+      "security" (dict
+        "fake_ip_ranges" (list "28.0.0.0/8" "fc00::/16"))
+      "gateway" (dict
+        "platforms" (dict
+          "telegram" (dict
+            "extra" (dict
+              "status_indicator" true
+              "status_online" "🟢 Online"
+              "status_offline" "🔴 Offline"))))
+-}}
+{{ $managed | mergeOverwrite (fromYaml .chezmoi.stdin) | toYaml -}}
