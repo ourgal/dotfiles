@@ -13,6 +13,10 @@
       when: (surface_touch_enabled | default(true) | bool) and ansible_facts.hostname == "surface"
     - role: tlp
       when: (tlp_enabled | default(true) | bool) and ansible_facts.hostname == "surface"
+    - role: intel_graphics
+      when: (intel_graphics_enabled | default(true) | bool) and ansible_facts.hostname == "surface"
+    - role: amd_graphics
+      when: (amd_graphics_enabled | default(true) | bool) and ansible_facts.hostname == "air"
     - role: hostname
       when: hostname_enabled | default(true) | bool
     - role: hosts

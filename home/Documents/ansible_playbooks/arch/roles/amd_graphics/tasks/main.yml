@@ -1,0 +1,9 @@
+---
+- name: Install AMD graphics drivers
+  become: true
+  tags:
+    - pkg
+    - amd_graphics
+  community.general.pacman:
+    name: "{{ amd_graphics_packages }}"
+    state: present

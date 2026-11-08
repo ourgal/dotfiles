@@ -1,0 +1,9 @@
+---
+- name: Install Intel graphics drivers
+  become: true
+  tags:
+    - pkg
+    - intel_graphics
+  community.general.pacman:
+    name: "{{ intel_graphics_packages }}"
+    state: present
