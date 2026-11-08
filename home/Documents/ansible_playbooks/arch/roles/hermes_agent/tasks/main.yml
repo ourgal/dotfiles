@@ -1,0 +1,66 @@
+---
+- name: Install Hermes Agent prerequisites
+  become: true
+  tags:
+    - pkg
+    - hermes_agent
+  community.general.pacman:
+    name: "{{ hermes_agent_packages }}"
+    state: present
+
+- name: Check whether Hermes Agent is installed
+  tags:
+    - hermes_agent
+  ansible.builtin.stat:
+    path: "{{ hermes_agent_launcher }}"
+  register: hermes_agent_launcher_stat
+
+# --non-interactive skips the setup and gateway stages, so the installer never
+# waits for input. It is also its own repair path, but upgrades belong to
+# `hermes update`; hence the existence guard.
+- name: Run the official unattended installer
+  when: not hermes_agent_launcher_stat.stat.exists
+  become: true
+  become_user: "{{ hermes_agent_user }}"
+  tags:
+    - hermes_agent
+  ansible.builtin.shell:
+    cmd: >-
+      set -o pipefail;
+      curl -fsS {{ hermes_agent_installer_url }} | bash -s -- --non-interactive
+      --channel {{ hermes_agent_channel }}
+      {%- if hermes_agent_skip_browser | bool %} --skip-browser{% endif %}
+    executable: /bin/bash
+  environment:
+    HOME: "{{ hermes_agent_user_home }}"
+    HERMES_HOME: "{{ hermes_agent_home }}"
+
+- name: Apply Hermes Agent configuration
+  when: hermes_agent_config | length > 0
+  become: true
+  become_user: "{{ hermes_agent_user }}"
+  tags:
+    - config
+    - hermes_agent
+  ansible.builtin.command:
+    cmd: "{{ hermes_agent_launcher }} config set {{ item.key }} {{ item.value | quote }}"
+  loop: "{{ hermes_agent_config | dict2items }}"
+  environment:
+    HOME: "{{ hermes_agent_user_home }}"
+    HERMES_HOME: "{{ hermes_agent_home }}"
+  changed_when: false
+
+- name: Write Hermes Agent secrets
+  when: hermes_agent_env | length > 0
+  become: true
+  become_user: "{{ hermes_agent_user }}"
+  tags:
+    - config
+    - hermes_agent
+  ansible.builtin.copy:
+    dest: "{{ hermes_agent_home }}/.env"
+    content: |
+      {% for key, value in hermes_agent_env.items() %}
+      {{ key }}={{ value }}
+      {% endfor %}
+    mode: "0600"
