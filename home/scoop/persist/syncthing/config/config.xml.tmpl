@@ -1,13 +1,13 @@
-{{ $unique_id := dict "bed" "zKw6d9Pv" "nuc" "pS2Qscaz" "work" "KCCpjZMF" -}}
+{{ $unique_id := dict "bed" "zKw6d9Pv" "nuc" "pS2Qscaz" "work" "KCCpjZMF" "air" "abJ2Ac5G" -}}
 
 {{ define "folder" -}}
 {{ $origin := . -}}
 {{ if has .hostname .devices }}    <folder id="{{ .id }}" label="{{ .label }}" path="{{ .path }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-{{ range .devices }}        <device id="{{ includeTemplate "secrets" $origin | fromToml | dig "syncthing" . "id" "" }}" introducedBy="">
+{{ range .devices }}{{ if ne . $origin.hostname }}        <device id="{{ includeTemplate "secrets" $origin | fromToml | dig "syncthing" . "id" "" }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-{{ end }}        <minDiskFree unit="%">1</minDiskFree>
+{{ end }}{{ end }}        <minDiskFree unit="%">1</minDiskFree>
         <versioning>
             <cleanupIntervalS>3600</cleanupIntervalS>
             <fsPath></fsPath>
@@ -189,11 +189,13 @@
 {{ template "folder" (dict "id" "rjrxe-9sugq" "label" "ludusavi" "path" (joinPath .chezmoi.homeDir "ludusavi-backup") "devices" (list "nuc" "bed" "work" "note20") "hostname" .chezmoi.hostname "chezmoi" .chezmoi "my" .my) -}}
 {{ template "folder" (dict "id" "u5dje-5hvnn" "label" "game_saves" "path" (joinPath .chezmoi.homeDir "Documents" "game_saves") "devices" (list "nuc" "bed" "work" "note20") "hostname" .chezmoi.hostname "chezmoi" .chezmoi "my" .my) -}}
 {{ template "folder" (dict "id" "oxjez-pxtna" "label" "ludusaviRestic" "path" (joinPath .chezmoi.homeDir "Documents" "PlayniteBackups") "devices" (list "nuc" "bed" "work" "note20") "hostname" .chezmoi.hostname "chezmoi" .chezmoi "my" .my) -}}
-{{ template "folder" (dict "id" "gc5sz-susp5" "label" "share" "path" (joinPath .chezmoi.homeDir "Syncthing" "share") "devices" (list "nuc" "bed" "work" "s10" "m6" "note20") "hostname" .chezmoi.hostname "chezmoi" .chezmoi "my" .my) -}}
+{{ template "folder" (dict "id" "gc5sz-susp5" "label" "share" "path" (joinPath .chezmoi.homeDir "Syncthing" "share") "devices" (list "nuc" "bed" "work" "s10" "m6" "note20" "air") "hostname" .chezmoi.hostname "chezmoi" .chezmoi "my" .my) -}}
 {{ template "folder" (dict "id" "htvji-asdsj" "label" "gpg_keys" "path" (joinPath .chezmoi.homeDir "Syncthing" "gpg_keys") "devices" (list "nuc" "bed" "work" "note20") "hostname" .chezmoi.hostname "chezmoi" .chezmoi "my" .my) -}}
 {{ $origin := . -}}
-{{ range (list "bed" "nuc" "work" "note20" "s10" "m6") -}}
+{{ range (list "bed" "nuc" "work" "note20" "s10" "m6" "air") -}}
+{{ if ne . $origin.chezmoi.hostname -}}
 {{ template "device" (dict "device" . "chezmoi" $origin.chezmoi "my" $origin.my) -}}
+{{ end -}}
 {{ end -}}
 {{ template "gui" . }}    <ldap></ldap>
 {{ template "options" (index $unique_id .chezmoi.hostname) -}}
