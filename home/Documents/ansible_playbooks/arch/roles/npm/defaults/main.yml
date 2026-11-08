@@ -1,0 +1,11 @@
+---
+npm_enabled: true
+# Node >= 18.20 for CodeBuddy, >= 24.9 for `dsh`; the pacman role already
+# ships these, but the role stays self-sufficient.
+npm_pacman_packages:
+  - nodejs
+  - npm
+# Global CLI packages, installed with `npm i -g` under the root-owned /usr prefix.
+npm_packages:
+  - "@tencent-ai/codebuddy-code"
+  - "@deepseek-ai/dsh"
