@@ -1099,4 +1099,12 @@ AppData/Roaming/maki/*
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ qtile
+{{ if lookPath "qtile" -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+!.config/qtile/
+!.config/qtile/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
