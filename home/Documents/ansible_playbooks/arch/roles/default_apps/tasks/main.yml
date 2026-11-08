@@ -1,0 +1,41 @@
+---
+# Same task, two reasons: `xdg-mime default` writes ~/.config/mimeapps.list under the user's
+# HOME (a root run must drop privilege), and querying first keeps it idempotent instead of
+# rewriting a key it already owns. No DISPLAY needed — mimeapps.list is a plain file.
+- name: Set default applications
+  become: true
+  become_user: "{{ default_apps_user }}"
+  tags:
+    - config
+    - default_apps
+  ansible.builtin.shell:
+    cmd: |
+      set -u
+      missing=0
+      changed=0
+      while read -r mime desktop; do
+        [ -n "$mime" ] || continue
+        if [ ! -f "/usr/share/applications/$desktop" ]; then
+          echo "missing desktop file: $desktop" >&2
+          missing=1
+          continue
+        fi
+        [ "$(xdg-mime query default "$mime")" = "$desktop" ] && continue
+        xdg-mime default "$desktop" "$mime"
+        changed=1
+      done <<'EOF'
+      {% for kind, mimes in default_apps_mime_types.items() %}
+      {% for mime in mimes %}
+      {{ mime }} {{ default_apps[kind] }}
+      {% endfor %}
+      {% endfor %}
+      EOF
+      echo "changed=$changed"
+      exit "$missing"
+  args:
+    executable: /bin/bash
+    chdir: "{{ ansible_facts.user_home }}"
+  environment:
+    HOME: "{{ ansible_facts.user_home }}"
+  register: default_apps_result
+  changed_when: "'changed=1' in default_apps_result.stdout"

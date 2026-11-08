@@ -1,0 +1,36 @@
+---
+default_apps_enabled: true
+default_apps_user: "{{ ansible_facts.user_id }}"
+# Desktop entry names, verified against the packaged tarballs
+# (qutebrowser 3.7.0 -> org.qutebrowser.qutebrowser.desktop, mpv -> mpv.desktop).
+default_apps:
+  browser: org.qutebrowser.qutebrowser.desktop
+  video: mpv.desktop
+  audio: mpv.desktop
+default_apps_mime_types:
+  browser:
+    - text/html
+    - x-scheme-handler/http
+    - x-scheme-handler/https
+    - x-scheme-handler/about
+  video:
+    - video/mp4
+    - video/x-matroska
+    - video/webm
+    - video/ogg
+    - video/x-msvideo
+    - video/mpeg
+    - video/quicktime
+    - video/3gpp
+  audio:
+    - audio/mpeg
+    - audio/mp4
+    - audio/x-m4a
+    - audio/ogg
+    - audio/opus
+    - audio/flac
+    - audio/x-flac
+    - audio/wav
+    - audio/x-wav
+    - audio/aac
+    - audio/webm
