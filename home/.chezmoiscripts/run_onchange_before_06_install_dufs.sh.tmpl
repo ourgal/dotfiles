@@ -1,7 +1,8 @@
 {{ if eq .chezmoi.os "linux" -}}
+{{ if ne (dig "osRelease" "id" "" .chezmoi) "arch" -}}
 #!{{ lookPath "bash" }}
 
-{{ $dufs_version := "0.46.0" -}}
+{{ $dufs_version := "0.47.0" -}}
 {{ $arch := "x86_64" -}}
 {{ if eq .chezmoi.arch "arm64" -}}
 {{ $arch = "aarch64" -}}
@@ -16,4 +17,5 @@
   "chezmoi" .chezmoi
 )}}
 
+{{ end -}}
 {{ end -}}
