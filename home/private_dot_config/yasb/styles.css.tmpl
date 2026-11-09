@@ -1,0 +1,215 @@
+:root {
+    --base: #191724;
+    --surface: #1f1d2e;
+    --overlay: #26233a;
+    --muted: #6e6a86;
+    --subtle: #908caa;
+    --text: #e0def4;
+    --love: #eb6f92;
+    --gold: #f6c177;
+    --rose: #ebbcba;
+    --pine: #31748f;
+    --foam: #9ccfd8;
+    --iris: #c4a7e7;
+}
+
+* {
+    font-family: "{{ .my.font.monospace_cn }}", "{{ .my.font.monospace }}", monospace;
+    font-size: 12px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+}
+
+.yasb-bar {
+    background-color: var(--base);
+    border-bottom: 1px solid var(--overlay);
+}
+
+.widget {
+    padding: 0 8px;
+}
+
+.widget .label {
+    padding: 0 2px;
+}
+
+.widget .icon {
+    font-size: 15px;
+}
+
+.tooltip {
+    background-color: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--overlay);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-family: "{{ .my.font.monospace_cn }}", "{{ .my.font.monospace }}", monospace;
+    font-size: 12px;
+}
+
+.home-widget .icon {
+    color: var(--iris);
+    padding: 2px;
+}
+
+.home-menu,
+.audio-menu,
+.clock-popup,
+.power-menu-compact {
+    background-color: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--overlay);
+    border-radius: 10px;
+    padding: 6px;
+    font-family: "{{ .my.font.monospace_cn }}", "{{ .my.font.monospace }}", monospace;
+    font-size: 12px;
+}
+
+.home-menu {
+    min-width: 180px;
+}
+
+.home-menu .menu-item {
+    padding: 7px 14px;
+    color: var(--text);
+    border-radius: 6px;
+}
+
+.home-menu .menu-item:hover {
+    background-color: var(--overlay);
+    color: var(--iris);
+}
+
+.home-menu .separator {
+    height: 1px;
+    max-height: 1px;
+    background-color: var(--overlay);
+    margin: 4px 8px;
+}
+
+.glazewm-workspaces {
+    padding: 0 6px;
+}
+
+.glazewm-workspaces .ws-btn {
+    background-color: transparent;
+    border: none;
+    border-radius: 6px;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 3px 7px;
+    margin: 0 1px;
+}
+
+.glazewm-workspaces .ws-btn.populated {
+    color: var(--subtle);
+}
+
+.glazewm-workspaces .ws-btn.active_populated,
+.glazewm-workspaces .ws-btn.active_empty {
+    color: var(--foam);
+}
+
+.glazewm-workspaces .ws-btn.focused_populated,
+.glazewm-workspaces .ws-btn.focused_empty {
+    background-color: var(--overlay);
+    color: var(--iris);
+}
+
+.glazewm-workspaces .ws-btn:hover {
+    background-color: var(--overlay);
+    color: var(--text);
+}
+
+.clock-widget .label {
+    color: var(--gold);
+    font-weight: 600;
+    padding: 2px;
+}
+
+.media-widget {
+    padding: 0 4px;
+}
+
+.media-widget .label {
+    color: var(--subtle);
+}
+
+.media-widget .btn {
+    color: var(--muted);
+    font-size: 11px;
+    padding: 0 2px;
+}
+
+.media-widget .btn:hover {
+    color: var(--text);
+}
+
+.media-widget .btn.play {
+    font-size: 14px;
+}
+
+.traffic-widget .icon,
+.traffic-widget .label {
+    color: var(--foam);
+}
+
+.cpu-widget .icon,
+.cpu-widget .label {
+    color: var(--love);
+}
+
+.memory-widget .icon,
+.memory-widget .label {
+    color: var(--iris);
+}
+
+.battery-widget .icon,
+.battery-widget .label {
+    color: var(--pine);
+}
+
+.volume-widget .icon,
+.volume-widget .label {
+    color: var(--gold);
+}
+
+.power-menu-widget .icon,
+.power-menu-widget .label {
+    color: var(--love);
+}
+
+.audio-menu .button,
+.power-menu-compact .button {
+    background-color: transparent;
+    color: var(--text);
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    margin: 2px;
+}
+
+.audio-menu .button:hover,
+.power-menu-compact .button:hover {
+    background-color: var(--overlay);
+}
+
+.power-menu-compact .button .icon,
+.power-menu-compact .button .label {
+    color: var(--text);
+    padding: 2px 4px;
+}
+
+.power-menu-compact .button:hover .icon,
+.power-menu-compact .button:hover .label {
+    color: var(--iris);
+}
+
+.uptime {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}

@@ -1,11 +1,9 @@
 general:
   # Commands to run when the WM has started. This is useful for running a
   # script or launching another application.
-  # Example: The below command launches Zebar.
-  startup_commands: []
+  startup_commands: [{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "yasb" "opt" (list "windows" "startup" "yasb" "enable") "os" "windows") | trim | atoi -}}'shell-exec yasb'{{ end -}}]
   # Commands to run just before the WM is shutdown.
-  # Example: The below command kills Zebar.
-  shutdown_commands: []
+  shutdown_commands: [{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "yasb" "opt" (list "windows" "startup" "yasb" "enable") "os" "windows") | trim | atoi -}}'shell-exec taskkill /IM yasb.exe /F'{{ end -}}]
   # Commands to run after the WM config is reloaded.
   config_reload_commands: []
   # Whether to automatically focus windows underneath the cursor.
