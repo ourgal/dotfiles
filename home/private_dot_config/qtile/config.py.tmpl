@@ -8,6 +8,10 @@ from libqtile.config import Click, Drag, Group, Key, Match, Output, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
+{{ if .my.modules.qtile.rose_pine_bar }}
+from rose_pine import make_bar as rose_pine_bar
+{{ end }}
+
 mod = "mod4"
 terminal = guess_terminal()
 
@@ -130,6 +134,17 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 logo = os.path.join(os.path.dirname(libqtile.resources.__file__), "logo.png")
+
+{{ if .my.modules.qtile.rose_pine_bar }}
+screens = [
+    Screen(
+        top=rose_pine_bar(),
+        background="#191724",
+        wallpaper=logo,
+        wallpaper_mode="center",
+    ),
+]
+{{ else }}
 screens = [
     Screen(
         bottom=bar.Bar(
@@ -165,6 +180,7 @@ screens = [
         # x11_drag_polling_rate = 60,
     ),
 ]
+{{ end }}
 
 # Instead of screens, you can define a function here to specify which Screen
 # should correspond to which Output.

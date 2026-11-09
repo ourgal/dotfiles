@@ -1,0 +1,186 @@
+"""Rose Pine bar, adapted from the-argus/rose-pine-dots.
+
+Only libqtile widgets are used: no qtile-extras, no external status commands.
+Resource meters that need psutil are intentionally omitted; the battery widget
+is added only on machines that actually have one.
+"""
+
+import glob
+
+from libqtile import bar, widget
+from libqtile.lazy import lazy
+
+FONT = "{{ .my.font.monospace }}"
+
+BAR_HEIGHT = 34
+MARGIN = 9
+BORDER_WIDTH = 2
+
+ARROW = "\ue0b0"
+ARCH_LOGO = "\uf303"
+
+colors = {
+    "bg": "#191724",
+    "fg": "#e0def4",
+    "gutter": "#555169",
+    "red": "#eb6f92",
+    "green": "#31748f",
+    "yellow": "#f6c177",
+    "blue": "#9ccfd8",
+    "magenta": "#c4a7e7",
+    "orange": "#6e6a86",
+    "pink": "#2a2837",
+}
+
+
+def _specs():
+    specs = [
+        (widget.Spacer, dict(length=6, background=colors["magenta"])),
+        (
+            widget.TextBox,
+            dict(
+                text=ARCH_LOGO,
+                font=FONT,
+                fontsize=18,
+                padding=4,
+                background=colors["magenta"],
+                foreground=colors["bg"],
+                mouse_callbacks={"Button1": lazy.spawncmd()},
+            ),
+        ),
+        (
+            widget.GroupBox,
+            dict(
+                font=FONT,
+                fontsize=15,
+                padding=3,
+                foreground=colors["gutter"],
+                highlight_method="text",
+                block_highlight_text_color=colors["fg"],
+                active=colors["yellow"],
+                inactive=colors["gutter"],
+                this_current_screen_border=colors["yellow"],
+                this_screen_border=colors["yellow"],
+                other_current_screen_border=colors["yellow"],
+                other_screen_border=colors["yellow"],
+                urgent_border=colors["red"],
+                urgent_text=colors["red"],
+                highlight_color=[colors["fg"], colors["yellow"]],
+                disable_drag=True,
+                use_mouse_wheel=False,
+                spacing=5,
+            ),
+        ),
+        (
+            widget.WindowName,
+            dict(
+                font=FONT,
+                fontsize=16,
+                padding=3,
+                format="{name}",
+                background=colors["gutter"],
+                foreground=colors["fg"],
+                center_aligned=True,
+            ),
+        ),
+        (
+            widget.Systray,
+            dict(padding=5, background=colors["orange"], icon_size=20),
+        ),
+        (widget.Spacer, dict(length=1, background=colors["orange"])),
+    ]
+
+    if glob.glob("/sys/class/power_supply/BAT*"):
+        specs.append(
+            (
+                widget.Battery,
+                dict(
+                    font=FONT,
+                    fontsize=14,
+                    padding=3,
+                    background=colors["magenta"],
+                    foreground=colors["bg"],
+                    format="{char} {percent:2.0%}",
+                    charge_char="\uf0e7",
+                    discharge_char="\uf241",
+                    full_char="\uf240",
+                    empty_char="\uf244",
+                    unknown_char="?",
+                    low_percentage=0.3,
+                    low_foreground=colors["red"],
+                    low_background=None,
+                ),
+            )
+        )
+
+    specs += [
+        (
+            widget.CurrentLayout,
+            dict(
+                font=FONT,
+                fontsize=14,
+                padding=3,
+                background=colors["pink"],
+                foreground=colors["fg"],
+            ),
+        ),
+        (
+            widget.Clock,
+            dict(
+                font=FONT,
+                fontsize=14,
+                padding=3,
+                format="%m/%d/%Y",
+                background=colors["orange"],
+                foreground=colors["bg"],
+            ),
+        ),
+        (
+            widget.Clock,
+            dict(
+                font=FONT,
+                fontsize=14,
+                padding=3,
+                format="%I:%M %p ",
+                background=colors["gutter"],
+                foreground=colors["fg"],
+            ),
+        ),
+    ]
+
+    return specs
+
+
+def _widgets():
+    specs = _specs()
+    widgets = []
+
+    for index, (cls, kwargs) in enumerate(specs):
+        widgets.append(cls(**kwargs))
+
+        if index + 1 < len(specs):
+            background = kwargs.get("background", colors["bg"])
+            next_background = specs[index + 1][1].get("background", colors["bg"])
+            widgets.append(
+                widget.TextBox(
+                    text=ARROW,
+                    font=FONT,
+                    fontsize=BAR_HEIGHT,
+                    padding=-1,
+                    background=background,
+                    foreground=next_background,
+                )
+            )
+
+    return widgets
+
+
+def make_bar():
+    return bar.Bar(
+        _widgets(),
+        BAR_HEIGHT,
+        foreground=colors["fg"],
+        background=colors["bg"],
+        opacity=1.0,
+        margin=[MARGIN, MARGIN, BORDER_WIDTH, MARGIN],
+    )
