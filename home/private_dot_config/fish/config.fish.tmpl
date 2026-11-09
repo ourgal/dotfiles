@@ -11,6 +11,10 @@ if status is-interactive
     alias bat="batcat"
     {{ end -}}
 
+    {{ if lookPath "helix" -}}
+    alias hx="helix"
+    {{ end -}}
+
     {{ if lookPath "xset" -}}
     alias scroff="xset dpms force off"
     {{ end -}}
