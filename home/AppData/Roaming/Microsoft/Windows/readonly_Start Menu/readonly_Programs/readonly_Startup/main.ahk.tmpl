@@ -48,7 +48,7 @@ Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "wezterm" "current" "wezterm-gu
 WinWait("ahk_exe wezterm-gui.exe")
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "firefox" "opt" (list "windows" "startup" "firefox" "enable") "os" "windows") | trim | atoi -}}
-Run {{ joinPath (env "AppData") "Microsoft" "Windows" "Start Menu" "Programs" "Scoop Apps" "Firefox.lnk" | quote }}, , "Max"
+Run {{ joinPath (env "AppData") "Microsoft" "Windows" "Start Menu" "Programs" "Scoop Apps" "Firefox.lnk" | quote }}, , ""
 WinWait("ahk_exe firefox.exe")
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "glazewm" "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
 WinActivate "ahk_exe firefox.exe"
@@ -56,7 +56,7 @@ Run "glazewm command move --workspace 2", ,"Hide"
 {{ end -}}
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "brave" "opt" (list "windows" "startup" "brave" "enable") "os" "windows") | trim | atoi -}}
-Run {{ joinPath (env "AppData") "Microsoft" "Windows" "Start Menu" "Programs" "Scoop Apps" "Brave.lnk" | quote }}, , "Max"
+Run {{ joinPath (env "AppData") "Microsoft" "Windows" "Start Menu" "Programs" "Scoop Apps" "Brave.lnk" | quote }}, , ""
 WinWait("ahk_exe brave.exe")
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "glazewm" "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
 WinActivate "ahk_exe brave.exe"
@@ -73,7 +73,7 @@ Run "glazewm command move --workspace 2", ,"Hide"
 {{ end -}}
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "brave" "opt" (list "windows" "startup" "chromium" "enable") "os" "windows") | trim | atoi -}}
-Run {{ joinPath (env "AppData") "Microsoft" "Windows" "Start Menu" "Programs" "Scoop Apps" "Chromium.lnk" | quote }}, , "Max"
+Run {{ joinPath (env "AppData") "Microsoft" "Windows" "Start Menu" "Programs" "Scoop Apps" "Chromium.lnk" | quote }}, , ""
 WinWait("ahk_exe chrome.exe")
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "glazewm" "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
 WinActivate "ahk_exe chrome.exe"
@@ -82,7 +82,7 @@ Run "glazewm command move --workspace 2", ,"Hide"
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "code" "opt" (list "windows" "startup" "vscode" "enable") "os" "windows") | trim | atoi -}}
 {{ $vscode := joinPath .chezmoi.homeDir "scoop" "apps" "vscode" "current" "Code.exe" -}}
-Run({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
+Run({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, "")
 WinWait "ahk_exe Code.exe"
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "glazewm" "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
 WinActivate "ahk_exe Code.exe"
@@ -91,7 +91,7 @@ Run "glazewm command move --workspace 3", ,"Hide"
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "vscodium" "opt" (list "windows" "startup" "vscodium" "enable") "os" "windows") | trim | atoi -}}
 {{ $vscodium := joinPath .chezmoi.homeDir "scoop" "apps" "vscodium" "current" "VSCodium.exe" -}}
-Run({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, "Max")
+Run({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, "")
 WinWait("ahk_exe VSCodium.exe")
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "glazewm" "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
 WinActivate "ahk_exe VSCodium.exe"
@@ -99,13 +99,13 @@ Run "glazewm command move --workspace 3", ,"Hide"
 {{ end -}}
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "leo" "opt" (list "windows" "startup" "leo" "enable") "os" "windows") | trim | atoi -}}
-Run "leo", , "Max"
+Run "leo", , ""
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "everything" "opt" (list "windows" "startup" "everything" "enable") "os" "windows") | trim | atoi -}}
 Run "everything", , "Hide"
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "wt" "pwsh") "opt" (list "windows" "startup" "wt" "enable") "os" "windows") | trim | atoi -}}
-Run {{ joinPath .chezmoi.homeDir "scoop" "apps" "windows-terminal" "current" "wt.exe" | quote }}, ,"Max"
+Run {{ joinPath .chezmoi.homeDir "scoop" "apps" "windows-terminal" "current" "wt.exe" | quote }}, ,""
 WinWait "ahk_exe WindowsTerminal.exe"
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "glazewm" "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
 WinActivate "ahk_exe WindowsTerminal.exe"
