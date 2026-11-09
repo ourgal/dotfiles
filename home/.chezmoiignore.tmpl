@@ -1024,6 +1024,11 @@ AppData/Local/nvim/lua/plugins/*
 AppData/Local/tuios/*
 !AppData/Local/tuios/config.toml
 {{ end -}}
+{{ if eq .chezmoi.os "linux" -}}
+!.config/tuios/
+.config/tuios/*
+!.config/tuios/config.toml
+{{ end -}}
 {{ end -}}
 # ]]]
 # [[[ maki
