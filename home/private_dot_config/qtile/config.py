@@ -76,7 +76,7 @@ for vt in range(1, 8):
 # groups = [Group(i) for i in "123456789"]
 groups = [
     Group("1", spawn="kitty"),
-    Group("2", spawn="qutebrowser"),
+    Group("2", spawn="chromium"),
     Group("3"),
     Group("4"),
     Group("5"),
