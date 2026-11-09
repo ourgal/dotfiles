@@ -37,6 +37,7 @@ bars:
         - memory
         - battery
         - volume
+        - systray
         - power_menu
 
 widgets:
@@ -124,6 +125,24 @@ widgets:
     options:
       label: "<span>{icon}</span> {level}"
       label_alt: "{level}"
+
+  systray:
+    type: "yasb.systray.SystrayWidget"
+    options:
+      class_name: "systray"
+      icon_size: 16
+      label_position: "right"
+      show_unpinned: false
+      show_in_popup: true
+      icons_per_row: 5
+      popup:
+        blur: false
+        round_corners: false
+        round_corners_type: "normal"
+        border_color: "System"
+        alignment: "right"
+        direction: "down"
+        offset_left: 8
 
   power_menu:
     type: "yasb.power_menu.PowerMenuWidget"

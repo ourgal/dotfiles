@@ -181,6 +181,58 @@
     color: var(--love);
 }
 
+.systray {
+    padding: 0 4px;
+}
+
+.systray .button {
+    border: none;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+.systray .button:hover,
+.systray .button.drag-over {
+    background-color: var(--overlay);
+}
+
+.systray .pinned-container.drop-target {
+    background-color: var(--overlay);
+}
+
+.systray .unpinned-visibility-btn {
+    background-color: transparent;
+    border: none;
+    border-radius: 4px;
+    color: var(--subtle);
+    font-size: 10px;
+    padding: 0 4px;
+}
+
+.systray .unpinned-visibility-btn:hover {
+    background-color: var(--overlay);
+    color: var(--text);
+}
+
+.systray-popup {
+    background-color: var(--surface);
+    border: 1px solid var(--overlay);
+    border-radius: 10px;
+    padding: 4px;
+}
+
+.systray-popup .button {
+    border: none;
+    border-radius: 6px;
+    padding: 6px;
+    margin: 0;
+}
+
+.systray-popup .button:hover,
+.systray-popup .button.drag-over {
+    background-color: var(--overlay);
+}
+
 .audio-menu .button,
 .power-menu-compact .button {
     background-color: transparent;
