@@ -3,6 +3,15 @@
   hosts: ai_servers
   ignore_unreachable: true
   roles:
+    - role: pacman
+      when: pacman_enabled | default(true) | bool
+      vars:
+        pacman_packages:
+          ai:
+            - ansible
+            - ansible-core
+            - btop
+            - nvtop
     - role: paru
       when: paru_enabled | default(true) | bool
     - role: ollama
