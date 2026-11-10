@@ -1,0 +1,20 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ $imports := joinPath .chezmoi.homeDir "scoop" "apps" "nilesoft-shell" "current" "imports" -}}
+{{ $dest := joinPath $imports "theme.nss" -}}
+{{ $backup := joinPath $imports "theme.nss.orig" -}}
+{{ if eq .my.modules.windows.theme "kanagawa" -}}
+{{ $src := joinPath .chezmoi.homeDir ".local" "share" "kanagawa-win11" "NileSoft-Shell" "theme.nss" -}}
+if (-not (Test-Path {{ $src | quote }}) -or -not (Test-Path {{ $dest | quote }})) { exit 0 }
+if (-not (Test-Path {{ $backup | quote }})) { Copy-Item {{ $dest | quote }} {{ $backup | quote }} -Force }
+if ((Get-FileHash {{ $src | quote }}).Hash -ne (Get-FileHash {{ $dest | quote }}).Hash) {
+    Copy-Item {{ $src | quote }} {{ $dest | quote }} -Force
+    Write-Output "kanagawa: applied NileSoft-Shell theme"
+}
+{{ else -}}
+if ((Test-Path {{ $backup | quote }}) -and (Test-Path {{ $dest | quote }})) {
+    Copy-Item {{ $backup | quote }} {{ $dest | quote }} -Force
+    Remove-Item {{ $backup | quote }} -Force
+    Write-Output "kanagawa: restored NileSoft-Shell theme"
+}
+{{ end -}}
+{{ end -}}

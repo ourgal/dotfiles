@@ -1,16 +1,24 @@
+{{- if eq (index .my.themes .my.modules.windows.theme).wm "komorebi" -}}
+{{ includeTemplate "kanagawa_yasb_styles" . }}
 :root {
-    --base: #191724;
-    --surface: #1f1d2e;
-    --overlay: #26233a;
-    --muted: #6e6a86;
-    --subtle: #908caa;
-    --text: #e0def4;
-    --love: #eb6f92;
-    --gold: #f6c177;
-    --rose: #ebbcba;
-    --pine: #31748f;
-    --foam: #9ccfd8;
-    --iris: #c4a7e7;
+    --icons-font: "{{ .my.font.monospace_cn }}", "{{ .my.font.monospace }}";
+    --icons-font-fallback: "{{ .my.font.monospace }}";
+}
+{{- else -}}
+{{- $theme := index .my.themes .my.modules.windows.theme -}}
+:root {
+    --base: {{ $theme.background }};
+    --surface: {{ $theme.surface }};
+    --overlay: {{ $theme.overlay }};
+    --muted: {{ $theme.muted }};
+    --subtle: {{ $theme.subtle }};
+    --text: {{ $theme.text }};
+    --love: {{ $theme.love }};
+    --gold: {{ $theme.gold }};
+    --rose: {{ $theme.rose }};
+    --pine: {{ $theme.pine }};
+    --foam: {{ $theme.foam }};
+    --iris: {{ $theme.iris }};
 }
 
 * {
@@ -265,3 +273,4 @@
     font-weight: 600;
     margin-bottom: 8px;
 }
+{{- end -}}

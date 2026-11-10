@@ -13,6 +13,9 @@ RunScoop(app)
 
 SetTitleMatchMode(2)
 {{ $glazewm := joinPath .chezmoi.homeDir "scoop" "apps" "glazewm" "current" "glazewm.exe" -}}
+{{ $komorebic := joinPath .chezmoi.homeDir "scoop" "apps" "komorebi" "current" "komorebic.exe" -}}
+{{ $whkd := joinPath .chezmoi.homeDir "scoop" "apps" "whkd" "current" "whkd.exe" -}}
+{{ $yasb := joinPath .chezmoi.homeDir "scoop" "apps" "yasb" "current" "yasb.exe" -}}
 {{ $deskflow_core := joinPath .chezmoi.homeDir "scoop" "apps" "deskflow" "current" "deskflow-core.exe" -}}
 {{ $alist := joinPath .chezmoi.homeDir "scoop" "apps" "alist" "current" "alist.exe" -}}
 {{ $mpd := joinPath .chezmoi.homeDir "scoop" "apps" "mpd" "current" "mpd.exe" -}}
@@ -26,9 +29,32 @@ SetTitleMatchMode(2)
 {{ $syncthing := joinPath .chezmoi.homeDir "scoop" "apps" "syncthing" "current" "syncthing.exe" -}}
 {{ $runemacs := joinPath .chezmoi.homeDir "scoop" "apps" "emacs" "current" "bin" "runemacs.exe" -}}
 {{ $rclone := joinPath .chezmoi.homeDir "scoop" "apps" "rclone" "current" "rclone.exe" -}}
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $glazewm "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
+{{ $wm := (index .my.themes .my.modules.windows.theme).wm -}}
+{{ $glazewm_enabled := 0 -}}
+{{ $komorebi_enabled := 0 -}}
+{{ $whkd_enabled := 0 -}}
+{{ $yasb_enabled := 0 -}}
+{{ if eq $wm "glazewm" -}}
+{{ $glazewm_enabled = includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $glazewm "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
+{{ end -}}
+{{ if eq $wm "komorebi" -}}
+{{ $komorebi_enabled = includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $komorebic "opt" (list "windows" "startup" "komorebi" "enable") "os" "windows") | trim | atoi -}}
+{{ $whkd_enabled = includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $whkd "opt" (list "windows" "startup" "whkd" "enable") "os" "windows") | trim | atoi -}}
+{{ $yasb_enabled = includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "yasb" "opt" (list "windows" "startup" "yasb" "enable") "os" "windows") | trim | atoi -}}
+{{ end -}}
+{{ if $glazewm_enabled -}}
 Run("{{ $glazewm }}", {{ .chezmoi.homeDir | quote }}, "Hide")
 Sleep 5000
+{{ end -}}
+{{ if $komorebi_enabled -}}
+Run("{{ $komorebic }} start", {{ .chezmoi.homeDir | quote }}, "Hide")
+Sleep 5000
+{{ end -}}
+{{ if $whkd_enabled -}}
+Run("{{ $whkd }}", {{ .chezmoi.homeDir | quote }}, "Hide")
+{{ end -}}
+{{ if $yasb_enabled -}}
+Run("{{ $yasb }}", {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $deskflow_core "opt" (list "windows" "startup" "deskflow_client" "enable") "os" "windows") | trim | atoi -}}
 Run "{{ $deskflow_core }} client", , "Hide"
@@ -64,52 +90,76 @@ WinWait("ahk_exe wezterm-gui.exe")
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "firefox" "opt" (list "windows" "startup" "firefox" "enable") "os" "windows") | trim | atoi -}}
 Run {{ joinPath (env "AppData") "Microsoft" "Windows" "Start Menu" "Programs" "Scoop Apps" "Firefox.lnk" | quote }}, , ""
 WinWait("ahk_exe firefox.exe")
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $glazewm "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
+{{ if $glazewm_enabled -}}
 WinActivate "ahk_exe firefox.exe"
 Run "{{ $glazewm }} command move --workspace 2", ,"Hide"
+{{ end -}}
+{{ if $komorebi_enabled -}}
+WinActivate "ahk_exe firefox.exe"
+Run "{{ $komorebic }} move-to-workspace 1", ,"Hide"
 {{ end -}}
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "brave" "opt" (list "windows" "startup" "brave" "enable") "os" "windows") | trim | atoi -}}
 Run {{ joinPath (env "AppData") "Microsoft" "Windows" "Start Menu" "Programs" "Scoop Apps" "Brave.lnk" | quote }}, , ""
 WinWait("ahk_exe brave.exe")
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $glazewm "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
+{{ if $glazewm_enabled -}}
 WinActivate "ahk_exe brave.exe"
 Run "{{ $glazewm }} command move --workspace 2", ,"Hide"
+{{ end -}}
+{{ if $komorebi_enabled -}}
+WinActivate "ahk_exe brave.exe"
+Run "{{ $komorebic }} move-to-workspace 1", ,"Hide"
 {{ end -}}
 {{ end -}}
 {{ $qutebrowser := joinPath .chezmoi.homeDir "scoop" "apps" "qutebrowser" "current" "qutebrowser.exe" -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $qutebrowser "opt" (list "windows" "startup" "qutebrowser" "enable") "os" "windows") | trim | atoi -}}
 Run {{ $qutebrowser | quote }}, {{ .chezmoi.homeDir | quote }}
 WinWait("ahk_exe qutebrowser.exe")
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $glazewm "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
+{{ if $glazewm_enabled -}}
 WinActivate "ahk_exe qutebrowser.exe"
 Run "{{ $glazewm }} command move --workspace 2", ,"Hide"
+{{ end -}}
+{{ if $komorebi_enabled -}}
+WinActivate "ahk_exe qutebrowser.exe"
+Run "{{ $komorebic }} move-to-workspace 1", ,"Hide"
 {{ end -}}
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "brave" "opt" (list "windows" "startup" "chromium" "enable") "os" "windows") | trim | atoi -}}
 Run {{ joinPath (env "AppData") "Microsoft" "Windows" "Start Menu" "Programs" "Scoop Apps" "Chromium.lnk" | quote }}, , ""
 WinWait("ahk_exe chrome.exe")
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $glazewm "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
+{{ if $glazewm_enabled -}}
 WinActivate "ahk_exe chrome.exe"
 Run "{{ $glazewm }} command move --workspace 2", ,"Hide"
+{{ end -}}
+{{ if $komorebi_enabled -}}
+WinActivate "ahk_exe chrome.exe"
+Run "{{ $komorebic }} move-to-workspace 1", ,"Hide"
 {{ end -}}
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "code" "opt" (list "windows" "startup" "vscode" "enable") "os" "windows") | trim | atoi -}}
 {{ $vscode := joinPath .chezmoi.homeDir "scoop" "apps" "vscode" "current" "Code.exe" -}}
 Run({{ $vscode | quote }}, {{ .chezmoi.homeDir | quote }}, "")
 WinWait "ahk_exe Code.exe"
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $glazewm "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
+{{ if $glazewm_enabled -}}
 WinActivate "ahk_exe Code.exe"
 Run "{{ $glazewm }} command move --workspace 3", ,"Hide"
+{{ end -}}
+{{ if $komorebi_enabled -}}
+WinActivate "ahk_exe Code.exe"
+Run "{{ $komorebic }} move-to-workspace 2", ,"Hide"
 {{ end -}}
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "vscodium" "opt" (list "windows" "startup" "vscodium" "enable") "os" "windows") | trim | atoi -}}
 {{ $vscodium := joinPath .chezmoi.homeDir "scoop" "apps" "vscodium" "current" "VSCodium.exe" -}}
 Run({{ $vscodium | quote }}, {{ .chezmoi.homeDir | quote }}, "")
 WinWait("ahk_exe VSCodium.exe")
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $glazewm "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
+{{ if $glazewm_enabled -}}
 WinActivate "ahk_exe VSCodium.exe"
 Run "{{ $glazewm }} command move --workspace 3", ,"Hide"
+{{ end -}}
+{{ if $komorebi_enabled -}}
+WinActivate "ahk_exe VSCodium.exe"
+Run "{{ $komorebic }} move-to-workspace 2", ,"Hide"
 {{ end -}}
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $leo "opt" (list "windows" "startup" "leo" "enable") "os" "windows") | trim | atoi -}}
@@ -121,9 +171,13 @@ Run "{{ $everything }}", , "Hide"
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "wt" "pwsh") "opt" (list "windows" "startup" "wt" "enable") "os" "windows") | trim | atoi -}}
 Run {{ joinPath .chezmoi.homeDir "scoop" "apps" "windows-terminal" "current" "wt.exe" | quote }}, ,""
 WinWait "ahk_exe WindowsTerminal.exe"
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $glazewm "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
+{{ if $glazewm_enabled -}}
 WinActivate "ahk_exe WindowsTerminal.exe"
 Run "{{ $glazewm }} command move --workspace 1", ,"Hide"
+{{ end -}}
+{{ if $komorebi_enabled -}}
+WinActivate "ahk_exe WindowsTerminal.exe"
+Run "{{ $komorebic }} move-to-workspace 0", ,"Hide"
 {{ end -}}
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "autohotkey" "opt" (list "windows" "startup" "autohotkey" "enable") "os" "windows") | trim | atoi -}}
@@ -158,9 +212,13 @@ Run {{ $jellyfin_mpv_shim | quote }}, , "Hide"
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $runemacs "opt" (list "windows" "startup" "emacs" "enable") "os" "windows") | trim | atoi -}}
 Run "{{ $runemacs }}", {{ .chezmoi.homeDir | quote }}, "Hide"
 WinWait "ahk_exe emacs.exe"
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $glazewm "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
+{{ if $glazewm_enabled -}}
 WinActivate "ahk_exe emacs.exe"
 Run "{{ $glazewm }} command move --workspace 6", ,"Hide"
+{{ end -}}
+{{ if $komorebi_enabled -}}
+WinActivate "ahk_exe emacs.exe"
+Run "{{ $komorebic }} move-to-workspace 3", ,"Hide"
 {{ end -}}
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $runemacs "opt" (list "windows" "startup" "emacs_daemon" "enable") "os" "windows") | trim | atoi -}}

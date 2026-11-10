@@ -1,3 +1,4 @@
+{{- $tacky := (index .my.themes .my.modules.windows.theme).tacky -}}
 # watch_config_changes: Automatically reload borders whenever the config file is modified.
 watch_config_changes: True
 # enable_logging: Log messages (info, warnings, and errors) to a file.
@@ -18,7 +19,7 @@ rendering_backend: V2
 
 global:
   # border_width: Width of the border (in pixels)
-  border_width: 3
+  border_width: {{ $tacky.border_width }}
   # border_offset: Offset of the border from the window edges (in pixels)
 
   #   - Negative values shrink the border inwards
@@ -31,7 +32,7 @@ global:
   #   - Round: Fully rounded corners
   #   - RoundSmall: Slightly rounded corners
   #   - Or specify any numeric value for a custom radius
-  border_radius: Round
+  border_radius: {{ $tacky.border_radius }}
   # border_z_order: Z-order of the border relative to its window. Supported values:
 
   #   - AboveWindow: Place the border above its window
@@ -90,14 +91,22 @@ global:
   #           light: "#000000"
   #       Each value (dark/light) can be a hex code, "accent", or a gradient.
   #       Borders automatically update when the system theme changes.
+{{- if hasKey $tacky.active "color" }}
+  active_color: "{{ $tacky.active.color }}"
+{{- else }}
   active_color:
-    colors: ["#6274e7", "#8752a3"]
-    direction: 45deg
+    colors: [{{ range $i, $c := $tacky.active.colors }}{{ if $i }}, {{ end }}"{{ $c }}"{{ end }}]
+    direction: {{ $tacky.active.direction }}
+{{- end }}
+{{- if hasKey $tacky.inactive "color" }}
+  inactive_color: "{{ $tacky.inactive.color }}"
+{{- else }}
   inactive_color:
-    colors: ["#30304f", "#363c69"]
+    colors: [{{ range $i, $c := $tacky.inactive.colors }}{{ if $i }}, {{ end }}"{{ $c }}"{{ end }}]
     direction:
-      start: [0.0, 1.0]
-      end: [1.0, 0.0]
+      start: [{{ printf "%.1f" (index $tacky.inactive.start 0) }}, {{ printf "%.1f" (index $tacky.inactive.start 1) }}]
+      end: [{{ printf "%.1f" (index $tacky.inactive.end 0) }}, {{ printf "%.1f" (index $tacky.inactive.end 1) }}]
+{{- end }}
   # komorebi_colors: Additional integration for komorebi's special window kinds
 
   #   - active_color is used for komorebi's "Single" window kind

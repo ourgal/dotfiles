@@ -1,3 +1,6 @@
+{{- if eq (index .my.themes .my.modules.windows.theme).wm "komorebi" -}}
+{{ includeTemplate "kanagawa_yasb_config" . }}
+{{- else -}}
 watch_config: true
 watch_stylesheet: true
 debug: false
@@ -167,3 +170,4 @@ widgets:
         hibernate: ["\uf28e", "Hibernate"]
         sleep: ["\u23fe", "Sleep"]
         cancel: ["", "Cancel"]
+{{- end -}}

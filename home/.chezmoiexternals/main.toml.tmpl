@@ -198,3 +198,12 @@
     url = {{ print $mirror "https://github.com/fabioluciano/tmux-powerkit" | quote }}
     refreshPeriod = "168h"
 {{ end -}}
+
+{{ if eq .chezmoi.os "windows" -}}
+{{ if eq .my.modules.windows.theme "kanagawa" -}}
+[".local/share/kanagawa-win11"]
+    type = "git-repo"
+    url = {{ print $mirror "https://github.com/MrDLingters/KanagawaWin11" | quote }}
+    refreshPeriod = "168h"
+{{ end -}}
+{{ end -}}

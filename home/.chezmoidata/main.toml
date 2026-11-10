@@ -88,8 +88,14 @@ known_hosts = [
 [my.modules.qtile]
 rose_pine_bar = true
 
+[my.modules.windows]
+# "rose-pine" (GlazeWM) or "kanagawa" (Komorebi); kanagawa also clones KanagawaWin11 to ~/.local/share/kanagawa-win11
+theme = "kanagawa"
+
 [my.modules.windows.startup]
 glazewm.enable = true
+komorebi.enable = true
+whkd.enable = true
 yasb.enable = true
 deskflow_client.enable = false
 deskflow_server.enable = false
@@ -110,7 +116,7 @@ vscodium.enable = false
 leo.enable = false
 everything.enable = true
 autohotkey.enable = false
-powertoys.enable = true
+powertoys.enable = false
 dufs.enable = true
 copyparty.enable = true
 altrun.enable = false

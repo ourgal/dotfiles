@@ -86,6 +86,10 @@ scoop/persist/*
 !.local/share/
 .local/share/*
 !.local/bin/update-bing-wallpaper.ps1
+{{ if eq .my.modules.windows.theme "kanagawa" -}}
+!.local/share/kanagawa-win11/
+!.local/share/kanagawa-win11/**
+{{ end -}}
 {{ end -}}
 # ]]]
 # [[[ linux
@@ -650,6 +654,14 @@ AppData/Roaming/Microsoft/Windows/Start Menu/Programs/*
 {{ if eq .chezmoi.os "windows" -}}
 !.config/yasb/
 !.config/yasb/**
+{{ end -}}
+{{ end -}}
+# ]]]
+# [[[ komorebi
+{{ if lookPath "komorebic" -}}
+{{ if eq .chezmoi.os "windows" -}}
+!.config/komorebi.json
+!.config/whkdrc
 {{ end -}}
 {{ end -}}
 # ]]]
