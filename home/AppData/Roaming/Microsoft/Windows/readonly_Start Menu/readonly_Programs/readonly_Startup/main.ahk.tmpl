@@ -185,4 +185,8 @@ Run "hermes dashboard", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $thide "opt" (list "windows" "startup" "thide" "enable") "os" "windows") | trim | atoi -}}
 Run "{{ $thide }} start", , "Hide"
 {{ end -}}
+{{ $tacky_borders := joinPath .chezmoi.homeDir "scoop" "apps" "tacky-borders" "current" "tacky-borders.exe" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $tacky_borders "opt" (list "windows" "startup" "tacky_borders" "enable") "os" "windows") | trim | atoi -}}
+Run "{{ $tacky_borders }}", , "Hide"
+{{ end -}}
 {{ end -}}

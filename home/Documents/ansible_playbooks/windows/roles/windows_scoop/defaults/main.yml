@@ -472,8 +472,9 @@ windows_scoop_packages_catalog:
     # - extras/coretemp
     uninstall: []
     # - extras/bulk-crap-uninstaller
-    window: []
-    # - extras/altsnap
+    window:
+      - extras/tacky-borders
+      # - extras/altsnap
     terminal:
       - extras/windows-terminal
       - extras/alacritty

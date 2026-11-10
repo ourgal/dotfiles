@@ -653,6 +653,14 @@ AppData/Roaming/Microsoft/Windows/Start Menu/Programs/*
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ tacky-borders
+{{ if joinPath .chezmoi.homeDir "scoop" "apps" "tacky-borders" | stat -}}
+{{ if eq .chezmoi.os "windows" -}}
+!.config/tacky-borders/
+!.config/tacky-borders/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # [[[ wakatime
 {{ if lookPath "wakatime-cli" -}}
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
