@@ -31,7 +31,21 @@
 
 .yasb-bar {
     background-color: var(--base);
-    border-bottom: 1px solid var(--overlay);
+}
+
+.yasb-bar.adaptive {
+    border: none;
+    -qproperty-railheight: 0;
+    -qproperty-islandradius: 10;
+    -qproperty-grouppadding: 4;
+}
+
+.container-left {
+    padding-left: 16px;
+}
+
+.container-right {
+    padding-right: 16px;
 }
 
 .widget {
