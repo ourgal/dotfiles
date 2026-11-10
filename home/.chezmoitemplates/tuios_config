@@ -132,7 +132,7 @@ sound_mode = "both"
 sound = true
 
 [appearance]
-preferred_shell = "{{ if eq .chezmoi.os "windows" }}{{ lookPath "pwsh" }}{{ else }}{{ lookPath "fish" }}{{ end }}"
+preferred_shell = {{ if eq .chezmoi.os "windows" }}{{ lookPath "pwsh" | quote }}{{ else }}{{ lookPath "fish" | quote }}{{ end }}
 
 [hosts.nuc]
 addr = "nuc"
