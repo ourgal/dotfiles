@@ -1,0 +1,32 @@
+[Unit]
+Description=llama.cpp OpenAI-compatible server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User={{ llama_cpp_user }}
+Group={{ llama_cpp_user }}
+SupplementaryGroups=video render
+WorkingDirectory={{ llama_cpp_home }}
+Environment=HOME={{ llama_cpp_home }}
+Environment=HF_HOME={{ llama_cpp_home }}
+ExecStart={{ llama_cpp_binary }} \
+    --model {{ llama_cpp_model_path }} \
+    --alias {{ llama_cpp_alias }} \
+    --host {{ llama_cpp_host }} \
+    --port {{ llama_cpp_port }} \
+    --ctx-size {{ llama_cpp_context_length }} \
+    --n-gpu-layers {{ llama_cpp_gpu_layers }} \
+    -fa 1 \
+    --cache-type-k {{ llama_cpp_cache_type_k }} \
+    --cache-type-v {{ llama_cpp_cache_type_v }} \
+    --spec-type {{ llama_cpp_spec_type }} \
+    --spec-draft-n-max {{ llama_cpp_spec_draft_n_max }} \
+    --parallel 1 \
+    --jinja
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

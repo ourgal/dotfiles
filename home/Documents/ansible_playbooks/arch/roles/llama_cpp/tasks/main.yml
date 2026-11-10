@@ -1,0 +1,125 @@
+---
+- name: Install llama.cpp runtime dependencies
+  become: true
+  tags:
+    - pkg
+    - llama_cpp
+  community.general.pacman:
+    name: "{{ llama_cpp_packages }}"
+    state: present
+
+- name: Create the llama.cpp group
+  become: true
+  tags:
+    - llama_cpp
+  ansible.builtin.group:
+    name: "{{ llama_cpp_user }}"
+    system: true
+
+- name: Create the llama.cpp service user
+  become: true
+  tags:
+    - llama_cpp
+  ansible.builtin.user:
+    name: "{{ llama_cpp_user }}"
+    group: "{{ llama_cpp_user }}"
+    home: "{{ llama_cpp_home }}"
+    create_home: true
+    shell: /usr/bin/nologin
+    system: true
+    groups:
+      - video
+      - render
+    append: true
+
+- name: Create the model directory
+  become: true
+  tags:
+    - llama_cpp
+  ansible.builtin.file:
+    path: "{{ llama_cpp_model_dir }}"
+    state: directory
+    owner: "{{ llama_cpp_user }}"
+    group: "{{ llama_cpp_user }}"
+    mode: "0755"
+
+- name: Look for an existing GGUF model
+  tags:
+    - pkg
+    - config
+    - llama_cpp
+  ansible.builtin.find:
+    paths: "{{ llama_cpp_model_dir }}"
+    patterns: "{{ llama_cpp_model_include }}"
+    excludes:
+      - "*mmproj*"
+  register: llama_cpp_models_before
+
+- name: Download the GGUF model
+  when: llama_cpp_models_before.matched == 0
+  become: true
+  become_user: "{{ llama_cpp_user }}"
+  tags:
+    - pkg
+    - config
+    - llama_cpp
+  ansible.builtin.command:
+    cmd: >-
+      hf download {{ llama_cpp_model_repo }}
+      --include {{ llama_cpp_model_include }}
+      --local-dir {{ llama_cpp_model_dir }}
+  environment:
+    HOME: "{{ llama_cpp_home }}"
+    HF_HOME: "{{ llama_cpp_home }}"
+
+- name: Find the downloaded GGUF model
+  tags:
+    - pkg
+    - config
+    - llama_cpp
+  ansible.builtin.find:
+    paths: "{{ llama_cpp_model_dir }}"
+    patterns: "{{ llama_cpp_model_include }}"
+    excludes:
+      - "*mmproj*"
+  register: llama_cpp_models
+
+- name: Select the model file to serve
+  tags:
+    - pkg
+    - config
+    - llama_cpp
+  ansible.builtin.set_fact:
+    llama_cpp_model_path: "{{ llama_cpp_models.files | map(attribute='path') | list | sort | first }}"
+
+- name: Install the llama.cpp systemd unit
+  become: true
+  tags:
+    - config
+    - llama_cpp
+  ansible.builtin.template:
+    src: llama-server.service.j2
+    dest: /etc/systemd/system/llama-server.service
+    mode: "0644"
+  notify: Restart llama.cpp
+
+- name: Enable and start llama.cpp
+  become: true
+  tags:
+    - service
+    - llama_cpp
+  ansible.builtin.systemd_service:
+    name: llama-server
+    enabled: true
+    state: started
+    daemon_reload: true
+
+- name: Open the llama.cpp port
+  become: true
+  tags:
+    - service
+    - llama_cpp
+  community.general.ufw:
+    rule: allow
+    port: "{{ llama_cpp_port }}"
+    proto: tcp

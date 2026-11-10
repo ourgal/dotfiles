@@ -14,5 +14,10 @@
             - nvtop
     - role: paru
       when: paru_enabled | default(true) | bool
-    - role: ollama
-      when: ollama_enabled | default(true) | bool
+    - role: aur
+      when: aur_enabled | default(true) | bool
+      vars:
+        aur_packages:
+          - llama.cpp-vulkan-bin
+    - role: llama_cpp
+      when: llama_cpp_enabled | default(true) | bool

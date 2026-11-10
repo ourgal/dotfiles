@@ -1,0 +1,27 @@
+---
+llama_cpp_enabled: true
+llama_cpp_port: 8080
+# 0.0.0.0 exposes the unauthenticated OpenAI-compatible API on the LAN.
+llama_cpp_host: 0.0.0.0
+# Hermes Agent requires at least 64K tokens; 128K still fits the 24 GiB card
+# with q4_0 KV cache (~20 GB total with MTP).
+llama_cpp_context_length: 131072
+# The MTP head is embedded in the Qwen3.8 GGUF, so one file is all that is needed.
+llama_cpp_model_repo: unsloth/Qwen3.8-27B-GGUF
+llama_cpp_model_include: "*Q4_K_M*"
+llama_cpp_alias: qwen3.8:27b
+llama_cpp_gpu_layers: 999
+# V-cache quantization requires flash attention.
+llama_cpp_cache_type_k: q4_0
+llama_cpp_cache_type_v: q4_0
+# Native multi-token prediction; the built-in draft head is used as the draft model.
+llama_cpp_spec_type: draft-mtp
+llama_cpp_spec_draft_n_max: 3
+llama_cpp_binary: /usr/bin/llama-server
+llama_cpp_user: llama
+llama_cpp_home: /var/lib/llama.cpp
+llama_cpp_model_dir: "{{ llama_cpp_home }}/models"
+llama_cpp_packages:
+  - python-huggingface-hub
+  - vulkan-icd-loader
+  - vulkan-radeon
