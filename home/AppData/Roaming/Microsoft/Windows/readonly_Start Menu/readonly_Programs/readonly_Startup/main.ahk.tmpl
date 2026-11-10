@@ -181,4 +181,8 @@ Run {{ $10router | quote }}, {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "hermes" "opt" (list "windows" "startup" "hermes_dashboard" "enable") "os" "windows") | trim | atoi -}}
 Run "hermes dashboard", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
+{{ $thide := joinPath .chezmoi.homeDir "scoop" "apps" "thide" "current" "thide.exe" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $thide "opt" (list "windows" "startup" "thide" "enable") "os" "windows") | trim | atoi -}}
+Run "{{ $thide }} start", , "Hide"
+{{ end -}}
 {{ end -}}
