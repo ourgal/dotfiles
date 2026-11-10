@@ -4,3 +4,7 @@ all:
     ansible_become_pass: {{ includeTemplate "secrets" . | fromToml | dig "password" "linux" "user" "" }}
   hosts:
     surface:
+
+ai_servers:
+  hosts:
+    bed:

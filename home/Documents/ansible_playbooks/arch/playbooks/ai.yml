@@ -1,0 +1,9 @@
+---
+- name: Configure Arch Linux AI server
+  hosts: ai_servers
+  ignore_unreachable: true
+  roles:
+    - role: paru
+      when: paru_enabled | default(true) | bool
+    - role: ollama
+      when: ollama_enabled | default(true) | bool

@@ -5,3 +5,9 @@ ROUTER_PLAYBOOK := playbooks/router.yml
 
 router: lint
 	$(ANSIBLE_ENV) ansible-playbook -i $(INVENTORY) $(ROUTER_PLAYBOOK) $(if $(TAGS),--tags $(TAGS),)
+
+AI_PLAYBOOK := playbooks/ai.yml
+.PHONY: ai
+
+ai: lint
+	$(ANSIBLE_ENV) ansible-playbook -i $(INVENTORY) $(AI_PLAYBOOK) $(if $(TAGS),--tags $(TAGS),)
