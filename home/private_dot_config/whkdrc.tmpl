@@ -92,7 +92,7 @@ win + shift + 6        : glazewm command move --workspace 6; glazewm command foc
 win + shift + 7        : glazewm command move --workspace 7; glazewm command focus --workspace 7
 win + shift + 8        : glazewm command move --workspace 8; glazewm command focus --workspace 8
 win + shift + 9        : glazewm command move --workspace 9; glazewm command focus --workspace 9
-{{ else -}}
+{{ else if eq $wm "komorebi" -}}
 # Reload whkd configuration
 # win + o                 : taskkill /f /im whkd.exe && start /b whkd # if shell is cmd
 win + o                 : taskkill /f /im whkd.exe; Start-Process whkd -WindowStyle hidden # if shell is pwsh / powershell

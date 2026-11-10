@@ -16,6 +16,7 @@ SetTitleMatchMode(2)
 {{ $komorebic := joinPath .chezmoi.homeDir "scoop" "apps" "komorebi" "current" "komorebic.exe" -}}
 {{ $whkd := joinPath .chezmoi.homeDir "scoop" "apps" "whkd" "current" "whkd.exe" -}}
 {{ $yasb := joinPath .chezmoi.homeDir "scoop" "apps" "yasb" "current" "yasb.exe" -}}
+{{ $seelen_ui := joinPath .chezmoi.homeDir "scoop" "apps" "seelen-ui" "current" "seelen-ui.exe" -}}
 {{ $deskflow_core := joinPath .chezmoi.homeDir "scoop" "apps" "deskflow" "current" "deskflow-core.exe" -}}
 {{ $alist := joinPath .chezmoi.homeDir "scoop" "apps" "alist" "current" "alist.exe" -}}
 {{ $mpd := joinPath .chezmoi.homeDir "scoop" "apps" "mpd" "current" "mpd.exe" -}}
@@ -38,6 +39,7 @@ SetTitleMatchMode(2)
 {{ $komorebi_enabled := and (has "komorebi" $startup) (lookPath $komorebic) -}}
 {{ $whkd_enabled := and (has "whkd" $startup) (lookPath $whkd) -}}
 {{ $yasb_enabled := and (has "yasb" $startup) (lookPath $yasb) -}}
+{{ $seelen_ui_enabled := and (has "seelen_ui" $startup) (lookPath $seelen_ui) -}}
 {{ $tacky_borders_enabled := and (has "tacky_borders" $startup) (lookPath $tacky_borders) -}}
 {{ $thide_enabled := and (has "thide" $startup) (lookPath $thide) -}}
 {{ if $glazewm_enabled -}}
@@ -53,6 +55,9 @@ Run("{{ $whkd }}", {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
 {{ if $yasb_enabled -}}
 Run("{{ $yasb }}", {{ .chezmoi.homeDir | quote }}, "Hide")
+{{ end -}}
+{{ if $seelen_ui_enabled -}}
+Run("{{ $seelen_ui }}", {{ .chezmoi.homeDir | quote }}, "Hide")
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $deskflow_core "opt" (list "windows" "startup" "deskflow_client" "enable") "os" "windows") | trim | atoi -}}
 Run "{{ $deskflow_core }} client", , "Hide"
