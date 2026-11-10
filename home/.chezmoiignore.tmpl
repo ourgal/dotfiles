@@ -658,9 +658,11 @@ AppData/Roaming/Microsoft/Windows/Start Menu/Programs/*
 {{ end -}}
 # ]]]
 # [[[ komorebi
-{{ if lookPath "komorebic" -}}
 {{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "komorebic" -}}
 !.config/komorebi.json
+{{ end -}}
+{{ if lookPath "whkd" -}}
 !.config/whkdrc
 {{ end -}}
 {{ end -}}

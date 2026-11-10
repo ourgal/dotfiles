@@ -8,7 +8,7 @@
 Run "gopass show -c keepassxc/main", ,"Hide"
 WinWait "Message from User"
 
-{{ if and (eq (index .my.themes .my.modules.windows.theme).wm "glazewm") (includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "glazewm" "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi) -}}
+{{ if and (eq (index .my.themes .my.modules.windows.theme).wm "glazewm") (lookPath "glazewm") -}}
 Run "glazewm command focus --workspace 9"
 {{ end -}}
 Run "keepassxc"

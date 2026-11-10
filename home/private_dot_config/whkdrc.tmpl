@@ -1,0 +1,173 @@
+{{- $theme := index .my.themes .my.modules.windows.theme -}}
+{{- $wm := $theme.wm -}}
+{{- $terminal := "" -}}
+{{- if eq .my.terminal.windows "wezterm" -}}
+{{- $terminal = joinPath .chezmoi.homeDir "scoop" "apps" "wezterm" "current" "wezterm-gui.exe" -}}
+{{- else if eq .my.terminal.windows "wt" -}}
+{{- $terminal = joinPath .chezmoi.homeDir "scoop" "apps" "windows-terminal" "current" "wt.exe" -}}
+{{- else -}}
+{{- $terminal = .my.terminal.windows -}}
+{{- end -}}
+.shell powershell
+{{ if eq $wm "glazewm" -}}
+.pause win + shift + p
+
+# GlazeWM is controlled via its CLI; whkd only owns the keymap.
+# Reload GlazeWM configuration
+win + shift + r        : glazewm command wm-reload-config
+win + shift + w        : glazewm command wm-redraw
+
+# Focus windows
+win + h                : glazewm command focus --direction left
+win + l                : glazewm command focus --direction right
+win + k                : glazewm command focus --direction up
+win + j                : glazewm command focus --direction down
+win + left             : glazewm command focus --direction left
+win + right            : glazewm command focus --direction right
+win + up               : glazewm command focus --direction up
+win + down             : glazewm command focus --direction down
+
+# Move windows
+win + shift + h        : glazewm command move --direction left
+win + shift + l        : glazewm command move --direction right
+win + shift + k        : glazewm command move --direction up
+win + shift + j        : glazewm command move --direction down
+win + shift + left     : glazewm command move --direction left
+win + shift + right    : glazewm command move --direction right
+win + shift + up       : glazewm command move --direction up
+win + shift + down     : glazewm command move --direction down
+
+# Resize
+win + u                : glazewm command resize --width -2%
+win + p                : glazewm command resize --width +2%
+win + o                : glazewm command resize --height +2%
+win + i                : glazewm command resize --height -2%
+win + r                : glazewm command wm-enable-binding-mode --name resize
+
+# Manipulate windows
+win + v                : glazewm command toggle-tiling-direction
+win + space            : glazewm command wm-cycle-focus
+win + shift + space    : glazewm command toggle-floating --centered
+win + t                : glazewm command toggle-tiling
+win + f                : glazewm command toggle-fullscreen
+win + m                : glazewm command toggle-minimized
+win + shift + c        : glazewm command close
+win + shift + e        : glazewm command wm-exit
+
+# Screenshot and terminal
+win + q                : {{ if lookPath "flameshot" }}Start-Process "{{ lookPath "flameshot" }}" -ArgumentList "gui"{{ else }}Start-Process explorer -ArgumentList "ms-screenclip:"{{ end }}
+win + return           : Start-Process "{{ $terminal }}"
+
+# Workspaces
+win + s                : glazewm command focus --next-active-workspace
+win + a                : glazewm command focus --prev-active-workspace
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "altrun" "opt" (list "windows" "startup" "altrun" "enable") "os" "windows") | trim | atoi -}}
+win + d                : Start-Process "{{ joinPath .chezmoi.homeDir "scoop" "apps" "altrun" "current" "altrun.exe" }}"
+{{ else -}}
+win + d                : nircmd sendkey rwin press
+{{ end -}}
+win + 1                : glazewm command focus --workspace 1
+win + 2                : glazewm command focus --workspace 2
+win + 3                : glazewm command focus --workspace 3
+win + 4                : glazewm command focus --workspace 4
+win + 5                : glazewm command focus --workspace 5
+win + 6                : glazewm command focus --workspace 6
+win + 7                : glazewm command focus --workspace 7
+win + 8                : glazewm command focus --workspace 8
+win + 9                : glazewm command focus --workspace 9
+
+# Move the focused window's parent workspace to a monitor
+win + shift + a        : glazewm command move-workspace --direction left
+win + shift + f        : glazewm command move-workspace --direction right
+win + shift + d        : glazewm command move-workspace --direction up
+win + shift + s        : glazewm command move-workspace --direction down
+
+# Move focused window to a workspace
+win + shift + 1        : glazewm command move --workspace 1; glazewm command focus --workspace 1
+win + shift + 2        : glazewm command move --workspace 2; glazewm command focus --workspace 2
+win + shift + 3        : glazewm command move --workspace 3; glazewm command focus --workspace 3
+win + shift + 4        : glazewm command move --workspace 4; glazewm command focus --workspace 4
+win + shift + 5        : glazewm command move --workspace 5; glazewm command focus --workspace 5
+win + shift + 6        : glazewm command move --workspace 6; glazewm command focus --workspace 6
+win + shift + 7        : glazewm command move --workspace 7; glazewm command focus --workspace 7
+win + shift + 8        : glazewm command move --workspace 8; glazewm command focus --workspace 8
+win + shift + 9        : glazewm command move --workspace 9; glazewm command focus --workspace 9
+{{ else -}}
+# Reload whkd configuration
+# win + o                 : taskkill /f /im whkd.exe && start /b whkd # if shell is cmd
+win + o                 : taskkill /f /im whkd.exe; Start-Process whkd -WindowStyle hidden # if shell is pwsh / powershell
+win + shift + o         : komorebic reload-configuration
+
+win + i                 : komorebic toggle-shortcuts
+
+# App shortcuts - these require shell to be pwsh / powershell
+# The apps will be focused if open, or launched if not open
+win + shift + t        : if ($wshell.AppActivate('pwsh') -eq $False) { start pwsh }
+win + shift + b        : if ($wshell.AppActivate('Zen') -eq $False) { start Vivaldi }
+win + shift + e        : if ($wshell.AppActivate('Explorer') -eq $False) { start Explorer }
+
+win + shift + q         : komorebic close
+win + m                 : komorebic minimize
+
+# Focus windows
+win + left              : komorebic focus left
+win + down              : komorebic focus down
+win + up                : komorebic focus up
+win + right             : komorebic focus right
+win + shift + oem_4     : komorebic cycle-focus previous # oem_4 is [
+win + shift + oem_6     : komorebic cycle-focus next # oem_6 is ]
+
+# Move windows
+win + shift + left      : komorebic move left
+win + shift + down      : komorebic move down
+win + shift + up        : komorebic move up
+win + shift + right     : komorebic move right
+win + shift + return    : komorebic promote
+
+# Stack windows
+win + shift + h         : komorebic stack left
+win + shift + j         : komorebic stack down
+win + shift + k         : komorebic stack up
+win + shift + l         : komorebic stack right
+win + U                 : komorebic unstack # oem_1 is ;
+win + oem_4             : komorebic cycle-stack previous # oem_4 is [
+win + oem_6             : komorebic cycle-stack next # oem_6 is ]
+
+# Resize
+win + oem_plus          : komorebic resize-axis horizontal increase
+win + oem_minus         : komorebic resize-axis horizontal decrease
+win + shift + oem_plus  : komorebic resize-axis vertical increase
+win + shift + oem_minus : komorebic resize-axis vertical decrease
+
+# Manipulate windows
+win + t                 : komorebic toggle-float
+win + shift + f         : komorebic toggle-monocle
+
+# Window manager options
+win + shift + r         : komorebic retile
+win + p                 : komorebic toggle-pause
+
+# Layouts
+win + x                 : komorebic flip-layout horizontal
+win + y                 : komorebic flip-layout vertical
+
+# Workspaces
+win + 1                 : komorebic focus-workspace 0
+win + 2                 : komorebic focus-workspace 1
+win + 3                 : komorebic focus-workspace 2
+win + 4                 : komorebic focus-workspace 3
+win + 5                 : komorebic focus-workspace 4
+win + 6                 : komorebic focus-workspace 5
+win + 7                 : komorebic focus-workspace 6
+win + 8                 : komorebic focus-workspace 7
+
+# Move windows across workspaces
+win + shift + 1         : komorebic move-to-workspace 0
+win + shift + 2         : komorebic move-to-workspace 1
+win + shift + 3         : komorebic move-to-workspace 2
+win + shift + 4         : komorebic move-to-workspace 3
+win + shift + 5         : komorebic move-to-workspace 4
+win + shift + 6         : komorebic move-to-workspace 5
+win + shift + 7         : komorebic move-to-workspace 6
+win + shift + 8         : komorebic move-to-workspace 7
+{{ end }}

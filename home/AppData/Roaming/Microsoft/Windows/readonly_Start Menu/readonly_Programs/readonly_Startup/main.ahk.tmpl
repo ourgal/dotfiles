@@ -29,19 +29,17 @@ SetTitleMatchMode(2)
 {{ $syncthing := joinPath .chezmoi.homeDir "scoop" "apps" "syncthing" "current" "syncthing.exe" -}}
 {{ $runemacs := joinPath .chezmoi.homeDir "scoop" "apps" "emacs" "current" "bin" "runemacs.exe" -}}
 {{ $rclone := joinPath .chezmoi.homeDir "scoop" "apps" "rclone" "current" "rclone.exe" -}}
-{{ $wm := (index .my.themes .my.modules.windows.theme).wm -}}
-{{ $glazewm_enabled := 0 -}}
-{{ $komorebi_enabled := 0 -}}
-{{ $whkd_enabled := 0 -}}
-{{ $yasb_enabled := 0 -}}
-{{ if eq $wm "glazewm" -}}
-{{ $glazewm_enabled = includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $glazewm "opt" (list "windows" "startup" "glazewm" "enable") "os" "windows") | trim | atoi -}}
-{{ end -}}
-{{ if eq $wm "komorebi" -}}
-{{ $komorebi_enabled = includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $komorebic "opt" (list "windows" "startup" "komorebi" "enable") "os" "windows") | trim | atoi -}}
-{{ $whkd_enabled = includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $whkd "opt" (list "windows" "startup" "whkd" "enable") "os" "windows") | trim | atoi -}}
-{{ $yasb_enabled = includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "yasb" "opt" (list "windows" "startup" "yasb" "enable") "os" "windows") | trim | atoi -}}
-{{ end -}}
+{{ $thide := joinPath .chezmoi.homeDir "scoop" "apps" "thide" "current" "thide.exe" -}}
+{{ $tacky_borders := joinPath .chezmoi.homeDir "scoop" "apps" "tacky-borders" "current" "tacky-borders.exe" -}}
+{{ $theme := index .my.themes .my.modules.windows.theme -}}
+{{ $wm := $theme.wm -}}
+{{ $startup := $theme.startup -}}
+{{ $glazewm_enabled := and (has "glazewm" $startup) (lookPath $glazewm) -}}
+{{ $komorebi_enabled := and (has "komorebi" $startup) (lookPath $komorebic) -}}
+{{ $whkd_enabled := and (has "whkd" $startup) (lookPath $whkd) -}}
+{{ $yasb_enabled := and (has "yasb" $startup) (lookPath $yasb) -}}
+{{ $tacky_borders_enabled := and (has "tacky_borders" $startup) (lookPath $tacky_borders) -}}
+{{ $thide_enabled := and (has "thide" $startup) (lookPath $thide) -}}
 {{ if $glazewm_enabled -}}
 Run("{{ $glazewm }}", {{ .chezmoi.homeDir | quote }}, "Hide")
 Sleep 5000
@@ -183,10 +181,6 @@ Run "{{ $komorebic }} move-to-workspace 0", ,"Hide"
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "autohotkey" "opt" (list "windows" "startup" "autohotkey" "enable") "os" "windows") | trim | atoi -}}
 Run {{ joinPath .chezmoi.homeDir "Documents" "autohotkey" "keybindings.ahk" | quote }}, , "Hide"
 {{ end -}}
-{{ $powertoys := joinPath .chezmoi.homeDir "scoop" "apps" "powertoys" "current" "powertoys.exe" -}}
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $powertoys "opt" (list "windows" "startup" "powertoys" "enable") "os" "windows") | trim | atoi -}}
-Run {{ $powertoys | quote }}, {{ .chezmoi.homeDir | quote }}, "Hide"
-{{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "autohotkey" "opt" (list "windows" "startup" "hide_cursor" "enable") "os" "windows") | trim | atoi -}}
 Run({{ joinPath .chezmoi.homeDir "Documents" "autohotkey" "hide_cursor.ahk" | quote }}, , "Hide")
 {{ end -}}
@@ -253,12 +247,10 @@ Run {{ $10router | quote }}, {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "hermes" "opt" (list "windows" "startup" "hermes_dashboard" "enable") "os" "windows") | trim | atoi -}}
 Run "hermes dashboard", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
-{{ $thide := joinPath .chezmoi.homeDir "scoop" "apps" "thide" "current" "thide.exe" -}}
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $thide "opt" (list "windows" "startup" "thide" "enable") "os" "windows") | trim | atoi -}}
+{{ if $thide_enabled -}}
 Run "{{ $thide }} start", , "Hide"
 {{ end -}}
-{{ $tacky_borders := joinPath .chezmoi.homeDir "scoop" "apps" "tacky-borders" "current" "tacky-borders.exe" -}}
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $tacky_borders "opt" (list "windows" "startup" "tacky_borders" "enable") "os" "windows") | trim | atoi -}}
+{{ if $tacky_borders_enabled -}}
 Run "{{ $tacky_borders }}", , "Hide"
 {{ end -}}
 {{ end -}}

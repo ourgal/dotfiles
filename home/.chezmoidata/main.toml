@@ -90,13 +90,10 @@ rose_pine_bar = true
 
 [my.modules.windows]
 # "rose-pine" (GlazeWM) or "kanagawa" (Komorebi); kanagawa also clones KanagawaWin11 to ~/.local/share/kanagawa-win11
-theme = "kanagawa"
+theme = "rose-pine"
 
 [my.modules.windows.startup]
-glazewm.enable = true
-komorebi.enable = true
-whkd.enable = true
-yasb.enable = true
+# Theme-controlled components (WM, hotkey daemon, YASB, borders, taskbar) come from [my.themes.<theme>.startup].
 deskflow_client.enable = false
 deskflow_server.enable = false
 aria2.enable = true
@@ -116,7 +113,6 @@ vscodium.enable = false
 leo.enable = false
 everything.enable = true
 autohotkey.enable = false
-powertoys.enable = false
 dufs.enable = true
 copyparty.enable = true
 altrun.enable = false
@@ -136,8 +132,6 @@ kmonad.enable = false
 creditdaddy.enable = false
 10router.enable = false
 hermes_dashboard.enable = false
-thide.enable = true
-tacky_borders.enable = true
 
 [my.modules.shell.pwsh]
 starship.enable = true
