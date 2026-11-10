@@ -3,6 +3,9 @@ ollama_enabled: true
 ollama_port: 11434
 # 0.0.0.0 exposes the unauthenticated API on the LAN; use 127.0.0.1 for local only.
 ollama_host: 0.0.0.0
+# Hermes Agent rejects models serving under 64K tokens. Qwen3 defaults to 40,960,
+# so raise the server-side window; 64K KV cache for a 14B q4 model fits 24 GiB VRAM.
+ollama_context_length: 128000
 # gfx1100 (RX 7900 XTX): ollama-rocm ships the ROCm runners and depends on the
 # base ollama package plus hipblas/rocm-hip-runtime.
 ollama_packages:
