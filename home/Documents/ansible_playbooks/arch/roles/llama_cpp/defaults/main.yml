@@ -8,7 +8,7 @@ llama_cpp_host: 0.0.0.0
 llama_cpp_context_length: 131072
 # The MTP head is embedded in the Qwen3.8 GGUF, so one file is all that is needed.
 llama_cpp_model_repo: unsloth/Qwen3.8-27B-GGUF
-llama_cpp_model_include: "*Q4_K_M*"
+llama_cpp_model_file: Qwen3.8-27B-UD-Q4_K_M.gguf
 llama_cpp_alias: qwen3.8:27b
 llama_cpp_gpu_layers: 999
 # V-cache quantization requires flash attention.
@@ -21,6 +21,7 @@ llama_cpp_binary: /usr/bin/llama-server
 llama_cpp_user: llama
 llama_cpp_home: /var/lib/llama.cpp
 llama_cpp_model_dir: "{{ llama_cpp_home }}/models"
+llama_cpp_model_path: "{{ llama_cpp_model_dir }}/{{ llama_cpp_model_file }}"
 llama_cpp_packages:
   - python-huggingface-hub
   - vulkan-icd-loader

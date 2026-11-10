@@ -43,20 +43,18 @@
     group: "{{ llama_cpp_user }}"
     mode: "0755"
 
-- name: Look for an existing GGUF model
+- name: Check whether the GGUF model is present
+  become: true
   tags:
     - pkg
     - config
     - llama_cpp
-  ansible.builtin.find:
-    paths: "{{ llama_cpp_model_dir }}"
-    patterns: "{{ llama_cpp_model_include }}"
-    excludes:
-      - "*mmproj*"
-  register: llama_cpp_models_before
+  ansible.builtin.stat:
+    path: "{{ llama_cpp_model_path }}"
+  register: llama_cpp_model
 
 - name: Download the GGUF model
-  when: llama_cpp_models_before.matched == 0
+  when: not llama_cpp_model.stat.exists
   become: true
   become_user: "{{ llama_cpp_user }}"
   tags:
@@ -66,31 +64,32 @@
   ansible.builtin.command:
     cmd: >-
       hf download {{ llama_cpp_model_repo }}
-      --include {{ llama_cpp_model_include }}
+      --include {{ llama_cpp_model_file }}
       --local-dir {{ llama_cpp_model_dir }}
   environment:
     HOME: "{{ llama_cpp_home }}"
     HF_HOME: "{{ llama_cpp_home }}"
 
-- name: Find the downloaded GGUF model
+- name: Check the downloaded GGUF model
+  become: true
   tags:
     - pkg
     - config
     - llama_cpp
-  ansible.builtin.find:
-    paths: "{{ llama_cpp_model_dir }}"
-    patterns: "{{ llama_cpp_model_include }}"
-    excludes:
-      - "*mmproj*"
-  register: llama_cpp_models
+  ansible.builtin.stat:
+    path: "{{ llama_cpp_model_path }}"
+  register: llama_cpp_model_after
 
-- name: Select the model file to serve
+- name: Require the GGUF model to be present
   tags:
     - pkg
     - config
     - llama_cpp
-  ansible.builtin.set_fact:
-    llama_cpp_model_path: "{{ llama_cpp_models.files | map(attribute='path') | list | sort | first }}"
+  ansible.builtin.assert:
+    that: llama_cpp_model_after.stat.exists
+    fail_msg: >-
+      {{ llama_cpp_model_path }} is missing after downloading
+      {{ llama_cpp_model_repo }}; check `hf download` output and the model file name.
 
 - name: Install the llama.cpp systemd unit
   become: true
