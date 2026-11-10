@@ -41,6 +41,7 @@ bars:
         - battery
         - volume
         - systray
+        - wallpapers
         - power_menu
 
 widgets:
@@ -146,6 +147,38 @@ widgets:
         alignment: "right"
         direction: "down"
         offset_left: 8
+
+  wallpapers:
+    type: "yasb.wallpapers.WallpapersWidget"
+    options:
+      label: "<span>\udb83\udc8d</span>"
+      image_path:
+        - {{ joinPath .chezmoi.homeDir ".local" "share" "kanagawa-win11" "Wallpapers" | quote }}
+      change_automatically: false
+      update_interval: 60
+      engine:
+        enabled: true
+        animation: "circle"
+      gallery:
+        enabled: true
+        blur: false
+        image_width: 220
+        image_per_page: 6
+        gallery_columns: 0
+        horizontal_position: "center"
+        vertical_position: "center"
+        position_offset: 0
+        respect_work_area: true
+        show_buttons: false
+        orientation: "portrait"
+        image_spacing: 8
+        lazy_load: true
+        lazy_load_fadein: 400
+        image_corner_radius: 8
+      callbacks:
+        on_left: "toggle_gallery"
+        on_middle: "do_nothing"
+        on_right: "change_wallpaper"
 
   power_menu:
     type: "yasb.power_menu.PowerMenuWidget"
