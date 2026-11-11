@@ -254,7 +254,12 @@ if (Test-Path($ChocolateyProfile)) {
 $env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense,powershell' # optional
 Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
-carapace _carapace | Out-String | Invoke-Expression
+# Helix has no flag completions; carapace only lists files for hx/helix while
+# paying process + shell-context overhead, so drop those registrations and let
+# PSReadLine's native file completion handle them.
+$carapaceInit = carapace _carapace | Out-String
+$carapaceInit = $carapaceInit -replace '(?m)^Register-ArgumentCompleter[^\n]*?-CommandName (?:hx|helix)(?:\.exe)?(?:,(?:hx|helix)(?:\.exe)?)?\r?\n?', ''
+$carapaceInit | Invoke-Expression
 {{ end -}}
 # ]]]
 # [[[ starship
