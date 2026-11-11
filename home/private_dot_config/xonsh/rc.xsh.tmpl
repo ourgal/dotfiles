@@ -8,6 +8,11 @@ from xonsh.built_ins import XSH
 XSH.completers.pop("bash", None)
 {{ end -}}
 # ]]]
+# [[[ completion behavior
+# Tab selects the first completion and each further Tab selects the next one
+# (Shift+Tab goes back) instead of only opening the menu.
+$COMPLETION_MODE = "menu-complete"
+# ]]]
 # [[[ make target completion
 # Parses the makefile directly instead of running `make -qp`, which would cost
 # ~0.5s per <Tab> on Windows.
