@@ -1,0 +1,23 @@
+---
+wallabag_enabled: false
+wallabag_image: v6.gh-proxy.org/docker/wallabag/wallabag:latest
+wallabag_dir: /opt/wallabag
+
+# SQLite database and the application's data folder; the container runs as root
+# (nginx binds port 80), so these dirs are owned by root.
+wallabag_data_dir: /srv/wallabag/data
+wallabag_images_dir: /srv/wallabag/images
+
+wallabag_http_port: 8083
+
+wallabag_timezone: "{{ ansible_facts.get('date_time', {}).get('tz', 'UTC') }}"
+
+# Required: full external URL including scheme and port, e.g.
+# https://read.example.com. Wrong values break assets and client callbacks.
+wallabag_domain: ""
+
+wallabag_server_name: wallabag
+
+# The first account is the default wallabag/wallabag admin created by the
+# installer; change it after logging in.
+wallabag_registration_allowed: false

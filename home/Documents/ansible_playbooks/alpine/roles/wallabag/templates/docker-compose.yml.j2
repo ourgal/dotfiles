@@ -1,0 +1,16 @@
+services:
+  wallabag:
+    image: {{ wallabag_image }}
+    container_name: wallabag
+    restart: unless-stopped
+    environment:
+      TZ: "{{ wallabag_timezone }}"
+      SYMFONY__ENV__DOMAIN_NAME: "{{ wallabag_domain }}"
+      SYMFONY__ENV__SERVER_NAME: "{{ wallabag_server_name }}"
+      SYMFONY__ENV__FOSUSER_REGISTRATION: "{{ wallabag_registration_allowed | bool | lower }}"
+      POPULATE_DATABASE: "{{ (not wallabag_db.stat.exists) | bool | lower }}"
+    ports:
+      - "{{ wallabag_http_port }}:80"
+    volumes:
+      - "{{ wallabag_data_dir }}:/var/www/wallabag/data"
+      - "{{ wallabag_images_dir }}:/var/www/wallabag/web/assets/images"

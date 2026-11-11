@@ -73,3 +73,7 @@ vaultwarden_enabled: false
 # without one code-server generates a random password visible in its logs.
 code_server_enabled: false
 
+# Set wallabag_domain to the external URL (e.g. http://192.168.0.101:8083) or
+# assets and clients break; the initial admin is wallabag/wallabag.
+wallabag_enabled: false
+
