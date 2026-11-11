@@ -24,3 +24,6 @@ qiandao_enabled: false
 # read it (default 1000:1000).
 jellyfin_enabled: false
 
+# Needs ariang_rpc_secret in secrets.sops.yml, or set it here for LAN-only use.
+ariang_enabled: false
+

@@ -1,0 +1,33 @@
+---
+ariang_enabled: false
+ariang_image: v6.gh-proxy.org/docker/hurlenko/aria2-ariang:latest
+ariang_dir: /opt/ariang
+
+# Host directories for aria2.conf/aria2.session and finished downloads; created
+# by the role and owned by ariang_uid/ariang_gid.
+ariang_config_dir: /srv/ariang/config
+ariang_downloads_dir: /srv/ariang/downloads
+
+ariang_http_port: 6880
+
+# aria2 runs as this user so downloads are not root-owned.
+ariang_uid: 1000
+ariang_gid: 1000
+
+# Credentials live in inventory/group_vars/secrets.sops.yml (age-encrypted, loaded by
+# the playbook's community.sops.load_vars pre_task): `make sops`.
+# The secret is shared by AriaNg and aria2; empty disables RPC auth (LAN only).
+ariang_rpc_secret: ""
+# Port AriaNg assumes for RPC calls; must match the published web port.
+ariang_rpc_port: "{{ ariang_http_port }}"
+
+# Writes the RPC secret into the web UI so it is never asked for. Insecure on its
+# own: only enable together with basic auth, or on a trusted network.
+ariang_embed_rpc_secret: false
+
+# Optional basic auth for the web UI; both values must be set to take effect.
+ariang_basic_auth_username: ""
+ariang_basic_auth_password: ""
+
+# BitTorrent listen ports (6881-6999 per the image's aria2.conf) are not
+# published here; forward/override them in ariang_config_dir/aria2.conf if needed.

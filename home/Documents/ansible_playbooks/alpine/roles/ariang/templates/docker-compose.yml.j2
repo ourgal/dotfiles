@@ -1,0 +1,24 @@
+services:
+  ariang:
+    image: {{ ariang_image }}
+    container_name: ariang
+    restart: unless-stopped
+    environment:
+      PUID: "{{ ariang_uid }}"
+      PGID: "{{ ariang_gid }}"
+      ARIA2RPCPORT: "{{ ariang_rpc_port }}"
+{% if ariang_rpc_secret %}
+      RPC_SECRET: "{{ ariang_rpc_secret }}"
+{% endif %}
+{% if ariang_embed_rpc_secret %}
+      EMBED_RPC_SECRET: "true"
+{% endif %}
+{% if ariang_basic_auth_username and ariang_basic_auth_password %}
+      BASIC_AUTH_USERNAME: "{{ ariang_basic_auth_username }}"
+      BASIC_AUTH_PASSWORD: "{{ ariang_basic_auth_password }}"
+{% endif %}
+    ports:
+      - "{{ ariang_http_port }}:8080"
+    volumes:
+      - "{{ ariang_config_dir }}:/aria2/conf"
+      - "{{ ariang_downloads_dir }}:/aria2/data"

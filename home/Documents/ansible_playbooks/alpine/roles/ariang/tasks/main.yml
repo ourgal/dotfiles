@@ -1,0 +1,40 @@
+---
+- name: Create the ariang stack directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ ariang_dir }}"
+    state: directory
+    mode: '0700'
+
+- name: Create the ariang config directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ ariang_config_dir }}"
+    state: directory
+    owner: "{{ ariang_uid }}"
+    group: "{{ ariang_gid }}"
+    mode: '0700'
+
+- name: Create the ariang downloads directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ ariang_downloads_dir }}"
+    state: directory
+    owner: "{{ ariang_uid }}"
+    group: "{{ ariang_gid }}"
+    mode: '0755'
+
+- name: Deploy the ariang compose file
+  become: true
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ ariang_dir }}/docker-compose.yml"
+    mode: '0600'
+
+# No community.docker dependency on purpose: the CLI is idempotent here.
+- name: Start the ariang stack
+  become: true
+  ansible.builtin.command:
+    cmd: docker compose up -d --remove-orphans
+    chdir: "{{ ariang_dir }}"
+  changed_when: false
