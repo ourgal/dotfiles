@@ -1,0 +1,7 @@
+services:
+  wifi-card:
+    image: {{ wifi_card_image }}
+    container_name: wifi-card
+    restart: unless-stopped
+    ports:
+      - "{{ wifi_card_http_port }}:80"

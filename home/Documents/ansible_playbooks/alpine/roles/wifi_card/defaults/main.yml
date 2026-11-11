@@ -1,0 +1,7 @@
+---
+wifi_card_enabled: false
+wifi_card_image: v6.gh-proxy.org/docker/bndw/wifi-card:latest
+wifi_card_dir: /opt/wifi_card
+
+# Avoids 8080-8085 used by the other web services.
+wifi_card_http_port: 8086
