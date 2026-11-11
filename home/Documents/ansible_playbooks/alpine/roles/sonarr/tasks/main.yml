@@ -1,0 +1,43 @@
+---
+- name: Create the sonarr stack directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ sonarr_dir }}"
+    state: directory
+    mode: '0700'
+
+- name: Create the sonarr config directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ sonarr_config_dir }}"
+    state: directory
+    owner: "{{ sonarr_uid }}"
+    group: "{{ sonarr_gid }}"
+    mode: '0700'
+
+- name: Create the sonarr media and download directories
+  become: true
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ sonarr_uid }}"
+    group: "{{ sonarr_gid }}"
+    mode: '0755'
+  loop:
+    - "{{ sonarr_tv_dir }}"
+    - "{{ sonarr_downloads_dir }}"
+
+- name: Deploy the sonarr compose file
+  become: true
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ sonarr_dir }}/docker-compose.yml"
+    mode: '0600'
+
+# No community.docker dependency on purpose: the CLI is idempotent here.
+- name: Start the sonarr stack
+  become: true
+  ansible.builtin.command:
+    cmd: docker compose up -d --remove-orphans
+    chdir: "{{ sonarr_dir }}"
+  changed_when: false

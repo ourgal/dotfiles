@@ -27,3 +27,6 @@ jellyfin_enabled: false
 # Needs ariang_rpc_secret in secrets.sops.yml, or set it here for LAN-only use.
 ariang_enabled: false
 
+# Keep sonarr_downloads_dir on the same host tree as the download client.
+sonarr_enabled: false
+

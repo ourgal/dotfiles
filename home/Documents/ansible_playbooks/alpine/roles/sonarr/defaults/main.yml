@@ -1,0 +1,21 @@
+---
+sonarr_enabled: false
+sonarr_image: v6.gh-proxy.org/docker/linuxserver/sonarr:latest
+sonarr_dir: /opt/sonarr
+
+# Host directories for the config database, the library, and completed
+# downloads; created by the role and owned by sonarr_uid/sonarr_gid.
+sonarr_config_dir: /srv/sonarr/config
+sonarr_tv_dir: /srv/media/tv
+# Point this at the same host tree the download client uses (aria2's default is
+# /srv/ariang/downloads), otherwise imports copy instead of hardlink/rename.
+sonarr_downloads_dir: /srv/downloads
+
+sonarr_http_port: 8989
+
+# Must match the download client's uid/gid so imported files stay writable and
+# hardlinks work.
+sonarr_uid: 1000
+sonarr_gid: 1000
+
+sonarr_timezone: "{{ ansible_facts.get('date_time', {}).get('tz', 'UTC') }}"

@@ -1,0 +1,15 @@
+services:
+  sonarr:
+    image: {{ sonarr_image }}
+    container_name: sonarr
+    restart: unless-stopped
+    environment:
+      PUID: "{{ sonarr_uid }}"
+      PGID: "{{ sonarr_gid }}"
+      TZ: "{{ sonarr_timezone }}"
+    ports:
+      - "{{ sonarr_http_port }}:8989"
+    volumes:
+      - "{{ sonarr_config_dir }}:/config"
+      - "{{ sonarr_tv_dir }}:/tv"
+      - "{{ sonarr_downloads_dir }}:/downloads"

@@ -39,6 +39,8 @@
       when: jellyfin_enabled | default(false) | bool
     - role: ariang
       when: ariang_enabled | default(false) | bool
+    - role: sonarr
+      when: sonarr_enabled | default(false) | bool
     - role: qiandao
       when: qiandao_enabled | default(false) | bool
     - role: hindsight
