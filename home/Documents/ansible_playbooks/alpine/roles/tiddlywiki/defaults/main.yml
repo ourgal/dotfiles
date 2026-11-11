@@ -1,0 +1,18 @@
+---
+tiddlywiki_enabled: false
+tiddlywiki_image: v6.gh-proxy.org/docker/elasticdog/tiddlywiki:latest
+tiddlywiki_dir: /opt/tiddlywiki
+tiddlywiki_data_dir: /srv/tiddlywiki
+
+# Folder inside the data directory holding the wiki's tiddlers.
+tiddlywiki_wiki_name: wiki
+
+# Avoids the other services' host ports (container listens on 8080).
+tiddlywiki_http_port: 8095
+
+tiddlywiki_uid: 1000
+tiddlywiki_gid: 1000
+
+# Optional HTTP basic auth for the web UI; leave empty to disable.
+tiddlywiki_username: ""
+tiddlywiki_password: ""

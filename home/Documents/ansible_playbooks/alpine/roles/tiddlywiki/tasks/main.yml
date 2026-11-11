@@ -1,0 +1,49 @@
+---
+- name: Create the tiddlywiki stack directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ tiddlywiki_dir }}"
+    state: directory
+    mode: '0700'
+
+- name: Create the tiddlywiki data directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ tiddlywiki_data_dir }}"
+    state: directory
+    owner: "{{ tiddlywiki_uid }}"
+    group: "{{ tiddlywiki_gid }}"
+    mode: '0700'
+
+- name: Check whether the wiki has been initialised
+  ansible.builtin.stat:
+    path: "{{ tiddlywiki_data_dir }}/{{ tiddlywiki_wiki_name }}/tiddlywiki.info"
+  register: tiddlywiki_init
+
+# --init server creates the wiki folder and its server edition files.
+- name: Initialise the wiki
+  become: true
+  ansible.builtin.command:
+    cmd: >-
+      docker run --rm
+      --user {{ tiddlywiki_uid }}:{{ tiddlywiki_gid }}
+      --mount type=bind,source={{ tiddlywiki_data_dir }},target=/tiddlywiki
+      {{ tiddlywiki_image }}
+      {{ tiddlywiki_wiki_name }} --init server
+  when: not tiddlywiki_init.stat.exists
+  changed_when: true
+
+- name: Deploy the tiddlywiki compose file
+  become: true
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ tiddlywiki_dir }}/docker-compose.yml"
+    mode: '0600'
+
+# No community.docker dependency on purpose: the CLI is idempotent here.
+- name: Start the tiddlywiki stack
+  become: true
+  ansible.builtin.command:
+    cmd: docker compose up -d --remove-orphans
+    chdir: "{{ tiddlywiki_dir }}"
+  changed_when: false

@@ -1,0 +1,18 @@
+services:
+  tiddlywiki:
+    image: {{ tiddlywiki_image }}
+    container_name: tiddlywiki
+    restart: unless-stopped
+    user: "{{ tiddlywiki_uid }}:{{ tiddlywiki_gid }}"
+    command:
+      - "{{ tiddlywiki_wiki_name }}"
+      - "--listen"
+      - "host=0.0.0.0"
+{% if tiddlywiki_username | length > 0 %}
+      - "username={{ tiddlywiki_username }}"
+      - "password={{ tiddlywiki_password }}"
+{% endif %}
+    ports:
+      - "{{ tiddlywiki_http_port }}:8080"
+    volumes:
+      - "{{ tiddlywiki_data_dir }}:/tiddlywiki"
