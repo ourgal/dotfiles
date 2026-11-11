@@ -1,0 +1,20 @@
+---
+memos_enabled: false
+memos_image: v6.gh-proxy.org/docker/neosmemo/memos:stable
+memos_dir: /opt/memos
+
+# Holds the SQLite database and uploaded attachments; created by the role.
+memos_data_dir: /srv/memos/data
+
+memos_http_port: 5230
+
+# The image defaults to an arbitrary non-root UID, so pin it to match the
+# ownership of memos_data_dir.
+memos_uid: 1000
+memos_gid: 1000
+
+memos_timezone: "{{ ansible_facts.get('date_time', {}).get('tz', 'UTC') }}"
+
+# External URL used for share links, e.g. https://memos.example.com. Leave
+# empty to derive it from each request.
+memos_instance_url: ""

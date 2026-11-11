@@ -1,0 +1,31 @@
+---
+- name: Create the memos stack directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ memos_dir }}"
+    state: directory
+    mode: '0700'
+
+- name: Create the memos data directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ memos_data_dir }}"
+    state: directory
+    owner: "{{ memos_uid }}"
+    group: "{{ memos_gid }}"
+    mode: '0700'
+
+- name: Deploy the memos compose file
+  become: true
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ memos_dir }}/docker-compose.yml"
+    mode: '0600'
+
+# No community.docker dependency on purpose: the CLI is idempotent here.
+- name: Start the memos stack
+  become: true
+  ansible.builtin.command:
+    cmd: docker compose up -d --remove-orphans
+    chdir: "{{ memos_dir }}"
+  changed_when: false

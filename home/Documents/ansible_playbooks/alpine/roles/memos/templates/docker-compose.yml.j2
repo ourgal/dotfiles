@@ -1,0 +1,17 @@
+services:
+  memos:
+    image: {{ memos_image }}
+    container_name: memos
+    restart: unless-stopped
+    user: "{{ memos_uid }}:{{ memos_gid }}"
+    environment:
+      MEMOS_PORT: "5230"
+      MEMOS_DRIVER: sqlite
+      TZ: "{{ memos_timezone }}"
+{% if memos_instance_url %}
+      MEMOS_INSTANCE_URL: "{{ memos_instance_url }}"
+{% endif %}
+    ports:
+      - "{{ memos_http_port }}:5230"
+    volumes:
+      - "{{ memos_data_dir }}:/var/opt/memos"
