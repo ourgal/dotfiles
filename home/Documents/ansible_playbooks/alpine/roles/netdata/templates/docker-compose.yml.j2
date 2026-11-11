@@ -1,0 +1,23 @@
+services:
+  netdata:
+    image: {{ netdata_image }}
+    container_name: netdata
+    restart: unless-stopped
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor:unconfined
+    environment:
+      PGID: "{{ netdata_docker_gid }}"
+    ports:
+      - "{{ netdata_http_port }}:19999"
+    volumes:
+      - "{{ netdata_config_dir }}:/etc/netdata"
+      - "{{ netdata_lib_dir }}:/var/lib/netdata"
+      - "{{ netdata_cache_dir }}:/var/cache/netdata"
+      - /etc/passwd:/host/etc/passwd:ro
+      - /etc/group:/host/etc/group:ro
+      - /etc/os-release:/host/etc/os-release:ro
+      - "{{ netdata_host_proc }}:/host/proc:ro"
+      - "{{ netdata_host_sys }}:/host/sys:ro"
+      - "{{ netdata_docker_socket }}:/var/run/docker.sock:ro"

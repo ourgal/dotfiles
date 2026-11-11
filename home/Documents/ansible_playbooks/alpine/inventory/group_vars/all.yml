@@ -100,3 +100,7 @@ lanraragi_enabled: false
 # first account created in the web UI becomes the administrator.
 navidrome_enabled: false
 
+# netdata_docker_gid must match the host's docker group (getent group docker);
+# the agent also needs SYS_PTRACE, host /proc, /sys and the Docker socket.
+netdata_enabled: false
+

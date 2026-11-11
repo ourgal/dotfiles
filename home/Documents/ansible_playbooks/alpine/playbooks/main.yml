@@ -79,6 +79,8 @@
       when: lanraragi_enabled | default(false) | bool
     - role: navidrome
       when: navidrome_enabled | default(false) | bool
+    - role: netdata
+      when: netdata_enabled | default(false) | bool
     - role: transmission
       when: transmission_enabled | default(false) | bool
     - role: hindsight

@@ -1,0 +1,20 @@
+---
+netdata_enabled: false
+netdata_image: v6.gh-proxy.org/docker/netdata/netdata:latest
+netdata_dir: /opt/netdata
+
+netdata_config_dir: /srv/netdata/config
+netdata_lib_dir: /srv/netdata/lib
+netdata_cache_dir: /srv/netdata/cache
+
+# Avoids the other services' host ports (container listens on 19999).
+netdata_http_port: 8089
+
+# GID of the host's docker group so the agent can read the socket; check with
+# `getent group docker`. Wrong values only lose container metrics.
+netdata_docker_gid: 999
+
+# Host mounts give the agent visibility into the host rather than the container.
+netdata_host_proc: /proc
+netdata_host_sys: /sys
+netdata_docker_socket: /var/run/docker.sock
