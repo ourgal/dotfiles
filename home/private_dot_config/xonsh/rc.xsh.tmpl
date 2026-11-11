@@ -1,3 +1,13 @@
+# [[[ completion performance
+# The bash-completion bridge spawns a shell for every <Tab>; on Windows that is
+# git-bash (~0.5s per press), while native completers answer in ~20ms.
+# Persisting the commands cache keeps the first-Tab PATH scan cheap.
+$COMMANDS_CACHE_SAVE_INTERMEDIATE = True
+{{ if eq .chezmoi.os "windows" -}}
+from xonsh.built_ins import XSH
+XSH.completers.pop("bash", None)
+{{ end -}}
+# ]]]
 # [[[ zoxide
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "xonsh" "zoxide") "opt" (list "shell" "xonsh" "zoxide" "enable") "os" (list "linux" "android" "windows")) | trim | atoi -}}
 {{ output "zoxide" "init" "xonsh" }}
