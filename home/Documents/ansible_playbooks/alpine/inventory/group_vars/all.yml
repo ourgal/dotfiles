@@ -1,6 +1,8 @@
 tailscale_enabled: true
 rsshub_enabled: true
 miniflux_enabled: false
+# Needs freshrss_admin_password + freshrss_db_password in secrets.sops.yml first.
+freshrss_enabled: false
 mihomo_enabled: true
 gitea_enabled: true
 # Without soft_serve_initial_admin_keys the server boots with no admin.

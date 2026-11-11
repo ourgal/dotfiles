@@ -29,6 +29,8 @@
       when: rsshub_enabled | default(false) | bool
     - role: miniflux
       when: miniflux_enabled | default(false) | bool
+    - role: freshrss
+      when: freshrss_enabled | default(false) | bool
     - role: nextcloud
       when: nextcloud_enabled | default(false) | bool
     - role: liseur_sync

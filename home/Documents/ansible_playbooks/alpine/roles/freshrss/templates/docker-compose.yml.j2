@@ -1,0 +1,72 @@
+services:
+  freshrss:
+    image: {{ freshrss_image }}
+    container_name: freshrss
+    restart: unless-stopped
+    environment:
+      TZ: "{{ freshrss_timezone }}"
+      CRON_MIN: "{{ freshrss_cron_min }}"
+{% if freshrss_internal_host_allowlist %}
+      INTERNAL_HOST_ALLOWLIST: "{{ freshrss_internal_host_allowlist }}"
+{% endif %}
+{% if freshrss_admin_password %}
+      # Only used on first boot; delete the data volume to run the install again.
+      FRESHRSS_INSTALL: |-
+        --api-enabled
+        --base-url {{ freshrss_base_url }}
+        --db-base {{ freshrss_db_name }}
+        --db-host db
+        --db-password {{ freshrss_db_password }}
+        --db-type pgsql
+        --db-user {{ freshrss_db_username }}
+        --default-user {{ freshrss_admin_username }}
+        --language {{ freshrss_language }}
+      FRESHRSS_USER: |-
+{% if freshrss_admin_api_password %}
+        --api-password {{ freshrss_admin_api_password }}
+{% endif %}
+{% if freshrss_admin_email %}
+        --email {{ freshrss_admin_email }}
+{% endif %}
+        --language {{ freshrss_language }}
+        --password {{ freshrss_admin_password }}
+        --user {{ freshrss_admin_username }}
+{% endif %}
+    ports:
+      - "{{ freshrss_http_port }}:80"
+    volumes:
+      - freshrss-data:/var/www/FreshRSS/data
+      - freshrss-extensions:/var/www/FreshRSS/extensions
+    networks:
+      - freshrss
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: {{ freshrss_db_image }}
+    container_name: freshrss-db
+    restart: unless-stopped
+    environment:
+      - "POSTGRES_USER={{ freshrss_db_username }}"
+      - "POSTGRES_PASSWORD={{ freshrss_db_password }}"
+      - "POSTGRES_DB={{ freshrss_db_name }}"
+    volumes:
+      - freshrss-db:/var/lib/postgresql/data
+    networks:
+      - freshrss
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "{{ freshrss_db_username }}", "-d", "{{ freshrss_db_name }}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  freshrss-data:
+  freshrss-extensions:
+  freshrss-db:
+
+networks:
+  freshrss:
+    name: freshrss

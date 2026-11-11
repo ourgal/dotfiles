@@ -1,0 +1,32 @@
+---
+freshrss_enabled: false
+# Alpine variant keeps the image small; 1-alpine tracks 1.x releases.
+freshrss_image: v6.gh-proxy.org/docker/freshrss/freshrss:1-alpine
+freshrss_db_image: postgres:17-alpine
+freshrss_dir: /opt/freshrss
+
+# Address users reach the web UI on; override in inventory for a real hostname.
+freshrss_domain: "{{ ansible_facts.get('default_ipv4', {}).get('address', 'localhost') }}"
+freshrss_http_port: 8081
+freshrss_base_url: "http://{{ freshrss_domain }}:{{ freshrss_http_port }}/"
+freshrss_timezone: "{{ ansible_facts.get('date_time', {}).get('tz', 'UTC') }}"
+freshrss_language: en
+
+# Built-in cron refresh schedule (minutes); empty disables it.
+freshrss_cron_min: '13,43'
+
+# FreshRSS blocks requests to private/RFC1918 addresses by default (SSRF guard).
+# Required here so feeds can point at rsshub on the LAN (e.g. http://<lan-ip>:1200/...).
+freshrss_internal_host_allowlist: "10.0.0.0/8 172.16.0.0/12 192.168.0.0/16"
+
+# Credentials live in inventory/group_vars/secrets.sops.yml (age-encrypted, loaded by
+# the playbook's community.sops.load_vars pre_task): `make sops`.
+# FRESHRSS_INSTALL/FRESHRSS_USER only apply on first run; later changes go through
+# the web UI. Keep passwords alphanumeric: the image passes them as CLI arguments.
+freshrss_admin_username: admin
+freshrss_admin_email: ""
+freshrss_admin_password: ""
+freshrss_admin_api_password: ""
+freshrss_db_name: freshrss
+freshrss_db_username: freshrss
+freshrss_db_password: ""
