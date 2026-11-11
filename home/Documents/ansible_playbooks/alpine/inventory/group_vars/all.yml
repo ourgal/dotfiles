@@ -52,3 +52,7 @@ memos_enabled: false
 # blocks WebRTC; traffic is then relayed by the server.
 pairdrop_enabled: false
 
+# Needs siyuan_access_auth_code in secrets.sops.yml; without a lock-screen
+# password the instance is reachable unauthenticated.
+siyuan_enabled: false
+

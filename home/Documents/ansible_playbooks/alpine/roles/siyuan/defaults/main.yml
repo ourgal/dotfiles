@@ -1,0 +1,16 @@
+---
+siyuan_enabled: false
+siyuan_image: v6.gh-proxy.org/docker/b3log/siyuan:latest
+siyuan_dir: /opt/siyuan
+
+# Notes, assets and kernel config; created and owned by PUID/PGID.
+siyuan_workspace_dir: /srv/siyuan/workspace
+
+siyuan_http_port: 6806
+
+siyuan_uid: 1000
+siyuan_gid: 1000
+
+# Lock-screen password for the web UI. Leave empty only on a trusted LAN:
+# the instance is reachable without authentication otherwise.
+siyuan_access_auth_code: ""

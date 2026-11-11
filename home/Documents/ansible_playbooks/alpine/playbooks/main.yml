@@ -57,6 +57,8 @@
       when: memos_enabled | default(false) | bool
     - role: pairdrop
       when: pairdrop_enabled | default(false) | bool
+    - role: siyuan
+      when: siyuan_enabled | default(false) | bool
     - role: hindsight
       when: hindsight_enabled | default(false) | bool
   post_tasks:

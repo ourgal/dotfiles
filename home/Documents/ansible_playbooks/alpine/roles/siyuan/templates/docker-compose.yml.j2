@@ -1,0 +1,18 @@
+services:
+  siyuan:
+    image: {{ siyuan_image }}
+    container_name: siyuan
+    restart: unless-stopped
+    environment:
+      PUID: "{{ siyuan_uid }}"
+      PGID: "{{ siyuan_gid }}"
+    command:
+      - serve
+      - --workspace=/siyuan/workspace/
+{% if siyuan_access_auth_code %}
+      - --accessAuthCode={{ siyuan_access_auth_code }}
+{% endif %}
+    ports:
+      - "{{ siyuan_http_port }}:6806"
+    volumes:
+      - "{{ siyuan_workspace_dir }}:/siyuan/workspace"
