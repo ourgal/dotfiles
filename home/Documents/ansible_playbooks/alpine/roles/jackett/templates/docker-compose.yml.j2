@@ -1,0 +1,15 @@
+services:
+  jackett:
+    image: {{ jackett_image }}
+    container_name: jackett
+    restart: unless-stopped
+    environment:
+      PUID: "{{ jackett_uid }}"
+      PGID: "{{ jackett_gid }}"
+      TZ: "{{ jackett_timezone }}"
+      AUTO_UPDATE: "{{ jackett_auto_update | bool | lower }}"
+    ports:
+      - "{{ jackett_http_port }}:9117"
+    volumes:
+      - "{{ jackett_config_dir }}:/config"
+      - "{{ jackett_downloads_dir }}:/downloads"

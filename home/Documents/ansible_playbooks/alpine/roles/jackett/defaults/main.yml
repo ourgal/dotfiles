@@ -1,0 +1,19 @@
+---
+jackett_enabled: false
+jackett_image: v6.gh-proxy.org/docker/linuxserver/jackett:latest
+jackett_dir: /opt/jackett
+
+# Jackett's config (indexers, API key); created by the role.
+jackett_config_dir: /srv/jackett/config
+# Torrent blackhole for indexers that return .torrent files.
+jackett_downloads_dir: /srv/jackett/downloads
+
+jackett_http_port: 9117
+
+jackett_uid: 1000
+jackett_gid: 1000
+
+jackett_timezone: "{{ ansible_facts.get('date_time', {}).get('tz', 'UTC') }}"
+
+# Let Jackett update itself on container start; disable when pinning an image tag.
+jackett_auto_update: true
