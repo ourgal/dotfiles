@@ -85,6 +85,8 @@
       when: lidarr_enabled | default(false) | bool
     - role: jellyseerr
       when: jellyseerr_enabled | default(false) | bool
+    - role: photoview
+      when: photoview_enabled | default(false) | bool
     - role: transmission
       when: transmission_enabled | default(false) | bool
     - role: hindsight

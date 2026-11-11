@@ -1,0 +1,24 @@
+services:
+  photoview:
+    image: {{ photoview_image }}
+    container_name: photoview
+    restart: unless-stopped
+    stop_grace_period: 10s
+    security_opt:
+      - seccomp:unconfined
+      - apparmor:unconfined
+    environment:
+      PHOTOVIEW_DATABASE_DRIVER: sqlite
+      PHOTOVIEW_SQLITE_PATH: /home/photoview/database/photoview.db
+      PHOTOVIEW_LISTEN_IP: "0.0.0.0"
+{% if photoview_mapbox_token | length > 0 %}
+      MAPBOX_TOKEN: "{{ photoview_mapbox_token }}"
+{% endif %}
+    ports:
+      - "{{ photoview_http_port }}:80"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "{{ photoview_database_dir }}:/home/photoview/database"
+      - "{{ photoview_cache_dir }}:/home/photoview/media-cache"
+      - "{{ photoview_media_dir }}:/photos:ro"

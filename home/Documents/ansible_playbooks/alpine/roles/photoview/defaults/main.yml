@@ -1,0 +1,22 @@
+---
+photoview_enabled: false
+photoview_image: v6.gh-proxy.org/docker/photoview/photoview:2
+photoview_dir: /opt/photoview
+
+# Settings, generated thumbnails and the SQLite database. The image runs as
+# the photoview user (UID/GID 999), so the directories must belong to it.
+photoview_data_dir: /srv/photoview
+photoview_database_dir: /srv/photoview/database
+photoview_cache_dir: /srv/photoview/cache
+
+# Mounted read-only; albums map to the folders below this path.
+photoview_media_dir: /srv/media/photos
+
+# Avoids the other services' host ports (container listens on 80).
+photoview_http_port: 8092
+
+photoview_uid: 999
+photoview_gid: 999
+
+# Optional; enables the map view. Create one at https://account.mapbox.com/.
+photoview_mapbox_token: ""

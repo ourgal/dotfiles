@@ -112,3 +112,7 @@ lidarr_enabled: false
 # your Radarr/Sonarr servers; list their URLs reachable from this container.
 jellyseerr_enabled: false
 
+# Point photoview_media_dir at your photo library (mounted read-only); the
+# setup wizard asks for the in-container path, which is /photos.
+photoview_enabled: false
+
