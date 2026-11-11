@@ -1,0 +1,21 @@
+services:
+  vaultwarden:
+    image: {{ vaultwarden_image }}
+    container_name: vaultwarden
+    restart: unless-stopped
+    user: "{{ vaultwarden_uid }}:{{ vaultwarden_gid }}"
+    environment:
+      TZ: "{{ vaultwarden_timezone }}"
+      ROCKET_PORT: "8080"
+      SIGNUPS_ALLOWED: "{{ vaultwarden_signups_allowed | bool | lower }}"
+      INVITATIONS_ALLOWED: "{{ vaultwarden_invitations_allowed | bool | lower }}"
+{% if vaultwarden_domain %}
+      DOMAIN: "{{ vaultwarden_domain }}"
+{% endif %}
+{% if vaultwarden_admin_token %}
+      ADMIN_TOKEN: "{{ vaultwarden_admin_token }}"
+{% endif %}
+    ports:
+      - "{{ vaultwarden_http_port }}:8080"
+    volumes:
+      - "{{ vaultwarden_data_dir }}:/data"

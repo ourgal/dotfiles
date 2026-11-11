@@ -1,0 +1,30 @@
+---
+vaultwarden_enabled: false
+vaultwarden_image: v6.gh-proxy.org/docker/vaultwarden/server:latest
+vaultwarden_dir: /opt/vaultwarden
+
+# SQLite database, attachments and the generated RSA keys; created by the role.
+vaultwarden_data_dir: /srv/vaultwarden/data
+
+# Avoids nextcloud's 8080. The container listens on 8080 rather than the image's
+# default 80 so it can run as a non-root user.
+vaultwarden_http_port: 8081
+
+vaultwarden_uid: 1000
+vaultwarden_gid: 1000
+
+vaultwarden_timezone: "{{ ansible_facts.get('date_time', {}).get('tz', 'UTC') }}"
+
+# Full external URL, e.g. https://vault.example.com. Required behind a reverse
+# proxy so client callbacks and email links resolve correctly; empty derives
+# them from each request.
+vaultwarden_domain: ""
+
+# Token for /admin; set from secrets.sops.yml, preferably an Argon2 hash from
+# `vaultwarden hash`. Empty disables the admin page.
+vaultwarden_admin_token: ""
+
+# Keep true until the first account is registered, then set false to stop
+# strangers from signing up.
+vaultwarden_signups_allowed: true
+vaultwarden_invitations_allowed: true

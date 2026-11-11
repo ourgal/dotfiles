@@ -61,6 +61,8 @@
       when: siyuan_enabled | default(false) | bool
     - role: uptime_kuma
       when: uptime_kuma_enabled | default(false) | bool
+    - role: vaultwarden
+      when: vaultwarden_enabled | default(false) | bool
     - role: transmission
       when: transmission_enabled | default(false) | bool
     - role: hindsight

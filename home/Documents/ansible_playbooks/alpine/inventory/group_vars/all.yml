@@ -64,3 +64,8 @@ transmission_enabled: false
 # and history are stored under /srv/uptime-kuma/data.
 uptime_kuma_enabled: false
 
+# Register the first account while signups are open, then set
+# vaultwarden_signups_allowed: false; vaultwarden_admin_token belongs in
+# secrets.sops.yml and vaultwarden_domain should be the HTTPS reverse-proxy URL.
+vaultwarden_enabled: false
+
