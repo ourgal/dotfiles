@@ -113,4 +113,11 @@ XSH.completers.move_to_end("make", last=False)
 {{ output "zoxide" "init" "xonsh" }}
 {{ end -}}
 # ]]]
+# [[[ carapace
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "xonsh" "carapace") "opt" (list "shell" "xonsh" "carapace" "enable") "os" (list "linux" "android" "windows")) | trim | atoi -}}
+$CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
+$COMPLETIONS_CONFIRM = True
+{{ output "carapace" "_carapace" "xonsh" }}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
