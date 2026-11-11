@@ -1,0 +1,15 @@
+services:
+  lanraragi:
+    image: {{ lanraragi_image }}
+    container_name: lanraragi
+    restart: unless-stopped
+    user: "{{ lanraragi_uid }}:{{ lanraragi_gid }}"
+    environment:
+      TZ: "{{ lanraragi_timezone }}"
+    ports:
+      - "{{ lanraragi_http_port }}:3000"
+    volumes:
+      - "{{ lanraragi_content_dir }}:/home/koyomi/lanraragi/content"
+      - "{{ lanraragi_thumb_dir }}:/home/koyomi/lanraragi/thumb"
+      - "{{ lanraragi_database_dir }}:/home/koyomi/lanraragi/database"
+      - "{{ lanraragi_plugins_dir }}:/home/koyomi/lanraragi/lib/LANraragi/Plugin/Sideloaded"

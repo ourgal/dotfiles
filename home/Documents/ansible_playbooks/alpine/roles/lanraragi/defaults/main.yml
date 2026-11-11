@@ -1,0 +1,21 @@
+---
+lanraragi_enabled: false
+lanraragi_image: v6.gh-proxy.org/docker/difegue/lanraragi:latest
+lanraragi_dir: /opt/lanraragi
+
+# Comic archives; point this at your collection.
+lanraragi_content_dir: /srv/lanraragi/content
+lanraragi_thumb_dir: /srv/lanraragi/thumb
+# Redis dump and server settings.
+lanraragi_database_dir: /srv/lanraragi/database
+# Sideloaded plugins, mounted at the image's Plugin/Sideloaded path.
+lanraragi_plugins_dir: /srv/lanraragi/plugins
+
+# Avoids the other services' host ports (container listens on 3000).
+lanraragi_http_port: 8087
+
+# The image's koyomi user is UID/GID 1000.
+lanraragi_uid: 1000
+lanraragi_gid: 1000
+
+lanraragi_timezone: "{{ ansible_facts.get('date_time', {}).get('tz', 'UTC') }}"
