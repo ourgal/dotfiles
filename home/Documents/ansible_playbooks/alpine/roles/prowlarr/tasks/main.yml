@@ -1,0 +1,31 @@
+---
+- name: Create the prowlarr stack directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ prowlarr_dir }}"
+    state: directory
+    mode: '0700'
+
+- name: Create the prowlarr config directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ prowlarr_config_dir }}"
+    state: directory
+    owner: "{{ prowlarr_uid }}"
+    group: "{{ prowlarr_gid }}"
+    mode: '0700'
+
+- name: Deploy the prowlarr compose file
+  become: true
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ prowlarr_dir }}/docker-compose.yml"
+    mode: '0600'
+
+# No community.docker dependency on purpose: the CLI is idempotent here.
+- name: Start the prowlarr stack
+  become: true
+  ansible.builtin.command:
+    cmd: docker compose up -d --remove-orphans
+    chdir: "{{ prowlarr_dir }}"
+  changed_when: false

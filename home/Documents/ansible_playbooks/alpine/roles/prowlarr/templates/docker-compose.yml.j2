@@ -1,0 +1,14 @@
+services:
+  prowlarr:
+    image: {{ prowlarr_image }}
+    container_name: prowlarr
+    restart: unless-stopped
+    environment:
+      PUID: "{{ prowlarr_uid }}"
+      PGID: "{{ prowlarr_gid }}"
+      TZ: "{{ prowlarr_timezone }}"
+      UMASK: "{{ prowlarr_umask }}"
+    ports:
+      - "{{ prowlarr_http_port }}:9696"
+    volumes:
+      - "{{ prowlarr_config_dir }}:/config"

@@ -1,0 +1,13 @@
+---
+prowlarr_enabled: false
+prowlarr_image: v6.gh-proxy.org/docker/linuxserver/prowlarr:latest
+prowlarr_dir: /opt/prowlarr
+prowlarr_config_dir: /srv/prowlarr/config
+
+# Avoids the other services' host ports (container listens on 9696).
+prowlarr_http_port: 8093
+
+prowlarr_uid: 1000
+prowlarr_gid: 1000
+prowlarr_timezone: "{{ ansible_facts.get('date_time', {}).get('tz', 'UTC') }}"
+prowlarr_umask: "022"
