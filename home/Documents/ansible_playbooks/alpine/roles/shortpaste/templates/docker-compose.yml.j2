@@ -1,0 +1,16 @@
+services:
+  shortpaste:
+    image: {{ shortpaste_image }}
+    container_name: shortpaste
+    restart: unless-stopped
+    environment:
+      SP_STORAGE_PATH: /data
+      SP_USERNAME: "{{ shortpaste_username }}"
+      SP_PASSWORD: "{{ shortpaste_password }}"
+{% if shortpaste_noauth | bool %}
+      SP_NOAUTH: "true"
+{% endif %}
+    ports:
+      - "{{ shortpaste_http_port }}:8080"
+    volumes:
+      - "{{ shortpaste_data_dir }}:/data"

@@ -89,6 +89,8 @@
       when: photoview_enabled | default(false) | bool
     - role: prowlarr
       when: prowlarr_enabled | default(false) | bool
+    - role: shortpaste
+      when: shortpaste_enabled | default(false) | bool
     - role: transmission
       when: transmission_enabled | default(false) | bool
     - role: hindsight

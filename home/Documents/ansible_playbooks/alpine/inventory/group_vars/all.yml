@@ -120,3 +120,7 @@ photoview_enabled: false
 # Settings -> Apps using their in-network URLs.
 prowlarr_enabled: false
 
+# Override shortpaste_username/shortpaste_password (default admin/admin) from
+# the encrypted secrets file; storage holds the SQLite DB, files and pastes.
+shortpaste_enabled: false
+

@@ -1,0 +1,16 @@
+---
+shortpaste_enabled: false
+shortpaste_image: v6.gh-proxy.org/docker/adyanth/shortpaste:latest
+shortpaste_dir: /opt/shortpaste
+shortpaste_data_dir: /srv/shortpaste/data
+
+# Avoids the other services' host ports (container listens on 8080).
+shortpaste_http_port: 8094
+
+# The image ships with admin/admin; override these, ideally from the
+# encrypted secrets file.
+shortpaste_username: admin
+shortpaste_password: admin
+
+# Set to true to allow anyone to create pastes without logging in.
+shortpaste_noauth: false
