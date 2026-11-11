@@ -1,0 +1,23 @@
+services:
+  dufs:
+    image: {{ dufs_image }}
+    container_name: dufs
+    restart: unless-stopped
+    environment:
+      - DUFS_SERVE_PATH=/data
+{% if dufs_allow_all %}
+      - DUFS_ALLOW_ALL=true
+{% endif %}
+{% if dufs_password %}
+      - "DUFS_AUTH={{ dufs_user }}:{{ dufs_password }}@/:rw"
+{% endif %}
+    ports:
+      - "{{ dufs_http_port }}:5000"
+    volumes:
+      - "{{ dufs_data_dir }}:/data"
+    networks:
+      - dufs
+
+networks:
+  dufs:
+    name: dufs

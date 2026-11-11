@@ -1,0 +1,17 @@
+---
+dufs_enabled: false
+dufs_image: v6.gh-proxy.org/docker/sigoden/dufs:latest
+dufs_dir: /opt/dufs
+
+# Host directory served by dufs; created by the role.
+dufs_data_dir: /srv/dufs
+dufs_http_port: 5000
+
+# Global permissions; allow-all covers upload/delete/search/edit.
+dufs_allow_all: true
+
+# Credentials live in inventory/group_vars/secrets.sops.yml (age-encrypted, loaded by
+# the playbook's community.sops.load_vars pre_task): `make sops`.
+# An empty password leaves the share anonymously writable.
+dufs_user: admin
+dufs_password: ""
