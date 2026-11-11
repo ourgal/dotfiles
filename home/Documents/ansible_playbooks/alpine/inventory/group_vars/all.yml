@@ -85,3 +85,7 @@ uchiyomi_enabled: false
 # whoogle_config_url should be the URL used when adding it as a search engine.
 whoogle_enabled: false
 
+# Updates every running container daily via the Docker socket, which is
+# root-equivalent host access.
+watchtower_enabled: false
+

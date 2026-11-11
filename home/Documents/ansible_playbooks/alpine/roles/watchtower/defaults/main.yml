@@ -1,0 +1,23 @@
+---
+watchtower_enabled: false
+watchtower_image: v6.gh-proxy.org/docker/containrrr/watchtower:latest
+watchtower_dir: /opt/watchtower
+
+# Mounting the Docker socket is root-equivalent access to the host: Watchtower
+# can start, stop and replace any container.
+watchtower_docker_socket: /var/run/docker.sock
+
+# How often to check for new images, in seconds (86400 = daily).
+watchtower_poll_interval: 86400
+
+# Remove the old image after a container is recreated.
+watchtower_cleanup: true
+
+# Restart one container at a time instead of the whole stack at once.
+watchtower_rolling_restart: true
+
+# Only update containers carrying
+# com.centurylinklabs.watchtower.enable=true; none of the roles add it.
+watchtower_label_enable: false
+
+watchtower_timezone: "{{ ansible_facts.get('date_time', {}).get('tz', 'UTC') }}"

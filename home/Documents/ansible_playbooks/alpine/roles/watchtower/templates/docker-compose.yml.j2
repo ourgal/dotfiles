@@ -1,0 +1,13 @@
+services:
+  watchtower:
+    image: {{ watchtower_image }}
+    container_name: watchtower
+    restart: unless-stopped
+    environment:
+      TZ: "{{ watchtower_timezone }}"
+      WATCHTOWER_POLL_INTERVAL: "{{ watchtower_poll_interval }}"
+      WATCHTOWER_CLEANUP: "{{ watchtower_cleanup | bool | lower }}"
+      WATCHTOWER_ROLLING_RESTART: "{{ watchtower_rolling_restart | bool | lower }}"
+      WATCHTOWER_LABEL_ENABLE: "{{ watchtower_label_enable | bool | lower }}"
+    volumes:
+      - "{{ watchtower_docker_socket }}:/var/run/docker.sock"

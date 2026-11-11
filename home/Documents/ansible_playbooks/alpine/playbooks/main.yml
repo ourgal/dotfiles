@@ -71,6 +71,8 @@
       when: uchiyomi_enabled | default(false) | bool
     - role: whoogle
       when: whoogle_enabled | default(false) | bool
+    - role: watchtower
+      when: watchtower_enabled | default(false) | bool
     - role: transmission
       when: transmission_enabled | default(false) | bool
     - role: hindsight
