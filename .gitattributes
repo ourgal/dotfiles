@@ -1,0 +1,3 @@
+# transmission writes settings.json with LF endings; keep the template LF so the
+# rendered target matches byte-for-byte and chezmoi apply stays diff-free.
+home/AppData/Local/transmission-daemon/settings.json.tmpl text eol=lf
