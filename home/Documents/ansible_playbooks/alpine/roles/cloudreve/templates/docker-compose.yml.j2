@@ -1,0 +1,56 @@
+services:
+  cloudreve:
+    image: {{ cloudreve_image }}
+    container_name: cloudreve
+    restart: unless-stopped
+    depends_on:
+      postgresql:
+        condition: service_started
+      redis:
+        condition: service_started
+    environment:
+      CR_CONF_Database.Type: postgres
+      CR_CONF_Database.Host: postgresql
+      CR_CONF_Database.Port: "5432"
+      CR_CONF_Database.User: "{{ cloudreve_db_user }}"
+      CR_CONF_Database.Name: "{{ cloudreve_db_name }}"
+      CR_CONF_Redis.Server: "redis:6379"
+    ports:
+      - "{{ cloudreve_http_port }}:5212"
+      - "{{ cloudreve_aria2_port }}:6888/tcp"
+      - "{{ cloudreve_aria2_port }}:6888/udp"
+    volumes:
+      - "{{ cloudreve_data_dir }}:/cloudreve/data"
+    networks:
+      - cloudreve
+
+  postgresql:
+    image: {{ cloudreve_db_image }}
+    container_name: cloudreve-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: "{{ cloudreve_db_user }}"
+      POSTGRES_DB: "{{ cloudreve_db_name }}"
+      # Not published, so only reachable from the compose network.
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - cloudreve-db:/var/lib/postgresql/data
+    networks:
+      - cloudreve
+
+  redis:
+    image: {{ cloudreve_redis_image }}
+    container_name: cloudreve-redis
+    restart: unless-stopped
+    volumes:
+      - cloudreve-redis:/data
+    networks:
+      - cloudreve
+
+volumes:
+  cloudreve-db:
+  cloudreve-redis:
+
+networks:
+  cloudreve:
+    name: cloudreve

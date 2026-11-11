@@ -43,6 +43,8 @@
       when: sonarr_enabled | default(false) | bool
     - role: changedetection
       when: changedetection_enabled | default(false) | bool
+    - role: cloudreve
+      when: cloudreve_enabled | default(false) | bool
     - role: qiandao
       when: qiandao_enabled | default(false) | bool
     - role: hindsight

@@ -1,0 +1,20 @@
+---
+cloudreve_enabled: false
+cloudreve_image: v6.gh-proxy.org/docker/cloudreve/cloudreve:latest
+cloudreve_db_image: postgres:17
+cloudreve_redis_image: redis:alpine
+cloudreve_dir: /opt/cloudreve
+
+# Config, uploads, avatars, and temp files all live under this directory
+# (bind-mounted to /cloudreve/data). The image runs as uid/gid 1000, so the
+# host directory must be owned by it or uploads fail with permission errors.
+cloudreve_data_dir: /srv/cloudreve/data
+cloudreve_uid: 1000
+cloudreve_gid: 1000
+
+cloudreve_http_port: 5212
+# Public BT listen port used by the built-in offline downloader (Aria2).
+cloudreve_aria2_port: 6888
+
+cloudreve_db_user: cloudreve
+cloudreve_db_name: cloudreve
