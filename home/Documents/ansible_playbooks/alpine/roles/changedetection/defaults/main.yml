@@ -1,0 +1,27 @@
+---
+changedetection_enabled: false
+changedetection_image: v6.gh-proxy.org/docker/dgtlmoon/changedetection.io:latest
+changedetection_browser_image: v6.gh-proxy.org/docker/dgtlmoon/sockpuppetbrowser:latest
+changedetection_dir: /opt/changedetection
+
+# SQLite database plus page snapshots; created by the role.
+changedetection_datastore_dir: /srv/changedetection/datastore
+changedetection_http_port: 5000
+
+# Empty string publishes on every interface; set 127.0.0.1 when a reverse proxy
+# on the same host terminates TLS.
+changedetection_bind_address: ""
+
+# Base URL used in notification links; empty derives it from the request host.
+changedetection_base_url: ""
+
+changedetection_timezone: "{{ ansible_facts.get('date_time', {}).get('tz', 'UTC') }}"
+
+# Secrets still live in the web UI; the datastore must be readable by this user.
+changedetection_uid: 1000
+changedetection_gid: 1000
+
+# JS-heavy pages need the Chrome sidecar, which is memory hungry; the plain
+# fetcher handles static pages without it.
+changedetection_browser_enabled: false
+changedetection_browser_concurrency: 10

@@ -1,0 +1,37 @@
+services:
+  changedetection:
+    image: {{ changedetection_image }}
+    container_name: changedetection
+    hostname: changedetection
+    restart: unless-stopped
+    user: "{{ changedetection_uid }}:{{ changedetection_gid }}"
+    environment:
+      TZ: "{{ changedetection_timezone }}"
+{% if changedetection_base_url %}
+      BASE_URL: "{{ changedetection_base_url }}"
+{% endif %}
+{% if changedetection_browser_enabled %}
+      PLAYWRIGHT_DRIVER_URL: "ws://browser:3000"
+{% endif %}
+    ports:
+      - "{{ changedetection_bind_address }}{{ changedetection_http_port }}:5000"
+    volumes:
+      - "{{ changedetection_datastore_dir }}:/datastore"
+{% if changedetection_browser_enabled %}
+    depends_on:
+      browser:
+        condition: service_started
+
+  browser:
+    image: {{ changedetection_browser_image }}
+    container_name: changedetection-browser
+    hostname: browser
+    restart: unless-stopped
+    cap_add:
+      - SYS_ADMIN
+    environment:
+      SCREEN_WIDTH: "1920"
+      SCREEN_HEIGHT: "1024"
+      SCREEN_DEPTH: "16"
+      MAX_CONCURRENT_CHROME_PROCESSES: "{{ changedetection_browser_concurrency }}"
+{% endif %}
