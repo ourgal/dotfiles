@@ -1,0 +1,39 @@
+services:
+  qiandao:
+    image: {{ qiandao_image }}
+    container_name: qiandao
+    restart: unless-stopped
+    environment:
+      TZ: "{{ qiandao_timezone }}"
+      DOMAIN: "{{ qiandao_domain }}"
+      PBKDF2_ITERATIONS: "400"
+      REDISCLOUD_URL: "redis://redis:6379"
+{% if qiandao_cookie_sign_secret %}
+      COOKIE_SIGN_SECRET: "{{ qiandao_cookie_sign_secret }}"
+{% endif %}
+{% if qiandao_aes_key %}
+      AES_KEY: "{{ qiandao_aes_key }}"
+{% endif %}
+    ports:
+      - "{{ qiandao_http_port }}:80"
+    volumes:
+      - "{{ qiandao_data_dir }}/config:/usr/src/app/config"
+    networks:
+      - qiandao
+    depends_on:
+      redis:
+        condition: service_started
+
+  redis:
+    image: {{ qiandao_redis_image }}
+    container_name: qiandao-redis
+    restart: unless-stopped
+    command: ["--loglevel", "warning"]
+    volumes:
+      - "{{ qiandao_data_dir }}/redis:/data"
+    networks:
+      - qiandao
+
+networks:
+  qiandao:
+    name: qiandao

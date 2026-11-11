@@ -1,0 +1,21 @@
+---
+qiandao_enabled: false
+# Full image bundles OCR for captcha solving; switch to qdtoday/qd:lite-latest
+# on 386/armv6/s390x or when disk is tight.
+qiandao_image: v6.gh-proxy.org/docker/qdtoday/qd:latest
+qiandao_redis_image: redis:alpine
+qiandao_dir: /opt/qiandao
+
+# Host directory holding the QD sqlite DB and settings; created by the role.
+qiandao_data_dir: /srv/qiandao
+qiandao_http_port: 8923
+
+# Public base URL used in notifications; empty falls back to the request host.
+qiandao_domain: ""
+qiandao_timezone: "{{ ansible_facts.get('date_time', {}).get('tz', 'UTC') }}"
+
+# Empty cookie secret means a random key per boot, which invalidates sessions on
+# every restart. Set both values from secrets.sops.yml for a stable deployment;
+# changing AES_KEY after data exists requires re-encrypting the database.
+qiandao_cookie_sign_secret: ""
+qiandao_aes_key: ""
