@@ -1,0 +1,16 @@
+---
+whoogle_enabled: false
+whoogle_image: v6.gh-proxy.org/docker/benbusby/whoogle-search:latest
+whoogle_dir: /opt/whoogle
+
+# Avoids 8080-8084 used by nextcloud, vaultwarden, code-server and uchiyomi.
+whoogle_http_port: 8085
+
+# Full external URL, used when the instance is added as a browser search
+# engine. Empty derives it from each request.
+whoogle_config_url: ""
+
+# Optional HTTP basic auth; set both from secrets.sops.yml. Empty leaves the
+# instance open to anyone who can reach the port.
+whoogle_user: ""
+whoogle_password: ""

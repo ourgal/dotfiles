@@ -1,0 +1,22 @@
+---
+- name: Create the whoogle stack directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ whoogle_dir }}"
+    state: directory
+    mode: '0700'
+
+- name: Deploy the whoogle compose file
+  become: true
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ whoogle_dir }}/docker-compose.yml"
+    mode: '0600'
+
+# No community.docker dependency on purpose: the CLI is idempotent here.
+- name: Start the whoogle stack
+  become: true
+  ansible.builtin.command:
+    cmd: docker compose up -d --remove-orphans
+    chdir: "{{ whoogle_dir }}"
+  changed_when: false

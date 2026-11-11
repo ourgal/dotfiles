@@ -81,3 +81,7 @@ wallabag_enabled: false
 # the address clients use; PUID/PGID must own the library for downloads to work.
 uchiyomi_enabled: false
 
+# Set whoogle_user/password in secrets.sops.yml to require HTTP basic auth;
+# whoogle_config_url should be the URL used when adding it as a search engine.
+whoogle_enabled: false
+
