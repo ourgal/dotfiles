@@ -120,4 +120,11 @@ $COMPLETIONS_CONFIRM = True
 {{ output "carapace" "_carapace" "xonsh" }}
 {{ end -}}
 # ]]]
+# [[[ starship
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "xonsh" "starship") "opt" (list "shell" "xonsh" "starship" "enable") "os" (list "linux" "android" "windows")) | trim | atoi -}}
+# starship bakes an MSYS-style (/c/...) path into the xonsh init on Windows,
+# which native xonsh cannot execute; replace it with a PATH lookup.
+{{ regexReplaceAll `[^\s$("']*starship(?:\.exe)?` (output "starship" "init" "xonsh" "--print-full-init") "starship" }}
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
