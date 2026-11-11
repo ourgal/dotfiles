@@ -13,6 +13,11 @@ XSH.completers.pop("bash", None)
 # (Shift+Tab goes back) instead of only opening the menu.
 $COMPLETION_MODE = "menu-complete"
 # ]]]
+# [[[ auto-pair
+# Auto-insert matching brackets and quotes, skip over closing ones, and delete
+# empty pairs on Backspace. Requires the prompt-toolkit shell.
+$XONSH_AUTOPAIR = True
+# ]]]
 # [[[ make target completion
 # Parses the makefile directly instead of running `make -qp`, which would cost
 # ~0.5s per <Tab> on Windows.
