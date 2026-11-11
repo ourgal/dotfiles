@@ -1,0 +1,27 @@
+---
+pairdrop_enabled: false
+pairdrop_image: v6.gh-proxy.org/docker/linuxserver/pairdrop:latest
+pairdrop_dir: /opt/pairdrop
+
+pairdrop_http_port: 3000
+
+pairdrop_uid: 1000
+pairdrop_gid: 1000
+
+pairdrop_timezone: "{{ ansible_facts.get('date_time', {}).get('tz', 'UTC') }}"
+
+# Limit each client to 100 requests per 5 minutes.
+pairdrop_rate_limit: false
+
+# Relay traffic through the server when direct WebRTC connections fail (useful
+# behind a VPN), at the cost of no longer being peer-to-peer.
+pairdrop_ws_fallback: false
+
+# Mounted at /config so a custom STUN/TURN file can be dropped there. Set
+# pairdrop_rtc_config to its container path (e.g. /config/rtc_config.json) to
+# use it; it must already exist or PairDrop will fail to start.
+pairdrop_config_dir: /srv/pairdrop/config
+pairdrop_rtc_config: ""
+
+# Logs client IPs used for peer discovery. Do not enable in production.
+pairdrop_debug_mode: false

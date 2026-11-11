@@ -1,0 +1,19 @@
+services:
+  pairdrop:
+    image: {{ pairdrop_image }}
+    container_name: pairdrop
+    restart: unless-stopped
+    environment:
+      PUID: "{{ pairdrop_uid }}"
+      PGID: "{{ pairdrop_gid }}"
+      TZ: "{{ pairdrop_timezone }}"
+      RATE_LIMIT: "{{ pairdrop_rate_limit | bool | lower }}"
+      WS_FALLBACK: "{{ pairdrop_ws_fallback | bool | lower }}"
+      DEBUG_MODE: "{{ pairdrop_debug_mode | bool | lower }}"
+{% if pairdrop_rtc_config %}
+      RTC_CONFIG: "{{ pairdrop_rtc_config }}"
+{% endif %}
+    ports:
+      - "{{ pairdrop_http_port }}:3000"
+    volumes:
+      - "{{ pairdrop_config_dir }}:/config"

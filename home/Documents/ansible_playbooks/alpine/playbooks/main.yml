@@ -55,6 +55,8 @@
       when: qiandao_enabled | default(false) | bool
     - role: memos
       when: memos_enabled | default(false) | bool
+    - role: pairdrop
+      when: pairdrop_enabled | default(false) | bool
     - role: hindsight
       when: hindsight_enabled | default(false) | bool
   post_tasks:
