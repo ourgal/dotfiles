@@ -1,0 +1,7 @@
+services:
+  cyberchef:
+    image: {{ cyberchef_image }}
+    container_name: cyberchef
+    restart: unless-stopped
+    ports:
+      - "{{ cyberchef_bind_address }}{{ cyberchef_http_port }}:8080"

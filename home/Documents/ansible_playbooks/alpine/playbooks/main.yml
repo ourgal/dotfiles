@@ -45,6 +45,8 @@
       when: changedetection_enabled | default(false) | bool
     - role: cloudreve
       when: cloudreve_enabled | default(false) | bool
+    - role: cyberchef
+      when: cyberchef_enabled | default(false) | bool
     - role: qiandao
       when: qiandao_enabled | default(false) | bool
     - role: hindsight

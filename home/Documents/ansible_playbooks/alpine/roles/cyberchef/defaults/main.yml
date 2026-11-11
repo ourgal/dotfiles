@@ -1,0 +1,13 @@
+---
+cyberchef_enabled: false
+cyberchef_image: ghcr.io/gchq/cyberchef:latest
+cyberchef_dir: /opt/cyberchef
+
+cyberchef_http_port: 8000
+
+# Empty string publishes on every interface; set 127.0.0.1 when a reverse proxy
+# on the same host terminates TLS.
+cyberchef_bind_address: ""
+
+# Stateless by design: all processing happens in the browser and saved recipes
+# live in browser storage, so there is no data volume to back up.
