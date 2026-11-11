@@ -1,0 +1,24 @@
+---
+code_server_enabled: false
+code_server_image: v6.gh-proxy.org/docker/codercom/code-server:latest
+code_server_dir: /opt/code_server
+
+# Home directory for the coder user: settings, extensions and the workspace.
+code_server_home_dir: /srv/code_server/home
+
+# Avoids nextcloud's 8080. code-server listens on 8080 in the container.
+code_server_http_port: 8082
+
+# The image's coder user is UID/GID 1000.
+code_server_uid: 1000
+code_server_gid: 1000
+
+code_server_timezone: "{{ ansible_facts.get('date_time', {}).get('tz', 'UTC') }}"
+
+# Plain-text login password; set from secrets.sops.yml. If both this and the
+# hash are empty, code-server generates a random password shown in its logs.
+code_server_password: ""
+
+# Preferred over code_server_password: an Argon2 hash from
+# `echo -n 'password' | code-server --hash-password`. Takes precedence.
+code_server_hashed_password: ""

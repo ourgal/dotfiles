@@ -69,3 +69,7 @@ uptime_kuma_enabled: false
 # secrets.sops.yml and vaultwarden_domain should be the HTTPS reverse-proxy URL.
 vaultwarden_enabled: false
 
+# Set code_server_hashed_password (or code_server_password) in secrets.sops.yml;
+# without one code-server generates a random password visible in its logs.
+code_server_enabled: false
+

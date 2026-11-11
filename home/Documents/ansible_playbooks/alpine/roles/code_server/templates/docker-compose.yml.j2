@@ -1,0 +1,17 @@
+services:
+  code-server:
+    image: {{ code_server_image }}
+    container_name: code-server
+    restart: unless-stopped
+    user: "{{ code_server_uid }}:{{ code_server_gid }}"
+    environment:
+      TZ: "{{ code_server_timezone }}"
+{% if code_server_hashed_password %}
+      HASHED_PASSWORD: "{{ code_server_hashed_password }}"
+{% elif code_server_password %}
+      PASSWORD: "{{ code_server_password }}"
+{% endif %}
+    ports:
+      - "{{ code_server_http_port }}:8080"
+    volumes:
+      - "{{ code_server_home_dir }}:/home/coder"
