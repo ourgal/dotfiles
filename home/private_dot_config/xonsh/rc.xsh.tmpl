@@ -137,4 +137,138 @@ $COMPLETIONS_CONFIRM = True
 {{ regexReplaceAll `[^\s$("']*starship(?:\.exe)?` (output "starship" "init" "xonsh" "--print-full-init") "starship" }}
 {{ end -}}
 # ]]]
+# [[[ fzf
+# fzf has no xonsh integration of its own, so bind its widgets by hand:
+# Ctrl-R searches history, Ctrl-T inserts files, Alt-C changes directory.
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "xonsh" "fzf") "opt" (list "shell" "xonsh" "fzf" "enable") "os" (list "linux" "android" "windows")) | trim | atoi -}}
+import os as _fzf_os
+import subprocess as _fzf_subprocess
+
+from prompt_toolkit.application import run_in_terminal
+from prompt_toolkit.keys import Keys
+from xonsh.built_ins import XSH
+
+_FZF_ON_WINDOWS = _fzf_os.name == "nt"
+_FZF_HISTORY_LIMIT = 20000
+# same defaults as fzf's own shell integrations: draw below the prompt instead
+# of taking over the whole screen
+_FZF_DEFAULTS = "--height 40% --min-height 20+ --bind=ctrl-z:ignore"
+
+
+def _fzf_run(args, *, stdin_text=None, default_opts="", opts_var=None, command_var=None):
+    env = _fzf_os.environ.copy()
+    if command_var:
+        # like fzf's own integrations: only the widget-specific command applies
+        env["FZF_DEFAULT_COMMAND"] = env.get(command_var, "")
+    # later options win in fzf, so defaults < $FZF_DEFAULT_OPTS < widget opts
+    opts = [default_opts.strip(), env.get("FZF_DEFAULT_OPTS", "").strip()]
+    if opts_var:
+        opts.append(env.get(opts_var, "").strip())
+    env["FZF_DEFAULT_OPTS"] = " ".join(opt for opt in opts if opt)
+    kwargs = {
+        "stdout": _fzf_subprocess.PIPE,
+        "text": True,
+        "encoding": "utf-8",
+        "env": env,
+    }
+    # no stdin_text means fzf inherits the terminal, which makes it use its walker
+    if stdin_text is not None:
+        kwargs["input"] = stdin_text
+    proc = _fzf_subprocess.run([env.get("FZF", "fzf"), *args], **kwargs)
+    return [item for item in proc.stdout.split("\0") if item]
+
+
+def _fzf_quote(text):
+    if _FZF_ON_WINDOWS:
+        text = text.replace("\\", "/")
+    return "'" + text.replace("'", "\\'") + "'"
+
+
+def _fzf_history_items():
+    seen = set()
+    items = []
+    try:
+        for entry in XSH.history.all_items(newest_first=True):
+            cmd = entry.get("inp") if isinstance(entry, dict) else getattr(entry, "cmd", "")
+            cmd = (cmd or "").rstrip("\n")
+            if cmd and cmd not in seen:
+                seen.add(cmd)
+                items.append(cmd)
+                if len(items) >= _FZF_HISTORY_LIMIT:
+                    break
+    except Exception:
+        pass
+    return "\0".join(items)
+
+
+def _fzf_pick_history(query):
+    args = ["--scheme=history", "--read0", "--print0", "--multi"]
+    if query:
+        args += ["--query", query]
+    return _fzf_run(
+        args,
+        stdin_text=_fzf_history_items(),
+        default_opts=_FZF_DEFAULTS,
+        opts_var="FZF_CTRL_R_OPTS",
+    )
+
+
+def _fzf_pick_file():
+    return _fzf_run(
+        ["--print0", "--multi"],
+        default_opts=f"{_FZF_DEFAULTS} --reverse --walker=file,dir,follow,hidden --scheme=path",
+        opts_var="FZF_CTRL_T_OPTS",
+        command_var="FZF_CTRL_T_COMMAND",
+    )
+
+
+def _fzf_pick_dir():
+    return _fzf_run(
+        ["--print0"],
+        default_opts=f"{_FZF_DEFAULTS} --reverse --walker=dir,follow,hidden --scheme=path",
+        opts_var="FZF_ALT_C_OPTS",
+        command_var="FZF_ALT_C_COMMAND",
+    )
+
+
+def _fzf_insert(buf, text):
+    doc = buf.document
+    if not doc.selection:
+        buf.insert_text(text)
+        return
+    ranges = sorted(doc.selection_ranges(), reverse=True)
+    start = ranges[-1][0]
+    new_text = doc.text
+    for from_, to in ranges:
+        new_text = new_text[:from_] + new_text[to:]
+    buf.text = new_text[:start] + text + new_text[start:]
+    buf.cursor_position = start + len(text)
+
+
+@events.on_ptk_create
+def _fzf_keybindings(bindings, **kw):
+    @bindings.add(Keys.ControlR)
+    async def fzf_history(event):
+        buf = event.current_buffer
+        selected = await run_in_terminal(lambda: _fzf_pick_history(buf.text))
+        if selected:
+            buf.text = "\n".join(selected)
+            buf.cursor_position = len(buf.text)
+
+    @bindings.add(Keys.ControlT)
+    async def fzf_file(event):
+        buf = event.current_buffer
+        selected = await run_in_terminal(_fzf_pick_file)
+        if selected:
+            _fzf_insert(buf, " ".join(_fzf_quote(item) for item in selected) + " ")
+
+    @bindings.add(Keys.Escape, "c")
+    async def fzf_cd(event):
+        selected = await run_in_terminal(_fzf_pick_dir)
+        if selected:
+            XSH.aliases["cd"]([selected[0]])
+
+
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
