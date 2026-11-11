@@ -1,0 +1,33 @@
+---
+jellyfin_enabled: false
+jellyfin_image: v6.gh-proxy.org/docker/jellyfin/jellyfin:latest
+jellyfin_dir: /opt/jellyfin
+
+# Host directories for the server database and transcode cache; created by the
+# role and owned by jellyfin_uid/jellyfin_gid.
+jellyfin_config_dir: /srv/jellyfin/config
+jellyfin_cache_dir: /srv/jellyfin/cache
+
+jellyfin_http_port: 8096
+jellyfin_discovery_enabled: true
+jellyfin_discovery_port: 7359
+
+# Run as a non-root user that can read the media library; point these at the
+# host owner of the media files, otherwise playback works but the files become
+# root-owned where Jellyfin writes.
+jellyfin_uid: 1000
+jellyfin_gid: 1000
+
+jellyfin_timezone: "{{ ansible_facts.get('date_time', {}).get('tz', 'UTC') }}"
+
+# Public base URL advertised to clients for auto-discovery; empty uses the
+# address clients already connect to.
+jellyfin_published_server_url: ""
+
+# Host paths bind-mounted read-only under /media/<basename>; empty mounts none.
+jellyfin_media_dirs: []
+
+# Device nodes for hardware transcoding, e.g. ["/dev/dri"]; empty disables.
+jellyfin_devices: []
+# Extra groups needed to reach those devices, e.g. the host's render GID.
+jellyfin_group_add: []

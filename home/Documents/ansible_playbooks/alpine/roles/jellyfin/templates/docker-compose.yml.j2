@@ -1,0 +1,34 @@
+services:
+  jellyfin:
+    image: {{ jellyfin_image }}
+    container_name: jellyfin
+    restart: unless-stopped
+    user: "{{ jellyfin_uid }}:{{ jellyfin_gid }}"
+{% if jellyfin_group_add %}
+    group_add:
+{% for group in jellyfin_group_add %}
+      - "{{ group }}"
+{% endfor %}
+{% endif %}
+    environment:
+      TZ: "{{ jellyfin_timezone }}"
+{% if jellyfin_published_server_url %}
+      JELLYFIN_PublishedServerUrl: "{{ jellyfin_published_server_url }}"
+{% endif %}
+    ports:
+      - "{{ jellyfin_http_port }}:8096/tcp"
+{% if jellyfin_discovery_enabled %}
+      - "{{ jellyfin_discovery_port }}:7359/udp"
+{% endif %}
+    volumes:
+      - "{{ jellyfin_config_dir }}:/config"
+      - "{{ jellyfin_cache_dir }}:/cache"
+{% for media_dir in jellyfin_media_dirs %}
+      - "{{ media_dir }}:/media/{{ media_dir | basename }}:ro"
+{% endfor %}
+{% if jellyfin_devices %}
+    devices:
+{% for device in jellyfin_devices %}
+      - "{{ device }}:{{ device }}"
+{% endfor %}
+{% endif %}

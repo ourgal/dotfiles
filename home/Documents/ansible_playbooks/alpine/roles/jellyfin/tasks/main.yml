@@ -1,0 +1,34 @@
+---
+- name: Create the jellyfin stack directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ jellyfin_dir }}"
+    state: directory
+    mode: '0700'
+
+- name: Create the jellyfin data directories
+  become: true
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ jellyfin_uid }}"
+    group: "{{ jellyfin_gid }}"
+    mode: '0700'
+  loop:
+    - "{{ jellyfin_config_dir }}"
+    - "{{ jellyfin_cache_dir }}"
+
+- name: Deploy the jellyfin compose file
+  become: true
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ jellyfin_dir }}/docker-compose.yml"
+    mode: '0600'
+
+# No community.docker dependency on purpose: the CLI is idempotent here.
+- name: Start the jellyfin stack
+  become: true
+  ansible.builtin.command:
+    cmd: docker compose up -d --remove-orphans
+    chdir: "{{ jellyfin_dir }}"
+  changed_when: false
