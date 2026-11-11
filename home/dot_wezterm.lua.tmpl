@@ -33,6 +33,17 @@ config.window_decorations = "RESIZE"
 config.hide_tab_bar_if_only_one_tab = true
 config.default_prog = { '{{ .my.shell.windows }}' }
 
+-- Emphasize the active pane. WezTerm colours all split lines with one colour
+-- (colors.split) rather than per-pane borders, so pair it with a stronger
+-- dim of inactive panes to make the focused pane obvious.
+config.colors = {
+  split = '#7aa2f7',
+}
+config.inactive_pane_hsb = {
+  saturation = 0.6,
+  brightness = 0.6,
+}
+
 -- Idle GPU: cursor/text blink timers trigger full-window repaints; keep the
 -- terminal from drawing frames when nothing is happening.
 config.max_fps = 30
