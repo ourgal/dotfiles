@@ -1,0 +1,40 @@
+---
+- name: Create the navidrome stack directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ navidrome_dir }}"
+    state: directory
+    mode: '0700'
+
+- name: Create the navidrome data directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ navidrome_data_dir }}"
+    state: directory
+    owner: "{{ navidrome_uid }}"
+    group: "{{ navidrome_gid }}"
+    mode: '0700'
+
+- name: Create the navidrome music directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ navidrome_music_dir }}"
+    state: directory
+    owner: "{{ navidrome_uid }}"
+    group: "{{ navidrome_gid }}"
+    mode: '0755'
+
+- name: Deploy the navidrome compose file
+  become: true
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ navidrome_dir }}/docker-compose.yml"
+    mode: '0600'
+
+# No community.docker dependency on purpose: the CLI is idempotent here.
+- name: Start the navidrome stack
+  become: true
+  ansible.builtin.command:
+    cmd: docker compose up -d --remove-orphans
+    chdir: "{{ navidrome_dir }}"
+  changed_when: false

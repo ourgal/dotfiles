@@ -77,6 +77,8 @@
       when: wifi_card_enabled | default(false) | bool
     - role: lanraragi
       when: lanraragi_enabled | default(false) | bool
+    - role: navidrome
+      when: navidrome_enabled | default(false) | bool
     - role: transmission
       when: transmission_enabled | default(false) | bool
     - role: hindsight

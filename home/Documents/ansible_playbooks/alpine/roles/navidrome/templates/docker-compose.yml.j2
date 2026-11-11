@@ -1,0 +1,19 @@
+services:
+  navidrome:
+    image: {{ navidrome_image }}
+    container_name: navidrome
+    restart: unless-stopped
+    user: "{{ navidrome_uid }}:{{ navidrome_gid }}"
+    environment:
+      TZ: "{{ navidrome_timezone }}"
+      ND_SCANSCHEDULE: "{{ navidrome_scan_schedule }}"
+      ND_LOGLEVEL: "{{ navidrome_log_level }}"
+      ND_SESSIONTIMEOUT: "{{ navidrome_session_timeout }}"
+{% if navidrome_base_url %}
+      ND_BASEURL: "{{ navidrome_base_url }}"
+{% endif %}
+    ports:
+      - "{{ navidrome_http_port }}:4533"
+    volumes:
+      - "{{ navidrome_data_dir }}:/data"
+      - "{{ navidrome_music_dir }}:/music:ro"

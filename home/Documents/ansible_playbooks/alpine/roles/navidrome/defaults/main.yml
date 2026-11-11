@@ -1,0 +1,25 @@
+---
+navidrome_enabled: false
+navidrome_image: v6.gh-proxy.org/docker/deluan/navidrome:latest
+navidrome_dir: /opt/navidrome
+
+# Database, cache and transcoding scratch; created and owned by the role.
+navidrome_data_dir: /srv/navidrome/data
+# Point this at your music library; mounted read-only.
+navidrome_music_dir: /srv/navidrome/music
+
+# Avoids the other services' host ports (container listens on 4533).
+navidrome_http_port: 8088
+
+# The image runs as the owner of navidrome_data_dir.
+navidrome_uid: 1000
+navidrome_gid: 1000
+
+navidrome_timezone: "{{ ansible_facts.get('date_time', {}).get('tz', 'UTC') }}"
+
+navidrome_scan_schedule: "1h"
+navidrome_log_level: info
+navidrome_session_timeout: 24h
+
+# Set when served under a subpath, e.g. /music. Empty serves at the root.
+navidrome_base_url: ""
