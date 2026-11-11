@@ -137,6 +137,35 @@ $COMPLETIONS_CONFIRM = True
 {{ regexReplaceAll `[^\s$("']*starship(?:\.exe)?` (output "starship" "init" "xonsh" "--print-full-init") "starship" }}
 {{ end -}}
 # ]]]
+# [[[ windows terminal cwd
+# OSC 9;9 tells Windows Terminal the CWD so duplicateTab can reuse it.
+import os as _wt_os
+import sys as _wt_sys
+
+
+def _wt_report_cwd():
+    if "WT_SESSION" not in __xonsh__.env:
+        return
+    stdout = _wt_sys.__stdout__
+    if stdout is None or not stdout.isatty():
+        return
+    stdout.write(f"\x1b]9;9;{_wt_os.getcwd()}\x1b\\")
+    stdout.flush()
+
+
+_wt_base_prompt = $PROMPT
+if callable(_wt_base_prompt):
+    def _wt_prompt():
+        _wt_report_cwd()
+        return _wt_base_prompt()
+    $PROMPT = _wt_prompt
+else:
+    def _wt_cwd_field():
+        _wt_report_cwd()
+        return ""
+    $PROMPT_FIELDS["wt_cwd"] = _wt_cwd_field
+    $PROMPT = "{wt_cwd}" + _wt_base_prompt
+# ]]]
 # [[[ fzf
 # fzf has no xonsh integration of its own, so bind its widgets by hand:
 # Ctrl-R searches history, Ctrl-T inserts files, Alt-C changes directory.

@@ -262,6 +262,16 @@ carapace _carapace | Out-String | Invoke-Expression
 {{ output "starship" "init" "powershell" }}
 {{ end -}}
 # ]]]
+# [[[ windows terminal cwd
+# OSC 9;9 tells Windows Terminal the CWD so duplicateTab can reuse it.
+# Starship's prompt invokes this hook before rendering.
+function Invoke-Starship-PreCommand {
+    if (-not $env:WT_SESSION) { return }
+    $loc = $executionContext.SessionState.Path.CurrentLocation
+    if ($loc.Provider.Name -ne "FileSystem") { return }
+    $host.ui.Write("$([char]27)]9;9;`"$($loc.ProviderPath)`"$([char]27)\")
+}
+# ]]]
 # [[[ oh my posh
 {{ if (includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "oh-my-posh" "opt" (list "shell" "pwsh" "oh_my_posh" "enable") "os" "windows") | trim | atoi) -}}
 {{ output "oh-my-posh" "init" "pwsh" }}
