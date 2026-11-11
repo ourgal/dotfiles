@@ -1,0 +1,38 @@
+---
+uchiyomi_enabled: false
+uchiyomi_image: ghcr.io/angelosha/uchiyomi:latest
+uchiyomi_flaresolverr_image: ghcr.io/flaresolverr/flaresolverr:latest
+uchiyomi_suwayomi_image: ghcr.io/suwayomi/suwayomi-server:v2.4.2366
+uchiyomi_dir: /opt/uchiyomi
+
+# Existing library; point this at your comics. Uchiyomi can only rename and
+# delete inside it when PUID/PGID own the files.
+uchiyomi_library_dir: /srv/uchiyomi/library
+# Chapters Uchiyomi downloads itself.
+uchiyomi_downloads_dir: /srv/uchiyomi/downloads
+# Embedded Postgres, config (auto-generated secrets), cache and nightly dumps.
+uchiyomi_data_dir: /srv/uchiyomi/data
+uchiyomi_config_dir: /srv/uchiyomi/config
+uchiyomi_cache_dir: /srv/uchiyomi/cache
+uchiyomi_backups_dir: /srv/uchiyomi/backups
+uchiyomi_suwayomi_dir: /srv/uchiyomi/suwayomi
+
+# Avoids 8080-8083 used by nextcloud, vaultwarden and code-server.
+uchiyomi_http_port: 8084
+
+# The library's owner; the app runs as this uid/gid so file operations work.
+# Without it the app runs as 10002 and the library is read-only.
+uchiyomi_uid: 1000
+uchiyomi_gid: 1000
+
+uchiyomi_timezone: "{{ ansible_facts.get('date_time', {}).get('tz', 'UTC') }}"
+
+# Address clients actually use, e.g. https://manga.example.com. Wrong values
+# break installed-app and push callbacks.
+uchiyomi_public_origin: "http://localhost:{{ uchiyomi_http_port }}"
+
+# Runs Suwayomi headless for Mihon/Tachiyomi extensions; costs ~800 MB and the
+# app still fetches from MangaDex and manual sites without it.
+uchiyomi_extension_engine: true
+
+uchiyomi_backup_keep: 14

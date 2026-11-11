@@ -1,0 +1,81 @@
+services:
+  uchiyomi:
+    image: {{ uchiyomi_image }}
+    container_name: uchiyomi
+    restart: unless-stopped
+    # The app finishes the chapter it is writing on SIGTERM, then Postgres checkpoints.
+    stop_grace_period: 40s
+    environment:
+      PUID: "{{ uchiyomi_uid }}"
+      PGID: "{{ uchiyomi_gid }}"
+      NODE_ENV: production
+      PORT: "3000"
+      LIBRARY_BACKEND: owned
+      PUBLIC_ORIGIN: "{{ uchiyomi_public_origin }}"
+      FLARESOLVERR_URL: http://uchiyomi-flaresolverr:8191
+      SOURCES_DIR: /sources
+      CUSTOM_SITES_FILE: /config/sites.json
+      BACKUP_KEEP: "{{ uchiyomi_backup_keep }}"
+      SUWAYOMI_URL: http://uchiyomi-suwayomi:4567
+      EXTENSION_ENGINE: "{{ uchiyomi_extension_engine | bool | int }}"
+    volumes:
+      - "{{ uchiyomi_library_dir }}:/library"
+      - "{{ uchiyomi_data_dir }}:/data"
+      - "{{ uchiyomi_downloads_dir }}:/library-dl"
+      - "{{ uchiyomi_config_dir }}:/config"
+      - "{{ uchiyomi_cache_dir }}:/cache"
+      - "{{ uchiyomi_backups_dir }}:/backups"
+    ports:
+      - "{{ uchiyomi_http_port }}:3000"
+    networks: [uchiyomi_app]
+
+  # Most manga aggregators sit behind Cloudflare, so fetching needs this.
+  uchiyomi-flaresolverr:
+    image: {{ uchiyomi_flaresolverr_image }}
+    container_name: uchiyomi-flaresolverr
+    restart: unless-stopped
+    # Chrome's shared memory; Docker's 64 MB default makes chromedriver die mid-challenge.
+    shm_size: 1gb
+    mem_limit: 2g
+    environment:
+      LOG_LEVEL: warning
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:8191/ | grep -q 'FlareSolverr is ready' || exit 1"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    networks: [uchiyomi_app]
+    expose:
+      - "8191"
+
+  uchiyomi-suwayomi:
+    image: {{ uchiyomi_suwayomi_image }}
+    container_name: uchiyomi-suwayomi
+    deploy:
+      replicas: {{ uchiyomi_extension_engine | bool | int }}
+    restart: unless-stopped
+    mem_limit: 2048m
+    environment:
+      TZ: "{{ uchiyomi_timezone }}"
+      JAVA_TOOL_OPTIONS: "-Xmx768m -XX:+UseSerialGC"
+      MALLOC_ARENA_MAX: "2"
+      # Uchiyomi owns the library and does the downloading.
+      AUTO_DOWNLOAD_CHAPTERS: "false"
+      DOWNLOAD_AS_CBZ: "true"
+      FLARESOLVERR_ENABLED: "true"
+      FLARESOLVERR_URL: http://uchiyomi-flaresolverr:8191
+    volumes:
+      - "{{ uchiyomi_suwayomi_dir }}:/home/suwayomi/.local/share/Tachidesk"
+    networks: [uchiyomi_app]
+    expose:
+      - "4567"
+    healthcheck:
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/4567; printf 'GET /api/v1/settings/about HTTP/1.0\\r\\n\\r\\n' >&3; head -1 <&3 | grep -qE ' (200|401) '"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 90s
+
+networks:
+  uchiyomi_app:

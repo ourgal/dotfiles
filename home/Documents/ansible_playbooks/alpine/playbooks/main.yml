@@ -67,6 +67,8 @@
       when: code_server_enabled | default(false) | bool
     - role: wallabag
       when: wallabag_enabled | default(false) | bool
+    - role: uchiyomi
+      when: uchiyomi_enabled | default(false) | bool
     - role: transmission
       when: transmission_enabled | default(false) | bool
     - role: hindsight
