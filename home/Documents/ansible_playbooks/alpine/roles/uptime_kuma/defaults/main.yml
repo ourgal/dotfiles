@@ -1,0 +1,16 @@
+---
+uptime_kuma_enabled: false
+uptime_kuma_image: v6.gh-proxy.org/docker/louislam/uptime-kuma:2
+uptime_kuma_dir: /opt/uptime-kuma
+
+# SQLite database, monitor history and status-page assets; created by the role.
+uptime_kuma_data_dir: /srv/uptime-kuma/data
+
+uptime_kuma_http_port: 3001
+
+# The image runs as root by default; pin it to the owner of
+# uptime_kuma_data_dir instead.
+uptime_kuma_uid: 1000
+uptime_kuma_gid: 1000
+
+uptime_kuma_timezone: "{{ ansible_facts.get('date_time', {}).get('tz', 'UTC') }}"

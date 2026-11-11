@@ -1,0 +1,12 @@
+services:
+  uptime-kuma:
+    image: {{ uptime_kuma_image }}
+    container_name: uptime-kuma
+    restart: unless-stopped
+    user: "{{ uptime_kuma_uid }}:{{ uptime_kuma_gid }}"
+    environment:
+      TZ: "{{ uptime_kuma_timezone }}"
+    ports:
+      - "{{ uptime_kuma_http_port }}:3001"
+    volumes:
+      - "{{ uptime_kuma_data_dir }}:/app/data"

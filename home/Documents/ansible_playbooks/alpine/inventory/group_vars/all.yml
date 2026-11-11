@@ -60,3 +60,7 @@ siyuan_enabled: false
 # of copy; set transmission_rpc_user/password in secrets.sops.yml.
 transmission_enabled: false
 
+# The first account created in the web UI becomes the administrator; monitors
+# and history are stored under /srv/uptime-kuma/data.
+uptime_kuma_enabled: false
+

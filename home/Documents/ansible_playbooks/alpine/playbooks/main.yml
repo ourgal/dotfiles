@@ -59,6 +59,8 @@
       when: pairdrop_enabled | default(false) | bool
     - role: siyuan
       when: siyuan_enabled | default(false) | bool
+    - role: uptime_kuma
+      when: uptime_kuma_enabled | default(false) | bool
     - role: transmission
       when: transmission_enabled | default(false) | bool
     - role: hindsight

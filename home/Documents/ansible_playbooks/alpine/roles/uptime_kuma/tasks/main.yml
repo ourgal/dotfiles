@@ -1,0 +1,31 @@
+---
+- name: Create the uptime-kuma stack directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ uptime_kuma_dir }}"
+    state: directory
+    mode: '0700'
+
+- name: Create the uptime-kuma data directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ uptime_kuma_data_dir }}"
+    state: directory
+    owner: "{{ uptime_kuma_uid }}"
+    group: "{{ uptime_kuma_gid }}"
+    mode: '0700'
+
+- name: Deploy the uptime-kuma compose file
+  become: true
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ uptime_kuma_dir }}/docker-compose.yml"
+    mode: '0600'
+
+# No community.docker dependency on purpose: the CLI is idempotent here.
+- name: Start the uptime-kuma stack
+  become: true
+  ansible.builtin.command:
+    cmd: docker compose up -d --remove-orphans
+    chdir: "{{ uptime_kuma_dir }}"
+  changed_when: false
