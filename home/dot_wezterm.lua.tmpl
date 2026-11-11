@@ -4,6 +4,8 @@ local wezterm = require("wezterm")
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
+local act = wezterm.action
+
 -- This is where you actually apply your config choices.
 
 -- For example, changing the initial geometry for new windows:
@@ -29,4 +31,100 @@ config.launch_menu = launch_menu
 config.window_background_opacity = 0.9
 config.window_decorations = "RESIZE"
 config.default_prog = { '{{ .my.shell.windows }}' }
+
+-- tmux-style keymap: press CTRL-B, release, then the tmux key.
+config.leader = { key = 'b', mods = 'CTRL', timeout_milliseconds = 1000 }
+config.tab_and_split_indices_are_zero_based = true
+
+local tmux_keys = {}
+
+local function bind(key, action)
+  table.insert(tmux_keys, { key = key, mods = 'LEADER', action = action })
+end
+
+-- Shifted punctuation carries SHIFT on US layouts but not on every layout,
+-- so register both masks.
+local function bind_shifted(key, action)
+  bind(key, action)
+  table.insert(tmux_keys, { key = key, mods = 'LEADER|SHIFT', action = action })
+end
+
+local function rename_tab(window, pane)
+  window:perform_action(
+    act.PromptInputLine {
+      description = 'Rename tab',
+      action = wezterm.action_callback(function(_, p, line)
+        if line and line ~= '' then
+          p:tab():set_title(line)
+        end
+      end),
+    },
+    pane
+  )
+end
+
+local function rename_session(window, pane)
+  local current = window:active_workspace()
+  window:perform_action(
+    act.PromptInputLine {
+      description = 'Rename session',
+      action = wezterm.action_callback(function(_, _, line)
+        if line and line ~= '' then
+          wezterm.mux.rename_workspace(current, line)
+        end
+      end),
+    },
+    pane
+  )
+end
+
+-- sessions
+bind('s', act.ShowLauncherArgs { flags = 'FUZZY|WORKSPACES' })
+bind_shifted('$', wezterm.action_callback(rename_session))
+bind_shifted('(', act.SwitchWorkspaceRelative(-1))
+bind_shifted(')', act.SwitchWorkspaceRelative(1))
+
+-- windows (tabs)
+bind('c', act.SpawnTab 'CurrentPaneDomain')
+bind(',', wezterm.action_callback(rename_tab))
+bind('n', act.ActivateTabRelative(1))
+bind('p', act.ActivateTabRelative(-1))
+bind('l', act.ActivateLastTab)
+bind('w', act.ShowTabNavigator)
+bind_shifted('&', act.CloseCurrentTab { confirm = true })
+
+-- panes
+bind_shifted('%', act.SplitHorizontal { domain = 'CurrentPaneDomain' })
+bind_shifted('"', act.SplitVertical { domain = 'CurrentPaneDomain' })
+bind('o', act.ActivatePaneDirection 'Next')
+bind(';', act.ActivatePaneDirection 'Prev')
+bind('q', act.PaneSelect)
+bind_shifted('{', act.RotatePanes 'CounterClockwise')
+bind_shifted('}', act.RotatePanes 'Clockwise')
+bind_shifted('!', wezterm.action_callback(function(_, pane) pane:move_to_new_tab() end))
+bind('x', act.CloseCurrentPane { confirm = true })
+bind('z', act.TogglePaneZoomState)
+
+-- pane navigation and resize (tmux: arrows select, CTRL+arrows 1 cell,
+-- ALT+arrows 5 cells)
+for _, dir in ipairs({ 'Left', 'Right', 'Up', 'Down' }) do
+  local key = dir .. 'Arrow'
+  bind(key, act.ActivatePaneDirection(dir))
+  table.insert(tmux_keys, { key = key, mods = 'LEADER|CTRL', action = act.AdjustPaneSize { dir, 1 } })
+  table.insert(tmux_keys, { key = key, mods = 'LEADER|ALT', action = act.AdjustPaneSize { dir, 5 } })
+end
+
+-- copy mode, buffers, command prompt, literal prefix
+bind('[', act.ActivateCopyMode)
+bind(']', act.PasteFrom 'Clipboard')
+bind_shifted(':', act.ActivateCommandPalette)
+bind('b', act.SendKey { key = 'b', mods = 'CTRL' })
+
+-- select window by number
+for i = 0, 9 do
+  table.insert(tmux_keys, { key = tostring(i), mods = 'LEADER', action = act.ActivateTab(i) })
+end
+
+config.keys = tmux_keys
+
 return config
