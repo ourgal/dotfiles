@@ -8,6 +8,106 @@ from xonsh.built_ins import XSH
 XSH.completers.pop("bash", None)
 {{ end -}}
 # ]]]
+# [[[ make target completion
+# Parses the makefile directly instead of running `make -qp`, which would cost
+# ~0.5s per <Tab> on Windows.
+{{ if lookPath "make" -}}
+import re as _re
+from pathlib import Path as _Path
+from xonsh.built_ins import XSH
+from xonsh.completers.tools import contextual_command_completer_for, RichCompletion
+
+_MAKEFILE_NAMES = ("GNUmakefile", "makefile", "Makefile")
+_MAKE_RULE_RE = _re.compile(r"^([^\s:#=][^:#=]*?)\s*::?(?!=)")
+_make_targets_cache = {}
+
+
+def _read_make_targets(path):
+    try:
+        st = path.stat()
+        lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
+    except OSError:
+        return set()
+    key = (str(path), st.st_mtime_ns, st.st_size)
+    cached = _make_targets_cache.get(key)
+    if cached is not None:
+        return cached
+    targets = set()
+    for line in lines:
+        if not line or line[0] in "\t#":
+            continue
+        match = _MAKE_RULE_RE.match(line)
+        if not match:
+            continue
+        for name in match.group(1).split():
+            if "$" in name or "%" in name or name.startswith("."):
+                continue
+            targets.add(name)
+    if len(_make_targets_cache) > 8:
+        _make_targets_cache.clear()
+    _make_targets_cache[key] = targets
+    return targets
+
+
+def _make_targets_from_context(ctx):
+    args = [arg.value for arg in ctx.args[1 : ctx.arg_index]]
+    cwd = _Path.cwd()
+    files = []
+    i = 0
+    while i < len(args):
+        arg = args[i]
+        if arg.startswith("--directory="):
+            cwd = cwd / arg.partition("=")[2]
+        elif arg == "--directory" or arg == "-C":
+            if i + 1 < len(args):
+                cwd = cwd / args[i + 1]
+                i += 1
+        elif arg.startswith("-C") and len(arg) > 2:
+            cwd = cwd / arg[2:]
+        elif arg.startswith("--file=") or arg.startswith("--makefile="):
+            files.append(cwd / arg.partition("=")[2])
+        elif arg in ("--file", "--makefile", "-f"):
+            if i + 1 < len(args):
+                files.append(cwd / args[i + 1])
+                i += 1
+        elif arg.startswith("-f") and len(arg) > 2:
+            files.append(cwd / arg[2:])
+        i += 1
+    if not files:
+        files = [cwd / name for name in _MAKEFILE_NAMES]
+    targets = set()
+    for path in files:
+        targets |= _read_make_targets(path)
+    return targets
+
+
+@contextual_command_completer_for("make")
+def _complete_make_targets(ctx):
+    if ctx.prefix.startswith("-"):
+        return None
+    if ctx.args[ctx.arg_index - 1].value in (
+        "-f",
+        "--file",
+        "--makefile",
+        "-C",
+        "--directory",
+    ):
+        return None
+    matches = {
+        target
+        for target in _make_targets_from_context(ctx)
+        if target.startswith(ctx.prefix)
+    }
+    if not matches:
+        return None
+    return {RichCompletion(target, append_space=True) for target in matches}
+
+
+XSH.completers["make"] = _complete_make_targets
+# run before the exclusive path completer, which would otherwise win with file matches
+XSH.completers.move_to_end("make", last=False)
+{{ end -}}
+# ]]]
 # [[[ zoxide
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "xonsh" "zoxide") "opt" (list "shell" "xonsh" "zoxide" "enable") "os" (list "linux" "android" "windows")) | trim | atoi -}}
 {{ output "zoxide" "init" "xonsh" }}
