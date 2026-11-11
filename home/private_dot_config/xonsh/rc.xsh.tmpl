@@ -1,0 +1,6 @@
+# [[[ zoxide
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "xonsh" "zoxide") "opt" (list "shell" "xonsh" "zoxide" "enable") "os" (list "linux" "android" "windows")) | trim | atoi -}}
+{{ output "zoxide" "init" "xonsh" }}
+{{ end -}}
+# ]]]
+# vim: set foldmarker=[[[,]]]:

@@ -1099,6 +1099,14 @@ AppData/Roaming/maki/*
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ xonsh
+{{ if lookPath "xonsh" -}}
+{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+!.config/xonsh/
+!.config/xonsh/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # [[[ lazygit
 {{ if lookPath "lazygit" -}}
 {{ if eq .chezmoi.os "windows" -}}
