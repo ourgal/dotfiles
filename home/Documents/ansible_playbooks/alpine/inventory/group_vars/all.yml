@@ -56,3 +56,7 @@ pairdrop_enabled: false
 # password the instance is reachable unauthenticated.
 siyuan_enabled: false
 
+# transmission_downloads_dir must match sonarr's tree so imports rename instead
+# of copy; set transmission_rpc_user/password in secrets.sops.yml.
+transmission_enabled: false
+

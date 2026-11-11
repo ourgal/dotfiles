@@ -1,0 +1,30 @@
+---
+transmission_enabled: false
+transmission_image: v6.gh-proxy.org/docker/linuxserver/transmission:latest
+transmission_dir: /opt/transmission
+
+# Config database and logs; created by the role and owned by
+# transmission_uid/transmission_gid.
+transmission_config_dir: /srv/transmission/config
+# Shared with sonarr's downloads tree so imports rename/hardlink instead of copy.
+transmission_downloads_dir: /srv/downloads
+# Torrent files dropped here are added automatically.
+transmission_watch_dir: /srv/transmission/watch
+
+transmission_http_port: 9091
+# Published for both TCP and UDP and passed as PEERPORT so incoming peers work.
+transmission_peer_port: 51413
+
+transmission_uid: 1000
+transmission_gid: 1000
+
+transmission_timezone: "{{ ansible_facts.get('date_time', {}).get('tz', 'UTC') }}"
+
+# Web UI credentials; set both from secrets.sops.yml. Without them the RPC
+# interface is unauthenticated.
+transmission_rpc_user: ""
+transmission_rpc_password: ""
+
+# Comma-separated IPs/CIDRs allowed to use the web UI, e.g. "127.0.0.1,192.168.0.*".
+# Empty disables the whitelist.
+transmission_whitelist: ""

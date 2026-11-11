@@ -1,0 +1,25 @@
+services:
+  transmission:
+    image: {{ transmission_image }}
+    container_name: transmission
+    restart: unless-stopped
+    environment:
+      PUID: "{{ transmission_uid }}"
+      PGID: "{{ transmission_gid }}"
+      TZ: "{{ transmission_timezone }}"
+      PEERPORT: "{{ transmission_peer_port }}"
+{% if transmission_rpc_user %}
+      USER: "{{ transmission_rpc_user }}"
+      PASS: "{{ transmission_rpc_password }}"
+{% endif %}
+{% if transmission_whitelist %}
+      WHITELIST: "{{ transmission_whitelist }}"
+{% endif %}
+    ports:
+      - "{{ transmission_http_port }}:9091"
+      - "{{ transmission_peer_port }}:51413"
+      - "{{ transmission_peer_port }}:51413/udp"
+    volumes:
+      - "{{ transmission_config_dir }}:/config"
+      - "{{ transmission_downloads_dir }}:/downloads"
+      - "{{ transmission_watch_dir }}:/watch"
