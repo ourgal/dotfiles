@@ -1,0 +1,28 @@
+services:
+  soft-serve:
+    image: {{ soft_serve_image }}
+    container_name: soft-serve
+    restart: unless-stopped
+    environment:
+      SOFT_SERVE_NAME: "{{ soft_serve_name }}"
+      SOFT_SERVE_SSH_PUBLIC_URL: "ssh://{{ soft_serve_domain }}:{{ soft_serve_ssh_port }}"
+      SOFT_SERVE_HTTP_PUBLIC_URL: "http://{{ soft_serve_domain }}:{{ soft_serve_http_port }}"
+{% if soft_serve_default_repo %}
+      SOFT_SERVE_DEFAULT_REPO: "{{ soft_serve_default_repo }}"
+{% endif %}
+{% if soft_serve_initial_admin_keys %}
+      # Env expects newline-separated keys.
+      SOFT_SERVE_INITIAL_ADMIN_KEYS: |-
+        {{ soft_serve_initial_admin_keys | join('\n        ') }}
+{% endif %}
+    ports:
+      - "{{ soft_serve_ssh_port }}:23231"
+      - "{{ soft_serve_http_port }}:23232"
+    volumes:
+      - "{{ soft_serve_data_dir }}:/soft-serve"
+    networks:
+      - soft_serve
+
+networks:
+  soft_serve:
+    name: soft_serve

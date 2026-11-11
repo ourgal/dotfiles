@@ -1,0 +1,18 @@
+---
+soft_serve_enabled: false
+soft_serve_image: v6.gh-proxy.org/docker/charmcli/soft-serve:v0.12.4
+soft_serve_dir: /opt/soft-serve
+soft_serve_data_dir: /srv/soft-serve
+
+soft_serve_name: "Soft Serve"
+# Address clients reach the server on; override in inventory for a real hostname.
+soft_serve_domain: "{{ ansible_facts.get('default_ipv4', {}).get('address', 'localhost') }}"
+soft_serve_ssh_port: 23231
+soft_serve_http_port: 23232
+
+# Public keys granted admin access on first boot; ignored once the database
+# exists. Public keys are not secrets, so override them in group_vars/all.yml.
+soft_serve_initial_admin_keys: []
+
+# Optional repository created on boot if it does not already exist.
+soft_serve_default_repo: ""

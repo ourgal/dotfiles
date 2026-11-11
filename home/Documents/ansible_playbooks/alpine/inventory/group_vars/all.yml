@@ -3,6 +3,8 @@ rsshub_enabled: true
 miniflux_enabled: false
 mihomo_enabled: true
 gitea_enabled: true
+# Without soft_serve_initial_admin_keys the server boots with no admin.
+soft_serve_enabled: false
 dufs_enabled: false
 nextcloud_enabled: true
 liseur_sync_enabled: true
