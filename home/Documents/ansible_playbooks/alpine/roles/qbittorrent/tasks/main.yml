@@ -1,0 +1,40 @@
+---
+- name: Create the qbittorrent stack directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ qbittorrent_dir }}"
+    state: directory
+    mode: '0700'
+
+- name: Create the qbittorrent config directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ qbittorrent_config_dir }}"
+    state: directory
+    owner: "{{ qbittorrent_uid }}"
+    group: "{{ qbittorrent_gid }}"
+    mode: '0700'
+
+- name: Create the qbittorrent downloads directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ qbittorrent_downloads_dir }}"
+    state: directory
+    owner: "{{ qbittorrent_uid }}"
+    group: "{{ qbittorrent_gid }}"
+    mode: '0755'
+
+- name: Deploy the qbittorrent compose file
+  become: true
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ qbittorrent_dir }}/docker-compose.yml"
+    mode: '0600'
+
+# No community.docker dependency on purpose: the CLI is idempotent here.
+- name: Start the qbittorrent stack
+  become: true
+  ansible.builtin.command:
+    cmd: docker compose up -d --remove-orphans
+    chdir: "{{ qbittorrent_dir }}"
+  changed_when: false

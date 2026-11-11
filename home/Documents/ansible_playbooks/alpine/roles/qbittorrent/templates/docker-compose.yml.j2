@@ -1,0 +1,19 @@
+services:
+  qbittorrent:
+    image: {{ qbittorrent_image }}
+    container_name: qbittorrent
+    restart: unless-stopped
+    environment:
+      PUID: "{{ qbittorrent_uid }}"
+      PGID: "{{ qbittorrent_gid }}"
+      TZ: "{{ qbittorrent_timezone }}"
+      UMASK: "{{ qbittorrent_umask }}"
+      WEBUI_PORT: "8080"
+      TORRENT_PORT: "{{ qbittorrent_torrent_port }}"
+    ports:
+      - "{{ qbittorrent_http_port }}:8080"
+      - "{{ qbittorrent_torrent_port }}:{{ qbittorrent_torrent_port }}/tcp"
+      - "{{ qbittorrent_torrent_port }}:{{ qbittorrent_torrent_port }}/udp"
+    volumes:
+      - "{{ qbittorrent_config_dir }}:/config"
+      - "{{ qbittorrent_downloads_dir }}:/downloads"

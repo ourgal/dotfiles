@@ -93,6 +93,8 @@
       when: shortpaste_enabled | default(false) | bool
     - role: tiddlywiki
       when: tiddlywiki_enabled | default(false) | bool
+    - role: qbittorrent
+      when: qbittorrent_enabled | default(false) | bool
     - role: transmission
       when: transmission_enabled | default(false) | bool
     - role: hindsight

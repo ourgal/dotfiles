@@ -1,0 +1,20 @@
+---
+qbittorrent_enabled: false
+qbittorrent_image: v6.gh-proxy.org/docker/linuxserver/qbittorrent:latest
+qbittorrent_dir: /opt/qbittorrent
+qbittorrent_config_dir: /srv/qbittorrent/config
+
+# Shared with transmission/lidarr so imports can hardlink instead of copy.
+qbittorrent_downloads_dir: /srv/downloads
+
+# Avoids the other services' host ports (container web UI listens on 8080).
+qbittorrent_http_port: 8096
+
+# Must match the port qBittorrent listens on, which TORRENT_PORT sets on
+# first start; transmission uses 51413.
+qbittorrent_torrent_port: 6881
+
+qbittorrent_uid: 1000
+qbittorrent_gid: 1000
+qbittorrent_timezone: "{{ ansible_facts.get('date_time', {}).get('tz', 'UTC') }}"
+qbittorrent_umask: "022"
