@@ -108,3 +108,7 @@ netdata_enabled: false
 # same tree as transmission so imports rename instead of copy.
 lidarr_enabled: false
 
+# The first visit runs a setup wizard where you sign in to Jellyfin and add
+# your Radarr/Sonarr servers; list their URLs reachable from this container.
+jellyseerr_enabled: false
+

@@ -1,0 +1,13 @@
+services:
+  jellyseerr:
+    image: {{ jellyseerr_image }}
+    container_name: jellyseerr
+    restart: unless-stopped
+    user: "{{ jellyseerr_uid }}:{{ jellyseerr_gid }}"
+    environment:
+      TZ: "{{ jellyseerr_timezone }}"
+      LOG_LEVEL: "{{ jellyseerr_log_level }}"
+    ports:
+      - "{{ jellyseerr_http_port }}:5055"
+    volumes:
+      - "{{ jellyseerr_config_dir }}:/app/config"

@@ -1,0 +1,17 @@
+---
+jellyseerr_enabled: false
+jellyseerr_image: v6.gh-proxy.org/docker/fallenbagel/jellyseerr:latest
+jellyseerr_dir: /opt/jellyseerr
+
+# Settings database and logs; created by the role and owned by the image's
+# node user.
+jellyseerr_config_dir: /srv/jellyseerr/config
+
+# Avoids the other services' host ports (container listens on 5055).
+jellyseerr_http_port: 8091
+
+jellyseerr_uid: 1000
+jellyseerr_gid: 1000
+
+jellyseerr_timezone: "{{ ansible_facts.get('date_time', {}).get('tz', 'UTC') }}"
+jellyseerr_log_level: info
