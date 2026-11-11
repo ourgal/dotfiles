@@ -1,0 +1,43 @@
+---
+- name: Create the lidarr stack directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ lidarr_dir }}"
+    state: directory
+    mode: '0700'
+
+- name: Create the lidarr config directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ lidarr_config_dir }}"
+    state: directory
+    owner: "{{ lidarr_uid }}"
+    group: "{{ lidarr_gid }}"
+    mode: '0700'
+
+- name: Create the lidarr media and download directories
+  become: true
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ lidarr_uid }}"
+    group: "{{ lidarr_gid }}"
+    mode: '0755'
+  loop:
+    - "{{ lidarr_music_dir }}"
+    - "{{ lidarr_downloads_dir }}"
+
+- name: Deploy the lidarr compose file
+  become: true
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ lidarr_dir }}/docker-compose.yml"
+    mode: '0600'
+
+# No community.docker dependency on purpose: the CLI is idempotent here.
+- name: Start the lidarr stack
+  become: true
+  ansible.builtin.command:
+    cmd: docker compose up -d --remove-orphans
+    chdir: "{{ lidarr_dir }}"
+  changed_when: false

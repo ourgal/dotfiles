@@ -1,0 +1,22 @@
+---
+lidarr_enabled: false
+lidarr_image: v6.gh-proxy.org/docker/linuxserver/lidarr:latest
+lidarr_dir: /opt/lidarr
+
+# Config database and logs; created by the role.
+lidarr_config_dir: /srv/lidarr/config
+# Music library; point existing files here.
+lidarr_music_dir: /srv/media/music
+# Same tree as transmission/sonarr so imports rename instead of copy.
+lidarr_downloads_dir: /srv/downloads
+
+# Avoids the other services' host ports (container listens on 8686).
+lidarr_http_port: 8090
+
+# Must match the owner of lidarr_music_dir and lidarr_downloads_dir so imports
+# can move files.
+lidarr_uid: 1000
+lidarr_gid: 1000
+
+lidarr_timezone: "{{ ansible_facts.get('date_time', {}).get('tz', 'UTC') }}"
+lidarr_umask: "022"

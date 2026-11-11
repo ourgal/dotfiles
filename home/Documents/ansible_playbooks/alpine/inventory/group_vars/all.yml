@@ -104,3 +104,7 @@ navidrome_enabled: false
 # the agent also needs SYS_PTRACE, host /proc, /sys and the Docker socket.
 netdata_enabled: false
 
+# Point lidarr_music_dir at your library and keep lidarr_downloads_dir on the
+# same tree as transmission so imports rename instead of copy.
+lidarr_enabled: false
+

@@ -1,0 +1,16 @@
+services:
+  lidarr:
+    image: {{ lidarr_image }}
+    container_name: lidarr
+    restart: unless-stopped
+    environment:
+      PUID: "{{ lidarr_uid }}"
+      PGID: "{{ lidarr_gid }}"
+      TZ: "{{ lidarr_timezone }}"
+      UMASK: "{{ lidarr_umask }}"
+    ports:
+      - "{{ lidarr_http_port }}:8686"
+    volumes:
+      - "{{ lidarr_config_dir }}:/config"
+      - "{{ lidarr_music_dir }}:/music"
+      - "{{ lidarr_downloads_dir }}:/downloads"
