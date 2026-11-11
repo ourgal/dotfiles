@@ -1,0 +1,19 @@
+---
+kavita_enabled: false
+kavita_image: v6.gh-proxy.org/docker/linuxserver/kavita:latest
+kavita_dir: /opt/kavita
+
+# Kavita's database and config; created by the role.
+kavita_config_dir: /srv/kavita/config
+
+kavita_http_port: 5000
+
+kavita_uid: 1000
+kavita_gid: 1000
+
+kavita_timezone: "{{ ansible_facts.get('date_time', {}).get('tz', 'UTC') }}"
+
+# Host library paths, each bind-mounted read-only under /data/<basename> and
+# registered in Kavita's setup wizard (e.g. [/srv/media/manga, /srv/media/comics]).
+# The paths must already exist; an empty list starts with no libraries.
+kavita_library_dirs: []

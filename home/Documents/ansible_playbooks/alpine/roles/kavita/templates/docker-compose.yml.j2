@@ -1,0 +1,16 @@
+services:
+  kavita:
+    image: {{ kavita_image }}
+    container_name: kavita
+    restart: unless-stopped
+    environment:
+      PUID: "{{ kavita_uid }}"
+      PGID: "{{ kavita_gid }}"
+      TZ: "{{ kavita_timezone }}"
+    ports:
+      - "{{ kavita_http_port }}:5000"
+    volumes:
+      - "{{ kavita_config_dir }}:/config"
+{% for library_dir in kavita_library_dirs %}
+      - "{{ library_dir }}:/data/{{ library_dir | basename }}:ro"
+{% endfor %}
