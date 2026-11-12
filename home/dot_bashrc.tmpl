@@ -2,6 +2,19 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# [[[ conda
+# Checked at shell start instead of with chezmoi's lookPath, so installing conda
+# after `chezmoi apply` still takes effect. Above the interactive guard so that
+# non-interactive ssh shells (which bash reads this file for) get conda too.
+for _conda_root in "$HOME/miniforge3" "$HOME/miniconda3" "$HOME/anaconda3" /opt/conda; do
+    if [ -f "$_conda_root/etc/profile.d/conda.sh" ]; then
+        . "$_conda_root/etc/profile.d/conda.sh"
+        break
+    fi
+done
+unset _conda_root
+# ]]]
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
