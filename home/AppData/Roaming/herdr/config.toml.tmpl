@@ -41,8 +41,8 @@ onboarding = false
 # Executable used for new interactive panes.
 # Empty means $SHELL, then /bin/sh.
 {{ if eq .chezmoi.os "windows" -}}
-  {{ if lookPath "niu" -}}
-default_shell = {{ lookPath "niu" | quote }}
+  {{ if lookPath "pwsh" -}}
+default_shell = {{ lookPath "pwsh" | quote }}
   {{ end -}}
 {{ end -}}
 
