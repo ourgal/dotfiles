@@ -1,0 +1,25 @@
+{{- /*{ chezmoi:modify-template */ -}}
+{{ $default := dict
+  "id" "887b246d589f592146c858933bee976c"
+  "label" "work3"
+  "target" "work3"
+  "session" "default"
+  "enabled" true
+-}}
+{{ $catalog := dict "version" 1 "ssh" (list) -}}
+{{ if .chezmoi.stdin -}}
+{{ $catalog = fromJson .chezmoi.stdin -}}
+{{ end -}}
+{{ $ssh := default (list) (get $catalog "ssh") -}}
+{{ $present := false -}}
+{{ range $machine := $ssh -}}
+{{ if or (eq (dig "target" "" $machine) "work3") (eq (dig "label" "" $machine) "work3") -}}
+{{ $present = true -}}
+{{ end -}}
+{{ end -}}
+{{ if not $present -}}
+{{ $ssh = append $ssh $default -}}
+{{ end -}}
+{{ $catalog = $catalog | setValueAtPath "version" 1 -}}
+{{ $catalog = $catalog | setValueAtPath "ssh" $ssh -}}
+{{ $catalog | toJson }}
