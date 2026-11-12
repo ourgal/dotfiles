@@ -15,6 +15,16 @@ done
 unset _conda_root
 # ]]]
 
+# [[[ ssh-agent
+# The systemd user unit exports this via dbus for apps started by the manager,
+# but shells started from an existing session need to pick it up themselves.
+_ssh_agent_sock="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/ssh-agent.socket"
+if [ -z "${SSH_AUTH_SOCK:-}" ] && [ -S "$_ssh_agent_sock" ]; then
+    export SSH_AUTH_SOCK="$_ssh_agent_sock"
+fi
+unset _ssh_agent_sock
+# ]]]
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;

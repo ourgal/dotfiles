@@ -1,0 +1,16 @@
+[Unit]
+Description=OpenSSH Agent
+Documentation=man:ssh-agent(1)
+After=dbus.socket
+Wants=dbus.socket
+
+[Service]
+Type=simple
+Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
+ExecStartPre=-/usr/bin/dbus-update-activation-environment --systemd SSH_AUTH_SOCK=%t/ssh-agent.socket
+ExecStart=/usr/bin/ssh-agent -D -a %t/ssh-agent.socket
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=default.target

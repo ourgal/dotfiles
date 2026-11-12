@@ -1150,4 +1150,15 @@ AppData/Roaming/maki/*
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ systemd-user
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "uos") -}}
+!.config
+.config/*
+!.config/systemd
+.config/systemd/*
+!.config/systemd/user
+.config/systemd/user/*
+!.config/systemd/user/ssh-agent.service
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
