@@ -11,6 +11,11 @@
 
 .npmrc
 
+# Conda channel configuration.
+{{ if lookPath "conda" -}}
+!.condarc
+{{ end -}}
+
 !Documents/
 Documents/*
 
