@@ -5,8 +5,10 @@ endif
 .SHELLFLAGS := -NoProfile -ExecutionPolicy Bypass -Command
 usb_letter := $(shell (Get-Volume | Where-Object { $$_.DriveType -eq "Removable" -and $$_.Size -gt 1GB }).DriveLetter)
 VENTOY ?= $(shell (Get-Volume -FileSystemLabel Ventoy -ErrorAction SilentlyContinue).DriveLetter)
+TINY10_TORRENT ?= https://archive.org/download/tiny-10-23-h2/tiny-10-23-h2_archive.torrent
+TINY10_ISO ?= tiny10 x64 23h2.iso
 
-.PHONY: all copy wim arch alpine freebsd netbsd nixos
+.PHONY: all copy wim arch alpine freebsd netbsd nixos tiny10
 
 all:
 	@robocopy src "$(usb_letter):" /E; if ($$LASTEXITCODE -lt 8) { exit 0 } else { exit $$LASTEXITCODE }
@@ -39,3 +41,7 @@ nixos: ISO_MATCH := *x86_64, minimal iso*
 arch alpine freebsd netbsd nixos:
 	@if (-not "$(VENTOY)") { throw "Ventoy flash disk not found; pass VENTOY=<letter>, e.g. make $@ VENTOY=G" }
 	@.\download-iso.ps1 -Distro "$(DISTRO)" -Match "$(ISO_MATCH)" -Ventoy "$(VENTOY)"
+
+tiny10:
+	@if (-not "$(VENTOY)") { throw "Ventoy flash disk not found; pass VENTOY=<letter>, e.g. make tiny10 VENTOY=G" }
+	@.\download-torrent.ps1 -Torrent "$(TINY10_TORRENT)" -Ventoy "$(VENTOY)" -Iso "$(TINY10_ISO)"
