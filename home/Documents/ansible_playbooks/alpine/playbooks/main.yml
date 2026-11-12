@@ -123,3 +123,31 @@
       when:
         - item.stat.exists
         - not (lookup('vars', item.item ~ '_enabled', default=false) | bool)
+
+    # Role defaults remain defined even when the role's `when` skips every
+    # task, so <role>_dir and <role>_enabled are readable for every role here.
+    - name: Check which compose stacks are deployed
+      become: true
+      ansible.builtin.stat:
+        path: "{{ compose_dir }}/docker-compose.yml"
+      loop: "{{ ansible_play_role_names }}"
+      loop_control:
+        label: "{{ item }}"
+      vars:
+        compose_dir: "{{ lookup('vars', item ~ '_dir', default='') }}"
+      when: compose_dir != ''
+      register: compose_stacks
+
+    - name: Stop compose stacks whose switch is off
+      become: true
+      ansible.builtin.command:
+        cmd: docker compose down
+        chdir: "{{ lookup('vars', item.item ~ '_dir') }}"
+      loop: "{{ compose_stacks.results }}"
+      loop_control:
+        label: "{{ item.item }}"
+      when:
+        - item.stat is defined
+        - item.stat.exists
+        - not (lookup('vars', item.item ~ '_enabled', default=false) | bool)
+      changed_when: true
