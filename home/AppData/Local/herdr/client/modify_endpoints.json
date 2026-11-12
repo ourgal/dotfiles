@@ -11,7 +11,7 @@
     "label" "work"
     "target" "work"
     "session" "default"
-    "enabled" true)
+    "enabled" false)
 -}}
 {{ $catalog := dict "version" 1 "ssh" (list) -}}
 {{ if .chezmoi.stdin -}}
