@@ -13,6 +13,13 @@ for _conda_root in "$HOME/miniforge3" "$HOME/miniconda3" "$HOME/anaconda3" /opt/
     fi
 done
 unset _conda_root
+# conda.sh only adds condabin, so put the base environment's bin on PATH too.
+if [ -d "$HOME/miniforge3/bin" ]; then
+    case ":$PATH:" in
+        *":$HOME/miniforge3/bin:"*) ;;
+        *) PATH="$HOME/miniforge3/bin:$PATH" ;;
+    esac
+fi
 # ]]]
 
 # [[[ ssh-agent
