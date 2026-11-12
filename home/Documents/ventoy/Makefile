@@ -9,8 +9,10 @@ TINY10_TORRENT ?= https://archive.org/download/tiny-10-23-h2/tiny-10-23-h2_archi
 TINY10_ISO ?= tiny10 x64 23h2.iso
 IOT_LTSC_URL ?= https://archive.org/download/en-us_windows_10_iot_enterprise_ltsc_2021_x64_dvd_257ad90f/en-us_windows_10_iot_enterprise_ltsc_2021_x64_dvd_257ad90f.iso
 IOT_LTSC_ISO ?= en-us_windows_10_iot_enterprise_ltsc_2021_x64_dvd_257ad90f.iso
+LTSC_ZH_URL ?= https://archive.org/download/zh-cn_windows_10_enterprise_ltsc_2021_x64_dvd_033b7312/zh-cn_windows_10_enterprise_ltsc_2021_x64_dvd_033b7312.iso
+LTSC_ZH_ISO ?= zh-cn_windows_10_enterprise_ltsc_2021_x64_dvd_033b7312.iso
 
-.PHONY: all copy wim arch alpine freebsd netbsd nixos tiny10 iot-ltsc
+.PHONY: all copy wim arch alpine freebsd netbsd nixos tiny10 iot-ltsc ltsc-zh
 
 all:
 	@robocopy src "$(usb_letter):" /E; if ($$LASTEXITCODE -lt 8) { exit 0 } else { exit $$LASTEXITCODE }
@@ -51,3 +53,7 @@ tiny10:
 iot-ltsc:
 	@if (-not "$(VENTOY)") { throw "Ventoy flash disk not found; pass VENTOY=<letter>, e.g. make iot-ltsc VENTOY=G" }
 	@.\download-url.ps1 -Url "$(IOT_LTSC_URL)" -Ventoy "$(VENTOY)" -Iso "$(IOT_LTSC_ISO)"
+
+ltsc-zh:
+	@if (-not "$(VENTOY)") { throw "Ventoy flash disk not found; pass VENTOY=<letter>, e.g. make ltsc-zh VENTOY=G" }
+	@.\download-url.ps1 -Url "$(LTSC_ZH_URL)" -Ventoy "$(VENTOY)" -Iso "$(LTSC_ZH_ISO)"
