@@ -1,0 +1,38 @@
+services:
+  cups:
+    image: {{ cups_web_image }}
+    container_name: cups
+    user: root
+    hostname: CUPS
+    # mDNS/DNS-SD needs LAN multicast to discover network printers and
+    # broadcast AirPrint; bridge mode can't carry it, so use host network.
+    network_mode: host
+    security_opt:
+      - apparmor:unconfined
+    environment:
+      - CUPSADMIN={{ cups_web_cups_admin }}
+      - CUPSPASSWORD={{ cups_web_cups_password }}
+      - TZ={{ cups_web_tz }}
+      # Under host networking the Web UI listens directly on the host port.
+      - LISTEN_ADDR={{ cups_web_listen_addr }}
+      # Scan output directory, backed by the .scans volume below.
+      - SCAN_DIR=/scans
+    volumes:
+      - "{{ cups_web_etc_dir }}:/etc/cups"
+      - "{{ cups_web_data_dir }}:/data"
+      - "{{ cups_web_uploads_dir }}:/uploads"
+      - "{{ cups_web_drivers_dir }}:/opt/cups-drivers/data"
+      - "{{ cups_web_scans_dir }}:/scans"
+{% if cups_web_usb_enabled %}
+      - /dev/bus/usb:/dev/bus/usb
+      - /run/udev:/run/udev:ro
+    device_cgroup_rules:
+      - 'c 189:* rmw'
+{% endif %}
+    # Privileged mode: ARM / embedded platforms need full sysfs access so
+    # libusb can enumerate USB printers (issue #110). Comment out on x86
+    # when USB printing is not needed.
+{% if cups_web_privileged %}
+    privileged: true
+{% endif %}
+    restart: unless-stopped

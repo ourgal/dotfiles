@@ -1,0 +1,35 @@
+---
+- name: Create the cups-web stack directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ cups_web_dir }}"
+    state: directory
+    mode: '0700'
+
+- name: Create the cups-web data directories
+  become: true
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  loop:
+    - "{{ cups_web_etc_dir }}"
+    - "{{ cups_web_data_dir }}"
+    - "{{ cups_web_uploads_dir }}"
+    - "{{ cups_web_drivers_dir }}"
+    - "{{ cups_web_scans_dir }}"
+
+- name: Deploy the cups-web compose file
+  become: true
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ cups_web_dir }}/docker-compose.yml"
+    mode: '0600'
+
+# No community.docker dependency on purpose: the CLI is idempotent here.
+- name: Start the cups-web stack
+  become: true
+  ansible.builtin.command:
+    cmd: docker compose up -d --remove-orphans
+    chdir: "{{ cups_web_dir }}"
+  changed_when: false

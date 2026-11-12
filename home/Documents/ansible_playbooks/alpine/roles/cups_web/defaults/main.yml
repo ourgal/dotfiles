@@ -1,0 +1,32 @@
+---
+cups_web_enabled: false
+cups_web_image: hanxi/cups-web:latest
+cups_web_dir: /opt/cups-web
+
+# Host directories backing the container volumes; created by the role.
+cups_web_etc_dir: /srv/cups-web/etc
+cups_web_data_dir: /srv/cups-web/data
+cups_web_uploads_dir: /srv/cups-web/uploads
+cups_web_drivers_dir: /srv/cups-web/drivers
+cups_web_scans_dir: /srv/cups-web/scans
+
+# Web service listen address under host networking. CUPS itself always
+# occupies host port 631; the Web UI listens on cups_web_listen_addr.
+cups_web_listen_addr: ":1180"
+cups_web_tz: Asia/Shanghai
+
+# CUPS administrator credentials. First boot auto-creates admin/admin for
+# the cups-web Web UI; these are the underlying CUPS service credentials.
+# Credentials live in inventory/group_vars/secrets.sops.yml (age-encrypted,
+# loaded by the playbook's community.sops.load_vars pre_task): `make sops`.
+cups_web_cups_admin: print
+cups_web_cups_password: "print"
+
+# Mount the host USB bus and udev so USB printers are visible and hot-plug
+# works. Disable on hosts without a local USB printer.
+cups_web_usb_enabled: true
+
+# Privileged mode: ARM / embedded platforms need full sysfs access for
+# libusb to enumerate USB printers (issue #110). Safe to disable on x86
+# if USB printing is not required.
+cups_web_privileged: true
