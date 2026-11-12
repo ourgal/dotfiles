@@ -7,8 +7,10 @@ usb_letter := $(shell (Get-Volume | Where-Object { $$_.DriveType -eq "Removable"
 VENTOY ?= $(shell (Get-Volume -FileSystemLabel Ventoy -ErrorAction SilentlyContinue).DriveLetter)
 TINY10_TORRENT ?= https://archive.org/download/tiny-10-23-h2/tiny-10-23-h2_archive.torrent
 TINY10_ISO ?= tiny10 x64 23h2.iso
+IOT_LTSC_URL ?= https://archive.org/download/en-us_windows_10_iot_enterprise_ltsc_2021_x64_dvd_257ad90f/en-us_windows_10_iot_enterprise_ltsc_2021_x64_dvd_257ad90f.iso
+IOT_LTSC_ISO ?= en-us_windows_10_iot_enterprise_ltsc_2021_x64_dvd_257ad90f.iso
 
-.PHONY: all copy wim arch alpine freebsd netbsd nixos tiny10
+.PHONY: all copy wim arch alpine freebsd netbsd nixos tiny10 iot-ltsc
 
 all:
 	@robocopy src "$(usb_letter):" /E; if ($$LASTEXITCODE -lt 8) { exit 0 } else { exit $$LASTEXITCODE }
@@ -45,3 +47,7 @@ arch alpine freebsd netbsd nixos:
 tiny10:
 	@if (-not "$(VENTOY)") { throw "Ventoy flash disk not found; pass VENTOY=<letter>, e.g. make tiny10 VENTOY=G" }
 	@.\download-torrent.ps1 -Torrent "$(TINY10_TORRENT)" -Ventoy "$(VENTOY)" -Iso "$(TINY10_ISO)"
+
+iot-ltsc:
+	@if (-not "$(VENTOY)") { throw "Ventoy flash disk not found; pass VENTOY=<letter>, e.g. make iot-ltsc VENTOY=G" }
+	@.\download-url.ps1 -Url "$(IOT_LTSC_URL)" -Ventoy "$(VENTOY)" -Iso "$(IOT_LTSC_ISO)"
