@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# setup-miniforge-packages.sh — install git, lazygit, chezmoi and nodejs from
+# 02_setup-miniforge-packages.sh — install git, lazygit, chezmoi and nodejs from
 # conda-forge into the Miniforge base environment.
 #
 # Why these come from conda-forge: the distro git has been removed on this UOS
@@ -11,7 +11,7 @@
 # builds remain; that step uses sudo, everything else stays in $HOME.
 # Re-running is safe: already-installed packages are left as they are.
 #
-# Usage: ./setup-miniforge-packages.sh [--prefix DIR] [--dry-run]
+# Usage: ./02_setup-miniforge-packages.sh [--prefix DIR] [--dry-run]
 #
 #   --prefix DIR   Miniforge root (default: $HOME/miniforge3)
 #   --dry-run      print the commands; change nothing
@@ -42,7 +42,7 @@ while (( $# )); do
   shift
 done
 
-[[ -x "$PREFIX/bin/conda" ]] || die "Miniforge not found at $PREFIX; run setup-miniforge.sh first"
+[[ -x "$PREFIX/bin/conda" ]] || die "Miniforge not found at $PREFIX; run 01_setup-miniforge.sh first"
 
 # mamba resolves conda-forge much faster; fall back to conda if it is absent.
 if [[ -x "$PREFIX/bin/mamba" ]]; then SOLVER="$PREFIX/bin/mamba"; else SOLVER="$PREFIX/bin/conda"; fi

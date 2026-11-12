@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# setup-fcitx5.sh — build and enable Fcitx 5 from source on UOS Desktop 20 (eagle / arm64).
+# 04_setup-fcitx5.sh — build and enable Fcitx 5 from source on UOS Desktop 20 (eagle / arm64).
 #
 # Why a source build: the only fcitx5 in the UOS repos is a 2018 pre-release snapshot
 # (0~20181128+ds1-1) that ships no input method at all, and Debian's fcitx5 5.x binary
@@ -718,7 +718,7 @@ Next steps
   1. Log out and back in (fcitx5 must start before applications do).
   2. Confirm with:  fcitx5 --version  and  pgrep -a fcitx5
   3. Ctrl+Space / Ctrl+Shift switches to 拼音.
-  4. Roll back at any time:  ./setup-fcitx5.sh --rollback
+  4. Roll back at any time:  ./04_setup-fcitx5.sh --rollback
 
 Note: DDE 控制中心's 输入法 panel manages fcitx 4 and will not show fcitx5.
 fcitx5-configtool cannot be built here (the repos have no libkirigami-dev), so

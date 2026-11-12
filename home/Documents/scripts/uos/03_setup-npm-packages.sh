@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 #
-# setup-npm-packages.sh — install global npm packages into the Miniforge base
+# 03_setup-npm-packages.sh — install global npm packages into the Miniforge base
 # environment.
 #
 # npm comes from the conda-forge nodejs package, so global installs land under
 # the Miniforge prefix ($HOME/miniforge3) without needing sudo.
 #
-# Usage: ./setup-npm-packages.sh [--prefix DIR] [--dry-run]
+# Usage: ./03_setup-npm-packages.sh [--prefix DIR] [--dry-run]
 #
 #   --prefix DIR   Miniforge root (default: $HOME/miniforge3)
 #   --dry-run      print the commands; change nothing
@@ -37,7 +37,7 @@ while (( $# )); do
 done
 
 [[ -x "$PREFIX/bin/npm" && -x "$PREFIX/bin/node" ]] \
-  || die "npm/node not found in $PREFIX/bin; run setup-miniforge.sh and setup-miniforge-packages.sh first"
+  || die "npm/node not found in $PREFIX/bin; run 01_setup-miniforge.sh and 02_setup-miniforge-packages.sh first"
 
 log "installing ${PACKAGES[*]} globally into $PREFIX"
 run "$PREFIX/bin/npm" install -g --no-fund --no-audit "${PACKAGES[@]}"

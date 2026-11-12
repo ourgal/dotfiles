@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# setup-miniforge.sh — install Miniforge (conda-forge) for the current user on UOS
+# 01_setup-miniforge.sh — install Miniforge (conda-forge) for the current user on UOS
 # Desktop 20 (eagle / arm64) or any glibc >= 2.17 Linux.
 #
 # Why Miniforge: it is the conda-forge distribution. Only the conda-forge channel is
@@ -17,7 +17,7 @@
 # block written by `conda init` would vanish on the next `chezmoi apply` unless the
 # same block is added to the dotfile source (home/dot_bashrc, home/dot_bashrc.tmpl).
 #
-# Usage: ./setup-miniforge.sh [options]
+# Usage: ./01_setup-miniforge.sh [options]
 #   --prefix DIR       install location (default: $HOME/miniforge3)
 #   --version VER      Miniforge release to install (default: latest, e.g. 26.9.4-2)
 #   --mirror M         auto | tuna | github   (default: auto = tuna, then github)
