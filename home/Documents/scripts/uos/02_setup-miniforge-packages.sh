@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 #
-# 02_setup-miniforge-packages.sh — install git, lazygit, chezmoi and nodejs from
-# conda-forge into the Miniforge base environment.
+# 02_setup-miniforge-packages.sh — install git, lazygit, chezmoi, nodejs, fish
+# and tmux from conda-forge into the Miniforge base environment.
 #
 # Why these come from conda-forge: the distro git has been removed on this UOS
 # box, the repo scripts need git, and lazygit/chezmoi are not in the UOS repos.
-# Node.js comes from here too, with npm bundled in the same package.
+# Node.js comes from here too, with npm bundled in the same package. fish and
+# tmux are installed here so they share the prefix instead of the distro copies.
 #
 # The script removes distro git, nodejs and npm first so only the conda-forge
 # builds remain; that step uses sudo, everything else stays in $HOME.
@@ -21,9 +22,9 @@ set -euo pipefail
 
 PREFIX="${MINIFORGE_DIR:-$HOME/miniforge3}"
 DRY_RUN=0
-PACKAGES=(git lazygit chezmoi nodejs)
+PACKAGES=(git lazygit chezmoi nodejs fish tmux)
 DISTRO_REMOVE=(git nodejs npm)
-VERIFY_CMDS=(git lazygit chezmoi node npm)
+VERIFY_CMDS=(git lazygit chezmoi node npm fish tmux)
 
 log()  { printf '\033[1;36m==>\033[0m %s\n' "$*"; }
 warn() { printf '\033[1;33m [!]\033[0m %s\n' "$*" >&2; }
@@ -77,7 +78,10 @@ fi
 log "verification"
 for cmd in "${VERIFY_CMDS[@]}"; do
   if [[ -x "$PREFIX/bin/$cmd" ]]; then
-    log "$cmd: $("$PREFIX/bin/$cmd" --version 2>/dev/null | head -1)"
+    ver=$("$PREFIX/bin/$cmd" --version 2>/dev/null | head -1)
+    # tmux only knows -V; the other tools use --version.
+    [[ -n "$ver" ]] || ver=$("$PREFIX/bin/$cmd" -V 2>/dev/null | head -1)
+    log "$cmd: $ver"
   else
     warn "$cmd not found in $PREFIX/bin"
   fi
