@@ -1,0 +1,38 @@
+---
+- name: Install herdr dependencies
+  become: true
+  community.general.apk:
+    name: "{{ herdr_packages }}"
+    state: present
+    update_cache: true
+
+- name: Check the installed herdr version
+  ansible.builtin.command:
+    cmd: "{{ herdr_binary }} --version"
+  register: herdr_installed_version
+  changed_when: false
+  failed_when: false
+
+- name: Install herdr
+  when: herdr_version not in herdr_installed_version.stdout
+  block:
+    - name: Download herdr
+      become: true
+      ansible.builtin.get_url:
+        url: "{{ herdr_download_url }}"
+        dest: "{{ herdr_archive }}"
+        mode: '0600'
+
+    - name: Install the herdr binary
+      become: true
+      ansible.builtin.copy:
+        src: "{{ herdr_archive }}"
+        dest: "{{ herdr_binary }}"
+        remote_src: true
+        mode: '0755'
+
+    - name: Remove the herdr download
+      become: true
+      ansible.builtin.file:
+        path: "{{ herdr_archive }}"
+        state: absent

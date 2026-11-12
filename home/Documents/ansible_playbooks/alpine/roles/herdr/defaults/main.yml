@@ -1,0 +1,15 @@
+---
+herdr_enabled: false
+herdr_version: "0.9.3"
+herdr_install_dir: /usr/local/bin
+herdr_binary: "{{ herdr_install_dir }}/herdr"
+
+herdr_arch_map:
+  x86_64: x86_64
+  aarch64: aarch64
+herdr_arch: "{{ herdr_arch_map[ansible_facts.architecture] }}"
+herdr_archive: "/tmp/herdr-linux-{{ herdr_arch }}-v{{ herdr_version }}"
+herdr_download_url: "https://v6.gh-proxy.org/https://github.com/herdrdev/herdr/releases/download/v{{ herdr_version }}/herdr-linux-{{ herdr_arch }}"
+
+herdr_packages:
+  - ca-certificates
