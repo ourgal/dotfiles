@@ -258,7 +258,7 @@ Videos/*
 {{ end -}}
 # ]]]
 # [[[ vim
-{{ if lookPath "vim" -}}
+{{ if includeTemplate "vim9" . | trim | atoi -}}
 !.local/share/vim/
 .local/share/vim/*
 !.local/share/vim/sessions/

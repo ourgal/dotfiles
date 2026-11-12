@@ -1,5 +1,5 @@
 {{ if eq .chezmoi.os "linux" "android" -}}
-{{ if and (lookPath "vim") (stat (joinPath .chezmoi.homeDir ".config" "git" "config")) -}}
+{{ if and (includeTemplate "vim9" . | trim | atoi) (stat (joinPath .chezmoi.homeDir ".config" "git" "config")) -}}
 #!{{lookPath "bash"}}
 set -euo pipefail
 {{ $file_content := include (joinPath .chezmoi.homeDir ".vim" "import" "plugins.vim") | splitList "\n" -}}

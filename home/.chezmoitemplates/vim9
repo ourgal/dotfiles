@@ -1,0 +1,7 @@
+{{- $ok := "0" -}}
+{{- if lookPath "vim" -}}
+{{- if ge (output "vim" "--version" | regexFind "[0-9]+\\.[0-9]+" | splitList "." | first | atoi) 9 -}}
+{{- $ok = "1" -}}
+{{- end -}}
+{{- end -}}
+{{- $ok -}}
