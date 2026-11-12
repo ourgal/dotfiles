@@ -22,6 +22,15 @@ if [ -d "$HOME/miniforge3/bin" ]; then
 fi
 # ]]]
 
+# [[[ local-bin
+if [ -d "$HOME/.local/bin" ]; then
+    case ":$PATH:" in
+        *":$HOME/.local/bin:"*) ;;
+        *) PATH="$HOME/.local/bin:$PATH" ;;
+    esac
+fi
+# ]]]
+
 # [[[ ssh-agent
 # The systemd user unit exports this via dbus for apps started by the manager,
 # but shells started from an existing session need to pick it up themselves.
@@ -140,7 +149,6 @@ if ! shopt -oq posix; then
 fi
 # [[[ android
 {{ if eq .chezmoi.os "android" -}}
-export PATH=$PATH:$HOME/.local/bin
 export SSH_AUTH_SOCK=$PREFIX/var/run/ssh-agent.socket
 {{ end -}}
 # ]]]
