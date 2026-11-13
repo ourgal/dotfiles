@@ -29,13 +29,6 @@ save-watch-history=%{{ len "yes" }}%{{ "yes" }}
 keep-open=%{{ len "no" }}%{{ "no" }}
 [youtube]
 profile-cond=path:find('youtu%.?be')
-ytdl-format=18/22
-speed=2.0
+ytdl-format=bestvideo[height<=720][fps<=30][vcodec^=av01]+worstaudio/bestvideo[height<=720][fps<=30][vcodec^=vp9]+worstaudio/best[height<=720]
 ytdl-raw-options=write-auto-sub=
-profile-restore=copy
-[bilibili]
-profile-cond=path:find('bilibili%.com')
-{{ if eq .chezmoi.os "windows" -}}
-# ytdl-raw-options=cookies-from-browser=firefox:~/scoop/persist/firefox
-{{ end -}}
 profile-restore=copy
