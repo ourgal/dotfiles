@@ -1,74 +1,31 @@
 ---
+# One role per script in ~/Documents/scripts/uos/. Each role ports that script to
+# idempotent Ansible tasks; the roles run in the same order as the numbered scripts.
+#
+# The default is the full workstation chain. setup-miniforge-python.sh is an
+# alternative minimal bootstrap (Miniforge + Python only), so its role is off by
+# default; enable it and switch the chain off with -e, e.g.:
+#   ansible-playbook ... -e miniforge_packages_enabled=false \
+#     -e npm_packages_enabled=false -e fcitx5_enabled=false \
+#     -e miniforge_python_enabled=true
+#
+# Every role is also tagged, so `make miniforge` / `make fcitx5` run just that one.
 - name: Configure uos
   hosts: all
-  vars:
-    user: zxc
-  tasks:
-    - name: Debug variables
-      tags:
-        - debug
-      ansible.builtin.debug:
-        var: ansible_facts
-    - name: Nix
-      tags:
-        - pkg
-        - nix
-      block:
-        - name: Nix folder stat
-          tags:
-            - pkg
-            - nix
-          ansible.builtin.stat:
-            path: /nix
-          register: nix_stat
-        - name: Install nix
-          tags:
-            - pkg
-            - nix
-          become: true
-          ansible.builtin.shell: curl -sSfL https://artifacts.nixos.org/nix-installer | sh -s -- install --enable-flakes --no-confirm
-          when: not nix_stat.stat.exists
-        - name: Add trusted-users to nix config
-          tags:
-            - pkg
-            - nix
-          become: true
-          ansible.builtin.lineinfile:
-            path: /etc/nix/nix.conf
-            line: trusted-users = {{ user }}
-        - name: Home-manager stat
-          tags:
-            - pkg
-            - nix
-          ansible.builtin.stat:
-            path: "{{ ansible_facts.user_dir }}/.nix-profile/bin/home-manager"
-          register: home_manager_stat
-        - name: Install home-manager channel
-          tags:
-            - pkg
-            - nix
-          ansible.builtin.shell: nix-channel --add https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz home-manager
-          when: not home_manager_stat.stat.exists
-        - name: Update channels
-          tags:
-            - pkg
-            - nix
-          ansible.builtin.shell: nix-channel --update
-          when: not home_manager_stat.stat.exists
-        - name: Install home-manager
-          tags:
-            - pkg
-            - nix
-          ansible.builtin.shell: nix-shell '<home-manager>' -A install
-          when: not home_manager_stat.stat.exists
-    - name: Fix etc profile PATH
-      tags:
-        - profile
-        - config
-      become: true
-      ansible.builtin.template:
-        src: templates/uos_etc_profile.j2
-        dest: /etc/profile
-        owner: root
-        group: root
-        mode: "0644"
+  ignore_unreachable: true
+  roles:
+    - role: miniforge
+      tags: [miniforge]
+      when: miniforge_enabled | default(true) | bool
+    - role: miniforge_packages
+      tags: [miniforge_packages]
+      when: miniforge_packages_enabled | default(true) | bool
+    - role: npm_packages
+      tags: [npm_packages]
+      when: npm_packages_enabled | default(true) | bool
+    - role: fcitx5
+      tags: [fcitx5]
+      when: fcitx5_enabled | default(true) | bool
+    - role: miniforge_python
+      tags: [miniforge_python]
+      when: miniforge_python_enabled | default(false) | bool

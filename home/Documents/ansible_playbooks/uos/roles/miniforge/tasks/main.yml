@@ -1,0 +1,122 @@
+---
+# Installs Miniforge (conda-forge) into the user's home: no sudo, no rc edits,
+# no other packages. Idempotent — an existing prefix is left untouched.
+- name: Check the host is a supported glibc Linux
+  ansible.builtin.assert:
+    that:
+      - ansible_facts.system == 'Linux'
+      - ansible_facts.architecture in ['aarch64', 'arm64', 'x86_64', 'amd64', 'ppc64le']
+    fail_msg: "Miniforge needs a glibc Linux on aarch64/x86_64/ppc64le (got {{ ansible_facts.system }}/{{ ansible_facts.architecture }})"
+  tags: [miniforge]
+
+- name: Map the architecture to the installer suffix
+  ansible.builtin.set_fact:
+    miniforge_arch: "{{ {'arm64': 'aarch64', 'amd64': 'x86_64'}[ansible_facts.architecture] | default(ansible_facts.architecture) }}"
+  tags: [miniforge]
+
+- name: Check whether Miniforge is already installed
+  ansible.builtin.stat:
+    path: "{{ miniforge_dir }}/bin/conda"
+  register: miniforge_conda_stat
+  tags: [miniforge]
+
+# The shell script learns the tag from GitHub's /latest redirect, then falls back
+# to parsing the versioned installer names in the TUNA directory listing.
+- name: Resolve the latest Miniforge release
+  when:
+    - not miniforge_conda_stat.stat.exists
+    - miniforge_version | length == 0
+  tags: [miniforge]
+  block:
+    - name: Follow the GitHub latest-release redirect
+      ansible.builtin.uri:
+        url: "{{ miniforge_github_releases }}/latest"
+        method: HEAD
+        follow_redirects: safe
+        timeout: 30
+      register: miniforge_release
+      changed_when: false
+      check_mode: false
+      environment: "{{ miniforge_proxy_env }}"
+
+    - name: Record the resolved version
+      ansible.builtin.set_fact:
+        miniforge_resolved_version: "{{ miniforge_release.url | split('/') | last }}"
+  rescue:
+    - name: List the versioned installers on the TUNA mirror
+      ansible.builtin.uri:
+        url: "{{ miniforge_tuna_base }}/"
+        return_content: true
+        timeout: 30
+      register: miniforge_listing
+      changed_when: false
+      check_mode: false
+      environment: "{{ miniforge_proxy_env }}"
+
+    - name: Pick the newest version from the TUNA listing
+      ansible.builtin.set_fact:
+        miniforge_resolved_version: >-
+          {{ miniforge_listing.content
+             | regex_findall('Miniforge3-([0-9][0-9A-Za-z.+-]*)-Linux-' ~ miniforge_arch ~ '[.]sh')
+             | sort | last | default('') }}
+
+- name: Resolve the effective Miniforge version
+  ansible.builtin.set_fact:
+    miniforge_version_effective: "{{ miniforge_version if (miniforge_version | length > 0) else (miniforge_resolved_version | default('')) }}"
+  when: not miniforge_conda_stat.stat.exists
+  tags: [miniforge]
+
+- name: Compute the installer name and download URL
+  ansible.builtin.set_fact:
+    miniforge_installer: "{{ 'Miniforge3-' ~ (miniforge_version_effective ~ '-' if miniforge_version_effective else '') ~ 'Linux-' ~ miniforge_arch ~ '.sh' }}"
+    miniforge_github_base: "{{ (miniforge_github_releases ~ '/download/' ~ miniforge_version_effective) if miniforge_version_effective else (miniforge_github_releases ~ '/latest/download') }}"
+  when: not miniforge_conda_stat.stat.exists
+  tags: [miniforge]
+
+- name: Create the installer cache directory
+  ansible.builtin.file:
+    path: "{{ miniforge_cache_dir }}"
+    state: directory
+    mode: "0755"
+  when: not miniforge_conda_stat.stat.exists
+  tags: [miniforge]
+
+# get_url verifies the published .sha256 itself. The unversioned "latest"
+# installer has no checksum file, so skip verification in that fallback case.
+- name: Download and verify the Miniforge installer
+  ansible.builtin.get_url:
+    url: "{{ (miniforge_github_base if miniforge_mirror == 'github' else miniforge_tuna_base) ~ '/' ~ miniforge_installer }}"
+    dest: "{{ miniforge_cache_dir }}/{{ miniforge_installer }}"
+    mode: "0755"
+    timeout: 1800
+    checksum: "{{ ('sha256:' ~ ((miniforge_github_base if miniforge_mirror == 'github' else miniforge_tuna_base) ~ '/' ~ miniforge_installer) ~ '.sha256') if miniforge_version_effective else omit }}"
+  when: not miniforge_conda_stat.stat.exists
+  environment: "{{ miniforge_proxy_env }}"
+  tags: [miniforge, download]
+
+- name: Run the Miniforge installer in batch mode
+  ansible.builtin.command:
+    cmd: "/bin/bash {{ miniforge_cache_dir }}/{{ miniforge_installer }} -b -p {{ miniforge_dir }}"
+    creates: "{{ miniforge_dir }}/bin/conda"
+  when: not miniforge_conda_stat.stat.exists
+  tags: [miniforge]
+
+- name: Initialise conda for the requested shells
+  ansible.builtin.command:
+    cmd: "{{ miniforge_dir }}/bin/conda init {{ item }}"
+  loop: "{{ miniforge_init_shells }}"
+  loop_control:
+    label: "{{ item }}"
+  # A shell may simply not be installed; the shell script skips those too.
+  failed_when: false
+  when: miniforge_init | bool
+  tags: [miniforge]
+
+- name: Verify the installed conda and Python
+  ansible.builtin.command:
+    cmd: "{{ miniforge_dir }}/bin/{{ item }} --version"
+  loop: [conda, python]
+  loop_control:
+    label: "{{ item }}"
+  changed_when: false
+  tags: [miniforge]

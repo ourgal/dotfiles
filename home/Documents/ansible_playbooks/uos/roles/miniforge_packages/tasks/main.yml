@@ -1,0 +1,82 @@
+---
+# Installs the workstation toolchain from conda-forge into the Miniforge base
+# environment, after removing the duplicate distro git/nodejs/npm packages.
+- name: Check the conda and mamba binaries
+  ansible.builtin.stat:
+    path: "{{ miniforge_dir }}/bin/{{ item }}"
+  loop: [conda, mamba]
+  loop_control:
+    label: "{{ item }}"
+  register: miniforge_package_solvers
+  tags: [miniforge_packages]
+
+- name: Fail if Miniforge is missing
+  ansible.builtin.assert:
+    that: miniforge_package_solvers.results | selectattr('item', 'equalto', 'conda') | map(attribute='stat.exists') | first
+    fail_msg: "Miniforge not found at {{ miniforge_dir }}; enable the miniforge role first"
+  tags: [miniforge_packages]
+
+- name: Choose the fastest available solver
+  ansible.builtin.set_fact:
+    miniforge_solver: "{{ miniforge_dir }}/bin/{{ 'mamba' if (miniforge_package_solvers.results | selectattr('item', 'equalto', 'mamba') | map(attribute='stat.exists') | first) else 'conda' }}"
+  tags: [miniforge_packages]
+
+- name: Collect the installed distro packages
+  ansible.builtin.package_facts:
+    manager: apt
+  tags: [miniforge_packages]
+
+- name: Work out which distro packages need removing
+  ansible.builtin.set_fact:
+    miniforge_distro_present: "{{ miniforge_distro_remove | intersect(ansible_facts.packages.keys() | list) }}"
+  tags: [miniforge_packages]
+
+- name: Remove the duplicate distro toolchains
+  become: true
+  ansible.builtin.apt:
+    name: "{{ miniforge_distro_present }}"
+    state: absent
+    autoremove: false
+  when: miniforge_distro_present | length > 0
+  tags: [miniforge_packages, pkg]
+
+# Compare against conda's own package list so a re-run only solves when something
+# is actually missing, instead of reporting "changed" every time.
+- name: List the packages in the base environment
+  ansible.builtin.command:
+    cmd: "{{ miniforge_dir }}/bin/conda list --name base --json"
+  register: miniforge_conda_list
+  changed_when: false
+  check_mode: false
+  environment:
+    PATH: "{{ miniforge_dir }}/bin:{{ ansible_env.PATH }}"
+  tags: [miniforge_packages]
+
+- name: Work out which conda-forge packages are missing
+  ansible.builtin.set_fact:
+    miniforge_missing_packages: "{{ miniforge_packages | difference((miniforge_conda_list.stdout | from_json) | map(attribute='name') | list) }}"
+  tags: [miniforge_packages]
+
+- name: Install the conda-forge packages into base
+  ansible.builtin.command:
+    cmd: "{{ miniforge_solver }} install -n base -y -c {{ miniforge_channel }} {{ miniforge_missing_packages | join(' ') }}"
+  when: miniforge_missing_packages | length > 0
+  environment:
+    PATH: "{{ miniforge_dir }}/bin:{{ ansible_env.PATH }}"
+  tags: [miniforge_packages, pkg]
+
+- name: Verify the binaries shipped by those packages
+  ansible.builtin.stat:
+    path: "{{ miniforge_dir }}/bin/{{ item }}"
+  loop: "{{ miniforge_verify_bins }}"
+  loop_control:
+    label: "{{ item }}"
+  register: miniforge_verify
+  tags: [miniforge_packages]
+
+- name: Fail if any expected binary is missing
+  ansible.builtin.assert:
+    that: miniforge_verify.results | rejectattr('stat.exists') | list | length == 0
+    fail_msg: "Some expected binaries are missing from {{ miniforge_dir }}/bin"
+    success_msg: "All {{ miniforge_verify_bins | length }} binaries are present"
+  tags: [miniforge_packages]

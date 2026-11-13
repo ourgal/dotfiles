@@ -1,0 +1,20 @@
+---
+# Port of ~/Documents/scripts/uos/01_setup-miniforge.sh
+miniforge_enabled: true
+miniforge_dir: "{{ ansible_facts.user_dir }}/miniforge3"
+miniforge_cache_dir: "{{ ansible_facts.user_dir }}/.cache/miniforge-setup"
+
+# Empty resolves the latest release at run time. Pin e.g. 26.9.4-2 to reproduce
+# an older install; a pinned release also enables sha256 verification.
+miniforge_version: ""
+# TUNA is the default on this network; switch to github if it is unreachable.
+miniforge_mirror: tuna # tuna | github
+miniforge_proxy: ""
+miniforge_proxy_env: "{{ {'https_proxy': miniforge_proxy, 'http_proxy': miniforge_proxy} if miniforge_proxy else {} }}"
+
+# conda init rewrites ~/.bashrc, which chezmoi owns and would revert on apply.
+miniforge_init: false
+miniforge_init_shells: [bash, zsh]
+
+miniforge_tuna_base: "https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/LatestRelease"
+miniforge_github_releases: "https://github.com/conda-forge/miniforge/releases"

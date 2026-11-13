@@ -1,0 +1,45 @@
+---
+# Port of ~/Documents/scripts/uos/02_setup-miniforge-packages.sh
+miniforge_packages_enabled: true
+miniforge_dir: "{{ ansible_facts.user_dir }}/miniforge3"
+miniforge_channel: conda-forge
+
+# The distro copies are removed first so only the conda-forge toolchain remains.
+miniforge_distro_remove: [git, nodejs, npm]
+miniforge_packages:
+  - git
+  - lazygit
+  - chezmoi
+  - nodejs
+  - python
+  - ansible-core
+  - ansible
+  - fish
+  - tmux
+  - zoxide
+  - fzf
+  - zellij
+  - lf
+  - ranger-fm
+  - nnn
+  - uv
+  - herdr
+miniforge_verify_bins:
+  - git
+  - lazygit
+  - chezmoi
+  - node
+  - npm
+  - python
+  - ansible
+  - ansible-playbook
+  - fish
+  - tmux
+  - zoxide
+  - fzf
+  - zellij
+  - lf
+  - ranger
+  - nnn
+  - uv
+  - herdr

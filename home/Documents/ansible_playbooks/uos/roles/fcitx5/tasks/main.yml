@@ -1,0 +1,501 @@
+---
+# Builds and enables the Fcitx 5 5.0.x stack from pinned Debian 11 sources.
+# Idempotent: each cmake phase is guarded by an artifact it produces, and the
+# tarball downloads/unpacks are guarded by their destinations.
+- name: Check this is not running as root
+  ansible.builtin.assert:
+    that: ansible_facts.user_id != 'root'
+    fail_msg: "run as the normal user; sudo/become is used only where needed"
+  tags: [fcitx5]
+
+- name: Probe write access to the install prefix (UOS developer mode)
+  become: true
+  ansible.builtin.copy:
+    dest: "{{ fcitx5_prefix }}/.ansible-wtest"
+    content: ""
+    mode: "0644"
+  tags: [fcitx5, preflight]
+
+- name: Remove the write probe
+  become: true
+  ansible.builtin.file:
+    path: "{{ fcitx5_prefix }}/.ansible-wtest"
+    state: absent
+  tags: [fcitx5, preflight]
+
+- name: Work out which components are skipped without the Rime branch
+  ansible.builtin.set_fact:
+    fcitx5_skipped_components: "{{ [] if (fcitx5_rime | bool) else ['opencc', 'librime', 'rimefe'] }}"
+    fcitx5_all_apt_packages: "{{ fcitx5_apt_packages + (fcitx5_rime_apt_packages if (fcitx5_rime | bool) else []) + fcitx5_optional_apt_packages }}"
+  tags: [fcitx5]
+
+- name: Refresh the apt cache
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+  tags: [fcitx5, pkg]
+
+# The shell script only installs packages the repos actually provide; probe them
+# first so an apt source without, say, appstream does not abort the whole build.
+- name: Probe which build dependencies the repos provide
+  ansible.builtin.command:
+    cmd: "apt-cache show {{ item }}"
+  loop: "{{ fcitx5_all_apt_packages }}"
+  loop_control:
+    label: "{{ item }}"
+  register: fcitx5_apt_probe
+  changed_when: false
+  failed_when: false
+  check_mode: false
+  tags: [fcitx5, pkg]
+
+- name: Install the available build dependencies
+  become: true
+  ansible.builtin.apt:
+    name: "{{ fcitx5_apt_probe.results | selectattr('rc', 'equalto', 0) | map(attribute='item') | list }}"
+    state: present
+    install_recommends: false
+  when: fcitx5_apt_probe.results | selectattr('rc', 'equalto', 0) | list | length > 0
+  tags: [fcitx5, pkg]
+
+- name: Collect installed packages
+  ansible.builtin.package_facts:
+    manager: apt
+  tags: [fcitx5, pkg]
+
+# The 2018 snapshot and the distro libfmt-dev ship CMake configs in /usr/lib
+# that outrank our /usr/local builds, so they must go.
+- name: Work out which competing packages are installed
+  ansible.builtin.set_fact:
+    fcitx5_stale_packages: "{{ ansible_facts.packages.keys() | list | select('match', '^(fcitx5|libfcitx5|libfmt-dev)') | list }}"
+  tags: [fcitx5, pkg]
+
+- name: Remove the competing system fmt and fcitx5 snapshot packages
+  become: true
+  ansible.builtin.apt:
+    name: "{{ fcitx5_stale_packages }}"
+    state: absent
+  when: fcitx5_stale_packages | length > 0
+  tags: [fcitx5, pkg]
+
+- name: Create the state, source and data directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - "{{ fcitx5_state_dir }}"
+    - "{{ fcitx5_state_dir }}/dl"
+    - "{{ fcitx5_state_dir }}/src"
+    - "{{ fcitx5_state_dir }}/pkgconfig"
+    - "{{ fcitx5_rime_user_dir }}"
+    - "{{ ansible_facts.user_dir }}/.config/fcitx5/conf"
+    - "{{ ansible_facts.user_dir }}/.config/autostart"
+  tags: [fcitx5]
+
+- name: Create the shared Rime data directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ fcitx5_rime_share_dir }}"
+    state: directory
+    mode: "0755"
+  when: fcitx5_rime | bool
+  tags: [fcitx5]
+
+- name: Determine the multiarch triplet
+  ansible.builtin.command:
+    cmd: gcc -print-multiarch
+  register: fcitx5_multiarch
+  changed_when: false
+  failed_when: false
+  check_mode: false
+  tags: [fcitx5, build]
+
+- name: Set the pkg-config search path
+  ansible.builtin.set_fact:
+    fcitx5_pkg_config_path: "{{ fcitx5_state_dir }}/pkgconfig:{{ fcitx5_prefix }}/lib/pkgconfig:{{ fcitx5_prefix }}/lib/{{ fcitx5_multiarch.stdout | default('') }}/pkgconfig"
+  tags: [fcitx5, build]
+
+- name: Probe the Debian source mirrors
+  ansible.builtin.uri:
+    url: "{{ item }}/main/f/fcitx5/"
+    method: HEAD
+    timeout: 15
+  loop:
+    - "{{ fcitx5_mirror_primary }}"
+    - "{{ fcitx5_mirror_fallback }}"
+  register: fcitx5_mirror_probe
+  ignore_errors: true
+  changed_when: false
+  check_mode: false
+  environment: "{{ fcitx5_proxy_env }}"
+  tags: [fcitx5, download]
+
+- name: Select the first reachable mirror
+  ansible.builtin.set_fact:
+    fcitx5_mirror: >-
+      {{ (fcitx5_mirror_probe.results
+          | selectattr('status', 'defined')
+          | selectattr('status', 'equalto', 200)
+          | map(attribute='item') | list | first)
+         | default(fcitx5_mirror_primary, true) }}
+  tags: [fcitx5, download]
+
+- name: Download the pinned source tarballs
+  ansible.builtin.get_url:
+    url: "{{ fcitx5_mirror }}/{{ item.url }}"
+    dest: "{{ fcitx5_state_dir }}/dl/{{ item.url | basename | replace('%2B', '+') }}"
+    mode: "0644"
+    timeout: 900
+  loop: "{{ fcitx5_all_components }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: item.name not in fcitx5_skipped_components
+  environment: "{{ fcitx5_proxy_env }}"
+  tags: [fcitx5, download]
+
+- name: Download the extra source tarballs (librime-lua)
+  ansible.builtin.get_url:
+    url: "{{ fcitx5_mirror }}/{{ item.url }}"
+    dest: "{{ fcitx5_state_dir }}/dl/{{ item.url | basename | replace('%2B', '+') }}"
+    mode: "0644"
+    timeout: 900
+  loop: "{{ fcitx5_extra_tarballs }}"
+  loop_control:
+    label: "{{ item.url | basename }}"
+  when: fcitx5_rime | bool
+  environment: "{{ fcitx5_proxy_env }}"
+  tags: [fcitx5, download]
+
+- name: Unpack the source tarballs
+  ansible.builtin.unarchive:
+    src: "{{ fcitx5_state_dir }}/dl/{{ item.url | basename | replace('%2B', '+') }}"
+    dest: "{{ fcitx5_state_dir }}/src/{{ item.name }}/extracted"
+    remote_src: true
+    extra_opts: [--strip-components=1]
+    creates: "{{ fcitx5_state_dir }}/src/{{ item.name }}/extracted"
+  loop: "{{ fcitx5_all_components }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: item.name not in fcitx5_skipped_components
+  tags: [fcitx5, build]
+
+- name: Merge the librime-lua plugin into the librime source tree
+  ansible.builtin.unarchive:
+    src: "{{ fcitx5_state_dir }}/dl/{{ item.url | basename | replace('%2B', '+') }}"
+    dest: "{{ fcitx5_state_dir }}/src/{{ item.subdir }}"
+    remote_src: true
+    extra_opts: [--strip-components=1]
+    creates: "{{ fcitx5_state_dir }}/src/{{ item.subdir }}/.unpacked"
+  loop: "{{ fcitx5_extra_tarballs }}"
+  when: fcitx5_rime | bool
+  tags: [fcitx5, build]
+
+- name: Mark the extra tarballs as unpacked
+  ansible.builtin.file:
+    path: "{{ fcitx5_state_dir }}/src/{{ item.subdir }}/.unpacked"
+    state: touch
+    modification_time: preserve
+    mode: "0644"
+  loop: "{{ fcitx5_extra_tarballs }}"
+  when: fcitx5_rime | bool
+  tags: [fcitx5, build]
+
+# librime-lua probes for lua/lua53/... but Debian ships lua5.3.pc. Copy the
+# descriptor under a name it does probe, into a directory we own.
+- name: Locate a lua5.x pkg-config descriptor
+  ansible.builtin.find:
+    paths: /usr/lib
+    recurse: true
+    file_type: file
+    patterns: ["lua5.*.pc"]
+  register: fcitx5_lua_pc
+  when: fcitx5_rime | bool
+  tags: [fcitx5, build]
+
+- name: Install the lua.pc shim for librime-lua
+  ansible.builtin.copy:
+    src: "{{ fcitx5_lua_pc.files | map(attribute='path') | reject('search', 'c[+]') | first | default('') }}"
+    dest: "{{ fcitx5_state_dir }}/pkgconfig/lua.pc"
+    remote_src: true
+    mode: "0644"
+  when:
+    - fcitx5_rime | bool
+    - fcitx5_lua_pc.files | default([]) | length > 0
+  tags: [fcitx5, build]
+
+- name: Configure the Fcitx 5 components
+  ansible.builtin.command:
+    cmd: >-
+      cmake -G Ninja
+      -B {{ fcitx5_state_dir }}/src/{{ item.name }}/build
+      -S {{ fcitx5_state_dir }}/src/{{ item.name }}/extracted
+      -DCMAKE_BUILD_TYPE=Release
+      -DCMAKE_INSTALL_PREFIX={{ fcitx5_prefix }}
+      -DCMAKE_PREFIX_PATH={{ fcitx5_prefix }}
+      -DPKG_CONFIG_USE_CMAKE_PREFIX_PATH=ON
+      -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+      -DENABLE_TEST=OFF -DENABLE_COVERAGE=OFF
+      -DBUILD_SHARED_LIBS=ON
+      {{ item.args | join(' ') }}
+    creates: "{{ fcitx5_state_dir }}/src/{{ item.name }}/build/build.ninja"
+  loop: "{{ fcitx5_all_components }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: item.name not in fcitx5_skipped_components
+  environment:
+    PKG_CONFIG_PATH: "{{ fcitx5_pkg_config_path }}"
+    CMAKE_PREFIX_PATH: "{{ fcitx5_prefix }}"
+  tags: [fcitx5, build]
+
+- name: Compile the Fcitx 5 components
+  ansible.builtin.command:
+    cmd: "cmake --build {{ fcitx5_state_dir }}/src/{{ item.name }}/build -j {{ fcitx5_jobs }}"
+    creates: "{{ fcitx5_state_dir }}/src/{{ item.name }}/.built"
+  loop: "{{ fcitx5_all_components }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: item.name not in fcitx5_skipped_components
+  environment:
+    PKG_CONFIG_PATH: "{{ fcitx5_pkg_config_path }}"
+    CMAKE_PREFIX_PATH: "{{ fcitx5_prefix }}"
+  tags: [fcitx5, build]
+
+- name: Mark the components as compiled
+  ansible.builtin.file:
+    path: "{{ fcitx5_state_dir }}/src/{{ item.name }}/.built"
+    state: touch
+    modification_time: preserve
+    mode: "0644"
+  loop: "{{ fcitx5_all_components }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: item.name not in fcitx5_skipped_components
+  tags: [fcitx5, build]
+
+- name: Install the Fcitx 5 components into the prefix
+  become: true
+  ansible.builtin.command:
+    cmd: "cmake --install {{ fcitx5_state_dir }}/src/{{ item.name }}/build"
+    creates: "{{ fcitx5_state_dir }}/src/{{ item.name }}/build/install_manifest.txt"
+  loop: "{{ fcitx5_all_components }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: item.name not in fcitx5_skipped_components
+  environment:
+    CMAKE_PREFIX_PATH: "{{ fcitx5_prefix }}"
+  tags: [fcitx5, build]
+
+- name: Find the stock Rime data files shipped in the librime source
+  ansible.builtin.find:
+    paths: "{{ fcitx5_state_dir }}/src/librime/extracted/data/minimal"
+    patterns: ["*.yaml", "essay.txt"]
+  register: fcitx5_rime_stock
+  when: fcitx5_rime | bool
+  tags: [fcitx5, rime]
+
+- name: Install the stock Rime shared data
+  become: true
+  ansible.builtin.copy:
+    src: "{{ item.path }}"
+    dest: "{{ fcitx5_rime_share_dir }}/{{ item.path | basename }}"
+    remote_src: true
+    mode: "0644"
+  loop: "{{ fcitx5_rime_stock.files | default([]) }}"
+  loop_control:
+    label: "{{ item.path | basename }}"
+  when: fcitx5_rime | bool
+  tags: [fcitx5, rime]
+
+- name: Download the 声笔系列码 (sbsrf) schemas
+  ansible.builtin.get_url:
+    url: "{{ fcitx5_sbsrf_url }}"
+    dest: "{{ fcitx5_state_dir }}/sbsrf.zip"
+    mode: "0644"
+    timeout: 1800
+  when:
+    - fcitx5_rime | bool
+    - fcitx5_sbsrf | bool
+    - fcitx5_sbsrf_zip | length == 0
+  environment: "{{ fcitx5_proxy_env }}"
+  tags: [fcitx5, rime, download]
+
+- name: Install the sbsrf schemas into the Rime user directory
+  ansible.builtin.unarchive:
+    src: "{{ fcitx5_sbsrf_zip if (fcitx5_sbsrf_zip | length > 0) else (fcitx5_state_dir ~ '/sbsrf.zip') }}"
+    dest: "{{ fcitx5_rime_user_dir }}"
+    remote_src: true
+    creates: "{{ fcitx5_state_dir }}/.sbsrf-installed"
+  when:
+    - fcitx5_rime | bool
+    - fcitx5_sbsrf | bool
+  tags: [fcitx5, rime]
+
+- name: Mark the sbsrf schemas as installed
+  ansible.builtin.file:
+    path: "{{ fcitx5_state_dir }}/.sbsrf-installed"
+    state: touch
+    modification_time: preserve
+    mode: "0644"
+  when:
+    - fcitx5_rime | bool
+    - fcitx5_sbsrf | bool
+  tags: [fcitx5, rime]
+
+- name: Run the first Rime deployment
+  ansible.builtin.command:
+    cmd: "{{ fcitx5_prefix }}/bin/rime_deployer --build {{ fcitx5_rime_user_dir }} {{ fcitx5_rime_share_dir }}"
+    creates: "{{ fcitx5_rime_user_dir }}/build"
+  when:
+    - fcitx5_rime | bool
+    - fcitx5_sbsrf | bool
+  tags: [fcitx5, rime]
+
+# Fcitx 4's toolkit-side modules live in the same directories GTK/Qt scan, so
+# move them aside (the renamed copy doubles as the rollback backup).
+- name: Find the Fcitx 4 toolkit input modules
+  ansible.builtin.find:
+    paths: /usr/lib
+    recurse: true
+    file_type: file
+    patterns:
+      - "im-fcitx.so"
+      - "libfcitxplatforminputcontextplugin.so"
+  register: fcitx5_fcitx4_modules
+  tags: [fcitx5, handoff]
+
+- name: Move the Fcitx 4 modules aside
+  become: true
+  ansible.builtin.command:
+    cmd: "mv {{ item.path }} {{ item.path }}.fcitx4-disabled"
+    creates: "{{ item.path }}.fcitx4-disabled"
+  loop: "{{ fcitx5_fcitx4_modules.files }}"
+  loop_control:
+    label: "{{ item.path }}"
+  tags: [fcitx5, handoff]
+
+- name: Find the desktop autostart entries
+  ansible.builtin.find:
+    paths:
+      - /etc/xdg/autostart
+      - "{{ ansible_facts.user_dir }}/.config/autostart"
+    patterns: "*.desktop"
+  register: fcitx5_autostart_files
+  tags: [fcitx5, handoff]
+
+- name: Read the autostart entries
+  ansible.builtin.slurp:
+    src: "{{ item.path }}"
+  loop: "{{ fcitx5_autostart_files.files }}"
+  loop_control:
+    label: "{{ item.path }}"
+  register: fcitx5_autostart_contents
+  tags: [fcitx5, handoff]
+
+- name: Hide the Fcitx 4 autostart entries
+  become: true
+  ansible.builtin.lineinfile:
+    path: "{{ item.item.path }}"
+    regexp: "^Hidden="
+    line: "Hidden=true"
+    insertafter: EOF
+  loop: "{{ fcitx5_autostart_contents.results }}"
+  loop_control:
+    label: "{{ item.item.path }}"
+  when:
+    - "'fcitx' in (item.content | b64decode)"
+    - "'fcitx5' not in (item.content | b64decode)"
+  tags: [fcitx5, handoff]
+
+- name: Rebuild the GTK input-module caches
+  become: true
+  ansible.builtin.command:
+    cmd: "gtk-query-immodules-{{ item }} --update-cache"
+  loop: ["2.0", "3.0"]
+  loop_control:
+    label: "{{ item }}"
+  failed_when: false
+  tags: [fcitx5, handoff]
+
+- name: Refresh the shared library cache
+  become: true
+  ansible.builtin.command:
+    cmd: ldconfig
+  changed_when: false
+  tags: [fcitx5, handoff]
+
+- name: Write the Fcitx 5 input method profile
+  ansible.builtin.copy:
+    dest: "{{ ansible_facts.user_dir }}/.config/fcitx5/profile"
+    mode: "0644"
+    content: |
+      [Groups/0]
+      Name=Default
+      Default Layout=us
+      DefaultIM={{ 'rime' if (fcitx5_rime | bool and fcitx5_sbsrf | bool) else 'pinyin' }}
+
+      [Groups/0/Items/0]
+      Name=keyboard-us
+      Layout=
+      {% if fcitx5_rime | bool %}
+      [Groups/0/Items/1]
+      Name=pinyin
+      Layout=
+
+      [Groups/0/Items/2]
+      Name=rime
+      Layout=
+      {% else %}
+      [Groups/0/Items/1]
+      Name=pinyin
+      Layout=
+      {% endif %}
+
+      [GroupOrder]
+      0=Default
+  tags: [fcitx5, config]
+
+- name: Write the pinyin configuration
+  ansible.builtin.copy:
+    dest: "{{ ansible_facts.user_dir }}/.config/fcitx5/conf/pinyin.conf"
+    mode: "0644"
+    content: |
+      Candidate Count=9
+      Keystroke Hint=2
+      Enable Auto Sync=100
+  tags: [fcitx5, config]
+
+- name: Autostart Fcitx 5 for the session
+  ansible.builtin.copy:
+    dest: "{{ ansible_facts.user_dir }}/.config/autostart/fcitx5.desktop"
+    mode: "0644"
+    content: |
+      [Desktop Entry]
+      Type=Application
+      Name=Fcitx 5
+      Exec={{ fcitx5_prefix }}/bin/fcitx5 -d -r -D
+      Hidden=false
+      X-GNOME-Autostart-enabled=true
+  tags: [fcitx5, config]
+
+- name: Verify the installed Fcitx 5 binary
+  ansible.builtin.command:
+    cmd: "{{ fcitx5_prefix }}/bin/fcitx5 --version"
+  changed_when: false
+  tags: [fcitx5]
+
+- name: Verify a Chinese input module was installed
+  ansible.builtin.find:
+    paths: "{{ fcitx5_prefix }}/lib"
+    recurse: true
+    patterns: "*pinyin*"
+  register: fcitx5_pinyin_find
+  tags: [fcitx5]
+
+- name: Fail if no pinyin module is present
+  ansible.builtin.assert:
+    that: fcitx5_pinyin_find.matched > 0
+    fail_msg: "no pinyin module under {{ fcitx5_prefix }}/lib; Chinese input will not work"
+    success_msg: "Fcitx 5 with a Chinese input module is installed"
+  tags: [fcitx5]

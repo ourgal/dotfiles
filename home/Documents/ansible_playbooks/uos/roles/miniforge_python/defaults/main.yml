@@ -1,0 +1,12 @@
+---
+# Port of ~/Documents/scripts/uos/setup-miniforge-python.sh (step 2).
+# The Miniforge install half is already the `miniforge` role, which the playbook
+# runs first; this role adds the conda-forge Python in the base environment.
+# It is off by default because it is the minimal alternative to the full
+# miniforge_packages / npm_packages / fcitx5 chain.
+miniforge_python_enabled: false
+miniforge_dir: "{{ ansible_facts.user_dir }}/miniforge3"
+miniforge_channel: conda-forge
+miniforge_python_spec: python # e.g. python=3.12 or just 3.12
+# Set true to re-solve/upgrade Python even when it is already present.
+miniforge_python_force: false

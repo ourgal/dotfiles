@@ -1,0 +1,45 @@
+---
+# Installs global npm packages with the Miniforge-provided npm.
+- name: Check node and npm come from the Miniforge prefix
+  ansible.builtin.stat:
+    path: "{{ miniforge_dir }}/bin/{{ item }}"
+  loop: [node, npm]
+  loop_control:
+    label: "{{ item }}"
+  register: npm_toolchain
+  tags: [npm_packages]
+
+- name: Fail if node/npm are missing
+  ansible.builtin.assert:
+    that: npm_toolchain.results | rejectattr('stat.exists') | list | length == 0
+    fail_msg: "node/npm not found in {{ miniforge_dir }}/bin; run the miniforge_packages role first"
+  tags: [npm_packages]
+
+- name: Install the global npm packages
+  community.general.npm:
+    name: "{{ item }}"
+    global: true
+    executable: "{{ miniforge_dir }}/bin/npm"
+    state: present
+  loop: "{{ npm_packages }}"
+  loop_control:
+    label: "{{ item }}"
+  environment:
+    PATH: "{{ miniforge_dir }}/bin:{{ ansible_env.PATH }}"
+  tags: [npm_packages, pkg]
+
+- name: Verify the installed command-line binaries
+  ansible.builtin.stat:
+    path: "{{ miniforge_dir }}/bin/{{ item }}"
+  loop: "{{ npm_bins }}"
+  loop_control:
+    label: "{{ item }}"
+  register: npm_verify
+  tags: [npm_packages]
+
+- name: Fail if any npm binary is missing
+  ansible.builtin.assert:
+    that: npm_verify.results | rejectattr('stat.exists') | list | length == 0
+    fail_msg: "Some npm binaries are missing from {{ miniforge_dir }}/bin"
+    success_msg: "All npm binaries are present"
+  tags: [npm_packages]
