@@ -8,6 +8,7 @@
 {{- else -}}
 {{- $terminal = .my.terminal.windows -}}
 {{- end -}}
+{{- $browser := .my.browser.default -}}
 .shell powershell
 {{ if eq $wm "glazewm" -}}
 .pause win + shift + p
@@ -58,6 +59,9 @@ win + shift + e        : glazewm command wm-exit
 win + q                : {{ if lookPath "flameshot" }}Start-Process "{{ lookPath "flameshot" }}" -ArgumentList "gui"{{ else }}Start-Process explorer -ArgumentList "ms-screenclip:"{{ end }}
 win + return           : Start-Process "{{ $terminal }}"
 
+# Browser (from .my.browser.default in .chezmoidata)
+win + b                : Start-Process "{{ $browser }}"
+
 # Workspaces
 win + s                : glazewm command focus --next-active-workspace
 win + a                : glazewm command focus --prev-active-workspace
@@ -105,6 +109,9 @@ win + i                 : komorebic toggle-shortcuts
 win + shift + t        : if ($wshell.AppActivate('pwsh') -eq $False) { start pwsh }
 win + shift + b        : if ($wshell.AppActivate('Zen') -eq $False) { start Vivaldi }
 win + shift + e        : if ($wshell.AppActivate('Explorer') -eq $False) { start Explorer }
+
+# Browser (from .my.browser.default in .chezmoidata)
+win + b                : Start-Process "{{ $browser }}"
 
 win + shift + q         : komorebic close
 win + m                 : komorebic minimize
