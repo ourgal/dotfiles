@@ -1,4 +1,5 @@
 {{- /*{ chezmoi:modify-template */ -}}
+{{ $hostname := .chezmoi.hostname -}}
 {{ $defaults := list
   (dict
     "id" "887b246d589f592146c858933bee976c"
@@ -11,22 +12,50 @@
     "label" "work"
     "target" "work"
     "session" "default"
-    "enabled" false)
+    "enabled" true)
+  (dict
+    "id" "6345bad9c9c649c8b1fffe457c2e290b"
+    "label" "nuc"
+    "target" "nuc"
+    "session" "default"
+    "enabled" true)
 -}}
 {{ $catalog := dict "version" 1 "ssh" (list) -}}
 {{ if .chezmoi.stdin -}}
 {{ $catalog = fromJson .chezmoi.stdin -}}
 {{ end -}}
 {{ $ssh := default (list) (get $catalog "ssh") -}}
+{{/* Sync each declared host into the catalog. A machine with a matching
+     target (or label) keeps its herdr-assigned id but has every other field
+     overwritten from the declaration; otherwise the host is appended. */ -}}
 {{ range $default := $defaults -}}
 {{ $present := false -}}
 {{ range $machine := $ssh -}}
 {{ if or (eq (dig "target" "" $machine) $default.target) (eq (dig "label" "" $machine) $default.target) -}}
 {{ $present = true -}}
+{{ range $key, $value := $default -}}
+{{ if ne $key "id" -}}
+{{ $_ := set $machine $key $value -}}
+{{ end -}}
+{{ end -}}
 {{ end -}}
 {{ end -}}
 {{ if not $present -}}
 {{ $ssh = append $ssh $default -}}
+{{ end -}}
+{{ end -}}
+{{/* A machine pointing at the current host would only SSH back to localhost,
+     so keep it disabled there. Declared machines use their "enabled" as a base;
+     machines added by herdr keep their state unless they are local. */ -}}
+{{ range $machine := $ssh -}}
+{{ $target := dig "target" "" $machine -}}
+{{ range $default := $defaults -}}
+{{ if eq $default.target $target -}}
+{{ $_ := set $machine "enabled" (and $default.enabled (ne $target $hostname)) -}}
+{{ end -}}
+{{ end -}}
+{{ if eq $target $hostname -}}
+{{ $_ := set $machine "enabled" false -}}
 {{ end -}}
 {{ end -}}
 {{ $catalog = $catalog | setValueAtPath "version" 1 -}}
