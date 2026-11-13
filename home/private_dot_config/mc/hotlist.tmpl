@@ -9,15 +9,6 @@ GROUP "m6"
   ENTRY "m6 sdcard" URL "sh://m6:/sdcard"
 ENDGROUP
 
-{{ if eq .chezmoi.hostname "work" -}}
-ENTRY "share_work" URL "{{ .chezmoi.homeDir }}/Syncthing/share_work"
-{{ end -}}
-
-{{ if eq .chezmoi.hostname "work" "work2" -}}
-ENTRY "work2" URL "sh://work2:/home/zxc"
-ENTRY "office2043" URL "sh://office2043:/home/zxc"
-{{ end -}}
-
 {{ end -}}
 
 {{ if eq .chezmoi.os "android" -}}

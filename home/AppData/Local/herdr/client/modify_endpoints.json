@@ -1,24 +1,6 @@
 {{- /*{ chezmoi:modify-template */ -}}
 {{ $hostname := .chezmoi.hostname -}}
 {{ $defaults := list
-  (dict
-    "id" "887b246d589f592146c858933bee976c"
-    "label" "work3"
-    "target" "work3"
-    "session" "default"
-    "enabled" true)
-  (dict
-    "id" "b4d016c310881a0a03744bc1322ad01e"
-    "label" "work"
-    "target" "work"
-    "session" "default"
-    "enabled" true)
-  (dict
-    "id" "6345bad9c9c649c8b1fffe457c2e290b"
-    "label" "nuc"
-    "target" "nuc"
-    "session" "default"
-    "enabled" true)
 -}}
 {{ $catalog := dict "version" 1 "ssh" (list) -}}
 {{ if .chezmoi.stdin -}}

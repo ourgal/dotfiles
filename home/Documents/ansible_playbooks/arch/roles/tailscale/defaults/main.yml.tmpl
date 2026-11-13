@@ -5,7 +5,7 @@ tailscale_packages:
   - tailscale
 
 # Optional pre-auth key for unattended joins; leave empty to log in manually.
-tailscale_auth_key: '[[ includeTemplate "secrets" . | fromToml | dig "tailscale" "work2" "" ]]'
+tailscale_auth_key: ''
 
 tailscale_lan_subnet: >-
   {{ (ansible_facts.get('default_ipv4', {}).get('address', '192.168.0.101') ~ '/' ~

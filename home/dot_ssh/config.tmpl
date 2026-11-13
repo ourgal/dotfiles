@@ -24,9 +24,7 @@ Host note20-adb
 Host note20
   Port 8022
   User u0_a650
-  {{ if eq .chezmoi.hostname "work" "work2" -}}
-  HostName 192.168.0.105
-  {{ else if and (eq .chezmoi.hostname "localhost") (output "whoami" | trim | eq "u0_a650") -}}
+  {{ if and (eq .chezmoi.hostname "localhost") (output "whoami" | trim | eq "u0_a650") -}}
   HostName localhost
   {{ else -}}
   HostName 192.168.123.232
@@ -34,9 +32,7 @@ Host note20
 Host m6
   Port 8022
   User u0_a556
-  {{ if eq .chezmoi.hostname "work" "work2" -}}
-  HostName 192.168.0.107
-  {{ else if and (eq .chezmoi.hostname "localhost") (output "whoami" | trim | eq "u0_a556") -}}
+  {{ if and (eq .chezmoi.hostname "localhost") (output "whoami" | trim | eq "u0_a556") -}}
   HostName localhost
   {{ else -}}
   HostName 192.168.123.191
@@ -45,18 +41,6 @@ Host m6-adb
   Port 8022
   User u0_a556
   HostName localhost
-Host work
-  Port 22
-  User user
-  HostName {{ if eq .chezmoi.hostname "work" "work2" }}localhost{{ else }}192.168.0.108{{ end }}
-Host elitebook
-  Port 22
-  User zxc
-  HostName {{ if eq .chezmoi.hostname "elitebook" }}localhost{{ else }}192.168.0.100{{ end }}
-Host t430
-  Port 22
-  User zxc
-  HostName {{ if eq .chezmoi.hostname "t430" }}localhost{{ else }}192.168.0.106{{ end }}
 Host uos
   Port 22
   User user
@@ -66,20 +50,8 @@ Host uos
 Host gogs-m6
   Port 23231
   User u0_a556
-  HostName {{ if eq .chezmoi.hostname "work" "work2" }}192.168.1.103{{ else if eq .chezmoi.hostname "nuc" "bed" "surface" "easy1" }}192.168.123.191{{ else }}none{{ end }}
+  HostName {{ if eq .chezmoi.hostname "nuc" "bed" "surface" "easy1" }}192.168.123.191{{ else }}none{{ end }}
 {{ end -}}
 
-Host work2
-  Port 22
-  User zxc
-  HostName 192.168.0.101
-Host work3
-  Port 22
-  User user
-  HostName 192.168.0.112
-Host office2043
-  Port 22
-  User zxc
-  HostName 192.168.1.104
 Host *
   AddKeysToAgent yes
