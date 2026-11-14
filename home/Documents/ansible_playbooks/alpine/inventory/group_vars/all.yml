@@ -5,6 +5,9 @@ miniflux_enabled: false
 freshrss_enabled: false
 mihomo_enabled: true
 gitea_enabled: true
+# Ports 3001/2223 avoid clashing with gitea; set server.DOMAIN, ROOT_URL and
+# SSH_PORT in /opt/gogs/data/gogs/conf/app.ini after the first boot.
+gogs_enabled: false
 # Without soft_serve_initial_admin_keys the server boots with no admin.
 soft_serve_enabled: false
 dufs_enabled: false
