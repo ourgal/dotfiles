@@ -9,10 +9,12 @@ $env:CODEBUDDY_CODE_GIT_BASH_PATH = {{ joinPath .chezmoi.homeDir "scoop" "apps" 
 {{ output "sfsu" "hook" }}
 {{ end -}}
 # ]]]
-# [[[ alias
-New-Alias reboot Restart-Computer
-New-Alias poweroff Stop-Computer
-New-Alias lg lazygit
+# [[[ aliae
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "aliae" "opt" (list "shell" "pwsh" "aliae" "enable") "os" "windows") | trim | atoi -}}
+# Runtime init on purpose: `chezmoi apply` may render this profile before
+# ~/.aliae.yaml exists, and apply-time output would bake the error into it.
+aliae init pwsh --print | Invoke-Expression
+{{ end -}}
 # ]]]
 # [[[ PSReadLine
 Import-Module PSReadLine

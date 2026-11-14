@@ -381,6 +381,13 @@ Videos/*
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ aliae
+{{ if lookPath "aliae" -}}
+{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+!.aliae.yaml
+{{ end -}}
+{{ end -}}
+# ]]]
 # [[[ ssh
 {{ if lookPath "ssh" -}}
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
