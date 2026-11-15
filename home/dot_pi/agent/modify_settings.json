@@ -1,0 +1,9 @@
+{{- /*{ chezmoi:modify-template */ -}}
+{{ $settings := dict -}}
+{{ if .chezmoi.stdin -}}
+{{ $settings = fromJson .chezmoi.stdin -}}
+{{ end -}}
+{{ if eq .chezmoi.os "windows" -}}
+{{ $settings = $settings | setValueAtPath "shellPath" (joinPath .chezmoi.homeDir "scoop/apps/git/current/git-bash.exe") -}}
+{{ end -}}
+{{ $settings | toJson }}
