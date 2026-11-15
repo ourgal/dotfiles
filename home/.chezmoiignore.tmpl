@@ -1058,6 +1058,15 @@ AppData/Local/nvim/lua/plugins/*
 !.omp/agent/models.yml
 {{ end -}}
 # ]]]
+# [[[ pi
+{{ if lookPath "pi" -}}
+!.pi/
+.pi/*
+!.pi/agent/
+.pi/agent/*
+!.pi/agent/models.json
+{{ end -}}
+# ]]]
 # [[[ tuios
 {{ if lookPath "tuios" -}}
 {{ if eq .chezmoi.os "windows" -}}

@@ -1,0 +1,19 @@
+{
+  "providers": {
+    "10router": {
+      "baseUrl": "http://192.168.123.123:20128/v1",
+      "apiKey": "{{ includeTemplate "secrets" . | fromToml | dig "AI" "10router" "" }}",
+      "api": "openai-completions",
+      "models": [
+        {
+          "id": "deepseek_flash",
+          "name": "Deepseek Flash",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "contextWindow": 330000,
+          "maxTokens": 384000
+        }
+      ]
+    }
+  }
+}
