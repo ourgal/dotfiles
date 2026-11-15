@@ -4,6 +4,6 @@
 {{ $settings = fromJson .chezmoi.stdin -}}
 {{ end -}}
 {{ if eq .chezmoi.os "windows" -}}
-{{ $settings = $settings | setValueAtPath "shellPath" (joinPath .chezmoi.homeDir "scoop/apps/git/current/git-bash.exe") -}}
+{{ $settings = $settings | setValueAtPath "shellPath" (joinPath .chezmoi.homeDir "scoop/apps/git/current/bin/bash.exe") -}}
 {{ end -}}
 {{ $settings | toJson }}
