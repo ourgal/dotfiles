@@ -10,8 +10,7 @@
 
 # Global npm install lands in /usr/lib/node_modules with root ownership, which
 # the npm module handles itself: no become_user, no hand-rolled prefix.
-# Upgrades belong to each tool's own updater (`codebuddy update`); state:
-# present is the install path.
+# state: latest keeps the global CLI packages upgraded on each apply.
 - name: Install global npm packages
   become: true
   tags:
@@ -20,5 +19,5 @@
   community.general.npm:
     name: "{{ item }}"
     global: true
-    state: present
+    state: latest
   loop: "{{ npm_packages }}"
