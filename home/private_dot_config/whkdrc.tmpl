@@ -47,7 +47,9 @@ win + r                : glazewm command wm-enable-binding-mode --name resize
 
 # Manipulate windows
 win + v                : glazewm command toggle-tiling-direction
-win + space            : glazewm command wm-cycle-focus
+# win + space is intentionally left unbound: Windows needs it to switch input languages.
+# (whkd swallowing it globally is what breaks Win+Space language switching.)
+# Cycle focus via win + h/l/k/j or the arrow keys above instead.
 win + shift + space    : glazewm command toggle-floating --centered
 win + t                : glazewm command toggle-tiling
 win + f                : glazewm command toggle-fullscreen
