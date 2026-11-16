@@ -100,6 +100,10 @@ scoop/persist/*
 
 !.xprofile
 
+# Unignore .config itself so the per-app !.config/<app>/ whitelists below work.
+!.config/
+.config/*
+
 !.local/
 .local/*
 

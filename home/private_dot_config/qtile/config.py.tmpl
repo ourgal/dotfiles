@@ -254,3 +254,13 @@ wmname = "LG3D"
 def autostart():
   # Replace with the command or list of arguments you want to run once
   subprocess.Popen(["xrandr", "--output", "eDP-1", "--mode", "2736x1824", "--scale", "0.5x0.5"])
+  # X11 + libinput: enable tap-to-click on touchpads (Xorg leaves it off by
+  # default on some devices/versions, so taps register no clicks).
+  try:
+    ids = subprocess.check_output(["xinput", "list", "--id-only"], text=True).split()
+    for dev_id in ids:
+      props = subprocess.run(["xinput", "list-props", dev_id], capture_output=True, text=True).stdout
+      if "libinput Tapping Enabled" in props:
+        subprocess.run(["xinput", "set-prop", dev_id, "libinput Tapping Enabled", "1"])
+  except (OSError, subprocess.CalledProcessError):
+    pass
