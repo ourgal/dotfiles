@@ -72,6 +72,9 @@ glob = "meta/*.yml"
 {{ if lookPath "markdown-oxide" -}}
 {{ $lsp = append $lsp "markdown-oxide" -}}
 {{ end -}}
+{{ if lookPath "harper-ls" -}}
+{{ $lsp = append $lsp "harper-ls" -}}
+{{ end -}}
 [[language]]
 auto-format = true
 name = "markdown"
@@ -198,4 +201,9 @@ preview = true
 quote-style = "double"
 docstring-code-format = true
 indent-style = "space"
+{{ end -}}
+{{ if lookPath "harper-ls" -}}
+[language-server.harper-ls]
+command = "harper-ls"
+args = ["--stdio"]
 {{ end -}}
