@@ -12,9 +12,21 @@ from libqtile.lazy import lazy
 FONT = "{{ .my.font.monospace }}"
 WINDOW_FONT = "{{ .my.font.monospace }}:style=Italic"
 
-BAR_HEIGHT = 34
-MARGIN = 9
-BORDER_WIDTH = 2
+{{ if eq .chezmoi.hostname "surface" }}
+# eDP-1 runs with `--scale 0.5x0.5`, so X enlarges everything 2x. Shrink the
+# bar geometry here to keep it at the unscaled reference proportions.
+BAR_SCALE = 0.6
+{{ else }}
+BAR_SCALE = 1.0
+{{ end }}
+
+BAR_HEIGHT = int(round(34 * BAR_SCALE))
+MARGIN = int(round(9 * BAR_SCALE))
+BORDER_WIDTH = max(1, int(round(2 * BAR_SCALE)))
+LOGO_SIZE = int(round(18 * BAR_SCALE))
+BIG_SIZE = int(round(16 * BAR_SCALE))
+SMALL_SIZE = int(round(14 * BAR_SCALE))
+TRAY_ICON_SIZE = int(round(20 * BAR_SCALE))
 
 # Powerline "rounded left" glyph. Drawn in the next segment's colour over the
 # current segment's background, it produces the soft notches in the reference.
@@ -59,7 +71,7 @@ def _specs():
             dict(
                 text=" " + ARCH_LOGO,
                 font=FONT,
-                fontsize=18,
+                fontsize=LOGO_SIZE,
                 padding=-2,
                 background=colors["magenta"],
                 foreground=colors["bg"],
@@ -72,7 +84,7 @@ def _specs():
             widget.GroupBox,
             dict(
                 font=FONT,
-                fontsize=16,
+                fontsize=BIG_SIZE,
                 padding=3,
                 foreground=colors["gutter"],
                 highlight_method="text",
@@ -97,7 +109,7 @@ def _specs():
             widget.WindowName,
             dict(
                 font=WINDOW_FONT,
-                fontsize=16,
+                fontsize=BIG_SIZE,
                 padding=3,
                 format="{name}",
                 background=colors["gutter"],
@@ -108,7 +120,7 @@ def _specs():
         ),
         (
             widget.Systray,
-            dict(padding=5, background=colors["orange"], icon_size=20),
+            dict(padding=5, background=colors["orange"], icon_size=TRAY_ICON_SIZE),
             True,
             False,
         ),
@@ -116,7 +128,7 @@ def _specs():
             widget.CPU,
             dict(
                 font=FONT,
-                fontsize=14,
+                fontsize=SMALL_SIZE,
                 padding=3,
                 format=CPU_ICON + " {freq_current}GHz {load_percent}%",
                 background=colors["yellow"],
@@ -133,7 +145,7 @@ def _specs():
                 widget.Battery,
                 dict(
                     font=FONT,
-                    fontsize=14,
+                    fontsize=SMALL_SIZE,
                     padding=3,
                     background=colors["magenta"],
                     foreground=colors["bg"],
@@ -158,7 +170,7 @@ def _specs():
             widget.Net,
             dict(
                 font=FONT,
-                fontsize=14,
+                fontsize=SMALL_SIZE,
                 padding=3,
                 format="\u2193 {down} \u2191 {up}",
                 update_interval=3,
@@ -171,7 +183,7 @@ def _specs():
             widget.Memory,
             dict(
                 font=FONT,
-                fontsize=14,
+                fontsize=SMALL_SIZE,
                 padding=3,
                 format=MEM_ICON + ": {MemUsed:.2f}/{MemTotal:.2f}{mm}",
                 measure_mem="G",
@@ -184,7 +196,7 @@ def _specs():
             widget.CurrentLayout,
             dict(
                 font=FONT,
-                fontsize=14,
+                fontsize=SMALL_SIZE,
                 padding=3,
                 background=colors["pink"],
             ),
@@ -195,7 +207,7 @@ def _specs():
             widget.Clock,
             dict(
                 font=FONT,
-                fontsize=14,
+                fontsize=SMALL_SIZE,
                 padding=3,
                 format="%m/%d/%Y",
                 background=colors["orange"],
@@ -207,7 +219,7 @@ def _specs():
             widget.Clock,
             dict(
                 font=FONT,
-                fontsize=14,
+                fontsize=SMALL_SIZE,
                 padding=3,
                 format="%I:%M %p ",
                 background=colors["gutter"],
