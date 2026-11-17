@@ -256,6 +256,9 @@ wmname = "LG3D"
 def autostart():
   # Replace with the command or list of arguments you want to run once
   subprocess.Popen(["xrandr", "--output", "eDP-1", "--mode", "2736x1824", "--scale", "0.5x0.5"])
+{{ if lookPath "picom" }}
+  subprocess.Popen(["picom"])
+{{ end }}
   # X11 + libinput: enable tap-to-click on touchpads (Xorg leaves it off by
   # default on some devices/versions, so taps register no clicks).
   try:

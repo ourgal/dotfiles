@@ -13,6 +13,8 @@
 # state: latest keeps the global CLI packages upgraded on each apply.
 - name: Install global npm packages
   become: true
+  environment:
+    npm_config_registry: "{{ npm_registry }}"
   tags:
     - pkg
     - npm

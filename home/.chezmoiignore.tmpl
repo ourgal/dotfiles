@@ -1180,6 +1180,14 @@ AppData/Roaming/maki/*
 !.config/qtile/**
 {{ end -}}
 {{ end -}}
+# ]]
+# [[[ picom
+{{ if lookPath "picom" -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+!.config/picom/
+!.config/picom/**
+{{ end -}}
+{{ end -}}
 # ]]]
 # [[[ systemd-user
 {{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "uos") -}}

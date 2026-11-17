@@ -1,5 +1,7 @@
 ---
 npm_enabled: true
+# npm registry mirror used for global installs; override to use the upstream.
+npm_registry: https://registry.npmmirror.com
 # Node >= 18.20 for CodeBuddy, >= 24.9 for `dsh`; the pacman role already
 # ships these, but the role stays self-sufficient.
 npm_pacman_packages:
