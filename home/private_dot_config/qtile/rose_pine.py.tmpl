@@ -1,8 +1,7 @@
-"""Rose Pine bar, adapted from the-argus/rose-pine-dots.
+"""Rose Pine bar, ported from the-argus/rose-pine-dots Config/qtile/bar.py.
 
-Only libqtile widgets are used: no qtile-extras, no external status commands.
-Resource meters that need psutil are intentionally omitted; the battery widget
-is added only on machines that actually have one.
+All widgets come from libqtile itself; CPU/Net/Memory use psutil, which is
+available on Arch. The battery widget is only added on machines that have one.
 """
 
 import glob
@@ -11,13 +10,15 @@ from libqtile import bar, widget
 from libqtile.lazy import lazy
 
 FONT = "{{ .my.font.monospace }}"
+WINDOW_FONT = "{{ .my.font.monospace }}:style=Italic"
 
 BAR_HEIGHT = 34
 MARGIN = 9
 BORDER_WIDTH = 2
 
-ARROW = "\ue0b0"
-ARCH_LOGO = "\uf303"
+# Powerline "rounded left" glyph. Drawn in the next segment's colour over the
+# current segment's background, it produces the soft notches in the reference.
+SEPARATOR = "\ue0b6"
 
 colors = {
     "bg": "#191724",
@@ -32,62 +33,98 @@ colors = {
     "pink": "#2a2837",
 }
 
+DEFAULT_BG = colors["bg"]
+DEFAULT_FG = colors["fg"]
+
+# Nerd Font glyphs used in the bar.
+ARCH_LOGO = "\uf303"      # nf-linux-archlinux
+CPU_ICON = "\uf2db"       # nf-fa-microchip
+MEM_ICON = "\uf00b"       # nf-fa-tasks
+BATT_ICON = "\ue00a"      # nf-fa-battery_empty (used as a prefix)
+CHARGE = "\uf054"
+DISCHARGE = "\uf053"
+
 
 def _specs():
+    """(widget class, kwargs, separator after, inherit next background)."""
     specs = [
-        (widget.Spacer, dict(length=6, background=colors["magenta"])),
+        (
+            widget.Spacer,
+            dict(length=5, background=colors["magenta"]),
+            False,
+            True,
+        ),
         (
             widget.TextBox,
             dict(
-                text=ARCH_LOGO,
+                text=" " + ARCH_LOGO,
                 font=FONT,
                 fontsize=18,
-                padding=4,
+                padding=-2,
                 background=colors["magenta"],
                 foreground=colors["bg"],
                 mouse_callbacks={"Button1": lazy.spawncmd()},
             ),
+            True,
+            False,
         ),
         (
             widget.GroupBox,
             dict(
                 font=FONT,
-                fontsize=15,
+                fontsize=16,
                 padding=3,
                 foreground=colors["gutter"],
                 highlight_method="text",
                 block_highlight_text_color=colors["fg"],
-                active=colors["yellow"],
+                active=colors["fg"],
                 inactive=colors["gutter"],
-                this_current_screen_border=colors["yellow"],
-                this_screen_border=colors["yellow"],
-                other_current_screen_border=colors["yellow"],
-                other_screen_border=colors["yellow"],
-                urgent_border=colors["red"],
-                urgent_text=colors["red"],
+                rounded=False,
                 highlight_color=[colors["fg"], colors["yellow"]],
+                urgent_alert_method="line",
+                urgent_text=colors["red"],
+                urgent_border=colors["red"],
                 disable_drag=True,
                 use_mouse_wheel=False,
+                hide_unused=False,
                 spacing=5,
+                this_current_screen_border=colors["yellow"],
             ),
+            True,
+            False,
         ),
         (
             widget.WindowName,
             dict(
-                font=FONT,
+                font=WINDOW_FONT,
                 fontsize=16,
                 padding=3,
                 format="{name}",
                 background=colors["gutter"],
-                foreground=colors["fg"],
                 center_aligned=True,
             ),
+            True,
+            False,
         ),
         (
             widget.Systray,
             dict(padding=5, background=colors["orange"], icon_size=20),
+            True,
+            False,
         ),
-        (widget.Spacer, dict(length=1, background=colors["orange"])),
+        (
+            widget.CPU,
+            dict(
+                font=FONT,
+                fontsize=14,
+                padding=3,
+                format=CPU_ICON + " {freq_current}GHz {load_percent}%",
+                background=colors["yellow"],
+                foreground=colors["bg"],
+            ),
+            True,
+            False,
+        ),
     ]
 
     if glob.glob("/sys/class/power_supply/BAT*"):
@@ -100,20 +137,49 @@ def _specs():
                     padding=3,
                     background=colors["magenta"],
                     foreground=colors["bg"],
-                    format="{char} {percent:2.0%}",
-                    charge_char="\uf0e7",
-                    discharge_char="\uf241",
-                    full_char="\uf240",
-                    empty_char="\uf244",
-                    unknown_char="?",
-                    low_percentage=0.3,
                     low_foreground=colors["red"],
                     low_background=None,
+                    low_percentage=0.3,
+                    charge_char=CHARGE,
+                    discharge_char=DISCHARGE,
+                    full_char="",
+                    empty_char="X",
+                    unknown_char="?",
+                    format=" " + BATT_ICON + " {char} {percent:2.0%}",
+                    show_short_text=False,
                 ),
+                True,
+                False,
             )
         )
 
     specs += [
+        (
+            widget.Net,
+            dict(
+                font=FONT,
+                fontsize=14,
+                padding=3,
+                format="\u2193 {down} \u2191 {up}",
+                update_interval=3,
+                background=colors["pink"],
+            ),
+            True,
+            False,
+        ),
+        (
+            widget.Memory,
+            dict(
+                font=FONT,
+                fontsize=14,
+                padding=3,
+                format=MEM_ICON + ": {MemUsed:.2f}/{MemTotal:.2f}{mm}",
+                measure_mem="G",
+                update_interval=1.0,
+            ),
+            True,
+            False,
+        ),
         (
             widget.CurrentLayout,
             dict(
@@ -121,8 +187,9 @@ def _specs():
                 fontsize=14,
                 padding=3,
                 background=colors["pink"],
-                foreground=colors["fg"],
             ),
+            True,
+            False,
         ),
         (
             widget.Clock,
@@ -132,8 +199,9 @@ def _specs():
                 padding=3,
                 format="%m/%d/%Y",
                 background=colors["orange"],
-                foreground=colors["bg"],
             ),
+            True,
+            False,
         ),
         (
             widget.Clock,
@@ -143,8 +211,9 @@ def _specs():
                 padding=3,
                 format="%I:%M %p ",
                 background=colors["gutter"],
-                foreground=colors["fg"],
             ),
+            False,
+            False,
         ),
     ]
 
@@ -155,20 +224,21 @@ def _widgets():
     specs = _specs()
     widgets = []
 
-    for index, (cls, kwargs) in enumerate(specs):
+    for index, (cls, kwargs, separator, inherit_bg) in enumerate(specs):
+        if inherit_bg and index + 1 < len(specs):
+            kwargs["background"] = specs[index + 1][1].get("background", DEFAULT_BG)
+
         widgets.append(cls(**kwargs))
 
-        if index + 1 < len(specs):
-            background = kwargs.get("background", colors["bg"])
-            next_background = specs[index + 1][1].get("background", colors["bg"])
+        if separator and index + 1 < len(specs):
             widgets.append(
                 widget.TextBox(
-                    text=ARROW,
+                    text=" " + SEPARATOR,
                     font=FONT,
                     fontsize=BAR_HEIGHT,
                     padding=-1,
-                    background=background,
-                    foreground=next_background,
+                    foreground=specs[index + 1][1].get("background", DEFAULT_BG),
+                    background=kwargs.get("background", DEFAULT_BG),
                 )
             )
 
@@ -179,8 +249,8 @@ def make_bar():
     return bar.Bar(
         _widgets(),
         BAR_HEIGHT,
-        foreground=colors["fg"],
-        background=colors["bg"],
+        foreground=DEFAULT_FG,
+        background=DEFAULT_BG,
         opacity=1.0,
         margin=[MARGIN, MARGIN, BORDER_WIDTH, MARGIN],
     )
