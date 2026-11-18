@@ -29,6 +29,10 @@
       when: services_enabled | default(true) | bool
     - role: tailscale
       when: tailscale_enabled | default(true) | bool
+    - role: mihomo
+      when: mihomo_enabled | default(true) | bool
+      vars:
+        mihomo_service_enabled: false
     - role: pcscd
       when: pcscd_enabled | default(true) | bool
     - role: fcitx5

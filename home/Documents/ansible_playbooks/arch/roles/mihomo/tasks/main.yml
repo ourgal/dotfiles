@@ -68,9 +68,9 @@
     mode: '0644'
   notify: Restart mihomo
 
-- name: Enable and start mihomo
+- name: Manage mihomo service
   become: true
   ansible.builtin.service:
     name: mihomo
-    enabled: true
-    state: started
+    enabled: "{{ mihomo_service_enabled | bool }}"
+    state: "{{ 'started' if (mihomo_service_enabled | bool) else 'stopped' }}"

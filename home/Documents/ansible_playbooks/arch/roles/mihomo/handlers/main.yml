@@ -1,5 +1,6 @@
 ---
 - name: Restart mihomo
+  when: mihomo_service_enabled | bool
   become: true
   ansible.builtin.service:
     name: mihomo
