@@ -1,11 +1,14 @@
 # chezmoi:template:left-delimiter=[[ right-delimiter=]]
 ---
-tailscale_enabled: false
+tailscale_enabled: true
 tailscale_packages:
   - tailscale
 
 # Optional pre-auth key for unattended joins; leave empty to log in manually.
 tailscale_auth_key: ''
+
+# Advertise the LAN subnet as a Tailscale route (off by default).
+tailscale_advertise_routes: false
 
 tailscale_lan_subnet: >-
   {{ (ansible_facts.get('default_ipv4', {}).get('address', '192.168.0.101') ~ '/' ~
@@ -15,6 +18,5 @@ tailscale_lan_subnet: >-
 tailscale_up_args:
   - --accept-routes
   - --advertise-exit-node
-  - "--advertise-routes={{ tailscale_lan_subnet }}"
   - --accept-dns=false
   - --timeout=60s

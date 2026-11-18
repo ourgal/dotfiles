@@ -37,6 +37,9 @@
     - (tailscale_status.rc != 0) or ((tailscale_status.stdout | from_json).BackendState | default('') != 'Running')
   become: true
   ansible.builtin.command:
-    argv: "{{ ['tailscale', 'up', '--auth-key=' ~ tailscale_auth_key] + tailscale_up_args }}"
+    argv: >-
+      {{ ['tailscale', 'up', '--auth-key=' ~ tailscale_auth_key]
+         + tailscale_up_args
+         + (['--advertise-routes=' ~ tailscale_lan_subnet] if tailscale_advertise_routes | bool else []) }}
   no_log: true
   changed_when: true
