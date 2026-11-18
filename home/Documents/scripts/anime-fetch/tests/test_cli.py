@@ -105,6 +105,21 @@ def test_normalize() -> None:
     )
 
 
+@pytest.mark.parametrize(
+    ("title", "expected"),
+    [
+        ("Chitose-kun wa Ramune Bin no Naka Part 2", "Chitose-kun wa Ramune Bin no Naka"),
+        ("Chitose Is in the Ramune Bottle 2nd Cour", "Chitose Is in the Ramune Bottle"),
+        ("千歳くんはラムネ瓶のなか 2クール", "千歳くんはラムネ瓶のなか"),
+        ("Show Season 4", "Show"),
+        ("Mushoku Tensei III", "Mushoku Tensei III"),
+        ("Part 2", "Part 2"),
+    ],
+)
+def test_base_title(title: str, expected: str) -> None:
+    assert cli.base_title(title) == expected
+
+
 def test_describe_media() -> None:
     media = {
         "id": 154587,
@@ -252,6 +267,56 @@ def test_build_candidates_ignores_out_of_range_single() -> None:
     assert cli.build_candidates(client, torrents, total=12, max_probes=5, verbose=False) == []
 
 
+def test_build_candidates_uses_requested_episode_hint() -> None:
+    # Cour sequels continue with absolute numbers (S01E14 = entry episode 1);
+    # Seanime already mapped the request, so trust that over the filename.
+    name = "[Erai-raws] Show S01E14 [1080p HEVC]"
+    client = StubClient({})
+    hints = {name.lower(): 1}
+    candidates = cli.build_candidates(
+        client, [_torrent(name)], total=6, max_probes=5, verbose=False, hints=hints
+    )
+    assert [c.episodes for c in candidates] == [{1}]
+
+
+def test_gather_records_requested_episode() -> None:
+    class FakeClient:
+        def search_torrents(self, media, query, *, batch=None, episode=None, **kwargs):
+            return [{"name": "[Erai-raws] Show S01E14 [1080p HEVC]", "seeders": 1, "size": 1}]
+
+    found: dict = {}
+    hints: dict = {}
+    cli.gather([FakeClient()], {"id": 1}, ["Show"], batch=False, episode=1,
+               titles=["Show"], hint=None, found=found, hints=hints)
+    assert len(found) == 1
+    assert list(hints.values()) == [1]
+
+
+def test_gather_skips_failed_query() -> None:
+    class FlakyClient:
+        def search_torrents(self, media, query, *, batch=None, episode=None, **kwargs):
+            if query == "bad":
+                raise cli.SeanimeError("feed_unavailable")
+            return [{"name": "[ASW] Show - 01 [HEVC 1080p]", "seeders": 1, "size": 1}]
+
+    found: dict = {}
+    hints: dict = {}
+    cli.gather([FlakyClient()], {"id": 1}, ["bad", "good"], batch=False, episode=1,
+               titles=["Show"], hint=None, found=found, hints=hints)
+    assert len(found) == 1
+    assert list(hints.values()) == [1]
+
+
+def test_gather_raises_when_every_query_fails() -> None:
+    class FailingClient:
+        def search_torrents(self, media, query, *, batch=None, episode=None, **kwargs):
+            raise cli.SeanimeError("down")
+
+    with pytest.raises(cli.SeanimeError, match="all torrent searches failed"):
+        cli.gather([FailingClient()], {"id": 1}, ["x"], batch=False, episode=1,
+                   titles=["Show"], hint=None, found={})
+
+
 # ---------------------------------------------------------------------- parser
 def test_build_parser_defaults() -> None:
     args = cli.build_parser().parse_args(["Mushoku", "Tensei", "III"])
@@ -327,7 +392,7 @@ class FakeSeanime:
         return {"lists": []}
 
     def search_torrents(self, media, query, *, batch=None, episode=None, **kwargs):
-        self.search_calls.append({"batch": batch, "episode": episode})
+        self.search_calls.append({"batch": batch, "episode": episode, "query": query})
         if batch is True:
             return [self.batch]
         if batch is False and episode is not None:
@@ -422,6 +487,16 @@ def test_finished_series_still_stops_when_present(monkeypatch, tmp_path) -> None
 
     assert code == cli.EXIT_OK
     assert instances[0].downloads == []
+
+
+def test_releasing_series_searches_base_title(monkeypatch, tmp_path) -> None:
+    instances = _fake_client(monkeypatch)
+    media = dict(RELEASING, title={"romaji": "Show Part 2", "english": "Show 2nd Cour"})
+    monkeypatch.setattr(FakeSeanime, "media", media)
+
+    cli.main(["Show Part 2", "--lib", str(tmp_path), "--yes", "--dry-run"])
+
+    assert "Show" in {c["query"] for c in instances[0].search_calls}
 
 
 def test_finished_series_searches_batch(monkeypatch, tmp_path) -> None:

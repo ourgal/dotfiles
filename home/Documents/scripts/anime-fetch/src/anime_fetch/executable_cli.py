@@ -118,6 +118,25 @@ def normalize(text: str) -> str:
     return " ".join(re.findall(r"[a-z0-9]+", text.lower()))
 
 
+_PART_SUFFIX = re.compile(
+    r"(?i)[\s:\u2013\u2014-]*(?:part|season|cour)\s*\d+(?:st|nd|rd|th)?\s*(?:cour)?[\s:\u2013\u2014-]*$"
+)
+_ORDINAL_COUR = re.compile(r"(?i)[\s:\u2013\u2014-]*\d+(?:st|nd|rd|th)?\s*cour[\s:\u2013\u2014-]*$")
+_JP_COUR = re.compile(r"[\s:\u2013\u2014-]*\d+\s*クール[\s:\u2013\u2014-]*$")
+
+
+def base_title(title: str) -> str:
+    """Drop a cour/part marker for torrent searches.
+
+    Releases of a second cour use the base series title plus absolute episode
+    numbers ("Show - 14"), so searching "Show Part 2" finds nothing useful.
+    """
+    cleaned = _PART_SUFFIX.sub("", title)
+    cleaned = _ORDINAL_COUR.sub("", cleaned)
+    cleaned = _JP_COUR.sub("", cleaned)
+    return cleaned.strip(" :\u2013\u2014-") or title
+
+
 # ---------------------------------------------------------------------- clipboard
 _URL = re.compile(r"https?://[^\s<>\"']+")
 
@@ -259,10 +278,24 @@ def gather(
     titles: list[str],
     hint: int | None,
     found: dict[str, dict[str, Any]],
+    hints: dict[str, int] | None = None,
+    verbose: bool = False,
 ) -> None:
+    calls = 0
+    failures = 0
     for client in clients:
         for query in queries:
-            for torrent in client.search_torrents(media, query, batch=batch, episode=episode):
+            calls += 1
+            try:
+                results = client.search_torrents(media, query, batch=batch, episode=episode)
+            except (SeanimeError, HttpError) as exc:
+                # One provider/query can fail (e.g. feed_unavailable) without
+                # invalidating the others; skip it instead of aborting the run.
+                failures += 1
+                if verbose:
+                    print(f"  ! search failed for {query!r}: {exc}", file=sys.stderr)
+                continue
+            for torrent in results:
                 name = torrent.get("name") or ""
                 if not pick.acceptable_release(name):
                     continue
@@ -272,6 +305,14 @@ def gather(
                     continue
                 key = (torrent.get("infoHash") or name).lower()
                 found.setdefault(key, torrent)
+                if hints is not None and episode is not None:
+                    # Seanime has already mapped the entry's local episode to the
+                    # release's absolute number (cour sequels continue S01E14...).
+                    # Remember it so build_candidates does not re-derive the number
+                    # from the filename and throw the result away.
+                    hints.setdefault(key, episode)
+    if calls and failures == calls:
+        raise SeanimeError("all torrent searches failed")
 
 
 def build_candidates(
@@ -281,17 +322,20 @@ def build_candidates(
     *,
     max_probes: int,
     verbose: bool,
+    hints: dict[str, int] | None = None,
 ) -> list[pick.Candidate]:
     """Attach episode coverage to every torrent (probing batches via get-files)."""
     singles: list[pick.Candidate] = []
     batches: list[pick.Candidate] = []
+    requested = hints or {}
     for torrent in torrents:
         name = torrent.get("name") or ""
         codec = pick.codec_of(name) or ""
         if pick.is_batch(torrent):
             batches.append(pick.Candidate(torrent=torrent, codec=codec))
         else:
-            number = pick.episode_of(name) or (1 if total == 1 else None)
+            key = (torrent.get("infoHash") or name).lower()
+            number = requested.get(key) or pick.episode_of(name) or (1 if total == 1 else None)
             if number is None or not 1 <= number <= total:
                 continue
             singles.append(pick.Candidate(torrent=torrent, episodes={number}, codec=codec))
@@ -482,30 +526,33 @@ def main(argv: list[str] | None = None) -> int:
             return EXIT_OK
 
     hint = pick.season_hint(titles[0]) if titles else None
-    quoted = [t for t in (titles + [query]) if t and len(t) > 2]
+    terms = [base_title(t) for t in titles] + titles + [query]
+    quoted = [t for t in terms if t and len(t) > 2]
     queries = list(dict.fromkeys(quoted))[:4]
 
     found: dict[str, dict[str, Any]] = {}
+    hints: dict[str, int] = {}
     try:
         if ongoing:
             # An airing series has no finished season pack yet; go straight to
             # per-episode searches instead of probing batches that cannot exist.
             for number in sorted(wanted):
                 gather(clients, media, queries[:2], batch=False, episode=number,
-                       titles=titles, hint=hint, found=found)
+                       titles=titles, hint=hint, found=found, hints=hints, verbose=args.verbose)
         else:
             gather(clients, media, queries, batch=True, episode=None,
-                   titles=titles, hint=hint, found=found)
+                   titles=titles, hint=hint, found=found, hints=hints, verbose=args.verbose)
             if len(found) <= 1 or total == 1:
                 gather(clients, media, queries, batch=None, episode=1,
-                       titles=titles, hint=hint, found=found)
+                       titles=titles, hint=hint, found=found, hints=hints, verbose=args.verbose)
     except (SeanimeError, HttpError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return EXIT_ERROR
 
     print(f"Search   : {len(found)} candidate release(s) with HEVC/AV1")
     candidates = build_candidates(client, list(found.values()), total,
-                                  max_probes=args.max_batch_probes, verbose=args.verbose)
+                                  max_probes=args.max_batch_probes, verbose=args.verbose,
+                                  hints=hints)
 
     plan = pick.choose(candidates, total, wanted=wanted)
     if plan is None and not ongoing:
@@ -517,14 +564,15 @@ def main(argv: list[str] | None = None) -> int:
         try:
             for episode in missing:
                 gather(clients, media, queries[:2], batch=False, episode=episode,
-                       titles=titles, hint=hint, found=extra)
+                       titles=titles, hint=hint, found=extra, hints=hints, verbose=args.verbose)
         except (SeanimeError, HttpError) as exc:
             print(f"error: {exc}", file=sys.stderr)
             return EXIT_ERROR
         new_items = [t for k, t in extra.items() if k not in found]
         if new_items:
             candidates += build_candidates(client, new_items, total,
-                                           max_probes=args.max_batch_probes, verbose=args.verbose)
+                                           max_probes=args.max_batch_probes, verbose=args.verbose,
+                                           hints=hints)
         plan = pick.choose(candidates, total, wanted=wanted)
 
     if plan is None:

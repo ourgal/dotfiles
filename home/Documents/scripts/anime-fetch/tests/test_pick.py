@@ -137,7 +137,9 @@ def test_matches_season(name: str, hint: int, expected: bool) -> None:
     [
         ("Mushoku Tensei III", 3),
         ("Show Season 4", 4),
-        ("Show Part 2", 2),
+        # "Part 2" / "Cour 2" are the same season, with absolute episode numbers
+        ("Show Part 2", None),
+        ("Show Cour 2", None),
         # "2nd" is not the last token, so no hint is derived
         ("Show 2nd Season", None),
         ("Re:Zero", None),

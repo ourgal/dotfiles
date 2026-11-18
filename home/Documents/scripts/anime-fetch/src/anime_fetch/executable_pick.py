@@ -109,6 +109,10 @@ def season_hint(title: str) -> int | None:
     if last in _ROMAN_TO_INT:
         return _ROMAN_TO_INT[last]
     if last.isdigit():
+        # "Part 2" / "Cour 2" is the second cour of the same season, not season 2:
+        # releases keep S01 and continue with absolute episode numbers.
+        if len(tokens) >= 2 and tokens[-2].lower() in {"part", "cour"}:
+            return None
         return int(last)
     return None
 
