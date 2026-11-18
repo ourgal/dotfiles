@@ -489,6 +489,17 @@ def test_finished_series_still_stops_when_present(monkeypatch, tmp_path) -> None
     assert instances[0].downloads == []
 
 
+def test_creates_destination_before_download(monkeypatch, tmp_path) -> None:
+    instances = _fake_client(monkeypatch)
+
+    code = cli.main(["Show", "--lib", str(tmp_path), "--yes"])
+
+    assert code == cli.EXIT_OK
+    destination = tmp_path / "Show"
+    assert destination.is_dir()
+    assert instances[0].downloads[0][1] == str(destination)
+
+
 def test_releasing_series_searches_base_title(monkeypatch, tmp_path) -> None:
     instances = _fake_client(monkeypatch)
     media = dict(RELEASING, title={"romaji": "Show Part 2", "english": "Show 2nd Cour"})

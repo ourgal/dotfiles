@@ -37,7 +37,7 @@ from . import pick
 from .net import HttpError
 from .seanime import DEFAULT_BASE, DEFAULT_PROVIDER, Seanime, SeanimeError
 
-DEFAULT_LIB = "C:/Users/User/Videos/Seanime"
+DEFAULT_LIB = str(Path.home() / "Videos" / "Seanime")
 
 # AniList statuses that still have episodes left to air.
 ONGOING_STATUSES = {"RELEASING", "NOT_YET_RELEASED", "HIATUS"}
@@ -600,6 +600,11 @@ def main(argv: list[str] | None = None) -> int:
         print("Cancelled: nothing downloaded, AniList untouched")
         return EXIT_SKIP
 
+    try:
+        destination.mkdir(parents=True, exist_ok=True)
+    except OSError as exc:
+        print(f"error: cannot create destination folder {destination}: {exc}", file=sys.stderr)
+        return EXIT_ERROR
     try:
         client.download([c.torrent for c in plan.torrents], str(destination), media, episodes)
     except (SeanimeError, HttpError) as exc:
