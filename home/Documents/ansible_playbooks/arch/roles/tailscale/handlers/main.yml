@@ -2,5 +2,5 @@
 - name: Apply sysctl settings
   become: true
   ansible.builtin.command:
-    cmd: /usr/bin/sysctl -p
+    cmd: /usr/bin/sysctl -p /etc/sysctl.d/99-tailscale.conf
   changed_when: true

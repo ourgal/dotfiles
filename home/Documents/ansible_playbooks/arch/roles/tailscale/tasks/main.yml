@@ -9,7 +9,8 @@
 - name: Enable IP forwarding for subnet routing and exit node
   become: true
   ansible.builtin.blockinfile:
-    path: /etc/sysctl.conf
+    path: /etc/sysctl.d/99-tailscale.conf
+    create: true
     marker: "# {mark} ANSIBLE MANAGED BLOCK tailscale"
     block: |
       net.ipv4.ip_forward = 1
