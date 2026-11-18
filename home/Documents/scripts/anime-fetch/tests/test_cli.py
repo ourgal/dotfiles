@@ -310,6 +310,7 @@ class FakeSeanime:
         self.provider = provider
         self.downloads: list = []
         self.planning: list = []
+        self.search_calls: list = []
         self.batch = {
             "name": "[Judas] Show S01 - Batch (HEVC 1080p)",
             "isBatch": True, "releaseGroup": "Judas", "seeders": 20, "size": 100,
@@ -326,16 +327,23 @@ class FakeSeanime:
         return {"lists": []}
 
     def search_torrents(self, media, query, *, batch=None, episode=None, **kwargs):
+        self.search_calls.append({"batch": batch, "episode": episode})
         if batch is True:
             return [self.batch]
-        if batch is False and episode == 4:
-            return [self.single4]
+        if batch is False and episode is not None:
+            if episode == 4:
+                return [self.single4]
+            return [{
+                "name": f"[ASW] Show - {episode:02d} (HEVC 1080p)",
+                "releaseGroup": "ASW", "seeders": 5, "size": 10,
+            }]
         return []
 
     def torrent_files(self, torrent):
         if torrent is self.batch:
             return [f"[Judas] Show - {i:02d} [HEVC 1080p].mkv" for i in range(1, 5)]
-        return ["[ASW] Show - 04 [HEVC 1080p].mkv"]
+        number = cli.pick.episode_of(torrent["name"])
+        return [f"[ASW] Show - {number:02d} [HEVC 1080p].mkv"]
 
     def download(self, torrents, destination, media, episodes):
         self.downloads.append((list(torrents), destination, media, episodes))
@@ -373,6 +381,8 @@ def test_releasing_series_downloads_only_missing_episodes(monkeypatch, tmp_path)
     assert len(instances[0].downloads) == 1
     assert instances[0].downloads[0][3] == [4]
     assert instances[0].planning == [7]  # Planning behaviour is unchanged
+    assert not any(c["batch"] is True for c in instances[0].search_calls)
+    assert {c["episode"] for c in instances[0].search_calls} == {4}
 
 
 def test_releasing_series_up_to_date(monkeypatch, tmp_path) -> None:
@@ -393,6 +403,8 @@ def test_episodes_override_without_airing_data(monkeypatch, tmp_path) -> None:
 
     assert code == cli.EXIT_OK
     assert instances[0].downloads[0][3] == [1, 2, 3, 4]
+    assert not any(c["batch"] is True for c in instances[0].search_calls)
+    assert {c["episode"] for c in instances[0].search_calls} == {1, 2, 3, 4}
 
 
 def test_releasing_series_without_count_errors(monkeypatch, tmp_path) -> None:
@@ -410,3 +422,13 @@ def test_finished_series_still_stops_when_present(monkeypatch, tmp_path) -> None
 
     assert code == cli.EXIT_OK
     assert instances[0].downloads == []
+
+
+def test_finished_series_searches_batch(monkeypatch, tmp_path) -> None:
+    instances = _fake_client(monkeypatch)
+    monkeypatch.setattr(FakeSeanime, "media", FINISHED)
+
+    code = cli.main(["Show", "--lib", str(tmp_path), "--yes", "--dry-run"])
+
+    assert code == cli.EXIT_OK
+    assert any(c["batch"] is True for c in instances[0].search_calls)

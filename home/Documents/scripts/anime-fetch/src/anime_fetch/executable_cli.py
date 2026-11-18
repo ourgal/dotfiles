@@ -11,7 +11,8 @@ Standard workflow (matches the user's rules):
 
 Releasing series have no final AniList episode count. When AniList marks the
 title as ongoing, the aired count is taken from nextAiringEpisode.episode - 1
-(or from --episodes N) and used as the target. On a re-run, only the episodes
+(or from --episodes N) and used as the target. Airing series have no finished
+season pack, so they are searched per episode. On a re-run, only the episodes
 still missing from the library folder are downloaded, so new episodes can be
 picked up without re-fetching the ones already on disk.
 
@@ -486,11 +487,18 @@ def main(argv: list[str] | None = None) -> int:
 
     found: dict[str, dict[str, Any]] = {}
     try:
-        gather(clients, media, queries, batch=True, episode=None,
-               titles=titles, hint=hint, found=found)
-        if len(found) <= 1 or total == 1:
-            gather(clients, media, queries, batch=None, episode=1,
+        if ongoing:
+            # An airing series has no finished season pack yet; go straight to
+            # per-episode searches instead of probing batches that cannot exist.
+            for number in sorted(wanted):
+                gather(clients, media, queries[:2], batch=False, episode=number,
+                       titles=titles, hint=hint, found=found)
+        else:
+            gather(clients, media, queries, batch=True, episode=None,
                    titles=titles, hint=hint, found=found)
+            if len(found) <= 1 or total == 1:
+                gather(clients, media, queries, batch=None, episode=1,
+                       titles=titles, hint=hint, found=found)
     except (SeanimeError, HttpError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return EXIT_ERROR
@@ -500,7 +508,7 @@ def main(argv: list[str] | None = None) -> int:
                                   max_probes=args.max_batch_probes, verbose=args.verbose)
 
     plan = pick.choose(candidates, total, wanted=wanted)
-    if plan is None:
+    if plan is None and not ongoing:
         # Batch search was incomplete: look for one release per missing episode.
         missing = pick.missing_episodes(candidates, total, wanted=wanted)
         if missing:
