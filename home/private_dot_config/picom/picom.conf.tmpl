@@ -2,7 +2,14 @@
 #             Corners           #
 #################################
 # requires: https://github.com/sdhand/compton
+# Keep the rounding proportional to the qtile bar height. On "surface" the
+# bar is built at 0.6x (see rose_pine.py.tmpl) because eDP-1 runs --scale
+# 0.5x0.5; 14 * 0.6 = 8.4. Unscaled hosts keep the original 14.
+{{ if eq .chezmoi.hostname "surface" }}
+corner-radius = 8.4;
+{{ else }}
 corner-radius = 14.0;
+{{ end }}
 #corner-radius = 0.0;
 rounded-corners-exclude = [
     "_NET_WM_STATE@:32a = '_NET_WM_STATE_FULLSCREEN'",
