@@ -290,11 +290,8 @@ detect-rounded-corners = true;
 # detect-client-opacity = false
 detect-client-opacity = true;
 
-# Specify refresh rate of the screen. If not specified or 0, picom will
-# try detecting this with X RandR extension.
-#
-refresh-rate = 60
-# refresh-rate = 0;
+# Refresh rate is detected automatically via X RandR. The "refresh-rate"
+# option is deprecated (and ignored) in current picom, so it is left out.
 
 # Use EWMH '_NET_ACTIVE_WINDOW' to determine currently focused window,
 # rather than listening to 'FocusIn'/'FocusOut' event. Might have more accuracy,
