@@ -16,12 +16,13 @@ season pack, so they are searched per episode. On a re-run, only the episodes
 still missing from the library folder are downloaded, so new episodes can be
 picked up without re-fetching the ones already on disk.
 
-With `--all` no title is needed: every series on the Watching list that is
-still Releasing is processed in one batch. For each series the target is the
-aired episodes after the AniList watched progress, so already-watched episodes
-are skipped even when their files are on disk. All plans are shown first and a
-single confirmation covers the whole batch; those series already have a list
-status, so their AniList entry is never changed.
+With `--all` no title is needed: every series on the AniList Watching list that
+is still Releasing is processed in one batch, even ones Seanime has no files
+for. For each series the target is aired episodes that are neither watched
+(past AniList progress) nor already downloaded (present in the library folder
+or Seanime's shared path). All plans are shown first and a single confirmation
+covers the whole batch; those series already have a list status, so their
+AniList entry is never changed.
 
 With no title argument (and without `--all`) the query is read from the system
 clipboard. The match and the selected releases are printed first; nothing is
@@ -568,6 +569,20 @@ def _as_int(value: Any) -> int:
     return 0
 
 
+def entry_progress(entry: dict[str, Any]) -> int:
+    """Watched count from either collection shape (AniList or library)."""
+    list_data = entry.get("listData")
+    if isinstance(list_data, dict) and "progress" in list_data:
+        return _as_int(list_data.get("progress"))
+    return _as_int(entry.get("progress"))
+
+
+def entry_media_id(entry: dict[str, Any]) -> Any:
+    """AniList media id from either collection shape."""
+    media = entry.get("media") or {}
+    return entry.get("mediaId") or (media.get("id") if isinstance(media, dict) else None)
+
+
 def select_watching_releasing(collection: dict[str, Any]) -> list[dict[str, Any]]:
     """Entries on a Watching list whose AniList media is still Releasing."""
     selected: list[dict[str, Any]] = []
@@ -583,7 +598,7 @@ def select_watching_releasing(collection: dict[str, Any]) -> list[dict[str, Any]
                 continue
             if str(media.get("status") or "").upper() != "RELEASING":
                 continue
-            key = entry.get("mediaId") or media.get("id")
+            key = entry_media_id(entry)
             if key is None or key in seen:
                 continue
             seen.add(key)
@@ -599,7 +614,7 @@ def batch_targets(
     total = aired_episode_count(media)
     if total is None:
         return None
-    progress = _as_int((entry.get("listData") or {}).get("progress"))
+    progress = entry_progress(entry)
     cap = total
     if isinstance(episodes_override, int) and episodes_override > 0:
         cap = min(cap, episodes_override)
@@ -611,12 +626,27 @@ def run_all(args: argparse.Namespace, clients: list[Seanime]) -> int:
     """Process every Watching + Releasing series as one confirmed batch."""
     client = clients[0]
     try:
-        collection = client.collection()
+        anilist = client.anilist_collection()
     except (SeanimeError, HttpError) as exc:
-        print(f"error: could not read the library collection: {exc}", file=sys.stderr)
+        print(f"error: could not read the AniList collection: {exc}", file=sys.stderr)
         return EXIT_ERROR
 
-    entries = select_watching_releasing(collection)
+    # The library collection only indexes what is already downloaded; the
+    # Watching list comes from AniList and can be much larger. Use it solely to
+    # find Seanime's shared path for a series when scanning files on disk.
+    library: dict[str, Any] = {}
+    try:
+        library = client.collection()
+    except (SeanimeError, HttpError) as exc:
+        if args.verbose:
+            print(f"warning: could not read the library collection: {exc}", file=sys.stderr)
+    library_entries: dict[Any, dict[str, Any]] = {}
+    for lst in library.get("lists") or []:
+        for lib_entry in lst.get("entries") or []:
+            if isinstance(lib_entry, dict) and entry_media_id(lib_entry) is not None:
+                library_entries.setdefault(entry_media_id(lib_entry), lib_entry)
+
+    entries = select_watching_releasing(anilist)
     if not entries:
         print("Batch    : no Watching + Releasing series found; nothing to do")
         return EXIT_SKIP
@@ -628,9 +658,10 @@ def run_all(args: argparse.Namespace, clients: list[Seanime]) -> int:
         names = media.get("title") or {}
         title = (names.get("romaji") or names.get("english")
                  or names.get("userPreferred")
-                 or f"id {entry.get('mediaId') or media.get('id')}")
+                 or f"id {entry_media_id(entry)}")
         titles = titles_of(media)[:3] or [title]
         destination = series_destination(media, args.lib)
+        lib_entry = library_entries.get(entry_media_id(entry))
         targets = batch_targets(entry, episodes_override=args.episodes)
         if targets is None:
             message = "skip     : no aired/unwatched episodes"
@@ -640,7 +671,7 @@ def run_all(args: argparse.Namespace, clients: list[Seanime]) -> int:
             continue
         total, wanted = targets
         unwatched = set(wanted)
-        wanted -= {number for number in library_episodes(destination, entry, titles)
+        wanted -= {number for number in library_episodes(destination, lib_entry, titles)
                    if number <= total}
         if not wanted:
             message = (f"skip     : all {len(unwatched)} unwatched episode(s) "
@@ -693,8 +724,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("query", nargs="*",
                         help="anime title (romaji, English or native); omit to read the clipboard")
     parser.add_argument("--all", action="store_true",
-                        help="process every Watching series that is still Releasing; download "
-                             "all aired episodes after the AniList watched progress")
+                        help="process every Releasing series on the AniList Watching list; "
+                             "download aired episodes that are neither watched nor on disk")
     parser.add_argument("--provider", action="append", metavar="NAME",
                         help=f"torrent provider (repeatable or comma separated); default {DEFAULT_PROVIDER}")
     parser.add_argument("--lib", default=DEFAULT_LIB, help=f"library root (default {DEFAULT_LIB})")

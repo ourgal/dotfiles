@@ -564,15 +564,43 @@ BATCH_COLLECTION = {
 }
 
 
+def _to_anilist(collection: dict) -> dict:
+    """Turn a library-style collection into the AniList collection shape."""
+    lists = []
+    for lst in collection.get("lists") or []:
+        entries = []
+        for e in lst.get("entries") or []:
+            if not isinstance(e, dict):
+                continue
+            ld = e.get("listData") or {}
+            entries.append({
+                "id": cli.entry_media_id(e),
+                "media": e.get("media") or {},
+                "status": ld.get("status") or e.get("status") or lst.get("status"),
+                "progress": ld["progress"] if "progress" in ld else e.get("progress", 0),
+            })
+        lists.append({"name": lst.get("name"), "status": lst.get("status"),
+                      "entries": entries})
+    return {"lists": lists}
+
+
 class BatchFakeSeanime(FakeSeanime):
-    """FakeSeanime with a synced collection and an optional download failure."""
+    """FakeSeanime with an AniList list, a library collection, and download failures."""
 
     collection_data: dict = {"lists": []}
+    anilist_data: dict = {"lists": []}
     fail_download = False
+    fail_anilist = False
 
     def collection(self):
         self.collection_calls = getattr(self, "collection_calls", 0) + 1
         return self.collection_data
+
+    def anilist_collection(self):
+        self.anilist_calls = getattr(self, "anilist_calls", 0) + 1
+        if self.fail_anilist:
+            raise cli.SeanimeError("AniList down")
+        return self.anilist_data
 
     def download(self, torrents, destination, media, episodes):
         if self.fail_download and media["id"] == 11:
@@ -580,15 +608,18 @@ class BatchFakeSeanime(FakeSeanime):
         super().download(torrents, destination, media, episodes)
 
 
-def _batch_fake_client(monkeypatch, *, collection=None, confirm_answer=True,
-                       fail_download=False):
+def _batch_fake_client(monkeypatch, *, collection=None, anilist=None,
+                       confirm_answer=True, fail_download=False, fail_anilist=False):
     instances: list = []
     confirms: list = []
 
     def factory(*args, **kwargs):
         client = BatchFakeSeanime(*args, **kwargs)
         client.collection_data = BATCH_COLLECTION if collection is None else collection
+        source = anilist if anilist is not None else client.collection_data
+        client.anilist_data = _to_anilist(source)
         client.fail_download = fail_download
+        client.fail_anilist = fail_anilist
         instances.append(client)
         return client
 
@@ -790,4 +821,52 @@ def test_batch_all_uses_shared_path_to_skip_disk_episodes(monkeypatch, tmp_path)
     code = cli.main(["--all", "--lib", str(tmp_path / "other"), "--yes"])
 
     assert code == cli.EXIT_SKIP
+    assert instances[0].downloads == []
+
+
+def test_entry_progress_reads_both_collection_shapes() -> None:
+    assert cli.entry_progress({"listData": {"progress": 3}}) == 3
+    assert cli.entry_progress({"progress": "2"}) == 2
+    assert cli.entry_progress({"progress": 4, "listData": {}}) == 4
+    assert cli.entry_progress({}) == 0
+
+
+def test_batch_all_uses_anilist_watching_not_library(monkeypatch, tmp_path) -> None:
+    library = {"lists": [{"status": "CURRENT", "entries": [ENTRY_A]}]}
+    instances, _ = _batch_fake_client(monkeypatch, collection=library, anilist=BATCH_COLLECTION)
+
+    code = cli.main(["--all", "--lib", str(tmp_path), "--yes"])
+
+    assert code == cli.EXIT_OK
+    assert instances[0].anilist_calls == 1
+    assert instances[0].collection_calls == 1
+    assert [download[3] for download in instances[0].downloads] == [[3, 4], [4, 5]]
+
+
+def test_batch_all_fetches_series_absent_from_library(monkeypatch, tmp_path) -> None:
+    # Watching on AniList, but Seanime has no files or library entry for it.
+    series = {
+        "id": 20, "status": "RELEASING", "format": "TV",
+        "title": {"romaji": "Show"}, "synonyms": [],
+        "nextAiringEpisode": {"episode": 9},  # eight aired, seven watched
+    }
+    anilist = {"lists": [{"status": "CURRENT", "entries": [
+        {"id": 99, "media": series, "status": "CURRENT", "progress": 7},
+    ]}]}
+    instances, _ = _batch_fake_client(monkeypatch, collection={"lists": []}, anilist=anilist)
+
+    code = cli.main(["--all", "--lib", str(tmp_path), "--yes"])
+
+    assert code == cli.EXIT_OK
+    assert len(instances[0].downloads) == 1
+    assert instances[0].downloads[0][2]["id"] == 20
+    assert instances[0].downloads[0][3] == [8]
+
+
+def test_batch_all_anilist_failure_is_fatal(monkeypatch, tmp_path) -> None:
+    instances, _ = _batch_fake_client(monkeypatch, fail_anilist=True)
+
+    code = cli.main(["--all", "--lib", str(tmp_path), "--yes"])
+
+    assert code == cli.EXIT_ERROR
     assert instances[0].downloads == []

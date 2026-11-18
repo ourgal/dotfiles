@@ -38,9 +38,18 @@ class Seanime:
         return [m for m in media if m.get("id")]
 
     def collection(self) -> dict[str, Any]:
-        """The synced AniList collection with library stats."""
+        """The synced AniList collection with library stats (what is downloaded)."""
         data = request_json("GET", self._url("/library/collection"), timeout=120)
         return (data or {}).get("data") or {}
+
+    def anilist_collection(self) -> dict[str, Any]:
+        """The full AniList media-list collection (every Watching entry, not just
+        the ones Seanime has files for)."""
+        try:
+            data = request_json("GET", self._url("/anilist/collection"), timeout=120)
+        except HttpError as exc:
+            raise SeanimeError(f"could not read the AniList collection: {exc}") from None
+        return (((data or {}).get("data") or {}).get("MediaListCollection")) or {}
 
     @staticmethod
     def find_entry(collection: dict[str, Any], media_id: int) -> dict[str, Any] | None:

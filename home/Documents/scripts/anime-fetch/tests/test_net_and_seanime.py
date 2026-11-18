@@ -178,6 +178,28 @@ def test_collection_uses_get(monkeypatch) -> None:
     assert seen["url"] == "http://localhost:43211/api/v1/library/collection"
 
 
+def test_anilist_collection_uses_get(monkeypatch) -> None:
+    seen: dict = {}
+
+    def fake(method, url, payload=None, **kwargs):
+        seen.update(method=method, url=url)
+        return {"data": {"MediaListCollection": {"lists": [{"status": "CURRENT"}]}}}
+
+    monkeypatch.setattr(seanime, "request_json", fake)
+    assert seanime.Seanime().anilist_collection() == {"lists": [{"status": "CURRENT"}]}
+    assert seen["method"] == "GET"
+    assert seen["url"] == "http://localhost:43211/api/v1/anilist/collection"
+
+
+def test_anilist_collection_wraps_http_error(monkeypatch) -> None:
+    def fake(method, url, payload=None, **kwargs):
+        raise HttpError(500, "boom", url)
+
+    monkeypatch.setattr(seanime, "request_json", fake)
+    with pytest.raises(seanime.SeanimeError, match="could not read the AniList collection"):
+        seanime.Seanime().anilist_collection()
+
+
 def test_find_entry() -> None:
     collection = {"lists": [
         {"entries": [{"mediaId": 1, "status": "CURRENT"}]},
