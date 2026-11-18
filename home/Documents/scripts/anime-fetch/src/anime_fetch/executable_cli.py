@@ -16,9 +16,16 @@ season pack, so they are searched per episode. On a re-run, only the episodes
 still missing from the library folder are downloaded, so new episodes can be
 picked up without re-fetching the ones already on disk.
 
-With no title argument the query is read from the system clipboard. The match
-and the selected releases are printed first; nothing is downloaded or added to
-AniList until the user confirms.
+With `--all` no title is needed: every series on the Watching list that is
+still Releasing is processed in one batch. For each series the target is the
+aired episodes after the AniList watched progress, so already-watched episodes
+are skipped even when their files are on disk. All plans are shown first and a
+single confirmation covers the whole batch; those series already have a list
+status, so their AniList entry is never changed.
+
+With no title argument (and without `--all`) the query is read from the system
+clipboard. The match and the selected releases are printed first; nothing is
+downloaded or added to AniList until the user confirms.
 """
 
 from __future__ import annotations
@@ -30,6 +37,7 @@ import shutil
 import subprocess
 import sys
 import urllib.parse
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
@@ -396,6 +404,256 @@ def ensure_planning(
     print("AniList  : added to Planning")
 
 
+# ------------------------------------------------------------------ plan/commit
+@dataclass
+class PlanResult:
+    """Resolved releases for one series; building one performs no writes."""
+
+    media: dict[str, Any]
+    entry: dict[str, Any] | None
+    plan: pick.Plan | None
+    destination: Path
+    wanted: set[int]
+    episodes: list[int]
+    code: int
+    message: str = ""
+
+
+def build_plan(
+    clients: list[Seanime],
+    media: dict[str, Any],
+    entry: dict[str, Any] | None,
+    args: argparse.Namespace,
+    *,
+    total: int,
+    wanted: set[int],
+    query: str = "",
+    echo: bool = True,
+) -> PlanResult:
+    """Select releases covering ``wanted``; never download or touch AniList.
+
+    ``total`` is the upper bound used when inspecting batch files and ``query``
+    is an extra search term (the user's title in single-title mode).
+    """
+    names = media.get("title") or {}
+    romaji = names.get("romaji") or names.get("english") or query or "Show"
+    destination = Path(args.lib) / safe_folder(romaji)
+    ongoing = (media.get("status") or "") in ONGOING_STATUSES
+    titles = titles_of(media)[:3] or ([query] if query else [romaji])
+
+    hint = pick.season_hint(titles[0]) if titles else None
+    terms = [base_title(t) for t in titles] + titles + ([query] if query else [])
+    quoted = [t for t in terms if t and len(t) > 2]
+    queries = list(dict.fromkeys(quoted))[:4]
+
+    found: dict[str, dict[str, Any]] = {}
+    hints: dict[str, int] = {}
+    try:
+        if ongoing:
+            # An airing series has no finished season pack yet; go straight to
+            # per-episode searches instead of probing batches that cannot exist.
+            for number in sorted(wanted):
+                gather(clients, media, queries[:2], batch=False, episode=number,
+                       titles=titles, hint=hint, found=found, hints=hints, verbose=args.verbose)
+        else:
+            gather(clients, media, queries, batch=True, episode=None,
+                   titles=titles, hint=hint, found=found, hints=hints, verbose=args.verbose)
+            if len(found) <= 1 or total == 1:
+                gather(clients, media, queries, batch=None, episode=1,
+                       titles=titles, hint=hint, found=found, hints=hints, verbose=args.verbose)
+    except (SeanimeError, HttpError) as exc:
+        return PlanResult(media, entry, None, destination, wanted, [], EXIT_ERROR, f"error: {exc}")
+
+    if echo:
+        print(f"Search   : {len(found)} candidate release(s) with HEVC/AV1")
+    candidates = build_candidates(clients[0], list(found.values()), total,
+                                  max_probes=args.max_batch_probes, verbose=args.verbose,
+                                  hints=hints)
+
+    plan = pick.choose(candidates, total, wanted=wanted)
+    if plan is None and not ongoing:
+        # Batch search was incomplete: look for one release per missing episode.
+        missing = pick.missing_episodes(candidates, total, wanted=wanted)
+        if missing and echo:
+            print(f"Search   : per-episode fallback for {len(missing)} episode(s)")
+        extra: dict[str, dict[str, Any]] = {}
+        try:
+            for episode in missing:
+                gather(clients, media, queries[:2], batch=False, episode=episode,
+                       titles=titles, hint=hint, found=extra, hints=hints, verbose=args.verbose)
+        except (SeanimeError, HttpError) as exc:
+            return PlanResult(media, entry, None, destination, wanted, [], EXIT_ERROR, f"error: {exc}")
+        new_items = [t for k, t in extra.items() if k not in found]
+        if new_items:
+            candidates += build_candidates(clients[0], new_items, total,
+                                           max_probes=args.max_batch_probes, verbose=args.verbose,
+                                           hints=hints)
+        plan = pick.choose(candidates, total, wanted=wanted)
+
+    if plan is None:
+        missing = pick.missing_episodes(candidates, total, wanted=wanted)
+        if missing:
+            message = (f"Skip     : no HEVC/AV1 release covers episode(s) {missing}; "
+                       "nothing downloaded")
+        else:
+            message = "Skip     : no HEVC/AV1 release found; nothing downloaded"
+        if echo:
+            print(message)
+        return PlanResult(media, entry, None, destination, wanted, [], EXIT_SKIP, message)
+
+    episodes = sorted(set(plan.episodes) & wanted)
+    return PlanResult(media, entry, plan, destination, wanted, episodes, EXIT_OK)
+
+
+def commit_plan(
+    client: Seanime,
+    result: PlanResult,
+    args: argparse.Namespace,
+    *,
+    do_planning: bool = True,
+) -> int:
+    """Write a planned download. The caller handles printing and confirmation."""
+    plan = result.plan
+    assert plan is not None
+    try:
+        result.destination.mkdir(parents=True, exist_ok=True)
+    except OSError as exc:
+        print(f"error: cannot create destination folder {result.destination}: {exc}", file=sys.stderr)
+        return EXIT_ERROR
+    try:
+        client.download([c.torrent for c in plan.torrents], str(result.destination),
+                        result.media, result.episodes)
+    except (SeanimeError, HttpError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return EXIT_ERROR
+    print(f"Download : queued {len(plan.torrents)} torrent(s) to {result.destination}")
+
+    if do_planning and not args.no_planning:
+        try:
+            ensure_planning(client, result.media, result.entry, dry_run=False)
+        except (SeanimeError, HttpError) as exc:
+            print(f"warning: download queued but AniList update failed: {exc}", file=sys.stderr)
+            return EXIT_ERROR
+    return EXIT_OK
+
+
+# ---------------------------------------------------------------------- batch
+def _as_int(value: Any) -> int:
+    """Coerce an AniList progress-like value to a non-negative int."""
+    if value is None or isinstance(value, bool):
+        return 0
+    if isinstance(value, (int, float)):
+        return max(0, int(value))
+    if isinstance(value, str):
+        try:
+            return max(0, int(value.strip()))
+        except ValueError:
+            return 0
+    return 0
+
+
+def select_watching_releasing(collection: dict[str, Any]) -> list[dict[str, Any]]:
+    """Entries on a Watching list whose AniList media is still Releasing."""
+    selected: list[dict[str, Any]] = []
+    seen: set[Any] = set()
+    for lst in collection.get("lists") or []:
+        if str(((lst or {}).get("status")) or "").upper() not in {"CURRENT", "WATCHING"}:
+            continue
+        for entry in lst.get("entries") or []:
+            if not isinstance(entry, dict):
+                continue
+            media = entry.get("media") or {}
+            if not isinstance(media, dict):
+                continue
+            if str(media.get("status") or "").upper() != "RELEASING":
+                continue
+            key = entry.get("mediaId") or media.get("id")
+            if key is None or key in seen:
+                continue
+            seen.add(key)
+            selected.append(entry)
+    return selected
+
+
+def batch_targets(
+    entry: dict[str, Any], *, episodes_override: int | None = None
+) -> tuple[int, set[int]] | None:
+    """Return ``(aired total, wanted)`` for one Watching/Releasing entry."""
+    media = entry.get("media") or {}
+    total = aired_episode_count(media)
+    if total is None:
+        return None
+    progress = _as_int((entry.get("listData") or {}).get("progress"))
+    cap = total
+    if isinstance(episodes_override, int) and episodes_override > 0:
+        cap = min(cap, episodes_override)
+    wanted = set(range(progress + 1, cap + 1))
+    return (total, wanted) if wanted else None
+
+
+def run_all(args: argparse.Namespace, clients: list[Seanime]) -> int:
+    """Process every Watching + Releasing series as one confirmed batch."""
+    client = clients[0]
+    try:
+        collection = client.collection()
+    except (SeanimeError, HttpError) as exc:
+        print(f"error: could not read the library collection: {exc}", file=sys.stderr)
+        return EXIT_ERROR
+
+    entries = select_watching_releasing(collection)
+    if not entries:
+        print("Batch    : no Watching + Releasing series found; nothing to do")
+        return EXIT_SKIP
+    print(f"Batch    : {len(entries)} Watching + Releasing series")
+
+    results: list[PlanResult] = []
+    for index, entry in enumerate(entries, 1):
+        media = entry.get("media") or {}
+        names = media.get("title") or {}
+        title = (names.get("romaji") or names.get("english")
+                 or names.get("userPreferred")
+                 or f"id {entry.get('mediaId') or media.get('id')}")
+        targets = batch_targets(entry, episodes_override=args.episodes)
+        if targets is None:
+            message = "skip     : no aired/unwatched episodes"
+            print(f"  [{index}/{len(entries)}] {title}: {message}")
+            results.append(PlanResult(media, entry, None, Path(args.lib), set(), [],
+                                      EXIT_SKIP, message))
+            continue
+        total, wanted = targets
+        span = f"{min(wanted)}-{max(wanted)}" if len(wanted) > 1 else str(min(wanted))
+        print(f"  [{index}/{len(entries)}] {title}: {len(wanted)} episode(s) "
+              f"after progress ({span})")
+        results.append(build_plan(clients, media, entry, args, total=total, wanted=wanted,
+                                  echo=False))
+
+    queued = [r for r in results if r.code == EXIT_OK and r.plan is not None]
+    failed_plans = [r for r in results if r.code == EXIT_ERROR]
+    skipped = [r for r in results if r.code == EXIT_SKIP]
+    for result in queued:
+        print_plan(result.plan, result.destination, wanted=result.wanted)
+    torrent_count = sum(len(r.plan.torrents) for r in queued)  # type: ignore[union-attr]
+    print(f"Batch summary: {len(queued)} series queued ({torrent_count} torrent(s)), "
+          f"{len(skipped)} skipped, {len(failed_plans)} error(s)")
+
+    if args.dry_run:
+        print("Dry run  : no torrent added, AniList untouched")
+        return EXIT_OK
+    if not queued:
+        return EXIT_ERROR if failed_plans else EXIT_SKIP
+
+    actions = f"download {torrent_count} torrent(s) across {len(queued)} series"
+    if not args.yes and not confirm(f"Confirm  : {actions}?"):
+        print("Cancelled: nothing downloaded, AniList untouched")
+        return EXIT_SKIP
+
+    failed = 0
+    for result in queued:
+        if commit_plan(client, result, args, do_planning=False) != EXIT_OK:
+            failed += 1
+    return EXIT_ERROR if failed or failed_plans else EXIT_OK
+
+
 # ----------------------------------------------------------------------------- main
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
@@ -404,6 +662,9 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("query", nargs="*",
                         help="anime title (romaji, English or native); omit to read the clipboard")
+    parser.add_argument("--all", action="store_true",
+                        help="process every Watching series that is still Releasing; download "
+                             "all aired episodes after the AniList watched progress")
     parser.add_argument("--provider", action="append", metavar="NAME",
                         help=f"torrent provider (repeatable or comma separated); default {DEFAULT_PROVIDER}")
     parser.add_argument("--lib", default=DEFAULT_LIB, help=f"library root (default {DEFAULT_LIB})")
@@ -426,6 +687,17 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
+
+    providers: list[str] = []
+    for raw in args.provider or [DEFAULT_PROVIDER]:
+        providers += [p.strip() for p in raw.split(",") if p.strip()]
+    providers = list(dict.fromkeys(providers))
+    clients = [Seanime(args.base, provider) for provider in providers]
+    client = clients[0]
+
+    if args.all:
+        return run_all(args, clients)
+
     query = " ".join(args.query).strip()
     if not query:
         text = clipboard_text()
@@ -439,13 +711,6 @@ def main(argv: list[str] | None = None) -> int:
                   "pass the title as an argument", file=sys.stderr)
             return EXIT_ERROR
         print(f"Clipboard: {query}")
-
-    providers: list[str] = []
-    for raw in args.provider or [DEFAULT_PROVIDER]:
-        providers += [p.strip() for p in raw.split(",") if p.strip()]
-    providers = list(dict.fromkeys(providers))
-    clients = [Seanime(args.base, provider) for provider in providers]
-    client = clients[0]
 
     try:
         media = resolve_media(client, query, args.pick)
@@ -525,100 +790,24 @@ def main(argv: list[str] | None = None) -> int:
                 ensure_planning(client, media, entry, dry_run=args.dry_run)
             return EXIT_OK
 
-    hint = pick.season_hint(titles[0]) if titles else None
-    terms = [base_title(t) for t in titles] + titles + [query]
-    quoted = [t for t in terms if t and len(t) > 2]
-    queries = list(dict.fromkeys(quoted))[:4]
-
-    found: dict[str, dict[str, Any]] = {}
-    hints: dict[str, int] = {}
-    try:
-        if ongoing:
-            # An airing series has no finished season pack yet; go straight to
-            # per-episode searches instead of probing batches that cannot exist.
-            for number in sorted(wanted):
-                gather(clients, media, queries[:2], batch=False, episode=number,
-                       titles=titles, hint=hint, found=found, hints=hints, verbose=args.verbose)
-        else:
-            gather(clients, media, queries, batch=True, episode=None,
-                   titles=titles, hint=hint, found=found, hints=hints, verbose=args.verbose)
-            if len(found) <= 1 or total == 1:
-                gather(clients, media, queries, batch=None, episode=1,
-                       titles=titles, hint=hint, found=found, hints=hints, verbose=args.verbose)
-    except (SeanimeError, HttpError) as exc:
-        print(f"error: {exc}", file=sys.stderr)
-        return EXIT_ERROR
-
-    print(f"Search   : {len(found)} candidate release(s) with HEVC/AV1")
-    candidates = build_candidates(client, list(found.values()), total,
-                                  max_probes=args.max_batch_probes, verbose=args.verbose,
-                                  hints=hints)
-
-    plan = pick.choose(candidates, total, wanted=wanted)
-    if plan is None and not ongoing:
-        # Batch search was incomplete: look for one release per missing episode.
-        missing = pick.missing_episodes(candidates, total, wanted=wanted)
-        if missing:
-            print(f"Search   : per-episode fallback for {len(missing)} episode(s)")
-        extra: dict[str, dict[str, Any]] = {}
-        try:
-            for episode in missing:
-                gather(clients, media, queries[:2], batch=False, episode=episode,
-                       titles=titles, hint=hint, found=extra, hints=hints, verbose=args.verbose)
-        except (SeanimeError, HttpError) as exc:
-            print(f"error: {exc}", file=sys.stderr)
-            return EXIT_ERROR
-        new_items = [t for k, t in extra.items() if k not in found]
-        if new_items:
-            candidates += build_candidates(client, new_items, total,
-                                           max_probes=args.max_batch_probes, verbose=args.verbose,
-                                           hints=hints)
-        plan = pick.choose(candidates, total, wanted=wanted)
-
-    if plan is None:
-        missing = pick.missing_episodes(candidates, total, wanted=wanted)
-        if missing:
-            print(f"Skip     : no HEVC/AV1 release covers episode(s) {missing}; nothing downloaded")
-        else:
-            print("Skip     : no HEVC/AV1 release found; nothing downloaded")
-        return EXIT_SKIP
-
-    # A batch may contain episodes that are already on disk; only queue the
-    # ones we actually set out to fetch.
-    episodes = sorted(set(plan.episodes) & wanted)
-    print_plan(plan, destination, wanted=wanted)
+    result = build_plan(clients, media, entry, args, total=total, wanted=wanted, query=query)
+    if result.code != EXIT_OK:
+        return result.code
+    print_plan(result.plan, result.destination, wanted=result.wanted)
 
     if args.dry_run:
         print("Dry run  : no torrent added, AniList untouched")
         return EXIT_OK
 
     status = ((entry or {}).get("listData") or {}).get("status")
-    actions = [f"download {len(plan.torrents)} torrent(s)"]
+    actions = [f"download {len(result.plan.torrents)} torrent(s)"]
     if not args.no_planning and not status:
         actions.append("add to AniList Planning")
     if not args.yes and not confirm(f"Confirm  : {' and '.join(actions)}?"):
         print("Cancelled: nothing downloaded, AniList untouched")
         return EXIT_SKIP
 
-    try:
-        destination.mkdir(parents=True, exist_ok=True)
-    except OSError as exc:
-        print(f"error: cannot create destination folder {destination}: {exc}", file=sys.stderr)
-        return EXIT_ERROR
-    try:
-        client.download([c.torrent for c in plan.torrents], str(destination), media, episodes)
-    except (SeanimeError, HttpError) as exc:
-        print(f"error: {exc}", file=sys.stderr)
-        return EXIT_ERROR
-    print(f"Download : queued {len(plan.torrents)} torrent(s) to {destination}")
-
-    if not args.no_planning:
-        try:
-            ensure_planning(client, media, entry, dry_run=False)
-        except (SeanimeError, HttpError) as exc:
-            print(f"warning: download queued but AniList update failed: {exc}", file=sys.stderr)
-            return EXIT_ERROR
-    return EXIT_OK
+    return commit_plan(client, result, args)
 
 
 if __name__ == "__main__":  # pragma: no cover

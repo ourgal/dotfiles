@@ -518,3 +518,232 @@ def test_finished_series_searches_batch(monkeypatch, tmp_path) -> None:
 
     assert code == cli.EXIT_OK
     assert any(c["batch"] is True for c in instances[0].search_calls)
+
+
+# ----------------------------------------------------------------- batch / --all
+SERIES_A = {
+    "id": 11,
+    "status": "RELEASING",
+    "format": "TV",
+    "title": {"romaji": "Show"},
+    "synonyms": [],
+    "nextAiringEpisode": {"episode": 5},  # four episodes aired
+}
+SERIES_B = {
+    "id": 12,
+    "status": "RELEASING",
+    "format": "TV",
+    "title": {"romaji": "Show"},
+    "synonyms": [],
+    "nextAiringEpisode": {"episode": 6},  # five episodes aired
+}
+
+ENTRY_A = {
+    "mediaId": 11,
+    "media": SERIES_A,
+    "listData": {"status": "CURRENT", "progress": 2},
+    "libraryData": {"mainFileCount": 6, "unwatchedCount": 4},
+}
+ENTRY_B = {
+    "mediaId": 12,
+    "media": SERIES_B,
+    "listData": {"status": "CURRENT", "progress": "3"},
+    "libraryData": {"mainFileCount": 5, "unwatchedCount": 2},
+}
+BATCH_COLLECTION = {
+    "lists": [
+        {"status": "CURRENT", "entries": [ENTRY_A, ENTRY_B, dict(ENTRY_A)]},
+        {"status": "PLANNING", "entries": [
+            {"mediaId": 13, "media": SERIES_A, "listData": {"progress": 0}},
+        ]},
+        {"status": "COMPLETED", "entries": [
+            {"mediaId": 14, "media": dict(SERIES_A, status="FINISHED"),
+             "listData": {"progress": 0}},
+        ]},
+    ],
+}
+
+
+class BatchFakeSeanime(FakeSeanime):
+    """FakeSeanime with a synced collection and an optional download failure."""
+
+    collection_data: dict = {"lists": []}
+    fail_download = False
+
+    def collection(self):
+        self.collection_calls = getattr(self, "collection_calls", 0) + 1
+        return self.collection_data
+
+    def download(self, torrents, destination, media, episodes):
+        if self.fail_download and media["id"] == 11:
+            raise cli.SeanimeError("download failed")
+        super().download(torrents, destination, media, episodes)
+
+
+def _batch_fake_client(monkeypatch, *, collection=None, confirm_answer=True,
+                       fail_download=False):
+    instances: list = []
+    confirms: list = []
+
+    def factory(*args, **kwargs):
+        client = BatchFakeSeanime(*args, **kwargs)
+        client.collection_data = BATCH_COLLECTION if collection is None else collection
+        client.fail_download = fail_download
+        instances.append(client)
+        return client
+
+    factory.find_entry = cli.Seanime.find_entry
+    monkeypatch.setattr(cli, "Seanime", factory)
+    monkeypatch.setattr(cli, "confirm", lambda question: confirms.append(question) or confirm_answer)
+    return instances, confirms
+
+
+def test_select_watching_releasing_filters_and_dedups() -> None:
+    selected = cli.select_watching_releasing(BATCH_COLLECTION)
+    assert [entry["mediaId"] for entry in selected] == [11, 12]
+    assert cli.select_watching_releasing({}) == []
+    assert cli.select_watching_releasing({"lists": None}) == []
+
+
+def test_batch_targets_uses_progress() -> None:
+    assert cli.batch_targets(ENTRY_A) == (4, {3, 4})
+    assert cli.batch_targets(ENTRY_B) == (5, {4, 5})  # string progress "3"
+
+
+@pytest.mark.parametrize("progress", [None, 0, "0", "bad", -2])
+def test_batch_targets_progress_falls_back_to_one(progress) -> None:
+    entry = {"media": SERIES_A, "listData": {"progress": progress}}
+    assert cli.batch_targets(entry) == (4, {1, 2, 3, 4})
+
+
+@pytest.mark.parametrize("progress", [4, 9])
+def test_batch_targets_watched_through_aired_is_empty(progress) -> None:
+    assert cli.batch_targets({"media": SERIES_A, "listData": {"progress": progress}}) is None
+
+
+def test_batch_targets_without_airing_data() -> None:
+    assert cli.batch_targets({"media": {"status": "RELEASING", "title": {}}}) is None
+
+
+def test_batch_targets_episodes_cap() -> None:
+    assert cli.batch_targets(ENTRY_A, episodes_override=3) == (4, {3})
+
+
+def test_build_parser_all_flag() -> None:
+    args = cli.build_parser().parse_args(["--all", "--yes"])
+    assert args.all and args.yes
+    assert not cli.build_parser().parse_args([]).all
+
+
+def test_batch_all_queues_only_unwatched_episodes(monkeypatch, tmp_path) -> None:
+    instances, confirms = _batch_fake_client(monkeypatch)
+
+    code = cli.main(["--all", "--lib", str(tmp_path), "--yes"])
+
+    assert code == cli.EXIT_OK
+    assert confirms == []  # --yes skips the prompt
+    client = instances[0]
+    assert client.collection_calls == 1
+    assert [download[3] for download in client.downloads] == [[3, 4], [4, 5]]
+    assert client.planning == []  # already on the Watching list
+    assert not any(call["batch"] is True for call in client.search_calls)
+    assert {call["episode"] for call in client.search_calls} == {3, 4, 5}
+
+
+def test_batch_all_confirms_once(monkeypatch, tmp_path) -> None:
+    instances, confirms = _batch_fake_client(monkeypatch)
+
+    code = cli.main(["--all", "--lib", str(tmp_path)])
+
+    assert code == cli.EXIT_OK
+    assert len(confirms) == 1
+    assert "2 series" in confirms[0]
+    assert len(instances[0].downloads) == 2
+
+
+def test_batch_all_dry_run(monkeypatch, tmp_path) -> None:
+    instances, confirms = _batch_fake_client(monkeypatch)
+
+    code = cli.main(["--all", "--lib", str(tmp_path), "--yes", "--dry-run"])
+
+    assert code == cli.EXIT_OK
+    assert instances[0].downloads == []
+    assert confirms == []
+    assert not (tmp_path / "Show").exists()
+
+
+def test_batch_all_all_up_to_date(monkeypatch, tmp_path) -> None:
+    collection = {"lists": [{"status": "CURRENT", "entries": [
+        {"mediaId": 11, "media": SERIES_A, "listData": {"progress": 4}},
+        {"mediaId": 12, "media": SERIES_B, "listData": {"progress": 5}},
+    ]}]}
+    instances, _ = _batch_fake_client(monkeypatch, collection=collection)
+
+    code = cli.main(["--all", "--lib", str(tmp_path), "--yes"])
+
+    assert code == cli.EXIT_SKIP
+    assert instances[0].downloads == []
+    assert instances[0].search_calls == []
+
+
+def test_batch_all_empty_selection_skips(monkeypatch, tmp_path) -> None:
+    instances, _ = _batch_fake_client(monkeypatch, collection={"lists": []})
+
+    assert cli.main(["--all", "--lib", str(tmp_path), "--yes"]) == cli.EXIT_SKIP
+    assert instances[0].downloads == []
+
+
+def test_batch_all_mixed_skip_and_ok(monkeypatch, tmp_path) -> None:
+    collection = {"lists": [{"status": "CURRENT", "entries": [
+        {"mediaId": 11, "media": SERIES_A, "listData": {"progress": 4}},
+        ENTRY_B,
+    ]}]}
+    instances, _ = _batch_fake_client(monkeypatch, collection=collection)
+
+    code = cli.main(["--all", "--lib", str(tmp_path), "--yes"])
+
+    assert code == cli.EXIT_OK
+    assert [download[3] for download in instances[0].downloads] == [[4, 5]]
+
+
+def test_batch_all_download_error(monkeypatch, tmp_path) -> None:
+    instances, _ = _batch_fake_client(monkeypatch, fail_download=True)
+
+    code = cli.main(["--all", "--lib", str(tmp_path), "--yes"])
+
+    assert code == cli.EXIT_ERROR
+    assert len(instances[0].downloads) == 1  # the other series still queued
+
+
+def test_batch_all_confirm_declined(monkeypatch, tmp_path) -> None:
+    instances, confirms = _batch_fake_client(monkeypatch, confirm_answer=False)
+
+    code = cli.main(["--all", "--lib", str(tmp_path)])
+
+    assert code == cli.EXIT_SKIP
+    assert len(confirms) == 1
+    assert instances[0].downloads == []
+
+
+def test_batch_all_multiple_providers_uses_first_client(monkeypatch, tmp_path) -> None:
+    instances, _ = _batch_fake_client(monkeypatch)
+
+    code = cli.main(["--all", "--lib", str(tmp_path), "--yes", "--provider", "a,b"])
+
+    assert code == cli.EXIT_OK
+    assert len(instances) == 2
+    assert instances[0].collection_calls == 1
+    assert getattr(instances[1], "collection_calls", 0) == 0
+    assert len(instances[0].downloads) == 2
+    assert instances[1].downloads == []
+
+
+def test_batch_all_episodes_cap(monkeypatch, tmp_path) -> None:
+    instances, _ = _batch_fake_client(monkeypatch)
+
+    code = cli.main(["--all", "--lib", str(tmp_path), "--yes", "--episodes", "3"])
+
+    # Series A (progress 2) still wants episode 3; series B (progress 3) is
+    # capped at 3 and has nothing left to fetch.
+    assert code == cli.EXIT_OK
+    assert [download[3] for download in instances[0].downloads] == [[3]]
