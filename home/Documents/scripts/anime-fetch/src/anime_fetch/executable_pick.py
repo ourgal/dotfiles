@@ -22,7 +22,7 @@ _RES_BAD = re.compile(r"(?i)(?<![0-9])(?:480p|576p|720p|2160p|4k)(?![0-9])")
 
 _EP_PATTERNS = (
     re.compile(r"[Ss]\d{1,2}[Ee](\d{1,3})(?:v\d)?"),
-    re.compile(r"(?i)(?:^|[^a-z0-9])(?:ep?|episode)\s?(\d{1,3})(?:v\d)?(?![0-9])"),
+    re.compile(r"(?i)(?:^|[^a-z0-9])(?:ep?|episode)\s?(\d{1,3})(?:v\d)?(?![a-z0-9])"),
     re.compile(r"\s-\s(\d{1,3})(?:v\d)?(?![0-9])"),
     re.compile(r"[\[\(]\s*(\d{1,3})(?:v\d)?\s*[\]\)]"),
 )

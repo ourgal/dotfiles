@@ -76,6 +76,13 @@ def safe_folder(name: str) -> str:
     return cleaned or "Untitled"
 
 
+def series_destination(media: dict[str, Any], lib_root: str, query: str = "") -> Path:
+    """The library folder a series is downloaded into."""
+    names = media.get("title") or {}
+    romaji = names.get("romaji") or names.get("english") or query or "Show"
+    return Path(lib_root) / safe_folder(romaji)
+
+
 def count_videos(folder: Path) -> int:
     if not folder.is_dir():
         return 0
@@ -113,6 +120,17 @@ def episode_files(folder: Path, *, titles: list[str] | None = None) -> set[int]:
             if number is not None:
                 found.add(number)
     return found
+
+
+def library_episodes(
+    destination: Path, entry: dict[str, Any] | None, titles: list[str]
+) -> set[int]:
+    """Episodes on disk for one series, from its folder and Seanime's shared path."""
+    existing = episode_files(destination)
+    shared = ((entry or {}).get("libraryData") or {}).get("sharedPath")
+    if isinstance(shared, str) and shared:
+        existing |= episode_files(Path(shared), titles=titles)
+    return existing
 
 
 def titles_of(media: dict[str, Any]) -> list[str]:
@@ -435,9 +453,7 @@ def build_plan(
     ``total`` is the upper bound used when inspecting batch files and ``query``
     is an extra search term (the user's title in single-title mode).
     """
-    names = media.get("title") or {}
-    romaji = names.get("romaji") or names.get("english") or query or "Show"
-    destination = Path(args.lib) / safe_folder(romaji)
+    destination = series_destination(media, args.lib, query)
     ongoing = (media.get("status") or "") in ONGOING_STATUSES
     titles = titles_of(media)[:3] or ([query] if query else [romaji])
 
@@ -613,17 +629,31 @@ def run_all(args: argparse.Namespace, clients: list[Seanime]) -> int:
         title = (names.get("romaji") or names.get("english")
                  or names.get("userPreferred")
                  or f"id {entry.get('mediaId') or media.get('id')}")
+        titles = titles_of(media)[:3] or [title]
+        destination = series_destination(media, args.lib)
         targets = batch_targets(entry, episodes_override=args.episodes)
         if targets is None:
             message = "skip     : no aired/unwatched episodes"
             print(f"  [{index}/{len(entries)}] {title}: {message}")
-            results.append(PlanResult(media, entry, None, Path(args.lib), set(), [],
+            results.append(PlanResult(media, entry, None, destination, set(), [],
                                       EXIT_SKIP, message))
             continue
         total, wanted = targets
+        unwatched = set(wanted)
+        wanted -= {number for number in library_episodes(destination, entry, titles)
+                   if number <= total}
+        if not wanted:
+            message = (f"skip     : all {len(unwatched)} unwatched episode(s) "
+                       "are already on disk")
+            print(f"  [{index}/{len(entries)}] {title}: {message}")
+            results.append(PlanResult(media, entry, None, destination, set(), [],
+                                      EXIT_SKIP, message))
+            continue
         span = f"{min(wanted)}-{max(wanted)}" if len(wanted) > 1 else str(min(wanted))
+        on_disk = len(unwatched) - len(wanted)
+        note = f", {on_disk} already on disk" if on_disk else ""
         print(f"  [{index}/{len(entries)}] {title}: {len(wanted)} episode(s) "
-              f"after progress ({span})")
+              f"after progress ({span}){note}")
         results.append(build_plan(clients, media, entry, args, total=total, wanted=wanted,
                                   echo=False))
 
@@ -761,10 +791,7 @@ def main(argv: list[str] | None = None) -> int:
     wanted = set(range(1, total + 1))
     if not args.ignore_library and (main_files > 0 or on_disk > 0):
         if ongoing:
-            existing = episode_files(destination)
-            shared = ((entry or {}).get("libraryData") or {}).get("sharedPath")
-            if isinstance(shared, str) and shared:
-                existing |= episode_files(Path(shared), titles=titles)
+            existing = library_episodes(destination, entry, titles)
             if existing:
                 wanted -= {number for number in existing if number <= total}
                 print(f"Library  : {len(existing)} episode(s) on disk, "

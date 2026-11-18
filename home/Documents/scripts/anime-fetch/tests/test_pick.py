@@ -54,6 +54,8 @@ def test_acceptable_release(name: str, expected: bool) -> None:
         ("[Group] Show [12][HEVC 1080p]", 12),
         ("Show - 04v2 [HEVC]", 4),
         ("pack/dir/Show - 9 [HEVC].mkv", 9),
+        # a hash like [E733B800] must not be read as episode 733
+        ("[ASW] Show - 07 [1080p HEVC][E733B800].mkv", 7),
         # "(1080p)" alone must not be read as an episode
         ("[Judas] Show Complete Batch (HEVC 1080p)", None),
         # a 4-digit number is never an episode

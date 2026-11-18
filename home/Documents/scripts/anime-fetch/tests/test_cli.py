@@ -747,3 +747,47 @@ def test_batch_all_episodes_cap(monkeypatch, tmp_path) -> None:
     # capped at 3 and has nothing left to fetch.
     assert code == cli.EXIT_OK
     assert [download[3] for download in instances[0].downloads] == [[3]]
+
+
+def test_library_episodes_filters_shared_path_by_title(tmp_path) -> None:
+    shared = tmp_path / "Library"
+    _write_episodes(shared, [1, 2])
+    (shared / "[B] Totally Different - 09 [HEVC].mkv").write_bytes(b"x")
+    entry = {"libraryData": {"sharedPath": str(shared)}}
+    assert cli.library_episodes(tmp_path / "empty", entry, ["Show"]) == {1, 2}
+
+
+def test_batch_all_skips_unwatched_episodes_already_on_disk(monkeypatch, tmp_path) -> None:
+    instances, _ = _batch_fake_client(monkeypatch)
+    _write_episodes(tmp_path / "Show", [3, 4, 5, 6, 7])
+
+    code = cli.main(["--all", "--lib", str(tmp_path), "--yes"])
+
+    assert code == cli.EXIT_SKIP
+    assert instances[0].downloads == []
+    assert instances[0].search_calls == []
+
+
+def test_batch_all_queues_only_missing_unwatched_episodes(monkeypatch, tmp_path) -> None:
+    instances, _ = _batch_fake_client(monkeypatch)
+    _write_episodes(tmp_path / "Show", [3])
+
+    code = cli.main(["--all", "--lib", str(tmp_path), "--yes"])
+
+    assert code == cli.EXIT_OK
+    assert [download[3] for download in instances[0].downloads] == [[4], [4, 5]]
+
+
+def test_batch_all_uses_shared_path_to_skip_disk_episodes(monkeypatch, tmp_path) -> None:
+    shared = tmp_path / "SharedLib"
+    _write_episodes(shared, [3, 4, 5, 6, 7])
+    collection = {"lists": [{"status": "CURRENT", "entries": [
+        dict(ENTRY_A, libraryData={"sharedPath": str(shared)}),
+        dict(ENTRY_B, libraryData={"sharedPath": str(shared)}),
+    ]}]}
+    instances, _ = _batch_fake_client(monkeypatch, collection=collection)
+
+    code = cli.main(["--all", "--lib", str(tmp_path / "other"), "--yes"])
+
+    assert code == cli.EXIT_SKIP
+    assert instances[0].downloads == []
