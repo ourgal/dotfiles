@@ -1,5 +1,5 @@
 ---
-hermes_agent_enabled: true
+hermes_agent_enabled: false
 # Installed for this user, never system-wide: the source installer puts the
 # checkout, tool store and launcher inside the user's own home.
 hermes_agent_user: "{{ ansible_facts.user_id }}"
