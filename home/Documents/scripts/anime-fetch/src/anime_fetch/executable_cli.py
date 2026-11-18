@@ -38,6 +38,7 @@ import shutil
 import subprocess
 import sys
 import urllib.parse
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -307,38 +308,52 @@ def gather(
     found: dict[str, dict[str, Any]],
     hints: dict[str, int] | None = None,
     verbose: bool = False,
+    retries: int = 1,
 ) -> None:
-    calls = 0
+    pairs = [(client, query) for client in clients for query in queries]
     failures = 0
-    for client in clients:
-        for query in queries:
-            calls += 1
-            try:
-                results = client.search_torrents(media, query, batch=batch, episode=episode)
-            except (SeanimeError, HttpError) as exc:
-                # One provider/query can fail (e.g. feed_unavailable) without
-                # invalidating the others; skip it instead of aborting the run.
-                failures += 1
-                if verbose:
-                    print(f"  ! search failed for {query!r}: {exc}", file=sys.stderr)
+
+    def search(client: Seanime, query: str):
+        try:
+            return client.search_torrents(
+                media, query, batch=batch, episode=episode, retries=retries
+            ), None
+        except (SeanimeError, HttpError) as exc:
+            return [], exc
+
+    # Each query is an independent HTTP call; run them concurrently so one
+    # slow or unavailable feed does not serialise the whole batch.
+    if len(pairs) == 1:
+        outcomes = [search(*pairs[0])]
+    else:
+        with ThreadPoolExecutor(max_workers=min(8, len(pairs))) as pool:
+            outcomes = list(pool.map(lambda pair: search(*pair), pairs))
+
+    for (_client, query), (results, exc) in zip(pairs, outcomes):
+        if exc is not None:
+            # One provider/query can fail (e.g. feed_unavailable) without
+            # invalidating the others; skip it instead of aborting the run.
+            failures += 1
+            if verbose:
+                print(f"  ! search failed for {query!r}: {exc}", file=sys.stderr)
+            continue
+        for torrent in results:
+            name = torrent.get("name") or ""
+            if not pick.acceptable_release(name):
                 continue
-            for torrent in results:
-                name = torrent.get("name") or ""
-                if not pick.acceptable_release(name):
-                    continue
-                if not pick.mentions_title(name, titles):
-                    continue
-                if not pick.matches_season(name, hint):
-                    continue
-                key = (torrent.get("infoHash") or name).lower()
-                found.setdefault(key, torrent)
-                if hints is not None and episode is not None:
-                    # Seanime has already mapped the entry's local episode to the
-                    # release's absolute number (cour sequels continue S01E14...).
-                    # Remember it so build_candidates does not re-derive the number
-                    # from the filename and throw the result away.
-                    hints.setdefault(key, episode)
-    if calls and failures == calls:
+            if not pick.mentions_title(name, titles):
+                continue
+            if not pick.matches_season(name, hint):
+                continue
+            key = (torrent.get("infoHash") or name).lower()
+            found.setdefault(key, torrent)
+            if hints is not None and episode is not None:
+                # Seanime has already mapped the entry's local episode to the
+                # release's absolute number (cour sequels continue S01E14...).
+                # Remember it so build_candidates does not re-derive the number
+                # from the filename and throw the result away.
+                hints.setdefault(key, episode)
+    if pairs and failures == len(pairs):
         raise SeanimeError("all torrent searches failed")
 
 
@@ -652,7 +667,8 @@ def run_all(args: argparse.Namespace, clients: list[Seanime]) -> int:
         return EXIT_SKIP
     print(f"Batch    : {len(entries)} Watching + Releasing series")
 
-    results: list[PlanResult] = []
+    results_by_index: dict[int, PlanResult] = {}
+    pending: list[tuple[int, dict[str, Any], dict[str, Any], int, set[int]]] = []
     for index, entry in enumerate(entries, 1):
         media = entry.get("media") or {}
         names = media.get("title") or {}
@@ -666,8 +682,8 @@ def run_all(args: argparse.Namespace, clients: list[Seanime]) -> int:
         if targets is None:
             message = "skip     : no aired/unwatched episodes"
             print(f"  [{index}/{len(entries)}] {title}: {message}")
-            results.append(PlanResult(media, entry, None, destination, set(), [],
-                                      EXIT_SKIP, message))
+            results_by_index[index] = PlanResult(media, entry, None, destination, set(), [],
+                                                 EXIT_SKIP, message)
             continue
         total, wanted = targets
         unwatched = set(wanted)
@@ -677,17 +693,33 @@ def run_all(args: argparse.Namespace, clients: list[Seanime]) -> int:
             message = (f"skip     : all {len(unwatched)} unwatched episode(s) "
                        "are already on disk")
             print(f"  [{index}/{len(entries)}] {title}: {message}")
-            results.append(PlanResult(media, entry, None, destination, set(), [],
-                                      EXIT_SKIP, message))
+            results_by_index[index] = PlanResult(media, entry, None, destination, set(), [],
+                                                 EXIT_SKIP, message)
             continue
         span = f"{min(wanted)}-{max(wanted)}" if len(wanted) > 1 else str(min(wanted))
         on_disk = len(unwatched) - len(wanted)
         note = f", {on_disk} already on disk" if on_disk else ""
         print(f"  [{index}/{len(entries)}] {title}: {len(wanted)} episode(s) "
               f"after progress ({span}){note}")
-        results.append(build_plan(clients, media, entry, args, total=total, wanted=wanted,
-                                  echo=False))
+        pending.append((index, entry, media, total, wanted))
 
+    # What is left is all HTTP torrent searching. Run series concurrently so
+    # slow/unavailable feeds do not add up; the cap avoids hammering Seanime.
+    if pending:
+        def build(item):
+            index, entry, media, total, wanted = item
+            return index, build_plan(clients, media, entry, args, total=total,
+                                     wanted=wanted, echo=False)
+
+        if len(pending) == 1:
+            built = [build(pending[0])]
+        else:
+            with ThreadPoolExecutor(max_workers=min(4, len(pending))) as pool:
+                built = list(pool.map(build, pending))
+        for index, result in built:
+            results_by_index[index] = result
+
+    results = [results_by_index[i] for i in range(1, len(entries) + 1)]
     queued = [r for r in results if r.code == EXIT_OK and r.plan is not None]
     failed_plans = [r for r in results if r.code == EXIT_ERROR]
     skipped = [r for r in results if r.code == EXIT_SKIP]

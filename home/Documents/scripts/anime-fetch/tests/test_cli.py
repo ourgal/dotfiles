@@ -292,6 +292,24 @@ def test_gather_records_requested_episode() -> None:
     assert list(hints.values()) == [1]
 
 
+def test_gather_passes_low_retries_and_keeps_working_queries() -> None:
+    calls: list = []
+
+    class FakeClient:
+        def search_torrents(self, media, query, *, batch=None, episode=None, **kwargs):
+            calls.append((query, kwargs.get("retries")))
+            if query == "bad":
+                raise cli.SeanimeError("feed_unavailable")
+            return [{"name": "[ASW] Show - 01 [HEVC 1080p]", "seeders": 1, "size": 1}]
+
+    found: dict = {}
+    cli.gather([FakeClient()], {"id": 1}, ["bad", "good"], batch=False, episode=1,
+               titles=["Show"], hint=None, found=found)
+
+    assert calls == [("bad", 1), ("good", 1)]
+    assert len(found) == 1
+
+
 def test_gather_skips_failed_query() -> None:
     class FlakyClient:
         def search_torrents(self, media, query, *, batch=None, episode=None, **kwargs):

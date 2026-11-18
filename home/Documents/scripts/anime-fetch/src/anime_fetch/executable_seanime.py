@@ -77,7 +77,7 @@ class Seanime:
         batch: bool | None = None,
         episode: int | None = None,
         resolution: str = "1080p",
-        retries: int = 3,
+        retries: int = 1,
     ) -> list[dict[str, Any]]:
         body: dict[str, Any] = {
             "type": "smart",
