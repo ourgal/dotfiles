@@ -9,6 +9,12 @@ Standard workflow (matches the user's rules):
   5. if any episode has no acceptable release, download nothing;
   6. otherwise add the torrents and put the title on the AniList Planning list.
 
+Releasing series have no final AniList episode count. When AniList marks the
+title as ongoing, the aired count is taken from nextAiringEpisode.episode - 1
+(or from --episodes N) and used as the target. On a re-run, only the episodes
+still missing from the library folder are downloaded, so new episodes can be
+picked up without re-fetching the ones already on disk.
+
 With no title argument the query is read from the system clipboard. The match
 and the selected releases are printed first; nothing is downloaded or added to
 AniList until the user confirms.
@@ -31,6 +37,9 @@ from .net import HttpError
 from .seanime import DEFAULT_BASE, DEFAULT_PROVIDER, Seanime, SeanimeError
 
 DEFAULT_LIB = "C:/Users/User/Videos/Seanime"
+
+# AniList statuses that still have episodes left to air.
+ONGOING_STATUSES = {"RELEASING", "NOT_YET_RELEASED", "HIATUS"}
 
 EXIT_OK = 0
 EXIT_ERROR = 1
@@ -65,6 +74,36 @@ def count_videos(folder: Path) -> int:
     for root, _dirs, files in os.walk(folder):
         total += sum(1 for f in files if Path(f).suffix.lower() in pick.VIDEO_EXTS)
     return total
+
+
+def aired_episode_count(media: dict[str, Any]) -> int | None:
+    """Episodes already aired, from AniList's nextAiringEpisode (the next one)."""
+    nxt = media.get("nextAiringEpisode") or {}
+    episode = nxt.get("episode") if isinstance(nxt, dict) else None
+    if isinstance(episode, int) and episode > 1:
+        return episode - 1
+    return None
+
+
+def episode_files(folder: Path, *, titles: list[str] | None = None) -> set[int]:
+    """Episode numbers of the video files present in a library folder.
+
+    ``titles`` can restrict the scan to one series, which matters when Seanime
+    reports a shared library root rather than a per-title folder.
+    """
+    found: set[int] = set()
+    if not folder.is_dir():
+        return found
+    for _root, _dirs, files in os.walk(folder):
+        for name in files:
+            if Path(name).suffix.lower() not in pick.VIDEO_EXTS:
+                continue
+            if titles and not pick.mentions_title(name, titles):
+                continue
+            number = pick.episode_of(name)
+            if number is not None:
+                found.add(number)
+    return found
 
 
 def titles_of(media: dict[str, Any]) -> list[str]:
@@ -276,15 +315,17 @@ def build_candidates(
 
 
 # ------------------------------------------------------------------------ reporting
-def print_plan(plan: pick.Plan, total: int, destination: Path) -> None:
-    episodes = plan.episodes
-    print(f"Selected : {plan.strategy} ({len(plan.torrents)} torrent(s), {len(episodes)}/{total} episodes)")
+def print_plan(plan: pick.Plan, destination: Path, *, wanted: set[int]) -> None:
+    episodes = sorted(set(plan.episodes) & wanted)
+    print(
+        f"Selected : {plan.strategy} ({len(plan.torrents)} torrent(s), "
+        f"{len(episodes)}/{len(wanted)} episodes)"
+    )
     for cand in plan.torrents:
+        covered = sorted(cand.episodes & wanted)
+        shows = covered if len(covered) <= 12 else f"{min(covered)}-{max(covered)}"
         print(f"  [{cand.group}] {cand.torrent.get('name')}")
-        print(
-            f"      {human_size(cand.size)}, {cand.seeders} seeds, "
-            f"episodes {sorted(cand.episodes) if len(cand.episodes) <= 12 else f'{min(cand.episodes)}-{max(cand.episodes)}'}"
-        )
+        print(f"      {human_size(cand.size)}, {cand.seeders} seeds, episodes {shows}")
     print(f"Destination: {destination}")
     print(f"Total size : {human_size(plan.size)}")
 
@@ -323,6 +364,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--lib", default=DEFAULT_LIB, help=f"library root (default {DEFAULT_LIB})")
     parser.add_argument("--base", default=DEFAULT_BASE, help=f"Seanime base URL (default {DEFAULT_BASE})")
     parser.add_argument("--pick", type=int, metavar="N", help="pick the Nth AniList search result")
+    parser.add_argument("--episodes", type=int, metavar="N",
+                        help="target episode count (default: all episodes for a finished series, "
+                             "or the aired count for a releasing one)")
     parser.add_argument("--dry-run", action="store_true", help="search and select, but do not download")
     parser.add_argument("-y", "--yes", action="store_true",
                         help="download without asking for confirmation")
@@ -368,10 +412,22 @@ def main(argv: list[str] | None = None) -> int:
         return EXIT_ERROR
 
     romaji = (media.get("title") or {}).get("romaji") or (media.get("title") or {}).get("english") or query
-    total = media.get("episodes")
-    print(f"AniList  : {romaji} ({describe_media(media)}, {total or '?'} episodes)")
+    ongoing = (media.get("status") or "") in ONGOING_STATUSES
+    if args.episodes is not None:
+        total = args.episodes
+    elif ongoing:
+        total = aired_episode_count(media)
+    else:
+        total = media.get("episodes")
+
+    aired_note = " (aired so far)" if ongoing else ""
+    print(f"AniList  : {romaji} ({describe_media(media)}, {total or '?'} episodes{aired_note})")
     if not isinstance(total, int) or total <= 0:
-        print("error: episode count is unknown, cannot verify coverage", file=sys.stderr)
+        if ongoing:
+            print("error: AniList does not report an aired episode count; pass --episodes N",
+                  file=sys.stderr)
+        else:
+            print("error: episode count is unknown, cannot verify coverage", file=sys.stderr)
         return EXIT_ERROR
 
     destination = Path(args.lib) / safe_folder(romaji)
@@ -387,15 +443,43 @@ def main(argv: list[str] | None = None) -> int:
 
     main_files = int(((entry or {}).get("libraryData") or {}).get("mainFileCount") or 0)
     on_disk = count_videos(destination)
-    if not args.ignore_library and (main_files > 0 or on_disk > 0):
-        where = destination if on_disk else "library entry"
-        print(f"Library  : already downloaded ({max(main_files, on_disk)} video files, {where})")
-        print("Nothing to do.")
-        if not args.no_planning:
-            ensure_planning(client, media, entry, dry_run=args.dry_run)
-        return EXIT_OK
-
     titles = titles_of(media)[:3] or [query]
+
+    # A finished series is all-or-nothing: any files mean it is already done.
+    # An ongoing series is incremental: only fetch episodes still missing from
+    # the library folder, so newly aired episodes can be picked up on a re-run.
+    wanted = set(range(1, total + 1))
+    if not args.ignore_library and (main_files > 0 or on_disk > 0):
+        if ongoing:
+            existing = episode_files(destination)
+            shared = ((entry or {}).get("libraryData") or {}).get("sharedPath")
+            if isinstance(shared, str) and shared:
+                existing |= episode_files(Path(shared), titles=titles)
+            if existing:
+                wanted -= {number for number in existing if number <= total}
+                print(f"Library  : {len(existing)} episode(s) on disk, "
+                      f"{len(wanted)} aired episode(s) missing")
+                if not wanted:
+                    print("Nothing to do: all aired episodes are already in the library")
+                    if not args.no_planning:
+                        ensure_planning(client, media, entry, dry_run=args.dry_run)
+                    return EXIT_OK
+            else:
+                where = destination if on_disk else "library entry"
+                print(f"Library  : already downloaded ({max(main_files, on_disk)} video files, {where})")
+                print("Nothing to do: cannot tell which episodes are present; "
+                      "use --ignore-library to search anyway")
+                if not args.no_planning:
+                    ensure_planning(client, media, entry, dry_run=args.dry_run)
+                return EXIT_OK
+        else:
+            where = destination if on_disk else "library entry"
+            print(f"Library  : already downloaded ({max(main_files, on_disk)} video files, {where})")
+            print("Nothing to do.")
+            if not args.no_planning:
+                ensure_planning(client, media, entry, dry_run=args.dry_run)
+            return EXIT_OK
+
     hint = pick.season_hint(titles[0]) if titles else None
     quoted = [t for t in (titles + [query]) if t and len(t) > 2]
     queries = list(dict.fromkeys(quoted))[:4]
@@ -415,10 +499,10 @@ def main(argv: list[str] | None = None) -> int:
     candidates = build_candidates(client, list(found.values()), total,
                                   max_probes=args.max_batch_probes, verbose=args.verbose)
 
-    plan = pick.choose(candidates, total)
-    if plan is None and total > 1:
-        # Batch search was incomplete: look for one release per episode.
-        missing = pick.missing_episodes(candidates, total)
+    plan = pick.choose(candidates, total, wanted=wanted)
+    if plan is None:
+        # Batch search was incomplete: look for one release per missing episode.
+        missing = pick.missing_episodes(candidates, total, wanted=wanted)
         if missing:
             print(f"Search   : per-episode fallback for {len(missing)} episode(s)")
         extra: dict[str, dict[str, Any]] = {}
@@ -433,17 +517,20 @@ def main(argv: list[str] | None = None) -> int:
         if new_items:
             candidates += build_candidates(client, new_items, total,
                                            max_probes=args.max_batch_probes, verbose=args.verbose)
-        plan = pick.choose(candidates, total)
+        plan = pick.choose(candidates, total, wanted=wanted)
 
     if plan is None:
-        missing = pick.missing_episodes(candidates, total)
+        missing = pick.missing_episodes(candidates, total, wanted=wanted)
         if missing:
             print(f"Skip     : no HEVC/AV1 release covers episode(s) {missing}; nothing downloaded")
         else:
             print("Skip     : no HEVC/AV1 release found; nothing downloaded")
         return EXIT_SKIP
 
-    print_plan(plan, total, destination)
+    # A batch may contain episodes that are already on disk; only queue the
+    # ones we actually set out to fetch.
+    episodes = sorted(set(plan.episodes) & wanted)
+    print_plan(plan, destination, wanted=wanted)
 
     if args.dry_run:
         print("Dry run  : no torrent added, AniList untouched")
@@ -457,7 +544,6 @@ def main(argv: list[str] | None = None) -> int:
         print("Cancelled: nothing downloaded, AniList untouched")
         return EXIT_SKIP
 
-    episodes = sorted(set(plan.episodes))
     try:
         client.download([c.torrent for c in plan.torrents], str(destination), media, episodes)
     except (SeanimeError, HttpError) as exc:

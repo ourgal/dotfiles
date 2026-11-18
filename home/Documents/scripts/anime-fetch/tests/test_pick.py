@@ -244,3 +244,22 @@ def test_plan_properties() -> None:
 def test_missing_episodes() -> None:
     covered = [_candidate("Show - 01 (HEVC)", {1}), _candidate("Show - 03 (HEVC)", {3})]
     assert pick.missing_episodes(covered, total=4) == [2, 4]
+
+
+# ------------------------------------------------------- partial (releasing) sets
+def test_choose_covers_only_wanted_episodes() -> None:
+    old = _candidate("[DKB] Show 1-2 (HEVC)", {1, 2}, group="DKB")
+    new = _candidate("[ASW] Show 3-4 (HEVC)", {3, 4}, group="ASW")
+    plan = pick.choose([old, new], total=4, wanted={3, 4})
+    assert plan is not None
+    assert [c.group for c in plan.torrents] == ["ASW"]
+
+
+def test_choose_rejects_partial_wanted_coverage() -> None:
+    partial = _candidate("[DKB] Show 3-4 (HEVC)", {3, 4})
+    assert pick.choose([partial], total=5, wanted={3, 5}) is None
+
+
+def test_missing_episodes_respects_wanted() -> None:
+    covered = [_candidate("Show 1-2 (HEVC)", {1, 2})]
+    assert pick.missing_episodes(covered, total=4, wanted={2, 4}) == [4]

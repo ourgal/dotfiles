@@ -224,22 +224,23 @@ class Plan:
         return min((c.seeders for c in self.torrents), default=0)
 
 
-def choose(candidates: list[Candidate], total: int) -> Plan | None:
-    """Cover every episode 1..N, preferring better groups and no overlap.
+def choose(candidates: list[Candidate], total: int, *, wanted: set[int] | None = None) -> Plan | None:
+    """Cover every wanted episode, preferring better groups and no overlap.
 
-    A Judas-style batch wins because its tier sorts first; leftover episodes are
-    then filled from the next-best group. Torrents whose files would duplicate
-    already covered episodes are only used when nothing else is left.
+    By default the target is every episode 1..N. Callers that only need a subset
+    (an ongoing series whose earlier episodes are already on disk) can pass
+    ``wanted`` explicitly; ``total`` is still the upper bound used to discard
+    out-of-range files when the candidates were built.
     """
-    wanted = set(range(1, total + 1))
-    pool = [cand for cand in candidates if cand.episodes & wanted]
+    target = set(range(1, total + 1)) if wanted is None else set(wanted)
+    pool = [cand for cand in candidates if cand.episodes & target]
     if not pool:
         return None
-    for episode in wanted:
+    for episode in target:
         if not any(episode in cand.episodes for cand in pool):
             return None
 
-    remaining = set(wanted)
+    remaining = set(target)
     picked: list[Candidate] = []
     while remaining:
         best: Candidate | None = None
@@ -248,7 +249,7 @@ def choose(candidates: list[Candidate], total: int) -> Plan | None:
             fresh = cand.episodes & remaining
             if not fresh:
                 continue
-            overlap = len(cand.episodes & (wanted - remaining))
+            overlap = len(cand.episodes & (target - remaining))
             key = (cand.tier, 1 if overlap else 0, -len(fresh), -cand.seeders, -cand.size)
             if best_key is None or key < best_key:
                 best_key, best = key, cand
@@ -256,7 +257,7 @@ def choose(candidates: list[Candidate], total: int) -> Plan | None:
         picked.append(best)
         remaining -= best.episodes & remaining
 
-    if len(picked) == 1 and len(picked[0].episodes & wanted) == total:
+    if len(picked) == 1 and len(picked[0].episodes & target) == len(target):
         strategy = "single-batch"
     elif len({c.group.lower() for c in picked}) == 1:
         strategy = "group-set"
@@ -265,8 +266,11 @@ def choose(candidates: list[Candidate], total: int) -> Plan | None:
     return Plan(torrents=picked, strategy=strategy, group=picked[0].group)
 
 
-def missing_episodes(candidates: list[Candidate], total: int) -> list[int]:
+def missing_episodes(
+    candidates: list[Candidate], total: int, *, wanted: set[int] | None = None
+) -> list[int]:
     covered: set[int] = set()
     for cand in candidates:
         covered |= cand.episodes
-    return sorted(set(range(1, total + 1)) - covered)
+    target = set(range(1, total + 1)) if wanted is None else set(wanted)
+    return sorted(target - covered)

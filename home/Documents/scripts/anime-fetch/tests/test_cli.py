@@ -53,6 +53,39 @@ def test_count_videos(tmp_path) -> None:
     assert cli.count_videos(tmp_path / "missing") == 0
 
 
+def test_aired_episode_count() -> None:
+    assert cli.aired_episode_count({"nextAiringEpisode": {"episode": 1181}}) == 1180
+    assert cli.aired_episode_count({"nextAiringEpisode": {"episode": 2}}) == 1
+    assert cli.aired_episode_count({"nextAiringEpisode": {"episode": 1}}) is None
+    assert cli.aired_episode_count({"nextAiringEpisode": None}) is None
+    assert cli.aired_episode_count({}) is None
+
+
+def test_episode_files(tmp_path) -> None:
+    folder = tmp_path / "Show"
+    folder.mkdir()
+    for name in (
+        "[ASW] Show - 01 [HEVC].mkv",
+        "[ASW] Show - 02 [HEVC].MKV",
+        "[ASW] Show S01E05 [HEVC].mkv",
+        "poster.jpg",
+    ):
+        (folder / name).write_bytes(b"x")
+    sub = folder / "Season 2"
+    sub.mkdir()
+    (sub / "Show - 08 [HEVC].mp4").write_bytes(b"x")
+    assert cli.episode_files(folder) == {1, 2, 5, 8}
+    assert cli.episode_files(tmp_path / "missing") == set()
+
+
+def test_episode_files_title_filter(tmp_path) -> None:
+    folder = tmp_path / "Library"
+    folder.mkdir()
+    (folder / "[A] Mushoku Tensei - 01 [HEVC].mkv").write_bytes(b"x")
+    (folder / "[B] Other Show - 02 [HEVC].mkv").write_bytes(b"x")
+    assert cli.episode_files(folder, titles=["Mushoku Tensei"]) == {1}
+
+
 # -------------------------------------------------------------- matching titles
 def test_titles_of_orders_and_filters() -> None:
     media = {
@@ -226,6 +259,7 @@ def test_build_parser_defaults() -> None:
     assert args.lib == cli.DEFAULT_LIB
     assert args.base == cli.DEFAULT_BASE
     assert args.pick is None
+    assert args.episodes is None
     assert not args.dry_run
     assert not args.yes
     assert not args.ignore_library
@@ -239,3 +273,140 @@ def test_build_parser_repeated_providers() -> None:
     )
     assert args.provider == ["animetosho-new", "nyaa"]
     assert args.yes and args.dry_run
+
+
+def test_build_parser_episodes_override() -> None:
+    args = cli.build_parser().parse_args(["Show", "--episodes", "12"])
+    assert args.episodes == 12
+
+
+# ------------------------------------------------------------ releasing series
+RELEASING = {
+    "id": 7,
+    "status": "RELEASING",
+    "format": "TV",
+    "title": {"romaji": "Show"},
+    "synonyms": [],
+    "nextAiringEpisode": {"episode": 5},  # four episodes have aired
+}
+
+FINISHED = {
+    "id": 8,
+    "status": "FINISHED",
+    "format": "TV",
+    "title": {"romaji": "Show"},
+    "synonyms": [],
+    "episodes": 4,
+}
+
+
+class FakeSeanime:
+    """Offline Seanime stub that records downloads and planning updates."""
+
+    media = RELEASING
+
+    def __init__(self, base, provider):
+        self.base = base
+        self.provider = provider
+        self.downloads: list = []
+        self.planning: list = []
+        self.batch = {
+            "name": "[Judas] Show S01 - Batch (HEVC 1080p)",
+            "isBatch": True, "releaseGroup": "Judas", "seeders": 20, "size": 100,
+        }
+        self.single4 = {
+            "name": "[ASW] Show - 04 (HEVC 1080p)",
+            "releaseGroup": "ASW", "seeders": 5, "size": 10,
+        }
+
+    def search_anime(self, query, per_page=10):
+        return [self.media]
+
+    def collection(self):
+        return {"lists": []}
+
+    def search_torrents(self, media, query, *, batch=None, episode=None, **kwargs):
+        if batch is True:
+            return [self.batch]
+        if batch is False and episode == 4:
+            return [self.single4]
+        return []
+
+    def torrent_files(self, torrent):
+        if torrent is self.batch:
+            return [f"[Judas] Show - {i:02d} [HEVC 1080p].mkv" for i in range(1, 5)]
+        return ["[ASW] Show - 04 [HEVC 1080p].mkv"]
+
+    def download(self, torrents, destination, media, episodes):
+        self.downloads.append((list(torrents), destination, media, episodes))
+
+    def set_planning(self, media_id):
+        self.planning.append(media_id)
+
+
+def _fake_client(monkeypatch):
+    instances = []
+
+    def factory(*args, **kwargs):
+        client = FakeSeanime(*args, **kwargs)
+        instances.append(client)
+        return client
+
+    factory.find_entry = cli.Seanime.find_entry  # main() calls it on the class
+    monkeypatch.setattr(cli, "Seanime", factory)
+    return instances
+
+
+def _write_episodes(folder, numbers):
+    folder.mkdir(parents=True)
+    for number in numbers:
+        (folder / f"[ASW] Show - {number:02d} [HEVC 1080p].mkv").write_bytes(b"x")
+
+
+def test_releasing_series_downloads_only_missing_episodes(monkeypatch, tmp_path) -> None:
+    instances = _fake_client(monkeypatch)
+    _write_episodes(tmp_path / "Show", [1, 2, 3])
+
+    code = cli.main(["Show", "--lib", str(tmp_path), "--yes"])
+
+    assert code == cli.EXIT_OK
+    assert len(instances[0].downloads) == 1
+    assert instances[0].downloads[0][3] == [4]
+    assert instances[0].planning == [7]  # Planning behaviour is unchanged
+
+
+def test_releasing_series_up_to_date(monkeypatch, tmp_path) -> None:
+    instances = _fake_client(monkeypatch)
+    _write_episodes(tmp_path / "Show", [1, 2, 3, 4])
+
+    code = cli.main(["Show", "--lib", str(tmp_path), "--yes"])
+
+    assert code == cli.EXIT_OK
+    assert instances[0].downloads == []
+
+
+def test_episodes_override_without_airing_data(monkeypatch, tmp_path) -> None:
+    instances = _fake_client(monkeypatch)
+    monkeypatch.setitem(RELEASING, "nextAiringEpisode", None)
+
+    code = cli.main(["Show", "--lib", str(tmp_path), "--yes", "--episodes", "4"])
+
+    assert code == cli.EXIT_OK
+    assert instances[0].downloads[0][3] == [1, 2, 3, 4]
+
+
+def test_releasing_series_without_count_errors(monkeypatch, tmp_path) -> None:
+    _fake_client(monkeypatch)
+    monkeypatch.setitem(RELEASING, "nextAiringEpisode", None)
+    assert cli.main(["Show", "--lib", str(tmp_path), "--yes"]) == cli.EXIT_ERROR
+
+
+def test_finished_series_still_stops_when_present(monkeypatch, tmp_path) -> None:
+    instances = _fake_client(monkeypatch)
+    monkeypatch.setattr(FakeSeanime, "media", FINISHED)
+    _write_episodes(tmp_path / "Show", [1])
+
+    code = cli.main(["Show", "--lib", str(tmp_path), "--yes"])
+
+    assert code == cli.EXIT_OK
+    assert instances[0].downloads == []
