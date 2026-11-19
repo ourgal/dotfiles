@@ -364,11 +364,11 @@ Videos/*
 {{ end -}}
 # ]]]
 # [[[ kmonad
-{{ if lookPath "kmonad" -}}
+# Deploy the layout regardless of whether the kmonad binary exists yet, so the
+# systemd unit always has a config to start with on a fresh machine.
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}
 !.config/kmonad/
 !.config/kmonad/**
-{{ end -}}
 {{ end -}}
 # ]]]
 # [[[ psmux

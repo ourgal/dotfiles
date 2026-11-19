@@ -1,0 +1,36 @@
+---
+# Reuse the AUR builder (paru + aur-builder user + sudoers) from the aur role;
+# overriding aur_packages keeps this role's install self-contained.
+- name: Install kmonad from the AUR
+  tags:
+    - pkg
+    - kmonad
+  ansible.builtin.include_role:
+    name: aur
+  vars:
+    aur_packages:
+      - "{{ kmonad_aur_package }}"
+
+- name: Install the kmonad systemd unit
+  become: true
+  tags:
+    - config
+    - kmonad
+  ansible.builtin.template:
+    src: kmonad.service.j2
+    dest: /etc/systemd/system/kmonad.service
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart kmonad
+
+- name: Enable and start kmonad
+  become: true
+  tags:
+    - service
+    - kmonad
+  ansible.builtin.systemd_service:
+    name: "{{ kmonad_service }}"
+    enabled: true
+    state: started
+    daemon_reload: true

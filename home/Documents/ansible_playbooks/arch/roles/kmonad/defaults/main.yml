@@ -1,0 +1,8 @@
+---
+kmonad_enabled: true
+# Prebuilt static binary; provides /usr/bin/kmonad without a Haskell toolchain.
+kmonad_aur_package: kmonad-static
+kmonad_binary: /usr/bin/kmonad
+# The Miryoku layout is managed by chezmoi, not by this role.
+kmonad_config: "{{ ansible_facts.user_dir }}/.config/kmonad/miryoku.kbd"
+kmonad_service: kmonad
