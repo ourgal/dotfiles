@@ -46,7 +46,6 @@
 {{ $cfg = set $cfg (print "color " ("branch" | quote)) (dict "current" "magenta" "local" "default" "plain" "blue" "remote" "yellow" "upstream" "green") -}}
 
 {{ $cfg = set $cfg "column" (dict "ui" "auto") -}}
-{{ $cfg = set $cfg "commit" (dict "template" "~/.config/git/template" "gpgsign" false "verbose" true) -}}
 
 {{ $_ = dict -}}
 {{ $_ = set $_ "compression" 9 -}}
@@ -95,7 +94,7 @@
 
 {{ $cfg = set $cfg "delta" (dict "side-by-side" true "navitage" true "file-yellow" true) -}}
 
-{{ $cfg = set $cfg "diff" (dict "algorithm" "histogram" "colorMoved" "plain" "context" 3 "interHunkContext" 10 "mnemonicPrefix" true "renames" true) -}}
+{{ $cfg = set $cfg "diff" (dict "algorithm" "histogram" "colorMoved" "plain" "context" 3 "interHunkContext" 10 "mnemonicPrefix" false "renames" true) -}}
 
 {{ $cfg = set $cfg "diff-so-fancy" (dict "changeHunkIndicators" true "markEmptyLines" false "stripLeadingSymbols" true "useUnicodeRuler" true) -}}
 
