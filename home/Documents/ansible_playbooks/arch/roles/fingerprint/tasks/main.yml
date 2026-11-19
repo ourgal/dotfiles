@@ -1,0 +1,24 @@
+---
+- name: Install fingerprint packages
+  become: true
+  tags:
+    - pkg
+    - fingerprint
+  community.general.pacman:
+    name: "{{ fingerprint_packages }}"
+    state: present
+
+# 'sufficient' must come before pam_unix so a successful scan short-circuits
+# the auth stack; a miss (or no prints enrolled) falls through to the password.
+- name: Enable fingerprint authentication in PAM
+  become: true
+  tags:
+    - config
+    - fingerprint
+  ansible.builtin.blockinfile:
+    path: "/etc/pam.d/{{ item }}"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ fingerprint_pam_marker }}"
+    block: "auth\tsufficient\tpam_fprintd.so"
+    insertbefore: '^auth\b'
+    create: false
+  loop: "{{ fingerprint_pam_services }}"
