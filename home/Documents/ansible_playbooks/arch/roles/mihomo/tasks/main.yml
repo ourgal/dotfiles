@@ -21,6 +21,15 @@
     mode: '0600'
   notify: Restart mihomo
 
+- name: Install the mihomo GeoIP database
+  become: true
+  ansible.builtin.get_url:
+    url: "{{ mihomo_geoip_url }}"
+    dest: "{{ mihomo_geoip_file }}"
+    mode: '0644'
+    force: false
+  notify: Restart mihomo
+
 - name: Check the installed mihomo version
   ansible.builtin.command:
     cmd: "{{ mihomo_binary }} -v"
