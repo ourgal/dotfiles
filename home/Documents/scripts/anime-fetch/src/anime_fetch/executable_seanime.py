@@ -10,6 +10,21 @@ DEFAULT_BASE = "http://localhost:43211"
 DEFAULT_PROVIDER = "animetosho-new"
 
 
+def _torrent_already_queued(exc: HttpError) -> bool:
+    """Whether Seanime is hiding a harmless "torrent already added" conflict.
+
+    The download endpoint surfaces a downstream 409 Conflict from the torrent
+    client as HTTP 500 with ``{"error":"invalid status 409 Conflict"}``. A 409
+    on add-torrent means the torrent is already registered, so the requested
+    end state holds even though the server answered with an error.
+    """
+    if exc.status != 500:
+        return False
+    payload = exc.as_json()
+    message = str(payload.get("error") or "") if isinstance(payload, dict) else ""
+    return "409" in message and "conflict" in message.lower()
+
+
 class SeanimeError(RuntimeError):
     pass
 
@@ -126,4 +141,8 @@ class Seanime:
         try:
             return self._post("/torrent-client/download", body, retries=0, timeout=120)
         except HttpError as exc:
+            if _torrent_already_queued(exc):
+                # The torrent was already in the client; nothing to add and
+                # no failure to report (the episode is downloading already).
+                return {}
             raise SeanimeError(f"download request failed: {exc}") from None

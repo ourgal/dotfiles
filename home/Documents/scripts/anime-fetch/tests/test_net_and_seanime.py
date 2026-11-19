@@ -282,3 +282,20 @@ def test_download_smart_select_disabled_for_multiple() -> None:
     client.download([{"name": "a"}, {"name": "b"}], "dest", {"id": 1}, [1])
     _path, payload = client.calls[0]
     assert payload["smartSelect"]["enabled"] is False
+
+
+def test_download_treats_already_queued_conflict_as_success() -> None:
+    # Seanime wraps the torrent client's "409 Conflict" (torrent already
+    # registered) as a 500. The end state is already satisfied, so this is a
+    # no-op rather than a failed download.
+    client = StubSeanime({"/torrent-client/download": HttpError(
+        500, '{"error":"invalid status 409 Conflict"}', "http://x")})
+    assert client.download([{"name": "a"}], "dest", {"id": 1}, [7]) == {}
+    assert len(client.calls) == 1
+
+
+def test_download_still_raises_other_errors() -> None:
+    client = StubSeanime({"/torrent-client/download": HttpError(
+        500, '{"error":"something else broke"}', "http://x")})
+    with pytest.raises(seanime.SeanimeError, match="download request failed"):
+        client.download([{"name": "a"}], "dest", {"id": 1}, [7])
