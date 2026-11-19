@@ -158,7 +158,9 @@
 
 {{ $cfg = set $cfg (print "url " ("git@github.com:" | quote)) (dict "insteadOf" "gh:") -}}
 
+{{ if eq .chezmoi.hostname "user-PC" -}}
 {{ $cfg = set $cfg (print "url " ((print .my.gh_proxy "/https://github.com/") | quote)) (dict "insteadOf" "https://github.com/") -}}
+{{ end -}}
 
 {{ $_ = dict -}}
 {{ $_ = set $_ "email" .my.git.user.email -}}
