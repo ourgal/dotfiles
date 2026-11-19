@@ -33,3 +33,9 @@ Description = "Convert YouTube URL to uploads RSS feed (blank URL = clipboard)"
 Output = ""
 Tag = ["youtube", "rss"]
 command = 'make -C "{{ joinPath .chezmoi.homeDir "Documents" "scripts" "youtube-rss" }}" URL="<url>"'
+
+[[Snippets]]
+Description = "Update global npm packages (kill/start 10router, update + restart creditdaddy)"
+Output = ""
+Tag = ["npm", "update", "packages", "windows"]
+command = "Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'node.exe' -and $_.CommandLine -like '*10router*' } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force }; npm update -g @techysy/10router; npm update -g creditdaddy; creditdaddy restart"
