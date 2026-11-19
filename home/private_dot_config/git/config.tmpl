@@ -88,8 +88,10 @@
 {{ end -}}
 {{ end -}}
 
+{{ if ne .chezmoi.hostname "user-PC" -}}
 {{ $cfg = set $cfg (print "credential " ("https://gist.github.com" | quote)) (dict "helper" (printf "!%s auth git-credential" (lookPath "gh" | replace "\\" "\\\\" | squote))) -}}
 {{ $cfg = set $cfg (print "credential " ("https://github.com" | quote)) (dict "helper" (printf "!%s auth git-credential" (lookPath "gh" | replace "\\" "\\\\" | squote))) -}}
+{{ end -}}
 
 {{ $cfg = set $cfg "delta" (dict "side-by-side" true "navitage" true "file-yellow" true) -}}
 
@@ -156,7 +158,7 @@
 
 {{ $cfg = set $cfg (print "url " ("git@github.com:" | quote)) (dict "insteadOf" "gh:") -}}
 
-{{ $cfg = set $cfg (print "url " ("https://v6.gh-proxy.org/https://github.com/" | quote)) (dict "insteadOf" "ghp:") -}}
+{{ $cfg = set $cfg (print "url " ((print .my.gh_proxy "/https://github.com/") | quote)) (dict "insteadOf" "https://github.com/") -}}
 
 {{ $_ = dict -}}
 {{ $_ = set $_ "email" .my.git.user.email -}}

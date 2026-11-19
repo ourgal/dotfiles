@@ -1067,7 +1067,7 @@
 (use-package
   tmpl-mode
   :ensure t
-  :vc (:url "https://v6.gh-proxy.org/https://github.com/Lindydancer/tmpl-mode")
+  :vc (:url "https://github.com/Lindydancer/tmpl-mode")
   :hook (after-init . tmpl-global-mode))
 
 (use-package

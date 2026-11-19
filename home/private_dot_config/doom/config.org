@@ -981,7 +981,7 @@ When called from Lisp, if FILENAME is given, open that."
 
 #+begin_src emacs-lisp :tangle packages.el
 (package! tmpl-mode
-  :recipe (:host nil :type git :repo "https://v6.gh-proxy.org/https://github.com/Lindydancer/tmpl-mode"))
+  :recipe (:host nil :type git :repo "https://github.com/Lindydancer/tmpl-mode"))
 #+end_src
 
 ** Fix void yaml-indent-line
@@ -1033,7 +1033,7 @@ When called from Lisp, if FILENAME is given, open that."
 
 #+begin_src emacs-lisp :tangle no
 (package! magit-fast
-  :recipe (:host nil :type git :repo "https://v6.gh-proxy.org/https://github.com/zHaOdANiuu/magit-fast"))
+  :recipe (:host nil :type git :repo "https://github.com/zHaOdANiuu/magit-fast"))
 #+end_src
 
 ** Rainbow brackets

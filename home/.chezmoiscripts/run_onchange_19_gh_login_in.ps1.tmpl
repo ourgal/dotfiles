@@ -1,4 +1,4 @@
-{{ if and (eq .chezmoi.os "windows") (lookPath "gh") -}}
+{{ if and (eq .chezmoi.os "windows") (ne .chezmoi.hostname "user-PC") (lookPath "gh") -}}
 
 {{ $config_file := joinPath .chezmoi.homeDir "AppData" "Roaming" "GitHub CLI" "hosts.yml" -}}
 {{ $data := dict -}}

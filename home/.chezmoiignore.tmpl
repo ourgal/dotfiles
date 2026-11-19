@@ -294,7 +294,9 @@ Videos/*
 # [[[ eget
 {{ if lookPath "eget" -}}
 {{ if eq .chezmoi.os "windows" -}}
+{{ if ne .chezmoi.hostname "user-PC" -}}
 !.eget.toml
+{{ end -}}
 {{ end -}}
 {{ end -}}
 # ]]]

@@ -1,4 +1,4 @@
-{{ if and (ne .chezmoi.os "windows") (lookPath "gh") -}}
+{{ if and (ne .chezmoi.os "windows") (ne .chezmoi.hostname "user-PC") (lookPath "gh") -}}
 
 {{ $config_file := joinPath .chezmoi.homeDir ".confg" "gh" "hosts.yml" -}}
 {{ $data := dict -}}
