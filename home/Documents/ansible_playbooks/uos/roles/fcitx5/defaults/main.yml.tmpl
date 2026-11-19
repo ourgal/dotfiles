@@ -1,3 +1,4 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
 ---
 # Port of ~/Documents/scripts/uos/04_setup-fcitx5.sh.
 # UOS Desktop 20 ships only a 2018 fcitx5 snapshot with no input method, so the
@@ -16,7 +17,8 @@ fcitx5_proxy_env: "{{ {'https_proxy': fcitx5_proxy, 'http_proxy': fcitx5_proxy} 
 
 fcitx5_mirror_primary: "https://mirrors.tuna.tsinghua.edu.cn/debian/pool"
 fcitx5_mirror_fallback: "https://deb.debian.org/debian/pool"
-fcitx5_sbsrf_url: "https://github.com/sbsrf/sbsrf/releases/latest/download/sbsrf.zip"
+# Download through the shared gh mirror; this host cannot reach GitHub directly.
+fcitx5_sbsrf_url: "[[ .my.gh_proxy ]]/https://github.com/sbsrf/sbsrf/releases/latest/download/sbsrf.zip"
 # Point at a locally downloaded zip to avoid the GitHub asset entirely.
 fcitx5_sbsrf_zip: ""
 
