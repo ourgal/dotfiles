@@ -1202,4 +1202,9 @@ AppData/Roaming/maki/*
 !.config/systemd/user/ssh-agent.service
 {{ end -}}
 # ]]]
+# [[[ xinputrc (UOS / fcitx5 input method)
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "uos") -}}
+!.xinputrc
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
