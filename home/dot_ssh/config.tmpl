@@ -53,5 +53,10 @@ Host gogs-m6
   HostName {{ if eq .chezmoi.hostname "nuc" "bed" "surface" "easy1" }}192.168.123.191{{ else }}none{{ end }}
 {{ end -}}
 
+Host user-PC
+  Port 22
+  User user
+  HostName 10.42.0.1
+
 Host *
   AddKeysToAgent yes
