@@ -21,22 +21,30 @@
     miniforge_solver: "{{ miniforge_dir }}/bin/{{ 'mamba' if (miniforge_package_solvers.results | selectattr('item', 'equalto', 'mamba') | map(attribute='stat.exists') | first) else 'conda' }}"
   tags: [miniforge_packages]
 
+# UOS's system Python is 3.7 (too old for Ansible), and the Miniforge Python
+# Ansible runs under has no python-apt bindings. Use the dpkg/apt-get CLIs
+# directly so neither interpreter needs the apt Python library.
 - name: Collect the installed distro packages
-  ansible.builtin.package_facts:
-    manager: apt
+  ansible.builtin.command:
+    argv:
+      - dpkg-query
+      - -W
+      - -f=${Package}\n
+  register: miniforge_dpkg_query
+  changed_when: false
   tags: [miniforge_packages]
 
 - name: Work out which distro packages need removing
   ansible.builtin.set_fact:
-    miniforge_distro_present: "{{ miniforge_distro_remove | intersect(ansible_facts.packages.keys() | list) }}"
+    miniforge_distro_present: "{{ miniforge_distro_remove | intersect(miniforge_dpkg_query.stdout_lines) }}"
   tags: [miniforge_packages]
 
 - name: Remove the duplicate distro toolchains
   become: true
-  ansible.builtin.apt:
-    name: "{{ miniforge_distro_present }}"
-    state: absent
-    autoremove: false
+  ansible.builtin.command:
+    cmd: "apt-get remove -y {{ miniforge_distro_present | join(' ') }}"
+  environment:
+    DEBIAN_FRONTEND: noninteractive
   when: miniforge_distro_present | length > 0
   tags: [miniforge_packages, pkg]
 

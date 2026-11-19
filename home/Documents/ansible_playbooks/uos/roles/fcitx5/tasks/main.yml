@@ -29,11 +29,14 @@
     fcitx5_all_apt_packages: "{{ fcitx5_apt_packages + (fcitx5_rime_apt_packages if (fcitx5_rime | bool) else []) + fcitx5_optional_apt_packages }}"
   tags: [fcitx5]
 
+# The apt/package_facts modules cannot run here: UOS's system Python is 3.7
+# (too old for Ansible), and the Miniforge Python Ansible uses has no
+# python-apt bindings. Drive the dpkg/apt CLIs directly instead.
 - name: Refresh the apt cache
   become: true
-  ansible.builtin.apt:
-    update_cache: true
-    cache_valid_time: 3600
+  ansible.builtin.command:
+    cmd: apt-get update
+  changed_when: false
   tags: [fcitx5, pkg]
 
 # The shell script only installs packages the repos actually provide; probe them
@@ -52,30 +55,38 @@
 
 - name: Install the available build dependencies
   become: true
-  ansible.builtin.apt:
-    name: "{{ fcitx5_apt_probe.results | selectattr('rc', 'equalto', 0) | map(attribute='item') | list }}"
-    state: present
-    install_recommends: false
+  ansible.builtin.command:
+    cmd: "apt-get install -y --no-install-recommends {{ fcitx5_apt_probe.results | selectattr('rc', 'equalto', 0) | map(attribute='item') | join(' ') }}"
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+  register: fcitx5_apt_install
+  changed_when: "'0 upgraded, 0 newly installed, 0 to remove' not in fcitx5_apt_install.stdout"
   when: fcitx5_apt_probe.results | selectattr('rc', 'equalto', 0) | list | length > 0
   tags: [fcitx5, pkg]
 
 - name: Collect installed packages
-  ansible.builtin.package_facts:
-    manager: apt
+  ansible.builtin.command:
+    argv:
+      - dpkg-query
+      - -W
+      - -f=${Package}\n
+  register: fcitx5_dpkg_query
+  changed_when: false
   tags: [fcitx5, pkg]
 
 # The 2018 snapshot and the distro libfmt-dev ship CMake configs in /usr/lib
 # that outrank our /usr/local builds, so they must go.
 - name: Work out which competing packages are installed
   ansible.builtin.set_fact:
-    fcitx5_stale_packages: "{{ ansible_facts.packages.keys() | list | select('match', '^(fcitx5|libfcitx5|libfmt-dev)') | list }}"
+    fcitx5_stale_packages: "{{ fcitx5_dpkg_query.stdout_lines | select('match', '^(fcitx5|libfcitx5|libfmt-dev)') | list }}"
   tags: [fcitx5, pkg]
 
 - name: Remove the competing system fmt and fcitx5 snapshot packages
   become: true
-  ansible.builtin.apt:
-    name: "{{ fcitx5_stale_packages }}"
-    state: absent
+  ansible.builtin.command:
+    cmd: "apt-get remove -y {{ fcitx5_stale_packages | join(' ') }}"
+  environment:
+    DEBIAN_FRONTEND: noninteractive
   when: fcitx5_stale_packages | length > 0
   tags: [fcitx5, pkg]
 
