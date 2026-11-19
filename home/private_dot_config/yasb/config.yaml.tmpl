@@ -33,8 +33,6 @@ bars:
         - home
         - glazewm_workspaces
         - clock
-      center:
-        - media
       right:
         - traffic
         - cpu
@@ -69,23 +67,6 @@ widgets:
     options:
       label: "{%a %d %b %H:%M}"
       label_alt: "{%A, %d %B %Y %H:%M}"
-
-  media:
-    type: "yasb.media.MediaWidget"
-    options:
-      label: "{title}"
-      label_alt: "{artist}"
-      max_field_size:
-        label: 48
-        label_alt: 32
-      show_thumbnail: false
-      controls_left: true
-      hide_empty: true
-      icons:
-        prev_track: "\uf048"
-        next_track: "\uf051"
-        play: "\uf04b"
-        pause: "\uf04c"
 
   traffic:
     type: "yasb.traffic.TrafficWidget"
