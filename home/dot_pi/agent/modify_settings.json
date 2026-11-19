@@ -6,4 +6,5 @@
 {{ if eq .chezmoi.os "windows" -}}
 {{ $settings = $settings | setValueAtPath "shellPath" (joinPath .chezmoi.homeDir "scoop/apps/git/current/bin/bash.exe") -}}
 {{ end -}}
+{{ $settings = $settings | setValueAtPath "packages" .my.pi.packages -}}
 {{ $settings | toJson }}
