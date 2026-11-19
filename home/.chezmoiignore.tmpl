@@ -423,6 +423,14 @@ Videos/*
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ zellij
+{{ if lookPath "zellij" -}}
+{{ if eq .chezmoi.os "linux" "android" "windows" -}}
+!.config/zellij/
+!.config/zellij/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # [[[ gotify server
 {{ if lookPath "gotify" -}}
 {{ if eq .chezmoi.os "windows" "linux" "android" -}}

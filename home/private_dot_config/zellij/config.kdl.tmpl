@@ -1,0 +1,4 @@
+{{ if lookPath "fish" -}}
+default_shell "{{ lookPath "fish" | replace "\\" "/" }}"
+
+{{ end -}}
