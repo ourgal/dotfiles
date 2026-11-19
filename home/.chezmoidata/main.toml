@@ -89,6 +89,13 @@ known_hosts = [
 rose_pine_bar = true
 terminal = "kitty"
 
+[my.modules.rofi]
+# Launcher theme from adi1090x/rofi under ~/.config/rofi/launchers/type-1/
+# (style-1: wide 2-column grid, style-2: 400px list, style-3: compact list).
+style = "style-1"
+# Color scheme from ~/.config/rofi/colors/ (catppuccin, dracula, gruvbox, nord, tokyonight, ...).
+colorscheme = "catppuccin"
+
 [my.modules.windows]
 # "rose-pine" (GlazeWM), "kanagawa" (Komorebi) or "seelen" (Seelen UI); all use the KanagawaWin11 wallpaper set at ~/.local/share/kanagawa-win11
 theme = "rose-pine"

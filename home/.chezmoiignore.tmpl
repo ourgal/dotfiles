@@ -1199,6 +1199,14 @@ AppData/Roaming/maki/*
 {{ end -}}
 {{ end -}}
 # ]]]
+# [[[ rofi
+{{ if lookPath "rofi" -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+!.config/rofi/
+!.config/rofi/**
+{{ end -}}
+{{ end -}}
+# ]]]
 # [[[ systemd-user
 {{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "uos") -}}
 !.config
