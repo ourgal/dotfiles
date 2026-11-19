@@ -398,11 +398,12 @@ windows_scoop_packages_catalog:
     # - extras/gimp
     # - extras/photodemon
     # - extras/photoflare
-    keyboard: []
-    # - extras/qmk-toolbox
-    # - extras/vial
-    # - extras/kanata
-    # - extras/komokana
+    keyboard:
+      - extras/kanata
+      # - extras/kanata-cmd
+      # - extras/qmk-toolbox
+      # - extras/vial
+      # - extras/komokana
     math:
       - extras/qalculate
     network: []
