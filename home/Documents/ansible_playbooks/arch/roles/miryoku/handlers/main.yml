@@ -1,7 +1,7 @@
 ---
-- name: Restart kmonad
+- name: Restart miryoku
   become: true
   ansible.builtin.systemd_service:
-    name: "{{ kmonad_service }}"
+    name: "{{ miryoku_service }}"
     state: restarted
     daemon_reload: true

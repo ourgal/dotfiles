@@ -1,36 +1,115 @@
 ---
+- name: Require a supported miryoku engine
+  tags:
+    - miryoku
+  ansible.builtin.assert:
+    that: miryoku_engine in ['kmonad', 'kanata']
+    fail_msg: "miryoku_engine must be kmonad or kanata, got {{ miryoku_engine }}"
+
 # Reuse the AUR builder (paru + aur-builder user + sudoers) from the aur role;
 # overriding aur_packages keeps this role's install self-contained.
-- name: Install kmonad from the AUR
+- name: Install {{ miryoku_engine }} from the AUR
   tags:
     - pkg
-    - kmonad
+    - miryoku
   ansible.builtin.include_role:
     name: aur
   vars:
     aur_packages:
-      - "{{ kmonad_aur_package }}"
+      - "{{ miryoku_package }}"
 
-- name: Install the kmonad systemd unit
+# Kanata reads its input device from defcfg, not from the CLI. The upstream
+# layout ships an empty (defcfg), so inject linux-dev after downloading it.
+# force:false preserves the injected line on later runs.
+- name: Create the Kanata config directory
+  when: miryoku_engine == 'kanata'
   become: true
   tags:
     - config
-    - kmonad
-  ansible.builtin.template:
-    src: kmonad.service.j2
-    dest: /etc/systemd/system/kmonad.service
+    - miryoku
+  ansible.builtin.file:
+    path: "{{ miryoku_kanata_config | dirname }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Download the Miryoku Kanata layout
+  when: miryoku_engine == 'kanata'
+  become: true
+  tags:
+    - config
+    - miryoku
+  ansible.builtin.get_url:
+    url: "{{ miryoku_kanata_url }}"
+    dest: "{{ miryoku_kanata_config }}"
     owner: root
     group: root
     mode: '0644'
-  notify: Restart kmonad
+    force: false
 
-- name: Enable and start kmonad
+- name: Configure the input device in the Kanata layout
+  when: miryoku_engine == 'kanata'
+  become: true
+  tags:
+    - config
+    - miryoku
+  ansible.builtin.replace:
+    path: "{{ miryoku_kanata_config }}"
+    regexp: '\(defcfg\s*\)'
+    replace: '(defcfg linux-dev {{ miryoku_input_device }} )'
+  notify: Restart miryoku
+
+# Switching engines must stop and unregister the other unit before the new one
+# is written, otherwise systemd keeps a cached, now-removed service.
+- name: Stop and disable the unused remapper
   become: true
   tags:
     - service
-    - kmonad
+    - miryoku
   ansible.builtin.systemd_service:
-    name: "{{ kmonad_service }}"
+    name: "{{ miryoku_kmonad_service if miryoku_engine == 'kanata' else miryoku_kanata_service }}"
+    enabled: false
+    state: stopped
+  failed_when: false
+
+- name: Remove the unused remapper systemd unit
+  become: true
+  tags:
+    - service
+    - miryoku
+  ansible.builtin.file:
+    path: "/etc/systemd/system/{{ miryoku_kmonad_service if miryoku_engine == 'kanata' else miryoku_kanata_service }}.service"
+    state: absent
+
+- name: Reload systemd after removing the unused unit
+  become: true
+  tags:
+    - service
+    - miryoku
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+
+- name: Install the {{ miryoku_engine }} systemd unit
+  become: true
+  tags:
+    - config
+    - miryoku
+  ansible.builtin.template:
+    src: "{{ miryoku_engine }}.service.j2"
+    dest: "/etc/systemd/system/{{ miryoku_service }}.service"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart miryoku
+
+- name: Enable and start {{ miryoku_engine }}
+  become: true
+  tags:
+    - service
+    - miryoku
+  ansible.builtin.systemd_service:
+    name: "{{ miryoku_service }}"
     enabled: true
     state: started
     daemon_reload: true

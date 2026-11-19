@@ -1,8 +1,25 @@
 ---
-kmonad_enabled: true
-# Prebuilt static binary; provides /usr/bin/kmonad without a Haskell toolchain.
-kmonad_aur_package: kmonad-static
-kmonad_binary: /usr/bin/kmonad
-# The Miryoku layout is managed by chezmoi, not by this role.
-kmonad_config: "{{ ansible_facts.user_dir }}/.config/kmonad/miryoku.kbd"
-kmonad_service: kmonad
+miryoku_enabled: true
+# kmonad | kanata
+miryoku_engine: kanata
+# Physical keyboard grabbed by the remapper (Surface type cover).
+miryoku_input_device: /dev/input/by-id/usb-Microsoft_Surface_Type_Cover-event-kbd
+
+# kmonad: layout stays chezmoi-managed at ~/.config/kmonad/miryoku.kbd.
+miryoku_kmonad_package: kmonad-static
+miryoku_kmonad_binary: /usr/bin/kmonad
+miryoku_kmonad_config: "{{ ansible_facts.user_dir }}/.config/kmonad/miryoku.kbd"
+miryoku_kmonad_service: kmonad
+
+# kanata: pre-generated layout fetched from trapier/miryoku_kanata.
+miryoku_kanata_package: kanata-bin
+miryoku_kanata_binary: /usr/bin/kanata
+miryoku_kanata_url: https://raw.githubusercontent.com/trapier/miryoku_kanata/main/src/build/miryoku_kanata.kbd
+miryoku_kanata_config: /etc/kanata/miryoku.kbd
+miryoku_kanata_service: kanata
+
+# Derived settings for the selected engine (lazy evaluation of defaults).
+miryoku_package: "{{ miryoku_kmonad_package if miryoku_engine == 'kmonad' else miryoku_kanata_package }}"
+miryoku_binary: "{{ miryoku_kmonad_binary if miryoku_engine == 'kmonad' else miryoku_kanata_binary }}"
+miryoku_config: "{{ miryoku_kmonad_config if miryoku_engine == 'kmonad' else miryoku_kanata_config }}"
+miryoku_service: "{{ miryoku_kmonad_service if miryoku_engine == 'kmonad' else miryoku_kanata_service }}"
