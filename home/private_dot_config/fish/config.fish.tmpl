@@ -25,6 +25,9 @@ if status is-interactive
     {{ if joinPath .chezmoi.homeDir "go" "bin" | stat -}}
     fish_add_path --append ~/go/bin
     {{ end -}}
+    {{ if joinPath .chezmoi.homeDir "miniforge3" "bin" | stat -}}
+    fish_add_path --append ~/miniforge3/bin
+    {{ end -}}
     # [[[ devuan / easyos
     {{ if dig "osRelease" "id" "" .chezmoi | eq "devuan" -}}
     set -x GPG_TTY $(tty)
