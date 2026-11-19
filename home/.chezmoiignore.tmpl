@@ -371,6 +371,14 @@ Videos/*
 !.config/kmonad/**
 {{ end -}}
 # ]]]
+# [[[ kanata
+# Deploy the layout regardless of whether the kanata binary exists yet, so the
+# systemd unit always has a config to start with on a fresh machine.
+{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+!.config/kanata/
+!.config/kanata/**
+{{ end -}}
+# ]]]
 # [[[ psmux
 {{ if lookPath "psmux" -}}
 {{ if eq .chezmoi.os "windows" -}}

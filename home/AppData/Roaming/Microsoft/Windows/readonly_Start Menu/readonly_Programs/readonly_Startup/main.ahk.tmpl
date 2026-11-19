@@ -242,6 +242,9 @@ Run "{{ joinPath .chezmoi.homeDir "scoop" "apps" "gotify-server" "current" "goti
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "kmonad" "opt" (list "windows" "startup" "kmonad" "enable") "os" "windows") | trim | atoi -}}
 Run "{{ lookPath "kmonad" }} {{ joinPath .chezmoi.homeDir ".config" "kmonad" "miryoku.kbd" }}", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "kanata" "opt" (list "windows" "startup" "kanata" "enable") "os" "windows") | trim | atoi -}}
+Run "{{ lookPath "kanata" }} --cfg {{ joinPath .chezmoi.homeDir ".config" "kanata" "miryoku.kbd" }}", {{ .chezmoi.homeDir | quote }}, "Hide"
+{{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "creditdaddy" "opt" (list "windows" "startup" "creditdaddy" "enable") "os" "windows") | trim | atoi -}}
 Run "{{ lookPath "creditdaddy" }} start --host 0.0.0.0", {{ .chezmoi.homeDir | quote }}, "Hide"
 {{ end -}}
