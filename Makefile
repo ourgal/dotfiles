@@ -1,4 +1,4 @@
-all:
+all: config ssh-keys
 	chezmoi apply
 
 config:
