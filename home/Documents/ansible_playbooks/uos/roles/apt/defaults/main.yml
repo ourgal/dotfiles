@@ -1,0 +1,6 @@
+---
+# Apt packages installed on the UOS workstation. Kept as a flat list because
+# UOS's apt sources are a fixed set; see roles/fcitx5 for the build-time deps.
+apt_enabled: true
+apt_packages:
+  - kitty
