@@ -19,3 +19,45 @@
       export XMODIFIERS="@im=fcitx"
       export SDL_IM_MODULE=fcitx
       export GLFW_IM_MODULE=ibus
+
+- name: Create the fcitx5 user systemd unit directory
+  become: true
+  become_user: "{{ fcitx5_user }}"
+  tags:
+    - config
+    - fcitx5
+  ansible.builtin.file:
+    path: "{{ fcitx5_unit_dir }}"
+    state: directory
+    owner: "{{ fcitx5_user }}"
+    group: "{{ fcitx5_user }}"
+    mode: "0755"
+
+- name: Install the fcitx5 user service
+  become: true
+  become_user: "{{ fcitx5_user }}"
+  tags:
+    - config
+    - fcitx5
+  ansible.builtin.template:
+    src: fcitx5.service.j2
+    dest: "{{ fcitx5_unit_dir }}/{{ fcitx5_service }}.service"
+    owner: "{{ fcitx5_user }}"
+    group: "{{ fcitx5_user }}"
+    mode: "0644"
+
+- name: Enable and start the fcitx5 user service
+  become: true
+  become_user: "{{ fcitx5_user }}"
+  tags:
+    - service
+    - fcitx5
+  ansible.builtin.systemd_service:
+    scope: user
+    name: "{{ fcitx5_service }}.service"
+    enabled: true
+    state: started
+    daemon_reload: true
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ ansible_facts.user_uid }}"
+    DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/{{ ansible_facts.user_uid }}/bus"

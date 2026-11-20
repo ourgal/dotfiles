@@ -1,5 +1,9 @@
 ---
 fcitx5_enabled: true
+fcitx5_user: "{{ ansible_facts.user_id }}"
+fcitx5_unit_dir: "{{ ansible_facts.user_dir }}/.config/systemd/user"
+fcitx5_service: fcitx5
+fcitx5_display: ":0"
 fcitx5_packages:
   - fcitx5
   - fcitx5-configtool
