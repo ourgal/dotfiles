@@ -1,0 +1,11 @@
+---
+wallpaper_enabled: true
+# The `walpapers` spelling in the request 404s; this is the public repo.
+wallpaper_repo: https://gitee.com/fairever/wallpapers
+wallpaper_dir: "{{ ansible_facts.user_dir }}/.local/share/wallpapers"
+wallpaper_unit_dir: "{{ ansible_facts.user_dir }}/.config/systemd/user"
+wallpaper_user: "{{ ansible_facts.user_id }}"
+wallpaper_display: ":0"
+wallpaper_interval: 15
+wallpaper_service: wallpaper-rotate
+wallpaper_timer: "{{ wallpaper_service }}.timer"

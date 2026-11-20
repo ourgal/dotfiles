@@ -43,6 +43,8 @@
       when: plymouth_enabled | default(true) | bool
     - role: ly
       when: ly_enabled | default(true) | bool
+    - role: wallpaper
+      when: wallpaper_enabled | default(true) | bool
     - role: fingerprint
       when: (fingerprint_enabled | default(true) | bool) and ansible_facts.hostname == "surface"
     - role: ssh_agent

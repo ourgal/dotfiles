@@ -1,0 +1,10 @@
+[Unit]
+Description=Rotate the desktop wallpaper every {{ wallpaper_interval }} minutes
+
+[Timer]
+OnStartupSec=1min
+OnUnitActiveSec={{ wallpaper_interval }}min
+Unit={{ wallpaper_service }}.service
+
+[Install]
+WantedBy=timers.target
