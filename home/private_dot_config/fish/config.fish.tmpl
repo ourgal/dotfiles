@@ -137,5 +137,12 @@ if status is-interactive
     {{ output "zoxide" "init" "fish" }}
     {{ end -}}
     # ]]]
+    # [[[ unlock-keepassxc
+    {{ if and (lookPath "gopass") (lookPath "keepassxc") -}}
+    function unlock-keepassxc --description 'Unlock KeePassXC with the master password from gopass'
+        gopass show -o keepassxc/main | keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir "Syncthing" "keepassxc" "main.kdbx" | replace "\\" "/" | quote }}
+    end
+    {{ end -}}
+    # ]]]
 end
 # vim: set foldmarker=[[[,]]]:
