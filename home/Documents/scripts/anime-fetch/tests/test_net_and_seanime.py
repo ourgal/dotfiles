@@ -6,6 +6,7 @@ import io
 import json
 import urllib.error
 import urllib.request
+from email.message import Message
 
 import pytest
 
@@ -28,7 +29,7 @@ class FakeResponse:
 
 
 def http_error(status: int, body: bytes = b"boom") -> urllib.error.HTTPError:
-    return urllib.error.HTTPError("http://x", status, "err", {}, io.BytesIO(body))
+    return urllib.error.HTTPError("http://x", status, "err", Message(), io.BytesIO(body))
 
 
 def patch_urlopen(monkeypatch, respond):
@@ -205,7 +206,9 @@ def test_find_entry() -> None:
         {"entries": [{"mediaId": 1, "status": "CURRENT"}]},
         {"entries": [{"mediaId": 2, "status": "PLANNING"}]},
     ]}
-    assert seanime.Seanime.find_entry(collection, 2)["status"] == "PLANNING"
+    found = seanime.Seanime.find_entry(collection, 2)
+    assert found is not None
+    assert found["status"] == "PLANNING"
     assert seanime.Seanime.find_entry(collection, 99) is None
     assert seanime.Seanime.find_entry({}, 1) is None
 

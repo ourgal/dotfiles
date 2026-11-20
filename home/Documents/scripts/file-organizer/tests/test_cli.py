@@ -15,6 +15,7 @@ import shutil
 import stat
 from io import StringIO
 from pathlib import Path
+from typing import cast
 
 import pytest
 from rich.console import Console
@@ -38,7 +39,7 @@ def touch(folder: Path, *names: str, content: bytes = b"x") -> None:
 
 
 def printed(console: Console) -> str:
-    return plain(console.file.getvalue())  # type: ignore[attr-defined]
+    return plain(cast(StringIO, console.file).getvalue())
 
 
 def write_run(
@@ -397,7 +398,7 @@ def test_is_hidden_accepts_plain_files(tmp_path: Path) -> None:
 def test_is_hidden_detects_windows_attributes(tmp_path: Path, flag: int) -> None:
     path = tmp_path / "flagged.txt"
     path.write_text("x", encoding="utf-8")
-    kernel32 = ctypes.windll.kernel32  # type: ignore[attr-defined]
+    kernel32 = getattr(ctypes, "windll").kernel32
     assert kernel32.SetFileAttributesW(str(path), flag)
     try:
         assert cli.is_hidden(path) is True

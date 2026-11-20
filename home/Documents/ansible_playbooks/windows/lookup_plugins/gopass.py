@@ -105,9 +105,9 @@ def generate_password(path, length, symbols, force=False):
 
 
 class LookupModule(LookupBase):
-    def run(self, paths, variables=None, **kwargs):
+    def run(self, terms, variables=None, **kwargs):
         ret = []
-        for path in paths:
+        for path in terms:
             name, params = _parse_parameters(path, kwargs)
             if params["list"]:
                 ret.append(list_password(name))
@@ -118,7 +118,7 @@ class LookupModule(LookupBase):
                     generate_password(name, params["length"], params["symbols"], force=True)
                     DISPLAY.vvv(f"Generated password for {name}")
                 except Exception as e:
-                    raise AnsibleError(f"lookup_plugin.gopass({path}) returned {e.message}")
+                    raise AnsibleError(f"lookup_plugin.gopass({path}) returned {e}")
 
             try:
                 password = get_password(path)
@@ -128,7 +128,7 @@ class LookupModule(LookupBase):
                     DISPLAY.vvv(f"Generated password for {name}")
                     password = get_password(name)
                 except Exception as e:
-                    raise AnsibleError(f"lookup_plugin.gopass({path}) returned {e.message}")
+                    raise AnsibleError(f"lookup_plugin.gopass({path}) returned {e}")
             ret.append(password)
 
         return ret

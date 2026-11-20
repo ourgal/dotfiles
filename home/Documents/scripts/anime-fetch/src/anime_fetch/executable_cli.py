@@ -471,6 +471,7 @@ def build_plan(
     """
     destination = series_destination(media, args.lib, query)
     ongoing = (media.get("status") or "") in ONGOING_STATUSES
+    romaji = (media.get("title") or {}).get("romaji") or query or "Show"
     titles = titles_of(media)[:3] or ([query] if query else [romaji])
 
     hint = pick.season_hint(titles[0]) if titles else None
@@ -724,8 +725,9 @@ def run_all(args: argparse.Namespace, clients: list[Seanime]) -> int:
     failed_plans = [r for r in results if r.code == EXIT_ERROR]
     skipped = [r for r in results if r.code == EXIT_SKIP]
     for result in queued:
-        print_plan(result.plan, result.destination, wanted=result.wanted)
-    torrent_count = sum(len(r.plan.torrents) for r in queued)  # type: ignore[union-attr]
+        if result.plan is not None:
+            print_plan(result.plan, result.destination, wanted=result.wanted)
+    torrent_count = sum(len(r.plan.torrents) for r in queued if r.plan is not None)
     print(f"Batch summary: {len(queued)} series queued ({torrent_count} torrent(s)), "
           f"{len(skipped)} skipped, {len(failed_plans)} error(s)")
 
@@ -883,6 +885,8 @@ def main(argv: list[str] | None = None) -> int:
     result = build_plan(clients, media, entry, args, total=total, wanted=wanted, query=query)
     if result.code != EXIT_OK:
         return result.code
+    if result.plan is None:  # pragma: no cover - build_plan sets a plan on EXIT_OK
+        return EXIT_ERROR
     print_plan(result.plan, result.destination, wanted=result.wanted)
 
     if args.dry_run:
