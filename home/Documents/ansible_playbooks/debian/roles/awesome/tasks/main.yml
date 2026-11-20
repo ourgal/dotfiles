@@ -9,7 +9,7 @@
 - name: Create awesome session wrapper
   vars:
     scale_f: "{{ awesome_scales[inventory_hostname] | default(1) | float }}"
-    transform: "{{ (1.0 / scale_f) | round(4) }}"
+    transform: "{{ (1.0 / (awesome_scales[inventory_hostname] | default(1) | float)) | round(4) }}"
   become: true
   ansible.builtin.copy:
     dest: "{{ awesome_session_cmd }}"

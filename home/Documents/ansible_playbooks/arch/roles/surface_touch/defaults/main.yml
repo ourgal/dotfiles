@@ -1,16 +1,16 @@
 ---
 surface_touch_enabled: true
-surface_repo_url: https://pkg.surfacelinux.com/arch/
-surface_key_id: 87DEFA4AB94A99A4C8C3112556C464BAAC421453
-surface_key_url: https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc
+surface_touch_repo_url: https://pkg.surfacelinux.com/arch/
+surface_touch_key_id: 87DEFA4AB94A99A4C8C3112556C464BAAC421453
+surface_touch_key_url: https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc
 
-surface_kernel_package: linux-surface
-surface_packages:
-  - "{{ surface_kernel_package }}"
-  - "{{ surface_kernel_package }}-headers"
+surface_touch_kernel_package: linux-surface
+surface_touch_packages:
+  - "{{ surface_touch_kernel_package }}"
+  - "{{ surface_touch_kernel_package }}-headers"
   - iptsd
   - surface-ipts-firmware
   - linux-firmware-marvell
 
-surface_stock_preset: /etc/mkinitcpio.d/linux.preset
-surface_preset: "/etc/mkinitcpio.d/{{ surface_kernel_package }}.preset"
+surface_touch_stock_preset: /etc/mkinitcpio.d/linux.preset
+surface_touch_preset: "/etc/mkinitcpio.d/{{ surface_touch_kernel_package }}.preset"

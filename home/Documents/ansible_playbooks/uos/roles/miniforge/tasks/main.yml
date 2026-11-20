@@ -69,7 +69,7 @@
 - name: Compute the installer name and download URL
   ansible.builtin.set_fact:
     miniforge_installer: "{{ 'Miniforge3-' ~ (miniforge_version_effective ~ '-' if miniforge_version_effective else '') ~ 'Linux-' ~ miniforge_arch ~ '.sh' }}"
-    miniforge_github_base: "{{ (miniforge_github_releases ~ '/download/' ~ miniforge_version_effective) if miniforge_version_effective else (miniforge_github_releases ~ '/latest/download') }}"
+    miniforge_github_base: "{{ (miniforge_github_releases ~ '/download/' ~ miniforge_version_effective) if miniforge_version_effective else (miniforge_github_releases ~ '/latest/download') }}"  # noqa: yaml[line-length]
   when: not miniforge_conda_stat.stat.exists
   tags: [miniforge]
 
@@ -89,7 +89,7 @@
     dest: "{{ miniforge_cache_dir }}/{{ miniforge_installer }}"
     mode: "0755"
     timeout: 1800
-    checksum: "{{ ('sha256:' ~ ((miniforge_github_base if miniforge_mirror == 'github' else miniforge_tuna_base) ~ '/' ~ miniforge_installer) ~ '.sha256') if miniforge_version_effective else omit }}"
+    checksum: "{{ ('sha256:' ~ ((miniforge_github_base if miniforge_mirror == 'github' else miniforge_tuna_base) ~ '/' ~ miniforge_installer) ~ '.sha256') if miniforge_version_effective else omit }}"  # noqa: yaml[line-length]
   when: not miniforge_conda_stat.stat.exists
   environment: "{{ miniforge_proxy_env }}"
   tags: [miniforge, download]
@@ -108,6 +108,7 @@
   loop_control:
     label: "{{ item }}"
   # A shell may simply not be installed; the shell script skips those too.
+  changed_when: true
   failed_when: false
   when: miniforge_init | bool
   tags: [miniforge]

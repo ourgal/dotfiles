@@ -42,6 +42,7 @@
     - name: Install the downloaded Goodix libfprint package
       ansible.builtin.command:
         cmd: "pacman -U --noconfirm {{ fingerprint_libfprint_archive_path }}"
+      changed_when: true
       notify: Restart fprintd
 
     - name: Remove the downloaded Goodix libfprint package
@@ -68,7 +69,7 @@
   ansible.builtin.blockinfile:
     path: "/etc/pam.d/{{ item }}"
     marker: "# {mark} ANSIBLE MANAGED BLOCK {{ fingerprint_pam_marker }}"
-    block: "auth\tsufficient\tpam_fprintd.so"
+    block: "auth sufficient pam_fprintd.so"
     insertbefore: '^auth\b'
     create: false
   loop: "{{ fingerprint_pam_services }}"

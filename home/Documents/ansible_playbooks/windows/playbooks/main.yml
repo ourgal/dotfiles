@@ -1,12 +1,13 @@
+---
 - name: Configure windows admin
   hosts: all
   remote_user: admin
   ignore_unreachable: true
   tags: admin
   pre_tasks:
-      - name: Load encrypted credentials
-        community.sops.load_vars:
-          file: secrets.sops.yml
+    - name: Load encrypted credentials
+      community.sops.load_vars:
+        file: secrets.sops.yml
   roles:
     - role: windows_choco
       windows_choco_packages:
@@ -35,15 +36,15 @@
         - Administrators
     - role: windows_service
       windows_service_name: ssh-agent
-      windows_srevice_state: started
-      windows_srevice_start_mode: auto
+      windows_service_state: started
+      windows_service_start_mode: auto
       tags:
         - service
         - ssh-agent
     - role: windows_service
       windows_service_name: wsearch
-      windows_srevice_state: stopped
-      windows_srevice_start_mode: disabled
+      windows_service_state: stopped
+      windows_service_start_mode: disabled
       tags:
         - service
         - wsearch

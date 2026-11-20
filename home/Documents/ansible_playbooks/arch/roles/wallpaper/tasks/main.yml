@@ -1,5 +1,5 @@
 ---
-- name: Clone the wallpaper repository
+- name: Clone the wallpaper repository  # noqa: latest[git]
   become: true
   become_user: "{{ wallpaper_user }}"
   tags:

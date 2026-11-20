@@ -26,7 +26,7 @@
       done <<'EOF'
       {% for kind, mimes in default_apps_mime_types.items() %}
       {% for mime in mimes %}
-      {{ mime }} {{ default_apps[kind] }}
+      {{ mime }} {{ default_apps_desktop[kind] }}
       {% endfor %}
       {% endfor %}
       EOF

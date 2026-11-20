@@ -2,8 +2,8 @@
 - name: Import the linux-surface signing key
   become: true
   community.general.pacman_key:
-    id: "{{ surface_key_id }}"
-    url: "{{ surface_key_url }}"
+    id: "{{ surface_touch_key_id }}"
+    url: "{{ surface_touch_key_url }}"
     state: present
 
 - name: Add the linux-surface repository
@@ -13,12 +13,12 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK linux-surface"
     block: |
       [linux-surface]
-      Server = {{ surface_repo_url }}
+      Server = {{ surface_touch_repo_url }}
 
 - name: Install the Surface kernel, IPTS daemon, and touch firmware
   become: true
   community.general.pacman:
-    name: "{{ surface_packages }}"
+    name: "{{ surface_touch_packages }}"
     state: present
     update_cache: true
 
@@ -27,29 +27,30 @@
 - name: Read the stock kernel preset
   become: true
   ansible.builtin.slurp:
-    src: "{{ surface_stock_preset }}"
-  register: surface_stock
+    src: "{{ surface_touch_stock_preset }}"
+  register: surface_touch_stock
   failed_when: false
 
 - name: Require the stock kernel preset
   ansible.builtin.assert:
-    that: surface_stock.content is defined
-    fail_msg: "{{ surface_stock_preset }} is missing; the stock linux package must be installed."
+    that: surface_touch_stock.content is defined
+    fail_msg: "{{ surface_touch_stock_preset }} is missing; the stock linux package must be installed."
 
 - name: Configure a UKI preset for the Surface kernel
-  when: (surface_stock.content | b64decode) is search('(?m)^default_uki=')
+  when: (surface_touch_stock.content | b64decode) is search('(?m)^default_uki=')
   become: true
   ansible.builtin.copy:
-    content: "{{ surface_stock.content | b64decode | replace('linux', surface_kernel_package) }}"
-    dest: "{{ surface_preset }}"
+    content: "{{ surface_touch_stock.content | b64decode | replace('linux', surface_touch_kernel_package) }}"
+    dest: "{{ surface_touch_preset }}"
     mode: '0644'
-  register: surface_preset_result
+  register: surface_touch_preset_result
 
-- name: Build the Surface kernel image
-  when: surface_preset_result is changed
+- name: Build the Surface kernel image  # noqa: no-handler
+  when: surface_touch_preset_result is changed
   become: true
   ansible.builtin.command:
-    cmd: "mkinitcpio -p {{ surface_kernel_package }}"
+    cmd: "mkinitcpio -p {{ surface_touch_kernel_package }}"
+  changed_when: true
 
 - name: Load uinput at boot
   become: true
@@ -57,10 +58,11 @@
     content: "uinput\n"
     dest: /etc/modules-load.d/uinput.conf
     mode: '0644'
-  register: surface_uinput_config
+  register: surface_touch_uinput_config
 
-- name: Load uinput now
-  when: surface_uinput_config is changed
+- name: Load uinput now  # noqa: no-handler
+  when: surface_touch_uinput_config is changed
   become: true
   ansible.builtin.command:
     cmd: modprobe uinput
+  changed_when: true

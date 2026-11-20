@@ -21,16 +21,18 @@
     # Example on how to read info and reuse it in subsequent task
     - name: Read device information (always use unit when probing)
       become: true
-      community.general.parted: device=/dev/nvme0n1 unit=MiB
+      community.general.parted:
+        device: /dev/nvme0n1
+        unit: MiB
       register: nvme0n1_info
 
     - name: Remove all partitions from disk
       become: true
       community.general.parted:
         device: /dev/nvme0n1
-        number: '{{ item.num }}'
+        number: "{{ item.num }}"
         state: absent
-      loop: '{{ nvme0n1_info.partitions }}'
+      loop: "{{ nvme0n1_info.partitions }}"
     - name: Add partitions
       become: true
       vars:

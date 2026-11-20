@@ -2,8 +2,9 @@
 - name: Install npm packages globally
   tags: "{{ npm_tags }}"
   environment:
-    ANDROID_API_LEVEL: 28
+    ANDROID_API_LEVEL: "28"
   community.general.npm:
     name: "{{ npm_packages }}"
+    global: true
     state: present
     executable: /data/data/com.termux/files/usr/bin/npm

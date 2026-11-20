@@ -1,9 +1,9 @@
 ---
 # Port of ~/Documents/scripts/uos/03_setup-npm-packages.sh
 npm_packages_enabled: true
-miniforge_dir: "{{ ansible_facts.user_dir }}/miniforge3"
+npm_packages_miniforge_dir: "{{ ansible_facts.user_dir }}/miniforge3"
 # npm comes from the conda-forge nodejs package, so global installs land in the
 # Miniforge prefix without sudo.
-npm_packages:
+npm_packages_list:
   - "@tencent-ai/codebuddy-code"
-npm_bins: [cbc, codebuddy]
+npm_packages_bins: [cbc, codebuddy]

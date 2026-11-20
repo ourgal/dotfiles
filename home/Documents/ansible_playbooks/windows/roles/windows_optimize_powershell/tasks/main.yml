@@ -1,3 +1,4 @@
+---
 - name: Optimize powershell
   ansible.windows.win_shell: |
     function Optimize-Assemblies {
@@ -46,4 +47,3 @@
 
     # Optimize PowerShell assemblies:
     Optimize-Assemblies -assemblyFilter "Microsoft.PowerShell."
-

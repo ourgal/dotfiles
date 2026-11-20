@@ -11,7 +11,7 @@ fingerprint_libfprint_version: "1.94.100.m7"
 fingerprint_libfprint_release: "v{{ fingerprint_libfprint_version }}"
 fingerprint_libfprint_archive: "libfprint-goodix55b4-{{ fingerprint_libfprint_version }}-1-x86_64.pkg.tar.zst"
 fingerprint_libfprint_archive_path: "/tmp/{{ fingerprint_libfprint_archive }}"
-fingerprint_libfprint_url: "https://v6.gh-proxy.org/https://github.com/TheWeirdDev/libfprint-goodix55b4-milan/releases/download/{{ fingerprint_libfprint_release }}/{{ fingerprint_libfprint_archive }}"
+fingerprint_libfprint_url: "https://v6.gh-proxy.org/https://github.com/TheWeirdDev/libfprint-goodix55b4-milan/releases/download/{{ fingerprint_libfprint_release }}/{{ fingerprint_libfprint_archive }}"  # noqa: yaml[line-length]
 fingerprint_libfprint_sha256: "3f6296f85eb5e4f3303bcbc4f52c10f3c003fbf5c70a9f5f4eeda2748fc33560"
 
 # PAM services that get an auth=sufficient pam_fprintd.so line.

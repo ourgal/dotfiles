@@ -105,6 +105,7 @@
     - name: Chezmoi
       vars:
         v: 2.72.0
+      when: "'chezmoi' not in ansible_facts.packages or ansible_facts.packages['chezmoi'][0].version != v"
       block:
         - name: Download chezmoi
           ansible.builtin.get_url:
@@ -115,10 +116,10 @@
         - name: Install chezmoi
           ansible.builtin.apt:
             deb: "{{ tmp }}/chezmoi.deb"
-      when: "'chezmoi' not in ansible_facts.packages or ansible_facts.packages['chezmoi'][0].version != v"
     - name: Gopass
       vars:
         v: 1.16.1
+      when: "'gopass' not in ansible_facts.packages or ansible_facts.packages['gopass'][0].version != v"
       block:
         - name: Download gopass
           ansible.builtin.get_url:
@@ -129,10 +130,10 @@
         - name: Install gopass
           ansible.builtin.apt:
             deb: "{{ tmp }}/gopass.deb"
-      when: "'gopass' not in ansible_facts.packages or ansible_facts.packages['gopass'][0].version != v"
     - name: Helix
       vars:
         v: 25.07.1
+      when: "'helix' not in ansible_facts.packages or ansible_facts.packages['helix'][0].version != '25.7.1-1'"
       block:
         - name: Download helix
           ansible.builtin.get_url:
@@ -143,7 +144,6 @@
         - name: Install helix
           ansible.builtin.apt:
             deb: "{{ tmp }}/helix.deb"
-      when: "'helix' not in ansible_facts.packages or ansible_facts.packages['helix'][0].version != '25.7.1-1'"
     - name: Add Flathub repository remote
       community.general.flatpak_remote:
         name: flathub
@@ -160,6 +160,7 @@
     - name: Set emacs desktop file
       ansible.builtin.copy:
         dest: /usr/share/applications/emacs_simple.desktop
+        mode: "0644"
         content: |
           [Desktop Entry]
           Version=1.0
@@ -179,6 +180,7 @@
     - name: Set emacs client desktop file
       ansible.builtin.copy:
         dest: /usr/share/applications/emacsclient_simple.desktop
+        mode: "0644"
         content: |
           [Desktop Entry]
           Name=Emacs Client
@@ -206,3 +208,4 @@
     - name: Refresh font cache
       ansible.builtin.command:
         cmd: fc-cache -f
+      changed_when: false

@@ -5,12 +5,12 @@
   vars:
     gh_proxy: [[ .my.gh_proxy ]]/
   pre_tasks:
-      - name: Install sops
-        ansible.builtin.include_role:
-          name: sops
-      - name: Load encrypted credentials
-        community.sops.load_vars:
-          file: secrets.sops.yml
+    - name: Install sops
+      ansible.builtin.include_role:
+        name: sops
+    - name: Load encrypted credentials
+      community.sops.load_vars:
+        file: secrets.sops.yml
   roles:
     - role: hostname
     - role: hosts
