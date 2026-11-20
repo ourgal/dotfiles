@@ -1,0 +1,14 @@
+[Unit]
+Description=Syncthing continuous file synchronization
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStartPre=-/bin/mkdir -p {{ joinPath .chezmoi.homeDir "Syncthing" "share" }}
+ExecStart={{ lookPath "syncthing" }} serve --no-browser
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

@@ -1226,6 +1226,22 @@ AppData/Roaming/maki/*
 !.config/systemd/user/ssh-agent.service
 {{ end -}}
 # ]]]
+# [[[ syncthing (surface)
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.hostname "surface") -}}
+!.config
+.config/*
+!.config/systemd
+.config/systemd/*
+!.config/systemd/user
+.config/systemd/user/*
+!.config/systemd/user/syncthing.service
+!.config/syncthing
+.config/syncthing/*
+!.config/syncthing/config.xml
+!.config/syncthing/cert.pem
+!.config/syncthing/key.pem
+{{ end -}}
+# ]]]
 # [[[ xinputrc (UOS / fcitx5 input method)
 {{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "uos") -}}
 !.xinputrc
