@@ -15,6 +15,7 @@ miniforge_packages:
   - ansible-core
   - ansible
   - fish
+  - zsh
   - tmux
   - zoxide
   - fzf
@@ -26,6 +27,17 @@ miniforge_packages:
   - herdr
   - prettier
   - ripgrep
+  - bat
+  - eza
+  - fd
+  - starship
+  - delta
+  - tig
+  - jq
+  - shellcheck
+  - sd
+  - bottom
+  - duf
 miniforge_verify_bins:
   - git
   - lazygit
@@ -36,6 +48,7 @@ miniforge_verify_bins:
   - ansible
   - ansible-playbook
   - fish
+  - zsh
   - tmux
   - zoxide
   - fzf
@@ -47,3 +60,14 @@ miniforge_verify_bins:
   - herdr
   - prettier
   - rg
+  - bat
+  - eza
+  - fd
+  - starship
+  - delta
+  - tig
+  - jq
+  - shellcheck
+  - sd
+  - bottom
+  - duf
