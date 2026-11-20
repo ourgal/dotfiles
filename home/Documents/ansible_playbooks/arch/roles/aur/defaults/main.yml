@@ -16,9 +16,6 @@ aur_packages:
   - oh-my-pi-bin
   # Supervise multiple coding agents in one terminal; config is chezmoi-managed.
   - herdr-bin
-  # Drop-in libfprint replacement carrying the Goodix 27c6:5584 (Milan) driver
-  # for the Surface Pro 4 fingerprint scanner; used by the fingerprint role.
-  - libfprint-goodix55b4
 # Helper the module drives; must already be installed (paru role).
 aur_helper: paru
 aur_builder_user: aur-builder
