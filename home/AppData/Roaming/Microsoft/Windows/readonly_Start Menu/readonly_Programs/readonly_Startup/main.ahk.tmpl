@@ -28,6 +28,7 @@ SetTitleMatchMode(2)
 {{ $altrun := joinPath .chezmoi.homeDir "scoop" "apps" "altrun" "current" "ALTRun.exe" -}}
 {{ $navidrome := joinPath .chezmoi.homeDir "scoop" "apps" "navidrome" "current" "navidrome.exe" -}}
 {{ $syncthing := joinPath .chezmoi.homeDir "scoop" "apps" "syncthing" "current" "syncthing.exe" -}}
+{{ $syncthing_home := joinPath .chezmoi.homeDir "scoop" "persist" "syncthing" "config" -}}
 {{ $runemacs := joinPath .chezmoi.homeDir "scoop" "apps" "emacs" "current" "bin" "runemacs.exe" -}}
 {{ $rclone := joinPath .chezmoi.homeDir "scoop" "apps" "rclone" "current" "rclone.exe" -}}
 {{ $thide := joinPath .chezmoi.homeDir "scoop" "apps" "thide" "current" "thide.exe" -}}
@@ -202,7 +203,7 @@ Run "{{ $altrun }} -StartMenu", , "Hide"
 Run "{{ $navidrome }} --datafolder {{ joinPath (env "LOCALAPPDATA") "navidrome" }}", , "Hide"
 {{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $syncthing "opt" (list "windows" "startup" "syncthing" "enable") "os" "windows") | trim | atoi -}}
-Run "{{ $syncthing }} serve --no-console --no-browser", , "Hide"
+Run "{{ $syncthing }} --home {{ $syncthing_home }} --no-upgrade serve --no-console --no-browser", , "Hide"
 {{ end -}}
 {{ $jellyfin_mpv_shim := joinPath .chezmoi.homeDir "scoop" "apps" "jellyfin-mpv-shim" "current" "run.exe" -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" $jellyfin_mpv_shim "opt" (list "windows" "startup" "jellyfin_mpv_shim" "enable") "os" "windows") | trim | atoi -}}
