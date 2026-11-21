@@ -119,6 +119,10 @@
   tags:
     - pkg
     - exllamav3
+  # /tmp is a 3.9G tmpfs; the ROCm torch wheel is >6G and pip unpacks it too.
+  # Redirect pip's temp dir to /var/tmp, which lives on the large root fs.
+  environment:
+    TMPDIR: /var/tmp
   ansible.builtin.pip:
     name: torch
     version: "{{ exllamav3_torch_version }}"
