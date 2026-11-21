@@ -1,0 +1,412 @@
+---
+- name: Install exllamav3 runtime dependencies
+  become: true
+  tags:
+    - pkg
+    - exllamav3
+  community.general.pacman:
+    name: "{{ exllamav3_packages }}"
+    state: present
+
+- name: Install exllamav3 build dependencies
+  become: true
+  tags:
+    - pkg
+    - exllamav3
+  community.general.pacman:
+    name: "{{ exllamav3_build_packages }}"
+    state: present
+
+- name: Stop and mask the old llama.cpp service
+  become: true
+  tags:
+    - pkg
+    - config
+    - exllamav3
+  ansible.builtin.systemd_service:
+    name: "{{ exllamav3_legacy_service }}"
+    state: stopped
+    enabled: false
+    masked: true
+  failed_when: false
+
+- name: Remove the old llama.cpp systemd unit
+  become: true
+  tags:
+    - pkg
+    - config
+    - exllamav3
+  ansible.builtin.file:
+    path: "/etc/systemd/system/{{ exllamav3_legacy_service }}.service"
+    state: absent
+
+- name: Create the exllamav3 group
+  become: true
+  tags:
+    - exllamav3
+  ansible.builtin.group:
+    name: "{{ exllamav3_user }}"
+    system: true
+
+- name: Create the exllamav3 service user
+  become: true
+  tags:
+    - exllamav3
+  ansible.builtin.user:
+    name: "{{ exllamav3_user }}"
+    group: "{{ exllamav3_user }}"
+    home: "{{ exllamav3_home }}"
+    create_home: true
+    shell: /usr/bin/nologin
+    system: true
+    groups:
+      - video
+      - render
+    append: true
+
+- name: Create the exllamav3 directories
+  become: true
+  tags:
+    - exllamav3
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ exllamav3_user }}"
+    group: "{{ exllamav3_user }}"
+    mode: "0755"
+  loop:
+    - "{{ exllamav3_prefix }}"
+    - "{{ exllamav3_bin_dir }}"
+    - "{{ exllamav3_model_path }}"
+    - "{{ exllamav3_draft_path }}"
+
+- name: Clone the exllamav3 RDNA fork
+  become: true
+  tags:
+    - pkg
+    - exllamav3
+  ansible.builtin.git:
+    repo: "{{ exllamav3_source_repo }}"
+    dest: "{{ exllamav3_source_dir }}"
+    version: "{{ exllamav3_source_version }}"
+    refspec: "+refs/heads/rdna:refs/remotes/origin/rdna"
+  register: exllamav3_source
+
+- name: Clone TabbyAPI
+  become: true
+  tags:
+    - pkg
+    - exllamav3
+  ansible.builtin.git:
+    repo: "{{ exllamav3_tabby_repo }}"
+    dest: "{{ exllamav3_tabby_dir }}"
+    version: "{{ exllamav3_tabby_version }}"
+    refspec: "+refs/heads/main:refs/remotes/origin/main"
+  register: exllamav3_tabby
+
+- name: Create the Python virtualenv
+  become: true
+  tags:
+    - pkg
+    - exllamav3
+  ansible.builtin.command:
+    cmd: "{{ exllamav3_python }} -m venv {{ exllamav3_venv }}"
+    creates: "{{ exllamav3_venv }}/bin/python"
+  changed_when: true
+
+- name: Install the ROCm PyTorch wheel
+  become: true
+  tags:
+    - pkg
+    - exllamav3
+  ansible.builtin.pip:
+    name: torch
+    version: "{{ exllamav3_torch_version }}"
+    virtualenv: "{{ exllamav3_venv }}"
+    extra_args: "--index-url {{ exllamav3_torch_index }}"
+    state: present
+
+- name: Install the exllamav3 and TabbyAPI Python dependencies
+  become: true
+  tags:
+    - pkg
+    - exllamav3
+  ansible.builtin.pip:
+    name: "{{ exllamav3_pip_deps }}"
+    virtualenv: "{{ exllamav3_venv }}"
+    state: present
+
+- name: Patch the attention kernel for ROCm 7.2.4 clang
+  become: true
+  tags:
+    - pkg
+    - exllamav3
+  ansible.builtin.replace:
+    path: "{{ exllamav3_attention_patch }}"
+    regexp: 'sm_scale == 0\.0f \? rsqrtf\(\(float\) dim\)'
+    replace: 'sm_scale == 0.0f ? 1.0f / sqrtf((float) dim)'
+  register: exllamav3_patch
+
+- name: Read the patched attention kernel
+  become: true
+  tags:
+    - pkg
+    - exllamav3
+  ansible.builtin.slurp:
+    src: "{{ exllamav3_attention_patch }}"
+  register: exllamav3_attention_after
+
+- name: Require the attention patch to have applied
+  tags:
+    - pkg
+    - exllamav3
+  ansible.builtin.assert:
+    that: "'rsqrtf((float) dim)' not in (exllamav3_attention_after.content | b64decode)"
+    fail_msg: >-
+      The rsqrtf patch did not apply to {{ exllamav3_attention_patch }};
+      the pinned exllamav3 source may have changed.
+
+- name: Check the HIP build marker
+  become: true
+  tags:
+    - pkg
+    - exllamav3
+  ansible.builtin.stat:
+    path: "{{ exllamav3_build_marker }}"
+  register: exllamav3_build_marker_stat
+
+- name: Build the exllamav3 HIP extension
+  become: true
+  when: >-
+    exllamav3_source.changed
+    or exllamav3_tabby.changed
+    or exllamav3_patch.changed
+    or not exllamav3_build_marker_stat.stat.exists
+  tags:
+    - pkg
+    - exllamav3
+  ansible.builtin.command:
+    cmd: "{{ exllamav3_venv }}/bin/python setup.py build_ext --inplace --force"
+    chdir: "{{ exllamav3_source_dir }}"
+  environment:
+    PYTORCH_ROCM_ARCH: "{{ exllamav3_gfx }}"
+    MAX_JOBS: "{{ exllamav3_build_jobs }}"
+    ROCM_HOME: "{{ exllamav3_rocm_home }}"
+    CC: "{{ exllamav3_rocm_home }}/llvm/bin/clang"
+    CXX: "{{ exllamav3_rocm_home }}/llvm/bin/clang++"
+  changed_when: true
+  notify: Restart exllamav3
+
+- name: Install the exllamav3 package editable
+  become: true
+  when: >-
+    exllamav3_source.changed
+    or exllamav3_tabby.changed
+    or exllamav3_patch.changed
+    or not exllamav3_build_marker_stat.stat.exists
+  tags:
+    - pkg
+    - exllamav3
+  ansible.builtin.command:
+    cmd: >-
+      {{ exllamav3_venv }}/bin/pip install --no-cache-dir -e .
+      --no-deps --no-build-isolation
+    chdir: "{{ exllamav3_source_dir }}"
+  environment:
+    EXLLAMA_NOCOMPILE: "1"
+  changed_when: true
+  notify: Restart exllamav3
+
+- name: Record the HIP build marker
+  become: true
+  when: >-
+    exllamav3_source.changed
+    or exllamav3_tabby.changed
+    or exllamav3_patch.changed
+    or not exllamav3_build_marker_stat.stat.exists
+  tags:
+    - pkg
+    - exllamav3
+  ansible.builtin.copy:
+    dest: "{{ exllamav3_build_marker }}"
+    content: >-
+      {{ exllamav3_torch_version }} {{ exllamav3_source_version }}
+      {{ exllamav3_attention_after.content | hash('sha256') }}
+      {{ '\n' }}
+    mode: "0644"
+
+- name: Create the TabbyAPI models directory
+  become: true
+  tags:
+    - config
+    - exllamav3
+  ansible.builtin.file:
+    path: "{{ exllamav3_tabby_dir }}/models"
+    state: directory
+    owner: "{{ exllamav3_user }}"
+    group: "{{ exllamav3_user }}"
+    mode: "0755"
+
+- name: Install the exl3-server wrapper
+  become: true
+  tags:
+    - config
+    - exllamav3
+  ansible.builtin.template:
+    src: exl3-server.j2
+    dest: "{{ exllamav3_wrapper }}"
+    owner: "{{ exllamav3_user }}"
+    group: "{{ exllamav3_user }}"
+    mode: "0755"
+
+- name: Link the exl3-server wrapper into PATH
+  become: true
+  tags:
+    - config
+    - exllamav3
+  ansible.builtin.file:
+    src: "{{ exllamav3_wrapper }}"
+    dest: /usr/local/bin/exl3-server
+    state: link
+    force: true
+
+- name: Check whether the exllamav3 models are present
+  become: true
+  tags:
+    - pkg
+    - config
+    - exllamav3
+  ansible.builtin.stat:
+    path: "{{ item.path }}/config.json"
+  loop:
+    - path: "{{ exllamav3_model_path }}"
+      repo: "{{ exllamav3_model_repo }}"
+    - path: "{{ exllamav3_draft_path }}"
+      repo: "{{ exllamav3_draft_repo }}"
+  register: exllamav3_models
+
+- name: Download the exllamav3 models
+  when: not exllamav3_models.results[ansible_loop.index0].stat.exists
+  become: true
+  become_user: "{{ exllamav3_user }}"
+  tags:
+    - pkg
+    - config
+    - exllamav3
+  ansible.builtin.command:
+    cmd: "hf download {{ item.repo }} --local-dir {{ item.path }}"
+  environment:
+    HOME: "{{ exllamav3_home }}"
+    HF_HOME: "{{ exllamav3_home }}"
+  loop:
+    - path: "{{ exllamav3_model_path }}"
+      repo: "{{ exllamav3_model_repo }}"
+    - path: "{{ exllamav3_draft_path }}"
+      repo: "{{ exllamav3_draft_repo }}"
+  loop_control:
+    extended: true
+    label: "{{ item.repo }}"
+
+- name: Require both exllamav3 models to be present
+  become: true
+  tags:
+    - pkg
+    - config
+    - exllamav3
+  ansible.builtin.stat:
+    path: "{{ item }}/config.json"
+  loop:
+    - "{{ exllamav3_model_path }}"
+    - "{{ exllamav3_draft_path }}"
+  register: exllamav3_models_after
+
+- name: Assert both exllamav3 models were downloaded
+  tags:
+    - pkg
+    - config
+    - exllamav3
+  ansible.builtin.assert:
+    that: exllamav3_models_after.results | map(attribute='stat.exists') | all
+    fail_msg: >-
+      An exllamav3 model is missing after download; check `hf download` output
+      and the repository names.
+
+- name: Install the exllamav3 systemd unit
+  become: true
+  tags:
+    - config
+    - exllamav3
+  ansible.builtin.template:
+    src: exl3-server.service.j2
+    dest: "/etc/systemd/system/{{ exllamav3_service }}.service"
+    mode: "0644"
+  notify: Restart exllamav3
+
+- name: Enable and start exllamav3
+  become: true
+  tags:
+    - service
+    - exllamav3
+  ansible.builtin.systemd_service:
+    name: "{{ exllamav3_service }}"
+    enabled: true
+    state: started
+    daemon_reload: true
+
+- name: Open the exllamav3 port
+  become: true
+  tags:
+    - service
+    - exllamav3
+  community.general.ufw:
+    rule: allow
+    port: "{{ exllamav3_port }}"
+    proto: tcp
+
+- name: Check the exllamav3 extension import
+  become: true
+  tags:
+    - service
+    - exllamav3
+  ansible.builtin.command:
+    cmd: >-
+      {{ exllamav3_venv }}/bin/python -c
+      "import torch; from exllamav3.ext import exllamav3_ext;
+      print(torch.__version__, torch.version.hip)"
+  register: exllamav3_import
+  changed_when: false
+  failed_when: false
+  environment:
+    PYTHONPATH: "{{ exllamav3_source_dir }}"
+    ROCM_PATH: "{{ exllamav3_rocm_home }}"
+
+- name: Require the exllamav3 extension to load
+  tags:
+    - service
+    - exllamav3
+  ansible.builtin.assert:
+    that:
+      - exllamav3_import.rc == 0
+      - exllamav3_torch_version in exllamav3_import.stdout
+    fail_msg: >-
+      The exllamav3 HIP extension failed to import. Check the build output and
+      that the ROCm torch wheel matches the extension build.
+
+- name: Check the exl3-server wrapper
+  become: true
+  tags:
+    - service
+    - exllamav3
+  ansible.builtin.command:
+    cmd: "{{ exllamav3_wrapper }} --help"
+  register: exllamav3_wrapper_help
+  changed_when: false
+  failed_when: false
+
+- name: Require the exl3-server wrapper to work
+  tags:
+    - service
+    - exllamav3
+  ansible.builtin.assert:
+    that: "'--model-dir' in (exllamav3_wrapper_help.stdout + exllamav3_wrapper_help.stderr)"
+    fail_msg: "exl3-server --help did not expose --model-dir; the TabbyAPI launch failed."

@@ -1,0 +1,42 @@
+[Unit]
+Description=exllamav3 / TabbyAPI server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User={{ exllamav3_user }}
+Group={{ exllamav3_user }}
+SupplementaryGroups=video render
+WorkingDirectory={{ exllamav3_home }}
+Environment=HOME={{ exllamav3_home }}
+Environment=PYTHONPATH={{ exllamav3_source_dir }}
+Environment=ROCM_PATH={{ exllamav3_rocm_home }}
+ExecStart={{ exllamav3_wrapper }} \
+    --host {{ exllamav3_host }} \
+    --port {{ exllamav3_port }} \
+    --disable-auth true \
+    --model-dir {{ exllamav3_model_dir }} \
+    --model-name {{ exllamav3_model_name }} \
+    --max-seq-len {{ exllamav3_context }} \
+    --cache-size {{ exllamav3_cache_size }} \
+    --cache-mode {{ exllamav3_cache_mode }} \
+    --chunk-size {{ exllamav3_chunk_size }} \
+    --max-batch-size {{ exllamav3_max_batch_size }} \
+    --vision {{ exllamav3_vision | ternary('true', 'false') }} \
+    --vision-offload {{ exllamav3_vision_offload | ternary('true', 'false') }} \
+    --reasoning {{ exllamav3_reasoning | ternary('true', 'false') }} \
+    --reasoning-start-token "" \
+    --reasoning-end-token "" \
+    --tool-format {{ exllamav3_tool_format }} \
+    --draft-mode model \
+    --draft-model-dir {{ exllamav3_model_dir }} \
+    --draft-model-name {{ exllamav3_draft_name }} \
+    --draft-cache-mode {{ exllamav3_draft_cache_mode }} \
+    --sysmem-recurrent-cache {{ exllamav3_sysmem_recurrent_cache }} \
+    --sysmem-kv-cache {{ exllamav3_sysmem_kv_cache }}
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

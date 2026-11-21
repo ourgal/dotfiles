@@ -1,0 +1,6 @@
+#!/bin/sh
+# TabbyAPI on the exllamav3 RDNA fork. Keep in sync with the llama-swap-rdna image.
+export PYTHONPATH="{{ exllamav3_source_dir }}${PYTHONPATH:+:$PYTHONPATH}"
+export ROCM_PATH="{{ exllamav3_rocm_home }}"
+cd "{{ exllamav3_tabby_dir }}"
+exec "{{ exllamav3_venv }}/bin/python" main.py "$@"
