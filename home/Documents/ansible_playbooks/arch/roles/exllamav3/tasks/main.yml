@@ -330,7 +330,7 @@
     - config
     - exllamav3
   ansible.builtin.assert:
-    that: exllamav3_models_after.results | map(attribute='stat.exists') | all
+    that: exllamav3_models_after.results | rejectattr('stat.exists') | list | length == 0
     fail_msg: >-
       An exllamav3 model is missing after download; check `hf download` output
       and the repository names.
