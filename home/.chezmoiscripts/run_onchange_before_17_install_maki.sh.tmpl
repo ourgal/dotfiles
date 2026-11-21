@@ -1,7 +1,7 @@
 {{ if eq .chezmoi.os "android" -}}
 #!/{{ lookPath "bash" }}
 
-{{ $maki_version := "0.7.0" -}}
+{{ $maki_version := "0.7.3" -}}
 {{ $arch := "x86_64" -}}
 {{ if eq .chezmoi.arch "arm64" -}}
 {{ $arch = "aarch64" -}}
