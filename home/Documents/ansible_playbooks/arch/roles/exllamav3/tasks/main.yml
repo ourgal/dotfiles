@@ -261,17 +261,24 @@
     content: "{{ exllamav3_desired_marker }}\n"
     mode: "0644"
 
-- name: Create the TabbyAPI models directory
+- name: Create the TabbyAPI writable directories
   become: true
   tags:
     - config
     - exllamav3
   ansible.builtin.file:
-    path: "{{ exllamav3_tabby_dir }}/models"
+    path: "{{ exllamav3_tabby_dir }}/{{ item }}"
     state: directory
     owner: "{{ exllamav3_user }}"
     group: "{{ exllamav3_user }}"
     mode: "0755"
+  # TabbyAPI's logger writes to "logs/{time}.log" relative to the wrapper's
+  # cd into the TabbyAPI source tree. The tree is cloned as root, so the logs
+  # directory must be created and owned by the service user up front or
+  # loguru's file sink fails with EACCES on every start.
+  loop:
+    - models
+    - logs
 
 - name: Install the exl3-server wrapper
   become: true
