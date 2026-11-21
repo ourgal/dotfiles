@@ -15,7 +15,12 @@ Environment=ROCM_PATH={{ exllamav3_rocm_home }}
 ExecStart={{ exllamav3_wrapper }} \
     --host {{ exllamav3_host }} \
     --port {{ exllamav3_port }} \
+{% if exllamav3_auth_enabled | bool %}
+    --disable-auth false \
+{% else %}
     --disable-auth true \
+{% endif %}
+    --log-auth-keys {{ exllamav3_log_auth_keys | ternary('true', 'false') }} \
     --model-dir {{ exllamav3_model_dir }} \
     --model-name {{ exllamav3_model_name }} \
     --max-seq-len {{ exllamav3_context }} \

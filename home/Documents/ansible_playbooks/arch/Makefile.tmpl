@@ -1,5 +1,8 @@
 {{ includeTemplate "ansible_playbook_makefile" . -}}
 
+sops:
+	env $(ANSIBLE_ENV) sops inventory/group_vars/secrets.sops.yml
+
 ROUTER_PLAYBOOK := playbooks/router.yml
 .PHONY: router
 

@@ -3,6 +3,16 @@ exllamav3_enabled: true
 exllamav3_port: 8080
 exllamav3_host: 0.0.0.0
 
+# TabbyAPI auth. Keys are loaded from the SOPS-encrypted
+# inventory/group_vars/secrets.sops.yml by the ai playbook; use `make sops` in
+# the arch playbook dir to view or rotate them.
+exllamav3_auth_enabled: true
+exllamav3_admin_key: ""
+exllamav3_api_key: ""
+exllamav3_tokens_path: "{{ exllamav3_tabby_dir }}/api_tokens.yml"
+# Keys are already stored in SOPS; don't also print them to the journal.
+exllamav3_log_auth_keys: false
+
 exllamav3_prefix: /opt/exl3
 exllamav3_venv: "{{ exllamav3_prefix }}/venv"
 exllamav3_python: /usr/bin/python3

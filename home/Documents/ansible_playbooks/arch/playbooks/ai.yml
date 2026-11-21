@@ -2,6 +2,12 @@
 - name: Configure Arch Linux AI server
   hosts: ai_servers
   ignore_unreachable: true
+  pre_tasks:
+    # Explicit decrypt; the community.sops vars plugin is enabled but an
+    # unloadable plugin would otherwise silently leave the secrets undefined.
+    - name: Load encrypted credentials
+      community.sops.load_vars:
+        file: "{{ inventory_dir }}/group_vars/secrets.sops.yml"
   roles:
     - role: pacman
       when: pacman_enabled | default(true) | bool

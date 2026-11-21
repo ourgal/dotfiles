@@ -280,6 +280,36 @@
     - models
     - logs
 
+- name: Require TabbyAPI auth keys
+  when: exllamav3_auth_enabled | bool
+  tags:
+    - config
+    - exllamav3
+  ansible.builtin.assert:
+    that:
+      - (exllamav3_admin_key | default('') | length) > 0
+      - (exllamav3_api_key | default('') | length) > 0
+    fail_msg: >-
+      Set exllamav3_admin_key and exllamav3_api_key in
+      inventory/group_vars/secrets.sops.yml (edit with `make sops`) before
+      enabling auth.
+
+- name: Install the TabbyAPI auth token file
+  become: true
+  when: exllamav3_auth_enabled | bool
+  tags:
+    - config
+    - exllamav3
+  ansible.builtin.template:
+    src: api_tokens.yml.j2
+    dest: "{{ exllamav3_tokens_path }}"
+    owner: "{{ exllamav3_user }}"
+    group: "{{ exllamav3_user }}"
+    mode: "0600"
+  # TabbyAPI hot-reloads api_tokens.yml, but restart anyway so a changed
+  # admin key is guaranteed to be live and the unit flags stay in sync.
+  notify: Restart exllamav3
+
 - name: Install the exl3-server wrapper
   become: true
   tags:
