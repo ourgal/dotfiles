@@ -1,0 +1,5 @@
+---
+autorandr_enabled: true
+# The package installs a udev rule that starts autorandr.service on every DRM
+# hotplug. Only the Surface (dual-display) wants that behavior, so the service
+# is masked everywhere else.

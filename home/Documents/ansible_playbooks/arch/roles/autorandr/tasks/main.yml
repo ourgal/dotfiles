@@ -1,0 +1,24 @@
+---
+- name: Enable and start autorandr on surface
+  become: true
+  tags:
+    - service
+    - autorandr
+  ansible.builtin.systemd_service:
+    name: autorandr.service
+    enabled: true
+    masked: false
+    state: started
+  when: ansible_facts.hostname == "surface"
+
+- name: Mask autorandr off surface
+  become: true
+  tags:
+    - service
+    - autorandr
+  ansible.builtin.systemd_service:
+    name: autorandr.service
+    enabled: false
+    masked: true
+    state: stopped
+  when: ansible_facts.hostname != "surface"

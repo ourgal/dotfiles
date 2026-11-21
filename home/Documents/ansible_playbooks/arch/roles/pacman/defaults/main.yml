@@ -113,6 +113,8 @@ pacman_packages:
     - xorg-xinput
     - xorg-xrandr
     - xorg-xrdb
+    # Apply saved xrandr layouts on display hotplug (only unmasked on surface).
+    - autorandr
     # Text injection for handy (voice input) on X11.
     - xdotool
     - noto-fonts
