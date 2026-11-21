@@ -90,6 +90,11 @@
     dest: "{{ exllamav3_source_dir }}"
     version: "{{ exllamav3_source_version }}"
     refspec: "+refs/heads/rdna:refs/remotes/origin/rdna"
+    # The attention-kernel patch edits a tracked file, so the checkout is always
+    # dirty on later runs and force=no would fail. Drop that local change here;
+    # the patch task below re-applies it. Rebuilds are gated on the marker hash,
+    # not on .changed, so this does not trigger a recompile every run.
+    force: true
   register: exllamav3_source
 
 - name: Clone TabbyAPI
@@ -179,13 +184,41 @@
     path: "{{ exllamav3_build_marker }}"
   register: exllamav3_build_marker_stat
 
+- name: Read the current HIP build marker
+  become: true
+  when: exllamav3_build_marker_stat.stat.exists
+  tags:
+    - pkg
+    - exllamav3
+  ansible.builtin.slurp:
+    src: "{{ exllamav3_build_marker }}"
+  register: exllamav3_marker
+
+- name: Compute the desired HIP build marker
+  tags:
+    - pkg
+    - exllamav3
+  ansible.builtin.set_fact:
+    # Derived from the pinned versions and the hash of the *patched* attention
+    # kernel. Keeping this as a single value used by both the rebuild check and
+    # the copy task guarantees they cannot drift apart.
+    exllamav3_desired_marker: |-
+      {{ exllamav3_torch_version }} {{ exllamav3_source_version }} {{ exllamav3_tabby_version }}
+      {{ exllamav3_attention_after.content | b64decode | hash('sha256') }}
+
+- name: Decide whether a rebuild is needed
+  tags:
+    - pkg
+    - exllamav3
+  ansible.builtin.set_fact:
+    exllamav3_rebuild_needed: >-
+      {{ not exllamav3_build_marker_stat.stat.exists
+         or (exllamav3_marker.content | default('') | b64decode | trim)
+            != (exllamav3_desired_marker | trim) }}
+
 - name: Build the exllamav3 HIP extension
   become: true
-  when: >-
-    exllamav3_source.changed
-    or exllamav3_tabby.changed
-    or exllamav3_patch.changed
-    or not exllamav3_build_marker_stat.stat.exists
+  when: exllamav3_rebuild_needed
   tags:
     - pkg
     - exllamav3
@@ -203,11 +236,7 @@
 
 - name: Install the exllamav3 package editable
   become: true
-  when: >-
-    exllamav3_source.changed
-    or exllamav3_tabby.changed
-    or exllamav3_patch.changed
-    or not exllamav3_build_marker_stat.stat.exists
+  when: exllamav3_rebuild_needed
   tags:
     - pkg
     - exllamav3
@@ -223,20 +252,13 @@
 
 - name: Record the HIP build marker
   become: true
-  when: >-
-    exllamav3_source.changed
-    or exllamav3_tabby.changed
-    or exllamav3_patch.changed
-    or not exllamav3_build_marker_stat.stat.exists
+  when: exllamav3_rebuild_needed
   tags:
     - pkg
     - exllamav3
   ansible.builtin.copy:
     dest: "{{ exllamav3_build_marker }}"
-    content: >-
-      {{ exllamav3_torch_version }} {{ exllamav3_source_version }}
-      {{ exllamav3_attention_after.content | hash('sha256') }}
-      {{ '\n' }}
+    content: "{{ exllamav3_desired_marker }}\n"
     mode: "0644"
 
 - name: Create the TabbyAPI models directory
