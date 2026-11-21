@@ -20,3 +20,11 @@
       when: paru_enabled | default(true) | bool
     - role: exllamav3
       when: exllamav3_enabled | default(true) | bool
+    # LLM is the local exl3 (TabbyAPI) server: OpenAI-compatible endpoint of
+    # the exllamav3 role, reached from the container via host-gateway.
+    - role: hindsight
+      when: hindsight_enabled | default(true) | bool
+      vars:
+        hindsight_llm_model: "{{ exllamav3_model_name }}"
+        hindsight_llm_base_url: "http://host.docker.internal:{{ exllamav3_port }}/v1"
+        hindsight_llm_api_key: "{{ exllamav3_api_key }}"

@@ -1,0 +1,55 @@
+services:
+  hindsight:
+    image: {{ hindsight_image }}
+    container_name: hindsight-app
+    restart: unless-stopped
+    # Outlasts the image's 60s shutdown wait; the 10s default would SIGKILL it.
+    stop_grace_period: 75s
+    extra_hosts:
+      # LLM defaults to the host's exl3 API; host-gateway resolves the name.
+      - host.docker.internal:host-gateway
+    environment:
+      - "HINDSIGHT_API_LLM_PROVIDER={{ hindsight_llm_provider }}"
+{% if hindsight_llm_model %}
+      - "HINDSIGHT_API_LLM_MODEL={{ hindsight_llm_model }}"
+{% endif %}
+{% if hindsight_llm_base_url %}
+      - "HINDSIGHT_API_LLM_BASE_URL={{ hindsight_llm_base_url }}"
+{% endif %}
+      - "HINDSIGHT_API_LLM_API_KEY={{ hindsight_llm_api_key }}"
+      - "HINDSIGHT_API_DATABASE_URL=postgresql://{{ hindsight_db_user }}:{{ hindsight_db_password }}@db:5432/{{ hindsight_db_name }}"
+    ports:
+      - "{{ hindsight_api_port }}:8888"
+      - "{{ hindsight_ui_port }}:9999"
+    networks:
+      - hindsight
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: {{ hindsight_db_image }}
+    container_name: hindsight-db
+    restart: unless-stopped
+    environment:
+      - "POSTGRES_USER={{ hindsight_db_user }}"
+      - "POSTGRES_PASSWORD={{ hindsight_db_password }}"
+      - "POSTGRES_DB={{ hindsight_db_name }}"
+    volumes:
+      # pg18 moved PGDATA: this path goes with the image tag in hindsight_db_image.
+      - hindsight-db:/var/lib/postgresql/18/docker
+    networks:
+      - hindsight
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "{{ hindsight_db_user }}", "-d", "{{ hindsight_db_name }}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  hindsight-db:
+
+networks:
+  hindsight:
+    name: hindsight
