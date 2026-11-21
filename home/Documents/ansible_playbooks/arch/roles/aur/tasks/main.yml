@@ -38,6 +38,23 @@
         commands: /usr/bin/pacman
         nopassword: true
 
+# seanime-bin ships the user unit /usr/lib/systemd/user/seanime.service.
+- name: Enable seanime user service
+  become: true
+  become_user: "{{ aur_seanime_user }}"
+  tags:
+    - service
+    - aur
+  when: "'seanime-bin' in aur_packages"
+  ansible.builtin.systemd_service:
+    scope: user
+    name: seanime.service
+    enabled: true
+    state: started
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ ansible_facts.user_uid }}"
+    DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/{{ ansible_facts.user_uid }}/bus"
+
 - name: Install AUR packages
   become: true
   become_user: "{{ aur_builder_user }}"
