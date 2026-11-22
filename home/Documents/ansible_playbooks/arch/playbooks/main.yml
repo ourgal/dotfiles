@@ -29,6 +29,8 @@
       when: ufw_enabled | default(true) | bool
     - role: services
       when: services_enabled | default(true) | bool
+    - role: dunst
+      when: dunst_enabled | default(true) | bool
     - role: autorandr
       when: autorandr_enabled | default(true) | bool
     - role: tailscale

@@ -1,0 +1,13 @@
+---
+dunst_enabled: true
+dunst_user: "{{ ansible_facts.user_id }}"
+dunst_unit_dir: "{{ ansible_facts.user_dir }}/.config/systemd/user"
+dunst_service: dunst
+dunst_display: ":0"
+# ly writes the Xauthority cookie here; the packaged services in the aur role
+# use the same path, so pass it explicitly instead of relying on the user
+# manager having inherited it from the graphical login.
+dunst_xauth: "/run/user/%U/lyxauth"
+dunst_packages:
+  - dunst
+  - libnotify
