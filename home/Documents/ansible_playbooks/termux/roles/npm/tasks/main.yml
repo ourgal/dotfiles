@@ -4,7 +4,8 @@
   environment:
     ANDROID_API_LEVEL: "28"
   community.general.npm:
-    name: "{{ npm_packages }}"
+    name: "{{ item }}"
     global: true
     state: present
     executable: /data/data/com.termux/files/usr/bin/npm
+  loop: "{{ npm_packages }}"
