@@ -1,0 +1,22 @@
+---
+- name: Ensure ~/.local/bin exists
+  ansible.builtin.file:
+    path: "{{ github_binaries_bin_dir }}"
+    state: directory
+    mode: '0755'
+  tags: "{{ github_binaries_tags }}"
+
+- name: Ensure the download cache directory exists
+  ansible.builtin.file:
+    path: "{{ github_binaries_cache_dir }}"
+    state: directory
+    mode: '0700'
+  tags: "{{ github_binaries_tags }}"
+
+- name: Install GitHub release binaries
+  ansible.builtin.include_tasks: install_binary.yml
+  loop: "{{ github_binaries }}"
+  loop_control:
+    loop_var: binary
+    label: "{{ binary.name }}"
+  tags: "{{ github_binaries_tags }}"
