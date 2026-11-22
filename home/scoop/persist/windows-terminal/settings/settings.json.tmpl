@@ -21,11 +21,12 @@
     }
   ],
   "profiles": {
-    "defaults": {},
+    "defaults": {
+      "cursorShape": "bar"
+    },
     "list": [
       {
         "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-        "cursorShape": "filledBox",
         "font": {
           "face": "{{ .my.font.monospace }}"
         },
@@ -39,7 +40,6 @@
 {{- if lookPath "cmd" }},
       {
         "commandline": "%SystemRoot%\\System32\\cmd.exe",
-        "cursorShape": "filledBox",
         "font": {
           "face": "{{ .my.font.monospace }}"
         },
@@ -54,7 +54,6 @@
 {{- if lookPath "powershell" }},
       {
         "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-        "cursorShape": "filledBox",
         "font": {
           "face": "{{ .my.font.monospace }}"
         },
@@ -69,7 +68,6 @@
 {{- if lookPath "xonsh" }},
       {
         "commandline": "%USERPROFILE%\\.local\\bin\\xonsh.exe",
-        "cursorShape": "filledBox",
         "font": {
           "face": "{{ .my.font.monospace }}"
         },
@@ -84,7 +82,6 @@
 {{- if lookPath "bash" }},
       {
         "commandline": "%USERPROFILE%\\scoop\\apps\\git\\current\\bin\\bash.exe -i -l",
-        "cursorShape": "filledBox",
         "font": {
           "face": "{{ .my.font.monospace }}"
         },
@@ -99,7 +96,6 @@
 {{- if lookPath "msys2" }},
       {
         "commandline": "%USERPROFILE%\\scoop\\shims\\msys2.cmd -use-full-path -shell fish",
-        "cursorShape": "filledBox",
         "font": {
           "face": "{{ .my.font.monospace }}"
         },
@@ -114,7 +110,6 @@
 {{- if lookPath "nu" }},
       {
         "commandline": "%USERPROFILE%\\scoop\\shims\\nu.exe",
-        "cursorShape": "filledBox",
         "font": {
           "face": "{{ .my.font.monospace }}"
         },
@@ -129,7 +124,6 @@
 {{- if lookPath "yori" }},
       {
         "commandline": "%USERPROFILE%\\scoop\\shims\\yori.exe",
-        "cursorShape": "filledBox",
         "font": {
           "face": "{{ .my.font.monospace }}"
         },
@@ -144,7 +138,6 @@
 {{- if lookPath "niu" }},
       {
         "commandline": "%USERPROFILE%\\scoop\\shims\\niu.exe",
-        "cursorShape": "filledBox",
         "font": {
           "face": "{{ .my.font.monospace }}"
         },
@@ -158,7 +151,6 @@
 {{- end }}
 {{- if lookPath "wsl" }},
       {
-        "cursorShape": "filledBox",
         "font": {
           "face": "{{ .my.font.monospace }}"
         },
@@ -174,7 +166,6 @@
 {{- if lookPath "cmd" }},
       {
         "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
-        "cursorShape": "filledBox",
         "font": {
           "face": "{{ .my.font.monospace }}"
         },
@@ -189,7 +180,6 @@
 {{- if lookPath "elvish" }},
       {
         "commandline": "%USERPROFILE%\\scoop\\shims\\elvish.exe",
-        "cursorShape": "filledBox",
         "font": {
           "face": "{{ .my.font.monospace }}"
         },
