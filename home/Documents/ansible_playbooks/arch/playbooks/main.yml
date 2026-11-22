@@ -61,3 +61,5 @@
       when: blogtato_enabled | default(true) | bool
     - role: scls
       when: scls_enabled | default(true) | bool
+    - role: pipx
+      when: pipx_enabled | default(true) | bool

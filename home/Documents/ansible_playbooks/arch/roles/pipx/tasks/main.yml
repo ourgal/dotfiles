@@ -1,0 +1,8 @@
+---
+- name: Install pipx packages
+  tags:
+    - pkg
+    - pipx
+  community.general.pipx:
+    name: "{{ item }}"
+  loop: "{{ pipx_packages }}"
