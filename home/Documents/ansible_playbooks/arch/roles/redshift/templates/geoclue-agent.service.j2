@@ -1,0 +1,12 @@
+[Unit]
+Description=GeoClue2 demo agent for redshift automatic location
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart={{ redshift_geoclue_agent_bin }}
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=default.target

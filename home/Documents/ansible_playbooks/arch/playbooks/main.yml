@@ -31,6 +31,8 @@
       when: services_enabled | default(true) | bool
     - role: dunst
       when: dunst_enabled | default(true) | bool
+    - role: redshift
+      when: redshift_enabled | default(true) | bool
     - role: autorandr
       when: autorandr_enabled | default(true) | bool
     - role: tailscale

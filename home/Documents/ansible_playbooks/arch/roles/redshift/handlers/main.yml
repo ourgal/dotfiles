@@ -1,0 +1,12 @@
+---
+- name: Restart redshift
+  become: true
+  become_user: "{{ redshift_user }}"
+  ansible.builtin.systemd_service:
+    scope: user
+    name: "{{ redshift_service }}.service"
+    state: restarted
+    daemon_reload: true
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ ansible_facts.user_uid }}"
+    DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/{{ ansible_facts.user_uid }}/bus"
