@@ -11,7 +11,7 @@ ANSIBLE_ENV := {{ $env_var }}
 INVENTORY := inventory/hosts.yml
 PLAYBOOK := playbooks/main.yml
 
-all: lint
+all:
 	$(ANSIBLE_ENV) ansible-playbook -i $(INVENTORY) $(PLAYBOOK) $(if $(TAGS),--tags $(TAGS),)
 
 run: lint

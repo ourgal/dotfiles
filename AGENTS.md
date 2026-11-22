@@ -56,7 +56,7 @@ Two independent schemes:
 
 Each `home/Documents/ansible_playbooks/<os>/` (`windows`, `arch`, `debian`, `void`, `termux`, `wsl-arch`, ...) is self-contained: `inventory/hosts.yml`, `playbooks/main.yml`, `roles/`, `requirements.yml`, `lookup_plugins/gopass.py`, and a `Makefile.tmpl` that is just `{{ includeTemplate "ansible_playbook_makefile" . }}`.
 
-Inside a playbook dir: `make` (lint + playbook), `make install` (galaxy collections), and tags are passed as make goals (`make all docker`). Windows roles are `windows_*` (`windows_scoop`, `windows_service`, `windows_user`, ...).
+Inside a playbook dir: `make` (playbook only), `make lint` (ansible-lint), `make install` (galaxy collections), and tags are passed as make goals (`make all docker`). Windows roles are `windows_*` (`windows_scoop`, `windows_service`, `windows_user`, ...).
 
 ## Gotchas
 
