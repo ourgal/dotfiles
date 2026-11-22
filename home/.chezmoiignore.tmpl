@@ -425,10 +425,6 @@ Videos/*
 !.config/fish/
 !.config/fish/**
 {{ end -}}
-{{ if and (eq .chezmoi.os "windows") (lookPath "msys2") -}}
-!.config/fish/
-!.config/fish/**
-{{ end -}}
 {{ end -}}
 # ]]]
 # [[[ zellij

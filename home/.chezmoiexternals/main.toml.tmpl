@@ -205,3 +205,30 @@
     url = {{ print $mirror "https://github.com/MrDLingters/KanagawaWin11" | quote }}
     refreshPeriod = "168h"
 {{ end -}}
+
+# [[[ fish plugins (cloned here, linked from .config/fish) ]]]
+{{ if lookPath "fish" -}}
+{{ if eq .chezmoi.os "linux" "android" -}}
+[".local/share/fish-plugins/jorgebucaran_autopair.fish"]
+    type = "git-repo"
+    url = {{ print $mirror "https://github.com/jorgebucaran/autopair.fish" | quote }}
+    refreshPeriod = "168h"
+[".local/share/fish-plugins/nickeb96_puffer-fish"]
+    type = "git-repo"
+    url = {{ print $mirror "https://github.com/nickeb96/puffer-fish" | quote }}
+    refreshPeriod = "168h"
+[".local/share/fish-plugins/meaningful-ooo_sponge"]
+    type = "git-repo"
+    url = {{ print $mirror "https://github.com/meaningful-ooo/sponge" | quote }}
+    refreshPeriod = "168h"
+[".local/share/fish-plugins/icezyclon_zoxide.fish"]
+    type = "git-repo"
+    url = {{ print $mirror "https://github.com/icezyclon/zoxide.fish" | quote }}
+    refreshPeriod = "168h"
+[".local/share/fish-plugins/atusy_by-binds-yourself"]
+    type = "git-repo"
+    url = {{ print $mirror "https://github.com/atusy/by-binds-yourself" | quote }}
+    refreshPeriod = "168h"
+{{ end -}}
+{{ end -}}
+# ]]]
