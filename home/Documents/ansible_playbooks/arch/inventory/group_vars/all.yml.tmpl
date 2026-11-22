@@ -1,0 +1,7 @@
+# chezmoi:template:left-delimiter=[[ right-delimiter=]]
+---
+# chezmoi renders this to the machine whose dotfiles these are. The playbooks
+# address that host over a local connection instead of SSH; every other
+# inventory host keeps the default ssh connection.
+arch_local_host: [[ .chezmoi.hostname ]]
+ansible_connection: "{{ 'local' if inventory_hostname == arch_local_host else 'ssh' }}"
