@@ -23,8 +23,8 @@
       ansible.builtin.command:
         cmd: >-
           tar -xf "{{ github_binaries_cache_dir }}/{{ binary.url.split('/') | last }}"
+          -C "{{ github_binaries_bin_dir }}" --overwrite
           --transform='s:.*/::' --wildcards "{{ binary.include }}"
-          -C "{{ github_binaries_bin_dir }}"
       changed_when: true
 
     - name: Create the {{ binary.name }} data directory
