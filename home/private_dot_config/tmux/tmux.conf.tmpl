@@ -147,8 +147,8 @@ set -g status-position top
 # ============================================================================
 # KEY BINDINGS
 # ============================================================================
-# ssh-split owns c/v/s on this setup, so the stock new-window/split bindings
-# for those keys are left untouched.
+# tmux's stock new-window/split-window start in the session's initial directory,
+# not the active pane's cwd; rebind them (and V/S below) with -c.
 
 # new session, paste, rename
 bind n new-session
@@ -162,6 +162,11 @@ bind = command-prompt -I "#{move-window}" "move-window '%%'"
 # reorder windows
 bind-key -r "<" swap-window -d -t -1
 bind-key -r ">" swap-window -d -t +1
+
+# new panes / windows inherit the active pane's cwd
+bind c new-window -c "#{pane_current_path}"
+bind % split-window -h -c "#{pane_current_path}"
+bind '"' split-window -v -c "#{pane_current_path}"
 
 # full-size splits
 bind-key "V" split-window -fh -c "#{pane_current_path}"
