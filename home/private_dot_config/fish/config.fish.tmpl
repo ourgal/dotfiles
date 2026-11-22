@@ -140,7 +140,10 @@ if status is-interactive
     # [[[ unlock-keepassxc
     {{ if and (lookPath "gopass") (lookPath "keepassxc") -}}
     function unlock-keepassxc --description 'Unlock KeePassXC with the master password from gopass'
-        gopass show -o keepassxc/main | keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir "Syncthing" "keepassxc" "main.kdbx" | replace "\\" "/" | quote }}
+        # KeePassXC is a GUI app: launching it in the foreground keeps the shell
+        # until the window closes. Background it and detach so the prompt returns.
+        gopass show -o keepassxc/main | keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir "Syncthing" "keepassxc" "main.kdbx" | replace "\\" "/" | quote }} >/dev/null 2>&1 &
+        disown 2>/dev/null # KeePassXC may already be running and exit immediately
     end
     {{ end -}}
     # ]]]
