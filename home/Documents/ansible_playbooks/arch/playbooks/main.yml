@@ -59,3 +59,5 @@
       when: default_apps_enabled | default(true) | bool
     - role: blogtato
       when: blogtato_enabled | default(true) | bool
+    - role: scls
+      when: scls_enabled | default(true) | bool
