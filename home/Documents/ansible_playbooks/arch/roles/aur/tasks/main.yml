@@ -120,3 +120,69 @@
     name: "{{ aur_packages }}"
     use: "{{ aur_helper }}"
     state: present
+
+# The packaged espanso.service is an X11 user unit that starts before the
+# graphical login injects DISPLAY/XAUTHORITY into the user manager, so pass
+# them through a drop-in (same approach as seanime above).
+- name: Create the espanso service drop-in directory
+  become: true
+  become_user: "{{ aur_espanso_user }}"
+  tags:
+    - service
+    - aur
+  when: "'espanso-x11-bin' in aur_packages"
+  ansible.builtin.file:
+    path: "{{ ansible_facts.user_dir }}/.config/systemd/user/espanso.service.d"
+    state: directory
+    mode: "0755"
+
+- name: Pass the graphical session into espanso
+  become: true
+  become_user: "{{ aur_espanso_user }}"
+  tags:
+    - service
+    - aur
+  when: "'espanso-x11-bin' in aur_packages"
+  ansible.builtin.copy:
+    dest: "{{ ansible_facts.user_dir }}/.config/systemd/user/espanso.service.d/override.conf"
+    content: |
+      [Service]
+      Environment=DISPLAY=:0
+      Environment=XAUTHORITY=/run/user/%U/lyxauth
+    mode: "0644"
+  register: aur_espanso_dropin
+
+- name: Enable and start the espanso user service
+  become: true
+  become_user: "{{ aur_espanso_user }}"
+  tags:
+    - service
+    - aur
+  when: "'espanso-x11-bin' in aur_packages"
+  ansible.builtin.systemd_service:
+    scope: user
+    name: espanso.service
+    enabled: true
+    state: started
+    daemon_reload: true
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ ansible_facts.user_uid }}"
+    DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/{{ ansible_facts.user_uid }}/bus"
+
+- name: Restart espanso when its environment drop-in changes
+  become: true
+  become_user: "{{ aur_espanso_user }}"
+  tags:
+    - service
+    - aur
+  when:
+    - "'espanso-x11-bin' in aur_packages"
+    - aur_espanso_dropin.changed | default(false)
+  ansible.builtin.systemd_service:
+    scope: user
+    name: espanso.service
+    state: restarted
+    daemon_reload: true
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ ansible_facts.user_uid }}"
+    DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/{{ ansible_facts.user_uid }}/bus"

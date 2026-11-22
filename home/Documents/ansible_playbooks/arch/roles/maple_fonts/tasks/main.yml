@@ -1,0 +1,51 @@
+---
+# Track the installed release with a marker file so bumping maple_fonts_version
+# re-downloads the fonts even though the destination filenames stay the same.
+- name: Check the installed Maple fonts version
+  ansible.builtin.slurp:
+    src: "{{ maple_fonts_version_file }}"
+  register: maple_fonts_installed_version
+  changed_when: false
+  failed_when: false
+  tags:
+    - pkg
+    - maple-fonts
+
+- name: Install Maple Mono fonts to the system
+  when: >-
+    maple_fonts_installed_version.failed or
+    (maple_fonts_installed_version.content | default('') | b64decode | trim) != maple_fonts_version
+  become: true
+  tags:
+    - pkg
+    - maple-fonts
+  block:
+    - name: Create the Maple fonts directory
+      ansible.builtin.file:
+        path: "{{ maple_fonts_dir }}"
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Download Maple Mono fonts
+      ansible.builtin.get_url:
+        url: "{{ maple_fonts_base_url }}/MapleMono-NF-CN-{{ item }}.ttf"
+        dest: "{{ maple_fonts_dir }}/MapleMono-NF-CN-{{ item }}.ttf"
+        mode: '0644'
+      loop: "{{ maple_fonts_styles }}"
+
+    - name: Create the Maple fonts data directory
+      ansible.builtin.file:
+        path: "{{ maple_fonts_version_file | dirname }}"
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Record the installed Maple fonts version
+      ansible.builtin.copy:
+        content: "{{ maple_fonts_version }}\n"
+        dest: "{{ maple_fonts_version_file }}"
+        mode: '0644'
+      notify: Update font cache

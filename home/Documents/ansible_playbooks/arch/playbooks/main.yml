@@ -63,3 +63,5 @@
       when: scls_enabled | default(true) | bool
     - role: pipx
       when: pipx_enabled | default(true) | bool
+    - role: maple_fonts
+      when: maple_fonts_enabled | default(true) | bool

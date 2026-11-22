@@ -1,0 +1,28 @@
+---
+maple_fonts_enabled: true
+maple_fonts_version: "7.3"
+
+# Install system-wide so every user and service can resolve the font.
+maple_fonts_dir: /usr/share/fonts/maple
+maple_fonts_version_file: /usr/local/share/maple-fonts/version
+
+# Maple Mono NF CN styles published in subframe7536/Maple releases.
+maple_fonts_styles:
+  - Bold
+  - BoldItalic
+  - ExtraBold
+  - Italic
+  - ExtraBoldItalic
+  - ExtraLightItalic
+  - Medium
+  - ExtraLight
+  - SemiBold
+  - LightItalic
+  - Light
+  - SemiBoldItalic
+  - Regular
+  - MediumItalic
+  - Thin
+  - ThinItalic
+
+maple_fonts_base_url: "https://gitee.com/subframe7536/Maple/releases/download/v{{ maple_fonts_version }}"

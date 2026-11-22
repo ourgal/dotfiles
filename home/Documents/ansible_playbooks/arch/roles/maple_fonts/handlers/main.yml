@@ -1,0 +1,5 @@
+---
+- name: Update font cache
+  ansible.builtin.command: fc-cache -f {{ maple_fonts_dir }}
+  become: true
+  changed_when: false
