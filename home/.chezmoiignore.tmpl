@@ -1236,6 +1236,12 @@ AppData/Roaming/maki/*
 !.config/syncthing/key.pem
 {{ end -}}
 # ]]]
+# [[[ autorandr (surface)
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.hostname "surface") -}}
+!.config/autorandr/
+!.config/autorandr/**
+{{ end -}}
+# ]]]
 # [[[ xinputrc (UOS / fcitx5 input method)
 {{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "uos") -}}
 !.xinputrc
