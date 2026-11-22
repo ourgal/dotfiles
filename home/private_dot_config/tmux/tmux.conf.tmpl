@@ -136,7 +136,7 @@ set -g @tmux-which-key-xdg-enable 1
 # --- powerkit theme --------------------------------------------------------
 set -g @powerkit_theme 'tokyo-night'
 set -g @powerkit_theme_variant 'night'
-set -g @powerkit_plugins 'git,battery,loadavg,datetime'
+set -g @powerkit_plugins 'git,{{ if ne .chezmoi.os "android" }}battery,loadavg,{{ end }}datetime'
 set -g @powerkit_plugin_cache_clear_key ''
 set -g @powerkit_plugin_kubernetes_context_selector_key ''
 set -g @powerkit_plugin_kubernetes_namespace_selector_key ''
