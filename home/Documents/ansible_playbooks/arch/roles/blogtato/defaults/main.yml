@@ -1,0 +1,14 @@
+---
+blogtato_enabled: true
+blogtato_version: "0.1.27"
+
+# Prebuilt Linux binary published in ourgal/blogtato releases. The upstream
+# kantord releases only ship source archives. Installs as /usr/local/bin/blog.
+blogtato_archive: "blogtato-v{{ blogtato_version }}-linux-x86_64.tar.gz"
+blogtato_archive_path: "/tmp/{{ blogtato_archive }}"
+blogtato_source_dir: "/tmp/blogtato-v{{ blogtato_version }}-linux-x86_64"
+blogtato_download_url: "https://v6.gh-proxy.org/https://github.com/ourgal/blogtato/releases/download/v{{ blogtato_version }}/{{ blogtato_archive }}"  # noqa: yaml[line-length]
+blogtato_sha256: "43e27fc50b20eb4bda87a1b84804c3cf263b15c553fc77b118aaa0d3d874da3c"
+
+blogtato_binary: /usr/local/bin/blog
+blogtato_version_file: /usr/local/share/blogtato/version

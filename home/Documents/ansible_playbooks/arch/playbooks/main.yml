@@ -57,3 +57,5 @@
       when: npm_enabled | default(true) | bool
     - role: default_apps
       when: default_apps_enabled | default(true) | bool
+    - role: blogtato
+      when: blogtato_enabled | default(true) | bool
