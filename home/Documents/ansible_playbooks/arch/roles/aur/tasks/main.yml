@@ -56,10 +56,10 @@
     XDG_RUNTIME_DIR: "/run/user/{{ ansible_facts.user_uid }}"
     DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/{{ ansible_facts.user_uid }}/bus"
 
-# The packaged unit starts with a clean environment, so the mpv child seanime
-# spawns has no DISPLAY/XAUTHORITY: it falls back to DRM/SDL and plays audio
-# with no window. A drop-in survives package upgrades and passes the variables
-# already present on the graphical session's systemd user manager.
+# The packaged unit starts with a clean environment, and the user service starts
+# before the graphical login injects DISPLAY/XAUTHORITY into the user manager,
+# so PassEnvironment has nothing to pass. Set them explicitly in a drop-in that
+# survives package upgrades instead.
 - name: Create seanime service drop-in directory
   become: true
   become_user: "{{ aur_seanime_user }}"
@@ -83,9 +83,11 @@
     dest: "{{ ansible_facts.user_dir }}/.config/systemd/user/seanime.service.d/override.conf"
     content: |
       [Service]
-      # seanime spawns mpv; without the session's DISPLAY/XAUTHORITY mpv
-      # cannot open a video output (audio only, no window).
-      PassEnvironment=DISPLAY XAUTHORITY
+      # seanime spawns mpv, which needs DISPLAY and the Xauthority cookie to
+      # open a window. The user service starts before the graphical login puts
+      # these into the user manager, so set them directly.
+      Environment=DISPLAY=:0
+      Environment=XAUTHORITY=/run/user/%U/lyxauth
     mode: "0644"
   register: aur_seanime_dropin
 
