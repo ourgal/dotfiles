@@ -7,6 +7,7 @@ available on Arch. The battery widget is only added on machines that have one.
 import glob
 
 from libqtile import bar, widget
+from libqtile.lazy import lazy
 
 WINDOW_FONT = "{{ .my.font.monospace }}:style=Italic"
 
@@ -21,6 +22,7 @@ BAR_SCALE = 1.0
 BAR_HEIGHT = int(round(34 * BAR_SCALE))
 MARGIN = int(round(9 * BAR_SCALE))
 BORDER_WIDTH = max(1, int(round(2 * BAR_SCALE)))
+LOGO_SIZE = int(round(18 * BAR_SCALE))
 BIG_SIZE = int(round(16 * BAR_SCALE))
 TRAY_ICON_SIZE = int(round(20 * BAR_SCALE))
 
@@ -45,6 +47,7 @@ DEFAULT_BG = colors["bg"]
 DEFAULT_FG = colors["fg"]
 
 # Nerd Font glyphs used in the bar.
+ARCH_LOGO = "\uf303"      # nf-linux-archlinux
 CPU_ICON = "\uf2db"       # nf-fa-microchip
 MEM_ICON = "\uf00b"       # nf-fa-tasks
 BATT_ICON = "\ue00a"      # nf-fa-battery_empty (used as a prefix)
@@ -59,6 +62,20 @@ def _specs():
             widget.Spacer,
             dict(length=5, background=colors["magenta"]),
             False,
+            True,
+        ),
+        (
+            widget.TextBox,
+            dict(
+                text=ARCH_LOGO,
+                font=WINDOW_FONT,
+                fontsize=LOGO_SIZE,
+                padding=6,
+                background=colors["magenta"],
+                foreground=colors["bg"],
+                mouse_callbacks={"Button1": lazy.spawncmd()},
+            ),
+            True,
             False,
         ),
         (
