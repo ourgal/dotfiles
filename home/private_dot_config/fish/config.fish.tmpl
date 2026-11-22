@@ -37,7 +37,9 @@ if status is-interactive
     # [[[ termux
     {{ if eq .chezmoi.os "android" -}}
     set -x GPG_TTY $(tty)
-    eval (ssh-agent -c)
+    # The termux-services ssh-agent unit owns this socket. Adding a key once
+    # with ssh-add persists across shells; do not spawn a per-shell agent.
+    set -gx SSH_AUTH_SOCK "$PREFIX/var/run/ssh-agent.socket"
     gpg-connect-agent updatestartuptty /bye >/dev/null
     {{ end -}}
     # ]]]
