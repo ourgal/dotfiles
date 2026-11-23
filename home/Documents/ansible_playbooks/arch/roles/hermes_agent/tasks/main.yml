@@ -35,59 +35,8 @@
     HOME: "{{ hermes_agent_user_home }}"
     HERMES_HOME: "{{ hermes_agent_home }}"
 
-- name: Bootstrap pip in the Hermes virtualenv
-  when: hermes_mnemosyne_enabled | bool
-  become: true
-  become_user: "{{ hermes_agent_user }}"
-  tags:
-    - hermes_agent
-    - mnemosyne
-  ansible.builtin.command:
-    argv:
-      - "{{ hermes_agent_python }}"
-      - -m
-      - ensurepip
-      - --upgrade
-  environment:
-    HOME: "{{ hermes_agent_user_home }}"
-    HERMES_HOME: "{{ hermes_agent_home }}"
-  changed_when: false
-
-- name: Install Mnemosyne and Hermes provider integration
-  when: hermes_mnemosyne_enabled | bool
-  become: true
-  become_user: "{{ hermes_agent_user }}"
-  tags:
-    - hermes_agent
-    - mnemosyne
-  ansible.builtin.pip:
-    name: "{{ hermes_mnemosyne_packages }}"
-    state: present
-    virtualenv: "{{ hermes_agent_venv }}"
-  environment:
-    HOME: "{{ hermes_agent_user_home }}"
-    HERMES_HOME: "{{ hermes_agent_home }}"
-
-- name: Register Mnemosyne with Hermes
-  when: hermes_mnemosyne_enabled | bool
-  become: true
-  become_user: "{{ hermes_agent_user }}"
-  tags:
-    - hermes_agent
-    - mnemosyne
-  ansible.builtin.command:
-    argv:
-      - "{{ hermes_agent_venv }}/bin/mnemosyne-hermes"
-      - install
-      - --hermes-home
-      - "{{ hermes_agent_home }}"
-  environment:
-    HOME: "{{ hermes_agent_user_home }}"
-    HERMES_HOME: "{{ hermes_agent_home }}"
-  changed_when: false
-
-- name: Enable Mnemosyne Hermes plugin
-  when: hermes_mnemosyne_enabled | bool
+- name: Read the installed Hermes plugins
+  when: hermes_agent_mnemosyne_enabled | bool
   become: true
   become_user: "{{ hermes_agent_user }}"
   tags:
@@ -97,16 +46,65 @@
     argv:
       - "{{ hermes_agent_launcher }}"
       - plugins
-      - enable
-      - hermes-mnemosyne
-      - --no-allow-tool-override
+      - list
+      - --json
   environment:
     HOME: "{{ hermes_agent_user_home }}"
     HERMES_HOME: "{{ hermes_agent_home }}"
   changed_when: false
+  register: hermes_agent_plugins_installed
 
+# The catalog entry is pinned upstream, so a name match is enough to decide
+# whether to install. `--yes-deps` answers the Python dependency consent
+# non-interactively; `--enable` makes a memory provider the active one.
+- name: Install Mnemosyne from the Hermes plugin catalog
+  when:
+    - hermes_agent_mnemosyne_enabled | bool
+    - not (hermes_agent_plugins_installed.stdout | from_json | selectattr('name', 'equalto', hermes_agent_mnemosyne_plugin) | list | length > 0)
+  become: true
+  become_user: "{{ hermes_agent_user }}"
+  tags:
+    - hermes_agent
+    - mnemosyne
+  ansible.builtin.command:
+    argv:
+      - "{{ hermes_agent_launcher }}"
+      - plugins
+      - install
+      - "{{ hermes_agent_mnemosyne_plugin }}"
+      - --yes-deps
+      - --enable
+  environment:
+    HOME: "{{ hermes_agent_user_home }}"
+    HERMES_HOME: "{{ hermes_agent_home }}"
+  changed_when: true
+
+- name: Read the selected Hermes memory provider
+  when: hermes_agent_mnemosyne_enabled | bool
+  become: true
+  become_user: "{{ hermes_agent_user }}"
+  tags:
+    - config
+    - hermes_agent
+    - mnemosyne
+  ansible.builtin.command:
+    argv:
+      - "{{ hermes_agent_launcher }}"
+      - config
+      - get
+      - memory.provider
+  environment:
+    HOME: "{{ hermes_agent_user_home }}"
+    HERMES_HOME: "{{ hermes_agent_home }}"
+  changed_when: false
+  register: hermes_agent_memory_provider
+
+# `plugins install --enable` already selects a memory provider; this also
+# repairs a plugin installed earlier without the provider being activated.
 - name: Select Mnemosyne as Hermes memory provider
-  when: hermes_mnemosyne_enabled | bool
+  when:
+    - hermes_agent_mnemosyne_enabled | bool
+    - hermes_agent_memory_provider.stdout | trim != hermes_agent_mnemosyne_plugin
   become: true
   become_user: "{{ hermes_agent_user }}"
   tags:
@@ -119,11 +117,11 @@
       - config
       - set
       - memory.provider
-      - mnemosyne
+      - "{{ hermes_agent_mnemosyne_plugin }}"
   environment:
     HOME: "{{ hermes_agent_user_home }}"
     HERMES_HOME: "{{ hermes_agent_home }}"
-  changed_when: false
+  changed_when: true
 
 - name: Apply Hermes Agent configuration
   when: hermes_agent_config | length > 0

@@ -24,10 +24,9 @@ hermes_agent_config: {}
 # Written to ~/.hermes/.env (0600). Secrets belong in
 # inventory/group_vars/secrets.sops.yml, never in this file.
 hermes_agent_env: {}
-# Stable pair last audited by Mnemosyne upstream; 0.7.2 is incompatible.
-hermes_mnemosyne_enabled: true
-hermes_mnemosyne_packages:
-  - "mnemosyne-memory[embeddings]==3.15.1"
-  - "mnemosyne-hermes==0.7.1"
-hermes_agent_venv: "{{ hermes_agent_home }}/hermes-agent/venv"
-hermes_agent_python: "{{ hermes_agent_venv }}/bin/python"
+# Hermes >= 0.21.4 ships a curated plugin catalog; newer releases dropped the
+# old `hermes-agent/venv` in favour of a uv-managed tool store. Mnemosyne is a
+# catalog memory plugin, so install it by name and let Hermes resolve/pin its
+# own Python dependencies (and re-apply them after `hermes update`).
+hermes_agent_mnemosyne_enabled: true
+hermes_agent_mnemosyne_plugin: mnemosyne
