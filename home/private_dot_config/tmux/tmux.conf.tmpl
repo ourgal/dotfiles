@@ -51,24 +51,34 @@ setw -g mode-keys vi
 # PLUGINS (TPM)
 # ============================================================================
 set -g @plugin 'tmux-plugins/tpm'
+{{ if ne .chezmoi.os "android" -}}
+# ~145 tmux subprocess calls at startup on Termux; skip them there.
 set -g @plugin 'tmux-plugins/tmux-sensible'
+{{ end -}}
 
 # session/pane management
+{{ if ne .chezmoi.os "android" -}}
+# Session restore and pickers cost ~24 tmux calls at startup on Termux.
 set -g @plugin 'ourgal/tmux-continuum'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'omerxx/tmux-sessionx'
 set -g @plugin 'rickstaa/tmux-session-wizard'
 set -g @plugin 'T1erno/tmux-auto-renumber-session'
+{{ end -}}
+{{ if ne .chezmoi.os "android" -}}
 set -g @plugin 'jaclu/tmux-mouse-swipe'
 set -g @plugin 'jaclu/tmux-power-zoom'
+{{ end -}}
 
-# copy/paste and text objects
+# copy/paste and text objects — keep yank (clipboard), drop the heavy helpers on Termux
 set -g @plugin 'tmux-plugins/tmux-yank'
+{{ if ne .chezmoi.os "android" -}}
 set -g @plugin 'tmux-plugins/tmux-copycat'
 set -g @plugin 'fcsonline/tmux-thumbs'
 set -g @plugin 'laktak/extrakto'
 set -g @plugin 'rolv-apneseth/tmux-fuzzback'
 set -g @plugin 'jkhas8/tmux-paste-image'
+{{ end -}}
 
 # navigation and search
 set -g @plugin 'schasse/tmux-jump'
@@ -78,25 +88,37 @@ set -g @plugin 'tmux-plugins/tmux-fpp'
 set -g @plugin 'tmux-plugins/tmux-open'
 
 # misc
+{{ if ne .chezmoi.os "android" -}}
 set -g @plugin 'laktak/tome'
 set -g @plugin 'ourgal/tmux-tea'
 set -g @plugin 'ourgal/tmux-ssh-split'
 set -g @plugin 'kristopolous/tmux-gentrify'
+{{ end -}}
 set -g @plugin 'alexwforsythe/tmux-which-key'
 
 # status bar theme
+{{ if eq .chezmoi.os "android" -}}
+# Termux: powerkit's bootstrap spawns ~330 tmux subprocesses, which makes
+# server start take many seconds on Android. tmux-power batches its setup
+# into two tmux calls and uses tmux's own format strings for the segments.
+set -g @plugin 'wfxr/tmux-power'
+{{ else -}}
 set -g @plugin 'fabioluciano/tmux-powerkit'
+{{ end -}}
 
+{{ if ne .chezmoi.os "android" -}}
 # --- resurrect / continuum -------------------------------------------------
 set -g @resurrect-capture-pane-contents 'on'
 set -g @resurrect-processes 'lazygit newsboat clifm "devbox shell" "hx *" ncmpcpp "~nnn-wrapped->nnn" lf rmpc "~ranger->ranger-cd" "yazi->yy"'
 set -g @continuum-restore 'on'
 set -g @continuum-boot 'on'
 set -g @continuum-save-interval '10'
+{{ end -}}
 
 # --- yank ------------------------------------------------------------------
 set -g @yank_action 'copy-pipe'
 
+{{ if ne .chezmoi.os "android" -}}
 # --- extrakto --------------------------------------------------------------
 set -g @extrakto_key 'i'
 
@@ -108,7 +130,9 @@ set -g @thumbs-command 'tmux set-buffer -- {} && echo -n {} | xsel -ib && tmux d
 # --- session pickers -------------------------------------------------------
 set -g @session-wizard 'k'
 set -g @sessionx-bind 'o'
+{{ end -}}
 
+{{ if ne .chezmoi.os "android" -}}
 # --- tea / tome / paste-image ---------------------------------------------
 set -g @tea-bind 'T'
 set -g @tome_key 'a'
@@ -128,20 +152,33 @@ set -g @ssh-split-debug 'false'
 set -g @ssh-split-h-key 'v'
 set -g @ssh-split-v-key 's'
 set -g @ssh-split-w-key 'c'
+{{ end -}}
 
 # --- which-key -------------------------------------------------------------
 # menu lives in ~/.config/tmux/plugins/tmux-which-key/config.yaml
 set -g @tmux-which-key-xdg-enable 1
 
-# --- powerkit theme --------------------------------------------------------
+# --- status bar theme ------------------------------------------------------
+{{ if eq .chezmoi.os "android" -}}
+# --- tmux-power theme (Termux) ---------------------------------------------
+set -g @tmux_power_theme 'moon'
+set -g @tmux_power_status_interval 2
+set -g @tmux_power_left_a  ' #{USER}@#h'
+set -g @tmux_power_left_b  ' #S'
+set -g @tmux_power_right_w '#(git -C "#{pane_current_path}" symbolic-ref --quiet --short HEAD 2>/dev/null | sed "s/^/  /")'
+set -g @tmux_power_right_y ' %H:%M'
+set -g @tmux_power_right_z ' %F'
+{{ else -}}
+# --- powerkit theme (non-Termux) -------------------------------------------
 set -g @powerkit_theme 'tokyo-night'
 set -g @powerkit_theme_variant 'night'
-set -g @powerkit_plugins 'git,{{ if ne .chezmoi.os "android" }}battery,loadavg,{{ end }}datetime'
+set -g @powerkit_plugins 'git,battery,loadavg,datetime'
 set -g @powerkit_plugin_cache_clear_key ''
 set -g @powerkit_plugin_kubernetes_context_selector_key ''
 set -g @powerkit_plugin_kubernetes_namespace_selector_key ''
 set -g @powerkit_plugin_microphone_mute_key ''
 set -g @powerkit_helper_key ''
+{{ end -}}
 set -g status-position top
 
 # ============================================================================
@@ -195,8 +232,10 @@ bind b copy-mode
 # ============================================================================
 # EXTRA BINDINGS (from the nix plugin modules)
 # ============================================================================
+{{ if ne .chezmoi.os "android" -}}
 # tmux-power-zoom
 bind Z run-shell -b "~/.tmux/plugins/tmux-power-zoom/scripts/power_zoom.sh"
+{{ end -}}
 
 # tmux-fzf-url
 bind u run-shell -b '~/.tmux/plugins/tmux-fzf-url/fzf-url.sh "" screen ""'
