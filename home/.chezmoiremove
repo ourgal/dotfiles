@@ -2,3 +2,5 @@
 {{ end -}}
 {{- /* tmux 3.8 sources both ~/.tmux.conf and ~/.config/tmux/tmux.conf; keeping the symlink loaded every plugin twice and doubled startup time. */ -}}
 .tmux.conf
+.config/tmux/plugins/tpm
+.tmux/plugins

@@ -185,17 +185,10 @@
     url = "{{ print $mirror "https://github.com/LazyVim/starter" }}"
     refreshPeriod = "168h"
 
-{{ if lookPath "tmux" -}}
-[".tmux/plugins/tpm"]
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "tmux" "opt" (list "tmux" "plugins" "tmux-power") "os" (list "linux" "android" "darwin")) | trim | atoi -}}
+[".config/tmux/plugins/tmux-power"]
     type = "git-repo"
-    url = {{ print $mirror "https://github.com/tmux-plugins/tpm" | quote }}
-    refreshPeriod = "168h"
-{{ end -}}
-
-{{ if lookPath "tmux" -}}
-[".tmux/plugins/tmux-powerkit"]
-    type = "git-repo"
-    url = {{ print $mirror "https://github.com/fabioluciano/tmux-powerkit" | quote }}
+    url = {{ print $mirror "https://github.com/wfxr/tmux-power" | quote }}
     refreshPeriod = "168h"
 {{ end -}}
 

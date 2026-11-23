@@ -1,6 +1,6 @@
 # ~/.config/tmux/plugins/tmux-which-key/config.yaml
 # Converted from snowfall: modules/home/cli/multiplexer/tmux/plugins/which-key
-# Plugin paths assume TPM installs everything under ~/.tmux/plugins/.
+# Plugin paths assume plugins live under ~/.config/tmux/plugins/.
 
 command_alias_start_index: 200
 
@@ -266,63 +266,63 @@ items:
     menu:
       - name: Copycat Search
         key: '/'
-        command: run-shell ~/.tmux/plugins/tmux-copycat/scripts/copycat_search.sh
+        command: run-shell ~/.config/tmux/plugins/tmux-copycat/scripts/copycat_search.sh
       - name: Copycat File Search
         key: C-f
         command: >-
-          run-shell ~/.tmux/plugins/tmux-copycat/scripts/copycat_mode_start.sh "(^|^\.|[[:space:]]|[[:space:]]\.|[[:space:]]\.\.|^\.\.)[[:alnum:]~_-]*/[][[:alnum:]_.#$%&+=/@-]*"
+          run-shell ~/.config/tmux/plugins/tmux-copycat/scripts/copycat_mode_start.sh "(^|^\.|[[:space:]]|[[:space:]]\.|[[:space:]]\.\.|^\.\.)[[:alnum:]~_-]*/[][[:alnum:]_.#$%&+=/@-]*"
       - name: Copycat Git Status Files
         key: C-g
-        command: run-shell ~/.tmux/plugins/tmux-copycat/scripts/copycat_git_special.sh #{pane_current_path}
+        command: run-shell ~/.config/tmux/plugins/tmux-copycat/scripts/copycat_git_special.sh #{pane_current_path}
       - name: Copycat Hash Search
         key: M-h
         command: >-
-          run-shell ~/.tmux/plugins/tmux-copycat/scripts/copycat_mode_start.sh "\b([0-9a-f]{7,40}|[[:alnum:]]{52}|[0-9a-f]{64})\b"
+          run-shell ~/.config/tmux/plugins/tmux-copycat/scripts/copycat_mode_start.sh "\b([0-9a-f]{7,40}|[[:alnum:]]{52}|[0-9a-f]{64})\b"
       - name: Copycat Url Search
         key: C-u
         command: >-
-          run-shell ~/.tmux/plugins/tmux-copycat/scripts/copycat_mode_start.sh "(https?://|git@|git://|ssh://|ftp://|file:///)[[:alnum:]?=%/_.:,;~@!#$&()*+-]*"
+          run-shell ~/.config/tmux/plugins/tmux-copycat/scripts/copycat_mode_start.sh "(https?://|git@|git://|ssh://|ftp://|file:///)[[:alnum:]?=%/_.:,;~@!#$&()*+-]*"
       - name: Copycat Digit Search
         key: C-d
         command: >-
-          run-shell ~/.tmux/plugins/tmux-copycat/scripts/copycat_mode_start.sh "[[:digit:]]+"
+          run-shell ~/.config/tmux/plugins/tmux-copycat/scripts/copycat_mode_start.sh "[[:digit:]]+"
       - name: Copycat IP Search
         key: M-i
         command: >-
-          run-shell ~/.tmux/plugins/tmux-copycat/scripts/copycat_mode_start.sh "[[:digit:]]{1,3}\.[[:digit:]]{1,3}\.[[:digit:]]{1,3}\.[[:digit:]]{1,3}"
+          run-shell ~/.config/tmux/plugins/tmux-copycat/scripts/copycat_mode_start.sh "[[:digit:]]{1,3}\.[[:digit:]]{1,3}\.[[:digit:]]{1,3}\.[[:digit:]]{1,3}"
       - name: Session Wizard
         key: k
-        command: display-popup -w 80% -h 40% -E ~/.tmux/plugins/tmux-session-wizard/session-wizard.sh
+        command: display-popup -w 80% -h 40% -E ~/.config/tmux/plugins/tmux-session-wizard/session-wizard.sh
       - name: Tmux Fzf
         key: F
-        command: run-shell -b ~/.tmux/plugins/tmux-fzf/main.sh
+        command: run-shell -b ~/.config/tmux/plugins/tmux-fzf/main.sh
       - name: Extrakto
         key: i
-        command: run-shell ~/.tmux/plugins/extrakto/scripts/helpers.sh #{pane_id}
+        command: run-shell ~/.config/tmux/plugins/extrakto/scripts/helpers.sh #{pane_id}
       - name: Fuzzback
         key: '?'
-        command: run-shell -b ~/.tmux/plugins/tmux-fuzzback/scripts/fuzzback.sh
+        command: run-shell -b ~/.config/tmux/plugins/tmux-fuzzback/scripts/fuzzback.sh
       - name: Thumbs
         key: .
-        command: run-shell -b ~/.tmux/plugins/tmux-thumbs/tmux-thumbs.sh
+        command: run-shell -b ~/.config/tmux/plugins/tmux-thumbs/tmux-thumbs.sh
       - name: Fzf Url
         key: u
-        command: run-shell -b ~/.tmux/plugins/tmux-fzf-url/fzf-url.sh '' screen ''
+        command: run-shell -b ~/.config/tmux/plugins/tmux-fzf-url/fzf-url.sh '' screen ''
       - name: Jump
         key: j
-        command: run-shell -b ~/.tmux/plugins/tmux-jump/scripts/tmux-jump.sh
+        command: run-shell -b ~/.config/tmux/plugins/tmux-jump/scripts/tmux-jump.sh
       - name: Tea
         key: T
-        command: run-shell -b ~/.tmux/plugins/tmux-tea/bin/tea.sh
+        command: run-shell -b ~/.config/tmux/plugins/tmux-tea/bin/tea.sh
       - name: Fpp
         key: f
-        command: run-shell -b ~/.tmux/plugins/tmux-fpp/scripts/fpp.tmux
+        command: run-shell -b ~/.config/tmux/plugins/tmux-fpp/scripts/fpp.tmux
       - name: Zoom
         key: Z
-        command: run-shell -b ~/.tmux/plugins/tmux-power-zoom/scripts/power_zoom.sh
+        command: run-shell -b ~/.config/tmux/plugins/tmux-power-zoom/scripts/power_zoom.sh
       - name: Tome Playbook
         key: a
-        command: run-shell -b ~/.tmux/plugins/tome/tome-open-playbook
+        command: run-shell -b ~/.config/tmux/plugins/tome/tome-open-playbook
 
   - separator: true
 

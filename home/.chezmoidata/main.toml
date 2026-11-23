@@ -185,6 +185,10 @@ starship.enable = true
 fzf.enable = true
 zoxide.enable = true
 
+[my.modules.tmux.plugins]
+# No plugin manager: tmux-power's script is run directly from tmux.conf.
+tmux-power = true
+
 [my.modules.mpv.plugins]
 uosc = true
 smartskip = true
