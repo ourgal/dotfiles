@@ -2,7 +2,24 @@
 {{ if lookPath "hermes" }}
 # Enable the Hercules (hermes) folder so ~/.hermes/config.yaml is managed by chezmoi.
 !.hermes/
+!.hermes/skills/
+!.hermes/skills/**
 {{ end }}
+
+# Shared agent skills (canonical source: .chezmoitemplates/commit-skill.md).
+!.claude/
+!.claude/skills/
+!.claude/skills/**
+!.codex/
+!.codex/skills/
+!.codex/skills/**
+!.omp/
+!.omp/agent/
+!.omp/agent/skills/
+!.omp/agent/skills/**
+!.agents/
+!.agents/skills/
+!.agents/skills/**
 
 {{ if or (lookPath "bash") (lookPath "git-bash") }}
 !.bashrc
@@ -57,6 +74,11 @@ AppData/Roaming/*
 
 !AppData/Local/
 AppData/Local/*
+
+!AppData/Local/hermes/
+AppData/Local/hermes/*
+!AppData/Local/hermes/skills/
+!AppData/Local/hermes/skills/**
 
 !.config/
 .config/*
