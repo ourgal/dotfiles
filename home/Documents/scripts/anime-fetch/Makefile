@@ -8,9 +8,12 @@
 ARGS          ?=
 .DEFAULT_GOAL := run
 
-.PHONY: run test
+.PHONY: run test cov
 run:
 	uv run anime-fetch $(ARGS)
 
 test:
 	uv run pytest
+
+cov:
+	uv run pytest --cov --cov-report=term-missing --cov-fail-under=90
