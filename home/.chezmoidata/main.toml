@@ -186,8 +186,10 @@ fzf.enable = true
 zoxide.enable = true
 
 [my.modules.tmux.plugins]
-# No plugin manager: tmux-power's script is run directly from tmux.conf.
+# No plugin manager: entry scripts are run directly from tmux.conf.
+tmux-resurrect = true
 tmux-power = true
+tmux-continuum = true
 
 [my.modules.mpv.plugins]
 uosc = true

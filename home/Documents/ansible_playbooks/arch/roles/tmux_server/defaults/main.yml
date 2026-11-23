@@ -1,0 +1,6 @@
+---
+tmux_server_enabled: true
+tmux_server_user: "{{ ansible_facts.user_id }}"
+tmux_server_unit_dir: "{{ ansible_facts.user_dir }}/.config/systemd/user"
+tmux_server_service: tmux-server
+tmux_server_binary: /usr/bin/tmux

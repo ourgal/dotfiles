@@ -45,12 +45,13 @@ set -g detach-on-destroy off
 set -g @copy_use_osc52_fallback on
 setw -g mode-keys vi
 
-{{ if ne .chezmoi.os "android" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "tmux" "opt" (list "tmux" "plugins" "tmux-resurrect") "os" (list "linux" "darwin")) | trim | atoi -}}
 # --- resurrect / continuum -------------------------------------------------
+# continuum-boot is off: the Arch tmux_server role owns the systemd unit.
 set -g @resurrect-capture-pane-contents 'on'
 set -g @resurrect-processes 'lazygit newsboat clifm "devbox shell" "hx *" ncmpcpp "~nnn-wrapped->nnn" lf rmpc "~ranger->ranger-cd" "yazi->yy"'
 set -g @continuum-restore 'on'
-set -g @continuum-boot 'on'
+set -g @continuum-boot 'off'
 set -g @continuum-save-interval '10'
 {{ end -}}
 
@@ -159,8 +160,16 @@ bind -n M-h if -F "#{pane_at_left}" "previous-window" "select-pane -L"
 bind b copy-mode
 
 # ============================================================================
-# PLUGIN SCRIPT — must stay at the very bottom (after its @tmux_power_* opts)
+# PLUGIN SCRIPTS — must stay at the very bottom, after their options.
+# resurrect sets the script paths continuum calls; continuum must come after
+# tmux-power because it prepends its autosave to status-right.
 # ============================================================================
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "tmux" "opt" (list "tmux" "plugins" "tmux-resurrect") "os" (list "linux" "darwin")) | trim | atoi -}}
+run '~/.config/tmux/plugins/tmux-resurrect/resurrect.tmux'
+{{ end -}}
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "tmux" "opt" (list "tmux" "plugins" "tmux-power") "os" (list "linux" "android" "darwin")) | trim | atoi -}}
 run '~/.config/tmux/plugins/tmux-power/tmux-power.tmux'
+{{ end -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "tmux" "opt" (list "tmux" "plugins" "tmux-continuum") "os" (list "linux" "darwin")) | trim | atoi -}}
+run '~/.config/tmux/plugins/tmux-continuum/continuum.tmux'
 {{ end -}}

@@ -192,6 +192,20 @@
     refreshPeriod = "168h"
 {{ end -}}
 
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "tmux" "opt" (list "tmux" "plugins" "tmux-resurrect") "os" (list "linux" "darwin")) | trim | atoi -}}
+[".config/tmux/plugins/tmux-resurrect"]
+    type = "git-repo"
+    url = {{ print $mirror "https://github.com/tmux-plugins/tmux-resurrect" | quote }}
+    refreshPeriod = "168h"
+{{ end -}}
+
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "tmux" "opt" (list "tmux" "plugins" "tmux-continuum") "os" (list "linux" "darwin")) | trim | atoi -}}
+[".config/tmux/plugins/tmux-continuum"]
+    type = "git-repo"
+    url = {{ print $mirror "https://github.com/ourgal/tmux-continuum" | quote }}
+    refreshPeriod = "168h"
+{{ end -}}
+
 {{ if eq .chezmoi.os "windows" -}}
 [".local/share/kanagawa-win11"]
     type = "git-repo"
