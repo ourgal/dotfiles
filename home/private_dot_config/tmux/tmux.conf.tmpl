@@ -28,8 +28,9 @@ setw -g automatic-rename on
 set -g automatic-rename-format "#{?#{||:#{==:#{pane_current_command},zsh},#{==:#{pane_current_command},fish}},#{b:pane_current_path},#{pane_current_command}}"
 
 set -gq allow-passthrough on
-set -ga update-environment TERM
-set -ga update-environment TERM_PROGRAM
+# TERM is deliberately not in update-environment: leaking the client's
+# xterm-kitty into panes makes apps reset the cursor against kitty directly
+# instead of letting tmux restore it. Panes use default-terminal instead.
 
 # parent terminal title reflects the current window
 set -g set-titles on
