@@ -1,0 +1,112 @@
+---
+exllamav3_enabled: true
+exllamav3_port: 8080
+exllamav3_host: 0.0.0.0
+
+# TabbyAPI auth. Keys are loaded from the SOPS-encrypted
+# inventory/group_vars/secrets.sops.yml by the ai playbook; use `make sops` in
+# the arch playbook dir to view or rotate them.
+exllamav3_auth_enabled: true
+exllamav3_admin_key: ""
+exllamav3_api_key: ""
+exllamav3_tokens_path: "{{ exllamav3_tabby_dir }}/api_tokens.yml"
+# Keys are already stored in SOPS; don't also print them to the journal.
+exllamav3_log_auth_keys: false
+
+exllamav3_prefix: /opt/exl3
+exllamav3_venv: "{{ exllamav3_prefix }}/venv"
+exllamav3_python: /usr/bin/python3
+
+# Pin both repos: exllamav3 is the RDNA3 fork and TabbyAPI is rolling release.
+exllamav3_source_repo: https://github.com/SelfRef/exllamav3-rdna.git
+exllamav3_source_version: 29df162b1c54b0bae06fe36e109ccbfcea56161a
+exllamav3_source_dir: "{{ exllamav3_prefix }}/exllamav3"
+exllamav3_tabby_repo: https://github.com/theroyallab/tabbyAPI.git
+exllamav3_tabby_version: 47281587fafbd69e50aaf77c7626f390811126b6
+exllamav3_tabby_dir: "{{ exllamav3_prefix }}/tabbyAPI"
+
+exllamav3_torch_version: 2.13.0
+exllamav3_torch_index: https://download.pytorch.org/whl/rocm7.2
+# huggingface_hub is deliberately excluded: its httpx2 releases pin a tokenizers
+# range with no wheel. The system `hf` from python-huggingface-hub does downloads.
+exllamav3_pip_deps:
+  - tokenizers
+  - "numpy>=2.1"
+  - rich
+  - typing_extensions
+  - safetensors
+  - ninja
+  - pillow
+  - pyyaml
+  - marisa_trie
+  - pydantic
+  - "llguidance>=1.7.0"
+  - setuptools
+  - wheel
+  - "fastapi-slim>=0.115"
+  - "pydantic>=2.11,<3"
+  - ruamel.yaml
+  - "uvicorn>=0.28.1"
+  - "jinja2>=3.0.0"
+  - loguru
+  - "sse-starlette>=2.2.0"
+  - packaging
+  - aiofiles
+  - aiohttp
+  - async_lru
+  - psutil
+  - "httptools>=0.5.0"
+  - requests
+  - uvloop
+
+# Only the RX 7900 XTX target, and never more than 2 compile jobs: this box has
+# 16 GiB of host RAM and a full nproc HIP build would exhaust it.
+exllamav3_gfx: gfx1100
+exllamav3_build_jobs: 2
+exllamav3_rocm_home: /opt/rocm
+exllamav3_attention_patch: "{{ exllamav3_source_dir }}/exllamav3/exllamav3_ext/attention.cu"
+exllamav3_build_marker: "{{ exllamav3_prefix }}/.built-{{ exllamav3_source_version }}"
+
+exllamav3_user: exllamav3
+exllamav3_home: /var/lib/exllamav3
+exllamav3_model_dir: "{{ exllamav3_home }}/models"
+exllamav3_model_repo: Mia-AiLab/Qwen3.8-27B-EXL3-3.5bpw
+exllamav3_model_name: Qwen3.8-27B-EXL3-3.5bpw
+exllamav3_draft_repo: Mia-AiLab/Qwen3.8-27B-DFlash2-EXL3-5.0bpw
+exllamav3_draft_name: Qwen3.8-27B-DFlash2-EXL3-5.0bpw
+exllamav3_model_path: "{{ exllamav3_model_dir }}/{{ exllamav3_model_name }}"
+exllamav3_draft_path: "{{ exllamav3_model_dir }}/{{ exllamav3_draft_name }}"
+
+# 192k context with the separate DFlash2 draft: ~22.5 GiB VRAM on a 7900 XTX.
+exllamav3_context: 196608
+exllamav3_cache_size: 196608
+exllamav3_cache_mode: Q8
+exllamav3_draft_cache_mode: Q4
+exllamav3_chunk_size: 2048
+exllamav3_max_batch_size: 1
+exllamav3_vision: true
+exllamav3_vision_offload: true
+exllamav3_reasoning: true
+exllamav3_tool_format: qwen3_coder
+# Host RAM is only 16 GiB: no system-memory KV tier, small recurrent cache.
+exllamav3_sysmem_recurrent_cache: 2048
+exllamav3_sysmem_kv_cache: 0
+
+exllamav3_bin_dir: "{{ exllamav3_prefix }}/bin"
+exllamav3_wrapper: "{{ exllamav3_bin_dir }}/exl3-server"
+exllamav3_service: exl3-server
+exllamav3_legacy_service: llama-server
+
+exllamav3_packages:
+  - rocm-core
+  - rocm-hip-sdk
+  - rocm-opencl-sdk
+  - rocminfo
+  - rocm-smi-lib
+  - python
+  - python-pip
+  - python-huggingface-hub
+  - git
+exllamav3_build_packages:
+  - base-devel
+  - ccache

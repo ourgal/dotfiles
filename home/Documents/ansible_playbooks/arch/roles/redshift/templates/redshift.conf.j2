@@ -1,0 +1,13 @@
+; Managed by Ansible (arch/redshift role) - do not edit by hand.
+; Location comes from GeoClue2; intentionally no [manual] lat/lon section.
+[redshift]
+temp-day={{ redshift_temp_day }}
+temp-night={{ redshift_temp_night }}
+fade={{ redshift_fade }}
+gamma-day={{ redshift_gamma_day }}
+gamma-night={{ redshift_gamma_night }}
+adjustment-method={{ redshift_adjustment_method }}
+location-provider={{ redshift_location_provider }}
+
+[randr]
+screen={{ redshift_randr_screen }}

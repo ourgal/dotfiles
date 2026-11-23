@@ -1,0 +1,35 @@
+---
+# The openssh package ships a runit service that is disabled by default via a
+# `down` file. Enabling it once means keys added with ssh-add are shared by all
+# shells instead of each shell spawning its own agent with `eval (ssh-agent -c)`.
+- name: Get ssh-agent service status
+  ansible.builtin.command: sv status {{ ssh_agent_service }}
+  register: ssh_agent_status
+  changed_when: false
+  tags:
+    - service
+    - ssh_agent
+
+- name: Check whether ssh-agent is disabled
+  ansible.builtin.stat:
+    path: "{{ ssh_agent_service_dir }}/{{ ssh_agent_service }}/down"
+  register: ssh_agent_down_file
+  tags:
+    - service
+    - ssh_agent
+
+- name: Enable ssh-agent service
+  ansible.builtin.file:
+    path: "{{ ssh_agent_service_dir }}/{{ ssh_agent_service }}/down"
+    state: absent
+  when: ssh_agent_down_file.stat.exists
+  tags:
+    - service
+    - ssh_agent
+
+- name: Start ssh-agent service
+  ansible.builtin.command: sv up {{ ssh_agent_service }}
+  when: "'down:' in ssh_agent_status.stdout"
+  tags:
+    - service
+    - ssh_agent

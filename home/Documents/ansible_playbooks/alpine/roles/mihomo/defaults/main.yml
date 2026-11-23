@@ -13,7 +13,7 @@ mihomo_arch_map:
 mihomo_arch: "{{ mihomo_arch_map[ansible_facts.architecture] }}"
 mihomo_archive: "/tmp/mihomo-linux-{{ mihomo_arch }}-v{{ mihomo_version }}.gz"
 mihomo_unpacked: "/tmp/mihomo-linux-{{ mihomo_arch }}-v{{ mihomo_version }}"
-mihomo_download_url: "https://v6.gh-proxy.org/https://github.com/MetaCubeX/mihomo/releases/download/v{{ mihomo_version }}/mihomo-linux-{{ mihomo_arch }}-v{{ mihomo_version }}.gz"
+mihomo_download_url: "https://v6.gh-proxy.org/https://github.com/MetaCubeX/mihomo/releases/download/v{{ mihomo_version }}/mihomo-linux-{{ mihomo_arch }}-v{{ mihomo_version }}.gz"  # noqa: yaml[line-length]
 mihomo_geoip_url: "https://v6.gh-proxy.org/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb"
 mihomo_geoip_file: "{{ mihomo_config_dir }}/geoip.metadb"
 

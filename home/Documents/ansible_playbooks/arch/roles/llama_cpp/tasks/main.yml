@@ -8,6 +8,149 @@
     name: "{{ llama_cpp_packages }}"
     state: present
 
+- name: Remove the AUR llama.cpp binary package
+  become: true
+  tags:
+    - pkg
+    - llama_cpp
+  community.general.pacman:
+    name: llama.cpp-vulkan-bin
+    state: absent
+
+- name: Install llama.cpp build dependencies
+  become: true
+  tags:
+    - pkg
+    - llama_cpp
+  community.general.pacman:
+    name: "{{ llama_cpp_build_packages }}"
+    state: present
+
+- name: Clone the llama.cpp RDNA fork
+  become: true
+  tags:
+    - pkg
+    - llama_cpp
+  ansible.builtin.git:
+    repo: "{{ llama_cpp_source_repo }}"
+    dest: "{{ llama_cpp_source_dir }}"
+    version: "{{ llama_cpp_source_version }}"
+    refspec: "+refs/heads/rdna:refs/remotes/origin/rdna"
+  register: llama_cpp_source
+
+- name: Check the llama.cpp build state
+  become: true
+  tags:
+    - pkg
+    - llama_cpp
+  ansible.builtin.stat:
+    path: "{{ item }}"
+  loop:
+    - "{{ llama_cpp_source_dir }}/build/CMakeCache.txt"
+    - "{{ llama_cpp_binary }}"
+  register: llama_cpp_build_state
+
+- name: Build llama.cpp from the RDNA fork
+  when: >-
+    llama_cpp_source.changed
+    or not llama_cpp_build_state.results[0].stat.exists
+    or not llama_cpp_build_state.results[1].stat.exists
+  become: true
+  tags:
+    - pkg
+    - llama_cpp
+  block:
+    - name: Configure the llama.cpp build
+      ansible.builtin.command:
+        argv:
+          - cmake
+          - -B
+          - build
+          - -DGGML_VULKAN=ON
+          - -DGGML_NATIVE=OFF
+          - -DBUILD_SHARED_LIBS=ON
+          - -DGGML_BACKEND_DL=ON
+          - -DGGML_CPU_ALL_VARIANTS=ON
+          - -DCMAKE_BUILD_TYPE=Release
+        chdir: "{{ llama_cpp_source_dir }}"
+      changed_when: true
+
+    - name: Compile llama.cpp
+      ansible.builtin.command:
+        argv:
+          - cmake
+          - --build
+          - build
+          - --parallel
+          - "{{ ansible_processor_vcpus | default(1) | int }}"
+        chdir: "{{ llama_cpp_source_dir }}"
+      changed_when: true
+      notify: Restart llama.cpp
+
+    - name: Check fork quantizer support
+      ansible.builtin.command:
+        argv:
+          - "{{ llama_cpp_quantize_binary }}"
+          - --help
+      register: llama_cpp_quantize_help
+      changed_when: false
+      failed_when: false
+
+    - name: Require ROCmFPx support in the fork build
+      ansible.builtin.assert:
+        that: "'Q4_0_ROCMFP4_FAST' in llama_cpp_quantize_help.stdout"
+        fail_msg: >-
+          {{ llama_cpp_quantize_binary }} does not advertise Q4_0_ROCMFP4_FAST;
+          the build is not the llama.cpp-rdna fork.
+
+    - name: Check fork server support
+      ansible.builtin.command:
+        argv:
+          - "{{ llama_cpp_binary }}"
+          - --help
+      register: llama_cpp_server_help
+      changed_when: false
+      failed_when: false
+
+    - name: Require adaptive speculative decoding in the fork build
+      ansible.builtin.assert:
+        that: "'--spec-draft-adaptive' in llama_cpp_server_help.stdout"
+        fail_msg: >-
+          {{ llama_cpp_binary }} does not advertise --spec-draft-adaptive;
+          the build is not the llama.cpp-rdna fork.
+
+    - name: Check the Vulkan backend for unresolved symbols
+      ansible.builtin.command:
+        argv:
+          - ldd
+          - -r
+          - "{{ llama_cpp_vulkan_backend }}"
+      register: llama_cpp_vulkan_ldd
+      changed_when: false
+      failed_when: false
+
+    - name: Require a resolvable Vulkan backend
+      ansible.builtin.assert:
+        that: "'undefined symbol' not in (llama_cpp_vulkan_ldd.stdout + llama_cpp_vulkan_ldd.stderr)"
+        fail_msg: >-
+          {{ llama_cpp_vulkan_backend }} has unresolved symbols; check the ldd -r output.
+
+    - name: List llama.cpp Vulkan devices
+      ansible.builtin.command:
+        argv:
+          - "{{ llama_cpp_binary }}"
+          - --list-devices
+      register: llama_cpp_devices
+      changed_when: false
+      failed_when: false
+
+    - name: Require a Vulkan device to be visible
+      ansible.builtin.assert:
+        that: "'Vulkan0' in (llama_cpp_devices.stdout + llama_cpp_devices.stderr)"
+        fail_msg: >-
+          {{ llama_cpp_binary }} did not list Vulkan0; the server would silently
+          fall back to CPU. Check the RADV/Vulkan driver setup.
+
 - name: Create the llama.cpp group
   become: true
   tags:

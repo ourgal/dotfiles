@@ -32,7 +32,7 @@
 # The apt/package_facts modules cannot run here: UOS's system Python is 3.7
 # (too old for Ansible), and the Miniforge Python Ansible uses has no
 # python-apt bindings. Drive the dpkg/apt CLIs directly instead.
-- name: Refresh the apt cache
+- name: Refresh the apt cache # noqa: command-instead-of-module
   become: true
   ansible.builtin.command:
     cmd: apt-get update
@@ -53,7 +53,7 @@
   check_mode: false
   tags: [fcitx5, pkg]
 
-- name: Install the available build dependencies
+- name: Install the available build dependencies # noqa: command-instead-of-module
   become: true
   ansible.builtin.command:
     cmd: "apt-get install -y --no-install-recommends {{ fcitx5_apt_probe.results | selectattr('rc', 'equalto', 0) | map(attribute='item') | join(' ') }}"
@@ -81,10 +81,11 @@
     fcitx5_stale_packages: "{{ fcitx5_dpkg_query.stdout_lines | select('match', '^(fcitx5|libfcitx5|libfmt-dev)') | list }}"
   tags: [fcitx5, pkg]
 
-- name: Remove the competing system fmt and fcitx5 snapshot packages
+- name: Remove the competing system fmt and fcitx5 snapshot packages # noqa: command-instead-of-module
   become: true
   ansible.builtin.command:
     cmd: "apt-get remove -y {{ fcitx5_stale_packages | join(' ') }}"
+  changed_when: true
   environment:
     DEBIAN_FRONTEND: noninteractive
   when: fcitx5_stale_packages | length > 0
@@ -125,7 +126,7 @@
 
 - name: Set the pkg-config search path
   ansible.builtin.set_fact:
-    fcitx5_pkg_config_path: "{{ fcitx5_state_dir }}/pkgconfig:{{ fcitx5_prefix }}/lib/pkgconfig:{{ fcitx5_prefix }}/lib/{{ fcitx5_multiarch.stdout | default('') }}/pkgconfig"
+    fcitx5_pkg_config_path: "{{ fcitx5_state_dir }}/pkgconfig:{{ fcitx5_prefix }}/lib/pkgconfig:{{ fcitx5_prefix }}/lib/{{ fcitx5_multiarch.stdout | default('') }}/pkgconfig"  # noqa: yaml[line-length]
   tags: [fcitx5, build]
 
 - name: Probe the Debian source mirrors
@@ -420,6 +421,7 @@
   tags: [fcitx5, handoff]
 
 - name: Rebuild the GTK input-module caches
+  changed_when: false
   become: true
   ansible.builtin.command:
     cmd: "gtk-query-immodules-{{ item }} --update-cache"

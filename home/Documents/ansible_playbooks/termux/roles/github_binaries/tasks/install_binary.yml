@@ -1,0 +1,45 @@
+---
+- name: Check the installed {{ binary.name }} version
+  ansible.builtin.slurp:
+    src: "{{ github_binaries_data_dir }}/{{ binary.name }}/version"
+  register: binary_installed_version
+  changed_when: false
+  failed_when: false
+  tags: "{{ github_binaries_tags }}"
+
+- name: Install {{ binary.name }}
+  when: >-
+    binary_installed_version.failed or
+    (binary_installed_version.content | default('') | b64decode | trim) != binary.url
+  tags: "{{ github_binaries_tags }}"
+  block:
+    - name: Download {{ binary.name }}
+      ansible.builtin.get_url:
+        url: "{{ binary.url }}"
+        dest: "{{ github_binaries_cache_dir }}/{{ binary.url.split('/') | last }}"
+        mode: '0600'
+
+    - name: Extract {{ binary.name }} into ~/.local/bin
+      ansible.builtin.command:
+        cmd: >-
+          tar -xf "{{ github_binaries_cache_dir }}/{{ binary.url.split('/') | last }}"
+          -C "{{ github_binaries_bin_dir }}" --overwrite
+          --transform='s:.*/::' --wildcards "{{ binary.include }}"
+      changed_when: true
+
+    - name: Create the {{ binary.name }} data directory
+      ansible.builtin.file:
+        path: "{{ github_binaries_data_dir }}/{{ binary.name }}"
+        state: directory
+        mode: '0755'
+
+    - name: Record the installed {{ binary.name }} version
+      ansible.builtin.copy:
+        content: "{{ binary.url }}\n"
+        dest: "{{ github_binaries_data_dir }}/{{ binary.name }}/version"
+        mode: '0644'
+
+    - name: Remove the {{ binary.name }} download
+      ansible.builtin.file:
+        path: "{{ github_binaries_cache_dir }}/{{ binary.url.split('/') | last }}"
+        state: absent

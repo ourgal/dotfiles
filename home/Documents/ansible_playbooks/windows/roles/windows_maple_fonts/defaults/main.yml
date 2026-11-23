@@ -1,0 +1,29 @@
+---
+windows_maple_fonts_version: "7.3"
+
+# Install system-wide so every user and service can resolve the font.
+windows_maple_fonts_dir: "C:\\Windows\\Fonts"
+windows_maple_fonts_data_dir: "C:\\ProgramData\\maple-fonts"
+windows_maple_fonts_version_file: "{{ windows_maple_fonts_data_dir }}\\version"
+windows_maple_fonts_registry_path: "HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts"
+
+# Maple Mono NF CN styles published in subframe7536/Maple releases.
+windows_maple_fonts_styles:
+  - Bold
+  - BoldItalic
+  - ExtraBold
+  - Italic
+  - ExtraBoldItalic
+  - ExtraLightItalic
+  - Medium
+  - ExtraLight
+  - SemiBold
+  - LightItalic
+  - Light
+  - SemiBoldItalic
+  - Regular
+  - MediumItalic
+  - Thin
+  - ThinItalic
+
+windows_maple_fonts_base_url: "https://gitee.com/subframe7536/Maple/releases/download/v{{ windows_maple_fonts_version }}"

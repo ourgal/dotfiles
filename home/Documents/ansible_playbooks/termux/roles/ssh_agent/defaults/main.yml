@@ -1,0 +1,3 @@
+---
+ssh_agent_service: ssh-agent
+ssh_agent_service_dir: "{{ lookup('env', 'PREFIX') | default('/data/data/com.termux/files/usr', true) }}/var/service"

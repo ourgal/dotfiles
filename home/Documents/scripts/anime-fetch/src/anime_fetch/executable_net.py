@@ -67,4 +67,5 @@ def request_json(
                 time.sleep(backoff * (attempt + 1))
                 continue
             raise last from None
-    raise last  # pragma: no cover - loop always returns or raises
+    assert last is not None  # pragma: no cover - loop always returns or raises
+    raise last

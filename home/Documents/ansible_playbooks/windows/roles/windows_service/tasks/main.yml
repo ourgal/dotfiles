@@ -1,4 +1,5 @@
-- name: "{{ windows_service_name }} service"
+---
+- name: "Manage service: {{ windows_service_name }}"
   ansible.windows.win_service:
     name: "{{ windows_service_name }}"
     state: "{{ windows_service_state }}"

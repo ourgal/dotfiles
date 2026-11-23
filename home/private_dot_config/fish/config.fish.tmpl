@@ -37,7 +37,9 @@ if status is-interactive
     # [[[ termux
     {{ if eq .chezmoi.os "android" -}}
     set -x GPG_TTY $(tty)
-    eval (ssh-agent -c)
+    # The termux-services ssh-agent unit owns this socket. Adding a key once
+    # with ssh-add persists across shells; do not spawn a per-shell agent.
+    set -gx SSH_AUTH_SOCK "$PREFIX/var/run/ssh-agent.socket"
     gpg-connect-agent updatestartuptty /bye >/dev/null
     {{ end -}}
     # ]]]
@@ -135,6 +137,16 @@ if status is-interactive
     # [[[ zoxide
     {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "zoxide") "opt" (list "shell" "fish" "zoxide" "enable") "os" (list "linux" "android")) | trim | atoi -}}
     {{ output "zoxide" "init" "fish" }}
+    {{ end -}}
+    # ]]]
+    # [[[ unlock-keepassxc
+    {{ if and (lookPath "gopass") (lookPath "keepassxc") -}}
+    function unlock-keepassxc --description 'Unlock KeePassXC with the master password from gopass'
+        # KeePassXC is a GUI app: launching it in the foreground keeps the shell
+        # until the window closes. Background it and detach so the prompt returns.
+        gopass show -o keepassxc/main | keepassxc --pw-stdin {{ joinPath .chezmoi.homeDir "Syncthing" "keepassxc" "main.kdbx" | replace "\\" "/" | quote }} >/dev/null 2>&1 &
+        disown 2>/dev/null # KeePassXC may already be running and exit immediately
+    end
     {{ end -}}
     # ]]]
 end

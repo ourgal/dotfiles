@@ -125,7 +125,9 @@ def run(
     result = build_plan(clients, media, entry, args, total=total, wanted=wanted, query=query)
     if result.code != EXIT_OK:
         return result.code
-    print_plan(result.plan, result.destination, wanted=result.wanted)  # type: ignore[arg-type]
+    if result.plan is None:  # pragma: no cover - build_plan sets a plan on EXIT_OK
+        return EXIT_ERROR
+    print_plan(result.plan, result.destination, wanted=result.wanted)
 
     if args.dry_run:
         print("Dry run  : no torrent added, AniList untouched")

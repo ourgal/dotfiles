@@ -3,21 +3,30 @@ llama_cpp_enabled: true
 llama_cpp_port: 8080
 # 0.0.0.0 exposes the unauthenticated OpenAI-compatible API on the LAN.
 llama_cpp_host: 0.0.0.0
-# Hermes Agent requires at least 64K tokens; 128K still fits the 24 GiB card
-# with q4_0 KV cache (~20 GB total with MTP).
+# Hermes Agent requires at least 64K tokens; 131k fits the 24 GiB card with
+# the q8_0 K / q4_0 V mix. q8_0 K is near-lossless and halves the K cache;
+# f16 V as well would only fit ~98k.
 llama_cpp_context_length: 131072
-# The MTP head is embedded in the Qwen3.8 GGUF, so one file is all that is needed.
-llama_cpp_model_repo: unsloth/Qwen3.8-27B-GGUF
-llama_cpp_model_file: Qwen3.8-27B-UD-Q4_K_M.gguf
+# ROCmFP4-FAST GGUF (Q4_0_ROCMFP4_FAST); the MTP head is embedded in this file.
+llama_cpp_model_repo: julianmb/Qwen-3.8-27B-ROCmFP4-FAST-GGUF
+llama_cpp_model_file: Qwen3.8-27B-ROCmFP4-FAST.gguf
 llama_cpp_alias: qwen3.8:27b
 llama_cpp_gpu_layers: 999
-# V-cache quantization requires flash attention.
-llama_cpp_cache_type_k: q4_0
+# Quantized KV requires flash attention.
+llama_cpp_cache_type_k: q8_0
 llama_cpp_cache_type_v: q4_0
 # Native multi-token prediction; the built-in draft head is used as the draft model.
 llama_cpp_spec_type: draft-mtp
-llama_cpp_spec_draft_n_max: 3
-llama_cpp_binary: /usr/bin/llama-server
+llama_cpp_spec_draft_n_max: 4
+# Built from the RDNA3/RDNA3.5 Vulkan fork; pin the commit so upgrades are explicit.
+llama_cpp_source_repo: https://github.com/SelfRef/llama.cpp-rdna.git
+llama_cpp_source_version: b465928c0a561d4e492986cb6b1bd9c3a6f229b5
+llama_cpp_source_dir: /opt/llama.cpp-rdna
+# CMake puts both binaries and backends in build/bin; running from the build tree keeps
+# libggml-vulkan.so next to the executable so the dynamic backend loader finds it.
+llama_cpp_binary: "{{ llama_cpp_source_dir }}/build/bin/llama-server"
+llama_cpp_quantize_binary: "{{ llama_cpp_source_dir }}/build/bin/llama-quantize"
+llama_cpp_vulkan_backend: "{{ llama_cpp_source_dir }}/build/bin/libggml-vulkan.so"
 llama_cpp_user: llama
 llama_cpp_home: /var/lib/llama.cpp
 llama_cpp_model_dir: "{{ llama_cpp_home }}/models"
@@ -26,3 +35,13 @@ llama_cpp_packages:
   - python-huggingface-hub
   - vulkan-icd-loader
   - vulkan-radeon
+# shaderc supplies glslc, which ggml-vulkan's CMake configure requires.
+llama_cpp_build_packages:
+  - base-devel
+  - cmake
+  - git
+  - vulkan-headers
+  - shaderc
+# Fork tuning recommended for Qwen3.8-27B (MTP draft + long context).
+llama_cpp_fa_qtok_fold: true
+llama_cpp_no_cm1_mmq: true

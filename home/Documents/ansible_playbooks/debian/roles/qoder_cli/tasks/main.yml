@@ -1,9 +1,9 @@
 # chezmoi:template:left-delimiter=[[ right-delimiter=]]
 ---
-- name: Install qoder cli cn
+- name: Install qoder cli cn  # noqa: command-instead-of-module
   tags:
     - pkg
     - qoder_cli
   ansible.builtin.shell:
-    cmd: curl -fsSL {{ qoder_cli_install_url }} | bash
+    cmd: set -o pipefail; curl -fsSL {{ qoder_cli_install_url }} | bash
     creates: "{{ qoder_cli_bin }}"

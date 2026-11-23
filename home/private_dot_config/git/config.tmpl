@@ -175,5 +175,12 @@
 
 {{ $cfg = set $cfg "git-extras" (dict "default-branch" $cfg.init.defaultBranch "get" (dict "clone-path" "~/src")) -}}
 
-{{ $cfg = set $cfg "merge" (dict "conflictstyle" "zdiff3" "renameLimit" 10000) -}}
+{{- /* zdiff3 needs git >= 2.35; older git rejects the value entirely. */ -}}
+{{ $conflictStyle := "zdiff3" -}}
+{{ if lookPath "git" -}}
+{{ if not (semverCompare ">=2.35.0" (output "git" "--version" | regexFind `[0-9]+\.[0-9]+\.[0-9]+`)) -}}
+{{ $conflictStyle = "merge" -}}
+{{ end -}}
+{{ end -}}
+{{ $cfg = set $cfg "merge" (dict "conflictstyle" $conflictStyle "renameLimit" 10000) -}}
 {{ $cfg | toIni -}}

@@ -5,6 +5,8 @@
     ansible_remote_tmp: /data/data/com.termux/files/home/.ansible/tmp
   roles:
     - role: apt
+    - role: ssh_agent
+    - role: github_binaries
     - role: cargo
     - role: pip
     - role: pipx

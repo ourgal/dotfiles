@@ -1,0 +1,66 @@
+---
+- name: Clone the wallpaper repository  # noqa: latest[git]
+  become: true
+  become_user: "{{ wallpaper_user }}"
+  tags:
+    - config
+    - wallpaper
+  ansible.builtin.git:
+    repo: "{{ wallpaper_repo }}"
+    dest: "{{ wallpaper_dir }}"
+    update: true
+
+- name: Create the user systemd unit directory
+  become: true
+  become_user: "{{ wallpaper_user }}"
+  tags:
+    - config
+    - wallpaper
+  ansible.builtin.file:
+    path: "{{ wallpaper_unit_dir }}"
+    state: directory
+    owner: "{{ wallpaper_user }}"
+    group: "{{ wallpaper_user }}"
+    mode: "0755"
+
+- name: Install the wallpaper rotation service
+  become: true
+  become_user: "{{ wallpaper_user }}"
+  tags:
+    - config
+    - wallpaper
+  ansible.builtin.template:
+    src: wallpaper.service.j2
+    dest: "{{ wallpaper_unit_dir }}/{{ wallpaper_service }}.service"
+    owner: "{{ wallpaper_user }}"
+    group: "{{ wallpaper_user }}"
+    mode: "0644"
+
+- name: Install the wallpaper rotation timer
+  become: true
+  become_user: "{{ wallpaper_user }}"
+  tags:
+    - config
+    - wallpaper
+  ansible.builtin.template:
+    src: wallpaper.timer.j2
+    dest: "{{ wallpaper_unit_dir }}/{{ wallpaper_timer }}"
+    owner: "{{ wallpaper_user }}"
+    group: "{{ wallpaper_user }}"
+    mode: "0644"
+
+- name: Enable and start the wallpaper timer
+  become: true
+  become_user: "{{ wallpaper_user }}"
+  tags:
+    - service
+    - wallpaper
+  ansible.builtin.systemd_service:
+    scope: user
+    name: "{{ wallpaper_timer }}"
+    enabled: true
+    state: started
+    daemon_reload: true
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ ansible_facts.user_uid }}"
+    DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/{{ ansible_facts.user_uid }}/bus"

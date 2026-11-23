@@ -1,0 +1,8 @@
+[Unit]
+Description=Rotate the desktop wallpaper with feh
+After=graphical-session.target
+
+[Service]
+Type=oneshot
+Environment=DISPLAY={{ wallpaper_display }}
+ExecStart=/usr/bin/feh --randomize --recursive --bg-fill {{ wallpaper_dir }}

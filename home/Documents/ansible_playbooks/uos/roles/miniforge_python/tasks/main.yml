@@ -4,7 +4,7 @@
 # matter when it was removed or when a specific version is pinned.
 - name: Check for the conda and mamba binaries
   ansible.builtin.stat:
-    path: "{{ miniforge_dir }}/bin/{{ item }}"
+    path: "{{ miniforge_python_dir }}/bin/{{ item }}"
   loop: [conda, mamba]
   loop_control:
     label: "{{ item }}"
@@ -14,23 +14,23 @@
 - name: Fail if Miniforge is missing
   ansible.builtin.assert:
     that: miniforge_python_solvers.results | selectattr('item', 'equalto', 'conda') | map(attribute='stat.exists') | first
-    fail_msg: "Miniforge not found at {{ miniforge_dir }}; enable the miniforge role first"
+    fail_msg: "Miniforge not found at {{ miniforge_python_dir }}; enable the miniforge role first"
   tags: [miniforge_python]
 
 - name: Choose the fastest available solver
   ansible.builtin.set_fact:
-    miniforge_python_solver: "{{ miniforge_dir }}/bin/{{ 'mamba' if (miniforge_python_solvers.results | selectattr('item', 'equalto', 'mamba') | map(attribute='stat.exists') | first) else 'conda' }}"
-    miniforge_python_spec_effective: "{{ miniforge_python_spec if ('=' in miniforge_python_spec or miniforge_python_spec.startswith('python')) else 'python=' ~ miniforge_python_spec }}"
+    miniforge_python_solver: "{{ miniforge_python_dir }}/bin/{{ 'mamba' if (miniforge_python_solvers.results | selectattr('item', 'equalto', 'mamba') | map(attribute='stat.exists') | first) else 'conda' }}"  # noqa: yaml[line-length]
+    miniforge_python_spec_effective: "{{ miniforge_python_spec if ('=' in miniforge_python_spec or miniforge_python_spec.startswith('python')) else 'python=' ~ miniforge_python_spec }}"  # noqa: yaml[line-length]
   tags: [miniforge_python]
 
 - name: List the packages in the base environment
   ansible.builtin.command:
-    cmd: "{{ miniforge_dir }}/bin/conda list --name base --json"
+    cmd: "{{ miniforge_python_dir }}/bin/conda list --name base --json"
   register: miniforge_python_list
   changed_when: false
   check_mode: false
   environment:
-    PATH: "{{ miniforge_dir }}/bin:{{ ansible_env.PATH }}"
+    PATH: "{{ miniforge_python_dir }}/bin:{{ ansible_env.PATH }}"
   tags: [miniforge_python]
 
 - name: Decide whether Python needs installing
@@ -40,16 +40,17 @@
          | selectattr('name', 'equalto', 'python') | list | length > 0 }}
   tags: [miniforge_python]
 
-- name: Install Python via Miniforge into base
+- name: Install Python via Miniforge into base # noqa: command-instead-of-module
   ansible.builtin.command:
-    cmd: "{{ miniforge_python_solver }} install -n base -y -c {{ miniforge_channel }} {{ miniforge_python_spec_effective }}"
+    cmd: "{{ miniforge_python_solver }} install -n base -y -c {{ miniforge_python_channel }} {{ miniforge_python_spec_effective }}"
+  changed_when: true
   when: not (miniforge_python_present | bool) or (miniforge_python_force | bool)
   environment:
-    PATH: "{{ miniforge_dir }}/bin:{{ ansible_env.PATH }}"
+    PATH: "{{ miniforge_python_dir }}/bin:{{ ansible_env.PATH }}"
   tags: [miniforge_python]
 
 - name: Verify the Python interpreter
   ansible.builtin.command:
-    cmd: "{{ miniforge_dir }}/bin/python -V"
+    cmd: "{{ miniforge_python_dir }}/bin/python -V"
   changed_when: false
   tags: [miniforge_python]

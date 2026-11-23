@@ -12,7 +12,7 @@
     dest: /etc/network/interfaces
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   notify: Restart networking
 
 - name: Configure DNS resolvers
@@ -22,5 +22,5 @@
     dest: /etc/resolv.conf
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   notify: Restart networking

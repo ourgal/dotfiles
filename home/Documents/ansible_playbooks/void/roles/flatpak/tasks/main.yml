@@ -11,6 +11,7 @@
         flatpakrepo_url: "{{ flatpak_remote_url }}"
         method: user
     - name: Set mirror
+      changed_when: true
       ansible.builtin.command:
         cmd: flatpak --user remote-modify {{ flatpak_remote_name }} --url={{ flatpak_mirror_url }}
     - name: Install flatpak packages

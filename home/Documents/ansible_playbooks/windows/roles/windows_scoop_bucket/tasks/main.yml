@@ -1,4 +1,5 @@
-- name: bucket
+---
+- name: Bucket
   community.windows.win_scoop_bucket:
     name: "{{ windows_scoop_bucket_name }}"
     repo: "{{ windows_scoop_bucket_repo }}"

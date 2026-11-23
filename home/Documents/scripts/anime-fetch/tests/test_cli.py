@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import cast
+
 import pytest
 
 from anime_fetch import cli
@@ -165,7 +167,7 @@ def test_resolve_media_picks_exact_match() -> None:
                 {"id": 2, "format": "TV", "title": {"romaji": "Mushoku Tensei III"}, "meanScore": 80},
             ]
 
-    media = cli.resolve_media(FakeClient(), "Mushoku Tensei III", pick_index=None)
+    media = cli.resolve_media(cast(cli.Seanime, FakeClient()), "Mushoku Tensei III", pick_index=None)
     assert media["id"] == 2
 
 
@@ -178,7 +180,7 @@ def test_resolve_media_skips_music_and_adult() -> None:
             ]
 
     with pytest.raises(cli.SeanimeError, match="no result"):
-        cli.resolve_media(FakeClient(), "Show", pick_index=None)
+        cli.resolve_media(cast(cli.Seanime, FakeClient()), "Show", pick_index=None)
 
 
 def test_resolve_media_explicit_index() -> None:
@@ -186,9 +188,9 @@ def test_resolve_media_explicit_index() -> None:
         def search_anime(self, query, per_page=10):
             return [{"id": i, "format": "TV", "title": {"romaji": f"Show {i}"}} for i in (1, 2, 3)]
 
-    assert cli.resolve_media(FakeClient(), "Show", pick_index=2)["id"] == 2
+    assert cli.resolve_media(cast(cli.Seanime, FakeClient()), "Show", pick_index=2)["id"] == 2
     with pytest.raises(cli.SeanimeError, match="--pick"):
-        cli.resolve_media(FakeClient(), "Show", pick_index=4)
+        cli.resolve_media(cast(cli.Seanime, FakeClient()), "Show", pick_index=4)
 
 
 def test_resolve_media_ambiguous_raises() -> None:
@@ -197,7 +199,7 @@ def test_resolve_media_ambiguous_raises() -> None:
             return [{"id": 1, "format": "TV", "title": {"romaji": "Totally Different"}}]
 
     with pytest.raises(cli.Ambiguous):
-        cli.resolve_media(FakeClient(), "Unrelated Query Words Here", pick_index=None)
+        cli.resolve_media(cast(cli.Seanime, FakeClient()), "Unrelated Query Words Here", pick_index=None)
 
 
 def test_resolve_media_one_word_query_is_strict() -> None:
@@ -207,7 +209,7 @@ def test_resolve_media_one_word_query_is_strict() -> None:
 
     # loose word overlap is only trusted for queries of 3+ words
     with pytest.raises(cli.Ambiguous):
-        cli.resolve_media(FakeClient(), "yani", pick_index=None)
+        cli.resolve_media(cast(cli.Seanime, FakeClient()), "yani", pick_index=None)
 
 
 # ------------------------------------------------------------- build_candidates
@@ -234,7 +236,7 @@ def test_build_candidates_probes_batches() -> None:
         _torrent(batch_name, batch=True),
         _torrent("Show - 01 [HEVC].mkv"),
     ]
-    candidates = cli.build_candidates(client, torrents, total=12, max_probes=5, verbose=False)
+    candidates = cli.build_candidates(cast(cli.Seanime, client), torrents, total=12, max_probes=5, verbose=False)
     batch = next(c for c in candidates if c.torrent["name"] == batch_name)
     assert batch.episodes == set(range(1, 13))
     single = next(c for c in candidates if c.episodes == {1})
@@ -247,7 +249,7 @@ def test_build_candidates_drops_failing_probe() -> None:
         _torrent(JUDAS_BATCH, batch=True),
         _torrent("Show - 02 [HEVC].mkv"),
     ]
-    candidates = cli.build_candidates(client, torrents, total=12, max_probes=5, verbose=False)
+    candidates = cli.build_candidates(cast(cli.Seanime, client), torrents, total=12, max_probes=5, verbose=False)
     assert [c.episodes for c in candidates] == [{2}]
 
 
@@ -257,14 +259,14 @@ def test_build_candidates_respects_probe_limit() -> None:
     client = StubClient({name: files for name in names})
     torrents = [_torrent(names[0], batch=True), _torrent(names[1], batch=True),
                 _torrent(names[2], batch=True)]
-    candidates = cli.build_candidates(client, torrents, total=12, max_probes=2, verbose=False)
+    candidates = cli.build_candidates(cast(cli.Seanime, client), torrents, total=12, max_probes=2, verbose=False)
     assert len([c for c in candidates if c.episodes]) == 2
 
 
 def test_build_candidates_ignores_out_of_range_single() -> None:
     client = StubClient({})
     torrents = [_torrent("Show - 99 [HEVC].mkv")]
-    assert cli.build_candidates(client, torrents, total=12, max_probes=5, verbose=False) == []
+    assert cli.build_candidates(cast(cli.Seanime, client), torrents, total=12, max_probes=5, verbose=False) == []
 
 
 def test_build_candidates_uses_requested_episode_hint() -> None:
@@ -272,9 +274,9 @@ def test_build_candidates_uses_requested_episode_hint() -> None:
     # Seanime already mapped the request, so trust that over the filename.
     name = "[Erai-raws] Show S01E14 [1080p HEVC]"
     client = StubClient({})
-    hints = {name.lower(): 1}
+    hints: dict[str, int] = {name.lower(): 1}
     candidates = cli.build_candidates(
-        client, [_torrent(name)], total=6, max_probes=5, verbose=False, hints=hints
+        cast(cli.Seanime, client), [_torrent(name)], total=6, max_probes=5, verbose=False, hints=hints
     )
     assert [c.episodes for c in candidates] == [{1}]
 
@@ -286,7 +288,7 @@ def test_gather_records_requested_episode() -> None:
 
     found: dict = {}
     hints: dict = {}
-    cli.gather([FakeClient()], {"id": 1}, ["Show"], batch=False, episode=1,
+    cli.gather(cast(list[cli.Seanime], [FakeClient()]), {"id": 1}, ["Show"], batch=False, episode=1,
                titles=["Show"], hint=None, found=found, hints=hints)
     assert len(found) == 1
     assert list(hints.values()) == [1]
@@ -303,7 +305,7 @@ def test_gather_passes_low_retries_and_keeps_working_queries() -> None:
             return [{"name": "[ASW] Show - 01 [HEVC 1080p]", "seeders": 1, "size": 1}]
 
     found: dict = {}
-    cli.gather([FakeClient()], {"id": 1}, ["bad", "good"], batch=False, episode=1,
+    cli.gather(cast(list[cli.Seanime], [FakeClient()]), {"id": 1}, ["bad", "good"], batch=False, episode=1,
                titles=["Show"], hint=None, found=found)
 
     assert calls == [("bad", 1), ("good", 1)]
@@ -319,7 +321,7 @@ def test_gather_skips_failed_query() -> None:
 
     found: dict = {}
     hints: dict = {}
-    cli.gather([FlakyClient()], {"id": 1}, ["bad", "good"], batch=False, episode=1,
+    cli.gather(cast(list[cli.Seanime], [FlakyClient()]), {"id": 1}, ["bad", "good"], batch=False, episode=1,
                titles=["Show"], hint=None, found=found, hints=hints)
     assert len(found) == 1
     assert list(hints.values()) == [1]
@@ -331,7 +333,7 @@ def test_gather_raises_when_every_query_fails() -> None:
             raise cli.SeanimeError("down")
 
     with pytest.raises(cli.SeanimeError, match="all torrent searches failed"):
-        cli.gather([FailingClient()], {"id": 1}, ["x"], batch=False, episode=1,
+        cli.gather(cast(list[cli.Seanime], [FailingClient()]), {"id": 1}, ["x"], batch=False, episode=1,
                    titles=["Show"], hint=None, found={})
 
 
@@ -443,7 +445,7 @@ def _fake_client(monkeypatch):
         instances.append(client)
         return client
 
-    factory.find_entry = cli.Seanime.find_entry  # main() calls it on the class
+    setattr(factory, "find_entry", cli.Seanime.find_entry)  # main() calls it on the class
     monkeypatch.setattr(cli, "Seanime", factory)
     return instances
 
@@ -641,7 +643,7 @@ def _batch_fake_client(monkeypatch, *, collection=None, anilist=None,
         instances.append(client)
         return client
 
-    factory.find_entry = cli.Seanime.find_entry
+    setattr(factory, "find_entry", cli.Seanime.find_entry)
     monkeypatch.setattr(cli, "Seanime", factory)
     monkeypatch.setattr(cli, "confirm", lambda question: confirms.append(question) or confirm_answer)
     return instances, confirms

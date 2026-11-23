@@ -3,7 +3,7 @@ default_apps_enabled: true
 default_apps_user: "{{ ansible_facts.user_id }}"
 # Desktop entry names, verified against the packaged tarballs
 # (qutebrowser 3.7.0 -> org.qutebrowser.qutebrowser.desktop, mpv -> mpv.desktop).
-default_apps:
+default_apps_desktop:
   browser: chromium.desktop
   video: mpv.desktop
   audio: mpv.desktop

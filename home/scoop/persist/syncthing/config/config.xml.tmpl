@@ -184,7 +184,7 @@
     </defaults>
 {{ end -}}
 <configuration version="52">
-{{ template "folder" (dict "id" "gsqw5-i57xh" "label" "keepassxc" "path" (joinPath .chezmoi.homeDir "Syncthing" "keepassxc") "devices" (list "nuc" "bed" "note20") "hostname" .chezmoi.hostname "chezmoi" .chezmoi "my" .my) -}}
+{{ template "folder" (dict "id" "gsqw5-i57xh" "label" "keepassxc" "path" (joinPath .chezmoi.homeDir "Syncthing" "keepassxc") "devices" (list "nuc" "bed" "note20" "surface") "hostname" .chezmoi.hostname "chezmoi" .chezmoi "my" .my) -}}
 {{ template "folder" (dict "id" "z9um9-3ktne" "label" "playnite" "path" (joinPath .chezmoi.homeDir "scoop" "persist" "playnite") "devices" (list "nuc" "bed" "note20") "hostname" .chezmoi.hostname "chezmoi" .chezmoi "my" .my) -}}
 {{ template "folder" (dict "id" "rjrxe-9sugq" "label" "ludusavi" "path" (joinPath .chezmoi.homeDir "ludusavi-backup") "devices" (list "nuc" "bed" "note20") "hostname" .chezmoi.hostname "chezmoi" .chezmoi "my" .my) -}}
 {{ template "folder" (dict "id" "u5dje-5hvnn" "label" "game_saves" "path" (joinPath .chezmoi.homeDir "Documents" "game_saves") "devices" (list "nuc" "bed" "note20") "hostname" .chezmoi.hostname "chezmoi" .chezmoi "my" .my) -}}
@@ -192,7 +192,7 @@
 {{ template "folder" (dict "id" "gc5sz-susp5" "label" "share" "path" (joinPath .chezmoi.homeDir "Syncthing" "share") "devices" (list "nuc" "bed" "s10" "m6" "note20" "air") "hostname" .chezmoi.hostname "chezmoi" .chezmoi "my" .my) -}}
 {{ template "folder" (dict "id" "htvji-asdsj" "label" "gpg_keys" "path" (joinPath .chezmoi.homeDir "Syncthing" "gpg_keys") "devices" (list "nuc" "bed" "note20") "hostname" .chezmoi.hostname "chezmoi" .chezmoi "my" .my) -}}
 {{ $origin := . -}}
-{{ range (list "bed" "nuc" "note20" "s10" "m6" "air") -}}
+{{ range (list "bed" "nuc" "note20" "s10" "m6" "air" "surface") -}}
 {{ if ne . $origin.chezmoi.hostname -}}
 {{ template "device" (dict "device" . "chezmoi" $origin.chezmoi "my" $origin.my) -}}
 {{ end -}}

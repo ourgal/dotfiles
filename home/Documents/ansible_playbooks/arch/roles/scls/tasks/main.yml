@@ -1,0 +1,64 @@
+---
+# The release is keyed by commit hash and the binary has no --version flag,
+# so track the installed build with a marker file.
+- name: Check the installed scls version
+  ansible.builtin.slurp:
+    src: "{{ scls_version_file }}"
+  register: scls_installed_version
+  changed_when: false
+  failed_when: false
+  tags:
+    - pkg
+    - scls
+
+- name: Install scls from the GitHub release
+  when: >-
+    scls_installed_version.failed or
+    (scls_installed_version.content | default('') | b64decode | trim) != scls_release
+  become: true
+  tags:
+    - pkg
+    - scls
+  block:
+    - name: Download scls
+      ansible.builtin.get_url:
+        url: "{{ scls_download_url }}"
+        dest: "{{ scls_archive_path }}"
+        checksum: "sha256:{{ scls_sha256 }}"
+        mode: '0600'
+
+    - name: Extract scls
+      ansible.builtin.unarchive:
+        src: "{{ scls_archive_path }}"
+        dest: /tmp
+        remote_src: true
+        creates: "{{ scls_source_dir }}/simple-completion-language-server"
+
+    - name: Install the scls binary
+      ansible.builtin.copy:
+        src: "{{ scls_source_dir }}/simple-completion-language-server"
+        dest: "{{ scls_binary }}"
+        remote_src: true
+        mode: '0755'
+
+    - name: Create the scls data directory
+      ansible.builtin.file:
+        path: "{{ scls_version_file | dirname }}"
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Record the installed scls version
+      ansible.builtin.copy:
+        content: "{{ scls_release }}\n"
+        dest: "{{ scls_version_file }}"
+        mode: '0644'
+
+    - name: Remove the scls download
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - "{{ scls_archive_path }}"
+        - "{{ scls_source_dir }}"

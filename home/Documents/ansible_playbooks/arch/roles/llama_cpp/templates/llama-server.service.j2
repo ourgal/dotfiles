@@ -11,6 +11,12 @@ SupplementaryGroups=video render
 WorkingDirectory={{ llama_cpp_home }}
 Environment=HOME={{ llama_cpp_home }}
 Environment=HF_HOME={{ llama_cpp_home }}
+{% if llama_cpp_fa_qtok_fold | bool %}
+Environment=GGML_VK_FA_QTOK_FOLD=1
+{% endif %}
+{% if llama_cpp_no_cm1_mmq | bool %}
+Environment=GGML_VK_NO_CM1_MMQ=1
+{% endif %}
 ExecStart={{ llama_cpp_binary }} \
     --model {{ llama_cpp_model_path }} \
     --alias {{ llama_cpp_alias }} \

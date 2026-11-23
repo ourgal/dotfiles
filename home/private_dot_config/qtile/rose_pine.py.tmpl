@@ -6,10 +6,11 @@ available on Arch. The battery widget is only added on machines that have one.
 
 import glob
 
+import psutil
 from libqtile import bar, widget
 from libqtile.lazy import lazy
+from libqtile.widget.battery import BatteryState
 
-FONT = "{{ .my.font.monospace }}"
 WINDOW_FONT = "{{ .my.font.monospace }}:style=Italic"
 
 {{ if eq .chezmoi.hostname "surface" }}
@@ -25,7 +26,6 @@ MARGIN = int(round(9 * BAR_SCALE))
 BORDER_WIDTH = max(1, int(round(2 * BAR_SCALE)))
 LOGO_SIZE = int(round(18 * BAR_SCALE))
 BIG_SIZE = int(round(16 * BAR_SCALE))
-SMALL_SIZE = int(round(14 * BAR_SCALE))
 TRAY_ICON_SIZE = int(round(20 * BAR_SCALE))
 
 # Powerline "rounded left" glyph. Drawn in the next segment's colour over the
@@ -49,12 +49,76 @@ DEFAULT_BG = colors["bg"]
 DEFAULT_FG = colors["fg"]
 
 # Nerd Font glyphs used in the bar.
-ARCH_LOGO = "\uf303"      # nf-linux-archlinux
-CPU_ICON = "\uf2db"       # nf-fa-microchip
-MEM_ICON = "\uf00b"       # nf-fa-tasks
-BATT_ICON = "\ue00a"      # nf-fa-battery_empty (used as a prefix)
-CHARGE = "\uf054"
-DISCHARGE = "\uf053"
+ARCH_LOGO = "\uf303"        # nf-linux-archlinux
+CPU_ICON = "\uf2db"         # nf-fa-microchip
+MEM_ICON = "\uf00b"         # nf-fa-tasks
+
+# Horizontal battery glyphs: 4 internal blocks, from empty (0) to full (4).
+BATTERY_BLOCKS = (
+    "\uf244",  # 0/4  nf-fa-battery_empty
+    "\uf243",  # 1/4  nf-fa-battery_quarter
+    "\uf242",  # 2/4  nf-fa-battery_half
+    "\uf241",  # 3/4  nf-fa-battery_three_quarter
+    "\uf240",  # 4/4  nf-fa-battery_full
+)
+BOLT_ICON = "\uf0e7"        # nf-fa-bolt (electric icon shown while charging)
+
+METER_CELLS = 5
+METER_FULL = "\u2588"        # █
+METER_EMPTY = "\u2591"       # ░
+
+
+def _block_meter(percent):
+    """Horizontal meter, e.g. '███░░' for 60%."""
+    filled = min(METER_CELLS, max(0, int(percent / 100 * METER_CELLS + 0.5)))
+    return METER_FULL * filled + METER_EMPTY * (METER_CELLS - filled)
+
+
+class BlockBattery(widget.Battery):
+    """Battery widget using a horizontal battery with charge-level blocks.
+
+    The stock widget only swaps an arrow based on state; this picks one of the
+    four Font Awesome battery-level glyphs from the percentage instead, and
+    adds a bolt while charging. Colour handling is kept from the parent.
+    """
+
+    def build_string(self, status):
+        if self.hide_threshold is not None and status.percent > self.hide_threshold:
+            return ""
+
+        if self.layout is not None:
+            if (
+                status.state == BatteryState.DISCHARGING
+                and status.percent < self.low_percentage
+            ):
+                self.layout.colour = self.low_foreground
+                self.background = self.low_background
+            elif status.state == BatteryState.CHARGING:
+                self.layout.colour = self.charging_foreground or self.foreground
+                self.background = self.charging_background or self.normal_background
+            else:
+                self.layout.colour = self.foreground
+                self.background = self.normal_background
+
+        level = min(4, int(round(status.percent * 4)))
+        icon = BATTERY_BLOCKS[level]
+        if status.state == BatteryState.CHARGING:
+            icon += " " + BOLT_ICON
+        return f" {icon} {status.percent:2.0%}"
+
+
+class BlockCPU(widget.CPU):
+    """CPU widget with a block meter showing current load."""
+
+    def poll(self):
+        return self.format.format(meter=_block_meter(psutil.cpu_percent()))
+
+
+class BlockMemory(widget.Memory):
+    """Memory widget with a block meter showing the used fraction."""
+
+    def poll(self):
+        return self.format.format(meter=_block_meter(psutil.virtual_memory().percent))
 
 
 def _specs():
@@ -69,10 +133,10 @@ def _specs():
         (
             widget.TextBox,
             dict(
-                text=" " + ARCH_LOGO,
-                font=FONT,
+                text=ARCH_LOGO,
+                font=WINDOW_FONT,
                 fontsize=LOGO_SIZE,
-                padding=-2,
+                padding=6,
                 background=colors["magenta"],
                 foreground=colors["bg"],
                 mouse_callbacks={"Button1": lazy.spawncmd()},
@@ -83,7 +147,7 @@ def _specs():
         (
             widget.GroupBox,
             dict(
-                font=FONT,
+                font=WINDOW_FONT,
                 fontsize=BIG_SIZE,
                 padding=3,
                 foreground=colors["gutter"],
@@ -125,12 +189,12 @@ def _specs():
             False,
         ),
         (
-            widget.CPU,
+            BlockCPU,
             dict(
-                font=FONT,
-                fontsize=SMALL_SIZE,
+                font=WINDOW_FONT,
+                fontsize=BIG_SIZE,
                 padding=3,
-                format=CPU_ICON + " {freq_current}GHz {load_percent}%",
+                format=CPU_ICON + " {meter}",
                 background=colors["yellow"],
                 foreground=colors["bg"],
             ),
@@ -142,23 +206,16 @@ def _specs():
     if glob.glob("/sys/class/power_supply/BAT*"):
         specs.append(
             (
-                widget.Battery,
+                BlockBattery,
                 dict(
-                    font=FONT,
-                    fontsize=SMALL_SIZE,
+                    font=WINDOW_FONT,
+                    fontsize=BIG_SIZE,
                     padding=3,
                     background=colors["magenta"],
                     foreground=colors["bg"],
                     low_foreground=colors["red"],
                     low_background=None,
                     low_percentage=0.3,
-                    charge_char=CHARGE,
-                    discharge_char=DISCHARGE,
-                    full_char="",
-                    empty_char="X",
-                    unknown_char="?",
-                    format=" " + BATT_ICON + " {char} {percent:2.0%}",
-                    show_short_text=False,
                 ),
                 True,
                 False,
@@ -169,10 +226,10 @@ def _specs():
         (
             widget.Net,
             dict(
-                font=FONT,
-                fontsize=SMALL_SIZE,
+                font=WINDOW_FONT,
+                fontsize=BIG_SIZE,
                 padding=3,
-                format="\u2193 {down:.2f}{down_suffix} \u2191 {up:.2f}{up_suffix}",
+                format="\u2193 {down:.0f}{down_suffix} \u2191 {up:.0f}{up_suffix}",
                 update_interval=3,
                 background=colors["pink"],
             ),
@@ -180,13 +237,12 @@ def _specs():
             False,
         ),
         (
-            widget.Memory,
+            BlockMemory,
             dict(
-                font=FONT,
-                fontsize=SMALL_SIZE,
+                font=WINDOW_FONT,
+                fontsize=BIG_SIZE,
                 padding=3,
-                format=MEM_ICON + ": {MemUsed:.2f}/{MemTotal:.2f}{mm}",
-                measure_mem="G",
+                format=MEM_ICON + " {meter}",
                 update_interval=1.0,
             ),
             True,
@@ -195,8 +251,8 @@ def _specs():
         (
             widget.CurrentLayout,
             dict(
-                font=FONT,
-                fontsize=SMALL_SIZE,
+                font=WINDOW_FONT,
+                fontsize=BIG_SIZE,
                 padding=3,
                 background=colors["pink"],
             ),
@@ -206,8 +262,8 @@ def _specs():
         (
             widget.Clock,
             dict(
-                font=FONT,
-                fontsize=SMALL_SIZE,
+                font=WINDOW_FONT,
+                fontsize=BIG_SIZE,
                 padding=3,
                 format="%m/%d/%Y",
                 background=colors["orange"],
@@ -218,8 +274,8 @@ def _specs():
         (
             widget.Clock,
             dict(
-                font=FONT,
-                fontsize=SMALL_SIZE,
+                font=WINDOW_FONT,
+                fontsize=BIG_SIZE,
                 padding=3,
                 format="%I:%M %p ",
                 background=colors["gutter"],
@@ -246,7 +302,7 @@ def _widgets():
             widgets.append(
                 widget.TextBox(
                     text=" " + SEPARATOR,
-                    font=FONT,
+                    font=WINDOW_FONT,
                     fontsize=BAR_HEIGHT,
                     padding=-1,
                     foreground=specs[index + 1][1].get("background", DEFAULT_BG),

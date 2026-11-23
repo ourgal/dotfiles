@@ -70,7 +70,7 @@ def build_plan(
     destination = series_destination(media, args.lib, query)
     ongoing = is_ongoing(media)
     names = media.get("title") or {}
-    romaji = names.get("romaji") or names.get("english") or ""
+    romaji = names.get("romaji") or names.get("english") or query or "Show"
     titles = titles_of(media)[:3] or ([query] if query else [romaji])
 
     hint = pick.season_hint(titles[0]) if titles else None

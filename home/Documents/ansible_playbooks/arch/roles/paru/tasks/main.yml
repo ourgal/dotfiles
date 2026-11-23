@@ -49,7 +49,7 @@
         commands: /usr/bin/pacman
         nopassword: true
 
-    - name: Clone the paru AUR package
+    - name: Clone the paru AUR package  # noqa: latest[git]
       become: true
       ansible.builtin.git:
         repo: "{{ paru_git_url }}"

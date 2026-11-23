@@ -2,7 +2,7 @@
 # Installs workstation apt packages on UOS. The apt/package_facts Ansible modules
 # cannot run here: UOS's system Python is 3.7 (too old for Ansible), and the
 # Miniforge Python Ansible uses has no python-apt bindings. Drive the CLIs.
-- name: Refresh the apt cache
+- name: Refresh the apt cache  # noqa: command-instead-of-module
   become: true
   ansible.builtin.command:
     cmd: apt-get update
@@ -22,7 +22,7 @@
   check_mode: false
   tags: [apt, pkg]
 
-- name: Install the available packages
+- name: Install the available packages  # noqa: command-instead-of-module
   become: true
   ansible.builtin.command:
     cmd: "apt-get install -y --no-install-recommends {{ apt_probe.results | selectattr('rc', 'equalto', 0) | map(attribute='item') | join(' ') }}"

@@ -1,0 +1,51 @@
+---
+- name: Install dunst notification daemon
+  become: true
+  tags:
+    - pkg
+    - dunst
+  community.general.pacman:
+    name: "{{ dunst_packages }}"
+    state: present
+
+- name: Create the dunst user systemd unit directory
+  become: true
+  become_user: "{{ dunst_user }}"
+  tags:
+    - config
+    - dunst
+  ansible.builtin.file:
+    path: "{{ dunst_unit_dir }}"
+    state: directory
+    owner: "{{ dunst_user }}"
+    group: "{{ dunst_user }}"
+    mode: "0755"
+
+- name: Install the dunst user service
+  become: true
+  become_user: "{{ dunst_user }}"
+  tags:
+    - config
+    - dunst
+  ansible.builtin.template:
+    src: dunst.service.j2
+    dest: "{{ dunst_unit_dir }}/{{ dunst_service }}.service"
+    owner: "{{ dunst_user }}"
+    group: "{{ dunst_user }}"
+    mode: "0644"
+
+- name: Enable and start the dunst user service
+  become: true
+  become_user: "{{ dunst_user }}"
+  tags:
+    - service
+    - dunst
+  ansible.builtin.systemd_service:
+    scope: user
+    name: "{{ dunst_service }}.service"
+    enabled: true
+    state: started
+    daemon_reload: true
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ ansible_facts.user_uid }}"
+    DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/{{ ansible_facts.user_uid }}/bus"

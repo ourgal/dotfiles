@@ -8,7 +8,7 @@
 
 # Reuse the AUR builder (paru + aur-builder user + sudoers) from the aur role;
 # overriding aur_packages keeps this role's install self-contained.
-- name: Install {{ miryoku_engine }} from the AUR
+- name: "Install from the AUR: {{ miryoku_engine }}"
   tags:
     - pkg
     - miryoku
@@ -90,7 +90,7 @@
   ansible.builtin.systemd_service:
     daemon_reload: true
 
-- name: Install the {{ miryoku_engine }} systemd unit
+- name: "Install the systemd unit: {{ miryoku_engine }}"
   become: true
   tags:
     - config

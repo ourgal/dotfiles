@@ -1,0 +1,34 @@
+---
+redshift_enabled: true
+redshift_user: "{{ ansible_facts.user_id }}"
+redshift_unit_dir: "{{ ansible_facts.user_dir }}/.config/systemd/user"
+redshift_service: redshift
+redshift_config_dir: "{{ ansible_facts.user_dir }}/.config/redshift"
+redshift_config_file: "{{ redshift_config_dir }}/redshift.conf"
+
+# Redshift adjusts gamma ramps over X11 RandR. ly writes the Xauthority cookie
+# here; pass it explicitly like the dunst/wallpaper units instead of relying on
+# the user manager having inherited it from the graphical login.
+redshift_display: ":0"
+redshift_xauth: "/run/user/%U/lyxauth"
+
+# Automatic location; no [manual] lat/lon section is emitted.
+redshift_location_provider: geoclue2
+redshift_adjustment_method: randr
+redshift_randr_screen: 0
+
+redshift_temp_day: 5700
+redshift_temp_night: 3500
+redshift_gamma_day: "1.0:1.0:1.0"
+redshift_gamma_night: "1.0:1.0:1.0"
+redshift_fade: 1
+
+# geoclue is only an optional dependency of the redshift package on Arch.
+redshift_packages:
+  - redshift
+  - geoclue
+
+# GeoClue needs an agent on the session bus; GNOME provides one, but this
+# desktop uses a standalone WM. The demo agent auto-authorizes requests.
+redshift_geoclue_agent_service: geoclue-agent
+redshift_geoclue_agent_bin: /usr/lib/geoclue-2.0/demos/agent

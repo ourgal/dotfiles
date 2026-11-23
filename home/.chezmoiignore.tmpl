@@ -425,10 +425,6 @@ Videos/*
 !.config/fish/
 !.config/fish/**
 {{ end -}}
-{{ if and (eq .chezmoi.os "windows") (lookPath "msys2") -}}
-!.config/fish/
-!.config/fish/**
-{{ end -}}
 {{ end -}}
 # ]]]
 # [[[ zellij
@@ -942,12 +938,6 @@ AppData/Roaming/pet/*
 !.config/Seanime/
 .config/Seanime/*
 !.config/Seanime/config.toml
-
-!.config/systemd/
-.config/systemd/*
-!.config/systemd/user/
-.config/systemd/user/*
-!.config/systemd/user/seanime.service
 {{ end -}}
 {{ end -}}
 # ]]]
@@ -1224,6 +1214,28 @@ AppData/Roaming/maki/*
 !.config/systemd/user
 .config/systemd/user/*
 !.config/systemd/user/ssh-agent.service
+{{ end -}}
+# ]]]
+# [[[ syncthing (surface)
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.hostname "surface") -}}
+!.config
+.config/*
+!.config/systemd
+.config/systemd/*
+!.config/systemd/user
+.config/systemd/user/*
+!.config/systemd/user/syncthing.service
+!.config/syncthing
+.config/syncthing/*
+!.config/syncthing/config.xml
+!.config/syncthing/cert.pem
+!.config/syncthing/key.pem
+{{ end -}}
+# ]]]
+# [[[ autorandr (surface)
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.hostname "surface") -}}
+!.config/autorandr/
+!.config/autorandr/**
 {{ end -}}
 # ]]]
 # [[[ xinputrc (UOS / fcitx5 input method)

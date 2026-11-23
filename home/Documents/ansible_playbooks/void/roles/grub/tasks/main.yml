@@ -7,7 +7,7 @@
     line: GRUB_DISABLE_OS_PROBER=false
   register: grub_config
 
-- name: Generate grub config
+- name: Generate grub config  # noqa: no-handler
   become: true
   ansible.builtin.command:
     cmd: grub-mkconfig -o /boot/grub/grub.cfg

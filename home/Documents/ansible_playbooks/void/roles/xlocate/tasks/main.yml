@@ -4,7 +4,7 @@
   block:
     - name: Check xlocate folder
       ansible.builtin.stat:
-        path: "{{ [ ansible_facts.user_dir, '.cache', 'xlocate.git' ] | path_join }}"
+        path: "{{ [ansible_facts.user_dir, '.cache', 'xlocate.git'] | path_join }}"
       register: xlocate_git_stat
     - name: Download xlocate data
       ansible.builtin.command:

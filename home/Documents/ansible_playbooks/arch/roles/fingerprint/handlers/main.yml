@@ -1,0 +1,6 @@
+---
+- name: Restart fprintd
+  become: true
+  ansible.builtin.service:
+    name: fprintd
+    state: restarted

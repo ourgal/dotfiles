@@ -1,0 +1,48 @@
+---
+# Track the installed release with a marker file so bumping the version
+# re-downloads the fonts even though the destination filenames stay the same.
+- name: Check the installed Maple fonts version
+  ansible.windows.win_shell: |
+    if (Test-Path '{{ windows_maple_fonts_version_file }}') {
+      Get-Content '{{ windows_maple_fonts_version_file }}' -Raw
+    }
+  register: windows_maple_fonts_installed_version
+  changed_when: false
+  tags:
+    - pkg
+    - maple-fonts
+
+- name: Install Maple Mono fonts to the system
+  when: (windows_maple_fonts_installed_version.stdout | default('') | trim) != windows_maple_fonts_version
+  tags:
+    - pkg
+    - maple-fonts
+  block:
+    - name: Ensure the fonts directory exists
+      ansible.windows.win_file:
+        path: "{{ windows_maple_fonts_dir }}"
+        state: directory
+
+    - name: Download Maple Mono fonts
+      ansible.windows.win_get_url:
+        url: "{{ windows_maple_fonts_base_url }}/MapleMono-NF-CN-{{ item }}.ttf"
+        dest: "{{ windows_maple_fonts_dir }}\\MapleMono-NF-CN-{{ item }}.ttf"
+      loop: "{{ windows_maple_fonts_styles }}"
+
+    - name: Register Maple Mono fonts
+      ansible.windows.win_regedit:
+        path: "{{ windows_maple_fonts_registry_path }}"
+        name: "Maple Mono NF CN {{ item }} (TrueType)"
+        data: "MapleMono-NF-CN-{{ item }}.ttf"
+        state: present
+      loop: "{{ windows_maple_fonts_styles }}"
+
+    - name: Ensure the Maple fonts data directory exists
+      ansible.windows.win_file:
+        path: "{{ windows_maple_fonts_data_dir }}"
+        state: directory
+
+    - name: Record the installed Maple fonts version
+      ansible.windows.win_copy:
+        dest: "{{ windows_maple_fonts_version_file }}"
+        content: "{{ windows_maple_fonts_version }}"

@@ -3,5 +3,7 @@ all:
   vars:
     ansible_ssh_port: 8022
   hosts:
+    localhost:
+      ansible_connection: local
     note20:
     m6:

@@ -28,9 +28,9 @@
     cmd: >-
       set -o pipefail;
       curl -fsS {{ hermes_agent_installer_url }} | bash -s -- --non-interactive
-      --channel {{ hermes_agent_channel }}
-      {%- if hermes_agent_skip_browser | bool %} --skip-browser{% endif %}
+      --channel {{ hermes_agent_channel }}{%- if hermes_agent_skip_browser | bool %} --skip-browser{% endif %}
     executable: /bin/bash
+  changed_when: true
   environment:
     HOME: "{{ hermes_agent_user_home }}"
     HERMES_HOME: "{{ hermes_agent_home }}"

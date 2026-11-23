@@ -1,0 +1,38 @@
+---
+# No standalone docker role for arch; hindsight brings its own daemon.
+- name: Install docker and the compose plugin
+  become: true
+  ansible.builtin.pacman:
+    name:
+      - docker
+      - docker-compose
+    state: present
+
+- name: Enable and start the docker daemon
+  become: true
+  ansible.builtin.systemd:
+    name: docker
+    enabled: true
+    state: started
+
+- name: Create the hindsight stack directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ hindsight_dir }}"
+    state: directory
+    mode: '0700'
+
+- name: Deploy the hindsight compose file
+  become: true
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ hindsight_dir }}/docker-compose.yml"
+    mode: '0600'
+
+# No community.docker dependency on purpose: the CLI is idempotent here.
+- name: Start the hindsight stack
+  become: true
+  ansible.builtin.command:
+    cmd: docker compose up -d --remove-orphans
+    chdir: "{{ hindsight_dir }}"
+  changed_when: false

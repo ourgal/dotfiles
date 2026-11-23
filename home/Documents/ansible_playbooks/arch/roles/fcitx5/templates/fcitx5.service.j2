@@ -1,0 +1,13 @@
+[Unit]
+Description=Fcitx 5 input method
+After=graphical-session.target
+
+[Service]
+Type=simple
+Environment=DISPLAY={{ fcitx5_display }}
+ExecStart=/usr/bin/fcitx5 -r
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=default.target

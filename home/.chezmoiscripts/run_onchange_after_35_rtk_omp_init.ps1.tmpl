@@ -1,0 +1,11 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if lookPath "rtk" -}}
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
+{{ $extension := joinPath .chezmoi.homeDir ".omp" "agent" "extensions" "rtk.ts" -}}
+{{ if not (stat $extension) -}}
+rtk init --agent omp --global --no-patch
+{{ end -}}
+{{ end }}
+{{ end }}

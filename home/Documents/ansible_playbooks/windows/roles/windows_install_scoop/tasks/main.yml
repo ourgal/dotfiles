@@ -1,3 +1,4 @@
+---
 - name: Update scoop config
   tags: scoop-config
   block:
@@ -8,12 +9,12 @@
     - name: Check scoop config file
       ansible.windows.win_stat:
         path: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
-      register: scoop_config_stat
+      register: windows_install_scoop_config_stat
     - name: Get scoop config content
       ansible.windows.slurp:
         src: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
-      register: scoop_config_content
-      when: scoop_config_stat.stat.exists is true
+      register: windows_install_scoop_config_content
+      when: windows_install_scoop_config_stat.stat.exists is true
     - name: Set scoop config
       vars:
         config:
@@ -25,8 +26,8 @@
           use_external_7zip: true
       ansible.windows.win_copy:
         dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
-        content: "{{ scoop_config_content.content | b64decode | from_json | combine(config) | to_json }}"
-      when: scoop_config_stat.stat.exists is true
+        content: "{{ windows_install_scoop_config_content.content | b64decode | from_json | combine(config) | to_json }}"
+      when: windows_install_scoop_config_stat.stat.exists is true
     - name: Set scoop config
       vars:
         config:
@@ -39,20 +40,20 @@
       ansible.windows.win_copy:
         dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
         content: "{{ config | to_json }}"
-      when: scoop_config_stat.stat.exists is false
+      when: windows_install_scoop_config_stat.stat.exists is false
     - name: Get scoop config content
       ansible.windows.slurp:
         src: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
-      register: scoop_config_content
-      when: scoop_config_gh_token is true
+      register: windows_install_scoop_config_content
+      when: windows_install_scoop_config_gh_token is true
     - name: Set scoop gh_token config
       vars:
         config:
           gh_token: "{{ gh_token | trim }}"
       ansible.windows.win_copy:
         dest: "{{ ansible_facts.user_dir }}\\.config\\scoop\\config.json"
-        content: "{{ scoop_config_content.content | b64decode | from_json | combine(config) | to_json }}"
-      when: scoop_config_gh_token is true
+        content: "{{ windows_install_scoop_config_content.content | b64decode | from_json | combine(config) | to_json }}"
+      when: windows_install_scoop_config_gh_token is true
 - name: Install scoop
   ansible.windows.win_shell: iwr -useb https://get.scoop.sh | iex
   when:
@@ -68,10 +69,10 @@
   community.windows.win_scoop:
     name: "{{ item | basename }}"
     global: false
-  register: result
+  register: windows_install_scoop_result
   retries: 3
   delay: 5
-  until: result is not failed
+  until: windows_install_scoop_result is not failed
   loop:
     - main/lessmsi
     - main/aria2

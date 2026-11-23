@@ -29,6 +29,12 @@
       when: ufw_enabled | default(true) | bool
     - role: services
       when: services_enabled | default(true) | bool
+    - role: dunst
+      when: dunst_enabled | default(true) | bool
+    - role: redshift
+      when: redshift_enabled | default(true) | bool
+    - role: autorandr
+      when: autorandr_enabled | default(true) | bool
     - role: tailscale
       when: tailscale_enabled | default(true) | bool
     - role: mihomo
@@ -43,6 +49,8 @@
       when: plymouth_enabled | default(true) | bool
     - role: ly
       when: ly_enabled | default(true) | bool
+    - role: wallpaper
+      when: wallpaper_enabled | default(true) | bool
     - role: fingerprint
       when: (fingerprint_enabled | default(true) | bool) and ansible_facts.hostname == "surface"
     - role: ssh_agent
@@ -53,3 +61,11 @@
       when: npm_enabled | default(true) | bool
     - role: default_apps
       when: default_apps_enabled | default(true) | bool
+    - role: blogtato
+      when: blogtato_enabled | default(true) | bool
+    - role: scls
+      when: scls_enabled | default(true) | bool
+    - role: pipx
+      when: pipx_enabled | default(true) | bool
+    - role: maple_fonts
+      when: maple_fonts_enabled | default(true) | bool

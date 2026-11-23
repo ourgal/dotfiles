@@ -1,0 +1,108 @@
+---
+- name: Install redshift and geoclue
+  become: true
+  tags:
+    - pkg
+    - redshift
+  community.general.pacman:
+    name: "{{ redshift_packages }}"
+    state: present
+
+- name: Create the redshift configuration directory
+  become: true
+  become_user: "{{ redshift_user }}"
+  tags:
+    - config
+    - redshift
+  ansible.builtin.file:
+    path: "{{ redshift_config_dir }}"
+    state: directory
+    owner: "{{ redshift_user }}"
+    group: "{{ redshift_user }}"
+    mode: "0755"
+
+- name: Install the redshift configuration
+  become: true
+  become_user: "{{ redshift_user }}"
+  tags:
+    - config
+    - redshift
+  ansible.builtin.template:
+    src: redshift.conf.j2
+    dest: "{{ redshift_config_file }}"
+    owner: "{{ redshift_user }}"
+    group: "{{ redshift_user }}"
+    mode: "0644"
+  notify: Restart redshift
+
+- name: Create the redshift user systemd unit directory
+  become: true
+  become_user: "{{ redshift_user }}"
+  tags:
+    - config
+    - redshift
+  ansible.builtin.file:
+    path: "{{ redshift_unit_dir }}"
+    state: directory
+    owner: "{{ redshift_user }}"
+    group: "{{ redshift_user }}"
+    mode: "0755"
+
+- name: Install the redshift user service
+  become: true
+  become_user: "{{ redshift_user }}"
+  tags:
+    - config
+    - redshift
+  ansible.builtin.template:
+    src: redshift.service.j2
+    dest: "{{ redshift_unit_dir }}/{{ redshift_service }}.service"
+    owner: "{{ redshift_user }}"
+    group: "{{ redshift_user }}"
+    mode: "0644"
+  notify: Restart redshift
+
+- name: Install the geoclue demo agent user service
+  become: true
+  become_user: "{{ redshift_user }}"
+  tags:
+    - config
+    - redshift
+  ansible.builtin.template:
+    src: geoclue-agent.service.j2
+    dest: "{{ redshift_unit_dir }}/{{ redshift_geoclue_agent_service }}.service"
+    owner: "{{ redshift_user }}"
+    group: "{{ redshift_user }}"
+    mode: "0644"
+
+- name: Enable and start the geoclue demo agent user service
+  become: true
+  become_user: "{{ redshift_user }}"
+  tags:
+    - service
+    - redshift
+  ansible.builtin.systemd_service:
+    scope: user
+    name: "{{ redshift_geoclue_agent_service }}.service"
+    enabled: true
+    state: started
+    daemon_reload: true
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ ansible_facts.user_uid }}"
+    DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/{{ ansible_facts.user_uid }}/bus"
+
+- name: Enable and start the redshift user service
+  become: true
+  become_user: "{{ redshift_user }}"
+  tags:
+    - service
+    - redshift
+  ansible.builtin.systemd_service:
+    scope: user
+    name: "{{ redshift_service }}.service"
+    enabled: true
+    state: started
+    daemon_reload: true
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ ansible_facts.user_uid }}"
+    DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/{{ ansible_facts.user_uid }}/bus"

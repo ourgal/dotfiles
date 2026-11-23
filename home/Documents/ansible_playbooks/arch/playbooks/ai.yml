@@ -2,22 +2,29 @@
 - name: Configure Arch Linux AI server
   hosts: ai_servers
   ignore_unreachable: true
+  pre_tasks:
+    # Explicit decrypt; the community.sops vars plugin is enabled but an
+    # unloadable plugin would otherwise silently leave the secrets undefined.
+    - name: Load encrypted credentials
+      community.sops.load_vars:
+        file: "{{ inventory_dir }}/group_vars/secrets.sops.yml"
   roles:
     - role: pacman
       when: pacman_enabled | default(true) | bool
       vars:
         pacman_packages:
           ai:
-            - ansible
-            - ansible-core
             - btop
             - nvtop
     - role: paru
       when: paru_enabled | default(true) | bool
-    - role: aur
-      when: aur_enabled | default(true) | bool
+    - role: exllamav3
+      when: exllamav3_enabled | default(true) | bool
+    # LLM is the local exl3 (TabbyAPI) server: OpenAI-compatible endpoint of
+    # the exllamav3 role, reached from the container via host-gateway.
+    - role: hindsight
+      when: hindsight_enabled | default(true) | bool
       vars:
-        aur_packages:
-          - llama.cpp-vulkan-bin
-    - role: llama_cpp
-      when: llama_cpp_enabled | default(true) | bool
+        hindsight_llm_model: "{{ exllamav3_model_name }}"
+        hindsight_llm_base_url: "http://host.docker.internal:{{ exllamav3_port }}/v1"
+        hindsight_llm_api_key: "{{ exllamav3_api_key }}"

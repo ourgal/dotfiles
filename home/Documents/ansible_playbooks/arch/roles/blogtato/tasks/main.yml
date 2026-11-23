@@ -1,0 +1,64 @@
+---
+# The prebuilt `blog` binary has no --version flag, so track the installed
+# release with a marker file instead.
+- name: Check the installed blogtato version
+  ansible.builtin.slurp:
+    src: "{{ blogtato_version_file }}"
+  register: blogtato_installed_version
+  changed_when: false
+  failed_when: false
+  tags:
+    - pkg
+    - blogtato
+
+- name: Install blogtato from the GitHub release
+  when: >-
+    blogtato_installed_version.failed or
+    (blogtato_installed_version.content | default('') | b64decode | trim) != blogtato_version
+  become: true
+  tags:
+    - pkg
+    - blogtato
+  block:
+    - name: Download blogtato
+      ansible.builtin.get_url:
+        url: "{{ blogtato_download_url }}"
+        dest: "{{ blogtato_archive_path }}"
+        checksum: "sha256:{{ blogtato_sha256 }}"
+        mode: '0600'
+
+    - name: Extract blogtato
+      ansible.builtin.unarchive:
+        src: "{{ blogtato_archive_path }}"
+        dest: /tmp
+        remote_src: true
+        creates: "{{ blogtato_source_dir }}/blog"
+
+    - name: Install the blogtato binary
+      ansible.builtin.copy:
+        src: "{{ blogtato_source_dir }}/blog"
+        dest: "{{ blogtato_binary }}"
+        remote_src: true
+        mode: '0755'
+
+    - name: Create the blogtato data directory
+      ansible.builtin.file:
+        path: "{{ blogtato_version_file | dirname }}"
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Record the installed blogtato version
+      ansible.builtin.copy:
+        content: "{{ blogtato_version }}\n"
+        dest: "{{ blogtato_version_file }}"
+        mode: '0644'
+
+    - name: Remove the blogtato download
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - "{{ blogtato_archive_path }}"
+        - "{{ blogtato_source_dir }}"

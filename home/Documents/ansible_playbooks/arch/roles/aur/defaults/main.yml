@@ -16,11 +16,20 @@ aur_packages:
   - oh-my-pi-bin
   # Supervise multiple coding agents in one terminal; config is chezmoi-managed.
   - herdr-bin
-  # Drop-in libfprint replacement carrying the Goodix 27c6:5584 (Milan) driver
-  # for the Surface Pro 4 fingerprint scanner; used by the fingerprint role.
-  - libfprint-goodix55b4
+  # Offline speech-to-text; same tool as the Windows scoop extras/handy.
+  # xdotool (desktop category) provides text injection on X11.
+  - handy-bin
+  # AI coding agent extensible by Lua plugins; config is chezmoi-managed.
+  - maki-bin
+  # CLI proxy cutting LLM token use; same tool as the Windows scoop main/rtk.
+  - rtk-bin
+  # X11 text expander; ships a systemd user unit that this role enables.
+  - espanso-x11-bin
 # Helper the module drives; must already be installed (paru role).
 aur_helper: paru
+# Human session the packaged user units belong to (same as other *_user defaults).
+aur_seanime_user: "{{ ansible_facts.user_id }}"
+aur_espanso_user: "{{ ansible_facts.user_id }}"
 aur_builder_user: aur-builder
 aur_builder_home: /var/tmp/aur-builder
 aur_sudoers_name: aur-build

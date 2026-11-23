@@ -31,7 +31,7 @@
             - setup
           ansible.builtin.copy:
             dest: /target/var/lib/deepin/developer-mode/enabled
-            content: 1
+            content: "1"
             mode: "0644"
     - name: Copy resolv.conf
       tags:
@@ -42,6 +42,7 @@
         src: /etc/resolv.conf
         dest: /target/etc/resolv.conf
         remote_src: true
+        mode: "0644"
     - name: Copy apt auth file
       tags:
         - apt
@@ -51,6 +52,7 @@
         src: /etc/apt/auth.conf.d/uos.conf
         dest: /target/etc/apt/auth.conf.d/uos.conf
         remote_src: true
+        mode: "0644"
     - name: Add linglong repo
       tags:
         - apt
@@ -58,6 +60,7 @@
       become: true
       ansible.builtin.copy:
         dest: /target/etc/apt/sources.list.d/linglong.list
+        mode: "0644"
         content: deb [trusted=yes] https://ci.deepin.com/repo/obs/linglong:/CI:/release/uos_1070/ ./
     - name: Download wps 365
       tags:
@@ -76,7 +79,7 @@
       ansible.builtin.unarchive:
         src: "{{ dufs_url }}/fonts/windows.zip"
         dest: /target/usr/share/fonts/
-        remote_src: yes
+        remote_src: true
     - name: Copy apt auth file
       tags:
         - user
