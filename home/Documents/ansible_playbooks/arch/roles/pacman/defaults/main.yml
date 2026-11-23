@@ -44,6 +44,8 @@ pacman_packages:
     - git-crypt
     - git-delta
     - lazygit
+    # CLI for git worktree management; same tool as the Windows scoop main/worktrunk.
+    - worktrunk
     - github-cli
   dotfiles:
     - chezmoi
