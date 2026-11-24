@@ -1,0 +1,66 @@
+---
+- name: Check for a user systemd instance
+  ansible.builtin.stat:
+    path: /run/systemd/system
+  register: nvfetcher_bins_systemd
+  changed_when: false
+
+- name: Ensure the user systemd unit directory exists
+  when: nvfetcher_bins_systemd.stat.exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts.user_dir }}/.config/systemd/user"
+    state: directory
+    mode: '0755'
+
+- name: Install the espanso user unit
+  when: nvfetcher_bins_systemd.stat.exists
+  ansible.builtin.template:
+    src: espanso.service.j2
+    dest: "{{ ansible_facts.user_dir }}/.config/systemd/user/espanso.service"
+    mode: '0644'
+  register: nvfetcher_bins_espanso_unit
+
+- name: Ensure the espanso drop-in directory exists
+  when: nvfetcher_bins_systemd.stat.exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts.user_dir }}/.config/systemd/user/espanso.service.d"
+    state: directory
+    mode: '0755'
+
+# espanso is an X11 text expander; it starts before the graphical login
+# injects DISPLAY and the Xauthority cookie into the user manager.
+- name: Pass the graphical session into espanso
+  when: nvfetcher_bins_systemd.stat.exists
+  ansible.builtin.copy:
+    dest: "{{ ansible_facts.user_dir }}/.config/systemd/user/espanso.service.d/override.conf"
+    content: |
+      [Service]
+      Environment=DISPLAY=:0
+      Environment=XAUTHORITY=/run/user/%U/lyxauth
+    mode: '0644'
+  register: nvfetcher_bins_espanso_dropin
+
+- name: Restart espanso when its unit or environment changes
+  when:
+    - nvfetcher_bins_systemd.stat.exists
+    - nvfetcher_bins_espanso_unit.changed or nvfetcher_bins_espanso_dropin.changed
+  ansible.builtin.systemd_service:
+    scope: user
+    name: espanso.service
+    state: restarted
+    daemon_reload: true
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ ansible_facts.user_uid }}"
+    DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/{{ ansible_facts.user_uid }}/bus"
+
+- name: Enable and start espanso
+  when: nvfetcher_bins_systemd.stat.exists
+  ansible.builtin.systemd_service:
+    scope: user
+    name: espanso.service
+    enabled: true
+    state: started
+    daemon_reload: true
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ ansible_facts.user_uid }}"
+    DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/{{ ansible_facts.user_uid }}/bus"

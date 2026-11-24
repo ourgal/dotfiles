@@ -2,21 +2,18 @@
 aur_enabled: true
 # Package names exactly as published on https://aur.archlinux.org.
 # Empty list is a no-op: the builder user is only created when there is work.
-# GitHub-released binaries (aliae, dufs, geminicommit, handy, seanime, tuios,
-# pi-coding-agent, herdr, maki, rtk, kanata, oh-my-pi, lefthook) are installed
-# from the nvfetcher pins in this repo by roles/nvfetcher_bins.
+# GitHub-released binaries (aliae, dufs, espanso, geminicommit, handy,
+# seanime, tuios, pi-coding-agent, herdr, maki, rtk, kanata, oh-my-pi,
+# lefthook) are installed from the nvfetcher pins in this repo by
+# roles/nvfetcher_bins.
 aur_packages:
   - qoder-cli-cn-bin
-  # X11 text expander; ships a systemd user unit that this role enables.
-  - espanso-x11-bin
 # Helper the module drives; must already be installed (paru role).
 aur_helper: paru
 # Track what this role installs; names dropped from aur_packages get removed.
 aur_remove_unused: true
 aur_managed_state_dir: "{{ ansible_facts.env.HOME }}/.local/share/ansible"
 aur_managed_state_file: "{{ aur_managed_state_dir }}/aur-managed-packages"
-# Human session the packaged espanso user unit belongs to.
-aur_espanso_user: "{{ ansible_facts.user_id }}"
 aur_builder_user: aur-builder
 aur_builder_home: /var/tmp/aur-builder
 aur_sudoers_name: aur-build

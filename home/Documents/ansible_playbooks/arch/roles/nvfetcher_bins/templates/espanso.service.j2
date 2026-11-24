@@ -1,0 +1,10 @@
+[Unit]
+Description=espanso
+
+[Service]
+ExecStart={{ nvfetcher_bins_bin_dir }}/espanso launcher
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target

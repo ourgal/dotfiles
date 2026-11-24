@@ -11,6 +11,7 @@ nvfetcher_bins_cache_dir: "{{ ansible_facts.env.HOME }}/.cache/ansible/nvfetcher
 nvfetcher_bins_tags: [pkg, nvfetcher_bins]
 nvfetcher_bins_remove_aur: true
 nvfetcher_bins_seanime_service: true
+nvfetcher_bins_espanso_service: true
 # Runtime libraries Handy's .deb expects on Arch (AUR used these names;
 # libappindicator replaces the AUR-only libappindicator-gtk3).
 nvfetcher_bins_handy_deps:
@@ -32,6 +33,7 @@ nvfetcher_bins_handy_deps:
 nvfetcher_bins_retired_aur_packages:
   - aliae-bin
   - dufs-bin
+  - espanso-x11-bin
   - geminicommit-bin
   - handy-bin
   - seanime-bin
@@ -56,6 +58,9 @@ nvfetcher_bins:
     install: flat_tar
     include: dufs
     paths: [dufs]
+  - name: espanso
+    install: raw
+    paths: [espanso]
   - name: geminicommit
     install: flat_tar
     include: gmc

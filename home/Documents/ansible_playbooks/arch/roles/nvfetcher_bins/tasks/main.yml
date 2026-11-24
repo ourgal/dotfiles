@@ -75,6 +75,13 @@
     - "'seanime' in (nvfetcher_bins | map(attribute='name') | list)"
   tags: "{{ nvfetcher_bins_tags }}"
 
+- name: Configure the espanso user service
+  ansible.builtin.import_tasks: espanso_service.yml
+  when:
+    - nvfetcher_bins_espanso_service | bool
+    - "'espanso' in (nvfetcher_bins | map(attribute='name') | list)"
+  tags: "{{ nvfetcher_bins_tags }}"
+
 - name: Remove the retired AUR -bin packages
   ansible.builtin.pacman:
     name: "{{ nvfetcher_bins_retired_aur_packages }}"

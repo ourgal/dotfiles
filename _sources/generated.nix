@@ -22,6 +22,14 @@
       sha256 = "sha256-xxXESxlfYTPKD0fm/cjWAV7GS3/ZrI4cV4yiOpIgaqQ=";
     };
   };
+  espanso = {
+    pname = "espanso";
+    version = "2.4.1";
+    src = fetchurl {
+      url = "https://github.com/espanso/espanso/releases/download/v2.4.1/Espanso-X11.AppImage";
+      sha256 = "sha256-WLG5wnDCQW88bLkGnfvPuILYLeM2nPZ1hhECk2/F9UA=";
+    };
+  };
   geminicommit = {
     pname = "geminicommit";
     version = "0.8.0";
