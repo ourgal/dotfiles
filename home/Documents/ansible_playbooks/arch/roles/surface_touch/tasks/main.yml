@@ -54,6 +54,26 @@
     cmd: "mkinitcpio -p {{ surface_touch_kernel_package }}"
   changed_when: true
 
+# Building the UKI does not select it: without this, systemd-boot keeps booting
+# the stock kernel, which has no ipts driver and leaves the touchscreen dead.
+- name: Read the systemd-boot entries
+  become: true
+  ansible.builtin.command:
+    cmd: bootctl list --json=short
+  register: surface_touch_boot_entries
+  changed_when: false
+
+- name: Set the Surface kernel as the default boot entry
+  become: true
+  when: >-
+    surface_touch_boot_entries.stdout | from_json
+    | selectattr('id', 'equalto', surface_touch_boot_entry)
+    | selectattr('isDefault')
+    | list | length == 0
+  ansible.builtin.command:
+    cmd: "bootctl set-default {{ surface_touch_boot_entry }}"
+  changed_when: true
+
 - name: Load uinput at boot
   become: true
   ansible.builtin.copy:

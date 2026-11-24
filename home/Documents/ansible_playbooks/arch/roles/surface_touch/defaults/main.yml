@@ -5,6 +5,8 @@ surface_touch_key_id: 87DEFA4AB94A99A4C8C3112556C464BAAC421453
 surface_touch_key_url: https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc
 
 surface_touch_kernel_package: linux-surface
+# systemd-boot entry id of the UKI built by surface_touch_preset.
+surface_touch_boot_entry: arch-linux-surface.efi
 surface_touch_packages:
   - "{{ surface_touch_kernel_package }}"
   - "{{ surface_touch_kernel_package }}-headers"
