@@ -109,6 +109,20 @@
     XDG_RUNTIME_DIR: "/run/user/{{ ansible_facts.user_uid }}"
     DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/{{ ansible_facts.user_uid }}/bus"
 
+- name: Upgrade AUR packages
+  become: true
+  become_user: "{{ aur_builder_user }}"
+  tags:
+    - pkg
+    - aur
+  kewlfft.aur.aur:
+    use: "{{ aur_helper }}"
+    upgrade: true
+    # --aur upgrades every installed AUR package, including those not listed
+    # in aur_packages; the pacman role already handles the repo packages.
+    aur_only: true
+    update_cache: true
+
 - name: Install AUR packages
   become: true
   become_user: "{{ aur_builder_user }}"
