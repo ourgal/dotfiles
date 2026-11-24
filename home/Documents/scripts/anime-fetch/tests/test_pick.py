@@ -43,6 +43,29 @@ def test_acceptable_release(name: str, expected: bool) -> None:
     assert pick.acceptable_release(name) is expected
 
 
+@pytest.mark.parametrize(
+    ("name", "expected"),
+    [
+        ("[ToonsHub] Show S01E01 1080p WEB-DL DDP2.0 H.264", "h264"),
+        ("Show S01 1080p AMZN WEB-DL AAC2.0 x264-Group", "h264"),
+        ("Show 1080p AVC", "h264"),
+        ("[Judas] Show S01 (HEVC 1080p)", "hevc"),  # good codecs still win
+        ("Show 1080p", None),
+    ],
+)
+def test_codec_of_any_codec(name: str, expected: str | None) -> None:
+    assert pick.codec_of(name, any_codec=True) == expected
+
+
+def test_h264_is_only_a_last_resort() -> None:
+    # 1080p H.264 is acceptable with any_codec, but still rejects bad resolutions.
+    assert pick.acceptable_release("[ToonsHub] Show S01E01 1080p H.264", any_codec=True) is True
+    assert pick.acceptable_release("[ToonsHub] Show S01E01 720p H.264", any_codec=True) is False
+    assert pick.tier_of("ToonsHub", "h264") == 3
+    assert pick.tier_of("ToonsHub", "hevc") == 1
+    assert pick.tier_of("SomeAV1", "av1") == 2
+
+
 # -------------------------------------------------------------------- episodes
 @pytest.mark.parametrize(
     ("text", "expected"),
@@ -213,6 +236,28 @@ def test_choose_fills_missing_episodes() -> None:
 def test_choose_rejects_incomplete_coverage() -> None:
     dkb = _candidate("[DKB] Show Vol.1 (HEVC)", {1, 2, 3})
     assert pick.choose([dkb], total=12) is None
+
+
+def test_choose_mixes_h264_into_gaps_only() -> None:
+    hevc = _candidate("[DKB] Show 1-11 (HEVC 1080p)", set(range(1, 12)),
+                      group="DKB", codec="hevc")
+    h264 = _candidate("[ToonsHub] Show - 12 (1080p H.264)", {12},
+                      group="ToonsHub", codec="h264")
+    plan = pick.choose([h264, hevc], total=12)
+    assert plan is not None
+    assert plan.strategy == "mixed"
+    assert [c.codec for c in plan.torrents] == ["hevc", "h264"]
+    assert plan.episodes == list(range(1, 13))
+
+
+def test_choose_keeps_hevc_when_h264_could_cover_the_rest() -> None:
+    hevc = _candidate("[DKB] Show 1-4 (HEVC 1080p)", {1, 2, 3, 4},
+                      group="DKB", codec="hevc", seeders=1)
+    h264 = _candidate("[ToonsHub] Show 1-4 (1080p H.264)", {1, 2, 3, 4},
+                      group="ToonsHub", codec="h264", seeders=99)
+    plan = pick.choose([h264, hevc], total=4)
+    assert plan is not None
+    assert [c.codec for c in plan.torrents] == ["hevc"]
 
 
 def test_choose_prefers_one_group_per_episode() -> None:

@@ -5,6 +5,8 @@ Rules (the user's standard):
   * a complete release set (every episode 1..N) wins over piecemeal singles;
   * a Judas-style season batch is preferred, then DKB/EMBER/ASW-style x265
     groups, then anything AV1;
+  * H.264 is a last-resort fill only (``any_codec=True``) for episodes no
+    HEVC/AV1 release covers, so a season can still finish as a mixed plan;
   * no acceptable release for even one episode => download nothing.
 """
 
@@ -18,6 +20,7 @@ VIDEO_EXTS = {".mkv", ".mp4", ".webm", ".avi", ".m4v", ".ts"}
 
 _HEVC = re.compile(r"(?i)(?<![a-z0-9])(?:hevc|x265|h\.?265)(?![a-z0-9])")
 _AV1 = re.compile(r"(?i)(?<![a-z0-9])av1(?![a-z0-9])")
+_H264 = re.compile(r"(?i)(?<![a-z0-9])(?:h\.?264|x264|avc)(?![a-z0-9])")
 _RES_BAD = re.compile(r"(?i)(?<![0-9])(?:480p|576p|720p|2160p|4k)(?![0-9])")
 
 _EP_PATTERNS = (
@@ -44,17 +47,19 @@ _ROMAN_TO_INT = {v: k for k, v in _ROMAN.items()}
 _TIER1_GROUPS = {"dkb", "ember", "asw", "erai-raws", "erai", "varyg", "toonshub", "judas"}
 
 
-def codec_of(name: str) -> str | None:
+def codec_of(name: str, *, any_codec: bool = False) -> str | None:
     if _HEVC.search(name):
         return "hevc"
     if _AV1.search(name):
         return "av1"
+    if any_codec and _H264.search(name):
+        return "h264"
     return None
 
 
-def acceptable_release(name: str) -> bool:
-    """True when the name is a 1080p HEVC/AV1 release."""
-    if codec_of(name) is None:
+def acceptable_release(name: str, *, any_codec: bool = False) -> bool:
+    """True when the name is a 1080p HEVC/AV1 release (any codec: also H.264)."""
+    if codec_of(name, any_codec=any_codec) is None:
         return False
     if _RES_BAD.search(name):
         return False
@@ -90,6 +95,9 @@ def release_group(torrent: dict) -> str:
 
 def tier_of(group: str, codec: str | None) -> int:
     lowered = group.strip().lower()
+    if codec == "h264":
+        # Last resort: only ever taken when no HEVC/AV1 covers an episode.
+        return 3
     if lowered == "judas":
         return 0
     if lowered in _TIER1_GROUPS:

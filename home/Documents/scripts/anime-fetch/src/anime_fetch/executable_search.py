@@ -24,6 +24,7 @@ def gather(
     hints: dict[str, int] | None = None,
     verbose: bool = False,
     retries: int = 1,
+    any_codec: bool = False,
 ) -> None:
     pairs = [(client, query) for client in clients for query in queries]
     failures = 0
@@ -54,7 +55,7 @@ def gather(
             continue
         for torrent in results:
             name = torrent.get("name") or ""
-            if not pick.acceptable_release(name):
+            if not pick.acceptable_release(name, any_codec=any_codec):
                 continue
             if not pick.mentions_title(name, titles):
                 continue
@@ -87,7 +88,7 @@ def build_candidates(
     requested = hints or {}
     for torrent in torrents:
         name = torrent.get("name") or ""
-        codec = pick.codec_of(name) or ""
+        codec = pick.codec_of(name, any_codec=True) or ""
         if pick.is_batch(torrent):
             batches.append(pick.Candidate(torrent=torrent, codec=codec))
         else:

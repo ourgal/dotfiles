@@ -6,8 +6,11 @@ Standard workflow (matches the user's rules):
   3. search torrents (batch first, then per episode);
   4. accept only HEVC/x265 or AV1 1080p releases, preferring a complete
      Judas-style batch, then DKB/EMBER/ASW-style x265 groups, then AV1;
-  5. if any episode has no acceptable release, download nothing;
-  6. otherwise add the torrents and put the title on the AniList Planning list.
+  5. if any episode has no acceptable release, retry the search once with any
+     1080p codec (H.264 included) and use those only for the uncovered
+     episodes, so a season can finish as a mixed plan;
+  6. if even that leaves an episode uncovered, download nothing;
+  7. otherwise add the torrents and put the title on the AniList Planning list.
 
 Releasing series have no final AniList episode count. When AniList marks the
 title as ongoing, the aired count is taken from nextAiringEpisode.episode - 1

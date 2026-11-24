@@ -437,11 +437,11 @@ class FakeSeanime:
         self.planning.append(media_id)
 
 
-def _fake_client(monkeypatch):
+def _fake_client(monkeypatch, cls=FakeSeanime):
     instances = []
 
     def factory(*args, **kwargs):
-        client = FakeSeanime(*args, **kwargs)
+        client = cls(*args, **kwargs)
         instances.append(client)
         return client
 
@@ -507,6 +507,39 @@ def test_finished_series_still_stops_when_present(monkeypatch, tmp_path) -> None
 
     assert code == cli.EXIT_OK
     assert instances[0].downloads == []
+
+
+class H264OnlySeanime(FakeSeanime):
+    """Only H.264 releases exist: the season must still finish as a fallback."""
+
+    def search_torrents(self, media, query, *, batch=None, episode=None, **kwargs):
+        self.search_calls.append({"batch": batch, "episode": episode, "query": query})
+        if batch is True:
+            return [{
+                "name": "[ToonsHub] Show S01 1080p AMZN WEB-DL AAC2.0 H.264",
+                "isBatch": True, "releaseGroup": "ToonsHub", "seeders": 30, "size": 100,
+            }]
+        return [{
+            "name": f"[ToonsHub] Show S01E{episode:02d} 1080p AMZN WEB-DL H.264",
+            "releaseGroup": "ToonsHub", "seeders": 30, "size": 10,
+        }]
+
+    def torrent_files(self, torrent):
+        if torrent.get("isBatch"):
+            return [f"[ToonsHub] Show - {i:02d} [1080p H.264].mkv" for i in range(1, 5)]
+        return [f"[ToonsHub] Show - {cli.pick.episode_of(torrent['name']):02d} [1080p H.264].mkv"]
+
+
+def test_h264_only_season_is_a_last_resort_fallback(monkeypatch, tmp_path, capsys) -> None:
+    instances = _fake_client(monkeypatch, H264OnlySeanime)
+    monkeypatch.setattr(H264OnlySeanime, "media", FINISHED)
+
+    code = cli.main(["Show", "--lib", str(tmp_path), "--yes"])
+
+    assert code == cli.EXIT_OK
+    assert len(instances[0].downloads) == 1
+    assert instances[0].downloads[0][3] == [1, 2, 3, 4]
+    assert "H.264" in capsys.readouterr().out
 
 
 def test_creates_destination_before_download(monkeypatch, tmp_path) -> None:

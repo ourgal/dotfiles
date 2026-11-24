@@ -123,17 +123,45 @@ def build_plan(
         plan = pick.choose(candidates, total, wanted=wanted)
 
     if plan is None:
+        # Final fallback: no HEVC/AV1 release set covers the season, so complete
+        # it with any 1080p release. H.264 candidates rank below HEVC/AV1, so a
+        # mixed plan keeps the good encodes and fills only the uncovered gaps.
+        missing = pick.missing_episodes(candidates, total, wanted=wanted)
+        if echo:
+            print(f"Search   : any-codec fallback for {len(missing)} episode(s)")
+        loose: dict[str, dict[str, Any]] = {}
+        try:
+            if not ongoing:
+                gather(clients, media, queries, batch=True, episode=None,
+                       titles=titles, hint=hint, found=loose, hints=hints,
+                       any_codec=True, verbose=args.verbose)
+            for episode in missing:
+                gather(clients, media, queries[:2], batch=False, episode=episode,
+                       titles=titles, hint=hint, found=loose, hints=hints,
+                       any_codec=True, verbose=args.verbose)
+        except (SeanimeError, HttpError) as exc:
+            return PlanResult(media, entry, None, destination, wanted, [], EXIT_ERROR, f"error: {exc}")
+        new_items = [t for k, t in loose.items() if k not in found]
+        if new_items:
+            candidates += build_candidates(clients[0], new_items, total,
+                                           max_probes=args.max_batch_probes, verbose=args.verbose,
+                                           hints=hints)
+        plan = pick.choose(candidates, total, wanted=wanted)
+
+    if plan is None:
         missing = pick.missing_episodes(candidates, total, wanted=wanted)
         if missing:
-            message = (f"Skip     : no HEVC/AV1 release covers episode(s) {missing}; "
+            message = (f"Skip     : no 1080p HEVC/AV1/H.264 release covers episode(s) {missing}; "
                        "nothing downloaded")
         else:
-            message = "Skip     : no HEVC/AV1 release found; nothing downloaded"
+            message = "Skip     : no 1080p release found; nothing downloaded"
         if echo:
             print(message)
         return PlanResult(media, entry, None, destination, wanted, [], EXIT_SKIP, message)
 
     episodes = sorted(set(plan.episodes) & wanted)
+    if echo and any(cand.codec == "h264" for cand in plan.torrents):
+        print("Note     : plan includes H.264 episodes (no HEVC/AV1 release covers them)")
     return PlanResult(media, entry, plan, destination, wanted, episodes, EXIT_OK)
 
 
