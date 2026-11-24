@@ -9,8 +9,8 @@ hermes_agent_launcher: "{{ hermes_agent_user_home }}/.local/bin/hermes"
 hermes_agent_installer_url: https://hermes-agent.nousresearch.com/install.sh
 # stable: latest published release (what `hermes update` then follows).
 hermes_agent_channel: stable
-# The aur role already ships ungoogled-chromium, so the pinned browser download is
-# redundant. Undo on the host with `hermes pm install ungoogled-chromium`.
+# The pacman role already ships chromium, so the pinned browser download is
+# redundant. Undo on the host with `hermes pm install chromium`.
 hermes_agent_skip_browser: true
 # git/curl/tar + sha256sum are the installer's hard prerequisites.
 hermes_agent_packages:
