@@ -594,6 +594,10 @@ AppData/Roaming/Deskflow/*
 !scoop/persist/espanso/
 !scoop/persist/espanso/**
 {{ end -}}
+{{ if eq .chezmoi.os "linux" -}}
+!.config/espanso/
+!.config/espanso/**
+{{ end -}}
 {{ end -}}
 # ]]]
 # [[[ flameshot

@@ -1,4 +1,2 @@
 {{- /* chezmoi:modify-template */ -}}
-{{ $origin := fromYaml .chezmoi.stdin -}}
-{{ $origin = $origin | setValueAtPath "show_notifications" false -}}
-{{ $origin | toYaml -}}
+{{ includeTemplate "espanso_config_modify" . -}}
