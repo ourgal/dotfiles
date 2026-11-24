@@ -1,0 +1,6 @@
+# Scan staged changes for secrets. Each clone needs `lefthook install` once;
+# gitleaks comes from the arch pacman role.
+pre-commit:
+  jobs:
+    - name: gitleaks
+      run: gitleaks protect --staged --redact --no-banner
