@@ -1,0 +1,29 @@
+#!/bin/sh
+# NetworkManager dispatcher: run mihomo only off home networks.
+# Home = one of the WiFi SSIDs below, or any wired connection.
+set -eu
+
+action=${2:-}
+
+case "$action" in
+  up|down) ;;
+  *) exit 0 ;;
+esac
+
+if [ "$action" = down ]; then
+  systemctl stop mihomo.service
+  exit 0
+fi
+
+# No active WiFi means wired/USB network card, which counts as home.
+ssid=$(nmcli -t -f active,ssid dev wifi 2>/dev/null | grep '^yes:' | cut -d: -f2- | head -n 1 || true)
+
+if [ -z "$ssid" ]; then
+  systemctl stop mihomo.service
+  exit 0
+fi
+
+case "|{{ mihomo_home_ssids | join('|') }}|" in
+  *"|$ssid|"*) systemctl stop mihomo.service ;;
+  *) systemctl start mihomo.service ;;
+esac

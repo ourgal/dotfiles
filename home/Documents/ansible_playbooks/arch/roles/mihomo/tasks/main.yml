@@ -81,8 +81,33 @@
     mode: '0644'
   notify: Restart mihomo
 
+- name: Install the mihomo presence dispatcher
+  become: true
+  when: mihomo_presence_enabled | bool
+  ansible.builtin.template:
+    src: mihomo_presence.j2
+    dest: /etc/NetworkManager/dispatcher.d/99-mihomo-presence
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Remove the mihomo presence dispatcher
+  become: true
+  when: not mihomo_presence_enabled | bool
+  ansible.builtin.file:
+    path: /etc/NetworkManager/dispatcher.d/99-mihomo-presence
+    state: absent
+
+- name: Disable mihomo at boot for presence control
+  become: true
+  when: mihomo_presence_enabled | bool
+  ansible.builtin.systemd_service:
+    name: mihomo
+    enabled: false
+
 - name: Manage mihomo service
   become: true
+  when: not mihomo_presence_enabled | bool
   ansible.builtin.service:
     name: mihomo
     enabled: "{{ mihomo_service_enabled | bool }}"

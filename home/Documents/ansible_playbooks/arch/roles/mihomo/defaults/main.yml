@@ -1,6 +1,13 @@
 ---
 mihomo_enabled: true
+# Manual mode setting, used only when presence control is disabled.
 mihomo_service_enabled: true
+# Presence control: home means one of these WiFi SSIDs, or any wired
+# connection (no active WiFi). Every other network starts mihomo.
+mihomo_presence_enabled: true
+mihomo_home_ssids:
+  - PDCN
+  - PDCN_5G
 mihomo_version: "1.19.33"
 mihomo_install_dir: /usr/local/bin
 mihomo_binary: "{{ mihomo_install_dir }}/mihomo"
