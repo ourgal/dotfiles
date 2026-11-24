@@ -1,0 +1,66 @@
+---
+- name: Check for a user systemd instance
+  ansible.builtin.stat:
+    path: /run/systemd/system
+  register: nvfetcher_bins_systemd
+  changed_when: false
+
+- name: Ensure the user systemd unit directory exists
+  when: nvfetcher_bins_systemd.stat.exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts.user_dir }}/.config/systemd/user"
+    state: directory
+    mode: '0755'
+
+- name: Install the seanime user unit
+  when: nvfetcher_bins_systemd.stat.exists
+  ansible.builtin.template:
+    src: seanime.service.j2
+    dest: "{{ ansible_facts.user_dir }}/.config/systemd/user/seanime.service"
+    mode: '0644'
+  register: nvfetcher_bins_seanime_unit
+
+- name: Ensure the seanime drop-in directory exists
+  when: nvfetcher_bins_systemd.stat.exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts.user_dir }}/.config/systemd/user/seanime.service.d"
+    state: directory
+    mode: '0755'
+
+# seanime spawns mpv, which needs DISPLAY and the Xauthority cookie before the
+# graphical login injects them into the user manager.
+- name: Pass the graphical session into seanime
+  when: nvfetcher_bins_systemd.stat.exists
+  ansible.builtin.copy:
+    dest: "{{ ansible_facts.user_dir }}/.config/systemd/user/seanime.service.d/override.conf"
+    content: |
+      [Service]
+      Environment=DISPLAY=:0
+      Environment=XAUTHORITY=/run/user/%U/lyxauth
+    mode: '0644'
+  register: nvfetcher_bins_seanime_dropin
+
+- name: Restart seanime when its unit changes
+  when:
+    - nvfetcher_bins_systemd.stat.exists
+    - nvfetcher_bins_seanime_unit.changed or nvfetcher_bins_seanime_dropin.changed
+  ansible.builtin.systemd_service:
+    scope: user
+    name: seanime.service
+    state: restarted
+    daemon_reload: true
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ ansible_facts.user_uid }}"
+    DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/{{ ansible_facts.user_uid }}/bus"
+
+- name: Enable and start seanime
+  when: nvfetcher_bins_systemd.stat.exists
+  ansible.builtin.systemd_service:
+    scope: user
+    name: seanime.service
+    enabled: true
+    state: started
+    daemon_reload: true
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ ansible_facts.user_uid }}"
+    DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/{{ ansible_facts.user_uid }}/bus"

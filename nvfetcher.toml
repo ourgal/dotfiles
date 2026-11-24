@@ -1,0 +1,45 @@
+# Pins for AUR *-bin replacements; updated by .github/workflows/nvfetcher.yaml
+[dufs]
+src.github = "sigoden/dufs"
+src.prefix = "v"
+fetch.url = "https://github.com/sigoden/dufs/releases/download/v$ver/dufs-v$ver-x86_64-unknown-linux-musl.tar.gz"
+
+[seanime]
+src.github = "5rahim/seanime"
+src.prefix = "v"
+fetch.url = "https://github.com/5rahim/seanime/releases/download/v$ver/seanime-$ver_Linux_x86_64.tar.gz"
+
+[tuios]
+src.github = "Gaurav-Gosain/tuios"
+src.prefix = "v"
+fetch.url = "https://github.com/Gaurav-Gosain/tuios/releases/download/v$ver/tuios_$ver_Linux_x86_64.tar.gz"
+
+[pi-coding-agent]
+src.github = "earendil-works/pi"
+src.prefix = "v"
+fetch.url = "https://github.com/earendil-works/pi/releases/download/v$ver/pi-linux-x64.tar.gz"
+
+[geminicommit]
+src.github = "tfkhdyt/geminicommit"
+src.prefix = "v"
+fetch.url = "https://github.com/tfkhdyt/geminicommit/releases/download/v$ver/gmc-v$ver-linux-amd64.tar.gz"
+
+[herdr]
+src.github = "herdrdev/herdr"
+src.prefix = "v"
+fetch.url = "https://github.com/herdrdev/herdr/releases/download/v$ver/herdr-linux-x86_64"
+
+[maki]
+src.github = "tontinton/maki"
+src.prefix = "v"
+fetch.url = "https://github.com/tontinton/maki/releases/download/v$ver/maki-v$ver-x86_64-unknown-linux-musl.tar.gz"
+
+[rtk]
+src.github = "rtk-ai/rtk"
+src.prefix = "v"
+fetch.url = "https://github.com/rtk-ai/rtk/releases/download/v$ver/rtk-x86_64-unknown-linux-musl.tar.gz"
+
+[kanata]
+src.github = "jtroo/kanata"
+src.prefix = "v"
+fetch.url = "https://github.com/jtroo/kanata/releases/download/v$ver/linux-binaries-x64.zip"

@@ -1,0 +1,39 @@
+---
+# Runs in this repo; nvfetcher.toml and _sources/ live here too.
+name: nvfetcher
+
+on:
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  update-sources:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Write nvfetcher keyfile
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          printf '[keys]\ngithub = "%s"\n' "$GITHUB_TOKEN" > keyfile.toml
+
+      - name: Update pinned sources
+        run: nix run github:berberman/nvfetcher -- -k keyfile.toml
+
+      - name: Drop keyfile
+        if: always()
+        run: rm -f keyfile.toml
+
+      - name: Commit updated sources
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore: auto update nvfetcher sources'

@@ -2,32 +2,26 @@
 aur_enabled: true
 # Package names exactly as published on https://aur.archlinux.org.
 # Empty list is a no-op: the builder user is only created when there is work.
+# GitHub-released binaries (dufs, geminicommit, seanime, tuios,
+# pi-coding-agent, herdr, maki, rtk, kanata) are installed from the
+# nvfetcher pins in this repo by roles/nvfetcher_bins.
 aur_packages:
-  - dufs-bin
-  - geminicommit-bin
-  - seanime-bin
   - qoder-cli-cn-bin
-  - tuios-bin
   - aliae-bin
-  # Same prebuilt binary as the Windows scoop main/pi-coding-agent.
-  - pi-coding-agent-bin
   # Same prebuilt binary as the Windows scoop main/oh-my-pi.
   - oh-my-pi-bin
-  # Supervise multiple coding agents in one terminal; config is chezmoi-managed.
-  - herdr-bin
   # Offline speech-to-text; same tool as the Windows scoop extras/handy.
   # xdotool (desktop category) provides text injection on X11.
   - handy-bin
-  # AI coding agent extensible by Lua plugins; config is chezmoi-managed.
-  - maki-bin
-  # CLI proxy cutting LLM token use; same tool as the Windows scoop main/rtk.
-  - rtk-bin
   # X11 text expander; ships a systemd user unit that this role enables.
   - espanso-x11-bin
 # Helper the module drives; must already be installed (paru role).
 aur_helper: paru
-# Human session the packaged user units belong to (same as other *_user defaults).
-aur_seanime_user: "{{ ansible_facts.user_id }}"
+# Track what this role installs; names dropped from aur_packages get removed.
+aur_remove_unused: true
+aur_managed_state_dir: "{{ ansible_facts.env.HOME }}/.local/share/ansible"
+aur_managed_state_file: "{{ aur_managed_state_dir }}/aur-managed-packages"
+# Human session the packaged espanso user unit belongs to.
 aur_espanso_user: "{{ ansible_facts.user_id }}"
 aur_builder_user: aur-builder
 aur_builder_home: /var/tmp/aur-builder

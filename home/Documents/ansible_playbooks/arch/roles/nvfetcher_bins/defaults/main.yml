@@ -1,0 +1,69 @@
+---
+nvfetcher_bins_enabled: true
+# nvfetcher pins live in the chezmoi repo root and are refreshed by
+# .github/workflows/nvfetcher.yaml. Ansible only consumes the generated file.
+nvfetcher_bins_sources: "{{ lookup('env', 'HOME') }}/.local/share/chezmoi/_sources/generated.json"
+nvfetcher_bins_bin_dir: "{{ ansible_facts.env.HOME }}/.local/bin"
+nvfetcher_bins_libexec_dir: "{{ ansible_facts.env.HOME }}/.local/libexec"
+nvfetcher_bins_data_dir: "{{ ansible_facts.env.HOME }}/.local/share/nvfetcher-bins"
+nvfetcher_bins_cache_dir: "{{ ansible_facts.env.HOME }}/.cache/ansible/nvfetcher-bins"
+nvfetcher_bins_tags: [pkg, nvfetcher_bins]
+nvfetcher_bins_remove_aur: true
+nvfetcher_bins_seanime_service: true
+nvfetcher_bins_retired_aur_packages:
+  - dufs-bin
+  - geminicommit-bin
+  - seanime-bin
+  - tuios-bin
+  - pi-coding-agent-bin
+  - herdr-bin
+  - maki-bin
+  - rtk-bin
+  - kanata-bin
+
+# install: flat_tar (single binary at archive root) | raw (already a binary)
+#          dir (bundle extracted to libexec, then linked) | zip (named members)
+# paths: executables expected under bin_dir; libexec_paths: under libexec_dir.
+# A missing path triggers reinstall even when the pin has not changed.
+nvfetcher_bins:
+  - name: dufs
+    install: flat_tar
+    include: dufs
+    paths: [dufs]
+  - name: geminicommit
+    install: flat_tar
+    include: gmc
+    paths: [gmc]
+  - name: seanime
+    install: flat_tar
+    include: ./seanime
+    paths: [seanime]
+  - name: tuios
+    install: flat_tar
+    include: tuios
+    paths: [tuios]
+  - name: herdr
+    install: raw
+    paths: [herdr]
+  - name: maki
+    install: flat_tar
+    include: maki
+    paths: [maki]
+  - name: rtk
+    install: flat_tar
+    include: rtk
+    paths: [rtk]
+  - name: pi-coding-agent
+    install: dir
+    include: "pi/*"
+    binary: pi
+    paths: [pi]
+    libexec_paths: [pi/pi]
+  - name: kanata
+    install: zip
+    files:
+      - src: kanata_linux_x64
+        dest: kanata
+      - src: kanata_linux_cmd_allowed_x64
+        dest: kanata_cmd_allowed
+    paths: [kanata, kanata_cmd_allowed]

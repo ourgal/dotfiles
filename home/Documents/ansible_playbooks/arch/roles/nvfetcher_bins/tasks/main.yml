@@ -1,0 +1,68 @@
+---
+- name: Verify nvfetcher sources file
+  ansible.builtin.stat:
+    path: "{{ nvfetcher_bins_sources }}"
+  delegate_to: localhost
+  become: false
+  register: nvfetcher_bins_sources_stat
+  tags: "{{ nvfetcher_bins_tags }}"
+
+- name: Fail when nvfetcher sources are missing
+  ansible.builtin.assert:
+    that: nvfetcher_bins_sources_stat.stat.exists
+    fail_msg: >-
+      {{ nvfetcher_bins_sources }} is missing; run the nvfetcher workflow
+      or generate _sources/generated.json before installing these binaries.
+  tags: "{{ nvfetcher_bins_tags }}"
+
+- name: Ensure ~/.local/bin exists
+  ansible.builtin.file:
+    path: "{{ nvfetcher_bins_bin_dir }}"
+    state: directory
+    mode: '0755'
+  tags: "{{ nvfetcher_bins_tags }}"
+
+- name: Ensure the libexec directory exists
+  ansible.builtin.file:
+    path: "{{ nvfetcher_bins_libexec_dir }}"
+    state: directory
+    mode: '0755'
+  tags: "{{ nvfetcher_bins_tags }}"
+
+- name: Ensure the download cache directory exists
+  ansible.builtin.file:
+    path: "{{ nvfetcher_bins_cache_dir }}"
+    state: directory
+    mode: '0700'
+  tags: "{{ nvfetcher_bins_tags }}"
+
+- name: Ensure unzip is available for zip-based binaries
+  ansible.builtin.package:
+    name: unzip
+    state: present
+  become: true
+  when: nvfetcher_bins | selectattr('install', 'equalto', 'zip') | list | length > 0
+  tags: "{{ nvfetcher_bins_tags }}"
+
+- name: Install binaries from nvfetcher pins
+  ansible.builtin.include_tasks: install_binary.yml
+  loop: "{{ nvfetcher_bins }}"
+  loop_control:
+    loop_var: binary
+    label: "{{ binary.name }}"
+  tags: "{{ nvfetcher_bins_tags }}"
+
+- name: Configure the seanime user service
+  ansible.builtin.import_tasks: seanime_service.yml
+  when:
+    - nvfetcher_bins_seanime_service | bool
+    - "'seanime' in (nvfetcher_bins | map(attribute='name') | list)"
+  tags: "{{ nvfetcher_bins_tags }}"
+
+- name: Remove the retired AUR -bin packages
+  ansible.builtin.pacman:
+    name: "{{ nvfetcher_bins_retired_aur_packages }}"
+    state: absent
+  become: true
+  when: nvfetcher_bins_remove_aur | bool
+  tags: "{{ nvfetcher_bins_tags }}"

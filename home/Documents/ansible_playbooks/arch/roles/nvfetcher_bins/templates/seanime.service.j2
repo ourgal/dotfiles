@@ -1,0 +1,13 @@
+[Unit]
+Description=Seanime media server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart={{ nvfetcher_bins_bin_dir }}/seanime
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,108 @@
+---
+- name: Read {{ binary.name }} pin from nvfetcher sources
+  ansible.builtin.set_fact:
+    nvfetcher_source: "{{ (lookup('file', nvfetcher_bins_sources) | from_json)[binary.name] }}"
+  tags: "{{ nvfetcher_bins_tags }}"
+
+- name: Set {{ binary.name }} download path and install marker
+  ansible.builtin.set_fact:
+    nvfetcher_asset: >-
+      {{ nvfetcher_bins_cache_dir }}/{{ nvfetcher_source.src.url.split('/') | last }}
+    nvfetcher_marker: "{{ nvfetcher_source.version }}|{{ nvfetcher_source.src.sha256 }}"
+  tags: "{{ nvfetcher_bins_tags }}"
+
+- name: Check the installed {{ binary.name }} marker
+  ansible.builtin.slurp:
+    src: "{{ nvfetcher_bins_data_dir }}/{{ binary.name }}/version"
+  register: nvfetcher_installed
+  changed_when: false
+  failed_when: false
+  tags: "{{ nvfetcher_bins_tags }}"
+
+- name: Check the installed {{ binary.name }} executables
+  ansible.builtin.stat:
+    path: "{{ nvfetcher_bins_bin_dir }}/{{ item }}"
+  loop: "{{ binary.paths }}"
+  register: nvfetcher_bin_paths
+  changed_when: false
+  tags: "{{ nvfetcher_bins_tags }}"
+
+- name: Check the installed {{ binary.name }} bundle files
+  ansible.builtin.stat:
+    path: "{{ nvfetcher_bins_libexec_dir }}/{{ item }}"
+  loop: "{{ binary.libexec_paths | default([]) }}"
+  register: nvfetcher_libexec_paths
+  changed_when: false
+  tags: "{{ nvfetcher_bins_tags }}"
+
+- name: Install {{ binary.name }} from its pinned release
+  when: >-
+    nvfetcher_installed.failed or
+    (nvfetcher_installed.content | default('') | b64decode | trim) != nvfetcher_marker or
+    (nvfetcher_bin_paths.results | rejectattr('stat.exists') | list | length > 0) or
+    (nvfetcher_libexec_paths.results | rejectattr('stat.exists') | list | length > 0)
+  tags: "{{ nvfetcher_bins_tags }}"
+  block:
+    - name: Download {{ binary.name }} and verify its checksum
+      ansible.builtin.get_url:
+        url: "{{ nvfetcher_source.src.url }}"
+        dest: "{{ nvfetcher_asset }}"
+        checksum: "sha256:{{ nvfetcher_source.src.sha256 | sri_sha256_hex }}"
+        mode: '0600'
+
+    - name: Extract {{ binary.name }} from a tarball
+      when: binary.install == 'flat_tar'
+      ansible.builtin.command:
+        cmd: >-
+          tar -xf "{{ nvfetcher_asset }}" -C "{{ nvfetcher_bins_bin_dir }}"
+          --overwrite --transform='s:.*/::' --wildcards "{{ binary.include }}"
+      changed_when: true
+
+    - name: Install {{ binary.name }} from a raw binary
+      when: binary.install == 'raw'
+      ansible.builtin.copy:
+        src: "{{ nvfetcher_asset }}"
+        dest: "{{ nvfetcher_bins_bin_dir }}/{{ binary.name }}"
+        mode: '0755'
+        remote_src: true
+
+    - name: Extract the {{ binary.name }} bundle into libexec
+      when: binary.install == 'dir'
+      ansible.builtin.command:
+        cmd: >-
+          tar -xf "{{ nvfetcher_asset }}" -C "{{ nvfetcher_bins_libexec_dir }}"
+          --overwrite --wildcards "{{ binary.include }}"
+      changed_when: true
+
+    - name: Link the {{ binary.name }} executable
+      when: binary.install == 'dir'
+      ansible.builtin.file:
+        src: "{{ nvfetcher_bins_libexec_dir }}/{{ binary.binary }}/{{ binary.binary }}"
+        dest: "{{ nvfetcher_bins_bin_dir }}/{{ binary.binary }}"
+        state: link
+        force: true
+
+    - name: Extract {{ binary.name }} members from the zip
+      when: binary.install == 'zip'
+      ansible.builtin.shell: |
+        unzip -p "{{ nvfetcher_asset }}" "{{ item.src }}" > "{{ nvfetcher_bins_bin_dir }}/{{ item.dest }}"
+        chmod 0755 "{{ nvfetcher_bins_bin_dir }}/{{ item.dest }}"
+      loop: "{{ binary.files }}"
+      changed_when: true
+
+    - name: Create the {{ binary.name }} data directory
+      ansible.builtin.file:
+        path: "{{ nvfetcher_bins_data_dir }}/{{ binary.name }}"
+        state: directory
+        mode: '0755'
+
+    - name: Record the installed {{ binary.name }} marker
+      ansible.builtin.copy:
+        content: "{{ nvfetcher_marker }}\n"
+        dest: "{{ nvfetcher_bins_data_dir }}/{{ binary.name }}/version"
+        mode: '0644'
+
+    - name: Remove the {{ binary.name }} download
+      ansible.builtin.file:
+        path: "{{ nvfetcher_asset }}"
+        state: absent

@@ -38,77 +38,6 @@
         commands: /usr/bin/pacman
         nopassword: true
 
-# seanime-bin ships the user unit /usr/lib/systemd/user/seanime.service.
-- name: Enable seanime user service
-  become: true
-  become_user: "{{ aur_seanime_user }}"
-  tags:
-    - service
-    - aur
-  when: "'seanime-bin' in aur_packages"
-  ansible.builtin.systemd_service:
-    scope: user
-    name: seanime.service
-    enabled: true
-    state: started
-    daemon_reload: true
-  environment:
-    XDG_RUNTIME_DIR: "/run/user/{{ ansible_facts.user_uid }}"
-    DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/{{ ansible_facts.user_uid }}/bus"
-
-# The packaged unit starts with a clean environment, and the user service starts
-# before the graphical login injects DISPLAY/XAUTHORITY into the user manager,
-# so PassEnvironment has nothing to pass. Set them explicitly in a drop-in that
-# survives package upgrades instead.
-- name: Create seanime service drop-in directory
-  become: true
-  become_user: "{{ aur_seanime_user }}"
-  tags:
-    - service
-    - aur
-  when: "'seanime-bin' in aur_packages"
-  ansible.builtin.file:
-    path: "{{ ansible_facts.user_dir }}/.config/systemd/user/seanime.service.d"
-    state: directory
-    mode: "0755"
-
-- name: Pass the graphical session into seanime's mpv
-  become: true
-  become_user: "{{ aur_seanime_user }}"
-  tags:
-    - service
-    - aur
-  when: "'seanime-bin' in aur_packages"
-  ansible.builtin.copy:
-    dest: "{{ ansible_facts.user_dir }}/.config/systemd/user/seanime.service.d/override.conf"
-    content: |
-      [Service]
-      # seanime spawns mpv, which needs DISPLAY and the Xauthority cookie to
-      # open a window. The user service starts before the graphical login puts
-      # these into the user manager, so set them directly.
-      Environment=DISPLAY=:0
-      Environment=XAUTHORITY=/run/user/%U/lyxauth
-    mode: "0644"
-  register: aur_seanime_dropin
-
-- name: Restart seanime when its environment drop-in changes
-  become: true
-  become_user: "{{ aur_seanime_user }}"
-  tags:
-    - service
-    - aur
-  when:
-    - "'seanime-bin' in aur_packages"
-    - aur_seanime_dropin.changed | default(false)
-  ansible.builtin.systemd_service:
-    scope: user
-    name: seanime.service
-    state: restarted
-    daemon_reload: true
-  environment:
-    XDG_RUNTIME_DIR: "/run/user/{{ ansible_facts.user_uid }}"
-    DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/{{ ansible_facts.user_uid }}/bus"
-
 - name: Upgrade AUR packages
   become: true
   become_user: "{{ aur_builder_user }}"
@@ -135,9 +64,62 @@
     use: "{{ aur_helper }}"
     state: present
 
+- name: Read the previously managed AUR package list
+  ansible.builtin.slurp:
+    src: "{{ aur_managed_state_file }}"
+  register: aur_managed_previous
+  changed_when: false
+  failed_when: false
+  when: aur_remove_unused | bool
+  tags:
+    - pkg
+    - aur
+
+- name: Compute AUR packages dropped from the list
+  ansible.builtin.set_fact:
+    aur_packages_to_remove: >-
+      {{ ((aur_managed_previous.content | default('') | b64decode | trim).split('\n') | map('trim') | select() | list)
+         | difference(aur_packages) }}
+  when: aur_remove_unused | bool
+  tags:
+    - pkg
+    - aur
+
+- name: Remove AUR packages no longer managed by this role
+  become: true
+  ansible.builtin.pacman:
+    name: "{{ aur_packages_to_remove }}"
+    state: absent
+  when:
+    - aur_remove_unused | bool
+    - aur_packages_to_remove | length > 0
+  tags:
+    - pkg
+    - aur
+
+- name: Ensure the AUR state directory exists
+  ansible.builtin.file:
+    path: "{{ aur_managed_state_dir }}"
+    state: directory
+    mode: '0755'
+  when: aur_remove_unused | bool
+  tags:
+    - pkg
+    - aur
+
+- name: Record the managed AUR package list
+  ansible.builtin.copy:
+    dest: "{{ aur_managed_state_file }}"
+    content: "{{ aur_packages | join('\n') }}\n"
+    mode: '0644'
+  when: aur_remove_unused | bool
+  tags:
+    - pkg
+    - aur
+
 # The packaged espanso.service is an X11 user unit that starts before the
 # graphical login injects DISPLAY/XAUTHORITY into the user manager, so pass
-# them through a drop-in (same approach as seanime above).
+# them through a drop-in.
 - name: Create the espanso service drop-in directory
   become: true
   become_user: "{{ aur_espanso_user }}"

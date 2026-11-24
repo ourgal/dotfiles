@@ -6,18 +6,7 @@
     that: miryoku_engine in ['kmonad', 'kanata']
     fail_msg: "miryoku_engine must be kmonad or kanata, got {{ miryoku_engine }}"
 
-# Reuse the AUR builder (paru + aur-builder user + sudoers) from the aur role;
-# overriding aur_packages keeps this role's install self-contained.
-- name: "Install from the AUR: {{ miryoku_engine }}"
-  tags:
-    - pkg
-    - miryoku
-  ansible.builtin.include_role:
-    name: aur
-  vars:
-    aur_packages:
-      - "{{ miryoku_package }}"
-
+# kanata is installed by roles/nvfetcher_bins from the pinned GitHub release.
 # Kanata reads its input device from defcfg, not from the CLI. The upstream
 # layout ships an empty (defcfg), so inject linux-dev after downloading it.
 # force:false preserves the injected line on later runs.
