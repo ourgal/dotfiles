@@ -1,11 +1,11 @@
 [Unit]
-Description=tmux server (detached session)
+Description=tmux server (restores saved session via continuum)
 
 [Service]
 Type=oneshot
 RemainAfterExit=yes
 ExecStartPre=/usr/bin/test -x {{ tmux_server_binary }}
-ExecStart={{ tmux_server_binary }} new-session -d
+ExecStart={{ tmux_server_binary }} start-server
 
 [Install]
 WantedBy=default.target
