@@ -157,7 +157,7 @@ git status --porcelain
 ## Safety Rules
 
 - Do not change the Git configuration.
-- Do not use `--no-verify` unless the user tells you to. Hooks can be in `.git/hooks` or in the Git configuration.
+- Do not bypass hooks unless the user tells you to: no `--no-verify`, and no `git -c core.hooksPath=<empty>` or similar config override that silences them. Hooks can be in `.git/hooks` or in the Git configuration; run the commit with the repository's normal config and fix a failing hook instead of routing around it.
 - If a hook fails, Git does not make the commit. Fix the problem, stage the files again, and run the same `git commit` command again. Do not use `--amend`, because it changes the previous commit.
 - Do not change the commit history unless the user tells you to. Do not use `git reset --hard`, `git rebase`, or the experimental `git history` command.
 - Do not push unless the user tells you to. Do not force push to the default branch.
