@@ -54,6 +54,14 @@
       sha256 = "sha256-C+3ZFWfF18VGeQYbqtw35Pg/txdQADmZvB0R8sl1TzY=";
     };
   };
+  lefthook = {
+    pname = "lefthook";
+    version = "2.2.2";
+    src = fetchurl {
+      url = "https://github.com/evilmartians/lefthook/releases/download/v2.2.2/lefthook_2.2.2_Linux_x86_64";
+      sha256 = "sha256-T7+J63dIxq7YTYM+4aKe2sSPrmFEaMqagoluwy8oALY=";
+    };
+  };
   oh-my-pi = {
     pname = "oh-my-pi";
     version = "19.1.1";

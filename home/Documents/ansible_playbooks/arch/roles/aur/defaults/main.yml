@@ -3,8 +3,8 @@ aur_enabled: true
 # Package names exactly as published on https://aur.archlinux.org.
 # Empty list is a no-op: the builder user is only created when there is work.
 # GitHub-released binaries (aliae, dufs, geminicommit, handy, seanime, tuios,
-# pi-coding-agent, herdr, maki, rtk, kanata, oh-my-pi) are installed from the
-# nvfetcher pins in this repo by roles/nvfetcher_bins.
+# pi-coding-agent, herdr, maki, rtk, kanata, oh-my-pi, lefthook) are installed
+# from the nvfetcher pins in this repo by roles/nvfetcher_bins.
 aur_packages:
   - qoder-cli-cn-bin
   # X11 text expander; ships a systemd user unit that this role enables.
