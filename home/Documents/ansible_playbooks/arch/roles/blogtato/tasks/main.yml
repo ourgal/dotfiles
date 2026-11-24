@@ -26,6 +26,8 @@
         dest: "{{ blogtato_archive_path }}"
         checksum: "sha256:{{ blogtato_sha256 }}"
         mode: '0600'
+      retries: 3
+      delay: 5
 
     - name: Extract blogtato
       ansible.builtin.unarchive:

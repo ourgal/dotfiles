@@ -5,6 +5,8 @@
     id: "{{ surface_touch_key_id }}"
     url: "{{ surface_touch_key_url }}"
     state: present
+  retries: 3
+  delay: 5
 
 - name: Add the linux-surface repository
   become: true

@@ -36,6 +36,8 @@
     group: root
     mode: '0644'
     force: false
+  retries: 3
+  delay: 5
 
 - name: Configure the input device in the Kanata layout
   when: miryoku_engine == 'kanata'

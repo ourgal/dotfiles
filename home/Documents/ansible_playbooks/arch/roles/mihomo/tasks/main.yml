@@ -28,6 +28,8 @@
     dest: "{{ mihomo_geoip_file }}"
     mode: '0644'
     force: false
+  retries: 3
+  delay: 5
   notify: Restart mihomo
 
 - name: Check the installed mihomo version
@@ -46,6 +48,8 @@
         url: "{{ mihomo_download_url }}"
         dest: "{{ mihomo_archive }}"
         mode: '0600'
+      retries: 3
+      delay: 5
 
     - name: Decompress mihomo
       become: true

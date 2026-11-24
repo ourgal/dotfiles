@@ -95,6 +95,8 @@
     # the patch task below re-applies it. Rebuilds are gated on the marker hash,
     # not on .changed, so this does not trigger a recompile every run.
     force: true
+  retries: 3
+  delay: 5
   register: exllamav3_source
 
 - name: Clone TabbyAPI
@@ -107,6 +109,8 @@
     dest: "{{ exllamav3_tabby_dir }}"
     version: "{{ exllamav3_tabby_version }}"
     refspec: "+refs/heads/main:refs/remotes/origin/main"
+  retries: 3
+  delay: 5
   register: exllamav3_tabby
 
 - name: Create the Python virtualenv

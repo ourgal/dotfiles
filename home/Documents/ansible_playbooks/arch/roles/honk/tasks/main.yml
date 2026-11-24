@@ -56,6 +56,8 @@
         url: "{{ honk_download_url }}"
         dest: "{{ honk_archive }}"
         mode: '0600'
+      retries: 3
+      delay: 5
 
     - name: Extract honk
       become: true

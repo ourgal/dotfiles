@@ -49,6 +49,8 @@
         dest: "{{ nvfetcher_asset }}"
         checksum: "sha256:{{ nvfetcher_source.src.sha256 | sri_sha256_hex }}"
         mode: '0600'
+      retries: 3
+      delay: 5
 
     - name: Extract {{ binary.name }} from a tarball
       when: binary.install == 'flat_tar'

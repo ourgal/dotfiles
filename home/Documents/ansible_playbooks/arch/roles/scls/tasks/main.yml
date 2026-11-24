@@ -26,6 +26,8 @@
         dest: "{{ scls_archive_path }}"
         checksum: "sha256:{{ scls_sha256 }}"
         mode: '0600'
+      retries: 3
+      delay: 5
 
     - name: Extract scls
       ansible.builtin.unarchive:

@@ -26,6 +26,8 @@
         dest: "{{ fingerprint_libfprint_archive_path }}"
         checksum: "sha256:{{ fingerprint_libfprint_sha256 }}"
         mode: '0600'
+      retries: 3
+      delay: 5
 
     # The package provides libfprint and conflicts with the stock one. Drop
     # stock libfprint without removing fprintd, which depends on the provides.
