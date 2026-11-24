@@ -62,7 +62,7 @@
       when: binary.install == 'raw'
       ansible.builtin.copy:
         src: "{{ nvfetcher_asset }}"
-        dest: "{{ nvfetcher_bins_bin_dir }}/{{ binary.name }}"
+        dest: "{{ nvfetcher_bin_bin_dir }}/{{ binary.binary | default(binary.name) }}"
         mode: '0755'
         remote_src: true
 

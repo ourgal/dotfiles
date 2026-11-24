@@ -54,6 +54,14 @@
       sha256 = "sha256-C+3ZFWfF18VGeQYbqtw35Pg/txdQADmZvB0R8sl1TzY=";
     };
   };
+  oh-my-pi = {
+    pname = "oh-my-pi";
+    version = "19.1.1";
+    src = fetchurl {
+      url = "https://github.com/can1357/oh-my-pi/releases/download/v19.1.1/omp-linux-x64";
+      sha256 = "sha256-BOlJD5OU2m1oBEdMwuQes9GPjiYhXfSzS91K1MDYpAE=";
+    };
+  };
   maki = {
     pname = "maki";
     version = "0.7.3";

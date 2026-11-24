@@ -41,6 +41,7 @@ nvfetcher_bins_retired_aur_packages:
   - maki-bin
   - rtk-bin
   - kanata-bin
+  - oh-my-pi-bin
 
 # install: flat_tar (single binary at archive root) | raw (already a binary)
 #          dir (bundle extracted to libexec, then linked)
@@ -96,3 +97,7 @@ nvfetcher_bins:
       - src: kanata_linux_cmd_allowed_x64
         dest: kanata_cmd_allowed
     paths: [kanata, kanata_cmd_allowed]
+  - name: oh-my-pi
+    install: raw
+    binary: omp
+    paths: [omp]
