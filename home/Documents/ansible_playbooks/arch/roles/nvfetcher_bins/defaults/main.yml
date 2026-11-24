@@ -3,17 +3,37 @@ nvfetcher_bins_enabled: true
 # nvfetcher pins live in the chezmoi repo root and are refreshed by
 # .github/workflows/nvfetcher.yaml. Ansible only consumes the generated file.
 nvfetcher_bins_sources: "{{ lookup('env', 'HOME') }}/.local/share/chezmoi/_sources/generated.json"
-nvfetcher_bins_bin_dir: "{{ ansible_facts.env.HOME }}/.local/bin"
-nvfetcher_bins_libexec_dir: "{{ ansible_facts.env.HOME }}/.local/libexec"
+nvfetcher_bins_prefix: "{{ ansible_facts.env.HOME }}/.local"
+nvfetcher_bins_bin_dir: "{{ nvfetcher_bins_prefix }}/bin"
+nvfetcher_bins_libexec_dir: "{{ nvfetcher_bins_prefix }}/libexec"
 nvfetcher_bins_data_dir: "{{ ansible_facts.env.HOME }}/.local/share/nvfetcher-bins"
 nvfetcher_bins_cache_dir: "{{ ansible_facts.env.HOME }}/.cache/ansible/nvfetcher-bins"
 nvfetcher_bins_tags: [pkg, nvfetcher_bins]
 nvfetcher_bins_remove_aur: true
 nvfetcher_bins_seanime_service: true
+# Runtime libraries Handy's .deb expects on Arch (AUR used these names;
+# libappindicator replaces the AUR-only libappindicator-gtk3).
+nvfetcher_bins_handy_deps:
+  - alsa-lib
+  - cairo
+  - gcc-libs
+  - gdk-pixbuf2
+  - glib2
+  - glibc
+  - gtk3
+  - gtk-layer-shell
+  - hicolor-icon-theme
+  - libappindicator
+  - libsoup3
+  - openblas
+  - openssl
+  - vulkan-icd-loader
+  - webkit2gtk-4.1
 nvfetcher_bins_retired_aur_packages:
   - aliae-bin
   - dufs-bin
   - geminicommit-bin
+  - handy-bin
   - seanime-bin
   - tuios-bin
   - pi-coding-agent-bin
@@ -23,7 +43,8 @@ nvfetcher_bins_retired_aur_packages:
   - kanata-bin
 
 # install: flat_tar (single binary at archive root) | raw (already a binary)
-#          dir (bundle extracted to libexec, then linked) | zip (named members)
+#          dir (bundle extracted to libexec, then linked)
+#          zip (named members) | deb (payload stripped into the prefix)
 # paths: executables expected under bin_dir; libexec_paths: under libexec_dir.
 # A missing path triggers reinstall even when the pin has not changed.
 nvfetcher_bins:
@@ -46,6 +67,10 @@ nvfetcher_bins:
     install: flat_tar
     include: tuios
     paths: [tuios]
+  - name: handy
+    install: deb
+    paths: [handy]
+    desktop: share/applications/Handy.desktop
   - name: herdr
     install: raw
     paths: [herdr]

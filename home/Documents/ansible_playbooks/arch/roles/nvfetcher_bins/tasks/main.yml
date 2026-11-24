@@ -36,6 +36,14 @@
     mode: '0700'
   tags: "{{ nvfetcher_bins_tags }}"
 
+- name: Ensure Handy runtime libraries
+  ansible.builtin.package:
+    name: "{{ nvfetcher_bins_handy_deps }}"
+    state: present
+  become: true
+  when: "'handy' in (nvfetcher_bins | map(attribute='name') | list)"
+  tags: "{{ nvfetcher_bins_tags }}"
+
 - name: Ensure ncurses is available for aliae
   ansible.builtin.package:
     name: ncurses

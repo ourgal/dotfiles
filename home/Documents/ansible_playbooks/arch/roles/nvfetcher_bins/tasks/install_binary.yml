@@ -90,6 +90,43 @@
       loop: "{{ binary.files }}"
       changed_when: true
 
+    - name: Create the {{ binary.name }} deb staging directory
+      when: binary.install == 'deb'
+      ansible.builtin.file:
+        path: "{{ nvfetcher_bins_cache_dir }}/{{ binary.name }}"
+        state: directory
+        mode: '0700'
+
+    - name: Unpack the {{ binary.name }} deb container
+      when: binary.install == 'deb'
+      ansible.builtin.command:
+        cmd: >-
+          bsdtar -xf "{{ nvfetcher_asset }}"
+          -C "{{ nvfetcher_bins_cache_dir }}/{{ binary.name }}"
+      changed_when: true
+
+    - name: Install the {{ binary.name }} deb payload
+      when: binary.install == 'deb'
+      ansible.builtin.command:
+        cmd: >-
+          bsdtar -xf "{{ nvfetcher_bins_cache_dir }}/{{ binary.name }}/data.tar.gz"
+          -C "{{ nvfetcher_bins_prefix }}" --strip-components=1
+      changed_when: true
+
+    - name: Give the {{ binary.name }} desktop entry a category
+      when: binary.install == 'deb'
+      ansible.builtin.lineinfile:
+        path: "{{ nvfetcher_bins_prefix }}/{{ binary.desktop }}"
+        regexp: '^Categories='
+        line: 'Categories=Utility;'
+        backrefs: true
+
+    - name: Remove the {{ binary.name }} deb staging files
+      when: binary.install == 'deb'
+      ansible.builtin.file:
+        path: "{{ nvfetcher_bins_cache_dir }}/{{ binary.name }}"
+        state: absent
+
     - name: Create the {{ binary.name }} data directory
       ansible.builtin.file:
         path: "{{ nvfetcher_bins_data_dir }}/{{ binary.name }}"

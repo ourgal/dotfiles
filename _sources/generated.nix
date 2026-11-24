@@ -30,6 +30,14 @@
       sha256 = "sha256-k5f6fsFGhChy8BsTnl2mjT83bgYpP1IdQuihv+UCX2w=";
     };
   };
+  handy = {
+    pname = "handy";
+    version = "0.10.1";
+    src = fetchurl {
+      url = "https://github.com/cjpais/Handy/releases/download/v0.10.1/Handy_0.10.1_amd64.deb";
+      sha256 = "sha256-pZx0HlLd9xSPLsAVkMJnWBO63BJhKbu9QGQmmuIU6SQ=";
+    };
+  };
   herdr = {
     pname = "herdr";
     version = "0.9.5";
