@@ -289,6 +289,13 @@ function Invoke-Starship-PreCommand {
 {{ output "zoxide" "init" "powershell" }}
 {{ end -}}
 # ]]]
+# [[[ worktrunk
+{{/* Windows Terminal also ships wt.exe; pin to the scoop worktrunk binary by path. */}}
+{{ $wtBin := joinPath .chezmoi.homeDir "scoop" "apps" "worktrunk" "current" "wt.exe" -}}
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "file" $wtBin "opt" (list "shell" "pwsh" "worktrunk" "enable") "os" "windows") | trim | atoi -}}
+{{ output $wtBin "config" "shell" "init" "powershell" }}
+{{ end -}}
+# ]]]
 # [[[ PsFzf
 {{ if joinPath .chezmoi.homeDir "scoop" "modules" "PsFzf" | stat -}}
 Import-Module PSFzf
