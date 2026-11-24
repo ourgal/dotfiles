@@ -36,6 +36,14 @@
     mode: '0700'
   tags: "{{ nvfetcher_bins_tags }}"
 
+- name: Ensure ncurses is available for aliae
+  ansible.builtin.package:
+    name: ncurses
+    state: present
+  become: true
+  when: "'aliae' in (nvfetcher_bins | map(attribute='name') | list)"
+  tags: "{{ nvfetcher_bins_tags }}"
+
 - name: Ensure unzip is available for zip-based binaries
   ansible.builtin.package:
     name: unzip

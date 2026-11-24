@@ -1,4 +1,9 @@
 # Pins for AUR *-bin replacements; updated by .github/workflows/nvfetcher.yaml
+[aliae]
+src.github = "JanDeDobbeleer/aliae"
+src.prefix = "v"
+fetch.url = "https://github.com/JanDeDobbeleer/aliae/releases/download/v$ver/aliae-linux-amd64"
+
 [dufs]
 src.github = "sigoden/dufs"
 src.prefix = "v"

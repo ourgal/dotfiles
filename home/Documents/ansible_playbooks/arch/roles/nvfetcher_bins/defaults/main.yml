@@ -11,6 +11,7 @@ nvfetcher_bins_tags: [pkg, nvfetcher_bins]
 nvfetcher_bins_remove_aur: true
 nvfetcher_bins_seanime_service: true
 nvfetcher_bins_retired_aur_packages:
+  - aliae-bin
   - dufs-bin
   - geminicommit-bin
   - seanime-bin
@@ -26,6 +27,9 @@ nvfetcher_bins_retired_aur_packages:
 # paths: executables expected under bin_dir; libexec_paths: under libexec_dir.
 # A missing path triggers reinstall even when the pin has not changed.
 nvfetcher_bins:
+  - name: aliae
+    install: raw
+    paths: [aliae]
   - name: dufs
     install: flat_tar
     include: dufs

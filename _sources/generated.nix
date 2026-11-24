@@ -6,6 +6,14 @@
   dockerTools,
 }:
 {
+  aliae = {
+    pname = "aliae";
+    version = "1.6.0";
+    src = fetchurl {
+      url = "https://github.com/JanDeDobbeleer/aliae/releases/download/v1.6.0/aliae-linux-amd64";
+      sha256 = "sha256-A2m5/SUb2QDlhMrcRL/EpRnsqFsFNd0/y5i3Su7vt9A=";
+    };
+  };
   dufs = {
     pname = "dufs";
     version = "0.47.0";
