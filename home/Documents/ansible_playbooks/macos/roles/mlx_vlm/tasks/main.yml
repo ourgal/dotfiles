@@ -22,19 +22,30 @@
     name: uv
     state: present
 
+- name: Create the MLX virtual environment
+  tags:
+    - pkg
+    - mlx_vlm
+  ansible.builtin.command:
+    argv:
+      - /opt/homebrew/bin/uv
+      - venv
+      - "{{ mlx_vlm_venv }}"
+      - --python
+      - "{{ mlx_vlm_python_version }}"
+    creates: "{{ mlx_vlm_venv }}/bin/python"
+
 - name: Install the MLX server stack
   tags:
     - pkg
     - mlx_vlm
-  ansible.builtin.shell:
+  ansible.builtin.command:
     cmd: >-
-      /opt/homebrew/bin/uv venv {{ mlx_vlm_venv }} --python {{ mlx_vlm_python_version }} &&
-      /opt/homebrew/bin/uv pip install --python {{ mlx_vlm_venv }}/bin/python
+      /opt/homebrew/bin/uv pip install
+      --python {{ mlx_vlm_venv }}/bin/python
       {{ mlx_vlm_packages | join(' ') }}
-    # Versioned marker: bumping mlx or mlx-lm rebuilds the venv.
+    # Versioned marker: bumping mlx or mlx-lm reinstalls the stack.
     creates: "{{ mlx_vlm_venv }}/.stack-{{ mlx_vlm_mlx_version }}-{{ mlx_vlm_mlx_lm_version }}"
-    chdir: "{{ mlx_vlm_prefix }}"
-    executable: /bin/sh
 
 - name: Check whether the Bonsai MLX model is present
   tags:
