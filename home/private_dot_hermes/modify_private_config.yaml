@@ -5,7 +5,12 @@
   providers, telemetry, toolset lists — is written by hermes itself and is
   preserved as-is. Managed keys win over whatever is already in the file.
 */ -}}
+{{- $hooks := dict -}}
+{{- if eq .chezmoi.os "linux" -}}
+{{- $hooks = dict "on_session_end" (list (dict "command" (joinPath .chezmoi.homeDir ".hermes" "agent-hooks" "notify.sh") "timeout" 10)) -}}
+{{- end -}}
 {{- $managed := dict
+      "hooks" $hooks
       "security" (dict
         "fake_ip_ranges" (list "28.0.0.0/8" "fc00::/16" "198.18.0.1/16" "fdfe:dcba:9876::1/64"))
       "gateway" (dict
