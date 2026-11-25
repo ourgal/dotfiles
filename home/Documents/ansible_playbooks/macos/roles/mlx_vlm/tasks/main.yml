@@ -14,29 +14,6 @@
     - "{{ mlx_vlm_log_dir }}"
     - "{{ mlx_vlm_home }}/.local/bin"
 
-- name: Check the Metal shader compiler
-  tags:
-    - pkg
-    - mlx_vlm
-  ansible.builtin.command:
-    cmd: xcrun metal --version
-  register: mlx_vlm_metal
-  changed_when: false
-  failed_when: false
-
-- name: Require the full Xcode Metal toolchain
-  tags:
-    - pkg
-    - mlx_vlm
-  ansible.builtin.assert:
-    that: mlx_vlm_metal.rc == 0
-    fail_msg: >-
-      The MLX fork builds Metal kernels, which needs the full Xcode app plus the
-      Metal Toolchain component (Command Line Tools alone are not enough):
-      install Xcode, `sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer`,
-      `sudo xcodebuild -license accept`, `xcodebuild -runFirstLaunch`,
-      `xcodebuild -downloadComponent MetalToolchain`.
-
 - name: Install uv
   tags:
     - pkg
@@ -45,26 +22,7 @@
     name: uv
     state: present
 
-- name: Clone the PrismML MLX fork
-  tags:
-    - pkg
-    - mlx_vlm
-  ansible.builtin.git:
-    repo: "{{ mlx_vlm_mlx_source }}"
-    dest: "{{ mlx_vlm_mlx_src }}"
-    version: "{{ mlx_vlm_mlx_version }}"
-  register: mlx_vlm_fork
-
-- name: Check for the built server
-  tags:
-    - pkg
-    - mlx_vlm
-  ansible.builtin.stat:
-    path: "{{ mlx_vlm_venv }}/bin/mlx_lm.server"
-  register: mlx_vlm_server
-
-- name: Build the MLX fork and install the server
-  when: mlx_vlm_fork is changed or not mlx_vlm_server.stat.exists
+- name: Install the MLX server stack
   tags:
     - pkg
     - mlx_vlm
@@ -72,22 +30,9 @@
     cmd: >-
       /opt/homebrew/bin/uv venv {{ mlx_vlm_venv }} --python {{ mlx_vlm_python_version }} &&
       /opt/homebrew/bin/uv pip install --python {{ mlx_vlm_venv }}/bin/python
-      setuptools 'cmake>=3.25' typing_extensions &&
-      /opt/homebrew/bin/uv pip install --python {{ mlx_vlm_venv }}/bin/python
-      -e {{ mlx_vlm_mlx_src }} --no-build-isolation &&
-      /opt/homebrew/bin/uv pip install --python {{ mlx_vlm_venv }}/bin/python
       {{ mlx_vlm_packages | join(' ') }}
-    creates: "{{ mlx_vlm_venv }}/.built-{{ mlx_vlm_mlx_lm_version }}"
-
-- name: Mark the build complete
-  when: mlx_vlm_fork is changed or not mlx_vlm_server.stat.exists
-  tags:
-    - pkg
-    - mlx_vlm
-  ansible.builtin.copy:
-    content: "{{ mlx_vlm_mlx_version }} {{ mlx_vlm_mlx_lm_version }}\n"
-    dest: "{{ mlx_vlm_venv }}/.built-{{ mlx_vlm_mlx_lm_version }}"
-    mode: "0644"
+    # Versioned marker: bumping mlx or mlx-lm rebuilds the venv.
+    creates: "{{ mlx_vlm_venv }}/.stack-{{ mlx_vlm_mlx_version }}-{{ mlx_vlm_mlx_lm_version }}"
 
 - name: Check whether the Bonsai MLX model is present
   tags:

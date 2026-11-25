@@ -1,26 +1,23 @@
 ---
 # Apple Silicon MLX server for 1-bit Bonsai 27B, replacing the llama.cpp role.
-# The 1-bit MLX pack needs the PrismML MLX fork until mlx#3161 lands; on MLX the
-# pack is text-only (upstream VISION.md), image input stays on llama.cpp.
+# 1-bit affine quantization landed upstream in mlx#3161 (Oct 2026, first
+# release 0.32.4), so the prebuilt wheel loads the pack — no fork, no Xcode.
+# The pack is text-only on MLX (upstream VISION.md); images stay on llama.cpp.
 mlx_vlm_enabled: true
 
 mlx_vlm_model_repo: prism-ml/Bonsai-27B-mlx-1bit
 mlx_vlm_model_name: Bonsai-27B-mlx-1bit
 
-# Validated runtime (Bonsai-demo Bonsai1_README.md "MLX runtime"): Python 3.11,
-# fork branch `prism` at 88c9c20, mlx-lm 0.31.2. `transformers` is pinned to the
-# version the qwen3_5 pack was validated with.
+# mlx/mlx-lm pair from the Bonsai-demo mlx-vlm requirements. mlx 0.32.4 is the
+# first wheel with bits=1 kernels; 0.32.5 is current. Python 3.11 is the version
+# the 27B pack was validated with.
 mlx_vlm_python_version: "3.11"
-mlx_vlm_mlx_source: https://github.com/PrismML-Eng/mlx.git
-mlx_vlm_mlx_version: "88c9c20"
-mlx_vlm_mlx_lm_version: "0.31.2"
+mlx_vlm_mlx_version: "0.32.5"
+mlx_vlm_mlx_lm_version: "0.32.0"
 mlx_vlm_packages:
+  - "mlx=={{ mlx_vlm_mlx_version }}"
   - "mlx-lm=={{ mlx_vlm_mlx_lm_version }}"
-  - "transformers==5.2.0"
-  - "safetensors==0.7.0"
-  - "tokenizers==0.22.2"
-  - "sentencepiece==0.2.1"
-  - "numpy==2.4.2"
+  - "transformers==5.19.0"
   - "huggingface-hub[cli]>=1.0"
 
 # Model-card sampling for thinking mode (the 27B reasons before it answers).
@@ -42,7 +39,6 @@ mlx_vlm_group: staff
 mlx_vlm_home: "{{ ansible_env.HOME }}"
 mlx_vlm_prefix: "{{ mlx_vlm_home }}/.local/share/mlx-vlm"
 mlx_vlm_model_dir: "{{ mlx_vlm_prefix }}/models/{{ mlx_vlm_model_name }}"
-mlx_vlm_mlx_src: "{{ mlx_vlm_prefix }}/mlx"
 mlx_vlm_venv: "{{ mlx_vlm_prefix }}/venv"
 mlx_vlm_cache_dir: "{{ mlx_vlm_prefix }}/cache"
 mlx_vlm_log_dir: "{{ mlx_vlm_prefix }}/logs"
