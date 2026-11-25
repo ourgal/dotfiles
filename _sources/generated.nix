@@ -14,6 +14,14 @@
       sha256 = "sha256-A2m5/SUb2QDlhMrcRL/EpRnsqFsFNd0/y5i3Su7vt9A=";
     };
   };
+  crush = {
+    pname = "crush";
+    version = "0.102.0";
+    src = fetchurl {
+      url = "https://github.com/charmbracelet/crush/releases/download/v0.102.0/crush_0.102.0_Linux_x86_64.tar.gz";
+      sha256 = "sha256-eTDMFKLew6hX3dIHDIY8HF1+2zNdIM37ZaW0TmKgyh4=";
+    };
+  };
   dufs = {
     pname = "dufs";
     version = "0.47.0";

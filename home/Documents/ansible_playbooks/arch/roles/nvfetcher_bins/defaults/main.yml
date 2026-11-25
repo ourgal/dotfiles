@@ -44,6 +44,7 @@ nvfetcher_bins_retired_aur_packages:
   - rtk-bin
   - kanata-bin
   - oh-my-pi-bin
+  - crush-bin
 
 # install: flat_tar (single binary at archive root) | raw (already a binary)
 #          dir (bundle extracted to libexec, then linked)
@@ -109,3 +110,8 @@ nvfetcher_bins:
   - name: lefthook
     install: raw
     paths: [lefthook]
+  - name: crush
+    install: flat_tar
+    # Crush tarballs wrap the binary in a versioned directory.
+    include: "*/crush"
+    paths: [crush]
