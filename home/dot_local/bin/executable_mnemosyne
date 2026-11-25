@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# Stable launcher for the Hermes Mnemosyne CLI.
+#
+# Mnemosyne ships as a catalog plugin, so its executable lives inside a hashed
+# uv side-venv whose path changes on every plugin update
+# (installs/<id>/environments/<hash>/venv/bin/mnemosyne). Hard-coding that path
+# breaks the MCP server and the session hooks after each update. Resolve the
+# active venv from Hermes' recorded facts.json instead, with a newest-first
+# glob as a fallback.
+set -euo pipefail
+
+if [ -z "${HERMES_HOME:-}" ]; then
+  if [ -n "${LOCALAPPDATA:-}" ]; then
+    HERMES_HOME="$LOCALAPPDATA/hermes"
+  else
+    HERMES_HOME="$HOME/.hermes"
+  fi
+fi
+export HERMES_HOME
+
+find_mnemosyne() {
+  local facts venv bin
+
+  # Authoritative: the venv Hermes recorded as current.
+  for facts in "$HERMES_HOME"/installs/*/facts.json; do
+    [ -f "$facts" ] || continue
+    venv="$(sed -n 's/.*"environment"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' "$facts" | head -1)"
+    if [ -n "$venv" ] && [ -x "$venv/bin/mnemosyne" ]; then
+      printf '%s\n' "$venv/bin/mnemosyne"
+      return 0
+    fi
+  done
+
+  # Fallback: newest catalog side-venv that actually has the binary.
+  bin="$(ls -t "$HERMES_HOME"/installs/*/environments/*/venv/bin/mnemosyne 2>/dev/null | head -1 || true)"
+  if [ -n "$bin" ] && [ -x "$bin" ]; then
+    printf '%s\n' "$bin"
+    return 0
+  fi
+
+  return 1
+}
+
+bin="$(find_mnemosyne)" || {
+  echo "mnemosyne: no Hermes Mnemosyne CLI found under HERMES_HOME=$HERMES_HOME" >&2
+  exit 127
+}
+
+exec "$bin" "$@"

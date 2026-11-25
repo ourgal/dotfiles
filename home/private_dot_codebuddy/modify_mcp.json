@@ -19,7 +19,9 @@
 {{- $mnemosyneCmd = joinPath $hermesHome ".mnemosyne" "venv" "Scripts" "mnemosyne.exe" -}}
 {{- else -}}
 {{- $hermesHome = joinPath .chezmoi.homeDir ".hermes" -}}
-{{- $mnemosyneCmd = "mnemosyne" -}}
+{{- /* Catalog plugins install into a hashed side-venv, so "mnemosyne" is not on
+       PATH here. Use the stable wrapper that resolves the active venv. */ -}}
+{{- $mnemosyneCmd = joinPath .chezmoi.homeDir ".local" "bin" "mnemosyne" -}}
 {{- end -}}
 {{- $managed := dict "mnemosyne" (dict
       "type" "stdio"
