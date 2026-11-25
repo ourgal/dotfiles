@@ -23,3 +23,9 @@ env:
   - name: CARAPACE_BRIDGES
     value: zsh,fish,bash,inshellisense,powershell
     if: eq .Shell "pwsh"
+path:
+  # aliae skips missing directories and entries already in PATH.
+  - value: |
+      {{ joinPath .chezmoi.homeDir ".local" "bin" }}
+      {{ joinPath .chezmoi.homeDir "go" "bin" }}
+      {{ joinPath .chezmoi.homeDir "miniforge3" "bin" }}
