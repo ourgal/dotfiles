@@ -1,12 +1,5 @@
 ---
 all:
-  vars:
-    ansible_ssh_port: 8022
   hosts:
-    note20:
-    m6:
+    # ssh already resolves this alias (see dot_ssh/config.tmpl).
     macmini:
-      # TODO: set this to the Mac mini's IP or hostname before running `make all`.
-      ansible_host: CHANGE_ME
-      ansible_ssh_port: 22
-      llama_cpp_enabled: true

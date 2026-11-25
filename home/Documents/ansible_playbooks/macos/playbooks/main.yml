@@ -4,6 +4,5 @@
   roles:
     - role: homebrew
     - role: pipx
-    # The Mac mini is the only AI server; opt in per host in the inventory.
     - role: llama_cpp
       when: llama_cpp_enabled | bool
