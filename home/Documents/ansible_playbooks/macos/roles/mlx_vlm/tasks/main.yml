@@ -1,0 +1,180 @@
+---
+- name: Create the MLX directories
+  tags:
+    - config
+    - mlx_vlm
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - "{{ mlx_vlm_prefix }}"
+    - "{{ mlx_vlm_prefix }}/models"
+    - "{{ mlx_vlm_cache_dir }}"
+    - "{{ mlx_vlm_log_dir }}"
+    - "{{ mlx_vlm_home }}/.local/bin"
+
+- name: Check the Metal shader compiler
+  tags:
+    - pkg
+    - mlx_vlm
+  ansible.builtin.command:
+    cmd: xcrun metal --version
+  register: mlx_vlm_metal
+  changed_when: false
+  failed_when: false
+
+- name: Require the full Xcode Metal toolchain
+  tags:
+    - pkg
+    - mlx_vlm
+  ansible.builtin.assert:
+    that: mlx_vlm_metal.rc == 0
+    fail_msg: >-
+      The MLX fork builds Metal kernels, which needs the full Xcode app plus the
+      Metal Toolchain component (Command Line Tools alone are not enough):
+      install Xcode, `sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer`,
+      `sudo xcodebuild -license accept`, `xcodebuild -runFirstLaunch`,
+      `xcodebuild -downloadComponent MetalToolchain`.
+
+- name: Install uv
+  tags:
+    - pkg
+    - mlx_vlm
+  community.general.homebrew:
+    name: uv
+    state: present
+
+- name: Clone the PrismML MLX fork
+  tags:
+    - pkg
+    - mlx_vlm
+  ansible.builtin.git:
+    repo: "{{ mlx_vlm_mlx_source }}"
+    dest: "{{ mlx_vlm_mlx_src }}"
+    version: "{{ mlx_vlm_mlx_version }}"
+  register: mlx_vlm_fork
+
+- name: Check for the built server
+  tags:
+    - pkg
+    - mlx_vlm
+  ansible.builtin.stat:
+    path: "{{ mlx_vlm_venv }}/bin/mlx_lm.server"
+  register: mlx_vlm_server
+
+- name: Build the MLX fork and install the server
+  when: mlx_vlm_fork is changed or not mlx_vlm_server.stat.exists
+  tags:
+    - pkg
+    - mlx_vlm
+  ansible.builtin.command:
+    cmd: >-
+      /opt/homebrew/bin/uv venv {{ mlx_vlm_venv }} --python {{ mlx_vlm_python_version }} &&
+      /opt/homebrew/bin/uv pip install --python {{ mlx_vlm_venv }}/bin/python
+      setuptools 'cmake>=3.25' typing_extensions &&
+      /opt/homebrew/bin/uv pip install --python {{ mlx_vlm_venv }}/bin/python
+      -e {{ mlx_vlm_mlx_src }} --no-build-isolation &&
+      /opt/homebrew/bin/uv pip install --python {{ mlx_vlm_venv }}/bin/python
+      {{ mlx_vlm_packages | join(' ') }}
+    creates: "{{ mlx_vlm_venv }}/.built-{{ mlx_vlm_mlx_lm_version }}"
+
+- name: Mark the build complete
+  when: mlx_vlm_fork is changed or not mlx_vlm_server.stat.exists
+  tags:
+    - pkg
+    - mlx_vlm
+  ansible.builtin.copy:
+    content: "{{ mlx_vlm_mlx_version }} {{ mlx_vlm_mlx_lm_version }}\n"
+    dest: "{{ mlx_vlm_venv }}/.built-{{ mlx_vlm_mlx_lm_version }}"
+    mode: "0644"
+
+- name: Check whether the Bonsai MLX model is present
+  tags:
+    - pkg
+    - config
+    - mlx_vlm
+  ansible.builtin.stat:
+    path: "{{ mlx_vlm_model_dir }}/model.safetensors"
+  register: mlx_vlm_model
+
+- name: Download the Bonsai MLX model
+  when: not mlx_vlm_model.stat.exists
+  tags:
+    - pkg
+    - config
+    - mlx_vlm
+  ansible.builtin.command:
+    cmd: >-
+      {{ mlx_vlm_venv }}/bin/hf download {{ mlx_vlm_model_repo }}
+      --local-dir {{ mlx_vlm_model_dir }}
+  environment:
+    HOME: "{{ mlx_vlm_home }}"
+    HF_HOME: "{{ mlx_vlm_cache_dir }}"
+
+- name: Require the Bonsai MLX model to be present
+  tags:
+    - pkg
+    - config
+    - mlx_vlm
+  ansible.builtin.stat:
+    path: "{{ mlx_vlm_model_dir }}/model.safetensors"
+  register: mlx_vlm_model_after
+
+- name: Assert the Bonsai MLX model was downloaded
+  tags:
+    - pkg
+    - config
+    - mlx_vlm
+  ansible.builtin.assert:
+    that: mlx_vlm_model_after.stat.exists
+    fail_msg: >-
+      {{ mlx_vlm_model_dir }}/model.safetensors is missing. Check `hf download`
+      output and that {{ mlx_vlm_model_repo }} is reachable.
+
+- name: Install the bonsai-mlx-server wrapper
+  tags:
+    - config
+    - mlx_vlm
+  ansible.builtin.template:
+    src: bonsai-mlx-server.sh.j2
+    dest: "{{ mlx_vlm_wrapper }}"
+    mode: "0755"
+  notify: Restart mlx-vlm
+
+- name: Install the launchd daemon definition
+  become: true
+  tags:
+    - config
+    - mlx_vlm
+  ansible.builtin.template:
+    src: mlx-server.plist.j2
+    dest: "{{ mlx_vlm_plist }}"
+    owner: root
+    group: wheel
+    mode: "0644"
+  notify: Restart mlx-vlm
+
+- name: Enable and start the MLX server
+  become: true
+  tags:
+    - service
+    - mlx_vlm
+  community.general.launchd:
+    name: "{{ mlx_vlm_service }}"
+    state: started
+    enabled: true
+
+- name: Wait for the OpenAI-compatible API
+  tags:
+    - service
+    - mlx_vlm
+  ansible.builtin.uri:
+    url: "http://127.0.0.1:{{ mlx_vlm_port }}/v1/models"
+    method: GET
+    status_code: 200
+  register: mlx_vlm_health
+  until: mlx_vlm_health.status == 200
+  retries: 60
+  delay: 5
+  changed_when: false

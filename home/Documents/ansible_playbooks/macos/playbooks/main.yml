@@ -4,5 +4,8 @@
   roles:
     - role: homebrew
     - role: pipx
+    # Listed unconditionally: when llama_cpp_enabled is false the role stops the
+    # daemon and deletes the GGUF (tasks/retire.yml) instead of skipping.
     - role: llama_cpp
-      when: llama_cpp_enabled | bool
+    - role: mlx_vlm
+      when: mlx_vlm_enabled | bool

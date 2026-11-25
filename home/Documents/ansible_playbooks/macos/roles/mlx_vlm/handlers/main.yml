@@ -1,0 +1,7 @@
+---
+- name: Restart mlx-vlm
+  become: true
+  community.general.launchd:
+    name: "{{ mlx_vlm_service }}"
+    # `restarted` unloads/loads the job so an updated plist is picked up.
+    state: restarted

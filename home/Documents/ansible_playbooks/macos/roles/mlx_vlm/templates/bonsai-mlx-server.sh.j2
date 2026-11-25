@@ -1,0 +1,14 @@
+#!/bin/sh
+# Headless MLX server for 1-bit Bonsai 27B (PrismML MLX fork, text-only).
+set -eu
+exec "{{ mlx_vlm_venv }}/bin/mlx_lm.server" \
+  --model "{{ mlx_vlm_model_dir }}" \
+  --host {{ mlx_vlm_host }} \
+  --port {{ mlx_vlm_port }} \
+  --temp {{ mlx_vlm_temp }} \
+  --top-p {{ mlx_vlm_top_p }} \
+  --top-k {{ mlx_vlm_top_k }} \
+  --min-p {{ mlx_vlm_min_p }} \
+  --max-tokens {{ mlx_vlm_max_tokens }} \
+  --prompt-cache-bytes {{ mlx_vlm_prompt_cache_bytes }} \
+  --log-level INFO

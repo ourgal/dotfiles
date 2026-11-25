@@ -1,0 +1,27 @@
+---
+- name: Check for the llama.cpp launchd daemon
+  tags:
+    - service
+    - llama_cpp
+  ansible.builtin.stat:
+    path: "{{ llama_cpp_plist }}"
+  register: llama_cpp_plist_stat
+
+- name: Stop and disable the llama.cpp daemon
+  become: true
+  when: llama_cpp_plist_stat.stat.exists
+  tags:
+    - service
+    - llama_cpp
+  community.general.launchd:
+    name: "{{ llama_cpp_service }}"
+    state: stopped
+    enabled: false
+
+- name: Remove the Bonsai GGUF model
+  tags:
+    - config
+    - llama_cpp
+  ansible.builtin.file:
+    path: "{{ llama_cpp_model_path }}"
+    state: absent
