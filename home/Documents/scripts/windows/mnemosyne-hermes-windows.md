@@ -94,12 +94,14 @@ command and the installer refuse to overwrite an existing side venv.
 ### 3. Install the packages into the side venv
 
 ```powershell
-& $SidePython -m pip install "mnemosyne-memory[embeddings]" mnemosyne-hermes
+& $SidePython -m pip install "mnemosyne-memory[embeddings,mcp]" mnemosyne-hermes
 ```
 
-`[embeddings]` is the normal local semantic-search profile. `[all]` adds local-LLM consolidation
-dependencies (`llama-cpp-python` etc.) and on Windows may need MSVC/Build Tools — start with
-`[embeddings]` unless local LLM consolidation is required. `core` alone is not valid for a
+`[embeddings]` is the normal local semantic-search profile. `[mcp]` adds the `mcp` package
+(`mcp>=2.0.0,!=2.1.0`) needed by `mnemosyne mcp`; without it MCP clients (omp, Crush, CodeBuddy,
+pi) fail to start the server. `[all]` adds local-LLM consolidation dependencies
+(`llama-cpp-python` etc.) and on Windows may need MSVC/Build Tools — start with
+`[embeddings,mcp]` unless local LLM consolidation is required. `core` alone is not valid for a
 `mnemosyne-hermes` wrapper install.
 
 This machine currently resolves that to `mnemosyne-memory` 4.0.0 + `mnemosyne-hermes` 0.7.7;
@@ -184,7 +186,7 @@ The packaged Hermes CLI (`hermes mnemosyne ...`) uses the provider DB under
 Upgrade the side venv (do not use a bare system `pip`):
 
 ```powershell
-& $SidePython -m pip install --upgrade "mnemosyne-memory[embeddings]" mnemosyne-hermes
+& $SidePython -m pip install --upgrade "mnemosyne-memory[embeddings,mcp]" mnemosyne-hermes
 & $SideInstaller install --mode wrapper --python $SidePython --force
 # restart Hermes, then: hermes memory status ; & $SideInstaller status
 ```
@@ -216,7 +218,8 @@ yourself — the uninstaller does not decide that for you.
 | "Runtime Python compatibility error … recreate the Mnemosyne environment using Hermes' Python" | The side venv was built with a different Python minor. Recreate `%HERMES_HOME%\.mnemosyne\venv` with the verified `$HermesPython`, reinstall the packages, then re-run the wrapper installer with `--force`. |
 | `hermes memory status` shows provider unavailable | Confirm the plugin is enabled (`hermes plugins list`), `memory.provider` is `mnemosyne`, the side venv has both packages, and restart the session/gateway. |
 | Provider gone after a Hermes update | Wrapper is persistent; refresh with `--force` against the same `$SidePython`, restart Hermes, re-run both status checks. |
-| `No module named pip` from a Hermes-managed venv | Use `uv pip install --python "<hermes-python>" "mnemosyne-memory[embeddings]" mnemosyne-hermes` instead. |
+| MCP client (omp / Crush / CodeBuddy / pi) reports the mnemosyne server failed, or `mnemosyne mcp` prints only `Error: cli_unexpected_failure` | The side venv lacks the `mcp` extra. Install it with `& $SidePython -m pip install "mnemosyne-memory[mcp]"` (the CLI hides the underlying `RuntimeError: MCP not installed`). Confirm with `mnemosyne mcp` answering an `initialize` request over stdio. |
+| `No module named pip` from a Hermes-managed venv | Use `uv pip install --python "<hermes-python>" "mnemosyne-memory[embeddings,mcp]" mnemosyne-hermes` instead. |
 | Provider tools missing from the tool list | Check `hermes memory status` first; do not disable the `memory` toolset. `allow_tool_override: false` is the intended setting. |
 | Embeddings fail after changing endpoint/model | `MNEMOSYNE_EMBEDDING_API_URL` / `MNEMOSYNE_EMBEDDINGS_VIA_API` route text to a remote service; local `[embeddings]` avoids sending memory text off-box. Set `MNEMOSYNE_EMBEDDING_DIM` for unknown API models. |
 
