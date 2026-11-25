@@ -82,6 +82,14 @@ AppData/Local/*
 AppData/Local/hermes/*
 !AppData/Local/hermes/skills/
 !AppData/Local/hermes/skills/**
+{{ if lookPath "hermes" -}}
+# Hermes task-end hook: config + consent + script (Windows home is AppData\Local\hermes).
+!AppData/Local/hermes/config.yaml
+!AppData/Local/hermes/shell-hooks-allowlist.json
+!AppData/Local/hermes/agent-hooks/
+AppData/Local/hermes/agent-hooks/*
+!AppData/Local/hermes/agent-hooks/notify.sh
+{{ end -}}
 
 !.config/
 .config/*

@@ -1,0 +1,10 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- /*
+  On Windows Hermes reads ~/AppData/Local/hermes/config.yaml, NOT ~/.hermes/config.yaml.
+  Only the keys below are managed here (values recommended by the Hermes hook docs).
+  Everything else - model, providers, security, gateway, toolsets - is written by
+  Hermes itself and is preserved as-is. Managed keys win over what is already there.
+*/ -}}
+{{- $command := joinPath .chezmoi.homeDir "AppData" "Local" "hermes" "agent-hooks" "notify.sh" | replace "\\" "/" -}}
+{{- $managed := dict "hooks" (dict "on_session_end" (list (dict "command" $command "timeout" 10))) -}}
+{{ $managed | mergeOverwrite (fromYaml .chezmoi.stdin) | toYaml -}}
