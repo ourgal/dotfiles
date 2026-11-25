@@ -38,3 +38,8 @@ allow = [
 allow = [
     "chezmoi .chezmoiignore apply to externals git-repo .chezmoiexternal ignore patterns",
 ]
+
+# Mnemosyne MCP tools prompt by default; allow them so memory reads/writes are
+# seamless. Global file only — project files cannot grant default = "allow".
+[mcp.mnemosyne]
+default = "allow"

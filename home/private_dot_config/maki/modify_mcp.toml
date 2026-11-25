@@ -1,0 +1,31 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- /*
+  Register Mnemosyne's MCP server for maki. Only the "mnemosyne" entry is
+  managed here; servers the user adds are kept. Maki reads stdio servers from
+  mcp.toml as `[mcp.<name>]` with `command` as a program+args array.
+
+  On Windows use the persistent Hermes side-venv executable so this runs the
+  same Mnemosyne build as the Hermes provider, and point HERMES_HOME at the
+  active Windows home so both agents share one SQLite store. On Linux use the
+  stable wrapper that resolves the catalog plugin's hashed side-venv. Without
+  HERMES_HOME the CLI would fall back to an empty DB.
+*/ -}}
+{{- $data := dict -}}
+{{- if .chezmoi.stdin -}}
+{{- $data = fromToml .chezmoi.stdin -}}
+{{- end -}}
+{{- $mcp := default (dict) (get $data "mcp") -}}
+{{- $hermesHome := "" -}}
+{{- $mnemosyneCmd := "" -}}
+{{- if eq .chezmoi.os "windows" -}}
+{{- $hermesHome = joinPath .chezmoi.homeDir "AppData" "Local" "hermes" -}}
+{{- $mnemosyneCmd = joinPath $hermesHome ".mnemosyne" "venv" "Scripts" "mnemosyne.exe" -}}
+{{- else -}}
+{{- $hermesHome = joinPath .chezmoi.homeDir ".hermes" -}}
+{{- $mnemosyneCmd = joinPath .chezmoi.homeDir ".local" "bin" "mnemosyne" -}}
+{{- end -}}
+{{- $managed := dict "mnemosyne" (dict
+      "command" (list ($mnemosyneCmd | replace "\\" "/") "mcp")
+      "environment" (dict "HERMES_HOME" ($hermesHome | replace "\\" "/"))) -}}
+{{- $_ := set $data "mcp" ($managed | mergeOverwrite $mcp) -}}
+{{ toToml $data }}
