@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 # Hermes shell hook: on_session_end (Windows). Payload arrives on stdin.
-# Rendered by chezmoi: notifier paths are resolved at apply time with lookPath
-# and baked in as forward slashes so Git Bash can execute them directly.
-cat >/dev/null
-{{ if lookPath "noti" }}"{{ lookPath "noti" | replace "\\" "/" }}" -t "Hermes" -m "Task finished" >/dev/null 2>&1 || true
-{{ end }}
-{{ if lookPath "powershell" }}# Two-tone chime, matching the Linux hook's 784/1047 Hz pair.
-"{{ lookPath "powershell" | replace "\\" "/" }}" -NoProfile -Command '[console]::beep(784,120); [console]::beep(1047,180)' >/dev/null 2>&1 || true
-{{ end }}
+# Delegate to the shared task-end notifier so all agents use one implementation.
+cat >/dev/null 2>&1 || true
+"{{ joinPath .chezmoi.homeDir ".local" "bin" "notify-agent-done" | replace "\\" "/" }}" "Hermes" "Task finished" >/dev/null 2>&1 || true
 printf '{}\n'

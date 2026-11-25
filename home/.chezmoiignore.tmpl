@@ -156,6 +156,7 @@ scoop/persist/*
 !.local/bin/
 .local/bin/*
 !.local/bin/mnemosyne
+!.local/bin/notify-agent-done
 
 !.local/share/
 .local/share/*
@@ -204,6 +205,7 @@ Videos/*
 !.local/bin/vid
 !.local/bin/web
 !.local/bin/crush
+!.local/bin/notify-agent-done
 
 {{ if ne "Void" (dig "chezmoi" "osRelease" "name" "" .) -}}
 # runit
@@ -1119,6 +1121,7 @@ AppData/Local/nvim/lua/plugins/*
 !.omp/agent/
 .omp/agent/*
 !.omp/agent/models.yml
+!.omp/agent/mcp.json
 !.omp/agent/extensions/
 .omp/agent/extensions/*
 !.omp/agent/extensions/notify-done.ts
@@ -1131,6 +1134,7 @@ AppData/Local/nvim/lua/plugins/*
 !.pi/agent/
 .pi/agent/*
 !.pi/agent/models.json
+!.pi/agent/mcp.json
 !.pi/agent/settings.json
 {{ end -}}
 # ]]]

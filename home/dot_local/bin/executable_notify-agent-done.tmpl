@@ -9,7 +9,22 @@ set -u
 label="${1:-Agent}"
 message="${2:-Answer complete}"
 
+# Desktop popup: noti (Windows), termux-notification (Android), notify-send (Linux).
 {{ if lookPath "noti" }}"{{ lookPath "noti" | replace "\\" "/" }}" -t "$label" -m "$message" >/dev/null 2>&1 || true
+{{ else }}if command -v termux-notification >/dev/null 2>&1; then
+  termux-notification -t "$label" -c "$message" --sound 2>/dev/null || true
+elif command -v notify-send >/dev/null 2>&1; then
+  notify-send "$label" "$message" 2>/dev/null || true
+fi
 {{ end }}
+# Two-tone chime: powershell beep (Windows), ffmpeg + paplay (Linux).
+# On Termux the termux-notification --sound above supplies the alert.
 {{ if lookPath "powershell" }}"{{ lookPath "powershell" | replace "\\" "/" }}" -NoProfile -Command '[console]::beep(784,120); [console]::beep(1047,180)' >/dev/null 2>&1 || true
+{{ else }}if command -v paplay >/dev/null 2>&1 && command -v ffmpeg >/dev/null 2>&1; then
+  ffmpeg -hide_banner -loglevel error \
+    -f lavfi -i 'sine=frequency=784:duration=0.12' \
+    -f lavfi -i 'sine=frequency=1047:duration=0.18' \
+    -filter_complex '[0:a][1:a]concat=n=2:v=0:a=1[out]' \
+    -map '[out]' -f wav - 2>/dev/null | paplay --volume=65536 2>/dev/null || true
+fi
 {{ end }}

@@ -1,0 +1,28 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- /*
+  Register Mnemosyne's MCP server for omp. Only the "mnemosyne" entry is managed
+  here; servers omp or the user adds are kept. On Windows use the persistent
+  Hermes side-venv executable and point HERMES_HOME at the active Windows home
+  so both agents share one SQLite store. Without HERMES_HOME the CLI would fall
+  back to an empty DB.
+*/ -}}
+{{- $data := dict "mcpServers" (dict) -}}
+{{- if .chezmoi.stdin -}}
+{{- $data = fromJson .chezmoi.stdin -}}
+{{- end -}}
+{{- $servers := default (dict) (get $data "mcpServers") -}}
+{{- $hermesHome := "" -}}
+{{- $mnemosyneCmd := "" -}}
+{{- if eq .chezmoi.os "windows" -}}
+{{- $hermesHome = joinPath .chezmoi.homeDir "AppData" "Local" "hermes" -}}
+{{- $mnemosyneCmd = joinPath $hermesHome ".mnemosyne" "venv" "Scripts" "mnemosyne.exe" -}}
+{{- else -}}
+{{- $hermesHome = joinPath .chezmoi.homeDir ".hermes" -}}
+{{- $mnemosyneCmd = joinPath .chezmoi.homeDir ".local" "bin" "mnemosyne" -}}
+{{- end -}}
+{{- $managed := dict "mnemosyne" (dict
+      "command" ($mnemosyneCmd | replace "\\" "/")
+      "args" (list "mcp")
+      "env" (dict "HERMES_HOME" ($hermesHome | replace "\\" "/"))) -}}
+{{- $_ := set $data "mcpServers" ($managed | mergeOverwrite $servers) -}}
+{{ $data | toJson }}

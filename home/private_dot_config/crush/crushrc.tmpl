@@ -2,6 +2,15 @@ permissions allow view ls grep edit
 
 option request-timeout 0
 
+{{ if lookPath "bash" -}}
+# Task-end notification: delegate to the shared agent notifier.
+option notifications disabled
+hook add TurnEnd \
+  --name "notify-agent-done" \
+  --command '{{ lookPath "bash" | replace "\\" "/" | quote }} {{ joinPath .chezmoi.homeDir ".local" "bin" "notify-agent-done" | replace "\\" "/" | quote }} "Crush" "Answer complete" >/dev/null 2>&1 || true' \
+  --timeout 10
+{{ end -}}
+
 {{ if and (lookPath "tsserver") (lookPath "typescript-language-server") -}}
 lsp add typescript --command "typescript-language-server" --args --stdio
 {{ end -}}

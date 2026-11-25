@@ -103,7 +103,7 @@ set -g @tmux-which-key-xdg-enable 1
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "tmux" "opt" (list "tmux" "plugins" "tmux-power") "os" (list "linux" "android" "darwin")) | trim | atoi -}}
 # --- tmux-power theme ------------------------------------------------------
 set -g @tmux_power_theme 'moon'
-set -g @tmux_power_status_interval 2
+set -g @tmux_power_status_interval 10
 set -g @tmux_power_left_a  ' #{USER}@#h'
 set -g @tmux_power_left_b  ' #S'
 set -g @tmux_power_right_w '#(git -C "#{pane_current_path}" symbolic-ref --quiet --short HEAD 2>/dev/null | sed "s/^/  /")'

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Hermes shell hook: on_session_end. Payload arrives on stdin.
+# Delegate to the shared task-end notifier so all agents use one implementation.
+cat >/dev/null 2>&1 || true
+"{{ joinPath .chezmoi.homeDir ".local" "bin" "notify-agent-done" | replace "\\" "/" }}" "Hermes" "Task finished" >/dev/null 2>&1 || true
+printf '{}\n'
