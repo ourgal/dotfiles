@@ -11,6 +11,60 @@ hook add TurnEnd \
   --timeout 10
 {{ end -}}
 
+{{- /*
+  Register Mnemosyne's MCP server so Crush shares one memory store with the
+  other agents. Windows uses the persistent Hermes side-venv executable;
+  Linux/Termux uses the stable wrapper that resolves the catalog plugin's
+  hashed side-venv. HERMES_HOME points both at the active store, otherwise
+  the CLI falls back to an empty DB.
+*/ -}}
+{{- $hermesHome := "" -}}
+{{- $mnemosyneCmd := "" -}}
+{{- if eq .chezmoi.os "windows" -}}
+{{- $hermesHome = joinPath .chezmoi.homeDir "AppData" "Local" "hermes" -}}
+{{- $mnemosyneCmd = joinPath $hermesHome ".mnemosyne" "venv" "Scripts" "mnemosyne.exe" -}}
+{{- else -}}
+{{- $hermesHome = joinPath .chezmoi.homeDir ".hermes" -}}
+{{- $mnemosyneCmd = joinPath .chezmoi.homeDir ".local" "bin" "mnemosyne" -}}
+{{- end -}}
+mcp add mnemosyne \
+  --command {{ $mnemosyneCmd | replace "\\" "/" | quote }} \
+  --args mcp \
+  --env HERMES_HOME {{ $hermesHome | replace "\\" "/" | quote }}
+
+# Allow Mnemosyne tools so memory reads and writes don't prompt on every call.
+permissions allow \
+  mcp_mnemosyne_mnemosyne_batch \
+  mcp_mnemosyne_mnemosyne_diagnose \
+  mcp_mnemosyne_mnemosyne_export \
+  mcp_mnemosyne_mnemosyne_forget \
+  mcp_mnemosyne_mnemosyne_forget_canonical \
+  mcp_mnemosyne_mnemosyne_get \
+  mcp_mnemosyne_mnemosyne_graph_link \
+  mcp_mnemosyne_mnemosyne_graph_query \
+  mcp_mnemosyne_mnemosyne_hygiene_audit \
+  mcp_mnemosyne_mnemosyne_hygiene_clean \
+  mcp_mnemosyne_mnemosyne_import \
+  mcp_mnemosyne_mnemosyne_invalidate \
+  mcp_mnemosyne_mnemosyne_recall \
+  mcp_mnemosyne_mnemosyne_recall_canonical \
+  mcp_mnemosyne_mnemosyne_remember \
+  mcp_mnemosyne_mnemosyne_remember_canonical \
+  mcp_mnemosyne_mnemosyne_remember_media \
+  mcp_mnemosyne_mnemosyne_scratchpad_clear \
+  mcp_mnemosyne_mnemosyne_scratchpad_read \
+  mcp_mnemosyne_mnemosyne_scratchpad_write \
+  mcp_mnemosyne_mnemosyne_shared_forget \
+  mcp_mnemosyne_mnemosyne_shared_recall \
+  mcp_mnemosyne_mnemosyne_shared_remember \
+  mcp_mnemosyne_mnemosyne_shared_stats \
+  mcp_mnemosyne_mnemosyne_sleep \
+  mcp_mnemosyne_mnemosyne_stats \
+  mcp_mnemosyne_mnemosyne_triple_add \
+  mcp_mnemosyne_mnemosyne_triple_query \
+  mcp_mnemosyne_mnemosyne_update \
+  mcp_mnemosyne_mnemosyne_validate
+
 {{ if and (lookPath "tsserver") (lookPath "typescript-language-server") -}}
 lsp add typescript --command "typescript-language-server" --args --stdio
 {{ end -}}
