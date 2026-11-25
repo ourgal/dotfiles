@@ -2,8 +2,10 @@
 alias:
   - name: reboot
     value: Restart-Computer
+    if: eq .Shell "pwsh"
   - name: poweroff
     value: Stop-Computer
+    if: eq .Shell "pwsh"
   - name: lg
     value: lazygit
 env:

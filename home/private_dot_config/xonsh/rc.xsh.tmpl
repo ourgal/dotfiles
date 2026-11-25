@@ -300,4 +300,10 @@ def _fzf_keybindings(bindings, **kw):
 
 {{ end -}}
 # ]]]
+# [[[ aliae
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "aliae" "opt" (list "shell" "xonsh" "aliae" "enable") "os" (list "linux" "android" "windows")) | trim | atoi -}}
+# Runtime init so env/alias changes in ~/.aliae.yaml need no re-apply.
+execx($(aliae init xonsh --print))
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:

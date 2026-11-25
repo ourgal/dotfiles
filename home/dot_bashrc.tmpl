@@ -2,6 +2,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+{{ $aliae := includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "aliae" "opt" (list "shell" "bash" "aliae" "enable") "os" (list "linux" "android")) | trim | atoi -}}
 # [[[ conda
 # Checked at shell start instead of with chezmoi's lookPath, so installing conda
 # after `chezmoi apply` still takes effect. Above the interactive guard so that
@@ -13,6 +14,7 @@ for _conda_root in "$HOME/miniforge3" "$HOME/miniconda3" "$HOME/anaconda3" /opt/
     fi
 done
 unset _conda_root
+{{ if not $aliae -}}
 # conda.sh only adds condabin, so put the base environment's bin on PATH too.
 if [ -d "$HOME/miniforge3/bin" ]; then
     case ":$PATH:" in
@@ -20,8 +22,10 @@ if [ -d "$HOME/miniforge3/bin" ]; then
         *) PATH="$HOME/miniforge3/bin:$PATH" ;;
     esac
 fi
+{{ end -}}
 # ]]]
 
+{{ if not $aliae -}}
 # [[[ local-bin
 if [ -d "$HOME/.local/bin" ]; then
     case ":$PATH:" in
@@ -30,9 +34,10 @@ if [ -d "$HOME/.local/bin" ]; then
     esac
 fi
 # ]]]
+{{ end -}}
 
 # [[[ aliae
-{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "aliae" "opt" (list "shell" "bash" "aliae" "enable") "os" (list "linux" "android")) | trim | atoi -}}
+{{ if $aliae -}}
 # Runtime init so env/alias changes in ~/.aliae.yaml need no re-apply.
 eval "$(aliae init bash --print)"
 {{ end -}}
