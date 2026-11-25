@@ -25,7 +25,7 @@
 !.agents/skills/
 !.agents/skills/**
 
-# CodeBuddy Code: MCP server config, hooks, and the Mnemosyne hook scripts.
+# CodeBuddy Code: MCP server config, hooks, and the agent hook scripts.
 !.codebuddy/
 .codebuddy/*
 !.codebuddy/mcp.json
@@ -34,6 +34,7 @@
 .codebuddy/hooks/*
 !.codebuddy/hooks/mnemosyne-session-start.sh
 !.codebuddy/hooks/mnemosyne-session-end.sh
+!.codebuddy/hooks/notify-stop.sh
 
 {{ if or (lookPath "bash") (lookPath "git-bash") }}
 !.bashrc

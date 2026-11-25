@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# CodeBuddy Stop hook: desktop popup + two-tone chime when the agent finishes
+# answering, mirroring Hermes' agent-hooks/notify.sh. Failures stay silent.
+# Rendered by chezmoi: notifier paths are resolved at apply time with lookPath
+# and baked in as forward slashes so Git Bash can execute them directly.
+cat >/dev/null 2>&1 || true
+{{ if lookPath "noti" }}"{{ lookPath "noti" | replace "\\" "/" }}" -t "CodeBuddy" -m "Answer complete" >/dev/null 2>&1 || true
+{{ end }}
+{{ if lookPath "powershell" }}# Two-tone chime, matching Hermes' 784/1047 Hz pair.
+"{{ lookPath "powershell" | replace "\\" "/" }}" -NoProfile -Command '[console]::beep(784,120); [console]::beep(1047,180)' >/dev/null 2>&1 || true
+{{ end }}
+printf '{}\n'

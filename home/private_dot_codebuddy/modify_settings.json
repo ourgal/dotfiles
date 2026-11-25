@@ -1,6 +1,6 @@
 {{- /* chezmoi:modify-template */ -}}
 {{- /*
-  Add the Mnemosyne hooks and the memory switches that make Mnemosyne the only
+  Add the Mnemosyne hooks, the task-end notification hook, and the memory switches that make Mnemosyne the only
   automatic memory store, without clobbering keys CodeBuddy manages itself
   (model, trustedDirectories, enabledPlugins, ...) or hooks installed elsewhere.
   Only our own command entries are managed; matching is by the exact command
@@ -13,8 +13,9 @@
 {{- $hooksDir := joinPath .chezmoi.homeDir ".codebuddy" "hooks" -}}
 {{- $startCmd := joinPath $hooksDir "mnemosyne-session-start.sh" | replace "\\" "/" -}}
 {{- $endCmd := joinPath $hooksDir "mnemosyne-session-end.sh" | replace "\\" "/" -}}
+{{- $notifyCmd := joinPath $hooksDir "notify-stop.sh" | replace "\\" "/" -}}
 {{- $hooks := default (dict) (get $data "hooks") -}}
-{{- $entries := dict "SessionStart" $startCmd "SessionEnd" $endCmd -}}
+{{- $entries := dict "SessionStart" $startCmd "SessionEnd" $endCmd "Stop" $notifyCmd -}}
 {{- range $event, $cmd := $entries -}}
 {{- $groups := default (list) (get $hooks $event) -}}
 {{- $present := false -}}
