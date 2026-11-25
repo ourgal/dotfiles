@@ -48,10 +48,10 @@
   };
   handy = {
     pname = "handy";
-    version = "0.10.1";
+    version = "0.10.2";
     src = fetchurl {
-      url = "https://github.com/cjpais/Handy/releases/download/v0.10.1/Handy_0.10.1_amd64.deb";
-      sha256 = "sha256-pZx0HlLd9xSPLsAVkMJnWBO63BJhKbu9QGQmmuIU6SQ=";
+      url = "https://github.com/cjpais/Handy/releases/download/v0.10.2/Handy_0.10.2_amd64.deb";
+      sha256 = "sha256-sAaLa4lxp4QqA2LXre/aekkaIIYFBn7jvxcRdYIApbQ=";
     };
   };
   herdr = {
@@ -72,18 +72,10 @@
   };
   lefthook = {
     pname = "lefthook";
-    version = "2.2.2";
+    version = "2.2.3";
     src = fetchurl {
-      url = "https://github.com/evilmartians/lefthook/releases/download/v2.2.2/lefthook_2.2.2_Linux_x86_64";
-      sha256 = "sha256-T7+J63dIxq7YTYM+4aKe2sSPrmFEaMqagoluwy8oALY=";
-    };
-  };
-  oh-my-pi = {
-    pname = "oh-my-pi";
-    version = "19.1.1";
-    src = fetchurl {
-      url = "https://github.com/can1357/oh-my-pi/releases/download/v19.1.1/omp-linux-x64";
-      sha256 = "sha256-BOlJD5OU2m1oBEdMwuQes9GPjiYhXfSzS91K1MDYpAE=";
+      url = "https://github.com/evilmartians/lefthook/releases/download/v2.2.3/lefthook_2.2.3_Linux_x86_64";
+      sha256 = "sha256-WKx0owz0Vf+l29V0Cqen7vcoiKLdckrm3OXu5dsV3c4=";
     };
   };
   maki = {
@@ -94,12 +86,20 @@
       sha256 = "sha256-iZSL0YNNZZq/1/PllH1xq+RuWxHgYeSVVV4XT2p8Vk4=";
     };
   };
+  oh-my-pi = {
+    pname = "oh-my-pi";
+    version = "19.2.0";
+    src = fetchurl {
+      url = "https://github.com/can1357/oh-my-pi/releases/download/v19.2.0/omp-linux-x64";
+      sha256 = "sha256-dMtkHT/Nwi+j8hQdr6TmbJ/FgdfS1xdT5pAWCYBHLDE=";
+    };
+  };
   pi-coding-agent = {
     pname = "pi-coding-agent";
-    version = "1.6.0";
+    version = "1.6.1";
     src = fetchurl {
-      url = "https://github.com/earendil-works/pi/releases/download/v1.6.0/pi-linux-x64.tar.gz";
-      sha256 = "sha256-73fb5DebO960JaHhuGL6PJFcJVAA3+SWXJju6WpXZdE=";
+      url = "https://github.com/earendil-works/pi/releases/download/v1.6.1/pi-linux-x64.tar.gz";
+      sha256 = "sha256-PH8AcV61EuFlwNqMrTFNc8g7VNW/d0i+Stxhj8g1e2g=";
     };
   };
   rtk = {
