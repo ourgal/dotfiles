@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Shared task-end notification for coding agents. Rendered by chezmoi: notifier
+# paths are resolved at apply time with lookPath and baked in as forward slashes
+# so Git Bash can call them directly. Every agent delegates here so there is a
+# single place to change the message, chime, or notifier.
+# Usage: notify-agent-done <AgentLabel> [Message]
+set -u
+
+label="${1:-Agent}"
+message="${2:-Answer complete}"
+
+{{ if lookPath "noti" }}"{{ lookPath "noti" | replace "\\" "/" }}" -t "$label" -m "$message" >/dev/null 2>&1 || true
+{{ end }}
+{{ if lookPath "powershell" }}"{{ lookPath "powershell" | replace "\\" "/" }}" -NoProfile -Command '[console]::beep(784,120); [console]::beep(1047,180)' >/dev/null 2>&1 || true
+{{ end }}

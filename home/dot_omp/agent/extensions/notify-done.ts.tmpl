@@ -1,0 +1,34 @@
+// oh-my-pi (omp) extension: task-end notification.
+// Rendered by chezmoi: the shared notifier and bash paths are baked in at apply
+// time. Kept thin on purpose — all notification logic lives in
+// ~/.local/bin/notify-agent-done so every agent stays in sync.
+// @ts-nocheck
+
+const NOTIFIER = "{{ joinPath .chezmoi.homeDir ".local" "bin" "notify-agent-done" | replace "\\" "/" }}"
+const BASH = "{{ lookPath "bash" | replace "\\" "/" }}"
+
+export default function (pi) {
+  let lastFired = 0
+  let rootSession = false
+
+  // Only interactive sessions have someone to notify; matches omp's own
+  // agent-state integration guard (ctx.hasUI).
+  pi.on("session_start", (_event, ctx) => {
+    if (ctx?.hasUI === true) rootSession = true
+  })
+
+  function fire() {
+    const now = Date.now()
+    // omp can emit duplicate/late end events (e.g. around auto-retry).
+    if (now - lastFired < 2000) return
+    lastFired = now
+    void pi.exec(BASH, [NOTIFIER, "OMP", "Answer complete"], { timeout: 5000 })
+  }
+
+  pi.on("agent_end", (event) => {
+    if (!rootSession) return
+    // A continuation is already scheduled, so this end is not a settle.
+    if (event?.willContinue === true) return
+    fire()
+  })
+}
