@@ -29,10 +29,6 @@ if status is-interactive
     alias hx="helix"
     {{ end -}}
 
-    {{ if lookPath "xset" -}}
-    alias scroff="xset dpms force off"
-    {{ end -}}
-
     {{ if not $aliae -}}
     # aliae owns PATH when active; keep these only as a fallback without it.
     {{ if joinPath .chezmoi.homeDir ".local" "bin" | stat -}}

@@ -180,12 +180,6 @@ Set-PSReadLineKeyHandler -Key Alt+x `
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
 # ]]]
-# [[[ scroff
-# turn off monitor
-function scroff {
-  (Add-Type '[DllImport("user32.dll")]public static extern int PostMessage(int h,int m,int w,int l);' -Name a -Pas)::PostMessage(-1,0x0112,0xF170,2)
-}
-# ]]]
 # [[[ yt
 {{ if lookPath "yt-dlp" -}}
 function yt {
