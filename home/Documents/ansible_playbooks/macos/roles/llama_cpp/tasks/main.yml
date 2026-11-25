@@ -120,7 +120,8 @@
   ansible.builtin.template:
     src: bonsai-server.sh.j2
     dest: "{{ llama_cpp_wrapper }}"
-    mode: "0755"
+    # 0700: the wrapper embeds the API key when one is configured.
+    mode: "0700"
   notify: Restart llama.cpp
 
 - name: Install the launchd daemon definition
@@ -153,6 +154,7 @@
   ansible.builtin.uri:
     url: "http://127.0.0.1:{{ llama_cpp_port }}/v1/models"
     method: GET
+    headers: "{{ {'Authorization': 'Bearer ' ~ llama_cpp_api_key} if llama_cpp_api_key else {} }}"
     status_code: 200
   register: llama_cpp_health
   until: llama_cpp_health.status == 200

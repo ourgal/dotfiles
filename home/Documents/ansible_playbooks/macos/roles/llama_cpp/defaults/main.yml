@@ -13,8 +13,13 @@ llama_cpp_model_alias: bonsai-2.5-27b
 
 # llama-server has no built-in auth. 0.0.0.0 exposes the API to the whole LAN:
 # protect it with a firewall / reverse proxy, or set 127.0.0.1 for loopback.
+# Set llama_cpp_api_key below to require `Authorization: Bearer <key>` instead.
 llama_cpp_host: 0.0.0.0
 llama_cpp_port: 8080
+# Bearer token for the OpenAI-compatible API. The value lives in
+# inventory/group_vars/secrets.sops.yml (sops+age, auto-loaded by the
+# community.sops vars plugin); empty means no auth.
+llama_cpp_api_key: ""
 llama_cpp_context: 32768
 # One slot on a 16 GiB Mac mini: KV cache grows with context and concurrency.
 llama_cpp_parallel: 1

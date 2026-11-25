@@ -13,4 +13,5 @@ exec "{{ llama_cpp_binary }}" \
   --temp {{ llama_cpp_temp }} \
   --top-p {{ llama_cpp_top_p }} \
   --top-k {{ llama_cpp_top_k }} \
-  --min-p {{ llama_cpp_min_p }}
+  --min-p {{ llama_cpp_min_p }}{% if llama_cpp_api_key | length > 0 %} \
+  --api-key "{{ llama_cpp_api_key }}"{% endif %}
