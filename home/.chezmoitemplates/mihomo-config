@@ -56,7 +56,7 @@ tcp-concurrent: true
 dns:
   enable: true
   use-hosts: true
-  ipv6: true
+  ipv6: false
   default-nameserver: [ 223.5.5.5, 2400:3200::1 ]
   direct-nameserver: [ https://dns.alidns.com/dns-query, https://doh.pub/dns-query ]
   enhanced-mode: fake-ip
