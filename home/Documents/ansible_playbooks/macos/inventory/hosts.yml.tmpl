@@ -1,5 +1,7 @@
 ---
 all:
+  vars:
+    ansible_become_pass: {{ includeTemplate "secrets" . | fromToml | dig "password" "linux" "user" "" }}
   hosts:
     # ssh already resolves this alias (see dot_ssh/config.tmpl).
     macmini:
