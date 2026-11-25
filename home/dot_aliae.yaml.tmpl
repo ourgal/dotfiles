@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://aliae.dev/schema.json
+alias:
+  - name: reboot
+    value: Restart-Computer
+  - name: poweroff
+    value: Stop-Computer
+  - name: lg
+    value: lazygit
+env:
+  - name: EDITOR
+    value: {{ includeTemplate "editor" . | quote }}
+  - name: GOPROXY
+    value: {{ printf "%s,direct" .my.go_proxy | quote }}
+  - name: TERM
+    value: xterm-256color
+    if: eq .Shell "pwsh"
+  - name: shell_startup
+    value: {{ joinPath .chezmoi.homeDir "AppData" "Roaming" "Microsoft" "Windows" "Start Menu" "Programs" "Startup" | quote }}
+    if: eq .OS "windows"
+  - name: CODEBUDDY_CODE_GIT_BASH_PATH
+    value: {{ joinPath .chezmoi.homeDir "scoop" "apps" "git" "current" "bin" "bash.exe" | quote }}
+    if: eq .OS "windows"
+  - name: CARAPACE_BRIDGES
+    value: zsh,fish,bash,inshellisense,powershell
+    if: eq .Shell "pwsh"

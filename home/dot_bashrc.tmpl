@@ -31,6 +31,13 @@ if [ -d "$HOME/.local/bin" ]; then
 fi
 # ]]]
 
+# [[[ aliae
+{{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "aliae" "opt" (list "shell" "bash" "aliae" "enable") "os" (list "linux" "android")) | trim | atoi -}}
+# Runtime init so env/alias changes in ~/.aliae.yaml need no re-apply.
+eval "$(aliae init bash --print)"
+{{ end -}}
+# ]]]
+
 # [[[ ssh-agent
 # The systemd user unit exports this via dbus for apps started by the manager,
 # but shells started from an existing session need to pick it up themselves.

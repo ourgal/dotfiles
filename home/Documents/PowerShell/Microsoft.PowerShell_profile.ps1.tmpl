@@ -1,9 +1,3 @@
-# [[[ variable
-$env:EDITOR = "{{ template "editor" }}"
-$env:shell_startup = {{ joinPath .chezmoi.homeDir "AppData" "Roaming" "Microsoft" "Windows" "Start Menu" "Programs" "Startup" | quote }}
-$env:TERM = "xterm-256color"
-$env:CODEBUDDY_CODE_GIT_BASH_PATH = {{ joinPath .chezmoi.homeDir "scoop" "apps" "git" "current" "bin" "bash.exe" | quote }}
-# ]]]
 # [[[ sfsu
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "sfsu" "opt" (list "shell" "pwsh" "sfsu" "enable") "os" "windows") | atoi -}}
 {{ output "sfsu" "hook" }}
@@ -253,7 +247,6 @@ if (Test-Path($ChocolateyProfile)) {
 # [[[ carapace
 {{ if lookPath "carapace" -}}
 # carapace
-$env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense,powershell' # optional
 Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 # Helix has no flag completions; carapace only lists files for hx/helix while

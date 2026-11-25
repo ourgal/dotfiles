@@ -1,7 +1,12 @@
 if status is-interactive
     set -g fish_greeting
-    set -gx GOPROXY "https://goproxy.io,direct"
-    set -gx EDITOR "{{ includeTemplate "editor" }}"
+
+    # [[[ aliae
+    {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "aliae" "opt" (list "shell" "fish" "aliae" "enable") "os" (list "linux" "android")) | trim | atoi -}}
+    # Runtime init so env/alias changes in ~/.aliae.yaml need no re-apply.
+    aliae init fish --print | source
+    {{ end -}}
+    # ]]]
 
     # kitty's shell integration resets the cursor to its configured shape
     # after each command, but it does not do so when the shell runs inside
