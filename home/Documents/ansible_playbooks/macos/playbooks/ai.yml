@@ -1,0 +1,6 @@
+---
+- name: Configure the macOS AI server
+  hosts: ai_servers
+  roles:
+    - role: llama_cpp
+      when: llama_cpp_enabled | default(true) | bool

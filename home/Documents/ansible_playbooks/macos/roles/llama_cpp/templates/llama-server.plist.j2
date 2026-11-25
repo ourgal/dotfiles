@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>{{ llama_cpp_service }}</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>{{ llama_cpp_wrapper }}</string>
+  </array>
+  <key>UserName</key>
+  <string>{{ llama_cpp_user }}</string>
+  <key>GroupName</key>
+  <string>{{ llama_cpp_group }}</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>HOME</key>
+    <string>{{ llama_cpp_home }}</string>
+  </dict>
+  <key>StandardOutPath</key>
+  <string>{{ llama_cpp_log_dir }}/llama-server.log</string>
+  <key>StandardErrorPath</key>
+  <string>{{ llama_cpp_log_dir }}/llama-server.err.log</string>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+</dict>
+</plist>

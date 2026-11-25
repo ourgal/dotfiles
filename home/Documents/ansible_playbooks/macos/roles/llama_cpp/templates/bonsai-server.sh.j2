@@ -1,0 +1,16 @@
+#!/bin/sh
+# Headless llama.cpp server for Ternary Bonsai 2.5 27B (Q2_0, stock llama.cpp).
+set -eu
+exec "{{ llama_cpp_binary }}" \
+  --model "{{ llama_cpp_model_path }}" \
+  --alias "{{ llama_cpp_model_alias }}" \
+  --host {{ llama_cpp_host }} \
+  --port {{ llama_cpp_port }} \
+  --ctx-size {{ llama_cpp_context }} \
+  --parallel {{ llama_cpp_parallel }} \
+  --n-gpu-layers {{ llama_cpp_n_gpu_layers }} \
+  --flash-attn {{ llama_cpp_flash_attn | ternary('on', 'off') }} \
+  --temp {{ llama_cpp_temp }} \
+  --top-p {{ llama_cpp_top_p }} \
+  --top-k {{ llama_cpp_top_k }} \
+  --min-p {{ llama_cpp_min_p }}

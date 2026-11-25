@@ -1,0 +1,7 @@
+---
+- name: Restart llama.cpp
+  become: true
+  community.general.launchd:
+    name: "{{ llama_cpp_service }}"
+    # `restarted` unloads/loads the job so an updated plist is picked up.
+    state: restarted
