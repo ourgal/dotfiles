@@ -260,6 +260,23 @@ def test_choose_keeps_hevc_when_h264_could_cover_the_rest() -> None:
     assert [c.codec for c in plan.torrents] == ["hevc"]
 
 
+def test_choose_never_takes_h264_season_pack() -> None:
+    # The H.264 pack would cover episode 12, but a season pack in H.264 is
+    # never downloaded: only a single-episode H.264 release may fill the gap.
+    hevc = _candidate("[DKB] Show 1-11 (HEVC 1080p)", set(range(1, 12)), group="DKB")
+    pack = _candidate("[ToonsHub] Show S01 (1080p H.264)", set(range(1, 13)),
+                      group="ToonsHub", codec="h264")
+    assert pick.choose([hevc, pack], total=12) is None
+    assert pick.missing_episodes([hevc, pack], total=12) == [12]
+
+    single = _candidate("[ToonsHub] Show - 12 (1080p H.264)", {12},
+                        group="ToonsHub", codec="h264")
+    plan = pick.choose([hevc, pack, single], total=12)
+    assert plan is not None
+    assert [c.codec for c in plan.torrents] == ["hevc", "h264"]
+    assert plan.torrents[1].episodes == {12}
+
+
 def test_choose_prefers_one_group_per_episode() -> None:
     dkb = _candidate("[DKB] Show Vol.1 (HEVC)", {1, 2, 3}, group="DKB", seeders=99)
     ember = _candidate("[EMBER] Show Vol.1-2 (HEVC)", {1, 2, 3, 4}, group="EMBER")

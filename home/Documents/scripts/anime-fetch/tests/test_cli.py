@@ -263,6 +263,15 @@ def test_build_candidates_respects_probe_limit() -> None:
     assert len([c for c in candidates if c.episodes]) == 2
 
 
+def test_build_candidates_skips_h264_season_pack() -> None:
+    name = "[ToonsHub] Show S01 1080p WEB-DL AAC2.0 H.264"
+    files = [f"Show - {i:02d} [1080p H.264].mkv" for i in range(1, 13)]
+    client = StubClient({name: files})
+    candidates = cli.build_candidates(cast(cli.Seanime, client), [_torrent(name, batch=True)],
+                                      total=12, max_probes=5, verbose=False)
+    assert candidates == []
+
+
 def test_build_candidates_ignores_out_of_range_single() -> None:
     client = StubClient({})
     torrents = [_torrent("Show - 99 [HEVC].mkv")]

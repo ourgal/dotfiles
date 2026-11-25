@@ -90,6 +90,9 @@ def build_candidates(
         name = torrent.get("name") or ""
         codec = pick.codec_of(name, any_codec=True) or ""
         if pick.is_batch(torrent):
+            if codec == "h264":
+                # An H.264 season pack is never downloaded; skip the probe too.
+                continue
             batches.append(pick.Candidate(torrent=torrent, codec=codec))
         else:
             key = (torrent.get("infoHash") or name).lower()

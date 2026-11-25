@@ -8,7 +8,8 @@ Standard workflow (matches the user's rules):
      Judas-style batch, then DKB/EMBER/ASW-style x265 groups, then AV1;
   5. if any episode has no acceptable release, retry the search once with any
      1080p codec (H.264 included) and use those only for the uncovered
-     episodes, so a season can finish as a mixed plan;
+     episodes, so a season can finish as a mixed plan. H.264 is taken only as a
+     single-episode fill; an H.264 season pack is never downloaded;
   6. if even that leaves an episode uncovered, download nothing;
   7. otherwise add the torrents and put the title on the AniList Planning list.
 

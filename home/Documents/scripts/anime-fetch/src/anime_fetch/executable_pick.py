@@ -7,6 +7,7 @@ Rules (the user's standard):
     groups, then anything AV1;
   * H.264 is a last-resort fill only (``any_codec=True``) for episodes no
     HEVC/AV1 release covers, so a season can still finish as a mixed plan;
+  * an H.264 season pack is never downloaded: H.264 is single-episode only;
   * no acceptable release for even one episode => download nothing.
 """
 
@@ -236,6 +237,11 @@ class Plan:
         return min((c.seeders for c in self.torrents), default=0)
 
 
+def fill_usable(cand: Candidate) -> bool:
+    """H.264 is a per-episode gap filler only; its season packs are never taken."""
+    return not (cand.codec == "h264" and len(cand.episodes) > 1)
+
+
 def choose(candidates: list[Candidate], total: int, *, wanted: set[int] | None = None) -> Plan | None:
     """Cover every wanted episode, preferring better groups and no overlap.
 
@@ -245,7 +251,7 @@ def choose(candidates: list[Candidate], total: int, *, wanted: set[int] | None =
     out-of-range files when the candidates were built.
     """
     target = set(range(1, total + 1)) if wanted is None else set(wanted)
-    pool = [cand for cand in candidates if cand.episodes & target]
+    pool = [cand for cand in candidates if cand.episodes & target and fill_usable(cand)]
     if not pool:
         return None
     for episode in target:
@@ -283,6 +289,7 @@ def missing_episodes(
 ) -> list[int]:
     covered: set[int] = set()
     for cand in candidates:
-        covered |= cand.episodes
+        if fill_usable(cand):
+            covered |= cand.episodes
     target = set(range(1, total + 1)) if wanted is None else set(wanted)
     return sorted(target - covered)
