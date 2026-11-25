@@ -1,0 +1,28 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- /*
+  Hermes silently skips configured shell hooks unless the (event, command) pair is
+  approved in this file. Mirror the Windows hook setup so the Linux notify.sh hook
+  actually fires. Manage only our own approval entry; any other approvals Hermes
+  records are preserved. Matching uses event + command only, so no mtime field is
+  written (chezmoi may rewrite the script later).
+*/ -}}
+{{- $command := joinPath .chezmoi.homeDir ".hermes" "agent-hooks" "notify.sh" -}}
+{{- $data := dict "approvals" (list) -}}
+{{- if .chezmoi.stdin -}}
+{{- $data = fromJson .chezmoi.stdin -}}
+{{- end -}}
+{{- $approvals := default (list) (get $data "approvals") -}}
+{{- /* The Linux hook is only registered on Linux; don't approve a stray command elsewhere. */ -}}
+{{- if eq .chezmoi.os "linux" -}}
+{{- $present := false -}}
+{{- range $approvals -}}
+{{- if and (eq (dig "event" "" .) "on_session_end") (eq (dig "command" "" .) $command) -}}
+{{- $present = true -}}
+{{- end -}}
+{{- end -}}
+{{- if not $present -}}
+{{- $approvals = append $approvals (dict "event" "on_session_end" "command" $command) -}}
+{{- end -}}
+{{- end -}}
+{{- $_ := set $data "approvals" $approvals -}}
+{{ $data | toJson }}
