@@ -1,5 +1,6 @@
 ---
-llama_cpp_enabled: true
+# Opt in per host in the inventory (macmini); main.yml gates the role on it.
+llama_cpp_enabled: false
 
 # Backend: llama.cpp's headless `llama-server` (OpenAI-compatible HTTP API).
 # PrismML's MLX pack has no HTTP server, and its PTQ1_0/PQ2_0 GGUF packs need

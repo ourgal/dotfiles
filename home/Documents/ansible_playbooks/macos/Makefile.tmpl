@@ -1,7 +1,1 @@
 {{ includeTemplate "ansible_playbook_makefile" . -}}
-
-AI_PLAYBOOK := playbooks/ai.yml
-
-ai:
-	$(ANSIBLE_ENV) ansible-playbook -i $(INVENTORY) $(AI_PLAYBOOK) $(if $(TAGS),--tags $(TAGS),)
-

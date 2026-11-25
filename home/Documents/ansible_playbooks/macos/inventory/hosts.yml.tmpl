@@ -5,10 +5,8 @@ all:
   hosts:
     note20:
     m6:
-
-ai_servers:
-  hosts:
     macmini:
-      # TODO: set this to the Mac mini's IP or hostname before running `make ai`.
+      # TODO: set this to the Mac mini's IP or hostname before running `make all`.
       ansible_host: CHANGE_ME
       ansible_ssh_port: 22
+      llama_cpp_enabled: true
