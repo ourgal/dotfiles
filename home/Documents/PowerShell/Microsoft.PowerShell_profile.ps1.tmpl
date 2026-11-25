@@ -7,7 +7,7 @@
 {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" "aliae" "opt" (list "shell" "pwsh" "aliae" "enable") "os" "windows") | trim | atoi -}}
 # Runtime init on purpose: `chezmoi apply` may render this profile before
 # ~/.aliae.yaml exists, and apply-time output would bake the error into it.
-aliae init pwsh --print | Invoke-Expression
+Invoke-Expression (aliae init pwsh --print | Out-String)
 {{ end -}}
 # ]]]
 # [[[ PSReadLine
