@@ -4,8 +4,8 @@
   roles:
     - role: homebrew
     - role: pipx
-    # Listed unconditionally: when llama_cpp_enabled is false the role stops the
-    # daemon and deletes the GGUF (tasks/retire.yml) instead of skipping.
-    - role: llama_cpp
+    # Both AI roles are listed unconditionally: disabling one must still run its
+    # retire path instead of skipping it. Order matters — mlx_vlm frees port
+    # 8080 before llama_cpp binds it.
     - role: mlx_vlm
-      when: mlx_vlm_enabled | bool
+    - role: llama_cpp

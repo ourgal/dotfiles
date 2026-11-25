@@ -1,0 +1,27 @@
+---
+- name: Check for the MLX launchd daemon
+  tags:
+    - service
+    - mlx_vlm
+  ansible.builtin.stat:
+    path: "{{ mlx_vlm_plist }}"
+  register: mlx_vlm_plist_stat
+
+- name: Stop and disable the MLX daemon
+  become: true
+  when: mlx_vlm_plist_stat.stat.exists
+  tags:
+    - service
+    - mlx_vlm
+  community.general.launchd:
+    name: "{{ mlx_vlm_service }}"
+    state: stopped
+    enabled: false
+
+- name: Remove the Bonsai MLX model
+  tags:
+    - config
+    - mlx_vlm
+  ansible.builtin.file:
+    path: "{{ mlx_vlm_model_dir }}"
+    state: absent

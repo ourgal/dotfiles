@@ -57,9 +57,9 @@
     # Newer llama.cpp releases may print a semver instead of bNNNNN; in that
     # case the check below is skipped and the API health check is authoritative.
     llama_cpp_build_number: >-
-      {{ llama_cpp_version.stdout | regex_findall('b([0-9]{4,6})') | first | default('') }}
+      {{ llama_cpp_version.stdout | regex_findall('b([0-9]{4,7})') | first | default('') }}
 
-- name: Require a build with the Hadamard activation runtime
+- name: Require a build with bailingmoe3 support
   when: llama_cpp_build_number | length > 0
   tags:
     - pkg
@@ -68,9 +68,10 @@
     that: llama_cpp_build_number | int >= (llama_cpp_min_version[1:] | int)
     fail_msg: >-
       llama.cpp {{ llama_cpp_build_number }} is older than {{ llama_cpp_min_version }}.
-      Q2_0 weights load silently as garbage on older builds. Run `brew upgrade llama.cpp`.
+      Ling 3.0 Tiny's bailingmoe3 architecture is unsupported on older builds and
+      the GGUF can load as garbage. Run `brew upgrade llama.cpp`.
 
-- name: Check whether the Bonsai GGUF model is present
+- name: Check whether the Ling GGUF model is present
   tags:
     - pkg
     - config
@@ -79,7 +80,7 @@
     path: "{{ llama_cpp_model_path }}"
   register: llama_cpp_model
 
-- name: Download the Bonsai GGUF model
+- name: Download the Ling GGUF model
   when: not llama_cpp_model.stat.exists
   tags:
     - pkg
@@ -93,7 +94,7 @@
     HOME: "{{ llama_cpp_home }}"
     HF_HOME: "{{ llama_cpp_cache_dir }}"
 
-- name: Require the Bonsai GGUF model to be present
+- name: Require the Ling GGUF model to be present
   tags:
     - pkg
     - config
@@ -102,7 +103,7 @@
     path: "{{ llama_cpp_model_path }}"
   register: llama_cpp_model_after
 
-- name: Assert the Bonsai GGUF model was downloaded
+- name: Assert the Ling GGUF model was downloaded
   tags:
     - pkg
     - config
@@ -113,12 +114,29 @@
       {{ llama_cpp_model_path }} is missing. Check `hf download` output and
       that {{ llama_cpp_model_repo }} is reachable.
 
-- name: Install the bonsai-server wrapper
+- name: Remove retired GGUF models
+  tags:
+    - config
+    - llama_cpp
+  ansible.builtin.file:
+    path: "{{ llama_cpp_model_dir }}/{{ item }}"
+    state: absent
+  loop: "{{ llama_cpp_retired_models }}"
+
+- name: Remove the retired bonsai-server wrapper
+  tags:
+    - config
+    - llama_cpp
+  ansible.builtin.file:
+    path: "{{ llama_cpp_home }}/.local/bin/bonsai-server"
+    state: absent
+
+- name: Install the ling-server wrapper
   tags:
     - config
     - llama_cpp
   ansible.builtin.template:
-    src: bonsai-server.sh.j2
+    src: ling-server.sh.j2
     dest: "{{ llama_cpp_wrapper }}"
     # 0700: the wrapper embeds the API key when one is configured.
     mode: "0700"
@@ -161,3 +179,14 @@
   retries: 60
   delay: 5
   changed_when: false
+
+- name: Assert the configured model is the one being served
+  tags:
+    - service
+    - llama_cpp
+  ansible.builtin.assert:
+    that:
+      - "llama_cpp_model_alias in (llama_cpp_health.json.data | default([]) | map(attribute='id') | list)"
+    fail_msg: >-
+      Port {{ llama_cpp_port }} is not serving the {{ llama_cpp_model_alias }} alias.
+      Another server (e.g. mlx_vlm) may still own the port.

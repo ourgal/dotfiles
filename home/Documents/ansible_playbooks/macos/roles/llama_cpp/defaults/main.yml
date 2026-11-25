@@ -1,15 +1,20 @@
 ---
-# Off on macmini (inventory host var): the role then runs only its retire path
-# (stop the daemon, delete the GGUF). Set true to restore the llama.cpp server.
+# Enabled by default. The macmini inventory no longer overrides this: the
+# llama.cpp server is the active backend on port 8080.
 llama_cpp_enabled: true
 
 # Backend: llama.cpp's headless `llama-server` (OpenAI-compatible HTTP API).
-# PrismML's MLX pack has no HTTP server, and its PTQ1_0/PQ2_0 GGUF packs need
-# the PrismML fork. Q2_0 is the portable pack: stock llama.cpp >= b11556.
-llama_cpp_model_repo: prism-ml/Ternary-Bonsai-2.5-27B-GGUF
-llama_cpp_model_file: Ternary-Bonsai-2.5-27B-Q2_0.gguf
-llama_cpp_min_version: b11556
-llama_cpp_model_alias: bonsai-2.5-27b
+# Ling 3.0 Tiny is a bailingmoe3 (hybrid KDA/MLA + sparse MoE) model; support
+# landed in llama.cpp b11772. Older builds can load the GGUF as garbage.
+llama_cpp_model_repo: inclusionAI/Ling-3.0-tiny-GGUF
+llama_cpp_model_file: Ling-3.0-tiny-Q4_K_M.gguf
+llama_cpp_min_version: b11772
+llama_cpp_model_alias: ling-3.0-tiny
+
+# GGUF left over from the retired Bonsai role; removed on both serve and retire
+# so only the active model remains in the model directory.
+llama_cpp_retired_models:
+  - Ternary-Bonsai-2.5-27B-Q2_0.gguf
 
 # llama-server has no built-in auth. 0.0.0.0 exposes the API to the whole LAN:
 # protect it with a firewall / reverse proxy, or set 127.0.0.1 for loopback.
@@ -24,8 +29,12 @@ llama_cpp_context: 32768
 # One slot on a 16 GiB Mac mini: KV cache grows with context and concurrency.
 llama_cpp_parallel: 1
 llama_cpp_n_gpu_layers: 99
-llama_cpp_flash_attn: true
-# Model card presets. min_p must be 0 (llama.cpp defaults to 0.05).
+# `auto` lets llama.cpp skip flash-attn on attention paths that do not support
+# it (Ling 3.0 Tiny mixes KDA and MLA layers).
+llama_cpp_flash_attn: auto
+# The GGUF bundles a chat template used for thinking mode and tool calling.
+llama_cpp_jinja: true
+# Model-card sampling. min_p must be 0 (llama.cpp defaults to 0.05).
 llama_cpp_temp: 1.0
 llama_cpp_top_p: 0.95
 llama_cpp_top_k: 20
@@ -39,7 +48,7 @@ llama_cpp_model_dir: "{{ llama_cpp_prefix }}/models"
 llama_cpp_model_path: "{{ llama_cpp_model_dir }}/{{ llama_cpp_model_file }}"
 llama_cpp_cache_dir: "{{ llama_cpp_prefix }}/cache"
 llama_cpp_log_dir: "{{ llama_cpp_prefix }}/logs"
-llama_cpp_wrapper: "{{ llama_cpp_home }}/.local/bin/bonsai-server"
+llama_cpp_wrapper: "{{ llama_cpp_home }}/.local/bin/ling-server"
 
 llama_cpp_binary: /opt/homebrew/bin/llama-server
 llama_cpp_cli_binary: /opt/homebrew/bin/llama-cli

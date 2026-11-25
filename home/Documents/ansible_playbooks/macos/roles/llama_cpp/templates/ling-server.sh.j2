@@ -1,5 +1,5 @@
 #!/bin/sh
-# Headless llama.cpp server for Ternary Bonsai 2.5 27B (Q2_0, stock llama.cpp).
+# Headless llama.cpp server for Ling 3.0 Tiny (Q4_K_M, first-party inclusionAI GGUF).
 set -eu
 exec "{{ llama_cpp_binary }}" \
   --model "{{ llama_cpp_model_path }}" \
@@ -9,9 +9,10 @@ exec "{{ llama_cpp_binary }}" \
   --ctx-size {{ llama_cpp_context }} \
   --parallel {{ llama_cpp_parallel }} \
   --n-gpu-layers {{ llama_cpp_n_gpu_layers }} \
-  --flash-attn {{ llama_cpp_flash_attn | ternary('on', 'off') }} \
+  --flash-attn {{ llama_cpp_flash_attn }} \
   --temp {{ llama_cpp_temp }} \
   --top-p {{ llama_cpp_top_p }} \
   --top-k {{ llama_cpp_top_k }} \
-  --min-p {{ llama_cpp_min_p }}{% if llama_cpp_api_key | length > 0 %} \
+  --min-p {{ llama_cpp_min_p }}{% if llama_cpp_jinja | bool %} \
+  --jinja{% endif %}{% if llama_cpp_api_key | length > 0 %} \
   --api-key "{{ llama_cpp_api_key }}"{% endif %}
