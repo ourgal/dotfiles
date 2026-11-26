@@ -2,6 +2,12 @@
 - name: Configure macos
   hosts: all
   roles:
+    # Run first: the removal reboots into a Mac that no longer offers NixOS.
+    - role: nixos_uninstall
+      when: nixos_uninstall_enabled | bool
+      tags:
+        - nix
+        - uninstall
     - role: homebrew
     - role: pipx
     # Both AI roles are listed unconditionally: disabling one must still run its

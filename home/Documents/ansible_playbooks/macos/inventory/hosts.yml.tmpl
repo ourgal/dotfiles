@@ -5,5 +5,10 @@ all:
   hosts:
     # ssh already resolves this alias (see dot_ssh/config.tmpl).
     macmini:
-      # Port 8080 belongs to llama.cpp (Ling 3.0 Tiny Q4_K_M); retire MLX.
+      # AI servers disabled: no model is served on port 8080. The llama_cpp
+      # role's retire path stops/disables the launchd daemon and removes the GGUF.
       mlx_vlm_enabled: false
+      llama_cpp_enabled: false
+      # Delete the NixOS partitions of the dual-boot install and give the space
+      # back to macOS.
+      nixos_uninstall_enabled: true

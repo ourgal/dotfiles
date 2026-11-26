@@ -1,6 +1,6 @@
 ---
-# Enabled by default. The macmini inventory no longer overrides this: the
-# llama.cpp server is the active backend on port 8080.
+# Enabled by default. The macmini inventory overrides this to false so the
+# role retires the server there (stops the daemon and removes the GGUF).
 llama_cpp_enabled: true
 
 # Backend: llama.cpp's headless `llama-server` (OpenAI-compatible HTTP API).

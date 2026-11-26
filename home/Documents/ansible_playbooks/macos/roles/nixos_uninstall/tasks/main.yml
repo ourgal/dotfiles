@@ -1,0 +1,156 @@
+---
+# The macOS side of a dual-boot NixOS install: there is no Nix package manager
+# to remove, only the NixOS partitions and the boot picker entry pointing at the
+# stub. Steps and order come from the nixos-apple-silicon removal guide; skipping
+# the final bless leaves a Mac whose next boot asks for another OS.
+- name: Read the partition table
+  ansible.builtin.command: diskutil list -plist
+  register: nixos_uninstall_plist
+  changed_when: false
+  check_mode: false
+
+# diskutil speaks XML plist; plutil turns it into something from_json accepts.
+# "--" protects the "-" that means stdin.
+- name: Convert the partition table to JSON
+  ansible.builtin.command:
+    argv: [plutil, -convert, json, -o, -, --, -]
+    stdin: "{{ nixos_uninstall_plist.stdout }}"
+  register: nixos_uninstall_json
+  changed_when: false
+  check_mode: false
+
+- name: Read the partition layout of {{ nixos_uninstall_disk }}
+  ansible.builtin.set_fact:
+    nixos_uninstall_layout: >-
+      {{ (nixos_uninstall_json.stdout | from_json).AllDisksAndPartitions
+         | selectattr('DeviceIdentifier', 'equalto', nixos_uninstall_disk)
+         | first | default({}) }}
+  check_mode: false
+
+- name: Fail when the disk is not present
+  ansible.builtin.assert:
+    that: nixos_uninstall_layout.Partitions is defined
+    fail_msg: >-
+      {{ nixos_uninstall_disk }} is not in `diskutil list`; set
+      nixos_uninstall_disk to the disk that holds the NixOS install.
+    quiet: true
+
+- name: Find the NixOS root and EFI partitions
+  ansible.builtin.set_fact:
+    nixos_uninstall_linux: >-
+      {{ nixos_uninstall_layout.Partitions
+         | selectattr('Content', 'defined')
+         | selectattr('Content', 'match', '^Linux')
+         | list }}
+    nixos_uninstall_efi: >-
+      {{ nixos_uninstall_layout.Partitions
+         | selectattr('Content', 'defined')
+         | selectattr('Content', 'equalto', 'EFI')
+         | selectattr('VolumeName', 'defined')
+         | selectattr('VolumeName', 'search', '(?i)nixos')
+         | list }}
+  check_mode: false
+
+# One EFI system partition per OS on Apple Silicon, and the Asahi installer puts
+# the stub macOS container directly in front of the NixOS one. Size is capped so
+# a mislabelled ESP can never make this delete a real macOS container.
+- name: Find the NixOS stub APFS container
+  ansible.builtin.set_fact:
+    nixos_uninstall_stub: >-
+      {%- set found = namespace(id='') -%}
+      {%- for part in nixos_uninstall_layout.Partitions -%}
+      {%-   if loop.index0 > 0
+              and part.Content | default('') == 'EFI'
+              and 'nixos' in (part.VolumeName | default('') | lower) -%}
+      {%-     set prev = nixos_uninstall_layout.Partitions[loop.index0 - 1] -%}
+      {%-     if prev.Content | default('') == 'Apple_APFS'
+              and (prev.Size | int) < 8589934592 -%}
+      {%-       set found.id = prev.DeviceIdentifier -%}
+      {%-     endif -%}
+      {%-   endif -%}
+      {%- endfor -%}
+      {{ found.id }}
+  check_mode: false
+
+- name: Find the macOS APFS container
+  ansible.builtin.set_fact:
+    nixos_uninstall_macos_store: >-
+      {{ nixos_uninstall_layout.Partitions
+         | selectattr('Content', 'defined')
+         | selectattr('Content', 'equalto', 'Apple_APFS')
+         | rejectattr('DeviceIdentifier', 'equalto', nixos_uninstall_stub | trim)
+         | sort(attribute='Size')
+         | map(attribute='DeviceIdentifier')
+         | list | last | default('') }}
+  check_mode: false
+
+- name: Decide whether anything is left to remove
+  ansible.builtin.set_fact:
+    nixos_uninstall_removed: >-
+      {{ (nixos_uninstall_linux + nixos_uninstall_efi) | length > 0
+         or nixos_uninstall_stub | trim | length > 0 }}
+  check_mode: false
+
+- name: Show the removal plan
+  ansible.builtin.debug:
+    msg:
+      erase: "{{ (nixos_uninstall_linux + nixos_uninstall_efi) | map(attribute='DeviceIdentifier') | list }}"
+      stub_container: "{{ nixos_uninstall_stub | trim }}"
+      grow: "{{ nixos_uninstall_macos_store }}"
+
+- name: Erase the NixOS root and EFI partitions
+  become: true
+  ansible.builtin.command:
+    argv: [diskutil, eraseVolume, free, free, "{{ item.DeviceIdentifier }}"]
+  loop: "{{ nixos_uninstall_linux + nixos_uninstall_efi }}"
+  loop_control:
+    label: "{{ item.DeviceIdentifier }}"
+  changed_when: true
+
+- name: Delete the NixOS stub APFS container
+  become: true
+  ansible.builtin.command:
+    argv: [diskutil, apfs, deleteContainer, "{{ nixos_uninstall_stub | trim }}"]
+  when: nixos_uninstall_stub | trim | length > 0
+  changed_when: true
+
+# Takes minutes on a big disk; the answer is the physical store of the container
+# that is left, not the deleted stub.
+- name: Grow the macOS APFS container into the freed space
+  become: true
+  ansible.builtin.command:
+    argv: [diskutil, apfs, resizeContainer, "{{ nixos_uninstall_macos_store }}", "0"]
+  when:
+    - nixos_uninstall_removed | bool
+    - nixos_uninstall_macos_store | length > 0
+  changed_when: true
+
+# CLI form of System Settings > Startup Disk. Without it the next boot lands in
+# the boot picker instead of macOS.
+- name: Make macOS the startup disk
+  become: true
+  ansible.builtin.command:
+    argv: [bless, --mount, /, --setBoot]
+  when: nixos_uninstall_removed | bool
+  register: nixos_uninstall_bless
+  changed_when: true
+  failed_when: false
+
+- name: Report a failed bless
+  ansible.builtin.debug:
+    msg: >-
+      `bless --setBoot` failed ({{ nixos_uninstall_bless.stderr | default('') | trim }}).
+      Before rebooting, open System Settings > Startup Disk, select the macOS
+      installation and click Restart — otherwise the machine boots into the boot
+      picker with no NixOS entry.
+  when:
+    - nixos_uninstall_removed | bool
+    - nixos_uninstall_bless.rc | default(0) != 0
+
+- name: Report a disk with no NixOS partitions
+  ansible.builtin.debug:
+    msg: >-
+      No NixOS partitions on {{ nixos_uninstall_disk }}: expected an
+      "EFI - NIXOS" partition, a Linux root partition and a small stub APFS
+      container in front of it. Check `diskutil list {{ nixos_uninstall_disk }}`.
+  when: not (nixos_uninstall_removed | bool)
