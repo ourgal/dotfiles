@@ -72,10 +72,10 @@
   };
   lefthook = {
     pname = "lefthook";
-    version = "2.2.3";
+    version = "2.2.4";
     src = fetchurl {
-      url = "https://github.com/evilmartians/lefthook/releases/download/v2.2.3/lefthook_2.2.3_Linux_x86_64";
-      sha256 = "sha256-WKx0owz0Vf+l29V0Cqen7vcoiKLdckrm3OXu5dsV3c4=";
+      url = "https://github.com/evilmartians/lefthook/releases/download/v2.2.4/lefthook_2.2.4_Linux_x86_64";
+      sha256 = "sha256-d/0aa4Q9un5sYJ1TyeOLYVAQRb8KUkSJWpW2Xc6yVe4=";
     };
   };
   maki = {
@@ -88,10 +88,10 @@
   };
   oh-my-pi = {
     pname = "oh-my-pi";
-    version = "19.2.0";
+    version = "19.2.1";
     src = fetchurl {
-      url = "https://github.com/can1357/oh-my-pi/releases/download/v19.2.0/omp-linux-x64";
-      sha256 = "sha256-dMtkHT/Nwi+j8hQdr6TmbJ/FgdfS1xdT5pAWCYBHLDE=";
+      url = "https://github.com/can1357/oh-my-pi/releases/download/v19.2.1/omp-linux-x64";
+      sha256 = "sha256-6Lk3+b8CO6oUe90wCtVCGvCm74sfNQxHqak9X8qU/so=";
     };
   };
   pi-coding-agent = {
