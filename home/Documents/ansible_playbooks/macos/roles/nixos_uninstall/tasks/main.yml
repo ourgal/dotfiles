@@ -1,8 +1,7 @@
 ---
 # The macOS side of a dual-boot NixOS install: there is no Nix package manager
-# to remove, only the NixOS partitions and the boot picker entry pointing at the
-# stub. Steps and order come from the nixos-apple-silicon removal guide; skipping
-# the final bless leaves a Mac whose next boot asks for another OS.
+# to remove, only the NixOS partitions and the stub macOS the boot picker entry
+# points at. Steps and order come from the nixos-apple-silicon removal guide.
 - name: Read the partition table
   ansible.builtin.command: diskutil list -plist
   register: nixos_uninstall_plist
@@ -125,27 +124,18 @@
     - nixos_uninstall_macos_store | length > 0
   changed_when: true
 
-# CLI form of System Settings > Startup Disk. Without it the next boot lands in
-# the boot picker instead of macOS.
-- name: Make macOS the startup disk
-  become: true
-  ansible.builtin.command:
-    argv: [bless, --mount, /, --setBoot]
-  when: nixos_uninstall_removed | bool
-  register: nixos_uninstall_bless
-  changed_when: true
-  failed_when: false
-
-- name: Report a failed bless
+# There is no CLI for this on Apple Silicon: bless(8) says --setBoot "is not
+# supported on Apple Silicon based systems", and systemsetup -setstartupdisk
+# needs an interactive admin authorisation. Selecting macOS once in the boot
+# picker (or Startup Disk) is what makes it the default again.
+- name: Remind how to make macOS the startup disk
   ansible.builtin.debug:
     msg: >-
-      `bless --setBoot` failed ({{ nixos_uninstall_bless.stderr | default('') | trim }}).
-      Before rebooting, open System Settings > Startup Disk, select the macOS
-      installation and click Restart — otherwise the machine boots into the boot
-      picker with no NixOS entry.
-  when:
-    - nixos_uninstall_removed | bool
-    - nixos_uninstall_bless.rc | default(0) != 0
+      Partitions removed. Before rebooting, set the startup disk: System
+      Settings > General > Startup Disk, pick the macOS installation, then
+      Restart. Booting into the picker once also sticks. macOS is listed in
+      the picker, so an accidental reboot is recoverable, not fatal.
+  when: nixos_uninstall_removed | bool
 
 - name: Report a disk with no NixOS partitions
   ansible.builtin.debug:

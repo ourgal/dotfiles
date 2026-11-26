@@ -3,8 +3,9 @@
 # default; the macmini inventory opts in. Follows the official removal steps in
 # https://github.com/nix-community/nixos-apple-silicon/blob/main/docs/uefi-standalone.md
 # ("NixOS Uninstallation"): erase the NixOS EFI and root partitions, delete the
-# stub APFS container, grow the macOS container into the freed space, then make
-# macOS the startup disk again.
+# stub APFS container, grow the macOS container into the freed space. The
+# startup disk is left to the manual step the guide names - Apple Silicon has no
+# CLI for it.
 nixos_uninstall_enabled: false
 
 # Physical disk holding both the macOS install and the NixOS partitions.
