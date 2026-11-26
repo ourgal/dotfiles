@@ -1,5 +1,8 @@
 ---
-hindsight_enabled: true
+# Disabled: the hindsight stack was never used on this host. Flipping back to
+# true re-deploys it from /opt/hindsight (the role never tears itself down, so
+# `docker compose down` there is the manual retire path).
+hindsight_enabled: false
 hindsight_image: ghcr.io/vectorize-io/hindsight:latest
 hindsight_dir: /opt/hindsight
 
