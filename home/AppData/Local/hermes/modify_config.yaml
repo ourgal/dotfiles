@@ -6,5 +6,9 @@
   Hermes itself and is preserved as-is. Managed keys win over what is already there.
 */ -}}
 {{- $command := joinPath .chezmoi.homeDir "AppData" "Local" "hermes" "agent-hooks" "notify.sh" | replace "\\" "/" -}}
-{{- $managed := dict "hooks" (dict "on_session_end" (list (dict "command" $command "timeout" 10))) -}}
+{{- $stdin := fromYaml .chezmoi.stdin -}}
+{{- $enabled := append (default (list) (dig "plugins" "enabled" (list) $stdin)) "disk-cleanup" | uniq -}}
+{{- $managed := dict
+      "hooks" (dict "on_session_end" (list (dict "command" $command "timeout" 10)))
+      "plugins" (dict "enabled" $enabled) -}}
 {{ $managed | mergeOverwrite (fromYaml .chezmoi.stdin) | toYaml -}}
