@@ -10,6 +10,9 @@
         - uninstall
     - role: homebrew
     - role: pipx
+    # fcitx5-macos (Rime edition) + 声笔飞码 (sbfm), same rime user directory as Linux.
+    - role: fcitx5
+      when: fcitx5_enabled | bool
     # Both AI roles are listed unconditionally: disabling one must still run its
     # retire path instead of skipping it. Order matters — mlx_vlm frees port
     # 8080 before llama_cpp binds it.

@@ -1,0 +1,83 @@
+---
+- name: Create the installer staging directory
+  tags:
+    - install
+    - fcitx5
+  ansible.builtin.file:
+    path: "{{ fcitx5_stage }}"
+    state: directory
+    mode: "0755"
+
+- name: Download the Fcitx5 (Rime edition) installer
+  tags:
+    - install
+    - fcitx5
+  ansible.builtin.get_url:
+    url: "{{ fcitx5_installer_url }}"
+    dest: "{{ fcitx5_stage }}/Fcitx5-Rime.zip"
+    mode: "0644"
+
+- name: Unpack the installer
+  tags:
+    - install
+    - fcitx5
+  ansible.builtin.unarchive:
+    src: "{{ fcitx5_stage }}/Fcitx5-Rime.zip"
+    dest: "{{ fcitx5_stage }}"
+    remote_src: true
+
+# install.sh <user> <Resources> unpacks Fcitx5.app into /Library/Input Methods
+# (root required), drops the rime plugin into ~/Library/fcitx5, then registers
+# and enables the input method. `creates` keeps it out of later runs; remove
+# {{ fcitx5_app }} to force a reinstall.
+- name: Install Fcitx5.app and the rime plugin
+  become: true
+  tags:
+    - install
+    - fcitx5
+  ansible.builtin.command:
+    cmd: "{{ fcitx5_stage }}/Fcitx5Installer.app/Contents/Resources/install.sh {{ fcitx5_user }} {{ fcitx5_stage }}/Fcitx5Installer.app/Contents/Resources"
+    creates: "{{ fcitx5_app }}"
+
+- name: Create the Rime user directory
+  tags:
+    - config
+    - fcitx5
+  ansible.builtin.file:
+    path: "{{ fcitx5_rime_dir }}"
+    state: directory
+    mode: "0755"
+
+- name: Download the sbsrf (声笔) Rime schemes
+  tags:
+    - config
+    - fcitx5
+  ansible.builtin.get_url:
+    url: "{{ fcitx5_scheme_url }}"
+    dest: "{{ fcitx5_stage }}/sbsrf.zip"
+    mode: "0644"
+
+# *.custom.yaml belongs to chezmoi (default.custom.yaml pins schema_list to
+# sbfm, mirroring the Windows Weasel wiring); the upstream multi-schema copy
+# must not overwrite it.
+- name: Deploy the sbsrf schemes into the Rime user directory
+  tags:
+    - config
+    - fcitx5
+  ansible.builtin.unarchive:
+    src: "{{ fcitx5_stage }}/sbsrf.zip"
+    dest: "{{ fcitx5_rime_dir }}"
+    remote_src: true
+    extra_opts:
+      - -x
+      - "*.custom.yaml"
+
+# Only lands while Fcitx5 is running, and a failed POST is not a play failure.
+- name: Redeploy Rime
+  tags:
+    - config
+    - fcitx5
+  ansible.builtin.command:
+    cmd: sh "{{ fcitx5_app }}/Contents/bin/fcitx5-curl" /config/addon/rime/deploy -X POST -d {}
+  changed_when: false
+  failed_when: false

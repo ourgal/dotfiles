@@ -1,0 +1,18 @@
+---
+fcitx5_enabled: true
+
+# Fcitx5 macOS needs macOS >= 13. Only the "Rime edition" bundles the rime
+# plugin (小企鹅「中州韵版」); 声笔 lists it as its supported macOS frontend.
+# The zip is a GUI-less installer bundle, see tasks/main.yml.
+fcitx5_installer_url: https://github.com/fcitx-contrib/fcitx5-macos-installer/releases/download/0.4.2/Fcitx5-Rime.zip
+# 声笔系列码 schemes (声笔飞码 = sbfm). Its lua engine needs librime >= 1.8.5;
+# the plugin shipped above is far newer, so no custom librime build is needed.
+fcitx5_scheme_url: https://github.com/sbsrf/sbsrf/releases/download/20261116/sbsrf.zip
+
+fcitx5_user: "{{ ansible_user_id }}"
+fcitx5_home: "{{ ansible_env.HOME }}"
+fcitx5_stage: "{{ fcitx5_home }}/.cache/fcitx5-install"
+fcitx5_app: /Library/Input Methods/Fcitx5.app
+# Same path fcitx5-rime uses on Linux, so the chezmoi-managed
+# default.custom.yaml / sbfm.custom.yaml overrides apply unchanged.
+fcitx5_rime_dir: "{{ fcitx5_home }}/.local/share/fcitx5/rime"
