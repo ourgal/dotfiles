@@ -59,18 +59,24 @@
 
 # *.custom.yaml belongs to chezmoi (default.custom.yaml pins schema_list to
 # sbfm, mirroring the Windows Weasel wiring); the upstream multi-schema copy
-# must not overwrite it.
+# must not overwrite it. `unarchive` appends extra_opts BEFORE the archive path,
+# which unzip rejects (`cannot find or open *.custom.yaml`), so the argument
+# order is spelled out here. `creates` keeps this idempotent — delete
+# sbfm.schema.yaml to force a scheme refresh.
 - name: Deploy the sbsrf schemes into the Rime user directory
   tags:
     - config
     - fcitx5
-  ansible.builtin.unarchive:
-    src: "{{ fcitx5_stage }}/sbsrf.zip"
-    dest: "{{ fcitx5_rime_dir }}"
-    remote_src: true
-    extra_opts:
+  ansible.builtin.command:
+    argv:
+      - /usr/bin/unzip
+      - -o
+      - "{{ fcitx5_stage }}/sbsrf.zip"
+      - -d
+      - "{{ fcitx5_rime_dir }}"
       - -x
       - "*.custom.yaml"
+    creates: "{{ fcitx5_rime_dir }}/sbfm.schema.yaml"
 
 # Only lands while Fcitx5 is running, and a failed POST is not a play failure.
 - name: Redeploy Rime
