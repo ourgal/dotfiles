@@ -1207,7 +1207,7 @@ AppData/Roaming/maki/*
 {{ if eq .chezmoi.os "windows" -}}
 !AppData/Local/lazygit/
 !AppData/Local/lazygit/config.yml
-{{ else if eq .chezmoi.os "linux" "android" -}}
+{{ else if eq .chezmoi.os "linux" "android" "darwin" -}}
 !.config/lazygit/
 !.config/lazygit/config.yml
 {{ end -}}
