@@ -1,5 +1,9 @@
 ---
-exllamav3_enabled: true
+# Disabled: Bonsai 2.5 27B (roles/bonsai) replaced the exl3 stack because
+# exllamav3 has no ternary path for it. Set true to bring TabbyAPI back; the
+# bonsai role stops exl3-server, so the reverse needs `systemctl enable --now
+# exl3-server` after flipping this.
+exllamav3_enabled: false
 exllamav3_port: 8080
 exllamav3_host: 0.0.0.0
 

@@ -1,0 +1,83 @@
+---
+bonsai_enabled: true
+bonsai_port: 8081
+# 0.0.0.0 exposes the unauthenticated OpenAI-compatible API on the LAN.
+bonsai_host: 0.0.0.0
+
+# PrismML llama.cpp fork: the only runtime with the PQ2_0/PTQ1_0 kernels and the
+# MTP drafter. Stock llama.cpp reads Q2_0 only and decodes ~27% slower (H200:
+# 109 vs 150 tok/s); builds older than b11556 emit gibberish for Q2_0.
+bonsai_release_tag: prism-b12232-f702476
+# Ubuntu ROCm 7.2 x64 build reuses the rocm-hip-sdk already installed for the
+# exllamav3 fork. On Arch the archive expects /opt/rocm-7.2/lib, hence
+# bonsai_rocm_home in the unit. Swap to ...-ubuntu-vulkan-x64.tar.gz if the HIP
+# binary does not bind gfx1100 (Vulkan PQ2_0 landed in prism-b10735).
+bonsai_asset: llama-prism-b12232-f702476-bin-ubuntu-rocm-7.2-x64.tar.gz
+bonsai_url: >-
+  https://github.com/PrismML-Eng/llama.cpp/releases/download/{{ bonsai_release_tag }}/{{ bonsai_asset }}
+bonsai_prefix: /opt/bonsai
+bonsai_binary: "{{ bonsai_prefix }}/bin/llama-server"
+bonsai_marker: "{{ bonsai_prefix }}/.installed-{{ bonsai_release_tag }}-{{ bonsai_asset }}"
+bonsai_rocm_home: /opt/rocm
+# Device the --list-devices probe must show; set to Vulkan0 together with the
+# -ubuntu-vulkan-x64 asset.
+bonsai_expected_device: ROCm0
+
+# PQ2_0 (~7.2 GB, 2.2 bpw) is the packing every AMD row in PrismML's community
+# benchmarks uses. PTQ1_0 (5.93 GB) also runs on HIP/Vulkan in the fork but is
+# unmeasured on gfx1100, so it is the A/B swap, not the default.
+bonsai_model_repo: prism-ml/Ternary-Bonsai-2.5-27B-GGUF
+bonsai_model_file: Ternary-Bonsai-2.5-27B-PQ2_0.gguf
+bonsai_mmproj_file: Ternary-Bonsai-2.5-27B-mmproj-Q8_0.gguf
+bonsai_alias: bonsai-2.5:27b
+
+# Hybrid attention (~25% full-attention layers) keeps FP16 KV at 64 KiB/token on
+# the 27B; q8_0 K / q4_0 V fits 131k in ~4.6 GiB beside the 7.2 GB model on a
+# 24 GiB card. Quantized KV requires flash attention.
+bonsai_context_length: 131072
+bonsai_cache_type_k: q8_0
+bonsai_cache_type_v: q4_0
+bonsai_gpu_layers: 999
+bonsai_vision: true
+
+# 27B thinking-mode profile from the model docs. --min-p must be explicit:
+# llama.cpp defaults to 0.05 and the 27B wants 0.
+bonsai_sampling_args:
+  - "--temp 1.0"
+  - "--top-p 0.95"
+  - "--top-k 20"
+  - "--min-p 0"
+# "medium" gives shorter thinking than the default "xhigh" with little accuracy
+# loss. Set to "" to leave the model's own default (xhigh) in place.
+bonsai_chat_template_kwargs: '{"reasoning_effort":"medium"}'
+# -1 leaves the server-wide reasoning budget unlimited; clients can still cap it
+# per request with thinking_budget_tokens.
+bonsai_reasoning_budget: -1
+
+# MTP drafting needs the fork (already required) plus the separate drafter repo:
+#   prism-ml/Ternary-Bonsai-2.5-27B-gguf-mtp
+# Nobody has measured it on gfx1100 yet and it slows prefill 9-23% on NVIDIA, so
+# it starts off.
+bonsai_speculative_enabled: false
+bonsai_spec_draft_n_max: 3
+bonsai_spec_draft_p_min: "0.1"
+
+# Single 24 GiB card: the exl3 stack holds ~22.5 GiB at 192k, so the two never
+# co-reside. The unit is stopped and disabled here; the role is gated off in
+# playbooks/ai.yml.
+bonsai_exclusive_service: exl3-server
+
+bonsai_user: bonsai
+bonsai_home: /var/lib/bonsai.cpp
+bonsai_model_dir: "{{ bonsai_home }}/models"
+bonsai_model_path: "{{ bonsai_model_dir }}/{{ bonsai_model_file }}"
+bonsai_mmproj_path: "{{ bonsai_model_dir }}/{{ bonsai_mmproj_file }}"
+bonsai_model_files:
+  - "{{ bonsai_model_file }}"
+  - "{{ bonsai_mmproj_file }}"
+
+bonsai_packages:
+  - python-huggingface-hub
+  - rocm-core
+  - rocm-hip-sdk
+  - rocminfo

@@ -1,0 +1,44 @@
+{% set argv = ["--model " ~ bonsai_model_path]
+  + (["--mmproj " ~ bonsai_mmproj_path] if bonsai_vision | bool else [])
+  + ["--alias " ~ bonsai_alias,
+     "--host " ~ bonsai_host,
+     "--port " ~ bonsai_port,
+     "--ctx-size " ~ bonsai_context_length,
+     "--n-gpu-layers " ~ bonsai_gpu_layers,
+     "-fa on",
+     "--cache-type-k " ~ bonsai_cache_type_k,
+     "--cache-type-v " ~ bonsai_cache_type_v,
+     "--parallel 1",
+     "--jinja"]
+  + bonsai_sampling_args
+  + (["--chat-template-kwargs '" ~ bonsai_chat_template_kwargs ~ "'"]
+     if bonsai_chat_template_kwargs | length > 0 else [])
+  + (["--spec-type draft-mtp",
+      "--spec-draft-n-min 0",
+      "--spec-draft-n-max " ~ bonsai_spec_draft_n_max,
+      "--spec-draft-p-min " ~ bonsai_spec_draft_p_min]
+     if bonsai_speculative_enabled | bool else [])
+  + ["--reasoning-budget " ~ bonsai_reasoning_budget] %}
+[Unit]
+Description=Bonsai 2.5 27B llama.cpp OpenAI-compatible server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User={{ bonsai_user }}
+Group={{ bonsai_user }}
+SupplementaryGroups=video render
+WorkingDirectory={{ bonsai_home }}
+Environment=HOME={{ bonsai_home }}
+Environment=HF_HOME={{ bonsai_home }}
+# The release is built against Ubuntu's /opt/rocm-7.2; Arch keeps ROCm in
+# /opt/rocm, so point the loader at it explicitly.
+Environment=LD_LIBRARY_PATH={{ bonsai_rocm_home }}/lib
+ExecStart={{ bonsai_binary }}{% for arg in argv %} \
+    {{ arg }}{% endfor %}
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

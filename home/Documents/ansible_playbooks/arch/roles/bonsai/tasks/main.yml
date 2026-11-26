@@ -1,0 +1,213 @@
+---
+- name: Install the Bonsai runtime dependencies
+  become: true
+  tags:
+    - pkg
+    - bonsai
+  community.general.pacman:
+    name: "{{ bonsai_packages }}"
+    state: present
+
+- name: Free the GPU from the exllamav3 server
+  become: true
+  tags:
+    - service
+    - bonsai
+  # One card, two servers that each want most of it. The exllamav3 role no longer
+  # runs (exllamav3_enabled: false), so a unit left enabled by an older run would
+  # otherwise start at boot and fight Bonsai for VRAM.
+  ansible.builtin.systemd_service:
+    name: "{{ bonsai_exclusive_service }}"
+    state: stopped
+    enabled: false
+  failed_when: false
+
+- name: Check the PrismML llama.cpp build
+  tags:
+    - pkg
+    - bonsai
+  ansible.builtin.stat:
+    path: "{{ bonsai_marker }}"
+  register: bonsai_build_state
+
+- name: Install the PrismML llama.cpp build
+  when: not bonsai_build_state.stat.exists
+  become: true
+  tags:
+    - pkg
+    - bonsai
+  block:
+    - name: Create the Bonsai prefix
+      ansible.builtin.file:
+        path: "{{ bonsai_prefix }}"
+        state: directory
+        mode: "0755"
+
+    # The release publishes no checksums; the pin is the release tag plus asset
+    # name in bonsai_url. Bump both together.
+    - name: Download the PrismML llama.cpp release
+      ansible.builtin.get_url:
+        url: "{{ bonsai_url }}"
+        dest: "/var/tmp/{{ bonsai_asset }}"
+        mode: "0644"
+      retries: 3
+      delay: 5
+
+    - name: Extract the PrismML llama.cpp release
+      ansible.builtin.unarchive:
+        src: "/var/tmp/{{ bonsai_asset }}"
+        dest: "{{ bonsai_prefix }}"
+        remote_src: true
+
+    - name: Record the installed release
+      ansible.builtin.copy:
+        content: "{{ bonsai_release_tag }} {{ bonsai_asset }}"
+        dest: "{{ bonsai_marker }}"
+        mode: "0644"
+
+- name: List Bonsai compute devices
+  tags:
+    - pkg
+    - bonsai
+  ansible.builtin.command:
+    argv:
+      - "{{ bonsai_binary }}"
+      - --list-devices
+  environment:
+    LD_LIBRARY_PATH: "{{ bonsai_rocm_home }}/lib"
+  register: bonsai_devices
+  changed_when: false
+  failed_when: false
+
+- name: Require the Bonsai compute device to be visible
+  tags:
+    - pkg
+    - bonsai
+  ansible.builtin.assert:
+    that: "bonsai_expected_device in (bonsai_devices.stdout + bonsai_devices.stderr)"
+    fail_msg: >-
+      {{ bonsai_binary }} did not list {{ bonsai_expected_device }} (gfx1100); the
+      server would silently fall back to CPU. Check that
+      {{ bonsai_rocm_home }}/lib resolves the HIP runtime, or pair the
+      -ubuntu-vulkan-x64 asset with bonsai_expected_device: Vulkan0.
+
+- name: Create the Bonsai group
+  become: true
+  tags:
+    - bonsai
+  ansible.builtin.group:
+    name: "{{ bonsai_user }}"
+    system: true
+
+- name: Create the Bonsai service user
+  become: true
+  tags:
+    - bonsai
+  ansible.builtin.user:
+    name: "{{ bonsai_user }}"
+    group: "{{ bonsai_user }}"
+    home: "{{ bonsai_home }}"
+    create_home: true
+    shell: /usr/bin/nologin
+    system: true
+    groups:
+      - video
+      - render
+    append: true
+
+- name: Create the Bonsai model directory
+  become: true
+  tags:
+    - bonsai
+  ansible.builtin.file:
+    path: "{{ bonsai_model_dir }}"
+    state: directory
+    owner: "{{ bonsai_user }}"
+    group: "{{ bonsai_user }}"
+    mode: "0755"
+
+- name: Check the Bonsai GGUF files
+  become: true
+  tags:
+    - pkg
+    - config
+    - bonsai
+  ansible.builtin.stat:
+    path: "{{ item }}"
+  loop:
+    - "{{ bonsai_model_path }}"
+    - "{{ bonsai_mmproj_path }}"
+  register: bonsai_model_state
+
+- name: Download the Bonsai GGUF files
+  when: bonsai_model_state.results | rejectattr('stat.exists') | list | length > 0
+  become: true
+  become_user: "{{ bonsai_user }}"
+  tags:
+    - pkg
+    - config
+    - bonsai
+  ansible.builtin.command:
+    cmd: >-
+      hf download {{ bonsai_model_repo }}
+      --include {{ bonsai_model_files | join(' --include ') }}
+      --local-dir {{ bonsai_model_dir }}
+  environment:
+    HOME: "{{ bonsai_home }}"
+    HF_HOME: "{{ bonsai_home }}"
+
+- name: Check the downloaded Bonsai GGUF files
+  become: true
+  tags:
+    - pkg
+    - config
+    - bonsai
+  ansible.builtin.stat:
+    path: "{{ item }}"
+  loop:
+    - "{{ bonsai_model_path }}"
+    - "{{ bonsai_mmproj_path }}"
+  register: bonsai_model_after
+
+- name: Require the Bonsai GGUF files to be present
+  tags:
+    - pkg
+    - config
+    - bonsai
+  ansible.builtin.assert:
+    that: bonsai_model_after.results | rejectattr('stat.exists') | list | length == 0
+    fail_msg: >-
+      {{ bonsai_model_dir }} is missing a file from
+      {{ bonsai_model_repo }}; check `hf download` output and the file names.
+
+- name: Install the Bonsai systemd unit
+  become: true
+  tags:
+    - config
+    - bonsai
+  ansible.builtin.template:
+    src: bonsai-server.service.j2
+    dest: /etc/systemd/system/bonsai-server.service
+    mode: "0644"
+  notify: Restart bonsai
+
+- name: Enable and start Bonsai
+  become: true
+  tags:
+    - service
+    - bonsai
+  ansible.builtin.systemd_service:
+    name: bonsai-server
+    enabled: true
+    state: started
+    daemon_reload: true
+
+- name: Open the Bonsai port
+  become: true
+  tags:
+    - service
+    - bonsai
+  community.general.ufw:
+    rule: allow
+    port: "{{ bonsai_port }}"
+    proto: tcp
