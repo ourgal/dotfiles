@@ -16,10 +16,10 @@
   };
   crush = {
     pname = "crush";
-    version = "0.102.0";
+    version = "0.104.0";
     src = fetchurl {
-      url = "https://github.com/charmbracelet/crush/releases/download/v0.102.0/crush_0.102.0_Linux_x86_64.tar.gz";
-      sha256 = "sha256-eTDMFKLew6hX3dIHDIY8HF1+2zNdIM37ZaW0TmKgyh4=";
+      url = "https://github.com/charmbracelet/crush/releases/download/v0.104.0/crush_0.104.0_Linux_x86_64.tar.gz";
+      sha256 = "sha256-4YZZ6qUDGDyOm7MJMcST0DhN0ooLGMZE44MTUHvCpAU=";
     };
   };
   dufs = {
@@ -80,10 +80,10 @@
   };
   maki = {
     pname = "maki";
-    version = "0.7.3";
+    version = "0.7.4";
     src = fetchurl {
-      url = "https://github.com/tontinton/maki/releases/download/v0.7.3/maki-v0.7.3-x86_64-unknown-linux-musl.tar.gz";
-      sha256 = "sha256-iZSL0YNNZZq/1/PllH1xq+RuWxHgYeSVVV4XT2p8Vk4=";
+      url = "https://github.com/tontinton/maki/releases/download/v0.7.4/maki-v0.7.4-x86_64-unknown-linux-musl.tar.gz";
+      sha256 = "sha256-Jbk/Vrs1BvqJNHfv/FkL7Xn3n62/R1nQJWzgxqjWc7k=";
     };
   };
   oh-my-pi = {
