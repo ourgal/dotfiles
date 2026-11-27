@@ -35,3 +35,20 @@
   vars:
     homebrew_installed_packages: "{{ homebrew_packages.values() | list | flatten }}"
     homebrew_cask_apps: "{{ homebrew_casks.values() | list | flatten }}"
+
+# Homebrew's installer only prints the `brew shellenv` hint, and this repo
+# manages no zsh/bash init on macOS, so a login shell never sees
+# /opt/homebrew/bin and every brew-installed command is "not found".
+# path_helper (run from /etc/zprofile) folds /etc/paths.d into PATH for zsh and
+# bash alike, so one root-owned file fixes every shell without touching rcs.
+- name: Put Homebrew on PATH for every login shell
+  become: true
+  tags:
+    - config
+    - homebrew
+  ansible.builtin.copy:
+    dest: /etc/paths.d/homebrew
+    mode: "0644"
+    content: |
+      {{ homebrew_prefix }}/bin
+      {{ homebrew_prefix }}/sbin

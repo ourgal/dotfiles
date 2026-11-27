@@ -1,6 +1,7 @@
 ---
 homebrew_migrate_enabled: true
-homebrew_migrate_prefix: /opt/homebrew
+homebrew_prefix: /opt/homebrew
+homebrew_migrate_prefix: "{{ homebrew_prefix }}"
 
 homebrew_packages:
   git:
