@@ -33,5 +33,5 @@
   ansible.builtin.import_role:
     name: geerlingguy.mac.homebrew
   vars:
-    homebrew_installed_packages: "{{ homebrew_packages }}"
-    homebrew_cask_apps: "{{ homebrew_casks }}"
+    homebrew_installed_packages: "{{ homebrew_packages.values() | list | flatten }}"
+    homebrew_cask_apps: "{{ homebrew_casks.values() | list | flatten }}"

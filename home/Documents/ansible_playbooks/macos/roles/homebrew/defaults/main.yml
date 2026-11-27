@@ -3,24 +3,35 @@ homebrew_migrate_enabled: true
 homebrew_migrate_prefix: /opt/homebrew
 
 homebrew_packages:
-  - git
-  - lazygit
-  - gopass
-  - gh
-  - mpv
-  - dufs
-  - syncthing
-  - wget
-  - pipx
-  - duf
-  - btop
-  - helix
-  - fish
-  - chezmoi
-  - fzf
-  - python
+  git:
+    - git
+    - lazygit
+    - gh
+  dotfiles:
+    - chezmoi
+    - gopass
+  editor:
+    - helix
+    - vim
+  shell:
+    - fish
+    - fzf
+    - btop
+    - duf
+  python:
+    - python
+    - pipx
+  media:
+    - mpv
+  network:
+    - wget
+    - syncthing
+    - dufs
 
 homebrew_casks:
-  - ungoogled-chromium
-  - kitty
-  - readest
+  browser:
+    - ungoogled-chromium
+  terminal:
+    - kitty
+  reader:
+    - readest
