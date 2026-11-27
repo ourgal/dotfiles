@@ -26,6 +26,21 @@
     dest: "{{ fcitx5_stage }}"
     remote_src: true
 
+# Created as the user first so root's mkdir -p cannot own them.
+- name: Create the fcitx5 user directories
+  tags:
+    - config
+    - fcitx5
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - "{{ fcitx5_home }}/.config"
+    - "{{ fcitx5_config_dir }}"
+    - "{{ fcitx5_library_dir }}"
+    - "{{ fcitx5_data_dir }}"
+
 # install.sh <user> <Resources> unpacks Fcitx5.app into /Library/Input Methods
 # (root required), drops the rime plugin into ~/Library/fcitx5, then registers
 # and enables the input method. `creates` keeps it out of later runs; remove
@@ -38,6 +53,35 @@
   ansible.builtin.command:
     cmd: "{{ fcitx5_stage }}/Fcitx5Installer.app/Contents/Resources/install.sh {{ fcitx5_user }} {{ fcitx5_stage }}/Fcitx5Installer.app/Contents/Resources"
     creates: "{{ fcitx5_app }}"
+
+# Root still writes files inside the tree, so restore ownership afterwards.
+- name: Hand the fcitx5 user directories back to the user
+  become: true
+  tags:
+    - config
+    - fcitx5
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ fcitx5_user }}"
+    group: "{{ fcitx5_group }}"
+    recurse: true
+  loop:
+    - "{{ fcitx5_config_dir }}"
+    - "{{ fcitx5_library_dir }}"
+    - "{{ fcitx5_data_dir }}"
+
+# Non-recursive: the entries below `.config` belong to the user already.
+- name: Hand ~/.config back to the user
+  become: true
+  tags:
+    - config
+    - fcitx5
+  ansible.builtin.file:
+    path: "{{ fcitx5_home }}/.config"
+    state: directory
+    owner: "{{ fcitx5_user }}"
+    group: "{{ fcitx5_group }}"
 
 - name: Create the Rime user directory
   tags:

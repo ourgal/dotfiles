@@ -10,9 +10,17 @@ fcitx5_installer_url: https://github.com/fcitx-contrib/fcitx5-macos-installer/re
 fcitx5_scheme_url: https://github.com/sbsrf/sbsrf/releases/download/20261116/sbsrf.zip
 
 fcitx5_user: "{{ ansible_user_id }}"
+fcitx5_group: "{{ ansible_user_gid }}"
 fcitx5_home: "{{ ansible_env.HOME }}"
 fcitx5_stage: "{{ fcitx5_home }}/.cache/fcitx5-install"
 fcitx5_app: /Library/Input Methods/Fcitx5.app
+# install.sh runs as root and mkdir's these itself when missing, which leaves
+# root-owned directories inside the user's home: `~/.config` (so chezmoi can no
+# longer apply `.config`) and `~/Library/fcitx5` (so the app cannot write its
+# own config). Pre-create them as the user, then hand back what root still wrote.
+fcitx5_config_dir: "{{ fcitx5_home }}/.config/fcitx5"
+fcitx5_library_dir: "{{ fcitx5_home }}/Library/fcitx5"
+fcitx5_data_dir: "{{ fcitx5_home }}/.local/share/fcitx5"
 # Same path fcitx5-rime uses on Linux, so the chezmoi-managed
 # default.custom.yaml / sbfm.custom.yaml overrides apply unchanged.
-fcitx5_rime_dir: "{{ fcitx5_home }}/.local/share/fcitx5/rime"
+fcitx5_rime_dir: "{{ fcitx5_data_dir }}/rime"
