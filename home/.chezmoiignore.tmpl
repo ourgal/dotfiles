@@ -1303,4 +1303,10 @@ AppData/Roaming/maki/*
 !.xinputrc
 {{ end -}}
 # ]]]
+# [[[ glide (macOS tiling wm)
+{{ if and (eq .chezmoi.os "darwin") (lookPath "glide") -}}
+!.config/glide/
+!.config/glide/**
+{{ end -}}
+# ]]]
 # vim: set foldmarker=[[[,]]]:
