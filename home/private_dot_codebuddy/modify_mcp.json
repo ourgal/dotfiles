@@ -6,12 +6,19 @@
   same Mnemosyne build as the Hermes provider, and point HERMES_HOME at the
   active Windows home so both agents share one SQLite store. Without that env
   the standalone CLI would fall back to ~/.hermes/mnemosyne/data (an empty DB).
+  On Termux the built-in memory system is used instead, so the Mnemosyne entry
+  is actively removed even if it was registered here previously.
 */ -}}
 {{- $data := dict "mcpServers" (dict) -}}
 {{- if .chezmoi.stdin -}}
 {{- $data = fromJson .chezmoi.stdin -}}
 {{- end -}}
 {{- $servers := default (dict) (get $data "mcpServers") -}}
+{{- $isTermux := or (lookPath "termux-info") (env "TERMUX_VERSION") -}}
+{{- if $isTermux -}}
+{{- /* Termux uses CodeBuddy's built-in memory; strip the Mnemosyne server. */ -}}
+{{- $servers = unset $servers "mnemosyne" -}}
+{{- else -}}
 {{- $hermesHome := "" -}}
 {{- $mnemosyneCmd := "" -}}
 {{- if eq .chezmoi.os "windows" -}}
@@ -28,5 +35,7 @@
       "command" ($mnemosyneCmd | replace "\\" "/")
       "args" (list "mcp")
       "env" (dict "HERMES_HOME" ($hermesHome | replace "\\" "/"))) -}}
-{{- $_ := set $data "mcpServers" ($managed | mergeOverwrite $servers) -}}
+{{- $servers = $managed | mergeOverwrite $servers -}}
+{{- end -}}
+{{- $_ := set $data "mcpServers" $servers -}}
 {{ $data | toJson }}

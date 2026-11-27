@@ -38,8 +38,12 @@ allow = [
 allow = [
     "chezmoi .chezmoiignore apply to externals git-repo .chezmoiexternal ignore patterns",
 ]
-
+{{- /* Termux uses CodeBuddy's built-in memory, so Maki has no Mnemosyne
+      MCP server to grant permissions to. */ -}}
+{{- $isTermux := or (lookPath "termux-info") (env "TERMUX_VERSION") -}}
+{{- if not $isTermux }}
 # Mnemosyne MCP tools prompt by default; allow them so memory reads/writes are
 # seamless. Global file only — project files cannot grant default = "allow".
 [mcp.mnemosyne]
 default = "allow"
+{{- end }}

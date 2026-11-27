@@ -11,10 +11,14 @@ hook add TurnEnd \
   --timeout 10
 {{ end -}}
 
+{{- /* Termux uses CodeBuddy's built-in memory, so Crush gets no Mnemosyne
+      MCP server or tool permissions there. */ -}}
+{{- $isTermux := or (lookPath "termux-info") (env "TERMUX_VERSION") -}}
+{{- if not $isTermux -}}
 {{- /*
   Register Mnemosyne's MCP server so Crush shares one memory store with the
   other agents. Windows uses the persistent Hermes side-venv executable;
-  Linux/Termux uses the stable wrapper that resolves the catalog plugin's
+  Linux uses the stable wrapper that resolves the catalog plugin's
   hashed side-venv. HERMES_HOME points both at the active store, otherwise
   the CLI falls back to an empty DB.
 */ -}}
@@ -64,7 +68,7 @@ permissions allow \
   mcp_mnemosyne_mnemosyne_triple_query \
   mcp_mnemosyne_mnemosyne_update \
   mcp_mnemosyne_mnemosyne_validate
-
+{{- end }}
 {{ if and (lookPath "tsserver") (lookPath "typescript-language-server") -}}
 lsp add typescript --command "typescript-language-server" --args --stdio
 {{ end -}}

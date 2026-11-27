@@ -8,13 +8,19 @@
   same Mnemosyne build as the Hermes provider, and point HERMES_HOME at the
   active Windows home so both agents share one SQLite store. On Linux use the
   stable wrapper that resolves the catalog plugin's hashed side-venv. Without
-  HERMES_HOME the CLI would fall back to an empty DB.
+  HERMES_HOME the CLI would fall back to an empty DB. On Termux the built-in
+  memory system is used instead, so the Mnemosyne entry is actively removed.
 */ -}}
 {{- $data := dict -}}
 {{- if .chezmoi.stdin -}}
 {{- $data = fromToml .chezmoi.stdin -}}
 {{- end -}}
 {{- $mcp := default (dict) (get $data "mcp") -}}
+{{- $isTermux := or (lookPath "termux-info") (env "TERMUX_VERSION") -}}
+{{- if $isTermux -}}
+{{- /* Termux uses CodeBuddy's built-in memory; strip the Mnemosyne server. */ -}}
+{{- $mcp = unset $mcp "mnemosyne" -}}
+{{- else -}}
 {{- $hermesHome := "" -}}
 {{- $mnemosyneCmd := "" -}}
 {{- if eq .chezmoi.os "windows" -}}
@@ -27,5 +33,7 @@
 {{- $managed := dict "mnemosyne" (dict
       "command" (list ($mnemosyneCmd | replace "\\" "/") "mcp")
       "environment" (dict "HERMES_HOME" ($hermesHome | replace "\\" "/"))) -}}
-{{- $_ := set $data "mcp" ($managed | mergeOverwrite $mcp) -}}
+{{- $mcp = $managed | mergeOverwrite $mcp -}}
+{{- end -}}
+{{- $_ := set $data "mcp" $mcp -}}
 {{ toToml $data }}

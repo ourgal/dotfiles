@@ -5,6 +5,10 @@
   (model, trustedDirectories, enabledPlugins, ...) or hooks installed elsewhere.
   Only our own command entries are managed; matching is by the exact command
   path, so chezmoi may rewrite the scripts freely.
+
+  On Termux the script is inverted: the Mnemosyne hooks are stripped (the
+  notification hook stays) and CodeBuddy's built-in Auto Memory is switched on,
+  so the two memory systems never run side by side.
 */ -}}
 {{- $data := dict -}}
 {{- if .chezmoi.stdin -}}
@@ -15,7 +19,34 @@
 {{- $endCmd := joinPath $hooksDir "mnemosyne-session-end.sh" | replace "\\" "/" -}}
 {{- $notifyCmd := joinPath $hooksDir "notify-stop.sh" | replace "\\" "/" -}}
 {{- $hooks := default (dict) (get $data "hooks") -}}
-{{- $entries := dict "SessionStart" $startCmd "SessionEnd" $endCmd "Stop" $notifyCmd -}}
+{{- $isTermux := or (lookPath "termux-info") (env "TERMUX_VERSION") -}}
+{{- /* On Termux, drop the Mnemosyne recall/store hooks from their events and
+      remove any hook groups left empty. */ -}}
+{{- if $isTermux -}}
+{{- range $event, $cmd := dict "SessionStart" $startCmd "SessionEnd" $endCmd -}}
+{{- $groups := default (list) (get $hooks $event) -}}
+{{- $kept := list -}}
+{{- range $group := $groups -}}
+{{- $keptHooks := list -}}
+{{- range $hook := default (list) (get $group "hooks") -}}
+{{- if ne (dig "command" "" $hook) $cmd -}}
+{{- $keptHooks = append $keptHooks $hook -}}
+{{- end -}}
+{{- end -}}
+{{- if $keptHooks -}}
+{{- $kept = append $kept (dict "hooks" $keptHooks) -}}
+{{- end -}}
+{{- end -}}
+{{- $_ := set $hooks $event $kept -}}
+{{- end -}}
+{{- end -}}
+{{- /* Always manage the task-end notification hook; Mnemosyne hooks only
+      off Termux. */ -}}
+{{- $entries := dict "Stop" $notifyCmd -}}
+{{- if not $isTermux -}}
+{{- $_ := set $entries "SessionStart" $startCmd -}}
+{{- $_ := set $entries "SessionEnd" $endCmd -}}
+{{- end -}}
 {{- range $event, $cmd := $entries -}}
 {{- $groups := default (list) (get $hooks $event) -}}
 {{- $present := false -}}
@@ -32,14 +63,21 @@
 {{- $_ := set $hooks $event $groups -}}
 {{- end -}}
 {{- $_ := set $data "hooks" $hooks -}}
-{{- /* Built-in Auto Memory is off so Mnemosyne is the sole automatic store.
-      typedMemory is left alone: it only changes the file format, not whether
-      memory is active. parentDiscovery is left alone: it only controls upward
-      lookup of CODEBUDDY.md / AGENTS.md, not static instruction loading. */ -}}
+{{- /* Off Termux, Auto Memory is off so Mnemosyne is the sole automatic store.
+      On Termux it is on so the built-in store is the only one. typedMemory is
+      left alone: it only changes the file format, not whether memory is active.
+      parentDiscovery is left alone: it only controls upward lookup of
+      CODEBUDDY.md / AGENTS.md, not static instruction loading. */ -}}
 {{- $managedMemory := dict
       "autoMemoryEnabled" false
       "relevanceSelection" false
       "memoryExtraction" false -}}
+{{- if $isTermux -}}
+{{- $managedMemory = dict
+      "autoMemoryEnabled" true
+      "relevanceSelection" true
+      "memoryExtraction" true -}}
+{{- end -}}
 {{- $memory := default (dict) (get $data "memory") -}}
 {{- $_ := set $data "memory" ($managedMemory | mergeOverwrite $memory) -}}
 {{ $data | toJson }}
