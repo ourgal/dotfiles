@@ -1,0 +1,33 @@
+---
+# geerlingguy.mac.homebrew starts by running `git ls-remote`, and macOS ships
+# git only with the Xcode Command Line Tools. `xcode-select --install` opens a
+# GUI dialog, which can never be completed on this headless macmini, so install
+# the CLT through softwareupdate instead.
+- name: Install Xcode Command Line Tools
+  when: xcode_clt_enabled | bool
+  tags:
+    - xcode
+    - install
+  block:
+    - name: Check whether the CLT package is installed
+      ansible.builtin.command: pkgutil --pkg-info=com.apple.pkg.CLTools_Executables
+      register: xcode_clt_pkg
+      failed_when: false
+      changed_when: false
+
+    - name: Install the CLT non-interactively
+      when: xcode_clt_pkg.rc != 0
+      become: true
+      ansible.builtin.shell: |
+        set -e
+        touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+        PROD=$(softwareupdate -l \
+          | grep -m1 '\*.*Command Line' \
+          | awk -F'*' '{print $2}' \
+          | sed -e 's/^ *//' -e 's/^Label: //' -e 's/,.*//' \
+          | tr -d '\n')
+        test -n "$PROD"
+        softwareupdate -i "$PROD"
+        rm -f /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+      args:
+        executable: /bin/bash

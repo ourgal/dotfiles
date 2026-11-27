@@ -8,6 +8,8 @@
       tags:
         - nix
         - uninstall
+    # Before homebrew: its geerlingguy role calls git, which needs the CLT.
+    - role: xcode_clt
     - role: homebrew
     - role: pipx
     # fcitx5-macos (Rime edition) + 声笔飞码 (sbfm), same rime user directory as Linux.
