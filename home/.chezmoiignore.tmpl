@@ -351,7 +351,7 @@ Videos/*
 # ]]]
 # [[[ chezmoi
 {{ if lookPath "chezmoi" -}}
-{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+{{ if eq .chezmoi.os "windows" "linux" "android" "darwin" -}}
 !.config/chezmoi/
 !.config/chezmoi/**
 {{ end -}}
