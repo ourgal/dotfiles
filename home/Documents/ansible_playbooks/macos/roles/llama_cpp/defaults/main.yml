@@ -1,7 +1,7 @@
 ---
 # Enabled by default. The macmini inventory overrides this to false so the
 # role retires the server there (stops the daemon and removes the GGUF).
-llama_cpp_enabled: true
+llama_cpp_enabled: false
 
 # Backend: llama.cpp's headless `llama-server` (OpenAI-compatible HTTP API).
 # Ling 3.0 Tiny is a bailingmoe3 (hybrid KDA/MLA + sparse MoE) model; support
