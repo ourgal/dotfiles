@@ -227,6 +227,24 @@ Videos/*
 
 {{ end -}}
 # ]]]
+# [[[ darwin
+{{ if eq .chezmoi.os "darwin" -}}
+
+# Unignore the parent dirs so the per-app !.config/<app>/ and !.local/... whitelists work.
+!.config/
+.config/*
+
+!.local/
+.local/*
+
+!.local/bin/
+.local/bin/*
+
+!.local/share/
+.local/share/*
+
+{{ end -}}
+# ]]]
 # [[[ aichat
 {{ if lookPath "aichat" -}}
 {{ if eq .chezmoi.os "windows" -}}
