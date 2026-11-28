@@ -813,9 +813,11 @@ AppData/Roaming/Microsoft/Windows/Start Menu/Programs/*
 {{ end -}}
 {{ end -}}
 # ]]]
-# [[[ ansbile
-{{ if lookPath "ansible" -}}
-{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+# [[[ ansible
+# macOS needs the playbooks before Ansible is installed, so whitelist them
+# there unconditionally; elsewhere keep the lookPath guard.
+{{ if or (eq .chezmoi.os "darwin") (lookPath "ansible") -}}
+{{ if eq .chezmoi.os "windows" "linux" "android" "darwin" -}}
 !Documents/ansible_playbooks/
 !Documents/ansible_playbooks/**
 {{ end -}}
