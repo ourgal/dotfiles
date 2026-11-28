@@ -72,7 +72,7 @@ if status is-interactive
     {{ end -}}
     # ]]]
     # [[[ starship
-    {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "starship") "opt" (list "shell" "fish" "starship" "enable") "os" (list "linux" "android")) | trim | atoi -}}
+    {{ if includeTemplate "opt" (dict "chezmoi" .chezmoi "my" .my "cmd" (list "fish" "starship") "opt" (list "shell" "fish" "starship" "enable") "os" (list "linux" "android" "darwin")) | trim | atoi -}}
     {{ output "starship" "init" "fish" }}
     {{ end -}}
     # ]]]
