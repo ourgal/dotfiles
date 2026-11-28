@@ -1,7 +1,7 @@
 # Default to English (ascii_mode state 1 = 西文). "@0" is ascii_mode, the first
 # switch in sbfm.schema.yaml.
 patch:
-  "switches/@0/reset": 1
+  "switches/@0/reset": 0
   # Disable every stock modifier switch_key and the two numbered ascii_mode
   # toggles from sbxlm.yaml, so no upstream key switches the mode.
   "ascii_composer/switch_key/Caps_Lock": noop
