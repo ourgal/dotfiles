@@ -492,7 +492,7 @@ Videos/*
 # ]]]
 # [[[ fish
 {{ if lookPath "fish" -}}
-{{ if eq .chezmoi.os "linux" "android" -}}
+{{ if eq .chezmoi.os "linux" "android" "darwin" -}}
 !.config/fish/
 !.config/fish/**
 {{ end -}}
