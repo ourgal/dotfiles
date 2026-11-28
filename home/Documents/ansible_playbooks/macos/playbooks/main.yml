@@ -15,6 +15,10 @@
     # Maple Mono NF CN and Noto Sans CJK SC, all into ~/Library/Fonts.
     - role: fonts
       when: fonts_enabled | bool
+    # Tiling WM + hotkey daemon (replaces Glide). Config files are managed by
+    # chezmoi; this role installs the formulae and their login services.
+    - role: yabai_skhd
+      when: yabai_skhd_enabled | bool
     # Needs npm from the Homebrew `node` formula above.
     - role: npm
     - role: pipx

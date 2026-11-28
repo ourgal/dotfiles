@@ -1327,10 +1327,20 @@ AppData/Roaming/maki/*
 !.xinputrc
 {{ end -}}
 # ]]]
-# [[[ glide (macOS tiling wm)
-{{ if and (eq .chezmoi.os "darwin") (lookPath "glide") -}}
-!.config/glide/
-!.config/glide/**
+# [[[ glide (macOS tiling wm) — disabled in favour of yabai + skhd
+# {{ if and (eq .chezmoi.os "darwin") (lookPath "glide") -}}
+# !.config/glide/
+# !.config/glide/**
+# {{ end -}}
+# ]]]
+# [[[ yabai / skhd (macOS tiling wm + hotkey daemon)
+{{ if eq .chezmoi.os "darwin" -}}
+{{ if lookPath "yabai" -}}
+!.yabairc
+{{ end -}}
+{{ if lookPath "skhd" -}}
+!.skhdrc
+{{ end -}}
 {{ end -}}
 # ]]]
 # vim: set foldmarker=[[[,]]]:

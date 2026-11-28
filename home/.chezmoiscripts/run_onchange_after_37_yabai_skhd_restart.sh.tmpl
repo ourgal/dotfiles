@@ -1,0 +1,16 @@
+{{ if eq .chezmoi.os "darwin" -}}
+{{ $prefix := "/opt/homebrew/bin" -}}
+{{ if stat (joinPath $prefix "yabai") -}}
+#!{{ lookPath "bash" }}
+# yabai does not hotload its config; restart it after chezmoi applies changes.
+# skhd hotloads, but reload explicitly so a fresh config is always picked up.
+{{ if stat (joinPath .chezmoi.homeDir ".yabairc") -}}
+# {{ include (joinPath .chezmoi.homeDir ".yabairc") | sha256sum }}
+{{ end -}}
+{{ if stat (joinPath .chezmoi.homeDir ".skhdrc") -}}
+# {{ include (joinPath .chezmoi.homeDir ".skhdrc") | sha256sum }}
+{{ end -}}
+"{{ joinPath $prefix "yabai" }}" --restart-service >/dev/null 2>&1 || true
+"{{ joinPath $prefix "skhd" }}" --reload >/dev/null 2>&1 || true
+{{ end -}}
+{{ end -}}

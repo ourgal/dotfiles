@@ -1,0 +1,13 @@
+---
+yabai_skhd_enabled: true
+# The original koekeishiya repos are in maintenance mode; the maintained
+# formulae live in the asmvik tap. Basic tiling needs no SIP changes.
+yabai_skhd_tap: asmvik/formulae
+yabai_skhd_packages:
+  - yabai
+  - skhd
+yabai_skhd_prefix: /opt/homebrew
+yabai_skhd_user_home: "{{ ansible_facts.user_dir }}"
+yabai_skhd_launch_agents: "{{ yabai_skhd_user_home }}/Library/LaunchAgents"
+yabai_skhd_yabai_plist: "{{ yabai_skhd_launch_agents }}/com.asmvik.yabai.plist"
+yabai_skhd_skhd_plist: "{{ yabai_skhd_launch_agents }}/com.asmvik.skhd.plist"

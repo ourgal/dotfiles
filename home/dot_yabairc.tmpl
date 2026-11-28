@@ -1,0 +1,15 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env sh
+# yabai config for the login service. Managed by chezmoi.
+yabai -m config layout bsp
+yabai -m config window_placement second_child
+yabai -m config auto_balance on
+yabai -m config mouse_follows_focus on
+yabai -m config focus_follows_mouse autofocus
+yabai -m config window_gap 8
+yabai -m config top_padding 8
+yabai -m config bottom_padding 8
+yabai -m config left_padding 8
+yabai -m config right_padding 8
+yabai -m config split_ratio 0.50
+{{ end -}}
