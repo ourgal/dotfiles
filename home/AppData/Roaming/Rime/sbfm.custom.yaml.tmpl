@@ -35,16 +35,10 @@ patch:
       reset: 0
     - name: fast_pop
       reset: 0
-  key_binder:
-    import_preset: sbxlm
-    bindings:
-      - accept: Shift+space
-        toggle: ascii_mode
-        when: always
   ascii_composer:
     good_old_caps_lock: false
     switch_key:
-      Caps_Lock: noop
+      Caps_Lock: commit_code
       Control_L: noop
       Control_R: noop
       Eisu_toggle: noop
