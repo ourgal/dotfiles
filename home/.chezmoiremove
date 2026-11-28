@@ -4,3 +4,9 @@
 .tmux.conf
 .config/tmux/plugins/tpm
 .tmux/plugins
+
+# sbfm.custom.yaml removed: no custom ascii_mode switch, sbfm falls back to its
+# upstream defaults (Shift/Caps). Remove the deployed copies on every platform.
+AppData/Roaming/Rime/sbfm.custom.yaml
+.local/share/fcitx5/rime/sbfm.custom.yaml
+.var/app/org.fcitx.Fcitx5/data/fcitx5/rime/sbfm.custom.yaml
