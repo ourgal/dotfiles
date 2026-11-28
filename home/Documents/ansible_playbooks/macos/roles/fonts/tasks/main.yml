@@ -56,15 +56,27 @@
         - url: "{{ fonts_noto_sans_cjk_sc_url }}"
           dest: "NotoSansCJKsc.zip"
 
-    - name: Extract font archives into the staging directory
-      ansible.builtin.unarchive:
-        src: "{{ fonts_data_dir }}/{{ item }}"
-        dest: "{{ fonts_staging_dir }}"
-        remote_src: true
+    # macOS ships bsdtar, which libarchive handles .tar.xz natively but which
+    # ansible.builtin.unarchive rejects (it demands GNU tar). Extract the two
+    # Nerd Font tarballs with bsdtar directly; the zip works with unarchive.
+    - name: Extract Nerd Font tarballs into the staging directory
+      ansible.builtin.command:
+        argv:
+          - /usr/bin/tar
+          - -C
+          - "{{ fonts_staging_dir }}"
+          - -xf
+          - "{{ fonts_data_dir }}/{{ item }}"
       loop:
         - IosevkaTerm.tar.xz
         - NerdFontsSymbolsOnly.tar.xz
-        - NotoSansCJKsc.zip
+      changed_when: true
+
+    - name: Extract the Noto Sans CJK SC zip into the staging directory
+      ansible.builtin.unarchive:
+        src: "{{ fonts_data_dir }}/NotoSansCJKsc.zip"
+        dest: "{{ fonts_staging_dir }}"
+        remote_src: true
 
     - name: Find extracted font files
       ansible.builtin.find:
