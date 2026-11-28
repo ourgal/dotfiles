@@ -1,7 +1,7 @@
-# Default to English (ascii_mode state 1 = 西文). "@0" is ascii_mode, the first
-# switch in sbfm.schema.yaml.
+# Default to Chinese on macOS (ascii_mode state 0); everywhere else default to
+# English (state 1 = 西文). "@0" is ascii_mode, the first switch in sbfm.schema.yaml.
 patch:
-  "switches/@0/reset": 0
+  "switches/@0/reset": {{ if eq .chezmoi.os "darwin" }}0{{ else }}1{{ end }}
   # Disable every stock modifier switch_key and the two numbered ascii_mode
   # toggles from sbxlm.yaml, so no upstream key switches the mode.
   "ascii_composer/switch_key/Caps_Lock": noop
