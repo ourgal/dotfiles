@@ -1,0 +1,14 @@
+{{ if eq .chezmoi.os "windows" -}}
+{{ if stat (joinPath (env "programdata") "Microsoft" "Windows" "Start Menu" "Programs" "Weasel" "Weasel Deploy.lnk") -}}
+{{ if stat (joinPath (env "Appdata") "Rime" "sbfm.schema.yaml") -}}
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
+# run_onchange_before_09_rime_sbsrf extracts a new sbsrf release without
+# touching the *.custom.yaml files, so redeploy when the schemes change too.
+# {{ include (joinPath (env "Appdata") "Rime" "sbfm.schema.yaml") | sha256sum }}
+# {{ include (joinPath (env "Appdata") "Rime" "sbxlm.yaml") | sha256sum }}
+& {{ joinPath (env "programdata") "Microsoft" "Windows" "Start Menu" "Programs" "Weasel" "Weasel Deploy.lnk" | quote }}
+{{ end -}}
+{{ end -}}
+{{ end -}}
