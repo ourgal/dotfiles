@@ -14,6 +14,10 @@
     # Needs npm from the Homebrew `node` formula above.
     - role: npm
     - role: pipx
+    # Hermes Agent + Mnemosyne memory plugin; both installed into the user's
+    # own home by the official unattended installer.
+    - role: hermes_agent
+      when: hermes_agent_enabled | bool
     # fcitx5-macos (Rime edition) + 声笔飞码 (sbfm), same rime user directory as Linux.
     - role: fcitx5
       when: fcitx5_enabled | bool

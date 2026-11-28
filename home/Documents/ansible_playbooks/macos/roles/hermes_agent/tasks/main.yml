@@ -1,0 +1,136 @@
+---
+# Prerequisites (git/curl/tar/shasum) are already present: git comes from the
+# xcode_clt role, the rest ship with macOS. Everything here runs as the
+# connecting user because the installer writes only into that user's home.
+- name: Check whether Hermes Agent is installed
+  tags:
+    - hermes_agent
+  ansible.builtin.stat:
+    path: "{{ hermes_agent_launcher }}"
+  register: hermes_agent_launcher_stat
+
+# --non-interactive skips the setup and gateway stages, so the installer never
+# waits for input. It is also its own repair path, but upgrades belong to
+# `hermes update`; hence the existence guard.
+- name: Run the official unattended installer
+  when: not hermes_agent_launcher_stat.stat.exists
+  tags:
+    - hermes_agent
+    - install
+  ansible.builtin.shell:
+    cmd: >-
+      set -o pipefail;
+      curl -fsS {{ hermes_agent_installer_url }} | bash -s -- --non-interactive
+      --channel {{ hermes_agent_channel }}{%- if hermes_agent_skip_browser | bool %} --skip-browser{% endif %}
+    executable: /bin/bash
+  changed_when: true
+  environment:
+    HOME: "{{ hermes_agent_user_home }}"
+    HERMES_HOME: "{{ hermes_agent_home }}"
+
+- name: Read the installed Hermes plugins
+  when: hermes_agent_mnemosyne_enabled | bool
+  tags:
+    - hermes_agent
+    - mnemosyne
+  ansible.builtin.command:
+    argv:
+      - "{{ hermes_agent_launcher }}"
+      - plugins
+      - list
+      - --json
+  environment:
+    HOME: "{{ hermes_agent_user_home }}"
+    HERMES_HOME: "{{ hermes_agent_home }}"
+  changed_when: false
+  register: hermes_agent_plugins_installed
+
+# The catalog entry is pinned upstream, so a name match is enough to decide
+# whether to install. `--yes-deps` answers the Python dependency consent
+# non-interactively; `--enable` makes a memory provider the active one.
+- name: Install Mnemosyne from the Hermes plugin catalog
+  when:
+    - hermes_agent_mnemosyne_enabled | bool
+    - not (hermes_agent_plugins_installed.stdout | from_json | selectattr('name', 'equalto', hermes_agent_mnemosyne_plugin) | list | length > 0)
+  tags:
+    - hermes_agent
+    - mnemosyne
+    - install
+  ansible.builtin.command:
+    argv:
+      - "{{ hermes_agent_launcher }}"
+      - plugins
+      - install
+      - "{{ hermes_agent_mnemosyne_plugin }}"
+      - --yes-deps
+      - --enable
+  environment:
+    HOME: "{{ hermes_agent_user_home }}"
+    HERMES_HOME: "{{ hermes_agent_home }}"
+  changed_when: true
+
+- name: Read the selected Hermes memory provider
+  when: hermes_agent_mnemosyne_enabled | bool
+  tags:
+    - config
+    - hermes_agent
+    - mnemosyne
+  ansible.builtin.command:
+    argv:
+      - "{{ hermes_agent_launcher }}"
+      - config
+      - get
+      - memory.provider
+  environment:
+    HOME: "{{ hermes_agent_user_home }}"
+    HERMES_HOME: "{{ hermes_agent_home }}"
+  changed_when: false
+  register: hermes_agent_memory_provider
+
+# `plugins install --enable` already selects a memory provider; this also
+# repairs a plugin installed earlier without the provider being activated.
+- name: Select Mnemosyne as Hermes memory provider
+  when:
+    - hermes_agent_mnemosyne_enabled | bool
+    - hermes_agent_memory_provider.stdout | trim != hermes_agent_mnemosyne_plugin
+  tags:
+    - config
+    - hermes_agent
+    - mnemosyne
+  ansible.builtin.command:
+    argv:
+      - "{{ hermes_agent_launcher }}"
+      - config
+      - set
+      - memory.provider
+      - "{{ hermes_agent_mnemosyne_plugin }}"
+  environment:
+    HOME: "{{ hermes_agent_user_home }}"
+    HERMES_HOME: "{{ hermes_agent_home }}"
+  changed_when: true
+
+- name: Apply Hermes Agent configuration
+  when: hermes_agent_config | length > 0
+  tags:
+    - config
+    - hermes_agent
+  ansible.builtin.command:
+    cmd: "{{ hermes_agent_launcher }} config set {{ item.key }} {{ item.value | quote }}"
+  loop: "{{ hermes_agent_config | dict2items }}"
+  environment:
+    HOME: "{{ hermes_agent_user_home }}"
+    HERMES_HOME: "{{ hermes_agent_home }}"
+  changed_when: false
+
+- name: Write Hermes Agent secrets
+  when: hermes_agent_env | length > 0
+  tags:
+    - config
+    - hermes_agent
+  ansible.builtin.copy:
+    dest: "{{ hermes_agent_home }}/.env"
+    content: |
+      {% for key, value in hermes_agent_env.items() %}
+      {{ key }}={{ value }}
+      {% endfor %}
+    mode: "0600"
