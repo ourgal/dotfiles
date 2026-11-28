@@ -1318,6 +1318,15 @@ AppData/Roaming/maki/*
 !.config/syncthing/key.pem
 {{ end -}}
 # ]]]
+# [[[ syncthing (macOS)
+{{ if eq .chezmoi.os "darwin" -}}
+!.config/syncthing
+.config/syncthing/*
+!.config/syncthing/config.xml
+!.config/syncthing/cert.pem
+!.config/syncthing/key.pem
+{{ end -}}
+# ]]]
 # [[[ autorandr (surface)
 {{ if and (eq .chezmoi.os "linux") (eq .chezmoi.hostname "surface") -}}
 !.config/autorandr/

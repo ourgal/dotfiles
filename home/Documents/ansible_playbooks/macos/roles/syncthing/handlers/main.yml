@@ -1,0 +1,6 @@
+---
+- name: Restart syncthing
+  community.general.launchd:
+    name: "{{ syncthing_service }}"
+    # `restarted` unloads/loads the job so an updated plist is picked up.
+    state: restarted

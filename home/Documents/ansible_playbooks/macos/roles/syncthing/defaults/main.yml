@@ -1,0 +1,15 @@
+---
+syncthing_enabled: true
+
+# User LaunchAgent: no become, no root-owned /Library/LaunchDaemons file.
+syncthing_service: local.syncthing
+syncthing_prefix: /opt/homebrew
+syncthing_binary: "{{ syncthing_prefix }}/bin/syncthing"
+syncthing_user_home: "{{ ansible_facts.user_dir }}"
+syncthing_launch_agents: "{{ syncthing_user_home }}/Library/LaunchAgents"
+syncthing_plist: "{{ syncthing_launch_agents }}/{{ syncthing_service }}.plist"
+
+# chezmoi manages the config, cert and key at this path; syncthing's macOS
+# default is ~/Library/Application Support/Syncthing, so pass --home explicitly.
+syncthing_config_home: "{{ syncthing_user_home }}/.config/syncthing"
+syncthing_log_dir: "{{ syncthing_user_home }}/.local/share/syncthing/logs"

@@ -11,6 +11,12 @@
     # Before homebrew: its geerlingguy role calls git, which needs the CLT.
     - role: xcode_clt
     - role: homebrew
+    # Syncthing config files are managed by chezmoi at ~/.config/syncthing;
+    # this role installs the user LaunchAgent that runs the daemon.
+    - role: syncthing
+      when: syncthing_enabled | bool
+      tags:
+        - syncthing
     # User fonts for kitty/the terminal: IosevkaTerm NF, Nerd Symbols,
     # Maple Mono NF CN and Noto Sans CJK SC, all into ~/Library/Fonts.
     - role: fonts

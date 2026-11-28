@@ -1,0 +1,51 @@
+---
+# The Homebrew role installs the formula; config files come from chezmoi.
+# This role only owns the LaunchAgent that keeps syncthing running.
+- name: Check the syncthing binary
+  tags:
+    - pkg
+    - syncthing
+  ansible.builtin.stat:
+    path: "{{ syncthing_binary }}"
+  register: syncthing_binary_stat
+
+- name: Require Homebrew syncthing
+  tags:
+    - pkg
+    - syncthing
+  ansible.builtin.assert:
+    that: syncthing_binary_stat.stat.exists
+    fail_msg: >
+      {{ syncthing_binary }} is missing. Install the `syncthing` formula first
+      (make homebrew, or add it to homebrew_packages).
+
+- name: Create the syncthing directories
+  tags:
+    - config
+    - syncthing
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - "{{ syncthing_launch_agents }}"
+    - "{{ syncthing_log_dir }}"
+
+- name: Install the syncthing LaunchAgent
+  tags:
+    - config
+    - syncthing
+  ansible.builtin.template:
+    src: syncthing.plist.j2
+    dest: "{{ syncthing_plist }}"
+    mode: "0644"
+  notify: Restart syncthing
+
+- name: Enable and start syncthing
+  tags:
+    - service
+    - syncthing
+  community.general.launchd:
+    name: "{{ syncthing_service }}"
+    state: started
+    enabled: true
