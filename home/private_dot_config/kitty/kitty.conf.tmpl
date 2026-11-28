@@ -2,6 +2,10 @@
 shell {{ lookPath "fish" }}
 
 {{ end -}}
+{{ if eq .chezmoi.os "darwin" -}}
+# Let tmux receive M-h/M-j/M-k/M-l instead of macOS Unicode input.
+macos_option_as_alt both
+{{ end -}}
 # BEGIN_KITTY_FONTS
 font_family      IosevkaTerm Nerd Font Mono
 bold_font        auto
