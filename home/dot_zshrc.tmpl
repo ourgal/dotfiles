@@ -1,0 +1,6 @@
+# path_helper (via /etc/zprofile) appends /etc/paths.d/homebrew after /etc/paths,
+# leaving /usr/bin ahead of /opt/homebrew/bin. Move Homebrew to the front so
+# brew-installed commands (vim, git, ...) win over Apple's system versions.
+# ~/.zprofile is owned by the Python installer, so this lives in ~/.zshrc.
+path=("/opt/homebrew/bin" "/opt/homebrew/sbin" ${path:#/opt/homebrew/bin} ${path:#/opt/homebrew/sbin})
+export PATH

@@ -2,11 +2,13 @@
 {{ $_ := dict -}}
 {{ $cfg = set $cfg "advice" (dict "addEmptyPathspec" false "pushNonFastForward" false "statusHints" false) -}}
 
+{{ if eq .chezmoi.os "windows" -}}
 {{ $_ = set $_ "sync" (printf "!%s/scoop/apps/legit/current/legit.exe sync" .chezmoi.homeDir) -}}
 {{ $_ = set $_ "publish" (printf "!%s/scoop/apps/legit/current/legit.exe publish" .chezmoi.homeDir) -}}
 {{ $_ = set $_ "unpublish" (printf "!%s/scoop/apps/legit/current/legit.exe unpublish" .chezmoi.homeDir) -}}
 {{ $_ = set $_ "undo" (printf "!%s/scoop/apps/legit/current/legit.exe undo" .chezmoi.homeDir) -}}
 {{ $_ = set $_ "branches" (printf "!%s/scoop/apps/legit/current/legit.exe branches" .chezmoi.homeDir) -}}
+{{ end -}}
 
 {{ $_ = set $_ "up" "pull --rebase --autostash" -}}
 {{ $_ = set $_ "s" "show" -}}
@@ -121,7 +123,11 @@
 
 {{ $cfg = set $cfg "init" (dict "defaultBranch" "main") -}}
 
-{{ $cfg = set $cfg "interactive" (dict "diffFilter" "diff-so-fancy --patch" "singlekey" true) -}}
+{{ $_ = dict "singlekey" true -}}
+{{ if lookPath "diff-so-fancy" -}}
+{{ $_ = set $_ "diffFilter" "diff-so-fancy --patch" -}}
+{{ end -}}
+{{ $cfg = set $cfg "interactive" $_ -}}
 
 {{ $cfg = set $cfg "interactive-rebase-tool" (dict "inputMoveDown" "Down j" "inputMoveSelectionDown" "l" "inputMoveSelectionUp" "h" "inputMoveUp" "Up k" "inputRedo" "Control+r" "inputUndo" "u") -}}
 
@@ -141,7 +147,9 @@
 {{ $cfg = set $cfg "safe" (dict "directory" "*") -}}
 {{ end -}}
 
+{{ if lookPath "interactive-rebase-tool" -}}
 {{ $cfg = set $cfg "sequence" (dict "editor" "interactive-rebase-tool") -}}
+{{ end -}}
 
 {{ $cfg = set $cfg "status" (dict "branch" true "showStash" true "showUntrackedFiles" "all") -}}
 

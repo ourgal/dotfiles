@@ -243,6 +243,10 @@ Videos/*
 !.local/share/
 .local/share/*
 
+# Homebrew's bin dirs are appended by path_helper after /usr/bin, so brew
+# binaries lose to Apple's. ~/.zshrc prepends them; ~/.zprofile is Python's.
+!.zshrc
+
 {{ end -}}
 # ]]]
 # [[[ aichat
