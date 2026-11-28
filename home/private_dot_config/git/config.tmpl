@@ -89,10 +89,6 @@
 {{ end -}}
 {{ end -}}
 
-{{ if ne .chezmoi.hostname "user-PC" -}}
-{{ $cfg = set $cfg (print "credential " ("https://gist.github.com" | quote)) (dict "helper" (printf "!%s auth git-credential" (lookPath "gh" | replace "\\" "\\\\" | squote))) -}}
-{{ $cfg = set $cfg (print "credential " ("https://github.com" | quote)) (dict "helper" (printf "!%s auth git-credential" (lookPath "gh" | replace "\\" "\\\\" | squote))) -}}
-{{ end -}}
 
 {{ $cfg = set $cfg "delta" (dict "side-by-side" true "navitage" true "file-yellow" true) -}}
 
@@ -191,4 +187,17 @@
 {{ end -}}
 {{ end -}}
 {{ $cfg = set $cfg "merge" (dict "conflictstyle" $conflictStyle "renameLimit" 10000) -}}
-{{ $cfg | toIni -}}
+{{ $cfg | toIni }}
+{{- /* GitHub is authenticated by the gh CLI. An empty `helper =` first clears
+       the generic gopass helpers: for a host-only query they match several
+       gopass entries and print "too many entries" into lazygit's log. */ -}}
+{{ if ne .chezmoi.hostname "user-PC" -}}
+{{ $ghHelper := printf "!%s auth git-credential" (lookPath "gh" | replace "\\" "\\\\" | squote) -}}
+[credential "https://gist.github.com"]
+helper =
+helper = "{{ $ghHelper }}"
+
+[credential "https://github.com"]
+helper =
+helper = "{{ $ghHelper }}"
+{{ end -}}
