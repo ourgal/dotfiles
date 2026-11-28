@@ -1,4 +1,18 @@
 ---
+# The app itself is the source of truth for "already installed": it exists
+# after install.sh runs, and also after a manual install. Skip the installer
+# download/unpack when present, but keep the config tasks below so the Rime
+# schemes still deploy into an existing installation. Removing
+# {{ fcitx5_app }} forces a full reinstall.
+- name: Check whether Fcitx5 is already installed
+  ansible.builtin.stat:
+    path: "{{ fcitx5_app }}"
+  register: fcitx5_installed
+  tags:
+    - fcitx5
+
+# Shared by the installer and the scheme downloads below, so keep it
+# unconditional even when Fcitx5 is already installed.
 - name: Create the installer staging directory
   tags:
     - install
@@ -9,6 +23,7 @@
     mode: "0755"
 
 - name: Download the Fcitx5 (Rime edition) installer
+  when: not fcitx5_installed.stat.exists
   tags:
     - install
     - fcitx5
@@ -18,6 +33,7 @@
     mode: "0644"
 
 - name: Unpack the installer
+  when: not fcitx5_installed.stat.exists
   tags:
     - install
     - fcitx5
@@ -46,6 +62,7 @@
 # and enables the input method. `creates` keeps it out of later runs; remove
 # {{ fcitx5_app }} to force a reinstall.
 - name: Install Fcitx5.app and the rime plugin
+  when: not fcitx5_installed.stat.exists
   become: true
   tags:
     - install
