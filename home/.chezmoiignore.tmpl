@@ -343,7 +343,7 @@ Videos/*
 !vimfiles/
 !vimfiles/**
 {{ end -}}
-{{ if eq .chezmoi.os "linux" "android" -}}
+{{ if eq .chezmoi.os "linux" "android" "darwin" -}}
 !.vim/
 !.vim/**
 !.config/vim/
@@ -779,7 +779,7 @@ AppData/Roaming/Microsoft/Windows/Start Menu/Programs/*
 # ]]]
 # [[[ git
 {{ if lookPath "git" -}}
-{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+{{ if eq .chezmoi.os "windows" "linux" "android" "darwin" -}}
 !.config/git/
 !.config/git/**
 {{ end -}}
