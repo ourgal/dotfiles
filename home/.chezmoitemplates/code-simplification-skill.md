@@ -184,6 +184,37 @@ COMPARE BEFORE AND AFTER:
 
 If the "simplified" version is harder to understand or review, revert. Not every simplification attempt succeeds.
 
+## Verifying a Refactor When There Are No Tests
+
+A behavior-preserving refactor still has to be *proven* behavior-preserving. When the project has no test suite and the script's real inputs are absent (gitignored dumps, DB exports, credential-gated files), do a golden-output diff instead of claiming "looks equivalent":
+
+```
+1. Recover the current version:  git show HEAD:<script> > <work>/old/<script>
+2. Copy the SAME fixture inputs into old/ and new/, including pre-created outputs whose
+   absence triggers side effects (an existing cover.jpg so image resize is skipped,
+   an existing cache dir, an already-generated file).
+3. Run both scripts in their own directories, then diff the whole output tree.
+4. Every remaining hunk must be a hunk you can name as intended. "Only one diff and it is
+   the bug I fixed" is the passing result. Any unexplained hunk is a regression — revert.
+```
+
+`scripts/golden_diff.py` does steps 1-3 (`python golden_diff.py gen.py --fixtures fixtures/`); it diffs with difflib, so no `diff` binary is needed. To prove a template or prompt string is untouched, extract the function region from both revisions and diff it directly:
+
+```bash
+git show HEAD:gen.py | sed -n '/^def post_template/,/^"""$/p' > /tmp/old.txt
+sed -n '/^def post_template/,/^"""$/p' gen.py > /tmp/new.txt
+diff /tmp/old.txt /tmp/new.txt && echo TEMPLATE IDENTICAL
+```
+
+Make the fixtures wide enough to exercise the branches you touched: empty fields, a record whose first match is deliberately wrong, per-item exceptions, and values containing punctuation. A fixture that only hits the happy path proves nothing about the branch you rewrote.
+
+## Pitfalls That Have Bitten
+
+- **Regex built from data values.** `re.match(f"^({name}|{name} .+)$", field)` where `name` comes from a config/data file silently changes meaning when the value contains `( ) [ ] ? . * + | \` — a real title like `你的恋人试镜资格战(Audition)-…` became a group-plus-quantifier pattern that matched a *different* record. Replace with exact comparison (`field == name or field.startswith(f"{name} ")`) or `re.escape(name)`; either way diff old vs new output and confirm the only change is the fixed case.
+- **`Path.write_text()` / `open()` without `encoding=`** on generated files uses the platform locale codec (cp936/GBK on zh-CN Windows), so non-Latin output garbles or raises mid-run. Always pass `encoding="utf-8"` on writes of files that get committed.
+- **Annotating a JSON loader `-> dict`** when the same file can hold a list (a Calibre/DB dump is a list, `data.json` is an object). `json.load` returns whatever the document holds; leave the return unannotated (or `Any`) or the type checker flags every list-returning call site.
+- **Deleting "obviously dead" classes without checking git.** Unused code in a generator often mirrors an older API or holds the only copy of a name-mangling rule. Confirm the class/method has no callers first; if it does hold a rule (upload-name mangling, per-item exceptions), keep the rule and delete only the wrapper.
+
 ## Language-Specific Guidance
 
 ### TypeScript / JavaScript
@@ -320,7 +351,8 @@ function UserBadge({ user }: Props) {
 
 After completing a simplification pass:
 
-- [ ] All existing tests pass without modification
+- [ ] All existing tests pass without modification — or, if there are none, a golden-output diff (old revision vs new, same fixtures) shows only the intended hunks
+- [ ] Generated artifacts still carry an explicit `encoding="utf-8"`
 - [ ] Build succeeds with no new warnings
 - [ ] Linter/formatter passes (no style regressions)
 - [ ] Each simplification is a reviewable, incremental change

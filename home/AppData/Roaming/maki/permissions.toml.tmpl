@@ -1,1 +1,1 @@
-{{- include (joinPath .chezmoi.sourceDir "private_dot_config" "maki" "permissions.toml") -}}
+{{- includeTemplate (joinPath .chezmoi.sourceDir "private_dot_config" "maki" "permissions.toml.tmpl") . -}}
