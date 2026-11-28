@@ -20,7 +20,7 @@
   ansible.builtin.file:
     path: "{{ fcitx5_stage }}"
     state: directory
-    mode: "0755"
+    mode: "0700"
 
 - name: Download the Fcitx5 (Rime edition) installer
   when: not fcitx5_installed.stat.exists
@@ -50,7 +50,7 @@
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
-    mode: "0755"
+    mode: "0700"
   loop:
     - "{{ fcitx5_home }}/.config"
     - "{{ fcitx5_config_dir }}"
@@ -107,7 +107,7 @@
   ansible.builtin.file:
     path: "{{ fcitx5_rime_dir }}"
     state: directory
-    mode: "0755"
+    mode: "0700"
 
 - name: Download the sbsrf (声笔) Rime schemes
   tags:
