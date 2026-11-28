@@ -867,7 +867,7 @@ AppData/Roaming/Microsoft/Windows/Start Menu/Programs/*
 # ]]]
 # [[[ kitty
 {{ if lookPath "kitty" -}}
-{{ if eq .chezmoi.os "linux" -}}
+{{ if eq .chezmoi.os "linux" "darwin" -}}
 !.config/kitty/
 !.config/kitty/**
 {{ end -}}
