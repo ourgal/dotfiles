@@ -9,6 +9,16 @@ if status is-interactive
     {{ end -}}
     # ]]]
 
+    # [[[ homebrew
+    {{ if eq .chezmoi.os "darwin" -}}
+    {{ if stat "/opt/homebrew/bin/brew" -}}
+    eval (/opt/homebrew/bin/brew shellenv)
+    {{ else if stat "/usr/local/bin/brew" -}}
+    eval (/usr/local/bin/brew shellenv)
+    {{ end -}}
+    {{ end -}}
+    # ]]]
+
     # kitty's shell integration resets the cursor to its configured shape
     # after each command, but it does not do so when the shell runs inside
     # tmux. TUI programs (helix, vim) leave their DECSCUSR shape behind there,
