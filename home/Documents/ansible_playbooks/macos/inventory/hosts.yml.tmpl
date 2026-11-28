@@ -9,6 +9,6 @@ all:
       # role's retire path stops/disables the launchd daemon and removes the GGUF.
       mlx_vlm_enabled: false
       llama_cpp_enabled: false
-      # Delete the NixOS partitions of the dual-boot install and give the space
-      # back to macOS.
-      nixos_uninstall_enabled: true
+      # NixOS is already gone; keep this destructive role disabled so its
+      # when: guard skips it entirely. Set true only before running the removal.
+      nixos_uninstall_enabled: false
