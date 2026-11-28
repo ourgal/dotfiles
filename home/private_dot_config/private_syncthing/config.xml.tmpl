@@ -1,6 +1,6 @@
 {{- $secrets := includeTemplate "secrets" . | fromToml -}}
 {{- $devices := list "bed" "nuc" "s10" "m6" "note20" "air" "Macmini" -}}
-{{- $keepassDevices := list "nuc" "bed" "note20" -}}
+{{- $keepassDevices := list "nuc" "bed" "note20" "Macmini" -}}
 <configuration version="52">
     <folder id="gc5sz-susp5" label="share" path="{{ joinPath .chezmoi.homeDir "Syncthing" "share" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
@@ -47,11 +47,11 @@
     </folder>
     <folder id="gsqw5-i57xh" label="keepassxc" path="{{ joinPath .chezmoi.homeDir "Syncthing" "keepassxc" }}" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-{{- range $keepassDevices }}
+{{- range $keepassDevices }}{{ if ne . $.chezmoi.hostname }}
         <device id="{{ dig "syncthing" . "id" "" $secrets }}" introducedBy="">
             <encryptionPassword></encryptionPassword>
         </device>
-{{- end }}
+{{- end }}{{ end }}
         <minDiskFree unit="%">1</minDiskFree>
         <versioning>
             <cleanupIntervalS>3600</cleanupIntervalS>
