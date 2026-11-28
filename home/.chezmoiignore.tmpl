@@ -461,7 +461,7 @@ Videos/*
 # ]]]
 # [[[ starship
 {{ if lookPath "starship" -}}
-{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+{{ if eq .chezmoi.os "windows" "linux" "android" "darwin" -}}
 !.config/starship.toml
 {{ end -}}
 {{ end -}}
