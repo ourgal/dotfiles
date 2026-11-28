@@ -109,7 +109,7 @@
 {{ end -}}
 {{ end -}}
 
-{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+{{ if eq .chezmoi.os "windows" "linux" "android" "darwin" -}}
 {{ if lookPath "vim" -}}
 [".local/share/repos/vim-plug"]
     type = "git-repo"
