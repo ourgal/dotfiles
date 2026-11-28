@@ -471,7 +471,7 @@ Videos/*
 # ]]]
 # [[[ ssh
 {{ if lookPath "ssh" -}}
-{{ if eq .chezmoi.os "windows" "linux" "android" -}}
+{{ if eq .chezmoi.os "windows" "linux" "android" "darwin" -}}
 !.ssh/
 !.ssh/**
 {{ end -}}
