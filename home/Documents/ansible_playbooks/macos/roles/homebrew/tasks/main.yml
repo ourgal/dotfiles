@@ -1,4 +1,15 @@
 ---
+# The brew binary is the source of truth for "already installed". On an
+# existing Homebrew we skip the geerlingguy bootstrap (git clone, symlink,
+# permission fixes) but still install the package lists below; the modules
+# take an explicit `path` so they work from Ansible's non-login shell.
+- name: Check whether Homebrew is already installed
+  ansible.builtin.stat:
+    path: "{{ homebrew_prefix }}/bin/brew"
+  register: homebrew_installed
+  tags:
+    - homebrew
+
 # An old Homebrew checkout still on `master` makes every brew command fail with
 # "Homebrew's master branch is no longer supported", including the `brew --cache`
 # that the geerlingguy role runs before it gets to its own update task.
@@ -29,12 +40,36 @@
         argv: ["{{ homebrew_migrate_prefix }}/bin/brew", update]
       changed_when: true
 
-- name: Run geerlingguy.mac.homebrew
+# Fresh Mac: let the role bootstrap Homebrew and install everything in one pass.
+- name: Bootstrap Homebrew and install packages
+  when: not homebrew_installed.stat.exists
   ansible.builtin.import_role:
     name: geerlingguy.mac.homebrew
   vars:
     homebrew_installed_packages: "{{ homebrew_packages.values() | list | flatten }}"
     homebrew_cask_apps: "{{ homebrew_casks.values() | list | flatten }}"
+
+# Existing Homebrew: no bootstrap, just keep the package lists in sync.
+- name: Install configured Homebrew packages
+  when: homebrew_installed.stat.exists
+  tags:
+    - homebrew
+    - install
+  community.general.homebrew:
+    name: "{{ homebrew_packages.values() | list | flatten }}"
+    state: present
+    path: "{{ homebrew_prefix }}/bin"
+
+- name: Install configured Homebrew casks
+  when: homebrew_installed.stat.exists
+  tags:
+    - homebrew
+    - install
+  community.general.homebrew_cask:
+    name: "{{ homebrew_casks.values() | list | flatten }}"
+    state: present
+    path: "{{ homebrew_prefix }}/bin"
+    accept_external_apps: true
 
 # Homebrew's installer only prints the `brew shellenv` hint, and this repo
 # manages no zsh/bash init on macOS, so a login shell never sees
