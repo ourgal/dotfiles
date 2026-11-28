@@ -5,6 +5,9 @@
     - npm
   environment:
     npm_config_registry: "{{ npm_registry }}"
+    # /etc/paths.d/homebrew only applies to login shells; Ansible's remote
+    # shell is non-login, so `env node` in npm's shebang cannot find node.
+    PATH: "{{ npm_homebrew_prefix }}/bin:{{ ansible_env.PATH }}"
   community.general.npm:
     name: "{{ item }}"
     global: true

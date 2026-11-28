@@ -1,7 +1,10 @@
 ---
 # Node/npm come from Homebrew's `node` formula, installed into the user-owned
-# /opt/homebrew prefix, so global installs need neither become nor PATH fixes.
-npm_executable: /opt/homebrew/bin/npm
+# /opt/homebrew prefix, so no become is needed. Ansible's remote shell is
+# non-login, though, so npm's `#!/usr/bin/env node` shebang needs the prefix
+# on PATH (see tasks/main.yml).
+npm_homebrew_prefix: /opt/homebrew
+npm_executable: "{{ npm_homebrew_prefix }}/bin/npm"
 npm_registry: https://registry.npmmirror.com
 # CodeBuddy needs Node >= 18.20, dsh >= 24.9; Homebrew ships current Node.
 npm_packages:
