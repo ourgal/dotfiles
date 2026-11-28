@@ -11,6 +11,10 @@
     # Before homebrew: its geerlingguy role calls git, which needs the CLT.
     - role: xcode_clt
     - role: homebrew
+    # User fonts for kitty/the terminal: IosevkaTerm NF, Nerd Symbols,
+    # Maple Mono NF CN and Noto Sans CJK SC, all into ~/Library/Fonts.
+    - role: fonts
+      when: fonts_enabled | bool
     # Needs npm from the Homebrew `node` formula above.
     - role: npm
     - role: pipx

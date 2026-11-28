@@ -1,0 +1,95 @@
+---
+# Track the installed bundle with a version marker so a version bump
+# re-downloads everything even when the destination filenames stay the same.
+- name: Check the installed font bundle version
+  ansible.builtin.slurp:
+    src: "{{ fonts_version_file }}"
+  register: fonts_installed_version
+  changed_when: false
+  failed_when: false
+  tags:
+    - pkg
+    - fonts
+
+- name: Install fonts
+  when: >-
+    fonts_installed_version.failed or
+    (fonts_installed_version.content | default('') | b64decode | trim) != fonts_version
+  tags:
+    - pkg
+    - fonts
+    - install
+  block:
+    - name: Create font directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: "0700"
+      loop:
+        - "{{ fonts_dir }}"
+        - "{{ fonts_data_dir }}"
+
+    # macOS only scans the top level of ~/Library/Fonts, so archives are
+    # extracted to a staging dir and the font files are copied in flat.
+    - name: Reset the font staging directory
+      ansible.builtin.file:
+        path: "{{ fonts_staging_dir }}"
+        state: absent
+
+    - name: Create the font staging directory
+      ansible.builtin.file:
+        path: "{{ fonts_staging_dir }}"
+        state: directory
+        mode: "0700"
+
+    # Archive names carry the font version, so a bump fetches a fresh copy.
+    - name: Download font archives
+      ansible.builtin.get_url:
+        url: "{{ item.url }}"
+        dest: "{{ fonts_data_dir }}/{{ item.dest }}"
+        mode: "0644"
+      loop:
+        - url: "{{ fonts_iosevkaterm_url }}"
+          dest: "IosevkaTerm.tar.xz"
+        - url: "{{ fonts_nerdsymbols_url }}"
+          dest: "NerdFontsSymbolsOnly.tar.xz"
+        - url: "{{ fonts_noto_sans_cjk_sc_url }}"
+          dest: "NotoSansCJKsc.zip"
+
+    - name: Extract font archives into the staging directory
+      ansible.builtin.unarchive:
+        src: "{{ fonts_data_dir }}/{{ item }}"
+        dest: "{{ fonts_staging_dir }}"
+        remote_src: true
+      loop:
+        - IosevkaTerm.tar.xz
+        - NerdFontsSymbolsOnly.tar.xz
+        - NotoSansCJKsc.zip
+
+    - name: Find extracted font files
+      ansible.builtin.find:
+        paths: "{{ fonts_staging_dir }}"
+        patterns: "*.ttf,*.otf"
+        recurse: true
+      register: fonts_extracted_files
+
+    - name: Copy extracted fonts into ~/Library/Fonts
+      ansible.builtin.copy:
+        src: "{{ item.path }}"
+        dest: "{{ fonts_dir }}/{{ item.path | basename }}"
+        remote_src: true
+        mode: "0644"
+      loop: "{{ fonts_extracted_files.files }}"
+
+    - name: Download Maple Mono NF CN fonts
+      ansible.builtin.get_url:
+        url: "{{ fonts_maple_base_url }}/MapleMono-NF-CN-{{ item }}.ttf"
+        dest: "{{ fonts_dir }}/MapleMono-NF-CN-{{ item }}.ttf"
+        mode: "0644"
+      loop: "{{ fonts_maple_styles }}"
+
+    - name: Record the installed font bundle version
+      ansible.builtin.copy:
+        content: "{{ fonts_version }}\n"
+        dest: "{{ fonts_version_file }}"
+        mode: "0644"

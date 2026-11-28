@@ -1,0 +1,40 @@
+---
+fonts_enabled: true
+# macOS picks up fonts dropped in the invoking user's ~/Library/Fonts, so no
+# become is needed (same as the other user-level macOS roles).
+fonts_user_home: "{{ ansible_facts.user_dir }}"
+fonts_dir: "{{ fonts_user_home }}/Library/Fonts"
+fonts_data_dir: "{{ fonts_user_home }}/.local/share/macos-fonts"
+fonts_staging_dir: "{{ fonts_data_dir }}/staging"
+fonts_version_file: "{{ fonts_data_dir }}/version"
+# Bump this alongside any font version below to re-download and re-extract.
+fonts_version: "1"
+
+fonts_nerd_fonts_version: "3.5.1"
+fonts_nerdsymbols_version: "3.5.0"
+fonts_maple_version: "7.3"
+fonts_github_base: https://github.com/ryanoasis/nerd-fonts/releases/download
+fonts_iosevkaterm_url: "{{ fonts_github_base }}/v{{ fonts_nerd_fonts_version }}/IosevkaTerm.tar.xz"
+fonts_nerdsymbols_url: "{{ fonts_github_base }}/v{{ fonts_nerdsymbols_version }}/NerdFontsSymbolsOnly.tar.xz"
+fonts_maple_base_url: "https://gitee.com/subframe7536/Maple/releases/download/v{{ fonts_maple_version }}"
+# Same NJU mirror the Windows font script uses for Noto Sans CJK SC.
+fonts_noto_sans_cjk_sc_url: "https://mirror.nju.edu.cn/github-release/googlefonts/noto-cjk/Noto%20Sans%20CJK%20Version%202.004%20(OTF,%20OTC,%20Super%20OTC,%20Subset%20OTF,%20Variable%20OTF_TTF)/08_NotoSansCJKsc.zip"
+
+# Maple Mono NF CN styles published in subframe7536/Maple releases.
+fonts_maple_styles:
+  - Bold
+  - BoldItalic
+  - ExtraBold
+  - Italic
+  - ExtraBoldItalic
+  - ExtraLightItalic
+  - Medium
+  - ExtraLight
+  - SemiBold
+  - LightItalic
+  - Light
+  - SemiBoldItalic
+  - Regular
+  - MediumItalic
+  - Thin
+  - ThinItalic
