@@ -1,0 +1,20 @@
+{{ if eq .chezmoi.os "darwin" -}}
+{{ $app := "/Library/Input Methods/Fcitx5.app" -}}
+{{ if stat $app -}}
+{{ $rimeDir := joinPath .chezmoi.homeDir ".local" "share" "fcitx5" "rime" -}}
+#!{{ lookPath "bash" }}
+# Redeploy Rime after chezmoi applies the custom configs or the sbsrf schemes.
+# The POST only lands while Fcitx5 is running; ignore failures so `chezmoi
+# apply` never breaks because the input method is not active.
+{{ if stat (joinPath $rimeDir "default.custom.yaml") -}}
+# {{ include (joinPath $rimeDir "default.custom.yaml") | sha256sum }}
+{{ end -}}
+{{ if stat (joinPath $rimeDir "sbfm.custom.yaml") -}}
+# {{ include (joinPath $rimeDir "sbfm.custom.yaml") | sha256sum }}
+{{ end -}}
+{{ if stat (joinPath $rimeDir "sbfm.schema.yaml") -}}
+# {{ include (joinPath $rimeDir "sbfm.schema.yaml") | sha256sum }}
+{{ end -}}
+sh "{{ $app }}/Contents/bin/fcitx5-curl" /config/addon/rime/deploy -X POST -d {} || true
+{{ end -}}
+{{ end -}}

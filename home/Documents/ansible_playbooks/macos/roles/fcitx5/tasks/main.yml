@@ -138,13 +138,3 @@
       - -x
       - "*.custom.yaml"
     creates: "{{ fcitx5_rime_dir }}/sbfm.schema.yaml"
-
-# Only lands while Fcitx5 is running, and a failed POST is not a play failure.
-- name: Redeploy Rime
-  tags:
-    - config
-    - fcitx5
-  ansible.builtin.command:
-    cmd: sh "{{ fcitx5_app }}/Contents/bin/fcitx5-curl" /config/addon/rime/deploy -X POST -d {}
-  changed_when: false
-  failed_when: false
