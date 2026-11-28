@@ -10,4 +10,4 @@ yabai_skhd_prefix: /opt/homebrew
 yabai_skhd_user_home: "{{ ansible_facts.user_dir }}"
 yabai_skhd_launch_agents: "{{ yabai_skhd_user_home }}/Library/LaunchAgents"
 yabai_skhd_yabai_plist: "{{ yabai_skhd_launch_agents }}/com.asmvik.yabai.plist"
-yabai_skhd_skhd_plist: "{{ yabai_skhd_launch_agents }}/com.asmvik.skhd.plist"
+yabai_skhd_skhd_plist: "{{ yabai_skhd_launch_agents }}/com.koekeishiya.skhd.plist"
